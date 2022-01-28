@@ -17,7 +17,7 @@ import (
 
 // AddThirdPartyLoginPlatformCredentialV3Cmd represents the AddThirdPartyLoginPlatformCredentialV3 command
 var AddThirdPartyLoginPlatformCredentialV3Cmd = &cobra.Command{
-	Use:   "AddThirdPartyLoginPlatformCredentialV3",
+	Use:   "addThirdPartyLoginPlatformCredentialV3",
 	Short: "Add third party login platform credential V3",
 	Long:  `Add third party login platform credential V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var AddThirdPartyLoginPlatformCredentialV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AddThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	AddThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AddThirdPartyLoginPlatformCredentialV3Cmd.MarkFlagRequired("body")
-	AddThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AddThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AddThirdPartyLoginPlatformCredentialV3Cmd.MarkFlagRequired("namespace")
-	AddThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	AddThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = AddThirdPartyLoginPlatformCredentialV3Cmd.MarkFlagRequired("platformId")
 }

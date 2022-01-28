@@ -15,7 +15,7 @@ import (
 
 // QueryItemsCmd represents the QueryItems command
 var QueryItemsCmd = &cobra.Command{
-	Use:   "QueryItems",
+	Use:   "queryItems",
 	Short: "Query items",
 	Long:  `Query items`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -67,20 +67,20 @@ var QueryItemsCmd = &cobra.Command{
 }
 
 func init() {
-	QueryItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QueryItemsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = QueryItemsCmd.MarkFlagRequired("namespace")
-	QueryItemsCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	QueryItemsCmd.Flags().StringP("appType", "ae", " ", "App type")
-	QueryItemsCmd.Flags().StringP("availableDate", "ae", " ", "Available date")
-	QueryItemsCmd.Flags().StringP("baseAppId", "bd", " ", "Base app id")
-	QueryItemsCmd.Flags().StringP("categoryPath", "ch", " ", "Category path")
-	QueryItemsCmd.Flags().StringP("features", "fs", " ", "Features")
-	QueryItemsCmd.Flags().StringP("itemType", "ie", " ", "Item type")
-	QueryItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	QueryItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	QueryItemsCmd.Flags().StringP("region", "rn", " ", "Region")
-	QueryItemsCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
-	QueryItemsCmd.Flags().StringP("storeId", "sd", " ", "Store id")
-	QueryItemsCmd.Flags().StringP("tags", "ts", " ", "Tags")
-	QueryItemsCmd.Flags().StringP("targetNamespace", "te", " ", "Target namespace")
+	QueryItemsCmd.Flags().BoolP("activeOnly", "", false, "Active only")
+	QueryItemsCmd.Flags().StringP("appType", "", " ", "App type")
+	QueryItemsCmd.Flags().StringP("availableDate", "", " ", "Available date")
+	QueryItemsCmd.Flags().StringP("baseAppId", "", " ", "Base app id")
+	QueryItemsCmd.Flags().StringP("categoryPath", "", " ", "Category path")
+	QueryItemsCmd.Flags().StringP("features", "", " ", "Features")
+	QueryItemsCmd.Flags().StringP("itemType", "", " ", "Item type")
+	QueryItemsCmd.Flags().Int32P("limit", "", 20, "Limit")
+	QueryItemsCmd.Flags().Int32P("offset", "", 0, "Offset")
+	QueryItemsCmd.Flags().StringP("region", "", " ", "Region")
+	QueryItemsCmd.Flags().StringP("sortBy", "", " ", "Sort by")
+	QueryItemsCmd.Flags().StringP("storeId", "", " ", "Store id")
+	QueryItemsCmd.Flags().StringP("tags", "", " ", "Tags")
+	QueryItemsCmd.Flags().StringP("targetNamespace", "", " ", "Target namespace")
 }

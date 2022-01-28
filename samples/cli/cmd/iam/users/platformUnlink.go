@@ -15,7 +15,7 @@ import (
 
 // PlatformUnlinkCmd represents the PlatformUnlink command
 var PlatformUnlinkCmd = &cobra.Command{
-	Use:   "PlatformUnlink",
+	Use:   "platformUnlink",
 	Short: "Platform unlink",
 	Long:  `Platform unlink`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +44,11 @@ var PlatformUnlinkCmd = &cobra.Command{
 }
 
 func init() {
-	PlatformUnlinkCmd.Flags().StringP("platform_namespace", "pe", " ", "Platform namespace")
-	PlatformUnlinkCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PlatformUnlinkCmd.Flags().StringP("platform_namespace", "", " ", "Platform namespace")
+	PlatformUnlinkCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PlatformUnlinkCmd.MarkFlagRequired("namespace")
-	PlatformUnlinkCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	PlatformUnlinkCmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = PlatformUnlinkCmd.MarkFlagRequired("platformId")
-	PlatformUnlinkCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PlatformUnlinkCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PlatformUnlinkCmd.MarkFlagRequired("userId")
 }

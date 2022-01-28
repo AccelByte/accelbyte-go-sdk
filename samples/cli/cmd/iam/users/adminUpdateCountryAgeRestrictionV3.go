@@ -17,7 +17,7 @@ import (
 
 // AdminUpdateCountryAgeRestrictionV3Cmd represents the AdminUpdateCountryAgeRestrictionV3 command
 var AdminUpdateCountryAgeRestrictionV3Cmd = &cobra.Command{
-	Use:   "AdminUpdateCountryAgeRestrictionV3",
+	Use:   "adminUpdateCountryAgeRestrictionV3",
 	Short: "Admin update country age restriction V3",
 	Long:  `Admin update country age restriction V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var AdminUpdateCountryAgeRestrictionV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateCountryAgeRestrictionV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	AdminUpdateCountryAgeRestrictionV3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminUpdateCountryAgeRestrictionV3Cmd.MarkFlagRequired("body")
-	AdminUpdateCountryAgeRestrictionV3Cmd.Flags().StringP("countryCode", "ce", " ", "Country code")
+	AdminUpdateCountryAgeRestrictionV3Cmd.Flags().StringP("countryCode", "", " ", "Country code")
 	_ = AdminUpdateCountryAgeRestrictionV3Cmd.MarkFlagRequired("countryCode")
-	AdminUpdateCountryAgeRestrictionV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminUpdateCountryAgeRestrictionV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminUpdateCountryAgeRestrictionV3Cmd.MarkFlagRequired("namespace")
 }

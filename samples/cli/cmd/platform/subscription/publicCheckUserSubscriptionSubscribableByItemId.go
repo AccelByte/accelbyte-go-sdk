@@ -15,7 +15,7 @@ import (
 
 // PublicCheckUserSubscriptionSubscribableByItemIdCmd represents the PublicCheckUserSubscriptionSubscribableByItemId command
 var PublicCheckUserSubscriptionSubscribableByItemIdCmd = &cobra.Command{
-	Use:   "PublicCheckUserSubscriptionSubscribableByItemId",
+	Use:   "publicCheckUserSubscriptionSubscribableByItemId",
 	Short: "Public check user subscription subscribable by item id",
 	Long:  `Public check user subscription subscribable by item id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var PublicCheckUserSubscriptionSubscribableByItemIdCmd = &cobra.Command{
 }
 
 func init() {
-	PublicCheckUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicCheckUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicCheckUserSubscriptionSubscribableByItemIdCmd.MarkFlagRequired("namespace")
-	PublicCheckUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicCheckUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicCheckUserSubscriptionSubscribableByItemIdCmd.MarkFlagRequired("userId")
-	PublicCheckUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	PublicCheckUserSubscriptionSubscribableByItemIdCmd.Flags().StringP("itemId", "", " ", "Item id")
 	_ = PublicCheckUserSubscriptionSubscribableByItemIdCmd.MarkFlagRequired("itemId")
 }

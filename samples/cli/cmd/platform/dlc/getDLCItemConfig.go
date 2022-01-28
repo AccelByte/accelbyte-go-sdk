@@ -15,7 +15,7 @@ import (
 
 // GetDLCItemConfigCmd represents the GetDLCItemConfig command
 var GetDLCItemConfigCmd = &cobra.Command{
-	Use:   "GetDLCItemConfig",
+	Use:   "getDLCItemConfig",
 	Short: "Get DLC item config",
 	Long:  `Get DLC item config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetDLCItemConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetDLCItemConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetDLCItemConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetDLCItemConfigCmd.MarkFlagRequired("namespace")
 }

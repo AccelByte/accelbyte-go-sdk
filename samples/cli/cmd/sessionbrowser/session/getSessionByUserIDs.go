@@ -15,7 +15,7 @@ import (
 
 // GetSessionByUserIDsCmd represents the GetSessionByUserIDs command
 var GetSessionByUserIDsCmd = &cobra.Command{
-	Use:   "GetSessionByUserIDs",
+	Use:   "getSessionByUserIDs",
 	Short: "Get session by user I ds",
 	Long:  `Get session by user I ds`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetSessionByUserIDsCmd = &cobra.Command{
 }
 
 func init() {
-	GetSessionByUserIDsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetSessionByUserIDsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetSessionByUserIDsCmd.MarkFlagRequired("namespace")
-	GetSessionByUserIDsCmd.Flags().StringP("user_ids", "us", " ", "User ids")
+	GetSessionByUserIDsCmd.Flags().StringP("user_ids", "", " ", "User ids")
 	_ = GetSessionByUserIDsCmd.MarkFlagRequired("user_ids")
 }

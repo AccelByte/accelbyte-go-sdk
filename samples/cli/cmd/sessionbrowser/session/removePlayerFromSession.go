@@ -15,7 +15,7 @@ import (
 
 // RemovePlayerFromSessionCmd represents the RemovePlayerFromSession command
 var RemovePlayerFromSessionCmd = &cobra.Command{
-	Use:   "RemovePlayerFromSession",
+	Use:   "removePlayerFromSession",
 	Short: "Remove player from session",
 	Long:  `Remove player from session`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var RemovePlayerFromSessionCmd = &cobra.Command{
 }
 
 func init() {
-	RemovePlayerFromSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	RemovePlayerFromSessionCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = RemovePlayerFromSessionCmd.MarkFlagRequired("namespace")
-	RemovePlayerFromSessionCmd.Flags().StringP("sessionID", "sD", " ", "Session ID")
+	RemovePlayerFromSessionCmd.Flags().StringP("sessionID", "", " ", "Session ID")
 	_ = RemovePlayerFromSessionCmd.MarkFlagRequired("sessionID")
-	RemovePlayerFromSessionCmd.Flags().StringP("userID", "uD", " ", "User ID")
+	RemovePlayerFromSessionCmd.Flags().StringP("userID", "", " ", "User ID")
 	_ = RemovePlayerFromSessionCmd.MarkFlagRequired("userID")
 }

@@ -15,7 +15,7 @@ import (
 
 // DeleteAllUserChannelCmd represents the DeleteAllUserChannel command
 var DeleteAllUserChannelCmd = &cobra.Command{
-	Use:   "DeleteAllUserChannel",
+	Use:   "deleteAllUserChannel",
 	Short: "Delete all user channel",
 	Long:  `Delete all user channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var DeleteAllUserChannelCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteAllUserChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteAllUserChannelCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteAllUserChannelCmd.MarkFlagRequired("namespace")
-	DeleteAllUserChannelCmd.Flags().StringP("userId", "ud", " ", "User id")
+	DeleteAllUserChannelCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = DeleteAllUserChannelCmd.MarkFlagRequired("userId")
 }

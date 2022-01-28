@@ -15,7 +15,7 @@ import (
 
 // GetPlayStationIAPConfigCmd represents the GetPlayStationIAPConfig command
 var GetPlayStationIAPConfigCmd = &cobra.Command{
-	Use:   "GetPlayStationIAPConfig",
+	Use:   "getPlayStationIAPConfig",
 	Short: "Get play station IAP config",
 	Long:  `Get play station IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetPlayStationIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetPlayStationIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetPlayStationIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetPlayStationIAPConfigCmd.MarkFlagRequired("namespace")
 }

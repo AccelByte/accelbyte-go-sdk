@@ -15,7 +15,7 @@ import (
 
 // SearchUserCmd represents the SearchUser command
 var SearchUserCmd = &cobra.Command{
-	Use:   "SearchUser",
+	Use:   "searchUser",
 	Short: "Search user",
 	Long:  `Search user`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,7 +41,7 @@ var SearchUserCmd = &cobra.Command{
 }
 
 func init() {
-	SearchUserCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SearchUserCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SearchUserCmd.MarkFlagRequired("namespace")
-	SearchUserCmd.Flags().StringP("query", "qy", " ", "Query")
+	SearchUserCmd.Flags().StringP("query", "", " ", "Query")
 }

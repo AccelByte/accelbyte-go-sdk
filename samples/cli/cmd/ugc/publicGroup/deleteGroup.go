@@ -15,7 +15,7 @@ import (
 
 // DeleteGroupCmd represents the DeleteGroup command
 var DeleteGroupCmd = &cobra.Command{
-	Use:   "DeleteGroup",
+	Use:   "deleteGroup",
 	Short: "Delete group",
 	Long:  `Delete group`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var DeleteGroupCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteGroupCmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	DeleteGroupCmd.Flags().StringP("groupId", "", " ", "Group id")
 	_ = DeleteGroupCmd.MarkFlagRequired("groupId")
-	DeleteGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteGroupCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteGroupCmd.MarkFlagRequired("namespace")
-	DeleteGroupCmd.Flags().StringP("userId", "ud", " ", "User id")
+	DeleteGroupCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = DeleteGroupCmd.MarkFlagRequired("userId")
 }

@@ -16,7 +16,7 @@ import (
 
 // UpdateXblBPCertFileCmd represents the UpdateXblBPCertFile command
 var UpdateXblBPCertFileCmd = &cobra.Command{
-	Use:   "UpdateXblBPCertFile",
+	Use:   "updateXblBPCertFile",
 	Short: "Update xbl BP cert file",
 	Long:  `Update xbl BP cert file`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +49,8 @@ var UpdateXblBPCertFileCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateXblBPCertFileCmd.Flags().StringP("file", "fe", " ", "File")
-	UpdateXblBPCertFileCmd.Flags().StringP("password", "pd", " ", "Password")
-	UpdateXblBPCertFileCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateXblBPCertFileCmd.Flags().StringP("file", "", " ", "File")
+	UpdateXblBPCertFileCmd.Flags().StringP("password", "", " ", "Password")
+	UpdateXblBPCertFileCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateXblBPCertFileCmd.MarkFlagRequired("namespace")
 }

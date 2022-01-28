@@ -17,7 +17,7 @@ import (
 
 // AdminBanUserV3Cmd represents the AdminBanUserV3 command
 var AdminBanUserV3Cmd = &cobra.Command{
-	Use:   "AdminBanUserV3",
+	Use:   "adminBanUserV3",
 	Short: "Admin ban user V3",
 	Long:  `Admin ban user V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var AdminBanUserV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminBanUserV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	AdminBanUserV3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminBanUserV3Cmd.MarkFlagRequired("body")
-	AdminBanUserV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminBanUserV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminBanUserV3Cmd.MarkFlagRequired("namespace")
-	AdminBanUserV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminBanUserV3Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminBanUserV3Cmd.MarkFlagRequired("userId")
 }

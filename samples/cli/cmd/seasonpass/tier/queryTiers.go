@@ -15,7 +15,7 @@ import (
 
 // QueryTiersCmd represents the QueryTiers command
 var QueryTiersCmd = &cobra.Command{
-	Use:   "QueryTiers",
+	Use:   "queryTiers",
 	Short: "Query tiers",
 	Long:  `Query tiers`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,10 +45,10 @@ var QueryTiersCmd = &cobra.Command{
 }
 
 func init() {
-	QueryTiersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QueryTiersCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = QueryTiersCmd.MarkFlagRequired("namespace")
-	QueryTiersCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	QueryTiersCmd.Flags().StringP("seasonId", "", " ", "Season id")
 	_ = QueryTiersCmd.MarkFlagRequired("seasonId")
-	QueryTiersCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	QueryTiersCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	QueryTiersCmd.Flags().Int32P("limit", "", 20, "Limit")
+	QueryTiersCmd.Flags().Int32P("offset", "", 0, "Offset")
 }

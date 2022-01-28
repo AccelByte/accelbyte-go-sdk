@@ -15,7 +15,7 @@ import (
 
 // GetClientsbyNamespaceCmd represents the GetClientsbyNamespace command
 var GetClientsbyNamespaceCmd = &cobra.Command{
-	Use:   "GetClientsbyNamespace",
+	Use:   "getClientsbyNamespace",
 	Short: "Get clientsby namespace",
 	Long:  `Get clientsby namespace`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetClientsbyNamespaceCmd = &cobra.Command{
 }
 
 func init() {
-	GetClientsbyNamespaceCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetClientsbyNamespaceCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetClientsbyNamespaceCmd.MarkFlagRequired("namespace")
 }

@@ -15,7 +15,7 @@ import (
 
 // GetGroupContentCmd represents the GetGroupContent command
 var GetGroupContentCmd = &cobra.Command{
-	Use:   "GetGroupContent",
+	Use:   "getGroupContent",
 	Short: "Get group content",
 	Long:  `Get group content`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,12 +47,12 @@ var GetGroupContentCmd = &cobra.Command{
 }
 
 func init() {
-	GetGroupContentCmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	GetGroupContentCmd.Flags().StringP("groupId", "", " ", "Group id")
 	_ = GetGroupContentCmd.MarkFlagRequired("groupId")
-	GetGroupContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetGroupContentCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetGroupContentCmd.MarkFlagRequired("namespace")
-	GetGroupContentCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetGroupContentCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetGroupContentCmd.MarkFlagRequired("userId")
-	GetGroupContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	GetGroupContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	GetGroupContentCmd.Flags().StringP("limit", "", "20", "Limit")
+	GetGroupContentCmd.Flags().StringP("offset", "", "0", "Offset")
 }

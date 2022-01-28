@@ -15,7 +15,7 @@ import (
 
 // DeleteThirdPartyLoginPlatformCredentialV3Cmd represents the DeleteThirdPartyLoginPlatformCredentialV3 command
 var DeleteThirdPartyLoginPlatformCredentialV3Cmd = &cobra.Command{
-	Use:   "DeleteThirdPartyLoginPlatformCredentialV3",
+	Use:   "deleteThirdPartyLoginPlatformCredentialV3",
 	Short: "Delete third party login platform credential V3",
 	Long:  `Delete third party login platform credential V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var DeleteThirdPartyLoginPlatformCredentialV3Cmd = &cobra.Command{
 }
 
 func init() {
-	DeleteThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteThirdPartyLoginPlatformCredentialV3Cmd.MarkFlagRequired("namespace")
-	DeleteThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	DeleteThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = DeleteThirdPartyLoginPlatformCredentialV3Cmd.MarkFlagRequired("platformId")
 }

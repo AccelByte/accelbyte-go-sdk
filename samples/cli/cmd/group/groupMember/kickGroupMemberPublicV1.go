@@ -15,7 +15,7 @@ import (
 
 // KickGroupMemberPublicV1Cmd represents the KickGroupMemberPublicV1 command
 var KickGroupMemberPublicV1Cmd = &cobra.Command{
-	Use:   "KickGroupMemberPublicV1",
+	Use:   "kickGroupMemberPublicV1",
 	Short: "Kick group member public V1",
 	Long:  `Kick group member public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var KickGroupMemberPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	KickGroupMemberPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	KickGroupMemberPublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = KickGroupMemberPublicV1Cmd.MarkFlagRequired("namespace")
-	KickGroupMemberPublicV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	KickGroupMemberPublicV1Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = KickGroupMemberPublicV1Cmd.MarkFlagRequired("userId")
 }

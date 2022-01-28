@@ -16,7 +16,7 @@ import (
 
 // DeleteUserRankingsAdminV1Cmd represents the DeleteUserRankingsAdminV1 command
 var DeleteUserRankingsAdminV1Cmd = &cobra.Command{
-	Use:   "DeleteUserRankingsAdminV1",
+	Use:   "deleteUserRankingsAdminV1",
 	Short: "Delete user rankings admin V1",
 	Long:  `Delete user rankings admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,10 +48,10 @@ var DeleteUserRankingsAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	DeleteUserRankingsAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteUserRankingsAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteUserRankingsAdminV1Cmd.MarkFlagRequired("namespace")
-	DeleteUserRankingsAdminV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	DeleteUserRankingsAdminV1Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = DeleteUserRankingsAdminV1Cmd.MarkFlagRequired("userId")
-	DeleteUserRankingsAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
+	DeleteUserRankingsAdminV1Cmd.Flags().StringP("leaderboardCode", "", " ", "Leaderboard code")
 	_ = DeleteUserRankingsAdminV1Cmd.MarkFlagRequired("leaderboardCode")
 }

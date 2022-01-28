@@ -15,7 +15,7 @@ import (
 
 // AdminRequestDataRetrievalCmd represents the AdminRequestDataRetrieval command
 var AdminRequestDataRetrievalCmd = &cobra.Command{
-	Use:   "AdminRequestDataRetrieval",
+	Use:   "adminRequestDataRetrieval",
 	Short: "Admin request data retrieval",
 	Long:  `Admin request data retrieval`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,9 +43,9 @@ var AdminRequestDataRetrievalCmd = &cobra.Command{
 }
 
 func init() {
-	AdminRequestDataRetrievalCmd.Flags().StringP("password", "pd", " ", "Password")
-	AdminRequestDataRetrievalCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminRequestDataRetrievalCmd.Flags().StringP("password", "", " ", "Password")
+	AdminRequestDataRetrievalCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminRequestDataRetrievalCmd.MarkFlagRequired("namespace")
-	AdminRequestDataRetrievalCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminRequestDataRetrievalCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminRequestDataRetrievalCmd.MarkFlagRequired("userId")
 }

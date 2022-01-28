@@ -15,7 +15,7 @@ import (
 
 // GetCampaignCmd represents the GetCampaign command
 var GetCampaignCmd = &cobra.Command{
-	Use:   "GetCampaign",
+	Use:   "getCampaign",
 	Short: "Get campaign",
 	Long:  `Get campaign`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetCampaignCmd = &cobra.Command{
 }
 
 func init() {
-	GetCampaignCmd.Flags().StringP("campaignId", "cd", " ", "Campaign id")
+	GetCampaignCmd.Flags().StringP("campaignId", "", " ", "Campaign id")
 	_ = GetCampaignCmd.MarkFlagRequired("campaignId")
-	GetCampaignCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetCampaignCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetCampaignCmd.MarkFlagRequired("namespace")
 }

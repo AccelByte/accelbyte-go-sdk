@@ -15,7 +15,7 @@ import (
 
 // AcceptGroupInvitationPublicV1Cmd represents the AcceptGroupInvitationPublicV1 command
 var AcceptGroupInvitationPublicV1Cmd = &cobra.Command{
-	Use:   "AcceptGroupInvitationPublicV1",
+	Use:   "acceptGroupInvitationPublicV1",
 	Short: "Accept group invitation public V1",
 	Long:  `Accept group invitation public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var AcceptGroupInvitationPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	AcceptGroupInvitationPublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	AcceptGroupInvitationPublicV1Cmd.Flags().StringP("groupId", "", " ", "Group id")
 	_ = AcceptGroupInvitationPublicV1Cmd.MarkFlagRequired("groupId")
-	AcceptGroupInvitationPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AcceptGroupInvitationPublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AcceptGroupInvitationPublicV1Cmd.MarkFlagRequired("namespace")
 }

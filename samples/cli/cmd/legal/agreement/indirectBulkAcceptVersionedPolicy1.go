@@ -17,7 +17,7 @@ import (
 
 // IndirectBulkAcceptVersionedPolicy1Cmd represents the IndirectBulkAcceptVersionedPolicy1 command
 var IndirectBulkAcceptVersionedPolicy1Cmd = &cobra.Command{
-	Use:   "IndirectBulkAcceptVersionedPolicy1",
+	Use:   "indirectBulkAcceptVersionedPolicy1",
 	Short: "Indirect bulk accept versioned policy 1",
 	Long:  `Indirect bulk accept versioned policy 1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var IndirectBulkAcceptVersionedPolicy1Cmd = &cobra.Command{
 }
 
 func init() {
-	IndirectBulkAcceptVersionedPolicy1Cmd.Flags().StringP("body", "by", " ", "Body")
-	IndirectBulkAcceptVersionedPolicy1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	IndirectBulkAcceptVersionedPolicy1Cmd.Flags().StringP("body", "", " ", "Body")
+	IndirectBulkAcceptVersionedPolicy1Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = IndirectBulkAcceptVersionedPolicy1Cmd.MarkFlagRequired("userId")
 }

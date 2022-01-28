@@ -15,7 +15,7 @@ import (
 
 // GetWalletCmd represents the GetWallet command
 var GetWalletCmd = &cobra.Command{
-	Use:   "GetWallet",
+	Use:   "getWallet",
 	Short: "Get wallet",
 	Long:  `Get wallet`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetWalletCmd = &cobra.Command{
 }
 
 func init() {
-	GetWalletCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetWalletCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetWalletCmd.MarkFlagRequired("namespace")
-	GetWalletCmd.Flags().StringP("walletId", "wd", " ", "Wallet id")
+	GetWalletCmd.Flags().StringP("walletId", "", " ", "Wallet id")
 	_ = GetWalletCmd.MarkFlagRequired("walletId")
 }

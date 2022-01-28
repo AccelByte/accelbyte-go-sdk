@@ -17,7 +17,7 @@ import (
 
 // BatchDownloadServerLogsCmd represents the BatchDownloadServerLogs command
 var BatchDownloadServerLogsCmd = &cobra.Command{
-	Use:   "BatchDownloadServerLogs",
+	Use:   "batchDownloadServerLogs",
 	Short: "Batch download server logs",
 	Long:  `Batch download server logs`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,6 +45,6 @@ var BatchDownloadServerLogsCmd = &cobra.Command{
 }
 
 func init() {
-	BatchDownloadServerLogsCmd.Flags().StringP("body", "by", " ", "Body")
+	BatchDownloadServerLogsCmd.Flags().StringP("body", "", " ", "Body")
 	_ = BatchDownloadServerLogsCmd.MarkFlagRequired("body")
 }

@@ -15,7 +15,7 @@ import (
 
 // AdminDeleteContentScreenshotCmd represents the AdminDeleteContentScreenshot command
 var AdminDeleteContentScreenshotCmd = &cobra.Command{
-	Use:   "AdminDeleteContentScreenshot",
+	Use:   "adminDeleteContentScreenshot",
 	Short: "Admin delete content screenshot",
 	Long:  `Admin delete content screenshot`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var AdminDeleteContentScreenshotCmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteContentScreenshotCmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	AdminDeleteContentScreenshotCmd.Flags().StringP("contentId", "", " ", "Content id")
 	_ = AdminDeleteContentScreenshotCmd.MarkFlagRequired("contentId")
-	AdminDeleteContentScreenshotCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminDeleteContentScreenshotCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminDeleteContentScreenshotCmd.MarkFlagRequired("namespace")
-	AdminDeleteContentScreenshotCmd.Flags().StringP("screenshotId", "sd", " ", "Screenshot id")
+	AdminDeleteContentScreenshotCmd.Flags().StringP("screenshotId", "", " ", "Screenshot id")
 	_ = AdminDeleteContentScreenshotCmd.MarkFlagRequired("screenshotId")
 }

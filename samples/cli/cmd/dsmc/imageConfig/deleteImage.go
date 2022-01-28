@@ -15,7 +15,7 @@ import (
 
 // DeleteImageCmd represents the DeleteImage command
 var DeleteImageCmd = &cobra.Command{
-	Use:   "DeleteImage",
+	Use:   "deleteImage",
 	Short: "Delete image",
 	Long:  `Delete image`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var DeleteImageCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteImageCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteImageCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteImageCmd.MarkFlagRequired("namespace")
-	DeleteImageCmd.Flags().StringP("imageURI", "iI", " ", "Image URI")
+	DeleteImageCmd.Flags().StringP("imageURI", "", " ", "Image URI")
 	_ = DeleteImageCmd.MarkFlagRequired("imageURI")
-	DeleteImageCmd.Flags().StringP("version", "vn", " ", "Version")
+	DeleteImageCmd.Flags().StringP("version", "", " ", "Version")
 	_ = DeleteImageCmd.MarkFlagRequired("version")
 }

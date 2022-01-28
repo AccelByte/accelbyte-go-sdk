@@ -17,7 +17,7 @@ import (
 
 // CreateNotificationTopicV1AdminCmd represents the CreateNotificationTopicV1Admin command
 var CreateNotificationTopicV1AdminCmd = &cobra.Command{
-	Use:   "CreateNotificationTopicV1Admin",
+	Use:   "createNotificationTopicV1Admin",
 	Short: "Create notification topic V1 admin",
 	Long:  `Create notification topic V1 admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var CreateNotificationTopicV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	CreateNotificationTopicV1AdminCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateNotificationTopicV1AdminCmd.Flags().StringP("body", "", " ", "Body")
 	_ = CreateNotificationTopicV1AdminCmd.MarkFlagRequired("body")
-	CreateNotificationTopicV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateNotificationTopicV1AdminCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateNotificationTopicV1AdminCmd.MarkFlagRequired("namespace")
 }

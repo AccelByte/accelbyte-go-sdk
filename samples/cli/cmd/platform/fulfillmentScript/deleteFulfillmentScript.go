@@ -15,7 +15,7 @@ import (
 
 // DeleteFulfillmentScriptCmd represents the DeleteFulfillmentScript command
 var DeleteFulfillmentScriptCmd = &cobra.Command{
-	Use:   "DeleteFulfillmentScript",
+	Use:   "deleteFulfillmentScript",
 	Short: "Delete fulfillment script",
 	Long:  `Delete fulfillment script`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var DeleteFulfillmentScriptCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteFulfillmentScriptCmd.Flags().StringP("id", "id", " ", "Id")
+	DeleteFulfillmentScriptCmd.Flags().StringP("id", "", " ", "Id")
 	_ = DeleteFulfillmentScriptCmd.MarkFlagRequired("id")
 }

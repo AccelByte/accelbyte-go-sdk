@@ -15,7 +15,7 @@ import (
 
 // RetrieveAllPolicyTypesCmd represents the RetrieveAllPolicyTypes command
 var RetrieveAllPolicyTypesCmd = &cobra.Command{
-	Use:   "RetrieveAllPolicyTypes",
+	Use:   "retrieveAllPolicyTypes",
 	Short: "Retrieve all policy types",
 	Long:  `Retrieve all policy types`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,7 +41,7 @@ var RetrieveAllPolicyTypesCmd = &cobra.Command{
 }
 
 func init() {
-	RetrieveAllPolicyTypesCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	RetrieveAllPolicyTypesCmd.Flags().Int32P("limit", "lt", 20, "Limit")
+	RetrieveAllPolicyTypesCmd.Flags().Int32P("offset", "", 0, "Offset")
+	RetrieveAllPolicyTypesCmd.Flags().Int32P("limit", "", 20, "Limit")
 	_ = RetrieveAllPolicyTypesCmd.MarkFlagRequired("limit")
 }

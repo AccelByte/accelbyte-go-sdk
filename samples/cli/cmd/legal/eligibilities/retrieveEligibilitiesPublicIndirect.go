@@ -15,7 +15,7 @@ import (
 
 // RetrieveEligibilitiesPublicIndirectCmd represents the RetrieveEligibilitiesPublicIndirect command
 var RetrieveEligibilitiesPublicIndirectCmd = &cobra.Command{
-	Use:   "RetrieveEligibilitiesPublicIndirect",
+	Use:   "retrieveEligibilitiesPublicIndirect",
 	Short: "Retrieve eligibilities public indirect",
 	Long:  `Retrieve eligibilities public indirect`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,12 +45,12 @@ var RetrieveEligibilitiesPublicIndirectCmd = &cobra.Command{
 }
 
 func init() {
-	RetrieveEligibilitiesPublicIndirectCmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	RetrieveEligibilitiesPublicIndirectCmd.Flags().StringP("clientId", "", " ", "Client id")
 	_ = RetrieveEligibilitiesPublicIndirectCmd.MarkFlagRequired("clientId")
-	RetrieveEligibilitiesPublicIndirectCmd.Flags().StringP("countryCode", "ce", " ", "Country code")
+	RetrieveEligibilitiesPublicIndirectCmd.Flags().StringP("countryCode", "", " ", "Country code")
 	_ = RetrieveEligibilitiesPublicIndirectCmd.MarkFlagRequired("countryCode")
-	RetrieveEligibilitiesPublicIndirectCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	RetrieveEligibilitiesPublicIndirectCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = RetrieveEligibilitiesPublicIndirectCmd.MarkFlagRequired("namespace")
-	RetrieveEligibilitiesPublicIndirectCmd.Flags().StringP("userId", "ud", " ", "User id")
+	RetrieveEligibilitiesPublicIndirectCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = RetrieveEligibilitiesPublicIndirectCmd.MarkFlagRequired("userId")
 }

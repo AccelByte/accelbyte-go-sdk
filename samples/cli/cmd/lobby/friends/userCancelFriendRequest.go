@@ -17,7 +17,7 @@ import (
 
 // UserCancelFriendRequestCmd represents the UserCancelFriendRequest command
 var UserCancelFriendRequestCmd = &cobra.Command{
-	Use:   "UserCancelFriendRequest",
+	Use:   "userCancelFriendRequest",
 	Short: "User cancel friend request",
 	Long:  `User cancel friend request`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var UserCancelFriendRequestCmd = &cobra.Command{
 }
 
 func init() {
-	UserCancelFriendRequestCmd.Flags().StringP("body", "by", " ", "Body")
+	UserCancelFriendRequestCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UserCancelFriendRequestCmd.MarkFlagRequired("body")
-	UserCancelFriendRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UserCancelFriendRequestCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UserCancelFriendRequestCmd.MarkFlagRequired("namespace")
 }

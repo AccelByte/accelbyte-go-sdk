@@ -17,7 +17,7 @@ import (
 
 // AcquireItemCmd represents the AcquireItem command
 var AcquireItemCmd = &cobra.Command{
-	Use:   "AcquireItem",
+	Use:   "acquireItem",
 	Short: "Acquire item",
 	Long:  `Acquire item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var AcquireItemCmd = &cobra.Command{
 }
 
 func init() {
-	AcquireItemCmd.Flags().StringP("body", "by", " ", "Body")
-	AcquireItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	AcquireItemCmd.Flags().StringP("body", "", " ", "Body")
+	AcquireItemCmd.Flags().StringP("itemId", "", " ", "Item id")
 	_ = AcquireItemCmd.MarkFlagRequired("itemId")
-	AcquireItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AcquireItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AcquireItemCmd.MarkFlagRequired("namespace")
 }

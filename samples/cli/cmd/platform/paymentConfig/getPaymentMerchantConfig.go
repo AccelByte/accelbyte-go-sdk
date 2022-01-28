@@ -15,7 +15,7 @@ import (
 
 // GetPaymentMerchantConfigCmd represents the GetPaymentMerchantConfig command
 var GetPaymentMerchantConfigCmd = &cobra.Command{
-	Use:   "GetPaymentMerchantConfig",
+	Use:   "getPaymentMerchantConfig",
 	Short: "Get payment merchant config",
 	Long:  `Get payment merchant config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetPaymentMerchantConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetPaymentMerchantConfigCmd.Flags().StringP("id", "id", " ", "Id")
+	GetPaymentMerchantConfigCmd.Flags().StringP("id", "", " ", "Id")
 	_ = GetPaymentMerchantConfigCmd.MarkFlagRequired("id")
 }

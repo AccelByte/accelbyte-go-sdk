@@ -15,7 +15,7 @@ import (
 
 // AdminGetClientsbyNamespacebyIDV3Cmd represents the AdminGetClientsbyNamespacebyIDV3 command
 var AdminGetClientsbyNamespacebyIDV3Cmd = &cobra.Command{
-	Use:   "AdminGetClientsbyNamespacebyIDV3",
+	Use:   "adminGetClientsbyNamespacebyIDV3",
 	Short: "Admin get clientsby namespaceby IDV3",
 	Long:  `Admin get clientsby namespaceby IDV3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var AdminGetClientsbyNamespacebyIDV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetClientsbyNamespacebyIDV3Cmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	AdminGetClientsbyNamespacebyIDV3Cmd.Flags().StringP("clientId", "", " ", "Client id")
 	_ = AdminGetClientsbyNamespacebyIDV3Cmd.MarkFlagRequired("clientId")
-	AdminGetClientsbyNamespacebyIDV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetClientsbyNamespacebyIDV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetClientsbyNamespacebyIDV3Cmd.MarkFlagRequired("namespace")
 }

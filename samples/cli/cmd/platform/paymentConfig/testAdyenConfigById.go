@@ -15,7 +15,7 @@ import (
 
 // TestAdyenConfigByIdCmd represents the TestAdyenConfigById command
 var TestAdyenConfigByIdCmd = &cobra.Command{
-	Use:   "TestAdyenConfigById",
+	Use:   "testAdyenConfigById",
 	Short: "Test adyen config by id",
 	Long:  `Test adyen config by id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,7 +41,7 @@ var TestAdyenConfigByIdCmd = &cobra.Command{
 }
 
 func init() {
-	TestAdyenConfigByIdCmd.Flags().StringP("id", "id", " ", "Id")
+	TestAdyenConfigByIdCmd.Flags().StringP("id", "", " ", "Id")
 	_ = TestAdyenConfigByIdCmd.MarkFlagRequired("id")
-	TestAdyenConfigByIdCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	TestAdyenConfigByIdCmd.Flags().BoolP("sandbox", "", false, "Sandbox")
 }

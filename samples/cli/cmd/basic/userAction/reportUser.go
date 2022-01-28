@@ -17,7 +17,7 @@ import (
 
 // ReportUserCmd represents the ReportUser command
 var ReportUserCmd = &cobra.Command{
-	Use:   "ReportUser",
+	Use:   "reportUser",
 	Short: "Report user",
 	Long:  `Report user`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var ReportUserCmd = &cobra.Command{
 }
 
 func init() {
-	ReportUserCmd.Flags().StringP("body", "by", " ", "Body")
-	ReportUserCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ReportUserCmd.Flags().StringP("body", "", " ", "Body")
+	ReportUserCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ReportUserCmd.MarkFlagRequired("namespace")
 }

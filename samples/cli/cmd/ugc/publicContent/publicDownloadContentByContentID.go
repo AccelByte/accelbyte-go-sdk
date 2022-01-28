@@ -15,7 +15,7 @@ import (
 
 // PublicDownloadContentByContentIDCmd represents the PublicDownloadContentByContentID command
 var PublicDownloadContentByContentIDCmd = &cobra.Command{
-	Use:   "PublicDownloadContentByContentID",
+	Use:   "publicDownloadContentByContentID",
 	Short: "Public download content by content ID",
 	Long:  `Public download content by content ID`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var PublicDownloadContentByContentIDCmd = &cobra.Command{
 }
 
 func init() {
-	PublicDownloadContentByContentIDCmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	PublicDownloadContentByContentIDCmd.Flags().StringP("contentId", "", " ", "Content id")
 	_ = PublicDownloadContentByContentIDCmd.MarkFlagRequired("contentId")
-	PublicDownloadContentByContentIDCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicDownloadContentByContentIDCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicDownloadContentByContentIDCmd.MarkFlagRequired("namespace")
 }

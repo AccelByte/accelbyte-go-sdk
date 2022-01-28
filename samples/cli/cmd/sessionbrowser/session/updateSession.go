@@ -17,7 +17,7 @@ import (
 
 // UpdateSessionCmd represents the UpdateSession command
 var UpdateSessionCmd = &cobra.Command{
-	Use:   "UpdateSession",
+	Use:   "updateSession",
 	Short: "Update session",
 	Long:  `Update session`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var UpdateSessionCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateSessionCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateSessionCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateSessionCmd.MarkFlagRequired("body")
-	UpdateSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateSessionCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateSessionCmd.MarkFlagRequired("namespace")
-	UpdateSessionCmd.Flags().StringP("sessionID", "sD", " ", "Session ID")
+	UpdateSessionCmd.Flags().StringP("sessionID", "", " ", "Session ID")
 	_ = UpdateSessionCmd.MarkFlagRequired("sessionID")
 }

@@ -15,7 +15,7 @@ import (
 
 // GetRoleManagersCmd represents the GetRoleManagers command
 var GetRoleManagersCmd = &cobra.Command{
-	Use:   "GetRoleManagers",
+	Use:   "getRoleManagers",
 	Short: "Get role managers",
 	Long:  `Get role managers`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetRoleManagersCmd = &cobra.Command{
 }
 
 func init() {
-	GetRoleManagersCmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	GetRoleManagersCmd.Flags().StringP("roleId", "", " ", "Role id")
 	_ = GetRoleManagersCmd.MarkFlagRequired("roleId")
 }

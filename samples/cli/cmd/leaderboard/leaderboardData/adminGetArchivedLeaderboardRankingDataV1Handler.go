@@ -15,7 +15,7 @@ import (
 
 // AdminGetArchivedLeaderboardRankingDataV1HandlerCmd represents the AdminGetArchivedLeaderboardRankingDataV1Handler command
 var AdminGetArchivedLeaderboardRankingDataV1HandlerCmd = &cobra.Command{
-	Use:   "AdminGetArchivedLeaderboardRankingDataV1Handler",
+	Use:   "adminGetArchivedLeaderboardRankingDataV1Handler",
 	Short: "Admin get archived leaderboard ranking data V1 handler",
 	Long:  `Admin get archived leaderboard ranking data V1 handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,9 +43,9 @@ var AdminGetArchivedLeaderboardRankingDataV1HandlerCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetArchivedLeaderboardRankingDataV1HandlerCmd.MarkFlagRequired("namespace")
-	AdminGetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("slug", "sg", " ", "Slug")
-	AdminGetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("leaderboardCodes", "ls", " ", "Leaderboard codes")
+	AdminGetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("slug", "", " ", "Slug")
+	AdminGetArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("leaderboardCodes", "", " ", "Leaderboard codes")
 	_ = AdminGetArchivedLeaderboardRankingDataV1HandlerCmd.MarkFlagRequired("leaderboardCodes")
 }

@@ -15,7 +15,7 @@ import (
 
 // AdminSearchUserV3Cmd represents the AdminSearchUserV3 command
 var AdminSearchUserV3Cmd = &cobra.Command{
-	Use:   "AdminSearchUserV3",
+	Use:   "adminSearchUserV3",
 	Short: "Admin search user V3",
 	Long:  `Admin search user V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -55,14 +55,14 @@ var AdminSearchUserV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminSearchUserV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminSearchUserV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminSearchUserV3Cmd.MarkFlagRequired("namespace")
-	AdminSearchUserV3Cmd.Flags().StringP("by", "by", " ", "By")
-	AdminSearchUserV3Cmd.Flags().StringP("endDate", "ee", " ", "End date")
-	AdminSearchUserV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	AdminSearchUserV3Cmd.Flags().StringP("offset", "ot", "0", "Offset")
-	AdminSearchUserV3Cmd.Flags().StringP("platformBy", "py", " ", "Platform by")
-	AdminSearchUserV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
-	AdminSearchUserV3Cmd.Flags().StringP("query", "qy", " ", "Query")
-	AdminSearchUserV3Cmd.Flags().StringP("startDate", "se", " ", "Start date")
+	AdminSearchUserV3Cmd.Flags().StringP("by", "", " ", "By")
+	AdminSearchUserV3Cmd.Flags().StringP("endDate", "", " ", "End date")
+	AdminSearchUserV3Cmd.Flags().Int64P("limit", "", 20, "Limit")
+	AdminSearchUserV3Cmd.Flags().StringP("offset", "", "0", "Offset")
+	AdminSearchUserV3Cmd.Flags().StringP("platformBy", "", " ", "Platform by")
+	AdminSearchUserV3Cmd.Flags().StringP("platformId", "", " ", "Platform id")
+	AdminSearchUserV3Cmd.Flags().StringP("query", "", " ", "Query")
+	AdminSearchUserV3Cmd.Flags().StringP("startDate", "", " ", "Start date")
 }

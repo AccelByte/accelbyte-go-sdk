@@ -17,7 +17,7 @@ import (
 
 // AdminAddUserPermissionsV3Cmd represents the AdminAddUserPermissionsV3 command
 var AdminAddUserPermissionsV3Cmd = &cobra.Command{
-	Use:   "AdminAddUserPermissionsV3",
+	Use:   "adminAddUserPermissionsV3",
 	Short: "Admin add user permissions V3",
 	Long:  `Admin add user permissions V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var AdminAddUserPermissionsV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminAddUserPermissionsV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	AdminAddUserPermissionsV3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminAddUserPermissionsV3Cmd.MarkFlagRequired("body")
-	AdminAddUserPermissionsV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminAddUserPermissionsV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminAddUserPermissionsV3Cmd.MarkFlagRequired("namespace")
-	AdminAddUserPermissionsV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminAddUserPermissionsV3Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminAddUserPermissionsV3Cmd.MarkFlagRequired("userId")
 }

@@ -15,7 +15,7 @@ import (
 
 // AdminDeletePlayerPublicRecordHandlerV1Cmd represents the AdminDeletePlayerPublicRecordHandlerV1 command
 var AdminDeletePlayerPublicRecordHandlerV1Cmd = &cobra.Command{
-	Use:   "AdminDeletePlayerPublicRecordHandlerV1",
+	Use:   "adminDeletePlayerPublicRecordHandlerV1",
 	Short: "Admin delete player public record handler V1",
 	Long:  `Admin delete player public record handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var AdminDeletePlayerPublicRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeletePlayerPublicRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
+	AdminDeletePlayerPublicRecordHandlerV1Cmd.Flags().StringP("key", "", " ", "Key")
 	_ = AdminDeletePlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("key")
-	AdminDeletePlayerPublicRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminDeletePlayerPublicRecordHandlerV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminDeletePlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("namespace")
-	AdminDeletePlayerPublicRecordHandlerV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminDeletePlayerPublicRecordHandlerV1Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminDeletePlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("userId")
 }

@@ -17,7 +17,7 @@ import (
 
 // UpdateCountryGroupCmd represents the UpdateCountryGroup command
 var UpdateCountryGroupCmd = &cobra.Command{
-	Use:   "UpdateCountryGroup",
+	Use:   "updateCountryGroup",
 	Short: "Update country group",
 	Long:  `Update country group`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var UpdateCountryGroupCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateCountryGroupCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateCountryGroupCmd.Flags().StringP("countryGroupCode", "ce", " ", "Country group code")
+	UpdateCountryGroupCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateCountryGroupCmd.Flags().StringP("countryGroupCode", "", " ", "Country group code")
 	_ = UpdateCountryGroupCmd.MarkFlagRequired("countryGroupCode")
-	UpdateCountryGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateCountryGroupCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateCountryGroupCmd.MarkFlagRequired("namespace")
 }

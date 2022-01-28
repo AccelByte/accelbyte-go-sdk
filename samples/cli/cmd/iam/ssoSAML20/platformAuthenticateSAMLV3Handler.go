@@ -15,7 +15,7 @@ import (
 
 // PlatformAuthenticateSAMLV3HandlerCmd represents the PlatformAuthenticateSAMLV3Handler command
 var PlatformAuthenticateSAMLV3HandlerCmd = &cobra.Command{
-	Use:   "PlatformAuthenticateSAMLV3Handler",
+	Use:   "platformAuthenticateSAMLV3Handler",
 	Short: "Platform authenticate SAMLV3 handler",
 	Long:  `Platform authenticate SAMLV3 handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,10 +44,10 @@ var PlatformAuthenticateSAMLV3HandlerCmd = &cobra.Command{
 }
 
 func init() {
-	PlatformAuthenticateSAMLV3HandlerCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	PlatformAuthenticateSAMLV3HandlerCmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = PlatformAuthenticateSAMLV3HandlerCmd.MarkFlagRequired("platformId")
-	PlatformAuthenticateSAMLV3HandlerCmd.Flags().StringP("code", "ce", " ", "Code")
-	PlatformAuthenticateSAMLV3HandlerCmd.Flags().StringP("error", "er", " ", "Error")
-	PlatformAuthenticateSAMLV3HandlerCmd.Flags().StringP("state", "se", " ", "State")
+	PlatformAuthenticateSAMLV3HandlerCmd.Flags().StringP("code", "", " ", "Code")
+	PlatformAuthenticateSAMLV3HandlerCmd.Flags().StringP("error", "", " ", "Error")
+	PlatformAuthenticateSAMLV3HandlerCmd.Flags().StringP("state", "", " ", "State")
 	_ = PlatformAuthenticateSAMLV3HandlerCmd.MarkFlagRequired("state")
 }

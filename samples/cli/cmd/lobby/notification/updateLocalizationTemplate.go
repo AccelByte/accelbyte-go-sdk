@@ -17,7 +17,7 @@ import (
 
 // UpdateLocalizationTemplateCmd represents the UpdateLocalizationTemplate command
 var UpdateLocalizationTemplateCmd = &cobra.Command{
-	Use:   "UpdateLocalizationTemplate",
+	Use:   "updateLocalizationTemplate",
 	Short: "Update localization template",
 	Long:  `Update localization template`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,12 +51,12 @@ var UpdateLocalizationTemplateCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateLocalizationTemplateCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateLocalizationTemplateCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateLocalizationTemplateCmd.MarkFlagRequired("body")
-	UpdateLocalizationTemplateCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateLocalizationTemplateCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateLocalizationTemplateCmd.MarkFlagRequired("namespace")
-	UpdateLocalizationTemplateCmd.Flags().StringP("templateLanguage", "te", " ", "Template language")
+	UpdateLocalizationTemplateCmd.Flags().StringP("templateLanguage", "", " ", "Template language")
 	_ = UpdateLocalizationTemplateCmd.MarkFlagRequired("templateLanguage")
-	UpdateLocalizationTemplateCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
+	UpdateLocalizationTemplateCmd.Flags().StringP("templateSlug", "", " ", "Template slug")
 	_ = UpdateLocalizationTemplateCmd.MarkFlagRequired("templateSlug")
 }

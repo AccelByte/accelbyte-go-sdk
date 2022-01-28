@@ -15,7 +15,7 @@ import (
 
 // CheckServerLogsCmd represents the CheckServerLogs command
 var CheckServerLogsCmd = &cobra.Command{
-	Use:   "CheckServerLogs",
+	Use:   "checkServerLogs",
 	Short: "Check server logs",
 	Long:  `Check server logs`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var CheckServerLogsCmd = &cobra.Command{
 }
 
 func init() {
-	CheckServerLogsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CheckServerLogsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CheckServerLogsCmd.MarkFlagRequired("namespace")
-	CheckServerLogsCmd.Flags().StringP("podName", "pe", " ", "Pod name")
+	CheckServerLogsCmd.Flags().StringP("podName", "", " ", "Pod name")
 	_ = CheckServerLogsCmd.MarkFlagRequired("podName")
 }

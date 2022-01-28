@@ -17,7 +17,7 @@ import (
 
 // PublicVerifyHeadlessAccountV3Cmd represents the PublicVerifyHeadlessAccountV3 command
 var PublicVerifyHeadlessAccountV3Cmd = &cobra.Command{
-	Use:   "PublicVerifyHeadlessAccountV3",
+	Use:   "publicVerifyHeadlessAccountV3",
 	Short: "Public verify headless account V3",
 	Long:  `Public verify headless account V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var PublicVerifyHeadlessAccountV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicVerifyHeadlessAccountV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	PublicVerifyHeadlessAccountV3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = PublicVerifyHeadlessAccountV3Cmd.MarkFlagRequired("body")
-	PublicVerifyHeadlessAccountV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicVerifyHeadlessAccountV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicVerifyHeadlessAccountV3Cmd.MarkFlagRequired("namespace")
 }

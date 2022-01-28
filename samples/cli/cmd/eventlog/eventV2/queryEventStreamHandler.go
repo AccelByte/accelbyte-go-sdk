@@ -17,7 +17,7 @@ import (
 
 // QueryEventStreamHandlerCmd represents the QueryEventStreamHandler command
 var QueryEventStreamHandlerCmd = &cobra.Command{
-	Use:   "QueryEventStreamHandler",
+	Use:   "queryEventStreamHandler",
 	Short: "Query event stream handler",
 	Long:  `Query event stream handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -56,12 +56,12 @@ var QueryEventStreamHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	QueryEventStreamHandlerCmd.Flags().StringP("body", "by", " ", "Body")
+	QueryEventStreamHandlerCmd.Flags().StringP("body", "", " ", "Body")
 	_ = QueryEventStreamHandlerCmd.MarkFlagRequired("body")
-	QueryEventStreamHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QueryEventStreamHandlerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = QueryEventStreamHandlerCmd.MarkFlagRequired("namespace")
-	QueryEventStreamHandlerCmd.Flags().StringP("endDate", "ee", " ", "End date")
-	QueryEventStreamHandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
-	QueryEventStreamHandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
-	QueryEventStreamHandlerCmd.Flags().StringP("startDate", "se", " ", "Start date")
+	QueryEventStreamHandlerCmd.Flags().StringP("endDate", "", " ", "End date")
+	QueryEventStreamHandlerCmd.Flags().Float64P("offset", "", 0, "Offset")
+	QueryEventStreamHandlerCmd.Flags().Float64P("pageSize", "", 1, "Page size")
+	QueryEventStreamHandlerCmd.Flags().StringP("startDate", "", " ", "Start date")
 }

@@ -15,7 +15,7 @@ import (
 
 // AdminGetSessionCmd represents the AdminGetSession command
 var AdminGetSessionCmd = &cobra.Command{
-	Use:   "AdminGetSession",
+	Use:   "adminGetSession",
 	Short: "Admin get session",
 	Long:  `Admin get session`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var AdminGetSessionCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetSessionCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetSessionCmd.MarkFlagRequired("namespace")
-	AdminGetSessionCmd.Flags().StringP("sessionID", "sD", " ", "Session ID")
+	AdminGetSessionCmd.Flags().StringP("sessionID", "", " ", "Session ID")
 	_ = AdminGetSessionCmd.MarkFlagRequired("sessionID")
 }

@@ -15,7 +15,7 @@ import (
 
 // DeleteDLCItemConfigCmd represents the DeleteDLCItemConfig command
 var DeleteDLCItemConfigCmd = &cobra.Command{
-	Use:   "DeleteDLCItemConfig",
+	Use:   "deleteDLCItemConfig",
 	Short: "Delete DLC item config",
 	Long:  `Delete DLC item config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var DeleteDLCItemConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteDLCItemConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteDLCItemConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteDLCItemConfigCmd.MarkFlagRequired("namespace")
 }

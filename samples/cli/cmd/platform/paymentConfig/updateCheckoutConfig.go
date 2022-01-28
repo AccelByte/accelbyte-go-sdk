@@ -17,7 +17,7 @@ import (
 
 // UpdateCheckoutConfigCmd represents the UpdateCheckoutConfig command
 var UpdateCheckoutConfigCmd = &cobra.Command{
-	Use:   "UpdateCheckoutConfig",
+	Use:   "updateCheckoutConfig",
 	Short: "Update checkout config",
 	Long:  `Update checkout config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,9 +52,9 @@ var UpdateCheckoutConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateCheckoutConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateCheckoutConfigCmd.Flags().StringP("id", "id", " ", "Id")
+	UpdateCheckoutConfigCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateCheckoutConfigCmd.Flags().StringP("id", "", " ", "Id")
 	_ = UpdateCheckoutConfigCmd.MarkFlagRequired("id")
-	UpdateCheckoutConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
-	UpdateCheckoutConfigCmd.Flags().BoolP("validate", "ve", false, "Validate")
+	UpdateCheckoutConfigCmd.Flags().BoolP("sandbox", "", false, "Sandbox")
+	UpdateCheckoutConfigCmd.Flags().BoolP("validate", "", false, "Validate")
 }

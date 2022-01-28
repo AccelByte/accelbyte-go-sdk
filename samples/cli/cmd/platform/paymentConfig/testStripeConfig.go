@@ -17,7 +17,7 @@ import (
 
 // TestStripeConfigCmd represents the TestStripeConfig command
 var TestStripeConfigCmd = &cobra.Command{
-	Use:   "TestStripeConfig",
+	Use:   "testStripeConfig",
 	Short: "Test stripe config",
 	Long:  `Test stripe config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,6 +48,6 @@ var TestStripeConfigCmd = &cobra.Command{
 }
 
 func init() {
-	TestStripeConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	TestStripeConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	TestStripeConfigCmd.Flags().StringP("body", "", " ", "Body")
+	TestStripeConfigCmd.Flags().BoolP("sandbox", "", false, "Sandbox")
 }

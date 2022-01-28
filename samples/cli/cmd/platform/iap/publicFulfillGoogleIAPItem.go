@@ -17,7 +17,7 @@ import (
 
 // PublicFulfillGoogleIAPItemCmd represents the PublicFulfillGoogleIAPItem command
 var PublicFulfillGoogleIAPItemCmd = &cobra.Command{
-	Use:   "PublicFulfillGoogleIAPItem",
+	Use:   "publicFulfillGoogleIAPItem",
 	Short: "Public fulfill google IAP item",
 	Long:  `Public fulfill google IAP item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +49,9 @@ var PublicFulfillGoogleIAPItemCmd = &cobra.Command{
 }
 
 func init() {
-	PublicFulfillGoogleIAPItemCmd.Flags().StringP("body", "by", " ", "Body")
-	PublicFulfillGoogleIAPItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicFulfillGoogleIAPItemCmd.Flags().StringP("body", "", " ", "Body")
+	PublicFulfillGoogleIAPItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicFulfillGoogleIAPItemCmd.MarkFlagRequired("namespace")
-	PublicFulfillGoogleIAPItemCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicFulfillGoogleIAPItemCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicFulfillGoogleIAPItemCmd.MarkFlagRequired("userId")
 }

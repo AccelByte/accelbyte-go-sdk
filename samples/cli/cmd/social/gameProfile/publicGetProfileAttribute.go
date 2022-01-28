@@ -15,7 +15,7 @@ import (
 
 // PublicGetProfileAttributeCmd represents the PublicGetProfileAttribute command
 var PublicGetProfileAttributeCmd = &cobra.Command{
-	Use:   "PublicGetProfileAttribute",
+	Use:   "publicGetProfileAttribute",
 	Short: "Public get profile attribute",
 	Long:  `Public get profile attribute`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,12 +45,12 @@ var PublicGetProfileAttributeCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetProfileAttributeCmd.Flags().StringP("attributeName", "ae", " ", "Attribute name")
+	PublicGetProfileAttributeCmd.Flags().StringP("attributeName", "", " ", "Attribute name")
 	_ = PublicGetProfileAttributeCmd.MarkFlagRequired("attributeName")
-	PublicGetProfileAttributeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetProfileAttributeCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetProfileAttributeCmd.MarkFlagRequired("namespace")
-	PublicGetProfileAttributeCmd.Flags().StringP("profileId", "pd", " ", "Profile id")
+	PublicGetProfileAttributeCmd.Flags().StringP("profileId", "", " ", "Profile id")
 	_ = PublicGetProfileAttributeCmd.MarkFlagRequired("profileId")
-	PublicGetProfileAttributeCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicGetProfileAttributeCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicGetProfileAttributeCmd.MarkFlagRequired("userId")
 }

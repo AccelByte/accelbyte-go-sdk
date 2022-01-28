@@ -17,7 +17,7 @@ import (
 
 // UpdateUserPointAdminV1Cmd represents the UpdateUserPointAdminV1 command
 var UpdateUserPointAdminV1Cmd = &cobra.Command{
-	Use:   "UpdateUserPointAdminV1",
+	Use:   "updateUserPointAdminV1",
 	Short: "Update user point admin V1",
 	Long:  `Update user point admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,12 +52,12 @@ var UpdateUserPointAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	UpdateUserPointAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateUserPointAdminV1Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateUserPointAdminV1Cmd.MarkFlagRequired("body")
-	UpdateUserPointAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
+	UpdateUserPointAdminV1Cmd.Flags().StringP("leaderboardCode", "", " ", "Leaderboard code")
 	_ = UpdateUserPointAdminV1Cmd.MarkFlagRequired("leaderboardCode")
-	UpdateUserPointAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateUserPointAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateUserPointAdminV1Cmd.MarkFlagRequired("namespace")
-	UpdateUserPointAdminV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	UpdateUserPointAdminV1Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = UpdateUserPointAdminV1Cmd.MarkFlagRequired("userId")
 }

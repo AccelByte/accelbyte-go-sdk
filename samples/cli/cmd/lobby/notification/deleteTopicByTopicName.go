@@ -15,7 +15,7 @@ import (
 
 // DeleteTopicByTopicNameCmd represents the DeleteTopicByTopicName command
 var DeleteTopicByTopicNameCmd = &cobra.Command{
-	Use:   "DeleteTopicByTopicName",
+	Use:   "deleteTopicByTopicName",
 	Short: "Delete topic by topic name",
 	Long:  `Delete topic by topic name`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var DeleteTopicByTopicNameCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteTopicByTopicNameCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteTopicByTopicNameCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteTopicByTopicNameCmd.MarkFlagRequired("namespace")
-	DeleteTopicByTopicNameCmd.Flags().StringP("topic", "tc", " ", "Topic")
+	DeleteTopicByTopicNameCmd.Flags().StringP("topic", "", " ", "Topic")
 	_ = DeleteTopicByTopicNameCmd.MarkFlagRequired("topic")
 }

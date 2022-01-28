@@ -15,7 +15,7 @@ import (
 
 // ExportConfigV1Cmd represents the ExportConfigV1 command
 var ExportConfigV1Cmd = &cobra.Command{
-	Use:   "ExportConfigV1",
+	Use:   "exportConfigV1",
 	Short: "Export config V1",
 	Long:  `Export config V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var ExportConfigV1Cmd = &cobra.Command{
 }
 
 func init() {
-	ExportConfigV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ExportConfigV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ExportConfigV1Cmd.MarkFlagRequired("namespace")
 }

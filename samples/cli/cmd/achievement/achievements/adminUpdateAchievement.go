@@ -17,7 +17,7 @@ import (
 
 // AdminUpdateAchievementCmd represents the AdminUpdateAchievement command
 var AdminUpdateAchievementCmd = &cobra.Command{
-	Use:   "AdminUpdateAchievement",
+	Use:   "adminUpdateAchievement",
 	Short: "Admin update achievement",
 	Long:  `Admin update achievement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var AdminUpdateAchievementCmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateAchievementCmd.Flags().StringP("body", "by", " ", "Body")
+	AdminUpdateAchievementCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminUpdateAchievementCmd.MarkFlagRequired("body")
-	AdminUpdateAchievementCmd.Flags().StringP("achievementCode", "ae", " ", "Achievement code")
+	AdminUpdateAchievementCmd.Flags().StringP("achievementCode", "", " ", "Achievement code")
 	_ = AdminUpdateAchievementCmd.MarkFlagRequired("achievementCode")
-	AdminUpdateAchievementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminUpdateAchievementCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminUpdateAchievementCmd.MarkFlagRequired("namespace")
 }

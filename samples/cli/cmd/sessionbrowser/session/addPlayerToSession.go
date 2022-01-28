@@ -17,7 +17,7 @@ import (
 
 // AddPlayerToSessionCmd represents the AddPlayerToSession command
 var AddPlayerToSessionCmd = &cobra.Command{
-	Use:   "AddPlayerToSession",
+	Use:   "addPlayerToSession",
 	Short: "Add player to session",
 	Long:  `Add player to session`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var AddPlayerToSessionCmd = &cobra.Command{
 }
 
 func init() {
-	AddPlayerToSessionCmd.Flags().StringP("body", "by", " ", "Body")
+	AddPlayerToSessionCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AddPlayerToSessionCmd.MarkFlagRequired("body")
-	AddPlayerToSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AddPlayerToSessionCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AddPlayerToSessionCmd.MarkFlagRequired("namespace")
-	AddPlayerToSessionCmd.Flags().StringP("sessionID", "sD", " ", "Session ID")
+	AddPlayerToSessionCmd.Flags().StringP("sessionID", "", " ", "Session ID")
 	_ = AddPlayerToSessionCmd.MarkFlagRequired("sessionID")
 }

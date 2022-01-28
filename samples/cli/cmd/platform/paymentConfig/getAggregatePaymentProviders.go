@@ -15,7 +15,7 @@ import (
 
 // GetAggregatePaymentProvidersCmd represents the GetAggregatePaymentProviders command
 var GetAggregatePaymentProvidersCmd = &cobra.Command{
-	Use:   "GetAggregatePaymentProviders",
+	Use:   "getAggregatePaymentProviders",
 	Short: "Get aggregate payment providers",
 	Long:  `Get aggregate payment providers`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,4 +33,7 @@ var GetAggregatePaymentProvidersCmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

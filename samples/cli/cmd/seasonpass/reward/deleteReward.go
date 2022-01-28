@@ -15,7 +15,7 @@ import (
 
 // DeleteRewardCmd represents the DeleteReward command
 var DeleteRewardCmd = &cobra.Command{
-	Use:   "DeleteReward",
+	Use:   "deleteReward",
 	Short: "Delete reward",
 	Long:  `Delete reward`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var DeleteRewardCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteRewardCmd.Flags().StringP("code", "ce", " ", "Code")
+	DeleteRewardCmd.Flags().StringP("code", "", " ", "Code")
 	_ = DeleteRewardCmd.MarkFlagRequired("code")
-	DeleteRewardCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteRewardCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteRewardCmd.MarkFlagRequired("namespace")
-	DeleteRewardCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	DeleteRewardCmd.Flags().StringP("seasonId", "", " ", "Season id")
 	_ = DeleteRewardCmd.MarkFlagRequired("seasonId")
 }

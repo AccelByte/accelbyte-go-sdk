@@ -17,7 +17,7 @@ import (
 
 // UpdatePaymentTaxConfigCmd represents the UpdatePaymentTaxConfig command
 var UpdatePaymentTaxConfigCmd = &cobra.Command{
-	Use:   "UpdatePaymentTaxConfig",
+	Use:   "updatePaymentTaxConfig",
 	Short: "Update payment tax config",
 	Long:  `Update payment tax config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,5 +46,5 @@ var UpdatePaymentTaxConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdatePaymentTaxConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdatePaymentTaxConfigCmd.Flags().StringP("body", "", " ", "Body")
 }

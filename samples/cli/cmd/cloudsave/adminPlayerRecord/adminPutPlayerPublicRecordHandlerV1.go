@@ -17,7 +17,7 @@ import (
 
 // AdminPutPlayerPublicRecordHandlerV1Cmd represents the AdminPutPlayerPublicRecordHandlerV1 command
 var AdminPutPlayerPublicRecordHandlerV1Cmd = &cobra.Command{
-	Use:   "AdminPutPlayerPublicRecordHandlerV1",
+	Use:   "adminPutPlayerPublicRecordHandlerV1",
 	Short: "Admin put player public record handler V1",
 	Long:  `Admin put player public record handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,12 +51,12 @@ var AdminPutPlayerPublicRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminPutPlayerPublicRecordHandlerV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	AdminPutPlayerPublicRecordHandlerV1Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminPutPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("body")
-	AdminPutPlayerPublicRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
+	AdminPutPlayerPublicRecordHandlerV1Cmd.Flags().StringP("key", "", " ", "Key")
 	_ = AdminPutPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("key")
-	AdminPutPlayerPublicRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminPutPlayerPublicRecordHandlerV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminPutPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("namespace")
-	AdminPutPlayerPublicRecordHandlerV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminPutPlayerPublicRecordHandlerV1Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminPutPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("userId")
 }

@@ -15,7 +15,7 @@ import (
 
 // AnonymizeFulfillmentCmd represents the AnonymizeFulfillment command
 var AnonymizeFulfillmentCmd = &cobra.Command{
-	Use:   "AnonymizeFulfillment",
+	Use:   "anonymizeFulfillment",
 	Short: "Anonymize fulfillment",
 	Long:  `Anonymize fulfillment`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var AnonymizeFulfillmentCmd = &cobra.Command{
 }
 
 func init() {
-	AnonymizeFulfillmentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AnonymizeFulfillmentCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AnonymizeFulfillmentCmd.MarkFlagRequired("namespace")
-	AnonymizeFulfillmentCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AnonymizeFulfillmentCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AnonymizeFulfillmentCmd.MarkFlagRequired("userId")
 }

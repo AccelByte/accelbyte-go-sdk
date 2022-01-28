@@ -15,7 +15,7 @@ import (
 
 // PublicCancelUserPersonalDataRequestCmd represents the PublicCancelUserPersonalDataRequest command
 var PublicCancelUserPersonalDataRequestCmd = &cobra.Command{
-	Use:   "PublicCancelUserPersonalDataRequest",
+	Use:   "publicCancelUserPersonalDataRequest",
 	Short: "Public cancel user personal data request",
 	Long:  `Public cancel user personal data request`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var PublicCancelUserPersonalDataRequestCmd = &cobra.Command{
 }
 
 func init() {
-	PublicCancelUserPersonalDataRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicCancelUserPersonalDataRequestCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicCancelUserPersonalDataRequestCmd.MarkFlagRequired("namespace")
-	PublicCancelUserPersonalDataRequestCmd.Flags().StringP("requestDate", "re", " ", "Request date")
+	PublicCancelUserPersonalDataRequestCmd.Flags().StringP("requestDate", "", " ", "Request date")
 	_ = PublicCancelUserPersonalDataRequestCmd.MarkFlagRequired("requestDate")
-	PublicCancelUserPersonalDataRequestCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicCancelUserPersonalDataRequestCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicCancelUserPersonalDataRequestCmd.MarkFlagRequired("userId")
 }

@@ -15,7 +15,7 @@ import (
 
 // AnonymizeEntitlementCmd represents the AnonymizeEntitlement command
 var AnonymizeEntitlementCmd = &cobra.Command{
-	Use:   "AnonymizeEntitlement",
+	Use:   "anonymizeEntitlement",
 	Short: "Anonymize entitlement",
 	Long:  `Anonymize entitlement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var AnonymizeEntitlementCmd = &cobra.Command{
 }
 
 func init() {
-	AnonymizeEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AnonymizeEntitlementCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AnonymizeEntitlementCmd.MarkFlagRequired("namespace")
-	AnonymizeEntitlementCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AnonymizeEntitlementCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AnonymizeEntitlementCmd.MarkFlagRequired("userId")
 }

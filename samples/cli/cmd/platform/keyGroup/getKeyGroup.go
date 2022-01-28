@@ -15,7 +15,7 @@ import (
 
 // GetKeyGroupCmd represents the GetKeyGroup command
 var GetKeyGroupCmd = &cobra.Command{
-	Use:   "GetKeyGroup",
+	Use:   "getKeyGroup",
 	Short: "Get key group",
 	Long:  `Get key group`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetKeyGroupCmd = &cobra.Command{
 }
 
 func init() {
-	GetKeyGroupCmd.Flags().StringP("keyGroupId", "kd", " ", "Key group id")
+	GetKeyGroupCmd.Flags().StringP("keyGroupId", "", " ", "Key group id")
 	_ = GetKeyGroupCmd.MarkFlagRequired("keyGroupId")
-	GetKeyGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetKeyGroupCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetKeyGroupCmd.MarkFlagRequired("namespace")
 }

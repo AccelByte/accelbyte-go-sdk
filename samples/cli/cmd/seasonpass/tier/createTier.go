@@ -17,7 +17,7 @@ import (
 
 // CreateTierCmd represents the CreateTier command
 var CreateTierCmd = &cobra.Command{
-	Use:   "CreateTier",
+	Use:   "createTier",
 	Short: "Create tier",
 	Long:  `Create tier`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var CreateTierCmd = &cobra.Command{
 }
 
 func init() {
-	CreateTierCmd.Flags().StringP("body", "by", " ", "Body")
-	CreateTierCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateTierCmd.Flags().StringP("body", "", " ", "Body")
+	CreateTierCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateTierCmd.MarkFlagRequired("namespace")
-	CreateTierCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	CreateTierCmd.Flags().StringP("seasonId", "", " ", "Season id")
 	_ = CreateTierCmd.MarkFlagRequired("seasonId")
 }

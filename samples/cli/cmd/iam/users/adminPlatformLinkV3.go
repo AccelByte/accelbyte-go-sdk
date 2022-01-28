@@ -15,7 +15,7 @@ import (
 
 // AdminPlatformLinkV3Cmd represents the AdminPlatformLinkV3 command
 var AdminPlatformLinkV3Cmd = &cobra.Command{
-	Use:   "AdminPlatformLinkV3",
+	Use:   "adminPlatformLinkV3",
 	Short: "Admin platform link V3",
 	Long:  `Admin platform link V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,12 +44,12 @@ var AdminPlatformLinkV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminPlatformLinkV3Cmd.Flags().StringP("ticket", "tt", " ", "Ticket")
+	AdminPlatformLinkV3Cmd.Flags().StringP("ticket", "", " ", "Ticket")
 	_ = AdminPlatformLinkV3Cmd.MarkFlagRequired("ticket")
-	AdminPlatformLinkV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminPlatformLinkV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminPlatformLinkV3Cmd.MarkFlagRequired("namespace")
-	AdminPlatformLinkV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	AdminPlatformLinkV3Cmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = AdminPlatformLinkV3Cmd.MarkFlagRequired("platformId")
-	AdminPlatformLinkV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminPlatformLinkV3Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminPlatformLinkV3Cmd.MarkFlagRequired("userId")
 }

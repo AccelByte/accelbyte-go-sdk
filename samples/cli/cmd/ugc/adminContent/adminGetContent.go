@@ -15,7 +15,7 @@ import (
 
 // AdminGetContentCmd represents the AdminGetContent command
 var AdminGetContentCmd = &cobra.Command{
-	Use:   "AdminGetContent",
+	Use:   "adminGetContent",
 	Short: "Admin get content",
 	Long:  `Admin get content`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,10 +45,10 @@ var AdminGetContentCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetContentCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetContentCmd.MarkFlagRequired("namespace")
-	AdminGetContentCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminGetContentCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminGetContentCmd.MarkFlagRequired("userId")
-	AdminGetContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	AdminGetContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	AdminGetContentCmd.Flags().StringP("limit", "", "20", "Limit")
+	AdminGetContentCmd.Flags().StringP("offset", "", "0", "Offset")
 }

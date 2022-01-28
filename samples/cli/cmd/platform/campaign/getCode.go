@@ -15,7 +15,7 @@ import (
 
 // GetCodeCmd represents the GetCode command
 var GetCodeCmd = &cobra.Command{
-	Use:   "GetCode",
+	Use:   "getCode",
 	Short: "Get code",
 	Long:  `Get code`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,9 +43,9 @@ var GetCodeCmd = &cobra.Command{
 }
 
 func init() {
-	GetCodeCmd.Flags().StringP("code", "ce", " ", "Code")
+	GetCodeCmd.Flags().StringP("code", "", " ", "Code")
 	_ = GetCodeCmd.MarkFlagRequired("code")
-	GetCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetCodeCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetCodeCmd.MarkFlagRequired("namespace")
-	GetCodeCmd.Flags().BoolP("redeemable", "re", false, "Redeemable")
+	GetCodeCmd.Flags().BoolP("redeemable", "", false, "Redeemable")
 }

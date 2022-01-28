@@ -15,7 +15,7 @@ import (
 
 // AdminGetUserBanV2Cmd represents the AdminGetUserBanV2 command
 var AdminGetUserBanV2Cmd = &cobra.Command{
-	Use:   "AdminGetUserBanV2",
+	Use:   "adminGetUserBanV2",
 	Short: "Admin get user ban V2",
 	Long:  `Admin get user ban V2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,9 +43,9 @@ var AdminGetUserBanV2Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetUserBanV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetUserBanV2Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetUserBanV2Cmd.MarkFlagRequired("namespace")
-	AdminGetUserBanV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminGetUserBanV2Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminGetUserBanV2Cmd.MarkFlagRequired("userId")
-	AdminGetUserBanV2Cmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	AdminGetUserBanV2Cmd.Flags().BoolP("activeOnly", "", false, "Active only")
 }

@@ -16,7 +16,7 @@ import (
 
 // UpdateGoogleP12FileCmd represents the UpdateGoogleP12File command
 var UpdateGoogleP12FileCmd = &cobra.Command{
-	Use:   "UpdateGoogleP12File",
+	Use:   "updateGoogleP12File",
 	Short: "Update google P12 file",
 	Long:  `Update google P12 file`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,7 +47,7 @@ var UpdateGoogleP12FileCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateGoogleP12FileCmd.Flags().StringP("file", "fe", " ", "File")
-	UpdateGoogleP12FileCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateGoogleP12FileCmd.Flags().StringP("file", "", " ", "File")
+	UpdateGoogleP12FileCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateGoogleP12FileCmd.MarkFlagRequired("namespace")
 }

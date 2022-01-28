@@ -15,7 +15,7 @@ import (
 
 // AdminGetUserByUserIdV3Cmd represents the AdminGetUserByUserIdV3 command
 var AdminGetUserByUserIdV3Cmd = &cobra.Command{
-	Use:   "AdminGetUserByUserIdV3",
+	Use:   "adminGetUserByUserIdV3",
 	Short: "Admin get user by user id V3",
 	Long:  `Admin get user by user id V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var AdminGetUserByUserIdV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetUserByUserIdV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetUserByUserIdV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetUserByUserIdV3Cmd.MarkFlagRequired("namespace")
-	AdminGetUserByUserIdV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminGetUserByUserIdV3Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminGetUserByUserIdV3Cmd.MarkFlagRequired("userId")
 }

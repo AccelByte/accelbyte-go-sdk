@@ -16,7 +16,7 @@ import (
 
 // GetBannedUsersCmd represents the GetBannedUsers command
 var GetBannedUsersCmd = &cobra.Command{
-	Use:   "GetBannedUsers",
+	Use:   "getBannedUsers",
 	Short: "Get banned users",
 	Long:  `Get banned users`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var GetBannedUsersCmd = &cobra.Command{
 }
 
 func init() {
-	GetBannedUsersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetBannedUsersCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetBannedUsersCmd.MarkFlagRequired("namespace")
-	GetBannedUsersCmd.Flags().StringP("userIds", "us", " ", "User ids")
+	GetBannedUsersCmd.Flags().StringP("userIds", "", " ", "User ids")
 	_ = GetBannedUsersCmd.MarkFlagRequired("userIds")
 }

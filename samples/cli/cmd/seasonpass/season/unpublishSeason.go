@@ -15,7 +15,7 @@ import (
 
 // UnpublishSeasonCmd represents the UnpublishSeason command
 var UnpublishSeasonCmd = &cobra.Command{
-	Use:   "UnpublishSeason",
+	Use:   "unpublishSeason",
 	Short: "Unpublish season",
 	Long:  `Unpublish season`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,9 +43,9 @@ var UnpublishSeasonCmd = &cobra.Command{
 }
 
 func init() {
-	UnpublishSeasonCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UnpublishSeasonCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UnpublishSeasonCmd.MarkFlagRequired("namespace")
-	UnpublishSeasonCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	UnpublishSeasonCmd.Flags().StringP("seasonId", "", " ", "Season id")
 	_ = UnpublishSeasonCmd.MarkFlagRequired("seasonId")
-	UnpublishSeasonCmd.Flags().BoolP("force", "fe", false, "Force")
+	UnpublishSeasonCmd.Flags().BoolP("force", "", false, "Force")
 }

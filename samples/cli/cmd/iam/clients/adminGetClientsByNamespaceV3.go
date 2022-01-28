@@ -15,7 +15,7 @@ import (
 
 // AdminGetClientsByNamespaceV3Cmd represents the AdminGetClientsByNamespaceV3 command
 var AdminGetClientsByNamespaceV3Cmd = &cobra.Command{
-	Use:   "AdminGetClientsByNamespaceV3",
+	Use:   "adminGetClientsByNamespaceV3",
 	Short: "Admin get clients by namespace V3",
 	Long:  `Admin get clients by namespace V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,8 +43,8 @@ var AdminGetClientsByNamespaceV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetClientsByNamespaceV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetClientsByNamespaceV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetClientsByNamespaceV3Cmd.MarkFlagRequired("namespace")
-	AdminGetClientsByNamespaceV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	AdminGetClientsByNamespaceV3Cmd.Flags().StringP("offset", "ot", "0", "Offset")
+	AdminGetClientsByNamespaceV3Cmd.Flags().Int64P("limit", "", 20, "Limit")
+	AdminGetClientsByNamespaceV3Cmd.Flags().StringP("offset", "", "0", "Offset")
 }

@@ -15,7 +15,7 @@ import (
 
 // PublishTemplateCmd represents the PublishTemplate command
 var PublishTemplateCmd = &cobra.Command{
-	Use:   "PublishTemplate",
+	Use:   "publishTemplate",
 	Short: "Publish template",
 	Long:  `Publish template`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var PublishTemplateCmd = &cobra.Command{
 }
 
 func init() {
-	PublishTemplateCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublishTemplateCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublishTemplateCmd.MarkFlagRequired("namespace")
-	PublishTemplateCmd.Flags().StringP("templateLanguage", "te", " ", "Template language")
+	PublishTemplateCmd.Flags().StringP("templateLanguage", "", " ", "Template language")
 	_ = PublishTemplateCmd.MarkFlagRequired("templateLanguage")
-	PublishTemplateCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
+	PublishTemplateCmd.Flags().StringP("templateSlug", "", " ", "Template slug")
 	_ = PublishTemplateCmd.MarkFlagRequired("templateSlug")
 }

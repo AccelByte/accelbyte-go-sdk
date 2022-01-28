@@ -17,7 +17,7 @@ import (
 
 // UpdatePatchSingleGroupPublicV1Cmd represents the UpdatePatchSingleGroupPublicV1 command
 var UpdatePatchSingleGroupPublicV1Cmd = &cobra.Command{
-	Use:   "UpdatePatchSingleGroupPublicV1",
+	Use:   "updatePatchSingleGroupPublicV1",
 	Short: "Update patch single group public V1",
 	Long:  `Update patch single group public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var UpdatePatchSingleGroupPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	UpdatePatchSingleGroupPublicV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	UpdatePatchSingleGroupPublicV1Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdatePatchSingleGroupPublicV1Cmd.MarkFlagRequired("body")
-	UpdatePatchSingleGroupPublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	UpdatePatchSingleGroupPublicV1Cmd.Flags().StringP("groupId", "", " ", "Group id")
 	_ = UpdatePatchSingleGroupPublicV1Cmd.MarkFlagRequired("groupId")
-	UpdatePatchSingleGroupPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdatePatchSingleGroupPublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdatePatchSingleGroupPublicV1Cmd.MarkFlagRequired("namespace")
 }

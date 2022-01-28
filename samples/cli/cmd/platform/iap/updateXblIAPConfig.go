@@ -17,7 +17,7 @@ import (
 
 // UpdateXblIAPConfigCmd represents the UpdateXblIAPConfig command
 var UpdateXblIAPConfigCmd = &cobra.Command{
-	Use:   "UpdateXblIAPConfig",
+	Use:   "updateXblIAPConfig",
 	Short: "Update xbl IAP config",
 	Long:  `Update xbl IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var UpdateXblIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateXblIAPConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateXblIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateXblIAPConfigCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateXblIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateXblIAPConfigCmd.MarkFlagRequired("namespace")
 }

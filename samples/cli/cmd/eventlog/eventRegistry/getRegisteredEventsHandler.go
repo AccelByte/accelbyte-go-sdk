@@ -15,7 +15,7 @@ import (
 
 // GetRegisteredEventsHandlerCmd represents the GetRegisteredEventsHandler command
 var GetRegisteredEventsHandlerCmd = &cobra.Command{
-	Use:   "GetRegisteredEventsHandler",
+	Use:   "getRegisteredEventsHandler",
 	Short: "Get registered events handler",
 	Long:  `Get registered events handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,4 +33,7 @@ var GetRegisteredEventsHandlerCmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

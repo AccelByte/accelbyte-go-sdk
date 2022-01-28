@@ -15,7 +15,7 @@ import (
 
 // GetAllPartyInChannelCmd represents the GetAllPartyInChannel command
 var GetAllPartyInChannelCmd = &cobra.Command{
-	Use:   "GetAllPartyInChannel",
+	Use:   "getAllPartyInChannel",
 	Short: "Get all party in channel",
 	Long:  `Get all party in channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetAllPartyInChannelCmd = &cobra.Command{
 }
 
 func init() {
-	GetAllPartyInChannelCmd.Flags().StringP("channelName", "ce", " ", "Channel name")
+	GetAllPartyInChannelCmd.Flags().StringP("channelName", "", " ", "Channel name")
 	_ = GetAllPartyInChannelCmd.MarkFlagRequired("channelName")
-	GetAllPartyInChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetAllPartyInChannelCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetAllPartyInChannelCmd.MarkFlagRequired("namespace")
 }

@@ -15,7 +15,7 @@ import (
 
 // ListLocalServerCmd represents the ListLocalServer command
 var ListLocalServerCmd = &cobra.Command{
-	Use:   "ListLocalServer",
+	Use:   "listLocalServer",
 	Short: "List local server",
 	Long:  `List local server`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var ListLocalServerCmd = &cobra.Command{
 }
 
 func init() {
-	ListLocalServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ListLocalServerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ListLocalServerCmd.MarkFlagRequired("namespace")
 }

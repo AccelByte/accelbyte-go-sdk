@@ -17,7 +17,7 @@ import (
 
 // UpdateAliPayConfigCmd represents the UpdateAliPayConfig command
 var UpdateAliPayConfigCmd = &cobra.Command{
-	Use:   "UpdateAliPayConfig",
+	Use:   "updateAliPayConfig",
 	Short: "Update ali pay config",
 	Long:  `Update ali pay config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,9 +52,9 @@ var UpdateAliPayConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateAliPayConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateAliPayConfigCmd.Flags().StringP("id", "id", " ", "Id")
+	UpdateAliPayConfigCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateAliPayConfigCmd.Flags().StringP("id", "", " ", "Id")
 	_ = UpdateAliPayConfigCmd.MarkFlagRequired("id")
-	UpdateAliPayConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
-	UpdateAliPayConfigCmd.Flags().BoolP("validate", "ve", false, "Validate")
+	UpdateAliPayConfigCmd.Flags().BoolP("sandbox", "", false, "Sandbox")
+	UpdateAliPayConfigCmd.Flags().BoolP("validate", "", false, "Validate")
 }

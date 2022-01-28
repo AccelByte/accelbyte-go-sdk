@@ -17,7 +17,7 @@ import (
 
 // UpdateAdyenConfigCmd represents the UpdateAdyenConfig command
 var UpdateAdyenConfigCmd = &cobra.Command{
-	Use:   "UpdateAdyenConfig",
+	Use:   "updateAdyenConfig",
 	Short: "Update adyen config",
 	Long:  `Update adyen config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,9 +52,9 @@ var UpdateAdyenConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateAdyenConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateAdyenConfigCmd.Flags().StringP("id", "id", " ", "Id")
+	UpdateAdyenConfigCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateAdyenConfigCmd.Flags().StringP("id", "", " ", "Id")
 	_ = UpdateAdyenConfigCmd.MarkFlagRequired("id")
-	UpdateAdyenConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
-	UpdateAdyenConfigCmd.Flags().BoolP("validate", "ve", false, "Validate")
+	UpdateAdyenConfigCmd.Flags().BoolP("sandbox", "", false, "Sandbox")
+	UpdateAdyenConfigCmd.Flags().BoolP("validate", "", false, "Validate")
 }

@@ -15,7 +15,7 @@ import (
 
 // PublicGetCurrentUserSeasonCmd represents the PublicGetCurrentUserSeason command
 var PublicGetCurrentUserSeasonCmd = &cobra.Command{
-	Use:   "PublicGetCurrentUserSeason",
+	Use:   "publicGetCurrentUserSeason",
 	Short: "Public get current user season",
 	Long:  `Public get current user season`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var PublicGetCurrentUserSeasonCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetCurrentUserSeasonCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetCurrentUserSeasonCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetCurrentUserSeasonCmd.MarkFlagRequired("namespace")
-	PublicGetCurrentUserSeasonCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicGetCurrentUserSeasonCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicGetCurrentUserSeasonCmd.MarkFlagRequired("userId")
 }

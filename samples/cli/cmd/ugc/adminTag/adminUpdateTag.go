@@ -17,7 +17,7 @@ import (
 
 // AdminUpdateTagCmd represents the AdminUpdateTag command
 var AdminUpdateTagCmd = &cobra.Command{
-	Use:   "AdminUpdateTag",
+	Use:   "adminUpdateTag",
 	Short: "Admin update tag",
 	Long:  `Admin update tag`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var AdminUpdateTagCmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateTagCmd.Flags().StringP("body", "by", " ", "Body")
+	AdminUpdateTagCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminUpdateTagCmd.MarkFlagRequired("body")
-	AdminUpdateTagCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminUpdateTagCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminUpdateTagCmd.MarkFlagRequired("namespace")
-	AdminUpdateTagCmd.Flags().StringP("tagId", "td", " ", "Tag id")
+	AdminUpdateTagCmd.Flags().StringP("tagId", "", " ", "Tag id")
 	_ = AdminUpdateTagCmd.MarkFlagRequired("tagId")
 }

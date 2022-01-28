@@ -16,7 +16,7 @@ import (
 
 // PublicQueryUserEntitlementsCmd represents the PublicQueryUserEntitlements command
 var PublicQueryUserEntitlementsCmd = &cobra.Command{
-	Use:   "PublicQueryUserEntitlements",
+	Use:   "publicQueryUserEntitlements",
 	Short: "Public query user entitlements",
 	Long:  `Public query user entitlements`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -59,14 +59,14 @@ var PublicQueryUserEntitlementsCmd = &cobra.Command{
 }
 
 func init() {
-	PublicQueryUserEntitlementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicQueryUserEntitlementsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicQueryUserEntitlementsCmd.MarkFlagRequired("namespace")
-	PublicQueryUserEntitlementsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicQueryUserEntitlementsCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicQueryUserEntitlementsCmd.MarkFlagRequired("userId")
-	PublicQueryUserEntitlementsCmd.Flags().StringP("appType", "ae", " ", "App type")
-	PublicQueryUserEntitlementsCmd.Flags().StringP("entitlementClazz", "ez", " ", "Entitlement clazz")
-	PublicQueryUserEntitlementsCmd.Flags().StringP("entitlementName", "ee", " ", "Entitlement name")
-	PublicQueryUserEntitlementsCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	PublicQueryUserEntitlementsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	PublicQueryUserEntitlementsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	PublicQueryUserEntitlementsCmd.Flags().StringP("appType", "", " ", "App type")
+	PublicQueryUserEntitlementsCmd.Flags().StringP("entitlementClazz", "", " ", "Entitlement clazz")
+	PublicQueryUserEntitlementsCmd.Flags().StringP("entitlementName", "", " ", "Entitlement name")
+	PublicQueryUserEntitlementsCmd.Flags().StringP("itemId", "", " ", "Item id")
+	PublicQueryUserEntitlementsCmd.Flags().Int32P("limit", "", 20, "Limit")
+	PublicQueryUserEntitlementsCmd.Flags().Int32P("offset", "", 0, "Offset")
 }

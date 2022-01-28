@@ -17,7 +17,7 @@ import (
 
 // FreeFormNotificationByUserIDCmd represents the FreeFormNotificationByUserID command
 var FreeFormNotificationByUserIDCmd = &cobra.Command{
-	Use:   "FreeFormNotificationByUserID",
+	Use:   "freeFormNotificationByUserID",
 	Short: "Free form notification by user ID",
 	Long:  `Free form notification by user ID`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var FreeFormNotificationByUserIDCmd = &cobra.Command{
 }
 
 func init() {
-	FreeFormNotificationByUserIDCmd.Flags().StringP("body", "by", " ", "Body")
+	FreeFormNotificationByUserIDCmd.Flags().StringP("body", "", " ", "Body")
 	_ = FreeFormNotificationByUserIDCmd.MarkFlagRequired("body")
-	FreeFormNotificationByUserIDCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	FreeFormNotificationByUserIDCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = FreeFormNotificationByUserIDCmd.MarkFlagRequired("namespace")
-	FreeFormNotificationByUserIDCmd.Flags().StringP("userId", "ud", " ", "User id")
+	FreeFormNotificationByUserIDCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = FreeFormNotificationByUserIDCmd.MarkFlagRequired("userId")
 }

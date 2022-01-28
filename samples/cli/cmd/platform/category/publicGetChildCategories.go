@@ -15,7 +15,7 @@ import (
 
 // PublicGetChildCategoriesCmd represents the PublicGetChildCategories command
 var PublicGetChildCategoriesCmd = &cobra.Command{
-	Use:   "PublicGetChildCategories",
+	Use:   "publicGetChildCategories",
 	Short: "Public get child categories",
 	Long:  `Public get child categories`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,10 +45,10 @@ var PublicGetChildCategoriesCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetChildCategoriesCmd.Flags().StringP("categoryPath", "ch", " ", "Category path")
+	PublicGetChildCategoriesCmd.Flags().StringP("categoryPath", "", " ", "Category path")
 	_ = PublicGetChildCategoriesCmd.MarkFlagRequired("categoryPath")
-	PublicGetChildCategoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetChildCategoriesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetChildCategoriesCmd.MarkFlagRequired("namespace")
-	PublicGetChildCategoriesCmd.Flags().StringP("language", "le", " ", "Language")
-	PublicGetChildCategoriesCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	PublicGetChildCategoriesCmd.Flags().StringP("language", "", " ", "Language")
+	PublicGetChildCategoriesCmd.Flags().StringP("storeId", "", " ", "Store id")
 }

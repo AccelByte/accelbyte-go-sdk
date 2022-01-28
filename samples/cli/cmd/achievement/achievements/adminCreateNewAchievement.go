@@ -17,7 +17,7 @@ import (
 
 // AdminCreateNewAchievementCmd represents the AdminCreateNewAchievement command
 var AdminCreateNewAchievementCmd = &cobra.Command{
-	Use:   "AdminCreateNewAchievement",
+	Use:   "adminCreateNewAchievement",
 	Short: "Admin create new achievement",
 	Long:  `Admin create new achievement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var AdminCreateNewAchievementCmd = &cobra.Command{
 }
 
 func init() {
-	AdminCreateNewAchievementCmd.Flags().StringP("body", "by", " ", "Body")
+	AdminCreateNewAchievementCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminCreateNewAchievementCmd.MarkFlagRequired("body")
-	AdminCreateNewAchievementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminCreateNewAchievementCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminCreateNewAchievementCmd.MarkFlagRequired("namespace")
 }

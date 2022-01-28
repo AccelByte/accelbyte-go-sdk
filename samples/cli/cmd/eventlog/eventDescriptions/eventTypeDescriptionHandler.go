@@ -15,7 +15,7 @@ import (
 
 // EventTypeDescriptionHandlerCmd represents the EventTypeDescriptionHandler command
 var EventTypeDescriptionHandlerCmd = &cobra.Command{
-	Use:   "EventTypeDescriptionHandler",
+	Use:   "eventTypeDescriptionHandler",
 	Short: "Event type description handler",
 	Long:  `Event type description handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,4 +33,7 @@ var EventTypeDescriptionHandlerCmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

@@ -15,7 +15,7 @@ import (
 
 // GetUserActivitiesHandlerCmd represents the GetUserActivitiesHandler command
 var GetUserActivitiesHandlerCmd = &cobra.Command{
-	Use:   "GetUserActivitiesHandler",
+	Use:   "getUserActivitiesHandler",
 	Short: "Get user activities handler",
 	Long:  `Get user activities handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,11 +45,11 @@ var GetUserActivitiesHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserActivitiesHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetUserActivitiesHandlerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetUserActivitiesHandlerCmd.MarkFlagRequired("namespace")
-	GetUserActivitiesHandlerCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetUserActivitiesHandlerCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetUserActivitiesHandlerCmd.MarkFlagRequired("userId")
-	GetUserActivitiesHandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
-	GetUserActivitiesHandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
+	GetUserActivitiesHandlerCmd.Flags().Float64P("offset", "", 0, "Offset")
+	GetUserActivitiesHandlerCmd.Flags().Float64P("pageSize", "", 1, "Page size")
 	_ = GetUserActivitiesHandlerCmd.MarkFlagRequired("pageSize")
 }

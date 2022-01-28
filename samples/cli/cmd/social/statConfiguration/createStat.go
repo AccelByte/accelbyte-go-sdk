@@ -17,7 +17,7 @@ import (
 
 // CreateStatCmd represents the CreateStat command
 var CreateStatCmd = &cobra.Command{
-	Use:   "CreateStat",
+	Use:   "createStat",
 	Short: "Create stat",
 	Long:  `Create stat`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var CreateStatCmd = &cobra.Command{
 }
 
 func init() {
-	CreateStatCmd.Flags().StringP("body", "by", " ", "Body")
-	CreateStatCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateStatCmd.Flags().StringP("body", "", " ", "Body")
+	CreateStatCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateStatCmd.MarkFlagRequired("namespace")
 }

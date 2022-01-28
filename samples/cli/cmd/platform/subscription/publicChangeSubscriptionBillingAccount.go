@@ -15,7 +15,7 @@ import (
 
 // PublicChangeSubscriptionBillingAccountCmd represents the PublicChangeSubscriptionBillingAccount command
 var PublicChangeSubscriptionBillingAccountCmd = &cobra.Command{
-	Use:   "PublicChangeSubscriptionBillingAccount",
+	Use:   "publicChangeSubscriptionBillingAccount",
 	Short: "Public change subscription billing account",
 	Long:  `Public change subscription billing account`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var PublicChangeSubscriptionBillingAccountCmd = &cobra.Command{
 }
 
 func init() {
-	PublicChangeSubscriptionBillingAccountCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicChangeSubscriptionBillingAccountCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicChangeSubscriptionBillingAccountCmd.MarkFlagRequired("namespace")
-	PublicChangeSubscriptionBillingAccountCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
+	PublicChangeSubscriptionBillingAccountCmd.Flags().StringP("subscriptionId", "", " ", "Subscription id")
 	_ = PublicChangeSubscriptionBillingAccountCmd.MarkFlagRequired("subscriptionId")
-	PublicChangeSubscriptionBillingAccountCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicChangeSubscriptionBillingAccountCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicChangeSubscriptionBillingAccountCmd.MarkFlagRequired("userId")
 }

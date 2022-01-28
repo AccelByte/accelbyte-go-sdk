@@ -15,7 +15,7 @@ import (
 
 // ListConfigCmd represents the ListConfig command
 var ListConfigCmd = &cobra.Command{
-	Use:   "ListConfig",
+	Use:   "listConfig",
 	Short: "List config",
 	Long:  `List config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,4 +33,7 @@ var ListConfigCmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

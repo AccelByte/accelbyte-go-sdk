@@ -17,7 +17,7 @@ import (
 
 // UserVerificationCmd represents the UserVerification command
 var UserVerificationCmd = &cobra.Command{
-	Use:   "UserVerification",
+	Use:   "userVerification",
 	Short: "User verification",
 	Long:  `User verification`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var UserVerificationCmd = &cobra.Command{
 }
 
 func init() {
-	UserVerificationCmd.Flags().StringP("body", "by", " ", "Body")
+	UserVerificationCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UserVerificationCmd.MarkFlagRequired("body")
-	UserVerificationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UserVerificationCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UserVerificationCmd.MarkFlagRequired("namespace")
-	UserVerificationCmd.Flags().StringP("userId", "ud", " ", "User id")
+	UserVerificationCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = UserVerificationCmd.MarkFlagRequired("userId")
 }

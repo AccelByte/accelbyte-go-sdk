@@ -15,7 +15,7 @@ import (
 
 // VersionCheckHandlerCmd represents the VersionCheckHandler command
 var VersionCheckHandlerCmd = &cobra.Command{
-	Use:   "VersionCheckHandler",
+	Use:   "versionCheckHandler",
 	Short: "Version check handler",
 	Long:  `Version check handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -32,4 +32,7 @@ var VersionCheckHandlerCmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

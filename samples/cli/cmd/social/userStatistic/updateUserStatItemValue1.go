@@ -17,7 +17,7 @@ import (
 
 // UpdateUserStatItemValue1Cmd represents the UpdateUserStatItemValue1 command
 var UpdateUserStatItemValue1Cmd = &cobra.Command{
-	Use:   "UpdateUserStatItemValue1",
+	Use:   "updateUserStatItemValue1",
 	Short: "Update user stat item value 1",
 	Long:  `Update user stat item value 1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -54,12 +54,12 @@ var UpdateUserStatItemValue1Cmd = &cobra.Command{
 }
 
 func init() {
-	UpdateUserStatItemValue1Cmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateUserStatItemValue1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateUserStatItemValue1Cmd.Flags().StringP("body", "", " ", "Body")
+	UpdateUserStatItemValue1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateUserStatItemValue1Cmd.MarkFlagRequired("namespace")
-	UpdateUserStatItemValue1Cmd.Flags().StringP("statCode", "se", " ", "Stat code")
+	UpdateUserStatItemValue1Cmd.Flags().StringP("statCode", "", " ", "Stat code")
 	_ = UpdateUserStatItemValue1Cmd.MarkFlagRequired("statCode")
-	UpdateUserStatItemValue1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	UpdateUserStatItemValue1Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = UpdateUserStatItemValue1Cmd.MarkFlagRequired("userId")
-	UpdateUserStatItemValue1Cmd.Flags().StringP("additionalKey", "ay", " ", "Additional key")
+	UpdateUserStatItemValue1Cmd.Flags().StringP("additionalKey", "", " ", "Additional key")
 }

@@ -15,7 +15,7 @@ import (
 
 // DeleteAppleIAPConfigCmd represents the DeleteAppleIAPConfig command
 var DeleteAppleIAPConfigCmd = &cobra.Command{
-	Use:   "DeleteAppleIAPConfig",
+	Use:   "deleteAppleIAPConfig",
 	Short: "Delete apple IAP config",
 	Long:  `Delete apple IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var DeleteAppleIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteAppleIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteAppleIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteAppleIAPConfigCmd.MarkFlagRequired("namespace")
 }

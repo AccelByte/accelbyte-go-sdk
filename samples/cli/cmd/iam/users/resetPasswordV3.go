@@ -17,7 +17,7 @@ import (
 
 // ResetPasswordV3Cmd represents the ResetPasswordV3 command
 var ResetPasswordV3Cmd = &cobra.Command{
-	Use:   "ResetPasswordV3",
+	Use:   "resetPasswordV3",
 	Short: "Reset password V3",
 	Long:  `Reset password V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var ResetPasswordV3Cmd = &cobra.Command{
 }
 
 func init() {
-	ResetPasswordV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	ResetPasswordV3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = ResetPasswordV3Cmd.MarkFlagRequired("body")
-	ResetPasswordV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ResetPasswordV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ResetPasswordV3Cmd.MarkFlagRequired("namespace")
 }

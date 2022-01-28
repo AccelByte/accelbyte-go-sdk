@@ -17,7 +17,7 @@ import (
 
 // RegisterEventHandlerCmd represents the RegisterEventHandler command
 var RegisterEventHandlerCmd = &cobra.Command{
-	Use:   "RegisterEventHandler",
+	Use:   "registerEventHandler",
 	Short: "Register event handler",
 	Long:  `Register event handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,6 +45,6 @@ var RegisterEventHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	RegisterEventHandlerCmd.Flags().StringP("body", "by", " ", "Body")
+	RegisterEventHandlerCmd.Flags().StringP("body", "", " ", "Body")
 	_ = RegisterEventHandlerCmd.MarkFlagRequired("body")
 }

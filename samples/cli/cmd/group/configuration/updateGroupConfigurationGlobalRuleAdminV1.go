@@ -17,7 +17,7 @@ import (
 
 // UpdateGroupConfigurationGlobalRuleAdminV1Cmd represents the UpdateGroupConfigurationGlobalRuleAdminV1 command
 var UpdateGroupConfigurationGlobalRuleAdminV1Cmd = &cobra.Command{
-	Use:   "UpdateGroupConfigurationGlobalRuleAdminV1",
+	Use:   "updateGroupConfigurationGlobalRuleAdminV1",
 	Short: "Update group configuration global rule admin V1",
 	Long:  `Update group configuration global rule admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,12 +52,12 @@ var UpdateGroupConfigurationGlobalRuleAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	UpdateGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("body")
-	UpdateGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("allowedAction", "an", " ", "Allowed action")
+	UpdateGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("allowedAction", "", " ", "Allowed action")
 	_ = UpdateGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("allowedAction")
-	UpdateGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("configurationCode", "ce", " ", "Configuration code")
+	UpdateGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("configurationCode", "", " ", "Configuration code")
 	_ = UpdateGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("configurationCode")
-	UpdateGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("namespace")
 }

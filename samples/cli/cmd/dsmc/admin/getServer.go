@@ -15,7 +15,7 @@ import (
 
 // GetServerCmd represents the GetServer command
 var GetServerCmd = &cobra.Command{
-	Use:   "GetServer",
+	Use:   "getServer",
 	Short: "Get server",
 	Long:  `Get server`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetServerCmd = &cobra.Command{
 }
 
 func init() {
-	GetServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetServerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetServerCmd.MarkFlagRequired("namespace")
-	GetServerCmd.Flags().StringP("podName", "pe", " ", "Pod name")
+	GetServerCmd.Flags().StringP("podName", "", " ", "Pod name")
 	_ = GetServerCmd.MarkFlagRequired("podName")
 }

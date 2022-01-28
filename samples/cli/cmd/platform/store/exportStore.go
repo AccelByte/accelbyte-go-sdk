@@ -15,7 +15,7 @@ import (
 
 // ExportStoreCmd represents the ExportStore command
 var ExportStoreCmd = &cobra.Command{
-	Use:   "ExportStore",
+	Use:   "exportStore",
 	Short: "Export store",
 	Long:  `Export store`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var ExportStoreCmd = &cobra.Command{
 }
 
 func init() {
-	ExportStoreCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ExportStoreCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ExportStoreCmd.MarkFlagRequired("namespace")
-	ExportStoreCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	ExportStoreCmd.Flags().StringP("storeId", "", " ", "Store id")
 	_ = ExportStoreCmd.MarkFlagRequired("storeId")
 }

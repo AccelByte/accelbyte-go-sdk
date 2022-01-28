@@ -15,7 +15,7 @@ import (
 
 // LastUserActivityTimeHandlerCmd represents the LastUserActivityTimeHandler command
 var LastUserActivityTimeHandlerCmd = &cobra.Command{
-	Use:   "LastUserActivityTimeHandler",
+	Use:   "lastUserActivityTimeHandler",
 	Short: "Last user activity time handler",
 	Long:  `Last user activity time handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var LastUserActivityTimeHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	LastUserActivityTimeHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	LastUserActivityTimeHandlerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = LastUserActivityTimeHandlerCmd.MarkFlagRequired("namespace")
-	LastUserActivityTimeHandlerCmd.Flags().StringP("userId", "ud", " ", "User id")
+	LastUserActivityTimeHandlerCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = LastUserActivityTimeHandlerCmd.MarkFlagRequired("userId")
 }

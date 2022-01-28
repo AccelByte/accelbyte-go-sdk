@@ -16,7 +16,7 @@ import (
 
 // ImportChannelsCmd represents the ImportChannels command
 var ImportChannelsCmd = &cobra.Command{
-	Use:   "ImportChannels",
+	Use:   "importChannels",
 	Short: "Import channels",
 	Long:  `Import channels`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +49,8 @@ var ImportChannelsCmd = &cobra.Command{
 }
 
 func init() {
-	ImportChannelsCmd.Flags().StringP("file", "fe", " ", "File")
-	ImportChannelsCmd.Flags().StringP("strategy", "sy", " ", "Strategy")
-	ImportChannelsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ImportChannelsCmd.Flags().StringP("file", "", " ", "File")
+	ImportChannelsCmd.Flags().StringP("strategy", "", " ", "Strategy")
+	ImportChannelsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ImportChannelsCmd.MarkFlagRequired("namespace")
 }

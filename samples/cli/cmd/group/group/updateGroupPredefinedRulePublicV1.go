@@ -17,7 +17,7 @@ import (
 
 // UpdateGroupPredefinedRulePublicV1Cmd represents the UpdateGroupPredefinedRulePublicV1 command
 var UpdateGroupPredefinedRulePublicV1Cmd = &cobra.Command{
-	Use:   "UpdateGroupPredefinedRulePublicV1",
+	Use:   "updateGroupPredefinedRulePublicV1",
 	Short: "Update group predefined rule public V1",
 	Long:  `Update group predefined rule public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,12 +52,12 @@ var UpdateGroupPredefinedRulePublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	UpdateGroupPredefinedRulePublicV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateGroupPredefinedRulePublicV1Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("body")
-	UpdateGroupPredefinedRulePublicV1Cmd.Flags().StringP("allowedAction", "an", " ", "Allowed action")
+	UpdateGroupPredefinedRulePublicV1Cmd.Flags().StringP("allowedAction", "", " ", "Allowed action")
 	_ = UpdateGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("allowedAction")
-	UpdateGroupPredefinedRulePublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	UpdateGroupPredefinedRulePublicV1Cmd.Flags().StringP("groupId", "", " ", "Group id")
 	_ = UpdateGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("groupId")
-	UpdateGroupPredefinedRulePublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateGroupPredefinedRulePublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("namespace")
 }

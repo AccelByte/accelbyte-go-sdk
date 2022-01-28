@@ -15,7 +15,7 @@ import (
 
 // GetTimeZonesCmd represents the GetTimeZones command
 var GetTimeZonesCmd = &cobra.Command{
-	Use:   "GetTimeZones",
+	Use:   "getTimeZones",
 	Short: "Get time zones",
 	Long:  `Get time zones`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetTimeZonesCmd = &cobra.Command{
 }
 
 func init() {
-	GetTimeZonesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetTimeZonesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetTimeZonesCmd.MarkFlagRequired("namespace")
 }

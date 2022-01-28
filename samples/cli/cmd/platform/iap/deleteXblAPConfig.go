@@ -15,7 +15,7 @@ import (
 
 // DeleteXblAPConfigCmd represents the DeleteXblAPConfig command
 var DeleteXblAPConfigCmd = &cobra.Command{
-	Use:   "DeleteXblAPConfig",
+	Use:   "deleteXblAPConfig",
 	Short: "Delete xbl AP config",
 	Long:  `Delete xbl AP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var DeleteXblAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteXblAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteXblAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteXblAPConfigCmd.MarkFlagRequired("namespace")
 }

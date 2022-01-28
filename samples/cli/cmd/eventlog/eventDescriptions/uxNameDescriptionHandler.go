@@ -15,7 +15,7 @@ import (
 
 // UXNameDescriptionHandlerCmd represents the UXNameDescriptionHandler command
 var UXNameDescriptionHandlerCmd = &cobra.Command{
-	Use:   "UXNameDescriptionHandler",
+	Use:   "uxNameDescriptionHandler",
 	Short: "UX name description handler",
 	Long:  `UX name description handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,4 +33,7 @@ var UXNameDescriptionHandlerCmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

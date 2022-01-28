@@ -15,7 +15,7 @@ import (
 
 // GetGameTemplateCmd represents the GetGameTemplate command
 var GetGameTemplateCmd = &cobra.Command{
-	Use:   "GetGameTemplate",
+	Use:   "getGameTemplate",
 	Short: "Get game template",
 	Long:  `Get game template`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetGameTemplateCmd = &cobra.Command{
 }
 
 func init() {
-	GetGameTemplateCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetGameTemplateCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetGameTemplateCmd.MarkFlagRequired("namespace")
 }

@@ -15,7 +15,7 @@ import (
 
 // AdminListAchievementsCmd represents the AdminListAchievements command
 var AdminListAchievementsCmd = &cobra.Command{
-	Use:   "AdminListAchievements",
+	Use:   "adminListAchievements",
 	Short: "Admin list achievements",
 	Long:  `Admin list achievements`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,9 +45,9 @@ var AdminListAchievementsCmd = &cobra.Command{
 }
 
 func init() {
-	AdminListAchievementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminListAchievementsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminListAchievementsCmd.MarkFlagRequired("namespace")
-	AdminListAchievementsCmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	AdminListAchievementsCmd.Flags().Int64P("offset", "ot", 0, "Offset")
-	AdminListAchievementsCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
+	AdminListAchievementsCmd.Flags().Int64P("limit", "", 20, "Limit")
+	AdminListAchievementsCmd.Flags().Int64P("offset", "", 0, "Offset")
+	AdminListAchievementsCmd.Flags().StringP("sortBy", "", " ", "Sort by")
 }

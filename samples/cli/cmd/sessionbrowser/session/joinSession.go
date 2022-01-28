@@ -17,7 +17,7 @@ import (
 
 // JoinSessionCmd represents the JoinSession command
 var JoinSessionCmd = &cobra.Command{
-	Use:   "JoinSession",
+	Use:   "joinSession",
 	Short: "Join session",
 	Long:  `Join session`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var JoinSessionCmd = &cobra.Command{
 }
 
 func init() {
-	JoinSessionCmd.Flags().StringP("body", "by", " ", "Body")
+	JoinSessionCmd.Flags().StringP("body", "", " ", "Body")
 	_ = JoinSessionCmd.MarkFlagRequired("body")
-	JoinSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	JoinSessionCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = JoinSessionCmd.MarkFlagRequired("namespace")
-	JoinSessionCmd.Flags().StringP("sessionID", "sD", " ", "Session ID")
+	JoinSessionCmd.Flags().StringP("sessionID", "", " ", "Session ID")
 	_ = JoinSessionCmd.MarkFlagRequired("sessionID")
 }

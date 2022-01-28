@@ -15,7 +15,7 @@ import (
 
 // DeleteRootRegionOverrideCmd represents the DeleteRootRegionOverride command
 var DeleteRootRegionOverrideCmd = &cobra.Command{
-	Use:   "DeleteRootRegionOverride",
+	Use:   "deleteRootRegionOverride",
 	Short: "Delete root region override",
 	Long:  `Delete root region override`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var DeleteRootRegionOverrideCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteRootRegionOverrideCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
+	DeleteRootRegionOverrideCmd.Flags().StringP("deployment", "", " ", "Deployment")
 	_ = DeleteRootRegionOverrideCmd.MarkFlagRequired("deployment")
-	DeleteRootRegionOverrideCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteRootRegionOverrideCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteRootRegionOverrideCmd.MarkFlagRequired("namespace")
-	DeleteRootRegionOverrideCmd.Flags().StringP("region", "rn", " ", "Region")
+	DeleteRootRegionOverrideCmd.Flags().StringP("region", "", " ", "Region")
 	_ = DeleteRootRegionOverrideCmd.MarkFlagRequired("region")
 }

@@ -15,7 +15,7 @@ import (
 
 // GetPlatformDLCConfigCmd represents the GetPlatformDLCConfig command
 var GetPlatformDLCConfigCmd = &cobra.Command{
-	Use:   "GetPlatformDLCConfig",
+	Use:   "getPlatformDLCConfig",
 	Short: "Get platform DLC config",
 	Long:  `Get platform DLC config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetPlatformDLCConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetPlatformDLCConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetPlatformDLCConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetPlatformDLCConfigCmd.MarkFlagRequired("namespace")
 }

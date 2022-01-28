@@ -15,7 +15,7 @@ import (
 
 // AdminGetPlayerRecordHandlerV1Cmd represents the AdminGetPlayerRecordHandlerV1 command
 var AdminGetPlayerRecordHandlerV1Cmd = &cobra.Command{
-	Use:   "AdminGetPlayerRecordHandlerV1",
+	Use:   "adminGetPlayerRecordHandlerV1",
 	Short: "Admin get player record handler V1",
 	Long:  `Admin get player record handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var AdminGetPlayerRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetPlayerRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
+	AdminGetPlayerRecordHandlerV1Cmd.Flags().StringP("key", "", " ", "Key")
 	_ = AdminGetPlayerRecordHandlerV1Cmd.MarkFlagRequired("key")
-	AdminGetPlayerRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetPlayerRecordHandlerV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetPlayerRecordHandlerV1Cmd.MarkFlagRequired("namespace")
-	AdminGetPlayerRecordHandlerV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminGetPlayerRecordHandlerV1Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminGetPlayerRecordHandlerV1Cmd.MarkFlagRequired("userId")
 }

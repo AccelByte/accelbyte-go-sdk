@@ -15,7 +15,7 @@ import (
 
 // GetEpicGamesIAPConfigCmd represents the GetEpicGamesIAPConfig command
 var GetEpicGamesIAPConfigCmd = &cobra.Command{
-	Use:   "GetEpicGamesIAPConfig",
+	Use:   "getEpicGamesIAPConfig",
 	Short: "Get epic games IAP config",
 	Long:  `Get epic games IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetEpicGamesIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetEpicGamesIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetEpicGamesIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetEpicGamesIAPConfigCmd.MarkFlagRequired("namespace")
 }

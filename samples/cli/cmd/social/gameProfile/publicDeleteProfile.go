@@ -15,7 +15,7 @@ import (
 
 // PublicDeleteProfileCmd represents the PublicDeleteProfile command
 var PublicDeleteProfileCmd = &cobra.Command{
-	Use:   "PublicDeleteProfile",
+	Use:   "publicDeleteProfile",
 	Short: "Public delete profile",
 	Long:  `Public delete profile`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var PublicDeleteProfileCmd = &cobra.Command{
 }
 
 func init() {
-	PublicDeleteProfileCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicDeleteProfileCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicDeleteProfileCmd.MarkFlagRequired("namespace")
-	PublicDeleteProfileCmd.Flags().StringP("profileId", "pd", " ", "Profile id")
+	PublicDeleteProfileCmd.Flags().StringP("profileId", "", " ", "Profile id")
 	_ = PublicDeleteProfileCmd.MarkFlagRequired("profileId")
-	PublicDeleteProfileCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicDeleteProfileCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicDeleteProfileCmd.MarkFlagRequired("userId")
 }

@@ -15,7 +15,7 @@ import (
 
 // GetSteamIAPConfigCmd represents the GetSteamIAPConfig command
 var GetSteamIAPConfigCmd = &cobra.Command{
-	Use:   "GetSteamIAPConfig",
+	Use:   "getSteamIAPConfig",
 	Short: "Get steam IAP config",
 	Long:  `Get steam IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetSteamIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetSteamIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetSteamIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetSteamIAPConfigCmd.MarkFlagRequired("namespace")
 }

@@ -15,7 +15,7 @@ import (
 
 // GetUserByPlatformUserIDCmd represents the GetUserByPlatformUserID command
 var GetUserByPlatformUserIDCmd = &cobra.Command{
-	Use:   "GetUserByPlatformUserID",
+	Use:   "getUserByPlatformUserID",
 	Short: "Get user by platform user ID",
 	Long:  `Get user by platform user ID`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var GetUserByPlatformUserIDCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserByPlatformUserIDCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetUserByPlatformUserIDCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetUserByPlatformUserIDCmd.MarkFlagRequired("namespace")
-	GetUserByPlatformUserIDCmd.Flags().StringP("platformID", "pD", " ", "Platform ID")
+	GetUserByPlatformUserIDCmd.Flags().StringP("platformID", "", " ", "Platform ID")
 	_ = GetUserByPlatformUserIDCmd.MarkFlagRequired("platformID")
-	GetUserByPlatformUserIDCmd.Flags().StringP("platformUserID", "pD", " ", "Platform user ID")
+	GetUserByPlatformUserIDCmd.Flags().StringP("platformUserID", "", " ", "Platform user ID")
 	_ = GetUserByPlatformUserIDCmd.MarkFlagRequired("platformUserID")
 }

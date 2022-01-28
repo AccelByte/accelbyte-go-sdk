@@ -15,7 +15,7 @@ import (
 
 // AdminGetUserByEmailAddressV3Cmd represents the AdminGetUserByEmailAddressV3 command
 var AdminGetUserByEmailAddressV3Cmd = &cobra.Command{
-	Use:   "AdminGetUserByEmailAddressV3",
+	Use:   "adminGetUserByEmailAddressV3",
 	Short: "Admin get user by email address V3",
 	Long:  `Admin get user by email address V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,7 +41,7 @@ var AdminGetUserByEmailAddressV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetUserByEmailAddressV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetUserByEmailAddressV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetUserByEmailAddressV3Cmd.MarkFlagRequired("namespace")
-	AdminGetUserByEmailAddressV3Cmd.Flags().StringP("emailAddress", "es", " ", "Email address")
+	AdminGetUserByEmailAddressV3Cmd.Flags().StringP("emailAddress", "", " ", "Email address")
 }

@@ -15,7 +15,7 @@ import (
 
 // GetTicketBoothIDCmd represents the GetTicketBoothID command
 var GetTicketBoothIDCmd = &cobra.Command{
-	Use:   "GetTicketBoothID",
+	Use:   "getTicketBoothID",
 	Short: "Get ticket booth ID",
 	Long:  `Get ticket booth ID`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetTicketBoothIDCmd = &cobra.Command{
 }
 
 func init() {
-	GetTicketBoothIDCmd.Flags().StringP("boothName", "be", " ", "Booth name")
+	GetTicketBoothIDCmd.Flags().StringP("boothName", "", " ", "Booth name")
 	_ = GetTicketBoothIDCmd.MarkFlagRequired("boothName")
-	GetTicketBoothIDCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetTicketBoothIDCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetTicketBoothIDCmd.MarkFlagRequired("namespace")
 }

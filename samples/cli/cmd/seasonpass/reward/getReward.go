@@ -15,7 +15,7 @@ import (
 
 // GetRewardCmd represents the GetReward command
 var GetRewardCmd = &cobra.Command{
-	Use:   "GetReward",
+	Use:   "getReward",
 	Short: "Get reward",
 	Long:  `Get reward`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var GetRewardCmd = &cobra.Command{
 }
 
 func init() {
-	GetRewardCmd.Flags().StringP("code", "ce", " ", "Code")
+	GetRewardCmd.Flags().StringP("code", "", " ", "Code")
 	_ = GetRewardCmd.MarkFlagRequired("code")
-	GetRewardCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetRewardCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetRewardCmd.MarkFlagRequired("namespace")
-	GetRewardCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	GetRewardCmd.Flags().StringP("seasonId", "", " ", "Season id")
 	_ = GetRewardCmd.MarkFlagRequired("seasonId")
 }

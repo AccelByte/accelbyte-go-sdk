@@ -15,7 +15,7 @@ import (
 
 // LogoutCmd represents the Logout command
 var LogoutCmd = &cobra.Command{
-	Use:   "Logout",
+	Use:   "logout",
 	Short: "Logout",
 	Long:  `Logout`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -32,4 +32,7 @@ var LogoutCmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

@@ -17,7 +17,7 @@ import (
 
 // SyncStadiaEntitlementCmd represents the SyncStadiaEntitlement command
 var SyncStadiaEntitlementCmd = &cobra.Command{
-	Use:   "SyncStadiaEntitlement",
+	Use:   "syncStadiaEntitlement",
 	Short: "Sync stadia entitlement",
 	Long:  `Sync stadia entitlement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +49,9 @@ var SyncStadiaEntitlementCmd = &cobra.Command{
 }
 
 func init() {
-	SyncStadiaEntitlementCmd.Flags().StringP("body", "by", " ", "Body")
-	SyncStadiaEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SyncStadiaEntitlementCmd.Flags().StringP("body", "", " ", "Body")
+	SyncStadiaEntitlementCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SyncStadiaEntitlementCmd.MarkFlagRequired("namespace")
-	SyncStadiaEntitlementCmd.Flags().StringP("userId", "ud", " ", "User id")
+	SyncStadiaEntitlementCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = SyncStadiaEntitlementCmd.MarkFlagRequired("userId")
 }

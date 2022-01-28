@@ -15,7 +15,7 @@ import (
 
 // PublicGetPaymentAccountsCmd represents the PublicGetPaymentAccounts command
 var PublicGetPaymentAccountsCmd = &cobra.Command{
-	Use:   "PublicGetPaymentAccounts",
+	Use:   "publicGetPaymentAccounts",
 	Short: "Public get payment accounts",
 	Long:  `Public get payment accounts`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var PublicGetPaymentAccountsCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetPaymentAccountsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetPaymentAccountsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetPaymentAccountsCmd.MarkFlagRequired("namespace")
-	PublicGetPaymentAccountsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicGetPaymentAccountsCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicGetPaymentAccountsCmd.MarkFlagRequired("userId")
 }

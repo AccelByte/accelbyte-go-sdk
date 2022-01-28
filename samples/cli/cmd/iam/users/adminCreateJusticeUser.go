@@ -15,7 +15,7 @@ import (
 
 // AdminCreateJusticeUserCmd represents the AdminCreateJusticeUser command
 var AdminCreateJusticeUserCmd = &cobra.Command{
-	Use:   "AdminCreateJusticeUser",
+	Use:   "adminCreateJusticeUser",
 	Short: "Admin create justice user",
 	Long:  `Admin create justice user`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var AdminCreateJusticeUserCmd = &cobra.Command{
 }
 
 func init() {
-	AdminCreateJusticeUserCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminCreateJusticeUserCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminCreateJusticeUserCmd.MarkFlagRequired("namespace")
-	AdminCreateJusticeUserCmd.Flags().StringP("targetNamespace", "te", " ", "Target namespace")
+	AdminCreateJusticeUserCmd.Flags().StringP("targetNamespace", "", " ", "Target namespace")
 	_ = AdminCreateJusticeUserCmd.MarkFlagRequired("targetNamespace")
-	AdminCreateJusticeUserCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminCreateJusticeUserCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminCreateJusticeUserCmd.MarkFlagRequired("userId")
 }

@@ -17,7 +17,7 @@ import (
 
 // UpdateContentDirectCmd represents the UpdateContentDirect command
 var UpdateContentDirectCmd = &cobra.Command{
-	Use:   "UpdateContentDirect",
+	Use:   "updateContentDirect",
 	Short: "Update content direct",
 	Long:  `Update content direct`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -54,14 +54,14 @@ var UpdateContentDirectCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateContentDirectCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateContentDirectCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateContentDirectCmd.MarkFlagRequired("body")
-	UpdateContentDirectCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
+	UpdateContentDirectCmd.Flags().StringP("channelId", "", " ", "Channel id")
 	_ = UpdateContentDirectCmd.MarkFlagRequired("channelId")
-	UpdateContentDirectCmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	UpdateContentDirectCmd.Flags().StringP("contentId", "", " ", "Content id")
 	_ = UpdateContentDirectCmd.MarkFlagRequired("contentId")
-	UpdateContentDirectCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateContentDirectCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateContentDirectCmd.MarkFlagRequired("namespace")
-	UpdateContentDirectCmd.Flags().StringP("userId", "ud", " ", "User id")
+	UpdateContentDirectCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = UpdateContentDirectCmd.MarkFlagRequired("userId")
 }

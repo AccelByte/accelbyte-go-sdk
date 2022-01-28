@@ -17,7 +17,7 @@ import (
 
 // SimulatePaymentOrderNotificationCmd represents the SimulatePaymentOrderNotification command
 var SimulatePaymentOrderNotificationCmd = &cobra.Command{
-	Use:   "SimulatePaymentOrderNotification",
+	Use:   "simulatePaymentOrderNotification",
 	Short: "Simulate payment order notification",
 	Long:  `Simulate payment order notification`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var SimulatePaymentOrderNotificationCmd = &cobra.Command{
 }
 
 func init() {
-	SimulatePaymentOrderNotificationCmd.Flags().StringP("body", "by", " ", "Body")
-	SimulatePaymentOrderNotificationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SimulatePaymentOrderNotificationCmd.Flags().StringP("body", "", " ", "Body")
+	SimulatePaymentOrderNotificationCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SimulatePaymentOrderNotificationCmd.MarkFlagRequired("namespace")
-	SimulatePaymentOrderNotificationCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
+	SimulatePaymentOrderNotificationCmd.Flags().StringP("paymentOrderNo", "", " ", "Payment order no")
 	_ = SimulatePaymentOrderNotificationCmd.MarkFlagRequired("paymentOrderNo")
 }

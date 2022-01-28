@@ -15,7 +15,7 @@ import (
 
 // RevokeUserV3Cmd represents the RevokeUserV3 command
 var RevokeUserV3Cmd = &cobra.Command{
-	Use:   "RevokeUserV3",
+	Use:   "revokeUserV3",
 	Short: "Revoke user V3",
 	Long:  `Revoke user V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var RevokeUserV3Cmd = &cobra.Command{
 }
 
 func init() {
-	RevokeUserV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	RevokeUserV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = RevokeUserV3Cmd.MarkFlagRequired("namespace")
-	RevokeUserV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	RevokeUserV3Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = RevokeUserV3Cmd.MarkFlagRequired("userId")
 }

@@ -16,7 +16,7 @@ import (
 
 // UpdateWxPayConfigCertCmd represents the UpdateWxPayConfigCert command
 var UpdateWxPayConfigCertCmd = &cobra.Command{
-	Use:   "UpdateWxPayConfigCert",
+	Use:   "updateWxPayConfigCert",
 	Short: "Update wx pay config cert",
 	Long:  `Update wx pay config cert`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,7 +47,7 @@ var UpdateWxPayConfigCertCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateWxPayConfigCertCmd.Flags().StringP("file", "fe", " ", "File")
-	UpdateWxPayConfigCertCmd.Flags().StringP("id", "id", " ", "Id")
+	UpdateWxPayConfigCertCmd.Flags().StringP("file", "", " ", "File")
+	UpdateWxPayConfigCertCmd.Flags().StringP("id", "", " ", "Id")
 	_ = UpdateWxPayConfigCertCmd.MarkFlagRequired("id")
 }

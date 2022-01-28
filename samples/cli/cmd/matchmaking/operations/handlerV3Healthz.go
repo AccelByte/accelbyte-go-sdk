@@ -15,7 +15,7 @@ import (
 
 // HandlerV3HealthzCmd represents the HandlerV3Healthz command
 var HandlerV3HealthzCmd = &cobra.Command{
-	Use:   "HandlerV3Healthz",
+	Use:   "handlerV3Healthz",
 	Short: "Handler V3 healthz",
 	Long:  `Handler V3 healthz`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -32,4 +32,7 @@ var HandlerV3HealthzCmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

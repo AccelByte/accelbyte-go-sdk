@@ -17,7 +17,7 @@ import (
 
 // PublicIncUserStatItemValueCmd represents the PublicIncUserStatItemValue command
 var PublicIncUserStatItemValueCmd = &cobra.Command{
-	Use:   "PublicIncUserStatItemValue",
+	Use:   "publicIncUserStatItemValue",
 	Short: "Public inc user stat item value",
 	Long:  `Public inc user stat item value`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,11 +52,11 @@ var PublicIncUserStatItemValueCmd = &cobra.Command{
 }
 
 func init() {
-	PublicIncUserStatItemValueCmd.Flags().StringP("body", "by", " ", "Body")
-	PublicIncUserStatItemValueCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicIncUserStatItemValueCmd.Flags().StringP("body", "", " ", "Body")
+	PublicIncUserStatItemValueCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicIncUserStatItemValueCmd.MarkFlagRequired("namespace")
-	PublicIncUserStatItemValueCmd.Flags().StringP("statCode", "se", " ", "Stat code")
+	PublicIncUserStatItemValueCmd.Flags().StringP("statCode", "", " ", "Stat code")
 	_ = PublicIncUserStatItemValueCmd.MarkFlagRequired("statCode")
-	PublicIncUserStatItemValueCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicIncUserStatItemValueCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicIncUserStatItemValueCmd.MarkFlagRequired("userId")
 }

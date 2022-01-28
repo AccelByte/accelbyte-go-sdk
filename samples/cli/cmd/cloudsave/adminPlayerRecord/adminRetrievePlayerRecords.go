@@ -15,7 +15,7 @@ import (
 
 // AdminRetrievePlayerRecordsCmd represents the AdminRetrievePlayerRecords command
 var AdminRetrievePlayerRecordsCmd = &cobra.Command{
-	Use:   "AdminRetrievePlayerRecords",
+	Use:   "adminRetrievePlayerRecords",
 	Short: "Admin retrieve player records",
 	Long:  `Admin retrieve player records`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,10 +45,10 @@ var AdminRetrievePlayerRecordsCmd = &cobra.Command{
 }
 
 func init() {
-	AdminRetrievePlayerRecordsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminRetrievePlayerRecordsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminRetrievePlayerRecordsCmd.MarkFlagRequired("namespace")
-	AdminRetrievePlayerRecordsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminRetrievePlayerRecordsCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminRetrievePlayerRecordsCmd.MarkFlagRequired("userId")
-	AdminRetrievePlayerRecordsCmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	AdminRetrievePlayerRecordsCmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	AdminRetrievePlayerRecordsCmd.Flags().Int64P("limit", "", 20, "Limit")
+	AdminRetrievePlayerRecordsCmd.Flags().Int64P("offset", "", 0, "Offset")
 }

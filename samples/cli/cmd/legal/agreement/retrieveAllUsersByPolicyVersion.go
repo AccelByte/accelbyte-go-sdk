@@ -15,7 +15,7 @@ import (
 
 // RetrieveAllUsersByPolicyVersionCmd represents the RetrieveAllUsersByPolicyVersion command
 var RetrieveAllUsersByPolicyVersionCmd = &cobra.Command{
-	Use:   "RetrieveAllUsersByPolicyVersion",
+	Use:   "retrieveAllUsersByPolicyVersion",
 	Short: "Retrieve all users by policy version",
 	Long:  `Retrieve all users by policy version`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,9 +45,9 @@ var RetrieveAllUsersByPolicyVersionCmd = &cobra.Command{
 }
 
 func init() {
-	RetrieveAllUsersByPolicyVersionCmd.Flags().StringP("keyword", "kd", " ", "Keyword")
-	RetrieveAllUsersByPolicyVersionCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	RetrieveAllUsersByPolicyVersionCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	RetrieveAllUsersByPolicyVersionCmd.Flags().StringP("policyVersionId", "pd", " ", "Policy version id")
+	RetrieveAllUsersByPolicyVersionCmd.Flags().StringP("keyword", "", " ", "Keyword")
+	RetrieveAllUsersByPolicyVersionCmd.Flags().Int32P("limit", "", 20, "Limit")
+	RetrieveAllUsersByPolicyVersionCmd.Flags().Int32P("offset", "", 0, "Offset")
+	RetrieveAllUsersByPolicyVersionCmd.Flags().StringP("policyVersionId", "", " ", "Policy version id")
 	_ = RetrieveAllUsersByPolicyVersionCmd.MarkFlagRequired("policyVersionId")
 }

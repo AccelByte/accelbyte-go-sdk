@@ -15,7 +15,7 @@ import (
 
 // SingleAdminGetAllGroupsCmd represents the SingleAdminGetAllGroups command
 var SingleAdminGetAllGroupsCmd = &cobra.Command{
-	Use:   "SingleAdminGetAllGroups",
+	Use:   "singleAdminGetAllGroups",
 	Short: "Single admin get all groups",
 	Long:  `Single admin get all groups`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,8 +43,8 @@ var SingleAdminGetAllGroupsCmd = &cobra.Command{
 }
 
 func init() {
-	SingleAdminGetAllGroupsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SingleAdminGetAllGroupsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SingleAdminGetAllGroupsCmd.MarkFlagRequired("namespace")
-	SingleAdminGetAllGroupsCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	SingleAdminGetAllGroupsCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	SingleAdminGetAllGroupsCmd.Flags().StringP("limit", "", "20", "Limit")
+	SingleAdminGetAllGroupsCmd.Flags().StringP("offset", "", "0", "Offset")
 }

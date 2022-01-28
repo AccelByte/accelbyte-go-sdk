@@ -17,7 +17,7 @@ import (
 
 // UpdatePaymentProviderConfigCmd represents the UpdatePaymentProviderConfig command
 var UpdatePaymentProviderConfigCmd = &cobra.Command{
-	Use:   "UpdatePaymentProviderConfig",
+	Use:   "updatePaymentProviderConfig",
 	Short: "Update payment provider config",
 	Long:  `Update payment provider config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var UpdatePaymentProviderConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdatePaymentProviderConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdatePaymentProviderConfigCmd.Flags().StringP("id", "id", " ", "Id")
+	UpdatePaymentProviderConfigCmd.Flags().StringP("body", "", " ", "Body")
+	UpdatePaymentProviderConfigCmd.Flags().StringP("id", "", " ", "Id")
 	_ = UpdatePaymentProviderConfigCmd.MarkFlagRequired("id")
 }

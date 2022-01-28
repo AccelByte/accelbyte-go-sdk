@@ -15,7 +15,7 @@ import (
 
 // GetLikedContentCmd represents the GetLikedContent command
 var GetLikedContentCmd = &cobra.Command{
-	Use:   "GetLikedContent",
+	Use:   "getLikedContent",
 	Short: "Get liked content",
 	Long:  `Get liked content`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,8 +43,8 @@ var GetLikedContentCmd = &cobra.Command{
 }
 
 func init() {
-	GetLikedContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetLikedContentCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetLikedContentCmd.MarkFlagRequired("namespace")
-	GetLikedContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	GetLikedContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	GetLikedContentCmd.Flags().StringP("limit", "", "20", "Limit")
+	GetLikedContentCmd.Flags().StringP("offset", "", "0", "Offset")
 }

@@ -17,7 +17,7 @@ import (
 
 // PublicUpdatePasswordV2Cmd represents the PublicUpdatePasswordV2 command
 var PublicUpdatePasswordV2Cmd = &cobra.Command{
-	Use:   "PublicUpdatePasswordV2",
+	Use:   "publicUpdatePasswordV2",
 	Short: "Public update password V2",
 	Long:  `Public update password V2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var PublicUpdatePasswordV2Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicUpdatePasswordV2Cmd.Flags().StringP("body", "by", " ", "Body")
+	PublicUpdatePasswordV2Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = PublicUpdatePasswordV2Cmd.MarkFlagRequired("body")
-	PublicUpdatePasswordV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicUpdatePasswordV2Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicUpdatePasswordV2Cmd.MarkFlagRequired("namespace")
-	PublicUpdatePasswordV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicUpdatePasswordV2Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicUpdatePasswordV2Cmd.MarkFlagRequired("userId")
 }

@@ -15,7 +15,7 @@ import (
 
 // GetCountryGroupsCmd represents the GetCountryGroups command
 var GetCountryGroupsCmd = &cobra.Command{
-	Use:   "GetCountryGroups",
+	Use:   "getCountryGroups",
 	Short: "Get country groups",
 	Long:  `Get country groups`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,7 +41,7 @@ var GetCountryGroupsCmd = &cobra.Command{
 }
 
 func init() {
-	GetCountryGroupsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetCountryGroupsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetCountryGroupsCmd.MarkFlagRequired("namespace")
-	GetCountryGroupsCmd.Flags().StringP("groupCode", "ge", " ", "Group code")
+	GetCountryGroupsCmd.Flags().StringP("groupCode", "", " ", "Group code")
 }

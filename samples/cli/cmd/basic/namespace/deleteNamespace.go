@@ -15,7 +15,7 @@ import (
 
 // DeleteNamespaceCmd represents the DeleteNamespace command
 var DeleteNamespaceCmd = &cobra.Command{
-	Use:   "DeleteNamespace",
+	Use:   "deleteNamespace",
 	Short: "Delete namespace",
 	Long:  `Delete namespace`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var DeleteNamespaceCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteNamespaceCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteNamespaceCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteNamespaceCmd.MarkFlagRequired("namespace")
 }

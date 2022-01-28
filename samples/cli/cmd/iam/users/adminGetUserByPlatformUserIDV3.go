@@ -15,7 +15,7 @@ import (
 
 // AdminGetUserByPlatformUserIDV3Cmd represents the AdminGetUserByPlatformUserIDV3 command
 var AdminGetUserByPlatformUserIDV3Cmd = &cobra.Command{
-	Use:   "AdminGetUserByPlatformUserIDV3",
+	Use:   "adminGetUserByPlatformUserIDV3",
 	Short: "Admin get user by platform user IDV3",
 	Long:  `Admin get user by platform user IDV3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var AdminGetUserByPlatformUserIDV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetUserByPlatformUserIDV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetUserByPlatformUserIDV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetUserByPlatformUserIDV3Cmd.MarkFlagRequired("namespace")
-	AdminGetUserByPlatformUserIDV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	AdminGetUserByPlatformUserIDV3Cmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = AdminGetUserByPlatformUserIDV3Cmd.MarkFlagRequired("platformId")
-	AdminGetUserByPlatformUserIDV3Cmd.Flags().StringP("platformUserId", "pd", " ", "Platform user id")
+	AdminGetUserByPlatformUserIDV3Cmd.Flags().StringP("platformUserId", "", " ", "Platform user id")
 	_ = AdminGetUserByPlatformUserIDV3Cmd.MarkFlagRequired("platformUserId")
 }

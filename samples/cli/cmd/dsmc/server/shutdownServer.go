@@ -17,7 +17,7 @@ import (
 
 // ShutdownServerCmd represents the ShutdownServer command
 var ShutdownServerCmd = &cobra.Command{
-	Use:   "ShutdownServer",
+	Use:   "shutdownServer",
 	Short: "Shutdown server",
 	Long:  `Shutdown server`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var ShutdownServerCmd = &cobra.Command{
 }
 
 func init() {
-	ShutdownServerCmd.Flags().StringP("body", "by", " ", "Body")
+	ShutdownServerCmd.Flags().StringP("body", "", " ", "Body")
 	_ = ShutdownServerCmd.MarkFlagRequired("body")
-	ShutdownServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ShutdownServerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ShutdownServerCmd.MarkFlagRequired("namespace")
 }

@@ -16,7 +16,7 @@ import (
 
 // ListBasicItemsByFeaturesCmd represents the ListBasicItemsByFeatures command
 var ListBasicItemsByFeaturesCmd = &cobra.Command{
-	Use:   "ListBasicItemsByFeatures",
+	Use:   "listBasicItemsByFeatures",
 	Short: "List basic items by features",
 	Long:  `List basic items by features`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +49,8 @@ var ListBasicItemsByFeaturesCmd = &cobra.Command{
 }
 
 func init() {
-	ListBasicItemsByFeaturesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ListBasicItemsByFeaturesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ListBasicItemsByFeaturesCmd.MarkFlagRequired("namespace")
-	ListBasicItemsByFeaturesCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	ListBasicItemsByFeaturesCmd.Flags().StringP("features", "fs", " ", "Features")
+	ListBasicItemsByFeaturesCmd.Flags().BoolP("activeOnly", "", false, "Active only")
+	ListBasicItemsByFeaturesCmd.Flags().StringP("features", "", " ", "Features")
 }

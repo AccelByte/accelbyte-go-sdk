@@ -15,7 +15,7 @@ import (
 
 // GetPodConfigCmd represents the GetPodConfig command
 var GetPodConfigCmd = &cobra.Command{
-	Use:   "GetPodConfig",
+	Use:   "getPodConfig",
 	Short: "Get pod config",
 	Long:  `Get pod config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetPodConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetPodConfigCmd.Flags().StringP("name", "ne", " ", "Name")
+	GetPodConfigCmd.Flags().StringP("name", "", " ", "Name")
 	_ = GetPodConfigCmd.MarkFlagRequired("name")
-	GetPodConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetPodConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetPodConfigCmd.MarkFlagRequired("namespace")
 }

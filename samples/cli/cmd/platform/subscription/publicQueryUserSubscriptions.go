@@ -15,7 +15,7 @@ import (
 
 // PublicQueryUserSubscriptionsCmd represents the PublicQueryUserSubscriptions command
 var PublicQueryUserSubscriptionsCmd = &cobra.Command{
-	Use:   "PublicQueryUserSubscriptions",
+	Use:   "publicQueryUserSubscriptions",
 	Short: "Public query user subscriptions",
 	Long:  `Public query user subscriptions`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -55,15 +55,15 @@ var PublicQueryUserSubscriptionsCmd = &cobra.Command{
 }
 
 func init() {
-	PublicQueryUserSubscriptionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicQueryUserSubscriptionsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicQueryUserSubscriptionsCmd.MarkFlagRequired("namespace")
-	PublicQueryUserSubscriptionsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicQueryUserSubscriptionsCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicQueryUserSubscriptionsCmd.MarkFlagRequired("userId")
-	PublicQueryUserSubscriptionsCmd.Flags().StringP("chargeStatus", "cs", " ", "Charge status")
-	PublicQueryUserSubscriptionsCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	PublicQueryUserSubscriptionsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	PublicQueryUserSubscriptionsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	PublicQueryUserSubscriptionsCmd.Flags().StringP("sku", "su", " ", "Sku")
-	PublicQueryUserSubscriptionsCmd.Flags().StringP("status", "ss", " ", "Status")
-	PublicQueryUserSubscriptionsCmd.Flags().StringP("subscribedBy", "sy", " ", "Subscribed by")
+	PublicQueryUserSubscriptionsCmd.Flags().StringP("chargeStatus", "", " ", "Charge status")
+	PublicQueryUserSubscriptionsCmd.Flags().StringP("itemId", "", " ", "Item id")
+	PublicQueryUserSubscriptionsCmd.Flags().Int32P("limit", "", 20, "Limit")
+	PublicQueryUserSubscriptionsCmd.Flags().Int32P("offset", "", 0, "Offset")
+	PublicQueryUserSubscriptionsCmd.Flags().StringP("sku", "", " ", "Sku")
+	PublicQueryUserSubscriptionsCmd.Flags().StringP("status", "", " ", "Status")
+	PublicQueryUserSubscriptionsCmd.Flags().StringP("subscribedBy", "", " ", "Subscribed by")
 }

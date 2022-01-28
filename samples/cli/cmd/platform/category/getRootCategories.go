@@ -15,7 +15,7 @@ import (
 
 // GetRootCategoriesCmd represents the GetRootCategories command
 var GetRootCategoriesCmd = &cobra.Command{
-	Use:   "GetRootCategories",
+	Use:   "getRootCategories",
 	Short: "Get root categories",
 	Long:  `Get root categories`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,7 +41,7 @@ var GetRootCategoriesCmd = &cobra.Command{
 }
 
 func init() {
-	GetRootCategoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetRootCategoriesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetRootCategoriesCmd.MarkFlagRequired("namespace")
-	GetRootCategoriesCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	GetRootCategoriesCmd.Flags().StringP("storeId", "", " ", "Store id")
 }

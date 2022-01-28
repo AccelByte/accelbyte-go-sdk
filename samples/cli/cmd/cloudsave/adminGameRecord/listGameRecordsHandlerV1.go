@@ -15,7 +15,7 @@ import (
 
 // ListGameRecordsHandlerV1Cmd represents the ListGameRecordsHandlerV1 command
 var ListGameRecordsHandlerV1Cmd = &cobra.Command{
-	Use:   "ListGameRecordsHandlerV1",
+	Use:   "listGameRecordsHandlerV1",
 	Short: "List game records handler V1",
 	Long:  `List game records handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,11 +45,11 @@ var ListGameRecordsHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	ListGameRecordsHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ListGameRecordsHandlerV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ListGameRecordsHandlerV1Cmd.MarkFlagRequired("namespace")
-	ListGameRecordsHandlerV1Cmd.Flags().StringP("query", "qy", " ", "Query")
-	ListGameRecordsHandlerV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	ListGameRecordsHandlerV1Cmd.Flags().StringP("query", "", " ", "Query")
+	ListGameRecordsHandlerV1Cmd.Flags().Int64P("limit", "", 20, "Limit")
 	_ = ListGameRecordsHandlerV1Cmd.MarkFlagRequired("limit")
-	ListGameRecordsHandlerV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	ListGameRecordsHandlerV1Cmd.Flags().Int64P("offset", "", 0, "Offset")
 	_ = ListGameRecordsHandlerV1Cmd.MarkFlagRequired("offset")
 }

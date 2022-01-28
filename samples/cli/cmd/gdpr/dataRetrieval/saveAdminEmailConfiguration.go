@@ -16,7 +16,7 @@ import (
 
 // SaveAdminEmailConfigurationCmd represents the SaveAdminEmailConfiguration command
 var SaveAdminEmailConfigurationCmd = &cobra.Command{
-	Use:   "SaveAdminEmailConfiguration",
+	Use:   "saveAdminEmailConfiguration",
 	Short: "Save admin email configuration",
 	Long:  `Save admin email configuration`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,8 +46,8 @@ var SaveAdminEmailConfigurationCmd = &cobra.Command{
 }
 
 func init() {
-	SaveAdminEmailConfigurationCmd.Flags().StringP("body", "by", " ", "Body")
+	SaveAdminEmailConfigurationCmd.Flags().StringP("body", "", " ", "Body")
 	_ = SaveAdminEmailConfigurationCmd.MarkFlagRequired("body")
-	SaveAdminEmailConfigurationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SaveAdminEmailConfigurationCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SaveAdminEmailConfigurationCmd.MarkFlagRequired("namespace")
 }

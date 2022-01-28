@@ -15,7 +15,7 @@ import (
 
 // DeleteStatCmd represents the DeleteStat command
 var DeleteStatCmd = &cobra.Command{
-	Use:   "DeleteStat",
+	Use:   "deleteStat",
 	Short: "Delete stat",
 	Long:  `Delete stat`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var DeleteStatCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteStatCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteStatCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteStatCmd.MarkFlagRequired("namespace")
-	DeleteStatCmd.Flags().StringP("statCode", "se", " ", "Stat code")
+	DeleteStatCmd.Flags().StringP("statCode", "", " ", "Stat code")
 	_ = DeleteStatCmd.MarkFlagRequired("statCode")
 }

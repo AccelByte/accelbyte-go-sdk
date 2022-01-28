@@ -15,7 +15,7 @@ import (
 
 // GetImageLimitCmd represents the GetImageLimit command
 var GetImageLimitCmd = &cobra.Command{
-	Use:   "GetImageLimit",
+	Use:   "getImageLimit",
 	Short: "Get image limit",
 	Long:  `Get image limit`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetImageLimitCmd = &cobra.Command{
 }
 
 func init() {
-	GetImageLimitCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetImageLimitCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetImageLimitCmd.MarkFlagRequired("namespace")
 }

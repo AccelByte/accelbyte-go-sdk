@@ -17,7 +17,7 @@ import (
 
 // CreateClientByNamespaceCmd represents the CreateClientByNamespace command
 var CreateClientByNamespaceCmd = &cobra.Command{
-	Use:   "CreateClientByNamespace",
+	Use:   "createClientByNamespace",
 	Short: "Create client by namespace",
 	Long:  `Create client by namespace`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var CreateClientByNamespaceCmd = &cobra.Command{
 }
 
 func init() {
-	CreateClientByNamespaceCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateClientByNamespaceCmd.Flags().StringP("body", "", " ", "Body")
 	_ = CreateClientByNamespaceCmd.MarkFlagRequired("body")
-	CreateClientByNamespaceCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateClientByNamespaceCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateClientByNamespaceCmd.MarkFlagRequired("namespace")
 }

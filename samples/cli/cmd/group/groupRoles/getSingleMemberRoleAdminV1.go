@@ -15,7 +15,7 @@ import (
 
 // GetSingleMemberRoleAdminV1Cmd represents the GetSingleMemberRoleAdminV1 command
 var GetSingleMemberRoleAdminV1Cmd = &cobra.Command{
-	Use:   "GetSingleMemberRoleAdminV1",
+	Use:   "getSingleMemberRoleAdminV1",
 	Short: "Get single member role admin V1",
 	Long:  `Get single member role admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetSingleMemberRoleAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetSingleMemberRoleAdminV1Cmd.Flags().StringP("memberRoleId", "md", " ", "Member role id")
+	GetSingleMemberRoleAdminV1Cmd.Flags().StringP("memberRoleId", "", " ", "Member role id")
 	_ = GetSingleMemberRoleAdminV1Cmd.MarkFlagRequired("memberRoleId")
-	GetSingleMemberRoleAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetSingleMemberRoleAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetSingleMemberRoleAdminV1Cmd.MarkFlagRequired("namespace")
 }

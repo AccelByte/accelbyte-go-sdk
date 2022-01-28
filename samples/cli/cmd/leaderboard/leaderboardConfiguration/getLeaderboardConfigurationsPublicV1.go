@@ -15,7 +15,7 @@ import (
 
 // GetLeaderboardConfigurationsPublicV1Cmd represents the GetLeaderboardConfigurationsPublicV1 command
 var GetLeaderboardConfigurationsPublicV1Cmd = &cobra.Command{
-	Use:   "GetLeaderboardConfigurationsPublicV1",
+	Use:   "getLeaderboardConfigurationsPublicV1",
 	Short: "Get leaderboard configurations public V1",
 	Long:  `Get leaderboard configurations public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,10 +47,10 @@ var GetLeaderboardConfigurationsPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetLeaderboardConfigurationsPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetLeaderboardConfigurationsPublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetLeaderboardConfigurationsPublicV1Cmd.MarkFlagRequired("namespace")
-	GetLeaderboardConfigurationsPublicV1Cmd.Flags().BoolP("isArchived", "id", false, "Is archived")
-	GetLeaderboardConfigurationsPublicV1Cmd.Flags().BoolP("isDeleted", "id", false, "Is deleted")
-	GetLeaderboardConfigurationsPublicV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	GetLeaderboardConfigurationsPublicV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetLeaderboardConfigurationsPublicV1Cmd.Flags().BoolP("isArchived", "", false, "Is archived")
+	GetLeaderboardConfigurationsPublicV1Cmd.Flags().BoolP("isDeleted", "", false, "Is deleted")
+	GetLeaderboardConfigurationsPublicV1Cmd.Flags().Int64P("limit", "", 20, "Limit")
+	GetLeaderboardConfigurationsPublicV1Cmd.Flags().Int64P("offset", "", 0, "Offset")
 }

@@ -17,7 +17,7 @@ import (
 
 // PublicBulkGetUsersCmd represents the PublicBulkGetUsers command
 var PublicBulkGetUsersCmd = &cobra.Command{
-	Use:   "PublicBulkGetUsers",
+	Use:   "publicBulkGetUsers",
 	Short: "Public bulk get users",
 	Long:  `Public bulk get users`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var PublicBulkGetUsersCmd = &cobra.Command{
 }
 
 func init() {
-	PublicBulkGetUsersCmd.Flags().StringP("body", "by", " ", "Body")
+	PublicBulkGetUsersCmd.Flags().StringP("body", "", " ", "Body")
 	_ = PublicBulkGetUsersCmd.MarkFlagRequired("body")
-	PublicBulkGetUsersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicBulkGetUsersCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicBulkGetUsersCmd.MarkFlagRequired("namespace")
 }

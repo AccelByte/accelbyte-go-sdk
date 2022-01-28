@@ -17,7 +17,7 @@ import (
 
 // AddFriendsWithoutConfirmationCmd represents the AddFriendsWithoutConfirmation command
 var AddFriendsWithoutConfirmationCmd = &cobra.Command{
-	Use:   "AddFriendsWithoutConfirmation",
+	Use:   "addFriendsWithoutConfirmation",
 	Short: "Add friends without confirmation",
 	Long:  `Add friends without confirmation`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var AddFriendsWithoutConfirmationCmd = &cobra.Command{
 }
 
 func init() {
-	AddFriendsWithoutConfirmationCmd.Flags().StringP("body", "by", " ", "Body")
+	AddFriendsWithoutConfirmationCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AddFriendsWithoutConfirmationCmd.MarkFlagRequired("body")
-	AddFriendsWithoutConfirmationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AddFriendsWithoutConfirmationCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AddFriendsWithoutConfirmationCmd.MarkFlagRequired("namespace")
-	AddFriendsWithoutConfirmationCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AddFriendsWithoutConfirmationCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AddFriendsWithoutConfirmationCmd.MarkFlagRequired("userId")
 }

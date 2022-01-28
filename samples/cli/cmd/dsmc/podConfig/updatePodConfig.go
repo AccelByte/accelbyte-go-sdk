@@ -17,7 +17,7 @@ import (
 
 // UpdatePodConfigCmd represents the UpdatePodConfig command
 var UpdatePodConfigCmd = &cobra.Command{
-	Use:   "UpdatePodConfig",
+	Use:   "updatePodConfig",
 	Short: "Update pod config",
 	Long:  `Update pod config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var UpdatePodConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdatePodConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdatePodConfigCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdatePodConfigCmd.MarkFlagRequired("body")
-	UpdatePodConfigCmd.Flags().StringP("name", "ne", " ", "Name")
+	UpdatePodConfigCmd.Flags().StringP("name", "", " ", "Name")
 	_ = UpdatePodConfigCmd.MarkFlagRequired("name")
-	UpdatePodConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdatePodConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdatePodConfigCmd.MarkFlagRequired("namespace")
 }

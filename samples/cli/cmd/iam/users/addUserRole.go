@@ -15,7 +15,7 @@ import (
 
 // AddUserRoleCmd represents the AddUserRole command
 var AddUserRoleCmd = &cobra.Command{
-	Use:   "AddUserRole",
+	Use:   "addUserRole",
 	Short: "Add user role",
 	Long:  `Add user role`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var AddUserRoleCmd = &cobra.Command{
 }
 
 func init() {
-	AddUserRoleCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AddUserRoleCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AddUserRoleCmd.MarkFlagRequired("namespace")
-	AddUserRoleCmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	AddUserRoleCmd.Flags().StringP("roleId", "", " ", "Role id")
 	_ = AddUserRoleCmd.MarkFlagRequired("roleId")
-	AddUserRoleCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AddUserRoleCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AddUserRoleCmd.MarkFlagRequired("userId")
 }

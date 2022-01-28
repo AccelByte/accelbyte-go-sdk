@@ -15,7 +15,7 @@ import (
 
 // TokenIntrospectionV3Cmd represents the TokenIntrospectionV3 command
 var TokenIntrospectionV3Cmd = &cobra.Command{
-	Use:   "TokenIntrospectionV3",
+	Use:   "tokenIntrospectionV3",
 	Short: "Token introspection V3",
 	Long:  `Token introspection V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var TokenIntrospectionV3Cmd = &cobra.Command{
 }
 
 func init() {
-	TokenIntrospectionV3Cmd.Flags().StringP("token", "tn", " ", "Token")
+	TokenIntrospectionV3Cmd.Flags().StringP("token", "", " ", "Token")
 	_ = TokenIntrospectionV3Cmd.MarkFlagRequired("token")
 }

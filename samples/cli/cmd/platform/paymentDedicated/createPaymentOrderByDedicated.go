@@ -17,7 +17,7 @@ import (
 
 // CreatePaymentOrderByDedicatedCmd represents the CreatePaymentOrderByDedicated command
 var CreatePaymentOrderByDedicatedCmd = &cobra.Command{
-	Use:   "CreatePaymentOrderByDedicated",
+	Use:   "createPaymentOrderByDedicated",
 	Short: "Create payment order by dedicated",
 	Long:  `Create payment order by dedicated`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var CreatePaymentOrderByDedicatedCmd = &cobra.Command{
 }
 
 func init() {
-	CreatePaymentOrderByDedicatedCmd.Flags().StringP("body", "by", " ", "Body")
-	CreatePaymentOrderByDedicatedCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreatePaymentOrderByDedicatedCmd.Flags().StringP("body", "", " ", "Body")
+	CreatePaymentOrderByDedicatedCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreatePaymentOrderByDedicatedCmd.MarkFlagRequired("namespace")
 }

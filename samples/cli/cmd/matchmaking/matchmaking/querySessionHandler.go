@@ -15,7 +15,7 @@ import (
 
 // QuerySessionHandlerCmd represents the QuerySessionHandler command
 var QuerySessionHandlerCmd = &cobra.Command{
-	Use:   "QuerySessionHandler",
+	Use:   "querySessionHandler",
 	Short: "Query session handler",
 	Long:  `Query session handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var QuerySessionHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	QuerySessionHandlerCmd.Flags().StringP("matchID", "mD", " ", "Match ID")
+	QuerySessionHandlerCmd.Flags().StringP("matchID", "", " ", "Match ID")
 	_ = QuerySessionHandlerCmd.MarkFlagRequired("matchID")
-	QuerySessionHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QuerySessionHandlerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = QuerySessionHandlerCmd.MarkFlagRequired("namespace")
 }

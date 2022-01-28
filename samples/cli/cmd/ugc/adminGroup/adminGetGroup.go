@@ -15,7 +15,7 @@ import (
 
 // AdminGetGroupCmd represents the AdminGetGroup command
 var AdminGetGroupCmd = &cobra.Command{
-	Use:   "AdminGetGroup",
+	Use:   "adminGetGroup",
 	Short: "Admin get group",
 	Long:  `Admin get group`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var AdminGetGroupCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetGroupCmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	AdminGetGroupCmd.Flags().StringP("groupId", "", " ", "Group id")
 	_ = AdminGetGroupCmd.MarkFlagRequired("groupId")
-	AdminGetGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetGroupCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetGroupCmd.MarkFlagRequired("namespace")
-	AdminGetGroupCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminGetGroupCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminGetGroupCmd.MarkFlagRequired("userId")
 }

@@ -17,7 +17,7 @@ import (
 
 // CreateTopicCmd represents the CreateTopic command
 var CreateTopicCmd = &cobra.Command{
-	Use:   "CreateTopic",
+	Use:   "createTopic",
 	Short: "Create topic",
 	Long:  `Create topic`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var CreateTopicCmd = &cobra.Command{
 }
 
 func init() {
-	CreateTopicCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateTopicCmd.Flags().StringP("body", "", " ", "Body")
 	_ = CreateTopicCmd.MarkFlagRequired("body")
-	CreateTopicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateTopicCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateTopicCmd.MarkFlagRequired("namespace")
 }

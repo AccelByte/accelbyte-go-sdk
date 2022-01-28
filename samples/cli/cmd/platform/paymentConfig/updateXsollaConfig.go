@@ -17,7 +17,7 @@ import (
 
 // UpdateXsollaConfigCmd represents the UpdateXsollaConfig command
 var UpdateXsollaConfigCmd = &cobra.Command{
-	Use:   "UpdateXsollaConfig",
+	Use:   "updateXsollaConfig",
 	Short: "Update xsolla config",
 	Long:  `Update xsolla config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,8 +50,8 @@ var UpdateXsollaConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateXsollaConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateXsollaConfigCmd.Flags().StringP("id", "id", " ", "Id")
+	UpdateXsollaConfigCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateXsollaConfigCmd.Flags().StringP("id", "", " ", "Id")
 	_ = UpdateXsollaConfigCmd.MarkFlagRequired("id")
-	UpdateXsollaConfigCmd.Flags().BoolP("validate", "ve", false, "Validate")
+	UpdateXsollaConfigCmd.Flags().BoolP("validate", "", false, "Validate")
 }

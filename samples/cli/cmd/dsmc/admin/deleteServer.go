@@ -15,7 +15,7 @@ import (
 
 // DeleteServerCmd represents the DeleteServer command
 var DeleteServerCmd = &cobra.Command{
-	Use:   "DeleteServer",
+	Use:   "deleteServer",
 	Short: "Delete server",
 	Long:  `Delete server`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var DeleteServerCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteServerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteServerCmd.MarkFlagRequired("namespace")
-	DeleteServerCmd.Flags().StringP("podName", "pe", " ", "Pod name")
+	DeleteServerCmd.Flags().StringP("podName", "", " ", "Pod name")
 	_ = DeleteServerCmd.MarkFlagRequired("podName")
 }

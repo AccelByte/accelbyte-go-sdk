@@ -17,7 +17,7 @@ import (
 
 // AddUserPermissionCmd represents the AddUserPermission command
 var AddUserPermissionCmd = &cobra.Command{
-	Use:   "AddUserPermission",
+	Use:   "addUserPermission",
 	Short: "Add user permission",
 	Long:  `Add user permission`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,14 +53,14 @@ var AddUserPermissionCmd = &cobra.Command{
 }
 
 func init() {
-	AddUserPermissionCmd.Flags().StringP("body", "by", " ", "Body")
+	AddUserPermissionCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AddUserPermissionCmd.MarkFlagRequired("body")
-	AddUserPermissionCmd.Flags().Int64P("action", "an", -1, "Action")
+	AddUserPermissionCmd.Flags().Int64P("action", "", -1, "Action")
 	_ = AddUserPermissionCmd.MarkFlagRequired("action")
-	AddUserPermissionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AddUserPermissionCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AddUserPermissionCmd.MarkFlagRequired("namespace")
-	AddUserPermissionCmd.Flags().StringP("resource", "re", " ", "Resource")
+	AddUserPermissionCmd.Flags().StringP("resource", "", " ", "Resource")
 	_ = AddUserPermissionCmd.MarkFlagRequired("resource")
-	AddUserPermissionCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AddUserPermissionCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AddUserPermissionCmd.MarkFlagRequired("userId")
 }

@@ -17,7 +17,7 @@ import (
 
 // PublicListUserIDByPlatformUserIDsV3Cmd represents the PublicListUserIDByPlatformUserIDsV3 command
 var PublicListUserIDByPlatformUserIDsV3Cmd = &cobra.Command{
-	Use:   "PublicListUserIDByPlatformUserIDsV3",
+	Use:   "publicListUserIDByPlatformUserIDsV3",
 	Short: "Public list user ID by platform user I ds V3",
 	Long:  `Public list user ID by platform user I ds V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var PublicListUserIDByPlatformUserIDsV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicListUserIDByPlatformUserIDsV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	PublicListUserIDByPlatformUserIDsV3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = PublicListUserIDByPlatformUserIDsV3Cmd.MarkFlagRequired("body")
-	PublicListUserIDByPlatformUserIDsV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicListUserIDByPlatformUserIDsV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicListUserIDByPlatformUserIDsV3Cmd.MarkFlagRequired("namespace")
-	PublicListUserIDByPlatformUserIDsV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	PublicListUserIDByPlatformUserIDsV3Cmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = PublicListUserIDByPlatformUserIDsV3Cmd.MarkFlagRequired("platformId")
 }

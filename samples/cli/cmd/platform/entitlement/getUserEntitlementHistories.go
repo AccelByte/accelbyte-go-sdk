@@ -15,7 +15,7 @@ import (
 
 // GetUserEntitlementHistoriesCmd represents the GetUserEntitlementHistories command
 var GetUserEntitlementHistoriesCmd = &cobra.Command{
-	Use:   "GetUserEntitlementHistories",
+	Use:   "getUserEntitlementHistories",
 	Short: "Get user entitlement histories",
 	Long:  `Get user entitlement histories`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var GetUserEntitlementHistoriesCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserEntitlementHistoriesCmd.Flags().StringP("entitlementId", "ed", " ", "Entitlement id")
+	GetUserEntitlementHistoriesCmd.Flags().StringP("entitlementId", "", " ", "Entitlement id")
 	_ = GetUserEntitlementHistoriesCmd.MarkFlagRequired("entitlementId")
-	GetUserEntitlementHistoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetUserEntitlementHistoriesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetUserEntitlementHistoriesCmd.MarkFlagRequired("namespace")
-	GetUserEntitlementHistoriesCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetUserEntitlementHistoriesCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetUserEntitlementHistoriesCmd.MarkFlagRequired("userId")
 }

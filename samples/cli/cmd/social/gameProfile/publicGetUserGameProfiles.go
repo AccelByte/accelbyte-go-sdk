@@ -16,7 +16,7 @@ import (
 
 // PublicGetUserGameProfilesCmd represents the PublicGetUserGameProfiles command
 var PublicGetUserGameProfilesCmd = &cobra.Command{
-	Use:   "PublicGetUserGameProfiles",
+	Use:   "publicGetUserGameProfiles",
 	Short: "Public get user game profiles",
 	Long:  `Public get user game profiles`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var PublicGetUserGameProfilesCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserGameProfilesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetUserGameProfilesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetUserGameProfilesCmd.MarkFlagRequired("namespace")
-	PublicGetUserGameProfilesCmd.Flags().StringP("userIds", "us", " ", "User ids")
+	PublicGetUserGameProfilesCmd.Flags().StringP("userIds", "", " ", "User ids")
 	_ = PublicGetUserGameProfilesCmd.MarkFlagRequired("userIds")
 }

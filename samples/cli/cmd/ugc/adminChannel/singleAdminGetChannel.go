@@ -15,7 +15,7 @@ import (
 
 // SingleAdminGetChannelCmd represents the SingleAdminGetChannel command
 var SingleAdminGetChannelCmd = &cobra.Command{
-	Use:   "SingleAdminGetChannel",
+	Use:   "singleAdminGetChannel",
 	Short: "Single admin get channel",
 	Long:  `Single admin get channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,8 +43,8 @@ var SingleAdminGetChannelCmd = &cobra.Command{
 }
 
 func init() {
-	SingleAdminGetChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SingleAdminGetChannelCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SingleAdminGetChannelCmd.MarkFlagRequired("namespace")
-	SingleAdminGetChannelCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	SingleAdminGetChannelCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	SingleAdminGetChannelCmd.Flags().StringP("limit", "", "20", "Limit")
+	SingleAdminGetChannelCmd.Flags().StringP("offset", "", "0", "Offset")
 }

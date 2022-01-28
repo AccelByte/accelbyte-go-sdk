@@ -15,7 +15,7 @@ import (
 
 // AgentTypeDescriptionHandlerCmd represents the AgentTypeDescriptionHandler command
 var AgentTypeDescriptionHandlerCmd = &cobra.Command{
-	Use:   "AgentTypeDescriptionHandler",
+	Use:   "agentTypeDescriptionHandler",
 	Short: "Agent type description handler",
 	Long:  `Agent type description handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,4 +33,7 @@ var AgentTypeDescriptionHandlerCmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

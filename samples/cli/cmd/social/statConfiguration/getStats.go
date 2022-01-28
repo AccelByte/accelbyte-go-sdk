@@ -15,7 +15,7 @@ import (
 
 // GetStatsCmd represents the GetStats command
 var GetStatsCmd = &cobra.Command{
-	Use:   "GetStats",
+	Use:   "getStats",
 	Short: "Get stats",
 	Long:  `Get stats`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,8 +43,8 @@ var GetStatsCmd = &cobra.Command{
 }
 
 func init() {
-	GetStatsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetStatsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetStatsCmd.MarkFlagRequired("namespace")
-	GetStatsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	GetStatsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	GetStatsCmd.Flags().Int32P("limit", "", 20, "Limit")
+	GetStatsCmd.Flags().Int32P("offset", "", 0, "Offset")
 }

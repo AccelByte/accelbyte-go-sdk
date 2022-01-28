@@ -15,7 +15,7 @@ import (
 
 // DeletePaymentProviderConfigCmd represents the DeletePaymentProviderConfig command
 var DeletePaymentProviderConfigCmd = &cobra.Command{
-	Use:   "DeletePaymentProviderConfig",
+	Use:   "deletePaymentProviderConfig",
 	Short: "Delete payment provider config",
 	Long:  `Delete payment provider config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var DeletePaymentProviderConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeletePaymentProviderConfigCmd.Flags().StringP("id", "id", " ", "Id")
+	DeletePaymentProviderConfigCmd.Flags().StringP("id", "", " ", "Id")
 	_ = DeletePaymentProviderConfigCmd.MarkFlagRequired("id")
 }

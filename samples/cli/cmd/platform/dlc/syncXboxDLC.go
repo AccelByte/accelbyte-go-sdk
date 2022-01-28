@@ -17,7 +17,7 @@ import (
 
 // SyncXboxDLCCmd represents the SyncXboxDLC command
 var SyncXboxDLCCmd = &cobra.Command{
-	Use:   "SyncXboxDLC",
+	Use:   "syncXboxDLC",
 	Short: "Sync xbox DLC",
 	Long:  `Sync xbox DLC`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +49,9 @@ var SyncXboxDLCCmd = &cobra.Command{
 }
 
 func init() {
-	SyncXboxDLCCmd.Flags().StringP("body", "by", " ", "Body")
-	SyncXboxDLCCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SyncXboxDLCCmd.Flags().StringP("body", "", " ", "Body")
+	SyncXboxDLCCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SyncXboxDLCCmd.MarkFlagRequired("namespace")
-	SyncXboxDLCCmd.Flags().StringP("userId", "ud", " ", "User id")
+	SyncXboxDLCCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = SyncXboxDLCCmd.MarkFlagRequired("userId")
 }

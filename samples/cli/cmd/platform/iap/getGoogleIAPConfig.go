@@ -15,7 +15,7 @@ import (
 
 // GetGoogleIAPConfigCmd represents the GetGoogleIAPConfig command
 var GetGoogleIAPConfigCmd = &cobra.Command{
-	Use:   "GetGoogleIAPConfig",
+	Use:   "getGoogleIAPConfig",
 	Short: "Get google IAP config",
 	Long:  `Get google IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetGoogleIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetGoogleIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetGoogleIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetGoogleIAPConfigCmd.MarkFlagRequired("namespace")
 }

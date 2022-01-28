@@ -15,7 +15,7 @@ import (
 
 // AdminDeleteAllUserContentsCmd represents the AdminDeleteAllUserContents command
 var AdminDeleteAllUserContentsCmd = &cobra.Command{
-	Use:   "AdminDeleteAllUserContents",
+	Use:   "adminDeleteAllUserContents",
 	Short: "Admin delete all user contents",
 	Long:  `Admin delete all user contents`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var AdminDeleteAllUserContentsCmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteAllUserContentsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminDeleteAllUserContentsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminDeleteAllUserContentsCmd.MarkFlagRequired("namespace")
-	AdminDeleteAllUserContentsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminDeleteAllUserContentsCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminDeleteAllUserContentsCmd.MarkFlagRequired("userId")
 }

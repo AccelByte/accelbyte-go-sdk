@@ -15,7 +15,7 @@ import (
 
 // GetMyProfileInfoCmd represents the GetMyProfileInfo command
 var GetMyProfileInfoCmd = &cobra.Command{
-	Use:   "GetMyProfileInfo",
+	Use:   "getMyProfileInfo",
 	Short: "Get my profile info",
 	Long:  `Get my profile info`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetMyProfileInfoCmd = &cobra.Command{
 }
 
 func init() {
-	GetMyProfileInfoCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetMyProfileInfoCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetMyProfileInfoCmd.MarkFlagRequired("namespace")
 }

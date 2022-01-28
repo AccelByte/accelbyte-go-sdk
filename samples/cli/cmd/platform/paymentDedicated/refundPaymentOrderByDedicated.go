@@ -17,7 +17,7 @@ import (
 
 // RefundPaymentOrderByDedicatedCmd represents the RefundPaymentOrderByDedicated command
 var RefundPaymentOrderByDedicatedCmd = &cobra.Command{
-	Use:   "RefundPaymentOrderByDedicated",
+	Use:   "refundPaymentOrderByDedicated",
 	Short: "Refund payment order by dedicated",
 	Long:  `Refund payment order by dedicated`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var RefundPaymentOrderByDedicatedCmd = &cobra.Command{
 }
 
 func init() {
-	RefundPaymentOrderByDedicatedCmd.Flags().StringP("body", "by", " ", "Body")
-	RefundPaymentOrderByDedicatedCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	RefundPaymentOrderByDedicatedCmd.Flags().StringP("body", "", " ", "Body")
+	RefundPaymentOrderByDedicatedCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = RefundPaymentOrderByDedicatedCmd.MarkFlagRequired("namespace")
-	RefundPaymentOrderByDedicatedCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
+	RefundPaymentOrderByDedicatedCmd.Flags().StringP("paymentOrderNo", "", " ", "Payment order no")
 	_ = RefundPaymentOrderByDedicatedCmd.MarkFlagRequired("paymentOrderNo")
 }

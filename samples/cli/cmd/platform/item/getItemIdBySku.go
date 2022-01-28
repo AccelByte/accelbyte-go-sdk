@@ -15,7 +15,7 @@ import (
 
 // GetItemIdBySkuCmd represents the GetItemIdBySku command
 var GetItemIdBySkuCmd = &cobra.Command{
-	Use:   "GetItemIdBySku",
+	Use:   "getItemIdBySku",
 	Short: "Get item id by sku",
 	Long:  `Get item id by sku`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,10 +45,10 @@ var GetItemIdBySkuCmd = &cobra.Command{
 }
 
 func init() {
-	GetItemIdBySkuCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetItemIdBySkuCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetItemIdBySkuCmd.MarkFlagRequired("namespace")
-	GetItemIdBySkuCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	GetItemIdBySkuCmd.Flags().StringP("storeId", "sd", " ", "Store id")
-	GetItemIdBySkuCmd.Flags().StringP("sku", "su", " ", "Sku")
+	GetItemIdBySkuCmd.Flags().BoolP("activeOnly", "", false, "Active only")
+	GetItemIdBySkuCmd.Flags().StringP("storeId", "", " ", "Store id")
+	GetItemIdBySkuCmd.Flags().StringP("sku", "", " ", "Sku")
 	_ = GetItemIdBySkuCmd.MarkFlagRequired("sku")
 }

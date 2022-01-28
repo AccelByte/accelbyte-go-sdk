@@ -15,7 +15,7 @@ import (
 
 // GetFollowedContentCmd represents the GetFollowedContent command
 var GetFollowedContentCmd = &cobra.Command{
-	Use:   "GetFollowedContent",
+	Use:   "getFollowedContent",
 	Short: "Get followed content",
 	Long:  `Get followed content`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,8 +43,8 @@ var GetFollowedContentCmd = &cobra.Command{
 }
 
 func init() {
-	GetFollowedContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetFollowedContentCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetFollowedContentCmd.MarkFlagRequired("namespace")
-	GetFollowedContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	GetFollowedContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	GetFollowedContentCmd.Flags().StringP("limit", "", "20", "Limit")
+	GetFollowedContentCmd.Flags().StringP("offset", "", "0", "Offset")
 }

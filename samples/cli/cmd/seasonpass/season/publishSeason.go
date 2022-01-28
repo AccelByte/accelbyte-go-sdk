@@ -15,7 +15,7 @@ import (
 
 // PublishSeasonCmd represents the PublishSeason command
 var PublishSeasonCmd = &cobra.Command{
-	Use:   "PublishSeason",
+	Use:   "publishSeason",
 	Short: "Publish season",
 	Long:  `Publish season`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var PublishSeasonCmd = &cobra.Command{
 }
 
 func init() {
-	PublishSeasonCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublishSeasonCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublishSeasonCmd.MarkFlagRequired("namespace")
-	PublishSeasonCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	PublishSeasonCmd.Flags().StringP("seasonId", "", " ", "Season id")
 	_ = PublishSeasonCmd.MarkFlagRequired("seasonId")
 }

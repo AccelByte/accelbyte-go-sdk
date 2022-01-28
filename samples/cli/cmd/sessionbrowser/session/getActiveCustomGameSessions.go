@@ -15,7 +15,7 @@ import (
 
 // GetActiveCustomGameSessionsCmd represents the GetActiveCustomGameSessions command
 var GetActiveCustomGameSessionsCmd = &cobra.Command{
-	Use:   "GetActiveCustomGameSessions",
+	Use:   "getActiveCustomGameSessions",
 	Short: "Get active custom game sessions",
 	Long:  `Get active custom game sessions`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,8 +43,8 @@ var GetActiveCustomGameSessionsCmd = &cobra.Command{
 }
 
 func init() {
-	GetActiveCustomGameSessionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetActiveCustomGameSessionsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetActiveCustomGameSessionsCmd.MarkFlagRequired("namespace")
-	GetActiveCustomGameSessionsCmd.Flags().StringP("server_region", "sn", " ", "Server region")
-	GetActiveCustomGameSessionsCmd.Flags().StringP("session_id", "sd", " ", "Session id")
+	GetActiveCustomGameSessionsCmd.Flags().StringP("server_region", "", " ", "Server region")
+	GetActiveCustomGameSessionsCmd.Flags().StringP("session_id", "", " ", "Session id")
 }

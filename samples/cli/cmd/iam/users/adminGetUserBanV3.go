@@ -15,7 +15,7 @@ import (
 
 // AdminGetUserBanV3Cmd represents the AdminGetUserBanV3 command
 var AdminGetUserBanV3Cmd = &cobra.Command{
-	Use:   "AdminGetUserBanV3",
+	Use:   "adminGetUserBanV3",
 	Short: "Admin get user ban V3",
 	Long:  `Admin get user ban V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,12 +49,12 @@ var AdminGetUserBanV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetUserBanV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetUserBanV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetUserBanV3Cmd.MarkFlagRequired("namespace")
-	AdminGetUserBanV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminGetUserBanV3Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminGetUserBanV3Cmd.MarkFlagRequired("userId")
-	AdminGetUserBanV3Cmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	AdminGetUserBanV3Cmd.Flags().StringP("after", "ar", "0", "After")
-	AdminGetUserBanV3Cmd.Flags().StringP("before", "be", "0", "Before")
-	AdminGetUserBanV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	AdminGetUserBanV3Cmd.Flags().BoolP("activeOnly", "", false, "Active only")
+	AdminGetUserBanV3Cmd.Flags().StringP("after", "", "0", "After")
+	AdminGetUserBanV3Cmd.Flags().StringP("before", "", "0", "Before")
+	AdminGetUserBanV3Cmd.Flags().Int64P("limit", "", 20, "Limit")
 }

@@ -15,7 +15,7 @@ import (
 
 // DeleteDeploymentCmd represents the DeleteDeployment command
 var DeleteDeploymentCmd = &cobra.Command{
-	Use:   "DeleteDeployment",
+	Use:   "deleteDeployment",
 	Short: "Delete deployment",
 	Long:  `Delete deployment`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var DeleteDeploymentCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteDeploymentCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
+	DeleteDeploymentCmd.Flags().StringP("deployment", "", " ", "Deployment")
 	_ = DeleteDeploymentCmd.MarkFlagRequired("deployment")
-	DeleteDeploymentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteDeploymentCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteDeploymentCmd.MarkFlagRequired("namespace")
 }

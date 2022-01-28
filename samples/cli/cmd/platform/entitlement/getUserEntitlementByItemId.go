@@ -15,7 +15,7 @@ import (
 
 // GetUserEntitlementByItemIdCmd represents the GetUserEntitlementByItemId command
 var GetUserEntitlementByItemIdCmd = &cobra.Command{
-	Use:   "GetUserEntitlementByItemId",
+	Use:   "getUserEntitlementByItemId",
 	Short: "Get user entitlement by item id",
 	Long:  `Get user entitlement by item id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,12 +47,12 @@ var GetUserEntitlementByItemIdCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserEntitlementByItemIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetUserEntitlementByItemIdCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetUserEntitlementByItemIdCmd.MarkFlagRequired("namespace")
-	GetUserEntitlementByItemIdCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetUserEntitlementByItemIdCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetUserEntitlementByItemIdCmd.MarkFlagRequired("userId")
-	GetUserEntitlementByItemIdCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	GetUserEntitlementByItemIdCmd.Flags().StringP("entitlementClazz", "ez", " ", "Entitlement clazz")
-	GetUserEntitlementByItemIdCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	GetUserEntitlementByItemIdCmd.Flags().BoolP("activeOnly", "", false, "Active only")
+	GetUserEntitlementByItemIdCmd.Flags().StringP("entitlementClazz", "", " ", "Entitlement clazz")
+	GetUserEntitlementByItemIdCmd.Flags().StringP("itemId", "", " ", "Item id")
 	_ = GetUserEntitlementByItemIdCmd.MarkFlagRequired("itemId")
 }

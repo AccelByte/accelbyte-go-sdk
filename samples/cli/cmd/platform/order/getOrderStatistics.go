@@ -15,7 +15,7 @@ import (
 
 // GetOrderStatisticsCmd represents the GetOrderStatistics command
 var GetOrderStatisticsCmd = &cobra.Command{
-	Use:   "GetOrderStatistics",
+	Use:   "getOrderStatistics",
 	Short: "Get order statistics",
 	Long:  `Get order statistics`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetOrderStatisticsCmd = &cobra.Command{
 }
 
 func init() {
-	GetOrderStatisticsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetOrderStatisticsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetOrderStatisticsCmd.MarkFlagRequired("namespace")
 }

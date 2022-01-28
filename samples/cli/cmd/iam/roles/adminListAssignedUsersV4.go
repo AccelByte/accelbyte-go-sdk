@@ -15,7 +15,7 @@ import (
 
 // AdminListAssignedUsersV4Cmd represents the AdminListAssignedUsersV4 command
 var AdminListAssignedUsersV4Cmd = &cobra.Command{
-	Use:   "AdminListAssignedUsersV4",
+	Use:   "adminListAssignedUsersV4",
 	Short: "Admin list assigned users V4",
 	Long:  `Admin list assigned users V4`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,9 +45,9 @@ var AdminListAssignedUsersV4Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminListAssignedUsersV4Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	AdminListAssignedUsersV4Cmd.Flags().StringP("roleId", "", " ", "Role id")
 	_ = AdminListAssignedUsersV4Cmd.MarkFlagRequired("roleId")
-	AdminListAssignedUsersV4Cmd.Flags().StringP("after", "ar", "0", "After")
-	AdminListAssignedUsersV4Cmd.Flags().StringP("before", "be", "0", "Before")
-	AdminListAssignedUsersV4Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	AdminListAssignedUsersV4Cmd.Flags().StringP("after", "", "0", "After")
+	AdminListAssignedUsersV4Cmd.Flags().StringP("before", "", "0", "Before")
+	AdminListAssignedUsersV4Cmd.Flags().Int64P("limit", "", 20, "Limit")
 }

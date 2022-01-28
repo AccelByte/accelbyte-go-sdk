@@ -15,7 +15,7 @@ import (
 
 // GetCurrencySummaryCmd represents the GetCurrencySummary command
 var GetCurrencySummaryCmd = &cobra.Command{
-	Use:   "GetCurrencySummary",
+	Use:   "getCurrencySummary",
 	Short: "Get currency summary",
 	Long:  `Get currency summary`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetCurrencySummaryCmd = &cobra.Command{
 }
 
 func init() {
-	GetCurrencySummaryCmd.Flags().StringP("currencyCode", "ce", " ", "Currency code")
+	GetCurrencySummaryCmd.Flags().StringP("currencyCode", "", " ", "Currency code")
 	_ = GetCurrencySummaryCmd.MarkFlagRequired("currencyCode")
-	GetCurrencySummaryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetCurrencySummaryCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetCurrencySummaryCmd.MarkFlagRequired("namespace")
 }

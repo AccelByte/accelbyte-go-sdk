@@ -15,7 +15,7 @@ import (
 
 // AdminEnableUserV2Cmd represents the AdminEnableUserV2 command
 var AdminEnableUserV2Cmd = &cobra.Command{
-	Use:   "AdminEnableUserV2",
+	Use:   "adminEnableUserV2",
 	Short: "Admin enable user V2",
 	Long:  `Admin enable user V2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var AdminEnableUserV2Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminEnableUserV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminEnableUserV2Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminEnableUserV2Cmd.MarkFlagRequired("namespace")
-	AdminEnableUserV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminEnableUserV2Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminEnableUserV2Cmd.MarkFlagRequired("userId")
 }

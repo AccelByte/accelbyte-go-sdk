@@ -17,7 +17,7 @@ import (
 
 // AdminLinkPlatformAccountCmd represents the AdminLinkPlatformAccount command
 var AdminLinkPlatformAccountCmd = &cobra.Command{
-	Use:   "AdminLinkPlatformAccount",
+	Use:   "adminLinkPlatformAccount",
 	Short: "Admin link platform account",
 	Long:  `Admin link platform account`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var AdminLinkPlatformAccountCmd = &cobra.Command{
 }
 
 func init() {
-	AdminLinkPlatformAccountCmd.Flags().StringP("body", "by", " ", "Body")
+	AdminLinkPlatformAccountCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminLinkPlatformAccountCmd.MarkFlagRequired("body")
-	AdminLinkPlatformAccountCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminLinkPlatformAccountCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminLinkPlatformAccountCmd.MarkFlagRequired("namespace")
-	AdminLinkPlatformAccountCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminLinkPlatformAccountCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminLinkPlatformAccountCmd.MarkFlagRequired("userId")
 }

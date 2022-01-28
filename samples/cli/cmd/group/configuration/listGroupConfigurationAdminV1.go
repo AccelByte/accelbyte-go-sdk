@@ -15,7 +15,7 @@ import (
 
 // ListGroupConfigurationAdminV1Cmd represents the ListGroupConfigurationAdminV1 command
 var ListGroupConfigurationAdminV1Cmd = &cobra.Command{
-	Use:   "ListGroupConfigurationAdminV1",
+	Use:   "listGroupConfigurationAdminV1",
 	Short: "List group configuration admin V1",
 	Long:  `List group configuration admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,8 +43,8 @@ var ListGroupConfigurationAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	ListGroupConfigurationAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ListGroupConfigurationAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ListGroupConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
-	ListGroupConfigurationAdminV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	ListGroupConfigurationAdminV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	ListGroupConfigurationAdminV1Cmd.Flags().Int64P("limit", "", 20, "Limit")
+	ListGroupConfigurationAdminV1Cmd.Flags().Int64P("offset", "", 0, "Offset")
 }

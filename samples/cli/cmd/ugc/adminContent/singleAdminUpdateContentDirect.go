@@ -17,7 +17,7 @@ import (
 
 // SingleAdminUpdateContentDirectCmd represents the SingleAdminUpdateContentDirect command
 var SingleAdminUpdateContentDirectCmd = &cobra.Command{
-	Use:   "SingleAdminUpdateContentDirect",
+	Use:   "singleAdminUpdateContentDirect",
 	Short: "Single admin update content direct",
 	Long:  `Single admin update content direct`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,12 +52,12 @@ var SingleAdminUpdateContentDirectCmd = &cobra.Command{
 }
 
 func init() {
-	SingleAdminUpdateContentDirectCmd.Flags().StringP("body", "by", " ", "Body")
+	SingleAdminUpdateContentDirectCmd.Flags().StringP("body", "", " ", "Body")
 	_ = SingleAdminUpdateContentDirectCmd.MarkFlagRequired("body")
-	SingleAdminUpdateContentDirectCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
+	SingleAdminUpdateContentDirectCmd.Flags().StringP("channelId", "", " ", "Channel id")
 	_ = SingleAdminUpdateContentDirectCmd.MarkFlagRequired("channelId")
-	SingleAdminUpdateContentDirectCmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	SingleAdminUpdateContentDirectCmd.Flags().StringP("contentId", "", " ", "Content id")
 	_ = SingleAdminUpdateContentDirectCmd.MarkFlagRequired("contentId")
-	SingleAdminUpdateContentDirectCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SingleAdminUpdateContentDirectCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SingleAdminUpdateContentDirectCmd.MarkFlagRequired("namespace")
 }

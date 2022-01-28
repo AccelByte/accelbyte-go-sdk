@@ -17,7 +17,7 @@ import (
 
 // AdminUpdateInputValidationsCmd represents the AdminUpdateInputValidations command
 var AdminUpdateInputValidationsCmd = &cobra.Command{
-	Use:   "AdminUpdateInputValidations",
+	Use:   "adminUpdateInputValidations",
 	Short: "Admin update input validations",
 	Long:  `Admin update input validations`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,6 +45,6 @@ var AdminUpdateInputValidationsCmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateInputValidationsCmd.Flags().StringP("body", "by", " ", "Body")
+	AdminUpdateInputValidationsCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminUpdateInputValidationsCmd.MarkFlagRequired("body")
 }

@@ -15,7 +15,7 @@ import (
 
 // QueryWalletsCmd represents the QueryWallets command
 var QueryWalletsCmd = &cobra.Command{
-	Use:   "QueryWallets",
+	Use:   "queryWallets",
 	Short: "Query wallets",
 	Long:  `Query wallets`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,10 +47,10 @@ var QueryWalletsCmd = &cobra.Command{
 }
 
 func init() {
-	QueryWalletsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QueryWalletsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = QueryWalletsCmd.MarkFlagRequired("namespace")
-	QueryWalletsCmd.Flags().StringP("currencyCode", "ce", " ", "Currency code")
-	QueryWalletsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	QueryWalletsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	QueryWalletsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	QueryWalletsCmd.Flags().StringP("currencyCode", "", " ", "Currency code")
+	QueryWalletsCmd.Flags().Int32P("limit", "", 20, "Limit")
+	QueryWalletsCmd.Flags().Int32P("offset", "", 0, "Offset")
+	QueryWalletsCmd.Flags().StringP("userId", "", " ", "User id")
 }

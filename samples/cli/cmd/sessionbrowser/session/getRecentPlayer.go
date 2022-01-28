@@ -15,7 +15,7 @@ import (
 
 // GetRecentPlayerCmd represents the GetRecentPlayer command
 var GetRecentPlayerCmd = &cobra.Command{
-	Use:   "GetRecentPlayer",
+	Use:   "getRecentPlayer",
 	Short: "Get recent player",
 	Long:  `Get recent player`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetRecentPlayerCmd = &cobra.Command{
 }
 
 func init() {
-	GetRecentPlayerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetRecentPlayerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetRecentPlayerCmd.MarkFlagRequired("namespace")
-	GetRecentPlayerCmd.Flags().StringP("userID", "uD", " ", "User ID")
+	GetRecentPlayerCmd.Flags().StringP("userID", "", " ", "User ID")
 	_ = GetRecentPlayerCmd.MarkFlagRequired("userID")
 }

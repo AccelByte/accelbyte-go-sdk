@@ -17,7 +17,7 @@ import (
 
 // UpdateItemCmd represents the UpdateItem command
 var UpdateItemCmd = &cobra.Command{
-	Use:   "UpdateItem",
+	Use:   "updateItem",
 	Short: "Update item",
 	Long:  `Update item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,11 +52,11 @@ var UpdateItemCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateItemCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	UpdateItemCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateItemCmd.Flags().StringP("itemId", "", " ", "Item id")
 	_ = UpdateItemCmd.MarkFlagRequired("itemId")
-	UpdateItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateItemCmd.MarkFlagRequired("namespace")
-	UpdateItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	UpdateItemCmd.Flags().StringP("storeId", "", " ", "Store id")
 	_ = UpdateItemCmd.MarkFlagRequired("storeId")
 }

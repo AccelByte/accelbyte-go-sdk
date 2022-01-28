@@ -17,7 +17,7 @@ import (
 
 // FreeFormNotificationCmd represents the FreeFormNotification command
 var FreeFormNotificationCmd = &cobra.Command{
-	Use:   "FreeFormNotification",
+	Use:   "freeFormNotification",
 	Short: "Free form notification",
 	Long:  `Free form notification`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var FreeFormNotificationCmd = &cobra.Command{
 }
 
 func init() {
-	FreeFormNotificationCmd.Flags().StringP("body", "by", " ", "Body")
+	FreeFormNotificationCmd.Flags().StringP("body", "", " ", "Body")
 	_ = FreeFormNotificationCmd.MarkFlagRequired("body")
-	FreeFormNotificationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	FreeFormNotificationCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = FreeFormNotificationCmd.MarkFlagRequired("namespace")
 }

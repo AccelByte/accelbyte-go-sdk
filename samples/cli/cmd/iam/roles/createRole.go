@@ -17,7 +17,7 @@ import (
 
 // CreateRoleCmd represents the CreateRole command
 var CreateRoleCmd = &cobra.Command{
-	Use:   "CreateRole",
+	Use:   "createRole",
 	Short: "Create role",
 	Long:  `Create role`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,6 +46,6 @@ var CreateRoleCmd = &cobra.Command{
 }
 
 func init() {
-	CreateRoleCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateRoleCmd.Flags().StringP("body", "", " ", "Body")
 	_ = CreateRoleCmd.MarkFlagRequired("body")
 }

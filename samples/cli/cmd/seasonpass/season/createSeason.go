@@ -17,7 +17,7 @@ import (
 
 // CreateSeasonCmd represents the CreateSeason command
 var CreateSeasonCmd = &cobra.Command{
-	Use:   "CreateSeason",
+	Use:   "createSeason",
 	Short: "Create season",
 	Long:  `Create season`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var CreateSeasonCmd = &cobra.Command{
 }
 
 func init() {
-	CreateSeasonCmd.Flags().StringP("body", "by", " ", "Body")
-	CreateSeasonCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateSeasonCmd.Flags().StringP("body", "", " ", "Body")
+	CreateSeasonCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateSeasonCmd.MarkFlagRequired("namespace")
 }

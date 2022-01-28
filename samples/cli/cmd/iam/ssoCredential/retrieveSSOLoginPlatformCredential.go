@@ -15,7 +15,7 @@ import (
 
 // RetrieveSSOLoginPlatformCredentialCmd represents the RetrieveSSOLoginPlatformCredential command
 var RetrieveSSOLoginPlatformCredentialCmd = &cobra.Command{
-	Use:   "RetrieveSSOLoginPlatformCredential",
+	Use:   "retrieveSSOLoginPlatformCredential",
 	Short: "Retrieve SSO login platform credential",
 	Long:  `Retrieve SSO login platform credential`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var RetrieveSSOLoginPlatformCredentialCmd = &cobra.Command{
 }
 
 func init() {
-	RetrieveSSOLoginPlatformCredentialCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	RetrieveSSOLoginPlatformCredentialCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = RetrieveSSOLoginPlatformCredentialCmd.MarkFlagRequired("namespace")
-	RetrieveSSOLoginPlatformCredentialCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	RetrieveSSOLoginPlatformCredentialCmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = RetrieveSSOLoginPlatformCredentialCmd.MarkFlagRequired("platformId")
 }

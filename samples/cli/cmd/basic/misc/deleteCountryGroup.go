@@ -15,7 +15,7 @@ import (
 
 // DeleteCountryGroupCmd represents the DeleteCountryGroup command
 var DeleteCountryGroupCmd = &cobra.Command{
-	Use:   "DeleteCountryGroup",
+	Use:   "deleteCountryGroup",
 	Short: "Delete country group",
 	Long:  `Delete country group`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var DeleteCountryGroupCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteCountryGroupCmd.Flags().StringP("countryGroupCode", "ce", " ", "Country group code")
+	DeleteCountryGroupCmd.Flags().StringP("countryGroupCode", "", " ", "Country group code")
 	_ = DeleteCountryGroupCmd.MarkFlagRequired("countryGroupCode")
-	DeleteCountryGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteCountryGroupCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteCountryGroupCmd.MarkFlagRequired("namespace")
 }

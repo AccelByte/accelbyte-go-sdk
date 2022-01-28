@@ -17,7 +17,7 @@ import (
 
 // SyncXboxInventoryCmd represents the SyncXboxInventory command
 var SyncXboxInventoryCmd = &cobra.Command{
-	Use:   "SyncXboxInventory",
+	Use:   "syncXboxInventory",
 	Short: "Sync xbox inventory",
 	Long:  `Sync xbox inventory`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var SyncXboxInventoryCmd = &cobra.Command{
 }
 
 func init() {
-	SyncXboxInventoryCmd.Flags().StringP("body", "by", " ", "Body")
-	SyncXboxInventoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SyncXboxInventoryCmd.Flags().StringP("body", "", " ", "Body")
+	SyncXboxInventoryCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SyncXboxInventoryCmd.MarkFlagRequired("namespace")
-	SyncXboxInventoryCmd.Flags().StringP("userId", "ud", " ", "User id")
+	SyncXboxInventoryCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = SyncXboxInventoryCmd.MarkFlagRequired("userId")
 }

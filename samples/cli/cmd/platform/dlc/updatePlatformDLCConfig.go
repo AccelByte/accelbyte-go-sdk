@@ -17,7 +17,7 @@ import (
 
 // UpdatePlatformDLCConfigCmd represents the UpdatePlatformDLCConfig command
 var UpdatePlatformDLCConfigCmd = &cobra.Command{
-	Use:   "UpdatePlatformDLCConfig",
+	Use:   "updatePlatformDLCConfig",
 	Short: "Update platform DLC config",
 	Long:  `Update platform DLC config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var UpdatePlatformDLCConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdatePlatformDLCConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdatePlatformDLCConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdatePlatformDLCConfigCmd.Flags().StringP("body", "", " ", "Body")
+	UpdatePlatformDLCConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdatePlatformDLCConfigCmd.MarkFlagRequired("namespace")
 }

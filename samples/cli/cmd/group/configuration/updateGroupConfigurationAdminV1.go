@@ -17,7 +17,7 @@ import (
 
 // UpdateGroupConfigurationAdminV1Cmd represents the UpdateGroupConfigurationAdminV1 command
 var UpdateGroupConfigurationAdminV1Cmd = &cobra.Command{
-	Use:   "UpdateGroupConfigurationAdminV1",
+	Use:   "updateGroupConfigurationAdminV1",
 	Short: "Update group configuration admin V1",
 	Long:  `Update group configuration admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var UpdateGroupConfigurationAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	UpdateGroupConfigurationAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateGroupConfigurationAdminV1Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateGroupConfigurationAdminV1Cmd.MarkFlagRequired("body")
-	UpdateGroupConfigurationAdminV1Cmd.Flags().StringP("configurationCode", "ce", " ", "Configuration code")
+	UpdateGroupConfigurationAdminV1Cmd.Flags().StringP("configurationCode", "", " ", "Configuration code")
 	_ = UpdateGroupConfigurationAdminV1Cmd.MarkFlagRequired("configurationCode")
-	UpdateGroupConfigurationAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateGroupConfigurationAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateGroupConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
 }

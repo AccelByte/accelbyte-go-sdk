@@ -15,7 +15,7 @@ import (
 
 // AdminGetUserPersonalDataRequestsCmd represents the AdminGetUserPersonalDataRequests command
 var AdminGetUserPersonalDataRequestsCmd = &cobra.Command{
-	Use:   "AdminGetUserPersonalDataRequests",
+	Use:   "adminGetUserPersonalDataRequests",
 	Short: "Admin get user personal data requests",
 	Long:  `Admin get user personal data requests`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,10 +45,10 @@ var AdminGetUserPersonalDataRequestsCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetUserPersonalDataRequestsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetUserPersonalDataRequestsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetUserPersonalDataRequestsCmd.MarkFlagRequired("namespace")
-	AdminGetUserPersonalDataRequestsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminGetUserPersonalDataRequestsCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminGetUserPersonalDataRequestsCmd.MarkFlagRequired("userId")
-	AdminGetUserPersonalDataRequestsCmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	AdminGetUserPersonalDataRequestsCmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	AdminGetUserPersonalDataRequestsCmd.Flags().Int64P("limit", "", 20, "Limit")
+	AdminGetUserPersonalDataRequestsCmd.Flags().Int64P("offset", "", 0, "Offset")
 }

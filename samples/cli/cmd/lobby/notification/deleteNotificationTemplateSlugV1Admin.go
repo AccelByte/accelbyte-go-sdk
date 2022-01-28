@@ -15,7 +15,7 @@ import (
 
 // DeleteNotificationTemplateSlugV1AdminCmd represents the DeleteNotificationTemplateSlugV1Admin command
 var DeleteNotificationTemplateSlugV1AdminCmd = &cobra.Command{
-	Use:   "DeleteNotificationTemplateSlugV1Admin",
+	Use:   "deleteNotificationTemplateSlugV1Admin",
 	Short: "Delete notification template slug V1 admin",
 	Long:  `Delete notification template slug V1 admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var DeleteNotificationTemplateSlugV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteNotificationTemplateSlugV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteNotificationTemplateSlugV1AdminCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteNotificationTemplateSlugV1AdminCmd.MarkFlagRequired("namespace")
-	DeleteNotificationTemplateSlugV1AdminCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
+	DeleteNotificationTemplateSlugV1AdminCmd.Flags().StringP("templateSlug", "", " ", "Template slug")
 	_ = DeleteNotificationTemplateSlugV1AdminCmd.MarkFlagRequired("templateSlug")
 }

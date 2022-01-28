@@ -17,7 +17,7 @@ import (
 
 // UpdateFulfillmentScriptCmd represents the UpdateFulfillmentScript command
 var UpdateFulfillmentScriptCmd = &cobra.Command{
-	Use:   "UpdateFulfillmentScript",
+	Use:   "updateFulfillmentScript",
 	Short: "Update fulfillment script",
 	Long:  `Update fulfillment script`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var UpdateFulfillmentScriptCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateFulfillmentScriptCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateFulfillmentScriptCmd.Flags().StringP("id", "id", " ", "Id")
+	UpdateFulfillmentScriptCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateFulfillmentScriptCmd.Flags().StringP("id", "", " ", "Id")
 	_ = UpdateFulfillmentScriptCmd.MarkFlagRequired("id")
 }

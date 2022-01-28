@@ -15,7 +15,7 @@ import (
 
 // PublicGetTimeCmd represents the PublicGetTime command
 var PublicGetTimeCmd = &cobra.Command{
-	Use:   "PublicGetTime",
+	Use:   "publicGetTime",
 	Short: "Public get time",
 	Long:  `Public get time`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,4 +33,7 @@ var PublicGetTimeCmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

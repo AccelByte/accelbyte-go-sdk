@@ -17,7 +17,7 @@ import (
 
 // CreateCategoryCmd represents the CreateCategory command
 var CreateCategoryCmd = &cobra.Command{
-	Use:   "CreateCategory",
+	Use:   "createCategory",
 	Short: "Create category",
 	Long:  `Create category`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var CreateCategoryCmd = &cobra.Command{
 }
 
 func init() {
-	CreateCategoryCmd.Flags().StringP("body", "by", " ", "Body")
-	CreateCategoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateCategoryCmd.Flags().StringP("body", "", " ", "Body")
+	CreateCategoryCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateCategoryCmd.MarkFlagRequired("namespace")
-	CreateCategoryCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	CreateCategoryCmd.Flags().StringP("storeId", "", " ", "Store id")
 	_ = CreateCategoryCmd.MarkFlagRequired("storeId")
 }

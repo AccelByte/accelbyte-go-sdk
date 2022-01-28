@@ -15,7 +15,7 @@ import (
 
 // PublicGetUserSubscriptionBillingHistoriesCmd represents the PublicGetUserSubscriptionBillingHistories command
 var PublicGetUserSubscriptionBillingHistoriesCmd = &cobra.Command{
-	Use:   "PublicGetUserSubscriptionBillingHistories",
+	Use:   "publicGetUserSubscriptionBillingHistories",
 	Short: "Public get user subscription billing histories",
 	Long:  `Public get user subscription billing histories`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,13 +49,13 @@ var PublicGetUserSubscriptionBillingHistoriesCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetUserSubscriptionBillingHistoriesCmd.MarkFlagRequired("namespace")
-	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
+	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().StringP("subscriptionId", "", " ", "Subscription id")
 	_ = PublicGetUserSubscriptionBillingHistoriesCmd.MarkFlagRequired("subscriptionId")
-	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicGetUserSubscriptionBillingHistoriesCmd.MarkFlagRequired("userId")
-	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().BoolP("excludeFree", "ee", false, "Exclude free")
-	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().BoolP("excludeFree", "", false, "Exclude free")
+	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().Int32P("limit", "", 20, "Limit")
+	PublicGetUserSubscriptionBillingHistoriesCmd.Flags().Int32P("offset", "", 0, "Offset")
 }

@@ -15,7 +15,7 @@ import (
 
 // DefeatureItemCmd represents the DefeatureItem command
 var DefeatureItemCmd = &cobra.Command{
-	Use:   "DefeatureItem",
+	Use:   "defeatureItem",
 	Short: "Defeature item",
 	Long:  `Defeature item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,12 +45,12 @@ var DefeatureItemCmd = &cobra.Command{
 }
 
 func init() {
-	DefeatureItemCmd.Flags().StringP("feature", "fe", " ", "Feature")
+	DefeatureItemCmd.Flags().StringP("feature", "", " ", "Feature")
 	_ = DefeatureItemCmd.MarkFlagRequired("feature")
-	DefeatureItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	DefeatureItemCmd.Flags().StringP("itemId", "", " ", "Item id")
 	_ = DefeatureItemCmd.MarkFlagRequired("itemId")
-	DefeatureItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DefeatureItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DefeatureItemCmd.MarkFlagRequired("namespace")
-	DefeatureItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	DefeatureItemCmd.Flags().StringP("storeId", "", " ", "Store id")
 	_ = DefeatureItemCmd.MarkFlagRequired("storeId")
 }

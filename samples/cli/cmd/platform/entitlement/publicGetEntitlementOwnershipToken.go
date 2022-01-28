@@ -16,7 +16,7 @@ import (
 
 // PublicGetEntitlementOwnershipTokenCmd represents the PublicGetEntitlementOwnershipToken command
 var PublicGetEntitlementOwnershipTokenCmd = &cobra.Command{
-	Use:   "PublicGetEntitlementOwnershipToken",
+	Use:   "publicGetEntitlementOwnershipToken",
 	Short: "Public get entitlement ownership token",
 	Long:  `Public get entitlement ownership token`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -61,9 +61,9 @@ var PublicGetEntitlementOwnershipTokenCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetEntitlementOwnershipTokenCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetEntitlementOwnershipTokenCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetEntitlementOwnershipTokenCmd.MarkFlagRequired("namespace")
-	PublicGetEntitlementOwnershipTokenCmd.Flags().StringP("appIds", "as", " ", "App ids")
-	PublicGetEntitlementOwnershipTokenCmd.Flags().StringP("itemIds", "is", " ", "Item ids")
-	PublicGetEntitlementOwnershipTokenCmd.Flags().StringP("skus", "ss", " ", "Skus")
+	PublicGetEntitlementOwnershipTokenCmd.Flags().StringP("appIds", "", " ", "App ids")
+	PublicGetEntitlementOwnershipTokenCmd.Flags().StringP("itemIds", "", " ", "Item ids")
+	PublicGetEntitlementOwnershipTokenCmd.Flags().StringP("skus", "", " ", "Skus")
 }

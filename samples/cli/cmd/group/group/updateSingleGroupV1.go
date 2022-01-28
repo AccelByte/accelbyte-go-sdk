@@ -17,7 +17,7 @@ import (
 
 // UpdateSingleGroupV1Cmd represents the UpdateSingleGroupV1 command
 var UpdateSingleGroupV1Cmd = &cobra.Command{
-	Use:   "UpdateSingleGroupV1",
+	Use:   "updateSingleGroupV1",
 	Short: "Update single group V1",
 	Long:  `Update single group V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var UpdateSingleGroupV1Cmd = &cobra.Command{
 }
 
 func init() {
-	UpdateSingleGroupV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateSingleGroupV1Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateSingleGroupV1Cmd.MarkFlagRequired("body")
-	UpdateSingleGroupV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	UpdateSingleGroupV1Cmd.Flags().StringP("groupId", "", " ", "Group id")
 	_ = UpdateSingleGroupV1Cmd.MarkFlagRequired("groupId")
-	UpdateSingleGroupV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateSingleGroupV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateSingleGroupV1Cmd.MarkFlagRequired("namespace")
 }

@@ -17,7 +17,7 @@ import (
 
 // UserRejectFriendRequestCmd represents the UserRejectFriendRequest command
 var UserRejectFriendRequestCmd = &cobra.Command{
-	Use:   "UserRejectFriendRequest",
+	Use:   "userRejectFriendRequest",
 	Short: "User reject friend request",
 	Long:  `User reject friend request`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var UserRejectFriendRequestCmd = &cobra.Command{
 }
 
 func init() {
-	UserRejectFriendRequestCmd.Flags().StringP("body", "by", " ", "Body")
+	UserRejectFriendRequestCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UserRejectFriendRequestCmd.MarkFlagRequired("body")
-	UserRejectFriendRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UserRejectFriendRequestCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UserRejectFriendRequestCmd.MarkFlagRequired("namespace")
 }

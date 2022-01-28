@@ -15,7 +15,7 @@ import (
 
 // PublicGetMessagesCmd represents the PublicGetMessages command
 var PublicGetMessagesCmd = &cobra.Command{
-	Use:   "PublicGetMessages",
+	Use:   "publicGetMessages",
 	Short: "Public get messages",
 	Long:  `Public get messages`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,4 +33,7 @@ var PublicGetMessagesCmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

@@ -17,7 +17,7 @@ import (
 
 // PayWithUserWalletCmd represents the PayWithUserWallet command
 var PayWithUserWalletCmd = &cobra.Command{
-	Use:   "PayWithUserWallet",
+	Use:   "payWithUserWallet",
 	Short: "Pay with user wallet",
 	Long:  `Pay with user wallet`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,11 +52,11 @@ var PayWithUserWalletCmd = &cobra.Command{
 }
 
 func init() {
-	PayWithUserWalletCmd.Flags().StringP("body", "by", " ", "Body")
-	PayWithUserWalletCmd.Flags().StringP("currencyCode", "ce", " ", "Currency code")
+	PayWithUserWalletCmd.Flags().StringP("body", "", " ", "Body")
+	PayWithUserWalletCmd.Flags().StringP("currencyCode", "", " ", "Currency code")
 	_ = PayWithUserWalletCmd.MarkFlagRequired("currencyCode")
-	PayWithUserWalletCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PayWithUserWalletCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PayWithUserWalletCmd.MarkFlagRequired("namespace")
-	PayWithUserWalletCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PayWithUserWalletCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PayWithUserWalletCmd.MarkFlagRequired("userId")
 }

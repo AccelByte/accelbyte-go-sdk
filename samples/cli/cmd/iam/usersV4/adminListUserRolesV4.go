@@ -15,7 +15,7 @@ import (
 
 // AdminListUserRolesV4Cmd represents the AdminListUserRolesV4 command
 var AdminListUserRolesV4Cmd = &cobra.Command{
-	Use:   "AdminListUserRolesV4",
+	Use:   "adminListUserRolesV4",
 	Short: "Admin list user roles V4",
 	Long:  `Admin list user roles V4`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var AdminListUserRolesV4Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminListUserRolesV4Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminListUserRolesV4Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminListUserRolesV4Cmd.MarkFlagRequired("namespace")
-	AdminListUserRolesV4Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminListUserRolesV4Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminListUserRolesV4Cmd.MarkFlagRequired("userId")
 }

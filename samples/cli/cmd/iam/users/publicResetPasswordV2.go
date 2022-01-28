@@ -17,7 +17,7 @@ import (
 
 // PublicResetPasswordV2Cmd represents the PublicResetPasswordV2 command
 var PublicResetPasswordV2Cmd = &cobra.Command{
-	Use:   "PublicResetPasswordV2",
+	Use:   "publicResetPasswordV2",
 	Short: "Public reset password V2",
 	Long:  `Public reset password V2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var PublicResetPasswordV2Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicResetPasswordV2Cmd.Flags().StringP("body", "by", " ", "Body")
+	PublicResetPasswordV2Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = PublicResetPasswordV2Cmd.MarkFlagRequired("body")
-	PublicResetPasswordV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicResetPasswordV2Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicResetPasswordV2Cmd.MarkFlagRequired("namespace")
 }

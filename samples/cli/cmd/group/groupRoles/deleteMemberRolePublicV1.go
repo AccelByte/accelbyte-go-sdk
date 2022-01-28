@@ -17,7 +17,7 @@ import (
 
 // DeleteMemberRolePublicV1Cmd represents the DeleteMemberRolePublicV1 command
 var DeleteMemberRolePublicV1Cmd = &cobra.Command{
-	Use:   "DeleteMemberRolePublicV1",
+	Use:   "deleteMemberRolePublicV1",
 	Short: "Delete member role public V1",
 	Long:  `Delete member role public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var DeleteMemberRolePublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	DeleteMemberRolePublicV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	DeleteMemberRolePublicV1Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = DeleteMemberRolePublicV1Cmd.MarkFlagRequired("body")
-	DeleteMemberRolePublicV1Cmd.Flags().StringP("memberRoleId", "md", " ", "Member role id")
+	DeleteMemberRolePublicV1Cmd.Flags().StringP("memberRoleId", "", " ", "Member role id")
 	_ = DeleteMemberRolePublicV1Cmd.MarkFlagRequired("memberRoleId")
-	DeleteMemberRolePublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteMemberRolePublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteMemberRolePublicV1Cmd.MarkFlagRequired("namespace")
 }

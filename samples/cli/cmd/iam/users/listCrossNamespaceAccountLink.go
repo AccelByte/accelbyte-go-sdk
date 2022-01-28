@@ -15,7 +15,7 @@ import (
 
 // ListCrossNamespaceAccountLinkCmd represents the ListCrossNamespaceAccountLink command
 var ListCrossNamespaceAccountLinkCmd = &cobra.Command{
-	Use:   "ListCrossNamespaceAccountLink",
+	Use:   "listCrossNamespaceAccountLink",
 	Short: "List cross namespace account link",
 	Long:  `List cross namespace account link`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +44,11 @@ var ListCrossNamespaceAccountLinkCmd = &cobra.Command{
 }
 
 func init() {
-	ListCrossNamespaceAccountLinkCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
-	ListCrossNamespaceAccountLinkCmd.Flags().StringP("linkingToken", "ln", " ", "Linking token")
+	ListCrossNamespaceAccountLinkCmd.Flags().StringP("platformId", "", " ", "Platform id")
+	ListCrossNamespaceAccountLinkCmd.Flags().StringP("linkingToken", "", " ", "Linking token")
 	_ = ListCrossNamespaceAccountLinkCmd.MarkFlagRequired("linkingToken")
-	ListCrossNamespaceAccountLinkCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ListCrossNamespaceAccountLinkCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ListCrossNamespaceAccountLinkCmd.MarkFlagRequired("namespace")
-	ListCrossNamespaceAccountLinkCmd.Flags().StringP("userId", "ud", " ", "User id")
+	ListCrossNamespaceAccountLinkCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = ListCrossNamespaceAccountLinkCmd.MarkFlagRequired("userId")
 }

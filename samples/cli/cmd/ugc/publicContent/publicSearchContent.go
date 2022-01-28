@@ -15,7 +15,7 @@ import (
 
 // PublicSearchContentCmd represents the PublicSearchContent command
 var PublicSearchContentCmd = &cobra.Command{
-	Use:   "PublicSearchContent",
+	Use:   "publicSearchContent",
 	Short: "Public search content",
 	Long:  `Public search content`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -61,17 +61,17 @@ var PublicSearchContentCmd = &cobra.Command{
 }
 
 func init() {
-	PublicSearchContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicSearchContentCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicSearchContentCmd.MarkFlagRequired("namespace")
-	PublicSearchContentCmd.Flags().StringP("creator", "cr", " ", "Creator")
-	PublicSearchContentCmd.Flags().StringP("isofficial", "il", " ", "Isofficial")
-	PublicSearchContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	PublicSearchContentCmd.Flags().StringP("name", "ne", " ", "Name")
-	PublicSearchContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
-	PublicSearchContentCmd.Flags().StringP("orderby", "oy", " ", "Orderby")
-	PublicSearchContentCmd.Flags().StringP("sortby", "sy", " ", "Sortby")
-	PublicSearchContentCmd.Flags().StringP("subtype", "se", " ", "Subtype")
-	PublicSearchContentCmd.Flags().StringP("tags", "ts", " ", "Tags")
-	PublicSearchContentCmd.Flags().StringP("type", "te", " ", "Type")
-	PublicSearchContentCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicSearchContentCmd.Flags().StringP("creator", "", " ", "Creator")
+	PublicSearchContentCmd.Flags().StringP("isofficial", "", " ", "Isofficial")
+	PublicSearchContentCmd.Flags().StringP("limit", "", "20", "Limit")
+	PublicSearchContentCmd.Flags().StringP("name", "", " ", "Name")
+	PublicSearchContentCmd.Flags().StringP("offset", "", "0", "Offset")
+	PublicSearchContentCmd.Flags().StringP("orderby", "", " ", "Orderby")
+	PublicSearchContentCmd.Flags().StringP("sortby", "", " ", "Sortby")
+	PublicSearchContentCmd.Flags().StringP("subtype", "", " ", "Subtype")
+	PublicSearchContentCmd.Flags().StringP("tags", "", " ", "Tags")
+	PublicSearchContentCmd.Flags().StringP("type", "", " ", "Type")
+	PublicSearchContentCmd.Flags().StringP("userId", "", " ", "User id")
 }

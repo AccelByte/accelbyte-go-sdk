@@ -17,7 +17,7 @@ import (
 
 // UpdateNotificationTopicV1AdminCmd represents the UpdateNotificationTopicV1Admin command
 var UpdateNotificationTopicV1AdminCmd = &cobra.Command{
-	Use:   "UpdateNotificationTopicV1Admin",
+	Use:   "updateNotificationTopicV1Admin",
 	Short: "Update notification topic V1 admin",
 	Long:  `Update notification topic V1 admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var UpdateNotificationTopicV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateNotificationTopicV1AdminCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateNotificationTopicV1AdminCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateNotificationTopicV1AdminCmd.MarkFlagRequired("body")
-	UpdateNotificationTopicV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateNotificationTopicV1AdminCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateNotificationTopicV1AdminCmd.MarkFlagRequired("namespace")
-	UpdateNotificationTopicV1AdminCmd.Flags().StringP("topicName", "te", " ", "Topic name")
+	UpdateNotificationTopicV1AdminCmd.Flags().StringP("topicName", "", " ", "Topic name")
 	_ = UpdateNotificationTopicV1AdminCmd.MarkFlagRequired("topicName")
 }

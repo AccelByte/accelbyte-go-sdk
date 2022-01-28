@@ -15,7 +15,7 @@ import (
 
 // GetKeyGroupDynamicCmd represents the GetKeyGroupDynamic command
 var GetKeyGroupDynamicCmd = &cobra.Command{
-	Use:   "GetKeyGroupDynamic",
+	Use:   "getKeyGroupDynamic",
 	Short: "Get key group dynamic",
 	Long:  `Get key group dynamic`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetKeyGroupDynamicCmd = &cobra.Command{
 }
 
 func init() {
-	GetKeyGroupDynamicCmd.Flags().StringP("keyGroupId", "kd", " ", "Key group id")
+	GetKeyGroupDynamicCmd.Flags().StringP("keyGroupId", "", " ", "Key group id")
 	_ = GetKeyGroupDynamicCmd.MarkFlagRequired("keyGroupId")
-	GetKeyGroupDynamicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetKeyGroupDynamicCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetKeyGroupDynamicCmd.MarkFlagRequired("namespace")
 }

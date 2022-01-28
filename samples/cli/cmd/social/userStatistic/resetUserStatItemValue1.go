@@ -15,7 +15,7 @@ import (
 
 // ResetUserStatItemValue1Cmd represents the ResetUserStatItemValue1 command
 var ResetUserStatItemValue1Cmd = &cobra.Command{
-	Use:   "ResetUserStatItemValue1",
+	Use:   "resetUserStatItemValue1",
 	Short: "Reset user stat item value 1",
 	Long:  `Reset user stat item value 1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var ResetUserStatItemValue1Cmd = &cobra.Command{
 }
 
 func init() {
-	ResetUserStatItemValue1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ResetUserStatItemValue1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ResetUserStatItemValue1Cmd.MarkFlagRequired("namespace")
-	ResetUserStatItemValue1Cmd.Flags().StringP("statCode", "se", " ", "Stat code")
+	ResetUserStatItemValue1Cmd.Flags().StringP("statCode", "", " ", "Stat code")
 	_ = ResetUserStatItemValue1Cmd.MarkFlagRequired("statCode")
-	ResetUserStatItemValue1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	ResetUserStatItemValue1Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = ResetUserStatItemValue1Cmd.MarkFlagRequired("userId")
 }

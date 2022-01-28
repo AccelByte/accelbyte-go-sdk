@@ -15,7 +15,7 @@ import (
 
 // PublicGetItemBySkuCmd represents the PublicGetItemBySku command
 var PublicGetItemBySkuCmd = &cobra.Command{
-	Use:   "PublicGetItemBySku",
+	Use:   "publicGetItemBySku",
 	Short: "Public get item by sku",
 	Long:  `Public get item by sku`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,11 +47,11 @@ var PublicGetItemBySkuCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetItemBySkuCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetItemBySkuCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetItemBySkuCmd.MarkFlagRequired("namespace")
-	PublicGetItemBySkuCmd.Flags().StringP("language", "le", " ", "Language")
-	PublicGetItemBySkuCmd.Flags().StringP("region", "rn", " ", "Region")
-	PublicGetItemBySkuCmd.Flags().StringP("storeId", "sd", " ", "Store id")
-	PublicGetItemBySkuCmd.Flags().StringP("sku", "su", " ", "Sku")
+	PublicGetItemBySkuCmd.Flags().StringP("language", "", " ", "Language")
+	PublicGetItemBySkuCmd.Flags().StringP("region", "", " ", "Region")
+	PublicGetItemBySkuCmd.Flags().StringP("storeId", "", " ", "Store id")
+	PublicGetItemBySkuCmd.Flags().StringP("sku", "", " ", "Sku")
 	_ = PublicGetItemBySkuCmd.MarkFlagRequired("sku")
 }

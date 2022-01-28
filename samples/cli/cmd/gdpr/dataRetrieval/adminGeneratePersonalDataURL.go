@@ -15,7 +15,7 @@ import (
 
 // AdminGeneratePersonalDataURLCmd represents the AdminGeneratePersonalDataURL command
 var AdminGeneratePersonalDataURLCmd = &cobra.Command{
-	Use:   "AdminGeneratePersonalDataURL",
+	Use:   "adminGeneratePersonalDataURL",
 	Short: "Admin generate personal data URL",
 	Long:  `Admin generate personal data URL`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,12 +45,12 @@ var AdminGeneratePersonalDataURLCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGeneratePersonalDataURLCmd.Flags().StringP("password", "pd", " ", "Password")
+	AdminGeneratePersonalDataURLCmd.Flags().StringP("password", "", " ", "Password")
 	_ = AdminGeneratePersonalDataURLCmd.MarkFlagRequired("password")
-	AdminGeneratePersonalDataURLCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGeneratePersonalDataURLCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGeneratePersonalDataURLCmd.MarkFlagRequired("namespace")
-	AdminGeneratePersonalDataURLCmd.Flags().StringP("requestDate", "re", " ", "Request date")
+	AdminGeneratePersonalDataURLCmd.Flags().StringP("requestDate", "", " ", "Request date")
 	_ = AdminGeneratePersonalDataURLCmd.MarkFlagRequired("requestDate")
-	AdminGeneratePersonalDataURLCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminGeneratePersonalDataURLCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminGeneratePersonalDataURLCmd.MarkFlagRequired("userId")
 }

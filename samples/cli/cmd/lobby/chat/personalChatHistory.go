@@ -15,7 +15,7 @@ import (
 
 // PersonalChatHistoryCmd represents the PersonalChatHistory command
 var PersonalChatHistoryCmd = &cobra.Command{
-	Use:   "PersonalChatHistory",
+	Use:   "personalChatHistory",
 	Short: "Personal chat history",
 	Long:  `Personal chat history`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var PersonalChatHistoryCmd = &cobra.Command{
 }
 
 func init() {
-	PersonalChatHistoryCmd.Flags().StringP("friendId", "fd", " ", "Friend id")
+	PersonalChatHistoryCmd.Flags().StringP("friendId", "", " ", "Friend id")
 	_ = PersonalChatHistoryCmd.MarkFlagRequired("friendId")
-	PersonalChatHistoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PersonalChatHistoryCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PersonalChatHistoryCmd.MarkFlagRequired("namespace")
-	PersonalChatHistoryCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PersonalChatHistoryCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PersonalChatHistoryCmd.MarkFlagRequired("userId")
 }

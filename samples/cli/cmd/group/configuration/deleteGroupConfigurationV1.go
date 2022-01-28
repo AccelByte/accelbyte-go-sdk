@@ -15,7 +15,7 @@ import (
 
 // DeleteGroupConfigurationV1Cmd represents the DeleteGroupConfigurationV1 command
 var DeleteGroupConfigurationV1Cmd = &cobra.Command{
-	Use:   "DeleteGroupConfigurationV1",
+	Use:   "deleteGroupConfigurationV1",
 	Short: "Delete group configuration V1",
 	Long:  `Delete group configuration V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var DeleteGroupConfigurationV1Cmd = &cobra.Command{
 }
 
 func init() {
-	DeleteGroupConfigurationV1Cmd.Flags().StringP("configurationCode", "ce", " ", "Configuration code")
+	DeleteGroupConfigurationV1Cmd.Flags().StringP("configurationCode", "", " ", "Configuration code")
 	_ = DeleteGroupConfigurationV1Cmd.MarkFlagRequired("configurationCode")
-	DeleteGroupConfigurationV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteGroupConfigurationV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteGroupConfigurationV1Cmd.MarkFlagRequired("namespace")
 }

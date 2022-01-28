@@ -15,7 +15,7 @@ import (
 
 // AdminGetUserLoginHistoriesV3Cmd represents the AdminGetUserLoginHistoriesV3 command
 var AdminGetUserLoginHistoriesV3Cmd = &cobra.Command{
-	Use:   "AdminGetUserLoginHistoriesV3",
+	Use:   "adminGetUserLoginHistoriesV3",
 	Short: "Admin get user login histories V3",
 	Long:  `Admin get user login histories V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,11 +47,11 @@ var AdminGetUserLoginHistoriesV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetUserLoginHistoriesV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetUserLoginHistoriesV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetUserLoginHistoriesV3Cmd.MarkFlagRequired("namespace")
-	AdminGetUserLoginHistoriesV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminGetUserLoginHistoriesV3Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminGetUserLoginHistoriesV3Cmd.MarkFlagRequired("userId")
-	AdminGetUserLoginHistoriesV3Cmd.Flags().Float64P("after", "ar", 0, "After")
-	AdminGetUserLoginHistoriesV3Cmd.Flags().Float64P("before", "be", 0, "Before")
-	AdminGetUserLoginHistoriesV3Cmd.Flags().Float64P("limit", "lt", 20, "Limit")
+	AdminGetUserLoginHistoriesV3Cmd.Flags().Float64P("after", "", 0, "After")
+	AdminGetUserLoginHistoriesV3Cmd.Flags().Float64P("before", "", 0, "Before")
+	AdminGetUserLoginHistoriesV3Cmd.Flags().Float64P("limit", "", 20, "Limit")
 }

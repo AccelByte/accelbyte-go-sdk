@@ -15,7 +15,7 @@ import (
 
 // DeleteGroupPredefinedRulePublicV1Cmd represents the DeleteGroupPredefinedRulePublicV1 command
 var DeleteGroupPredefinedRulePublicV1Cmd = &cobra.Command{
-	Use:   "DeleteGroupPredefinedRulePublicV1",
+	Use:   "deleteGroupPredefinedRulePublicV1",
 	Short: "Delete group predefined rule public V1",
 	Long:  `Delete group predefined rule public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var DeleteGroupPredefinedRulePublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	DeleteGroupPredefinedRulePublicV1Cmd.Flags().StringP("allowedAction", "an", " ", "Allowed action")
+	DeleteGroupPredefinedRulePublicV1Cmd.Flags().StringP("allowedAction", "", " ", "Allowed action")
 	_ = DeleteGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("allowedAction")
-	DeleteGroupPredefinedRulePublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	DeleteGroupPredefinedRulePublicV1Cmd.Flags().StringP("groupId", "", " ", "Group id")
 	_ = DeleteGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("groupId")
-	DeleteGroupPredefinedRulePublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteGroupPredefinedRulePublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("namespace")
 }

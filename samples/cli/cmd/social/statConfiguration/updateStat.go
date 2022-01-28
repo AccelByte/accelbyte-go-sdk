@@ -17,7 +17,7 @@ import (
 
 // UpdateStatCmd represents the UpdateStat command
 var UpdateStatCmd = &cobra.Command{
-	Use:   "UpdateStat",
+	Use:   "updateStat",
 	Short: "Update stat",
 	Long:  `Update stat`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var UpdateStatCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateStatCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateStatCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateStatCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateStatCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateStatCmd.MarkFlagRequired("namespace")
-	UpdateStatCmd.Flags().StringP("statCode", "se", " ", "Stat code")
+	UpdateStatCmd.Flags().StringP("statCode", "", " ", "Stat code")
 	_ = UpdateStatCmd.MarkFlagRequired("statCode")
 }

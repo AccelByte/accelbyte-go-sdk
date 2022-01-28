@@ -15,7 +15,7 @@ import (
 
 // GetListCountryAgeRestrictionCmd represents the GetListCountryAgeRestriction command
 var GetListCountryAgeRestrictionCmd = &cobra.Command{
-	Use:   "GetListCountryAgeRestriction",
+	Use:   "getListCountryAgeRestriction",
 	Short: "Get list country age restriction",
 	Long:  `Get list country age restriction`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetListCountryAgeRestrictionCmd = &cobra.Command{
 }
 
 func init() {
-	GetListCountryAgeRestrictionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetListCountryAgeRestrictionCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetListCountryAgeRestrictionCmd.MarkFlagRequired("namespace")
 }

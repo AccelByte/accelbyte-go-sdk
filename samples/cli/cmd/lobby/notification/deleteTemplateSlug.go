@@ -15,7 +15,7 @@ import (
 
 // DeleteTemplateSlugCmd represents the DeleteTemplateSlug command
 var DeleteTemplateSlugCmd = &cobra.Command{
-	Use:   "DeleteTemplateSlug",
+	Use:   "deleteTemplateSlug",
 	Short: "Delete template slug",
 	Long:  `Delete template slug`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var DeleteTemplateSlugCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteTemplateSlugCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteTemplateSlugCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteTemplateSlugCmd.MarkFlagRequired("namespace")
-	DeleteTemplateSlugCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
+	DeleteTemplateSlugCmd.Flags().StringP("templateSlug", "", " ", "Template slug")
 	_ = DeleteTemplateSlugCmd.MarkFlagRequired("templateSlug")
 }

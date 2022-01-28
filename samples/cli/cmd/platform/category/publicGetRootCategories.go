@@ -15,7 +15,7 @@ import (
 
 // PublicGetRootCategoriesCmd represents the PublicGetRootCategories command
 var PublicGetRootCategoriesCmd = &cobra.Command{
-	Use:   "PublicGetRootCategories",
+	Use:   "publicGetRootCategories",
 	Short: "Public get root categories",
 	Long:  `Public get root categories`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,8 +43,8 @@ var PublicGetRootCategoriesCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetRootCategoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetRootCategoriesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetRootCategoriesCmd.MarkFlagRequired("namespace")
-	PublicGetRootCategoriesCmd.Flags().StringP("language", "le", " ", "Language")
-	PublicGetRootCategoriesCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	PublicGetRootCategoriesCmd.Flags().StringP("language", "", " ", "Language")
+	PublicGetRootCategoriesCmd.Flags().StringP("storeId", "", " ", "Store id")
 }

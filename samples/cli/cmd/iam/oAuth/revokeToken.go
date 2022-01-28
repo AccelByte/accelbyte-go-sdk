@@ -15,7 +15,7 @@ import (
 
 // RevokeTokenCmd represents the RevokeToken command
 var RevokeTokenCmd = &cobra.Command{
-	Use:   "RevokeToken",
+	Use:   "revokeToken",
 	Short: "Revoke token",
 	Long:  `Revoke token`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var RevokeTokenCmd = &cobra.Command{
 }
 
 func init() {
-	RevokeTokenCmd.Flags().StringP("token", "tn", " ", "Token")
+	RevokeTokenCmd.Flags().StringP("token", "", " ", "Token")
 	_ = RevokeTokenCmd.MarkFlagRequired("token")
 }

@@ -17,7 +17,7 @@ import (
 
 // SaveUserPermissionCmd represents the SaveUserPermission command
 var SaveUserPermissionCmd = &cobra.Command{
-	Use:   "SaveUserPermission",
+	Use:   "saveUserPermission",
 	Short: "Save user permission",
 	Long:  `Save user permission`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var SaveUserPermissionCmd = &cobra.Command{
 }
 
 func init() {
-	SaveUserPermissionCmd.Flags().StringP("body", "by", " ", "Body")
+	SaveUserPermissionCmd.Flags().StringP("body", "", " ", "Body")
 	_ = SaveUserPermissionCmd.MarkFlagRequired("body")
-	SaveUserPermissionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SaveUserPermissionCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SaveUserPermissionCmd.MarkFlagRequired("namespace")
-	SaveUserPermissionCmd.Flags().StringP("userId", "ud", " ", "User id")
+	SaveUserPermissionCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = SaveUserPermissionCmd.MarkFlagRequired("userId")
 }

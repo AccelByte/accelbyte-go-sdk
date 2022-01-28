@@ -17,7 +17,7 @@ import (
 
 // PublicReconcilePlayStationStoreCmd represents the PublicReconcilePlayStationStore command
 var PublicReconcilePlayStationStoreCmd = &cobra.Command{
-	Use:   "PublicReconcilePlayStationStore",
+	Use:   "publicReconcilePlayStationStore",
 	Short: "Public reconcile play station store",
 	Long:  `Public reconcile play station store`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var PublicReconcilePlayStationStoreCmd = &cobra.Command{
 }
 
 func init() {
-	PublicReconcilePlayStationStoreCmd.Flags().StringP("body", "by", " ", "Body")
-	PublicReconcilePlayStationStoreCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicReconcilePlayStationStoreCmd.Flags().StringP("body", "", " ", "Body")
+	PublicReconcilePlayStationStoreCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicReconcilePlayStationStoreCmd.MarkFlagRequired("namespace")
-	PublicReconcilePlayStationStoreCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicReconcilePlayStationStoreCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicReconcilePlayStationStoreCmd.MarkFlagRequired("userId")
 }

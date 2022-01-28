@@ -15,7 +15,7 @@ import (
 
 // ListSessionCmd represents the ListSession command
 var ListSessionCmd = &cobra.Command{
-	Use:   "ListSession",
+	Use:   "listSession",
 	Short: "List session",
 	Long:  `List session`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,10 +47,10 @@ var ListSessionCmd = &cobra.Command{
 }
 
 func init() {
-	ListSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ListSessionCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ListSessionCmd.MarkFlagRequired("namespace")
-	ListSessionCmd.Flags().Int64P("count", "ct", 1, "Count")
-	ListSessionCmd.Flags().Int64P("offset", "ot", 0, "Offset")
-	ListSessionCmd.Flags().StringP("region", "rn", " ", "Region")
-	ListSessionCmd.Flags().BoolP("withServer", "wr", false, "With server")
+	ListSessionCmd.Flags().Int64P("count", "", 1, "Count")
+	ListSessionCmd.Flags().Int64P("offset", "", 0, "Offset")
+	ListSessionCmd.Flags().StringP("region", "", " ", "Region")
+	ListSessionCmd.Flags().BoolP("withServer", "", false, "With server")
 }

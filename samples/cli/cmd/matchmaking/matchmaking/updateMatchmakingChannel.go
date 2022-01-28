@@ -17,7 +17,7 @@ import (
 
 // UpdateMatchmakingChannelCmd represents the UpdateMatchmakingChannel command
 var UpdateMatchmakingChannelCmd = &cobra.Command{
-	Use:   "UpdateMatchmakingChannel",
+	Use:   "updateMatchmakingChannel",
 	Short: "Update matchmaking channel",
 	Long:  `Update matchmaking channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var UpdateMatchmakingChannelCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateMatchmakingChannelCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateMatchmakingChannelCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateMatchmakingChannelCmd.MarkFlagRequired("body")
-	UpdateMatchmakingChannelCmd.Flags().StringP("channelName", "ce", " ", "Channel name")
+	UpdateMatchmakingChannelCmd.Flags().StringP("channelName", "", " ", "Channel name")
 	_ = UpdateMatchmakingChannelCmd.MarkFlagRequired("channelName")
-	UpdateMatchmakingChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateMatchmakingChannelCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateMatchmakingChannelCmd.MarkFlagRequired("namespace")
 }

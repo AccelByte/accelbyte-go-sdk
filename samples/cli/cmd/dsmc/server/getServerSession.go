@@ -15,7 +15,7 @@ import (
 
 // GetServerSessionCmd represents the GetServerSession command
 var GetServerSessionCmd = &cobra.Command{
-	Use:   "GetServerSession",
+	Use:   "getServerSession",
 	Short: "Get server session",
 	Long:  `Get server session`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetServerSessionCmd = &cobra.Command{
 }
 
 func init() {
-	GetServerSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetServerSessionCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetServerSessionCmd.MarkFlagRequired("namespace")
-	GetServerSessionCmd.Flags().StringP("podName", "pe", " ", "Pod name")
+	GetServerSessionCmd.Flags().StringP("podName", "", " ", "Pod name")
 	_ = GetServerSessionCmd.MarkFlagRequired("podName")
 }

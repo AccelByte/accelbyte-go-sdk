@@ -15,7 +15,7 @@ import (
 
 // GetDeploymentCmd represents the GetDeployment command
 var GetDeploymentCmd = &cobra.Command{
-	Use:   "GetDeployment",
+	Use:   "getDeployment",
 	Short: "Get deployment",
 	Long:  `Get deployment`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetDeploymentCmd = &cobra.Command{
 }
 
 func init() {
-	GetDeploymentCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
+	GetDeploymentCmd.Flags().StringP("deployment", "", " ", "Deployment")
 	_ = GetDeploymentCmd.MarkFlagRequired("deployment")
-	GetDeploymentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetDeploymentCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetDeploymentCmd.MarkFlagRequired("namespace")
 }

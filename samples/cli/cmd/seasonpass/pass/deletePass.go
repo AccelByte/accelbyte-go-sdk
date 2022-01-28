@@ -15,7 +15,7 @@ import (
 
 // DeletePassCmd represents the DeletePass command
 var DeletePassCmd = &cobra.Command{
-	Use:   "DeletePass",
+	Use:   "deletePass",
 	Short: "Delete pass",
 	Long:  `Delete pass`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var DeletePassCmd = &cobra.Command{
 }
 
 func init() {
-	DeletePassCmd.Flags().StringP("code", "ce", " ", "Code")
+	DeletePassCmd.Flags().StringP("code", "", " ", "Code")
 	_ = DeletePassCmd.MarkFlagRequired("code")
-	DeletePassCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeletePassCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeletePassCmd.MarkFlagRequired("namespace")
-	DeletePassCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	DeletePassCmd.Flags().StringP("seasonId", "", " ", "Season id")
 	_ = DeletePassCmd.MarkFlagRequired("seasonId")
 }

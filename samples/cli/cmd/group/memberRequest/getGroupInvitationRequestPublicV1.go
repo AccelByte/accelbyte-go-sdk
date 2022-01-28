@@ -15,7 +15,7 @@ import (
 
 // GetGroupInvitationRequestPublicV1Cmd represents the GetGroupInvitationRequestPublicV1 command
 var GetGroupInvitationRequestPublicV1Cmd = &cobra.Command{
-	Use:   "GetGroupInvitationRequestPublicV1",
+	Use:   "getGroupInvitationRequestPublicV1",
 	Short: "Get group invitation request public V1",
 	Long:  `Get group invitation request public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,8 +43,8 @@ var GetGroupInvitationRequestPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetGroupInvitationRequestPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetGroupInvitationRequestPublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetGroupInvitationRequestPublicV1Cmd.MarkFlagRequired("namespace")
-	GetGroupInvitationRequestPublicV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	GetGroupInvitationRequestPublicV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetGroupInvitationRequestPublicV1Cmd.Flags().Int64P("limit", "", 20, "Limit")
+	GetGroupInvitationRequestPublicV1Cmd.Flags().Int64P("offset", "", 0, "Offset")
 }

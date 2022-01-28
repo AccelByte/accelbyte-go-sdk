@@ -15,7 +15,7 @@ import (
 
 // BulkFetchStatItemsCmd represents the BulkFetchStatItems command
 var BulkFetchStatItemsCmd = &cobra.Command{
-	Use:   "BulkFetchStatItems",
+	Use:   "bulkFetchStatItems",
 	Short: "Bulk fetch stat items",
 	Long:  `Bulk fetch stat items`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var BulkFetchStatItemsCmd = &cobra.Command{
 }
 
 func init() {
-	BulkFetchStatItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	BulkFetchStatItemsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = BulkFetchStatItemsCmd.MarkFlagRequired("namespace")
-	BulkFetchStatItemsCmd.Flags().StringP("statCode", "se", " ", "Stat code")
+	BulkFetchStatItemsCmd.Flags().StringP("statCode", "", " ", "Stat code")
 	_ = BulkFetchStatItemsCmd.MarkFlagRequired("statCode")
-	BulkFetchStatItemsCmd.Flags().StringP("userIds", "us", " ", "User ids")
+	BulkFetchStatItemsCmd.Flags().StringP("userIds", "", " ", "User ids")
 	_ = BulkFetchStatItemsCmd.MarkFlagRequired("userIds")
 }

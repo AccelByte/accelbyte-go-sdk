@@ -17,7 +17,7 @@ import (
 
 // CreateLeaderboardConfigurationAdminV1Cmd represents the CreateLeaderboardConfigurationAdminV1 command
 var CreateLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
-	Use:   "CreateLeaderboardConfigurationAdminV1",
+	Use:   "createLeaderboardConfigurationAdminV1",
 	Short: "Create leaderboard configuration admin V1",
 	Long:  `Create leaderboard configuration admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var CreateLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	CreateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	CreateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = CreateLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("body")
-	CreateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
 }

@@ -15,7 +15,7 @@ import (
 
 // AdminGetSpecificContentCmd represents the AdminGetSpecificContent command
 var AdminGetSpecificContentCmd = &cobra.Command{
-	Use:   "AdminGetSpecificContent",
+	Use:   "adminGetSpecificContent",
 	Short: "Admin get specific content",
 	Long:  `Admin get specific content`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var AdminGetSpecificContentCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetSpecificContentCmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	AdminGetSpecificContentCmd.Flags().StringP("contentId", "", " ", "Content id")
 	_ = AdminGetSpecificContentCmd.MarkFlagRequired("contentId")
-	AdminGetSpecificContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetSpecificContentCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetSpecificContentCmd.MarkFlagRequired("namespace")
 }

@@ -15,7 +15,7 @@ import (
 
 // PublicGetLanguagesCmd represents the PublicGetLanguages command
 var PublicGetLanguagesCmd = &cobra.Command{
-	Use:   "PublicGetLanguages",
+	Use:   "publicGetLanguages",
 	Short: "Public get languages",
 	Long:  `Public get languages`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var PublicGetLanguagesCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetLanguagesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetLanguagesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetLanguagesCmd.MarkFlagRequired("namespace")
 }

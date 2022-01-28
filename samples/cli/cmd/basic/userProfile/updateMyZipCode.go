@@ -17,7 +17,7 @@ import (
 
 // UpdateMyZipCodeCmd represents the UpdateMyZipCode command
 var UpdateMyZipCodeCmd = &cobra.Command{
-	Use:   "UpdateMyZipCode",
+	Use:   "updateMyZipCode",
 	Short: "Update my zip code",
 	Long:  `Update my zip code`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var UpdateMyZipCodeCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateMyZipCodeCmd.Flags().StringP("userZipCodeUpdate", "ue", " ", "User zip code update")
+	UpdateMyZipCodeCmd.Flags().StringP("userZipCodeUpdate", "", " ", "User zip code update")
 	_ = UpdateMyZipCodeCmd.MarkFlagRequired("userZipCodeUpdate")
-	UpdateMyZipCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateMyZipCodeCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateMyZipCodeCmd.MarkFlagRequired("namespace")
 }

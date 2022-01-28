@@ -15,7 +15,7 @@ import (
 
 // DeleteDeploymentOverrideCmd represents the DeleteDeploymentOverride command
 var DeleteDeploymentOverrideCmd = &cobra.Command{
-	Use:   "DeleteDeploymentOverride",
+	Use:   "deleteDeploymentOverride",
 	Short: "Delete deployment override",
 	Long:  `Delete deployment override`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var DeleteDeploymentOverrideCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteDeploymentOverrideCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
+	DeleteDeploymentOverrideCmd.Flags().StringP("deployment", "", " ", "Deployment")
 	_ = DeleteDeploymentOverrideCmd.MarkFlagRequired("deployment")
-	DeleteDeploymentOverrideCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteDeploymentOverrideCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteDeploymentOverrideCmd.MarkFlagRequired("namespace")
-	DeleteDeploymentOverrideCmd.Flags().StringP("version", "vn", " ", "Version")
+	DeleteDeploymentOverrideCmd.Flags().StringP("version", "", " ", "Version")
 	_ = DeleteDeploymentOverrideCmd.MarkFlagRequired("version")
 }

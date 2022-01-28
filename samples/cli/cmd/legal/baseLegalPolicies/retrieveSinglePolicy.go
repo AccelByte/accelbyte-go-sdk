@@ -15,7 +15,7 @@ import (
 
 // RetrieveSinglePolicyCmd represents the RetrieveSinglePolicy command
 var RetrieveSinglePolicyCmd = &cobra.Command{
-	Use:   "RetrieveSinglePolicy",
+	Use:   "retrieveSinglePolicy",
 	Short: "Retrieve single policy",
 	Long:  `Retrieve single policy`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var RetrieveSinglePolicyCmd = &cobra.Command{
 }
 
 func init() {
-	RetrieveSinglePolicyCmd.Flags().StringP("basePolicyId", "bd", " ", "Base policy id")
+	RetrieveSinglePolicyCmd.Flags().StringP("basePolicyId", "", " ", "Base policy id")
 	_ = RetrieveSinglePolicyCmd.MarkFlagRequired("basePolicyId")
 }

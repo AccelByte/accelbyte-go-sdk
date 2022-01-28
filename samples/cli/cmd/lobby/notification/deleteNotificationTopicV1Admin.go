@@ -15,7 +15,7 @@ import (
 
 // DeleteNotificationTopicV1AdminCmd represents the DeleteNotificationTopicV1Admin command
 var DeleteNotificationTopicV1AdminCmd = &cobra.Command{
-	Use:   "DeleteNotificationTopicV1Admin",
+	Use:   "deleteNotificationTopicV1Admin",
 	Short: "Delete notification topic V1 admin",
 	Long:  `Delete notification topic V1 admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var DeleteNotificationTopicV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteNotificationTopicV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteNotificationTopicV1AdminCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteNotificationTopicV1AdminCmd.MarkFlagRequired("namespace")
-	DeleteNotificationTopicV1AdminCmd.Flags().StringP("topicName", "te", " ", "Topic name")
+	DeleteNotificationTopicV1AdminCmd.Flags().StringP("topicName", "", " ", "Topic name")
 	_ = DeleteNotificationTopicV1AdminCmd.MarkFlagRequired("topicName")
 }

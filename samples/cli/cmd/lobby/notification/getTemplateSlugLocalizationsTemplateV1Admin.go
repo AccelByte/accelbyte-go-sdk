@@ -15,7 +15,7 @@ import (
 
 // GetTemplateSlugLocalizationsTemplateV1AdminCmd represents the GetTemplateSlugLocalizationsTemplateV1Admin command
 var GetTemplateSlugLocalizationsTemplateV1AdminCmd = &cobra.Command{
-	Use:   "GetTemplateSlugLocalizationsTemplateV1Admin",
+	Use:   "getTemplateSlugLocalizationsTemplateV1Admin",
 	Short: "Get template slug localizations template V1 admin",
 	Long:  `Get template slug localizations template V1 admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,11 +47,11 @@ var GetTemplateSlugLocalizationsTemplateV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	GetTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetTemplateSlugLocalizationsTemplateV1AdminCmd.MarkFlagRequired("namespace")
-	GetTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
+	GetTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().StringP("templateSlug", "", " ", "Template slug")
 	_ = GetTemplateSlugLocalizationsTemplateV1AdminCmd.MarkFlagRequired("templateSlug")
-	GetTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().StringP("after", "ar", "0", "After")
-	GetTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().StringP("before", "be", "0", "Before")
-	GetTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	GetTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().StringP("after", "", "0", "After")
+	GetTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().StringP("before", "", "0", "Before")
+	GetTemplateSlugLocalizationsTemplateV1AdminCmd.Flags().Int64P("limit", "", 20, "Limit")
 }

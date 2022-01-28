@@ -15,7 +15,7 @@ import (
 
 // GetUserSubscriptionActivitiesCmd represents the GetUserSubscriptionActivities command
 var GetUserSubscriptionActivitiesCmd = &cobra.Command{
-	Use:   "GetUserSubscriptionActivities",
+	Use:   "getUserSubscriptionActivities",
 	Short: "Get user subscription activities",
 	Long:  `Get user subscription activities`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,12 +49,12 @@ var GetUserSubscriptionActivitiesCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserSubscriptionActivitiesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetUserSubscriptionActivitiesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetUserSubscriptionActivitiesCmd.MarkFlagRequired("namespace")
-	GetUserSubscriptionActivitiesCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetUserSubscriptionActivitiesCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetUserSubscriptionActivitiesCmd.MarkFlagRequired("userId")
-	GetUserSubscriptionActivitiesCmd.Flags().BoolP("excludeSystem", "em", false, "Exclude system")
-	GetUserSubscriptionActivitiesCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	GetUserSubscriptionActivitiesCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	GetUserSubscriptionActivitiesCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
+	GetUserSubscriptionActivitiesCmd.Flags().BoolP("excludeSystem", "", false, "Exclude system")
+	GetUserSubscriptionActivitiesCmd.Flags().Int32P("limit", "", 20, "Limit")
+	GetUserSubscriptionActivitiesCmd.Flags().Int32P("offset", "", 0, "Offset")
+	GetUserSubscriptionActivitiesCmd.Flags().StringP("subscriptionId", "", " ", "Subscription id")
 }

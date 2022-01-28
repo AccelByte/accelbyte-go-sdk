@@ -17,7 +17,7 @@ import (
 
 // AdminInviteUserV4Cmd represents the AdminInviteUserV4 command
 var AdminInviteUserV4Cmd = &cobra.Command{
-	Use:   "AdminInviteUserV4",
+	Use:   "adminInviteUserV4",
 	Short: "Admin invite user V4",
 	Long:  `Admin invite user V4`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,6 +46,6 @@ var AdminInviteUserV4Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminInviteUserV4Cmd.Flags().StringP("body", "by", " ", "Body")
+	AdminInviteUserV4Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminInviteUserV4Cmd.MarkFlagRequired("body")
 }

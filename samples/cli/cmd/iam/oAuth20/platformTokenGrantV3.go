@@ -15,7 +15,7 @@ import (
 
 // PlatformTokenGrantV3Cmd represents the PlatformTokenGrantV3 command
 var PlatformTokenGrantV3Cmd = &cobra.Command{
-	Use:   "PlatformTokenGrantV3",
+	Use:   "platformTokenGrantV3",
 	Short: "Platform token grant V3",
 	Long:  `Platform token grant V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,9 +45,9 @@ var PlatformTokenGrantV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PlatformTokenGrantV3Cmd.Flags().StringP("client_id", "cd", " ", "Client id")
-	PlatformTokenGrantV3Cmd.Flags().StringP("device_id", "dd", " ", "Device id")
-	PlatformTokenGrantV3Cmd.Flags().StringP("platform_token", "pn", " ", "Platform token")
-	PlatformTokenGrantV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	PlatformTokenGrantV3Cmd.Flags().StringP("client_id", "", " ", "Client id")
+	PlatformTokenGrantV3Cmd.Flags().StringP("device_id", "", " ", "Device id")
+	PlatformTokenGrantV3Cmd.Flags().StringP("platform_token", "", " ", "Platform token")
+	PlatformTokenGrantV3Cmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = PlatformTokenGrantV3Cmd.MarkFlagRequired("platformId")
 }

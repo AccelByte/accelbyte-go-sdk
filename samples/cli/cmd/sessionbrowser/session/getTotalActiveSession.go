@@ -15,7 +15,7 @@ import (
 
 // GetTotalActiveSessionCmd represents the GetTotalActiveSession command
 var GetTotalActiveSessionCmd = &cobra.Command{
-	Use:   "GetTotalActiveSession",
+	Use:   "getTotalActiveSession",
 	Short: "Get total active session",
 	Long:  `Get total active session`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,7 +41,7 @@ var GetTotalActiveSessionCmd = &cobra.Command{
 }
 
 func init() {
-	GetTotalActiveSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetTotalActiveSessionCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetTotalActiveSessionCmd.MarkFlagRequired("namespace")
-	GetTotalActiveSessionCmd.Flags().StringP("session_type", "se", " ", "Session type")
+	GetTotalActiveSessionCmd.Flags().StringP("session_type", "", " ", "Session type")
 }

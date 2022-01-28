@@ -17,7 +17,7 @@ import (
 
 // UpdateSSOPlatformCredentialCmd represents the UpdateSSOPlatformCredential command
 var UpdateSSOPlatformCredentialCmd = &cobra.Command{
-	Use:   "UpdateSSOPlatformCredential",
+	Use:   "updateSSOPlatformCredential",
 	Short: "Update SSO platform credential",
 	Long:  `Update SSO platform credential`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var UpdateSSOPlatformCredentialCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateSSOPlatformCredentialCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateSSOPlatformCredentialCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateSSOPlatformCredentialCmd.MarkFlagRequired("body")
-	UpdateSSOPlatformCredentialCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateSSOPlatformCredentialCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateSSOPlatformCredentialCmd.MarkFlagRequired("namespace")
-	UpdateSSOPlatformCredentialCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	UpdateSSOPlatformCredentialCmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = UpdateSSOPlatformCredentialCmd.MarkFlagRequired("platformId")
 }

@@ -15,7 +15,7 @@ import (
 
 // QueryRewards1Cmd represents the QueryRewards1 command
 var QueryRewards1Cmd = &cobra.Command{
-	Use:   "QueryRewards1",
+	Use:   "queryRewards1",
 	Short: "Query rewards 1",
 	Long:  `Query rewards 1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,10 +47,10 @@ var QueryRewards1Cmd = &cobra.Command{
 }
 
 func init() {
-	QueryRewards1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QueryRewards1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = QueryRewards1Cmd.MarkFlagRequired("namespace")
-	QueryRewards1Cmd.Flags().StringP("eventTopic", "ec", " ", "Event topic")
-	QueryRewards1Cmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	QueryRewards1Cmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	QueryRewards1Cmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
+	QueryRewards1Cmd.Flags().StringP("eventTopic", "", " ", "Event topic")
+	QueryRewards1Cmd.Flags().Int32P("limit", "", 20, "Limit")
+	QueryRewards1Cmd.Flags().Int32P("offset", "", 0, "Offset")
+	QueryRewards1Cmd.Flags().StringP("sortBy", "", " ", "Sort by")
 }

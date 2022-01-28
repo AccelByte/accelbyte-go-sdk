@@ -17,7 +17,7 @@ import (
 
 // AdminUpdateAchievementListOrderCmd represents the AdminUpdateAchievementListOrder command
 var AdminUpdateAchievementListOrderCmd = &cobra.Command{
-	Use:   "AdminUpdateAchievementListOrder",
+	Use:   "adminUpdateAchievementListOrder",
 	Short: "Admin update achievement list order",
 	Long:  `Admin update achievement list order`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var AdminUpdateAchievementListOrderCmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateAchievementListOrderCmd.Flags().StringP("body", "by", " ", "Body")
+	AdminUpdateAchievementListOrderCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminUpdateAchievementListOrderCmd.MarkFlagRequired("body")
-	AdminUpdateAchievementListOrderCmd.Flags().StringP("achievementCode", "ae", " ", "Achievement code")
+	AdminUpdateAchievementListOrderCmd.Flags().StringP("achievementCode", "", " ", "Achievement code")
 	_ = AdminUpdateAchievementListOrderCmd.MarkFlagRequired("achievementCode")
-	AdminUpdateAchievementListOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminUpdateAchievementListOrderCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminUpdateAchievementListOrderCmd.MarkFlagRequired("namespace")
 }

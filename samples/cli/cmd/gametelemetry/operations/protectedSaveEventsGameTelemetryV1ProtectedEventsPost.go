@@ -17,7 +17,7 @@ import (
 
 // ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd represents the ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost command
 var ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd = &cobra.Command{
-	Use:   "ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost",
+	Use:   "protectedSaveEventsGameTelemetryV1ProtectedEventsPost",
 	Short: "Protected save events game telemetry v1 protected events post",
 	Long:  `Protected save events game telemetry v1 protected events post`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,6 +45,6 @@ var ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd = &cobra.Command{
 }
 
 func init() {
-	ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd.Flags().StringP("body", "by", " ", "Body")
+	ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd.Flags().StringP("body", "", " ", "Body")
 	_ = ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd.MarkFlagRequired("body")
 }

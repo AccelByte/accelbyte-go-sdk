@@ -15,7 +15,7 @@ import (
 
 // AdminDownloadContentPreviewCmd represents the AdminDownloadContentPreview command
 var AdminDownloadContentPreviewCmd = &cobra.Command{
-	Use:   "AdminDownloadContentPreview",
+	Use:   "adminDownloadContentPreview",
 	Short: "Admin download content preview",
 	Long:  `Admin download content preview`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var AdminDownloadContentPreviewCmd = &cobra.Command{
 }
 
 func init() {
-	AdminDownloadContentPreviewCmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	AdminDownloadContentPreviewCmd.Flags().StringP("contentId", "", " ", "Content id")
 	_ = AdminDownloadContentPreviewCmd.MarkFlagRequired("contentId")
-	AdminDownloadContentPreviewCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminDownloadContentPreviewCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminDownloadContentPreviewCmd.MarkFlagRequired("namespace")
 }

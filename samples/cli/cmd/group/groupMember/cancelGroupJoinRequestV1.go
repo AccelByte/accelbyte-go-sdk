@@ -15,7 +15,7 @@ import (
 
 // CancelGroupJoinRequestV1Cmd represents the CancelGroupJoinRequestV1 command
 var CancelGroupJoinRequestV1Cmd = &cobra.Command{
-	Use:   "CancelGroupJoinRequestV1",
+	Use:   "cancelGroupJoinRequestV1",
 	Short: "Cancel group join request V1",
 	Long:  `Cancel group join request V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var CancelGroupJoinRequestV1Cmd = &cobra.Command{
 }
 
 func init() {
-	CancelGroupJoinRequestV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	CancelGroupJoinRequestV1Cmd.Flags().StringP("groupId", "", " ", "Group id")
 	_ = CancelGroupJoinRequestV1Cmd.MarkFlagRequired("groupId")
-	CancelGroupJoinRequestV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CancelGroupJoinRequestV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CancelGroupJoinRequestV1Cmd.MarkFlagRequired("namespace")
 }

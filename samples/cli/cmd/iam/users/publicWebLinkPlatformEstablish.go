@@ -15,7 +15,7 @@ import (
 
 // PublicWebLinkPlatformEstablishCmd represents the PublicWebLinkPlatformEstablish command
 var PublicWebLinkPlatformEstablishCmd = &cobra.Command{
-	Use:   "PublicWebLinkPlatformEstablish",
+	Use:   "publicWebLinkPlatformEstablish",
 	Short: "Public web link platform establish",
 	Long:  `Public web link platform establish`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var PublicWebLinkPlatformEstablishCmd = &cobra.Command{
 }
 
 func init() {
-	PublicWebLinkPlatformEstablishCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicWebLinkPlatformEstablishCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicWebLinkPlatformEstablishCmd.MarkFlagRequired("namespace")
-	PublicWebLinkPlatformEstablishCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	PublicWebLinkPlatformEstablishCmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = PublicWebLinkPlatformEstablishCmd.MarkFlagRequired("platformId")
-	PublicWebLinkPlatformEstablishCmd.Flags().StringP("state", "se", " ", "State")
+	PublicWebLinkPlatformEstablishCmd.Flags().StringP("state", "", " ", "State")
 	_ = PublicWebLinkPlatformEstablishCmd.MarkFlagRequired("state")
 }

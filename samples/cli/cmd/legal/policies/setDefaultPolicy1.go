@@ -15,7 +15,7 @@ import (
 
 // SetDefaultPolicy1Cmd represents the SetDefaultPolicy1 command
 var SetDefaultPolicy1Cmd = &cobra.Command{
-	Use:   "SetDefaultPolicy1",
+	Use:   "setDefaultPolicy1",
 	Short: "Set default policy 1",
 	Long:  `Set default policy 1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var SetDefaultPolicy1Cmd = &cobra.Command{
 }
 
 func init() {
-	SetDefaultPolicy1Cmd.Flags().StringP("policyId", "pd", " ", "Policy id")
+	SetDefaultPolicy1Cmd.Flags().StringP("policyId", "", " ", "Policy id")
 	_ = SetDefaultPolicy1Cmd.MarkFlagRequired("policyId")
 }

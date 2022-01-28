@@ -17,7 +17,7 @@ import (
 
 // UpdateContentS3Cmd represents the UpdateContentS3 command
 var UpdateContentS3Cmd = &cobra.Command{
-	Use:   "UpdateContentS3",
+	Use:   "updateContentS3",
 	Short: "Update content S3",
 	Long:  `Update content S3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -54,14 +54,14 @@ var UpdateContentS3Cmd = &cobra.Command{
 }
 
 func init() {
-	UpdateContentS3Cmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateContentS3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateContentS3Cmd.MarkFlagRequired("body")
-	UpdateContentS3Cmd.Flags().StringP("channelId", "cd", " ", "Channel id")
+	UpdateContentS3Cmd.Flags().StringP("channelId", "", " ", "Channel id")
 	_ = UpdateContentS3Cmd.MarkFlagRequired("channelId")
-	UpdateContentS3Cmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	UpdateContentS3Cmd.Flags().StringP("contentId", "", " ", "Content id")
 	_ = UpdateContentS3Cmd.MarkFlagRequired("contentId")
-	UpdateContentS3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateContentS3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateContentS3Cmd.MarkFlagRequired("namespace")
-	UpdateContentS3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	UpdateContentS3Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = UpdateContentS3Cmd.MarkFlagRequired("userId")
 }

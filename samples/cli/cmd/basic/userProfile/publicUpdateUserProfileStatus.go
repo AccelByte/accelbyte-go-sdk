@@ -17,7 +17,7 @@ import (
 
 // PublicUpdateUserProfileStatusCmd represents the PublicUpdateUserProfileStatus command
 var PublicUpdateUserProfileStatusCmd = &cobra.Command{
-	Use:   "PublicUpdateUserProfileStatus",
+	Use:   "publicUpdateUserProfileStatus",
 	Short: "Public update user profile status",
 	Long:  `Public update user profile status`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var PublicUpdateUserProfileStatusCmd = &cobra.Command{
 }
 
 func init() {
-	PublicUpdateUserProfileStatusCmd.Flags().StringP("body", "by", " ", "Body")
-	PublicUpdateUserProfileStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicUpdateUserProfileStatusCmd.Flags().StringP("body", "", " ", "Body")
+	PublicUpdateUserProfileStatusCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicUpdateUserProfileStatusCmd.MarkFlagRequired("namespace")
-	PublicUpdateUserProfileStatusCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicUpdateUserProfileStatusCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicUpdateUserProfileStatusCmd.MarkFlagRequired("userId")
 }

@@ -15,7 +15,7 @@ import (
 
 // SingleAdminGetGroupContentsCmd represents the SingleAdminGetGroupContents command
 var SingleAdminGetGroupContentsCmd = &cobra.Command{
-	Use:   "SingleAdminGetGroupContents",
+	Use:   "singleAdminGetGroupContents",
 	Short: "Single admin get group contents",
 	Long:  `Single admin get group contents`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,10 +45,10 @@ var SingleAdminGetGroupContentsCmd = &cobra.Command{
 }
 
 func init() {
-	SingleAdminGetGroupContentsCmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	SingleAdminGetGroupContentsCmd.Flags().StringP("groupId", "", " ", "Group id")
 	_ = SingleAdminGetGroupContentsCmd.MarkFlagRequired("groupId")
-	SingleAdminGetGroupContentsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SingleAdminGetGroupContentsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SingleAdminGetGroupContentsCmd.MarkFlagRequired("namespace")
-	SingleAdminGetGroupContentsCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	SingleAdminGetGroupContentsCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	SingleAdminGetGroupContentsCmd.Flags().StringP("limit", "", "20", "Limit")
+	SingleAdminGetGroupContentsCmd.Flags().StringP("offset", "", "0", "Offset")
 }

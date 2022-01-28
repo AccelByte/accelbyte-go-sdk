@@ -15,7 +15,7 @@ import (
 
 // ListAllTerminatedServersCmd represents the ListAllTerminatedServers command
 var ListAllTerminatedServersCmd = &cobra.Command{
-	Use:   "ListAllTerminatedServers",
+	Use:   "listAllTerminatedServers",
 	Short: "List all terminated servers",
 	Long:  `List all terminated servers`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -65,18 +65,18 @@ var ListAllTerminatedServersCmd = &cobra.Command{
 }
 
 func init() {
-	ListAllTerminatedServersCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
-	ListAllTerminatedServersCmd.Flags().StringP("end_date", "ee", " ", "End date")
-	ListAllTerminatedServersCmd.Flags().StringP("game_mode", "ge", " ", "Game mode")
-	ListAllTerminatedServersCmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	ListAllTerminatedServersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	ListAllTerminatedServersCmd.Flags().StringP("next", "nt", " ", "Next")
-	ListAllTerminatedServersCmd.Flags().StringP("party_id", "pd", " ", "Party id")
-	ListAllTerminatedServersCmd.Flags().StringP("pod_name", "pe", " ", "Pod name")
-	ListAllTerminatedServersCmd.Flags().StringP("previous", "ps", " ", "Previous")
-	ListAllTerminatedServersCmd.Flags().StringP("provider", "pr", " ", "Provider")
-	ListAllTerminatedServersCmd.Flags().StringP("region", "rn", " ", "Region")
-	ListAllTerminatedServersCmd.Flags().StringP("session_id", "sd", " ", "Session id")
-	ListAllTerminatedServersCmd.Flags().StringP("start_date", "se", " ", "Start date")
-	ListAllTerminatedServersCmd.Flags().StringP("user_id", "ud", " ", "User id")
+	ListAllTerminatedServersCmd.Flags().StringP("deployment", "", " ", "Deployment")
+	ListAllTerminatedServersCmd.Flags().StringP("end_date", "", " ", "End date")
+	ListAllTerminatedServersCmd.Flags().StringP("game_mode", "", " ", "Game mode")
+	ListAllTerminatedServersCmd.Flags().Int64P("limit", "", 20, "Limit")
+	ListAllTerminatedServersCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	ListAllTerminatedServersCmd.Flags().StringP("next", "", " ", "Next")
+	ListAllTerminatedServersCmd.Flags().StringP("party_id", "", " ", "Party id")
+	ListAllTerminatedServersCmd.Flags().StringP("pod_name", "", " ", "Pod name")
+	ListAllTerminatedServersCmd.Flags().StringP("previous", "", " ", "Previous")
+	ListAllTerminatedServersCmd.Flags().StringP("provider", "", " ", "Provider")
+	ListAllTerminatedServersCmd.Flags().StringP("region", "", " ", "Region")
+	ListAllTerminatedServersCmd.Flags().StringP("session_id", "", " ", "Session id")
+	ListAllTerminatedServersCmd.Flags().StringP("start_date", "", " ", "Start date")
+	ListAllTerminatedServersCmd.Flags().StringP("user_id", "", " ", "User id")
 }

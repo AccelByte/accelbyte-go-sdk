@@ -17,7 +17,7 @@ import (
 
 // UpdateDeploymentOverrideCmd represents the UpdateDeploymentOverride command
 var UpdateDeploymentOverrideCmd = &cobra.Command{
-	Use:   "UpdateDeploymentOverride",
+	Use:   "updateDeploymentOverride",
 	Short: "Update deployment override",
 	Long:  `Update deployment override`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,12 +52,12 @@ var UpdateDeploymentOverrideCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateDeploymentOverrideCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateDeploymentOverrideCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateDeploymentOverrideCmd.MarkFlagRequired("body")
-	UpdateDeploymentOverrideCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
+	UpdateDeploymentOverrideCmd.Flags().StringP("deployment", "", " ", "Deployment")
 	_ = UpdateDeploymentOverrideCmd.MarkFlagRequired("deployment")
-	UpdateDeploymentOverrideCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateDeploymentOverrideCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateDeploymentOverrideCmd.MarkFlagRequired("namespace")
-	UpdateDeploymentOverrideCmd.Flags().StringP("version", "vn", " ", "Version")
+	UpdateDeploymentOverrideCmd.Flags().StringP("version", "", " ", "Version")
 	_ = UpdateDeploymentOverrideCmd.MarkFlagRequired("version")
 }

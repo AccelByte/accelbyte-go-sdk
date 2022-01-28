@@ -15,7 +15,7 @@ import (
 
 // AdminGetAchievementCmd represents the AdminGetAchievement command
 var AdminGetAchievementCmd = &cobra.Command{
-	Use:   "AdminGetAchievement",
+	Use:   "adminGetAchievement",
 	Short: "Admin get achievement",
 	Long:  `Admin get achievement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var AdminGetAchievementCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetAchievementCmd.Flags().StringP("achievementCode", "ae", " ", "Achievement code")
+	AdminGetAchievementCmd.Flags().StringP("achievementCode", "", " ", "Achievement code")
 	_ = AdminGetAchievementCmd.MarkFlagRequired("achievementCode")
-	AdminGetAchievementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetAchievementCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetAchievementCmd.MarkFlagRequired("namespace")
 }

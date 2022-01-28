@@ -15,7 +15,7 @@ import (
 
 // AdminDeleteUserInformationV3Cmd represents the AdminDeleteUserInformationV3 command
 var AdminDeleteUserInformationV3Cmd = &cobra.Command{
-	Use:   "AdminDeleteUserInformationV3",
+	Use:   "adminDeleteUserInformationV3",
 	Short: "Admin delete user information V3",
 	Long:  `Admin delete user information V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var AdminDeleteUserInformationV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteUserInformationV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminDeleteUserInformationV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminDeleteUserInformationV3Cmd.MarkFlagRequired("namespace")
-	AdminDeleteUserInformationV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminDeleteUserInformationV3Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminDeleteUserInformationV3Cmd.MarkFlagRequired("userId")
 }

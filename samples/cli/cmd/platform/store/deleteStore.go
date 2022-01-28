@@ -15,7 +15,7 @@ import (
 
 // DeleteStoreCmd represents the DeleteStore command
 var DeleteStoreCmd = &cobra.Command{
-	Use:   "DeleteStore",
+	Use:   "deleteStore",
 	Short: "Delete store",
 	Long:  `Delete store`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var DeleteStoreCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteStoreCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteStoreCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteStoreCmd.MarkFlagRequired("namespace")
-	DeleteStoreCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	DeleteStoreCmd.Flags().StringP("storeId", "", " ", "Store id")
 	_ = DeleteStoreCmd.MarkFlagRequired("storeId")
 }

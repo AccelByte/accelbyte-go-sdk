@@ -17,7 +17,7 @@ import (
 
 // UpdateUserEntitlementCmd represents the UpdateUserEntitlement command
 var UpdateUserEntitlementCmd = &cobra.Command{
-	Use:   "UpdateUserEntitlement",
+	Use:   "updateUserEntitlement",
 	Short: "Update user entitlement",
 	Long:  `Update user entitlement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,11 +52,11 @@ var UpdateUserEntitlementCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateUserEntitlementCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateUserEntitlementCmd.Flags().StringP("entitlementId", "ed", " ", "Entitlement id")
+	UpdateUserEntitlementCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateUserEntitlementCmd.Flags().StringP("entitlementId", "", " ", "Entitlement id")
 	_ = UpdateUserEntitlementCmd.MarkFlagRequired("entitlementId")
-	UpdateUserEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateUserEntitlementCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateUserEntitlementCmd.MarkFlagRequired("namespace")
-	UpdateUserEntitlementCmd.Flags().StringP("userId", "ud", " ", "User id")
+	UpdateUserEntitlementCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = UpdateUserEntitlementCmd.MarkFlagRequired("userId")
 }

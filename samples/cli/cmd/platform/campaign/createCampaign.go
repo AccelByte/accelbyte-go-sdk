@@ -17,7 +17,7 @@ import (
 
 // CreateCampaignCmd represents the CreateCampaign command
 var CreateCampaignCmd = &cobra.Command{
-	Use:   "CreateCampaign",
+	Use:   "createCampaign",
 	Short: "Create campaign",
 	Long:  `Create campaign`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var CreateCampaignCmd = &cobra.Command{
 }
 
 func init() {
-	CreateCampaignCmd.Flags().StringP("body", "by", " ", "Body")
-	CreateCampaignCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateCampaignCmd.Flags().StringP("body", "", " ", "Body")
+	CreateCampaignCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateCampaignCmd.MarkFlagRequired("namespace")
 }

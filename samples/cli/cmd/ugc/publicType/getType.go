@@ -15,7 +15,7 @@ import (
 
 // GetTypeCmd represents the GetType command
 var GetTypeCmd = &cobra.Command{
-	Use:   "GetType",
+	Use:   "getType",
 	Short: "Get type",
 	Long:  `Get type`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,8 +43,8 @@ var GetTypeCmd = &cobra.Command{
 }
 
 func init() {
-	GetTypeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetTypeCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetTypeCmd.MarkFlagRequired("namespace")
-	GetTypeCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	GetTypeCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	GetTypeCmd.Flags().StringP("limit", "", "20", "Limit")
+	GetTypeCmd.Flags().StringP("offset", "", "0", "Offset")
 }

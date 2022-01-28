@@ -17,7 +17,7 @@ import (
 
 // PostPlayerRecordHandlerV1Cmd represents the PostPlayerRecordHandlerV1 command
 var PostPlayerRecordHandlerV1Cmd = &cobra.Command{
-	Use:   "PostPlayerRecordHandlerV1",
+	Use:   "postPlayerRecordHandlerV1",
 	Short: "Post player record handler V1",
 	Long:  `Post player record handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,12 +51,12 @@ var PostPlayerRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	PostPlayerRecordHandlerV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	PostPlayerRecordHandlerV1Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = PostPlayerRecordHandlerV1Cmd.MarkFlagRequired("body")
-	PostPlayerRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
+	PostPlayerRecordHandlerV1Cmd.Flags().StringP("key", "", " ", "Key")
 	_ = PostPlayerRecordHandlerV1Cmd.MarkFlagRequired("key")
-	PostPlayerRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PostPlayerRecordHandlerV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PostPlayerRecordHandlerV1Cmd.MarkFlagRequired("namespace")
-	PostPlayerRecordHandlerV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	PostPlayerRecordHandlerV1Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PostPlayerRecordHandlerV1Cmd.MarkFlagRequired("userId")
 }

@@ -17,7 +17,7 @@ import (
 
 // UpdateStoreCmd represents the UpdateStore command
 var UpdateStoreCmd = &cobra.Command{
-	Use:   "UpdateStore",
+	Use:   "updateStore",
 	Short: "Update store",
 	Long:  `Update store`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var UpdateStoreCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateStoreCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateStoreCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateStoreCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateStoreCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateStoreCmd.MarkFlagRequired("namespace")
-	UpdateStoreCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	UpdateStoreCmd.Flags().StringP("storeId", "", " ", "Store id")
 	_ = UpdateStoreCmd.MarkFlagRequired("storeId")
 }

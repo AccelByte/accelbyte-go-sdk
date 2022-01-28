@@ -15,7 +15,7 @@ import (
 
 // GetDefaultProviderCmd represents the GetDefaultProvider command
 var GetDefaultProviderCmd = &cobra.Command{
-	Use:   "GetDefaultProvider",
+	Use:   "getDefaultProvider",
 	Short: "Get default provider",
 	Long:  `Get default provider`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,4 +33,7 @@ var GetDefaultProviderCmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

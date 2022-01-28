@@ -15,7 +15,7 @@ import (
 
 // GetEventByEventTypeHandlerCmd represents the GetEventByEventTypeHandler command
 var GetEventByEventTypeHandlerCmd = &cobra.Command{
-	Use:   "GetEventByEventTypeHandler",
+	Use:   "getEventByEventTypeHandler",
 	Short: "Get event by event type handler",
 	Long:  `Get event by event type handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,15 +49,15 @@ var GetEventByEventTypeHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	GetEventByEventTypeHandlerCmd.Flags().Float64P("eventType", "ee", 0, "Event type")
+	GetEventByEventTypeHandlerCmd.Flags().Float64P("eventType", "", 0, "Event type")
 	_ = GetEventByEventTypeHandlerCmd.MarkFlagRequired("eventType")
-	GetEventByEventTypeHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetEventByEventTypeHandlerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetEventByEventTypeHandlerCmd.MarkFlagRequired("namespace")
-	GetEventByEventTypeHandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
-	GetEventByEventTypeHandlerCmd.Flags().StringP("endDate", "ee", " ", "End date")
+	GetEventByEventTypeHandlerCmd.Flags().Float64P("offset", "", 0, "Offset")
+	GetEventByEventTypeHandlerCmd.Flags().StringP("endDate", "", " ", "End date")
 	_ = GetEventByEventTypeHandlerCmd.MarkFlagRequired("endDate")
-	GetEventByEventTypeHandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
+	GetEventByEventTypeHandlerCmd.Flags().Float64P("pageSize", "", 1, "Page size")
 	_ = GetEventByEventTypeHandlerCmd.MarkFlagRequired("pageSize")
-	GetEventByEventTypeHandlerCmd.Flags().StringP("startDate", "se", " ", "Start date")
+	GetEventByEventTypeHandlerCmd.Flags().StringP("startDate", "", " ", "Start date")
 	_ = GetEventByEventTypeHandlerCmd.MarkFlagRequired("startDate")
 }

@@ -17,7 +17,7 @@ import (
 
 // AdminUpdateConfigV1Cmd represents the AdminUpdateConfigV1 command
 var AdminUpdateConfigV1Cmd = &cobra.Command{
-	Use:   "AdminUpdateConfigV1",
+	Use:   "adminUpdateConfigV1",
 	Short: "Admin update config V1",
 	Long:  `Admin update config V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var AdminUpdateConfigV1Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateConfigV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	AdminUpdateConfigV1Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminUpdateConfigV1Cmd.MarkFlagRequired("body")
-	AdminUpdateConfigV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminUpdateConfigV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminUpdateConfigV1Cmd.MarkFlagRequired("namespace")
 }

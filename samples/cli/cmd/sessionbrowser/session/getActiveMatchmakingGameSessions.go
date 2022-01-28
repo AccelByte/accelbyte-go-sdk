@@ -15,7 +15,7 @@ import (
 
 // GetActiveMatchmakingGameSessionsCmd represents the GetActiveMatchmakingGameSessions command
 var GetActiveMatchmakingGameSessionsCmd = &cobra.Command{
-	Use:   "GetActiveMatchmakingGameSessions",
+	Use:   "getActiveMatchmakingGameSessions",
 	Short: "Get active matchmaking game sessions",
 	Long:  `Get active matchmaking game sessions`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,9 +45,9 @@ var GetActiveMatchmakingGameSessionsCmd = &cobra.Command{
 }
 
 func init() {
-	GetActiveMatchmakingGameSessionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetActiveMatchmakingGameSessionsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetActiveMatchmakingGameSessionsCmd.MarkFlagRequired("namespace")
-	GetActiveMatchmakingGameSessionsCmd.Flags().StringP("match_id", "md", " ", "Match id")
-	GetActiveMatchmakingGameSessionsCmd.Flags().StringP("server_region", "sn", " ", "Server region")
-	GetActiveMatchmakingGameSessionsCmd.Flags().StringP("session_id", "sd", " ", "Session id")
+	GetActiveMatchmakingGameSessionsCmd.Flags().StringP("match_id", "", " ", "Match id")
+	GetActiveMatchmakingGameSessionsCmd.Flags().StringP("server_region", "", " ", "Server region")
+	GetActiveMatchmakingGameSessionsCmd.Flags().StringP("session_id", "", " ", "Session id")
 }

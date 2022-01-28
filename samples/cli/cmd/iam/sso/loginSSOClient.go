@@ -15,7 +15,7 @@ import (
 
 // LoginSSOClientCmd represents the LoginSSOClient command
 var LoginSSOClientCmd = &cobra.Command{
-	Use:   "LoginSSOClient",
+	Use:   "loginSSOClient",
 	Short: "Login SSO client",
 	Long:  `Login SSO client`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +40,7 @@ var LoginSSOClientCmd = &cobra.Command{
 }
 
 func init() {
-	LoginSSOClientCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	LoginSSOClientCmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = LoginSSOClientCmd.MarkFlagRequired("platformId")
-	LoginSSOClientCmd.Flags().StringP("payload", "pd", " ", "Payload")
+	LoginSSOClientCmd.Flags().StringP("payload", "", " ", "Payload")
 }

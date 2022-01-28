@@ -15,7 +15,7 @@ import (
 
 // GetImageDetailCmd represents the GetImageDetail command
 var GetImageDetailCmd = &cobra.Command{
-	Use:   "GetImageDetail",
+	Use:   "getImageDetail",
 	Short: "Get image detail",
 	Long:  `Get image detail`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetImageDetailCmd = &cobra.Command{
 }
 
 func init() {
-	GetImageDetailCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetImageDetailCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetImageDetailCmd.MarkFlagRequired("namespace")
-	GetImageDetailCmd.Flags().StringP("version", "vn", " ", "Version")
+	GetImageDetailCmd.Flags().StringP("version", "", " ", "Version")
 	_ = GetImageDetailCmd.MarkFlagRequired("version")
 }

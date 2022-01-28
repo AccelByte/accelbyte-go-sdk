@@ -17,7 +17,7 @@ import (
 
 // SendPartyTemplatedNotificationV1AdminCmd represents the SendPartyTemplatedNotificationV1Admin command
 var SendPartyTemplatedNotificationV1AdminCmd = &cobra.Command{
-	Use:   "SendPartyTemplatedNotificationV1Admin",
+	Use:   "sendPartyTemplatedNotificationV1Admin",
 	Short: "Send party templated notification V1 admin",
 	Long:  `Send party templated notification V1 admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var SendPartyTemplatedNotificationV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	SendPartyTemplatedNotificationV1AdminCmd.Flags().StringP("body", "by", " ", "Body")
+	SendPartyTemplatedNotificationV1AdminCmd.Flags().StringP("body", "", " ", "Body")
 	_ = SendPartyTemplatedNotificationV1AdminCmd.MarkFlagRequired("body")
-	SendPartyTemplatedNotificationV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SendPartyTemplatedNotificationV1AdminCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SendPartyTemplatedNotificationV1AdminCmd.MarkFlagRequired("namespace")
-	SendPartyTemplatedNotificationV1AdminCmd.Flags().StringP("partyId", "pd", " ", "Party id")
+	SendPartyTemplatedNotificationV1AdminCmd.Flags().StringP("partyId", "", " ", "Party id")
 	_ = SendPartyTemplatedNotificationV1AdminCmd.MarkFlagRequired("partyId")
 }

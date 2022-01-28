@@ -15,7 +15,7 @@ import (
 
 // ExportStatsCmd represents the ExportStats command
 var ExportStatsCmd = &cobra.Command{
-	Use:   "ExportStats",
+	Use:   "exportStats",
 	Short: "Export stats",
 	Long:  `Export stats`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var ExportStatsCmd = &cobra.Command{
 }
 
 func init() {
-	ExportStatsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ExportStatsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ExportStatsCmd.MarkFlagRequired("namespace")
 }

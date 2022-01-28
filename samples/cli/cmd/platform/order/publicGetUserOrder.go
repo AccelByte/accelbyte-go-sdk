@@ -15,7 +15,7 @@ import (
 
 // PublicGetUserOrderCmd represents the PublicGetUserOrder command
 var PublicGetUserOrderCmd = &cobra.Command{
-	Use:   "PublicGetUserOrder",
+	Use:   "publicGetUserOrder",
 	Short: "Public get user order",
 	Long:  `Public get user order`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var PublicGetUserOrderCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetUserOrderCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetUserOrderCmd.MarkFlagRequired("namespace")
-	PublicGetUserOrderCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
+	PublicGetUserOrderCmd.Flags().StringP("orderNo", "", " ", "Order no")
 	_ = PublicGetUserOrderCmd.MarkFlagRequired("orderNo")
-	PublicGetUserOrderCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicGetUserOrderCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicGetUserOrderCmd.MarkFlagRequired("userId")
 }

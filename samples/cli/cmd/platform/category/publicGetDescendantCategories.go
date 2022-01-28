@@ -15,7 +15,7 @@ import (
 
 // PublicGetDescendantCategoriesCmd represents the PublicGetDescendantCategories command
 var PublicGetDescendantCategoriesCmd = &cobra.Command{
-	Use:   "PublicGetDescendantCategories",
+	Use:   "publicGetDescendantCategories",
 	Short: "Public get descendant categories",
 	Long:  `Public get descendant categories`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,10 +45,10 @@ var PublicGetDescendantCategoriesCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetDescendantCategoriesCmd.Flags().StringP("categoryPath", "ch", " ", "Category path")
+	PublicGetDescendantCategoriesCmd.Flags().StringP("categoryPath", "", " ", "Category path")
 	_ = PublicGetDescendantCategoriesCmd.MarkFlagRequired("categoryPath")
-	PublicGetDescendantCategoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetDescendantCategoriesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetDescendantCategoriesCmd.MarkFlagRequired("namespace")
-	PublicGetDescendantCategoriesCmd.Flags().StringP("language", "le", " ", "Language")
-	PublicGetDescendantCategoriesCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	PublicGetDescendantCategoriesCmd.Flags().StringP("language", "", " ", "Language")
+	PublicGetDescendantCategoriesCmd.Flags().StringP("storeId", "", " ", "Store id")
 }

@@ -17,7 +17,7 @@ import (
 
 // FulfillRewardsCmd represents the FulfillRewards command
 var FulfillRewardsCmd = &cobra.Command{
-	Use:   "FulfillRewards",
+	Use:   "fulfillRewards",
 	Short: "Fulfill rewards",
 	Long:  `Fulfill rewards`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +49,9 @@ var FulfillRewardsCmd = &cobra.Command{
 }
 
 func init() {
-	FulfillRewardsCmd.Flags().StringP("body", "by", " ", "Body")
-	FulfillRewardsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	FulfillRewardsCmd.Flags().StringP("body", "", " ", "Body")
+	FulfillRewardsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = FulfillRewardsCmd.MarkFlagRequired("namespace")
-	FulfillRewardsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	FulfillRewardsCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = FulfillRewardsCmd.MarkFlagRequired("userId")
 }

@@ -15,7 +15,7 @@ import (
 
 // PublicListUserAchievementsCmd represents the PublicListUserAchievements command
 var PublicListUserAchievementsCmd = &cobra.Command{
-	Use:   "PublicListUserAchievements",
+	Use:   "publicListUserAchievements",
 	Short: "Public list user achievements",
 	Long:  `Public list user achievements`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,11 +47,11 @@ var PublicListUserAchievementsCmd = &cobra.Command{
 }
 
 func init() {
-	PublicListUserAchievementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicListUserAchievementsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicListUserAchievementsCmd.MarkFlagRequired("namespace")
-	PublicListUserAchievementsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicListUserAchievementsCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicListUserAchievementsCmd.MarkFlagRequired("userId")
-	PublicListUserAchievementsCmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	PublicListUserAchievementsCmd.Flags().Int64P("offset", "ot", 0, "Offset")
-	PublicListUserAchievementsCmd.Flags().BoolP("preferUnlocked", "pd", false, "Prefer unlocked")
+	PublicListUserAchievementsCmd.Flags().Int64P("limit", "", 20, "Limit")
+	PublicListUserAchievementsCmd.Flags().Int64P("offset", "", 0, "Offset")
+	PublicListUserAchievementsCmd.Flags().BoolP("preferUnlocked", "", false, "Prefer unlocked")
 }

@@ -15,7 +15,7 @@ import (
 
 // AdminGetProfanityRuleCmd represents the AdminGetProfanityRule command
 var AdminGetProfanityRuleCmd = &cobra.Command{
-	Use:   "AdminGetProfanityRule",
+	Use:   "adminGetProfanityRule",
 	Short: "Admin get profanity rule",
 	Long:  `Admin get profanity rule`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var AdminGetProfanityRuleCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetProfanityRuleCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetProfanityRuleCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetProfanityRuleCmd.MarkFlagRequired("namespace")
 }

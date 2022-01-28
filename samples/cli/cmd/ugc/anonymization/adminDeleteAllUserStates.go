@@ -15,7 +15,7 @@ import (
 
 // AdminDeleteAllUserStatesCmd represents the AdminDeleteAllUserStates command
 var AdminDeleteAllUserStatesCmd = &cobra.Command{
-	Use:   "AdminDeleteAllUserStates",
+	Use:   "adminDeleteAllUserStates",
 	Short: "Admin delete all user states",
 	Long:  `Admin delete all user states`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var AdminDeleteAllUserStatesCmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteAllUserStatesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminDeleteAllUserStatesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminDeleteAllUserStatesCmd.MarkFlagRequired("namespace")
-	AdminDeleteAllUserStatesCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminDeleteAllUserStatesCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminDeleteAllUserStatesCmd.MarkFlagRequired("userId")
 }

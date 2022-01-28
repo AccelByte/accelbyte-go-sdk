@@ -17,7 +17,7 @@ import (
 
 // CreateItemCmd represents the CreateItem command
 var CreateItemCmd = &cobra.Command{
-	Use:   "CreateItem",
+	Use:   "createItem",
 	Short: "Create item",
 	Long:  `Create item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var CreateItemCmd = &cobra.Command{
 }
 
 func init() {
-	CreateItemCmd.Flags().StringP("body", "by", " ", "Body")
-	CreateItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateItemCmd.Flags().StringP("body", "", " ", "Body")
+	CreateItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateItemCmd.MarkFlagRequired("namespace")
-	CreateItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	CreateItemCmd.Flags().StringP("storeId", "", " ", "Store id")
 	_ = CreateItemCmd.MarkFlagRequired("storeId")
 }

@@ -15,7 +15,7 @@ import (
 
 // DownloadCategoriesCmd represents the DownloadCategories command
 var DownloadCategoriesCmd = &cobra.Command{
-	Use:   "DownloadCategories",
+	Use:   "downloadCategories",
 	Short: "Download categories",
 	Long:  `Download categories`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,8 +43,8 @@ var DownloadCategoriesCmd = &cobra.Command{
 }
 
 func init() {
-	DownloadCategoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DownloadCategoriesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DownloadCategoriesCmd.MarkFlagRequired("namespace")
-	DownloadCategoriesCmd.Flags().StringP("language", "le", " ", "Language")
-	DownloadCategoriesCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	DownloadCategoriesCmd.Flags().StringP("language", "", " ", "Language")
+	DownloadCategoriesCmd.Flags().StringP("storeId", "", " ", "Store id")
 }

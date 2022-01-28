@@ -15,7 +15,7 @@ import (
 
 // PublicGetAchievementCmd represents the PublicGetAchievement command
 var PublicGetAchievementCmd = &cobra.Command{
-	Use:   "PublicGetAchievement",
+	Use:   "publicGetAchievement",
 	Short: "Public get achievement",
 	Long:  `Public get achievement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var PublicGetAchievementCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetAchievementCmd.Flags().StringP("achievementCode", "ae", " ", "Achievement code")
+	PublicGetAchievementCmd.Flags().StringP("achievementCode", "", " ", "Achievement code")
 	_ = PublicGetAchievementCmd.MarkFlagRequired("achievementCode")
-	PublicGetAchievementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetAchievementCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetAchievementCmd.MarkFlagRequired("namespace")
-	PublicGetAchievementCmd.Flags().StringP("language", "le", " ", "Language")
+	PublicGetAchievementCmd.Flags().StringP("language", "", " ", "Language")
 	_ = PublicGetAchievementCmd.MarkFlagRequired("language")
 }

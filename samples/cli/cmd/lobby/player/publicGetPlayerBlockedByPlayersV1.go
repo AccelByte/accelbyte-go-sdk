@@ -15,7 +15,7 @@ import (
 
 // PublicGetPlayerBlockedByPlayersV1Cmd represents the PublicGetPlayerBlockedByPlayersV1 command
 var PublicGetPlayerBlockedByPlayersV1Cmd = &cobra.Command{
-	Use:   "PublicGetPlayerBlockedByPlayersV1",
+	Use:   "publicGetPlayerBlockedByPlayersV1",
 	Short: "Public get player blocked by players V1",
 	Long:  `Public get player blocked by players V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var PublicGetPlayerBlockedByPlayersV1Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetPlayerBlockedByPlayersV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetPlayerBlockedByPlayersV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetPlayerBlockedByPlayersV1Cmd.MarkFlagRequired("namespace")
 }

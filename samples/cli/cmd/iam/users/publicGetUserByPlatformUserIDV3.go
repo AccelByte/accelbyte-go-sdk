@@ -15,7 +15,7 @@ import (
 
 // PublicGetUserByPlatformUserIDV3Cmd represents the PublicGetUserByPlatformUserIDV3 command
 var PublicGetUserByPlatformUserIDV3Cmd = &cobra.Command{
-	Use:   "PublicGetUserByPlatformUserIDV3",
+	Use:   "publicGetUserByPlatformUserIDV3",
 	Short: "Public get user by platform user IDV3",
 	Long:  `Public get user by platform user IDV3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var PublicGetUserByPlatformUserIDV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserByPlatformUserIDV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetUserByPlatformUserIDV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetUserByPlatformUserIDV3Cmd.MarkFlagRequired("namespace")
-	PublicGetUserByPlatformUserIDV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	PublicGetUserByPlatformUserIDV3Cmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = PublicGetUserByPlatformUserIDV3Cmd.MarkFlagRequired("platformId")
-	PublicGetUserByPlatformUserIDV3Cmd.Flags().StringP("platformUserId", "pd", " ", "Platform user id")
+	PublicGetUserByPlatformUserIDV3Cmd.Flags().StringP("platformUserId", "", " ", "Platform user id")
 	_ = PublicGetUserByPlatformUserIDV3Cmd.MarkFlagRequired("platformUserId")
 }

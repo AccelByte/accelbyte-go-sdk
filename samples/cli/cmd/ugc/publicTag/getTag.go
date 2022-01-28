@@ -15,7 +15,7 @@ import (
 
 // GetTagCmd represents the GetTag command
 var GetTagCmd = &cobra.Command{
-	Use:   "GetTag",
+	Use:   "getTag",
 	Short: "Get tag",
 	Long:  `Get tag`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,8 +43,8 @@ var GetTagCmd = &cobra.Command{
 }
 
 func init() {
-	GetTagCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetTagCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetTagCmd.MarkFlagRequired("namespace")
-	GetTagCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	GetTagCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	GetTagCmd.Flags().StringP("limit", "", "20", "Limit")
+	GetTagCmd.Flags().StringP("offset", "", "0", "Offset")
 }

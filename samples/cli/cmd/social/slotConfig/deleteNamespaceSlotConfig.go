@@ -15,7 +15,7 @@ import (
 
 // DeleteNamespaceSlotConfigCmd represents the DeleteNamespaceSlotConfig command
 var DeleteNamespaceSlotConfigCmd = &cobra.Command{
-	Use:   "DeleteNamespaceSlotConfig",
+	Use:   "deleteNamespaceSlotConfig",
 	Short: "Delete namespace slot config",
 	Long:  `Delete namespace slot config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var DeleteNamespaceSlotConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteNamespaceSlotConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteNamespaceSlotConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteNamespaceSlotConfigCmd.MarkFlagRequired("namespace")
 }

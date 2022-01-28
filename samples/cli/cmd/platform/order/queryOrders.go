@@ -16,7 +16,7 @@ import (
 
 // QueryOrdersCmd represents the QueryOrders command
 var QueryOrdersCmd = &cobra.Command{
-	Use:   "QueryOrders",
+	Use:   "queryOrders",
 	Short: "Query orders",
 	Long:  `Query orders`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -61,14 +61,14 @@ var QueryOrdersCmd = &cobra.Command{
 }
 
 func init() {
-	QueryOrdersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QueryOrdersCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = QueryOrdersCmd.MarkFlagRequired("namespace")
-	QueryOrdersCmd.Flags().StringP("endTime", "ee", " ", "End time")
-	QueryOrdersCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	QueryOrdersCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	QueryOrdersCmd.Flags().StringP("orderNos", "os", " ", "Order nos")
-	QueryOrdersCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
-	QueryOrdersCmd.Flags().StringP("startTime", "se", " ", "Start time")
-	QueryOrdersCmd.Flags().StringP("status", "ss", " ", "Status")
-	QueryOrdersCmd.Flags().BoolP("withTotal", "wl", false, "With total")
+	QueryOrdersCmd.Flags().StringP("endTime", "", " ", "End time")
+	QueryOrdersCmd.Flags().Int32P("limit", "", 20, "Limit")
+	QueryOrdersCmd.Flags().Int32P("offset", "", 0, "Offset")
+	QueryOrdersCmd.Flags().StringP("orderNos", "", " ", "Order nos")
+	QueryOrdersCmd.Flags().StringP("sortBy", "", " ", "Sort by")
+	QueryOrdersCmd.Flags().StringP("startTime", "", " ", "Start time")
+	QueryOrdersCmd.Flags().StringP("status", "", " ", "Status")
+	QueryOrdersCmd.Flags().BoolP("withTotal", "", false, "With total")
 }

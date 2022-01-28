@@ -17,7 +17,7 @@ import (
 
 // AdminAddRolePermissionsV4Cmd represents the AdminAddRolePermissionsV4 command
 var AdminAddRolePermissionsV4Cmd = &cobra.Command{
-	Use:   "AdminAddRolePermissionsV4",
+	Use:   "adminAddRolePermissionsV4",
 	Short: "Admin add role permissions V4",
 	Long:  `Admin add role permissions V4`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var AdminAddRolePermissionsV4Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminAddRolePermissionsV4Cmd.Flags().StringP("body", "by", " ", "Body")
+	AdminAddRolePermissionsV4Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminAddRolePermissionsV4Cmd.MarkFlagRequired("body")
-	AdminAddRolePermissionsV4Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	AdminAddRolePermissionsV4Cmd.Flags().StringP("roleId", "", " ", "Role id")
 	_ = AdminAddRolePermissionsV4Cmd.MarkFlagRequired("roleId")
 }

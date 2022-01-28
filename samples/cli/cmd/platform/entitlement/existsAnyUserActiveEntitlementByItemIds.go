@@ -16,7 +16,7 @@ import (
 
 // ExistsAnyUserActiveEntitlementByItemIdsCmd represents the ExistsAnyUserActiveEntitlementByItemIds command
 var ExistsAnyUserActiveEntitlementByItemIdsCmd = &cobra.Command{
-	Use:   "ExistsAnyUserActiveEntitlementByItemIds",
+	Use:   "existsAnyUserActiveEntitlementByItemIds",
 	Short: "Exists any user active entitlement by item ids",
 	Long:  `Exists any user active entitlement by item ids`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var ExistsAnyUserActiveEntitlementByItemIdsCmd = &cobra.Command{
 }
 
 func init() {
-	ExistsAnyUserActiveEntitlementByItemIdsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ExistsAnyUserActiveEntitlementByItemIdsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ExistsAnyUserActiveEntitlementByItemIdsCmd.MarkFlagRequired("namespace")
-	ExistsAnyUserActiveEntitlementByItemIdsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	ExistsAnyUserActiveEntitlementByItemIdsCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = ExistsAnyUserActiveEntitlementByItemIdsCmd.MarkFlagRequired("userId")
-	ExistsAnyUserActiveEntitlementByItemIdsCmd.Flags().StringP("itemIds", "is", " ", "Item ids")
+	ExistsAnyUserActiveEntitlementByItemIdsCmd.Flags().StringP("itemIds", "", " ", "Item ids")
 	_ = ExistsAnyUserActiveEntitlementByItemIdsCmd.MarkFlagRequired("itemIds")
 }

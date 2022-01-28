@@ -15,7 +15,7 @@ import (
 
 // PublicGetMyWalletCmd represents the PublicGetMyWallet command
 var PublicGetMyWalletCmd = &cobra.Command{
-	Use:   "PublicGetMyWallet",
+	Use:   "publicGetMyWallet",
 	Short: "Public get my wallet",
 	Long:  `Public get my wallet`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var PublicGetMyWalletCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetMyWalletCmd.Flags().StringP("currencyCode", "ce", " ", "Currency code")
+	PublicGetMyWalletCmd.Flags().StringP("currencyCode", "", " ", "Currency code")
 	_ = PublicGetMyWalletCmd.MarkFlagRequired("currencyCode")
-	PublicGetMyWalletCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetMyWalletCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetMyWalletCmd.MarkFlagRequired("namespace")
 }

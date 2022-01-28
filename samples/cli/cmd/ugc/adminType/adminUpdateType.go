@@ -17,7 +17,7 @@ import (
 
 // AdminUpdateTypeCmd represents the AdminUpdateType command
 var AdminUpdateTypeCmd = &cobra.Command{
-	Use:   "AdminUpdateType",
+	Use:   "adminUpdateType",
 	Short: "Admin update type",
 	Long:  `Admin update type`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var AdminUpdateTypeCmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateTypeCmd.Flags().StringP("body", "by", " ", "Body")
+	AdminUpdateTypeCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminUpdateTypeCmd.MarkFlagRequired("body")
-	AdminUpdateTypeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminUpdateTypeCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminUpdateTypeCmd.MarkFlagRequired("namespace")
-	AdminUpdateTypeCmd.Flags().StringP("typeId", "td", " ", "Type id")
+	AdminUpdateTypeCmd.Flags().StringP("typeId", "", " ", "Type id")
 	_ = AdminUpdateTypeCmd.MarkFlagRequired("typeId")
 }

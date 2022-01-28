@@ -15,7 +15,7 @@ import (
 
 // GetGroupListPublicV1Cmd represents the GetGroupListPublicV1 command
 var GetGroupListPublicV1Cmd = &cobra.Command{
-	Use:   "GetGroupListPublicV1",
+	Use:   "getGroupListPublicV1",
 	Short: "Get group list public V1",
 	Long:  `Get group list public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,10 +47,10 @@ var GetGroupListPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetGroupListPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetGroupListPublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetGroupListPublicV1Cmd.MarkFlagRequired("namespace")
-	GetGroupListPublicV1Cmd.Flags().StringP("groupName", "ge", " ", "Group name")
-	GetGroupListPublicV1Cmd.Flags().StringP("groupRegion", "gn", " ", "Group region")
-	GetGroupListPublicV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	GetGroupListPublicV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetGroupListPublicV1Cmd.Flags().StringP("groupName", "", " ", "Group name")
+	GetGroupListPublicV1Cmd.Flags().StringP("groupRegion", "", " ", "Group region")
+	GetGroupListPublicV1Cmd.Flags().Int64P("limit", "", 20, "Limit")
+	GetGroupListPublicV1Cmd.Flags().Int64P("offset", "", 0, "Offset")
 }

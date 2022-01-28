@@ -15,7 +15,7 @@ import (
 
 // PlatformLinkCmd represents the PlatformLink command
 var PlatformLinkCmd = &cobra.Command{
-	Use:   "PlatformLink",
+	Use:   "platformLink",
 	Short: "Platform link",
 	Long:  `Platform link`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,12 +44,12 @@ var PlatformLinkCmd = &cobra.Command{
 }
 
 func init() {
-	PlatformLinkCmd.Flags().StringP("ticket", "tt", " ", "Ticket")
+	PlatformLinkCmd.Flags().StringP("ticket", "", " ", "Ticket")
 	_ = PlatformLinkCmd.MarkFlagRequired("ticket")
-	PlatformLinkCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PlatformLinkCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PlatformLinkCmd.MarkFlagRequired("namespace")
-	PlatformLinkCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	PlatformLinkCmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = PlatformLinkCmd.MarkFlagRequired("platformId")
-	PlatformLinkCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PlatformLinkCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PlatformLinkCmd.MarkFlagRequired("userId")
 }

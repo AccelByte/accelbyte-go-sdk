@@ -17,7 +17,7 @@ import (
 
 // ProcessUserOrderNotificationCmd represents the ProcessUserOrderNotification command
 var ProcessUserOrderNotificationCmd = &cobra.Command{
-	Use:   "ProcessUserOrderNotification",
+	Use:   "processUserOrderNotification",
 	Short: "Process user order notification",
 	Long:  `Process user order notification`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +51,11 @@ var ProcessUserOrderNotificationCmd = &cobra.Command{
 }
 
 func init() {
-	ProcessUserOrderNotificationCmd.Flags().StringP("body", "by", " ", "Body")
-	ProcessUserOrderNotificationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ProcessUserOrderNotificationCmd.Flags().StringP("body", "", " ", "Body")
+	ProcessUserOrderNotificationCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ProcessUserOrderNotificationCmd.MarkFlagRequired("namespace")
-	ProcessUserOrderNotificationCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
+	ProcessUserOrderNotificationCmd.Flags().StringP("orderNo", "", " ", "Order no")
 	_ = ProcessUserOrderNotificationCmd.MarkFlagRequired("orderNo")
-	ProcessUserOrderNotificationCmd.Flags().StringP("userId", "ud", " ", "User id")
+	ProcessUserOrderNotificationCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = ProcessUserOrderNotificationCmd.MarkFlagRequired("userId")
 }

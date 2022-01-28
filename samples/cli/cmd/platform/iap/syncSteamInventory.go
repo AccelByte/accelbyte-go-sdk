@@ -17,7 +17,7 @@ import (
 
 // SyncSteamInventoryCmd represents the SyncSteamInventory command
 var SyncSteamInventoryCmd = &cobra.Command{
-	Use:   "SyncSteamInventory",
+	Use:   "syncSteamInventory",
 	Short: "Sync steam inventory",
 	Long:  `Sync steam inventory`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +49,9 @@ var SyncSteamInventoryCmd = &cobra.Command{
 }
 
 func init() {
-	SyncSteamInventoryCmd.Flags().StringP("body", "by", " ", "Body")
-	SyncSteamInventoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SyncSteamInventoryCmd.Flags().StringP("body", "", " ", "Body")
+	SyncSteamInventoryCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SyncSteamInventoryCmd.MarkFlagRequired("namespace")
-	SyncSteamInventoryCmd.Flags().StringP("userId", "ud", " ", "User id")
+	SyncSteamInventoryCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = SyncSteamInventoryCmd.MarkFlagRequired("userId")
 }

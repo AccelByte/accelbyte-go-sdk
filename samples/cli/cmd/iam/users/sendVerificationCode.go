@@ -17,7 +17,7 @@ import (
 
 // SendVerificationCodeCmd represents the SendVerificationCode command
 var SendVerificationCodeCmd = &cobra.Command{
-	Use:   "SendVerificationCode",
+	Use:   "sendVerificationCode",
 	Short: "Send verification code",
 	Long:  `Send verification code`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var SendVerificationCodeCmd = &cobra.Command{
 }
 
 func init() {
-	SendVerificationCodeCmd.Flags().StringP("body", "by", " ", "Body")
+	SendVerificationCodeCmd.Flags().StringP("body", "", " ", "Body")
 	_ = SendVerificationCodeCmd.MarkFlagRequired("body")
-	SendVerificationCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SendVerificationCodeCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SendVerificationCodeCmd.MarkFlagRequired("namespace")
-	SendVerificationCodeCmd.Flags().StringP("userId", "ud", " ", "User id")
+	SendVerificationCodeCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = SendVerificationCodeCmd.MarkFlagRequired("userId")
 }

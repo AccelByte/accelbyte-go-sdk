@@ -15,7 +15,7 @@ import (
 
 // GetEventByUserIDHandlerCmd represents the GetEventByUserIDHandler command
 var GetEventByUserIDHandlerCmd = &cobra.Command{
-	Use:   "GetEventByUserIDHandler",
+	Use:   "getEventByUserIDHandler",
 	Short: "Get event by user ID handler",
 	Long:  `Get event by user ID handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,15 +49,15 @@ var GetEventByUserIDHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	GetEventByUserIDHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetEventByUserIDHandlerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetEventByUserIDHandlerCmd.MarkFlagRequired("namespace")
-	GetEventByUserIDHandlerCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetEventByUserIDHandlerCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetEventByUserIDHandlerCmd.MarkFlagRequired("userId")
-	GetEventByUserIDHandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
-	GetEventByUserIDHandlerCmd.Flags().StringP("endDate", "ee", " ", "End date")
+	GetEventByUserIDHandlerCmd.Flags().Float64P("offset", "", 0, "Offset")
+	GetEventByUserIDHandlerCmd.Flags().StringP("endDate", "", " ", "End date")
 	_ = GetEventByUserIDHandlerCmd.MarkFlagRequired("endDate")
-	GetEventByUserIDHandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
+	GetEventByUserIDHandlerCmd.Flags().Float64P("pageSize", "", 1, "Page size")
 	_ = GetEventByUserIDHandlerCmd.MarkFlagRequired("pageSize")
-	GetEventByUserIDHandlerCmd.Flags().StringP("startDate", "se", " ", "Start date")
+	GetEventByUserIDHandlerCmd.Flags().StringP("startDate", "", " ", "Start date")
 	_ = GetEventByUserIDHandlerCmd.MarkFlagRequired("startDate")
 }

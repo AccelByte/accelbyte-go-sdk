@@ -15,7 +15,7 @@ import (
 
 // GetPublishedStoreBackupCmd represents the GetPublishedStoreBackup command
 var GetPublishedStoreBackupCmd = &cobra.Command{
-	Use:   "GetPublishedStoreBackup",
+	Use:   "getPublishedStoreBackup",
 	Short: "Get published store backup",
 	Long:  `Get published store backup`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetPublishedStoreBackupCmd = &cobra.Command{
 }
 
 func init() {
-	GetPublishedStoreBackupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetPublishedStoreBackupCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetPublishedStoreBackupCmd.MarkFlagRequired("namespace")
 }

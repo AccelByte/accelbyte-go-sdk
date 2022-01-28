@@ -15,7 +15,7 @@ import (
 
 // PublicCancelUserOrderCmd represents the PublicCancelUserOrder command
 var PublicCancelUserOrderCmd = &cobra.Command{
-	Use:   "PublicCancelUserOrder",
+	Use:   "publicCancelUserOrder",
 	Short: "Public cancel user order",
 	Long:  `Public cancel user order`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var PublicCancelUserOrderCmd = &cobra.Command{
 }
 
 func init() {
-	PublicCancelUserOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicCancelUserOrderCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicCancelUserOrderCmd.MarkFlagRequired("namespace")
-	PublicCancelUserOrderCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
+	PublicCancelUserOrderCmd.Flags().StringP("orderNo", "", " ", "Order no")
 	_ = PublicCancelUserOrderCmd.MarkFlagRequired("orderNo")
-	PublicCancelUserOrderCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicCancelUserOrderCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicCancelUserOrderCmd.MarkFlagRequired("userId")
 }

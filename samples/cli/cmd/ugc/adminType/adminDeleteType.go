@@ -15,7 +15,7 @@ import (
 
 // AdminDeleteTypeCmd represents the AdminDeleteType command
 var AdminDeleteTypeCmd = &cobra.Command{
-	Use:   "AdminDeleteType",
+	Use:   "adminDeleteType",
 	Short: "Admin delete type",
 	Long:  `Admin delete type`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var AdminDeleteTypeCmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteTypeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminDeleteTypeCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminDeleteTypeCmd.MarkFlagRequired("namespace")
-	AdminDeleteTypeCmd.Flags().StringP("typeId", "td", " ", "Type id")
+	AdminDeleteTypeCmd.Flags().StringP("typeId", "", " ", "Type id")
 	_ = AdminDeleteTypeCmd.MarkFlagRequired("typeId")
 }

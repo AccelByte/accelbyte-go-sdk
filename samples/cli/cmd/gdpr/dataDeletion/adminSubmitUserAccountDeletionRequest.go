@@ -15,7 +15,7 @@ import (
 
 // AdminSubmitUserAccountDeletionRequestCmd represents the AdminSubmitUserAccountDeletionRequest command
 var AdminSubmitUserAccountDeletionRequestCmd = &cobra.Command{
-	Use:   "AdminSubmitUserAccountDeletionRequest",
+	Use:   "adminSubmitUserAccountDeletionRequest",
 	Short: "Admin submit user account deletion request",
 	Long:  `Admin submit user account deletion request`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var AdminSubmitUserAccountDeletionRequestCmd = &cobra.Command{
 }
 
 func init() {
-	AdminSubmitUserAccountDeletionRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminSubmitUserAccountDeletionRequestCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminSubmitUserAccountDeletionRequestCmd.MarkFlagRequired("namespace")
-	AdminSubmitUserAccountDeletionRequestCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminSubmitUserAccountDeletionRequestCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminSubmitUserAccountDeletionRequestCmd.MarkFlagRequired("userId")
 }

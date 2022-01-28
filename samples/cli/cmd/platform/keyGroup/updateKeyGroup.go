@@ -17,7 +17,7 @@ import (
 
 // UpdateKeyGroupCmd represents the UpdateKeyGroup command
 var UpdateKeyGroupCmd = &cobra.Command{
-	Use:   "UpdateKeyGroup",
+	Use:   "updateKeyGroup",
 	Short: "Update key group",
 	Long:  `Update key group`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var UpdateKeyGroupCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateKeyGroupCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateKeyGroupCmd.Flags().StringP("keyGroupId", "kd", " ", "Key group id")
+	UpdateKeyGroupCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateKeyGroupCmd.Flags().StringP("keyGroupId", "", " ", "Key group id")
 	_ = UpdateKeyGroupCmd.MarkFlagRequired("keyGroupId")
-	UpdateKeyGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateKeyGroupCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateKeyGroupCmd.MarkFlagRequired("namespace")
 }

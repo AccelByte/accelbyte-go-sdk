@@ -15,7 +15,7 @@ import (
 
 // PublicPlatformLinkV3Cmd represents the PublicPlatformLinkV3 command
 var PublicPlatformLinkV3Cmd = &cobra.Command{
-	Use:   "PublicPlatformLinkV3",
+	Use:   "publicPlatformLinkV3",
 	Short: "Public platform link V3",
 	Long:  `Public platform link V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +44,11 @@ var PublicPlatformLinkV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicPlatformLinkV3Cmd.Flags().StringP("redirectUri", "ri", " ", "Redirect uri")
-	PublicPlatformLinkV3Cmd.Flags().StringP("ticket", "tt", " ", "Ticket")
+	PublicPlatformLinkV3Cmd.Flags().StringP("redirectUri", "", " ", "Redirect uri")
+	PublicPlatformLinkV3Cmd.Flags().StringP("ticket", "", " ", "Ticket")
 	_ = PublicPlatformLinkV3Cmd.MarkFlagRequired("ticket")
-	PublicPlatformLinkV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicPlatformLinkV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicPlatformLinkV3Cmd.MarkFlagRequired("namespace")
-	PublicPlatformLinkV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	PublicPlatformLinkV3Cmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = PublicPlatformLinkV3Cmd.MarkFlagRequired("platformId")
 }

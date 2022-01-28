@@ -15,7 +15,7 @@ import (
 
 // PublicDeleteUserNamespaceSlotCmd represents the PublicDeleteUserNamespaceSlot command
 var PublicDeleteUserNamespaceSlotCmd = &cobra.Command{
-	Use:   "PublicDeleteUserNamespaceSlot",
+	Use:   "publicDeleteUserNamespaceSlot",
 	Short: "Public delete user namespace slot",
 	Long:  `Public delete user namespace slot`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var PublicDeleteUserNamespaceSlotCmd = &cobra.Command{
 }
 
 func init() {
-	PublicDeleteUserNamespaceSlotCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicDeleteUserNamespaceSlotCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicDeleteUserNamespaceSlotCmd.MarkFlagRequired("namespace")
-	PublicDeleteUserNamespaceSlotCmd.Flags().StringP("slotId", "sd", " ", "Slot id")
+	PublicDeleteUserNamespaceSlotCmd.Flags().StringP("slotId", "", " ", "Slot id")
 	_ = PublicDeleteUserNamespaceSlotCmd.MarkFlagRequired("slotId")
-	PublicDeleteUserNamespaceSlotCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicDeleteUserNamespaceSlotCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicDeleteUserNamespaceSlotCmd.MarkFlagRequired("userId")
 }

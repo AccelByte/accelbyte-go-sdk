@@ -15,7 +15,7 @@ import (
 
 // BulkGetSessionsCmd represents the BulkGetSessions command
 var BulkGetSessionsCmd = &cobra.Command{
-	Use:   "BulkGetSessions",
+	Use:   "bulkGetSessions",
 	Short: "Bulk get sessions",
 	Long:  `Bulk get sessions`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,7 +41,7 @@ var BulkGetSessionsCmd = &cobra.Command{
 }
 
 func init() {
-	BulkGetSessionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	BulkGetSessionsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = BulkGetSessionsCmd.MarkFlagRequired("namespace")
-	BulkGetSessionsCmd.Flags().StringP("matchIDs", "ms", " ", "Match I ds")
+	BulkGetSessionsCmd.Flags().StringP("matchIDs", "", " ", "Match I ds")
 }

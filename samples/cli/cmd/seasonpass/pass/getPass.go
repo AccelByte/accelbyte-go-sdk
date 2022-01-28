@@ -15,7 +15,7 @@ import (
 
 // GetPassCmd represents the GetPass command
 var GetPassCmd = &cobra.Command{
-	Use:   "GetPass",
+	Use:   "getPass",
 	Short: "Get pass",
 	Long:  `Get pass`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var GetPassCmd = &cobra.Command{
 }
 
 func init() {
-	GetPassCmd.Flags().StringP("code", "ce", " ", "Code")
+	GetPassCmd.Flags().StringP("code", "", " ", "Code")
 	_ = GetPassCmd.MarkFlagRequired("code")
-	GetPassCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetPassCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetPassCmd.MarkFlagRequired("namespace")
-	GetPassCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	GetPassCmd.Flags().StringP("seasonId", "", " ", "Season id")
 	_ = GetPassCmd.MarkFlagRequired("seasonId")
 }

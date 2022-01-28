@@ -15,7 +15,7 @@ import (
 
 // CountServerDetailedCmd represents the CountServerDetailed command
 var CountServerDetailedCmd = &cobra.Command{
-	Use:   "CountServerDetailed",
+	Use:   "countServerDetailed",
 	Short: "Count server detailed",
 	Long:  `Count server detailed`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,7 +41,7 @@ var CountServerDetailedCmd = &cobra.Command{
 }
 
 func init() {
-	CountServerDetailedCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CountServerDetailedCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CountServerDetailedCmd.MarkFlagRequired("namespace")
-	CountServerDetailedCmd.Flags().StringP("region", "rn", " ", "Region")
+	CountServerDetailedCmd.Flags().StringP("region", "", " ", "Region")
 }

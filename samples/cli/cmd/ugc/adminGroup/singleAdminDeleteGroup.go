@@ -15,7 +15,7 @@ import (
 
 // SingleAdminDeleteGroupCmd represents the SingleAdminDeleteGroup command
 var SingleAdminDeleteGroupCmd = &cobra.Command{
-	Use:   "SingleAdminDeleteGroup",
+	Use:   "singleAdminDeleteGroup",
 	Short: "Single admin delete group",
 	Long:  `Single admin delete group`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var SingleAdminDeleteGroupCmd = &cobra.Command{
 }
 
 func init() {
-	SingleAdminDeleteGroupCmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	SingleAdminDeleteGroupCmd.Flags().StringP("groupId", "", " ", "Group id")
 	_ = SingleAdminDeleteGroupCmd.MarkFlagRequired("groupId")
-	SingleAdminDeleteGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SingleAdminDeleteGroupCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SingleAdminDeleteGroupCmd.MarkFlagRequired("namespace")
 }

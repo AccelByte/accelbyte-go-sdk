@@ -17,7 +17,7 @@ import (
 
 // CreatePaymentProviderConfigCmd represents the CreatePaymentProviderConfig command
 var CreatePaymentProviderConfigCmd = &cobra.Command{
-	Use:   "CreatePaymentProviderConfig",
+	Use:   "createPaymentProviderConfig",
 	Short: "Create payment provider config",
 	Long:  `Create payment provider config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,5 +46,5 @@ var CreatePaymentProviderConfigCmd = &cobra.Command{
 }
 
 func init() {
-	CreatePaymentProviderConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	CreatePaymentProviderConfigCmd.Flags().StringP("body", "", " ", "Body")
 }

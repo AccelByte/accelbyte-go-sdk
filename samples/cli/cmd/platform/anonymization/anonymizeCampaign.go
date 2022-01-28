@@ -15,7 +15,7 @@ import (
 
 // AnonymizeCampaignCmd represents the AnonymizeCampaign command
 var AnonymizeCampaignCmd = &cobra.Command{
-	Use:   "AnonymizeCampaign",
+	Use:   "anonymizeCampaign",
 	Short: "Anonymize campaign",
 	Long:  `Anonymize campaign`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var AnonymizeCampaignCmd = &cobra.Command{
 }
 
 func init() {
-	AnonymizeCampaignCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AnonymizeCampaignCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AnonymizeCampaignCmd.MarkFlagRequired("namespace")
-	AnonymizeCampaignCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AnonymizeCampaignCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AnonymizeCampaignCmd.MarkFlagRequired("userId")
 }

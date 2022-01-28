@@ -15,7 +15,7 @@ import (
 
 // GetHealthcheckInfoCmd represents the GetHealthcheckInfo command
 var GetHealthcheckInfoCmd = &cobra.Command{
-	Use:   "GetHealthcheckInfo",
+	Use:   "getHealthcheckInfo",
 	Short: "Get healthcheck info",
 	Long:  `Get healthcheck info`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -32,4 +32,7 @@ var GetHealthcheckInfoCmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

@@ -17,7 +17,7 @@ import (
 
 // CreateFulfillmentScriptCmd represents the CreateFulfillmentScript command
 var CreateFulfillmentScriptCmd = &cobra.Command{
-	Use:   "CreateFulfillmentScript",
+	Use:   "createFulfillmentScript",
 	Short: "Create fulfillment script",
 	Long:  `Create fulfillment script`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var CreateFulfillmentScriptCmd = &cobra.Command{
 }
 
 func init() {
-	CreateFulfillmentScriptCmd.Flags().StringP("body", "by", " ", "Body")
-	CreateFulfillmentScriptCmd.Flags().StringP("id", "id", " ", "Id")
+	CreateFulfillmentScriptCmd.Flags().StringP("body", "", " ", "Body")
+	CreateFulfillmentScriptCmd.Flags().StringP("id", "", " ", "Id")
 	_ = CreateFulfillmentScriptCmd.MarkFlagRequired("id")
 }

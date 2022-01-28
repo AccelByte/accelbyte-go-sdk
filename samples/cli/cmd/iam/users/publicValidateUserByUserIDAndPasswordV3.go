@@ -15,7 +15,7 @@ import (
 
 // PublicValidateUserByUserIDAndPasswordV3Cmd represents the PublicValidateUserByUserIDAndPasswordV3 command
 var PublicValidateUserByUserIDAndPasswordV3Cmd = &cobra.Command{
-	Use:   "PublicValidateUserByUserIDAndPasswordV3",
+	Use:   "publicValidateUserByUserIDAndPasswordV3",
 	Short: "Public validate user by user ID and password V3",
 	Long:  `Public validate user by user ID and password V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var PublicValidateUserByUserIDAndPasswordV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicValidateUserByUserIDAndPasswordV3Cmd.Flags().StringP("password", "pd", " ", "Password")
+	PublicValidateUserByUserIDAndPasswordV3Cmd.Flags().StringP("password", "", " ", "Password")
 	_ = PublicValidateUserByUserIDAndPasswordV3Cmd.MarkFlagRequired("password")
-	PublicValidateUserByUserIDAndPasswordV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicValidateUserByUserIDAndPasswordV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicValidateUserByUserIDAndPasswordV3Cmd.MarkFlagRequired("namespace")
-	PublicValidateUserByUserIDAndPasswordV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicValidateUserByUserIDAndPasswordV3Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicValidateUserByUserIDAndPasswordV3Cmd.MarkFlagRequired("userId")
 }

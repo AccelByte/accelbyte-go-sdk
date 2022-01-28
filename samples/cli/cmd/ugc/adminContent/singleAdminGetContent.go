@@ -15,7 +15,7 @@ import (
 
 // SingleAdminGetContentCmd represents the SingleAdminGetContent command
 var SingleAdminGetContentCmd = &cobra.Command{
-	Use:   "SingleAdminGetContent",
+	Use:   "singleAdminGetContent",
 	Short: "Single admin get content",
 	Long:  `Single admin get content`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,8 +43,8 @@ var SingleAdminGetContentCmd = &cobra.Command{
 }
 
 func init() {
-	SingleAdminGetContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SingleAdminGetContentCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SingleAdminGetContentCmd.MarkFlagRequired("namespace")
-	SingleAdminGetContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	SingleAdminGetContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	SingleAdminGetContentCmd.Flags().StringP("limit", "", "20", "Limit")
+	SingleAdminGetContentCmd.Flags().StringP("offset", "", "0", "Offset")
 }

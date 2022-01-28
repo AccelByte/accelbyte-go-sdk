@@ -15,7 +15,7 @@ import (
 
 // DeleteUserActivitiesHandlerCmd represents the DeleteUserActivitiesHandler command
 var DeleteUserActivitiesHandlerCmd = &cobra.Command{
-	Use:   "DeleteUserActivitiesHandler",
+	Use:   "deleteUserActivitiesHandler",
 	Short: "Delete user activities handler",
 	Long:  `Delete user activities handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var DeleteUserActivitiesHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteUserActivitiesHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteUserActivitiesHandlerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteUserActivitiesHandlerCmd.MarkFlagRequired("namespace")
-	DeleteUserActivitiesHandlerCmd.Flags().StringP("userId", "ud", " ", "User id")
+	DeleteUserActivitiesHandlerCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = DeleteUserActivitiesHandlerCmd.MarkFlagRequired("userId")
 }

@@ -15,7 +15,7 @@ import (
 
 // GetUserAppEntitlementByAppIdCmd represents the GetUserAppEntitlementByAppId command
 var GetUserAppEntitlementByAppIdCmd = &cobra.Command{
-	Use:   "GetUserAppEntitlementByAppId",
+	Use:   "getUserAppEntitlementByAppId",
 	Short: "Get user app entitlement by app id",
 	Long:  `Get user app entitlement by app id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,11 +45,11 @@ var GetUserAppEntitlementByAppIdCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserAppEntitlementByAppIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetUserAppEntitlementByAppIdCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetUserAppEntitlementByAppIdCmd.MarkFlagRequired("namespace")
-	GetUserAppEntitlementByAppIdCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetUserAppEntitlementByAppIdCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetUserAppEntitlementByAppIdCmd.MarkFlagRequired("userId")
-	GetUserAppEntitlementByAppIdCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	GetUserAppEntitlementByAppIdCmd.Flags().StringP("appId", "ad", " ", "App id")
+	GetUserAppEntitlementByAppIdCmd.Flags().BoolP("activeOnly", "", false, "Active only")
+	GetUserAppEntitlementByAppIdCmd.Flags().StringP("appId", "", " ", "App id")
 	_ = GetUserAppEntitlementByAppIdCmd.MarkFlagRequired("appId")
 }

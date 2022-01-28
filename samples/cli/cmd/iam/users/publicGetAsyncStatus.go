@@ -15,7 +15,7 @@ import (
 
 // PublicGetAsyncStatusCmd represents the PublicGetAsyncStatus command
 var PublicGetAsyncStatusCmd = &cobra.Command{
-	Use:   "PublicGetAsyncStatus",
+	Use:   "publicGetAsyncStatus",
 	Short: "Public get async status",
 	Long:  `Public get async status`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var PublicGetAsyncStatusCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetAsyncStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetAsyncStatusCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetAsyncStatusCmd.MarkFlagRequired("namespace")
-	PublicGetAsyncStatusCmd.Flags().StringP("requestId", "rd", " ", "Request id")
+	PublicGetAsyncStatusCmd.Flags().StringP("requestId", "", " ", "Request id")
 	_ = PublicGetAsyncStatusCmd.MarkFlagRequired("requestId")
 }

@@ -15,7 +15,7 @@ import (
 
 // AdminDeleteTagCmd represents the AdminDeleteTag command
 var AdminDeleteTagCmd = &cobra.Command{
-	Use:   "AdminDeleteTag",
+	Use:   "adminDeleteTag",
 	Short: "Admin delete tag",
 	Long:  `Admin delete tag`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var AdminDeleteTagCmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteTagCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminDeleteTagCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminDeleteTagCmd.MarkFlagRequired("namespace")
-	AdminDeleteTagCmd.Flags().StringP("tagId", "td", " ", "Tag id")
+	AdminDeleteTagCmd.Flags().StringP("tagId", "", " ", "Tag id")
 	_ = AdminDeleteTagCmd.MarkFlagRequired("tagId")
 }

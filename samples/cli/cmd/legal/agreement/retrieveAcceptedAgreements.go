@@ -15,7 +15,7 @@ import (
 
 // RetrieveAcceptedAgreementsCmd represents the RetrieveAcceptedAgreements command
 var RetrieveAcceptedAgreementsCmd = &cobra.Command{
-	Use:   "RetrieveAcceptedAgreements",
+	Use:   "retrieveAcceptedAgreements",
 	Short: "Retrieve accepted agreements",
 	Long:  `Retrieve accepted agreements`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var RetrieveAcceptedAgreementsCmd = &cobra.Command{
 }
 
 func init() {
-	RetrieveAcceptedAgreementsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	RetrieveAcceptedAgreementsCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = RetrieveAcceptedAgreementsCmd.MarkFlagRequired("userId")
 }

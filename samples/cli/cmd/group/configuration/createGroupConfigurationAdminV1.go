@@ -17,7 +17,7 @@ import (
 
 // CreateGroupConfigurationAdminV1Cmd represents the CreateGroupConfigurationAdminV1 command
 var CreateGroupConfigurationAdminV1Cmd = &cobra.Command{
-	Use:   "CreateGroupConfigurationAdminV1",
+	Use:   "createGroupConfigurationAdminV1",
 	Short: "Create group configuration admin V1",
 	Long:  `Create group configuration admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var CreateGroupConfigurationAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	CreateGroupConfigurationAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	CreateGroupConfigurationAdminV1Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = CreateGroupConfigurationAdminV1Cmd.MarkFlagRequired("body")
-	CreateGroupConfigurationAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateGroupConfigurationAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateGroupConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
 }

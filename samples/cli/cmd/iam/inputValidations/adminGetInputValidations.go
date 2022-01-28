@@ -15,7 +15,7 @@ import (
 
 // AdminGetInputValidationsCmd represents the AdminGetInputValidations command
 var AdminGetInputValidationsCmd = &cobra.Command{
-	Use:   "AdminGetInputValidations",
+	Use:   "adminGetInputValidations",
 	Short: "Admin get input validations",
 	Long:  `Admin get input validations`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,4 +33,7 @@ var AdminGetInputValidationsCmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

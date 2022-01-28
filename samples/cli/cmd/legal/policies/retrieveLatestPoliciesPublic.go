@@ -15,7 +15,7 @@ import (
 
 // RetrieveLatestPoliciesPublicCmd represents the RetrieveLatestPoliciesPublic command
 var RetrieveLatestPoliciesPublicCmd = &cobra.Command{
-	Use:   "RetrieveLatestPoliciesPublic",
+	Use:   "retrieveLatestPoliciesPublic",
 	Short: "Retrieve latest policies public",
 	Long:  `Retrieve latest policies public`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,10 +47,10 @@ var RetrieveLatestPoliciesPublicCmd = &cobra.Command{
 }
 
 func init() {
-	RetrieveLatestPoliciesPublicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	RetrieveLatestPoliciesPublicCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = RetrieveLatestPoliciesPublicCmd.MarkFlagRequired("namespace")
-	RetrieveLatestPoliciesPublicCmd.Flags().BoolP("alwaysIncludeDefault", "at", false, "Always include default")
-	RetrieveLatestPoliciesPublicCmd.Flags().BoolP("defaultOnEmpty", "dy", false, "Default on empty")
-	RetrieveLatestPoliciesPublicCmd.Flags().StringP("policyType", "pe", " ", "Policy type")
-	RetrieveLatestPoliciesPublicCmd.Flags().StringP("tags", "ts", " ", "Tags")
+	RetrieveLatestPoliciesPublicCmd.Flags().BoolP("alwaysIncludeDefault", "", false, "Always include default")
+	RetrieveLatestPoliciesPublicCmd.Flags().BoolP("defaultOnEmpty", "", false, "Default on empty")
+	RetrieveLatestPoliciesPublicCmd.Flags().StringP("policyType", "", " ", "Policy type")
+	RetrieveLatestPoliciesPublicCmd.Flags().StringP("tags", "", " ", "Tags")
 }

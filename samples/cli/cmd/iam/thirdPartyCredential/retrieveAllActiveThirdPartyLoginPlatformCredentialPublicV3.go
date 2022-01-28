@@ -15,7 +15,7 @@ import (
 
 // RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Cmd represents the RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3 command
 var RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Cmd = &cobra.Command{
-	Use:   "RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3",
+	Use:   "retrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3",
 	Short: "Retrieve all active third party login platform credential public V3",
 	Long:  `Retrieve all active third party login platform credential public V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Cmd = &cobra.Comma
 }
 
 func init() {
-	RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Cmd.MarkFlagRequired("namespace")
 }

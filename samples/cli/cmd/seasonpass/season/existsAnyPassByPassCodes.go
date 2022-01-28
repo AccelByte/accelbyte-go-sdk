@@ -16,7 +16,7 @@ import (
 
 // ExistsAnyPassByPassCodesCmd represents the ExistsAnyPassByPassCodes command
 var ExistsAnyPassByPassCodesCmd = &cobra.Command{
-	Use:   "ExistsAnyPassByPassCodes",
+	Use:   "existsAnyPassByPassCodes",
 	Short: "Exists any pass by pass codes",
 	Long:  `Exists any pass by pass codes`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +49,9 @@ var ExistsAnyPassByPassCodesCmd = &cobra.Command{
 }
 
 func init() {
-	ExistsAnyPassByPassCodesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ExistsAnyPassByPassCodesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ExistsAnyPassByPassCodesCmd.MarkFlagRequired("namespace")
-	ExistsAnyPassByPassCodesCmd.Flags().StringP("userId", "ud", " ", "User id")
+	ExistsAnyPassByPassCodesCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = ExistsAnyPassByPassCodesCmd.MarkFlagRequired("userId")
-	ExistsAnyPassByPassCodesCmd.Flags().StringP("passCodes", "ps", " ", "Pass codes")
+	ExistsAnyPassByPassCodesCmd.Flags().StringP("passCodes", "", " ", "Pass codes")
 }

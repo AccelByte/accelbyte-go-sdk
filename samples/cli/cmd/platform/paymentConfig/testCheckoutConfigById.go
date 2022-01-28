@@ -15,7 +15,7 @@ import (
 
 // TestCheckoutConfigByIdCmd represents the TestCheckoutConfigById command
 var TestCheckoutConfigByIdCmd = &cobra.Command{
-	Use:   "TestCheckoutConfigById",
+	Use:   "testCheckoutConfigById",
 	Short: "Test checkout config by id",
 	Long:  `Test checkout config by id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,7 +41,7 @@ var TestCheckoutConfigByIdCmd = &cobra.Command{
 }
 
 func init() {
-	TestCheckoutConfigByIdCmd.Flags().StringP("id", "id", " ", "Id")
+	TestCheckoutConfigByIdCmd.Flags().StringP("id", "", " ", "Id")
 	_ = TestCheckoutConfigByIdCmd.MarkFlagRequired("id")
-	TestCheckoutConfigByIdCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	TestCheckoutConfigByIdCmd.Flags().BoolP("sandbox", "", false, "Sandbox")
 }

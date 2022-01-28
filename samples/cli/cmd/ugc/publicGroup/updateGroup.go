@@ -17,7 +17,7 @@ import (
 
 // UpdateGroupCmd represents the UpdateGroup command
 var UpdateGroupCmd = &cobra.Command{
-	Use:   "UpdateGroup",
+	Use:   "updateGroup",
 	Short: "Update group",
 	Long:  `Update group`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,12 +52,12 @@ var UpdateGroupCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateGroupCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateGroupCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateGroupCmd.MarkFlagRequired("body")
-	UpdateGroupCmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	UpdateGroupCmd.Flags().StringP("groupId", "", " ", "Group id")
 	_ = UpdateGroupCmd.MarkFlagRequired("groupId")
-	UpdateGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateGroupCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateGroupCmd.MarkFlagRequired("namespace")
-	UpdateGroupCmd.Flags().StringP("userId", "ud", " ", "User id")
+	UpdateGroupCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = UpdateGroupCmd.MarkFlagRequired("userId")
 }

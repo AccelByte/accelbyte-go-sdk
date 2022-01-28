@@ -17,7 +17,7 @@ import (
 
 // CreateUserCmd represents the CreateUser command
 var CreateUserCmd = &cobra.Command{
-	Use:   "CreateUser",
+	Use:   "createUser",
 	Short: "Create user",
 	Long:  `Create user`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var CreateUserCmd = &cobra.Command{
 }
 
 func init() {
-	CreateUserCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateUserCmd.Flags().StringP("body", "", " ", "Body")
 	_ = CreateUserCmd.MarkFlagRequired("body")
-	CreateUserCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateUserCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateUserCmd.MarkFlagRequired("namespace")
 }

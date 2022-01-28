@@ -17,7 +17,7 @@ import (
 
 // SingleAdminUpdateChannelCmd represents the SingleAdminUpdateChannel command
 var SingleAdminUpdateChannelCmd = &cobra.Command{
-	Use:   "SingleAdminUpdateChannel",
+	Use:   "singleAdminUpdateChannel",
 	Short: "Single admin update channel",
 	Long:  `Single admin update channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var SingleAdminUpdateChannelCmd = &cobra.Command{
 }
 
 func init() {
-	SingleAdminUpdateChannelCmd.Flags().StringP("body", "by", " ", "Body")
+	SingleAdminUpdateChannelCmd.Flags().StringP("body", "", " ", "Body")
 	_ = SingleAdminUpdateChannelCmd.MarkFlagRequired("body")
-	SingleAdminUpdateChannelCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
+	SingleAdminUpdateChannelCmd.Flags().StringP("channelId", "", " ", "Channel id")
 	_ = SingleAdminUpdateChannelCmd.MarkFlagRequired("channelId")
-	SingleAdminUpdateChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SingleAdminUpdateChannelCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SingleAdminUpdateChannelCmd.MarkFlagRequired("namespace")
 }

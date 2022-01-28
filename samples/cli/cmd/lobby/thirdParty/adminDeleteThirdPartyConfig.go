@@ -15,7 +15,7 @@ import (
 
 // AdminDeleteThirdPartyConfigCmd represents the AdminDeleteThirdPartyConfig command
 var AdminDeleteThirdPartyConfigCmd = &cobra.Command{
-	Use:   "AdminDeleteThirdPartyConfig",
+	Use:   "adminDeleteThirdPartyConfig",
 	Short: "Admin delete third party config",
 	Long:  `Admin delete third party config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var AdminDeleteThirdPartyConfigCmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteThirdPartyConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminDeleteThirdPartyConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminDeleteThirdPartyConfigCmd.MarkFlagRequired("namespace")
 }

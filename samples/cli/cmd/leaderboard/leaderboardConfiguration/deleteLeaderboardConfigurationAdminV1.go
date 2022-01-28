@@ -15,7 +15,7 @@ import (
 
 // DeleteLeaderboardConfigurationAdminV1Cmd represents the DeleteLeaderboardConfigurationAdminV1 command
 var DeleteLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
-	Use:   "DeleteLeaderboardConfigurationAdminV1",
+	Use:   "deleteLeaderboardConfigurationAdminV1",
 	Short: "Delete leaderboard configuration admin V1",
 	Long:  `Delete leaderboard configuration admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var DeleteLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	DeleteLeaderboardConfigurationAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
+	DeleteLeaderboardConfigurationAdminV1Cmd.Flags().StringP("leaderboardCode", "", " ", "Leaderboard code")
 	_ = DeleteLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("leaderboardCode")
-	DeleteLeaderboardConfigurationAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteLeaderboardConfigurationAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
 }

@@ -15,7 +15,7 @@ import (
 
 // DeleteSessionCmd represents the DeleteSession command
 var DeleteSessionCmd = &cobra.Command{
-	Use:   "DeleteSession",
+	Use:   "deleteSession",
 	Short: "Delete session",
 	Long:  `Delete session`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var DeleteSessionCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteSessionCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteSessionCmd.MarkFlagRequired("namespace")
-	DeleteSessionCmd.Flags().StringP("sessionID", "sD", " ", "Session ID")
+	DeleteSessionCmd.Flags().StringP("sessionID", "", " ", "Session ID")
 	_ = DeleteSessionCmd.MarkFlagRequired("sessionID")
 }

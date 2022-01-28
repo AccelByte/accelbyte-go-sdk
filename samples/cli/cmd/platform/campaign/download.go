@@ -15,7 +15,7 @@ import (
 
 // DownloadCmd represents the Download command
 var DownloadCmd = &cobra.Command{
-	Use:   "Download",
+	Use:   "download",
 	Short: "Download",
 	Long:  `Download`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,9 +42,9 @@ var DownloadCmd = &cobra.Command{
 }
 
 func init() {
-	DownloadCmd.Flags().StringP("campaignId", "cd", " ", "Campaign id")
+	DownloadCmd.Flags().StringP("campaignId", "", " ", "Campaign id")
 	_ = DownloadCmd.MarkFlagRequired("campaignId")
-	DownloadCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DownloadCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DownloadCmd.MarkFlagRequired("namespace")
-	DownloadCmd.Flags().Int32P("batchNo", "bo", 0, "Batch no")
+	DownloadCmd.Flags().Int32P("batchNo", "", 0, "Batch no")
 }

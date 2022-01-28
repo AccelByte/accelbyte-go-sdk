@@ -15,7 +15,7 @@ import (
 
 // RetrievePoliciesCmd represents the RetrievePolicies command
 var RetrievePoliciesCmd = &cobra.Command{
-	Use:   "RetrievePolicies",
+	Use:   "retrievePolicies",
 	Short: "Retrieve policies",
 	Long:  `Retrieve policies`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var RetrievePoliciesCmd = &cobra.Command{
 }
 
 func init() {
-	RetrievePoliciesCmd.Flags().StringP("countryCode", "ce", " ", "Country code")
+	RetrievePoliciesCmd.Flags().StringP("countryCode", "", " ", "Country code")
 	_ = RetrievePoliciesCmd.MarkFlagRequired("countryCode")
 }

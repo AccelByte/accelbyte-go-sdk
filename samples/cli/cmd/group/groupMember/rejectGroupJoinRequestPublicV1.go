@@ -15,7 +15,7 @@ import (
 
 // RejectGroupJoinRequestPublicV1Cmd represents the RejectGroupJoinRequestPublicV1 command
 var RejectGroupJoinRequestPublicV1Cmd = &cobra.Command{
-	Use:   "RejectGroupJoinRequestPublicV1",
+	Use:   "rejectGroupJoinRequestPublicV1",
 	Short: "Reject group join request public V1",
 	Long:  `Reject group join request public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var RejectGroupJoinRequestPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	RejectGroupJoinRequestPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	RejectGroupJoinRequestPublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = RejectGroupJoinRequestPublicV1Cmd.MarkFlagRequired("namespace")
-	RejectGroupJoinRequestPublicV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	RejectGroupJoinRequestPublicV1Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = RejectGroupJoinRequestPublicV1Cmd.MarkFlagRequired("userId")
 }

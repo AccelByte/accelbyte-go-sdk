@@ -15,7 +15,7 @@ import (
 
 // PublishPolicyVersionCmd represents the PublishPolicyVersion command
 var PublishPolicyVersionCmd = &cobra.Command{
-	Use:   "PublishPolicyVersion",
+	Use:   "publishPolicyVersion",
 	Short: "Publish policy version",
 	Long:  `Publish policy version`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,7 +40,7 @@ var PublishPolicyVersionCmd = &cobra.Command{
 }
 
 func init() {
-	PublishPolicyVersionCmd.Flags().StringP("policyVersionId", "pd", " ", "Policy version id")
+	PublishPolicyVersionCmd.Flags().StringP("policyVersionId", "", " ", "Policy version id")
 	_ = PublishPolicyVersionCmd.MarkFlagRequired("policyVersionId")
-	PublishPolicyVersionCmd.Flags().BoolP("shouldNotify", "sy", false, "Should notify")
+	PublishPolicyVersionCmd.Flags().BoolP("shouldNotify", "", false, "Should notify")
 }

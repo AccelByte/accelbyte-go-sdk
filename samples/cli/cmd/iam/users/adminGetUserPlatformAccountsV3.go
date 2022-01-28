@@ -15,7 +15,7 @@ import (
 
 // AdminGetUserPlatformAccountsV3Cmd represents the AdminGetUserPlatformAccountsV3 command
 var AdminGetUserPlatformAccountsV3Cmd = &cobra.Command{
-	Use:   "AdminGetUserPlatformAccountsV3",
+	Use:   "adminGetUserPlatformAccountsV3",
 	Short: "Admin get user platform accounts V3",
 	Long:  `Admin get user platform accounts V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,11 +47,11 @@ var AdminGetUserPlatformAccountsV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetUserPlatformAccountsV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetUserPlatformAccountsV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetUserPlatformAccountsV3Cmd.MarkFlagRequired("namespace")
-	AdminGetUserPlatformAccountsV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminGetUserPlatformAccountsV3Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminGetUserPlatformAccountsV3Cmd.MarkFlagRequired("userId")
-	AdminGetUserPlatformAccountsV3Cmd.Flags().StringP("after", "ar", "0", "After")
-	AdminGetUserPlatformAccountsV3Cmd.Flags().StringP("before", "be", "0", "Before")
-	AdminGetUserPlatformAccountsV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	AdminGetUserPlatformAccountsV3Cmd.Flags().StringP("after", "", "0", "After")
+	AdminGetUserPlatformAccountsV3Cmd.Flags().StringP("before", "", "0", "Before")
+	AdminGetUserPlatformAccountsV3Cmd.Flags().Int64P("limit", "", 20, "Limit")
 }

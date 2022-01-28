@@ -15,7 +15,7 @@ import (
 
 // PublicGetAppCmd represents the PublicGetApp command
 var PublicGetAppCmd = &cobra.Command{
-	Use:   "PublicGetApp",
+	Use:   "publicGetApp",
 	Short: "Public get app",
 	Long:  `Public get app`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,11 +47,11 @@ var PublicGetAppCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetAppCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	PublicGetAppCmd.Flags().StringP("itemId", "", " ", "Item id")
 	_ = PublicGetAppCmd.MarkFlagRequired("itemId")
-	PublicGetAppCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetAppCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetAppCmd.MarkFlagRequired("namespace")
-	PublicGetAppCmd.Flags().StringP("language", "le", " ", "Language")
-	PublicGetAppCmd.Flags().StringP("region", "rn", " ", "Region")
-	PublicGetAppCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	PublicGetAppCmd.Flags().StringP("language", "", " ", "Language")
+	PublicGetAppCmd.Flags().StringP("region", "", " ", "Region")
+	PublicGetAppCmd.Flags().StringP("storeId", "", " ", "Store id")
 }

@@ -15,7 +15,7 @@ import (
 
 // ListImagesCmd represents the ListImages command
 var ListImagesCmd = &cobra.Command{
-	Use:   "ListImages",
+	Use:   "listImages",
 	Short: "List images",
 	Long:  `List images`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,11 +49,11 @@ var ListImagesCmd = &cobra.Command{
 }
 
 func init() {
-	ListImagesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ListImagesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ListImagesCmd.MarkFlagRequired("namespace")
-	ListImagesCmd.Flags().Int64P("count", "ct", 1, "Count")
-	ListImagesCmd.Flags().Int64P("offset", "ot", 0, "Offset")
-	ListImagesCmd.Flags().StringP("q", "qq", " ", "Q")
-	ListImagesCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
-	ListImagesCmd.Flags().StringP("sortDirection", "sn", " ", "Sort direction")
+	ListImagesCmd.Flags().Int64P("count", "", 1, "Count")
+	ListImagesCmd.Flags().Int64P("offset", "", 0, "Offset")
+	ListImagesCmd.Flags().StringP("q", "", " ", "Q")
+	ListImagesCmd.Flags().StringP("sortBy", "", " ", "Sort by")
+	ListImagesCmd.Flags().StringP("sortDirection", "", " ", "Sort direction")
 }

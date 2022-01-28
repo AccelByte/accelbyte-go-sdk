@@ -15,7 +15,7 @@ import (
 
 // GetConfigCmd represents the GetConfig command
 var GetConfigCmd = &cobra.Command{
-	Use:   "GetConfig",
+	Use:   "getConfig",
 	Short: "Get config",
 	Long:  `Get config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetConfigCmd.MarkFlagRequired("namespace")
 }

@@ -17,7 +17,7 @@ import (
 
 // SingleAdminUpdateContentS3Cmd represents the SingleAdminUpdateContentS3 command
 var SingleAdminUpdateContentS3Cmd = &cobra.Command{
-	Use:   "SingleAdminUpdateContentS3",
+	Use:   "singleAdminUpdateContentS3",
 	Short: "Single admin update content S3",
 	Long:  `Single admin update content S3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,12 +52,12 @@ var SingleAdminUpdateContentS3Cmd = &cobra.Command{
 }
 
 func init() {
-	SingleAdminUpdateContentS3Cmd.Flags().StringP("body", "by", " ", "Body")
+	SingleAdminUpdateContentS3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = SingleAdminUpdateContentS3Cmd.MarkFlagRequired("body")
-	SingleAdminUpdateContentS3Cmd.Flags().StringP("channelId", "cd", " ", "Channel id")
+	SingleAdminUpdateContentS3Cmd.Flags().StringP("channelId", "", " ", "Channel id")
 	_ = SingleAdminUpdateContentS3Cmd.MarkFlagRequired("channelId")
-	SingleAdminUpdateContentS3Cmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	SingleAdminUpdateContentS3Cmd.Flags().StringP("contentId", "", " ", "Content id")
 	_ = SingleAdminUpdateContentS3Cmd.MarkFlagRequired("contentId")
-	SingleAdminUpdateContentS3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SingleAdminUpdateContentS3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SingleAdminUpdateContentS3Cmd.MarkFlagRequired("namespace")
 }

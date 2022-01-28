@@ -17,7 +17,7 @@ import (
 
 // CloneSeasonCmd represents the CloneSeason command
 var CloneSeasonCmd = &cobra.Command{
-	Use:   "CloneSeason",
+	Use:   "cloneSeason",
 	Short: "Clone season",
 	Long:  `Clone season`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var CloneSeasonCmd = &cobra.Command{
 }
 
 func init() {
-	CloneSeasonCmd.Flags().StringP("body", "by", " ", "Body")
-	CloneSeasonCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CloneSeasonCmd.Flags().StringP("body", "", " ", "Body")
+	CloneSeasonCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CloneSeasonCmd.MarkFlagRequired("namespace")
-	CloneSeasonCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	CloneSeasonCmd.Flags().StringP("seasonId", "", " ", "Season id")
 	_ = CloneSeasonCmd.MarkFlagRequired("seasonId")
 }

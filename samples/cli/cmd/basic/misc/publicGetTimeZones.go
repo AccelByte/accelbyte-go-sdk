@@ -15,7 +15,7 @@ import (
 
 // PublicGetTimeZonesCmd represents the PublicGetTimeZones command
 var PublicGetTimeZonesCmd = &cobra.Command{
-	Use:   "PublicGetTimeZones",
+	Use:   "publicGetTimeZones",
 	Short: "Public get time zones",
 	Long:  `Public get time zones`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var PublicGetTimeZonesCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetTimeZonesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetTimeZonesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetTimeZonesCmd.MarkFlagRequired("namespace")
 }

@@ -15,7 +15,7 @@ import (
 
 // GetCurrentWeekLeaderboardRankingAdminV1Cmd represents the GetCurrentWeekLeaderboardRankingAdminV1 command
 var GetCurrentWeekLeaderboardRankingAdminV1Cmd = &cobra.Command{
-	Use:   "GetCurrentWeekLeaderboardRankingAdminV1",
+	Use:   "getCurrentWeekLeaderboardRankingAdminV1",
 	Short: "Get current week leaderboard ranking admin V1",
 	Long:  `Get current week leaderboard ranking admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,10 +45,10 @@ var GetCurrentWeekLeaderboardRankingAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetCurrentWeekLeaderboardRankingAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
+	GetCurrentWeekLeaderboardRankingAdminV1Cmd.Flags().StringP("leaderboardCode", "", " ", "Leaderboard code")
 	_ = GetCurrentWeekLeaderboardRankingAdminV1Cmd.MarkFlagRequired("leaderboardCode")
-	GetCurrentWeekLeaderboardRankingAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetCurrentWeekLeaderboardRankingAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetCurrentWeekLeaderboardRankingAdminV1Cmd.MarkFlagRequired("namespace")
-	GetCurrentWeekLeaderboardRankingAdminV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	GetCurrentWeekLeaderboardRankingAdminV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetCurrentWeekLeaderboardRankingAdminV1Cmd.Flags().Int64P("limit", "", 20, "Limit")
+	GetCurrentWeekLeaderboardRankingAdminV1Cmd.Flags().Int64P("offset", "", 0, "Offset")
 }

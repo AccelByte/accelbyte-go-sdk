@@ -15,7 +15,7 @@ import (
 
 // AcceptVersionedPolicyCmd represents the AcceptVersionedPolicy command
 var AcceptVersionedPolicyCmd = &cobra.Command{
-	Use:   "AcceptVersionedPolicy",
+	Use:   "acceptVersionedPolicy",
 	Short: "Accept versioned policy",
 	Long:  `Accept versioned policy`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var AcceptVersionedPolicyCmd = &cobra.Command{
 }
 
 func init() {
-	AcceptVersionedPolicyCmd.Flags().StringP("localizedPolicyVersionId", "ld", " ", "Localized policy version id")
+	AcceptVersionedPolicyCmd.Flags().StringP("localizedPolicyVersionId", "", " ", "Localized policy version id")
 	_ = AcceptVersionedPolicyCmd.MarkFlagRequired("localizedPolicyVersionId")
 }

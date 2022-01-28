@@ -16,7 +16,7 @@ import (
 
 // SaveUserRolesCmd represents the SaveUserRoles command
 var SaveUserRolesCmd = &cobra.Command{
-	Use:   "SaveUserRoles",
+	Use:   "saveUserRoles",
 	Short: "Save user roles",
 	Long:  `Save user roles`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,10 +48,10 @@ var SaveUserRolesCmd = &cobra.Command{
 }
 
 func init() {
-	SaveUserRolesCmd.Flags().StringP("body", "by", " ", "Body")
+	SaveUserRolesCmd.Flags().StringP("body", "", " ", "Body")
 	_ = SaveUserRolesCmd.MarkFlagRequired("body")
-	SaveUserRolesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SaveUserRolesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SaveUserRolesCmd.MarkFlagRequired("namespace")
-	SaveUserRolesCmd.Flags().StringP("userId", "ud", " ", "User id")
+	SaveUserRolesCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = SaveUserRolesCmd.MarkFlagRequired("userId")
 }

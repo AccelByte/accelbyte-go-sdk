@@ -17,7 +17,7 @@ import (
 
 // AdminCreateThirdPartyConfigCmd represents the AdminCreateThirdPartyConfig command
 var AdminCreateThirdPartyConfigCmd = &cobra.Command{
-	Use:   "AdminCreateThirdPartyConfig",
+	Use:   "adminCreateThirdPartyConfig",
 	Short: "Admin create third party config",
 	Long:  `Admin create third party config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var AdminCreateThirdPartyConfigCmd = &cobra.Command{
 }
 
 func init() {
-	AdminCreateThirdPartyConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	AdminCreateThirdPartyConfigCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminCreateThirdPartyConfigCmd.MarkFlagRequired("body")
-	AdminCreateThirdPartyConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminCreateThirdPartyConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminCreateThirdPartyConfigCmd.MarkFlagRequired("namespace")
 }

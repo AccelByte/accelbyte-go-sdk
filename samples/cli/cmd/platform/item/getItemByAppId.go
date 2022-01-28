@@ -15,7 +15,7 @@ import (
 
 // GetItemByAppIdCmd represents the GetItemByAppId command
 var GetItemByAppIdCmd = &cobra.Command{
-	Use:   "GetItemByAppId",
+	Use:   "getItemByAppId",
 	Short: "Get item by app id",
 	Long:  `Get item by app id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,10 +45,10 @@ var GetItemByAppIdCmd = &cobra.Command{
 }
 
 func init() {
-	GetItemByAppIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetItemByAppIdCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetItemByAppIdCmd.MarkFlagRequired("namespace")
-	GetItemByAppIdCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	GetItemByAppIdCmd.Flags().StringP("storeId", "sd", " ", "Store id")
-	GetItemByAppIdCmd.Flags().StringP("appId", "ad", " ", "App id")
+	GetItemByAppIdCmd.Flags().BoolP("activeOnly", "", false, "Active only")
+	GetItemByAppIdCmd.Flags().StringP("storeId", "", " ", "Store id")
+	GetItemByAppIdCmd.Flags().StringP("appId", "", " ", "App id")
 	_ = GetItemByAppIdCmd.MarkFlagRequired("appId")
 }

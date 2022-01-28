@@ -15,7 +15,7 @@ import (
 
 // AdminRemoveRoleAdminV3Cmd represents the AdminRemoveRoleAdminV3 command
 var AdminRemoveRoleAdminV3Cmd = &cobra.Command{
-	Use:   "AdminRemoveRoleAdminV3",
+	Use:   "adminRemoveRoleAdminV3",
 	Short: "Admin remove role admin V3",
 	Long:  `Admin remove role admin V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var AdminRemoveRoleAdminV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminRemoveRoleAdminV3Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	AdminRemoveRoleAdminV3Cmd.Flags().StringP("roleId", "", " ", "Role id")
 	_ = AdminRemoveRoleAdminV3Cmd.MarkFlagRequired("roleId")
 }

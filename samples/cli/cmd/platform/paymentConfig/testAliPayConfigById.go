@@ -15,7 +15,7 @@ import (
 
 // TestAliPayConfigByIdCmd represents the TestAliPayConfigById command
 var TestAliPayConfigByIdCmd = &cobra.Command{
-	Use:   "TestAliPayConfigById",
+	Use:   "testAliPayConfigById",
 	Short: "Test ali pay config by id",
 	Long:  `Test ali pay config by id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,7 +41,7 @@ var TestAliPayConfigByIdCmd = &cobra.Command{
 }
 
 func init() {
-	TestAliPayConfigByIdCmd.Flags().StringP("id", "id", " ", "Id")
+	TestAliPayConfigByIdCmd.Flags().StringP("id", "", " ", "Id")
 	_ = TestAliPayConfigByIdCmd.MarkFlagRequired("id")
-	TestAliPayConfigByIdCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	TestAliPayConfigByIdCmd.Flags().BoolP("sandbox", "", false, "Sandbox")
 }

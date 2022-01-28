@@ -15,7 +15,7 @@ import (
 
 // AcceptGroupJoinRequestPublicV1Cmd represents the AcceptGroupJoinRequestPublicV1 command
 var AcceptGroupJoinRequestPublicV1Cmd = &cobra.Command{
-	Use:   "AcceptGroupJoinRequestPublicV1",
+	Use:   "acceptGroupJoinRequestPublicV1",
 	Short: "Accept group join request public V1",
 	Long:  `Accept group join request public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var AcceptGroupJoinRequestPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	AcceptGroupJoinRequestPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AcceptGroupJoinRequestPublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AcceptGroupJoinRequestPublicV1Cmd.MarkFlagRequired("namespace")
-	AcceptGroupJoinRequestPublicV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AcceptGroupJoinRequestPublicV1Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AcceptGroupJoinRequestPublicV1Cmd.MarkFlagRequired("userId")
 }

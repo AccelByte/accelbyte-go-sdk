@@ -15,7 +15,7 @@ import (
 
 // GetUserPlatformAccountsCmd represents the GetUserPlatformAccounts command
 var GetUserPlatformAccountsCmd = &cobra.Command{
-	Use:   "GetUserPlatformAccounts",
+	Use:   "getUserPlatformAccounts",
 	Short: "Get user platform accounts",
 	Long:  `Get user platform accounts`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetUserPlatformAccountsCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserPlatformAccountsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetUserPlatformAccountsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetUserPlatformAccountsCmd.MarkFlagRequired("namespace")
-	GetUserPlatformAccountsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetUserPlatformAccountsCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetUserPlatformAccountsCmd.MarkFlagRequired("userId")
 }

@@ -15,7 +15,7 @@ import (
 
 // DeleteEpicGamesIAPConfigCmd represents the DeleteEpicGamesIAPConfig command
 var DeleteEpicGamesIAPConfigCmd = &cobra.Command{
-	Use:   "DeleteEpicGamesIAPConfig",
+	Use:   "deleteEpicGamesIAPConfig",
 	Short: "Delete epic games IAP config",
 	Long:  `Delete epic games IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var DeleteEpicGamesIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteEpicGamesIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteEpicGamesIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteEpicGamesIAPConfigCmd.MarkFlagRequired("namespace")
 }

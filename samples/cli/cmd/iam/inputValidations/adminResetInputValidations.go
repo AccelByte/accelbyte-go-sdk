@@ -15,7 +15,7 @@ import (
 
 // AdminResetInputValidationsCmd represents the AdminResetInputValidations command
 var AdminResetInputValidationsCmd = &cobra.Command{
-	Use:   "AdminResetInputValidations",
+	Use:   "adminResetInputValidations",
 	Short: "Admin reset input validations",
 	Long:  `Admin reset input validations`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var AdminResetInputValidationsCmd = &cobra.Command{
 }
 
 func init() {
-	AdminResetInputValidationsCmd.Flags().StringP("field", "fd", " ", "Field")
+	AdminResetInputValidationsCmd.Flags().StringP("field", "", " ", "Field")
 	_ = AdminResetInputValidationsCmd.MarkFlagRequired("field")
 }

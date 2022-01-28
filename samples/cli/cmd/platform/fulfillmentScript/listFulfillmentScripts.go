@@ -15,7 +15,7 @@ import (
 
 // ListFulfillmentScriptsCmd represents the ListFulfillmentScripts command
 var ListFulfillmentScriptsCmd = &cobra.Command{
-	Use:   "ListFulfillmentScripts",
+	Use:   "listFulfillmentScripts",
 	Short: "List fulfillment scripts",
 	Long:  `List fulfillment scripts`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,4 +33,7 @@ var ListFulfillmentScriptsCmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

@@ -17,7 +17,7 @@ import (
 
 // UpdateImageCmd represents the UpdateImage command
 var UpdateImageCmd = &cobra.Command{
-	Use:   "UpdateImage",
+	Use:   "updateImage",
 	Short: "Update image",
 	Long:  `Update image`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,6 +45,6 @@ var UpdateImageCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateImageCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateImageCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateImageCmd.MarkFlagRequired("body")
 }

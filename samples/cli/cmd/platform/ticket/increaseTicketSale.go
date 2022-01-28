@@ -17,7 +17,7 @@ import (
 
 // IncreaseTicketSaleCmd represents the IncreaseTicketSale command
 var IncreaseTicketSaleCmd = &cobra.Command{
-	Use:   "IncreaseTicketSale",
+	Use:   "increaseTicketSale",
 	Short: "Increase ticket sale",
 	Long:  `Increase ticket sale`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var IncreaseTicketSaleCmd = &cobra.Command{
 }
 
 func init() {
-	IncreaseTicketSaleCmd.Flags().StringP("body", "by", " ", "Body")
-	IncreaseTicketSaleCmd.Flags().StringP("boothName", "be", " ", "Booth name")
+	IncreaseTicketSaleCmd.Flags().StringP("body", "", " ", "Body")
+	IncreaseTicketSaleCmd.Flags().StringP("boothName", "", " ", "Booth name")
 	_ = IncreaseTicketSaleCmd.MarkFlagRequired("boothName")
-	IncreaseTicketSaleCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	IncreaseTicketSaleCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = IncreaseTicketSaleCmd.MarkFlagRequired("namespace")
 }

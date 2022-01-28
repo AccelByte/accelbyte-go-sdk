@@ -15,7 +15,7 @@ import (
 
 // AdminRetrieveEligibilitiesCmd represents the AdminRetrieveEligibilities command
 var AdminRetrieveEligibilitiesCmd = &cobra.Command{
-	Use:   "AdminRetrieveEligibilities",
+	Use:   "adminRetrieveEligibilities",
 	Short: "Admin retrieve eligibilities",
 	Long:  `Admin retrieve eligibilities`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,13 +47,13 @@ var AdminRetrieveEligibilitiesCmd = &cobra.Command{
 }
 
 func init() {
-	AdminRetrieveEligibilitiesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminRetrieveEligibilitiesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminRetrieveEligibilitiesCmd.MarkFlagRequired("namespace")
-	AdminRetrieveEligibilitiesCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminRetrieveEligibilitiesCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminRetrieveEligibilitiesCmd.MarkFlagRequired("userId")
-	AdminRetrieveEligibilitiesCmd.Flags().StringP("publisherUserId", "pd", " ", "Publisher user id")
-	AdminRetrieveEligibilitiesCmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	AdminRetrieveEligibilitiesCmd.Flags().StringP("publisherUserId", "", " ", "Publisher user id")
+	AdminRetrieveEligibilitiesCmd.Flags().StringP("clientId", "", " ", "Client id")
 	_ = AdminRetrieveEligibilitiesCmd.MarkFlagRequired("clientId")
-	AdminRetrieveEligibilitiesCmd.Flags().StringP("countryCode", "ce", " ", "Country code")
+	AdminRetrieveEligibilitiesCmd.Flags().StringP("countryCode", "", " ", "Country code")
 	_ = AdminRetrieveEligibilitiesCmd.MarkFlagRequired("countryCode")
 }

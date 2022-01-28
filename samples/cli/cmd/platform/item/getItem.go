@@ -15,7 +15,7 @@ import (
 
 // GetItemCmd represents the GetItem command
 var GetItemCmd = &cobra.Command{
-	Use:   "GetItem",
+	Use:   "getItem",
 	Short: "Get item",
 	Long:  `Get item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,10 +45,10 @@ var GetItemCmd = &cobra.Command{
 }
 
 func init() {
-	GetItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	GetItemCmd.Flags().StringP("itemId", "", " ", "Item id")
 	_ = GetItemCmd.MarkFlagRequired("itemId")
-	GetItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetItemCmd.MarkFlagRequired("namespace")
-	GetItemCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	GetItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	GetItemCmd.Flags().BoolP("activeOnly", "", false, "Active only")
+	GetItemCmd.Flags().StringP("storeId", "", " ", "Store id")
 }

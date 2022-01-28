@@ -16,7 +16,7 @@ import (
 
 // UpdateStadiaJsonConfigFileCmd represents the UpdateStadiaJsonConfigFile command
 var UpdateStadiaJsonConfigFileCmd = &cobra.Command{
-	Use:   "UpdateStadiaJsonConfigFile",
+	Use:   "updateStadiaJsonConfigFile",
 	Short: "Update stadia json config file",
 	Long:  `Update stadia json config file`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,7 +47,7 @@ var UpdateStadiaJsonConfigFileCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateStadiaJsonConfigFileCmd.Flags().StringP("file", "fe", " ", "File")
-	UpdateStadiaJsonConfigFileCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateStadiaJsonConfigFileCmd.Flags().StringP("file", "", " ", "File")
+	UpdateStadiaJsonConfigFileCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateStadiaJsonConfigFileCmd.MarkFlagRequired("namespace")
 }

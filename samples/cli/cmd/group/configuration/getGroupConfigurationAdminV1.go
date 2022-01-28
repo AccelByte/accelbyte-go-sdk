@@ -15,7 +15,7 @@ import (
 
 // GetGroupConfigurationAdminV1Cmd represents the GetGroupConfigurationAdminV1 command
 var GetGroupConfigurationAdminV1Cmd = &cobra.Command{
-	Use:   "GetGroupConfigurationAdminV1",
+	Use:   "getGroupConfigurationAdminV1",
 	Short: "Get group configuration admin V1",
 	Long:  `Get group configuration admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetGroupConfigurationAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetGroupConfigurationAdminV1Cmd.Flags().StringP("configurationCode", "ce", " ", "Configuration code")
+	GetGroupConfigurationAdminV1Cmd.Flags().StringP("configurationCode", "", " ", "Configuration code")
 	_ = GetGroupConfigurationAdminV1Cmd.MarkFlagRequired("configurationCode")
-	GetGroupConfigurationAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetGroupConfigurationAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetGroupConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
 }

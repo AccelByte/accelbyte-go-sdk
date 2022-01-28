@@ -17,7 +17,7 @@ import (
 
 // SendSpecificUserTemplatedNotificationV1AdminCmd represents the SendSpecificUserTemplatedNotificationV1Admin command
 var SendSpecificUserTemplatedNotificationV1AdminCmd = &cobra.Command{
-	Use:   "SendSpecificUserTemplatedNotificationV1Admin",
+	Use:   "sendSpecificUserTemplatedNotificationV1Admin",
 	Short: "Send specific user templated notification V1 admin",
 	Long:  `Send specific user templated notification V1 admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var SendSpecificUserTemplatedNotificationV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	SendSpecificUserTemplatedNotificationV1AdminCmd.Flags().StringP("body", "by", " ", "Body")
+	SendSpecificUserTemplatedNotificationV1AdminCmd.Flags().StringP("body", "", " ", "Body")
 	_ = SendSpecificUserTemplatedNotificationV1AdminCmd.MarkFlagRequired("body")
-	SendSpecificUserTemplatedNotificationV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SendSpecificUserTemplatedNotificationV1AdminCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SendSpecificUserTemplatedNotificationV1AdminCmd.MarkFlagRequired("namespace")
-	SendSpecificUserTemplatedNotificationV1AdminCmd.Flags().StringP("userId", "ud", " ", "User id")
+	SendSpecificUserTemplatedNotificationV1AdminCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = SendSpecificUserTemplatedNotificationV1AdminCmd.MarkFlagRequired("userId")
 }

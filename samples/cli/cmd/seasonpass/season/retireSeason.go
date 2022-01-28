@@ -15,7 +15,7 @@ import (
 
 // RetireSeasonCmd represents the RetireSeason command
 var RetireSeasonCmd = &cobra.Command{
-	Use:   "RetireSeason",
+	Use:   "retireSeason",
 	Short: "Retire season",
 	Long:  `Retire season`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,9 +43,9 @@ var RetireSeasonCmd = &cobra.Command{
 }
 
 func init() {
-	RetireSeasonCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	RetireSeasonCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = RetireSeasonCmd.MarkFlagRequired("namespace")
-	RetireSeasonCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	RetireSeasonCmd.Flags().StringP("seasonId", "", " ", "Season id")
 	_ = RetireSeasonCmd.MarkFlagRequired("seasonId")
-	RetireSeasonCmd.Flags().BoolP("force", "fe", false, "Force")
+	RetireSeasonCmd.Flags().BoolP("force", "", false, "Force")
 }

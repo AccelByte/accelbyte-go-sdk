@@ -17,7 +17,7 @@ import (
 
 // DequeueSessionHandlerCmd represents the DequeueSessionHandler command
 var DequeueSessionHandlerCmd = &cobra.Command{
-	Use:   "DequeueSessionHandler",
+	Use:   "dequeueSessionHandler",
 	Short: "Dequeue session handler",
 	Long:  `Dequeue session handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var DequeueSessionHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	DequeueSessionHandlerCmd.Flags().StringP("body", "by", " ", "Body")
+	DequeueSessionHandlerCmd.Flags().StringP("body", "", " ", "Body")
 	_ = DequeueSessionHandlerCmd.MarkFlagRequired("body")
-	DequeueSessionHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DequeueSessionHandlerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DequeueSessionHandlerCmd.MarkFlagRequired("namespace")
 }

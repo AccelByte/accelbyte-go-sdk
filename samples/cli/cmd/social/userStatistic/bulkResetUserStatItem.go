@@ -17,7 +17,7 @@ import (
 
 // BulkResetUserStatItemCmd represents the BulkResetUserStatItem command
 var BulkResetUserStatItemCmd = &cobra.Command{
-	Use:   "BulkResetUserStatItem",
+	Use:   "bulkResetUserStatItem",
 	Short: "Bulk reset user stat item",
 	Long:  `Bulk reset user stat item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var BulkResetUserStatItemCmd = &cobra.Command{
 }
 
 func init() {
-	BulkResetUserStatItemCmd.Flags().StringP("body", "by", " ", "Body")
-	BulkResetUserStatItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	BulkResetUserStatItemCmd.Flags().StringP("body", "", " ", "Body")
+	BulkResetUserStatItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = BulkResetUserStatItemCmd.MarkFlagRequired("namespace")
 }

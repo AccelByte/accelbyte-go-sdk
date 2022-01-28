@@ -17,7 +17,7 @@ import (
 
 // UpdateUserOrderStatusCmd represents the UpdateUserOrderStatus command
 var UpdateUserOrderStatusCmd = &cobra.Command{
-	Use:   "UpdateUserOrderStatus",
+	Use:   "updateUserOrderStatus",
 	Short: "Update user order status",
 	Long:  `Update user order status`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,11 +52,11 @@ var UpdateUserOrderStatusCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateUserOrderStatusCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateUserOrderStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateUserOrderStatusCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateUserOrderStatusCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateUserOrderStatusCmd.MarkFlagRequired("namespace")
-	UpdateUserOrderStatusCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
+	UpdateUserOrderStatusCmd.Flags().StringP("orderNo", "", " ", "Order no")
 	_ = UpdateUserOrderStatusCmd.MarkFlagRequired("orderNo")
-	UpdateUserOrderStatusCmd.Flags().StringP("userId", "ud", " ", "User id")
+	UpdateUserOrderStatusCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = UpdateUserOrderStatusCmd.MarkFlagRequired("userId")
 }

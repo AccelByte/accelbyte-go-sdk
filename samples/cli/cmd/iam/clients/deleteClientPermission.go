@@ -15,7 +15,7 @@ import (
 
 // DeleteClientPermissionCmd represents the DeleteClientPermission command
 var DeleteClientPermissionCmd = &cobra.Command{
-	Use:   "DeleteClientPermission",
+	Use:   "deleteClientPermission",
 	Short: "Delete client permission",
 	Long:  `Delete client permission`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var DeleteClientPermissionCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteClientPermissionCmd.Flags().Int64P("action", "an", -1, "Action")
+	DeleteClientPermissionCmd.Flags().Int64P("action", "", -1, "Action")
 	_ = DeleteClientPermissionCmd.MarkFlagRequired("action")
-	DeleteClientPermissionCmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	DeleteClientPermissionCmd.Flags().StringP("clientId", "", " ", "Client id")
 	_ = DeleteClientPermissionCmd.MarkFlagRequired("clientId")
-	DeleteClientPermissionCmd.Flags().StringP("resource", "re", " ", "Resource")
+	DeleteClientPermissionCmd.Flags().StringP("resource", "", " ", "Resource")
 	_ = DeleteClientPermissionCmd.MarkFlagRequired("resource")
 }

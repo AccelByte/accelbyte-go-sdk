@@ -15,7 +15,7 @@ import (
 
 // PublicGetRoleV3Cmd represents the PublicGetRoleV3 command
 var PublicGetRoleV3Cmd = &cobra.Command{
-	Use:   "PublicGetRoleV3",
+	Use:   "publicGetRoleV3",
 	Short: "Public get role V3",
 	Long:  `Public get role V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var PublicGetRoleV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetRoleV3Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	PublicGetRoleV3Cmd.Flags().StringP("roleId", "", " ", "Role id")
 	_ = PublicGetRoleV3Cmd.MarkFlagRequired("roleId")
 }

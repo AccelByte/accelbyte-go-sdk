@@ -15,7 +15,7 @@ import (
 
 // ResetUserSeasonCmd represents the ResetUserSeason command
 var ResetUserSeasonCmd = &cobra.Command{
-	Use:   "ResetUserSeason",
+	Use:   "resetUserSeason",
 	Short: "Reset user season",
 	Long:  `Reset user season`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var ResetUserSeasonCmd = &cobra.Command{
 }
 
 func init() {
-	ResetUserSeasonCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ResetUserSeasonCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ResetUserSeasonCmd.MarkFlagRequired("namespace")
-	ResetUserSeasonCmd.Flags().StringP("userId", "ud", " ", "User id")
+	ResetUserSeasonCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = ResetUserSeasonCmd.MarkFlagRequired("userId")
 }

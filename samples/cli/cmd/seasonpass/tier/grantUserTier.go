@@ -17,7 +17,7 @@ import (
 
 // GrantUserTierCmd represents the GrantUserTier command
 var GrantUserTierCmd = &cobra.Command{
-	Use:   "GrantUserTier",
+	Use:   "grantUserTier",
 	Short: "Grant user tier",
 	Long:  `Grant user tier`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var GrantUserTierCmd = &cobra.Command{
 }
 
 func init() {
-	GrantUserTierCmd.Flags().StringP("body", "by", " ", "Body")
-	GrantUserTierCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GrantUserTierCmd.Flags().StringP("body", "", " ", "Body")
+	GrantUserTierCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GrantUserTierCmd.MarkFlagRequired("namespace")
-	GrantUserTierCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GrantUserTierCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GrantUserTierCmd.MarkFlagRequired("userId")
 }

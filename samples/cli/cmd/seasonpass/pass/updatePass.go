@@ -17,7 +17,7 @@ import (
 
 // UpdatePassCmd represents the UpdatePass command
 var UpdatePassCmd = &cobra.Command{
-	Use:   "UpdatePass",
+	Use:   "updatePass",
 	Short: "Update pass",
 	Long:  `Update pass`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,11 +52,11 @@ var UpdatePassCmd = &cobra.Command{
 }
 
 func init() {
-	UpdatePassCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdatePassCmd.Flags().StringP("code", "ce", " ", "Code")
+	UpdatePassCmd.Flags().StringP("body", "", " ", "Body")
+	UpdatePassCmd.Flags().StringP("code", "", " ", "Code")
 	_ = UpdatePassCmd.MarkFlagRequired("code")
-	UpdatePassCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdatePassCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdatePassCmd.MarkFlagRequired("namespace")
-	UpdatePassCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	UpdatePassCmd.Flags().StringP("seasonId", "", " ", "Season id")
 	_ = UpdatePassCmd.MarkFlagRequired("seasonId")
 }

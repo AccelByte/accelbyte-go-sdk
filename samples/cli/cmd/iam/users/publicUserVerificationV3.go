@@ -17,7 +17,7 @@ import (
 
 // PublicUserVerificationV3Cmd represents the PublicUserVerificationV3 command
 var PublicUserVerificationV3Cmd = &cobra.Command{
-	Use:   "PublicUserVerificationV3",
+	Use:   "publicUserVerificationV3",
 	Short: "Public user verification V3",
 	Long:  `Public user verification V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var PublicUserVerificationV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicUserVerificationV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	PublicUserVerificationV3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = PublicUserVerificationV3Cmd.MarkFlagRequired("body")
-	PublicUserVerificationV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicUserVerificationV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicUserVerificationV3Cmd.MarkFlagRequired("namespace")
 }

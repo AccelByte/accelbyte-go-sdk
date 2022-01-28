@@ -15,7 +15,7 @@ import (
 
 // GetPaymentPublicConfigCmd represents the GetPaymentPublicConfig command
 var GetPaymentPublicConfigCmd = &cobra.Command{
-	Use:   "GetPaymentPublicConfig",
+	Use:   "getPaymentPublicConfig",
 	Short: "Get payment public config",
 	Long:  `Get payment public config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,11 +45,11 @@ var GetPaymentPublicConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetPaymentPublicConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetPaymentPublicConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetPaymentPublicConfigCmd.MarkFlagRequired("namespace")
-	GetPaymentPublicConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
-	GetPaymentPublicConfigCmd.Flags().StringP("paymentProvider", "pr", " ", "Payment provider")
+	GetPaymentPublicConfigCmd.Flags().BoolP("sandbox", "", false, "Sandbox")
+	GetPaymentPublicConfigCmd.Flags().StringP("paymentProvider", "", " ", "Payment provider")
 	_ = GetPaymentPublicConfigCmd.MarkFlagRequired("paymentProvider")
-	GetPaymentPublicConfigCmd.Flags().StringP("region", "rn", " ", "Region")
+	GetPaymentPublicConfigCmd.Flags().StringP("region", "", " ", "Region")
 	_ = GetPaymentPublicConfigCmd.MarkFlagRequired("region")
 }

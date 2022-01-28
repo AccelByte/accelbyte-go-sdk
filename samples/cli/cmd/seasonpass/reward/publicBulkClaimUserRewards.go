@@ -15,7 +15,7 @@ import (
 
 // PublicBulkClaimUserRewardsCmd represents the PublicBulkClaimUserRewards command
 var PublicBulkClaimUserRewardsCmd = &cobra.Command{
-	Use:   "PublicBulkClaimUserRewards",
+	Use:   "publicBulkClaimUserRewards",
 	Short: "Public bulk claim user rewards",
 	Long:  `Public bulk claim user rewards`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var PublicBulkClaimUserRewardsCmd = &cobra.Command{
 }
 
 func init() {
-	PublicBulkClaimUserRewardsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicBulkClaimUserRewardsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicBulkClaimUserRewardsCmd.MarkFlagRequired("namespace")
-	PublicBulkClaimUserRewardsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicBulkClaimUserRewardsCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicBulkClaimUserRewardsCmd.MarkFlagRequired("userId")
 }

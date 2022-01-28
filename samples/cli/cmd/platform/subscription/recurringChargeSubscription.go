@@ -15,7 +15,7 @@ import (
 
 // RecurringChargeSubscriptionCmd represents the RecurringChargeSubscription command
 var RecurringChargeSubscriptionCmd = &cobra.Command{
-	Use:   "RecurringChargeSubscription",
+	Use:   "recurringChargeSubscription",
 	Short: "Recurring charge subscription",
 	Long:  `Recurring charge subscription`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var RecurringChargeSubscriptionCmd = &cobra.Command{
 }
 
 func init() {
-	RecurringChargeSubscriptionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	RecurringChargeSubscriptionCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = RecurringChargeSubscriptionCmd.MarkFlagRequired("namespace")
-	RecurringChargeSubscriptionCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
+	RecurringChargeSubscriptionCmd.Flags().StringP("subscriptionId", "", " ", "Subscription id")
 	_ = RecurringChargeSubscriptionCmd.MarkFlagRequired("subscriptionId")
 }

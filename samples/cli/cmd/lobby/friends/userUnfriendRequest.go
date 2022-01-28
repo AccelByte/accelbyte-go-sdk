@@ -17,7 +17,7 @@ import (
 
 // UserUnfriendRequestCmd represents the UserUnfriendRequest command
 var UserUnfriendRequestCmd = &cobra.Command{
-	Use:   "UserUnfriendRequest",
+	Use:   "userUnfriendRequest",
 	Short: "User unfriend request",
 	Long:  `User unfriend request`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var UserUnfriendRequestCmd = &cobra.Command{
 }
 
 func init() {
-	UserUnfriendRequestCmd.Flags().StringP("body", "by", " ", "Body")
+	UserUnfriendRequestCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UserUnfriendRequestCmd.MarkFlagRequired("body")
-	UserUnfriendRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UserUnfriendRequestCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UserUnfriendRequestCmd.MarkFlagRequired("namespace")
 }

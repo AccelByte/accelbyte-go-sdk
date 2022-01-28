@@ -15,7 +15,7 @@ import (
 
 // QuerySessionCmd represents the QuerySession command
 var QuerySessionCmd = &cobra.Command{
-	Use:   "QuerySession",
+	Use:   "querySession",
 	Short: "Query session",
 	Long:  `Query session`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -59,17 +59,17 @@ var QuerySessionCmd = &cobra.Command{
 }
 
 func init() {
-	QuerySessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QuerySessionCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = QuerySessionCmd.MarkFlagRequired("namespace")
-	QuerySessionCmd.Flags().StringP("game_mode", "ge", " ", "Game mode")
-	QuerySessionCmd.Flags().StringP("game_version", "gn", " ", "Game version")
-	QuerySessionCmd.Flags().StringP("joinable", "je", " ", "Joinable")
-	QuerySessionCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	QuerySessionCmd.Flags().StringP("match_exist", "mt", " ", "Match exist")
-	QuerySessionCmd.Flags().StringP("match_id", "md", " ", "Match id")
-	QuerySessionCmd.Flags().StringP("offset", "ot", "0", "Offset")
-	QuerySessionCmd.Flags().StringP("server_status", "ss", " ", "Server status")
-	QuerySessionCmd.Flags().StringP("user_id", "ud", " ", "User id")
-	QuerySessionCmd.Flags().StringP("session_type", "se", " ", "Session type")
+	QuerySessionCmd.Flags().StringP("game_mode", "", " ", "Game mode")
+	QuerySessionCmd.Flags().StringP("game_version", "", " ", "Game version")
+	QuerySessionCmd.Flags().StringP("joinable", "", " ", "Joinable")
+	QuerySessionCmd.Flags().StringP("limit", "", "20", "Limit")
+	QuerySessionCmd.Flags().StringP("match_exist", "", " ", "Match exist")
+	QuerySessionCmd.Flags().StringP("match_id", "", " ", "Match id")
+	QuerySessionCmd.Flags().StringP("offset", "", "0", "Offset")
+	QuerySessionCmd.Flags().StringP("server_status", "", " ", "Server status")
+	QuerySessionCmd.Flags().StringP("user_id", "", " ", "User id")
+	QuerySessionCmd.Flags().StringP("session_type", "", " ", "Session type")
 	_ = QuerySessionCmd.MarkFlagRequired("session_type")
 }

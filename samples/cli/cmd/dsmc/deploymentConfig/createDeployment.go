@@ -17,7 +17,7 @@ import (
 
 // CreateDeploymentCmd represents the CreateDeployment command
 var CreateDeploymentCmd = &cobra.Command{
-	Use:   "CreateDeployment",
+	Use:   "createDeployment",
 	Short: "Create deployment",
 	Long:  `Create deployment`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var CreateDeploymentCmd = &cobra.Command{
 }
 
 func init() {
-	CreateDeploymentCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateDeploymentCmd.Flags().StringP("body", "", " ", "Body")
 	_ = CreateDeploymentCmd.MarkFlagRequired("body")
-	CreateDeploymentCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
+	CreateDeploymentCmd.Flags().StringP("deployment", "", " ", "Deployment")
 	_ = CreateDeploymentCmd.MarkFlagRequired("deployment")
-	CreateDeploymentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateDeploymentCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateDeploymentCmd.MarkFlagRequired("namespace")
 }

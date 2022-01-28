@@ -17,7 +17,7 @@ import (
 
 // AdminVerifyAccountV3Cmd represents the AdminVerifyAccountV3 command
 var AdminVerifyAccountV3Cmd = &cobra.Command{
-	Use:   "AdminVerifyAccountV3",
+	Use:   "adminVerifyAccountV3",
 	Short: "Admin verify account V3",
 	Long:  `Admin verify account V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var AdminVerifyAccountV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminVerifyAccountV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	AdminVerifyAccountV3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminVerifyAccountV3Cmd.MarkFlagRequired("body")
-	AdminVerifyAccountV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminVerifyAccountV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminVerifyAccountV3Cmd.MarkFlagRequired("namespace")
-	AdminVerifyAccountV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminVerifyAccountV3Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminVerifyAccountV3Cmd.MarkFlagRequired("userId")
 }

@@ -15,7 +15,7 @@ import (
 
 // RetrieveAgreementsPublicCmd represents the RetrieveAgreementsPublic command
 var RetrieveAgreementsPublicCmd = &cobra.Command{
-	Use:   "RetrieveAgreementsPublic",
+	Use:   "retrieveAgreementsPublic",
 	Short: "Retrieve agreements public",
 	Long:  `Retrieve agreements public`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,4 +33,7 @@ var RetrieveAgreementsPublicCmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

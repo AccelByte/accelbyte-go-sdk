@@ -15,7 +15,7 @@ import (
 
 // GetPaymentCustomizationCmd represents the GetPaymentCustomization command
 var GetPaymentCustomizationCmd = &cobra.Command{
-	Use:   "GetPaymentCustomization",
+	Use:   "getPaymentCustomization",
 	Short: "Get payment customization",
 	Long:  `Get payment customization`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,11 +45,11 @@ var GetPaymentCustomizationCmd = &cobra.Command{
 }
 
 func init() {
-	GetPaymentCustomizationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetPaymentCustomizationCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetPaymentCustomizationCmd.MarkFlagRequired("namespace")
-	GetPaymentCustomizationCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
-	GetPaymentCustomizationCmd.Flags().StringP("paymentProvider", "pr", " ", "Payment provider")
+	GetPaymentCustomizationCmd.Flags().BoolP("sandbox", "", false, "Sandbox")
+	GetPaymentCustomizationCmd.Flags().StringP("paymentProvider", "", " ", "Payment provider")
 	_ = GetPaymentCustomizationCmd.MarkFlagRequired("paymentProvider")
-	GetPaymentCustomizationCmd.Flags().StringP("region", "rn", " ", "Region")
+	GetPaymentCustomizationCmd.Flags().StringP("region", "", " ", "Region")
 	_ = GetPaymentCustomizationCmd.MarkFlagRequired("region")
 }

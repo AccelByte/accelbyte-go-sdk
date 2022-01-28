@@ -15,7 +15,7 @@ import (
 
 // PublicGetUserNamespaceSlotsCmd represents the PublicGetUserNamespaceSlots command
 var PublicGetUserNamespaceSlotsCmd = &cobra.Command{
-	Use:   "PublicGetUserNamespaceSlots",
+	Use:   "publicGetUserNamespaceSlots",
 	Short: "Public get user namespace slots",
 	Long:  `Public get user namespace slots`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var PublicGetUserNamespaceSlotsCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserNamespaceSlotsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetUserNamespaceSlotsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetUserNamespaceSlotsCmd.MarkFlagRequired("namespace")
-	PublicGetUserNamespaceSlotsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicGetUserNamespaceSlotsCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicGetUserNamespaceSlotsCmd.MarkFlagRequired("userId")
 }

@@ -15,7 +15,7 @@ import (
 
 // GetUserStatusCmd represents the GetUserStatus command
 var GetUserStatusCmd = &cobra.Command{
-	Use:   "GetUserStatus",
+	Use:   "getUserStatus",
 	Short: "Get user status",
 	Long:  `Get user status`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetUserStatusCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetUserStatusCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetUserStatusCmd.MarkFlagRequired("namespace")
-	GetUserStatusCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetUserStatusCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetUserStatusCmd.MarkFlagRequired("userId")
 }

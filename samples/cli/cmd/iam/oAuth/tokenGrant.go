@@ -15,7 +15,7 @@ import (
 
 // TokenGrantCmd represents the TokenGrant command
 var TokenGrantCmd = &cobra.Command{
-	Use:   "TokenGrant",
+	Use:   "tokenGrant",
 	Short: "Token grant",
 	Long:  `Token grant`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -55,14 +55,14 @@ var TokenGrantCmd = &cobra.Command{
 }
 
 func init() {
-	TokenGrantCmd.Flags().StringP("Device-Id", "Dd", " ", "Device id")
-	TokenGrantCmd.Flags().StringP("code", "ce", " ", "Code")
-	TokenGrantCmd.Flags().BoolP("extend_exp", "ep", false, "Extend exp")
-	TokenGrantCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	TokenGrantCmd.Flags().StringP("password", "pd", " ", "Password")
-	TokenGrantCmd.Flags().StringP("redirect_uri", "ri", " ", "Redirect uri")
-	TokenGrantCmd.Flags().StringP("refresh_token", "rn", " ", "Refresh token")
-	TokenGrantCmd.Flags().StringP("username", "ue", " ", "Username")
-	TokenGrantCmd.Flags().StringP("grant_type", "ge", " ", "Grant type")
+	TokenGrantCmd.Flags().StringP("Device-Id", "", " ", "Device id")
+	TokenGrantCmd.Flags().StringP("code", "", " ", "Code")
+	TokenGrantCmd.Flags().BoolP("extend_exp", "", false, "Extend exp")
+	TokenGrantCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	TokenGrantCmd.Flags().StringP("password", "", " ", "Password")
+	TokenGrantCmd.Flags().StringP("redirect_uri", "", " ", "Redirect uri")
+	TokenGrantCmd.Flags().StringP("refresh_token", "", " ", "Refresh token")
+	TokenGrantCmd.Flags().StringP("username", "", " ", "Username")
+	TokenGrantCmd.Flags().StringP("grant_type", "", " ", "Grant type")
 	_ = TokenGrantCmd.MarkFlagRequired("grant_type")
 }

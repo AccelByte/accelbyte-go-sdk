@@ -17,7 +17,7 @@ import (
 
 // AdminUpdateProfanityListCmd represents the AdminUpdateProfanityList command
 var AdminUpdateProfanityListCmd = &cobra.Command{
-	Use:   "AdminUpdateProfanityList",
+	Use:   "adminUpdateProfanityList",
 	Short: "Admin update profanity list",
 	Long:  `Admin update profanity list`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var AdminUpdateProfanityListCmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateProfanityListCmd.Flags().StringP("body", "by", " ", "Body")
+	AdminUpdateProfanityListCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminUpdateProfanityListCmd.MarkFlagRequired("body")
-	AdminUpdateProfanityListCmd.Flags().StringP("list", "lt", " ", "List")
+	AdminUpdateProfanityListCmd.Flags().StringP("list", "", " ", "List")
 	_ = AdminUpdateProfanityListCmd.MarkFlagRequired("list")
-	AdminUpdateProfanityListCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminUpdateProfanityListCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminUpdateProfanityListCmd.MarkFlagRequired("namespace")
 }

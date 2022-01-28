@@ -15,7 +15,7 @@ import (
 
 // RevokeUserEntitlementsCmd represents the RevokeUserEntitlements command
 var RevokeUserEntitlementsCmd = &cobra.Command{
-	Use:   "RevokeUserEntitlements",
+	Use:   "revokeUserEntitlements",
 	Short: "Revoke user entitlements",
 	Long:  `Revoke user entitlements`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var RevokeUserEntitlementsCmd = &cobra.Command{
 }
 
 func init() {
-	RevokeUserEntitlementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	RevokeUserEntitlementsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = RevokeUserEntitlementsCmd.MarkFlagRequired("namespace")
-	RevokeUserEntitlementsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	RevokeUserEntitlementsCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = RevokeUserEntitlementsCmd.MarkFlagRequired("userId")
-	RevokeUserEntitlementsCmd.Flags().StringP("entitlementIds", "es", " ", "Entitlement ids")
+	RevokeUserEntitlementsCmd.Flags().StringP("entitlementIds", "", " ", "Entitlement ids")
 	_ = RevokeUserEntitlementsCmd.MarkFlagRequired("entitlementIds")
 }

@@ -15,7 +15,7 @@ import (
 
 // DeleteClientCmd represents the DeleteClient command
 var DeleteClientCmd = &cobra.Command{
-	Use:   "DeleteClient",
+	Use:   "deleteClient",
 	Short: "Delete client",
 	Long:  `Delete client`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var DeleteClientCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteClientCmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	DeleteClientCmd.Flags().StringP("clientId", "", " ", "Client id")
 	_ = DeleteClientCmd.MarkFlagRequired("clientId")
 }

@@ -15,7 +15,7 @@ import (
 
 // DeleteCurrencyCmd represents the DeleteCurrency command
 var DeleteCurrencyCmd = &cobra.Command{
-	Use:   "DeleteCurrency",
+	Use:   "deleteCurrency",
 	Short: "Delete currency",
 	Long:  `Delete currency`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var DeleteCurrencyCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteCurrencyCmd.Flags().StringP("currencyCode", "ce", " ", "Currency code")
+	DeleteCurrencyCmd.Flags().StringP("currencyCode", "", " ", "Currency code")
 	_ = DeleteCurrencyCmd.MarkFlagRequired("currencyCode")
-	DeleteCurrencyCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteCurrencyCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteCurrencyCmd.MarkFlagRequired("namespace")
 }

@@ -15,7 +15,7 @@ import (
 
 // AuthorizeV3Cmd represents the AuthorizeV3 command
 var AuthorizeV3Cmd = &cobra.Command{
-	Use:   "AuthorizeV3",
+	Use:   "authorizeV3",
 	Short: "Authorize V3",
 	Long:  `Authorize V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,14 +52,14 @@ var AuthorizeV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AuthorizeV3Cmd.Flags().StringP("code_challenge", "ce", " ", "Code challenge")
-	AuthorizeV3Cmd.Flags().StringP("code_challenge_method", "cd", " ", "Code challenge method")
-	AuthorizeV3Cmd.Flags().StringP("redirect_uri", "ri", " ", "Redirect uri")
-	AuthorizeV3Cmd.Flags().StringP("scope", "se", " ", "Scope")
-	AuthorizeV3Cmd.Flags().StringP("state", "se", " ", "State")
-	AuthorizeV3Cmd.Flags().StringP("target_auth_page", "te", " ", "Target auth page")
-	AuthorizeV3Cmd.Flags().StringP("client_id", "cd", " ", "Client id")
+	AuthorizeV3Cmd.Flags().StringP("code_challenge", "", " ", "Code challenge")
+	AuthorizeV3Cmd.Flags().StringP("code_challenge_method", "", " ", "Code challenge method")
+	AuthorizeV3Cmd.Flags().StringP("redirect_uri", "", " ", "Redirect uri")
+	AuthorizeV3Cmd.Flags().StringP("scope", "", " ", "Scope")
+	AuthorizeV3Cmd.Flags().StringP("state", "", " ", "State")
+	AuthorizeV3Cmd.Flags().StringP("target_auth_page", "", " ", "Target auth page")
+	AuthorizeV3Cmd.Flags().StringP("client_id", "", " ", "Client id")
 	_ = AuthorizeV3Cmd.MarkFlagRequired("client_id")
-	AuthorizeV3Cmd.Flags().StringP("response_type", "re", " ", "Response type")
+	AuthorizeV3Cmd.Flags().StringP("response_type", "", " ", "Response type")
 	_ = AuthorizeV3Cmd.MarkFlagRequired("response_type")
 }

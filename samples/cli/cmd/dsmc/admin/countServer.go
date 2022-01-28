@@ -15,7 +15,7 @@ import (
 
 // CountServerCmd represents the CountServer command
 var CountServerCmd = &cobra.Command{
-	Use:   "CountServer",
+	Use:   "countServer",
 	Short: "Count server",
 	Long:  `Count server`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var CountServerCmd = &cobra.Command{
 }
 
 func init() {
-	CountServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CountServerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CountServerCmd.MarkFlagRequired("namespace")
 }

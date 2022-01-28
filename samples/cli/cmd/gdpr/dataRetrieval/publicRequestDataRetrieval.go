@@ -15,7 +15,7 @@ import (
 
 // PublicRequestDataRetrievalCmd represents the PublicRequestDataRetrieval command
 var PublicRequestDataRetrievalCmd = &cobra.Command{
-	Use:   "PublicRequestDataRetrieval",
+	Use:   "publicRequestDataRetrieval",
 	Short: "Public request data retrieval",
 	Long:  `Public request data retrieval`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var PublicRequestDataRetrievalCmd = &cobra.Command{
 }
 
 func init() {
-	PublicRequestDataRetrievalCmd.Flags().StringP("password", "pd", " ", "Password")
+	PublicRequestDataRetrievalCmd.Flags().StringP("password", "", " ", "Password")
 	_ = PublicRequestDataRetrievalCmd.MarkFlagRequired("password")
-	PublicRequestDataRetrievalCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicRequestDataRetrievalCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicRequestDataRetrievalCmd.MarkFlagRequired("namespace")
-	PublicRequestDataRetrievalCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicRequestDataRetrievalCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicRequestDataRetrievalCmd.MarkFlagRequired("userId")
 }

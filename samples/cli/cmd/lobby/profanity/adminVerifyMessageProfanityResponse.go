@@ -17,7 +17,7 @@ import (
 
 // AdminVerifyMessageProfanityResponseCmd represents the AdminVerifyMessageProfanityResponse command
 var AdminVerifyMessageProfanityResponseCmd = &cobra.Command{
-	Use:   "AdminVerifyMessageProfanityResponse",
+	Use:   "adminVerifyMessageProfanityResponse",
 	Short: "Admin verify message profanity response",
 	Long:  `Admin verify message profanity response`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var AdminVerifyMessageProfanityResponseCmd = &cobra.Command{
 }
 
 func init() {
-	AdminVerifyMessageProfanityResponseCmd.Flags().StringP("body", "by", " ", "Body")
+	AdminVerifyMessageProfanityResponseCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminVerifyMessageProfanityResponseCmd.MarkFlagRequired("body")
-	AdminVerifyMessageProfanityResponseCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminVerifyMessageProfanityResponseCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminVerifyMessageProfanityResponseCmd.MarkFlagRequired("namespace")
 }

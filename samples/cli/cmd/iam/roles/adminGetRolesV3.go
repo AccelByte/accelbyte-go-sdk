@@ -15,7 +15,7 @@ import (
 
 // AdminGetRolesV3Cmd represents the AdminGetRolesV3 command
 var AdminGetRolesV3Cmd = &cobra.Command{
-	Use:   "AdminGetRolesV3",
+	Use:   "adminGetRolesV3",
 	Short: "Admin get roles V3",
 	Long:  `Admin get roles V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,8 +45,8 @@ var AdminGetRolesV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetRolesV3Cmd.Flags().StringP("after", "ar", "0", "After")
-	AdminGetRolesV3Cmd.Flags().StringP("before", "be", "0", "Before")
-	AdminGetRolesV3Cmd.Flags().BoolP("isWildcard", "id", false, "Is wildcard")
-	AdminGetRolesV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	AdminGetRolesV3Cmd.Flags().StringP("after", "", "0", "After")
+	AdminGetRolesV3Cmd.Flags().StringP("before", "", "0", "Before")
+	AdminGetRolesV3Cmd.Flags().BoolP("isWildcard", "", false, "Is wildcard")
+	AdminGetRolesV3Cmd.Flags().Int64P("limit", "", 20, "Limit")
 }

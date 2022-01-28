@@ -15,7 +15,7 @@ import (
 
 // AdminVerifyUserWithoutVerificationCodeV3Cmd represents the AdminVerifyUserWithoutVerificationCodeV3 command
 var AdminVerifyUserWithoutVerificationCodeV3Cmd = &cobra.Command{
-	Use:   "AdminVerifyUserWithoutVerificationCodeV3",
+	Use:   "adminVerifyUserWithoutVerificationCodeV3",
 	Short: "Admin verify user without verification code V3",
 	Long:  `Admin verify user without verification code V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var AdminVerifyUserWithoutVerificationCodeV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminVerifyUserWithoutVerificationCodeV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminVerifyUserWithoutVerificationCodeV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminVerifyUserWithoutVerificationCodeV3Cmd.MarkFlagRequired("namespace")
-	AdminVerifyUserWithoutVerificationCodeV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminVerifyUserWithoutVerificationCodeV3Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminVerifyUserWithoutVerificationCodeV3Cmd.MarkFlagRequired("userId")
 }

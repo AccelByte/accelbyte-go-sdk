@@ -15,7 +15,7 @@ import (
 
 // PublicDeletePlatformLinkV2Cmd represents the PublicDeletePlatformLinkV2 command
 var PublicDeletePlatformLinkV2Cmd = &cobra.Command{
-	Use:   "PublicDeletePlatformLinkV2",
+	Use:   "publicDeletePlatformLinkV2",
 	Short: "Public delete platform link V2",
 	Long:  `Public delete platform link V2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +44,11 @@ var PublicDeletePlatformLinkV2Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicDeletePlatformLinkV2Cmd.Flags().StringP("platform_namespace", "pe", " ", "Platform namespace")
-	PublicDeletePlatformLinkV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicDeletePlatformLinkV2Cmd.Flags().StringP("platform_namespace", "", " ", "Platform namespace")
+	PublicDeletePlatformLinkV2Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicDeletePlatformLinkV2Cmd.MarkFlagRequired("namespace")
-	PublicDeletePlatformLinkV2Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	PublicDeletePlatformLinkV2Cmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = PublicDeletePlatformLinkV2Cmd.MarkFlagRequired("platformId")
-	PublicDeletePlatformLinkV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicDeletePlatformLinkV2Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicDeletePlatformLinkV2Cmd.MarkFlagRequired("userId")
 }

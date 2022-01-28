@@ -15,7 +15,7 @@ import (
 
 // GetPublishedStoreCmd represents the GetPublishedStore command
 var GetPublishedStoreCmd = &cobra.Command{
-	Use:   "GetPublishedStore",
+	Use:   "getPublishedStore",
 	Short: "Get published store",
 	Long:  `Get published store`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetPublishedStoreCmd = &cobra.Command{
 }
 
 func init() {
-	GetPublishedStoreCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetPublishedStoreCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetPublishedStoreCmd.MarkFlagRequired("namespace")
 }

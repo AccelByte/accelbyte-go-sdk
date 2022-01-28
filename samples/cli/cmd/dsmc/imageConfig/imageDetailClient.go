@@ -15,7 +15,7 @@ import (
 
 // ImageDetailClientCmd represents the ImageDetailClient command
 var ImageDetailClientCmd = &cobra.Command{
-	Use:   "ImageDetailClient",
+	Use:   "imageDetailClient",
 	Short: "Image detail client",
 	Long:  `Image detail client`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var ImageDetailClientCmd = &cobra.Command{
 }
 
 func init() {
-	ImageDetailClientCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ImageDetailClientCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ImageDetailClientCmd.MarkFlagRequired("namespace")
-	ImageDetailClientCmd.Flags().StringP("version", "vn", " ", "Version")
+	ImageDetailClientCmd.Flags().StringP("version", "", " ", "Version")
 	_ = ImageDetailClientCmd.MarkFlagRequired("version")
 }

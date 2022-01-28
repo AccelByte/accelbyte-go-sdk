@@ -15,7 +15,7 @@ import (
 
 // DeleteTemplateLocalizationCmd represents the DeleteTemplateLocalization command
 var DeleteTemplateLocalizationCmd = &cobra.Command{
-	Use:   "DeleteTemplateLocalization",
+	Use:   "deleteTemplateLocalization",
 	Short: "Delete template localization",
 	Long:  `Delete template localization`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var DeleteTemplateLocalizationCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteTemplateLocalizationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteTemplateLocalizationCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteTemplateLocalizationCmd.MarkFlagRequired("namespace")
-	DeleteTemplateLocalizationCmd.Flags().StringP("templateLanguage", "te", " ", "Template language")
+	DeleteTemplateLocalizationCmd.Flags().StringP("templateLanguage", "", " ", "Template language")
 	_ = DeleteTemplateLocalizationCmd.MarkFlagRequired("templateLanguage")
-	DeleteTemplateLocalizationCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
+	DeleteTemplateLocalizationCmd.Flags().StringP("templateSlug", "", " ", "Template slug")
 	_ = DeleteTemplateLocalizationCmd.MarkFlagRequired("templateSlug")
 }

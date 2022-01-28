@@ -16,7 +16,7 @@ import (
 
 // UpdatePrivateCustomAttributesPartiallyCmd represents the UpdatePrivateCustomAttributesPartially command
 var UpdatePrivateCustomAttributesPartiallyCmd = &cobra.Command{
-	Use:   "UpdatePrivateCustomAttributesPartially",
+	Use:   "updatePrivateCustomAttributesPartially",
 	Short: "Update private custom attributes partially",
 	Long:  `Update private custom attributes partially`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +49,9 @@ var UpdatePrivateCustomAttributesPartiallyCmd = &cobra.Command{
 }
 
 func init() {
-	UpdatePrivateCustomAttributesPartiallyCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdatePrivateCustomAttributesPartiallyCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdatePrivateCustomAttributesPartiallyCmd.Flags().StringP("body", "", " ", "Body")
+	UpdatePrivateCustomAttributesPartiallyCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdatePrivateCustomAttributesPartiallyCmd.MarkFlagRequired("namespace")
-	UpdatePrivateCustomAttributesPartiallyCmd.Flags().StringP("userId", "ud", " ", "User id")
+	UpdatePrivateCustomAttributesPartiallyCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = UpdatePrivateCustomAttributesPartiallyCmd.MarkFlagRequired("userId")
 }

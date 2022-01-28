@@ -15,7 +15,7 @@ import (
 
 // AdminGetMyUserV3Cmd represents the AdminGetMyUserV3 command
 var AdminGetMyUserV3Cmd = &cobra.Command{
-	Use:   "AdminGetMyUserV3",
+	Use:   "adminGetMyUserV3",
 	Short: "Admin get my user V3",
 	Long:  `Admin get my user V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,4 +33,7 @@ var AdminGetMyUserV3Cmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

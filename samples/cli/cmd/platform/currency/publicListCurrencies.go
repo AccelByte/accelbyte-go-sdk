@@ -15,7 +15,7 @@ import (
 
 // PublicListCurrenciesCmd represents the PublicListCurrencies command
 var PublicListCurrenciesCmd = &cobra.Command{
-	Use:   "PublicListCurrencies",
+	Use:   "publicListCurrencies",
 	Short: "Public list currencies",
 	Long:  `Public list currencies`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var PublicListCurrenciesCmd = &cobra.Command{
 }
 
 func init() {
-	PublicListCurrenciesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicListCurrenciesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicListCurrenciesCmd.MarkFlagRequired("namespace")
 }

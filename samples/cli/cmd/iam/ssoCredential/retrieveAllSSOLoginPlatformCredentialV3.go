@@ -15,7 +15,7 @@ import (
 
 // RetrieveAllSSOLoginPlatformCredentialV3Cmd represents the RetrieveAllSSOLoginPlatformCredentialV3 command
 var RetrieveAllSSOLoginPlatformCredentialV3Cmd = &cobra.Command{
-	Use:   "RetrieveAllSSOLoginPlatformCredentialV3",
+	Use:   "retrieveAllSSOLoginPlatformCredentialV3",
 	Short: "Retrieve all SSO login platform credential V3",
 	Long:  `Retrieve all SSO login platform credential V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,8 +43,8 @@ var RetrieveAllSSOLoginPlatformCredentialV3Cmd = &cobra.Command{
 }
 
 func init() {
-	RetrieveAllSSOLoginPlatformCredentialV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	RetrieveAllSSOLoginPlatformCredentialV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = RetrieveAllSSOLoginPlatformCredentialV3Cmd.MarkFlagRequired("namespace")
-	RetrieveAllSSOLoginPlatformCredentialV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	RetrieveAllSSOLoginPlatformCredentialV3Cmd.Flags().StringP("offset", "ot", "0", "Offset")
+	RetrieveAllSSOLoginPlatformCredentialV3Cmd.Flags().Int64P("limit", "", 20, "Limit")
+	RetrieveAllSSOLoginPlatformCredentialV3Cmd.Flags().StringP("offset", "", "0", "Offset")
 }

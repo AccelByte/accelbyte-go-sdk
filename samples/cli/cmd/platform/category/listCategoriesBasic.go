@@ -15,7 +15,7 @@ import (
 
 // ListCategoriesBasicCmd represents the ListCategoriesBasic command
 var ListCategoriesBasicCmd = &cobra.Command{
-	Use:   "ListCategoriesBasic",
+	Use:   "listCategoriesBasic",
 	Short: "List categories basic",
 	Long:  `List categories basic`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,7 +41,7 @@ var ListCategoriesBasicCmd = &cobra.Command{
 }
 
 func init() {
-	ListCategoriesBasicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ListCategoriesBasicCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ListCategoriesBasicCmd.MarkFlagRequired("namespace")
-	ListCategoriesBasicCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	ListCategoriesBasicCmd.Flags().StringP("storeId", "", " ", "Store id")
 }

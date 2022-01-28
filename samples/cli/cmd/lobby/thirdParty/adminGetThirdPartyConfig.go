@@ -15,7 +15,7 @@ import (
 
 // AdminGetThirdPartyConfigCmd represents the AdminGetThirdPartyConfig command
 var AdminGetThirdPartyConfigCmd = &cobra.Command{
-	Use:   "AdminGetThirdPartyConfig",
+	Use:   "adminGetThirdPartyConfig",
 	Short: "Admin get third party config",
 	Long:  `Admin get third party config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var AdminGetThirdPartyConfigCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetThirdPartyConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetThirdPartyConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetThirdPartyConfigCmd.MarkFlagRequired("namespace")
 }

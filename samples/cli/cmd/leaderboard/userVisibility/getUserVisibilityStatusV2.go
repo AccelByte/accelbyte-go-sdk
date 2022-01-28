@@ -15,7 +15,7 @@ import (
 
 // GetUserVisibilityStatusV2Cmd represents the GetUserVisibilityStatusV2 command
 var GetUserVisibilityStatusV2Cmd = &cobra.Command{
-	Use:   "GetUserVisibilityStatusV2",
+	Use:   "getUserVisibilityStatusV2",
 	Short: "Get user visibility status V2",
 	Long:  `Get user visibility status V2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var GetUserVisibilityStatusV2Cmd = &cobra.Command{
 }
 
 func init() {
-	GetUserVisibilityStatusV2Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
+	GetUserVisibilityStatusV2Cmd.Flags().StringP("leaderboardCode", "", " ", "Leaderboard code")
 	_ = GetUserVisibilityStatusV2Cmd.MarkFlagRequired("leaderboardCode")
-	GetUserVisibilityStatusV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetUserVisibilityStatusV2Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetUserVisibilityStatusV2Cmd.MarkFlagRequired("namespace")
-	GetUserVisibilityStatusV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetUserVisibilityStatusV2Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetUserVisibilityStatusV2Cmd.MarkFlagRequired("userId")
 }

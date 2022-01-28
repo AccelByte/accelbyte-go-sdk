@@ -17,7 +17,7 @@ import (
 
 // AdminCreateClientV3Cmd represents the AdminCreateClientV3 command
 var AdminCreateClientV3Cmd = &cobra.Command{
-	Use:   "AdminCreateClientV3",
+	Use:   "adminCreateClientV3",
 	Short: "Admin create client V3",
 	Long:  `Admin create client V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var AdminCreateClientV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminCreateClientV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	AdminCreateClientV3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminCreateClientV3Cmd.MarkFlagRequired("body")
-	AdminCreateClientV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminCreateClientV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminCreateClientV3Cmd.MarkFlagRequired("namespace")
 }

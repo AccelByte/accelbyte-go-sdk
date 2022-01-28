@@ -17,7 +17,7 @@ import (
 
 // PublicCreateUserProfileCmd represents the PublicCreateUserProfile command
 var PublicCreateUserProfileCmd = &cobra.Command{
-	Use:   "PublicCreateUserProfile",
+	Use:   "publicCreateUserProfile",
 	Short: "Public create user profile",
 	Long:  `Public create user profile`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var PublicCreateUserProfileCmd = &cobra.Command{
 }
 
 func init() {
-	PublicCreateUserProfileCmd.Flags().StringP("body", "by", " ", "Body")
-	PublicCreateUserProfileCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicCreateUserProfileCmd.Flags().StringP("body", "", " ", "Body")
+	PublicCreateUserProfileCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicCreateUserProfileCmd.MarkFlagRequired("namespace")
-	PublicCreateUserProfileCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicCreateUserProfileCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicCreateUserProfileCmd.MarkFlagRequired("userId")
 }

@@ -15,7 +15,7 @@ import (
 
 // GetCurrencyConfigCmd represents the GetCurrencyConfig command
 var GetCurrencyConfigCmd = &cobra.Command{
-	Use:   "GetCurrencyConfig",
+	Use:   "getCurrencyConfig",
 	Short: "Get currency config",
 	Long:  `Get currency config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetCurrencyConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetCurrencyConfigCmd.Flags().StringP("currencyCode", "ce", " ", "Currency code")
+	GetCurrencyConfigCmd.Flags().StringP("currencyCode", "", " ", "Currency code")
 	_ = GetCurrencyConfigCmd.MarkFlagRequired("currencyCode")
-	GetCurrencyConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetCurrencyConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetCurrencyConfigCmd.MarkFlagRequired("namespace")
 }

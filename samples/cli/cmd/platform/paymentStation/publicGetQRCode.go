@@ -18,7 +18,7 @@ import (
 
 // PublicGetQRCodeCmd represents the PublicGetQRCode command
 var PublicGetQRCodeCmd = &cobra.Command{
-	Use:   "PublicGetQRCode",
+	Use:   "publicGetQRCode",
 	Short: "Public get QR code",
 	Long:  `Public get QR code`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -55,8 +55,8 @@ var PublicGetQRCodeCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetQRCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetQRCodeCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetQRCodeCmd.MarkFlagRequired("namespace")
-	PublicGetQRCodeCmd.Flags().StringP("code", "ce", " ", "Code")
+	PublicGetQRCodeCmd.Flags().StringP("code", "", " ", "Code")
 	_ = PublicGetQRCodeCmd.MarkFlagRequired("code")
 }

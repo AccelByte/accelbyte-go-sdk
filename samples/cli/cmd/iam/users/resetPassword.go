@@ -17,7 +17,7 @@ import (
 
 // ResetPasswordCmd represents the ResetPassword command
 var ResetPasswordCmd = &cobra.Command{
-	Use:   "ResetPassword",
+	Use:   "resetPassword",
 	Short: "Reset password",
 	Long:  `Reset password`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var ResetPasswordCmd = &cobra.Command{
 }
 
 func init() {
-	ResetPasswordCmd.Flags().StringP("body", "by", " ", "Body")
+	ResetPasswordCmd.Flags().StringP("body", "", " ", "Body")
 	_ = ResetPasswordCmd.MarkFlagRequired("body")
-	ResetPasswordCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ResetPasswordCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ResetPasswordCmd.MarkFlagRequired("namespace")
 }

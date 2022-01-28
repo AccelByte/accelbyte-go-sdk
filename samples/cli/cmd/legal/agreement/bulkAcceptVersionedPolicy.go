@@ -17,7 +17,7 @@ import (
 
 // BulkAcceptVersionedPolicyCmd represents the BulkAcceptVersionedPolicy command
 var BulkAcceptVersionedPolicyCmd = &cobra.Command{
-	Use:   "BulkAcceptVersionedPolicy",
+	Use:   "bulkAcceptVersionedPolicy",
 	Short: "Bulk accept versioned policy",
 	Long:  `Bulk accept versioned policy`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,5 +46,5 @@ var BulkAcceptVersionedPolicyCmd = &cobra.Command{
 }
 
 func init() {
-	BulkAcceptVersionedPolicyCmd.Flags().StringP("body", "by", " ", "Body")
+	BulkAcceptVersionedPolicyCmd.Flags().StringP("body", "", " ", "Body")
 }

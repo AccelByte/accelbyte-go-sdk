@@ -15,7 +15,7 @@ import (
 
 // TestWxPayConfigByIdCmd represents the TestWxPayConfigById command
 var TestWxPayConfigByIdCmd = &cobra.Command{
-	Use:   "TestWxPayConfigById",
+	Use:   "testWxPayConfigById",
 	Short: "Test wx pay config by id",
 	Long:  `Test wx pay config by id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var TestWxPayConfigByIdCmd = &cobra.Command{
 }
 
 func init() {
-	TestWxPayConfigByIdCmd.Flags().StringP("id", "id", " ", "Id")
+	TestWxPayConfigByIdCmd.Flags().StringP("id", "", " ", "Id")
 	_ = TestWxPayConfigByIdCmd.MarkFlagRequired("id")
 }

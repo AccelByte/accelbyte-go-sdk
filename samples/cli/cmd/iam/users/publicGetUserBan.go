@@ -15,7 +15,7 @@ import (
 
 // PublicGetUserBanCmd represents the PublicGetUserBan command
 var PublicGetUserBanCmd = &cobra.Command{
-	Use:   "PublicGetUserBan",
+	Use:   "publicGetUserBan",
 	Short: "Public get user ban",
 	Long:  `Public get user ban`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,9 +43,9 @@ var PublicGetUserBanCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserBanCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetUserBanCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetUserBanCmd.MarkFlagRequired("namespace")
-	PublicGetUserBanCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicGetUserBanCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicGetUserBanCmd.MarkFlagRequired("userId")
-	PublicGetUserBanCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	PublicGetUserBanCmd.Flags().BoolP("activeOnly", "", false, "Active only")
 }

@@ -17,7 +17,7 @@ import (
 
 // UpdateUserSlotConfigCmd represents the UpdateUserSlotConfig command
 var UpdateUserSlotConfigCmd = &cobra.Command{
-	Use:   "UpdateUserSlotConfig",
+	Use:   "updateUserSlotConfig",
 	Short: "Update user slot config",
 	Long:  `Update user slot config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var UpdateUserSlotConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateUserSlotConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateUserSlotConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateUserSlotConfigCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateUserSlotConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateUserSlotConfigCmd.MarkFlagRequired("namespace")
-	UpdateUserSlotConfigCmd.Flags().StringP("userId", "ud", " ", "User id")
+	UpdateUserSlotConfigCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = UpdateUserSlotConfigCmd.MarkFlagRequired("userId")
 }

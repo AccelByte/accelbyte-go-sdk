@@ -17,7 +17,7 @@ import (
 
 // UpdateDLCItemConfigCmd represents the UpdateDLCItemConfig command
 var UpdateDLCItemConfigCmd = &cobra.Command{
-	Use:   "UpdateDLCItemConfig",
+	Use:   "updateDLCItemConfig",
 	Short: "Update DLC item config",
 	Long:  `Update DLC item config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var UpdateDLCItemConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateDLCItemConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateDLCItemConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateDLCItemConfigCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateDLCItemConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateDLCItemConfigCmd.MarkFlagRequired("namespace")
 }

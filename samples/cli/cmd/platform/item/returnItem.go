@@ -17,7 +17,7 @@ import (
 
 // ReturnItemCmd represents the ReturnItem command
 var ReturnItemCmd = &cobra.Command{
-	Use:   "ReturnItem",
+	Use:   "returnItem",
 	Short: "Return item",
 	Long:  `Return item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +49,9 @@ var ReturnItemCmd = &cobra.Command{
 }
 
 func init() {
-	ReturnItemCmd.Flags().StringP("body", "by", " ", "Body")
-	ReturnItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	ReturnItemCmd.Flags().StringP("body", "", " ", "Body")
+	ReturnItemCmd.Flags().StringP("itemId", "", " ", "Item id")
 	_ = ReturnItemCmd.MarkFlagRequired("itemId")
-	ReturnItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ReturnItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ReturnItemCmd.MarkFlagRequired("namespace")
 }

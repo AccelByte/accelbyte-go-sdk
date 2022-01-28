@@ -17,7 +17,7 @@ import (
 
 // GrantUserEntitlementCmd represents the GrantUserEntitlement command
 var GrantUserEntitlementCmd = &cobra.Command{
-	Use:   "GrantUserEntitlement",
+	Use:   "grantUserEntitlement",
 	Short: "Grant user entitlement",
 	Long:  `Grant user entitlement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var GrantUserEntitlementCmd = &cobra.Command{
 }
 
 func init() {
-	GrantUserEntitlementCmd.Flags().StringP("body", "by", " ", "Body")
-	GrantUserEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GrantUserEntitlementCmd.Flags().StringP("body", "", " ", "Body")
+	GrantUserEntitlementCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GrantUserEntitlementCmd.MarkFlagRequired("namespace")
-	GrantUserEntitlementCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GrantUserEntitlementCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GrantUserEntitlementCmd.MarkFlagRequired("userId")
 }

@@ -17,7 +17,7 @@ import (
 
 // UpdateGroupCustomAttributesPublicV1Cmd represents the UpdateGroupCustomAttributesPublicV1 command
 var UpdateGroupCustomAttributesPublicV1Cmd = &cobra.Command{
-	Use:   "UpdateGroupCustomAttributesPublicV1",
+	Use:   "updateGroupCustomAttributesPublicV1",
 	Short: "Update group custom attributes public V1",
 	Long:  `Update group custom attributes public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var UpdateGroupCustomAttributesPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	UpdateGroupCustomAttributesPublicV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateGroupCustomAttributesPublicV1Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateGroupCustomAttributesPublicV1Cmd.MarkFlagRequired("body")
-	UpdateGroupCustomAttributesPublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	UpdateGroupCustomAttributesPublicV1Cmd.Flags().StringP("groupId", "", " ", "Group id")
 	_ = UpdateGroupCustomAttributesPublicV1Cmd.MarkFlagRequired("groupId")
-	UpdateGroupCustomAttributesPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateGroupCustomAttributesPublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateGroupCustomAttributesPublicV1Cmd.MarkFlagRequired("namespace")
 }

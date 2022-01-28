@@ -15,7 +15,7 @@ import (
 
 // GetMemberRolesListPublicV1Cmd represents the GetMemberRolesListPublicV1 command
 var GetMemberRolesListPublicV1Cmd = &cobra.Command{
-	Use:   "GetMemberRolesListPublicV1",
+	Use:   "getMemberRolesListPublicV1",
 	Short: "Get member roles list public V1",
 	Long:  `Get member roles list public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,8 +43,8 @@ var GetMemberRolesListPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetMemberRolesListPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetMemberRolesListPublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetMemberRolesListPublicV1Cmd.MarkFlagRequired("namespace")
-	GetMemberRolesListPublicV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	GetMemberRolesListPublicV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetMemberRolesListPublicV1Cmd.Flags().Int64P("limit", "", 20, "Limit")
+	GetMemberRolesListPublicV1Cmd.Flags().Int64P("offset", "", 0, "Offset")
 }

@@ -17,7 +17,7 @@ import (
 
 // TestFulfillmentScriptEvalCmd represents the TestFulfillmentScriptEval command
 var TestFulfillmentScriptEvalCmd = &cobra.Command{
-	Use:   "TestFulfillmentScriptEval",
+	Use:   "testFulfillmentScriptEval",
 	Short: "Test fulfillment script eval",
 	Long:  `Test fulfillment script eval`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,5 +46,5 @@ var TestFulfillmentScriptEvalCmd = &cobra.Command{
 }
 
 func init() {
-	TestFulfillmentScriptEvalCmd.Flags().StringP("body", "by", " ", "Body")
+	TestFulfillmentScriptEvalCmd.Flags().StringP("body", "", " ", "Body")
 }

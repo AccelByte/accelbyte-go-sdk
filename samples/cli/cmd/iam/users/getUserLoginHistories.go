@@ -15,7 +15,7 @@ import (
 
 // GetUserLoginHistoriesCmd represents the GetUserLoginHistories command
 var GetUserLoginHistoriesCmd = &cobra.Command{
-	Use:   "GetUserLoginHistories",
+	Use:   "getUserLoginHistories",
 	Short: "Get user login histories",
 	Long:  `Get user login histories`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,11 +47,11 @@ var GetUserLoginHistoriesCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserLoginHistoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetUserLoginHistoriesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetUserLoginHistoriesCmd.MarkFlagRequired("namespace")
-	GetUserLoginHistoriesCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetUserLoginHistoriesCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetUserLoginHistoriesCmd.MarkFlagRequired("userId")
-	GetUserLoginHistoriesCmd.Flags().Float64P("after", "ar", 0, "After")
-	GetUserLoginHistoriesCmd.Flags().Float64P("before", "be", 0, "Before")
-	GetUserLoginHistoriesCmd.Flags().Float64P("limit", "lt", 20, "Limit")
+	GetUserLoginHistoriesCmd.Flags().Float64P("after", "", 0, "After")
+	GetUserLoginHistoriesCmd.Flags().Float64P("before", "", 0, "Before")
+	GetUserLoginHistoriesCmd.Flags().Float64P("limit", "", 20, "Limit")
 }

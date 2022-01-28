@@ -15,7 +15,7 @@ import (
 
 // AdminGetLobbyCCUCmd represents the AdminGetLobbyCCU command
 var AdminGetLobbyCCUCmd = &cobra.Command{
-	Use:   "AdminGetLobbyCCU",
+	Use:   "adminGetLobbyCCU",
 	Short: "Admin get lobby CCU",
 	Long:  `Admin get lobby CCU`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var AdminGetLobbyCCUCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetLobbyCCUCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetLobbyCCUCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetLobbyCCUCmd.MarkFlagRequired("namespace")
 }

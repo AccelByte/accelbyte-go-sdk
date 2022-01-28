@@ -15,7 +15,7 @@ import (
 
 // JoinGroupV1Cmd represents the JoinGroupV1 command
 var JoinGroupV1Cmd = &cobra.Command{
-	Use:   "JoinGroupV1",
+	Use:   "joinGroupV1",
 	Short: "Join group V1",
 	Long:  `Join group V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var JoinGroupV1Cmd = &cobra.Command{
 }
 
 func init() {
-	JoinGroupV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	JoinGroupV1Cmd.Flags().StringP("groupId", "", " ", "Group id")
 	_ = JoinGroupV1Cmd.MarkFlagRequired("groupId")
-	JoinGroupV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	JoinGroupV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = JoinGroupV1Cmd.MarkFlagRequired("namespace")
 }

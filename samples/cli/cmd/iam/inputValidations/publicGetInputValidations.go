@@ -15,7 +15,7 @@ import (
 
 // PublicGetInputValidationsCmd represents the PublicGetInputValidations command
 var PublicGetInputValidationsCmd = &cobra.Command{
-	Use:   "PublicGetInputValidations",
+	Use:   "publicGetInputValidations",
 	Short: "Public get input validations",
 	Long:  `Public get input validations`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,6 +41,6 @@ var PublicGetInputValidationsCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetInputValidationsCmd.Flags().BoolP("defaultOnEmpty", "dy", false, "Default on empty")
-	PublicGetInputValidationsCmd.Flags().StringP("languageCode", "le", " ", "Language code")
+	PublicGetInputValidationsCmd.Flags().BoolP("defaultOnEmpty", "", false, "Default on empty")
+	PublicGetInputValidationsCmd.Flags().StringP("languageCode", "", " ", "Language code")
 }

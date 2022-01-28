@@ -15,7 +15,7 @@ import (
 
 // GetLeaderboardConfigurationsPublicV2Cmd represents the GetLeaderboardConfigurationsPublicV2 command
 var GetLeaderboardConfigurationsPublicV2Cmd = &cobra.Command{
-	Use:   "GetLeaderboardConfigurationsPublicV2",
+	Use:   "getLeaderboardConfigurationsPublicV2",
 	Short: "Get leaderboard configurations public V2",
 	Long:  `Get leaderboard configurations public V2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,8 +43,8 @@ var GetLeaderboardConfigurationsPublicV2Cmd = &cobra.Command{
 }
 
 func init() {
-	GetLeaderboardConfigurationsPublicV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetLeaderboardConfigurationsPublicV2Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetLeaderboardConfigurationsPublicV2Cmd.MarkFlagRequired("namespace")
-	GetLeaderboardConfigurationsPublicV2Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	GetLeaderboardConfigurationsPublicV2Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetLeaderboardConfigurationsPublicV2Cmd.Flags().Int64P("limit", "", 20, "Limit")
+	GetLeaderboardConfigurationsPublicV2Cmd.Flags().Int64P("offset", "", 0, "Offset")
 }

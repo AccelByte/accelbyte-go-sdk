@@ -15,7 +15,7 @@ import (
 
 // DeleteMemberRoleAdminV1Cmd represents the DeleteMemberRoleAdminV1 command
 var DeleteMemberRoleAdminV1Cmd = &cobra.Command{
-	Use:   "DeleteMemberRoleAdminV1",
+	Use:   "deleteMemberRoleAdminV1",
 	Short: "Delete member role admin V1",
 	Long:  `Delete member role admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var DeleteMemberRoleAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	DeleteMemberRoleAdminV1Cmd.Flags().StringP("memberRoleId", "md", " ", "Member role id")
+	DeleteMemberRoleAdminV1Cmd.Flags().StringP("memberRoleId", "", " ", "Member role id")
 	_ = DeleteMemberRoleAdminV1Cmd.MarkFlagRequired("memberRoleId")
-	DeleteMemberRoleAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteMemberRoleAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteMemberRoleAdminV1Cmd.MarkFlagRequired("namespace")
 }

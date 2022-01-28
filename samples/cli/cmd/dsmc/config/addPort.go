@@ -17,7 +17,7 @@ import (
 
 // AddPortCmd represents the AddPort command
 var AddPortCmd = &cobra.Command{
-	Use:   "AddPort",
+	Use:   "addPort",
 	Short: "Add port",
 	Long:  `Add port`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var AddPortCmd = &cobra.Command{
 }
 
 func init() {
-	AddPortCmd.Flags().StringP("body", "by", " ", "Body")
+	AddPortCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AddPortCmd.MarkFlagRequired("body")
-	AddPortCmd.Flags().StringP("name", "ne", " ", "Name")
+	AddPortCmd.Flags().StringP("name", "", " ", "Name")
 	_ = AddPortCmd.MarkFlagRequired("name")
-	AddPortCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AddPortCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AddPortCmd.MarkFlagRequired("namespace")
 }

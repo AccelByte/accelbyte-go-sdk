@@ -15,7 +15,7 @@ import (
 
 // QueryCampaignsCmd represents the QueryCampaigns command
 var QueryCampaignsCmd = &cobra.Command{
-	Use:   "QueryCampaigns",
+	Use:   "queryCampaigns",
 	Short: "Query campaigns",
 	Long:  `Query campaigns`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,10 +47,10 @@ var QueryCampaignsCmd = &cobra.Command{
 }
 
 func init() {
-	QueryCampaignsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QueryCampaignsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = QueryCampaignsCmd.MarkFlagRequired("namespace")
-	QueryCampaignsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	QueryCampaignsCmd.Flags().StringP("name", "ne", " ", "Name")
-	QueryCampaignsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	QueryCampaignsCmd.Flags().StringP("tag", "tg", " ", "Tag")
+	QueryCampaignsCmd.Flags().Int32P("limit", "", 20, "Limit")
+	QueryCampaignsCmd.Flags().StringP("name", "", " ", "Name")
+	QueryCampaignsCmd.Flags().Int32P("offset", "", 0, "Offset")
+	QueryCampaignsCmd.Flags().StringP("tag", "", " ", "Tag")
 }

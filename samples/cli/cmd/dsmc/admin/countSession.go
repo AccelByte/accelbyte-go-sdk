@@ -15,7 +15,7 @@ import (
 
 // CountSessionCmd represents the CountSession command
 var CountSessionCmd = &cobra.Command{
-	Use:   "CountSession",
+	Use:   "countSession",
 	Short: "Count session",
 	Long:  `Count session`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,7 +41,7 @@ var CountSessionCmd = &cobra.Command{
 }
 
 func init() {
-	CountSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CountSessionCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CountSessionCmd.MarkFlagRequired("namespace")
-	CountSessionCmd.Flags().StringP("region", "rn", " ", "Region")
+	CountSessionCmd.Flags().StringP("region", "", " ", "Region")
 }

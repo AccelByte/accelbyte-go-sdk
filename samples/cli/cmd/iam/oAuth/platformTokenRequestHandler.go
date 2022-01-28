@@ -15,7 +15,7 @@ import (
 
 // PlatformTokenRequestHandlerCmd represents the PlatformTokenRequestHandler command
 var PlatformTokenRequestHandlerCmd = &cobra.Command{
-	Use:   "PlatformTokenRequestHandler",
+	Use:   "platformTokenRequestHandler",
 	Short: "Platform token request handler",
 	Long:  `Platform token request handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,10 +45,10 @@ var PlatformTokenRequestHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	PlatformTokenRequestHandlerCmd.Flags().StringP("device_id", "dd", " ", "Device id")
-	PlatformTokenRequestHandlerCmd.Flags().StringP("platform_token", "pn", " ", "Platform token")
-	PlatformTokenRequestHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PlatformTokenRequestHandlerCmd.Flags().StringP("device_id", "", " ", "Device id")
+	PlatformTokenRequestHandlerCmd.Flags().StringP("platform_token", "", " ", "Platform token")
+	PlatformTokenRequestHandlerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PlatformTokenRequestHandlerCmd.MarkFlagRequired("namespace")
-	PlatformTokenRequestHandlerCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	PlatformTokenRequestHandlerCmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = PlatformTokenRequestHandlerCmd.MarkFlagRequired("platformId")
 }

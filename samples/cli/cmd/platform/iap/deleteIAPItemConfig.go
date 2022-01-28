@@ -15,7 +15,7 @@ import (
 
 // DeleteIAPItemConfigCmd represents the DeleteIAPItemConfig command
 var DeleteIAPItemConfigCmd = &cobra.Command{
-	Use:   "DeleteIAPItemConfig",
+	Use:   "deleteIAPItemConfig",
 	Short: "Delete IAP item config",
 	Long:  `Delete IAP item config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var DeleteIAPItemConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteIAPItemConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteIAPItemConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteIAPItemConfigCmd.MarkFlagRequired("namespace")
 }

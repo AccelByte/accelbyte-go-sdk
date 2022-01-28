@@ -15,7 +15,7 @@ import (
 
 // GetUserSlotConfigCmd represents the GetUserSlotConfig command
 var GetUserSlotConfigCmd = &cobra.Command{
-	Use:   "GetUserSlotConfig",
+	Use:   "getUserSlotConfig",
 	Short: "Get user slot config",
 	Long:  `Get user slot config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetUserSlotConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserSlotConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetUserSlotConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetUserSlotConfigCmd.MarkFlagRequired("namespace")
-	GetUserSlotConfigCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetUserSlotConfigCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetUserSlotConfigCmd.MarkFlagRequired("userId")
 }

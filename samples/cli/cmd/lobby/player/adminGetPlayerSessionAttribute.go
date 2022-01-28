@@ -15,7 +15,7 @@ import (
 
 // AdminGetPlayerSessionAttributeCmd represents the AdminGetPlayerSessionAttribute command
 var AdminGetPlayerSessionAttributeCmd = &cobra.Command{
-	Use:   "AdminGetPlayerSessionAttribute",
+	Use:   "adminGetPlayerSessionAttribute",
 	Short: "Admin get player session attribute",
 	Long:  `Admin get player session attribute`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var AdminGetPlayerSessionAttributeCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetPlayerSessionAttributeCmd.Flags().StringP("attribute", "ae", " ", "Attribute")
+	AdminGetPlayerSessionAttributeCmd.Flags().StringP("attribute", "", " ", "Attribute")
 	_ = AdminGetPlayerSessionAttributeCmd.MarkFlagRequired("attribute")
-	AdminGetPlayerSessionAttributeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetPlayerSessionAttributeCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetPlayerSessionAttributeCmd.MarkFlagRequired("namespace")
-	AdminGetPlayerSessionAttributeCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminGetPlayerSessionAttributeCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminGetPlayerSessionAttributeCmd.MarkFlagRequired("userId")
 }

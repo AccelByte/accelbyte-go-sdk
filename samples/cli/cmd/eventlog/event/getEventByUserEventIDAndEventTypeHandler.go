@@ -15,7 +15,7 @@ import (
 
 // GetEventByUserEventIDAndEventTypeHandlerCmd represents the GetEventByUserEventIDAndEventTypeHandler command
 var GetEventByUserEventIDAndEventTypeHandlerCmd = &cobra.Command{
-	Use:   "GetEventByUserEventIDAndEventTypeHandler",
+	Use:   "getEventByUserEventIDAndEventTypeHandler",
 	Short: "Get event by user event ID and event type handler",
 	Long:  `Get event by user event ID and event type handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -53,19 +53,19 @@ var GetEventByUserEventIDAndEventTypeHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("eventId", "ed", 0, "Event id")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("eventId", "", 0, "Event id")
 	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("eventId")
-	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("eventType", "ee", 0, "Event type")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("eventType", "", 0, "Event type")
 	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("eventType")
-	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("namespace")
-	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("userId")
-	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
-	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("endDate", "ee", " ", "End date")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("offset", "", 0, "Offset")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("endDate", "", " ", "End date")
 	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("endDate")
-	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("pageSize", "", 1, "Page size")
 	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("pageSize")
-	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("startDate", "se", " ", "Start date")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("startDate", "", " ", "Start date")
 	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("startDate")
 }

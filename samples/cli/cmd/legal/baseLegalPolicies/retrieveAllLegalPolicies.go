@@ -15,7 +15,7 @@ import (
 
 // RetrieveAllLegalPoliciesCmd represents the RetrieveAllLegalPolicies command
 var RetrieveAllLegalPoliciesCmd = &cobra.Command{
-	Use:   "RetrieveAllLegalPolicies",
+	Use:   "retrieveAllLegalPolicies",
 	Short: "Retrieve all legal policies",
 	Long:  `Retrieve all legal policies`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,4 +33,7 @@ var RetrieveAllLegalPoliciesCmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

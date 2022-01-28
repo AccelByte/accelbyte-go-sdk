@@ -15,7 +15,7 @@ import (
 
 // PublicGetMyEntitlementOwnershipByItemIdCmd represents the PublicGetMyEntitlementOwnershipByItemId command
 var PublicGetMyEntitlementOwnershipByItemIdCmd = &cobra.Command{
-	Use:   "PublicGetMyEntitlementOwnershipByItemId",
+	Use:   "publicGetMyEntitlementOwnershipByItemId",
 	Short: "Public get my entitlement ownership by item id",
 	Long:  `Public get my entitlement ownership by item id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,9 +43,9 @@ var PublicGetMyEntitlementOwnershipByItemIdCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetMyEntitlementOwnershipByItemIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetMyEntitlementOwnershipByItemIdCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetMyEntitlementOwnershipByItemIdCmd.MarkFlagRequired("namespace")
-	PublicGetMyEntitlementOwnershipByItemIdCmd.Flags().StringP("entitlementClazz", "ez", " ", "Entitlement clazz")
-	PublicGetMyEntitlementOwnershipByItemIdCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	PublicGetMyEntitlementOwnershipByItemIdCmd.Flags().StringP("entitlementClazz", "", " ", "Entitlement clazz")
+	PublicGetMyEntitlementOwnershipByItemIdCmd.Flags().StringP("itemId", "", " ", "Item id")
 	_ = PublicGetMyEntitlementOwnershipByItemIdCmd.MarkFlagRequired("itemId")
 }

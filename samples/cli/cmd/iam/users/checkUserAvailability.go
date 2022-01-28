@@ -15,7 +15,7 @@ import (
 
 // CheckUserAvailabilityCmd represents the CheckUserAvailability command
 var CheckUserAvailabilityCmd = &cobra.Command{
-	Use:   "CheckUserAvailability",
+	Use:   "checkUserAvailability",
 	Short: "Check user availability",
 	Long:  `Check user availability`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var CheckUserAvailabilityCmd = &cobra.Command{
 }
 
 func init() {
-	CheckUserAvailabilityCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CheckUserAvailabilityCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CheckUserAvailabilityCmd.MarkFlagRequired("namespace")
-	CheckUserAvailabilityCmd.Flags().StringP("field", "fd", " ", "Field")
+	CheckUserAvailabilityCmd.Flags().StringP("field", "", " ", "Field")
 	_ = CheckUserAvailabilityCmd.MarkFlagRequired("field")
-	CheckUserAvailabilityCmd.Flags().StringP("query", "qy", " ", "Query")
+	CheckUserAvailabilityCmd.Flags().StringP("query", "", " ", "Query")
 	_ = CheckUserAvailabilityCmd.MarkFlagRequired("query")
 }

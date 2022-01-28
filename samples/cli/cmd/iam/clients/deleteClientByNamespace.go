@@ -15,7 +15,7 @@ import (
 
 // DeleteClientByNamespaceCmd represents the DeleteClientByNamespace command
 var DeleteClientByNamespaceCmd = &cobra.Command{
-	Use:   "DeleteClientByNamespace",
+	Use:   "deleteClientByNamespace",
 	Short: "Delete client by namespace",
 	Long:  `Delete client by namespace`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var DeleteClientByNamespaceCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteClientByNamespaceCmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	DeleteClientByNamespaceCmd.Flags().StringP("clientId", "", " ", "Client id")
 	_ = DeleteClientByNamespaceCmd.MarkFlagRequired("clientId")
-	DeleteClientByNamespaceCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteClientByNamespaceCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteClientByNamespaceCmd.MarkFlagRequired("namespace")
 }

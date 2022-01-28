@@ -15,7 +15,7 @@ import (
 
 // CheckWalletCmd represents the CheckWallet command
 var CheckWalletCmd = &cobra.Command{
-	Use:   "CheckWallet",
+	Use:   "checkWallet",
 	Short: "Check wallet",
 	Long:  `Check wallet`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var CheckWalletCmd = &cobra.Command{
 }
 
 func init() {
-	CheckWalletCmd.Flags().StringP("currencyCode", "ce", " ", "Currency code")
+	CheckWalletCmd.Flags().StringP("currencyCode", "", " ", "Currency code")
 	_ = CheckWalletCmd.MarkFlagRequired("currencyCode")
-	CheckWalletCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CheckWalletCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CheckWalletCmd.MarkFlagRequired("namespace")
-	CheckWalletCmd.Flags().StringP("userId", "ud", " ", "User id")
+	CheckWalletCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = CheckWalletCmd.MarkFlagRequired("userId")
 }

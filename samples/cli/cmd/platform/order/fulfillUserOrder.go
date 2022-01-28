@@ -15,7 +15,7 @@ import (
 
 // FulfillUserOrderCmd represents the FulfillUserOrder command
 var FulfillUserOrderCmd = &cobra.Command{
-	Use:   "FulfillUserOrder",
+	Use:   "fulfillUserOrder",
 	Short: "Fulfill user order",
 	Long:  `Fulfill user order`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var FulfillUserOrderCmd = &cobra.Command{
 }
 
 func init() {
-	FulfillUserOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	FulfillUserOrderCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = FulfillUserOrderCmd.MarkFlagRequired("namespace")
-	FulfillUserOrderCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
+	FulfillUserOrderCmd.Flags().StringP("orderNo", "", " ", "Order no")
 	_ = FulfillUserOrderCmd.MarkFlagRequired("orderNo")
-	FulfillUserOrderCmd.Flags().StringP("userId", "ud", " ", "User id")
+	FulfillUserOrderCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = FulfillUserOrderCmd.MarkFlagRequired("userId")
 }

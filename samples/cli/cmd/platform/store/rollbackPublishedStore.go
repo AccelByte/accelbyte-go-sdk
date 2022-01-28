@@ -15,7 +15,7 @@ import (
 
 // RollbackPublishedStoreCmd represents the RollbackPublishedStore command
 var RollbackPublishedStoreCmd = &cobra.Command{
-	Use:   "RollbackPublishedStore",
+	Use:   "rollbackPublishedStore",
 	Short: "Rollback published store",
 	Long:  `Rollback published store`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var RollbackPublishedStoreCmd = &cobra.Command{
 }
 
 func init() {
-	RollbackPublishedStoreCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	RollbackPublishedStoreCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = RollbackPublishedStoreCmd.MarkFlagRequired("namespace")
 }

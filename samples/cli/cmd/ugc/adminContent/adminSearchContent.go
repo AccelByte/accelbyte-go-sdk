@@ -15,7 +15,7 @@ import (
 
 // AdminSearchContentCmd represents the AdminSearchContent command
 var AdminSearchContentCmd = &cobra.Command{
-	Use:   "AdminSearchContent",
+	Use:   "adminSearchContent",
 	Short: "Admin search content",
 	Long:  `Admin search content`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -61,17 +61,17 @@ var AdminSearchContentCmd = &cobra.Command{
 }
 
 func init() {
-	AdminSearchContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminSearchContentCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminSearchContentCmd.MarkFlagRequired("namespace")
-	AdminSearchContentCmd.Flags().StringP("creator", "cr", " ", "Creator")
-	AdminSearchContentCmd.Flags().StringP("isofficial", "il", " ", "Isofficial")
-	AdminSearchContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	AdminSearchContentCmd.Flags().StringP("name", "ne", " ", "Name")
-	AdminSearchContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
-	AdminSearchContentCmd.Flags().StringP("orderby", "oy", " ", "Orderby")
-	AdminSearchContentCmd.Flags().StringP("sortby", "sy", " ", "Sortby")
-	AdminSearchContentCmd.Flags().StringP("subtype", "se", " ", "Subtype")
-	AdminSearchContentCmd.Flags().StringP("tags", "ts", " ", "Tags")
-	AdminSearchContentCmd.Flags().StringP("type", "te", " ", "Type")
-	AdminSearchContentCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminSearchContentCmd.Flags().StringP("creator", "", " ", "Creator")
+	AdminSearchContentCmd.Flags().StringP("isofficial", "", " ", "Isofficial")
+	AdminSearchContentCmd.Flags().StringP("limit", "", "20", "Limit")
+	AdminSearchContentCmd.Flags().StringP("name", "", " ", "Name")
+	AdminSearchContentCmd.Flags().StringP("offset", "", "0", "Offset")
+	AdminSearchContentCmd.Flags().StringP("orderby", "", " ", "Orderby")
+	AdminSearchContentCmd.Flags().StringP("sortby", "", " ", "Sortby")
+	AdminSearchContentCmd.Flags().StringP("subtype", "", " ", "Subtype")
+	AdminSearchContentCmd.Flags().StringP("tags", "", " ", "Tags")
+	AdminSearchContentCmd.Flags().StringP("type", "", " ", "Type")
+	AdminSearchContentCmd.Flags().StringP("userId", "", " ", "User id")
 }

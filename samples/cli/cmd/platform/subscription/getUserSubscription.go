@@ -15,7 +15,7 @@ import (
 
 // GetUserSubscriptionCmd represents the GetUserSubscription command
 var GetUserSubscriptionCmd = &cobra.Command{
-	Use:   "GetUserSubscription",
+	Use:   "getUserSubscription",
 	Short: "Get user subscription",
 	Long:  `Get user subscription`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var GetUserSubscriptionCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserSubscriptionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetUserSubscriptionCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetUserSubscriptionCmd.MarkFlagRequired("namespace")
-	GetUserSubscriptionCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
+	GetUserSubscriptionCmd.Flags().StringP("subscriptionId", "", " ", "Subscription id")
 	_ = GetUserSubscriptionCmd.MarkFlagRequired("subscriptionId")
-	GetUserSubscriptionCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetUserSubscriptionCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetUserSubscriptionCmd.MarkFlagRequired("userId")
 }

@@ -15,7 +15,7 @@ import (
 
 // PublicQueryUserOrdersCmd represents the PublicQueryUserOrders command
 var PublicQueryUserOrdersCmd = &cobra.Command{
-	Use:   "PublicQueryUserOrders",
+	Use:   "publicQueryUserOrders",
 	Short: "Public query user orders",
 	Long:  `Public query user orders`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,12 +49,12 @@ var PublicQueryUserOrdersCmd = &cobra.Command{
 }
 
 func init() {
-	PublicQueryUserOrdersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicQueryUserOrdersCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicQueryUserOrdersCmd.MarkFlagRequired("namespace")
-	PublicQueryUserOrdersCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicQueryUserOrdersCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicQueryUserOrdersCmd.MarkFlagRequired("userId")
-	PublicQueryUserOrdersCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	PublicQueryUserOrdersCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	PublicQueryUserOrdersCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	PublicQueryUserOrdersCmd.Flags().StringP("status", "ss", " ", "Status")
+	PublicQueryUserOrdersCmd.Flags().StringP("itemId", "", " ", "Item id")
+	PublicQueryUserOrdersCmd.Flags().Int32P("limit", "", 20, "Limit")
+	PublicQueryUserOrdersCmd.Flags().Int32P("offset", "", 0, "Offset")
+	PublicQueryUserOrdersCmd.Flags().StringP("status", "", " ", "Status")
 }

@@ -17,7 +17,7 @@ import (
 
 // PublicUpdateUserNamespaceSlotCmd represents the PublicUpdateUserNamespaceSlot command
 var PublicUpdateUserNamespaceSlotCmd = &cobra.Command{
-	Use:   "PublicUpdateUserNamespaceSlot",
+	Use:   "publicUpdateUserNamespaceSlot",
 	Short: "Public update user namespace slot",
 	Long:  `Public update user namespace slot`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -65,15 +65,15 @@ var PublicUpdateUserNamespaceSlotCmd = &cobra.Command{
 }
 
 func init() {
-	PublicUpdateUserNamespaceSlotCmd.Flags().StringP("checksum", "cm", " ", "Checksum")
-	PublicUpdateUserNamespaceSlotCmd.Flags().StringP("customAttribute", "ce", " ", "Custom attribute")
-	PublicUpdateUserNamespaceSlotCmd.Flags().StringP("file", "fe", " ", "File")
-	PublicUpdateUserNamespaceSlotCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicUpdateUserNamespaceSlotCmd.Flags().StringP("checksum", "", " ", "Checksum")
+	PublicUpdateUserNamespaceSlotCmd.Flags().StringP("customAttribute", "", " ", "Custom attribute")
+	PublicUpdateUserNamespaceSlotCmd.Flags().StringP("file", "", " ", "File")
+	PublicUpdateUserNamespaceSlotCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicUpdateUserNamespaceSlotCmd.MarkFlagRequired("namespace")
-	PublicUpdateUserNamespaceSlotCmd.Flags().StringP("slotId", "sd", " ", "Slot id")
+	PublicUpdateUserNamespaceSlotCmd.Flags().StringP("slotId", "", " ", "Slot id")
 	_ = PublicUpdateUserNamespaceSlotCmd.MarkFlagRequired("slotId")
-	PublicUpdateUserNamespaceSlotCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicUpdateUserNamespaceSlotCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicUpdateUserNamespaceSlotCmd.MarkFlagRequired("userId")
-	PublicUpdateUserNamespaceSlotCmd.Flags().StringP("label", "ll", " ", "Label")
-	PublicUpdateUserNamespaceSlotCmd.Flags().StringP("tags", "ts", " ", "Tags")
+	PublicUpdateUserNamespaceSlotCmd.Flags().StringP("label", "", " ", "Label")
+	PublicUpdateUserNamespaceSlotCmd.Flags().StringP("tags", "", " ", "Tags")
 }

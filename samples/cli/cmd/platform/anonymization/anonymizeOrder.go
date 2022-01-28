@@ -15,7 +15,7 @@ import (
 
 // AnonymizeOrderCmd represents the AnonymizeOrder command
 var AnonymizeOrderCmd = &cobra.Command{
-	Use:   "AnonymizeOrder",
+	Use:   "anonymizeOrder",
 	Short: "Anonymize order",
 	Long:  `Anonymize order`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var AnonymizeOrderCmd = &cobra.Command{
 }
 
 func init() {
-	AnonymizeOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AnonymizeOrderCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AnonymizeOrderCmd.MarkFlagRequired("namespace")
-	AnonymizeOrderCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AnonymizeOrderCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AnonymizeOrderCmd.MarkFlagRequired("userId")
 }

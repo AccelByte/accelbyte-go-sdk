@@ -15,7 +15,7 @@ import (
 
 // QueryUncategorizedItemsCmd represents the QueryUncategorizedItems command
 var QueryUncategorizedItemsCmd = &cobra.Command{
-	Use:   "QueryUncategorizedItems",
+	Use:   "queryUncategorizedItems",
 	Short: "Query uncategorized items",
 	Long:  `Query uncategorized items`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,11 +49,11 @@ var QueryUncategorizedItemsCmd = &cobra.Command{
 }
 
 func init() {
-	QueryUncategorizedItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QueryUncategorizedItemsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = QueryUncategorizedItemsCmd.MarkFlagRequired("namespace")
-	QueryUncategorizedItemsCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	QueryUncategorizedItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	QueryUncategorizedItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	QueryUncategorizedItemsCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
-	QueryUncategorizedItemsCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	QueryUncategorizedItemsCmd.Flags().BoolP("activeOnly", "", false, "Active only")
+	QueryUncategorizedItemsCmd.Flags().Int32P("limit", "", 20, "Limit")
+	QueryUncategorizedItemsCmd.Flags().Int32P("offset", "", 0, "Offset")
+	QueryUncategorizedItemsCmd.Flags().StringP("sortBy", "", " ", "Sort by")
+	QueryUncategorizedItemsCmd.Flags().StringP("storeId", "", " ", "Store id")
 }

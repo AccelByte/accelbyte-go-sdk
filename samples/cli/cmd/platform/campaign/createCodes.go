@@ -17,7 +17,7 @@ import (
 
 // CreateCodesCmd represents the CreateCodes command
 var CreateCodesCmd = &cobra.Command{
-	Use:   "CreateCodes",
+	Use:   "createCodes",
 	Short: "Create codes",
 	Long:  `Create codes`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var CreateCodesCmd = &cobra.Command{
 }
 
 func init() {
-	CreateCodesCmd.Flags().StringP("body", "by", " ", "Body")
-	CreateCodesCmd.Flags().StringP("campaignId", "cd", " ", "Campaign id")
+	CreateCodesCmd.Flags().StringP("body", "", " ", "Body")
+	CreateCodesCmd.Flags().StringP("campaignId", "", " ", "Campaign id")
 	_ = CreateCodesCmd.MarkFlagRequired("campaignId")
-	CreateCodesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateCodesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateCodesCmd.MarkFlagRequired("namespace")
 }

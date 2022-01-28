@@ -15,7 +15,7 @@ import (
 
 // GetCurrentUserSeasonProgressionCmd represents the GetCurrentUserSeasonProgression command
 var GetCurrentUserSeasonProgressionCmd = &cobra.Command{
-	Use:   "GetCurrentUserSeasonProgression",
+	Use:   "getCurrentUserSeasonProgression",
 	Short: "Get current user season progression",
 	Long:  `Get current user season progression`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetCurrentUserSeasonProgressionCmd = &cobra.Command{
 }
 
 func init() {
-	GetCurrentUserSeasonProgressionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetCurrentUserSeasonProgressionCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetCurrentUserSeasonProgressionCmd.MarkFlagRequired("namespace")
-	GetCurrentUserSeasonProgressionCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetCurrentUserSeasonProgressionCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetCurrentUserSeasonProgressionCmd.MarkFlagRequired("userId")
 }

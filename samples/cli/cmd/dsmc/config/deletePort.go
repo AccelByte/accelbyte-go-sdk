@@ -15,7 +15,7 @@ import (
 
 // DeletePortCmd represents the DeletePort command
 var DeletePortCmd = &cobra.Command{
-	Use:   "DeletePort",
+	Use:   "deletePort",
 	Short: "Delete port",
 	Long:  `Delete port`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var DeletePortCmd = &cobra.Command{
 }
 
 func init() {
-	DeletePortCmd.Flags().StringP("name", "ne", " ", "Name")
+	DeletePortCmd.Flags().StringP("name", "", " ", "Name")
 	_ = DeletePortCmd.MarkFlagRequired("name")
-	DeletePortCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeletePortCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeletePortCmd.MarkFlagRequired("namespace")
 }

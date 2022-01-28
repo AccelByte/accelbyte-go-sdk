@@ -15,7 +15,7 @@ import (
 
 // AdminGetRoleV3Cmd represents the AdminGetRoleV3 command
 var AdminGetRoleV3Cmd = &cobra.Command{
-	Use:   "AdminGetRoleV3",
+	Use:   "adminGetRoleV3",
 	Short: "Admin get role V3",
 	Long:  `Admin get role V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var AdminGetRoleV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetRoleV3Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	AdminGetRoleV3Cmd.Flags().StringP("roleId", "", " ", "Role id")
 	_ = AdminGetRoleV3Cmd.MarkFlagRequired("roleId")
 }

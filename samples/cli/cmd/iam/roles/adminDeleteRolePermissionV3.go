@@ -15,7 +15,7 @@ import (
 
 // AdminDeleteRolePermissionV3Cmd represents the AdminDeleteRolePermissionV3 command
 var AdminDeleteRolePermissionV3Cmd = &cobra.Command{
-	Use:   "AdminDeleteRolePermissionV3",
+	Use:   "adminDeleteRolePermissionV3",
 	Short: "Admin delete role permission V3",
 	Long:  `Admin delete role permission V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var AdminDeleteRolePermissionV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteRolePermissionV3Cmd.Flags().Int64P("action", "an", -1, "Action")
+	AdminDeleteRolePermissionV3Cmd.Flags().Int64P("action", "", -1, "Action")
 	_ = AdminDeleteRolePermissionV3Cmd.MarkFlagRequired("action")
-	AdminDeleteRolePermissionV3Cmd.Flags().StringP("resource", "re", " ", "Resource")
+	AdminDeleteRolePermissionV3Cmd.Flags().StringP("resource", "", " ", "Resource")
 	_ = AdminDeleteRolePermissionV3Cmd.MarkFlagRequired("resource")
-	AdminDeleteRolePermissionV3Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	AdminDeleteRolePermissionV3Cmd.Flags().StringP("roleId", "", " ", "Role id")
 	_ = AdminDeleteRolePermissionV3Cmd.MarkFlagRequired("roleId")
 }

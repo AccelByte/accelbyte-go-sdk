@@ -15,7 +15,7 @@ import (
 
 // ListProvidersByRegionCmd represents the ListProvidersByRegion command
 var ListProvidersByRegionCmd = &cobra.Command{
-	Use:   "ListProvidersByRegion",
+	Use:   "listProvidersByRegion",
 	Short: "List providers by region",
 	Long:  `List providers by region`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var ListProvidersByRegionCmd = &cobra.Command{
 }
 
 func init() {
-	ListProvidersByRegionCmd.Flags().StringP("region", "rn", " ", "Region")
+	ListProvidersByRegionCmd.Flags().StringP("region", "", " ", "Region")
 	_ = ListProvidersByRegionCmd.MarkFlagRequired("region")
 }

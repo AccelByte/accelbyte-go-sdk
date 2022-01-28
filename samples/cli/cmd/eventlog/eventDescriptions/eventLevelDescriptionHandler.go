@@ -15,7 +15,7 @@ import (
 
 // EventLevelDescriptionHandlerCmd represents the EventLevelDescriptionHandler command
 var EventLevelDescriptionHandlerCmd = &cobra.Command{
-	Use:   "EventLevelDescriptionHandler",
+	Use:   "eventLevelDescriptionHandler",
 	Short: "Event level description handler",
 	Long:  `Event level description handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,4 +33,7 @@ var EventLevelDescriptionHandlerCmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

@@ -17,7 +17,7 @@ import (
 
 // UpdateMemberRolePublicV1Cmd represents the UpdateMemberRolePublicV1 command
 var UpdateMemberRolePublicV1Cmd = &cobra.Command{
-	Use:   "UpdateMemberRolePublicV1",
+	Use:   "updateMemberRolePublicV1",
 	Short: "Update member role public V1",
 	Long:  `Update member role public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var UpdateMemberRolePublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	UpdateMemberRolePublicV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateMemberRolePublicV1Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateMemberRolePublicV1Cmd.MarkFlagRequired("body")
-	UpdateMemberRolePublicV1Cmd.Flags().StringP("memberRoleId", "md", " ", "Member role id")
+	UpdateMemberRolePublicV1Cmd.Flags().StringP("memberRoleId", "", " ", "Member role id")
 	_ = UpdateMemberRolePublicV1Cmd.MarkFlagRequired("memberRoleId")
-	UpdateMemberRolePublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateMemberRolePublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateMemberRolePublicV1Cmd.MarkFlagRequired("namespace")
 }

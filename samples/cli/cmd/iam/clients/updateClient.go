@@ -17,7 +17,7 @@ import (
 
 // UpdateClientCmd represents the UpdateClient command
 var UpdateClientCmd = &cobra.Command{
-	Use:   "UpdateClient",
+	Use:   "updateClient",
 	Short: "Update client",
 	Long:  `Update client`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var UpdateClientCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateClientCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateClientCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateClientCmd.MarkFlagRequired("body")
-	UpdateClientCmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	UpdateClientCmd.Flags().StringP("clientId", "", " ", "Client id")
 	_ = UpdateClientCmd.MarkFlagRequired("clientId")
 }

@@ -16,7 +16,7 @@ import (
 
 // DeleteAdminEmailConfigurationCmd represents the DeleteAdminEmailConfiguration command
 var DeleteAdminEmailConfigurationCmd = &cobra.Command{
-	Use:   "DeleteAdminEmailConfiguration",
+	Use:   "deleteAdminEmailConfiguration",
 	Short: "Delete admin email configuration",
 	Long:  `Delete admin email configuration`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,8 +46,8 @@ var DeleteAdminEmailConfigurationCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteAdminEmailConfigurationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteAdminEmailConfigurationCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteAdminEmailConfigurationCmd.MarkFlagRequired("namespace")
-	DeleteAdminEmailConfigurationCmd.Flags().StringP("emails", "es", " ", "Emails")
+	DeleteAdminEmailConfigurationCmd.Flags().StringP("emails", "", " ", "Emails")
 	_ = DeleteAdminEmailConfigurationCmd.MarkFlagRequired("emails")
 }

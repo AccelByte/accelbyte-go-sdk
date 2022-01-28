@@ -17,7 +17,7 @@ import (
 
 // AdminUpdateRolePermissionsV3Cmd represents the AdminUpdateRolePermissionsV3 command
 var AdminUpdateRolePermissionsV3Cmd = &cobra.Command{
-	Use:   "AdminUpdateRolePermissionsV3",
+	Use:   "adminUpdateRolePermissionsV3",
 	Short: "Admin update role permissions V3",
 	Long:  `Admin update role permissions V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var AdminUpdateRolePermissionsV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateRolePermissionsV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	AdminUpdateRolePermissionsV3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminUpdateRolePermissionsV3Cmd.MarkFlagRequired("body")
-	AdminUpdateRolePermissionsV3Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	AdminUpdateRolePermissionsV3Cmd.Flags().StringP("roleId", "", " ", "Role id")
 	_ = AdminUpdateRolePermissionsV3Cmd.MarkFlagRequired("roleId")
 }

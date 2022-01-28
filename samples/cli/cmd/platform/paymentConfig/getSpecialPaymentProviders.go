@@ -15,7 +15,7 @@ import (
 
 // GetSpecialPaymentProvidersCmd represents the GetSpecialPaymentProviders command
 var GetSpecialPaymentProvidersCmd = &cobra.Command{
-	Use:   "GetSpecialPaymentProviders",
+	Use:   "getSpecialPaymentProviders",
 	Short: "Get special payment providers",
 	Long:  `Get special payment providers`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,4 +33,7 @@ var GetSpecialPaymentProvidersCmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

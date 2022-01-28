@@ -15,7 +15,7 @@ import (
 
 // InvalidateUserInfoCacheCmd represents the InvalidateUserInfoCache command
 var InvalidateUserInfoCacheCmd = &cobra.Command{
-	Use:   "InvalidateUserInfoCache",
+	Use:   "invalidateUserInfoCache",
 	Short: "Invalidate user info cache",
 	Long:  `Invalidate user info cache`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,5 +38,5 @@ var InvalidateUserInfoCacheCmd = &cobra.Command{
 }
 
 func init() {
-	InvalidateUserInfoCacheCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	InvalidateUserInfoCacheCmd.Flags().StringP("namespace", "", " ", "Namespace")
 }

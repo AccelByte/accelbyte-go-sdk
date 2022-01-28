@@ -17,7 +17,7 @@ import (
 
 // UpdateRolePermissionsCmd represents the UpdateRolePermissions command
 var UpdateRolePermissionsCmd = &cobra.Command{
-	Use:   "UpdateRolePermissions",
+	Use:   "updateRolePermissions",
 	Short: "Update role permissions",
 	Long:  `Update role permissions`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var UpdateRolePermissionsCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateRolePermissionsCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateRolePermissionsCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateRolePermissionsCmd.MarkFlagRequired("body")
-	UpdateRolePermissionsCmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	UpdateRolePermissionsCmd.Flags().StringP("roleId", "", " ", "Role id")
 	_ = UpdateRolePermissionsCmd.MarkFlagRequired("roleId")
 }

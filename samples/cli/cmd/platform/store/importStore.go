@@ -16,7 +16,7 @@ import (
 
 // ImportStoreCmd represents the ImportStore command
 var ImportStoreCmd = &cobra.Command{
-	Use:   "ImportStore",
+	Use:   "importStore",
 	Short: "Import store",
 	Long:  `Import store`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +49,8 @@ var ImportStoreCmd = &cobra.Command{
 }
 
 func init() {
-	ImportStoreCmd.Flags().StringP("file", "fe", " ", "File")
-	ImportStoreCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ImportStoreCmd.Flags().StringP("file", "", " ", "File")
+	ImportStoreCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ImportStoreCmd.MarkFlagRequired("namespace")
-	ImportStoreCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	ImportStoreCmd.Flags().StringP("storeId", "", " ", "Store id")
 }

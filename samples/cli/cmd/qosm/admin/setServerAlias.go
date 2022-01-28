@@ -17,7 +17,7 @@ import (
 
 // SetServerAliasCmd represents the SetServerAlias command
 var SetServerAliasCmd = &cobra.Command{
-	Use:   "SetServerAlias",
+	Use:   "setServerAlias",
 	Short: "Set server alias",
 	Long:  `Set server alias`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var SetServerAliasCmd = &cobra.Command{
 }
 
 func init() {
-	SetServerAliasCmd.Flags().StringP("body", "by", " ", "Body")
+	SetServerAliasCmd.Flags().StringP("body", "", " ", "Body")
 	_ = SetServerAliasCmd.MarkFlagRequired("body")
-	SetServerAliasCmd.Flags().StringP("region", "rn", " ", "Region")
+	SetServerAliasCmd.Flags().StringP("region", "", " ", "Region")
 	_ = SetServerAliasCmd.MarkFlagRequired("region")
 }

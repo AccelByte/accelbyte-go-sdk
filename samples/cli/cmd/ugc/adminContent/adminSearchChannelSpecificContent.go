@@ -15,7 +15,7 @@ import (
 
 // AdminSearchChannelSpecificContentCmd represents the AdminSearchChannelSpecificContent command
 var AdminSearchChannelSpecificContentCmd = &cobra.Command{
-	Use:   "AdminSearchChannelSpecificContent",
+	Use:   "adminSearchChannelSpecificContent",
 	Short: "Admin search channel specific content",
 	Long:  `Admin search channel specific content`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -63,19 +63,19 @@ var AdminSearchChannelSpecificContentCmd = &cobra.Command{
 }
 
 func init() {
-	AdminSearchChannelSpecificContentCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("channelId", "", " ", "Channel id")
 	_ = AdminSearchChannelSpecificContentCmd.MarkFlagRequired("channelId")
-	AdminSearchChannelSpecificContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminSearchChannelSpecificContentCmd.MarkFlagRequired("namespace")
-	AdminSearchChannelSpecificContentCmd.Flags().StringP("creator", "cr", " ", "Creator")
-	AdminSearchChannelSpecificContentCmd.Flags().StringP("isofficial", "il", " ", "Isofficial")
-	AdminSearchChannelSpecificContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	AdminSearchChannelSpecificContentCmd.Flags().StringP("name", "ne", " ", "Name")
-	AdminSearchChannelSpecificContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
-	AdminSearchChannelSpecificContentCmd.Flags().StringP("orderby", "oy", " ", "Orderby")
-	AdminSearchChannelSpecificContentCmd.Flags().StringP("sortby", "sy", " ", "Sortby")
-	AdminSearchChannelSpecificContentCmd.Flags().StringP("subtype", "se", " ", "Subtype")
-	AdminSearchChannelSpecificContentCmd.Flags().StringP("tags", "ts", " ", "Tags")
-	AdminSearchChannelSpecificContentCmd.Flags().StringP("type", "te", " ", "Type")
-	AdminSearchChannelSpecificContentCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("creator", "", " ", "Creator")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("isofficial", "", " ", "Isofficial")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("limit", "", "20", "Limit")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("name", "", " ", "Name")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("offset", "", "0", "Offset")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("orderby", "", " ", "Orderby")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("sortby", "", " ", "Sortby")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("subtype", "", " ", "Subtype")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("tags", "", " ", "Tags")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("type", "", " ", "Type")
+	AdminSearchChannelSpecificContentCmd.Flags().StringP("userId", "", " ", "User id")
 }

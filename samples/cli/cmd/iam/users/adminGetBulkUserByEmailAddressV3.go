@@ -17,7 +17,7 @@ import (
 
 // AdminGetBulkUserByEmailAddressV3Cmd represents the AdminGetBulkUserByEmailAddressV3 command
 var AdminGetBulkUserByEmailAddressV3Cmd = &cobra.Command{
-	Use:   "AdminGetBulkUserByEmailAddressV3",
+	Use:   "adminGetBulkUserByEmailAddressV3",
 	Short: "Admin get bulk user by email address V3",
 	Long:  `Admin get bulk user by email address V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var AdminGetBulkUserByEmailAddressV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetBulkUserByEmailAddressV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	AdminGetBulkUserByEmailAddressV3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminGetBulkUserByEmailAddressV3Cmd.MarkFlagRequired("body")
-	AdminGetBulkUserByEmailAddressV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetBulkUserByEmailAddressV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetBulkUserByEmailAddressV3Cmd.MarkFlagRequired("namespace")
 }

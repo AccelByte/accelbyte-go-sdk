@@ -17,7 +17,7 @@ import (
 
 // PublicFulfillAppleIAPItemCmd represents the PublicFulfillAppleIAPItem command
 var PublicFulfillAppleIAPItemCmd = &cobra.Command{
-	Use:   "PublicFulfillAppleIAPItem",
+	Use:   "publicFulfillAppleIAPItem",
 	Short: "Public fulfill apple IAP item",
 	Long:  `Public fulfill apple IAP item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +49,9 @@ var PublicFulfillAppleIAPItemCmd = &cobra.Command{
 }
 
 func init() {
-	PublicFulfillAppleIAPItemCmd.Flags().StringP("body", "by", " ", "Body")
-	PublicFulfillAppleIAPItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicFulfillAppleIAPItemCmd.Flags().StringP("body", "", " ", "Body")
+	PublicFulfillAppleIAPItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicFulfillAppleIAPItemCmd.MarkFlagRequired("namespace")
-	PublicFulfillAppleIAPItemCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicFulfillAppleIAPItemCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicFulfillAppleIAPItemCmd.MarkFlagRequired("userId")
 }

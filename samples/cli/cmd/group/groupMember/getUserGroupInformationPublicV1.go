@@ -15,7 +15,7 @@ import (
 
 // GetUserGroupInformationPublicV1Cmd represents the GetUserGroupInformationPublicV1 command
 var GetUserGroupInformationPublicV1Cmd = &cobra.Command{
-	Use:   "GetUserGroupInformationPublicV1",
+	Use:   "getUserGroupInformationPublicV1",
 	Short: "Get user group information public V1",
 	Long:  `Get user group information public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetUserGroupInformationPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetUserGroupInformationPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetUserGroupInformationPublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetUserGroupInformationPublicV1Cmd.MarkFlagRequired("namespace")
-	GetUserGroupInformationPublicV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetUserGroupInformationPublicV1Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetUserGroupInformationPublicV1Cmd.MarkFlagRequired("userId")
 }

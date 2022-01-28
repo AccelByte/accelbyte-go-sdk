@@ -17,7 +17,7 @@ import (
 
 // PartialUpdatePolicyCmd represents the PartialUpdatePolicy command
 var PartialUpdatePolicyCmd = &cobra.Command{
-	Use:   "PartialUpdatePolicy",
+	Use:   "partialUpdatePolicy",
 	Short: "Partial update policy",
 	Long:  `Partial update policy`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var PartialUpdatePolicyCmd = &cobra.Command{
 }
 
 func init() {
-	PartialUpdatePolicyCmd.Flags().StringP("body", "by", " ", "Body")
-	PartialUpdatePolicyCmd.Flags().StringP("basePolicyId", "bd", " ", "Base policy id")
+	PartialUpdatePolicyCmd.Flags().StringP("body", "", " ", "Body")
+	PartialUpdatePolicyCmd.Flags().StringP("basePolicyId", "", " ", "Base policy id")
 	_ = PartialUpdatePolicyCmd.MarkFlagRequired("basePolicyId")
 }

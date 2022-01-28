@@ -15,7 +15,7 @@ import (
 
 // SpecificEventTypeDescriptionHandlerCmd represents the SpecificEventTypeDescriptionHandler command
 var SpecificEventTypeDescriptionHandlerCmd = &cobra.Command{
-	Use:   "SpecificEventTypeDescriptionHandler",
+	Use:   "specificEventTypeDescriptionHandler",
 	Short: "Specific event type description handler",
 	Long:  `Specific event type description handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,5 +39,5 @@ var SpecificEventTypeDescriptionHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	SpecificEventTypeDescriptionHandlerCmd.Flags().StringP("eventTypes", "es", " ", "Event types")
+	SpecificEventTypeDescriptionHandlerCmd.Flags().StringP("eventTypes", "", " ", "Event types")
 }

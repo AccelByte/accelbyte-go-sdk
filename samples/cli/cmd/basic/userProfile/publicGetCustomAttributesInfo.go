@@ -15,7 +15,7 @@ import (
 
 // PublicGetCustomAttributesInfoCmd represents the PublicGetCustomAttributesInfo command
 var PublicGetCustomAttributesInfoCmd = &cobra.Command{
-	Use:   "PublicGetCustomAttributesInfo",
+	Use:   "publicGetCustomAttributesInfo",
 	Short: "Public get custom attributes info",
 	Long:  `Public get custom attributes info`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var PublicGetCustomAttributesInfoCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetCustomAttributesInfoCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetCustomAttributesInfoCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetCustomAttributesInfoCmd.MarkFlagRequired("namespace")
-	PublicGetCustomAttributesInfoCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicGetCustomAttributesInfoCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicGetCustomAttributesInfoCmd.MarkFlagRequired("userId")
 }

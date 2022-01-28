@@ -15,7 +15,7 @@ import (
 
 // PublicGetUserAppEntitlementOwnershipByAppIdCmd represents the PublicGetUserAppEntitlementOwnershipByAppId command
 var PublicGetUserAppEntitlementOwnershipByAppIdCmd = &cobra.Command{
-	Use:   "PublicGetUserAppEntitlementOwnershipByAppId",
+	Use:   "publicGetUserAppEntitlementOwnershipByAppId",
 	Short: "Public get user app entitlement ownership by app id",
 	Long:  `Public get user app entitlement ownership by app id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var PublicGetUserAppEntitlementOwnershipByAppIdCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserAppEntitlementOwnershipByAppIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetUserAppEntitlementOwnershipByAppIdCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetUserAppEntitlementOwnershipByAppIdCmd.MarkFlagRequired("namespace")
-	PublicGetUserAppEntitlementOwnershipByAppIdCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicGetUserAppEntitlementOwnershipByAppIdCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicGetUserAppEntitlementOwnershipByAppIdCmd.MarkFlagRequired("userId")
-	PublicGetUserAppEntitlementOwnershipByAppIdCmd.Flags().StringP("appId", "ad", " ", "App id")
+	PublicGetUserAppEntitlementOwnershipByAppIdCmd.Flags().StringP("appId", "", " ", "App id")
 	_ = PublicGetUserAppEntitlementOwnershipByAppIdCmd.MarkFlagRequired("appId")
 }

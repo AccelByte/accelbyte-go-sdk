@@ -15,7 +15,7 @@ import (
 
 // DeleteTierCmd represents the DeleteTier command
 var DeleteTierCmd = &cobra.Command{
-	Use:   "DeleteTier",
+	Use:   "deleteTier",
 	Short: "Delete tier",
 	Long:  `Delete tier`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var DeleteTierCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteTierCmd.Flags().StringP("id", "id", " ", "Id")
+	DeleteTierCmd.Flags().StringP("id", "", " ", "Id")
 	_ = DeleteTierCmd.MarkFlagRequired("id")
-	DeleteTierCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteTierCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteTierCmd.MarkFlagRequired("namespace")
-	DeleteTierCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	DeleteTierCmd.Flags().StringP("seasonId", "", " ", "Season id")
 	_ = DeleteTierCmd.MarkFlagRequired("seasonId")
 }

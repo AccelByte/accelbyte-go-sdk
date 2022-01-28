@@ -17,7 +17,7 @@ import (
 
 // CreateDeploymentOverrideCmd represents the CreateDeploymentOverride command
 var CreateDeploymentOverrideCmd = &cobra.Command{
-	Use:   "CreateDeploymentOverride",
+	Use:   "createDeploymentOverride",
 	Short: "Create deployment override",
 	Long:  `Create deployment override`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,12 +52,12 @@ var CreateDeploymentOverrideCmd = &cobra.Command{
 }
 
 func init() {
-	CreateDeploymentOverrideCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateDeploymentOverrideCmd.Flags().StringP("body", "", " ", "Body")
 	_ = CreateDeploymentOverrideCmd.MarkFlagRequired("body")
-	CreateDeploymentOverrideCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
+	CreateDeploymentOverrideCmd.Flags().StringP("deployment", "", " ", "Deployment")
 	_ = CreateDeploymentOverrideCmd.MarkFlagRequired("deployment")
-	CreateDeploymentOverrideCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateDeploymentOverrideCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateDeploymentOverrideCmd.MarkFlagRequired("namespace")
-	CreateDeploymentOverrideCmd.Flags().StringP("version", "vn", " ", "Version")
+	CreateDeploymentOverrideCmd.Flags().StringP("version", "", " ", "Version")
 	_ = CreateDeploymentOverrideCmd.MarkFlagRequired("version")
 }

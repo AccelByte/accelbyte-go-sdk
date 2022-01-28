@@ -17,7 +17,7 @@ import (
 
 // CreateSessionCmd represents the CreateSession command
 var CreateSessionCmd = &cobra.Command{
-	Use:   "CreateSession",
+	Use:   "createSession",
 	Short: "Create session",
 	Long:  `Create session`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var CreateSessionCmd = &cobra.Command{
 }
 
 func init() {
-	CreateSessionCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateSessionCmd.Flags().StringP("body", "", " ", "Body")
 	_ = CreateSessionCmd.MarkFlagRequired("body")
-	CreateSessionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateSessionCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateSessionCmd.MarkFlagRequired("namespace")
 }

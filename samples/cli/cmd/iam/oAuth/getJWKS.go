@@ -15,7 +15,7 @@ import (
 
 // GetJWKSCmd represents the GetJWKS command
 var GetJWKSCmd = &cobra.Command{
-	Use:   "GetJWKS",
+	Use:   "getJWKS",
 	Short: "Get JWKS",
 	Long:  `Get JWKS`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,4 +33,7 @@ var GetJWKSCmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

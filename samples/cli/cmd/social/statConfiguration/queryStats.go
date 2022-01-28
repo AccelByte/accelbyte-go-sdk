@@ -15,7 +15,7 @@ import (
 
 // QueryStatsCmd represents the QueryStats command
 var QueryStatsCmd = &cobra.Command{
-	Use:   "QueryStats",
+	Use:   "queryStats",
 	Short: "Query stats",
 	Long:  `Query stats`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,10 +45,10 @@ var QueryStatsCmd = &cobra.Command{
 }
 
 func init() {
-	QueryStatsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QueryStatsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = QueryStatsCmd.MarkFlagRequired("namespace")
-	QueryStatsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	QueryStatsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	QueryStatsCmd.Flags().StringP("keyword", "kd", " ", "Keyword")
+	QueryStatsCmd.Flags().Int32P("limit", "", 20, "Limit")
+	QueryStatsCmd.Flags().Int32P("offset", "", 0, "Offset")
+	QueryStatsCmd.Flags().StringP("keyword", "", " ", "Keyword")
 	_ = QueryStatsCmd.MarkFlagRequired("keyword")
 }

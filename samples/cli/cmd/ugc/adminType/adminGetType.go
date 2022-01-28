@@ -15,7 +15,7 @@ import (
 
 // AdminGetTypeCmd represents the AdminGetType command
 var AdminGetTypeCmd = &cobra.Command{
-	Use:   "AdminGetType",
+	Use:   "adminGetType",
 	Short: "Admin get type",
 	Long:  `Admin get type`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,8 +43,8 @@ var AdminGetTypeCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetTypeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetTypeCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetTypeCmd.MarkFlagRequired("namespace")
-	AdminGetTypeCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	AdminGetTypeCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	AdminGetTypeCmd.Flags().StringP("limit", "", "20", "Limit")
+	AdminGetTypeCmd.Flags().StringP("offset", "", "0", "Offset")
 }

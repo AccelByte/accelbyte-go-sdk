@@ -15,7 +15,7 @@ import (
 
 // LeaveGroupPublicV1Cmd represents the LeaveGroupPublicV1 command
 var LeaveGroupPublicV1Cmd = &cobra.Command{
-	Use:   "LeaveGroupPublicV1",
+	Use:   "leaveGroupPublicV1",
 	Short: "Leave group public V1",
 	Long:  `Leave group public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var LeaveGroupPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	LeaveGroupPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	LeaveGroupPublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = LeaveGroupPublicV1Cmd.MarkFlagRequired("namespace")
 }

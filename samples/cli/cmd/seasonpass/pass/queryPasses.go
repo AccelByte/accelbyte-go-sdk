@@ -15,7 +15,7 @@ import (
 
 // QueryPassesCmd represents the QueryPasses command
 var QueryPassesCmd = &cobra.Command{
-	Use:   "QueryPasses",
+	Use:   "queryPasses",
 	Short: "Query passes",
 	Long:  `Query passes`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var QueryPassesCmd = &cobra.Command{
 }
 
 func init() {
-	QueryPassesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QueryPassesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = QueryPassesCmd.MarkFlagRequired("namespace")
-	QueryPassesCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	QueryPassesCmd.Flags().StringP("seasonId", "", " ", "Season id")
 	_ = QueryPassesCmd.MarkFlagRequired("seasonId")
 }

@@ -15,7 +15,7 @@ import (
 
 // GetEventByUserIDAndEventTypeHandlerCmd represents the GetEventByUserIDAndEventTypeHandler command
 var GetEventByUserIDAndEventTypeHandlerCmd = &cobra.Command{
-	Use:   "GetEventByUserIDAndEventTypeHandler",
+	Use:   "getEventByUserIDAndEventTypeHandler",
 	Short: "Get event by user ID and event type handler",
 	Long:  `Get event by user ID and event type handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,17 +51,17 @@ var GetEventByUserIDAndEventTypeHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	GetEventByUserIDAndEventTypeHandlerCmd.Flags().Float64P("eventType", "ee", 0, "Event type")
+	GetEventByUserIDAndEventTypeHandlerCmd.Flags().Float64P("eventType", "", 0, "Event type")
 	_ = GetEventByUserIDAndEventTypeHandlerCmd.MarkFlagRequired("eventType")
-	GetEventByUserIDAndEventTypeHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetEventByUserIDAndEventTypeHandlerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetEventByUserIDAndEventTypeHandlerCmd.MarkFlagRequired("namespace")
-	GetEventByUserIDAndEventTypeHandlerCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetEventByUserIDAndEventTypeHandlerCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetEventByUserIDAndEventTypeHandlerCmd.MarkFlagRequired("userId")
-	GetEventByUserIDAndEventTypeHandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
-	GetEventByUserIDAndEventTypeHandlerCmd.Flags().StringP("endDate", "ee", " ", "End date")
+	GetEventByUserIDAndEventTypeHandlerCmd.Flags().Float64P("offset", "", 0, "Offset")
+	GetEventByUserIDAndEventTypeHandlerCmd.Flags().StringP("endDate", "", " ", "End date")
 	_ = GetEventByUserIDAndEventTypeHandlerCmd.MarkFlagRequired("endDate")
-	GetEventByUserIDAndEventTypeHandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
+	GetEventByUserIDAndEventTypeHandlerCmd.Flags().Float64P("pageSize", "", 1, "Page size")
 	_ = GetEventByUserIDAndEventTypeHandlerCmd.MarkFlagRequired("pageSize")
-	GetEventByUserIDAndEventTypeHandlerCmd.Flags().StringP("startDate", "se", " ", "Start date")
+	GetEventByUserIDAndEventTypeHandlerCmd.Flags().StringP("startDate", "", " ", "Start date")
 	_ = GetEventByUserIDAndEventTypeHandlerCmd.MarkFlagRequired("startDate")
 }

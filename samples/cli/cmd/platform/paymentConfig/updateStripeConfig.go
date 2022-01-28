@@ -17,7 +17,7 @@ import (
 
 // UpdateStripeConfigCmd represents the UpdateStripeConfig command
 var UpdateStripeConfigCmd = &cobra.Command{
-	Use:   "UpdateStripeConfig",
+	Use:   "updateStripeConfig",
 	Short: "Update stripe config",
 	Long:  `Update stripe config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,9 +52,9 @@ var UpdateStripeConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateStripeConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateStripeConfigCmd.Flags().StringP("id", "id", " ", "Id")
+	UpdateStripeConfigCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateStripeConfigCmd.Flags().StringP("id", "", " ", "Id")
 	_ = UpdateStripeConfigCmd.MarkFlagRequired("id")
-	UpdateStripeConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
-	UpdateStripeConfigCmd.Flags().BoolP("validate", "ve", false, "Validate")
+	UpdateStripeConfigCmd.Flags().BoolP("sandbox", "", false, "Sandbox")
+	UpdateStripeConfigCmd.Flags().BoolP("validate", "", false, "Validate")
 }

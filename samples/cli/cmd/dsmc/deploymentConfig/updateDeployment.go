@@ -17,7 +17,7 @@ import (
 
 // UpdateDeploymentCmd represents the UpdateDeployment command
 var UpdateDeploymentCmd = &cobra.Command{
-	Use:   "UpdateDeployment",
+	Use:   "updateDeployment",
 	Short: "Update deployment",
 	Long:  `Update deployment`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var UpdateDeploymentCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateDeploymentCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateDeploymentCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateDeploymentCmd.MarkFlagRequired("body")
-	UpdateDeploymentCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
+	UpdateDeploymentCmd.Flags().StringP("deployment", "", " ", "Deployment")
 	_ = UpdateDeploymentCmd.MarkFlagRequired("deployment")
-	UpdateDeploymentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateDeploymentCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateDeploymentCmd.MarkFlagRequired("namespace")
 }

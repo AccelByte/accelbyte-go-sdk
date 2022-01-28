@@ -15,7 +15,7 @@ import (
 
 // SyncUserInfoCmd represents the SyncUserInfo command
 var SyncUserInfoCmd = &cobra.Command{
-	Use:   "SyncUserInfo",
+	Use:   "syncUserInfo",
 	Short: "Sync user info",
 	Long:  `Sync user info`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var SyncUserInfoCmd = &cobra.Command{
 }
 
 func init() {
-	SyncUserInfoCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SyncUserInfoCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SyncUserInfoCmd.MarkFlagRequired("namespace")
 }

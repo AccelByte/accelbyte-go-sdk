@@ -15,7 +15,7 @@ import (
 
 // GetXblIAPConfigCmd represents the GetXblIAPConfig command
 var GetXblIAPConfigCmd = &cobra.Command{
-	Use:   "GetXblIAPConfig",
+	Use:   "getXblIAPConfig",
 	Short: "Get xbl IAP config",
 	Long:  `Get xbl IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetXblIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetXblIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetXblIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetXblIAPConfigCmd.MarkFlagRequired("namespace")
 }

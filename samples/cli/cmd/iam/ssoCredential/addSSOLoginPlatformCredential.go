@@ -17,7 +17,7 @@ import (
 
 // AddSSOLoginPlatformCredentialCmd represents the AddSSOLoginPlatformCredential command
 var AddSSOLoginPlatformCredentialCmd = &cobra.Command{
-	Use:   "AddSSOLoginPlatformCredential",
+	Use:   "addSSOLoginPlatformCredential",
 	Short: "Add SSO login platform credential",
 	Long:  `Add SSO login platform credential`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var AddSSOLoginPlatformCredentialCmd = &cobra.Command{
 }
 
 func init() {
-	AddSSOLoginPlatformCredentialCmd.Flags().StringP("body", "by", " ", "Body")
+	AddSSOLoginPlatformCredentialCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AddSSOLoginPlatformCredentialCmd.MarkFlagRequired("body")
-	AddSSOLoginPlatformCredentialCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AddSSOLoginPlatformCredentialCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AddSSOLoginPlatformCredentialCmd.MarkFlagRequired("namespace")
-	AddSSOLoginPlatformCredentialCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	AddSSOLoginPlatformCredentialCmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = AddSSOLoginPlatformCredentialCmd.MarkFlagRequired("platformId")
 }

@@ -15,7 +15,7 @@ import (
 
 // ListExtOrderNoByExtTxIdCmd represents the ListExtOrderNoByExtTxId command
 var ListExtOrderNoByExtTxIdCmd = &cobra.Command{
-	Use:   "ListExtOrderNoByExtTxId",
+	Use:   "listExtOrderNoByExtTxId",
 	Short: "List ext order no by ext tx id",
 	Long:  `List ext order no by ext tx id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var ListExtOrderNoByExtTxIdCmd = &cobra.Command{
 }
 
 func init() {
-	ListExtOrderNoByExtTxIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ListExtOrderNoByExtTxIdCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ListExtOrderNoByExtTxIdCmd.MarkFlagRequired("namespace")
-	ListExtOrderNoByExtTxIdCmd.Flags().StringP("extTxId", "ed", " ", "Ext tx id")
+	ListExtOrderNoByExtTxIdCmd.Flags().StringP("extTxId", "", " ", "Ext tx id")
 	_ = ListExtOrderNoByExtTxIdCmd.MarkFlagRequired("extTxId")
 }

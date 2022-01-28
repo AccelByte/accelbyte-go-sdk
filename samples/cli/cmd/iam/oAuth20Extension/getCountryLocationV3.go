@@ -15,7 +15,7 @@ import (
 
 // GetCountryLocationV3Cmd represents the GetCountryLocationV3 command
 var GetCountryLocationV3Cmd = &cobra.Command{
-	Use:   "GetCountryLocationV3",
+	Use:   "getCountryLocationV3",
 	Short: "Get country location V3",
 	Long:  `Get country location V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,4 +33,7 @@ var GetCountryLocationV3Cmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

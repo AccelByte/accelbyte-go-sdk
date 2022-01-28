@@ -17,7 +17,7 @@ import (
 
 // UpdatePortCmd represents the UpdatePort command
 var UpdatePortCmd = &cobra.Command{
-	Use:   "UpdatePort",
+	Use:   "updatePort",
 	Short: "Update port",
 	Long:  `Update port`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var UpdatePortCmd = &cobra.Command{
 }
 
 func init() {
-	UpdatePortCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdatePortCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdatePortCmd.MarkFlagRequired("body")
-	UpdatePortCmd.Flags().StringP("name", "ne", " ", "Name")
+	UpdatePortCmd.Flags().StringP("name", "", " ", "Name")
 	_ = UpdatePortCmd.MarkFlagRequired("name")
-	UpdatePortCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdatePortCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdatePortCmd.MarkFlagRequired("namespace")
 }

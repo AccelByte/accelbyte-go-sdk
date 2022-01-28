@@ -15,7 +15,7 @@ import (
 
 // AdminDeleteAchievementCmd represents the AdminDeleteAchievement command
 var AdminDeleteAchievementCmd = &cobra.Command{
-	Use:   "AdminDeleteAchievement",
+	Use:   "adminDeleteAchievement",
 	Short: "Admin delete achievement",
 	Long:  `Admin delete achievement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var AdminDeleteAchievementCmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteAchievementCmd.Flags().StringP("achievementCode", "ae", " ", "Achievement code")
+	AdminDeleteAchievementCmd.Flags().StringP("achievementCode", "", " ", "Achievement code")
 	_ = AdminDeleteAchievementCmd.MarkFlagRequired("achievementCode")
-	AdminDeleteAchievementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminDeleteAchievementCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminDeleteAchievementCmd.MarkFlagRequired("namespace")
 }

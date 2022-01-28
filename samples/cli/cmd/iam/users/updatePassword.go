@@ -17,7 +17,7 @@ import (
 
 // UpdatePasswordCmd represents the UpdatePassword command
 var UpdatePasswordCmd = &cobra.Command{
-	Use:   "UpdatePassword",
+	Use:   "updatePassword",
 	Short: "Update password",
 	Long:  `Update password`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var UpdatePasswordCmd = &cobra.Command{
 }
 
 func init() {
-	UpdatePasswordCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdatePasswordCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdatePasswordCmd.MarkFlagRequired("body")
-	UpdatePasswordCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdatePasswordCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdatePasswordCmd.MarkFlagRequired("namespace")
-	UpdatePasswordCmd.Flags().StringP("userId", "ud", " ", "User id")
+	UpdatePasswordCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = UpdatePasswordCmd.MarkFlagRequired("userId")
 }

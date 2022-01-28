@@ -15,7 +15,7 @@ import (
 
 // GetSingleMatchmakingChannelCmd represents the GetSingleMatchmakingChannel command
 var GetSingleMatchmakingChannelCmd = &cobra.Command{
-	Use:   "GetSingleMatchmakingChannel",
+	Use:   "getSingleMatchmakingChannel",
 	Short: "Get single matchmaking channel",
 	Long:  `Get single matchmaking channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetSingleMatchmakingChannelCmd = &cobra.Command{
 }
 
 func init() {
-	GetSingleMatchmakingChannelCmd.Flags().StringP("channelName", "ce", " ", "Channel name")
+	GetSingleMatchmakingChannelCmd.Flags().StringP("channelName", "", " ", "Channel name")
 	_ = GetSingleMatchmakingChannelCmd.MarkFlagRequired("channelName")
-	GetSingleMatchmakingChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetSingleMatchmakingChannelCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetSingleMatchmakingChannelCmd.MarkFlagRequired("namespace")
 }

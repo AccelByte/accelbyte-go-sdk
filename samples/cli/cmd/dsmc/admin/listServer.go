@@ -15,7 +15,7 @@ import (
 
 // ListServerCmd represents the ListServer command
 var ListServerCmd = &cobra.Command{
-	Use:   "ListServer",
+	Use:   "listServer",
 	Short: "List server",
 	Long:  `List server`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,9 +45,9 @@ var ListServerCmd = &cobra.Command{
 }
 
 func init() {
-	ListServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ListServerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ListServerCmd.MarkFlagRequired("namespace")
-	ListServerCmd.Flags().Int64P("count", "ct", 1, "Count")
-	ListServerCmd.Flags().Int64P("offset", "ot", 0, "Offset")
-	ListServerCmd.Flags().StringP("region", "rn", " ", "Region")
+	ListServerCmd.Flags().Int64P("count", "", 1, "Count")
+	ListServerCmd.Flags().Int64P("offset", "", 0, "Offset")
+	ListServerCmd.Flags().StringP("region", "", " ", "Region")
 }

@@ -15,7 +15,7 @@ import (
 
 // SetDefaultPolicyCmd represents the SetDefaultPolicy command
 var SetDefaultPolicyCmd = &cobra.Command{
-	Use:   "SetDefaultPolicy",
+	Use:   "setDefaultPolicy",
 	Short: "Set default policy",
 	Long:  `Set default policy`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var SetDefaultPolicyCmd = &cobra.Command{
 }
 
 func init() {
-	SetDefaultPolicyCmd.Flags().StringP("localizedPolicyVersionId", "ld", " ", "Localized policy version id")
+	SetDefaultPolicyCmd.Flags().StringP("localizedPolicyVersionId", "", " ", "Localized policy version id")
 	_ = SetDefaultPolicyCmd.MarkFlagRequired("localizedPolicyVersionId")
 }

@@ -15,7 +15,7 @@ import (
 
 // AuthCodeRequestV3Cmd represents the AuthCodeRequestV3 command
 var AuthCodeRequestV3Cmd = &cobra.Command{
-	Use:   "AuthCodeRequestV3",
+	Use:   "authCodeRequestV3",
 	Short: "Auth code request V3",
 	Long:  `Auth code request V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,10 +44,10 @@ var AuthCodeRequestV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AuthCodeRequestV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	AuthCodeRequestV3Cmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = AuthCodeRequestV3Cmd.MarkFlagRequired("platformId")
-	AuthCodeRequestV3Cmd.Flags().StringP("client_id", "cd", " ", "Client id")
-	AuthCodeRequestV3Cmd.Flags().StringP("redirect_uri", "ri", " ", "Redirect uri")
-	AuthCodeRequestV3Cmd.Flags().StringP("request_id", "rd", " ", "Request id")
+	AuthCodeRequestV3Cmd.Flags().StringP("client_id", "", " ", "Client id")
+	AuthCodeRequestV3Cmd.Flags().StringP("redirect_uri", "", " ", "Redirect uri")
+	AuthCodeRequestV3Cmd.Flags().StringP("request_id", "", " ", "Request id")
 	_ = AuthCodeRequestV3Cmd.MarkFlagRequired("request_id")
 }

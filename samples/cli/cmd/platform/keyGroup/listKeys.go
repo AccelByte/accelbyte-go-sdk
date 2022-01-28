@@ -15,7 +15,7 @@ import (
 
 // ListKeysCmd represents the ListKeys command
 var ListKeysCmd = &cobra.Command{
-	Use:   "ListKeys",
+	Use:   "listKeys",
 	Short: "List keys",
 	Long:  `List keys`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,11 +47,11 @@ var ListKeysCmd = &cobra.Command{
 }
 
 func init() {
-	ListKeysCmd.Flags().StringP("keyGroupId", "kd", " ", "Key group id")
+	ListKeysCmd.Flags().StringP("keyGroupId", "", " ", "Key group id")
 	_ = ListKeysCmd.MarkFlagRequired("keyGroupId")
-	ListKeysCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ListKeysCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ListKeysCmd.MarkFlagRequired("namespace")
-	ListKeysCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	ListKeysCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	ListKeysCmd.Flags().StringP("status", "ss", " ", "Status")
+	ListKeysCmd.Flags().Int32P("limit", "", 20, "Limit")
+	ListKeysCmd.Flags().Int32P("offset", "", 0, "Offset")
+	ListKeysCmd.Flags().StringP("status", "", " ", "Status")
 }

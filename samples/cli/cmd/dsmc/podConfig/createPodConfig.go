@@ -17,7 +17,7 @@ import (
 
 // CreatePodConfigCmd represents the CreatePodConfig command
 var CreatePodConfigCmd = &cobra.Command{
-	Use:   "CreatePodConfig",
+	Use:   "createPodConfig",
 	Short: "Create pod config",
 	Long:  `Create pod config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var CreatePodConfigCmd = &cobra.Command{
 }
 
 func init() {
-	CreatePodConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	CreatePodConfigCmd.Flags().StringP("body", "", " ", "Body")
 	_ = CreatePodConfigCmd.MarkFlagRequired("body")
-	CreatePodConfigCmd.Flags().StringP("name", "ne", " ", "Name")
+	CreatePodConfigCmd.Flags().StringP("name", "", " ", "Name")
 	_ = CreatePodConfigCmd.MarkFlagRequired("name")
-	CreatePodConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreatePodConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreatePodConfigCmd.MarkFlagRequired("namespace")
 }

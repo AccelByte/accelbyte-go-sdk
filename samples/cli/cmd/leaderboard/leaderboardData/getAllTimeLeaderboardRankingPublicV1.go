@@ -15,7 +15,7 @@ import (
 
 // GetAllTimeLeaderboardRankingPublicV1Cmd represents the GetAllTimeLeaderboardRankingPublicV1 command
 var GetAllTimeLeaderboardRankingPublicV1Cmd = &cobra.Command{
-	Use:   "GetAllTimeLeaderboardRankingPublicV1",
+	Use:   "getAllTimeLeaderboardRankingPublicV1",
 	Short: "Get all time leaderboard ranking public V1",
 	Long:  `Get all time leaderboard ranking public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,10 +45,10 @@ var GetAllTimeLeaderboardRankingPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetAllTimeLeaderboardRankingPublicV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
+	GetAllTimeLeaderboardRankingPublicV1Cmd.Flags().StringP("leaderboardCode", "", " ", "Leaderboard code")
 	_ = GetAllTimeLeaderboardRankingPublicV1Cmd.MarkFlagRequired("leaderboardCode")
-	GetAllTimeLeaderboardRankingPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetAllTimeLeaderboardRankingPublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetAllTimeLeaderboardRankingPublicV1Cmd.MarkFlagRequired("namespace")
-	GetAllTimeLeaderboardRankingPublicV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	GetAllTimeLeaderboardRankingPublicV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetAllTimeLeaderboardRankingPublicV1Cmd.Flags().Int64P("limit", "", 20, "Limit")
+	GetAllTimeLeaderboardRankingPublicV1Cmd.Flags().Int64P("offset", "", 0, "Offset")
 }

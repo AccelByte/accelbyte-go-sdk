@@ -16,7 +16,7 @@ import (
 
 // ImportConfigV1Cmd represents the ImportConfigV1 command
 var ImportConfigV1Cmd = &cobra.Command{
-	Use:   "ImportConfigV1",
+	Use:   "importConfigV1",
 	Short: "Import config V1",
 	Long:  `Import config V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,7 +47,7 @@ var ImportConfigV1Cmd = &cobra.Command{
 }
 
 func init() {
-	ImportConfigV1Cmd.Flags().StringP("file", "fe", " ", "File")
-	ImportConfigV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ImportConfigV1Cmd.Flags().StringP("file", "", " ", "File")
+	ImportConfigV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ImportConfigV1Cmd.MarkFlagRequired("namespace")
 }

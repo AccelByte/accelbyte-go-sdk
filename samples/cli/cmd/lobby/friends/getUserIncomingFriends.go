@@ -15,7 +15,7 @@ import (
 
 // GetUserIncomingFriendsCmd represents the GetUserIncomingFriends command
 var GetUserIncomingFriendsCmd = &cobra.Command{
-	Use:   "GetUserIncomingFriends",
+	Use:   "getUserIncomingFriends",
 	Short: "Get user incoming friends",
 	Long:  `Get user incoming friends`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetUserIncomingFriendsCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserIncomingFriendsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetUserIncomingFriendsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetUserIncomingFriendsCmd.MarkFlagRequired("namespace")
 }

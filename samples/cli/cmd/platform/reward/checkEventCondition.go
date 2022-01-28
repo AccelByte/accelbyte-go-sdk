@@ -17,7 +17,7 @@ import (
 
 // CheckEventConditionCmd represents the CheckEventCondition command
 var CheckEventConditionCmd = &cobra.Command{
-	Use:   "CheckEventCondition",
+	Use:   "checkEventCondition",
 	Short: "Check event condition",
 	Long:  `Check event condition`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var CheckEventConditionCmd = &cobra.Command{
 }
 
 func init() {
-	CheckEventConditionCmd.Flags().StringP("body", "by", " ", "Body")
-	CheckEventConditionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CheckEventConditionCmd.Flags().StringP("body", "", " ", "Body")
+	CheckEventConditionCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CheckEventConditionCmd.MarkFlagRequired("namespace")
-	CheckEventConditionCmd.Flags().StringP("rewardId", "rd", " ", "Reward id")
+	CheckEventConditionCmd.Flags().StringP("rewardId", "", " ", "Reward id")
 	_ = CheckEventConditionCmd.MarkFlagRequired("rewardId")
 }

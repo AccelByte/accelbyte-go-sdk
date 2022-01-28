@@ -17,7 +17,7 @@ import (
 
 // BulkUpdateUserStatItemCmd represents the BulkUpdateUserStatItem command
 var BulkUpdateUserStatItemCmd = &cobra.Command{
-	Use:   "BulkUpdateUserStatItem",
+	Use:   "bulkUpdateUserStatItem",
 	Short: "Bulk update user stat item",
 	Long:  `Bulk update user stat item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,10 +52,10 @@ var BulkUpdateUserStatItemCmd = &cobra.Command{
 }
 
 func init() {
-	BulkUpdateUserStatItemCmd.Flags().StringP("body", "by", " ", "Body")
-	BulkUpdateUserStatItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	BulkUpdateUserStatItemCmd.Flags().StringP("body", "", " ", "Body")
+	BulkUpdateUserStatItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = BulkUpdateUserStatItemCmd.MarkFlagRequired("namespace")
-	BulkUpdateUserStatItemCmd.Flags().StringP("userId", "ud", " ", "User id")
+	BulkUpdateUserStatItemCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = BulkUpdateUserStatItemCmd.MarkFlagRequired("userId")
-	BulkUpdateUserStatItemCmd.Flags().StringP("additionalKey", "ay", " ", "Additional key")
+	BulkUpdateUserStatItemCmd.Flags().StringP("additionalKey", "", " ", "Additional key")
 }

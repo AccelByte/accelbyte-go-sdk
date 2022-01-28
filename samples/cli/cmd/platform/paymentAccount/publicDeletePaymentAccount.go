@@ -15,7 +15,7 @@ import (
 
 // PublicDeletePaymentAccountCmd represents the PublicDeletePaymentAccount command
 var PublicDeletePaymentAccountCmd = &cobra.Command{
-	Use:   "PublicDeletePaymentAccount",
+	Use:   "publicDeletePaymentAccount",
 	Short: "Public delete payment account",
 	Long:  `Public delete payment account`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,12 +44,12 @@ var PublicDeletePaymentAccountCmd = &cobra.Command{
 }
 
 func init() {
-	PublicDeletePaymentAccountCmd.Flags().StringP("id", "id", " ", "Id")
+	PublicDeletePaymentAccountCmd.Flags().StringP("id", "", " ", "Id")
 	_ = PublicDeletePaymentAccountCmd.MarkFlagRequired("id")
-	PublicDeletePaymentAccountCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicDeletePaymentAccountCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicDeletePaymentAccountCmd.MarkFlagRequired("namespace")
-	PublicDeletePaymentAccountCmd.Flags().StringP("type", "te", " ", "Type")
+	PublicDeletePaymentAccountCmd.Flags().StringP("type", "", " ", "Type")
 	_ = PublicDeletePaymentAccountCmd.MarkFlagRequired("type")
-	PublicDeletePaymentAccountCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicDeletePaymentAccountCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicDeletePaymentAccountCmd.MarkFlagRequired("userId")
 }

@@ -17,7 +17,7 @@ import (
 
 // AdminSaveUserRoleV3Cmd represents the AdminSaveUserRoleV3 command
 var AdminSaveUserRoleV3Cmd = &cobra.Command{
-	Use:   "AdminSaveUserRoleV3",
+	Use:   "adminSaveUserRoleV3",
 	Short: "Admin save user role V3",
 	Long:  `Admin save user role V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var AdminSaveUserRoleV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminSaveUserRoleV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	AdminSaveUserRoleV3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminSaveUserRoleV3Cmd.MarkFlagRequired("body")
-	AdminSaveUserRoleV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminSaveUserRoleV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminSaveUserRoleV3Cmd.MarkFlagRequired("namespace")
-	AdminSaveUserRoleV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminSaveUserRoleV3Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminSaveUserRoleV3Cmd.MarkFlagRequired("userId")
 }

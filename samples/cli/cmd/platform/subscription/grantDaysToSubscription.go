@@ -17,7 +17,7 @@ import (
 
 // GrantDaysToSubscriptionCmd represents the GrantDaysToSubscription command
 var GrantDaysToSubscriptionCmd = &cobra.Command{
-	Use:   "GrantDaysToSubscription",
+	Use:   "grantDaysToSubscription",
 	Short: "Grant days to subscription",
 	Long:  `Grant days to subscription`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,11 +52,11 @@ var GrantDaysToSubscriptionCmd = &cobra.Command{
 }
 
 func init() {
-	GrantDaysToSubscriptionCmd.Flags().StringP("body", "by", " ", "Body")
-	GrantDaysToSubscriptionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GrantDaysToSubscriptionCmd.Flags().StringP("body", "", " ", "Body")
+	GrantDaysToSubscriptionCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GrantDaysToSubscriptionCmd.MarkFlagRequired("namespace")
-	GrantDaysToSubscriptionCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
+	GrantDaysToSubscriptionCmd.Flags().StringP("subscriptionId", "", " ", "Subscription id")
 	_ = GrantDaysToSubscriptionCmd.MarkFlagRequired("subscriptionId")
-	GrantDaysToSubscriptionCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GrantDaysToSubscriptionCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GrantDaysToSubscriptionCmd.MarkFlagRequired("userId")
 }

@@ -15,7 +15,7 @@ import (
 
 // PublicCheckPaymentOrderPaidStatusCmd represents the PublicCheckPaymentOrderPaidStatus command
 var PublicCheckPaymentOrderPaidStatusCmd = &cobra.Command{
-	Use:   "PublicCheckPaymentOrderPaidStatus",
+	Use:   "publicCheckPaymentOrderPaidStatus",
 	Short: "Public check payment order paid status",
 	Long:  `Public check payment order paid status`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var PublicCheckPaymentOrderPaidStatusCmd = &cobra.Command{
 }
 
 func init() {
-	PublicCheckPaymentOrderPaidStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicCheckPaymentOrderPaidStatusCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicCheckPaymentOrderPaidStatusCmd.MarkFlagRequired("namespace")
-	PublicCheckPaymentOrderPaidStatusCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
+	PublicCheckPaymentOrderPaidStatusCmd.Flags().StringP("paymentOrderNo", "", " ", "Payment order no")
 	_ = PublicCheckPaymentOrderPaidStatusCmd.MarkFlagRequired("paymentOrderNo")
 }

@@ -15,7 +15,7 @@ import (
 
 // PublicGetUnpaidPaymentOrderCmd represents the PublicGetUnpaidPaymentOrder command
 var PublicGetUnpaidPaymentOrderCmd = &cobra.Command{
-	Use:   "PublicGetUnpaidPaymentOrder",
+	Use:   "publicGetUnpaidPaymentOrder",
 	Short: "Public get unpaid payment order",
 	Long:  `Public get unpaid payment order`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var PublicGetUnpaidPaymentOrderCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUnpaidPaymentOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetUnpaidPaymentOrderCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetUnpaidPaymentOrderCmd.MarkFlagRequired("namespace")
-	PublicGetUnpaidPaymentOrderCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
+	PublicGetUnpaidPaymentOrderCmd.Flags().StringP("paymentOrderNo", "", " ", "Payment order no")
 	_ = PublicGetUnpaidPaymentOrderCmd.MarkFlagRequired("paymentOrderNo")
 }

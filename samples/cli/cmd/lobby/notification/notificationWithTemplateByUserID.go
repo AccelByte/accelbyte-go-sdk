@@ -17,7 +17,7 @@ import (
 
 // NotificationWithTemplateByUserIDCmd represents the NotificationWithTemplateByUserID command
 var NotificationWithTemplateByUserIDCmd = &cobra.Command{
-	Use:   "NotificationWithTemplateByUserID",
+	Use:   "notificationWithTemplateByUserID",
 	Short: "Notification with template by user ID",
 	Long:  `Notification with template by user ID`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var NotificationWithTemplateByUserIDCmd = &cobra.Command{
 }
 
 func init() {
-	NotificationWithTemplateByUserIDCmd.Flags().StringP("body", "by", " ", "Body")
+	NotificationWithTemplateByUserIDCmd.Flags().StringP("body", "", " ", "Body")
 	_ = NotificationWithTemplateByUserIDCmd.MarkFlagRequired("body")
-	NotificationWithTemplateByUserIDCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	NotificationWithTemplateByUserIDCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = NotificationWithTemplateByUserIDCmd.MarkFlagRequired("namespace")
-	NotificationWithTemplateByUserIDCmd.Flags().StringP("userId", "ud", " ", "User id")
+	NotificationWithTemplateByUserIDCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = NotificationWithTemplateByUserIDCmd.MarkFlagRequired("userId")
 }

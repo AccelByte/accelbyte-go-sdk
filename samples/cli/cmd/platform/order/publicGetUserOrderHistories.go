@@ -15,7 +15,7 @@ import (
 
 // PublicGetUserOrderHistoriesCmd represents the PublicGetUserOrderHistories command
 var PublicGetUserOrderHistoriesCmd = &cobra.Command{
-	Use:   "PublicGetUserOrderHistories",
+	Use:   "publicGetUserOrderHistories",
 	Short: "Public get user order histories",
 	Long:  `Public get user order histories`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var PublicGetUserOrderHistoriesCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserOrderHistoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetUserOrderHistoriesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetUserOrderHistoriesCmd.MarkFlagRequired("namespace")
-	PublicGetUserOrderHistoriesCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
+	PublicGetUserOrderHistoriesCmd.Flags().StringP("orderNo", "", " ", "Order no")
 	_ = PublicGetUserOrderHistoriesCmd.MarkFlagRequired("orderNo")
-	PublicGetUserOrderHistoriesCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicGetUserOrderHistoriesCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicGetUserOrderHistoriesCmd.MarkFlagRequired("userId")
 }

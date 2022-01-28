@@ -15,7 +15,7 @@ import (
 
 // AdminGetListPersonalDataRequestCmd represents the AdminGetListPersonalDataRequest command
 var AdminGetListPersonalDataRequestCmd = &cobra.Command{
-	Use:   "AdminGetListPersonalDataRequest",
+	Use:   "adminGetListPersonalDataRequest",
 	Short: "Admin get list personal data request",
 	Long:  `Admin get list personal data request`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,9 +45,9 @@ var AdminGetListPersonalDataRequestCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetListPersonalDataRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetListPersonalDataRequestCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetListPersonalDataRequestCmd.MarkFlagRequired("namespace")
-	AdminGetListPersonalDataRequestCmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	AdminGetListPersonalDataRequestCmd.Flags().Int64P("offset", "ot", 0, "Offset")
-	AdminGetListPersonalDataRequestCmd.Flags().StringP("requestDate", "re", " ", "Request date")
+	AdminGetListPersonalDataRequestCmd.Flags().Int64P("limit", "", 20, "Limit")
+	AdminGetListPersonalDataRequestCmd.Flags().Int64P("offset", "", 0, "Offset")
+	AdminGetListPersonalDataRequestCmd.Flags().StringP("requestDate", "", " ", "Request date")
 }

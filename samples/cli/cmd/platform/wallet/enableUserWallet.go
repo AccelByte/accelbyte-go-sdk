@@ -15,7 +15,7 @@ import (
 
 // EnableUserWalletCmd represents the EnableUserWallet command
 var EnableUserWalletCmd = &cobra.Command{
-	Use:   "EnableUserWallet",
+	Use:   "enableUserWallet",
 	Short: "Enable user wallet",
 	Long:  `Enable user wallet`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var EnableUserWalletCmd = &cobra.Command{
 }
 
 func init() {
-	EnableUserWalletCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	EnableUserWalletCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = EnableUserWalletCmd.MarkFlagRequired("namespace")
-	EnableUserWalletCmd.Flags().StringP("userId", "ud", " ", "User id")
+	EnableUserWalletCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = EnableUserWalletCmd.MarkFlagRequired("userId")
-	EnableUserWalletCmd.Flags().StringP("walletId", "wd", " ", "Wallet id")
+	EnableUserWalletCmd.Flags().StringP("walletId", "", " ", "Wallet id")
 	_ = EnableUserWalletCmd.MarkFlagRequired("walletId")
 }

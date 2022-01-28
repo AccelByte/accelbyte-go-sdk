@@ -15,7 +15,7 @@ import (
 
 // CheckReadinessCmd represents the CheckReadiness command
 var CheckReadinessCmd = &cobra.Command{
-	Use:   "CheckReadiness",
+	Use:   "checkReadiness",
 	Short: "Check readiness",
 	Long:  `Check readiness`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,4 +33,7 @@ var CheckReadinessCmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

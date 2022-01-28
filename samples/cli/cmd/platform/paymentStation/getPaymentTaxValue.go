@@ -15,7 +15,7 @@ import (
 
 // GetPaymentTaxValueCmd represents the GetPaymentTaxValue command
 var GetPaymentTaxValueCmd = &cobra.Command{
-	Use:   "GetPaymentTaxValue",
+	Use:   "getPaymentTaxValue",
 	Short: "Get payment tax value",
 	Long:  `Get payment tax value`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,11 +45,11 @@ var GetPaymentTaxValueCmd = &cobra.Command{
 }
 
 func init() {
-	GetPaymentTaxValueCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetPaymentTaxValueCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetPaymentTaxValueCmd.MarkFlagRequired("namespace")
-	GetPaymentTaxValueCmd.Flags().StringP("zipCode", "ze", " ", "Zip code")
-	GetPaymentTaxValueCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
+	GetPaymentTaxValueCmd.Flags().StringP("zipCode", "", " ", "Zip code")
+	GetPaymentTaxValueCmd.Flags().StringP("paymentOrderNo", "", " ", "Payment order no")
 	_ = GetPaymentTaxValueCmd.MarkFlagRequired("paymentOrderNo")
-	GetPaymentTaxValueCmd.Flags().StringP("paymentProvider", "pr", " ", "Payment provider")
+	GetPaymentTaxValueCmd.Flags().StringP("paymentProvider", "", " ", "Payment provider")
 	_ = GetPaymentTaxValueCmd.MarkFlagRequired("paymentProvider")
 }

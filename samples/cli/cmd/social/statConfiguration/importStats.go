@@ -16,7 +16,7 @@ import (
 
 // ImportStatsCmd represents the ImportStats command
 var ImportStatsCmd = &cobra.Command{
-	Use:   "ImportStats",
+	Use:   "importStats",
 	Short: "Import stats",
 	Long:  `Import stats`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +49,8 @@ var ImportStatsCmd = &cobra.Command{
 }
 
 func init() {
-	ImportStatsCmd.Flags().StringP("file", "fe", " ", "File")
-	ImportStatsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ImportStatsCmd.Flags().StringP("file", "", " ", "File")
+	ImportStatsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ImportStatsCmd.MarkFlagRequired("namespace")
-	ImportStatsCmd.Flags().BoolP("replaceExisting", "rg", false, "Replace existing")
+	ImportStatsCmd.Flags().BoolP("replaceExisting", "", false, "Replace existing")
 }

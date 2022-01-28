@@ -15,7 +15,7 @@ import (
 
 // DeleteLocalServerCmd represents the DeleteLocalServer command
 var DeleteLocalServerCmd = &cobra.Command{
-	Use:   "DeleteLocalServer",
+	Use:   "deleteLocalServer",
 	Short: "Delete local server",
 	Long:  `Delete local server`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var DeleteLocalServerCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteLocalServerCmd.Flags().StringP("name", "ne", " ", "Name")
+	DeleteLocalServerCmd.Flags().StringP("name", "", " ", "Name")
 	_ = DeleteLocalServerCmd.MarkFlagRequired("name")
-	DeleteLocalServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteLocalServerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteLocalServerCmd.MarkFlagRequired("namespace")
 }

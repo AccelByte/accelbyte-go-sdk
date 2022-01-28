@@ -17,7 +17,7 @@ import (
 
 // PublicCancelSubscriptionCmd represents the PublicCancelSubscription command
 var PublicCancelSubscriptionCmd = &cobra.Command{
-	Use:   "PublicCancelSubscription",
+	Use:   "publicCancelSubscription",
 	Short: "Public cancel subscription",
 	Long:  `Public cancel subscription`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,11 +52,11 @@ var PublicCancelSubscriptionCmd = &cobra.Command{
 }
 
 func init() {
-	PublicCancelSubscriptionCmd.Flags().StringP("body", "by", " ", "Body")
-	PublicCancelSubscriptionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicCancelSubscriptionCmd.Flags().StringP("body", "", " ", "Body")
+	PublicCancelSubscriptionCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicCancelSubscriptionCmd.MarkFlagRequired("namespace")
-	PublicCancelSubscriptionCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
+	PublicCancelSubscriptionCmd.Flags().StringP("subscriptionId", "", " ", "Subscription id")
 	_ = PublicCancelSubscriptionCmd.MarkFlagRequired("subscriptionId")
-	PublicCancelSubscriptionCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicCancelSubscriptionCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicCancelSubscriptionCmd.MarkFlagRequired("userId")
 }

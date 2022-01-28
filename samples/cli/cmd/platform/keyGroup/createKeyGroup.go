@@ -17,7 +17,7 @@ import (
 
 // CreateKeyGroupCmd represents the CreateKeyGroup command
 var CreateKeyGroupCmd = &cobra.Command{
-	Use:   "CreateKeyGroup",
+	Use:   "createKeyGroup",
 	Short: "Create key group",
 	Long:  `Create key group`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var CreateKeyGroupCmd = &cobra.Command{
 }
 
 func init() {
-	CreateKeyGroupCmd.Flags().StringP("body", "by", " ", "Body")
-	CreateKeyGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateKeyGroupCmd.Flags().StringP("body", "", " ", "Body")
+	CreateKeyGroupCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateKeyGroupCmd.MarkFlagRequired("namespace")
 }

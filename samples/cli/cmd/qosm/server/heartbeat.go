@@ -17,7 +17,7 @@ import (
 
 // HeartbeatCmd represents the Heartbeat command
 var HeartbeatCmd = &cobra.Command{
-	Use:   "Heartbeat",
+	Use:   "heartbeat",
 	Short: "Heartbeat",
 	Long:  `Heartbeat`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,6 +45,6 @@ var HeartbeatCmd = &cobra.Command{
 }
 
 func init() {
-	HeartbeatCmd.Flags().StringP("body", "by", " ", "Body")
+	HeartbeatCmd.Flags().StringP("body", "", " ", "Body")
 	_ = HeartbeatCmd.MarkFlagRequired("body")
 }

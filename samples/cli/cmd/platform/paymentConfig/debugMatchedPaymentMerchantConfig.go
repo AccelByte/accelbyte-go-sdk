@@ -15,7 +15,7 @@ import (
 
 // DebugMatchedPaymentMerchantConfigCmd represents the DebugMatchedPaymentMerchantConfig command
 var DebugMatchedPaymentMerchantConfigCmd = &cobra.Command{
-	Use:   "DebugMatchedPaymentMerchantConfig",
+	Use:   "debugMatchedPaymentMerchantConfig",
 	Short: "Debug matched payment merchant config",
 	Long:  `Debug matched payment merchant config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,6 +41,6 @@ var DebugMatchedPaymentMerchantConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DebugMatchedPaymentMerchantConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	DebugMatchedPaymentMerchantConfigCmd.Flags().StringP("region", "rn", " ", "Region")
+	DebugMatchedPaymentMerchantConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DebugMatchedPaymentMerchantConfigCmd.Flags().StringP("region", "", " ", "Region")
 }

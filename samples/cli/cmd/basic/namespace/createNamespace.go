@@ -17,7 +17,7 @@ import (
 
 // CreateNamespaceCmd represents the CreateNamespace command
 var CreateNamespaceCmd = &cobra.Command{
-	Use:   "CreateNamespace",
+	Use:   "createNamespace",
 	Short: "Create namespace",
 	Long:  `Create namespace`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,5 +46,5 @@ var CreateNamespaceCmd = &cobra.Command{
 }
 
 func init() {
-	CreateNamespaceCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateNamespaceCmd.Flags().StringP("body", "", " ", "Body")
 }

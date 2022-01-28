@@ -17,7 +17,7 @@ import (
 
 // CreateConfigCmd represents the CreateConfig command
 var CreateConfigCmd = &cobra.Command{
-	Use:   "CreateConfig",
+	Use:   "createConfig",
 	Short: "Create config",
 	Long:  `Create config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var CreateConfigCmd = &cobra.Command{
 }
 
 func init() {
-	CreateConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateConfigCmd.Flags().StringP("body", "", " ", "Body")
 	_ = CreateConfigCmd.MarkFlagRequired("body")
-	CreateConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateConfigCmd.MarkFlagRequired("namespace")
 }

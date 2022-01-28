@@ -15,7 +15,7 @@ import (
 
 // GetPaymentOrderCmd represents the GetPaymentOrder command
 var GetPaymentOrderCmd = &cobra.Command{
-	Use:   "GetPaymentOrder",
+	Use:   "getPaymentOrder",
 	Short: "Get payment order",
 	Long:  `Get payment order`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetPaymentOrderCmd = &cobra.Command{
 }
 
 func init() {
-	GetPaymentOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetPaymentOrderCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetPaymentOrderCmd.MarkFlagRequired("namespace")
-	GetPaymentOrderCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
+	GetPaymentOrderCmd.Flags().StringP("paymentOrderNo", "", " ", "Payment order no")
 	_ = GetPaymentOrderCmd.MarkFlagRequired("paymentOrderNo")
 }

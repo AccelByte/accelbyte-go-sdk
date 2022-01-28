@@ -17,7 +17,7 @@ import (
 
 // UpdateCampaignCmd represents the UpdateCampaign command
 var UpdateCampaignCmd = &cobra.Command{
-	Use:   "UpdateCampaign",
+	Use:   "updateCampaign",
 	Short: "Update campaign",
 	Long:  `Update campaign`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var UpdateCampaignCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateCampaignCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateCampaignCmd.Flags().StringP("campaignId", "cd", " ", "Campaign id")
+	UpdateCampaignCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateCampaignCmd.Flags().StringP("campaignId", "", " ", "Campaign id")
 	_ = UpdateCampaignCmd.MarkFlagRequired("campaignId")
-	UpdateCampaignCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateCampaignCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateCampaignCmd.MarkFlagRequired("namespace")
 }

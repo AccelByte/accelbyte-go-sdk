@@ -17,7 +17,7 @@ import (
 
 // UpdatePlayTimeWeightCmd represents the UpdatePlayTimeWeight command
 var UpdatePlayTimeWeightCmd = &cobra.Command{
-	Use:   "UpdatePlayTimeWeight",
+	Use:   "updatePlayTimeWeight",
 	Short: "Update play time weight",
 	Long:  `Update play time weight`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var UpdatePlayTimeWeightCmd = &cobra.Command{
 }
 
 func init() {
-	UpdatePlayTimeWeightCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdatePlayTimeWeightCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdatePlayTimeWeightCmd.MarkFlagRequired("body")
-	UpdatePlayTimeWeightCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdatePlayTimeWeightCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdatePlayTimeWeightCmd.MarkFlagRequired("namespace")
 }

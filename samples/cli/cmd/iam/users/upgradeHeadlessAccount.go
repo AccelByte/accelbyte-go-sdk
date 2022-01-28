@@ -17,7 +17,7 @@ import (
 
 // UpgradeHeadlessAccountCmd represents the UpgradeHeadlessAccount command
 var UpgradeHeadlessAccountCmd = &cobra.Command{
-	Use:   "UpgradeHeadlessAccount",
+	Use:   "upgradeHeadlessAccount",
 	Short: "Upgrade headless account",
 	Long:  `Upgrade headless account`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var UpgradeHeadlessAccountCmd = &cobra.Command{
 }
 
 func init() {
-	UpgradeHeadlessAccountCmd.Flags().StringP("body", "by", " ", "Body")
+	UpgradeHeadlessAccountCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpgradeHeadlessAccountCmd.MarkFlagRequired("body")
-	UpgradeHeadlessAccountCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpgradeHeadlessAccountCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpgradeHeadlessAccountCmd.MarkFlagRequired("namespace")
-	UpgradeHeadlessAccountCmd.Flags().StringP("userId", "ud", " ", "User id")
+	UpgradeHeadlessAccountCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = UpgradeHeadlessAccountCmd.MarkFlagRequired("userId")
 }

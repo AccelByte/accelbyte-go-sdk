@@ -15,7 +15,7 @@ import (
 
 // ClearCacheCmd represents the ClearCache command
 var ClearCacheCmd = &cobra.Command{
-	Use:   "ClearCache",
+	Use:   "clearCache",
 	Short: "Clear cache",
 	Long:  `Clear cache`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var ClearCacheCmd = &cobra.Command{
 }
 
 func init() {
-	ClearCacheCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ClearCacheCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ClearCacheCmd.MarkFlagRequired("namespace")
 }

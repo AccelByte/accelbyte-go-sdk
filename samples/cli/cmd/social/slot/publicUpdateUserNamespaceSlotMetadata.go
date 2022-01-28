@@ -17,7 +17,7 @@ import (
 
 // PublicUpdateUserNamespaceSlotMetadataCmd represents the PublicUpdateUserNamespaceSlotMetadata command
 var PublicUpdateUserNamespaceSlotMetadataCmd = &cobra.Command{
-	Use:   "PublicUpdateUserNamespaceSlotMetadata",
+	Use:   "publicUpdateUserNamespaceSlotMetadata",
 	Short: "Public update user namespace slot metadata",
 	Long:  `Public update user namespace slot metadata`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,11 +52,11 @@ var PublicUpdateUserNamespaceSlotMetadataCmd = &cobra.Command{
 }
 
 func init() {
-	PublicUpdateUserNamespaceSlotMetadataCmd.Flags().StringP("body", "by", " ", "Body")
-	PublicUpdateUserNamespaceSlotMetadataCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicUpdateUserNamespaceSlotMetadataCmd.Flags().StringP("body", "", " ", "Body")
+	PublicUpdateUserNamespaceSlotMetadataCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicUpdateUserNamespaceSlotMetadataCmd.MarkFlagRequired("namespace")
-	PublicUpdateUserNamespaceSlotMetadataCmd.Flags().StringP("slotId", "sd", " ", "Slot id")
+	PublicUpdateUserNamespaceSlotMetadataCmd.Flags().StringP("slotId", "", " ", "Slot id")
 	_ = PublicUpdateUserNamespaceSlotMetadataCmd.MarkFlagRequired("slotId")
-	PublicUpdateUserNamespaceSlotMetadataCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicUpdateUserNamespaceSlotMetadataCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicUpdateUserNamespaceSlotMetadataCmd.MarkFlagRequired("userId")
 }

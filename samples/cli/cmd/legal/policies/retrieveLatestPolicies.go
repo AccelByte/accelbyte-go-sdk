@@ -15,7 +15,7 @@ import (
 
 // RetrieveLatestPoliciesCmd represents the RetrieveLatestPolicies command
 var RetrieveLatestPoliciesCmd = &cobra.Command{
-	Use:   "RetrieveLatestPolicies",
+	Use:   "retrieveLatestPolicies",
 	Short: "Retrieve latest policies",
 	Long:  `Retrieve latest policies`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,9 +45,9 @@ var RetrieveLatestPoliciesCmd = &cobra.Command{
 }
 
 func init() {
-	RetrieveLatestPoliciesCmd.Flags().StringP("countryCode", "ce", " ", "Country code")
+	RetrieveLatestPoliciesCmd.Flags().StringP("countryCode", "", " ", "Country code")
 	_ = RetrieveLatestPoliciesCmd.MarkFlagRequired("countryCode")
-	RetrieveLatestPoliciesCmd.Flags().BoolP("defaultOnEmpty", "dy", false, "Default on empty")
-	RetrieveLatestPoliciesCmd.Flags().StringP("policyType", "pe", " ", "Policy type")
-	RetrieveLatestPoliciesCmd.Flags().StringP("tags", "ts", " ", "Tags")
+	RetrieveLatestPoliciesCmd.Flags().BoolP("defaultOnEmpty", "", false, "Default on empty")
+	RetrieveLatestPoliciesCmd.Flags().StringP("policyType", "", " ", "Policy type")
+	RetrieveLatestPoliciesCmd.Flags().StringP("tags", "", " ", "Tags")
 }

@@ -15,7 +15,7 @@ import (
 
 // PublicGetUserByUserIdV3Cmd represents the PublicGetUserByUserIdV3 command
 var PublicGetUserByUserIdV3Cmd = &cobra.Command{
-	Use:   "PublicGetUserByUserIdV3",
+	Use:   "publicGetUserByUserIdV3",
 	Short: "Public get user by user id V3",
 	Long:  `Public get user by user id V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var PublicGetUserByUserIdV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserByUserIdV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetUserByUserIdV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetUserByUserIdV3Cmd.MarkFlagRequired("namespace")
-	PublicGetUserByUserIdV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicGetUserByUserIdV3Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicGetUserByUserIdV3Cmd.MarkFlagRequired("userId")
 }

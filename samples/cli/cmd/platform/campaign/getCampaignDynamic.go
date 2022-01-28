@@ -15,7 +15,7 @@ import (
 
 // GetCampaignDynamicCmd represents the GetCampaignDynamic command
 var GetCampaignDynamicCmd = &cobra.Command{
-	Use:   "GetCampaignDynamic",
+	Use:   "getCampaignDynamic",
 	Short: "Get campaign dynamic",
 	Long:  `Get campaign dynamic`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetCampaignDynamicCmd = &cobra.Command{
 }
 
 func init() {
-	GetCampaignDynamicCmd.Flags().StringP("campaignId", "cd", " ", "Campaign id")
+	GetCampaignDynamicCmd.Flags().StringP("campaignId", "", " ", "Campaign id")
 	_ = GetCampaignDynamicCmd.MarkFlagRequired("campaignId")
-	GetCampaignDynamicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetCampaignDynamicCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetCampaignDynamicCmd.MarkFlagRequired("namespace")
 }

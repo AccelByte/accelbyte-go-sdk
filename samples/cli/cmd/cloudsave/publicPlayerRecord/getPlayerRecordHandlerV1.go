@@ -15,7 +15,7 @@ import (
 
 // GetPlayerRecordHandlerV1Cmd represents the GetPlayerRecordHandlerV1 command
 var GetPlayerRecordHandlerV1Cmd = &cobra.Command{
-	Use:   "GetPlayerRecordHandlerV1",
+	Use:   "getPlayerRecordHandlerV1",
 	Short: "Get player record handler V1",
 	Long:  `Get player record handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var GetPlayerRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetPlayerRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
+	GetPlayerRecordHandlerV1Cmd.Flags().StringP("key", "", " ", "Key")
 	_ = GetPlayerRecordHandlerV1Cmd.MarkFlagRequired("key")
-	GetPlayerRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetPlayerRecordHandlerV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetPlayerRecordHandlerV1Cmd.MarkFlagRequired("namespace")
-	GetPlayerRecordHandlerV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetPlayerRecordHandlerV1Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetPlayerRecordHandlerV1Cmd.MarkFlagRequired("userId")
 }

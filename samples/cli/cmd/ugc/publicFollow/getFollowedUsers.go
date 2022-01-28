@@ -15,7 +15,7 @@ import (
 
 // GetFollowedUsersCmd represents the GetFollowedUsers command
 var GetFollowedUsersCmd = &cobra.Command{
-	Use:   "GetFollowedUsers",
+	Use:   "getFollowedUsers",
 	Short: "Get followed users",
 	Long:  `Get followed users`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,8 +43,8 @@ var GetFollowedUsersCmd = &cobra.Command{
 }
 
 func init() {
-	GetFollowedUsersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetFollowedUsersCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetFollowedUsersCmd.MarkFlagRequired("namespace")
-	GetFollowedUsersCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	GetFollowedUsersCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	GetFollowedUsersCmd.Flags().StringP("limit", "", "20", "Limit")
+	GetFollowedUsersCmd.Flags().StringP("offset", "", "0", "Offset")
 }

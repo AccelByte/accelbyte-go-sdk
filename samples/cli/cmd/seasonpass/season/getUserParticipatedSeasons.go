@@ -15,7 +15,7 @@ import (
 
 // GetUserParticipatedSeasonsCmd represents the GetUserParticipatedSeasons command
 var GetUserParticipatedSeasonsCmd = &cobra.Command{
-	Use:   "GetUserParticipatedSeasons",
+	Use:   "getUserParticipatedSeasons",
 	Short: "Get user participated seasons",
 	Long:  `Get user participated seasons`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,10 +45,10 @@ var GetUserParticipatedSeasonsCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserParticipatedSeasonsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetUserParticipatedSeasonsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetUserParticipatedSeasonsCmd.MarkFlagRequired("namespace")
-	GetUserParticipatedSeasonsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetUserParticipatedSeasonsCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetUserParticipatedSeasonsCmd.MarkFlagRequired("userId")
-	GetUserParticipatedSeasonsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	GetUserParticipatedSeasonsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	GetUserParticipatedSeasonsCmd.Flags().Int32P("limit", "", 20, "Limit")
+	GetUserParticipatedSeasonsCmd.Flags().Int32P("offset", "", 0, "Offset")
 }

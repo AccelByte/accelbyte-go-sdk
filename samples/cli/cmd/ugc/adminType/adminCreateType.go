@@ -17,7 +17,7 @@ import (
 
 // AdminCreateTypeCmd represents the AdminCreateType command
 var AdminCreateTypeCmd = &cobra.Command{
-	Use:   "AdminCreateType",
+	Use:   "adminCreateType",
 	Short: "Admin create type",
 	Long:  `Admin create type`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var AdminCreateTypeCmd = &cobra.Command{
 }
 
 func init() {
-	AdminCreateTypeCmd.Flags().StringP("body", "by", " ", "Body")
+	AdminCreateTypeCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminCreateTypeCmd.MarkFlagRequired("body")
-	AdminCreateTypeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminCreateTypeCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminCreateTypeCmd.MarkFlagRequired("namespace")
 }

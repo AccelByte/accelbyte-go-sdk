@@ -15,7 +15,7 @@ import (
 
 // GetUserOrderGrantCmd represents the GetUserOrderGrant command
 var GetUserOrderGrantCmd = &cobra.Command{
-	Use:   "GetUserOrderGrant",
+	Use:   "getUserOrderGrant",
 	Short: "Get user order grant",
 	Long:  `Get user order grant`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var GetUserOrderGrantCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserOrderGrantCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetUserOrderGrantCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetUserOrderGrantCmd.MarkFlagRequired("namespace")
-	GetUserOrderGrantCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
+	GetUserOrderGrantCmd.Flags().StringP("orderNo", "", " ", "Order no")
 	_ = GetUserOrderGrantCmd.MarkFlagRequired("orderNo")
-	GetUserOrderGrantCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetUserOrderGrantCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetUserOrderGrantCmd.MarkFlagRequired("userId")
 }

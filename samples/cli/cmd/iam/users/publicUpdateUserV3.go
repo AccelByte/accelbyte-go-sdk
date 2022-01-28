@@ -17,7 +17,7 @@ import (
 
 // PublicUpdateUserV3Cmd represents the PublicUpdateUserV3 command
 var PublicUpdateUserV3Cmd = &cobra.Command{
-	Use:   "PublicUpdateUserV3",
+	Use:   "publicUpdateUserV3",
 	Short: "Public update user V3",
 	Long:  `Public update user V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var PublicUpdateUserV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicUpdateUserV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	PublicUpdateUserV3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = PublicUpdateUserV3Cmd.MarkFlagRequired("body")
-	PublicUpdateUserV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicUpdateUserV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicUpdateUserV3Cmd.MarkFlagRequired("namespace")
 }

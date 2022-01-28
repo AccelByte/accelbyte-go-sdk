@@ -17,7 +17,7 @@ import (
 
 // UpdateGoogleIAPConfigCmd represents the UpdateGoogleIAPConfig command
 var UpdateGoogleIAPConfigCmd = &cobra.Command{
-	Use:   "UpdateGoogleIAPConfig",
+	Use:   "updateGoogleIAPConfig",
 	Short: "Update google IAP config",
 	Long:  `Update google IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var UpdateGoogleIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateGoogleIAPConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateGoogleIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateGoogleIAPConfigCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateGoogleIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateGoogleIAPConfigCmd.MarkFlagRequired("namespace")
 }

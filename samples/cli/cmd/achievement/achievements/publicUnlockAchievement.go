@@ -15,7 +15,7 @@ import (
 
 // PublicUnlockAchievementCmd represents the PublicUnlockAchievement command
 var PublicUnlockAchievementCmd = &cobra.Command{
-	Use:   "PublicUnlockAchievement",
+	Use:   "publicUnlockAchievement",
 	Short: "Public unlock achievement",
 	Long:  `Public unlock achievement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var PublicUnlockAchievementCmd = &cobra.Command{
 }
 
 func init() {
-	PublicUnlockAchievementCmd.Flags().StringP("achievementCode", "ae", " ", "Achievement code")
+	PublicUnlockAchievementCmd.Flags().StringP("achievementCode", "", " ", "Achievement code")
 	_ = PublicUnlockAchievementCmd.MarkFlagRequired("achievementCode")
-	PublicUnlockAchievementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicUnlockAchievementCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicUnlockAchievementCmd.MarkFlagRequired("namespace")
-	PublicUnlockAchievementCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicUnlockAchievementCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicUnlockAchievementCmd.MarkFlagRequired("userId")
 }

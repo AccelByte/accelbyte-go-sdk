@@ -17,7 +17,7 @@ import (
 
 // UpdateWxPayConfigCmd represents the UpdateWxPayConfig command
 var UpdateWxPayConfigCmd = &cobra.Command{
-	Use:   "UpdateWxPayConfig",
+	Use:   "updateWxPayConfig",
 	Short: "Update wx pay config",
 	Long:  `Update wx pay config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,8 +50,8 @@ var UpdateWxPayConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateWxPayConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateWxPayConfigCmd.Flags().StringP("id", "id", " ", "Id")
+	UpdateWxPayConfigCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateWxPayConfigCmd.Flags().StringP("id", "", " ", "Id")
 	_ = UpdateWxPayConfigCmd.MarkFlagRequired("id")
-	UpdateWxPayConfigCmd.Flags().BoolP("validate", "ve", false, "Validate")
+	UpdateWxPayConfigCmd.Flags().BoolP("validate", "", false, "Validate")
 }

@@ -15,7 +15,7 @@ import (
 
 // GetPaymentOrderChargeStatusCmd represents the GetPaymentOrderChargeStatus command
 var GetPaymentOrderChargeStatusCmd = &cobra.Command{
-	Use:   "GetPaymentOrderChargeStatus",
+	Use:   "getPaymentOrderChargeStatus",
 	Short: "Get payment order charge status",
 	Long:  `Get payment order charge status`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetPaymentOrderChargeStatusCmd = &cobra.Command{
 }
 
 func init() {
-	GetPaymentOrderChargeStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetPaymentOrderChargeStatusCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetPaymentOrderChargeStatusCmd.MarkFlagRequired("namespace")
-	GetPaymentOrderChargeStatusCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
+	GetPaymentOrderChargeStatusCmd.Flags().StringP("paymentOrderNo", "", " ", "Payment order no")
 	_ = GetPaymentOrderChargeStatusCmd.MarkFlagRequired("paymentOrderNo")
 }

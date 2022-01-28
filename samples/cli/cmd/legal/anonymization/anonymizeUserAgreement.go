@@ -15,7 +15,7 @@ import (
 
 // AnonymizeUserAgreementCmd represents the AnonymizeUserAgreement command
 var AnonymizeUserAgreementCmd = &cobra.Command{
-	Use:   "AnonymizeUserAgreement",
+	Use:   "anonymizeUserAgreement",
 	Short: "Anonymize user agreement",
 	Long:  `Anonymize user agreement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var AnonymizeUserAgreementCmd = &cobra.Command{
 }
 
 func init() {
-	AnonymizeUserAgreementCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AnonymizeUserAgreementCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AnonymizeUserAgreementCmd.MarkFlagRequired("userId")
 }

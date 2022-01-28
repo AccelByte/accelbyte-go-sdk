@@ -15,7 +15,7 @@ import (
 
 // PublicSearchItemsCmd represents the PublicSearchItems command
 var PublicSearchItemsCmd = &cobra.Command{
-	Use:   "PublicSearchItems",
+	Use:   "publicSearchItems",
 	Short: "Public search items",
 	Long:  `Public search items`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,14 +51,14 @@ var PublicSearchItemsCmd = &cobra.Command{
 }
 
 func init() {
-	PublicSearchItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicSearchItemsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicSearchItemsCmd.MarkFlagRequired("namespace")
-	PublicSearchItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	PublicSearchItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	PublicSearchItemsCmd.Flags().StringP("region", "rn", " ", "Region")
-	PublicSearchItemsCmd.Flags().StringP("storeId", "sd", " ", "Store id")
-	PublicSearchItemsCmd.Flags().StringP("keyword", "kd", " ", "Keyword")
+	PublicSearchItemsCmd.Flags().Int32P("limit", "", 20, "Limit")
+	PublicSearchItemsCmd.Flags().Int32P("offset", "", 0, "Offset")
+	PublicSearchItemsCmd.Flags().StringP("region", "", " ", "Region")
+	PublicSearchItemsCmd.Flags().StringP("storeId", "", " ", "Store id")
+	PublicSearchItemsCmd.Flags().StringP("keyword", "", " ", "Keyword")
 	_ = PublicSearchItemsCmd.MarkFlagRequired("keyword")
-	PublicSearchItemsCmd.Flags().StringP("language", "le", " ", "Language")
+	PublicSearchItemsCmd.Flags().StringP("language", "", " ", "Language")
 	_ = PublicSearchItemsCmd.MarkFlagRequired("language")
 }

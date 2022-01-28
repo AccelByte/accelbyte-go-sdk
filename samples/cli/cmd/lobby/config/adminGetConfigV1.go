@@ -15,7 +15,7 @@ import (
 
 // AdminGetConfigV1Cmd represents the AdminGetConfigV1 command
 var AdminGetConfigV1Cmd = &cobra.Command{
-	Use:   "AdminGetConfigV1",
+	Use:   "adminGetConfigV1",
 	Short: "Admin get config V1",
 	Long:  `Admin get config V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var AdminGetConfigV1Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetConfigV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetConfigV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetConfigV1Cmd.MarkFlagRequired("namespace")
 }

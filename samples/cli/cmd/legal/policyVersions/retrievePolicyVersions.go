@@ -15,7 +15,7 @@ import (
 
 // RetrievePolicyVersionsCmd represents the RetrievePolicyVersions command
 var RetrievePolicyVersionsCmd = &cobra.Command{
-	Use:   "RetrievePolicyVersions",
+	Use:   "retrievePolicyVersions",
 	Short: "Retrieve policy versions",
 	Long:  `Retrieve policy versions`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,7 +43,7 @@ var RetrievePolicyVersionsCmd = &cobra.Command{
 }
 
 func init() {
-	RetrievePolicyVersionsCmd.Flags().StringP("basePolicyId", "bd", " ", "Base policy id")
-	RetrievePolicyVersionsCmd.Flags().StringP("localeId", "ld", " ", "Locale id")
-	RetrievePolicyVersionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	RetrievePolicyVersionsCmd.Flags().StringP("basePolicyId", "", " ", "Base policy id")
+	RetrievePolicyVersionsCmd.Flags().StringP("localeId", "", " ", "Locale id")
+	RetrievePolicyVersionsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 }

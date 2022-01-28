@@ -17,7 +17,7 @@ import (
 
 // SaveConfigCmd represents the SaveConfig command
 var SaveConfigCmd = &cobra.Command{
-	Use:   "SaveConfig",
+	Use:   "saveConfig",
 	Short: "Save config",
 	Long:  `Save config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,6 +45,6 @@ var SaveConfigCmd = &cobra.Command{
 }
 
 func init() {
-	SaveConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	SaveConfigCmd.Flags().StringP("body", "", " ", "Body")
 	_ = SaveConfigCmd.MarkFlagRequired("body")
 }

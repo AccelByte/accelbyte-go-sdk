@@ -15,7 +15,7 @@ import (
 
 // GetFulfillmentScriptCmd represents the GetFulfillmentScript command
 var GetFulfillmentScriptCmd = &cobra.Command{
-	Use:   "GetFulfillmentScript",
+	Use:   "getFulfillmentScript",
 	Short: "Get fulfillment script",
 	Long:  `Get fulfillment script`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetFulfillmentScriptCmd = &cobra.Command{
 }
 
 func init() {
-	GetFulfillmentScriptCmd.Flags().StringP("id", "id", " ", "Id")
+	GetFulfillmentScriptCmd.Flags().StringP("id", "", " ", "Id")
 	_ = GetFulfillmentScriptCmd.MarkFlagRequired("id")
 }

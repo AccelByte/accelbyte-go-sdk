@@ -15,7 +15,7 @@ import (
 
 // GetTopicByNamespaceCmd represents the GetTopicByNamespace command
 var GetTopicByNamespaceCmd = &cobra.Command{
-	Use:   "GetTopicByNamespace",
+	Use:   "getTopicByNamespace",
 	Short: "Get topic by namespace",
 	Long:  `Get topic by namespace`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,9 +45,9 @@ var GetTopicByNamespaceCmd = &cobra.Command{
 }
 
 func init() {
-	GetTopicByNamespaceCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetTopicByNamespaceCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetTopicByNamespaceCmd.MarkFlagRequired("namespace")
-	GetTopicByNamespaceCmd.Flags().StringP("after", "ar", "0", "After")
-	GetTopicByNamespaceCmd.Flags().StringP("before", "be", "0", "Before")
-	GetTopicByNamespaceCmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	GetTopicByNamespaceCmd.Flags().StringP("after", "", "0", "After")
+	GetTopicByNamespaceCmd.Flags().StringP("before", "", "0", "Before")
+	GetTopicByNamespaceCmd.Flags().Int64P("limit", "", 20, "Limit")
 }

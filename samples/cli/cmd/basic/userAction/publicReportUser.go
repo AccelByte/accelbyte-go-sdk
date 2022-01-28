@@ -17,7 +17,7 @@ import (
 
 // PublicReportUserCmd represents the PublicReportUser command
 var PublicReportUserCmd = &cobra.Command{
-	Use:   "PublicReportUser",
+	Use:   "publicReportUser",
 	Short: "Public report user",
 	Long:  `Public report user`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var PublicReportUserCmd = &cobra.Command{
 }
 
 func init() {
-	PublicReportUserCmd.Flags().StringP("body", "by", " ", "Body")
-	PublicReportUserCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicReportUserCmd.Flags().StringP("body", "", " ", "Body")
+	PublicReportUserCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicReportUserCmd.MarkFlagRequired("namespace")
-	PublicReportUserCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicReportUserCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicReportUserCmd.MarkFlagRequired("userId")
 }

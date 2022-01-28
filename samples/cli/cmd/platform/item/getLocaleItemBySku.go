@@ -15,7 +15,7 @@ import (
 
 // GetLocaleItemBySkuCmd represents the GetLocaleItemBySku command
 var GetLocaleItemBySkuCmd = &cobra.Command{
-	Use:   "GetLocaleItemBySku",
+	Use:   "getLocaleItemBySku",
 	Short: "Get locale item by sku",
 	Long:  `Get locale item by sku`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,13 +51,13 @@ var GetLocaleItemBySkuCmd = &cobra.Command{
 }
 
 func init() {
-	GetLocaleItemBySkuCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetLocaleItemBySkuCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetLocaleItemBySkuCmd.MarkFlagRequired("namespace")
-	GetLocaleItemBySkuCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	GetLocaleItemBySkuCmd.Flags().StringP("language", "le", " ", "Language")
-	GetLocaleItemBySkuCmd.Flags().BoolP("populateBundle", "pe", false, "Populate bundle")
-	GetLocaleItemBySkuCmd.Flags().StringP("region", "rn", " ", "Region")
-	GetLocaleItemBySkuCmd.Flags().StringP("storeId", "sd", " ", "Store id")
-	GetLocaleItemBySkuCmd.Flags().StringP("sku", "su", " ", "Sku")
+	GetLocaleItemBySkuCmd.Flags().BoolP("activeOnly", "", false, "Active only")
+	GetLocaleItemBySkuCmd.Flags().StringP("language", "", " ", "Language")
+	GetLocaleItemBySkuCmd.Flags().BoolP("populateBundle", "", false, "Populate bundle")
+	GetLocaleItemBySkuCmd.Flags().StringP("region", "", " ", "Region")
+	GetLocaleItemBySkuCmd.Flags().StringP("storeId", "", " ", "Store id")
+	GetLocaleItemBySkuCmd.Flags().StringP("sku", "", " ", "Sku")
 	_ = GetLocaleItemBySkuCmd.MarkFlagRequired("sku")
 }

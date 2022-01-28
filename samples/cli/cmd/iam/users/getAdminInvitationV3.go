@@ -15,7 +15,7 @@ import (
 
 // GetAdminInvitationV3Cmd represents the GetAdminInvitationV3 command
 var GetAdminInvitationV3Cmd = &cobra.Command{
-	Use:   "GetAdminInvitationV3",
+	Use:   "getAdminInvitationV3",
 	Short: "Get admin invitation V3",
 	Long:  `Get admin invitation V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetAdminInvitationV3Cmd = &cobra.Command{
 }
 
 func init() {
-	GetAdminInvitationV3Cmd.Flags().StringP("invitationId", "id", " ", "Invitation id")
+	GetAdminInvitationV3Cmd.Flags().StringP("invitationId", "", " ", "Invitation id")
 	_ = GetAdminInvitationV3Cmd.MarkFlagRequired("invitationId")
-	GetAdminInvitationV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetAdminInvitationV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetAdminInvitationV3Cmd.MarkFlagRequired("namespace")
 }

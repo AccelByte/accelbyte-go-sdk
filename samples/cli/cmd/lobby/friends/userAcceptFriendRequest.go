@@ -17,7 +17,7 @@ import (
 
 // UserAcceptFriendRequestCmd represents the UserAcceptFriendRequest command
 var UserAcceptFriendRequestCmd = &cobra.Command{
-	Use:   "UserAcceptFriendRequest",
+	Use:   "userAcceptFriendRequest",
 	Short: "User accept friend request",
 	Long:  `User accept friend request`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var UserAcceptFriendRequestCmd = &cobra.Command{
 }
 
 func init() {
-	UserAcceptFriendRequestCmd.Flags().StringP("body", "by", " ", "Body")
+	UserAcceptFriendRequestCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UserAcceptFriendRequestCmd.MarkFlagRequired("body")
-	UserAcceptFriendRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UserAcceptFriendRequestCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UserAcceptFriendRequestCmd.MarkFlagRequired("namespace")
 }

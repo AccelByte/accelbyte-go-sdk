@@ -15,7 +15,7 @@ import (
 
 // SpecificUXDescriptionHandlerCmd represents the SpecificUXDescriptionHandler command
 var SpecificUXDescriptionHandlerCmd = &cobra.Command{
-	Use:   "SpecificUXDescriptionHandler",
+	Use:   "specificUXDescriptionHandler",
 	Short: "Specific UX description handler",
 	Long:  `Specific UX description handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,5 +39,5 @@ var SpecificUXDescriptionHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	SpecificUXDescriptionHandlerCmd.Flags().StringP("ux", "ux", " ", "Ux")
+	SpecificUXDescriptionHandlerCmd.Flags().StringP("ux", "", " ", "Ux")
 }

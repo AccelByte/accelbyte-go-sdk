@@ -15,7 +15,7 @@ import (
 
 // AdminDeleteUserPermissionV3Cmd represents the AdminDeleteUserPermissionV3 command
 var AdminDeleteUserPermissionV3Cmd = &cobra.Command{
-	Use:   "AdminDeleteUserPermissionV3",
+	Use:   "adminDeleteUserPermissionV3",
 	Short: "Admin delete user permission V3",
 	Long:  `Admin delete user permission V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,12 +44,12 @@ var AdminDeleteUserPermissionV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteUserPermissionV3Cmd.Flags().Int64P("action", "an", -1, "Action")
+	AdminDeleteUserPermissionV3Cmd.Flags().Int64P("action", "", -1, "Action")
 	_ = AdminDeleteUserPermissionV3Cmd.MarkFlagRequired("action")
-	AdminDeleteUserPermissionV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminDeleteUserPermissionV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminDeleteUserPermissionV3Cmd.MarkFlagRequired("namespace")
-	AdminDeleteUserPermissionV3Cmd.Flags().StringP("resource", "re", " ", "Resource")
+	AdminDeleteUserPermissionV3Cmd.Flags().StringP("resource", "", " ", "Resource")
 	_ = AdminDeleteUserPermissionV3Cmd.MarkFlagRequired("resource")
-	AdminDeleteUserPermissionV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminDeleteUserPermissionV3Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminDeleteUserPermissionV3Cmd.MarkFlagRequired("userId")
 }

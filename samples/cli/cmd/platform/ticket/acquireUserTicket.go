@@ -17,7 +17,7 @@ import (
 
 // AcquireUserTicketCmd represents the AcquireUserTicket command
 var AcquireUserTicketCmd = &cobra.Command{
-	Use:   "AcquireUserTicket",
+	Use:   "acquireUserTicket",
 	Short: "Acquire user ticket",
 	Long:  `Acquire user ticket`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,11 +52,11 @@ var AcquireUserTicketCmd = &cobra.Command{
 }
 
 func init() {
-	AcquireUserTicketCmd.Flags().StringP("body", "by", " ", "Body")
-	AcquireUserTicketCmd.Flags().StringP("boothName", "be", " ", "Booth name")
+	AcquireUserTicketCmd.Flags().StringP("body", "", " ", "Body")
+	AcquireUserTicketCmd.Flags().StringP("boothName", "", " ", "Booth name")
 	_ = AcquireUserTicketCmd.MarkFlagRequired("boothName")
-	AcquireUserTicketCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AcquireUserTicketCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AcquireUserTicketCmd.MarkFlagRequired("namespace")
-	AcquireUserTicketCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AcquireUserTicketCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AcquireUserTicketCmd.MarkFlagRequired("userId")
 }

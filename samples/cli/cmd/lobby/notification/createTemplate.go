@@ -17,7 +17,7 @@ import (
 
 // CreateTemplateCmd represents the CreateTemplate command
 var CreateTemplateCmd = &cobra.Command{
-	Use:   "CreateTemplate",
+	Use:   "createTemplate",
 	Short: "Create template",
 	Long:  `Create template`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var CreateTemplateCmd = &cobra.Command{
 }
 
 func init() {
-	CreateTemplateCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateTemplateCmd.Flags().StringP("body", "", " ", "Body")
 	_ = CreateTemplateCmd.MarkFlagRequired("body")
-	CreateTemplateCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateTemplateCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateTemplateCmd.MarkFlagRequired("namespace")
 }

@@ -17,7 +17,7 @@ import (
 
 // BanUserCmd represents the BanUser command
 var BanUserCmd = &cobra.Command{
-	Use:   "BanUser",
+	Use:   "banUser",
 	Short: "Ban user",
 	Long:  `Ban user`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var BanUserCmd = &cobra.Command{
 }
 
 func init() {
-	BanUserCmd.Flags().StringP("body", "by", " ", "Body")
+	BanUserCmd.Flags().StringP("body", "", " ", "Body")
 	_ = BanUserCmd.MarkFlagRequired("body")
-	BanUserCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	BanUserCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = BanUserCmd.MarkFlagRequired("namespace")
-	BanUserCmd.Flags().StringP("userId", "ud", " ", "User id")
+	BanUserCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = BanUserCmd.MarkFlagRequired("userId")
 }

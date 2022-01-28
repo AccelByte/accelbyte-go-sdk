@@ -15,7 +15,7 @@ import (
 
 // GetUserFriendsUpdatedCmd represents the GetUserFriendsUpdated command
 var GetUserFriendsUpdatedCmd = &cobra.Command{
-	Use:   "GetUserFriendsUpdated",
+	Use:   "getUserFriendsUpdated",
 	Short: "Get user friends updated",
 	Long:  `Get user friends updated`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,8 +43,8 @@ var GetUserFriendsUpdatedCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserFriendsUpdatedCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetUserFriendsUpdatedCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetUserFriendsUpdatedCmd.MarkFlagRequired("namespace")
-	GetUserFriendsUpdatedCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	GetUserFriendsUpdatedCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	GetUserFriendsUpdatedCmd.Flags().StringP("limit", "", "20", "Limit")
+	GetUserFriendsUpdatedCmd.Flags().StringP("offset", "", "0", "Offset")
 }

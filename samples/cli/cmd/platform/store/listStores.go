@@ -15,7 +15,7 @@ import (
 
 // ListStoresCmd represents the ListStores command
 var ListStoresCmd = &cobra.Command{
-	Use:   "ListStores",
+	Use:   "listStores",
 	Short: "List stores",
 	Long:  `List stores`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var ListStoresCmd = &cobra.Command{
 }
 
 func init() {
-	ListStoresCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ListStoresCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ListStoresCmd.MarkFlagRequired("namespace")
 }

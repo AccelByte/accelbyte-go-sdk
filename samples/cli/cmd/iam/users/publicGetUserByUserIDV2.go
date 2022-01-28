@@ -15,7 +15,7 @@ import (
 
 // PublicGetUserByUserIDV2Cmd represents the PublicGetUserByUserIDV2 command
 var PublicGetUserByUserIDV2Cmd = &cobra.Command{
-	Use:   "PublicGetUserByUserIDV2",
+	Use:   "publicGetUserByUserIDV2",
 	Short: "Public get user by user IDV2",
 	Long:  `Public get user by user IDV2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var PublicGetUserByUserIDV2Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserByUserIDV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetUserByUserIDV2Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetUserByUserIDV2Cmd.MarkFlagRequired("namespace")
-	PublicGetUserByUserIDV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicGetUserByUserIDV2Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicGetUserByUserIDV2Cmd.MarkFlagRequired("userId")
 }

@@ -17,7 +17,7 @@ import (
 
 // PublicSendVerificationCodeV3Cmd represents the PublicSendVerificationCodeV3 command
 var PublicSendVerificationCodeV3Cmd = &cobra.Command{
-	Use:   "PublicSendVerificationCodeV3",
+	Use:   "publicSendVerificationCodeV3",
 	Short: "Public send verification code V3",
 	Long:  `Public send verification code V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var PublicSendVerificationCodeV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicSendVerificationCodeV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	PublicSendVerificationCodeV3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = PublicSendVerificationCodeV3Cmd.MarkFlagRequired("body")
-	PublicSendVerificationCodeV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicSendVerificationCodeV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicSendVerificationCodeV3Cmd.MarkFlagRequired("namespace")
 }

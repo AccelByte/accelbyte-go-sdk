@@ -15,7 +15,7 @@ import (
 
 // GetIAPItemConfigCmd represents the GetIAPItemConfig command
 var GetIAPItemConfigCmd = &cobra.Command{
-	Use:   "GetIAPItemConfig",
+	Use:   "getIAPItemConfig",
 	Short: "Get IAP item config",
 	Long:  `Get IAP item config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetIAPItemConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetIAPItemConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetIAPItemConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetIAPItemConfigCmd.MarkFlagRequired("namespace")
 }

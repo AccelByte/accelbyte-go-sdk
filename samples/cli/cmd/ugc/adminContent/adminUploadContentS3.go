@@ -17,7 +17,7 @@ import (
 
 // AdminUploadContentS3Cmd represents the AdminUploadContentS3 command
 var AdminUploadContentS3Cmd = &cobra.Command{
-	Use:   "AdminUploadContentS3",
+	Use:   "adminUploadContentS3",
 	Short: "Admin upload content S3",
 	Long:  `Admin upload content S3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var AdminUploadContentS3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminUploadContentS3Cmd.Flags().StringP("body", "by", " ", "Body")
+	AdminUploadContentS3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminUploadContentS3Cmd.MarkFlagRequired("body")
-	AdminUploadContentS3Cmd.Flags().StringP("channelId", "cd", " ", "Channel id")
+	AdminUploadContentS3Cmd.Flags().StringP("channelId", "", " ", "Channel id")
 	_ = AdminUploadContentS3Cmd.MarkFlagRequired("channelId")
-	AdminUploadContentS3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminUploadContentS3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminUploadContentS3Cmd.MarkFlagRequired("namespace")
 }

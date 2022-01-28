@@ -15,7 +15,7 @@ import (
 
 // GetStoreCmd represents the GetStore command
 var GetStoreCmd = &cobra.Command{
-	Use:   "GetStore",
+	Use:   "getStore",
 	Short: "Get store",
 	Long:  `Get store`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetStoreCmd = &cobra.Command{
 }
 
 func init() {
-	GetStoreCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetStoreCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetStoreCmd.MarkFlagRequired("namespace")
-	GetStoreCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	GetStoreCmd.Flags().StringP("storeId", "", " ", "Store id")
 	_ = GetStoreCmd.MarkFlagRequired("storeId")
 }

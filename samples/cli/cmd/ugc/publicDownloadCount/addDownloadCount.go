@@ -15,7 +15,7 @@ import (
 
 // AddDownloadCountCmd represents the AddDownloadCount command
 var AddDownloadCountCmd = &cobra.Command{
-	Use:   "AddDownloadCount",
+	Use:   "addDownloadCount",
 	Short: "Add download count",
 	Long:  `Add download count`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var AddDownloadCountCmd = &cobra.Command{
 }
 
 func init() {
-	AddDownloadCountCmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	AddDownloadCountCmd.Flags().StringP("contentId", "", " ", "Content id")
 	_ = AddDownloadCountCmd.MarkFlagRequired("contentId")
-	AddDownloadCountCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AddDownloadCountCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AddDownloadCountCmd.MarkFlagRequired("namespace")
 }

@@ -17,7 +17,7 @@ import (
 
 // PublicUpdateAttributeCmd represents the PublicUpdateAttribute command
 var PublicUpdateAttributeCmd = &cobra.Command{
-	Use:   "PublicUpdateAttribute",
+	Use:   "publicUpdateAttribute",
 	Short: "Public update attribute",
 	Long:  `Public update attribute`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -54,13 +54,13 @@ var PublicUpdateAttributeCmd = &cobra.Command{
 }
 
 func init() {
-	PublicUpdateAttributeCmd.Flags().StringP("body", "by", " ", "Body")
-	PublicUpdateAttributeCmd.Flags().StringP("attributeName", "ae", " ", "Attribute name")
+	PublicUpdateAttributeCmd.Flags().StringP("body", "", " ", "Body")
+	PublicUpdateAttributeCmd.Flags().StringP("attributeName", "", " ", "Attribute name")
 	_ = PublicUpdateAttributeCmd.MarkFlagRequired("attributeName")
-	PublicUpdateAttributeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicUpdateAttributeCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicUpdateAttributeCmd.MarkFlagRequired("namespace")
-	PublicUpdateAttributeCmd.Flags().StringP("profileId", "pd", " ", "Profile id")
+	PublicUpdateAttributeCmd.Flags().StringP("profileId", "", " ", "Profile id")
 	_ = PublicUpdateAttributeCmd.MarkFlagRequired("profileId")
-	PublicUpdateAttributeCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicUpdateAttributeCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicUpdateAttributeCmd.MarkFlagRequired("userId")
 }

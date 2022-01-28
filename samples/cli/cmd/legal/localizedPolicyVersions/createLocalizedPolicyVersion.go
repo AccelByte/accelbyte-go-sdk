@@ -17,7 +17,7 @@ import (
 
 // CreateLocalizedPolicyVersionCmd represents the CreateLocalizedPolicyVersion command
 var CreateLocalizedPolicyVersionCmd = &cobra.Command{
-	Use:   "CreateLocalizedPolicyVersion",
+	Use:   "createLocalizedPolicyVersion",
 	Short: "Create localized policy version",
 	Long:  `Create localized policy version`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var CreateLocalizedPolicyVersionCmd = &cobra.Command{
 }
 
 func init() {
-	CreateLocalizedPolicyVersionCmd.Flags().StringP("body", "by", " ", "Body")
-	CreateLocalizedPolicyVersionCmd.Flags().StringP("policyVersionId", "pd", " ", "Policy version id")
+	CreateLocalizedPolicyVersionCmd.Flags().StringP("body", "", " ", "Body")
+	CreateLocalizedPolicyVersionCmd.Flags().StringP("policyVersionId", "", " ", "Policy version id")
 	_ = CreateLocalizedPolicyVersionCmd.MarkFlagRequired("policyVersionId")
 }

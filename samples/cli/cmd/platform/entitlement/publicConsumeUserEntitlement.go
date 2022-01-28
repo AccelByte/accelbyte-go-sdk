@@ -17,7 +17,7 @@ import (
 
 // PublicConsumeUserEntitlementCmd represents the PublicConsumeUserEntitlement command
 var PublicConsumeUserEntitlementCmd = &cobra.Command{
-	Use:   "PublicConsumeUserEntitlement",
+	Use:   "publicConsumeUserEntitlement",
 	Short: "Public consume user entitlement",
 	Long:  `Public consume user entitlement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,11 +52,11 @@ var PublicConsumeUserEntitlementCmd = &cobra.Command{
 }
 
 func init() {
-	PublicConsumeUserEntitlementCmd.Flags().StringP("body", "by", " ", "Body")
-	PublicConsumeUserEntitlementCmd.Flags().StringP("entitlementId", "ed", " ", "Entitlement id")
+	PublicConsumeUserEntitlementCmd.Flags().StringP("body", "", " ", "Body")
+	PublicConsumeUserEntitlementCmd.Flags().StringP("entitlementId", "", " ", "Entitlement id")
 	_ = PublicConsumeUserEntitlementCmd.MarkFlagRequired("entitlementId")
-	PublicConsumeUserEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicConsumeUserEntitlementCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicConsumeUserEntitlementCmd.MarkFlagRequired("namespace")
-	PublicConsumeUserEntitlementCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicConsumeUserEntitlementCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicConsumeUserEntitlementCmd.MarkFlagRequired("userId")
 }

@@ -15,7 +15,7 @@ import (
 
 // GetItemDynamicDataCmd represents the GetItemDynamicData command
 var GetItemDynamicDataCmd = &cobra.Command{
-	Use:   "GetItemDynamicData",
+	Use:   "getItemDynamicData",
 	Short: "Get item dynamic data",
 	Long:  `Get item dynamic data`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetItemDynamicDataCmd = &cobra.Command{
 }
 
 func init() {
-	GetItemDynamicDataCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	GetItemDynamicDataCmd.Flags().StringP("itemId", "", " ", "Item id")
 	_ = GetItemDynamicDataCmd.MarkFlagRequired("itemId")
-	GetItemDynamicDataCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetItemDynamicDataCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetItemDynamicDataCmd.MarkFlagRequired("namespace")
 }

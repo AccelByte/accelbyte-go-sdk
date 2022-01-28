@@ -17,7 +17,7 @@ import (
 
 // AdminAssignUserToRoleV4Cmd represents the AdminAssignUserToRoleV4 command
 var AdminAssignUserToRoleV4Cmd = &cobra.Command{
-	Use:   "AdminAssignUserToRoleV4",
+	Use:   "adminAssignUserToRoleV4",
 	Short: "Admin assign user to role V4",
 	Long:  `Admin assign user to role V4`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var AdminAssignUserToRoleV4Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminAssignUserToRoleV4Cmd.Flags().StringP("body", "by", " ", "Body")
+	AdminAssignUserToRoleV4Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminAssignUserToRoleV4Cmd.MarkFlagRequired("body")
-	AdminAssignUserToRoleV4Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	AdminAssignUserToRoleV4Cmd.Flags().StringP("roleId", "", " ", "Role id")
 	_ = AdminAssignUserToRoleV4Cmd.MarkFlagRequired("roleId")
 }

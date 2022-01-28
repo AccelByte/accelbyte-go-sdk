@@ -17,7 +17,7 @@ import (
 
 // AdminUpdateScreenshotsCmd represents the AdminUpdateScreenshots command
 var AdminUpdateScreenshotsCmd = &cobra.Command{
-	Use:   "AdminUpdateScreenshots",
+	Use:   "adminUpdateScreenshots",
 	Short: "Admin update screenshots",
 	Long:  `Admin update screenshots`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var AdminUpdateScreenshotsCmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateScreenshotsCmd.Flags().StringP("body", "by", " ", "Body")
+	AdminUpdateScreenshotsCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminUpdateScreenshotsCmd.MarkFlagRequired("body")
-	AdminUpdateScreenshotsCmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	AdminUpdateScreenshotsCmd.Flags().StringP("contentId", "", " ", "Content id")
 	_ = AdminUpdateScreenshotsCmd.MarkFlagRequired("contentId")
-	AdminUpdateScreenshotsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminUpdateScreenshotsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminUpdateScreenshotsCmd.MarkFlagRequired("namespace")
 }

@@ -17,7 +17,7 @@ import (
 
 // SyncInGameItemCmd represents the SyncInGameItem command
 var SyncInGameItemCmd = &cobra.Command{
-	Use:   "SyncInGameItem",
+	Use:   "syncInGameItem",
 	Short: "Sync in game item",
 	Long:  `Sync in game item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var SyncInGameItemCmd = &cobra.Command{
 }
 
 func init() {
-	SyncInGameItemCmd.Flags().StringP("body", "by", " ", "Body")
-	SyncInGameItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SyncInGameItemCmd.Flags().StringP("body", "", " ", "Body")
+	SyncInGameItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SyncInGameItemCmd.MarkFlagRequired("namespace")
-	SyncInGameItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	SyncInGameItemCmd.Flags().StringP("storeId", "", " ", "Store id")
 	_ = SyncInGameItemCmd.MarkFlagRequired("storeId")
 }

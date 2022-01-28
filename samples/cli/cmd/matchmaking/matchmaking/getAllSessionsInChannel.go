@@ -15,7 +15,7 @@ import (
 
 // GetAllSessionsInChannelCmd represents the GetAllSessionsInChannel command
 var GetAllSessionsInChannelCmd = &cobra.Command{
-	Use:   "GetAllSessionsInChannel",
+	Use:   "getAllSessionsInChannel",
 	Short: "Get all sessions in channel",
 	Long:  `Get all sessions in channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetAllSessionsInChannelCmd = &cobra.Command{
 }
 
 func init() {
-	GetAllSessionsInChannelCmd.Flags().StringP("channelName", "ce", " ", "Channel name")
+	GetAllSessionsInChannelCmd.Flags().StringP("channelName", "", " ", "Channel name")
 	_ = GetAllSessionsInChannelCmd.MarkFlagRequired("channelName")
-	GetAllSessionsInChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetAllSessionsInChannelCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetAllSessionsInChannelCmd.MarkFlagRequired("namespace")
 }

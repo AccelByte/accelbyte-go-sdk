@@ -15,7 +15,7 @@ import (
 
 // PublicQueryUserStatItemsCmd represents the PublicQueryUserStatItems command
 var PublicQueryUserStatItemsCmd = &cobra.Command{
-	Use:   "PublicQueryUserStatItems",
+	Use:   "publicQueryUserStatItems",
 	Short: "Public query user stat items",
 	Long:  `Public query user stat items`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,12 +49,12 @@ var PublicQueryUserStatItemsCmd = &cobra.Command{
 }
 
 func init() {
-	PublicQueryUserStatItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicQueryUserStatItemsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicQueryUserStatItemsCmd.MarkFlagRequired("namespace")
-	PublicQueryUserStatItemsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicQueryUserStatItemsCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicQueryUserStatItemsCmd.MarkFlagRequired("userId")
-	PublicQueryUserStatItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	PublicQueryUserStatItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	PublicQueryUserStatItemsCmd.Flags().StringP("statCodes", "ss", " ", "Stat codes")
-	PublicQueryUserStatItemsCmd.Flags().StringP("tags", "ts", " ", "Tags")
+	PublicQueryUserStatItemsCmd.Flags().Int32P("limit", "", 20, "Limit")
+	PublicQueryUserStatItemsCmd.Flags().Int32P("offset", "", 0, "Offset")
+	PublicQueryUserStatItemsCmd.Flags().StringP("statCodes", "", " ", "Stat codes")
+	PublicQueryUserStatItemsCmd.Flags().StringP("tags", "", " ", "Tags")
 }

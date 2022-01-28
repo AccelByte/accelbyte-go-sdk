@@ -15,7 +15,7 @@ import (
 
 // BulkGetLocaleItemsCmd represents the BulkGetLocaleItems command
 var BulkGetLocaleItemsCmd = &cobra.Command{
-	Use:   "BulkGetLocaleItems",
+	Use:   "bulkGetLocaleItems",
 	Short: "Bulk get locale items",
 	Long:  `Bulk get locale items`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,12 +49,12 @@ var BulkGetLocaleItemsCmd = &cobra.Command{
 }
 
 func init() {
-	BulkGetLocaleItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	BulkGetLocaleItemsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = BulkGetLocaleItemsCmd.MarkFlagRequired("namespace")
-	BulkGetLocaleItemsCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	BulkGetLocaleItemsCmd.Flags().StringP("language", "le", " ", "Language")
-	BulkGetLocaleItemsCmd.Flags().StringP("region", "rn", " ", "Region")
-	BulkGetLocaleItemsCmd.Flags().StringP("storeId", "sd", " ", "Store id")
-	BulkGetLocaleItemsCmd.Flags().StringP("itemIds", "is", " ", "Item ids")
+	BulkGetLocaleItemsCmd.Flags().BoolP("activeOnly", "", false, "Active only")
+	BulkGetLocaleItemsCmd.Flags().StringP("language", "", " ", "Language")
+	BulkGetLocaleItemsCmd.Flags().StringP("region", "", " ", "Region")
+	BulkGetLocaleItemsCmd.Flags().StringP("storeId", "", " ", "Store id")
+	BulkGetLocaleItemsCmd.Flags().StringP("itemIds", "", " ", "Item ids")
 	_ = BulkGetLocaleItemsCmd.MarkFlagRequired("itemIds")
 }

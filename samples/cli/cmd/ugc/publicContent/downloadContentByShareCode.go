@@ -15,7 +15,7 @@ import (
 
 // DownloadContentByShareCodeCmd represents the DownloadContentByShareCode command
 var DownloadContentByShareCodeCmd = &cobra.Command{
-	Use:   "DownloadContentByShareCode",
+	Use:   "downloadContentByShareCode",
 	Short: "Download content by share code",
 	Long:  `Download content by share code`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var DownloadContentByShareCodeCmd = &cobra.Command{
 }
 
 func init() {
-	DownloadContentByShareCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DownloadContentByShareCodeCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DownloadContentByShareCodeCmd.MarkFlagRequired("namespace")
-	DownloadContentByShareCodeCmd.Flags().StringP("shareCode", "se", " ", "Share code")
+	DownloadContentByShareCodeCmd.Flags().StringP("shareCode", "", " ", "Share code")
 	_ = DownloadContentByShareCodeCmd.MarkFlagRequired("shareCode")
 }

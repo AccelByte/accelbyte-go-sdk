@@ -15,7 +15,7 @@ import (
 
 // QueryAllUserIAPOrdersCmd represents the QueryAllUserIAPOrders command
 var QueryAllUserIAPOrdersCmd = &cobra.Command{
-	Use:   "QueryAllUserIAPOrders",
+	Use:   "queryAllUserIAPOrders",
 	Short: "Query all user IAP orders",
 	Long:  `Query all user IAP orders`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var QueryAllUserIAPOrdersCmd = &cobra.Command{
 }
 
 func init() {
-	QueryAllUserIAPOrdersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QueryAllUserIAPOrdersCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = QueryAllUserIAPOrdersCmd.MarkFlagRequired("namespace")
-	QueryAllUserIAPOrdersCmd.Flags().StringP("userId", "ud", " ", "User id")
+	QueryAllUserIAPOrdersCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = QueryAllUserIAPOrdersCmd.MarkFlagRequired("userId")
 }

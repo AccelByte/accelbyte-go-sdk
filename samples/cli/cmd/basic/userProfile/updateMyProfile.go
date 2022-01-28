@@ -17,7 +17,7 @@ import (
 
 // UpdateMyProfileCmd represents the UpdateMyProfile command
 var UpdateMyProfileCmd = &cobra.Command{
-	Use:   "UpdateMyProfile",
+	Use:   "updateMyProfile",
 	Short: "Update my profile",
 	Long:  `Update my profile`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var UpdateMyProfileCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateMyProfileCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateMyProfileCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateMyProfileCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateMyProfileCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateMyProfileCmd.MarkFlagRequired("namespace")
 }

@@ -15,7 +15,7 @@ import (
 
 // GetGlobalStatItemsCmd represents the GetGlobalStatItems command
 var GetGlobalStatItemsCmd = &cobra.Command{
-	Use:   "GetGlobalStatItems",
+	Use:   "getGlobalStatItems",
 	Short: "Get global stat items",
 	Long:  `Get global stat items`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,8 +43,8 @@ var GetGlobalStatItemsCmd = &cobra.Command{
 }
 
 func init() {
-	GetGlobalStatItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetGlobalStatItemsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetGlobalStatItemsCmd.MarkFlagRequired("namespace")
-	GetGlobalStatItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	GetGlobalStatItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	GetGlobalStatItemsCmd.Flags().Int32P("limit", "", 20, "Limit")
+	GetGlobalStatItemsCmd.Flags().Int32P("offset", "", 0, "Offset")
 }

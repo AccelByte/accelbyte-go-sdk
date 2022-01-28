@@ -15,7 +15,7 @@ import (
 
 // AuthorizationCmd represents the Authorization command
 var AuthorizationCmd = &cobra.Command{
-	Use:   "Authorization",
+	Use:   "authorization",
 	Short: "Authorization",
 	Long:  `Authorization`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,14 +50,14 @@ var AuthorizationCmd = &cobra.Command{
 }
 
 func init() {
-	AuthorizationCmd.Flags().StringP("login", "ln", " ", "Login")
-	AuthorizationCmd.Flags().StringP("password", "pd", " ", "Password")
-	AuthorizationCmd.Flags().StringP("scope", "se", " ", "Scope")
-	AuthorizationCmd.Flags().StringP("state", "se", " ", "State")
-	AuthorizationCmd.Flags().StringP("client_id", "cd", " ", "Client id")
+	AuthorizationCmd.Flags().StringP("login", "", " ", "Login")
+	AuthorizationCmd.Flags().StringP("password", "", " ", "Password")
+	AuthorizationCmd.Flags().StringP("scope", "", " ", "Scope")
+	AuthorizationCmd.Flags().StringP("state", "", " ", "State")
+	AuthorizationCmd.Flags().StringP("client_id", "", " ", "Client id")
 	_ = AuthorizationCmd.MarkFlagRequired("client_id")
-	AuthorizationCmd.Flags().StringP("redirect_uri", "ri", " ", "Redirect uri")
+	AuthorizationCmd.Flags().StringP("redirect_uri", "", " ", "Redirect uri")
 	_ = AuthorizationCmd.MarkFlagRequired("redirect_uri")
-	AuthorizationCmd.Flags().StringP("response_type", "re", " ", "Response type")
+	AuthorizationCmd.Flags().StringP("response_type", "", " ", "Response type")
 	_ = AuthorizationCmd.MarkFlagRequired("response_type")
 }

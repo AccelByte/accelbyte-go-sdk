@@ -15,7 +15,7 @@ import (
 
 // AnonymizeIntegrationCmd represents the AnonymizeIntegration command
 var AnonymizeIntegrationCmd = &cobra.Command{
-	Use:   "AnonymizeIntegration",
+	Use:   "anonymizeIntegration",
 	Short: "Anonymize integration",
 	Long:  `Anonymize integration`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var AnonymizeIntegrationCmd = &cobra.Command{
 }
 
 func init() {
-	AnonymizeIntegrationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AnonymizeIntegrationCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AnonymizeIntegrationCmd.MarkFlagRequired("namespace")
-	AnonymizeIntegrationCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AnonymizeIntegrationCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AnonymizeIntegrationCmd.MarkFlagRequired("userId")
 }

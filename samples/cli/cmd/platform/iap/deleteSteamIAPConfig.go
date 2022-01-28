@@ -15,7 +15,7 @@ import (
 
 // DeleteSteamIAPConfigCmd represents the DeleteSteamIAPConfig command
 var DeleteSteamIAPConfigCmd = &cobra.Command{
-	Use:   "DeleteSteamIAPConfig",
+	Use:   "deleteSteamIAPConfig",
 	Short: "Delete steam IAP config",
 	Long:  `Delete steam IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var DeleteSteamIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteSteamIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteSteamIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteSteamIAPConfigCmd.MarkFlagRequired("namespace")
 }

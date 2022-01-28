@@ -15,7 +15,7 @@ import (
 
 // GetSlugTemplateCmd represents the GetSlugTemplate command
 var GetSlugTemplateCmd = &cobra.Command{
-	Use:   "GetSlugTemplate",
+	Use:   "getSlugTemplate",
 	Short: "Get slug template",
 	Long:  `Get slug template`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,11 +47,11 @@ var GetSlugTemplateCmd = &cobra.Command{
 }
 
 func init() {
-	GetSlugTemplateCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetSlugTemplateCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetSlugTemplateCmd.MarkFlagRequired("namespace")
-	GetSlugTemplateCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
+	GetSlugTemplateCmd.Flags().StringP("templateSlug", "", " ", "Template slug")
 	_ = GetSlugTemplateCmd.MarkFlagRequired("templateSlug")
-	GetSlugTemplateCmd.Flags().StringP("after", "ar", "0", "After")
-	GetSlugTemplateCmd.Flags().StringP("before", "be", "0", "Before")
-	GetSlugTemplateCmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	GetSlugTemplateCmd.Flags().StringP("after", "", "0", "After")
+	GetSlugTemplateCmd.Flags().StringP("before", "", "0", "Before")
+	GetSlugTemplateCmd.Flags().Int64P("limit", "", 20, "Limit")
 }

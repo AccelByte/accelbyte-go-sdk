@@ -17,7 +17,7 @@ import (
 
 // SendSpecificUserFreeformNotificationV1AdminCmd represents the SendSpecificUserFreeformNotificationV1Admin command
 var SendSpecificUserFreeformNotificationV1AdminCmd = &cobra.Command{
-	Use:   "SendSpecificUserFreeformNotificationV1Admin",
+	Use:   "sendSpecificUserFreeformNotificationV1Admin",
 	Short: "Send specific user freeform notification V1 admin",
 	Long:  `Send specific user freeform notification V1 admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var SendSpecificUserFreeformNotificationV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	SendSpecificUserFreeformNotificationV1AdminCmd.Flags().StringP("body", "by", " ", "Body")
+	SendSpecificUserFreeformNotificationV1AdminCmd.Flags().StringP("body", "", " ", "Body")
 	_ = SendSpecificUserFreeformNotificationV1AdminCmd.MarkFlagRequired("body")
-	SendSpecificUserFreeformNotificationV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SendSpecificUserFreeformNotificationV1AdminCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SendSpecificUserFreeformNotificationV1AdminCmd.MarkFlagRequired("namespace")
-	SendSpecificUserFreeformNotificationV1AdminCmd.Flags().StringP("userId", "ud", " ", "User id")
+	SendSpecificUserFreeformNotificationV1AdminCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = SendSpecificUserFreeformNotificationV1AdminCmd.MarkFlagRequired("userId")
 }

@@ -15,7 +15,7 @@ import (
 
 // DeleteCategoryCmd represents the DeleteCategory command
 var DeleteCategoryCmd = &cobra.Command{
-	Use:   "DeleteCategory",
+	Use:   "deleteCategory",
 	Short: "Delete category",
 	Long:  `Delete category`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var DeleteCategoryCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteCategoryCmd.Flags().StringP("categoryPath", "ch", " ", "Category path")
+	DeleteCategoryCmd.Flags().StringP("categoryPath", "", " ", "Category path")
 	_ = DeleteCategoryCmd.MarkFlagRequired("categoryPath")
-	DeleteCategoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteCategoryCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteCategoryCmd.MarkFlagRequired("namespace")
-	DeleteCategoryCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	DeleteCategoryCmd.Flags().StringP("storeId", "", " ", "Store id")
 	_ = DeleteCategoryCmd.MarkFlagRequired("storeId")
 }

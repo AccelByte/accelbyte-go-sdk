@@ -15,7 +15,7 @@ import (
 
 // AdminDeleteProfanityListCmd represents the AdminDeleteProfanityList command
 var AdminDeleteProfanityListCmd = &cobra.Command{
-	Use:   "AdminDeleteProfanityList",
+	Use:   "adminDeleteProfanityList",
 	Short: "Admin delete profanity list",
 	Long:  `Admin delete profanity list`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var AdminDeleteProfanityListCmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteProfanityListCmd.Flags().StringP("list", "lt", " ", "List")
+	AdminDeleteProfanityListCmd.Flags().StringP("list", "", " ", "List")
 	_ = AdminDeleteProfanityListCmd.MarkFlagRequired("list")
-	AdminDeleteProfanityListCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminDeleteProfanityListCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminDeleteProfanityListCmd.MarkFlagRequired("namespace")
 }

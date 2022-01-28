@@ -17,7 +17,7 @@ import (
 
 // CreateContentDirectCmd represents the CreateContentDirect command
 var CreateContentDirectCmd = &cobra.Command{
-	Use:   "CreateContentDirect",
+	Use:   "createContentDirect",
 	Short: "Create content direct",
 	Long:  `Create content direct`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,12 +52,12 @@ var CreateContentDirectCmd = &cobra.Command{
 }
 
 func init() {
-	CreateContentDirectCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateContentDirectCmd.Flags().StringP("body", "", " ", "Body")
 	_ = CreateContentDirectCmd.MarkFlagRequired("body")
-	CreateContentDirectCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
+	CreateContentDirectCmd.Flags().StringP("channelId", "", " ", "Channel id")
 	_ = CreateContentDirectCmd.MarkFlagRequired("channelId")
-	CreateContentDirectCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateContentDirectCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateContentDirectCmd.MarkFlagRequired("namespace")
-	CreateContentDirectCmd.Flags().StringP("userId", "ud", " ", "User id")
+	CreateContentDirectCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = CreateContentDirectCmd.MarkFlagRequired("userId")
 }

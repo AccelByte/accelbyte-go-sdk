@@ -15,7 +15,7 @@ import (
 
 // PublicGetUserContentCmd represents the PublicGetUserContent command
 var PublicGetUserContentCmd = &cobra.Command{
-	Use:   "PublicGetUserContent",
+	Use:   "publicGetUserContent",
 	Short: "Public get user content",
 	Long:  `Public get user content`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,10 +45,10 @@ var PublicGetUserContentCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetUserContentCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetUserContentCmd.MarkFlagRequired("namespace")
-	PublicGetUserContentCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicGetUserContentCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicGetUserContentCmd.MarkFlagRequired("userId")
-	PublicGetUserContentCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	PublicGetUserContentCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	PublicGetUserContentCmd.Flags().StringP("limit", "", "20", "Limit")
+	PublicGetUserContentCmd.Flags().StringP("offset", "", "0", "Offset")
 }

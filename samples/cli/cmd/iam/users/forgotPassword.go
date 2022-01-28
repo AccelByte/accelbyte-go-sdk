@@ -17,7 +17,7 @@ import (
 
 // ForgotPasswordCmd represents the ForgotPassword command
 var ForgotPasswordCmd = &cobra.Command{
-	Use:   "ForgotPassword",
+	Use:   "forgotPassword",
 	Short: "Forgot password",
 	Long:  `Forgot password`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var ForgotPasswordCmd = &cobra.Command{
 }
 
 func init() {
-	ForgotPasswordCmd.Flags().StringP("body", "by", " ", "Body")
+	ForgotPasswordCmd.Flags().StringP("body", "", " ", "Body")
 	_ = ForgotPasswordCmd.MarkFlagRequired("body")
-	ForgotPasswordCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ForgotPasswordCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ForgotPasswordCmd.MarkFlagRequired("namespace")
 }

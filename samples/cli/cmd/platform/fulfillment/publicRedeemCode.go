@@ -17,7 +17,7 @@ import (
 
 // PublicRedeemCodeCmd represents the PublicRedeemCode command
 var PublicRedeemCodeCmd = &cobra.Command{
-	Use:   "PublicRedeemCode",
+	Use:   "publicRedeemCode",
 	Short: "Public redeem code",
 	Long:  `Public redeem code`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var PublicRedeemCodeCmd = &cobra.Command{
 }
 
 func init() {
-	PublicRedeemCodeCmd.Flags().StringP("body", "by", " ", "Body")
-	PublicRedeemCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicRedeemCodeCmd.Flags().StringP("body", "", " ", "Body")
+	PublicRedeemCodeCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicRedeemCodeCmd.MarkFlagRequired("namespace")
-	PublicRedeemCodeCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicRedeemCodeCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicRedeemCodeCmd.MarkFlagRequired("userId")
 }

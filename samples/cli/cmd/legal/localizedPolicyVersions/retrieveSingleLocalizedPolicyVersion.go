@@ -15,7 +15,7 @@ import (
 
 // RetrieveSingleLocalizedPolicyVersionCmd represents the RetrieveSingleLocalizedPolicyVersion command
 var RetrieveSingleLocalizedPolicyVersionCmd = &cobra.Command{
-	Use:   "RetrieveSingleLocalizedPolicyVersion",
+	Use:   "retrieveSingleLocalizedPolicyVersion",
 	Short: "Retrieve single localized policy version",
 	Long:  `Retrieve single localized policy version`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var RetrieveSingleLocalizedPolicyVersionCmd = &cobra.Command{
 }
 
 func init() {
-	RetrieveSingleLocalizedPolicyVersionCmd.Flags().StringP("localizedPolicyVersionId", "ld", " ", "Localized policy version id")
+	RetrieveSingleLocalizedPolicyVersionCmd.Flags().StringP("localizedPolicyVersionId", "", " ", "Localized policy version id")
 	_ = RetrieveSingleLocalizedPolicyVersionCmd.MarkFlagRequired("localizedPolicyVersionId")
 }

@@ -17,7 +17,7 @@ import (
 
 // PublicBulkIncUserStatItemValueCmd represents the PublicBulkIncUserStatItemValue command
 var PublicBulkIncUserStatItemValueCmd = &cobra.Command{
-	Use:   "PublicBulkIncUserStatItemValue",
+	Use:   "publicBulkIncUserStatItemValue",
 	Short: "Public bulk inc user stat item value",
 	Long:  `Public bulk inc user stat item value`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var PublicBulkIncUserStatItemValueCmd = &cobra.Command{
 }
 
 func init() {
-	PublicBulkIncUserStatItemValueCmd.Flags().StringP("body", "by", " ", "Body")
-	PublicBulkIncUserStatItemValueCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicBulkIncUserStatItemValueCmd.Flags().StringP("body", "", " ", "Body")
+	PublicBulkIncUserStatItemValueCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicBulkIncUserStatItemValueCmd.MarkFlagRequired("namespace")
 }

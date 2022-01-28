@@ -15,7 +15,7 @@ import (
 
 // DeleteConfigCmd represents the DeleteConfig command
 var DeleteConfigCmd = &cobra.Command{
-	Use:   "DeleteConfig",
+	Use:   "deleteConfig",
 	Short: "Delete config",
 	Long:  `Delete config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var DeleteConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteConfigCmd.MarkFlagRequired("namespace")
 }

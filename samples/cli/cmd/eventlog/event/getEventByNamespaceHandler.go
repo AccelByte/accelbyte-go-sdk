@@ -15,7 +15,7 @@ import (
 
 // GetEventByNamespaceHandlerCmd represents the GetEventByNamespaceHandler command
 var GetEventByNamespaceHandlerCmd = &cobra.Command{
-	Use:   "GetEventByNamespaceHandler",
+	Use:   "getEventByNamespaceHandler",
 	Short: "Get event by namespace handler",
 	Long:  `Get event by namespace handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,13 +47,13 @@ var GetEventByNamespaceHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	GetEventByNamespaceHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetEventByNamespaceHandlerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetEventByNamespaceHandlerCmd.MarkFlagRequired("namespace")
-	GetEventByNamespaceHandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
-	GetEventByNamespaceHandlerCmd.Flags().StringP("endDate", "ee", " ", "End date")
+	GetEventByNamespaceHandlerCmd.Flags().Float64P("offset", "", 0, "Offset")
+	GetEventByNamespaceHandlerCmd.Flags().StringP("endDate", "", " ", "End date")
 	_ = GetEventByNamespaceHandlerCmd.MarkFlagRequired("endDate")
-	GetEventByNamespaceHandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
+	GetEventByNamespaceHandlerCmd.Flags().Float64P("pageSize", "", 1, "Page size")
 	_ = GetEventByNamespaceHandlerCmd.MarkFlagRequired("pageSize")
-	GetEventByNamespaceHandlerCmd.Flags().StringP("startDate", "se", " ", "Start date")
+	GetEventByNamespaceHandlerCmd.Flags().StringP("startDate", "", " ", "Start date")
 	_ = GetEventByNamespaceHandlerCmd.MarkFlagRequired("startDate")
 }

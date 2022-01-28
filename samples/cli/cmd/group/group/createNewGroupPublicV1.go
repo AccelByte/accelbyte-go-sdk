@@ -17,7 +17,7 @@ import (
 
 // CreateNewGroupPublicV1Cmd represents the CreateNewGroupPublicV1 command
 var CreateNewGroupPublicV1Cmd = &cobra.Command{
-	Use:   "CreateNewGroupPublicV1",
+	Use:   "createNewGroupPublicV1",
 	Short: "Create new group public V1",
 	Long:  `Create new group public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var CreateNewGroupPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	CreateNewGroupPublicV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	CreateNewGroupPublicV1Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = CreateNewGroupPublicV1Cmd.MarkFlagRequired("body")
-	CreateNewGroupPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateNewGroupPublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateNewGroupPublicV1Cmd.MarkFlagRequired("namespace")
 }

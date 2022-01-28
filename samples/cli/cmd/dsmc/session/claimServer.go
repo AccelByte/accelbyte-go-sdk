@@ -17,7 +17,7 @@ import (
 
 // ClaimServerCmd represents the ClaimServer command
 var ClaimServerCmd = &cobra.Command{
-	Use:   "ClaimServer",
+	Use:   "claimServer",
 	Short: "Claim server",
 	Long:  `Claim server`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var ClaimServerCmd = &cobra.Command{
 }
 
 func init() {
-	ClaimServerCmd.Flags().StringP("body", "by", " ", "Body")
+	ClaimServerCmd.Flags().StringP("body", "", " ", "Body")
 	_ = ClaimServerCmd.MarkFlagRequired("body")
-	ClaimServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ClaimServerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ClaimServerCmd.MarkFlagRequired("namespace")
 }

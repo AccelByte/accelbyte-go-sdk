@@ -17,7 +17,7 @@ import (
 
 // AdminDeleteUserPermissionBulkV3Cmd represents the AdminDeleteUserPermissionBulkV3 command
 var AdminDeleteUserPermissionBulkV3Cmd = &cobra.Command{
-	Use:   "AdminDeleteUserPermissionBulkV3",
+	Use:   "adminDeleteUserPermissionBulkV3",
 	Short: "Admin delete user permission bulk V3",
 	Long:  `Admin delete user permission bulk V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var AdminDeleteUserPermissionBulkV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteUserPermissionBulkV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	AdminDeleteUserPermissionBulkV3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminDeleteUserPermissionBulkV3Cmd.MarkFlagRequired("body")
-	AdminDeleteUserPermissionBulkV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminDeleteUserPermissionBulkV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminDeleteUserPermissionBulkV3Cmd.MarkFlagRequired("namespace")
-	AdminDeleteUserPermissionBulkV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminDeleteUserPermissionBulkV3Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminDeleteUserPermissionBulkV3Cmd.MarkFlagRequired("userId")
 }

@@ -15,7 +15,7 @@ import (
 
 // PublicGetUserBanHistoryV3Cmd represents the PublicGetUserBanHistoryV3 command
 var PublicGetUserBanHistoryV3Cmd = &cobra.Command{
-	Use:   "PublicGetUserBanHistoryV3",
+	Use:   "publicGetUserBanHistoryV3",
 	Short: "Public get user ban history V3",
 	Long:  `Public get user ban history V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,12 +49,12 @@ var PublicGetUserBanHistoryV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserBanHistoryV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetUserBanHistoryV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetUserBanHistoryV3Cmd.MarkFlagRequired("namespace")
-	PublicGetUserBanHistoryV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicGetUserBanHistoryV3Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicGetUserBanHistoryV3Cmd.MarkFlagRequired("userId")
-	PublicGetUserBanHistoryV3Cmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	PublicGetUserBanHistoryV3Cmd.Flags().StringP("after", "ar", "0", "After")
-	PublicGetUserBanHistoryV3Cmd.Flags().StringP("before", "be", "0", "Before")
-	PublicGetUserBanHistoryV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	PublicGetUserBanHistoryV3Cmd.Flags().BoolP("activeOnly", "", false, "Active only")
+	PublicGetUserBanHistoryV3Cmd.Flags().StringP("after", "", "0", "After")
+	PublicGetUserBanHistoryV3Cmd.Flags().StringP("before", "", "0", "Before")
+	PublicGetUserBanHistoryV3Cmd.Flags().Int64P("limit", "", 20, "Limit")
 }

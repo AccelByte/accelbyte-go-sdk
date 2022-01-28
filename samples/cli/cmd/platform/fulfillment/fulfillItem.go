@@ -17,7 +17,7 @@ import (
 
 // FulfillItemCmd represents the FulfillItem command
 var FulfillItemCmd = &cobra.Command{
-	Use:   "FulfillItem",
+	Use:   "fulfillItem",
 	Short: "Fulfill item",
 	Long:  `Fulfill item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var FulfillItemCmd = &cobra.Command{
 }
 
 func init() {
-	FulfillItemCmd.Flags().StringP("body", "by", " ", "Body")
-	FulfillItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	FulfillItemCmd.Flags().StringP("body", "", " ", "Body")
+	FulfillItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = FulfillItemCmd.MarkFlagRequired("namespace")
-	FulfillItemCmd.Flags().StringP("userId", "ud", " ", "User id")
+	FulfillItemCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = FulfillItemCmd.MarkFlagRequired("userId")
 }

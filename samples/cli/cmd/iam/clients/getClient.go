@@ -15,7 +15,7 @@ import (
 
 // GetClientCmd represents the GetClient command
 var GetClientCmd = &cobra.Command{
-	Use:   "GetClient",
+	Use:   "getClient",
 	Short: "Get client",
 	Long:  `Get client`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetClientCmd = &cobra.Command{
 }
 
 func init() {
-	GetClientCmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	GetClientCmd.Flags().StringP("clientId", "", " ", "Client id")
 	_ = GetClientCmd.MarkFlagRequired("clientId")
 }

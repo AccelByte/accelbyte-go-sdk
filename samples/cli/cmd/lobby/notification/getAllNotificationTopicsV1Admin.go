@@ -15,7 +15,7 @@ import (
 
 // GetAllNotificationTopicsV1AdminCmd represents the GetAllNotificationTopicsV1Admin command
 var GetAllNotificationTopicsV1AdminCmd = &cobra.Command{
-	Use:   "GetAllNotificationTopicsV1Admin",
+	Use:   "getAllNotificationTopicsV1Admin",
 	Short: "Get all notification topics V1 admin",
 	Long:  `Get all notification topics V1 admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,9 +45,9 @@ var GetAllNotificationTopicsV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	GetAllNotificationTopicsV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetAllNotificationTopicsV1AdminCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetAllNotificationTopicsV1AdminCmd.MarkFlagRequired("namespace")
-	GetAllNotificationTopicsV1AdminCmd.Flags().StringP("after", "ar", "0", "After")
-	GetAllNotificationTopicsV1AdminCmd.Flags().StringP("before", "be", "0", "Before")
-	GetAllNotificationTopicsV1AdminCmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	GetAllNotificationTopicsV1AdminCmd.Flags().StringP("after", "", "0", "After")
+	GetAllNotificationTopicsV1AdminCmd.Flags().StringP("before", "", "0", "Before")
+	GetAllNotificationTopicsV1AdminCmd.Flags().Int64P("limit", "", 20, "Limit")
 }

@@ -15,7 +15,7 @@ import (
 
 // PublicQueryItemsCmd represents the PublicQueryItems command
 var PublicQueryItemsCmd = &cobra.Command{
-	Use:   "PublicQueryItems",
+	Use:   "publicQueryItems",
 	Short: "Public query items",
 	Long:  `Public query items`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -63,18 +63,18 @@ var PublicQueryItemsCmd = &cobra.Command{
 }
 
 func init() {
-	PublicQueryItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicQueryItemsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicQueryItemsCmd.MarkFlagRequired("namespace")
-	PublicQueryItemsCmd.Flags().StringP("appType", "ae", " ", "App type")
-	PublicQueryItemsCmd.Flags().StringP("baseAppId", "bd", " ", "Base app id")
-	PublicQueryItemsCmd.Flags().StringP("categoryPath", "ch", " ", "Category path")
-	PublicQueryItemsCmd.Flags().StringP("features", "fs", " ", "Features")
-	PublicQueryItemsCmd.Flags().StringP("itemType", "ie", " ", "Item type")
-	PublicQueryItemsCmd.Flags().StringP("language", "le", " ", "Language")
-	PublicQueryItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	PublicQueryItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	PublicQueryItemsCmd.Flags().StringP("region", "rn", " ", "Region")
-	PublicQueryItemsCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
-	PublicQueryItemsCmd.Flags().StringP("storeId", "sd", " ", "Store id")
-	PublicQueryItemsCmd.Flags().StringP("tags", "ts", " ", "Tags")
+	PublicQueryItemsCmd.Flags().StringP("appType", "", " ", "App type")
+	PublicQueryItemsCmd.Flags().StringP("baseAppId", "", " ", "Base app id")
+	PublicQueryItemsCmd.Flags().StringP("categoryPath", "", " ", "Category path")
+	PublicQueryItemsCmd.Flags().StringP("features", "", " ", "Features")
+	PublicQueryItemsCmd.Flags().StringP("itemType", "", " ", "Item type")
+	PublicQueryItemsCmd.Flags().StringP("language", "", " ", "Language")
+	PublicQueryItemsCmd.Flags().Int32P("limit", "", 20, "Limit")
+	PublicQueryItemsCmd.Flags().Int32P("offset", "", 0, "Offset")
+	PublicQueryItemsCmd.Flags().StringP("region", "", " ", "Region")
+	PublicQueryItemsCmd.Flags().StringP("sortBy", "", " ", "Sort by")
+	PublicQueryItemsCmd.Flags().StringP("storeId", "", " ", "Store id")
+	PublicQueryItemsCmd.Flags().StringP("tags", "", " ", "Tags")
 }

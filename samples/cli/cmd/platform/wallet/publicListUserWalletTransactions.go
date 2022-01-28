@@ -15,7 +15,7 @@ import (
 
 // PublicListUserWalletTransactionsCmd represents the PublicListUserWalletTransactions command
 var PublicListUserWalletTransactionsCmd = &cobra.Command{
-	Use:   "PublicListUserWalletTransactions",
+	Use:   "publicListUserWalletTransactions",
 	Short: "Public list user wallet transactions",
 	Long:  `Public list user wallet transactions`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,12 +47,12 @@ var PublicListUserWalletTransactionsCmd = &cobra.Command{
 }
 
 func init() {
-	PublicListUserWalletTransactionsCmd.Flags().StringP("currencyCode", "ce", " ", "Currency code")
+	PublicListUserWalletTransactionsCmd.Flags().StringP("currencyCode", "", " ", "Currency code")
 	_ = PublicListUserWalletTransactionsCmd.MarkFlagRequired("currencyCode")
-	PublicListUserWalletTransactionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicListUserWalletTransactionsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicListUserWalletTransactionsCmd.MarkFlagRequired("namespace")
-	PublicListUserWalletTransactionsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicListUserWalletTransactionsCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicListUserWalletTransactionsCmd.MarkFlagRequired("userId")
-	PublicListUserWalletTransactionsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	PublicListUserWalletTransactionsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	PublicListUserWalletTransactionsCmd.Flags().Int32P("limit", "", 20, "Limit")
+	PublicListUserWalletTransactionsCmd.Flags().Int32P("offset", "", 0, "Offset")
 }

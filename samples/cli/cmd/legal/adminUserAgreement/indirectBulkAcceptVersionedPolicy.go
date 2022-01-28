@@ -17,7 +17,7 @@ import (
 
 // IndirectBulkAcceptVersionedPolicyCmd represents the IndirectBulkAcceptVersionedPolicy command
 var IndirectBulkAcceptVersionedPolicyCmd = &cobra.Command{
-	Use:   "IndirectBulkAcceptVersionedPolicy",
+	Use:   "indirectBulkAcceptVersionedPolicy",
 	Short: "Indirect bulk accept versioned policy",
 	Long:  `Indirect bulk accept versioned policy`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -56,14 +56,14 @@ var IndirectBulkAcceptVersionedPolicyCmd = &cobra.Command{
 }
 
 func init() {
-	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("body", "by", " ", "Body")
-	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("body", "", " ", "Body")
+	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = IndirectBulkAcceptVersionedPolicyCmd.MarkFlagRequired("namespace")
-	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("userId", "ud", " ", "User id")
+	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = IndirectBulkAcceptVersionedPolicyCmd.MarkFlagRequired("userId")
-	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("publisherUserId", "pd", " ", "Publisher user id")
-	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("publisherUserId", "", " ", "Publisher user id")
+	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("clientId", "", " ", "Client id")
 	_ = IndirectBulkAcceptVersionedPolicyCmd.MarkFlagRequired("clientId")
-	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("countryCode", "ce", " ", "Country code")
+	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("countryCode", "", " ", "Country code")
 	_ = IndirectBulkAcceptVersionedPolicyCmd.MarkFlagRequired("countryCode")
 }

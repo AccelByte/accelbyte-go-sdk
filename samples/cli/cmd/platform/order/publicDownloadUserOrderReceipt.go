@@ -15,7 +15,7 @@ import (
 
 // PublicDownloadUserOrderReceiptCmd represents the PublicDownloadUserOrderReceipt command
 var PublicDownloadUserOrderReceiptCmd = &cobra.Command{
-	Use:   "PublicDownloadUserOrderReceipt",
+	Use:   "publicDownloadUserOrderReceipt",
 	Short: "Public download user order receipt",
 	Long:  `Public download user order receipt`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var PublicDownloadUserOrderReceiptCmd = &cobra.Command{
 }
 
 func init() {
-	PublicDownloadUserOrderReceiptCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicDownloadUserOrderReceiptCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicDownloadUserOrderReceiptCmd.MarkFlagRequired("namespace")
-	PublicDownloadUserOrderReceiptCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
+	PublicDownloadUserOrderReceiptCmd.Flags().StringP("orderNo", "", " ", "Order no")
 	_ = PublicDownloadUserOrderReceiptCmd.MarkFlagRequired("orderNo")
-	PublicDownloadUserOrderReceiptCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicDownloadUserOrderReceiptCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicDownloadUserOrderReceiptCmd.MarkFlagRequired("userId")
 }

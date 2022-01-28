@@ -15,7 +15,7 @@ import (
 
 // GetAllDeploymentCmd represents the GetAllDeployment command
 var GetAllDeploymentCmd = &cobra.Command{
-	Use:   "GetAllDeployment",
+	Use:   "getAllDeployment",
 	Short: "Get all deployment",
 	Long:  `Get all deployment`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,8 +43,8 @@ var GetAllDeploymentCmd = &cobra.Command{
 }
 
 func init() {
-	GetAllDeploymentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetAllDeploymentCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetAllDeploymentCmd.MarkFlagRequired("namespace")
-	GetAllDeploymentCmd.Flags().Int64P("count", "ct", 1, "Count")
-	GetAllDeploymentCmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetAllDeploymentCmd.Flags().Int64P("count", "", 1, "Count")
+	GetAllDeploymentCmd.Flags().Int64P("offset", "", 0, "Offset")
 }

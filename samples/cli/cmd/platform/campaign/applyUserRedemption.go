@@ -17,7 +17,7 @@ import (
 
 // ApplyUserRedemptionCmd represents the ApplyUserRedemption command
 var ApplyUserRedemptionCmd = &cobra.Command{
-	Use:   "ApplyUserRedemption",
+	Use:   "applyUserRedemption",
 	Short: "Apply user redemption",
 	Long:  `Apply user redemption`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var ApplyUserRedemptionCmd = &cobra.Command{
 }
 
 func init() {
-	ApplyUserRedemptionCmd.Flags().StringP("body", "by", " ", "Body")
-	ApplyUserRedemptionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ApplyUserRedemptionCmd.Flags().StringP("body", "", " ", "Body")
+	ApplyUserRedemptionCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ApplyUserRedemptionCmd.MarkFlagRequired("namespace")
-	ApplyUserRedemptionCmd.Flags().StringP("userId", "ud", " ", "User id")
+	ApplyUserRedemptionCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = ApplyUserRedemptionCmd.MarkFlagRequired("userId")
 }

@@ -17,7 +17,7 @@ import (
 
 // UpdateLocalizedPolicyVersionCmd represents the UpdateLocalizedPolicyVersion command
 var UpdateLocalizedPolicyVersionCmd = &cobra.Command{
-	Use:   "UpdateLocalizedPolicyVersion",
+	Use:   "updateLocalizedPolicyVersion",
 	Short: "Update localized policy version",
 	Long:  `Update localized policy version`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var UpdateLocalizedPolicyVersionCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateLocalizedPolicyVersionCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateLocalizedPolicyVersionCmd.Flags().StringP("localizedPolicyVersionId", "ld", " ", "Localized policy version id")
+	UpdateLocalizedPolicyVersionCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateLocalizedPolicyVersionCmd.Flags().StringP("localizedPolicyVersionId", "", " ", "Localized policy version id")
 	_ = UpdateLocalizedPolicyVersionCmd.MarkFlagRequired("localizedPolicyVersionId")
 }

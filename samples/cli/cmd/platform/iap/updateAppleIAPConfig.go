@@ -17,7 +17,7 @@ import (
 
 // UpdateAppleIAPConfigCmd represents the UpdateAppleIAPConfig command
 var UpdateAppleIAPConfigCmd = &cobra.Command{
-	Use:   "UpdateAppleIAPConfig",
+	Use:   "updateAppleIAPConfig",
 	Short: "Update apple IAP config",
 	Long:  `Update apple IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var UpdateAppleIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateAppleIAPConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateAppleIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateAppleIAPConfigCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateAppleIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateAppleIAPConfigCmd.MarkFlagRequired("namespace")
 }

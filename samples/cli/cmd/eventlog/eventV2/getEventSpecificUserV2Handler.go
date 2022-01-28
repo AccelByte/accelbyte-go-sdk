@@ -15,7 +15,7 @@ import (
 
 // GetEventSpecificUserV2HandlerCmd represents the GetEventSpecificUserV2Handler command
 var GetEventSpecificUserV2HandlerCmd = &cobra.Command{
-	Use:   "GetEventSpecificUserV2Handler",
+	Use:   "getEventSpecificUserV2Handler",
 	Short: "Get event specific user V2 handler",
 	Long:  `Get event specific user V2 handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,13 +51,13 @@ var GetEventSpecificUserV2HandlerCmd = &cobra.Command{
 }
 
 func init() {
-	GetEventSpecificUserV2HandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetEventSpecificUserV2HandlerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetEventSpecificUserV2HandlerCmd.MarkFlagRequired("namespace")
-	GetEventSpecificUserV2HandlerCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetEventSpecificUserV2HandlerCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetEventSpecificUserV2HandlerCmd.MarkFlagRequired("userId")
-	GetEventSpecificUserV2HandlerCmd.Flags().StringP("endDate", "ee", " ", "End date")
-	GetEventSpecificUserV2HandlerCmd.Flags().StringP("eventName", "ee", " ", "Event name")
-	GetEventSpecificUserV2HandlerCmd.Flags().Float64P("offset", "ot", 0, "Offset")
-	GetEventSpecificUserV2HandlerCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
-	GetEventSpecificUserV2HandlerCmd.Flags().StringP("startDate", "se", " ", "Start date")
+	GetEventSpecificUserV2HandlerCmd.Flags().StringP("endDate", "", " ", "End date")
+	GetEventSpecificUserV2HandlerCmd.Flags().StringP("eventName", "", " ", "Event name")
+	GetEventSpecificUserV2HandlerCmd.Flags().Float64P("offset", "", 0, "Offset")
+	GetEventSpecificUserV2HandlerCmd.Flags().Float64P("pageSize", "", 1, "Page size")
+	GetEventSpecificUserV2HandlerCmd.Flags().StringP("startDate", "", " ", "Start date")
 }

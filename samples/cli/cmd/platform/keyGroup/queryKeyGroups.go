@@ -15,7 +15,7 @@ import (
 
 // QueryKeyGroupsCmd represents the QueryKeyGroups command
 var QueryKeyGroupsCmd = &cobra.Command{
-	Use:   "QueryKeyGroups",
+	Use:   "queryKeyGroups",
 	Short: "Query key groups",
 	Long:  `Query key groups`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,10 +47,10 @@ var QueryKeyGroupsCmd = &cobra.Command{
 }
 
 func init() {
-	QueryKeyGroupsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QueryKeyGroupsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = QueryKeyGroupsCmd.MarkFlagRequired("namespace")
-	QueryKeyGroupsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	QueryKeyGroupsCmd.Flags().StringP("name", "ne", " ", "Name")
-	QueryKeyGroupsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	QueryKeyGroupsCmd.Flags().StringP("tag", "tg", " ", "Tag")
+	QueryKeyGroupsCmd.Flags().Int32P("limit", "", 20, "Limit")
+	QueryKeyGroupsCmd.Flags().StringP("name", "", " ", "Name")
+	QueryKeyGroupsCmd.Flags().Int32P("offset", "", 0, "Offset")
+	QueryKeyGroupsCmd.Flags().StringP("tag", "", " ", "Tag")
 }

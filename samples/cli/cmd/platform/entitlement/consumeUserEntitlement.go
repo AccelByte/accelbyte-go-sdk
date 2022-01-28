@@ -17,7 +17,7 @@ import (
 
 // ConsumeUserEntitlementCmd represents the ConsumeUserEntitlement command
 var ConsumeUserEntitlementCmd = &cobra.Command{
-	Use:   "ConsumeUserEntitlement",
+	Use:   "consumeUserEntitlement",
 	Short: "Consume user entitlement",
 	Long:  `Consume user entitlement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,11 +52,11 @@ var ConsumeUserEntitlementCmd = &cobra.Command{
 }
 
 func init() {
-	ConsumeUserEntitlementCmd.Flags().StringP("body", "by", " ", "Body")
-	ConsumeUserEntitlementCmd.Flags().StringP("entitlementId", "ed", " ", "Entitlement id")
+	ConsumeUserEntitlementCmd.Flags().StringP("body", "", " ", "Body")
+	ConsumeUserEntitlementCmd.Flags().StringP("entitlementId", "", " ", "Entitlement id")
 	_ = ConsumeUserEntitlementCmd.MarkFlagRequired("entitlementId")
-	ConsumeUserEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ConsumeUserEntitlementCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ConsumeUserEntitlementCmd.MarkFlagRequired("namespace")
-	ConsumeUserEntitlementCmd.Flags().StringP("userId", "ud", " ", "User id")
+	ConsumeUserEntitlementCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = ConsumeUserEntitlementCmd.MarkFlagRequired("userId")
 }

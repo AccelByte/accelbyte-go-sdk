@@ -15,7 +15,7 @@ import (
 
 // GetUserStatItemsCmd represents the GetUserStatItems command
 var GetUserStatItemsCmd = &cobra.Command{
-	Use:   "GetUserStatItems",
+	Use:   "getUserStatItems",
 	Short: "Get user stat items",
 	Long:  `Get user stat items`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,12 +49,12 @@ var GetUserStatItemsCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserStatItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetUserStatItemsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetUserStatItemsCmd.MarkFlagRequired("namespace")
-	GetUserStatItemsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetUserStatItemsCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetUserStatItemsCmd.MarkFlagRequired("userId")
-	GetUserStatItemsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	GetUserStatItemsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	GetUserStatItemsCmd.Flags().StringP("statCodes", "ss", " ", "Stat codes")
-	GetUserStatItemsCmd.Flags().StringP("tags", "ts", " ", "Tags")
+	GetUserStatItemsCmd.Flags().Int32P("limit", "", 20, "Limit")
+	GetUserStatItemsCmd.Flags().Int32P("offset", "", 0, "Offset")
+	GetUserStatItemsCmd.Flags().StringP("statCodes", "", " ", "Stat codes")
+	GetUserStatItemsCmd.Flags().StringP("tags", "", " ", "Tags")
 }

@@ -15,7 +15,7 @@ import (
 
 // DeleteUserProfileCmd represents the DeleteUserProfile command
 var DeleteUserProfileCmd = &cobra.Command{
-	Use:   "DeleteUserProfile",
+	Use:   "deleteUserProfile",
 	Short: "Delete user profile",
 	Long:  `Delete user profile`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var DeleteUserProfileCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteUserProfileCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteUserProfileCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteUserProfileCmd.MarkFlagRequired("namespace")
-	DeleteUserProfileCmd.Flags().StringP("userId", "ud", " ", "User id")
+	DeleteUserProfileCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = DeleteUserProfileCmd.MarkFlagRequired("userId")
 }

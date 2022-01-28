@@ -17,7 +17,7 @@ import (
 
 // SendPartyFreeformNotificationV1AdminCmd represents the SendPartyFreeformNotificationV1Admin command
 var SendPartyFreeformNotificationV1AdminCmd = &cobra.Command{
-	Use:   "SendPartyFreeformNotificationV1Admin",
+	Use:   "sendPartyFreeformNotificationV1Admin",
 	Short: "Send party freeform notification V1 admin",
 	Long:  `Send party freeform notification V1 admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var SendPartyFreeformNotificationV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	SendPartyFreeformNotificationV1AdminCmd.Flags().StringP("body", "by", " ", "Body")
+	SendPartyFreeformNotificationV1AdminCmd.Flags().StringP("body", "", " ", "Body")
 	_ = SendPartyFreeformNotificationV1AdminCmd.MarkFlagRequired("body")
-	SendPartyFreeformNotificationV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SendPartyFreeformNotificationV1AdminCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SendPartyFreeformNotificationV1AdminCmd.MarkFlagRequired("namespace")
-	SendPartyFreeformNotificationV1AdminCmd.Flags().StringP("partyId", "pd", " ", "Party id")
+	SendPartyFreeformNotificationV1AdminCmd.Flags().StringP("partyId", "", " ", "Party id")
 	_ = SendPartyFreeformNotificationV1AdminCmd.MarkFlagRequired("partyId")
 }

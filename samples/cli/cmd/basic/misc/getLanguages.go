@@ -15,7 +15,7 @@ import (
 
 // GetLanguagesCmd represents the GetLanguages command
 var GetLanguagesCmd = &cobra.Command{
-	Use:   "GetLanguages",
+	Use:   "getLanguages",
 	Short: "Get languages",
 	Long:  `Get languages`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetLanguagesCmd = &cobra.Command{
 }
 
 func init() {
-	GetLanguagesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetLanguagesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetLanguagesCmd.MarkFlagRequired("namespace")
 }

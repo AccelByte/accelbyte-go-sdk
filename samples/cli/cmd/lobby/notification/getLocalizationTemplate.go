@@ -15,7 +15,7 @@ import (
 
 // GetLocalizationTemplateCmd represents the GetLocalizationTemplate command
 var GetLocalizationTemplateCmd = &cobra.Command{
-	Use:   "GetLocalizationTemplate",
+	Use:   "getLocalizationTemplate",
 	Short: "Get localization template",
 	Long:  `Get localization template`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var GetLocalizationTemplateCmd = &cobra.Command{
 }
 
 func init() {
-	GetLocalizationTemplateCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetLocalizationTemplateCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetLocalizationTemplateCmd.MarkFlagRequired("namespace")
-	GetLocalizationTemplateCmd.Flags().StringP("templateLanguage", "te", " ", "Template language")
+	GetLocalizationTemplateCmd.Flags().StringP("templateLanguage", "", " ", "Template language")
 	_ = GetLocalizationTemplateCmd.MarkFlagRequired("templateLanguage")
-	GetLocalizationTemplateCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
+	GetLocalizationTemplateCmd.Flags().StringP("templateSlug", "", " ", "Template slug")
 	_ = GetLocalizationTemplateCmd.MarkFlagRequired("templateSlug")
 }

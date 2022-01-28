@@ -15,7 +15,7 @@ import (
 
 // GetClientsCmd represents the GetClients command
 var GetClientsCmd = &cobra.Command{
-	Use:   "GetClients",
+	Use:   "getClients",
 	Short: "Get clients",
 	Long:  `Get clients`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,4 +33,7 @@ var GetClientsCmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

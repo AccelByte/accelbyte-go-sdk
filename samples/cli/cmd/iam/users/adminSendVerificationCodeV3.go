@@ -17,7 +17,7 @@ import (
 
 // AdminSendVerificationCodeV3Cmd represents the AdminSendVerificationCodeV3 command
 var AdminSendVerificationCodeV3Cmd = &cobra.Command{
-	Use:   "AdminSendVerificationCodeV3",
+	Use:   "adminSendVerificationCodeV3",
 	Short: "Admin send verification code V3",
 	Long:  `Admin send verification code V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var AdminSendVerificationCodeV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminSendVerificationCodeV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	AdminSendVerificationCodeV3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminSendVerificationCodeV3Cmd.MarkFlagRequired("body")
-	AdminSendVerificationCodeV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminSendVerificationCodeV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminSendVerificationCodeV3Cmd.MarkFlagRequired("namespace")
-	AdminSendVerificationCodeV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminSendVerificationCodeV3Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminSendVerificationCodeV3Cmd.MarkFlagRequired("userId")
 }

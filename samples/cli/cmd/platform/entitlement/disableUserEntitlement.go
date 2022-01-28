@@ -15,7 +15,7 @@ import (
 
 // DisableUserEntitlementCmd represents the DisableUserEntitlement command
 var DisableUserEntitlementCmd = &cobra.Command{
-	Use:   "DisableUserEntitlement",
+	Use:   "disableUserEntitlement",
 	Short: "Disable user entitlement",
 	Long:  `Disable user entitlement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var DisableUserEntitlementCmd = &cobra.Command{
 }
 
 func init() {
-	DisableUserEntitlementCmd.Flags().StringP("entitlementId", "ed", " ", "Entitlement id")
+	DisableUserEntitlementCmd.Flags().StringP("entitlementId", "", " ", "Entitlement id")
 	_ = DisableUserEntitlementCmd.MarkFlagRequired("entitlementId")
-	DisableUserEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DisableUserEntitlementCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DisableUserEntitlementCmd.MarkFlagRequired("namespace")
-	DisableUserEntitlementCmd.Flags().StringP("userId", "ud", " ", "User id")
+	DisableUserEntitlementCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = DisableUserEntitlementCmd.MarkFlagRequired("userId")
 }

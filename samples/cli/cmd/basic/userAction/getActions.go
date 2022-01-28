@@ -15,7 +15,7 @@ import (
 
 // GetActionsCmd represents the GetActions command
 var GetActionsCmd = &cobra.Command{
-	Use:   "GetActions",
+	Use:   "getActions",
 	Short: "Get actions",
 	Long:  `Get actions`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetActionsCmd = &cobra.Command{
 }
 
 func init() {
-	GetActionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetActionsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetActionsCmd.MarkFlagRequired("namespace")
 }

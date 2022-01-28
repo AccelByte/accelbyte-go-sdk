@@ -15,7 +15,7 @@ import (
 
 // DeleteGroupPublicV1Cmd represents the DeleteGroupPublicV1 command
 var DeleteGroupPublicV1Cmd = &cobra.Command{
-	Use:   "DeleteGroupPublicV1",
+	Use:   "deleteGroupPublicV1",
 	Short: "Delete group public V1",
 	Long:  `Delete group public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var DeleteGroupPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	DeleteGroupPublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	DeleteGroupPublicV1Cmd.Flags().StringP("groupId", "", " ", "Group id")
 	_ = DeleteGroupPublicV1Cmd.MarkFlagRequired("groupId")
-	DeleteGroupPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteGroupPublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteGroupPublicV1Cmd.MarkFlagRequired("namespace")
 }

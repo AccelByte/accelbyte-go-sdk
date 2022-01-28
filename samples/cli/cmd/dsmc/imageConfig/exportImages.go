@@ -15,7 +15,7 @@ import (
 
 // ExportImagesCmd represents the ExportImages command
 var ExportImagesCmd = &cobra.Command{
-	Use:   "ExportImages",
+	Use:   "exportImages",
 	Short: "Export images",
 	Long:  `Export images`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var ExportImagesCmd = &cobra.Command{
 }
 
 func init() {
-	ExportImagesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ExportImagesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ExportImagesCmd.MarkFlagRequired("namespace")
 }

@@ -15,7 +15,7 @@ import (
 
 // AdminGetChannelCmd represents the AdminGetChannel command
 var AdminGetChannelCmd = &cobra.Command{
-	Use:   "AdminGetChannel",
+	Use:   "adminGetChannel",
 	Short: "Admin get channel",
 	Long:  `Admin get channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,10 +45,10 @@ var AdminGetChannelCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetChannelCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetChannelCmd.MarkFlagRequired("namespace")
-	AdminGetChannelCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminGetChannelCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminGetChannelCmd.MarkFlagRequired("userId")
-	AdminGetChannelCmd.Flags().StringP("limit", "lt", "20", "Limit")
-	AdminGetChannelCmd.Flags().StringP("offset", "ot", "0", "Offset")
+	AdminGetChannelCmd.Flags().StringP("limit", "", "20", "Limit")
+	AdminGetChannelCmd.Flags().StringP("offset", "", "0", "Offset")
 }

@@ -15,7 +15,7 @@ import (
 
 // RetrieveUserThirdPartyPlatformTokenV3Cmd represents the RetrieveUserThirdPartyPlatformTokenV3 command
 var RetrieveUserThirdPartyPlatformTokenV3Cmd = &cobra.Command{
-	Use:   "RetrieveUserThirdPartyPlatformTokenV3",
+	Use:   "retrieveUserThirdPartyPlatformTokenV3",
 	Short: "Retrieve user third party platform token V3",
 	Long:  `Retrieve user third party platform token V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var RetrieveUserThirdPartyPlatformTokenV3Cmd = &cobra.Command{
 }
 
 func init() {
-	RetrieveUserThirdPartyPlatformTokenV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	RetrieveUserThirdPartyPlatformTokenV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = RetrieveUserThirdPartyPlatformTokenV3Cmd.MarkFlagRequired("namespace")
-	RetrieveUserThirdPartyPlatformTokenV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	RetrieveUserThirdPartyPlatformTokenV3Cmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = RetrieveUserThirdPartyPlatformTokenV3Cmd.MarkFlagRequired("platformId")
-	RetrieveUserThirdPartyPlatformTokenV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	RetrieveUserThirdPartyPlatformTokenV3Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = RetrieveUserThirdPartyPlatformTokenV3Cmd.MarkFlagRequired("userId")
 }

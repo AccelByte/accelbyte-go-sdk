@@ -15,7 +15,7 @@ import (
 
 // PublicCreateUserStatItemCmd represents the PublicCreateUserStatItem command
 var PublicCreateUserStatItemCmd = &cobra.Command{
-	Use:   "PublicCreateUserStatItem",
+	Use:   "publicCreateUserStatItem",
 	Short: "Public create user stat item",
 	Long:  `Public create user stat item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var PublicCreateUserStatItemCmd = &cobra.Command{
 }
 
 func init() {
-	PublicCreateUserStatItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicCreateUserStatItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicCreateUserStatItemCmd.MarkFlagRequired("namespace")
-	PublicCreateUserStatItemCmd.Flags().StringP("statCode", "se", " ", "Stat code")
+	PublicCreateUserStatItemCmd.Flags().StringP("statCode", "", " ", "Stat code")
 	_ = PublicCreateUserStatItemCmd.MarkFlagRequired("statCode")
-	PublicCreateUserStatItemCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicCreateUserStatItemCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicCreateUserStatItemCmd.MarkFlagRequired("userId")
 }

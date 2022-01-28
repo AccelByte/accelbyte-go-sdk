@@ -15,7 +15,7 @@ import (
 
 // ListPlayerRecordHandlerV1Cmd represents the ListPlayerRecordHandlerV1 command
 var ListPlayerRecordHandlerV1Cmd = &cobra.Command{
-	Use:   "ListPlayerRecordHandlerV1",
+	Use:   "listPlayerRecordHandlerV1",
 	Short: "List player record handler V1",
 	Long:  `List player record handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,9 +45,9 @@ var ListPlayerRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	ListPlayerRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ListPlayerRecordHandlerV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ListPlayerRecordHandlerV1Cmd.MarkFlagRequired("namespace")
-	ListPlayerRecordHandlerV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	ListPlayerRecordHandlerV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
-	ListPlayerRecordHandlerV1Cmd.Flags().StringP("query", "qy", " ", "Query")
+	ListPlayerRecordHandlerV1Cmd.Flags().Int64P("limit", "", 20, "Limit")
+	ListPlayerRecordHandlerV1Cmd.Flags().Int64P("offset", "", 0, "Offset")
+	ListPlayerRecordHandlerV1Cmd.Flags().StringP("query", "", " ", "Query")
 }

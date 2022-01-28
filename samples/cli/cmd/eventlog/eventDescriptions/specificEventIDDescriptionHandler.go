@@ -15,7 +15,7 @@ import (
 
 // SpecificEventIDDescriptionHandlerCmd represents the SpecificEventIDDescriptionHandler command
 var SpecificEventIDDescriptionHandlerCmd = &cobra.Command{
-	Use:   "SpecificEventIDDescriptionHandler",
+	Use:   "specificEventIDDescriptionHandler",
 	Short: "Specific event ID description handler",
 	Long:  `Specific event ID description handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,5 +39,5 @@ var SpecificEventIDDescriptionHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	SpecificEventIDDescriptionHandlerCmd.Flags().StringP("eventIds", "es", " ", "Event ids")
+	SpecificEventIDDescriptionHandlerCmd.Flags().StringP("eventIds", "", " ", "Event ids")
 }

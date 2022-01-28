@@ -16,7 +16,7 @@ import (
 
 // UpdateAdminEmailConfigurationCmd represents the UpdateAdminEmailConfiguration command
 var UpdateAdminEmailConfigurationCmd = &cobra.Command{
-	Use:   "UpdateAdminEmailConfiguration",
+	Use:   "updateAdminEmailConfiguration",
 	Short: "Update admin email configuration",
 	Long:  `Update admin email configuration`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,8 +46,8 @@ var UpdateAdminEmailConfigurationCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateAdminEmailConfigurationCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateAdminEmailConfigurationCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateAdminEmailConfigurationCmd.MarkFlagRequired("body")
-	UpdateAdminEmailConfigurationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateAdminEmailConfigurationCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateAdminEmailConfigurationCmd.MarkFlagRequired("namespace")
 }

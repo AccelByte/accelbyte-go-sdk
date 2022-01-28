@@ -17,7 +17,7 @@ import (
 
 // AdminBulkBlockPlayersV1Cmd represents the AdminBulkBlockPlayersV1 command
 var AdminBulkBlockPlayersV1Cmd = &cobra.Command{
-	Use:   "AdminBulkBlockPlayersV1",
+	Use:   "adminBulkBlockPlayersV1",
 	Short: "Admin bulk block players V1",
 	Long:  `Admin bulk block players V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var AdminBulkBlockPlayersV1Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminBulkBlockPlayersV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	AdminBulkBlockPlayersV1Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminBulkBlockPlayersV1Cmd.MarkFlagRequired("body")
-	AdminBulkBlockPlayersV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminBulkBlockPlayersV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminBulkBlockPlayersV1Cmd.MarkFlagRequired("namespace")
-	AdminBulkBlockPlayersV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminBulkBlockPlayersV1Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminBulkBlockPlayersV1Cmd.MarkFlagRequired("userId")
 }

@@ -15,7 +15,7 @@ import (
 
 // GetNamespacesCmd represents the GetNamespaces command
 var GetNamespacesCmd = &cobra.Command{
-	Use:   "GetNamespaces",
+	Use:   "getNamespaces",
 	Short: "Get namespaces",
 	Long:  `Get namespaces`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,5 +39,5 @@ var GetNamespacesCmd = &cobra.Command{
 }
 
 func init() {
-	GetNamespacesCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
+	GetNamespacesCmd.Flags().BoolP("activeOnly", "", false, "Active only")
 }

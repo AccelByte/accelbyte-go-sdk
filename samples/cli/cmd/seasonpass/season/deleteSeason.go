@@ -15,7 +15,7 @@ import (
 
 // DeleteSeasonCmd represents the DeleteSeason command
 var DeleteSeasonCmd = &cobra.Command{
-	Use:   "DeleteSeason",
+	Use:   "deleteSeason",
 	Short: "Delete season",
 	Long:  `Delete season`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var DeleteSeasonCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteSeasonCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteSeasonCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteSeasonCmd.MarkFlagRequired("namespace")
-	DeleteSeasonCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	DeleteSeasonCmd.Flags().StringP("seasonId", "", " ", "Season id")
 	_ = DeleteSeasonCmd.MarkFlagRequired("seasonId")
 }

@@ -17,7 +17,7 @@ import (
 
 // UpdateClientPermissionCmd represents the UpdateClientPermission command
 var UpdateClientPermissionCmd = &cobra.Command{
-	Use:   "UpdateClientPermission",
+	Use:   "updateClientPermission",
 	Short: "Update client permission",
 	Long:  `Update client permission`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var UpdateClientPermissionCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateClientPermissionCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateClientPermissionCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateClientPermissionCmd.MarkFlagRequired("body")
-	UpdateClientPermissionCmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	UpdateClientPermissionCmd.Flags().StringP("clientId", "", " ", "Client id")
 	_ = UpdateClientPermissionCmd.MarkFlagRequired("clientId")
 }

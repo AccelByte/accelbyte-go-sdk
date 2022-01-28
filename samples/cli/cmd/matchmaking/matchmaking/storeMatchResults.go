@@ -17,7 +17,7 @@ import (
 
 // StoreMatchResultsCmd represents the StoreMatchResults command
 var StoreMatchResultsCmd = &cobra.Command{
-	Use:   "StoreMatchResults",
+	Use:   "storeMatchResults",
 	Short: "Store match results",
 	Long:  `Store match results`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var StoreMatchResultsCmd = &cobra.Command{
 }
 
 func init() {
-	StoreMatchResultsCmd.Flags().StringP("body", "by", " ", "Body")
+	StoreMatchResultsCmd.Flags().StringP("body", "", " ", "Body")
 	_ = StoreMatchResultsCmd.MarkFlagRequired("body")
-	StoreMatchResultsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	StoreMatchResultsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = StoreMatchResultsCmd.MarkFlagRequired("namespace")
 }

@@ -17,7 +17,7 @@ import (
 
 // UpdateCountryAgeRestrictionCmd represents the UpdateCountryAgeRestriction command
 var UpdateCountryAgeRestrictionCmd = &cobra.Command{
-	Use:   "UpdateCountryAgeRestriction",
+	Use:   "updateCountryAgeRestriction",
 	Short: "Update country age restriction",
 	Long:  `Update country age restriction`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var UpdateCountryAgeRestrictionCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateCountryAgeRestrictionCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateCountryAgeRestrictionCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateCountryAgeRestrictionCmd.MarkFlagRequired("body")
-	UpdateCountryAgeRestrictionCmd.Flags().StringP("countryCode", "ce", " ", "Country code")
+	UpdateCountryAgeRestrictionCmd.Flags().StringP("countryCode", "", " ", "Country code")
 	_ = UpdateCountryAgeRestrictionCmd.MarkFlagRequired("countryCode")
-	UpdateCountryAgeRestrictionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateCountryAgeRestrictionCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateCountryAgeRestrictionCmd.MarkFlagRequired("namespace")
 }

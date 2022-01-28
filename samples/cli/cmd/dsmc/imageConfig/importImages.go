@@ -16,7 +16,7 @@ import (
 
 // ImportImagesCmd represents the ImportImages command
 var ImportImagesCmd = &cobra.Command{
-	Use:   "ImportImages",
+	Use:   "importImages",
 	Short: "Import images",
 	Long:  `Import images`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,6 +45,6 @@ var ImportImagesCmd = &cobra.Command{
 }
 
 func init() {
-	ImportImagesCmd.Flags().StringP("file", "fe", " ", "File")
+	ImportImagesCmd.Flags().StringP("file", "", " ", "File")
 	_ = ImportImagesCmd.MarkFlagRequired("file")
 }

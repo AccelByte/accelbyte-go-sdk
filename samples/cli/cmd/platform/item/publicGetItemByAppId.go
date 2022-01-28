@@ -15,7 +15,7 @@ import (
 
 // PublicGetItemByAppIdCmd represents the PublicGetItemByAppId command
 var PublicGetItemByAppIdCmd = &cobra.Command{
-	Use:   "PublicGetItemByAppId",
+	Use:   "publicGetItemByAppId",
 	Short: "Public get item by app id",
 	Long:  `Public get item by app id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,11 +47,11 @@ var PublicGetItemByAppIdCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetItemByAppIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetItemByAppIdCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetItemByAppIdCmd.MarkFlagRequired("namespace")
-	PublicGetItemByAppIdCmd.Flags().StringP("language", "le", " ", "Language")
-	PublicGetItemByAppIdCmd.Flags().StringP("region", "rn", " ", "Region")
-	PublicGetItemByAppIdCmd.Flags().StringP("storeId", "sd", " ", "Store id")
-	PublicGetItemByAppIdCmd.Flags().StringP("appId", "ad", " ", "App id")
+	PublicGetItemByAppIdCmd.Flags().StringP("language", "", " ", "Language")
+	PublicGetItemByAppIdCmd.Flags().StringP("region", "", " ", "Region")
+	PublicGetItemByAppIdCmd.Flags().StringP("storeId", "", " ", "Store id")
+	PublicGetItemByAppIdCmd.Flags().StringP("appId", "", " ", "App id")
 	_ = PublicGetItemByAppIdCmd.MarkFlagRequired("appId")
 }

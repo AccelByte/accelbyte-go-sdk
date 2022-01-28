@@ -15,7 +15,7 @@ import (
 
 // DeleteUserStatItems2Cmd represents the DeleteUserStatItems2 command
 var DeleteUserStatItems2Cmd = &cobra.Command{
-	Use:   "DeleteUserStatItems2",
+	Use:   "deleteUserStatItems2",
 	Short: "Delete user stat items 2",
 	Long:  `Delete user stat items 2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,11 +44,11 @@ var DeleteUserStatItems2Cmd = &cobra.Command{
 }
 
 func init() {
-	DeleteUserStatItems2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteUserStatItems2Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteUserStatItems2Cmd.MarkFlagRequired("namespace")
-	DeleteUserStatItems2Cmd.Flags().StringP("statCode", "se", " ", "Stat code")
+	DeleteUserStatItems2Cmd.Flags().StringP("statCode", "", " ", "Stat code")
 	_ = DeleteUserStatItems2Cmd.MarkFlagRequired("statCode")
-	DeleteUserStatItems2Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	DeleteUserStatItems2Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = DeleteUserStatItems2Cmd.MarkFlagRequired("userId")
-	DeleteUserStatItems2Cmd.Flags().StringP("additionalKey", "ay", " ", "Additional key")
+	DeleteUserStatItems2Cmd.Flags().StringP("additionalKey", "", " ", "Additional key")
 }

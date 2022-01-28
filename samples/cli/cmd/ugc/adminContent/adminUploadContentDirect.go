@@ -17,7 +17,7 @@ import (
 
 // AdminUploadContentDirectCmd represents the AdminUploadContentDirect command
 var AdminUploadContentDirectCmd = &cobra.Command{
-	Use:   "AdminUploadContentDirect",
+	Use:   "adminUploadContentDirect",
 	Short: "Admin upload content direct",
 	Long:  `Admin upload content direct`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var AdminUploadContentDirectCmd = &cobra.Command{
 }
 
 func init() {
-	AdminUploadContentDirectCmd.Flags().StringP("body", "by", " ", "Body")
+	AdminUploadContentDirectCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminUploadContentDirectCmd.MarkFlagRequired("body")
-	AdminUploadContentDirectCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
+	AdminUploadContentDirectCmd.Flags().StringP("channelId", "", " ", "Channel id")
 	_ = AdminUploadContentDirectCmd.MarkFlagRequired("channelId")
-	AdminUploadContentDirectCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminUploadContentDirectCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminUploadContentDirectCmd.MarkFlagRequired("namespace")
 }

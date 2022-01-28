@@ -15,7 +15,7 @@ import (
 
 // GetTopicByTopicNameCmd represents the GetTopicByTopicName command
 var GetTopicByTopicNameCmd = &cobra.Command{
-	Use:   "GetTopicByTopicName",
+	Use:   "getTopicByTopicName",
 	Short: "Get topic by topic name",
 	Long:  `Get topic by topic name`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetTopicByTopicNameCmd = &cobra.Command{
 }
 
 func init() {
-	GetTopicByTopicNameCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetTopicByTopicNameCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetTopicByTopicNameCmd.MarkFlagRequired("namespace")
-	GetTopicByTopicNameCmd.Flags().StringP("topic", "tc", " ", "Topic")
+	GetTopicByTopicNameCmd.Flags().StringP("topic", "", " ", "Topic")
 	_ = GetTopicByTopicNameCmd.MarkFlagRequired("topic")
 }

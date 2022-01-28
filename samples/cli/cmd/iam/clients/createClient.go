@@ -17,7 +17,7 @@ import (
 
 // CreateClientCmd represents the CreateClient command
 var CreateClientCmd = &cobra.Command{
-	Use:   "CreateClient",
+	Use:   "createClient",
 	Short: "Create client",
 	Long:  `Create client`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,6 +46,6 @@ var CreateClientCmd = &cobra.Command{
 }
 
 func init() {
-	CreateClientCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateClientCmd.Flags().StringP("body", "", " ", "Body")
 	_ = CreateClientCmd.MarkFlagRequired("body")
 }

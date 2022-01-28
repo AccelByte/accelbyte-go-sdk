@@ -15,7 +15,7 @@ import (
 
 // GetAllChannelsHandlerCmd represents the GetAllChannelsHandler command
 var GetAllChannelsHandlerCmd = &cobra.Command{
-	Use:   "GetAllChannelsHandler",
+	Use:   "getAllChannelsHandler",
 	Short: "Get all channels handler",
 	Long:  `Get all channels handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,8 +43,8 @@ var GetAllChannelsHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	GetAllChannelsHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetAllChannelsHandlerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetAllChannelsHandlerCmd.MarkFlagRequired("namespace")
-	GetAllChannelsHandlerCmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	GetAllChannelsHandlerCmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetAllChannelsHandlerCmd.Flags().Int64P("limit", "", 20, "Limit")
+	GetAllChannelsHandlerCmd.Flags().Int64P("offset", "", 0, "Offset")
 }

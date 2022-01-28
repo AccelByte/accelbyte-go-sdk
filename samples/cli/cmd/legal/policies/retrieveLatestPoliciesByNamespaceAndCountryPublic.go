@@ -15,7 +15,7 @@ import (
 
 // RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd represents the RetrieveLatestPoliciesByNamespaceAndCountryPublic command
 var RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd = &cobra.Command{
-	Use:   "RetrieveLatestPoliciesByNamespaceAndCountryPublic",
+	Use:   "retrieveLatestPoliciesByNamespaceAndCountryPublic",
 	Short: "Retrieve latest policies by namespace and country public",
 	Long:  `Retrieve latest policies by namespace and country public`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,12 +49,12 @@ var RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd = &cobra.Command{
 }
 
 func init() {
-	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("countryCode", "ce", " ", "Country code")
+	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("countryCode", "", " ", "Country code")
 	_ = RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.MarkFlagRequired("countryCode")
-	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.MarkFlagRequired("namespace")
-	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().BoolP("alwaysIncludeDefault", "at", false, "Always include default")
-	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().BoolP("defaultOnEmpty", "dy", false, "Default on empty")
-	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("policyType", "pe", " ", "Policy type")
-	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("tags", "ts", " ", "Tags")
+	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().BoolP("alwaysIncludeDefault", "", false, "Always include default")
+	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().BoolP("defaultOnEmpty", "", false, "Default on empty")
+	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("policyType", "", " ", "Policy type")
+	RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd.Flags().StringP("tags", "", " ", "Tags")
 }

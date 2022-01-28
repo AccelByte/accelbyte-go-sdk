@@ -15,7 +15,7 @@ import (
 
 // QueryCodesCmd represents the QueryCodes command
 var QueryCodesCmd = &cobra.Command{
-	Use:   "QueryCodes",
+	Use:   "queryCodes",
 	Short: "Query codes",
 	Long:  `Query codes`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,13 +51,13 @@ var QueryCodesCmd = &cobra.Command{
 }
 
 func init() {
-	QueryCodesCmd.Flags().StringP("campaignId", "cd", " ", "Campaign id")
+	QueryCodesCmd.Flags().StringP("campaignId", "", " ", "Campaign id")
 	_ = QueryCodesCmd.MarkFlagRequired("campaignId")
-	QueryCodesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QueryCodesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = QueryCodesCmd.MarkFlagRequired("namespace")
-	QueryCodesCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	QueryCodesCmd.Flags().Int32P("batchNo", "bo", 0, "Batch no")
-	QueryCodesCmd.Flags().StringP("code", "ce", " ", "Code")
-	QueryCodesCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	QueryCodesCmd.Flags().Int32P("offset", "ot", 0, "Offset")
+	QueryCodesCmd.Flags().BoolP("activeOnly", "", false, "Active only")
+	QueryCodesCmd.Flags().Int32P("batchNo", "", 0, "Batch no")
+	QueryCodesCmd.Flags().StringP("code", "", " ", "Code")
+	QueryCodesCmd.Flags().Int32P("limit", "", 20, "Limit")
+	QueryCodesCmd.Flags().Int32P("offset", "", 0, "Offset")
 }

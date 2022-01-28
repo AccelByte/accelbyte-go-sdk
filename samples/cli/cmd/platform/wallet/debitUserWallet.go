@@ -17,7 +17,7 @@ import (
 
 // DebitUserWalletCmd represents the DebitUserWallet command
 var DebitUserWalletCmd = &cobra.Command{
-	Use:   "DebitUserWallet",
+	Use:   "debitUserWallet",
 	Short: "Debit user wallet",
 	Long:  `Debit user wallet`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,11 +52,11 @@ var DebitUserWalletCmd = &cobra.Command{
 }
 
 func init() {
-	DebitUserWalletCmd.Flags().StringP("body", "by", " ", "Body")
-	DebitUserWalletCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DebitUserWalletCmd.Flags().StringP("body", "", " ", "Body")
+	DebitUserWalletCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DebitUserWalletCmd.MarkFlagRequired("namespace")
-	DebitUserWalletCmd.Flags().StringP("userId", "ud", " ", "User id")
+	DebitUserWalletCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = DebitUserWalletCmd.MarkFlagRequired("userId")
-	DebitUserWalletCmd.Flags().StringP("walletId", "wd", " ", "Wallet id")
+	DebitUserWalletCmd.Flags().StringP("walletId", "", " ", "Wallet id")
 	_ = DebitUserWalletCmd.MarkFlagRequired("walletId")
 }

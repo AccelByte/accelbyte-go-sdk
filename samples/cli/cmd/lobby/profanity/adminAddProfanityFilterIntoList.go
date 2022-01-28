@@ -17,7 +17,7 @@ import (
 
 // AdminAddProfanityFilterIntoListCmd represents the AdminAddProfanityFilterIntoList command
 var AdminAddProfanityFilterIntoListCmd = &cobra.Command{
-	Use:   "AdminAddProfanityFilterIntoList",
+	Use:   "adminAddProfanityFilterIntoList",
 	Short: "Admin add profanity filter into list",
 	Long:  `Admin add profanity filter into list`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var AdminAddProfanityFilterIntoListCmd = &cobra.Command{
 }
 
 func init() {
-	AdminAddProfanityFilterIntoListCmd.Flags().StringP("body", "by", " ", "Body")
+	AdminAddProfanityFilterIntoListCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminAddProfanityFilterIntoListCmd.MarkFlagRequired("body")
-	AdminAddProfanityFilterIntoListCmd.Flags().StringP("list", "lt", " ", "List")
+	AdminAddProfanityFilterIntoListCmd.Flags().StringP("list", "", " ", "List")
 	_ = AdminAddProfanityFilterIntoListCmd.MarkFlagRequired("list")
-	AdminAddProfanityFilterIntoListCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminAddProfanityFilterIntoListCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminAddProfanityFilterIntoListCmd.MarkFlagRequired("namespace")
 }

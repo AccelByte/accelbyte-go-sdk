@@ -16,7 +16,7 @@ import (
 
 // UploadKeysCmd represents the UploadKeys command
 var UploadKeysCmd = &cobra.Command{
-	Use:   "UploadKeys",
+	Use:   "uploadKeys",
 	Short: "Upload keys",
 	Long:  `Upload keys`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +49,9 @@ var UploadKeysCmd = &cobra.Command{
 }
 
 func init() {
-	UploadKeysCmd.Flags().StringP("file", "fe", " ", "File")
-	UploadKeysCmd.Flags().StringP("keyGroupId", "kd", " ", "Key group id")
+	UploadKeysCmd.Flags().StringP("file", "", " ", "File")
+	UploadKeysCmd.Flags().StringP("keyGroupId", "", " ", "Key group id")
 	_ = UploadKeysCmd.MarkFlagRequired("keyGroupId")
-	UploadKeysCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UploadKeysCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UploadKeysCmd.MarkFlagRequired("namespace")
 }

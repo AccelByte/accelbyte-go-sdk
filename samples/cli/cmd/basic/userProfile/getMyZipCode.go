@@ -15,7 +15,7 @@ import (
 
 // GetMyZipCodeCmd represents the GetMyZipCode command
 var GetMyZipCodeCmd = &cobra.Command{
-	Use:   "GetMyZipCode",
+	Use:   "getMyZipCode",
 	Short: "Get my zip code",
 	Long:  `Get my zip code`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetMyZipCodeCmd = &cobra.Command{
 }
 
 func init() {
-	GetMyZipCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetMyZipCodeCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetMyZipCodeCmd.MarkFlagRequired("namespace")
 }

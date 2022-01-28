@@ -15,7 +15,7 @@ import (
 
 // PublicGeneratedUserUploadContentUrlCmd represents the PublicGeneratedUserUploadContentUrl command
 var PublicGeneratedUserUploadContentUrlCmd = &cobra.Command{
-	Use:   "PublicGeneratedUserUploadContentUrl",
+	Use:   "publicGeneratedUserUploadContentUrl",
 	Short: "Public generated user upload content url",
 	Long:  `Public generated user upload content url`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var PublicGeneratedUserUploadContentUrlCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGeneratedUserUploadContentUrlCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGeneratedUserUploadContentUrlCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGeneratedUserUploadContentUrlCmd.MarkFlagRequired("namespace")
-	PublicGeneratedUserUploadContentUrlCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicGeneratedUserUploadContentUrlCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicGeneratedUserUploadContentUrlCmd.MarkFlagRequired("userId")
-	PublicGeneratedUserUploadContentUrlCmd.Flags().StringP("fileType", "fe", " ", "File type")
+	PublicGeneratedUserUploadContentUrlCmd.Flags().StringP("fileType", "", " ", "File type")
 	_ = PublicGeneratedUserUploadContentUrlCmd.MarkFlagRequired("fileType")
 }

@@ -15,7 +15,7 @@ import (
 
 // CountOfPurchasedItemCmd represents the CountOfPurchasedItem command
 var CountOfPurchasedItemCmd = &cobra.Command{
-	Use:   "CountOfPurchasedItem",
+	Use:   "countOfPurchasedItem",
 	Short: "Count of purchased item",
 	Long:  `Count of purchased item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var CountOfPurchasedItemCmd = &cobra.Command{
 }
 
 func init() {
-	CountOfPurchasedItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CountOfPurchasedItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CountOfPurchasedItemCmd.MarkFlagRequired("namespace")
-	CountOfPurchasedItemCmd.Flags().StringP("userId", "ud", " ", "User id")
+	CountOfPurchasedItemCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = CountOfPurchasedItemCmd.MarkFlagRequired("userId")
-	CountOfPurchasedItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	CountOfPurchasedItemCmd.Flags().StringP("itemId", "", " ", "Item id")
 	_ = CountOfPurchasedItemCmd.MarkFlagRequired("itemId")
 }

@@ -15,7 +15,7 @@ import (
 
 // PublicListAchievementsCmd represents the PublicListAchievements command
 var PublicListAchievementsCmd = &cobra.Command{
-	Use:   "PublicListAchievements",
+	Use:   "publicListAchievements",
 	Short: "Public list achievements",
 	Long:  `Public list achievements`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,11 +47,11 @@ var PublicListAchievementsCmd = &cobra.Command{
 }
 
 func init() {
-	PublicListAchievementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicListAchievementsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicListAchievementsCmd.MarkFlagRequired("namespace")
-	PublicListAchievementsCmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	PublicListAchievementsCmd.Flags().Int64P("offset", "ot", 0, "Offset")
-	PublicListAchievementsCmd.Flags().StringP("sortBy", "sy", " ", "Sort by")
-	PublicListAchievementsCmd.Flags().StringP("language", "le", " ", "Language")
+	PublicListAchievementsCmd.Flags().Int64P("limit", "", 20, "Limit")
+	PublicListAchievementsCmd.Flags().Int64P("offset", "", 0, "Offset")
+	PublicListAchievementsCmd.Flags().StringP("sortBy", "", " ", "Sort by")
+	PublicListAchievementsCmd.Flags().StringP("language", "", " ", "Language")
 	_ = PublicListAchievementsCmd.MarkFlagRequired("language")
 }

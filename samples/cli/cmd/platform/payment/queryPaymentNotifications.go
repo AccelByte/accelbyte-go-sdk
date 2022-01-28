@@ -15,7 +15,7 @@ import (
 
 // QueryPaymentNotificationsCmd represents the QueryPaymentNotifications command
 var QueryPaymentNotificationsCmd = &cobra.Command{
-	Use:   "QueryPaymentNotifications",
+	Use:   "queryPaymentNotifications",
 	Short: "Query payment notifications",
 	Long:  `Query payment notifications`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -57,15 +57,15 @@ var QueryPaymentNotificationsCmd = &cobra.Command{
 }
 
 func init() {
-	QueryPaymentNotificationsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QueryPaymentNotificationsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = QueryPaymentNotificationsCmd.MarkFlagRequired("namespace")
-	QueryPaymentNotificationsCmd.Flags().StringP("endDate", "ee", " ", "End date")
-	QueryPaymentNotificationsCmd.Flags().StringP("externalId", "ed", " ", "External id")
-	QueryPaymentNotificationsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	QueryPaymentNotificationsCmd.Flags().StringP("notificationSource", "ne", " ", "Notification source")
-	QueryPaymentNotificationsCmd.Flags().StringP("notificationType", "ne", " ", "Notification type")
-	QueryPaymentNotificationsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	QueryPaymentNotificationsCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
-	QueryPaymentNotificationsCmd.Flags().StringP("startDate", "se", " ", "Start date")
-	QueryPaymentNotificationsCmd.Flags().StringP("status", "ss", " ", "Status")
+	QueryPaymentNotificationsCmd.Flags().StringP("endDate", "", " ", "End date")
+	QueryPaymentNotificationsCmd.Flags().StringP("externalId", "", " ", "External id")
+	QueryPaymentNotificationsCmd.Flags().Int32P("limit", "", 20, "Limit")
+	QueryPaymentNotificationsCmd.Flags().StringP("notificationSource", "", " ", "Notification source")
+	QueryPaymentNotificationsCmd.Flags().StringP("notificationType", "", " ", "Notification type")
+	QueryPaymentNotificationsCmd.Flags().Int32P("offset", "", 0, "Offset")
+	QueryPaymentNotificationsCmd.Flags().StringP("paymentOrderNo", "", " ", "Payment order no")
+	QueryPaymentNotificationsCmd.Flags().StringP("startDate", "", " ", "Start date")
+	QueryPaymentNotificationsCmd.Flags().StringP("status", "", " ", "Status")
 }

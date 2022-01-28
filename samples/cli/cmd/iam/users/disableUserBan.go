@@ -15,7 +15,7 @@ import (
 
 // DisableUserBanCmd represents the DisableUserBan command
 var DisableUserBanCmd = &cobra.Command{
-	Use:   "DisableUserBan",
+	Use:   "disableUserBan",
 	Short: "Disable user ban",
 	Long:  `Disable user ban`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var DisableUserBanCmd = &cobra.Command{
 }
 
 func init() {
-	DisableUserBanCmd.Flags().StringP("banId", "bd", " ", "Ban id")
+	DisableUserBanCmd.Flags().StringP("banId", "", " ", "Ban id")
 	_ = DisableUserBanCmd.MarkFlagRequired("banId")
-	DisableUserBanCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DisableUserBanCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DisableUserBanCmd.MarkFlagRequired("namespace")
-	DisableUserBanCmd.Flags().StringP("userId", "ud", " ", "User id")
+	DisableUserBanCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = DisableUserBanCmd.MarkFlagRequired("userId")
 }

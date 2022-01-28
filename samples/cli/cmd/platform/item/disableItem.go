@@ -15,7 +15,7 @@ import (
 
 // DisableItemCmd represents the DisableItem command
 var DisableItemCmd = &cobra.Command{
-	Use:   "DisableItem",
+	Use:   "disableItem",
 	Short: "Disable item",
 	Long:  `Disable item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var DisableItemCmd = &cobra.Command{
 }
 
 func init() {
-	DisableItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	DisableItemCmd.Flags().StringP("itemId", "", " ", "Item id")
 	_ = DisableItemCmd.MarkFlagRequired("itemId")
-	DisableItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DisableItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DisableItemCmd.MarkFlagRequired("namespace")
-	DisableItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	DisableItemCmd.Flags().StringP("storeId", "", " ", "Store id")
 	_ = DisableItemCmd.MarkFlagRequired("storeId")
 }

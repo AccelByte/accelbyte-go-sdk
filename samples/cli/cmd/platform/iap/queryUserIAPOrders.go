@@ -15,7 +15,7 @@ import (
 
 // QueryUserIAPOrdersCmd represents the QueryUserIAPOrders command
 var QueryUserIAPOrdersCmd = &cobra.Command{
-	Use:   "QueryUserIAPOrders",
+	Use:   "queryUserIAPOrders",
 	Short: "Query user IAP orders",
 	Long:  `Query user IAP orders`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -55,15 +55,15 @@ var QueryUserIAPOrdersCmd = &cobra.Command{
 }
 
 func init() {
-	QueryUserIAPOrdersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QueryUserIAPOrdersCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = QueryUserIAPOrdersCmd.MarkFlagRequired("namespace")
-	QueryUserIAPOrdersCmd.Flags().StringP("userId", "ud", " ", "User id")
+	QueryUserIAPOrdersCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = QueryUserIAPOrdersCmd.MarkFlagRequired("userId")
-	QueryUserIAPOrdersCmd.Flags().StringP("endTime", "ee", " ", "End time")
-	QueryUserIAPOrdersCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	QueryUserIAPOrdersCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	QueryUserIAPOrdersCmd.Flags().StringP("productId", "pd", " ", "Product id")
-	QueryUserIAPOrdersCmd.Flags().StringP("startTime", "se", " ", "Start time")
-	QueryUserIAPOrdersCmd.Flags().StringP("status", "ss", " ", "Status")
-	QueryUserIAPOrdersCmd.Flags().StringP("type", "te", " ", "Type")
+	QueryUserIAPOrdersCmd.Flags().StringP("endTime", "", " ", "End time")
+	QueryUserIAPOrdersCmd.Flags().Int32P("limit", "", 20, "Limit")
+	QueryUserIAPOrdersCmd.Flags().Int32P("offset", "", 0, "Offset")
+	QueryUserIAPOrdersCmd.Flags().StringP("productId", "", " ", "Product id")
+	QueryUserIAPOrdersCmd.Flags().StringP("startTime", "", " ", "Start time")
+	QueryUserIAPOrdersCmd.Flags().StringP("status", "", " ", "Status")
+	QueryUserIAPOrdersCmd.Flags().StringP("type", "", " ", "Type")
 }

@@ -17,7 +17,7 @@ import (
 
 // RemoveRoleManagersCmd represents the RemoveRoleManagers command
 var RemoveRoleManagersCmd = &cobra.Command{
-	Use:   "RemoveRoleManagers",
+	Use:   "removeRoleManagers",
 	Short: "Remove role managers",
 	Long:  `Remove role managers`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var RemoveRoleManagersCmd = &cobra.Command{
 }
 
 func init() {
-	RemoveRoleManagersCmd.Flags().StringP("body", "by", " ", "Body")
+	RemoveRoleManagersCmd.Flags().StringP("body", "", " ", "Body")
 	_ = RemoveRoleManagersCmd.MarkFlagRequired("body")
-	RemoveRoleManagersCmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	RemoveRoleManagersCmd.Flags().StringP("roleId", "", " ", "Role id")
 	_ = RemoveRoleManagersCmd.MarkFlagRequired("roleId")
 }

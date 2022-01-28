@@ -15,7 +15,7 @@ import (
 
 // DeletePlaystationIAPConfigCmd represents the DeletePlaystationIAPConfig command
 var DeletePlaystationIAPConfigCmd = &cobra.Command{
-	Use:   "DeletePlaystationIAPConfig",
+	Use:   "deletePlaystationIAPConfig",
 	Short: "Delete playstation IAP config",
 	Long:  `Delete playstation IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var DeletePlaystationIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeletePlaystationIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeletePlaystationIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeletePlaystationIAPConfigCmd.MarkFlagRequired("namespace")
 }

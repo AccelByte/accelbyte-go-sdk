@@ -15,7 +15,7 @@ import (
 
 // PublicPlatformLinkV2Cmd represents the PublicPlatformLinkV2 command
 var PublicPlatformLinkV2Cmd = &cobra.Command{
-	Use:   "PublicPlatformLinkV2",
+	Use:   "publicPlatformLinkV2",
 	Short: "Public platform link V2",
 	Long:  `Public platform link V2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -44,12 +44,12 @@ var PublicPlatformLinkV2Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicPlatformLinkV2Cmd.Flags().StringP("ticket", "tt", " ", "Ticket")
+	PublicPlatformLinkV2Cmd.Flags().StringP("ticket", "", " ", "Ticket")
 	_ = PublicPlatformLinkV2Cmd.MarkFlagRequired("ticket")
-	PublicPlatformLinkV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicPlatformLinkV2Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicPlatformLinkV2Cmd.MarkFlagRequired("namespace")
-	PublicPlatformLinkV2Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	PublicPlatformLinkV2Cmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = PublicPlatformLinkV2Cmd.MarkFlagRequired("platformId")
-	PublicPlatformLinkV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicPlatformLinkV2Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicPlatformLinkV2Cmd.MarkFlagRequired("userId")
 }

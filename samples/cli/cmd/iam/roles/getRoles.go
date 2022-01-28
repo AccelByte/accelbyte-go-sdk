@@ -15,7 +15,7 @@ import (
 
 // GetRolesCmd represents the GetRoles command
 var GetRolesCmd = &cobra.Command{
-	Use:   "GetRoles",
+	Use:   "getRoles",
 	Short: "Get roles",
 	Long:  `Get roles`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,5 +39,5 @@ var GetRolesCmd = &cobra.Command{
 }
 
 func init() {
-	GetRolesCmd.Flags().StringP("isWildcard", "id", " ", "Is wildcard")
+	GetRolesCmd.Flags().StringP("isWildcard", "", " ", "Is wildcard")
 }

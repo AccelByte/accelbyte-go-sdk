@@ -15,7 +15,7 @@ import (
 
 // TokenGrantV3Cmd represents the TokenGrantV3 command
 var TokenGrantV3Cmd = &cobra.Command{
-	Use:   "TokenGrantV3",
+	Use:   "tokenGrantV3",
 	Short: "Token grant V3",
 	Long:  `Token grant V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,12 +51,12 @@ var TokenGrantV3Cmd = &cobra.Command{
 }
 
 func init() {
-	TokenGrantV3Cmd.Flags().StringP("device_id", "dd", " ", "Device id")
-	TokenGrantV3Cmd.Flags().StringP("client_id", "cd", " ", "Client id")
-	TokenGrantV3Cmd.Flags().StringP("code", "ce", " ", "Code")
-	TokenGrantV3Cmd.Flags().StringP("code_verifier", "cr", " ", "Code verifier")
-	TokenGrantV3Cmd.Flags().StringP("redirect_uri", "ri", " ", "Redirect uri")
-	TokenGrantV3Cmd.Flags().StringP("refresh_token", "rn", " ", "Refresh token")
-	TokenGrantV3Cmd.Flags().StringP("grant_type", "ge", " ", "Grant type")
+	TokenGrantV3Cmd.Flags().StringP("device_id", "", " ", "Device id")
+	TokenGrantV3Cmd.Flags().StringP("client_id", "", " ", "Client id")
+	TokenGrantV3Cmd.Flags().StringP("code", "", " ", "Code")
+	TokenGrantV3Cmd.Flags().StringP("code_verifier", "", " ", "Code verifier")
+	TokenGrantV3Cmd.Flags().StringP("redirect_uri", "", " ", "Redirect uri")
+	TokenGrantV3Cmd.Flags().StringP("refresh_token", "", " ", "Refresh token")
+	TokenGrantV3Cmd.Flags().StringP("grant_type", "", " ", "Grant type")
 	_ = TokenGrantV3Cmd.MarkFlagRequired("grant_type")
 }

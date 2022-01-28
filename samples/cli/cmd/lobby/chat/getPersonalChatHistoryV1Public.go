@@ -15,7 +15,7 @@ import (
 
 // GetPersonalChatHistoryV1PublicCmd represents the GetPersonalChatHistoryV1Public command
 var GetPersonalChatHistoryV1PublicCmd = &cobra.Command{
-	Use:   "GetPersonalChatHistoryV1Public",
+	Use:   "getPersonalChatHistoryV1Public",
 	Short: "Get personal chat history V1 public",
 	Long:  `Get personal chat history V1 public`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetPersonalChatHistoryV1PublicCmd = &cobra.Command{
 }
 
 func init() {
-	GetPersonalChatHistoryV1PublicCmd.Flags().StringP("friendId", "fd", " ", "Friend id")
+	GetPersonalChatHistoryV1PublicCmd.Flags().StringP("friendId", "", " ", "Friend id")
 	_ = GetPersonalChatHistoryV1PublicCmd.MarkFlagRequired("friendId")
-	GetPersonalChatHistoryV1PublicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetPersonalChatHistoryV1PublicCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetPersonalChatHistoryV1PublicCmd.MarkFlagRequired("namespace")
 }

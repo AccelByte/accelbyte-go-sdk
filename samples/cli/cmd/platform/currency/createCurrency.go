@@ -17,7 +17,7 @@ import (
 
 // CreateCurrencyCmd represents the CreateCurrency command
 var CreateCurrencyCmd = &cobra.Command{
-	Use:   "CreateCurrency",
+	Use:   "createCurrency",
 	Short: "Create currency",
 	Long:  `Create currency`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var CreateCurrencyCmd = &cobra.Command{
 }
 
 func init() {
-	CreateCurrencyCmd.Flags().StringP("body", "by", " ", "Body")
-	CreateCurrencyCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateCurrencyCmd.Flags().StringP("body", "", " ", "Body")
+	CreateCurrencyCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateCurrencyCmd.MarkFlagRequired("namespace")
 }

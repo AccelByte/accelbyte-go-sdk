@@ -17,7 +17,7 @@ import (
 
 // UpdateContentLikeStatusCmd represents the UpdateContentLikeStatus command
 var UpdateContentLikeStatusCmd = &cobra.Command{
-	Use:   "UpdateContentLikeStatus",
+	Use:   "updateContentLikeStatus",
 	Short: "Update content like status",
 	Long:  `Update content like status`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var UpdateContentLikeStatusCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateContentLikeStatusCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateContentLikeStatusCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateContentLikeStatusCmd.MarkFlagRequired("body")
-	UpdateContentLikeStatusCmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	UpdateContentLikeStatusCmd.Flags().StringP("contentId", "", " ", "Content id")
 	_ = UpdateContentLikeStatusCmd.MarkFlagRequired("contentId")
-	UpdateContentLikeStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateContentLikeStatusCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateContentLikeStatusCmd.MarkFlagRequired("namespace")
 }

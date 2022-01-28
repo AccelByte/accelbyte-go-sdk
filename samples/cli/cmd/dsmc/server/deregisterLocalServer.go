@@ -17,7 +17,7 @@ import (
 
 // DeregisterLocalServerCmd represents the DeregisterLocalServer command
 var DeregisterLocalServerCmd = &cobra.Command{
-	Use:   "DeregisterLocalServer",
+	Use:   "deregisterLocalServer",
 	Short: "Deregister local server",
 	Long:  `Deregister local server`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var DeregisterLocalServerCmd = &cobra.Command{
 }
 
 func init() {
-	DeregisterLocalServerCmd.Flags().StringP("body", "by", " ", "Body")
+	DeregisterLocalServerCmd.Flags().StringP("body", "", " ", "Body")
 	_ = DeregisterLocalServerCmd.MarkFlagRequired("body")
-	DeregisterLocalServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeregisterLocalServerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeregisterLocalServerCmd.MarkFlagRequired("namespace")
 }

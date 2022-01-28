@@ -15,7 +15,7 @@ import (
 
 // UnregisterEventIDHandlerCmd represents the UnregisterEventIDHandler command
 var UnregisterEventIDHandlerCmd = &cobra.Command{
-	Use:   "UnregisterEventIDHandler",
+	Use:   "unregisterEventIDHandler",
 	Short: "Unregister event ID handler",
 	Long:  `Unregister event ID handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var UnregisterEventIDHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	UnregisterEventIDHandlerCmd.Flags().StringP("eventId", "ed", "0", "Event id")
+	UnregisterEventIDHandlerCmd.Flags().StringP("eventId", "", "0", "Event id")
 	_ = UnregisterEventIDHandlerCmd.MarkFlagRequired("eventId")
 }

@@ -15,7 +15,7 @@ import (
 
 // AdminDeleteGroupCmd represents the AdminDeleteGroup command
 var AdminDeleteGroupCmd = &cobra.Command{
-	Use:   "AdminDeleteGroup",
+	Use:   "adminDeleteGroup",
 	Short: "Admin delete group",
 	Long:  `Admin delete group`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var AdminDeleteGroupCmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteGroupCmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	AdminDeleteGroupCmd.Flags().StringP("groupId", "", " ", "Group id")
 	_ = AdminDeleteGroupCmd.MarkFlagRequired("groupId")
-	AdminDeleteGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminDeleteGroupCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminDeleteGroupCmd.MarkFlagRequired("namespace")
-	AdminDeleteGroupCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminDeleteGroupCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminDeleteGroupCmd.MarkFlagRequired("userId")
 }

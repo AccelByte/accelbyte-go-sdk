@@ -17,7 +17,7 @@ import (
 
 // AdminHideUserContentCmd represents the AdminHideUserContent command
 var AdminHideUserContentCmd = &cobra.Command{
-	Use:   "AdminHideUserContent",
+	Use:   "adminHideUserContent",
 	Short: "Admin hide user content",
 	Long:  `Admin hide user content`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,12 +52,12 @@ var AdminHideUserContentCmd = &cobra.Command{
 }
 
 func init() {
-	AdminHideUserContentCmd.Flags().StringP("body", "by", " ", "Body")
+	AdminHideUserContentCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminHideUserContentCmd.MarkFlagRequired("body")
-	AdminHideUserContentCmd.Flags().StringP("contentId", "cd", " ", "Content id")
+	AdminHideUserContentCmd.Flags().StringP("contentId", "", " ", "Content id")
 	_ = AdminHideUserContentCmd.MarkFlagRequired("contentId")
-	AdminHideUserContentCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminHideUserContentCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminHideUserContentCmd.MarkFlagRequired("namespace")
-	AdminHideUserContentCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminHideUserContentCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminHideUserContentCmd.MarkFlagRequired("userId")
 }

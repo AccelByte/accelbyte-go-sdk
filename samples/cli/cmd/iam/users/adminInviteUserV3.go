@@ -17,7 +17,7 @@ import (
 
 // AdminInviteUserV3Cmd represents the AdminInviteUserV3 command
 var AdminInviteUserV3Cmd = &cobra.Command{
-	Use:   "AdminInviteUserV3",
+	Use:   "adminInviteUserV3",
 	Short: "Admin invite user V3",
 	Long:  `Admin invite user V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var AdminInviteUserV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminInviteUserV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	AdminInviteUserV3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminInviteUserV3Cmd.MarkFlagRequired("body")
-	AdminInviteUserV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminInviteUserV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminInviteUserV3Cmd.MarkFlagRequired("namespace")
 }

@@ -17,7 +17,7 @@ import (
 
 // AdminUpdatePartyAttributesV1Cmd represents the AdminUpdatePartyAttributesV1 command
 var AdminUpdatePartyAttributesV1Cmd = &cobra.Command{
-	Use:   "AdminUpdatePartyAttributesV1",
+	Use:   "adminUpdatePartyAttributesV1",
 	Short: "Admin update party attributes V1",
 	Long:  `Admin update party attributes V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var AdminUpdatePartyAttributesV1Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdatePartyAttributesV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	AdminUpdatePartyAttributesV1Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminUpdatePartyAttributesV1Cmd.MarkFlagRequired("body")
-	AdminUpdatePartyAttributesV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminUpdatePartyAttributesV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminUpdatePartyAttributesV1Cmd.MarkFlagRequired("namespace")
-	AdminUpdatePartyAttributesV1Cmd.Flags().StringP("partyId", "pd", " ", "Party id")
+	AdminUpdatePartyAttributesV1Cmd.Flags().StringP("partyId", "", " ", "Party id")
 	_ = AdminUpdatePartyAttributesV1Cmd.MarkFlagRequired("partyId")
 }

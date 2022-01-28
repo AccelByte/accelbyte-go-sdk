@@ -16,7 +16,7 @@ import (
 
 // QueryEntitlementsCmd represents the QueryEntitlements command
 var QueryEntitlementsCmd = &cobra.Command{
-	Use:   "QueryEntitlements",
+	Use:   "queryEntitlements",
 	Short: "Query entitlements",
 	Long:  `Query entitlements`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -61,14 +61,14 @@ var QueryEntitlementsCmd = &cobra.Command{
 }
 
 func init() {
-	QueryEntitlementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QueryEntitlementsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = QueryEntitlementsCmd.MarkFlagRequired("namespace")
-	QueryEntitlementsCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	QueryEntitlementsCmd.Flags().StringP("appType", "ae", " ", "App type")
-	QueryEntitlementsCmd.Flags().StringP("entitlementClazz", "ez", " ", "Entitlement clazz")
-	QueryEntitlementsCmd.Flags().StringP("entitlementName", "ee", " ", "Entitlement name")
-	QueryEntitlementsCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	QueryEntitlementsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	QueryEntitlementsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	QueryEntitlementsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	QueryEntitlementsCmd.Flags().BoolP("activeOnly", "", false, "Active only")
+	QueryEntitlementsCmd.Flags().StringP("appType", "", " ", "App type")
+	QueryEntitlementsCmd.Flags().StringP("entitlementClazz", "", " ", "Entitlement clazz")
+	QueryEntitlementsCmd.Flags().StringP("entitlementName", "", " ", "Entitlement name")
+	QueryEntitlementsCmd.Flags().StringP("itemId", "", " ", "Item id")
+	QueryEntitlementsCmd.Flags().Int32P("limit", "", 20, "Limit")
+	QueryEntitlementsCmd.Flags().Int32P("offset", "", 0, "Offset")
+	QueryEntitlementsCmd.Flags().StringP("userId", "", " ", "User id")
 }

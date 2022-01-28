@@ -15,7 +15,7 @@ import (
 
 // DeleteRoleCmd represents the DeleteRole command
 var DeleteRoleCmd = &cobra.Command{
-	Use:   "DeleteRole",
+	Use:   "deleteRole",
 	Short: "Delete role",
 	Long:  `Delete role`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var DeleteRoleCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteRoleCmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	DeleteRoleCmd.Flags().StringP("roleId", "", " ", "Role id")
 	_ = DeleteRoleCmd.MarkFlagRequired("roleId")
 }

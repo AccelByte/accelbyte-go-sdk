@@ -15,7 +15,7 @@ import (
 
 // GetSingleGroupPublicV1Cmd represents the GetSingleGroupPublicV1 command
 var GetSingleGroupPublicV1Cmd = &cobra.Command{
-	Use:   "GetSingleGroupPublicV1",
+	Use:   "getSingleGroupPublicV1",
 	Short: "Get single group public V1",
 	Long:  `Get single group public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetSingleGroupPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetSingleGroupPublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	GetSingleGroupPublicV1Cmd.Flags().StringP("groupId", "", " ", "Group id")
 	_ = GetSingleGroupPublicV1Cmd.MarkFlagRequired("groupId")
-	GetSingleGroupPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetSingleGroupPublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetSingleGroupPublicV1Cmd.MarkFlagRequired("namespace")
 }

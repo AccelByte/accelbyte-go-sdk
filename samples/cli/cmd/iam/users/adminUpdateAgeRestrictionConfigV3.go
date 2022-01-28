@@ -17,7 +17,7 @@ import (
 
 // AdminUpdateAgeRestrictionConfigV3Cmd represents the AdminUpdateAgeRestrictionConfigV3 command
 var AdminUpdateAgeRestrictionConfigV3Cmd = &cobra.Command{
-	Use:   "AdminUpdateAgeRestrictionConfigV3",
+	Use:   "adminUpdateAgeRestrictionConfigV3",
 	Short: "Admin update age restriction config V3",
 	Long:  `Admin update age restriction config V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var AdminUpdateAgeRestrictionConfigV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateAgeRestrictionConfigV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	AdminUpdateAgeRestrictionConfigV3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminUpdateAgeRestrictionConfigV3Cmd.MarkFlagRequired("body")
-	AdminUpdateAgeRestrictionConfigV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminUpdateAgeRestrictionConfigV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminUpdateAgeRestrictionConfigV3Cmd.MarkFlagRequired("namespace")
 }

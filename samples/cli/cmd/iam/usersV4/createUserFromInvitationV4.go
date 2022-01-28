@@ -17,7 +17,7 @@ import (
 
 // CreateUserFromInvitationV4Cmd represents the CreateUserFromInvitationV4 command
 var CreateUserFromInvitationV4Cmd = &cobra.Command{
-	Use:   "CreateUserFromInvitationV4",
+	Use:   "createUserFromInvitationV4",
 	Short: "Create user from invitation V4",
 	Long:  `Create user from invitation V4`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var CreateUserFromInvitationV4Cmd = &cobra.Command{
 }
 
 func init() {
-	CreateUserFromInvitationV4Cmd.Flags().StringP("body", "by", " ", "Body")
+	CreateUserFromInvitationV4Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = CreateUserFromInvitationV4Cmd.MarkFlagRequired("body")
-	CreateUserFromInvitationV4Cmd.Flags().StringP("invitationId", "id", " ", "Invitation id")
+	CreateUserFromInvitationV4Cmd.Flags().StringP("invitationId", "", " ", "Invitation id")
 	_ = CreateUserFromInvitationV4Cmd.MarkFlagRequired("invitationId")
-	CreateUserFromInvitationV4Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateUserFromInvitationV4Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateUserFromInvitationV4Cmd.MarkFlagRequired("namespace")
 }

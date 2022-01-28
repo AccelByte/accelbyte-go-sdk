@@ -16,7 +16,7 @@ import (
 
 // AdminPutUserRolesV2Cmd represents the AdminPutUserRolesV2 command
 var AdminPutUserRolesV2Cmd = &cobra.Command{
-	Use:   "AdminPutUserRolesV2",
+	Use:   "adminPutUserRolesV2",
 	Short: "Admin put user roles V2",
 	Long:  `Admin put user roles V2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,10 +48,10 @@ var AdminPutUserRolesV2Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminPutUserRolesV2Cmd.Flags().StringP("body", "by", " ", "Body")
+	AdminPutUserRolesV2Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminPutUserRolesV2Cmd.MarkFlagRequired("body")
-	AdminPutUserRolesV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminPutUserRolesV2Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminPutUserRolesV2Cmd.MarkFlagRequired("namespace")
-	AdminPutUserRolesV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminPutUserRolesV2Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminPutUserRolesV2Cmd.MarkFlagRequired("userId")
 }

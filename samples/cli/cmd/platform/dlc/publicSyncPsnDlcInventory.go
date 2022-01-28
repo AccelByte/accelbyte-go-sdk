@@ -17,7 +17,7 @@ import (
 
 // PublicSyncPsnDlcInventoryCmd represents the PublicSyncPsnDlcInventory command
 var PublicSyncPsnDlcInventoryCmd = &cobra.Command{
-	Use:   "PublicSyncPsnDlcInventory",
+	Use:   "publicSyncPsnDlcInventory",
 	Short: "Public sync psn dlc inventory",
 	Long:  `Public sync psn dlc inventory`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +49,9 @@ var PublicSyncPsnDlcInventoryCmd = &cobra.Command{
 }
 
 func init() {
-	PublicSyncPsnDlcInventoryCmd.Flags().StringP("body", "by", " ", "Body")
-	PublicSyncPsnDlcInventoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicSyncPsnDlcInventoryCmd.Flags().StringP("body", "", " ", "Body")
+	PublicSyncPsnDlcInventoryCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicSyncPsnDlcInventoryCmd.MarkFlagRequired("namespace")
-	PublicSyncPsnDlcInventoryCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicSyncPsnDlcInventoryCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicSyncPsnDlcInventoryCmd.MarkFlagRequired("userId")
 }

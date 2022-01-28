@@ -15,7 +15,7 @@ import (
 
 // GetUserSeasonCmd represents the GetUserSeason command
 var GetUserSeasonCmd = &cobra.Command{
-	Use:   "GetUserSeason",
+	Use:   "getUserSeason",
 	Short: "Get user season",
 	Long:  `Get user season`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var GetUserSeasonCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserSeasonCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetUserSeasonCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetUserSeasonCmd.MarkFlagRequired("namespace")
-	GetUserSeasonCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	GetUserSeasonCmd.Flags().StringP("seasonId", "", " ", "Season id")
 	_ = GetUserSeasonCmd.MarkFlagRequired("seasonId")
-	GetUserSeasonCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetUserSeasonCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetUserSeasonCmd.MarkFlagRequired("userId")
 }

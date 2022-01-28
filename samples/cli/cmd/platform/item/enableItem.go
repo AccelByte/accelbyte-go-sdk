@@ -15,7 +15,7 @@ import (
 
 // EnableItemCmd represents the EnableItem command
 var EnableItemCmd = &cobra.Command{
-	Use:   "EnableItem",
+	Use:   "enableItem",
 	Short: "Enable item",
 	Long:  `Enable item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var EnableItemCmd = &cobra.Command{
 }
 
 func init() {
-	EnableItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	EnableItemCmd.Flags().StringP("itemId", "", " ", "Item id")
 	_ = EnableItemCmd.MarkFlagRequired("itemId")
-	EnableItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	EnableItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = EnableItemCmd.MarkFlagRequired("namespace")
-	EnableItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	EnableItemCmd.Flags().StringP("storeId", "", " ", "Store id")
 	_ = EnableItemCmd.MarkFlagRequired("storeId")
 }

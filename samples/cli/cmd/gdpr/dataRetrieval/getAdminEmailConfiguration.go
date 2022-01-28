@@ -15,7 +15,7 @@ import (
 
 // GetAdminEmailConfigurationCmd represents the GetAdminEmailConfiguration command
 var GetAdminEmailConfigurationCmd = &cobra.Command{
-	Use:   "GetAdminEmailConfiguration",
+	Use:   "getAdminEmailConfiguration",
 	Short: "Get admin email configuration",
 	Long:  `Get admin email configuration`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetAdminEmailConfigurationCmd = &cobra.Command{
 }
 
 func init() {
-	GetAdminEmailConfigurationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetAdminEmailConfigurationCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetAdminEmailConfigurationCmd.MarkFlagRequired("namespace")
 }

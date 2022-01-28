@@ -15,7 +15,7 @@ import (
 
 // AddClientPermissionCmd represents the AddClientPermission command
 var AddClientPermissionCmd = &cobra.Command{
-	Use:   "AddClientPermission",
+	Use:   "addClientPermission",
 	Short: "Add client permission",
 	Long:  `Add client permission`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var AddClientPermissionCmd = &cobra.Command{
 }
 
 func init() {
-	AddClientPermissionCmd.Flags().Int64P("action", "an", -1, "Action")
+	AddClientPermissionCmd.Flags().Int64P("action", "", -1, "Action")
 	_ = AddClientPermissionCmd.MarkFlagRequired("action")
-	AddClientPermissionCmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	AddClientPermissionCmd.Flags().StringP("clientId", "", " ", "Client id")
 	_ = AddClientPermissionCmd.MarkFlagRequired("clientId")
-	AddClientPermissionCmd.Flags().StringP("resource", "re", " ", "Resource")
+	AddClientPermissionCmd.Flags().StringP("resource", "", " ", "Resource")
 	_ = AddClientPermissionCmd.MarkFlagRequired("resource")
 }

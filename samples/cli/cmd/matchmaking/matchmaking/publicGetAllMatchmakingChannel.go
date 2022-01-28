@@ -15,7 +15,7 @@ import (
 
 // PublicGetAllMatchmakingChannelCmd represents the PublicGetAllMatchmakingChannel command
 var PublicGetAllMatchmakingChannelCmd = &cobra.Command{
-	Use:   "PublicGetAllMatchmakingChannel",
+	Use:   "publicGetAllMatchmakingChannel",
 	Short: "Public get all matchmaking channel",
 	Long:  `Public get all matchmaking channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var PublicGetAllMatchmakingChannelCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetAllMatchmakingChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetAllMatchmakingChannelCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetAllMatchmakingChannelCmd.MarkFlagRequired("namespace")
 }

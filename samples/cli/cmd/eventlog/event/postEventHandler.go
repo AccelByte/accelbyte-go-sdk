@@ -17,7 +17,7 @@ import (
 
 // PostEventHandlerCmd represents the PostEventHandler command
 var PostEventHandlerCmd = &cobra.Command{
-	Use:   "PostEventHandler",
+	Use:   "postEventHandler",
 	Short: "Post event handler",
 	Long:  `Post event handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var PostEventHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	PostEventHandlerCmd.Flags().StringP("body", "by", " ", "Body")
+	PostEventHandlerCmd.Flags().StringP("body", "", " ", "Body")
 	_ = PostEventHandlerCmd.MarkFlagRequired("body")
-	PostEventHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PostEventHandlerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PostEventHandlerCmd.MarkFlagRequired("namespace")
 }

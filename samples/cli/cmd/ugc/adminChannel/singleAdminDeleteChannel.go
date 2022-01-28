@@ -15,7 +15,7 @@ import (
 
 // SingleAdminDeleteChannelCmd represents the SingleAdminDeleteChannel command
 var SingleAdminDeleteChannelCmd = &cobra.Command{
-	Use:   "SingleAdminDeleteChannel",
+	Use:   "singleAdminDeleteChannel",
 	Short: "Single admin delete channel",
 	Long:  `Single admin delete channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var SingleAdminDeleteChannelCmd = &cobra.Command{
 }
 
 func init() {
-	SingleAdminDeleteChannelCmd.Flags().StringP("channelId", "cd", " ", "Channel id")
+	SingleAdminDeleteChannelCmd.Flags().StringP("channelId", "", " ", "Channel id")
 	_ = SingleAdminDeleteChannelCmd.MarkFlagRequired("channelId")
-	SingleAdminDeleteChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SingleAdminDeleteChannelCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SingleAdminDeleteChannelCmd.MarkFlagRequired("namespace")
 }

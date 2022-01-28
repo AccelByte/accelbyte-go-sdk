@@ -17,7 +17,7 @@ import (
 
 // SyncSteamDLCCmd represents the SyncSteamDLC command
 var SyncSteamDLCCmd = &cobra.Command{
-	Use:   "SyncSteamDLC",
+	Use:   "syncSteamDLC",
 	Short: "Sync steam DLC",
 	Long:  `Sync steam DLC`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +49,9 @@ var SyncSteamDLCCmd = &cobra.Command{
 }
 
 func init() {
-	SyncSteamDLCCmd.Flags().StringP("body", "by", " ", "Body")
-	SyncSteamDLCCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SyncSteamDLCCmd.Flags().StringP("body", "", " ", "Body")
+	SyncSteamDLCCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SyncSteamDLCCmd.MarkFlagRequired("namespace")
-	SyncSteamDLCCmd.Flags().StringP("userId", "ud", " ", "User id")
+	SyncSteamDLCCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = SyncSteamDLCCmd.MarkFlagRequired("userId")
 }

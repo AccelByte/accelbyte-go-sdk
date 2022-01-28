@@ -15,7 +15,7 @@ import (
 
 // QueryPaymentProviderConfigCmd represents the QueryPaymentProviderConfig command
 var QueryPaymentProviderConfigCmd = &cobra.Command{
-	Use:   "QueryPaymentProviderConfig",
+	Use:   "queryPaymentProviderConfig",
 	Short: "Query payment provider config",
 	Long:  `Query payment provider config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,8 +45,8 @@ var QueryPaymentProviderConfigCmd = &cobra.Command{
 }
 
 func init() {
-	QueryPaymentProviderConfigCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	QueryPaymentProviderConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
-	QueryPaymentProviderConfigCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	QueryPaymentProviderConfigCmd.Flags().StringP("region", "rn", " ", "Region")
+	QueryPaymentProviderConfigCmd.Flags().Int32P("limit", "", 20, "Limit")
+	QueryPaymentProviderConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	QueryPaymentProviderConfigCmd.Flags().Int32P("offset", "", 0, "Offset")
+	QueryPaymentProviderConfigCmd.Flags().StringP("region", "", " ", "Region")
 }

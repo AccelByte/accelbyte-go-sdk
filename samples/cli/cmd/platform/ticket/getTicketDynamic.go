@@ -15,7 +15,7 @@ import (
 
 // GetTicketDynamicCmd represents the GetTicketDynamic command
 var GetTicketDynamicCmd = &cobra.Command{
-	Use:   "GetTicketDynamic",
+	Use:   "getTicketDynamic",
 	Short: "Get ticket dynamic",
 	Long:  `Get ticket dynamic`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetTicketDynamicCmd = &cobra.Command{
 }
 
 func init() {
-	GetTicketDynamicCmd.Flags().StringP("boothName", "be", " ", "Booth name")
+	GetTicketDynamicCmd.Flags().StringP("boothName", "", " ", "Booth name")
 	_ = GetTicketDynamicCmd.MarkFlagRequired("boothName")
-	GetTicketDynamicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetTicketDynamicCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetTicketDynamicCmd.MarkFlagRequired("namespace")
 }

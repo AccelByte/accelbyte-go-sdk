@@ -17,7 +17,7 @@ import (
 
 // QueueSessionHandlerCmd represents the QueueSessionHandler command
 var QueueSessionHandlerCmd = &cobra.Command{
-	Use:   "QueueSessionHandler",
+	Use:   "queueSessionHandler",
 	Short: "Queue session handler",
 	Long:  `Queue session handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var QueueSessionHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	QueueSessionHandlerCmd.Flags().StringP("body", "by", " ", "Body")
+	QueueSessionHandlerCmd.Flags().StringP("body", "", " ", "Body")
 	_ = QueueSessionHandlerCmd.MarkFlagRequired("body")
-	QueueSessionHandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QueueSessionHandlerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = QueueSessionHandlerCmd.MarkFlagRequired("namespace")
 }

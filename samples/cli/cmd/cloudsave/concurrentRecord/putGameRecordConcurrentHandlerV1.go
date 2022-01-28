@@ -17,7 +17,7 @@ import (
 
 // PutGameRecordConcurrentHandlerV1Cmd represents the PutGameRecordConcurrentHandlerV1 command
 var PutGameRecordConcurrentHandlerV1Cmd = &cobra.Command{
-	Use:   "PutGameRecordConcurrentHandlerV1",
+	Use:   "putGameRecordConcurrentHandlerV1",
 	Short: "Put game record concurrent handler V1",
 	Long:  `Put game record concurrent handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var PutGameRecordConcurrentHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	PutGameRecordConcurrentHandlerV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	PutGameRecordConcurrentHandlerV1Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = PutGameRecordConcurrentHandlerV1Cmd.MarkFlagRequired("body")
-	PutGameRecordConcurrentHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
+	PutGameRecordConcurrentHandlerV1Cmd.Flags().StringP("key", "", " ", "Key")
 	_ = PutGameRecordConcurrentHandlerV1Cmd.MarkFlagRequired("key")
-	PutGameRecordConcurrentHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PutGameRecordConcurrentHandlerV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PutGameRecordConcurrentHandlerV1Cmd.MarkFlagRequired("namespace")
 }

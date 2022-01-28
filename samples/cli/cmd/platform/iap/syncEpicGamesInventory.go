@@ -17,7 +17,7 @@ import (
 
 // SyncEpicGamesInventoryCmd represents the SyncEpicGamesInventory command
 var SyncEpicGamesInventoryCmd = &cobra.Command{
-	Use:   "SyncEpicGamesInventory",
+	Use:   "syncEpicGamesInventory",
 	Short: "Sync epic games inventory",
 	Long:  `Sync epic games inventory`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var SyncEpicGamesInventoryCmd = &cobra.Command{
 }
 
 func init() {
-	SyncEpicGamesInventoryCmd.Flags().StringP("body", "by", " ", "Body")
-	SyncEpicGamesInventoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SyncEpicGamesInventoryCmd.Flags().StringP("body", "", " ", "Body")
+	SyncEpicGamesInventoryCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SyncEpicGamesInventoryCmd.MarkFlagRequired("namespace")
-	SyncEpicGamesInventoryCmd.Flags().StringP("userId", "ud", " ", "User id")
+	SyncEpicGamesInventoryCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = SyncEpicGamesInventoryCmd.MarkFlagRequired("userId")
 }

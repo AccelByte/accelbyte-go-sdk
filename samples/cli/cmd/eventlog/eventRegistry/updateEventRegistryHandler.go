@@ -17,7 +17,7 @@ import (
 
 // UpdateEventRegistryHandlerCmd represents the UpdateEventRegistryHandler command
 var UpdateEventRegistryHandlerCmd = &cobra.Command{
-	Use:   "UpdateEventRegistryHandler",
+	Use:   "updateEventRegistryHandler",
 	Short: "Update event registry handler",
 	Long:  `Update event registry handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var UpdateEventRegistryHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateEventRegistryHandlerCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateEventRegistryHandlerCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateEventRegistryHandlerCmd.MarkFlagRequired("body")
-	UpdateEventRegistryHandlerCmd.Flags().StringP("eventId", "ed", "0", "Event id")
+	UpdateEventRegistryHandlerCmd.Flags().StringP("eventId", "", "0", "Event id")
 	_ = UpdateEventRegistryHandlerCmd.MarkFlagRequired("eventId")
 }

@@ -15,7 +15,7 @@ import (
 
 // GetUserRankingAdminV1Cmd represents the GetUserRankingAdminV1 command
 var GetUserRankingAdminV1Cmd = &cobra.Command{
-	Use:   "GetUserRankingAdminV1",
+	Use:   "getUserRankingAdminV1",
 	Short: "Get user ranking admin V1",
 	Long:  `Get user ranking admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var GetUserRankingAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetUserRankingAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
+	GetUserRankingAdminV1Cmd.Flags().StringP("leaderboardCode", "", " ", "Leaderboard code")
 	_ = GetUserRankingAdminV1Cmd.MarkFlagRequired("leaderboardCode")
-	GetUserRankingAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetUserRankingAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetUserRankingAdminV1Cmd.MarkFlagRequired("namespace")
-	GetUserRankingAdminV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetUserRankingAdminV1Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetUserRankingAdminV1Cmd.MarkFlagRequired("userId")
 }

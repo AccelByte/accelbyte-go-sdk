@@ -17,7 +17,7 @@ import (
 
 // AddUserIntoSessionInChannelCmd represents the AddUserIntoSessionInChannel command
 var AddUserIntoSessionInChannelCmd = &cobra.Command{
-	Use:   "AddUserIntoSessionInChannel",
+	Use:   "addUserIntoSessionInChannel",
 	Short: "Add user into session in channel",
 	Long:  `Add user into session in channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,12 +51,12 @@ var AddUserIntoSessionInChannelCmd = &cobra.Command{
 }
 
 func init() {
-	AddUserIntoSessionInChannelCmd.Flags().StringP("body", "by", " ", "Body")
+	AddUserIntoSessionInChannelCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AddUserIntoSessionInChannelCmd.MarkFlagRequired("body")
-	AddUserIntoSessionInChannelCmd.Flags().StringP("channelName", "ce", " ", "Channel name")
+	AddUserIntoSessionInChannelCmd.Flags().StringP("channelName", "", " ", "Channel name")
 	_ = AddUserIntoSessionInChannelCmd.MarkFlagRequired("channelName")
-	AddUserIntoSessionInChannelCmd.Flags().StringP("matchID", "mD", " ", "Match ID")
+	AddUserIntoSessionInChannelCmd.Flags().StringP("matchID", "", " ", "Match ID")
 	_ = AddUserIntoSessionInChannelCmd.MarkFlagRequired("matchID")
-	AddUserIntoSessionInChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AddUserIntoSessionInChannelCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AddUserIntoSessionInChannelCmd.MarkFlagRequired("namespace")
 }

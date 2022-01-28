@@ -17,7 +17,7 @@ import (
 
 // UpdateIAPItemConfigCmd represents the UpdateIAPItemConfig command
 var UpdateIAPItemConfigCmd = &cobra.Command{
-	Use:   "UpdateIAPItemConfig",
+	Use:   "updateIAPItemConfig",
 	Short: "Update IAP item config",
 	Long:  `Update IAP item config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var UpdateIAPItemConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateIAPItemConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateIAPItemConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateIAPItemConfigCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateIAPItemConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateIAPItemConfigCmd.MarkFlagRequired("namespace")
 }

@@ -17,7 +17,7 @@ import (
 
 // AdminCreateTagCmd represents the AdminCreateTag command
 var AdminCreateTagCmd = &cobra.Command{
-	Use:   "AdminCreateTag",
+	Use:   "adminCreateTag",
 	Short: "Admin create tag",
 	Long:  `Admin create tag`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var AdminCreateTagCmd = &cobra.Command{
 }
 
 func init() {
-	AdminCreateTagCmd.Flags().StringP("body", "by", " ", "Body")
+	AdminCreateTagCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminCreateTagCmd.MarkFlagRequired("body")
-	AdminCreateTagCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminCreateTagCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminCreateTagCmd.MarkFlagRequired("namespace")
 }

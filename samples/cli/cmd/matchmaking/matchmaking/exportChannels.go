@@ -15,7 +15,7 @@ import (
 
 // ExportChannelsCmd represents the ExportChannels command
 var ExportChannelsCmd = &cobra.Command{
-	Use:   "ExportChannels",
+	Use:   "exportChannels",
 	Short: "Export channels",
 	Long:  `Export channels`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var ExportChannelsCmd = &cobra.Command{
 }
 
 func init() {
-	ExportChannelsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ExportChannelsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ExportChannelsCmd.MarkFlagRequired("namespace")
 }

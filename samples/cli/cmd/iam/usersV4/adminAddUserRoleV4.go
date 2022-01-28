@@ -17,7 +17,7 @@ import (
 
 // AdminAddUserRoleV4Cmd represents the AdminAddUserRoleV4 command
 var AdminAddUserRoleV4Cmd = &cobra.Command{
-	Use:   "AdminAddUserRoleV4",
+	Use:   "adminAddUserRoleV4",
 	Short: "Admin add user role V4",
 	Long:  `Admin add user role V4`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var AdminAddUserRoleV4Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminAddUserRoleV4Cmd.Flags().StringP("body", "by", " ", "Body")
+	AdminAddUserRoleV4Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminAddUserRoleV4Cmd.MarkFlagRequired("body")
-	AdminAddUserRoleV4Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminAddUserRoleV4Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminAddUserRoleV4Cmd.MarkFlagRequired("namespace")
-	AdminAddUserRoleV4Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminAddUserRoleV4Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminAddUserRoleV4Cmd.MarkFlagRequired("userId")
 }

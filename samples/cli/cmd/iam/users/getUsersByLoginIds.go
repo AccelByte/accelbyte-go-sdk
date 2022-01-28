@@ -15,7 +15,7 @@ import (
 
 // GetUsersByLoginIdsCmd represents the GetUsersByLoginIds command
 var GetUsersByLoginIdsCmd = &cobra.Command{
-	Use:   "GetUsersByLoginIds",
+	Use:   "getUsersByLoginIds",
 	Short: "Get users by login ids",
 	Long:  `Get users by login ids`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,7 +41,7 @@ var GetUsersByLoginIdsCmd = &cobra.Command{
 }
 
 func init() {
-	GetUsersByLoginIdsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetUsersByLoginIdsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetUsersByLoginIdsCmd.MarkFlagRequired("namespace")
-	GetUsersByLoginIdsCmd.Flags().StringP("loginIds", "ls", " ", "Login ids")
+	GetUsersByLoginIdsCmd.Flags().StringP("loginIds", "", " ", "Login ids")
 }

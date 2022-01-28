@@ -17,7 +17,7 @@ import (
 
 // BulkCreateUserStatItemsCmd represents the BulkCreateUserStatItems command
 var BulkCreateUserStatItemsCmd = &cobra.Command{
-	Use:   "BulkCreateUserStatItems",
+	Use:   "bulkCreateUserStatItems",
 	Short: "Bulk create user stat items",
 	Long:  `Bulk create user stat items`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var BulkCreateUserStatItemsCmd = &cobra.Command{
 }
 
 func init() {
-	BulkCreateUserStatItemsCmd.Flags().StringP("body", "by", " ", "Body")
-	BulkCreateUserStatItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	BulkCreateUserStatItemsCmd.Flags().StringP("body", "", " ", "Body")
+	BulkCreateUserStatItemsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = BulkCreateUserStatItemsCmd.MarkFlagRequired("namespace")
-	BulkCreateUserStatItemsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	BulkCreateUserStatItemsCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = BulkCreateUserStatItemsCmd.MarkFlagRequired("userId")
 }

@@ -15,7 +15,7 @@ import (
 
 // GetNamespaceSlotConfigCmd represents the GetNamespaceSlotConfig command
 var GetNamespaceSlotConfigCmd = &cobra.Command{
-	Use:   "GetNamespaceSlotConfig",
+	Use:   "getNamespaceSlotConfig",
 	Short: "Get namespace slot config",
 	Long:  `Get namespace slot config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetNamespaceSlotConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetNamespaceSlotConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetNamespaceSlotConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetNamespaceSlotConfigCmd.MarkFlagRequired("namespace")
 }

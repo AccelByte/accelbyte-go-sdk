@@ -17,7 +17,7 @@ import (
 
 // UpdateSteamIAPConfigCmd represents the UpdateSteamIAPConfig command
 var UpdateSteamIAPConfigCmd = &cobra.Command{
-	Use:   "UpdateSteamIAPConfig",
+	Use:   "updateSteamIAPConfig",
 	Short: "Update steam IAP config",
 	Long:  `Update steam IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var UpdateSteamIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateSteamIAPConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateSteamIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateSteamIAPConfigCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateSteamIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateSteamIAPConfigCmd.MarkFlagRequired("namespace")
 }

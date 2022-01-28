@@ -17,7 +17,7 @@ import (
 
 // PayCmd represents the Pay command
 var PayCmd = &cobra.Command{
-	Use:   "Pay",
+	Use:   "pay",
 	Short: "Pay",
 	Long:  `Pay`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -54,11 +54,11 @@ var PayCmd = &cobra.Command{
 }
 
 func init() {
-	PayCmd.Flags().StringP("body", "by", " ", "Body")
-	PayCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PayCmd.Flags().StringP("body", "", " ", "Body")
+	PayCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PayCmd.MarkFlagRequired("namespace")
-	PayCmd.Flags().StringP("paymentOrderNo", "po", " ", "Payment order no")
+	PayCmd.Flags().StringP("paymentOrderNo", "", " ", "Payment order no")
 	_ = PayCmd.MarkFlagRequired("paymentOrderNo")
-	PayCmd.Flags().StringP("paymentProvider", "pr", " ", "Payment provider")
-	PayCmd.Flags().StringP("zipCode", "ze", " ", "Zip code")
+	PayCmd.Flags().StringP("paymentProvider", "", " ", "Payment provider")
+	PayCmd.Flags().StringP("zipCode", "", " ", "Zip code")
 }

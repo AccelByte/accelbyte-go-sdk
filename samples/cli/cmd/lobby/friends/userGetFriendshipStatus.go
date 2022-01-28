@@ -15,7 +15,7 @@ import (
 
 // UserGetFriendshipStatusCmd represents the UserGetFriendshipStatus command
 var UserGetFriendshipStatusCmd = &cobra.Command{
-	Use:   "UserGetFriendshipStatus",
+	Use:   "userGetFriendshipStatus",
 	Short: "User get friendship status",
 	Long:  `User get friendship status`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var UserGetFriendshipStatusCmd = &cobra.Command{
 }
 
 func init() {
-	UserGetFriendshipStatusCmd.Flags().StringP("friendId", "fd", " ", "Friend id")
+	UserGetFriendshipStatusCmd.Flags().StringP("friendId", "", " ", "Friend id")
 	_ = UserGetFriendshipStatusCmd.MarkFlagRequired("friendId")
-	UserGetFriendshipStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UserGetFriendshipStatusCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UserGetFriendshipStatusCmd.MarkFlagRequired("namespace")
 }

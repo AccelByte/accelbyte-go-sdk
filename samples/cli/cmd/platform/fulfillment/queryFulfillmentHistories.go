@@ -15,7 +15,7 @@ import (
 
 // QueryFulfillmentHistoriesCmd represents the QueryFulfillmentHistories command
 var QueryFulfillmentHistoriesCmd = &cobra.Command{
-	Use:   "QueryFulfillmentHistories",
+	Use:   "queryFulfillmentHistories",
 	Short: "Query fulfillment histories",
 	Long:  `Query fulfillment histories`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,10 +47,10 @@ var QueryFulfillmentHistoriesCmd = &cobra.Command{
 }
 
 func init() {
-	QueryFulfillmentHistoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QueryFulfillmentHistoriesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = QueryFulfillmentHistoriesCmd.MarkFlagRequired("namespace")
-	QueryFulfillmentHistoriesCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	QueryFulfillmentHistoriesCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	QueryFulfillmentHistoriesCmd.Flags().StringP("status", "ss", " ", "Status")
-	QueryFulfillmentHistoriesCmd.Flags().StringP("userId", "ud", " ", "User id")
+	QueryFulfillmentHistoriesCmd.Flags().Int32P("limit", "", 20, "Limit")
+	QueryFulfillmentHistoriesCmd.Flags().Int32P("offset", "", 0, "Offset")
+	QueryFulfillmentHistoriesCmd.Flags().StringP("status", "", " ", "Status")
+	QueryFulfillmentHistoriesCmd.Flags().StringP("userId", "", " ", "User id")
 }

@@ -15,7 +15,7 @@ import (
 
 // GetAllNotificationTemplatesV1AdminCmd represents the GetAllNotificationTemplatesV1Admin command
 var GetAllNotificationTemplatesV1AdminCmd = &cobra.Command{
-	Use:   "GetAllNotificationTemplatesV1Admin",
+	Use:   "getAllNotificationTemplatesV1Admin",
 	Short: "Get all notification templates V1 admin",
 	Long:  `Get all notification templates V1 admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetAllNotificationTemplatesV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	GetAllNotificationTemplatesV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetAllNotificationTemplatesV1AdminCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetAllNotificationTemplatesV1AdminCmd.MarkFlagRequired("namespace")
 }

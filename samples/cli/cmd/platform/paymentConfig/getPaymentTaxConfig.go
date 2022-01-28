@@ -15,7 +15,7 @@ import (
 
 // GetPaymentTaxConfigCmd represents the GetPaymentTaxConfig command
 var GetPaymentTaxConfigCmd = &cobra.Command{
-	Use:   "GetPaymentTaxConfig",
+	Use:   "getPaymentTaxConfig",
 	Short: "Get payment tax config",
 	Long:  `Get payment tax config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,4 +33,7 @@ var GetPaymentTaxConfigCmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

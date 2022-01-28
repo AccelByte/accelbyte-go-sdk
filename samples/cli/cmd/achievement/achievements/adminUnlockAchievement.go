@@ -15,7 +15,7 @@ import (
 
 // AdminUnlockAchievementCmd represents the AdminUnlockAchievement command
 var AdminUnlockAchievementCmd = &cobra.Command{
-	Use:   "AdminUnlockAchievement",
+	Use:   "adminUnlockAchievement",
 	Short: "Admin unlock achievement",
 	Long:  `Admin unlock achievement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var AdminUnlockAchievementCmd = &cobra.Command{
 }
 
 func init() {
-	AdminUnlockAchievementCmd.Flags().StringP("achievementCode", "ae", " ", "Achievement code")
+	AdminUnlockAchievementCmd.Flags().StringP("achievementCode", "", " ", "Achievement code")
 	_ = AdminUnlockAchievementCmd.MarkFlagRequired("achievementCode")
-	AdminUnlockAchievementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminUnlockAchievementCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminUnlockAchievementCmd.MarkFlagRequired("namespace")
-	AdminUnlockAchievementCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminUnlockAchievementCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminUnlockAchievementCmd.MarkFlagRequired("userId")
 }

@@ -15,7 +15,7 @@ import (
 
 // SetRoleAsAdminCmd represents the SetRoleAsAdmin command
 var SetRoleAsAdminCmd = &cobra.Command{
-	Use:   "SetRoleAsAdmin",
+	Use:   "setRoleAsAdmin",
 	Short: "Set role as admin",
 	Long:  `Set role as admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var SetRoleAsAdminCmd = &cobra.Command{
 }
 
 func init() {
-	SetRoleAsAdminCmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	SetRoleAsAdminCmd.Flags().StringP("roleId", "", " ", "Role id")
 	_ = SetRoleAsAdminCmd.MarkFlagRequired("roleId")
 }

@@ -17,7 +17,7 @@ import (
 
 // RegisterServerCmd represents the RegisterServer command
 var RegisterServerCmd = &cobra.Command{
-	Use:   "RegisterServer",
+	Use:   "registerServer",
 	Short: "Register server",
 	Long:  `Register server`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var RegisterServerCmd = &cobra.Command{
 }
 
 func init() {
-	RegisterServerCmd.Flags().StringP("body", "by", " ", "Body")
+	RegisterServerCmd.Flags().StringP("body", "", " ", "Body")
 	_ = RegisterServerCmd.MarkFlagRequired("body")
-	RegisterServerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	RegisterServerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = RegisterServerCmd.MarkFlagRequired("namespace")
 }

@@ -15,7 +15,7 @@ import (
 
 // InviteGroupPublicV1Cmd represents the InviteGroupPublicV1 command
 var InviteGroupPublicV1Cmd = &cobra.Command{
-	Use:   "InviteGroupPublicV1",
+	Use:   "inviteGroupPublicV1",
 	Short: "Invite group public V1",
 	Long:  `Invite group public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var InviteGroupPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	InviteGroupPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	InviteGroupPublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = InviteGroupPublicV1Cmd.MarkFlagRequired("namespace")
-	InviteGroupPublicV1Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	InviteGroupPublicV1Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = InviteGroupPublicV1Cmd.MarkFlagRequired("userId")
 }

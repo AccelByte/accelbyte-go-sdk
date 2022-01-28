@@ -17,7 +17,7 @@ import (
 
 // PlatformSubscribeSubscriptionCmd represents the PlatformSubscribeSubscription command
 var PlatformSubscribeSubscriptionCmd = &cobra.Command{
-	Use:   "PlatformSubscribeSubscription",
+	Use:   "platformSubscribeSubscription",
 	Short: "Platform subscribe subscription",
 	Long:  `Platform subscribe subscription`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var PlatformSubscribeSubscriptionCmd = &cobra.Command{
 }
 
 func init() {
-	PlatformSubscribeSubscriptionCmd.Flags().StringP("body", "by", " ", "Body")
-	PlatformSubscribeSubscriptionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PlatformSubscribeSubscriptionCmd.Flags().StringP("body", "", " ", "Body")
+	PlatformSubscribeSubscriptionCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PlatformSubscribeSubscriptionCmd.MarkFlagRequired("namespace")
-	PlatformSubscribeSubscriptionCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PlatformSubscribeSubscriptionCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PlatformSubscribeSubscriptionCmd.MarkFlagRequired("userId")
 }

@@ -15,7 +15,7 @@ import (
 
 // GetLeaderboardConfigurationAdminV1Cmd represents the GetLeaderboardConfigurationAdminV1 command
 var GetLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
-	Use:   "GetLeaderboardConfigurationAdminV1",
+	Use:   "getLeaderboardConfigurationAdminV1",
 	Short: "Get leaderboard configuration admin V1",
 	Long:  `Get leaderboard configuration admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetLeaderboardConfigurationAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
+	GetLeaderboardConfigurationAdminV1Cmd.Flags().StringP("leaderboardCode", "", " ", "Leaderboard code")
 	_ = GetLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("leaderboardCode")
-	GetLeaderboardConfigurationAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetLeaderboardConfigurationAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
 }

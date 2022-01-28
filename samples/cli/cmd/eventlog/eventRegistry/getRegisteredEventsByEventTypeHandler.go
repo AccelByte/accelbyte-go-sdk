@@ -15,7 +15,7 @@ import (
 
 // GetRegisteredEventsByEventTypeHandlerCmd represents the GetRegisteredEventsByEventTypeHandler command
 var GetRegisteredEventsByEventTypeHandlerCmd = &cobra.Command{
-	Use:   "GetRegisteredEventsByEventTypeHandler",
+	Use:   "getRegisteredEventsByEventTypeHandler",
 	Short: "Get registered events by event type handler",
 	Long:  `Get registered events by event type handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetRegisteredEventsByEventTypeHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	GetRegisteredEventsByEventTypeHandlerCmd.Flags().StringP("eventType", "ee", "0", "Event type")
+	GetRegisteredEventsByEventTypeHandlerCmd.Flags().StringP("eventType", "", "0", "Event type")
 	_ = GetRegisteredEventsByEventTypeHandlerCmd.MarkFlagRequired("eventType")
 }

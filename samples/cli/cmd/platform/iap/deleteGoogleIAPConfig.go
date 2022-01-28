@@ -15,7 +15,7 @@ import (
 
 // DeleteGoogleIAPConfigCmd represents the DeleteGoogleIAPConfig command
 var DeleteGoogleIAPConfigCmd = &cobra.Command{
-	Use:   "DeleteGoogleIAPConfig",
+	Use:   "deleteGoogleIAPConfig",
 	Short: "Delete google IAP config",
 	Long:  `Delete google IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var DeleteGoogleIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteGoogleIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteGoogleIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteGoogleIAPConfigCmd.MarkFlagRequired("namespace")
 }

@@ -15,7 +15,7 @@ import (
 
 // PublicGetItemCmd represents the PublicGetItem command
 var PublicGetItemCmd = &cobra.Command{
-	Use:   "PublicGetItem",
+	Use:   "publicGetItem",
 	Short: "Public get item",
 	Long:  `Public get item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,12 +49,12 @@ var PublicGetItemCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	PublicGetItemCmd.Flags().StringP("itemId", "", " ", "Item id")
 	_ = PublicGetItemCmd.MarkFlagRequired("itemId")
-	PublicGetItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetItemCmd.MarkFlagRequired("namespace")
-	PublicGetItemCmd.Flags().StringP("language", "le", " ", "Language")
-	PublicGetItemCmd.Flags().BoolP("populateBundle", "pe", false, "Populate bundle")
-	PublicGetItemCmd.Flags().StringP("region", "rn", " ", "Region")
-	PublicGetItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	PublicGetItemCmd.Flags().StringP("language", "", " ", "Language")
+	PublicGetItemCmd.Flags().BoolP("populateBundle", "", false, "Populate bundle")
+	PublicGetItemCmd.Flags().StringP("region", "", " ", "Region")
+	PublicGetItemCmd.Flags().StringP("storeId", "", " ", "Store id")
 }

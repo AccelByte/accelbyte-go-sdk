@@ -15,7 +15,7 @@ import (
 
 // DeleteSessionInChannelCmd represents the DeleteSessionInChannel command
 var DeleteSessionInChannelCmd = &cobra.Command{
-	Use:   "DeleteSessionInChannel",
+	Use:   "deleteSessionInChannel",
 	Short: "Delete session in channel",
 	Long:  `Delete session in channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var DeleteSessionInChannelCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteSessionInChannelCmd.Flags().StringP("channelName", "ce", " ", "Channel name")
+	DeleteSessionInChannelCmd.Flags().StringP("channelName", "", " ", "Channel name")
 	_ = DeleteSessionInChannelCmd.MarkFlagRequired("channelName")
-	DeleteSessionInChannelCmd.Flags().StringP("matchID", "mD", " ", "Match ID")
+	DeleteSessionInChannelCmd.Flags().StringP("matchID", "", " ", "Match ID")
 	_ = DeleteSessionInChannelCmd.MarkFlagRequired("matchID")
-	DeleteSessionInChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteSessionInChannelCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteSessionInChannelCmd.MarkFlagRequired("namespace")
 }

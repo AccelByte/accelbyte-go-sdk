@@ -15,7 +15,7 @@ import (
 
 // TokenRevocationV3Cmd represents the TokenRevocationV3 command
 var TokenRevocationV3Cmd = &cobra.Command{
-	Use:   "TokenRevocationV3",
+	Use:   "tokenRevocationV3",
 	Short: "Token revocation V3",
 	Long:  `Token revocation V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var TokenRevocationV3Cmd = &cobra.Command{
 }
 
 func init() {
-	TokenRevocationV3Cmd.Flags().StringP("token", "tn", " ", "Token")
+	TokenRevocationV3Cmd.Flags().StringP("token", "", " ", "Token")
 	_ = TokenRevocationV3Cmd.MarkFlagRequired("token")
 }

@@ -15,7 +15,7 @@ import (
 
 // QueryPaymentOrdersCmd represents the QueryPaymentOrders command
 var QueryPaymentOrdersCmd = &cobra.Command{
-	Use:   "QueryPaymentOrders",
+	Use:   "queryPaymentOrders",
 	Short: "Query payment orders",
 	Long:  `Query payment orders`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,11 +49,11 @@ var QueryPaymentOrdersCmd = &cobra.Command{
 }
 
 func init() {
-	QueryPaymentOrdersCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QueryPaymentOrdersCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = QueryPaymentOrdersCmd.MarkFlagRequired("namespace")
-	QueryPaymentOrdersCmd.Flags().StringP("channel", "cl", " ", "Channel")
-	QueryPaymentOrdersCmd.Flags().StringP("extTxId", "ed", " ", "Ext tx id")
-	QueryPaymentOrdersCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	QueryPaymentOrdersCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	QueryPaymentOrdersCmd.Flags().StringP("status", "ss", " ", "Status")
+	QueryPaymentOrdersCmd.Flags().StringP("channel", "", " ", "Channel")
+	QueryPaymentOrdersCmd.Flags().StringP("extTxId", "", " ", "Ext tx id")
+	QueryPaymentOrdersCmd.Flags().Int32P("limit", "", 20, "Limit")
+	QueryPaymentOrdersCmd.Flags().Int32P("offset", "", 0, "Offset")
+	QueryPaymentOrdersCmd.Flags().StringP("status", "", " ", "Status")
 }

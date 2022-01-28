@@ -15,7 +15,7 @@ import (
 
 // SyncPaymentOrdersCmd represents the SyncPaymentOrders command
 var SyncPaymentOrdersCmd = &cobra.Command{
-	Use:   "SyncPaymentOrders",
+	Use:   "syncPaymentOrders",
 	Short: "Sync payment orders",
 	Long:  `Sync payment orders`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,9 +43,9 @@ var SyncPaymentOrdersCmd = &cobra.Command{
 }
 
 func init() {
-	SyncPaymentOrdersCmd.Flags().StringP("nextEvaluatedKey", "ny", " ", "Next evaluated key")
-	SyncPaymentOrdersCmd.Flags().StringP("end", "ed", " ", "End")
+	SyncPaymentOrdersCmd.Flags().StringP("nextEvaluatedKey", "", " ", "Next evaluated key")
+	SyncPaymentOrdersCmd.Flags().StringP("end", "", " ", "End")
 	_ = SyncPaymentOrdersCmd.MarkFlagRequired("end")
-	SyncPaymentOrdersCmd.Flags().StringP("start", "st", " ", "Start")
+	SyncPaymentOrdersCmd.Flags().StringP("start", "", " ", "Start")
 	_ = SyncPaymentOrdersCmd.MarkFlagRequired("start")
 }

@@ -17,7 +17,7 @@ import (
 
 // AdminAddClientPermissionsV3Cmd represents the AdminAddClientPermissionsV3 command
 var AdminAddClientPermissionsV3Cmd = &cobra.Command{
-	Use:   "AdminAddClientPermissionsV3",
+	Use:   "adminAddClientPermissionsV3",
 	Short: "Admin add client permissions V3",
 	Long:  `Admin add client permissions V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var AdminAddClientPermissionsV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminAddClientPermissionsV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	AdminAddClientPermissionsV3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminAddClientPermissionsV3Cmd.MarkFlagRequired("body")
-	AdminAddClientPermissionsV3Cmd.Flags().StringP("clientId", "cd", " ", "Client id")
+	AdminAddClientPermissionsV3Cmd.Flags().StringP("clientId", "", " ", "Client id")
 	_ = AdminAddClientPermissionsV3Cmd.MarkFlagRequired("clientId")
-	AdminAddClientPermissionsV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminAddClientPermissionsV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminAddClientPermissionsV3Cmd.MarkFlagRequired("namespace")
 }

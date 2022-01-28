@@ -15,7 +15,7 @@ import (
 
 // QueryRedeemHistoryCmd represents the QueryRedeemHistory command
 var QueryRedeemHistoryCmd = &cobra.Command{
-	Use:   "QueryRedeemHistory",
+	Use:   "queryRedeemHistory",
 	Short: "Query redeem history",
 	Long:  `Query redeem history`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,12 +49,12 @@ var QueryRedeemHistoryCmd = &cobra.Command{
 }
 
 func init() {
-	QueryRedeemHistoryCmd.Flags().StringP("campaignId", "cd", " ", "Campaign id")
+	QueryRedeemHistoryCmd.Flags().StringP("campaignId", "", " ", "Campaign id")
 	_ = QueryRedeemHistoryCmd.MarkFlagRequired("campaignId")
-	QueryRedeemHistoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QueryRedeemHistoryCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = QueryRedeemHistoryCmd.MarkFlagRequired("namespace")
-	QueryRedeemHistoryCmd.Flags().StringP("code", "ce", " ", "Code")
-	QueryRedeemHistoryCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	QueryRedeemHistoryCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	QueryRedeemHistoryCmd.Flags().StringP("userId", "ud", " ", "User id")
+	QueryRedeemHistoryCmd.Flags().StringP("code", "", " ", "Code")
+	QueryRedeemHistoryCmd.Flags().Int32P("limit", "", 20, "Limit")
+	QueryRedeemHistoryCmd.Flags().Int32P("offset", "", 0, "Offset")
+	QueryRedeemHistoryCmd.Flags().StringP("userId", "", " ", "User id")
 }

@@ -15,7 +15,7 @@ import (
 
 // GetSingleTemplateLocalizationV1AdminCmd represents the GetSingleTemplateLocalizationV1Admin command
 var GetSingleTemplateLocalizationV1AdminCmd = &cobra.Command{
-	Use:   "GetSingleTemplateLocalizationV1Admin",
+	Use:   "getSingleTemplateLocalizationV1Admin",
 	Short: "Get single template localization V1 admin",
 	Long:  `Get single template localization V1 admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var GetSingleTemplateLocalizationV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	GetSingleTemplateLocalizationV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetSingleTemplateLocalizationV1AdminCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetSingleTemplateLocalizationV1AdminCmd.MarkFlagRequired("namespace")
-	GetSingleTemplateLocalizationV1AdminCmd.Flags().StringP("templateLanguage", "te", " ", "Template language")
+	GetSingleTemplateLocalizationV1AdminCmd.Flags().StringP("templateLanguage", "", " ", "Template language")
 	_ = GetSingleTemplateLocalizationV1AdminCmd.MarkFlagRequired("templateLanguage")
-	GetSingleTemplateLocalizationV1AdminCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
+	GetSingleTemplateLocalizationV1AdminCmd.Flags().StringP("templateSlug", "", " ", "Template slug")
 	_ = GetSingleTemplateLocalizationV1AdminCmd.MarkFlagRequired("templateSlug")
 }

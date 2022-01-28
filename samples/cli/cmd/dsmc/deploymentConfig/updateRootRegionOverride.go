@@ -17,7 +17,7 @@ import (
 
 // UpdateRootRegionOverrideCmd represents the UpdateRootRegionOverride command
 var UpdateRootRegionOverrideCmd = &cobra.Command{
-	Use:   "UpdateRootRegionOverride",
+	Use:   "updateRootRegionOverride",
 	Short: "Update root region override",
 	Long:  `Update root region override`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,12 +52,12 @@ var UpdateRootRegionOverrideCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateRootRegionOverrideCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateRootRegionOverrideCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateRootRegionOverrideCmd.MarkFlagRequired("body")
-	UpdateRootRegionOverrideCmd.Flags().StringP("deployment", "dt", " ", "Deployment")
+	UpdateRootRegionOverrideCmd.Flags().StringP("deployment", "", " ", "Deployment")
 	_ = UpdateRootRegionOverrideCmd.MarkFlagRequired("deployment")
-	UpdateRootRegionOverrideCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateRootRegionOverrideCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateRootRegionOverrideCmd.MarkFlagRequired("namespace")
-	UpdateRootRegionOverrideCmd.Flags().StringP("region", "rn", " ", "Region")
+	UpdateRootRegionOverrideCmd.Flags().StringP("region", "", " ", "Region")
 	_ = UpdateRootRegionOverrideCmd.MarkFlagRequired("region")
 }

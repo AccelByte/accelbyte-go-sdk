@@ -15,7 +15,7 @@ import (
 
 // CloneStoreCmd represents the CloneStore command
 var CloneStoreCmd = &cobra.Command{
-	Use:   "CloneStore",
+	Use:   "cloneStore",
 	Short: "Clone store",
 	Long:  `Clone store`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,9 +43,9 @@ var CloneStoreCmd = &cobra.Command{
 }
 
 func init() {
-	CloneStoreCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CloneStoreCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CloneStoreCmd.MarkFlagRequired("namespace")
-	CloneStoreCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	CloneStoreCmd.Flags().StringP("storeId", "", " ", "Store id")
 	_ = CloneStoreCmd.MarkFlagRequired("storeId")
-	CloneStoreCmd.Flags().StringP("targetStoreId", "td", " ", "Target store id")
+	CloneStoreCmd.Flags().StringP("targetStoreId", "", " ", "Target store id")
 }

@@ -15,7 +15,7 @@ import (
 
 // GetAdminUsersByRoleIDCmd represents the GetAdminUsersByRoleID command
 var GetAdminUsersByRoleIDCmd = &cobra.Command{
-	Use:   "GetAdminUsersByRoleID",
+	Use:   "getAdminUsersByRoleID",
 	Short: "Get admin users by role ID",
 	Long:  `Get admin users by role ID`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,10 +47,10 @@ var GetAdminUsersByRoleIDCmd = &cobra.Command{
 }
 
 func init() {
-	GetAdminUsersByRoleIDCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetAdminUsersByRoleIDCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetAdminUsersByRoleIDCmd.MarkFlagRequired("namespace")
-	GetAdminUsersByRoleIDCmd.Flags().Int64P("after", "ar", 0, "After")
-	GetAdminUsersByRoleIDCmd.Flags().Int64P("before", "be", 0, "Before")
-	GetAdminUsersByRoleIDCmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	GetAdminUsersByRoleIDCmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	GetAdminUsersByRoleIDCmd.Flags().Int64P("after", "", 0, "After")
+	GetAdminUsersByRoleIDCmd.Flags().Int64P("before", "", 0, "Before")
+	GetAdminUsersByRoleIDCmd.Flags().Int64P("limit", "", 20, "Limit")
+	GetAdminUsersByRoleIDCmd.Flags().StringP("roleId", "", " ", "Role id")
 }

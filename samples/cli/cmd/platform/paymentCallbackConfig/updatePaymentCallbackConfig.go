@@ -17,7 +17,7 @@ import (
 
 // UpdatePaymentCallbackConfigCmd represents the UpdatePaymentCallbackConfig command
 var UpdatePaymentCallbackConfigCmd = &cobra.Command{
-	Use:   "UpdatePaymentCallbackConfig",
+	Use:   "updatePaymentCallbackConfig",
 	Short: "Update payment callback config",
 	Long:  `Update payment callback config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var UpdatePaymentCallbackConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdatePaymentCallbackConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdatePaymentCallbackConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdatePaymentCallbackConfigCmd.Flags().StringP("body", "", " ", "Body")
+	UpdatePaymentCallbackConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdatePaymentCallbackConfigCmd.MarkFlagRequired("namespace")
 }

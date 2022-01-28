@@ -15,7 +15,7 @@ import (
 
 // GetRevocationListCmd represents the GetRevocationList command
 var GetRevocationListCmd = &cobra.Command{
-	Use:   "GetRevocationList",
+	Use:   "getRevocationList",
 	Short: "Get revocation list",
 	Long:  `Get revocation list`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,4 +33,7 @@ var GetRevocationListCmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

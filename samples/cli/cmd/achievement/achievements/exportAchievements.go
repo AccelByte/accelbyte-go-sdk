@@ -15,7 +15,7 @@ import (
 
 // ExportAchievementsCmd represents the ExportAchievements command
 var ExportAchievementsCmd = &cobra.Command{
-	Use:   "ExportAchievements",
+	Use:   "exportAchievements",
 	Short: "Export achievements",
 	Long:  `Export achievements`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var ExportAchievementsCmd = &cobra.Command{
 }
 
 func init() {
-	ExportAchievementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ExportAchievementsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ExportAchievementsCmd.MarkFlagRequired("namespace")
 }

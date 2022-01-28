@@ -17,7 +17,7 @@ import (
 
 // ProcessUserSubscriptionNotificationCmd represents the ProcessUserSubscriptionNotification command
 var ProcessUserSubscriptionNotificationCmd = &cobra.Command{
-	Use:   "ProcessUserSubscriptionNotification",
+	Use:   "processUserSubscriptionNotification",
 	Short: "Process user subscription notification",
 	Long:  `Process user subscription notification`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,11 +51,11 @@ var ProcessUserSubscriptionNotificationCmd = &cobra.Command{
 }
 
 func init() {
-	ProcessUserSubscriptionNotificationCmd.Flags().StringP("body", "by", " ", "Body")
-	ProcessUserSubscriptionNotificationCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ProcessUserSubscriptionNotificationCmd.Flags().StringP("body", "", " ", "Body")
+	ProcessUserSubscriptionNotificationCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ProcessUserSubscriptionNotificationCmd.MarkFlagRequired("namespace")
-	ProcessUserSubscriptionNotificationCmd.Flags().StringP("subscriptionId", "sd", " ", "Subscription id")
+	ProcessUserSubscriptionNotificationCmd.Flags().StringP("subscriptionId", "", " ", "Subscription id")
 	_ = ProcessUserSubscriptionNotificationCmd.MarkFlagRequired("subscriptionId")
-	ProcessUserSubscriptionNotificationCmd.Flags().StringP("userId", "ud", " ", "User id")
+	ProcessUserSubscriptionNotificationCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = ProcessUserSubscriptionNotificationCmd.MarkFlagRequired("userId")
 }

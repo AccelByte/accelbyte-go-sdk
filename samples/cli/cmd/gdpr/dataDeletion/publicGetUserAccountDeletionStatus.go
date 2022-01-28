@@ -15,7 +15,7 @@ import (
 
 // PublicGetUserAccountDeletionStatusCmd represents the PublicGetUserAccountDeletionStatus command
 var PublicGetUserAccountDeletionStatusCmd = &cobra.Command{
-	Use:   "PublicGetUserAccountDeletionStatus",
+	Use:   "publicGetUserAccountDeletionStatus",
 	Short: "Public get user account deletion status",
 	Long:  `Public get user account deletion status`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var PublicGetUserAccountDeletionStatusCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserAccountDeletionStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetUserAccountDeletionStatusCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetUserAccountDeletionStatusCmd.MarkFlagRequired("namespace")
-	PublicGetUserAccountDeletionStatusCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicGetUserAccountDeletionStatusCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicGetUserAccountDeletionStatusCmd.MarkFlagRequired("userId")
 }

@@ -17,7 +17,7 @@ import (
 
 // AdminSetProfanityRuleForNamespaceCmd represents the AdminSetProfanityRuleForNamespace command
 var AdminSetProfanityRuleForNamespaceCmd = &cobra.Command{
-	Use:   "AdminSetProfanityRuleForNamespace",
+	Use:   "adminSetProfanityRuleForNamespace",
 	Short: "Admin set profanity rule for namespace",
 	Long:  `Admin set profanity rule for namespace`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var AdminSetProfanityRuleForNamespaceCmd = &cobra.Command{
 }
 
 func init() {
-	AdminSetProfanityRuleForNamespaceCmd.Flags().StringP("body", "by", " ", "Body")
+	AdminSetProfanityRuleForNamespaceCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminSetProfanityRuleForNamespaceCmd.MarkFlagRequired("body")
-	AdminSetProfanityRuleForNamespaceCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminSetProfanityRuleForNamespaceCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminSetProfanityRuleForNamespaceCmd.MarkFlagRequired("namespace")
 }

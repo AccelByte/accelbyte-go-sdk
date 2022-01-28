@@ -16,7 +16,7 @@ import (
 
 // ImportRewardsCmd represents the ImportRewards command
 var ImportRewardsCmd = &cobra.Command{
-	Use:   "ImportRewards",
+	Use:   "importRewards",
 	Short: "Import rewards",
 	Long:  `Import rewards`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,9 +48,9 @@ var ImportRewardsCmd = &cobra.Command{
 }
 
 func init() {
-	ImportRewardsCmd.Flags().StringP("file", "fe", " ", "File")
-	ImportRewardsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ImportRewardsCmd.Flags().StringP("file", "", " ", "File")
+	ImportRewardsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ImportRewardsCmd.MarkFlagRequired("namespace")
-	ImportRewardsCmd.Flags().BoolP("replaceExisting", "rg", false, "Replace existing")
+	ImportRewardsCmd.Flags().BoolP("replaceExisting", "", false, "Replace existing")
 	_ = ImportRewardsCmd.MarkFlagRequired("replaceExisting")
 }

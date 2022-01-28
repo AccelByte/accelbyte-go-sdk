@@ -15,7 +15,7 @@ import (
 
 // GetStadiaIAPConfigCmd represents the GetStadiaIAPConfig command
 var GetStadiaIAPConfigCmd = &cobra.Command{
-	Use:   "GetStadiaIAPConfig",
+	Use:   "getStadiaIAPConfig",
 	Short: "Get stadia IAP config",
 	Long:  `Get stadia IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetStadiaIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetStadiaIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetStadiaIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetStadiaIAPConfigCmd.MarkFlagRequired("namespace")
 }

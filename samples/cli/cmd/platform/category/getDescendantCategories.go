@@ -15,7 +15,7 @@ import (
 
 // GetDescendantCategoriesCmd represents the GetDescendantCategories command
 var GetDescendantCategoriesCmd = &cobra.Command{
-	Use:   "GetDescendantCategories",
+	Use:   "getDescendantCategories",
 	Short: "Get descendant categories",
 	Long:  `Get descendant categories`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,9 +43,9 @@ var GetDescendantCategoriesCmd = &cobra.Command{
 }
 
 func init() {
-	GetDescendantCategoriesCmd.Flags().StringP("categoryPath", "ch", " ", "Category path")
+	GetDescendantCategoriesCmd.Flags().StringP("categoryPath", "", " ", "Category path")
 	_ = GetDescendantCategoriesCmd.MarkFlagRequired("categoryPath")
-	GetDescendantCategoriesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetDescendantCategoriesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetDescendantCategoriesCmd.MarkFlagRequired("namespace")
-	GetDescendantCategoriesCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	GetDescendantCategoriesCmd.Flags().StringP("storeId", "", " ", "Store id")
 }

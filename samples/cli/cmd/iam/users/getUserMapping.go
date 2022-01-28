@@ -15,7 +15,7 @@ import (
 
 // GetUserMappingCmd represents the GetUserMapping command
 var GetUserMappingCmd = &cobra.Command{
-	Use:   "GetUserMapping",
+	Use:   "getUserMapping",
 	Short: "Get user mapping",
 	Long:  `Get user mapping`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var GetUserMappingCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserMappingCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetUserMappingCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetUserMappingCmd.MarkFlagRequired("namespace")
-	GetUserMappingCmd.Flags().StringP("targetNamespace", "te", " ", "Target namespace")
+	GetUserMappingCmd.Flags().StringP("targetNamespace", "", " ", "Target namespace")
 	_ = GetUserMappingCmd.MarkFlagRequired("targetNamespace")
-	GetUserMappingCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetUserMappingCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetUserMappingCmd.MarkFlagRequired("userId")
 }

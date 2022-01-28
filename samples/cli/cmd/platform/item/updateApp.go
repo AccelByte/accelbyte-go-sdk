@@ -17,7 +17,7 @@ import (
 
 // UpdateAppCmd represents the UpdateApp command
 var UpdateAppCmd = &cobra.Command{
-	Use:   "UpdateApp",
+	Use:   "updateApp",
 	Short: "Update app",
 	Long:  `Update app`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,11 +52,11 @@ var UpdateAppCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateAppCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateAppCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	UpdateAppCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateAppCmd.Flags().StringP("itemId", "", " ", "Item id")
 	_ = UpdateAppCmd.MarkFlagRequired("itemId")
-	UpdateAppCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateAppCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateAppCmd.MarkFlagRequired("namespace")
-	UpdateAppCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	UpdateAppCmd.Flags().StringP("storeId", "", " ", "Store id")
 	_ = UpdateAppCmd.MarkFlagRequired("storeId")
 }

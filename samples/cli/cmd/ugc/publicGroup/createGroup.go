@@ -17,7 +17,7 @@ import (
 
 // CreateGroupCmd represents the CreateGroup command
 var CreateGroupCmd = &cobra.Command{
-	Use:   "CreateGroup",
+	Use:   "createGroup",
 	Short: "Create group",
 	Long:  `Create group`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var CreateGroupCmd = &cobra.Command{
 }
 
 func init() {
-	CreateGroupCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateGroupCmd.Flags().StringP("body", "", " ", "Body")
 	_ = CreateGroupCmd.MarkFlagRequired("body")
-	CreateGroupCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateGroupCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateGroupCmd.MarkFlagRequired("namespace")
-	CreateGroupCmd.Flags().StringP("userId", "ud", " ", "User id")
+	CreateGroupCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = CreateGroupCmd.MarkFlagRequired("userId")
 }

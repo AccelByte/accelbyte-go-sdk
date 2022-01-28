@@ -17,7 +17,7 @@ import (
 
 // TestCheckoutConfigCmd represents the TestCheckoutConfig command
 var TestCheckoutConfigCmd = &cobra.Command{
-	Use:   "TestCheckoutConfig",
+	Use:   "testCheckoutConfig",
 	Short: "Test checkout config",
 	Long:  `Test checkout config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,6 +48,6 @@ var TestCheckoutConfigCmd = &cobra.Command{
 }
 
 func init() {
-	TestCheckoutConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	TestCheckoutConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	TestCheckoutConfigCmd.Flags().StringP("body", "", " ", "Body")
+	TestCheckoutConfigCmd.Flags().BoolP("sandbox", "", false, "Sandbox")
 }

@@ -17,7 +17,7 @@ import (
 
 // SetUserLeaderboardVisibilityStatusV2Cmd represents the SetUserLeaderboardVisibilityStatusV2 command
 var SetUserLeaderboardVisibilityStatusV2Cmd = &cobra.Command{
-	Use:   "SetUserLeaderboardVisibilityStatusV2",
+	Use:   "setUserLeaderboardVisibilityStatusV2",
 	Short: "Set user leaderboard visibility status V2",
 	Long:  `Set user leaderboard visibility status V2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,12 +52,12 @@ var SetUserLeaderboardVisibilityStatusV2Cmd = &cobra.Command{
 }
 
 func init() {
-	SetUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("body", "by", " ", "Body")
+	SetUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = SetUserLeaderboardVisibilityStatusV2Cmd.MarkFlagRequired("body")
-	SetUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
+	SetUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("leaderboardCode", "", " ", "Leaderboard code")
 	_ = SetUserLeaderboardVisibilityStatusV2Cmd.MarkFlagRequired("leaderboardCode")
-	SetUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	SetUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = SetUserLeaderboardVisibilityStatusV2Cmd.MarkFlagRequired("namespace")
-	SetUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	SetUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = SetUserLeaderboardVisibilityStatusV2Cmd.MarkFlagRequired("userId")
 }

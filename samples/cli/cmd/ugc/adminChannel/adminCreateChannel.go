@@ -17,7 +17,7 @@ import (
 
 // AdminCreateChannelCmd represents the AdminCreateChannel command
 var AdminCreateChannelCmd = &cobra.Command{
-	Use:   "AdminCreateChannel",
+	Use:   "adminCreateChannel",
 	Short: "Admin create channel",
 	Long:  `Admin create channel`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var AdminCreateChannelCmd = &cobra.Command{
 }
 
 func init() {
-	AdminCreateChannelCmd.Flags().StringP("body", "by", " ", "Body")
+	AdminCreateChannelCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminCreateChannelCmd.MarkFlagRequired("body")
-	AdminCreateChannelCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminCreateChannelCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminCreateChannelCmd.MarkFlagRequired("namespace")
 }

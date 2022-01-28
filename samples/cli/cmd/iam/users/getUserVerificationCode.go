@@ -15,7 +15,7 @@ import (
 
 // GetUserVerificationCodeCmd represents the GetUserVerificationCode command
 var GetUserVerificationCodeCmd = &cobra.Command{
-	Use:   "GetUserVerificationCode",
+	Use:   "getUserVerificationCode",
 	Short: "Get user verification code",
 	Long:  `Get user verification code`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetUserVerificationCodeCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserVerificationCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetUserVerificationCodeCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetUserVerificationCodeCmd.MarkFlagRequired("namespace")
-	GetUserVerificationCodeCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetUserVerificationCodeCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetUserVerificationCodeCmd.MarkFlagRequired("userId")
 }

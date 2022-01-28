@@ -15,7 +15,7 @@ import (
 
 // QueryUserEntitlementsByAppTypeCmd represents the QueryUserEntitlementsByAppType command
 var QueryUserEntitlementsByAppTypeCmd = &cobra.Command{
-	Use:   "QueryUserEntitlementsByAppType",
+	Use:   "queryUserEntitlementsByAppType",
 	Short: "Query user entitlements by app type",
 	Long:  `Query user entitlements by app type`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,13 +49,13 @@ var QueryUserEntitlementsByAppTypeCmd = &cobra.Command{
 }
 
 func init() {
-	QueryUserEntitlementsByAppTypeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QueryUserEntitlementsByAppTypeCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = QueryUserEntitlementsByAppTypeCmd.MarkFlagRequired("namespace")
-	QueryUserEntitlementsByAppTypeCmd.Flags().StringP("userId", "ud", " ", "User id")
+	QueryUserEntitlementsByAppTypeCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = QueryUserEntitlementsByAppTypeCmd.MarkFlagRequired("userId")
-	QueryUserEntitlementsByAppTypeCmd.Flags().BoolP("activeOnly", "ay", false, "Active only")
-	QueryUserEntitlementsByAppTypeCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	QueryUserEntitlementsByAppTypeCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	QueryUserEntitlementsByAppTypeCmd.Flags().StringP("appType", "ae", " ", "App type")
+	QueryUserEntitlementsByAppTypeCmd.Flags().BoolP("activeOnly", "", false, "Active only")
+	QueryUserEntitlementsByAppTypeCmd.Flags().Int32P("limit", "", 20, "Limit")
+	QueryUserEntitlementsByAppTypeCmd.Flags().Int32P("offset", "", 0, "Offset")
+	QueryUserEntitlementsByAppTypeCmd.Flags().StringP("appType", "", " ", "App type")
 	_ = QueryUserEntitlementsByAppTypeCmd.MarkFlagRequired("appType")
 }

@@ -17,7 +17,7 @@ import (
 
 // CreateContentS3Cmd represents the CreateContentS3 command
 var CreateContentS3Cmd = &cobra.Command{
-	Use:   "CreateContentS3",
+	Use:   "createContentS3",
 	Short: "Create content S3",
 	Long:  `Create content S3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,12 +52,12 @@ var CreateContentS3Cmd = &cobra.Command{
 }
 
 func init() {
-	CreateContentS3Cmd.Flags().StringP("body", "by", " ", "Body")
+	CreateContentS3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = CreateContentS3Cmd.MarkFlagRequired("body")
-	CreateContentS3Cmd.Flags().StringP("channelId", "cd", " ", "Channel id")
+	CreateContentS3Cmd.Flags().StringP("channelId", "", " ", "Channel id")
 	_ = CreateContentS3Cmd.MarkFlagRequired("channelId")
-	CreateContentS3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateContentS3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateContentS3Cmd.MarkFlagRequired("namespace")
-	CreateContentS3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	CreateContentS3Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = CreateContentS3Cmd.MarkFlagRequired("userId")
 }

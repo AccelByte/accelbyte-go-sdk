@@ -15,7 +15,7 @@ import (
 
 // DownloadServerLogsCmd represents the DownloadServerLogs command
 var DownloadServerLogsCmd = &cobra.Command{
-	Use:   "DownloadServerLogs",
+	Use:   "downloadServerLogs",
 	Short: "Download server logs",
 	Long:  `Download server logs`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var DownloadServerLogsCmd = &cobra.Command{
 }
 
 func init() {
-	DownloadServerLogsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DownloadServerLogsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DownloadServerLogsCmd.MarkFlagRequired("namespace")
-	DownloadServerLogsCmd.Flags().StringP("podName", "pe", " ", "Pod name")
+	DownloadServerLogsCmd.Flags().StringP("podName", "", " ", "Pod name")
 	_ = DownloadServerLogsCmd.MarkFlagRequired("podName")
 }

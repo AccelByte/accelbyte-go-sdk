@@ -17,7 +17,7 @@ import (
 
 // CreateMemberRoleAdminV1Cmd represents the CreateMemberRoleAdminV1 command
 var CreateMemberRoleAdminV1Cmd = &cobra.Command{
-	Use:   "CreateMemberRoleAdminV1",
+	Use:   "createMemberRoleAdminV1",
 	Short: "Create member role admin V1",
 	Long:  `Create member role admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var CreateMemberRoleAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	CreateMemberRoleAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	CreateMemberRoleAdminV1Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = CreateMemberRoleAdminV1Cmd.MarkFlagRequired("body")
-	CreateMemberRoleAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateMemberRoleAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateMemberRoleAdminV1Cmd.MarkFlagRequired("namespace")
 }

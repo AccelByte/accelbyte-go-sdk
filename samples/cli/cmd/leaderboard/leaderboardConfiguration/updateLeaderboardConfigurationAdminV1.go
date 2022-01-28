@@ -17,7 +17,7 @@ import (
 
 // UpdateLeaderboardConfigurationAdminV1Cmd represents the UpdateLeaderboardConfigurationAdminV1 command
 var UpdateLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
-	Use:   "UpdateLeaderboardConfigurationAdminV1",
+	Use:   "updateLeaderboardConfigurationAdminV1",
 	Short: "Update leaderboard configuration admin V1",
 	Long:  `Update leaderboard configuration admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var UpdateLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	UpdateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("body")
-	UpdateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
+	UpdateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("leaderboardCode", "", " ", "Leaderboard code")
 	_ = UpdateLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("leaderboardCode")
-	UpdateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
 }

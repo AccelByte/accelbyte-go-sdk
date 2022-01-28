@@ -15,7 +15,7 @@ import (
 
 // TestPayPalConfigByIdCmd represents the TestPayPalConfigById command
 var TestPayPalConfigByIdCmd = &cobra.Command{
-	Use:   "TestPayPalConfigById",
+	Use:   "testPayPalConfigById",
 	Short: "Test pay pal config by id",
 	Long:  `Test pay pal config by id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,7 +41,7 @@ var TestPayPalConfigByIdCmd = &cobra.Command{
 }
 
 func init() {
-	TestPayPalConfigByIdCmd.Flags().StringP("id", "id", " ", "Id")
+	TestPayPalConfigByIdCmd.Flags().StringP("id", "", " ", "Id")
 	_ = TestPayPalConfigByIdCmd.MarkFlagRequired("id")
-	TestPayPalConfigByIdCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	TestPayPalConfigByIdCmd.Flags().BoolP("sandbox", "", false, "Sandbox")
 }

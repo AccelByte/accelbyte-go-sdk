@@ -17,7 +17,7 @@ import (
 
 // AdminUpdateUserEmailAddressV4Cmd represents the AdminUpdateUserEmailAddressV4 command
 var AdminUpdateUserEmailAddressV4Cmd = &cobra.Command{
-	Use:   "AdminUpdateUserEmailAddressV4",
+	Use:   "adminUpdateUserEmailAddressV4",
 	Short: "Admin update user email address V4",
 	Long:  `Admin update user email address V4`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,10 +49,10 @@ var AdminUpdateUserEmailAddressV4Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateUserEmailAddressV4Cmd.Flags().StringP("body", "by", " ", "Body")
+	AdminUpdateUserEmailAddressV4Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminUpdateUserEmailAddressV4Cmd.MarkFlagRequired("body")
-	AdminUpdateUserEmailAddressV4Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminUpdateUserEmailAddressV4Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminUpdateUserEmailAddressV4Cmd.MarkFlagRequired("namespace")
-	AdminUpdateUserEmailAddressV4Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminUpdateUserEmailAddressV4Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminUpdateUserEmailAddressV4Cmd.MarkFlagRequired("userId")
 }

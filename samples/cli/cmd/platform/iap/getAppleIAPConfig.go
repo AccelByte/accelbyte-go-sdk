@@ -15,7 +15,7 @@ import (
 
 // GetAppleIAPConfigCmd represents the GetAppleIAPConfig command
 var GetAppleIAPConfigCmd = &cobra.Command{
-	Use:   "GetAppleIAPConfig",
+	Use:   "getAppleIAPConfig",
 	Short: "Get apple IAP config",
 	Long:  `Get apple IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetAppleIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetAppleIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetAppleIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetAppleIAPConfigCmd.MarkFlagRequired("namespace")
 }

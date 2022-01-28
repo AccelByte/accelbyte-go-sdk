@@ -15,7 +15,7 @@ import (
 
 // GetRegisteredEventIDHandlerCmd represents the GetRegisteredEventIDHandler command
 var GetRegisteredEventIDHandlerCmd = &cobra.Command{
-	Use:   "GetRegisteredEventIDHandler",
+	Use:   "getRegisteredEventIDHandler",
 	Short: "Get registered event ID handler",
 	Long:  `Get registered event ID handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetRegisteredEventIDHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	GetRegisteredEventIDHandlerCmd.Flags().StringP("eventId", "ed", "0", "Event id")
+	GetRegisteredEventIDHandlerCmd.Flags().StringP("eventId", "", "0", "Event id")
 	_ = GetRegisteredEventIDHandlerCmd.MarkFlagRequired("eventId")
 }

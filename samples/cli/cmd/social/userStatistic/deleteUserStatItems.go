@@ -15,7 +15,7 @@ import (
 
 // DeleteUserStatItemsCmd represents the DeleteUserStatItems command
 var DeleteUserStatItemsCmd = &cobra.Command{
-	Use:   "DeleteUserStatItems",
+	Use:   "deleteUserStatItems",
 	Short: "Delete user stat items",
 	Long:  `Delete user stat items`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var DeleteUserStatItemsCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteUserStatItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteUserStatItemsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteUserStatItemsCmd.MarkFlagRequired("namespace")
-	DeleteUserStatItemsCmd.Flags().StringP("statCode", "se", " ", "Stat code")
+	DeleteUserStatItemsCmd.Flags().StringP("statCode", "", " ", "Stat code")
 	_ = DeleteUserStatItemsCmd.MarkFlagRequired("statCode")
-	DeleteUserStatItemsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	DeleteUserStatItemsCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = DeleteUserStatItemsCmd.MarkFlagRequired("userId")
 }

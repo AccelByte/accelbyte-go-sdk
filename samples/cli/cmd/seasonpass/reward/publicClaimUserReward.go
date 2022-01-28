@@ -17,7 +17,7 @@ import (
 
 // PublicClaimUserRewardCmd represents the PublicClaimUserReward command
 var PublicClaimUserRewardCmd = &cobra.Command{
-	Use:   "PublicClaimUserReward",
+	Use:   "publicClaimUserReward",
 	Short: "Public claim user reward",
 	Long:  `Public claim user reward`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var PublicClaimUserRewardCmd = &cobra.Command{
 }
 
 func init() {
-	PublicClaimUserRewardCmd.Flags().StringP("body", "by", " ", "Body")
-	PublicClaimUserRewardCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicClaimUserRewardCmd.Flags().StringP("body", "", " ", "Body")
+	PublicClaimUserRewardCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicClaimUserRewardCmd.MarkFlagRequired("namespace")
-	PublicClaimUserRewardCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicClaimUserRewardCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicClaimUserRewardCmd.MarkFlagRequired("userId")
 }

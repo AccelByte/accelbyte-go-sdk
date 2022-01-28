@@ -15,7 +15,7 @@ import (
 
 // GetHiddenUsersV2Cmd represents the GetHiddenUsersV2 command
 var GetHiddenUsersV2Cmd = &cobra.Command{
-	Use:   "GetHiddenUsersV2",
+	Use:   "getHiddenUsersV2",
 	Short: "Get hidden users V2",
 	Long:  `Get hidden users V2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,10 +45,10 @@ var GetHiddenUsersV2Cmd = &cobra.Command{
 }
 
 func init() {
-	GetHiddenUsersV2Cmd.Flags().StringP("leaderboardCode", "le", " ", "Leaderboard code")
+	GetHiddenUsersV2Cmd.Flags().StringP("leaderboardCode", "", " ", "Leaderboard code")
 	_ = GetHiddenUsersV2Cmd.MarkFlagRequired("leaderboardCode")
-	GetHiddenUsersV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetHiddenUsersV2Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetHiddenUsersV2Cmd.MarkFlagRequired("namespace")
-	GetHiddenUsersV2Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	GetHiddenUsersV2Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetHiddenUsersV2Cmd.Flags().Int64P("limit", "", 20, "Limit")
+	GetHiddenUsersV2Cmd.Flags().Int64P("offset", "", 0, "Offset")
 }

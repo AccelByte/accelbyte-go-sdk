@@ -15,7 +15,7 @@ import (
 
 // GetCurrentSeasonCmd represents the GetCurrentSeason command
 var GetCurrentSeasonCmd = &cobra.Command{
-	Use:   "GetCurrentSeason",
+	Use:   "getCurrentSeason",
 	Short: "Get current season",
 	Long:  `Get current season`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetCurrentSeasonCmd = &cobra.Command{
 }
 
 func init() {
-	GetCurrentSeasonCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetCurrentSeasonCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetCurrentSeasonCmd.MarkFlagRequired("namespace")
 }

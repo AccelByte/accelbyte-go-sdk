@@ -17,7 +17,7 @@ import (
 
 // PublicUpgradeHeadlessAccountV4Cmd represents the PublicUpgradeHeadlessAccountV4 command
 var PublicUpgradeHeadlessAccountV4Cmd = &cobra.Command{
-	Use:   "PublicUpgradeHeadlessAccountV4",
+	Use:   "publicUpgradeHeadlessAccountV4",
 	Short: "Public upgrade headless account V4",
 	Long:  `Public upgrade headless account V4`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var PublicUpgradeHeadlessAccountV4Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicUpgradeHeadlessAccountV4Cmd.Flags().StringP("body", "by", " ", "Body")
+	PublicUpgradeHeadlessAccountV4Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = PublicUpgradeHeadlessAccountV4Cmd.MarkFlagRequired("body")
-	PublicUpgradeHeadlessAccountV4Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicUpgradeHeadlessAccountV4Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicUpgradeHeadlessAccountV4Cmd.MarkFlagRequired("namespace")
 }

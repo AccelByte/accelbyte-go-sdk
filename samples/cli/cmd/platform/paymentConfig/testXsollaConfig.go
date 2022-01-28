@@ -17,7 +17,7 @@ import (
 
 // TestXsollaConfigCmd represents the TestXsollaConfig command
 var TestXsollaConfigCmd = &cobra.Command{
-	Use:   "TestXsollaConfig",
+	Use:   "testXsollaConfig",
 	Short: "Test xsolla config",
 	Long:  `Test xsolla config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -46,5 +46,5 @@ var TestXsollaConfigCmd = &cobra.Command{
 }
 
 func init() {
-	TestXsollaConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	TestXsollaConfigCmd.Flags().StringP("body", "", " ", "Body")
 }

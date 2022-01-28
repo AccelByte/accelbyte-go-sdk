@@ -17,7 +17,7 @@ import (
 
 // CreateImageCmd represents the CreateImage command
 var CreateImageCmd = &cobra.Command{
-	Use:   "CreateImage",
+	Use:   "createImage",
 	Short: "Create image",
 	Long:  `Create image`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,6 +45,6 @@ var CreateImageCmd = &cobra.Command{
 }
 
 func init() {
-	CreateImageCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateImageCmd.Flags().StringP("body", "", " ", "Body")
 	_ = CreateImageCmd.MarkFlagRequired("body")
 }

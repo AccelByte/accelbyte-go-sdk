@@ -17,7 +17,7 @@ import (
 
 // UpdateNamespaceCmd represents the UpdateNamespace command
 var UpdateNamespaceCmd = &cobra.Command{
-	Use:   "UpdateNamespace",
+	Use:   "updateNamespace",
 	Short: "Update namespace",
 	Long:  `Update namespace`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var UpdateNamespaceCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateNamespaceCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateNamespaceCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateNamespaceCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateNamespaceCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateNamespaceCmd.MarkFlagRequired("namespace")
 }

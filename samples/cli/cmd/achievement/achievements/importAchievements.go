@@ -16,7 +16,7 @@ import (
 
 // ImportAchievementsCmd represents the ImportAchievements command
 var ImportAchievementsCmd = &cobra.Command{
-	Use:   "ImportAchievements",
+	Use:   "importAchievements",
 	Short: "Import achievements",
 	Long:  `Import achievements`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,8 +49,8 @@ var ImportAchievementsCmd = &cobra.Command{
 }
 
 func init() {
-	ImportAchievementsCmd.Flags().StringP("file", "fe", " ", "File")
-	ImportAchievementsCmd.Flags().StringP("strategy", "sy", " ", "Strategy")
-	ImportAchievementsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	ImportAchievementsCmd.Flags().StringP("file", "", " ", "File")
+	ImportAchievementsCmd.Flags().StringP("strategy", "", " ", "Strategy")
+	ImportAchievementsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ImportAchievementsCmd.MarkFlagRequired("namespace")
 }

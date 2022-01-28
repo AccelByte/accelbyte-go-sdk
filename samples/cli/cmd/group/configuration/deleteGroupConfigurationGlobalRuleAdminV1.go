@@ -15,7 +15,7 @@ import (
 
 // DeleteGroupConfigurationGlobalRuleAdminV1Cmd represents the DeleteGroupConfigurationGlobalRuleAdminV1 command
 var DeleteGroupConfigurationGlobalRuleAdminV1Cmd = &cobra.Command{
-	Use:   "DeleteGroupConfigurationGlobalRuleAdminV1",
+	Use:   "deleteGroupConfigurationGlobalRuleAdminV1",
 	Short: "Delete group configuration global rule admin V1",
 	Long:  `Delete group configuration global rule admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var DeleteGroupConfigurationGlobalRuleAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	DeleteGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("allowedAction", "an", " ", "Allowed action")
+	DeleteGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("allowedAction", "", " ", "Allowed action")
 	_ = DeleteGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("allowedAction")
-	DeleteGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("configurationCode", "ce", " ", "Configuration code")
+	DeleteGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("configurationCode", "", " ", "Configuration code")
 	_ = DeleteGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("configurationCode")
-	DeleteGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("namespace")
 }

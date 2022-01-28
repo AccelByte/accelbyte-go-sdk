@@ -17,7 +17,7 @@ import (
 
 // ChangePreferenceConsentCmd represents the ChangePreferenceConsent command
 var ChangePreferenceConsentCmd = &cobra.Command{
-	Use:   "ChangePreferenceConsent",
+	Use:   "changePreferenceConsent",
 	Short: "Change preference consent",
 	Long:  `Change preference consent`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,5 +45,5 @@ var ChangePreferenceConsentCmd = &cobra.Command{
 }
 
 func init() {
-	ChangePreferenceConsentCmd.Flags().StringP("body", "by", " ", "Body")
+	ChangePreferenceConsentCmd.Flags().StringP("body", "", " ", "Body")
 }

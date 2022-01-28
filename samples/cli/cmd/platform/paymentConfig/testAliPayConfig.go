@@ -17,7 +17,7 @@ import (
 
 // TestAliPayConfigCmd represents the TestAliPayConfig command
 var TestAliPayConfigCmd = &cobra.Command{
-	Use:   "TestAliPayConfig",
+	Use:   "testAliPayConfig",
 	Short: "Test ali pay config",
 	Long:  `Test ali pay config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,6 +48,6 @@ var TestAliPayConfigCmd = &cobra.Command{
 }
 
 func init() {
-	TestAliPayConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	TestAliPayConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
+	TestAliPayConfigCmd.Flags().StringP("body", "", " ", "Body")
+	TestAliPayConfigCmd.Flags().BoolP("sandbox", "", false, "Sandbox")
 }

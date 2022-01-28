@@ -15,7 +15,7 @@ import (
 
 // AdminGetListBanReasonV3Cmd represents the AdminGetListBanReasonV3 command
 var AdminGetListBanReasonV3Cmd = &cobra.Command{
-	Use:   "AdminGetListBanReasonV3",
+	Use:   "adminGetListBanReasonV3",
 	Short: "Admin get list ban reason V3",
 	Long:  `Admin get list ban reason V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,4 +33,7 @@ var AdminGetListBanReasonV3Cmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

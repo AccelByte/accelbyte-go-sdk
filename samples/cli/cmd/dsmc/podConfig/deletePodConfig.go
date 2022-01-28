@@ -15,7 +15,7 @@ import (
 
 // DeletePodConfigCmd represents the DeletePodConfig command
 var DeletePodConfigCmd = &cobra.Command{
-	Use:   "DeletePodConfig",
+	Use:   "deletePodConfig",
 	Short: "Delete pod config",
 	Long:  `Delete pod config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var DeletePodConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeletePodConfigCmd.Flags().StringP("name", "ne", " ", "Name")
+	DeletePodConfigCmd.Flags().StringP("name", "", " ", "Name")
 	_ = DeletePodConfigCmd.MarkFlagRequired("name")
-	DeletePodConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeletePodConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeletePodConfigCmd.MarkFlagRequired("namespace")
 }

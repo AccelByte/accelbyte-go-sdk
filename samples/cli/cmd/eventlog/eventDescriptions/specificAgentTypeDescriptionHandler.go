@@ -15,7 +15,7 @@ import (
 
 // SpecificAgentTypeDescriptionHandlerCmd represents the SpecificAgentTypeDescriptionHandler command
 var SpecificAgentTypeDescriptionHandlerCmd = &cobra.Command{
-	Use:   "SpecificAgentTypeDescriptionHandler",
+	Use:   "specificAgentTypeDescriptionHandler",
 	Short: "Specific agent type description handler",
 	Long:  `Specific agent type description handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,5 +39,5 @@ var SpecificAgentTypeDescriptionHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	SpecificAgentTypeDescriptionHandlerCmd.Flags().StringP("agentTypes", "as", " ", "Agent types")
+	SpecificAgentTypeDescriptionHandlerCmd.Flags().StringP("agentTypes", "", " ", "Agent types")
 }

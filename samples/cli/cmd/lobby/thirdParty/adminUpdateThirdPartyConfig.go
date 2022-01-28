@@ -17,7 +17,7 @@ import (
 
 // AdminUpdateThirdPartyConfigCmd represents the AdminUpdateThirdPartyConfig command
 var AdminUpdateThirdPartyConfigCmd = &cobra.Command{
-	Use:   "AdminUpdateThirdPartyConfig",
+	Use:   "adminUpdateThirdPartyConfig",
 	Short: "Admin update third party config",
 	Long:  `Admin update third party config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var AdminUpdateThirdPartyConfigCmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateThirdPartyConfigCmd.Flags().StringP("body", "by", " ", "Body")
+	AdminUpdateThirdPartyConfigCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminUpdateThirdPartyConfigCmd.MarkFlagRequired("body")
-	AdminUpdateThirdPartyConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminUpdateThirdPartyConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminUpdateThirdPartyConfigCmd.MarkFlagRequired("namespace")
 }

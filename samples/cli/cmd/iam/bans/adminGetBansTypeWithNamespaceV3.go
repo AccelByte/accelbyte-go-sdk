@@ -15,7 +15,7 @@ import (
 
 // AdminGetBansTypeWithNamespaceV3Cmd represents the AdminGetBansTypeWithNamespaceV3 command
 var AdminGetBansTypeWithNamespaceV3Cmd = &cobra.Command{
-	Use:   "AdminGetBansTypeWithNamespaceV3",
+	Use:   "adminGetBansTypeWithNamespaceV3",
 	Short: "Admin get bans type with namespace V3",
 	Long:  `Admin get bans type with namespace V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var AdminGetBansTypeWithNamespaceV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetBansTypeWithNamespaceV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetBansTypeWithNamespaceV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetBansTypeWithNamespaceV3Cmd.MarkFlagRequired("namespace")
 }

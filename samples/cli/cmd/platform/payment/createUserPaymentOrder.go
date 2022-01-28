@@ -17,7 +17,7 @@ import (
 
 // CreateUserPaymentOrderCmd represents the CreateUserPaymentOrder command
 var CreateUserPaymentOrderCmd = &cobra.Command{
-	Use:   "CreateUserPaymentOrder",
+	Use:   "createUserPaymentOrder",
 	Short: "Create user payment order",
 	Long:  `Create user payment order`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var CreateUserPaymentOrderCmd = &cobra.Command{
 }
 
 func init() {
-	CreateUserPaymentOrderCmd.Flags().StringP("body", "by", " ", "Body")
-	CreateUserPaymentOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateUserPaymentOrderCmd.Flags().StringP("body", "", " ", "Body")
+	CreateUserPaymentOrderCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateUserPaymentOrderCmd.MarkFlagRequired("namespace")
-	CreateUserPaymentOrderCmd.Flags().StringP("userId", "ud", " ", "User id")
+	CreateUserPaymentOrderCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = CreateUserPaymentOrderCmd.MarkFlagRequired("userId")
 }

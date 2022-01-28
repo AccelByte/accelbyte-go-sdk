@@ -15,7 +15,7 @@ import (
 
 // GetOrderCmd represents the GetOrder command
 var GetOrderCmd = &cobra.Command{
-	Use:   "GetOrder",
+	Use:   "getOrder",
 	Short: "Get order",
 	Long:  `Get order`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetOrderCmd = &cobra.Command{
 }
 
 func init() {
-	GetOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetOrderCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetOrderCmd.MarkFlagRequired("namespace")
-	GetOrderCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
+	GetOrderCmd.Flags().StringP("orderNo", "", " ", "Order no")
 	_ = GetOrderCmd.MarkFlagRequired("orderNo")
 }

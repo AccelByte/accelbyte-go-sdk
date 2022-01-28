@@ -15,7 +15,7 @@ import (
 
 // GetUserBanHistoryCmd represents the GetUserBanHistory command
 var GetUserBanHistoryCmd = &cobra.Command{
-	Use:   "GetUserBanHistory",
+	Use:   "getUserBanHistory",
 	Short: "Get user ban history",
 	Long:  `Get user ban history`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetUserBanHistoryCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserBanHistoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetUserBanHistoryCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetUserBanHistoryCmd.MarkFlagRequired("namespace")
-	GetUserBanHistoryCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetUserBanHistoryCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetUserBanHistoryCmd.MarkFlagRequired("userId")
 }

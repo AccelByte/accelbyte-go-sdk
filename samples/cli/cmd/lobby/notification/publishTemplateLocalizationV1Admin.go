@@ -15,7 +15,7 @@ import (
 
 // PublishTemplateLocalizationV1AdminCmd represents the PublishTemplateLocalizationV1Admin command
 var PublishTemplateLocalizationV1AdminCmd = &cobra.Command{
-	Use:   "PublishTemplateLocalizationV1Admin",
+	Use:   "publishTemplateLocalizationV1Admin",
 	Short: "Publish template localization V1 admin",
 	Long:  `Publish template localization V1 admin`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,10 +42,10 @@ var PublishTemplateLocalizationV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	PublishTemplateLocalizationV1AdminCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublishTemplateLocalizationV1AdminCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublishTemplateLocalizationV1AdminCmd.MarkFlagRequired("namespace")
-	PublishTemplateLocalizationV1AdminCmd.Flags().StringP("templateLanguage", "te", " ", "Template language")
+	PublishTemplateLocalizationV1AdminCmd.Flags().StringP("templateLanguage", "", " ", "Template language")
 	_ = PublishTemplateLocalizationV1AdminCmd.MarkFlagRequired("templateLanguage")
-	PublishTemplateLocalizationV1AdminCmd.Flags().StringP("templateSlug", "tg", " ", "Template slug")
+	PublishTemplateLocalizationV1AdminCmd.Flags().StringP("templateSlug", "", " ", "Template slug")
 	_ = PublishTemplateLocalizationV1AdminCmd.MarkFlagRequired("templateSlug")
 }

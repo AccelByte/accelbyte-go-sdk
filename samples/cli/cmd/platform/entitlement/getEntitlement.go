@@ -15,7 +15,7 @@ import (
 
 // GetEntitlementCmd represents the GetEntitlement command
 var GetEntitlementCmd = &cobra.Command{
-	Use:   "GetEntitlement",
+	Use:   "getEntitlement",
 	Short: "Get entitlement",
 	Long:  `Get entitlement`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetEntitlementCmd = &cobra.Command{
 }
 
 func init() {
-	GetEntitlementCmd.Flags().StringP("entitlementId", "ed", " ", "Entitlement id")
+	GetEntitlementCmd.Flags().StringP("entitlementId", "", " ", "Entitlement id")
 	_ = GetEntitlementCmd.MarkFlagRequired("entitlementId")
-	GetEntitlementCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetEntitlementCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetEntitlementCmd.MarkFlagRequired("namespace")
 }

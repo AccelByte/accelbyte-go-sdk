@@ -15,7 +15,7 @@ import (
 
 // GetSessionHistoryDetailedCmd represents the GetSessionHistoryDetailed command
 var GetSessionHistoryDetailedCmd = &cobra.Command{
-	Use:   "GetSessionHistoryDetailed",
+	Use:   "getSessionHistoryDetailed",
 	Short: "Get session history detailed",
 	Long:  `Get session history detailed`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetSessionHistoryDetailedCmd = &cobra.Command{
 }
 
 func init() {
-	GetSessionHistoryDetailedCmd.Flags().StringP("matchID", "mD", " ", "Match ID")
+	GetSessionHistoryDetailedCmd.Flags().StringP("matchID", "", " ", "Match ID")
 	_ = GetSessionHistoryDetailedCmd.MarkFlagRequired("matchID")
-	GetSessionHistoryDetailedCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetSessionHistoryDetailedCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetSessionHistoryDetailedCmd.MarkFlagRequired("namespace")
 }

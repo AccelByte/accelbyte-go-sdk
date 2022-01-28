@@ -15,7 +15,7 @@ import (
 
 // GetNamespacePublisherCmd represents the GetNamespacePublisher command
 var GetNamespacePublisherCmd = &cobra.Command{
-	Use:   "GetNamespacePublisher",
+	Use:   "getNamespacePublisher",
 	Short: "Get namespace publisher",
 	Long:  `Get namespace publisher`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var GetNamespacePublisherCmd = &cobra.Command{
 }
 
 func init() {
-	GetNamespacePublisherCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetNamespacePublisherCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetNamespacePublisherCmd.MarkFlagRequired("namespace")
 }

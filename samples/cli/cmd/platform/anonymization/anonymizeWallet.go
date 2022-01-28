@@ -15,7 +15,7 @@ import (
 
 // AnonymizeWalletCmd represents the AnonymizeWallet command
 var AnonymizeWalletCmd = &cobra.Command{
-	Use:   "AnonymizeWallet",
+	Use:   "anonymizeWallet",
 	Short: "Anonymize wallet",
 	Long:  `Anonymize wallet`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var AnonymizeWalletCmd = &cobra.Command{
 }
 
 func init() {
-	AnonymizeWalletCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AnonymizeWalletCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AnonymizeWalletCmd.MarkFlagRequired("namespace")
-	AnonymizeWalletCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AnonymizeWalletCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AnonymizeWalletCmd.MarkFlagRequired("userId")
 }

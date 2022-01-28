@@ -15,7 +15,7 @@ import (
 
 // DeleteStadiaIAPConfigCmd represents the DeleteStadiaIAPConfig command
 var DeleteStadiaIAPConfigCmd = &cobra.Command{
-	Use:   "DeleteStadiaIAPConfig",
+	Use:   "deleteStadiaIAPConfig",
 	Short: "Delete stadia IAP config",
 	Long:  `Delete stadia IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var DeleteStadiaIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteStadiaIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteStadiaIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteStadiaIAPConfigCmd.MarkFlagRequired("namespace")
 }

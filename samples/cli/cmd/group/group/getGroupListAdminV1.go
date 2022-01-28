@@ -15,7 +15,7 @@ import (
 
 // GetGroupListAdminV1Cmd represents the GetGroupListAdminV1 command
 var GetGroupListAdminV1Cmd = &cobra.Command{
-	Use:   "GetGroupListAdminV1",
+	Use:   "getGroupListAdminV1",
 	Short: "Get group list admin V1",
 	Long:  `Get group list admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,11 +49,11 @@ var GetGroupListAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetGroupListAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetGroupListAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetGroupListAdminV1Cmd.MarkFlagRequired("namespace")
-	GetGroupListAdminV1Cmd.Flags().StringP("configurationCode", "ce", " ", "Configuration code")
-	GetGroupListAdminV1Cmd.Flags().StringP("groupName", "ge", " ", "Group name")
-	GetGroupListAdminV1Cmd.Flags().StringP("groupRegion", "gn", " ", "Group region")
-	GetGroupListAdminV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	GetGroupListAdminV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
+	GetGroupListAdminV1Cmd.Flags().StringP("configurationCode", "", " ", "Configuration code")
+	GetGroupListAdminV1Cmd.Flags().StringP("groupName", "", " ", "Group name")
+	GetGroupListAdminV1Cmd.Flags().StringP("groupRegion", "", " ", "Group region")
+	GetGroupListAdminV1Cmd.Flags().Int64P("limit", "", 20, "Limit")
+	GetGroupListAdminV1Cmd.Flags().Int64P("offset", "", 0, "Offset")
 }

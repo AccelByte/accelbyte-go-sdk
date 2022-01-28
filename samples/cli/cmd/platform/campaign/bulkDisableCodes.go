@@ -15,7 +15,7 @@ import (
 
 // BulkDisableCodesCmd represents the BulkDisableCodes command
 var BulkDisableCodesCmd = &cobra.Command{
-	Use:   "BulkDisableCodes",
+	Use:   "bulkDisableCodes",
 	Short: "Bulk disable codes",
 	Long:  `Bulk disable codes`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,9 +43,9 @@ var BulkDisableCodesCmd = &cobra.Command{
 }
 
 func init() {
-	BulkDisableCodesCmd.Flags().StringP("campaignId", "cd", " ", "Campaign id")
+	BulkDisableCodesCmd.Flags().StringP("campaignId", "", " ", "Campaign id")
 	_ = BulkDisableCodesCmd.MarkFlagRequired("campaignId")
-	BulkDisableCodesCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	BulkDisableCodesCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = BulkDisableCodesCmd.MarkFlagRequired("namespace")
-	BulkDisableCodesCmd.Flags().Int32P("batchNo", "bo", 0, "Batch no")
+	BulkDisableCodesCmd.Flags().Int32P("batchNo", "", 0, "Batch no")
 }

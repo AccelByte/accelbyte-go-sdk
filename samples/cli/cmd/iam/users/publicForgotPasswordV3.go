@@ -17,7 +17,7 @@ import (
 
 // PublicForgotPasswordV3Cmd represents the PublicForgotPasswordV3 command
 var PublicForgotPasswordV3Cmd = &cobra.Command{
-	Use:   "PublicForgotPasswordV3",
+	Use:   "publicForgotPasswordV3",
 	Short: "Public forgot password V3",
 	Long:  `Public forgot password V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var PublicForgotPasswordV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicForgotPasswordV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	PublicForgotPasswordV3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = PublicForgotPasswordV3Cmd.MarkFlagRequired("body")
-	PublicForgotPasswordV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicForgotPasswordV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicForgotPasswordV3Cmd.MarkFlagRequired("namespace")
 }

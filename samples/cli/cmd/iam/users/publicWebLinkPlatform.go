@@ -15,7 +15,7 @@ import (
 
 // PublicWebLinkPlatformCmd represents the PublicWebLinkPlatform command
 var PublicWebLinkPlatformCmd = &cobra.Command{
-	Use:   "PublicWebLinkPlatform",
+	Use:   "publicWebLinkPlatform",
 	Short: "Public web link platform",
 	Long:  `Public web link platform`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,10 +45,10 @@ var PublicWebLinkPlatformCmd = &cobra.Command{
 }
 
 func init() {
-	PublicWebLinkPlatformCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicWebLinkPlatformCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicWebLinkPlatformCmd.MarkFlagRequired("namespace")
-	PublicWebLinkPlatformCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	PublicWebLinkPlatformCmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = PublicWebLinkPlatformCmd.MarkFlagRequired("platformId")
-	PublicWebLinkPlatformCmd.Flags().StringP("clientId", "cd", " ", "Client id")
-	PublicWebLinkPlatformCmd.Flags().StringP("redirectUri", "ri", " ", "Redirect uri")
+	PublicWebLinkPlatformCmd.Flags().StringP("clientId", "", " ", "Client id")
+	PublicWebLinkPlatformCmd.Flags().StringP("redirectUri", "", " ", "Redirect uri")
 }

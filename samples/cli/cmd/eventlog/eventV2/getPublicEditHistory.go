@@ -15,7 +15,7 @@ import (
 
 // GetPublicEditHistoryCmd represents the GetPublicEditHistory command
 var GetPublicEditHistoryCmd = &cobra.Command{
-	Use:   "GetPublicEditHistory",
+	Use:   "getPublicEditHistory",
 	Short: "Get public edit history",
 	Long:  `Get public edit history`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,13 +51,13 @@ var GetPublicEditHistoryCmd = &cobra.Command{
 }
 
 func init() {
-	GetPublicEditHistoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetPublicEditHistoryCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetPublicEditHistoryCmd.MarkFlagRequired("namespace")
-	GetPublicEditHistoryCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetPublicEditHistoryCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetPublicEditHistoryCmd.MarkFlagRequired("userId")
-	GetPublicEditHistoryCmd.Flags().StringP("endDate", "ee", " ", "End date")
-	GetPublicEditHistoryCmd.Flags().Float64P("offset", "ot", 0, "Offset")
-	GetPublicEditHistoryCmd.Flags().Float64P("pageSize", "pe", 1, "Page size")
-	GetPublicEditHistoryCmd.Flags().StringP("startDate", "se", " ", "Start date")
-	GetPublicEditHistoryCmd.Flags().StringP("type", "te", " ", "Type")
+	GetPublicEditHistoryCmd.Flags().StringP("endDate", "", " ", "End date")
+	GetPublicEditHistoryCmd.Flags().Float64P("offset", "", 0, "Offset")
+	GetPublicEditHistoryCmd.Flags().Float64P("pageSize", "", 1, "Page size")
+	GetPublicEditHistoryCmd.Flags().StringP("startDate", "", " ", "Start date")
+	GetPublicEditHistoryCmd.Flags().StringP("type", "", " ", "Type")
 }

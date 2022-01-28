@@ -15,7 +15,7 @@ import (
 
 // PublicSearchUserV3Cmd represents the PublicSearchUserV3 command
 var PublicSearchUserV3Cmd = &cobra.Command{
-	Use:   "PublicSearchUserV3",
+	Use:   "publicSearchUserV3",
 	Short: "Public search user V3",
 	Long:  `Public search user V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,8 +43,8 @@ var PublicSearchUserV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicSearchUserV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicSearchUserV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicSearchUserV3Cmd.MarkFlagRequired("namespace")
-	PublicSearchUserV3Cmd.Flags().StringP("by", "by", " ", "By")
-	PublicSearchUserV3Cmd.Flags().StringP("query", "qy", " ", "Query")
+	PublicSearchUserV3Cmd.Flags().StringP("by", "", " ", "By")
+	PublicSearchUserV3Cmd.Flags().StringP("query", "", " ", "Query")
 }

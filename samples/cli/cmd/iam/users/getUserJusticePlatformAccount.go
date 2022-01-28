@@ -15,7 +15,7 @@ import (
 
 // GetUserJusticePlatformAccountCmd represents the GetUserJusticePlatformAccount command
 var GetUserJusticePlatformAccountCmd = &cobra.Command{
-	Use:   "GetUserJusticePlatformAccount",
+	Use:   "getUserJusticePlatformAccount",
 	Short: "Get user justice platform account",
 	Long:  `Get user justice platform account`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var GetUserJusticePlatformAccountCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserJusticePlatformAccountCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetUserJusticePlatformAccountCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetUserJusticePlatformAccountCmd.MarkFlagRequired("namespace")
-	GetUserJusticePlatformAccountCmd.Flags().StringP("targetNamespace", "te", " ", "Target namespace")
+	GetUserJusticePlatformAccountCmd.Flags().StringP("targetNamespace", "", " ", "Target namespace")
 	_ = GetUserJusticePlatformAccountCmd.MarkFlagRequired("targetNamespace")
-	GetUserJusticePlatformAccountCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetUserJusticePlatformAccountCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetUserJusticePlatformAccountCmd.MarkFlagRequired("userId")
 }

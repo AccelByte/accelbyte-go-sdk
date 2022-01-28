@@ -15,7 +15,7 @@ import (
 
 // FeatureItemCmd represents the FeatureItem command
 var FeatureItemCmd = &cobra.Command{
-	Use:   "FeatureItem",
+	Use:   "featureItem",
 	Short: "Feature item",
 	Long:  `Feature item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,12 +45,12 @@ var FeatureItemCmd = &cobra.Command{
 }
 
 func init() {
-	FeatureItemCmd.Flags().StringP("feature", "fe", " ", "Feature")
+	FeatureItemCmd.Flags().StringP("feature", "", " ", "Feature")
 	_ = FeatureItemCmd.MarkFlagRequired("feature")
-	FeatureItemCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	FeatureItemCmd.Flags().StringP("itemId", "", " ", "Item id")
 	_ = FeatureItemCmd.MarkFlagRequired("itemId")
-	FeatureItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	FeatureItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = FeatureItemCmd.MarkFlagRequired("namespace")
-	FeatureItemCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	FeatureItemCmd.Flags().StringP("storeId", "", " ", "Store id")
 	_ = FeatureItemCmd.MarkFlagRequired("storeId")
 }

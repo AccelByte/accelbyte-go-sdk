@@ -17,7 +17,7 @@ import (
 
 // UpdateRewardCmd represents the UpdateReward command
 var UpdateRewardCmd = &cobra.Command{
-	Use:   "UpdateReward",
+	Use:   "updateReward",
 	Short: "Update reward",
 	Long:  `Update reward`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,11 +52,11 @@ var UpdateRewardCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateRewardCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateRewardCmd.Flags().StringP("code", "ce", " ", "Code")
+	UpdateRewardCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateRewardCmd.Flags().StringP("code", "", " ", "Code")
 	_ = UpdateRewardCmd.MarkFlagRequired("code")
-	UpdateRewardCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateRewardCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateRewardCmd.MarkFlagRequired("namespace")
-	UpdateRewardCmd.Flags().StringP("seasonId", "sd", " ", "Season id")
+	UpdateRewardCmd.Flags().StringP("seasonId", "", " ", "Season id")
 	_ = UpdateRewardCmd.MarkFlagRequired("seasonId")
 }

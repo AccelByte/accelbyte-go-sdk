@@ -15,7 +15,7 @@ import (
 
 // AdminChatHistoryCmd represents the AdminChatHistory command
 var AdminChatHistoryCmd = &cobra.Command{
-	Use:   "AdminChatHistory",
+	Use:   "adminChatHistory",
 	Short: "Admin chat history",
 	Long:  `Admin chat history`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,10 +43,10 @@ var AdminChatHistoryCmd = &cobra.Command{
 }
 
 func init() {
-	AdminChatHistoryCmd.Flags().StringP("friendId", "fd", " ", "Friend id")
+	AdminChatHistoryCmd.Flags().StringP("friendId", "", " ", "Friend id")
 	_ = AdminChatHistoryCmd.MarkFlagRequired("friendId")
-	AdminChatHistoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminChatHistoryCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminChatHistoryCmd.MarkFlagRequired("namespace")
-	AdminChatHistoryCmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminChatHistoryCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminChatHistoryCmd.MarkFlagRequired("userId")
 }

@@ -15,7 +15,7 @@ import (
 
 // QuerySubscriptionsCmd represents the QuerySubscriptions command
 var QuerySubscriptionsCmd = &cobra.Command{
-	Use:   "QuerySubscriptions",
+	Use:   "querySubscriptions",
 	Short: "Query subscriptions",
 	Long:  `Query subscriptions`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -55,14 +55,14 @@ var QuerySubscriptionsCmd = &cobra.Command{
 }
 
 func init() {
-	QuerySubscriptionsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QuerySubscriptionsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = QuerySubscriptionsCmd.MarkFlagRequired("namespace")
-	QuerySubscriptionsCmd.Flags().StringP("chargeStatus", "cs", " ", "Charge status")
-	QuerySubscriptionsCmd.Flags().StringP("itemId", "id", " ", "Item id")
-	QuerySubscriptionsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	QuerySubscriptionsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	QuerySubscriptionsCmd.Flags().StringP("sku", "su", " ", "Sku")
-	QuerySubscriptionsCmd.Flags().StringP("status", "ss", " ", "Status")
-	QuerySubscriptionsCmd.Flags().StringP("subscribedBy", "sy", " ", "Subscribed by")
-	QuerySubscriptionsCmd.Flags().StringP("userId", "ud", " ", "User id")
+	QuerySubscriptionsCmd.Flags().StringP("chargeStatus", "", " ", "Charge status")
+	QuerySubscriptionsCmd.Flags().StringP("itemId", "", " ", "Item id")
+	QuerySubscriptionsCmd.Flags().Int32P("limit", "", 20, "Limit")
+	QuerySubscriptionsCmd.Flags().Int32P("offset", "", 0, "Offset")
+	QuerySubscriptionsCmd.Flags().StringP("sku", "", " ", "Sku")
+	QuerySubscriptionsCmd.Flags().StringP("status", "", " ", "Status")
+	QuerySubscriptionsCmd.Flags().StringP("subscribedBy", "", " ", "Subscribed by")
+	QuerySubscriptionsCmd.Flags().StringP("userId", "", " ", "User id")
 }

@@ -17,7 +17,7 @@ import (
 
 // UpdateGroupCustomRulePublicV1Cmd represents the UpdateGroupCustomRulePublicV1 command
 var UpdateGroupCustomRulePublicV1Cmd = &cobra.Command{
-	Use:   "UpdateGroupCustomRulePublicV1",
+	Use:   "updateGroupCustomRulePublicV1",
 	Short: "Update group custom rule public V1",
 	Long:  `Update group custom rule public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var UpdateGroupCustomRulePublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	UpdateGroupCustomRulePublicV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateGroupCustomRulePublicV1Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateGroupCustomRulePublicV1Cmd.MarkFlagRequired("body")
-	UpdateGroupCustomRulePublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	UpdateGroupCustomRulePublicV1Cmd.Flags().StringP("groupId", "", " ", "Group id")
 	_ = UpdateGroupCustomRulePublicV1Cmd.MarkFlagRequired("groupId")
-	UpdateGroupCustomRulePublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateGroupCustomRulePublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateGroupCustomRulePublicV1Cmd.MarkFlagRequired("namespace")
 }

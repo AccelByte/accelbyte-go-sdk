@@ -15,7 +15,7 @@ import (
 
 // GetCategoryCmd represents the GetCategory command
 var GetCategoryCmd = &cobra.Command{
-	Use:   "GetCategory",
+	Use:   "getCategory",
 	Short: "Get category",
 	Long:  `Get category`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,9 +43,9 @@ var GetCategoryCmd = &cobra.Command{
 }
 
 func init() {
-	GetCategoryCmd.Flags().StringP("categoryPath", "ch", " ", "Category path")
+	GetCategoryCmd.Flags().StringP("categoryPath", "", " ", "Category path")
 	_ = GetCategoryCmd.MarkFlagRequired("categoryPath")
-	GetCategoryCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetCategoryCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetCategoryCmd.MarkFlagRequired("namespace")
-	GetCategoryCmd.Flags().StringP("storeId", "sd", " ", "Store id")
+	GetCategoryCmd.Flags().StringP("storeId", "", " ", "Store id")
 }

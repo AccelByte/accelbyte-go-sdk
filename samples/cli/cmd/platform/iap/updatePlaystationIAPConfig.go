@@ -17,7 +17,7 @@ import (
 
 // UpdatePlaystationIAPConfigCmd represents the UpdatePlaystationIAPConfig command
 var UpdatePlaystationIAPConfigCmd = &cobra.Command{
-	Use:   "UpdatePlaystationIAPConfig",
+	Use:   "updatePlaystationIAPConfig",
 	Short: "Update playstation IAP config",
 	Long:  `Update playstation IAP config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var UpdatePlaystationIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdatePlaystationIAPConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdatePlaystationIAPConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdatePlaystationIAPConfigCmd.Flags().StringP("body", "", " ", "Body")
+	UpdatePlaystationIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdatePlaystationIAPConfigCmd.MarkFlagRequired("namespace")
 }

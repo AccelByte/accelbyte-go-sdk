@@ -15,7 +15,7 @@ import (
 
 // DeleteSSOLoginPlatformCredentialV3Cmd represents the DeleteSSOLoginPlatformCredentialV3 command
 var DeleteSSOLoginPlatformCredentialV3Cmd = &cobra.Command{
-	Use:   "DeleteSSOLoginPlatformCredentialV3",
+	Use:   "deleteSSOLoginPlatformCredentialV3",
 	Short: "Delete SSO login platform credential V3",
 	Long:  `Delete SSO login platform credential V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var DeleteSSOLoginPlatformCredentialV3Cmd = &cobra.Command{
 }
 
 func init() {
-	DeleteSSOLoginPlatformCredentialV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteSSOLoginPlatformCredentialV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteSSOLoginPlatformCredentialV3Cmd.MarkFlagRequired("namespace")
-	DeleteSSOLoginPlatformCredentialV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	DeleteSSOLoginPlatformCredentialV3Cmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = DeleteSSOLoginPlatformCredentialV3Cmd.MarkFlagRequired("platformId")
 }

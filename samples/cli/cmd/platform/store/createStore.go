@@ -17,7 +17,7 @@ import (
 
 // CreateStoreCmd represents the CreateStore command
 var CreateStoreCmd = &cobra.Command{
-	Use:   "CreateStore",
+	Use:   "createStore",
 	Short: "Create store",
 	Long:  `Create store`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var CreateStoreCmd = &cobra.Command{
 }
 
 func init() {
-	CreateStoreCmd.Flags().StringP("body", "by", " ", "Body")
-	CreateStoreCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateStoreCmd.Flags().StringP("body", "", " ", "Body")
+	CreateStoreCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateStoreCmd.MarkFlagRequired("namespace")
 }

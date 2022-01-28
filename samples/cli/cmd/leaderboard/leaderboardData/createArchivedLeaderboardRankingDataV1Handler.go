@@ -17,7 +17,7 @@ import (
 
 // CreateArchivedLeaderboardRankingDataV1HandlerCmd represents the CreateArchivedLeaderboardRankingDataV1Handler command
 var CreateArchivedLeaderboardRankingDataV1HandlerCmd = &cobra.Command{
-	Use:   "CreateArchivedLeaderboardRankingDataV1Handler",
+	Use:   "createArchivedLeaderboardRankingDataV1Handler",
 	Short: "Create archived leaderboard ranking data V1 handler",
 	Long:  `Create archived leaderboard ranking data V1 handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,8 +47,8 @@ var CreateArchivedLeaderboardRankingDataV1HandlerCmd = &cobra.Command{
 }
 
 func init() {
-	CreateArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("body", "by", " ", "Body")
+	CreateArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("body", "", " ", "Body")
 	_ = CreateArchivedLeaderboardRankingDataV1HandlerCmd.MarkFlagRequired("body")
-	CreateArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	CreateArchivedLeaderboardRankingDataV1HandlerCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = CreateArchivedLeaderboardRankingDataV1HandlerCmd.MarkFlagRequired("namespace")
 }

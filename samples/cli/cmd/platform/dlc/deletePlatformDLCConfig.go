@@ -15,7 +15,7 @@ import (
 
 // DeletePlatformDLCConfigCmd represents the DeletePlatformDLCConfig command
 var DeletePlatformDLCConfigCmd = &cobra.Command{
-	Use:   "DeletePlatformDLCConfig",
+	Use:   "deletePlatformDLCConfig",
 	Short: "Delete platform DLC config",
 	Long:  `Delete platform DLC config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var DeletePlatformDLCConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeletePlatformDLCConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeletePlatformDLCConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeletePlatformDLCConfigCmd.MarkFlagRequired("namespace")
 }

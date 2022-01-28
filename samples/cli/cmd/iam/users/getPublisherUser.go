@@ -15,7 +15,7 @@ import (
 
 // GetPublisherUserCmd represents the GetPublisherUser command
 var GetPublisherUserCmd = &cobra.Command{
-	Use:   "GetPublisherUser",
+	Use:   "getPublisherUser",
 	Short: "Get publisher user",
 	Long:  `Get publisher user`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var GetPublisherUserCmd = &cobra.Command{
 }
 
 func init() {
-	GetPublisherUserCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetPublisherUserCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetPublisherUserCmd.MarkFlagRequired("namespace")
-	GetPublisherUserCmd.Flags().StringP("userId", "ud", " ", "User id")
+	GetPublisherUserCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = GetPublisherUserCmd.MarkFlagRequired("userId")
 }

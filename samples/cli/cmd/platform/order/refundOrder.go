@@ -17,7 +17,7 @@ import (
 
 // RefundOrderCmd represents the RefundOrder command
 var RefundOrderCmd = &cobra.Command{
-	Use:   "RefundOrder",
+	Use:   "refundOrder",
 	Short: "Refund order",
 	Long:  `Refund order`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var RefundOrderCmd = &cobra.Command{
 }
 
 func init() {
-	RefundOrderCmd.Flags().StringP("body", "by", " ", "Body")
-	RefundOrderCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	RefundOrderCmd.Flags().StringP("body", "", " ", "Body")
+	RefundOrderCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = RefundOrderCmd.MarkFlagRequired("namespace")
-	RefundOrderCmd.Flags().StringP("orderNo", "oo", " ", "Order no")
+	RefundOrderCmd.Flags().StringP("orderNo", "", " ", "Order no")
 	_ = RefundOrderCmd.MarkFlagRequired("orderNo")
 }

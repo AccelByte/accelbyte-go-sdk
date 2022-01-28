@@ -17,7 +17,7 @@ import (
 
 // MockFulfillIAPItemCmd represents the MockFulfillIAPItem command
 var MockFulfillIAPItemCmd = &cobra.Command{
-	Use:   "MockFulfillIAPItem",
+	Use:   "mockFulfillIAPItem",
 	Short: "Mock fulfill IAP item",
 	Long:  `Mock fulfill IAP item`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +49,9 @@ var MockFulfillIAPItemCmd = &cobra.Command{
 }
 
 func init() {
-	MockFulfillIAPItemCmd.Flags().StringP("body", "by", " ", "Body")
-	MockFulfillIAPItemCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	MockFulfillIAPItemCmd.Flags().StringP("body", "", " ", "Body")
+	MockFulfillIAPItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = MockFulfillIAPItemCmd.MarkFlagRequired("namespace")
-	MockFulfillIAPItemCmd.Flags().StringP("userId", "ud", " ", "User id")
+	MockFulfillIAPItemCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = MockFulfillIAPItemCmd.MarkFlagRequired("userId")
 }

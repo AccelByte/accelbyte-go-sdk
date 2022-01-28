@@ -15,7 +15,7 @@ import (
 
 // AdminGetAllConfigV1Cmd represents the AdminGetAllConfigV1 command
 var AdminGetAllConfigV1Cmd = &cobra.Command{
-	Use:   "AdminGetAllConfigV1",
+	Use:   "adminGetAllConfigV1",
 	Short: "Admin get all config V1",
 	Long:  `Admin get all config V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,4 +33,7 @@ var AdminGetAllConfigV1Cmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

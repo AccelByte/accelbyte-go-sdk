@@ -15,7 +15,7 @@ import (
 
 // AdminSearchUsersV2Cmd represents the AdminSearchUsersV2 command
 var AdminSearchUsersV2Cmd = &cobra.Command{
-	Use:   "AdminSearchUsersV2",
+	Use:   "adminSearchUsersV2",
 	Short: "Admin search users V2",
 	Long:  `Admin search users V2`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -57,16 +57,16 @@ var AdminSearchUsersV2Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminSearchUsersV2Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminSearchUsersV2Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminSearchUsersV2Cmd.MarkFlagRequired("namespace")
-	AdminSearchUsersV2Cmd.Flags().StringP("after", "ar", "0", "After")
-	AdminSearchUsersV2Cmd.Flags().StringP("before", "be", "0", "Before")
-	AdminSearchUsersV2Cmd.Flags().StringP("displayName", "de", " ", "Display name")
-	AdminSearchUsersV2Cmd.Flags().StringP("limit", "lt", "20", "Limit")
-	AdminSearchUsersV2Cmd.Flags().StringP("loginId", "ld", " ", "Login id")
-	AdminSearchUsersV2Cmd.Flags().StringP("platformUserId", "pd", " ", "Platform user id")
-	AdminSearchUsersV2Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
-	AdminSearchUsersV2Cmd.Flags().StringP("userId", "ud", " ", "User id")
-	AdminSearchUsersV2Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	AdminSearchUsersV2Cmd.Flags().StringP("after", "", "0", "After")
+	AdminSearchUsersV2Cmd.Flags().StringP("before", "", "0", "Before")
+	AdminSearchUsersV2Cmd.Flags().StringP("displayName", "", " ", "Display name")
+	AdminSearchUsersV2Cmd.Flags().StringP("limit", "", "20", "Limit")
+	AdminSearchUsersV2Cmd.Flags().StringP("loginId", "", " ", "Login id")
+	AdminSearchUsersV2Cmd.Flags().StringP("platformUserId", "", " ", "Platform user id")
+	AdminSearchUsersV2Cmd.Flags().StringP("roleId", "", " ", "Role id")
+	AdminSearchUsersV2Cmd.Flags().StringP("userId", "", " ", "User id")
+	AdminSearchUsersV2Cmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = AdminSearchUsersV2Cmd.MarkFlagRequired("platformId")
 }

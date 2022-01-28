@@ -16,7 +16,7 @@ import (
 
 // QuerySeasonsCmd represents the QuerySeasons command
 var QuerySeasonsCmd = &cobra.Command{
-	Use:   "QuerySeasons",
+	Use:   "querySeasons",
 	Short: "Query seasons",
 	Long:  `Query seasons`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,9 +51,9 @@ var QuerySeasonsCmd = &cobra.Command{
 }
 
 func init() {
-	QuerySeasonsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	QuerySeasonsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = QuerySeasonsCmd.MarkFlagRequired("namespace")
-	QuerySeasonsCmd.Flags().Int32P("limit", "lt", 20, "Limit")
-	QuerySeasonsCmd.Flags().Int32P("offset", "ot", 0, "Offset")
-	QuerySeasonsCmd.Flags().StringP("status", "ss", " ", "Status")
+	QuerySeasonsCmd.Flags().Int32P("limit", "", 20, "Limit")
+	QuerySeasonsCmd.Flags().Int32P("offset", "", 0, "Offset")
+	QuerySeasonsCmd.Flags().StringP("status", "", " ", "Status")
 }

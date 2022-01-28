@@ -17,7 +17,7 @@ import (
 
 // BulkGetPlayerPublicRecordHandlerV1Cmd represents the BulkGetPlayerPublicRecordHandlerV1 command
 var BulkGetPlayerPublicRecordHandlerV1Cmd = &cobra.Command{
-	Use:   "BulkGetPlayerPublicRecordHandlerV1",
+	Use:   "bulkGetPlayerPublicRecordHandlerV1",
 	Short: "Bulk get player public record handler V1",
 	Long:  `Bulk get player public record handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var BulkGetPlayerPublicRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	BulkGetPlayerPublicRecordHandlerV1Cmd.Flags().StringP("body", "by", " ", "Body")
+	BulkGetPlayerPublicRecordHandlerV1Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = BulkGetPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("body")
-	BulkGetPlayerPublicRecordHandlerV1Cmd.Flags().StringP("key", "ky", " ", "Key")
+	BulkGetPlayerPublicRecordHandlerV1Cmd.Flags().StringP("key", "", " ", "Key")
 	_ = BulkGetPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("key")
-	BulkGetPlayerPublicRecordHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	BulkGetPlayerPublicRecordHandlerV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = BulkGetPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("namespace")
 }

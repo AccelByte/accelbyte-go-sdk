@@ -15,7 +15,7 @@ import (
 
 // GetBansTypeCmd represents the GetBansType command
 var GetBansTypeCmd = &cobra.Command{
-	Use:   "GetBansType",
+	Use:   "getBansType",
 	Short: "Get bans type",
 	Long:  `Get bans type`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -33,4 +33,7 @@ var GetBansTypeCmd = &cobra.Command{
 		}
 		return nil
 	},
+}
+
+func init() {
 }

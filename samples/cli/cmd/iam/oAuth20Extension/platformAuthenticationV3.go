@@ -15,7 +15,7 @@ import (
 
 // PlatformAuthenticationV3Cmd represents the PlatformAuthenticationV3 command
 var PlatformAuthenticationV3Cmd = &cobra.Command{
-	Use:   "PlatformAuthenticationV3",
+	Use:   "platformAuthenticationV3",
 	Short: "Platform authentication V3",
 	Long:  `Platform authentication V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -64,20 +64,20 @@ var PlatformAuthenticationV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PlatformAuthenticationV3Cmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	PlatformAuthenticationV3Cmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = PlatformAuthenticationV3Cmd.MarkFlagRequired("platformId")
-	PlatformAuthenticationV3Cmd.Flags().StringP("code", "ce", " ", "Code")
-	PlatformAuthenticationV3Cmd.Flags().StringP("error", "er", " ", "Error")
-	PlatformAuthenticationV3Cmd.Flags().StringP("openid.assoc_handle", "oe", " ", "Openid assoc handle")
-	PlatformAuthenticationV3Cmd.Flags().StringP("openid.claimed_id", "od", " ", "Openid claimed id")
-	PlatformAuthenticationV3Cmd.Flags().StringP("openid.identity", "oy", " ", "Openid identity")
-	PlatformAuthenticationV3Cmd.Flags().StringP("openid.mode", "oe", " ", "Openid mode")
-	PlatformAuthenticationV3Cmd.Flags().StringP("openid.ns", "os", " ", "Openid ns")
-	PlatformAuthenticationV3Cmd.Flags().StringP("openid.op_endpoint", "ot", " ", "Openid op endpoint")
-	PlatformAuthenticationV3Cmd.Flags().StringP("openid.response_nonce", "oe", " ", "Openid response nonce")
-	PlatformAuthenticationV3Cmd.Flags().StringP("openid.return_to", "oo", " ", "Openid return to")
-	PlatformAuthenticationV3Cmd.Flags().StringP("openid.sig", "og", " ", "Openid sig")
-	PlatformAuthenticationV3Cmd.Flags().StringP("openid.signed", "od", " ", "Openid signed")
-	PlatformAuthenticationV3Cmd.Flags().StringP("state", "se", " ", "State")
+	PlatformAuthenticationV3Cmd.Flags().StringP("code", "", " ", "Code")
+	PlatformAuthenticationV3Cmd.Flags().StringP("error", "", " ", "Error")
+	PlatformAuthenticationV3Cmd.Flags().StringP("openid.assoc_handle", "", " ", "Openid assoc handle")
+	PlatformAuthenticationV3Cmd.Flags().StringP("openid.claimed_id", "", " ", "Openid claimed id")
+	PlatformAuthenticationV3Cmd.Flags().StringP("openid.identity", "", " ", "Openid identity")
+	PlatformAuthenticationV3Cmd.Flags().StringP("openid.mode", "", " ", "Openid mode")
+	PlatformAuthenticationV3Cmd.Flags().StringP("openid.ns", "", " ", "Openid ns")
+	PlatformAuthenticationV3Cmd.Flags().StringP("openid.op_endpoint", "", " ", "Openid op endpoint")
+	PlatformAuthenticationV3Cmd.Flags().StringP("openid.response_nonce", "", " ", "Openid response nonce")
+	PlatformAuthenticationV3Cmd.Flags().StringP("openid.return_to", "", " ", "Openid return to")
+	PlatformAuthenticationV3Cmd.Flags().StringP("openid.sig", "", " ", "Openid sig")
+	PlatformAuthenticationV3Cmd.Flags().StringP("openid.signed", "", " ", "Openid signed")
+	PlatformAuthenticationV3Cmd.Flags().StringP("state", "", " ", "State")
 	_ = PlatformAuthenticationV3Cmd.MarkFlagRequired("state")
 }

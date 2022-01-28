@@ -15,7 +15,7 @@ import (
 
 // DeleteUserSlotConfigCmd represents the DeleteUserSlotConfig command
 var DeleteUserSlotConfigCmd = &cobra.Command{
-	Use:   "DeleteUserSlotConfig",
+	Use:   "deleteUserSlotConfig",
 	Short: "Delete user slot config",
 	Long:  `Delete user slot config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -40,8 +40,8 @@ var DeleteUserSlotConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteUserSlotConfigCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DeleteUserSlotConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DeleteUserSlotConfigCmd.MarkFlagRequired("namespace")
-	DeleteUserSlotConfigCmd.Flags().StringP("userId", "ud", " ", "User id")
+	DeleteUserSlotConfigCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = DeleteUserSlotConfigCmd.MarkFlagRequired("userId")
 }

@@ -15,7 +15,7 @@ import (
 
 // AdminGetPartyDataV1Cmd represents the AdminGetPartyDataV1 command
 var AdminGetPartyDataV1Cmd = &cobra.Command{
-	Use:   "AdminGetPartyDataV1",
+	Use:   "adminGetPartyDataV1",
 	Short: "Admin get party data V1",
 	Long:  `Admin get party data V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var AdminGetPartyDataV1Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetPartyDataV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetPartyDataV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetPartyDataV1Cmd.MarkFlagRequired("namespace")
-	AdminGetPartyDataV1Cmd.Flags().StringP("partyId", "pd", " ", "Party id")
+	AdminGetPartyDataV1Cmd.Flags().StringP("partyId", "", " ", "Party id")
 	_ = AdminGetPartyDataV1Cmd.MarkFlagRequired("partyId")
 }

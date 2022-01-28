@@ -15,7 +15,7 @@ import (
 
 // AdminGetListDeletionDataRequestCmd represents the AdminGetListDeletionDataRequest command
 var AdminGetListDeletionDataRequestCmd = &cobra.Command{
-	Use:   "AdminGetListDeletionDataRequest",
+	Use:   "adminGetListDeletionDataRequest",
 	Short: "Admin get list deletion data request",
 	Long:  `Admin get list deletion data request`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,11 +49,11 @@ var AdminGetListDeletionDataRequestCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetListDeletionDataRequestCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetListDeletionDataRequestCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetListDeletionDataRequestCmd.MarkFlagRequired("namespace")
-	AdminGetListDeletionDataRequestCmd.Flags().StringP("after", "ar", "0", "After")
-	AdminGetListDeletionDataRequestCmd.Flags().StringP("before", "be", "0", "Before")
-	AdminGetListDeletionDataRequestCmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	AdminGetListDeletionDataRequestCmd.Flags().Int64P("offset", "ot", 0, "Offset")
-	AdminGetListDeletionDataRequestCmd.Flags().StringP("requestDate", "re", " ", "Request date")
+	AdminGetListDeletionDataRequestCmd.Flags().StringP("after", "", "0", "After")
+	AdminGetListDeletionDataRequestCmd.Flags().StringP("before", "", "0", "Before")
+	AdminGetListDeletionDataRequestCmd.Flags().Int64P("limit", "", 20, "Limit")
+	AdminGetListDeletionDataRequestCmd.Flags().Int64P("offset", "", 0, "Offset")
+	AdminGetListDeletionDataRequestCmd.Flags().StringP("requestDate", "", " ", "Request date")
 }

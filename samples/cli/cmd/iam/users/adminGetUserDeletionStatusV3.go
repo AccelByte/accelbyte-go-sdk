@@ -15,7 +15,7 @@ import (
 
 // AdminGetUserDeletionStatusV3Cmd represents the AdminGetUserDeletionStatusV3 command
 var AdminGetUserDeletionStatusV3Cmd = &cobra.Command{
-	Use:   "AdminGetUserDeletionStatusV3",
+	Use:   "adminGetUserDeletionStatusV3",
 	Short: "Admin get user deletion status V3",
 	Long:  `Admin get user deletion status V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var AdminGetUserDeletionStatusV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetUserDeletionStatusV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminGetUserDeletionStatusV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminGetUserDeletionStatusV3Cmd.MarkFlagRequired("namespace")
-	AdminGetUserDeletionStatusV3Cmd.Flags().StringP("userId", "ud", " ", "User id")
+	AdminGetUserDeletionStatusV3Cmd.Flags().StringP("userId", "", " ", "User id")
 	_ = AdminGetUserDeletionStatusV3Cmd.MarkFlagRequired("userId")
 }

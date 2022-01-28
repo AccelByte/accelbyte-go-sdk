@@ -15,7 +15,7 @@ import (
 
 // RetrieveEligibilitiesPublicCmd represents the RetrieveEligibilitiesPublic command
 var RetrieveEligibilitiesPublicCmd = &cobra.Command{
-	Use:   "RetrieveEligibilitiesPublic",
+	Use:   "retrieveEligibilitiesPublic",
 	Short: "Retrieve eligibilities public",
 	Long:  `Retrieve eligibilities public`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var RetrieveEligibilitiesPublicCmd = &cobra.Command{
 }
 
 func init() {
-	RetrieveEligibilitiesPublicCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	RetrieveEligibilitiesPublicCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = RetrieveEligibilitiesPublicCmd.MarkFlagRequired("namespace")
 }

@@ -15,7 +15,7 @@ import (
 
 // RejectGroupInvitationPublicV1Cmd represents the RejectGroupInvitationPublicV1 command
 var RejectGroupInvitationPublicV1Cmd = &cobra.Command{
-	Use:   "RejectGroupInvitationPublicV1",
+	Use:   "rejectGroupInvitationPublicV1",
 	Short: "Reject group invitation public V1",
 	Long:  `Reject group invitation public V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var RejectGroupInvitationPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	RejectGroupInvitationPublicV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	RejectGroupInvitationPublicV1Cmd.Flags().StringP("groupId", "", " ", "Group id")
 	_ = RejectGroupInvitationPublicV1Cmd.MarkFlagRequired("groupId")
-	RejectGroupInvitationPublicV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	RejectGroupInvitationPublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = RejectGroupInvitationPublicV1Cmd.MarkFlagRequired("namespace")
 }

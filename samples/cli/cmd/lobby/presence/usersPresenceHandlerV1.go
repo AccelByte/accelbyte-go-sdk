@@ -15,7 +15,7 @@ import (
 
 // UsersPresenceHandlerV1Cmd represents the UsersPresenceHandlerV1 command
 var UsersPresenceHandlerV1Cmd = &cobra.Command{
-	Use:   "UsersPresenceHandlerV1",
+	Use:   "usersPresenceHandlerV1",
 	Short: "Users presence handler V1",
 	Long:  `Users presence handler V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -43,9 +43,9 @@ var UsersPresenceHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	UsersPresenceHandlerV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UsersPresenceHandlerV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UsersPresenceHandlerV1Cmd.MarkFlagRequired("namespace")
-	UsersPresenceHandlerV1Cmd.Flags().BoolP("countOnly", "cy", false, "Count only")
-	UsersPresenceHandlerV1Cmd.Flags().StringP("userIds", "us", " ", "User ids")
+	UsersPresenceHandlerV1Cmd.Flags().BoolP("countOnly", "", false, "Count only")
+	UsersPresenceHandlerV1Cmd.Flags().StringP("userIds", "", " ", "User ids")
 	_ = UsersPresenceHandlerV1Cmd.MarkFlagRequired("userIds")
 }

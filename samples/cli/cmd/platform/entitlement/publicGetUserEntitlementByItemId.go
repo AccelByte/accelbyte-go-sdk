@@ -15,7 +15,7 @@ import (
 
 // PublicGetUserEntitlementByItemIdCmd represents the PublicGetUserEntitlementByItemId command
 var PublicGetUserEntitlementByItemIdCmd = &cobra.Command{
-	Use:   "PublicGetUserEntitlementByItemId",
+	Use:   "publicGetUserEntitlementByItemId",
 	Short: "Public get user entitlement by item id",
 	Long:  `Public get user entitlement by item id`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,11 +45,11 @@ var PublicGetUserEntitlementByItemIdCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserEntitlementByItemIdCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicGetUserEntitlementByItemIdCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicGetUserEntitlementByItemIdCmd.MarkFlagRequired("namespace")
-	PublicGetUserEntitlementByItemIdCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicGetUserEntitlementByItemIdCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicGetUserEntitlementByItemIdCmd.MarkFlagRequired("userId")
-	PublicGetUserEntitlementByItemIdCmd.Flags().StringP("entitlementClazz", "ez", " ", "Entitlement clazz")
-	PublicGetUserEntitlementByItemIdCmd.Flags().StringP("itemId", "id", " ", "Item id")
+	PublicGetUserEntitlementByItemIdCmd.Flags().StringP("entitlementClazz", "", " ", "Entitlement clazz")
+	PublicGetUserEntitlementByItemIdCmd.Flags().StringP("itemId", "", " ", "Item id")
 	_ = PublicGetUserEntitlementByItemIdCmd.MarkFlagRequired("itemId")
 }

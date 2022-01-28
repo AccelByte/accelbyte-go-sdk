@@ -17,7 +17,7 @@ import (
 
 // PublicSubscribeSubscriptionCmd represents the PublicSubscribeSubscription command
 var PublicSubscribeSubscriptionCmd = &cobra.Command{
-	Use:   "PublicSubscribeSubscription",
+	Use:   "publicSubscribeSubscription",
 	Short: "Public subscribe subscription",
 	Long:  `Public subscribe subscription`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -49,9 +49,9 @@ var PublicSubscribeSubscriptionCmd = &cobra.Command{
 }
 
 func init() {
-	PublicSubscribeSubscriptionCmd.Flags().StringP("body", "by", " ", "Body")
-	PublicSubscribeSubscriptionCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicSubscribeSubscriptionCmd.Flags().StringP("body", "", " ", "Body")
+	PublicSubscribeSubscriptionCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicSubscribeSubscriptionCmd.MarkFlagRequired("namespace")
-	PublicSubscribeSubscriptionCmd.Flags().StringP("userId", "ud", " ", "User id")
+	PublicSubscribeSubscriptionCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = PublicSubscribeSubscriptionCmd.MarkFlagRequired("userId")
 }

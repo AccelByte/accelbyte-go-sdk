@@ -17,7 +17,7 @@ import (
 
 // AddRolePermissionCmd represents the AddRolePermission command
 var AddRolePermissionCmd = &cobra.Command{
-	Use:   "AddRolePermission",
+	Use:   "addRolePermission",
 	Short: "Add role permission",
 	Long:  `Add role permission`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -51,12 +51,12 @@ var AddRolePermissionCmd = &cobra.Command{
 }
 
 func init() {
-	AddRolePermissionCmd.Flags().StringP("body", "by", " ", "Body")
+	AddRolePermissionCmd.Flags().StringP("body", "", " ", "Body")
 	_ = AddRolePermissionCmd.MarkFlagRequired("body")
-	AddRolePermissionCmd.Flags().Int64P("action", "an", -1, "Action")
+	AddRolePermissionCmd.Flags().Int64P("action", "", -1, "Action")
 	_ = AddRolePermissionCmd.MarkFlagRequired("action")
-	AddRolePermissionCmd.Flags().StringP("resource", "re", " ", "Resource")
+	AddRolePermissionCmd.Flags().StringP("resource", "", " ", "Resource")
 	_ = AddRolePermissionCmd.MarkFlagRequired("resource")
-	AddRolePermissionCmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	AddRolePermissionCmd.Flags().StringP("roleId", "", " ", "Role id")
 	_ = AddRolePermissionCmd.MarkFlagRequired("roleId")
 }

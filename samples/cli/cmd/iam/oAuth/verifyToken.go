@@ -15,7 +15,7 @@ import (
 
 // VerifyTokenCmd represents the VerifyToken command
 var VerifyTokenCmd = &cobra.Command{
-	Use:   "VerifyToken",
+	Use:   "verifyToken",
 	Short: "Verify token",
 	Long:  `Verify token`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var VerifyTokenCmd = &cobra.Command{
 }
 
 func init() {
-	VerifyTokenCmd.Flags().StringP("token", "tn", " ", "Token")
+	VerifyTokenCmd.Flags().StringP("token", "", " ", "Token")
 	_ = VerifyTokenCmd.MarkFlagRequired("token")
 }

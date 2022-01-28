@@ -15,7 +15,7 @@ import (
 
 // LogoutSSOClientCmd represents the LogoutSSOClient command
 var LogoutSSOClientCmd = &cobra.Command{
-	Use:   "LogoutSSOClient",
+	Use:   "logoutSSOClient",
 	Short: "Logout SSO client",
 	Long:  `Logout SSO client`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -38,6 +38,6 @@ var LogoutSSOClientCmd = &cobra.Command{
 }
 
 func init() {
-	LogoutSSOClientCmd.Flags().StringP("platformId", "pd", " ", "Platform id")
+	LogoutSSOClientCmd.Flags().StringP("platformId", "", " ", "Platform id")
 	_ = LogoutSSOClientCmd.MarkFlagRequired("platformId")
 }

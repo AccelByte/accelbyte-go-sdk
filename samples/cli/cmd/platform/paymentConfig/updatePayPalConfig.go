@@ -17,7 +17,7 @@ import (
 
 // UpdatePayPalConfigCmd represents the UpdatePayPalConfig command
 var UpdatePayPalConfigCmd = &cobra.Command{
-	Use:   "UpdatePayPalConfig",
+	Use:   "updatePayPalConfig",
 	Short: "Update pay pal config",
 	Long:  `Update pay pal config`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -52,9 +52,9 @@ var UpdatePayPalConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdatePayPalConfigCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdatePayPalConfigCmd.Flags().StringP("id", "id", " ", "Id")
+	UpdatePayPalConfigCmd.Flags().StringP("body", "", " ", "Body")
+	UpdatePayPalConfigCmd.Flags().StringP("id", "", " ", "Id")
 	_ = UpdatePayPalConfigCmd.MarkFlagRequired("id")
-	UpdatePayPalConfigCmd.Flags().BoolP("sandbox", "sx", false, "Sandbox")
-	UpdatePayPalConfigCmd.Flags().BoolP("validate", "ve", false, "Validate")
+	UpdatePayPalConfigCmd.Flags().BoolP("sandbox", "", false, "Sandbox")
+	UpdatePayPalConfigCmd.Flags().BoolP("validate", "", false, "Validate")
 }

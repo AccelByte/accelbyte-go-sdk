@@ -17,7 +17,7 @@ import (
 
 // AdminListUserIDByUserIDsV3Cmd represents the AdminListUserIDByUserIDsV3 command
 var AdminListUserIDByUserIDsV3Cmd = &cobra.Command{
-	Use:   "AdminListUserIDByUserIDsV3",
+	Use:   "adminListUserIDByUserIDsV3",
 	Short: "Admin list user ID by user I ds V3",
 	Long:  `Admin list user ID by user I ds V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,8 +48,8 @@ var AdminListUserIDByUserIDsV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminListUserIDByUserIDsV3Cmd.Flags().StringP("body", "by", " ", "Body")
+	AdminListUserIDByUserIDsV3Cmd.Flags().StringP("body", "", " ", "Body")
 	_ = AdminListUserIDByUserIDsV3Cmd.MarkFlagRequired("body")
-	AdminListUserIDByUserIDsV3Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	AdminListUserIDByUserIDsV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = AdminListUserIDByUserIDsV3Cmd.MarkFlagRequired("namespace")
 }

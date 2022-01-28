@@ -17,7 +17,7 @@ import (
 
 // UpdateUserFollowStatusCmd represents the UpdateUserFollowStatus command
 var UpdateUserFollowStatusCmd = &cobra.Command{
-	Use:   "UpdateUserFollowStatus",
+	Use:   "updateUserFollowStatus",
 	Short: "Update user follow status",
 	Long:  `Update user follow status`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,10 +50,10 @@ var UpdateUserFollowStatusCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateUserFollowStatusCmd.Flags().StringP("body", "by", " ", "Body")
+	UpdateUserFollowStatusCmd.Flags().StringP("body", "", " ", "Body")
 	_ = UpdateUserFollowStatusCmd.MarkFlagRequired("body")
-	UpdateUserFollowStatusCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateUserFollowStatusCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateUserFollowStatusCmd.MarkFlagRequired("namespace")
-	UpdateUserFollowStatusCmd.Flags().StringP("userId", "ud", " ", "User id")
+	UpdateUserFollowStatusCmd.Flags().StringP("userId", "", " ", "User id")
 	_ = UpdateUserFollowStatusCmd.MarkFlagRequired("userId")
 }

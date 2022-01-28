@@ -15,7 +15,7 @@ import (
 
 // AdminGetRoleManagersV3Cmd represents the AdminGetRoleManagersV3 command
 var AdminGetRoleManagersV3Cmd = &cobra.Command{
-	Use:   "AdminGetRoleManagersV3",
+	Use:   "adminGetRoleManagersV3",
 	Short: "Admin get role managers V3",
 	Long:  `Admin get role managers V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -45,9 +45,9 @@ var AdminGetRoleManagersV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetRoleManagersV3Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	AdminGetRoleManagersV3Cmd.Flags().StringP("roleId", "", " ", "Role id")
 	_ = AdminGetRoleManagersV3Cmd.MarkFlagRequired("roleId")
-	AdminGetRoleManagersV3Cmd.Flags().StringP("after", "ar", "0", "After")
-	AdminGetRoleManagersV3Cmd.Flags().StringP("before", "be", "0", "Before")
-	AdminGetRoleManagersV3Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
+	AdminGetRoleManagersV3Cmd.Flags().StringP("after", "", "0", "After")
+	AdminGetRoleManagersV3Cmd.Flags().StringP("before", "", "0", "Before")
+	AdminGetRoleManagersV3Cmd.Flags().Int64P("limit", "", 20, "Limit")
 }

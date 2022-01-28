@@ -17,7 +17,7 @@ import (
 
 // UpdateCurrencyCmd represents the UpdateCurrency command
 var UpdateCurrencyCmd = &cobra.Command{
-	Use:   "UpdateCurrency",
+	Use:   "updateCurrency",
 	Short: "Update currency",
 	Long:  `Update currency`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -50,9 +50,9 @@ var UpdateCurrencyCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateCurrencyCmd.Flags().StringP("body", "by", " ", "Body")
-	UpdateCurrencyCmd.Flags().StringP("currencyCode", "ce", " ", "Currency code")
+	UpdateCurrencyCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateCurrencyCmd.Flags().StringP("currencyCode", "", " ", "Currency code")
 	_ = UpdateCurrencyCmd.MarkFlagRequired("currencyCode")
-	UpdateCurrencyCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	UpdateCurrencyCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = UpdateCurrencyCmd.MarkFlagRequired("namespace")
 }

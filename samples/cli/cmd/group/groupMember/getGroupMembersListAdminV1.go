@@ -15,7 +15,7 @@ import (
 
 // GetGroupMembersListAdminV1Cmd represents the GetGroupMembersListAdminV1 command
 var GetGroupMembersListAdminV1Cmd = &cobra.Command{
-	Use:   "GetGroupMembersListAdminV1",
+	Use:   "getGroupMembersListAdminV1",
 	Short: "Get group members list admin V1",
 	Long:  `Get group members list admin V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,11 +47,11 @@ var GetGroupMembersListAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetGroupMembersListAdminV1Cmd.Flags().StringP("groupId", "gd", " ", "Group id")
+	GetGroupMembersListAdminV1Cmd.Flags().StringP("groupId", "", " ", "Group id")
 	_ = GetGroupMembersListAdminV1Cmd.MarkFlagRequired("groupId")
-	GetGroupMembersListAdminV1Cmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	GetGroupMembersListAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = GetGroupMembersListAdminV1Cmd.MarkFlagRequired("namespace")
-	GetGroupMembersListAdminV1Cmd.Flags().Int64P("limit", "lt", 20, "Limit")
-	GetGroupMembersListAdminV1Cmd.Flags().Int64P("offset", "ot", 0, "Offset")
-	GetGroupMembersListAdminV1Cmd.Flags().StringP("order", "or", " ", "Order")
+	GetGroupMembersListAdminV1Cmd.Flags().Int64P("limit", "", 20, "Limit")
+	GetGroupMembersListAdminV1Cmd.Flags().Int64P("offset", "", 0, "Offset")
+	GetGroupMembersListAdminV1Cmd.Flags().StringP("order", "", " ", "Order")
 }

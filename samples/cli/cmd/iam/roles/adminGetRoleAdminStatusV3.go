@@ -15,7 +15,7 @@ import (
 
 // AdminGetRoleAdminStatusV3Cmd represents the AdminGetRoleAdminStatusV3 command
 var AdminGetRoleAdminStatusV3Cmd = &cobra.Command{
-	Use:   "AdminGetRoleAdminStatusV3",
+	Use:   "adminGetRoleAdminStatusV3",
 	Short: "Admin get role admin status V3",
 	Long:  `Admin get role admin status V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -39,6 +39,6 @@ var AdminGetRoleAdminStatusV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetRoleAdminStatusV3Cmd.Flags().StringP("roleId", "rd", " ", "Role id")
+	AdminGetRoleAdminStatusV3Cmd.Flags().StringP("roleId", "", " ", "Role id")
 	_ = AdminGetRoleAdminStatusV3Cmd.MarkFlagRequired("roleId")
 }

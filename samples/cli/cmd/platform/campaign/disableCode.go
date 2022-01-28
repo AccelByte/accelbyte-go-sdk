@@ -15,7 +15,7 @@ import (
 
 // DisableCodeCmd represents the DisableCode command
 var DisableCodeCmd = &cobra.Command{
-	Use:   "DisableCode",
+	Use:   "disableCode",
 	Short: "Disable code",
 	Long:  `Disable code`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -41,8 +41,8 @@ var DisableCodeCmd = &cobra.Command{
 }
 
 func init() {
-	DisableCodeCmd.Flags().StringP("code", "ce", " ", "Code")
+	DisableCodeCmd.Flags().StringP("code", "", " ", "Code")
 	_ = DisableCodeCmd.MarkFlagRequired("code")
-	DisableCodeCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	DisableCodeCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = DisableCodeCmd.MarkFlagRequired("namespace")
 }

@@ -15,7 +15,7 @@ import (
 
 // UserAuthenticationV3Cmd represents the UserAuthenticationV3 command
 var UserAuthenticationV3Cmd = &cobra.Command{
-	Use:   "UserAuthenticationV3",
+	Use:   "userAuthenticationV3",
 	Short: "User authentication V3",
 	Long:  `User authentication V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,13 +48,13 @@ var UserAuthenticationV3Cmd = &cobra.Command{
 }
 
 func init() {
-	UserAuthenticationV3Cmd.Flags().StringP("client_id", "cd", " ", "Client id")
-	UserAuthenticationV3Cmd.Flags().BoolP("extend_exp", "ep", false, "Extend exp")
-	UserAuthenticationV3Cmd.Flags().StringP("redirect_uri", "ri", " ", "Redirect uri")
-	UserAuthenticationV3Cmd.Flags().StringP("password", "pd", " ", "Password")
+	UserAuthenticationV3Cmd.Flags().StringP("client_id", "", " ", "Client id")
+	UserAuthenticationV3Cmd.Flags().BoolP("extend_exp", "", false, "Extend exp")
+	UserAuthenticationV3Cmd.Flags().StringP("redirect_uri", "", " ", "Redirect uri")
+	UserAuthenticationV3Cmd.Flags().StringP("password", "", " ", "Password")
 	_ = UserAuthenticationV3Cmd.MarkFlagRequired("password")
-	UserAuthenticationV3Cmd.Flags().StringP("request_id", "rd", " ", "Request id")
+	UserAuthenticationV3Cmd.Flags().StringP("request_id", "", " ", "Request id")
 	_ = UserAuthenticationV3Cmd.MarkFlagRequired("request_id")
-	UserAuthenticationV3Cmd.Flags().StringP("user_name", "ue", " ", "User name")
+	UserAuthenticationV3Cmd.Flags().StringP("user_name", "", " ", "User name")
 	_ = UserAuthenticationV3Cmd.MarkFlagRequired("user_name")
 }

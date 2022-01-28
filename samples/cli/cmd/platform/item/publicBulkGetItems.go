@@ -15,7 +15,7 @@ import (
 
 // PublicBulkGetItemsCmd represents the PublicBulkGetItems command
 var PublicBulkGetItemsCmd = &cobra.Command{
-	Use:   "PublicBulkGetItems",
+	Use:   "publicBulkGetItems",
 	Short: "Public bulk get items",
 	Long:  `Public bulk get items`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -47,11 +47,11 @@ var PublicBulkGetItemsCmd = &cobra.Command{
 }
 
 func init() {
-	PublicBulkGetItemsCmd.Flags().StringP("namespace", "ne", " ", "Namespace")
+	PublicBulkGetItemsCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = PublicBulkGetItemsCmd.MarkFlagRequired("namespace")
-	PublicBulkGetItemsCmd.Flags().StringP("language", "le", " ", "Language")
-	PublicBulkGetItemsCmd.Flags().StringP("region", "rn", " ", "Region")
-	PublicBulkGetItemsCmd.Flags().StringP("storeId", "sd", " ", "Store id")
-	PublicBulkGetItemsCmd.Flags().StringP("itemIds", "is", " ", "Item ids")
+	PublicBulkGetItemsCmd.Flags().StringP("language", "", " ", "Language")
+	PublicBulkGetItemsCmd.Flags().StringP("region", "", " ", "Region")
+	PublicBulkGetItemsCmd.Flags().StringP("storeId", "", " ", "Store id")
+	PublicBulkGetItemsCmd.Flags().StringP("itemIds", "", " ", "Item ids")
 	_ = PublicBulkGetItemsCmd.MarkFlagRequired("itemIds")
 }

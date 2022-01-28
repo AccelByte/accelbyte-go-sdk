@@ -17,7 +17,7 @@ import (
 
 // RequestPresignedURLCmd represents the RequestPresignedURL command
 var RequestPresignedURLCmd = &cobra.Command{
-	Use:   "RequestPresignedURL",
+	Use:   "requestPresignedURL",
 	Short: "Request presigned URL",
 	Long:  `Request presigned URL`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -48,7 +48,7 @@ var RequestPresignedURLCmd = &cobra.Command{
 }
 
 func init() {
-	RequestPresignedURLCmd.Flags().StringP("body", "by", " ", "Body")
-	RequestPresignedURLCmd.Flags().StringP("localizedPolicyVersionId", "ld", " ", "Localized policy version id")
+	RequestPresignedURLCmd.Flags().StringP("body", "", " ", "Body")
+	RequestPresignedURLCmd.Flags().StringP("localizedPolicyVersionId", "", " ", "Localized policy version id")
 	_ = RequestPresignedURLCmd.MarkFlagRequired("localizedPolicyVersionId")
 }

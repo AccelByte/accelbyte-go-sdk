@@ -1,3 +1,31 @@
+<a name="v0.11.0"></a>
+## [v0.11.0] - 2022-02-02
+
+### Chore
+- **cli:** regenerate all cli
+- **api:** regenerate all services
+- **spec:** update spec files
+- **cli:** camel case the operation command and delete short flags
+- **cli:** move the init command into the service upper level
+- **cli:** add service commands in root.go
+- **cli:** delete root command and make operation command public
+- **cli:** change package name and add new short flag
+
+### Docs
+- update CHANGELOG.md for v0.11.0 release
+
+### Feat
+- **cli:** add existsAnyUserActiveEntitlementByItemIds
+- **cli:** add publicBulkGetItems
+- **cli:** add importAchievements command
+- **cli:** add linter configuration file
+- **cli:** generate all cli
+
+### Fix
+- **cli:** refactor factory name
+- **cli:** export RootCmd for leveling
+
+
 <a name="v0.10.0"></a>
 ## [v0.10.0] - 2022-01-19
 
@@ -309,7 +337,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
-
+[v0.11.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.10.0...v0.11.0
 [v0.10.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.9.0...v0.10.0
 [v0.9.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.8.0...v0.9.0
 [v0.8.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.7.0...v0.8.0
@@ -320,4 +348,3 @@ The wrapper have been refactored and has breaking change, these are the list:
 [v0.4.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.3.0...v0.4.0
 [v0.3.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.2.0...v0.3.0
 [v0.2.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.1.0...v0.2.0
-

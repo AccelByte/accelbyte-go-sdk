@@ -45,6 +45,6 @@ var SaveConfigCmd = &cobra.Command{
 }
 
 func init() {
-	SaveConfigCmd.Flags().StringP("body", "", " ", "Body")
+	SaveConfigCmd.Flags().StringP("body", "", "", "Body")
 	_ = SaveConfigCmd.MarkFlagRequired("body")
 }

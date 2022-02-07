@@ -49,9 +49,9 @@ var ReturnItemCmd = &cobra.Command{
 }
 
 func init() {
-	ReturnItemCmd.Flags().StringP("body", "", " ", "Body")
-	ReturnItemCmd.Flags().StringP("itemId", "", " ", "Item id")
+	ReturnItemCmd.Flags().StringP("body", "", "", "Body")
+	ReturnItemCmd.Flags().StringP("itemId", "", "", "Item id")
 	_ = ReturnItemCmd.MarkFlagRequired("itemId")
-	ReturnItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	ReturnItemCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = ReturnItemCmd.MarkFlagRequired("namespace")
 }

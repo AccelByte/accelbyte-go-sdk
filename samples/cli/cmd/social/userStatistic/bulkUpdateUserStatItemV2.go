@@ -48,7 +48,7 @@ var BulkUpdateUserStatItemV2Cmd = &cobra.Command{
 }
 
 func init() {
-	BulkUpdateUserStatItemV2Cmd.Flags().StringP("body", "", " ", "Body")
-	BulkUpdateUserStatItemV2Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	BulkUpdateUserStatItemV2Cmd.Flags().StringP("body", "", "", "Body")
+	BulkUpdateUserStatItemV2Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = BulkUpdateUserStatItemV2Cmd.MarkFlagRequired("namespace")
 }

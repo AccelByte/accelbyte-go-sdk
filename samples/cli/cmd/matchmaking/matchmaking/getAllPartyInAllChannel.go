@@ -39,6 +39,6 @@ var GetAllPartyInAllChannelCmd = &cobra.Command{
 }
 
 func init() {
-	GetAllPartyInAllChannelCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetAllPartyInAllChannelCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetAllPartyInAllChannelCmd.MarkFlagRequired("namespace")
 }

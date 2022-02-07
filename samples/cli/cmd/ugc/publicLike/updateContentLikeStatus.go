@@ -50,10 +50,10 @@ var UpdateContentLikeStatusCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateContentLikeStatusCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateContentLikeStatusCmd.Flags().StringP("body", "", "", "Body")
 	_ = UpdateContentLikeStatusCmd.MarkFlagRequired("body")
-	UpdateContentLikeStatusCmd.Flags().StringP("contentId", "", " ", "Content id")
+	UpdateContentLikeStatusCmd.Flags().StringP("contentId", "", "", "Content id")
 	_ = UpdateContentLikeStatusCmd.MarkFlagRequired("contentId")
-	UpdateContentLikeStatusCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UpdateContentLikeStatusCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UpdateContentLikeStatusCmd.MarkFlagRequired("namespace")
 }

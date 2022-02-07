@@ -38,6 +38,6 @@ var DeleteNamespaceSlotConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteNamespaceSlotConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeleteNamespaceSlotConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeleteNamespaceSlotConfigCmd.MarkFlagRequired("namespace")
 }

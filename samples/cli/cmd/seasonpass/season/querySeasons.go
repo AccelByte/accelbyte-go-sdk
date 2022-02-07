@@ -51,9 +51,9 @@ var QuerySeasonsCmd = &cobra.Command{
 }
 
 func init() {
-	QuerySeasonsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	QuerySeasonsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = QuerySeasonsCmd.MarkFlagRequired("namespace")
 	QuerySeasonsCmd.Flags().Int32P("limit", "", 20, "Limit")
 	QuerySeasonsCmd.Flags().Int32P("offset", "", 0, "Offset")
-	QuerySeasonsCmd.Flags().StringP("status", "", " ", "Status")
+	QuerySeasonsCmd.Flags().StringP("status", "", "", "Status")
 }

@@ -50,10 +50,10 @@ var AdminUpdateTagCmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateTagCmd.Flags().StringP("body", "", " ", "Body")
+	AdminUpdateTagCmd.Flags().StringP("body", "", "", "Body")
 	_ = AdminUpdateTagCmd.MarkFlagRequired("body")
-	AdminUpdateTagCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminUpdateTagCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminUpdateTagCmd.MarkFlagRequired("namespace")
-	AdminUpdateTagCmd.Flags().StringP("tagId", "", " ", "Tag id")
+	AdminUpdateTagCmd.Flags().StringP("tagId", "", "", "Tag id")
 	_ = AdminUpdateTagCmd.MarkFlagRequired("tagId")
 }

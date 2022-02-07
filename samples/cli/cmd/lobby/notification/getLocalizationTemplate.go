@@ -43,10 +43,10 @@ var GetLocalizationTemplateCmd = &cobra.Command{
 }
 
 func init() {
-	GetLocalizationTemplateCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetLocalizationTemplateCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetLocalizationTemplateCmd.MarkFlagRequired("namespace")
-	GetLocalizationTemplateCmd.Flags().StringP("templateLanguage", "", " ", "Template language")
+	GetLocalizationTemplateCmd.Flags().StringP("templateLanguage", "", "", "Template language")
 	_ = GetLocalizationTemplateCmd.MarkFlagRequired("templateLanguage")
-	GetLocalizationTemplateCmd.Flags().StringP("templateSlug", "", " ", "Template slug")
+	GetLocalizationTemplateCmd.Flags().StringP("templateSlug", "", "", "Template slug")
 	_ = GetLocalizationTemplateCmd.MarkFlagRequired("templateSlug")
 }

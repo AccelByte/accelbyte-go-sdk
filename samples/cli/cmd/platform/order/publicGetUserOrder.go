@@ -43,10 +43,10 @@ var PublicGetUserOrderCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserOrderCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicGetUserOrderCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicGetUserOrderCmd.MarkFlagRequired("namespace")
-	PublicGetUserOrderCmd.Flags().StringP("orderNo", "", " ", "Order no")
+	PublicGetUserOrderCmd.Flags().StringP("orderNo", "", "", "Order no")
 	_ = PublicGetUserOrderCmd.MarkFlagRequired("orderNo")
-	PublicGetUserOrderCmd.Flags().StringP("userId", "", " ", "User id")
+	PublicGetUserOrderCmd.Flags().StringP("userId", "", "", "User id")
 	_ = PublicGetUserOrderCmd.MarkFlagRequired("userId")
 }

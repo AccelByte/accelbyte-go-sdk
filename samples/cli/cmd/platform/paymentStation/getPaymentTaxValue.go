@@ -45,11 +45,11 @@ var GetPaymentTaxValueCmd = &cobra.Command{
 }
 
 func init() {
-	GetPaymentTaxValueCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetPaymentTaxValueCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetPaymentTaxValueCmd.MarkFlagRequired("namespace")
-	GetPaymentTaxValueCmd.Flags().StringP("zipCode", "", " ", "Zip code")
-	GetPaymentTaxValueCmd.Flags().StringP("paymentOrderNo", "", " ", "Payment order no")
+	GetPaymentTaxValueCmd.Flags().StringP("zipCode", "", "", "Zip code")
+	GetPaymentTaxValueCmd.Flags().StringP("paymentOrderNo", "", "", "Payment order no")
 	_ = GetPaymentTaxValueCmd.MarkFlagRequired("paymentOrderNo")
-	GetPaymentTaxValueCmd.Flags().StringP("paymentProvider", "", " ", "Payment provider")
+	GetPaymentTaxValueCmd.Flags().StringP("paymentProvider", "", "", "Payment provider")
 	_ = GetPaymentTaxValueCmd.MarkFlagRequired("paymentProvider")
 }

@@ -50,10 +50,10 @@ var CreateUserFromInvitationV3Cmd = &cobra.Command{
 }
 
 func init() {
-	CreateUserFromInvitationV3Cmd.Flags().StringP("body", "", " ", "Body")
+	CreateUserFromInvitationV3Cmd.Flags().StringP("body", "", "", "Body")
 	_ = CreateUserFromInvitationV3Cmd.MarkFlagRequired("body")
-	CreateUserFromInvitationV3Cmd.Flags().StringP("invitationId", "", " ", "Invitation id")
+	CreateUserFromInvitationV3Cmd.Flags().StringP("invitationId", "", "", "Invitation id")
 	_ = CreateUserFromInvitationV3Cmd.MarkFlagRequired("invitationId")
-	CreateUserFromInvitationV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	CreateUserFromInvitationV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = CreateUserFromInvitationV3Cmd.MarkFlagRequired("namespace")
 }

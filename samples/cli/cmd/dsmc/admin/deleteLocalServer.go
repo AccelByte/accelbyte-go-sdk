@@ -40,8 +40,8 @@ var DeleteLocalServerCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteLocalServerCmd.Flags().StringP("name", "", " ", "Name")
+	DeleteLocalServerCmd.Flags().StringP("name", "", "", "Name")
 	_ = DeleteLocalServerCmd.MarkFlagRequired("name")
-	DeleteLocalServerCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeleteLocalServerCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeleteLocalServerCmd.MarkFlagRequired("namespace")
 }

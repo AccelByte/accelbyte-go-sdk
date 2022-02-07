@@ -47,8 +47,8 @@ var PostEventHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	PostEventHandlerCmd.Flags().StringP("body", "", " ", "Body")
+	PostEventHandlerCmd.Flags().StringP("body", "", "", "Body")
 	_ = PostEventHandlerCmd.MarkFlagRequired("body")
-	PostEventHandlerCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PostEventHandlerCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PostEventHandlerCmd.MarkFlagRequired("namespace")
 }

@@ -39,6 +39,6 @@ var GetRoleAdminStatusCmd = &cobra.Command{
 }
 
 func init() {
-	GetRoleAdminStatusCmd.Flags().StringP("roleId", "", " ", "Role id")
+	GetRoleAdminStatusCmd.Flags().StringP("roleId", "", "", "Role id")
 	_ = GetRoleAdminStatusCmd.MarkFlagRequired("roleId")
 }

@@ -48,7 +48,7 @@ var UpdateNamespaceCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateNamespaceCmd.Flags().StringP("body", "", " ", "Body")
-	UpdateNamespaceCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UpdateNamespaceCmd.Flags().StringP("body", "", "", "Body")
+	UpdateNamespaceCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UpdateNamespaceCmd.MarkFlagRequired("namespace")
 }

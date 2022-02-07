@@ -39,6 +39,6 @@ var RetrieveAcceptedAgreementsCmd = &cobra.Command{
 }
 
 func init() {
-	RetrieveAcceptedAgreementsCmd.Flags().StringP("userId", "", " ", "User id")
+	RetrieveAcceptedAgreementsCmd.Flags().StringP("userId", "", "", "User id")
 	_ = RetrieveAcceptedAgreementsCmd.MarkFlagRequired("userId")
 }

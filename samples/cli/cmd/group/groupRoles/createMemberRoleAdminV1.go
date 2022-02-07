@@ -48,8 +48,8 @@ var CreateMemberRoleAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	CreateMemberRoleAdminV1Cmd.Flags().StringP("body", "", " ", "Body")
+	CreateMemberRoleAdminV1Cmd.Flags().StringP("body", "", "", "Body")
 	_ = CreateMemberRoleAdminV1Cmd.MarkFlagRequired("body")
-	CreateMemberRoleAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	CreateMemberRoleAdminV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = CreateMemberRoleAdminV1Cmd.MarkFlagRequired("namespace")
 }

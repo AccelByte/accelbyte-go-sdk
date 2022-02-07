@@ -39,6 +39,6 @@ var RollbackPublishedStoreCmd = &cobra.Command{
 }
 
 func init() {
-	RollbackPublishedStoreCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	RollbackPublishedStoreCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = RollbackPublishedStoreCmd.MarkFlagRequired("namespace")
 }

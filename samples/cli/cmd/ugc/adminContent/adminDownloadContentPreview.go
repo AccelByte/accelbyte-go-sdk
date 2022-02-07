@@ -41,8 +41,8 @@ var AdminDownloadContentPreviewCmd = &cobra.Command{
 }
 
 func init() {
-	AdminDownloadContentPreviewCmd.Flags().StringP("contentId", "", " ", "Content id")
+	AdminDownloadContentPreviewCmd.Flags().StringP("contentId", "", "", "Content id")
 	_ = AdminDownloadContentPreviewCmd.MarkFlagRequired("contentId")
-	AdminDownloadContentPreviewCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminDownloadContentPreviewCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminDownloadContentPreviewCmd.MarkFlagRequired("namespace")
 }

@@ -45,6 +45,6 @@ var HeartbeatCmd = &cobra.Command{
 }
 
 func init() {
-	HeartbeatCmd.Flags().StringP("body", "", " ", "Body")
+	HeartbeatCmd.Flags().StringP("body", "", "", "Body")
 	_ = HeartbeatCmd.MarkFlagRequired("body")
 }

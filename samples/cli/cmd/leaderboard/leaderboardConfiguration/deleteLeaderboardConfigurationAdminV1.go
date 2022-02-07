@@ -40,8 +40,8 @@ var DeleteLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	DeleteLeaderboardConfigurationAdminV1Cmd.Flags().StringP("leaderboardCode", "", " ", "Leaderboard code")
+	DeleteLeaderboardConfigurationAdminV1Cmd.Flags().StringP("leaderboardCode", "", "", "Leaderboard code")
 	_ = DeleteLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("leaderboardCode")
-	DeleteLeaderboardConfigurationAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeleteLeaderboardConfigurationAdminV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeleteLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
 }

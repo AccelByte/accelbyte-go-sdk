@@ -50,10 +50,10 @@ var AdminAddUserRoleV4Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminAddUserRoleV4Cmd.Flags().StringP("body", "", " ", "Body")
+	AdminAddUserRoleV4Cmd.Flags().StringP("body", "", "", "Body")
 	_ = AdminAddUserRoleV4Cmd.MarkFlagRequired("body")
-	AdminAddUserRoleV4Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminAddUserRoleV4Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminAddUserRoleV4Cmd.MarkFlagRequired("namespace")
-	AdminAddUserRoleV4Cmd.Flags().StringP("userId", "", " ", "User id")
+	AdminAddUserRoleV4Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = AdminAddUserRoleV4Cmd.MarkFlagRequired("userId")
 }

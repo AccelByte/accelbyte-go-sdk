@@ -47,9 +47,9 @@ var PublicGetUserLoginHistoriesV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserLoginHistoriesV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicGetUserLoginHistoriesV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicGetUserLoginHistoriesV3Cmd.MarkFlagRequired("namespace")
-	PublicGetUserLoginHistoriesV3Cmd.Flags().StringP("userId", "", " ", "User id")
+	PublicGetUserLoginHistoriesV3Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = PublicGetUserLoginHistoriesV3Cmd.MarkFlagRequired("userId")
 	PublicGetUserLoginHistoriesV3Cmd.Flags().Float64P("after", "", 0, "After")
 	PublicGetUserLoginHistoriesV3Cmd.Flags().Float64P("before", "", 0, "Before")

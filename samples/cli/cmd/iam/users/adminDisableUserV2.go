@@ -49,10 +49,10 @@ var AdminDisableUserV2Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminDisableUserV2Cmd.Flags().StringP("body", "", " ", "Body")
+	AdminDisableUserV2Cmd.Flags().StringP("body", "", "", "Body")
 	_ = AdminDisableUserV2Cmd.MarkFlagRequired("body")
-	AdminDisableUserV2Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminDisableUserV2Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminDisableUserV2Cmd.MarkFlagRequired("namespace")
-	AdminDisableUserV2Cmd.Flags().StringP("userId", "", " ", "User id")
+	AdminDisableUserV2Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = AdminDisableUserV2Cmd.MarkFlagRequired("userId")
 }

@@ -45,7 +45,7 @@ var GetTopicByNamespaceCmd = &cobra.Command{
 }
 
 func init() {
-	GetTopicByNamespaceCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetTopicByNamespaceCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetTopicByNamespaceCmd.MarkFlagRequired("namespace")
 	GetTopicByNamespaceCmd.Flags().StringP("after", "", "0", "After")
 	GetTopicByNamespaceCmd.Flags().StringP("before", "", "0", "Before")

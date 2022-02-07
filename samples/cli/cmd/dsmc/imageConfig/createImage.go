@@ -45,6 +45,6 @@ var CreateImageCmd = &cobra.Command{
 }
 
 func init() {
-	CreateImageCmd.Flags().StringP("body", "", " ", "Body")
+	CreateImageCmd.Flags().StringP("body", "", "", "Body")
 	_ = CreateImageCmd.MarkFlagRequired("body")
 }

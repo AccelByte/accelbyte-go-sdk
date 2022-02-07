@@ -45,9 +45,9 @@ var GetUserLeaderboardRankingsAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetUserLeaderboardRankingsAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetUserLeaderboardRankingsAdminV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetUserLeaderboardRankingsAdminV1Cmd.MarkFlagRequired("namespace")
-	GetUserLeaderboardRankingsAdminV1Cmd.Flags().StringP("userId", "", " ", "User id")
+	GetUserLeaderboardRankingsAdminV1Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = GetUserLeaderboardRankingsAdminV1Cmd.MarkFlagRequired("userId")
 	GetUserLeaderboardRankingsAdminV1Cmd.Flags().Int64P("limit", "", 20, "Limit")
 	GetUserLeaderboardRankingsAdminV1Cmd.Flags().Int64P("offset", "", 0, "Offset")

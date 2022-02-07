@@ -48,7 +48,7 @@ var PartialUpdatePolicyCmd = &cobra.Command{
 }
 
 func init() {
-	PartialUpdatePolicyCmd.Flags().StringP("body", "", " ", "Body")
-	PartialUpdatePolicyCmd.Flags().StringP("basePolicyId", "", " ", "Base policy id")
+	PartialUpdatePolicyCmd.Flags().StringP("body", "", "", "Body")
+	PartialUpdatePolicyCmd.Flags().StringP("basePolicyId", "", "", "Base policy id")
 	_ = PartialUpdatePolicyCmd.MarkFlagRequired("basePolicyId")
 }

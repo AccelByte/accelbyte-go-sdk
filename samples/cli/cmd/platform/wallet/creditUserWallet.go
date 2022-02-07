@@ -52,11 +52,11 @@ var CreditUserWalletCmd = &cobra.Command{
 }
 
 func init() {
-	CreditUserWalletCmd.Flags().StringP("body", "", " ", "Body")
-	CreditUserWalletCmd.Flags().StringP("currencyCode", "", " ", "Currency code")
+	CreditUserWalletCmd.Flags().StringP("body", "", "", "Body")
+	CreditUserWalletCmd.Flags().StringP("currencyCode", "", "", "Currency code")
 	_ = CreditUserWalletCmd.MarkFlagRequired("currencyCode")
-	CreditUserWalletCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	CreditUserWalletCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = CreditUserWalletCmd.MarkFlagRequired("namespace")
-	CreditUserWalletCmd.Flags().StringP("userId", "", " ", "User id")
+	CreditUserWalletCmd.Flags().StringP("userId", "", "", "User id")
 	_ = CreditUserWalletCmd.MarkFlagRequired("userId")
 }

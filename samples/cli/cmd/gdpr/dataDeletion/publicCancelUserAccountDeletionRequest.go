@@ -40,8 +40,8 @@ var PublicCancelUserAccountDeletionRequestCmd = &cobra.Command{
 }
 
 func init() {
-	PublicCancelUserAccountDeletionRequestCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicCancelUserAccountDeletionRequestCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicCancelUserAccountDeletionRequestCmd.MarkFlagRequired("namespace")
-	PublicCancelUserAccountDeletionRequestCmd.Flags().StringP("userId", "", " ", "User id")
+	PublicCancelUserAccountDeletionRequestCmd.Flags().StringP("userId", "", "", "User id")
 	_ = PublicCancelUserAccountDeletionRequestCmd.MarkFlagRequired("userId")
 }

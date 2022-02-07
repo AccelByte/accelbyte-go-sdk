@@ -41,7 +41,7 @@ var PublicGetCountriesCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetCountriesCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicGetCountriesCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicGetCountriesCmd.MarkFlagRequired("namespace")
-	PublicGetCountriesCmd.Flags().StringP("lang", "", " ", "Lang")
+	PublicGetCountriesCmd.Flags().StringP("lang", "", "", "Lang")
 }

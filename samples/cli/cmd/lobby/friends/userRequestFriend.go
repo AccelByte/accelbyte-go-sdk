@@ -47,8 +47,8 @@ var UserRequestFriendCmd = &cobra.Command{
 }
 
 func init() {
-	UserRequestFriendCmd.Flags().StringP("body", "", " ", "Body")
+	UserRequestFriendCmd.Flags().StringP("body", "", "", "Body")
 	_ = UserRequestFriendCmd.MarkFlagRequired("body")
-	UserRequestFriendCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UserRequestFriendCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UserRequestFriendCmd.MarkFlagRequired("namespace")
 }

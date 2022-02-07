@@ -38,6 +38,6 @@ var AnonymizeUserAgreementCmd = &cobra.Command{
 }
 
 func init() {
-	AnonymizeUserAgreementCmd.Flags().StringP("userId", "", " ", "User id")
+	AnonymizeUserAgreementCmd.Flags().StringP("userId", "", "", "User id")
 	_ = AnonymizeUserAgreementCmd.MarkFlagRequired("userId")
 }

@@ -50,9 +50,9 @@ var UpdateUserProfileCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateUserProfileCmd.Flags().StringP("body", "", " ", "Body")
-	UpdateUserProfileCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UpdateUserProfileCmd.Flags().StringP("body", "", "", "Body")
+	UpdateUserProfileCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UpdateUserProfileCmd.MarkFlagRequired("namespace")
-	UpdateUserProfileCmd.Flags().StringP("userId", "", " ", "User id")
+	UpdateUserProfileCmd.Flags().StringP("userId", "", "", "User id")
 	_ = UpdateUserProfileCmd.MarkFlagRequired("userId")
 }

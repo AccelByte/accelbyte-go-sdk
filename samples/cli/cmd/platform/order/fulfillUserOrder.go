@@ -43,10 +43,10 @@ var FulfillUserOrderCmd = &cobra.Command{
 }
 
 func init() {
-	FulfillUserOrderCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	FulfillUserOrderCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = FulfillUserOrderCmd.MarkFlagRequired("namespace")
-	FulfillUserOrderCmd.Flags().StringP("orderNo", "", " ", "Order no")
+	FulfillUserOrderCmd.Flags().StringP("orderNo", "", "", "Order no")
 	_ = FulfillUserOrderCmd.MarkFlagRequired("orderNo")
-	FulfillUserOrderCmd.Flags().StringP("userId", "", " ", "User id")
+	FulfillUserOrderCmd.Flags().StringP("userId", "", "", "User id")
 	_ = FulfillUserOrderCmd.MarkFlagRequired("userId")
 }

@@ -52,11 +52,11 @@ var AcquireUserTicketCmd = &cobra.Command{
 }
 
 func init() {
-	AcquireUserTicketCmd.Flags().StringP("body", "", " ", "Body")
-	AcquireUserTicketCmd.Flags().StringP("boothName", "", " ", "Booth name")
+	AcquireUserTicketCmd.Flags().StringP("body", "", "", "Body")
+	AcquireUserTicketCmd.Flags().StringP("boothName", "", "", "Booth name")
 	_ = AcquireUserTicketCmd.MarkFlagRequired("boothName")
-	AcquireUserTicketCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AcquireUserTicketCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AcquireUserTicketCmd.MarkFlagRequired("namespace")
-	AcquireUserTicketCmd.Flags().StringP("userId", "", " ", "User id")
+	AcquireUserTicketCmd.Flags().StringP("userId", "", "", "User id")
 	_ = AcquireUserTicketCmd.MarkFlagRequired("userId")
 }

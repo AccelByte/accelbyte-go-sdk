@@ -42,10 +42,10 @@ var DeleteGroupPredefinedRulePublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	DeleteGroupPredefinedRulePublicV1Cmd.Flags().StringP("allowedAction", "", " ", "Allowed action")
+	DeleteGroupPredefinedRulePublicV1Cmd.Flags().StringP("allowedAction", "", "", "Allowed action")
 	_ = DeleteGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("allowedAction")
-	DeleteGroupPredefinedRulePublicV1Cmd.Flags().StringP("groupId", "", " ", "Group id")
+	DeleteGroupPredefinedRulePublicV1Cmd.Flags().StringP("groupId", "", "", "Group id")
 	_ = DeleteGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("groupId")
-	DeleteGroupPredefinedRulePublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeleteGroupPredefinedRulePublicV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeleteGroupPredefinedRulePublicV1Cmd.MarkFlagRequired("namespace")
 }

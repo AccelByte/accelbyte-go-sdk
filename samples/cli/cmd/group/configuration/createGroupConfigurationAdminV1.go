@@ -48,8 +48,8 @@ var CreateGroupConfigurationAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	CreateGroupConfigurationAdminV1Cmd.Flags().StringP("body", "", " ", "Body")
+	CreateGroupConfigurationAdminV1Cmd.Flags().StringP("body", "", "", "Body")
 	_ = CreateGroupConfigurationAdminV1Cmd.MarkFlagRequired("body")
-	CreateGroupConfigurationAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	CreateGroupConfigurationAdminV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = CreateGroupConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
 }

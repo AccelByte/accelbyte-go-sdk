@@ -42,10 +42,10 @@ var AdminDeleteContentScreenshotCmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteContentScreenshotCmd.Flags().StringP("contentId", "", " ", "Content id")
+	AdminDeleteContentScreenshotCmd.Flags().StringP("contentId", "", "", "Content id")
 	_ = AdminDeleteContentScreenshotCmd.MarkFlagRequired("contentId")
-	AdminDeleteContentScreenshotCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminDeleteContentScreenshotCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminDeleteContentScreenshotCmd.MarkFlagRequired("namespace")
-	AdminDeleteContentScreenshotCmd.Flags().StringP("screenshotId", "", " ", "Screenshot id")
+	AdminDeleteContentScreenshotCmd.Flags().StringP("screenshotId", "", "", "Screenshot id")
 	_ = AdminDeleteContentScreenshotCmd.MarkFlagRequired("screenshotId")
 }

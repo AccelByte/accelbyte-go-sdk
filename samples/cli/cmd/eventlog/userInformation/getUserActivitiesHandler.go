@@ -45,9 +45,9 @@ var GetUserActivitiesHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserActivitiesHandlerCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetUserActivitiesHandlerCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetUserActivitiesHandlerCmd.MarkFlagRequired("namespace")
-	GetUserActivitiesHandlerCmd.Flags().StringP("userId", "", " ", "User id")
+	GetUserActivitiesHandlerCmd.Flags().StringP("userId", "", "", "User id")
 	_ = GetUserActivitiesHandlerCmd.MarkFlagRequired("userId")
 	GetUserActivitiesHandlerCmd.Flags().Float64P("offset", "", 0, "Offset")
 	GetUserActivitiesHandlerCmd.Flags().Float64P("pageSize", "", 1, "Page size")

@@ -40,8 +40,8 @@ var DeleteNotificationTopicV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteNotificationTopicV1AdminCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeleteNotificationTopicV1AdminCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeleteNotificationTopicV1AdminCmd.MarkFlagRequired("namespace")
-	DeleteNotificationTopicV1AdminCmd.Flags().StringP("topicName", "", " ", "Topic name")
+	DeleteNotificationTopicV1AdminCmd.Flags().StringP("topicName", "", "", "Topic name")
 	_ = DeleteNotificationTopicV1AdminCmd.MarkFlagRequired("topicName")
 }

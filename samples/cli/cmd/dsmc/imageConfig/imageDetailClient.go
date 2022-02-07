@@ -41,8 +41,8 @@ var ImageDetailClientCmd = &cobra.Command{
 }
 
 func init() {
-	ImageDetailClientCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	ImageDetailClientCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = ImageDetailClientCmd.MarkFlagRequired("namespace")
-	ImageDetailClientCmd.Flags().StringP("version", "", " ", "Version")
+	ImageDetailClientCmd.Flags().StringP("version", "", "", "Version")
 	_ = ImageDetailClientCmd.MarkFlagRequired("version")
 }

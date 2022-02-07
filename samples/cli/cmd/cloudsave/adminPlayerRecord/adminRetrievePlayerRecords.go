@@ -45,9 +45,9 @@ var AdminRetrievePlayerRecordsCmd = &cobra.Command{
 }
 
 func init() {
-	AdminRetrievePlayerRecordsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminRetrievePlayerRecordsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminRetrievePlayerRecordsCmd.MarkFlagRequired("namespace")
-	AdminRetrievePlayerRecordsCmd.Flags().StringP("userId", "", " ", "User id")
+	AdminRetrievePlayerRecordsCmd.Flags().StringP("userId", "", "", "User id")
 	_ = AdminRetrievePlayerRecordsCmd.MarkFlagRequired("userId")
 	AdminRetrievePlayerRecordsCmd.Flags().Int64P("limit", "", 20, "Limit")
 	AdminRetrievePlayerRecordsCmd.Flags().Int64P("offset", "", 0, "Offset")

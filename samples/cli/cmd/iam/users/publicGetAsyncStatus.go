@@ -41,8 +41,8 @@ var PublicGetAsyncStatusCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetAsyncStatusCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicGetAsyncStatusCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicGetAsyncStatusCmd.MarkFlagRequired("namespace")
-	PublicGetAsyncStatusCmd.Flags().StringP("requestId", "", " ", "Request id")
+	PublicGetAsyncStatusCmd.Flags().StringP("requestId", "", "", "Request id")
 	_ = PublicGetAsyncStatusCmd.MarkFlagRequired("requestId")
 }

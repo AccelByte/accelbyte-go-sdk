@@ -46,6 +46,6 @@ var AdminInviteUserV4Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminInviteUserV4Cmd.Flags().StringP("body", "", " ", "Body")
+	AdminInviteUserV4Cmd.Flags().StringP("body", "", "", "Body")
 	_ = AdminInviteUserV4Cmd.MarkFlagRequired("body")
 }

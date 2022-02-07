@@ -48,8 +48,8 @@ var RegisterLocalServerCmd = &cobra.Command{
 }
 
 func init() {
-	RegisterLocalServerCmd.Flags().StringP("body", "", " ", "Body")
+	RegisterLocalServerCmd.Flags().StringP("body", "", "", "Body")
 	_ = RegisterLocalServerCmd.MarkFlagRequired("body")
-	RegisterLocalServerCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	RegisterLocalServerCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = RegisterLocalServerCmd.MarkFlagRequired("namespace")
 }

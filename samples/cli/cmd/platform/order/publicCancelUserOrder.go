@@ -43,10 +43,10 @@ var PublicCancelUserOrderCmd = &cobra.Command{
 }
 
 func init() {
-	PublicCancelUserOrderCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicCancelUserOrderCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicCancelUserOrderCmd.MarkFlagRequired("namespace")
-	PublicCancelUserOrderCmd.Flags().StringP("orderNo", "", " ", "Order no")
+	PublicCancelUserOrderCmd.Flags().StringP("orderNo", "", "", "Order no")
 	_ = PublicCancelUserOrderCmd.MarkFlagRequired("orderNo")
-	PublicCancelUserOrderCmd.Flags().StringP("userId", "", " ", "User id")
+	PublicCancelUserOrderCmd.Flags().StringP("userId", "", "", "User id")
 	_ = PublicCancelUserOrderCmd.MarkFlagRequired("userId")
 }

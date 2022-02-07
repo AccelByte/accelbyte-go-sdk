@@ -46,5 +46,5 @@ var BulkAcceptVersionedPolicyCmd = &cobra.Command{
 }
 
 func init() {
-	BulkAcceptVersionedPolicyCmd.Flags().StringP("body", "", " ", "Body")
+	BulkAcceptVersionedPolicyCmd.Flags().StringP("body", "", "", "Body")
 }

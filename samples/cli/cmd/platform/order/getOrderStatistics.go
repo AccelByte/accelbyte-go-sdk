@@ -39,6 +39,6 @@ var GetOrderStatisticsCmd = &cobra.Command{
 }
 
 func init() {
-	GetOrderStatisticsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetOrderStatisticsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetOrderStatisticsCmd.MarkFlagRequired("namespace")
 }

@@ -48,7 +48,7 @@ var UnBanUsersCmd = &cobra.Command{
 }
 
 func init() {
-	UnBanUsersCmd.Flags().StringP("body", "", " ", "Body")
-	UnBanUsersCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UnBanUsersCmd.Flags().StringP("body", "", "", "Body")
+	UnBanUsersCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UnBanUsersCmd.MarkFlagRequired("namespace")
 }

@@ -47,8 +47,8 @@ var DeregisterLocalServerCmd = &cobra.Command{
 }
 
 func init() {
-	DeregisterLocalServerCmd.Flags().StringP("body", "", " ", "Body")
+	DeregisterLocalServerCmd.Flags().StringP("body", "", "", "Body")
 	_ = DeregisterLocalServerCmd.MarkFlagRequired("body")
-	DeregisterLocalServerCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeregisterLocalServerCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeregisterLocalServerCmd.MarkFlagRequired("namespace")
 }

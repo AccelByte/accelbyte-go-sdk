@@ -38,6 +38,6 @@ var SyncUserInfoCmd = &cobra.Command{
 }
 
 func init() {
-	SyncUserInfoCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	SyncUserInfoCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = SyncUserInfoCmd.MarkFlagRequired("namespace")
 }

@@ -42,10 +42,10 @@ var AdminUnlockAchievementCmd = &cobra.Command{
 }
 
 func init() {
-	AdminUnlockAchievementCmd.Flags().StringP("achievementCode", "", " ", "Achievement code")
+	AdminUnlockAchievementCmd.Flags().StringP("achievementCode", "", "", "Achievement code")
 	_ = AdminUnlockAchievementCmd.MarkFlagRequired("achievementCode")
-	AdminUnlockAchievementCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminUnlockAchievementCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminUnlockAchievementCmd.MarkFlagRequired("namespace")
-	AdminUnlockAchievementCmd.Flags().StringP("userId", "", " ", "User id")
+	AdminUnlockAchievementCmd.Flags().StringP("userId", "", "", "User id")
 	_ = AdminUnlockAchievementCmd.MarkFlagRequired("userId")
 }

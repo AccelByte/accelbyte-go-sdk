@@ -49,8 +49,8 @@ var UpdateXblBPCertFileCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateXblBPCertFileCmd.Flags().StringP("file", "", " ", "File")
-	UpdateXblBPCertFileCmd.Flags().StringP("password", "", " ", "Password")
-	UpdateXblBPCertFileCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UpdateXblBPCertFileCmd.Flags().StringP("file", "", "", "File")
+	UpdateXblBPCertFileCmd.Flags().StringP("password", "", "", "Password")
+	UpdateXblBPCertFileCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UpdateXblBPCertFileCmd.MarkFlagRequired("namespace")
 }

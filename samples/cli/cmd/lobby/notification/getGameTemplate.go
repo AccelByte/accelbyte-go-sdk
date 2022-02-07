@@ -39,6 +39,6 @@ var GetGameTemplateCmd = &cobra.Command{
 }
 
 func init() {
-	GetGameTemplateCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetGameTemplateCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetGameTemplateCmd.MarkFlagRequired("namespace")
 }

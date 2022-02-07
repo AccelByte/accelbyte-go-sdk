@@ -47,8 +47,8 @@ var PublicUpdateUserEmailAddressV4Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicUpdateUserEmailAddressV4Cmd.Flags().StringP("body", "", " ", "Body")
+	PublicUpdateUserEmailAddressV4Cmd.Flags().StringP("body", "", "", "Body")
 	_ = PublicUpdateUserEmailAddressV4Cmd.MarkFlagRequired("body")
-	PublicUpdateUserEmailAddressV4Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicUpdateUserEmailAddressV4Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicUpdateUserEmailAddressV4Cmd.MarkFlagRequired("namespace")
 }

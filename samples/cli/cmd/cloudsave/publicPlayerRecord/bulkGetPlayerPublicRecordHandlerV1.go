@@ -50,10 +50,10 @@ var BulkGetPlayerPublicRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	BulkGetPlayerPublicRecordHandlerV1Cmd.Flags().StringP("body", "", " ", "Body")
+	BulkGetPlayerPublicRecordHandlerV1Cmd.Flags().StringP("body", "", "", "Body")
 	_ = BulkGetPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("body")
-	BulkGetPlayerPublicRecordHandlerV1Cmd.Flags().StringP("key", "", " ", "Key")
+	BulkGetPlayerPublicRecordHandlerV1Cmd.Flags().StringP("key", "", "", "Key")
 	_ = BulkGetPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("key")
-	BulkGetPlayerPublicRecordHandlerV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	BulkGetPlayerPublicRecordHandlerV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = BulkGetPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("namespace")
 }

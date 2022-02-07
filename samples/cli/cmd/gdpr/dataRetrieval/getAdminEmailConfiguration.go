@@ -39,6 +39,6 @@ var GetAdminEmailConfigurationCmd = &cobra.Command{
 }
 
 func init() {
-	GetAdminEmailConfigurationCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetAdminEmailConfigurationCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetAdminEmailConfigurationCmd.MarkFlagRequired("namespace")
 }

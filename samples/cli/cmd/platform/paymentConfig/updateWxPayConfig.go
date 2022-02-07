@@ -50,8 +50,8 @@ var UpdateWxPayConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateWxPayConfigCmd.Flags().StringP("body", "", " ", "Body")
-	UpdateWxPayConfigCmd.Flags().StringP("id", "", " ", "Id")
+	UpdateWxPayConfigCmd.Flags().StringP("body", "", "", "Body")
+	UpdateWxPayConfigCmd.Flags().StringP("id", "", "", "Id")
 	_ = UpdateWxPayConfigCmd.MarkFlagRequired("id")
 	UpdateWxPayConfigCmd.Flags().BoolP("validate", "", false, "Validate")
 }

@@ -44,10 +44,10 @@ var AuthCodeRequestV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AuthCodeRequestV3Cmd.Flags().StringP("platformId", "", " ", "Platform id")
+	AuthCodeRequestV3Cmd.Flags().StringP("platformId", "", "", "Platform id")
 	_ = AuthCodeRequestV3Cmd.MarkFlagRequired("platformId")
-	AuthCodeRequestV3Cmd.Flags().StringP("client_id", "", " ", "Client id")
-	AuthCodeRequestV3Cmd.Flags().StringP("redirect_uri", "", " ", "Redirect uri")
-	AuthCodeRequestV3Cmd.Flags().StringP("request_id", "", " ", "Request id")
+	AuthCodeRequestV3Cmd.Flags().StringP("client_id", "", "", "Client id")
+	AuthCodeRequestV3Cmd.Flags().StringP("redirect_uri", "", "", "Redirect uri")
+	AuthCodeRequestV3Cmd.Flags().StringP("request_id", "", "", "Request id")
 	_ = AuthCodeRequestV3Cmd.MarkFlagRequired("request_id")
 }

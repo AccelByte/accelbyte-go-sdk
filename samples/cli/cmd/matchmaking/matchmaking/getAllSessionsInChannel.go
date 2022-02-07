@@ -41,8 +41,8 @@ var GetAllSessionsInChannelCmd = &cobra.Command{
 }
 
 func init() {
-	GetAllSessionsInChannelCmd.Flags().StringP("channelName", "", " ", "Channel name")
+	GetAllSessionsInChannelCmd.Flags().StringP("channelName", "", "", "Channel name")
 	_ = GetAllSessionsInChannelCmd.MarkFlagRequired("channelName")
-	GetAllSessionsInChannelCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetAllSessionsInChannelCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetAllSessionsInChannelCmd.MarkFlagRequired("namespace")
 }

@@ -50,9 +50,9 @@ var UpdateUserSlotConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateUserSlotConfigCmd.Flags().StringP("body", "", " ", "Body")
-	UpdateUserSlotConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UpdateUserSlotConfigCmd.Flags().StringP("body", "", "", "Body")
+	UpdateUserSlotConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UpdateUserSlotConfigCmd.MarkFlagRequired("namespace")
-	UpdateUserSlotConfigCmd.Flags().StringP("userId", "", " ", "User id")
+	UpdateUserSlotConfigCmd.Flags().StringP("userId", "", "", "User id")
 	_ = UpdateUserSlotConfigCmd.MarkFlagRequired("userId")
 }

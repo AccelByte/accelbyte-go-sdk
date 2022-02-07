@@ -49,9 +49,9 @@ var SyncSteamDLCCmd = &cobra.Command{
 }
 
 func init() {
-	SyncSteamDLCCmd.Flags().StringP("body", "", " ", "Body")
-	SyncSteamDLCCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	SyncSteamDLCCmd.Flags().StringP("body", "", "", "Body")
+	SyncSteamDLCCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = SyncSteamDLCCmd.MarkFlagRequired("namespace")
-	SyncSteamDLCCmd.Flags().StringP("userId", "", " ", "User id")
+	SyncSteamDLCCmd.Flags().StringP("userId", "", "", "User id")
 	_ = SyncSteamDLCCmd.MarkFlagRequired("userId")
 }

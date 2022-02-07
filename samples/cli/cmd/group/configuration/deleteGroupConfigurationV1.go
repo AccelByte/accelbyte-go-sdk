@@ -40,8 +40,8 @@ var DeleteGroupConfigurationV1Cmd = &cobra.Command{
 }
 
 func init() {
-	DeleteGroupConfigurationV1Cmd.Flags().StringP("configurationCode", "", " ", "Configuration code")
+	DeleteGroupConfigurationV1Cmd.Flags().StringP("configurationCode", "", "", "Configuration code")
 	_ = DeleteGroupConfigurationV1Cmd.MarkFlagRequired("configurationCode")
-	DeleteGroupConfigurationV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeleteGroupConfigurationV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeleteGroupConfigurationV1Cmd.MarkFlagRequired("namespace")
 }

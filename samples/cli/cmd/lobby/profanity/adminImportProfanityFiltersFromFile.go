@@ -48,10 +48,10 @@ var AdminImportProfanityFiltersFromFileCmd = &cobra.Command{
 }
 
 func init() {
-	AdminImportProfanityFiltersFromFileCmd.Flags().StringP("body", "", " ", "Body")
+	AdminImportProfanityFiltersFromFileCmd.Flags().StringP("body", "", "", "Body")
 	_ = AdminImportProfanityFiltersFromFileCmd.MarkFlagRequired("body")
-	AdminImportProfanityFiltersFromFileCmd.Flags().StringP("list", "", " ", "List")
+	AdminImportProfanityFiltersFromFileCmd.Flags().StringP("list", "", "", "List")
 	_ = AdminImportProfanityFiltersFromFileCmd.MarkFlagRequired("list")
-	AdminImportProfanityFiltersFromFileCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminImportProfanityFiltersFromFileCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminImportProfanityFiltersFromFileCmd.MarkFlagRequired("namespace")
 }

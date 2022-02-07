@@ -45,12 +45,12 @@ var PublicGeneratePersonalDataURLCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGeneratePersonalDataURLCmd.Flags().StringP("password", "", " ", "Password")
+	PublicGeneratePersonalDataURLCmd.Flags().StringP("password", "", "", "Password")
 	_ = PublicGeneratePersonalDataURLCmd.MarkFlagRequired("password")
-	PublicGeneratePersonalDataURLCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicGeneratePersonalDataURLCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicGeneratePersonalDataURLCmd.MarkFlagRequired("namespace")
-	PublicGeneratePersonalDataURLCmd.Flags().StringP("requestDate", "", " ", "Request date")
+	PublicGeneratePersonalDataURLCmd.Flags().StringP("requestDate", "", "", "Request date")
 	_ = PublicGeneratePersonalDataURLCmd.MarkFlagRequired("requestDate")
-	PublicGeneratePersonalDataURLCmd.Flags().StringP("userId", "", " ", "User id")
+	PublicGeneratePersonalDataURLCmd.Flags().StringP("userId", "", "", "User id")
 	_ = PublicGeneratePersonalDataURLCmd.MarkFlagRequired("userId")
 }

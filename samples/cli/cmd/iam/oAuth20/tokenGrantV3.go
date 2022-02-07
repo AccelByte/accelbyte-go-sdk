@@ -51,12 +51,12 @@ var TokenGrantV3Cmd = &cobra.Command{
 }
 
 func init() {
-	TokenGrantV3Cmd.Flags().StringP("device_id", "", " ", "Device id")
-	TokenGrantV3Cmd.Flags().StringP("client_id", "", " ", "Client id")
-	TokenGrantV3Cmd.Flags().StringP("code", "", " ", "Code")
-	TokenGrantV3Cmd.Flags().StringP("code_verifier", "", " ", "Code verifier")
-	TokenGrantV3Cmd.Flags().StringP("redirect_uri", "", " ", "Redirect uri")
-	TokenGrantV3Cmd.Flags().StringP("refresh_token", "", " ", "Refresh token")
-	TokenGrantV3Cmd.Flags().StringP("grant_type", "", " ", "Grant type")
+	TokenGrantV3Cmd.Flags().StringP("device_id", "", "", "Device id")
+	TokenGrantV3Cmd.Flags().StringP("client_id", "", "", "Client id")
+	TokenGrantV3Cmd.Flags().StringP("code", "", "", "Code")
+	TokenGrantV3Cmd.Flags().StringP("code_verifier", "", "", "Code verifier")
+	TokenGrantV3Cmd.Flags().StringP("redirect_uri", "", "", "Redirect uri")
+	TokenGrantV3Cmd.Flags().StringP("refresh_token", "", "", "Refresh token")
+	TokenGrantV3Cmd.Flags().StringP("grant_type", "", "", "Grant type")
 	_ = TokenGrantV3Cmd.MarkFlagRequired("grant_type")
 }

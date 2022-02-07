@@ -43,10 +43,10 @@ var GetUserVisibilityStatusV2Cmd = &cobra.Command{
 }
 
 func init() {
-	GetUserVisibilityStatusV2Cmd.Flags().StringP("leaderboardCode", "", " ", "Leaderboard code")
+	GetUserVisibilityStatusV2Cmd.Flags().StringP("leaderboardCode", "", "", "Leaderboard code")
 	_ = GetUserVisibilityStatusV2Cmd.MarkFlagRequired("leaderboardCode")
-	GetUserVisibilityStatusV2Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetUserVisibilityStatusV2Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetUserVisibilityStatusV2Cmd.MarkFlagRequired("namespace")
-	GetUserVisibilityStatusV2Cmd.Flags().StringP("userId", "", " ", "User id")
+	GetUserVisibilityStatusV2Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = GetUserVisibilityStatusV2Cmd.MarkFlagRequired("userId")
 }

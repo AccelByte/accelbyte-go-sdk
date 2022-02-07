@@ -49,9 +49,9 @@ var PublicFulfillAppleIAPItemCmd = &cobra.Command{
 }
 
 func init() {
-	PublicFulfillAppleIAPItemCmd.Flags().StringP("body", "", " ", "Body")
-	PublicFulfillAppleIAPItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicFulfillAppleIAPItemCmd.Flags().StringP("body", "", "", "Body")
+	PublicFulfillAppleIAPItemCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicFulfillAppleIAPItemCmd.MarkFlagRequired("namespace")
-	PublicFulfillAppleIAPItemCmd.Flags().StringP("userId", "", " ", "User id")
+	PublicFulfillAppleIAPItemCmd.Flags().StringP("userId", "", "", "User id")
 	_ = PublicFulfillAppleIAPItemCmd.MarkFlagRequired("userId")
 }

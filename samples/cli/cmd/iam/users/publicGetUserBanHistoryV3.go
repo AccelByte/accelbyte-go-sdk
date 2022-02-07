@@ -49,9 +49,9 @@ var PublicGetUserBanHistoryV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserBanHistoryV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicGetUserBanHistoryV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicGetUserBanHistoryV3Cmd.MarkFlagRequired("namespace")
-	PublicGetUserBanHistoryV3Cmd.Flags().StringP("userId", "", " ", "User id")
+	PublicGetUserBanHistoryV3Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = PublicGetUserBanHistoryV3Cmd.MarkFlagRequired("userId")
 	PublicGetUserBanHistoryV3Cmd.Flags().BoolP("activeOnly", "", false, "Active only")
 	PublicGetUserBanHistoryV3Cmd.Flags().StringP("after", "", "0", "After")

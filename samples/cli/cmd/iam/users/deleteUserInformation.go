@@ -40,8 +40,8 @@ var DeleteUserInformationCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteUserInformationCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeleteUserInformationCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeleteUserInformationCmd.MarkFlagRequired("namespace")
-	DeleteUserInformationCmd.Flags().StringP("userId", "", " ", "User id")
+	DeleteUserInformationCmd.Flags().StringP("userId", "", "", "User id")
 	_ = DeleteUserInformationCmd.MarkFlagRequired("userId")
 }

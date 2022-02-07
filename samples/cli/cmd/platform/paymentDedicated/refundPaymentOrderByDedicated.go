@@ -50,9 +50,9 @@ var RefundPaymentOrderByDedicatedCmd = &cobra.Command{
 }
 
 func init() {
-	RefundPaymentOrderByDedicatedCmd.Flags().StringP("body", "", " ", "Body")
-	RefundPaymentOrderByDedicatedCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	RefundPaymentOrderByDedicatedCmd.Flags().StringP("body", "", "", "Body")
+	RefundPaymentOrderByDedicatedCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = RefundPaymentOrderByDedicatedCmd.MarkFlagRequired("namespace")
-	RefundPaymentOrderByDedicatedCmd.Flags().StringP("paymentOrderNo", "", " ", "Payment order no")
+	RefundPaymentOrderByDedicatedCmd.Flags().StringP("paymentOrderNo", "", "", "Payment order no")
 	_ = RefundPaymentOrderByDedicatedCmd.MarkFlagRequired("paymentOrderNo")
 }

@@ -50,10 +50,10 @@ var AddPlayerToSessionCmd = &cobra.Command{
 }
 
 func init() {
-	AddPlayerToSessionCmd.Flags().StringP("body", "", " ", "Body")
+	AddPlayerToSessionCmd.Flags().StringP("body", "", "", "Body")
 	_ = AddPlayerToSessionCmd.MarkFlagRequired("body")
-	AddPlayerToSessionCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AddPlayerToSessionCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AddPlayerToSessionCmd.MarkFlagRequired("namespace")
-	AddPlayerToSessionCmd.Flags().StringP("sessionID", "", " ", "Session ID")
+	AddPlayerToSessionCmd.Flags().StringP("sessionID", "", "", "Session ID")
 	_ = AddPlayerToSessionCmd.MarkFlagRequired("sessionID")
 }

@@ -41,8 +41,8 @@ var AdminGetGameRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetGameRecordHandlerV1Cmd.Flags().StringP("key", "", " ", "Key")
+	AdminGetGameRecordHandlerV1Cmd.Flags().StringP("key", "", "", "Key")
 	_ = AdminGetGameRecordHandlerV1Cmd.MarkFlagRequired("key")
-	AdminGetGameRecordHandlerV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminGetGameRecordHandlerV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminGetGameRecordHandlerV1Cmd.MarkFlagRequired("namespace")
 }

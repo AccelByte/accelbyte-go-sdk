@@ -40,8 +40,8 @@ var RevokeUserV3Cmd = &cobra.Command{
 }
 
 func init() {
-	RevokeUserV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	RevokeUserV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = RevokeUserV3Cmd.MarkFlagRequired("namespace")
-	RevokeUserV3Cmd.Flags().StringP("userId", "", " ", "User id")
+	RevokeUserV3Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = RevokeUserV3Cmd.MarkFlagRequired("userId")
 }

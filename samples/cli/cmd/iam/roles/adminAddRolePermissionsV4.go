@@ -48,8 +48,8 @@ var AdminAddRolePermissionsV4Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminAddRolePermissionsV4Cmd.Flags().StringP("body", "", " ", "Body")
+	AdminAddRolePermissionsV4Cmd.Flags().StringP("body", "", "", "Body")
 	_ = AdminAddRolePermissionsV4Cmd.MarkFlagRequired("body")
-	AdminAddRolePermissionsV4Cmd.Flags().StringP("roleId", "", " ", "Role id")
+	AdminAddRolePermissionsV4Cmd.Flags().StringP("roleId", "", "", "Role id")
 	_ = AdminAddRolePermissionsV4Cmd.MarkFlagRequired("roleId")
 }

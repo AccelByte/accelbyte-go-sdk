@@ -49,8 +49,8 @@ var ImportStatsCmd = &cobra.Command{
 }
 
 func init() {
-	ImportStatsCmd.Flags().StringP("file", "", " ", "File")
-	ImportStatsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	ImportStatsCmd.Flags().StringP("file", "", "", "File")
+	ImportStatsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = ImportStatsCmd.MarkFlagRequired("namespace")
 	ImportStatsCmd.Flags().BoolP("replaceExisting", "", false, "Replace existing")
 }

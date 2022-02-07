@@ -51,12 +51,12 @@ var AdminPutPlayerRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminPutPlayerRecordHandlerV1Cmd.Flags().StringP("body", "", " ", "Body")
+	AdminPutPlayerRecordHandlerV1Cmd.Flags().StringP("body", "", "", "Body")
 	_ = AdminPutPlayerRecordHandlerV1Cmd.MarkFlagRequired("body")
-	AdminPutPlayerRecordHandlerV1Cmd.Flags().StringP("key", "", " ", "Key")
+	AdminPutPlayerRecordHandlerV1Cmd.Flags().StringP("key", "", "", "Key")
 	_ = AdminPutPlayerRecordHandlerV1Cmd.MarkFlagRequired("key")
-	AdminPutPlayerRecordHandlerV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminPutPlayerRecordHandlerV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminPutPlayerRecordHandlerV1Cmd.MarkFlagRequired("namespace")
-	AdminPutPlayerRecordHandlerV1Cmd.Flags().StringP("userId", "", " ", "User id")
+	AdminPutPlayerRecordHandlerV1Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = AdminPutPlayerRecordHandlerV1Cmd.MarkFlagRequired("userId")
 }

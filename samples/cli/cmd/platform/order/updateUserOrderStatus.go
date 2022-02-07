@@ -52,11 +52,11 @@ var UpdateUserOrderStatusCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateUserOrderStatusCmd.Flags().StringP("body", "", " ", "Body")
-	UpdateUserOrderStatusCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UpdateUserOrderStatusCmd.Flags().StringP("body", "", "", "Body")
+	UpdateUserOrderStatusCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UpdateUserOrderStatusCmd.MarkFlagRequired("namespace")
-	UpdateUserOrderStatusCmd.Flags().StringP("orderNo", "", " ", "Order no")
+	UpdateUserOrderStatusCmd.Flags().StringP("orderNo", "", "", "Order no")
 	_ = UpdateUserOrderStatusCmd.MarkFlagRequired("orderNo")
-	UpdateUserOrderStatusCmd.Flags().StringP("userId", "", " ", "User id")
+	UpdateUserOrderStatusCmd.Flags().StringP("userId", "", "", "User id")
 	_ = UpdateUserOrderStatusCmd.MarkFlagRequired("userId")
 }

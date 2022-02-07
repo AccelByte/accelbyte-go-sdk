@@ -39,5 +39,5 @@ var GetRolesCmd = &cobra.Command{
 }
 
 func init() {
-	GetRolesCmd.Flags().StringP("isWildcard", "", " ", "Is wildcard")
+	GetRolesCmd.Flags().StringP("isWildcard", "", "", "Is wildcard")
 }

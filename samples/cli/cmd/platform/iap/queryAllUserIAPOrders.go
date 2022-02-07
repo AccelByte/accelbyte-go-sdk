@@ -41,8 +41,8 @@ var QueryAllUserIAPOrdersCmd = &cobra.Command{
 }
 
 func init() {
-	QueryAllUserIAPOrdersCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	QueryAllUserIAPOrdersCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = QueryAllUserIAPOrdersCmd.MarkFlagRequired("namespace")
-	QueryAllUserIAPOrdersCmd.Flags().StringP("userId", "", " ", "User id")
+	QueryAllUserIAPOrdersCmd.Flags().StringP("userId", "", "", "User id")
 	_ = QueryAllUserIAPOrdersCmd.MarkFlagRequired("userId")
 }

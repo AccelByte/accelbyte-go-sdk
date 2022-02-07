@@ -45,7 +45,7 @@ var AdminGetRoleManagersV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetRoleManagersV3Cmd.Flags().StringP("roleId", "", " ", "Role id")
+	AdminGetRoleManagersV3Cmd.Flags().StringP("roleId", "", "", "Role id")
 	_ = AdminGetRoleManagersV3Cmd.MarkFlagRequired("roleId")
 	AdminGetRoleManagersV3Cmd.Flags().StringP("after", "", "0", "After")
 	AdminGetRoleManagersV3Cmd.Flags().StringP("before", "", "0", "Before")

@@ -48,7 +48,7 @@ var CreateFulfillmentScriptCmd = &cobra.Command{
 }
 
 func init() {
-	CreateFulfillmentScriptCmd.Flags().StringP("body", "", " ", "Body")
-	CreateFulfillmentScriptCmd.Flags().StringP("id", "", " ", "Id")
+	CreateFulfillmentScriptCmd.Flags().StringP("body", "", "", "Body")
+	CreateFulfillmentScriptCmd.Flags().StringP("id", "", "", "Id")
 	_ = CreateFulfillmentScriptCmd.MarkFlagRequired("id")
 }

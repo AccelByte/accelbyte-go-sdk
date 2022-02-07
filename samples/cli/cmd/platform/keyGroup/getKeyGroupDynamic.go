@@ -41,8 +41,8 @@ var GetKeyGroupDynamicCmd = &cobra.Command{
 }
 
 func init() {
-	GetKeyGroupDynamicCmd.Flags().StringP("keyGroupId", "", " ", "Key group id")
+	GetKeyGroupDynamicCmd.Flags().StringP("keyGroupId", "", "", "Key group id")
 	_ = GetKeyGroupDynamicCmd.MarkFlagRequired("keyGroupId")
-	GetKeyGroupDynamicCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetKeyGroupDynamicCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetKeyGroupDynamicCmd.MarkFlagRequired("namespace")
 }

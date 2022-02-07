@@ -49,10 +49,10 @@ var DisableUserCmd = &cobra.Command{
 }
 
 func init() {
-	DisableUserCmd.Flags().StringP("body", "", " ", "Body")
+	DisableUserCmd.Flags().StringP("body", "", "", "Body")
 	_ = DisableUserCmd.MarkFlagRequired("body")
-	DisableUserCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DisableUserCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DisableUserCmd.MarkFlagRequired("namespace")
-	DisableUserCmd.Flags().StringP("userId", "", " ", "User id")
+	DisableUserCmd.Flags().StringP("userId", "", "", "User id")
 	_ = DisableUserCmd.MarkFlagRequired("userId")
 }

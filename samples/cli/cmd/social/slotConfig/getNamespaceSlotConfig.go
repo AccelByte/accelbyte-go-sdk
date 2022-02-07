@@ -39,6 +39,6 @@ var GetNamespaceSlotConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetNamespaceSlotConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetNamespaceSlotConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetNamespaceSlotConfigCmd.MarkFlagRequired("namespace")
 }

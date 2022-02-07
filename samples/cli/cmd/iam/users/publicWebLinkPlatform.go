@@ -45,10 +45,10 @@ var PublicWebLinkPlatformCmd = &cobra.Command{
 }
 
 func init() {
-	PublicWebLinkPlatformCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicWebLinkPlatformCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicWebLinkPlatformCmd.MarkFlagRequired("namespace")
-	PublicWebLinkPlatformCmd.Flags().StringP("platformId", "", " ", "Platform id")
+	PublicWebLinkPlatformCmd.Flags().StringP("platformId", "", "", "Platform id")
 	_ = PublicWebLinkPlatformCmd.MarkFlagRequired("platformId")
-	PublicWebLinkPlatformCmd.Flags().StringP("clientId", "", " ", "Client id")
-	PublicWebLinkPlatformCmd.Flags().StringP("redirectUri", "", " ", "Redirect uri")
+	PublicWebLinkPlatformCmd.Flags().StringP("clientId", "", "", "Client id")
+	PublicWebLinkPlatformCmd.Flags().StringP("redirectUri", "", "", "Redirect uri")
 }

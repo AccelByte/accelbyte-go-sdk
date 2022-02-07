@@ -38,6 +38,6 @@ var DeleteAppleIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteAppleIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeleteAppleIAPConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeleteAppleIAPConfigCmd.MarkFlagRequired("namespace")
 }

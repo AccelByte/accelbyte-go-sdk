@@ -57,10 +57,10 @@ var PublicGetSlotDataCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetSlotDataCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicGetSlotDataCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicGetSlotDataCmd.MarkFlagRequired("namespace")
-	PublicGetSlotDataCmd.Flags().StringP("slotId", "", " ", "Slot id")
+	PublicGetSlotDataCmd.Flags().StringP("slotId", "", "", "Slot id")
 	_ = PublicGetSlotDataCmd.MarkFlagRequired("slotId")
-	PublicGetSlotDataCmd.Flags().StringP("userId", "", " ", "User id")
+	PublicGetSlotDataCmd.Flags().StringP("userId", "", "", "User id")
 	_ = PublicGetSlotDataCmd.MarkFlagRequired("userId")
 }

@@ -47,11 +47,11 @@ var PublicListAchievementsCmd = &cobra.Command{
 }
 
 func init() {
-	PublicListAchievementsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicListAchievementsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicListAchievementsCmd.MarkFlagRequired("namespace")
 	PublicListAchievementsCmd.Flags().Int64P("limit", "", 20, "Limit")
 	PublicListAchievementsCmd.Flags().Int64P("offset", "", 0, "Offset")
-	PublicListAchievementsCmd.Flags().StringP("sortBy", "", " ", "Sort by")
-	PublicListAchievementsCmd.Flags().StringP("language", "", " ", "Language")
+	PublicListAchievementsCmd.Flags().StringP("sortBy", "", "", "Sort by")
+	PublicListAchievementsCmd.Flags().StringP("language", "", "", "Language")
 	_ = PublicListAchievementsCmd.MarkFlagRequired("language")
 }

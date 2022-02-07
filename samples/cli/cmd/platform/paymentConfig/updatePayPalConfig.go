@@ -52,8 +52,8 @@ var UpdatePayPalConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdatePayPalConfigCmd.Flags().StringP("body", "", " ", "Body")
-	UpdatePayPalConfigCmd.Flags().StringP("id", "", " ", "Id")
+	UpdatePayPalConfigCmd.Flags().StringP("body", "", "", "Body")
+	UpdatePayPalConfigCmd.Flags().StringP("id", "", "", "Id")
 	_ = UpdatePayPalConfigCmd.MarkFlagRequired("id")
 	UpdatePayPalConfigCmd.Flags().BoolP("sandbox", "", false, "Sandbox")
 	UpdatePayPalConfigCmd.Flags().BoolP("validate", "", false, "Validate")

@@ -49,12 +49,12 @@ var PublicGetItemCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetItemCmd.Flags().StringP("itemId", "", " ", "Item id")
+	PublicGetItemCmd.Flags().StringP("itemId", "", "", "Item id")
 	_ = PublicGetItemCmd.MarkFlagRequired("itemId")
-	PublicGetItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicGetItemCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicGetItemCmd.MarkFlagRequired("namespace")
-	PublicGetItemCmd.Flags().StringP("language", "", " ", "Language")
+	PublicGetItemCmd.Flags().StringP("language", "", "", "Language")
 	PublicGetItemCmd.Flags().BoolP("populateBundle", "", false, "Populate bundle")
-	PublicGetItemCmd.Flags().StringP("region", "", " ", "Region")
-	PublicGetItemCmd.Flags().StringP("storeId", "", " ", "Store id")
+	PublicGetItemCmd.Flags().StringP("region", "", "", "Region")
+	PublicGetItemCmd.Flags().StringP("storeId", "", "", "Store id")
 }

@@ -45,12 +45,12 @@ var RetrieveEligibilitiesPublicIndirectCmd = &cobra.Command{
 }
 
 func init() {
-	RetrieveEligibilitiesPublicIndirectCmd.Flags().StringP("clientId", "", " ", "Client id")
+	RetrieveEligibilitiesPublicIndirectCmd.Flags().StringP("clientId", "", "", "Client id")
 	_ = RetrieveEligibilitiesPublicIndirectCmd.MarkFlagRequired("clientId")
-	RetrieveEligibilitiesPublicIndirectCmd.Flags().StringP("countryCode", "", " ", "Country code")
+	RetrieveEligibilitiesPublicIndirectCmd.Flags().StringP("countryCode", "", "", "Country code")
 	_ = RetrieveEligibilitiesPublicIndirectCmd.MarkFlagRequired("countryCode")
-	RetrieveEligibilitiesPublicIndirectCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	RetrieveEligibilitiesPublicIndirectCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = RetrieveEligibilitiesPublicIndirectCmd.MarkFlagRequired("namespace")
-	RetrieveEligibilitiesPublicIndirectCmd.Flags().StringP("userId", "", " ", "User id")
+	RetrieveEligibilitiesPublicIndirectCmd.Flags().StringP("userId", "", "", "User id")
 	_ = RetrieveEligibilitiesPublicIndirectCmd.MarkFlagRequired("userId")
 }

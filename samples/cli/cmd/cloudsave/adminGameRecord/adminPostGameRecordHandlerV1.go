@@ -49,10 +49,10 @@ var AdminPostGameRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminPostGameRecordHandlerV1Cmd.Flags().StringP("body", "", " ", "Body")
+	AdminPostGameRecordHandlerV1Cmd.Flags().StringP("body", "", "", "Body")
 	_ = AdminPostGameRecordHandlerV1Cmd.MarkFlagRequired("body")
-	AdminPostGameRecordHandlerV1Cmd.Flags().StringP("key", "", " ", "Key")
+	AdminPostGameRecordHandlerV1Cmd.Flags().StringP("key", "", "", "Key")
 	_ = AdminPostGameRecordHandlerV1Cmd.MarkFlagRequired("key")
-	AdminPostGameRecordHandlerV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminPostGameRecordHandlerV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminPostGameRecordHandlerV1Cmd.MarkFlagRequired("namespace")
 }

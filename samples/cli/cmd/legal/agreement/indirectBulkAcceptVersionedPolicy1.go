@@ -48,7 +48,7 @@ var IndirectBulkAcceptVersionedPolicy1Cmd = &cobra.Command{
 }
 
 func init() {
-	IndirectBulkAcceptVersionedPolicy1Cmd.Flags().StringP("body", "", " ", "Body")
-	IndirectBulkAcceptVersionedPolicy1Cmd.Flags().StringP("userId", "", " ", "User id")
+	IndirectBulkAcceptVersionedPolicy1Cmd.Flags().StringP("body", "", "", "Body")
+	IndirectBulkAcceptVersionedPolicy1Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = IndirectBulkAcceptVersionedPolicy1Cmd.MarkFlagRequired("userId")
 }

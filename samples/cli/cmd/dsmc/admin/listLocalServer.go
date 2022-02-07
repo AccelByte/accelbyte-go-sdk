@@ -39,6 +39,6 @@ var ListLocalServerCmd = &cobra.Command{
 }
 
 func init() {
-	ListLocalServerCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	ListLocalServerCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = ListLocalServerCmd.MarkFlagRequired("namespace")
 }

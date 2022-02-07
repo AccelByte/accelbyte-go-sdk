@@ -50,10 +50,10 @@ var AdminDeleteProfanityFilterCmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteProfanityFilterCmd.Flags().StringP("body", "", " ", "Body")
+	AdminDeleteProfanityFilterCmd.Flags().StringP("body", "", "", "Body")
 	_ = AdminDeleteProfanityFilterCmd.MarkFlagRequired("body")
-	AdminDeleteProfanityFilterCmd.Flags().StringP("list", "", " ", "List")
+	AdminDeleteProfanityFilterCmd.Flags().StringP("list", "", "", "List")
 	_ = AdminDeleteProfanityFilterCmd.MarkFlagRequired("list")
-	AdminDeleteProfanityFilterCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminDeleteProfanityFilterCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminDeleteProfanityFilterCmd.MarkFlagRequired("namespace")
 }

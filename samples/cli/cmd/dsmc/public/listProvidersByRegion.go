@@ -39,6 +39,6 @@ var ListProvidersByRegionCmd = &cobra.Command{
 }
 
 func init() {
-	ListProvidersByRegionCmd.Flags().StringP("region", "", " ", "Region")
+	ListProvidersByRegionCmd.Flags().StringP("region", "", "", "Region")
 	_ = ListProvidersByRegionCmd.MarkFlagRequired("region")
 }

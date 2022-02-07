@@ -45,9 +45,9 @@ var GetGroupsCmd = &cobra.Command{
 }
 
 func init() {
-	GetGroupsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetGroupsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetGroupsCmd.MarkFlagRequired("namespace")
-	GetGroupsCmd.Flags().StringP("userId", "", " ", "User id")
+	GetGroupsCmd.Flags().StringP("userId", "", "", "User id")
 	_ = GetGroupsCmd.MarkFlagRequired("userId")
 	GetGroupsCmd.Flags().StringP("limit", "", "20", "Limit")
 	GetGroupsCmd.Flags().StringP("offset", "", "0", "Offset")

@@ -41,8 +41,8 @@ var JoinGroupV1Cmd = &cobra.Command{
 }
 
 func init() {
-	JoinGroupV1Cmd.Flags().StringP("groupId", "", " ", "Group id")
+	JoinGroupV1Cmd.Flags().StringP("groupId", "", "", "Group id")
 	_ = JoinGroupV1Cmd.MarkFlagRequired("groupId")
-	JoinGroupV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	JoinGroupV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = JoinGroupV1Cmd.MarkFlagRequired("namespace")
 }

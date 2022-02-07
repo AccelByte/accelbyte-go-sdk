@@ -43,10 +43,10 @@ var GeneratedUploadUrlCmd = &cobra.Command{
 }
 
 func init() {
-	GeneratedUploadUrlCmd.Flags().StringP("folder", "", " ", "Folder")
+	GeneratedUploadUrlCmd.Flags().StringP("folder", "", "", "Folder")
 	_ = GeneratedUploadUrlCmd.MarkFlagRequired("folder")
-	GeneratedUploadUrlCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GeneratedUploadUrlCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GeneratedUploadUrlCmd.MarkFlagRequired("namespace")
-	GeneratedUploadUrlCmd.Flags().StringP("fileType", "", " ", "File type")
+	GeneratedUploadUrlCmd.Flags().StringP("fileType", "", "", "File type")
 	_ = GeneratedUploadUrlCmd.MarkFlagRequired("fileType")
 }

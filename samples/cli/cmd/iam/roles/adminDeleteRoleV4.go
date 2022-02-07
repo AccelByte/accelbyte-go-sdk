@@ -38,6 +38,6 @@ var AdminDeleteRoleV4Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteRoleV4Cmd.Flags().StringP("roleId", "", " ", "Role id")
+	AdminDeleteRoleV4Cmd.Flags().StringP("roleId", "", "", "Role id")
 	_ = AdminDeleteRoleV4Cmd.MarkFlagRequired("roleId")
 }

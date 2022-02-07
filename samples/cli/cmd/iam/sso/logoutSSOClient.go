@@ -38,6 +38,6 @@ var LogoutSSOClientCmd = &cobra.Command{
 }
 
 func init() {
-	LogoutSSOClientCmd.Flags().StringP("platformId", "", " ", "Platform id")
+	LogoutSSOClientCmd.Flags().StringP("platformId", "", "", "Platform id")
 	_ = LogoutSSOClientCmd.MarkFlagRequired("platformId")
 }

@@ -50,10 +50,10 @@ var SingleAdminUpdateGroupCmd = &cobra.Command{
 }
 
 func init() {
-	SingleAdminUpdateGroupCmd.Flags().StringP("body", "", " ", "Body")
+	SingleAdminUpdateGroupCmd.Flags().StringP("body", "", "", "Body")
 	_ = SingleAdminUpdateGroupCmd.MarkFlagRequired("body")
-	SingleAdminUpdateGroupCmd.Flags().StringP("groupId", "", " ", "Group id")
+	SingleAdminUpdateGroupCmd.Flags().StringP("groupId", "", "", "Group id")
 	_ = SingleAdminUpdateGroupCmd.MarkFlagRequired("groupId")
-	SingleAdminUpdateGroupCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	SingleAdminUpdateGroupCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = SingleAdminUpdateGroupCmd.MarkFlagRequired("namespace")
 }

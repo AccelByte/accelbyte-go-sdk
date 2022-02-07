@@ -49,9 +49,9 @@ var SyncSteamInventoryCmd = &cobra.Command{
 }
 
 func init() {
-	SyncSteamInventoryCmd.Flags().StringP("body", "", " ", "Body")
-	SyncSteamInventoryCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	SyncSteamInventoryCmd.Flags().StringP("body", "", "", "Body")
+	SyncSteamInventoryCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = SyncSteamInventoryCmd.MarkFlagRequired("namespace")
-	SyncSteamInventoryCmd.Flags().StringP("userId", "", " ", "User id")
+	SyncSteamInventoryCmd.Flags().StringP("userId", "", "", "User id")
 	_ = SyncSteamInventoryCmd.MarkFlagRequired("userId")
 }

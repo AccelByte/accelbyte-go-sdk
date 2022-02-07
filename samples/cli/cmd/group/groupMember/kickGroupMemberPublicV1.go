@@ -41,8 +41,8 @@ var KickGroupMemberPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	KickGroupMemberPublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	KickGroupMemberPublicV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = KickGroupMemberPublicV1Cmd.MarkFlagRequired("namespace")
-	KickGroupMemberPublicV1Cmd.Flags().StringP("userId", "", " ", "User id")
+	KickGroupMemberPublicV1Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = KickGroupMemberPublicV1Cmd.MarkFlagRequired("userId")
 }

@@ -48,8 +48,8 @@ var AdminCreateTagCmd = &cobra.Command{
 }
 
 func init() {
-	AdminCreateTagCmd.Flags().StringP("body", "", " ", "Body")
+	AdminCreateTagCmd.Flags().StringP("body", "", "", "Body")
 	_ = AdminCreateTagCmd.MarkFlagRequired("body")
-	AdminCreateTagCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminCreateTagCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminCreateTagCmd.MarkFlagRequired("namespace")
 }

@@ -41,8 +41,8 @@ var GetPublisherUserCmd = &cobra.Command{
 }
 
 func init() {
-	GetPublisherUserCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetPublisherUserCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetPublisherUserCmd.MarkFlagRequired("namespace")
-	GetPublisherUserCmd.Flags().StringP("userId", "", " ", "User id")
+	GetPublisherUserCmd.Flags().StringP("userId", "", "", "User id")
 	_ = GetPublisherUserCmd.MarkFlagRequired("userId")
 }

@@ -52,12 +52,12 @@ var UpdateChannelCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateChannelCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateChannelCmd.Flags().StringP("body", "", "", "Body")
 	_ = UpdateChannelCmd.MarkFlagRequired("body")
-	UpdateChannelCmd.Flags().StringP("channelId", "", " ", "Channel id")
+	UpdateChannelCmd.Flags().StringP("channelId", "", "", "Channel id")
 	_ = UpdateChannelCmd.MarkFlagRequired("channelId")
-	UpdateChannelCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UpdateChannelCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UpdateChannelCmd.MarkFlagRequired("namespace")
-	UpdateChannelCmd.Flags().StringP("userId", "", " ", "User id")
+	UpdateChannelCmd.Flags().StringP("userId", "", "", "User id")
 	_ = UpdateChannelCmd.MarkFlagRequired("userId")
 }

@@ -51,14 +51,14 @@ var PublicSearchItemsCmd = &cobra.Command{
 }
 
 func init() {
-	PublicSearchItemsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicSearchItemsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicSearchItemsCmd.MarkFlagRequired("namespace")
 	PublicSearchItemsCmd.Flags().Int32P("limit", "", 20, "Limit")
 	PublicSearchItemsCmd.Flags().Int32P("offset", "", 0, "Offset")
-	PublicSearchItemsCmd.Flags().StringP("region", "", " ", "Region")
-	PublicSearchItemsCmd.Flags().StringP("storeId", "", " ", "Store id")
-	PublicSearchItemsCmd.Flags().StringP("keyword", "", " ", "Keyword")
+	PublicSearchItemsCmd.Flags().StringP("region", "", "", "Region")
+	PublicSearchItemsCmd.Flags().StringP("storeId", "", "", "Store id")
+	PublicSearchItemsCmd.Flags().StringP("keyword", "", "", "Keyword")
 	_ = PublicSearchItemsCmd.MarkFlagRequired("keyword")
-	PublicSearchItemsCmd.Flags().StringP("language", "", " ", "Language")
+	PublicSearchItemsCmd.Flags().StringP("language", "", "", "Language")
 	_ = PublicSearchItemsCmd.MarkFlagRequired("language")
 }

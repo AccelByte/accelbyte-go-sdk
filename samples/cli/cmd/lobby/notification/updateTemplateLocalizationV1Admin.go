@@ -51,12 +51,12 @@ var UpdateTemplateLocalizationV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateTemplateLocalizationV1AdminCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateTemplateLocalizationV1AdminCmd.Flags().StringP("body", "", "", "Body")
 	_ = UpdateTemplateLocalizationV1AdminCmd.MarkFlagRequired("body")
-	UpdateTemplateLocalizationV1AdminCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UpdateTemplateLocalizationV1AdminCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UpdateTemplateLocalizationV1AdminCmd.MarkFlagRequired("namespace")
-	UpdateTemplateLocalizationV1AdminCmd.Flags().StringP("templateLanguage", "", " ", "Template language")
+	UpdateTemplateLocalizationV1AdminCmd.Flags().StringP("templateLanguage", "", "", "Template language")
 	_ = UpdateTemplateLocalizationV1AdminCmd.MarkFlagRequired("templateLanguage")
-	UpdateTemplateLocalizationV1AdminCmd.Flags().StringP("templateSlug", "", " ", "Template slug")
+	UpdateTemplateLocalizationV1AdminCmd.Flags().StringP("templateSlug", "", "", "Template slug")
 	_ = UpdateTemplateLocalizationV1AdminCmd.MarkFlagRequired("templateSlug")
 }

@@ -41,8 +41,8 @@ var PublicGetPaymentAccountsCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetPaymentAccountsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicGetPaymentAccountsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicGetPaymentAccountsCmd.MarkFlagRequired("namespace")
-	PublicGetPaymentAccountsCmd.Flags().StringP("userId", "", " ", "User id")
+	PublicGetPaymentAccountsCmd.Flags().StringP("userId", "", "", "User id")
 	_ = PublicGetPaymentAccountsCmd.MarkFlagRequired("userId")
 }

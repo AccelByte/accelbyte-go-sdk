@@ -48,8 +48,8 @@ var ImportRewardsCmd = &cobra.Command{
 }
 
 func init() {
-	ImportRewardsCmd.Flags().StringP("file", "", " ", "File")
-	ImportRewardsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	ImportRewardsCmd.Flags().StringP("file", "", "", "File")
+	ImportRewardsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = ImportRewardsCmd.MarkFlagRequired("namespace")
 	ImportRewardsCmd.Flags().BoolP("replaceExisting", "", false, "Replace existing")
 	_ = ImportRewardsCmd.MarkFlagRequired("replaceExisting")

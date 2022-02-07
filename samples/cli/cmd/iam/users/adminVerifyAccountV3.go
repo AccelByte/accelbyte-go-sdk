@@ -49,10 +49,10 @@ var AdminVerifyAccountV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminVerifyAccountV3Cmd.Flags().StringP("body", "", " ", "Body")
+	AdminVerifyAccountV3Cmd.Flags().StringP("body", "", "", "Body")
 	_ = AdminVerifyAccountV3Cmd.MarkFlagRequired("body")
-	AdminVerifyAccountV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminVerifyAccountV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminVerifyAccountV3Cmd.MarkFlagRequired("namespace")
-	AdminVerifyAccountV3Cmd.Flags().StringP("userId", "", " ", "User id")
+	AdminVerifyAccountV3Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = AdminVerifyAccountV3Cmd.MarkFlagRequired("userId")
 }

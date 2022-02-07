@@ -50,9 +50,9 @@ var UpdateKeyGroupCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateKeyGroupCmd.Flags().StringP("body", "", " ", "Body")
-	UpdateKeyGroupCmd.Flags().StringP("keyGroupId", "", " ", "Key group id")
+	UpdateKeyGroupCmd.Flags().StringP("body", "", "", "Body")
+	UpdateKeyGroupCmd.Flags().StringP("keyGroupId", "", "", "Key group id")
 	_ = UpdateKeyGroupCmd.MarkFlagRequired("keyGroupId")
-	UpdateKeyGroupCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UpdateKeyGroupCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UpdateKeyGroupCmd.MarkFlagRequired("namespace")
 }

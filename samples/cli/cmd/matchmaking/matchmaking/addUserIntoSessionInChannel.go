@@ -51,12 +51,12 @@ var AddUserIntoSessionInChannelCmd = &cobra.Command{
 }
 
 func init() {
-	AddUserIntoSessionInChannelCmd.Flags().StringP("body", "", " ", "Body")
+	AddUserIntoSessionInChannelCmd.Flags().StringP("body", "", "", "Body")
 	_ = AddUserIntoSessionInChannelCmd.MarkFlagRequired("body")
-	AddUserIntoSessionInChannelCmd.Flags().StringP("channelName", "", " ", "Channel name")
+	AddUserIntoSessionInChannelCmd.Flags().StringP("channelName", "", "", "Channel name")
 	_ = AddUserIntoSessionInChannelCmd.MarkFlagRequired("channelName")
-	AddUserIntoSessionInChannelCmd.Flags().StringP("matchID", "", " ", "Match ID")
+	AddUserIntoSessionInChannelCmd.Flags().StringP("matchID", "", "", "Match ID")
 	_ = AddUserIntoSessionInChannelCmd.MarkFlagRequired("matchID")
-	AddUserIntoSessionInChannelCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AddUserIntoSessionInChannelCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AddUserIntoSessionInChannelCmd.MarkFlagRequired("namespace")
 }

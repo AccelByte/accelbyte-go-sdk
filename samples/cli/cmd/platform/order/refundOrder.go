@@ -50,9 +50,9 @@ var RefundOrderCmd = &cobra.Command{
 }
 
 func init() {
-	RefundOrderCmd.Flags().StringP("body", "", " ", "Body")
-	RefundOrderCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	RefundOrderCmd.Flags().StringP("body", "", "", "Body")
+	RefundOrderCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = RefundOrderCmd.MarkFlagRequired("namespace")
-	RefundOrderCmd.Flags().StringP("orderNo", "", " ", "Order no")
+	RefundOrderCmd.Flags().StringP("orderNo", "", "", "Order no")
 	_ = RefundOrderCmd.MarkFlagRequired("orderNo")
 }

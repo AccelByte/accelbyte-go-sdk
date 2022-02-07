@@ -41,8 +41,8 @@ var GetCurrentUserSeasonProgressionCmd = &cobra.Command{
 }
 
 func init() {
-	GetCurrentUserSeasonProgressionCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetCurrentUserSeasonProgressionCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetCurrentUserSeasonProgressionCmd.MarkFlagRequired("namespace")
-	GetCurrentUserSeasonProgressionCmd.Flags().StringP("userId", "", " ", "User id")
+	GetCurrentUserSeasonProgressionCmd.Flags().StringP("userId", "", "", "User id")
 	_ = GetCurrentUserSeasonProgressionCmd.MarkFlagRequired("userId")
 }

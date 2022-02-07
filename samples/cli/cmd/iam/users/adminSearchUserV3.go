@@ -55,14 +55,14 @@ var AdminSearchUserV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminSearchUserV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminSearchUserV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminSearchUserV3Cmd.MarkFlagRequired("namespace")
-	AdminSearchUserV3Cmd.Flags().StringP("by", "", " ", "By")
-	AdminSearchUserV3Cmd.Flags().StringP("endDate", "", " ", "End date")
+	AdminSearchUserV3Cmd.Flags().StringP("by", "", "", "By")
+	AdminSearchUserV3Cmd.Flags().StringP("endDate", "", "", "End date")
 	AdminSearchUserV3Cmd.Flags().Int64P("limit", "", 20, "Limit")
 	AdminSearchUserV3Cmd.Flags().StringP("offset", "", "0", "Offset")
-	AdminSearchUserV3Cmd.Flags().StringP("platformBy", "", " ", "Platform by")
-	AdminSearchUserV3Cmd.Flags().StringP("platformId", "", " ", "Platform id")
-	AdminSearchUserV3Cmd.Flags().StringP("query", "", " ", "Query")
-	AdminSearchUserV3Cmd.Flags().StringP("startDate", "", " ", "Start date")
+	AdminSearchUserV3Cmd.Flags().StringP("platformBy", "", "", "Platform by")
+	AdminSearchUserV3Cmd.Flags().StringP("platformId", "", "", "Platform id")
+	AdminSearchUserV3Cmd.Flags().StringP("query", "", "", "Query")
+	AdminSearchUserV3Cmd.Flags().StringP("startDate", "", "", "Start date")
 }

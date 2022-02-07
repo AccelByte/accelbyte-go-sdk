@@ -48,8 +48,8 @@ var AdminUpdateAgeRestrictionConfigV2Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateAgeRestrictionConfigV2Cmd.Flags().StringP("body", "", " ", "Body")
+	AdminUpdateAgeRestrictionConfigV2Cmd.Flags().StringP("body", "", "", "Body")
 	_ = AdminUpdateAgeRestrictionConfigV2Cmd.MarkFlagRequired("body")
-	AdminUpdateAgeRestrictionConfigV2Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminUpdateAgeRestrictionConfigV2Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminUpdateAgeRestrictionConfigV2Cmd.MarkFlagRequired("namespace")
 }

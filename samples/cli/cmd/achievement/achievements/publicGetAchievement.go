@@ -43,10 +43,10 @@ var PublicGetAchievementCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetAchievementCmd.Flags().StringP("achievementCode", "", " ", "Achievement code")
+	PublicGetAchievementCmd.Flags().StringP("achievementCode", "", "", "Achievement code")
 	_ = PublicGetAchievementCmd.MarkFlagRequired("achievementCode")
-	PublicGetAchievementCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicGetAchievementCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicGetAchievementCmd.MarkFlagRequired("namespace")
-	PublicGetAchievementCmd.Flags().StringP("language", "", " ", "Language")
+	PublicGetAchievementCmd.Flags().StringP("language", "", "", "Language")
 	_ = PublicGetAchievementCmd.MarkFlagRequired("language")
 }

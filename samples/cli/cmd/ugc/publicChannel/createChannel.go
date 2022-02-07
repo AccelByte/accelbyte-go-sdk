@@ -50,10 +50,10 @@ var CreateChannelCmd = &cobra.Command{
 }
 
 func init() {
-	CreateChannelCmd.Flags().StringP("body", "", " ", "Body")
+	CreateChannelCmd.Flags().StringP("body", "", "", "Body")
 	_ = CreateChannelCmd.MarkFlagRequired("body")
-	CreateChannelCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	CreateChannelCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = CreateChannelCmd.MarkFlagRequired("namespace")
-	CreateChannelCmd.Flags().StringP("userId", "", " ", "User id")
+	CreateChannelCmd.Flags().StringP("userId", "", "", "User id")
 	_ = CreateChannelCmd.MarkFlagRequired("userId")
 }

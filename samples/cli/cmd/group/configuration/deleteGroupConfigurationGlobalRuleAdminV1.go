@@ -43,10 +43,10 @@ var DeleteGroupConfigurationGlobalRuleAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	DeleteGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("allowedAction", "", " ", "Allowed action")
+	DeleteGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("allowedAction", "", "", "Allowed action")
 	_ = DeleteGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("allowedAction")
-	DeleteGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("configurationCode", "", " ", "Configuration code")
+	DeleteGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("configurationCode", "", "", "Configuration code")
 	_ = DeleteGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("configurationCode")
-	DeleteGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeleteGroupConfigurationGlobalRuleAdminV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeleteGroupConfigurationGlobalRuleAdminV1Cmd.MarkFlagRequired("namespace")
 }

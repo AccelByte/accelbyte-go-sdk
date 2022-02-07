@@ -47,8 +47,8 @@ var ClaimServerCmd = &cobra.Command{
 }
 
 func init() {
-	ClaimServerCmd.Flags().StringP("body", "", " ", "Body")
+	ClaimServerCmd.Flags().StringP("body", "", "", "Body")
 	_ = ClaimServerCmd.MarkFlagRequired("body")
-	ClaimServerCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	ClaimServerCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = ClaimServerCmd.MarkFlagRequired("namespace")
 }

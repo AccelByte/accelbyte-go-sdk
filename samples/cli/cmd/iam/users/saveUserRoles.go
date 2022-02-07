@@ -48,10 +48,10 @@ var SaveUserRolesCmd = &cobra.Command{
 }
 
 func init() {
-	SaveUserRolesCmd.Flags().StringP("body", "", " ", "Body")
+	SaveUserRolesCmd.Flags().StringP("body", "", "", "Body")
 	_ = SaveUserRolesCmd.MarkFlagRequired("body")
-	SaveUserRolesCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	SaveUserRolesCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = SaveUserRolesCmd.MarkFlagRequired("namespace")
-	SaveUserRolesCmd.Flags().StringP("userId", "", " ", "User id")
+	SaveUserRolesCmd.Flags().StringP("userId", "", "", "User id")
 	_ = SaveUserRolesCmd.MarkFlagRequired("userId")
 }

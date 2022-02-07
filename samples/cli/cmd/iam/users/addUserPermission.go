@@ -53,14 +53,14 @@ var AddUserPermissionCmd = &cobra.Command{
 }
 
 func init() {
-	AddUserPermissionCmd.Flags().StringP("body", "", " ", "Body")
+	AddUserPermissionCmd.Flags().StringP("body", "", "", "Body")
 	_ = AddUserPermissionCmd.MarkFlagRequired("body")
 	AddUserPermissionCmd.Flags().Int64P("action", "", -1, "Action")
 	_ = AddUserPermissionCmd.MarkFlagRequired("action")
-	AddUserPermissionCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AddUserPermissionCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AddUserPermissionCmd.MarkFlagRequired("namespace")
-	AddUserPermissionCmd.Flags().StringP("resource", "", " ", "Resource")
+	AddUserPermissionCmd.Flags().StringP("resource", "", "", "Resource")
 	_ = AddUserPermissionCmd.MarkFlagRequired("resource")
-	AddUserPermissionCmd.Flags().StringP("userId", "", " ", "User id")
+	AddUserPermissionCmd.Flags().StringP("userId", "", "", "User id")
 	_ = AddUserPermissionCmd.MarkFlagRequired("userId")
 }

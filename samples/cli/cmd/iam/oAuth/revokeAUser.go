@@ -38,6 +38,6 @@ var RevokeAUserCmd = &cobra.Command{
 }
 
 func init() {
-	RevokeAUserCmd.Flags().StringP("userID", "", " ", "User ID")
+	RevokeAUserCmd.Flags().StringP("userID", "", "", "User ID")
 	_ = RevokeAUserCmd.MarkFlagRequired("userID")
 }

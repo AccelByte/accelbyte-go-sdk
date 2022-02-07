@@ -47,10 +47,10 @@ var QueryKeyGroupsCmd = &cobra.Command{
 }
 
 func init() {
-	QueryKeyGroupsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	QueryKeyGroupsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = QueryKeyGroupsCmd.MarkFlagRequired("namespace")
 	QueryKeyGroupsCmd.Flags().Int32P("limit", "", 20, "Limit")
-	QueryKeyGroupsCmd.Flags().StringP("name", "", " ", "Name")
+	QueryKeyGroupsCmd.Flags().StringP("name", "", "", "Name")
 	QueryKeyGroupsCmd.Flags().Int32P("offset", "", 0, "Offset")
-	QueryKeyGroupsCmd.Flags().StringP("tag", "", " ", "Tag")
+	QueryKeyGroupsCmd.Flags().StringP("tag", "", "", "Tag")
 }

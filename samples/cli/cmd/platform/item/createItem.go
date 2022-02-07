@@ -50,9 +50,9 @@ var CreateItemCmd = &cobra.Command{
 }
 
 func init() {
-	CreateItemCmd.Flags().StringP("body", "", " ", "Body")
-	CreateItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	CreateItemCmd.Flags().StringP("body", "", "", "Body")
+	CreateItemCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = CreateItemCmd.MarkFlagRequired("namespace")
-	CreateItemCmd.Flags().StringP("storeId", "", " ", "Store id")
+	CreateItemCmd.Flags().StringP("storeId", "", "", "Store id")
 	_ = CreateItemCmd.MarkFlagRequired("storeId")
 }

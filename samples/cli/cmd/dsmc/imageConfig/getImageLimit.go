@@ -39,6 +39,6 @@ var GetImageLimitCmd = &cobra.Command{
 }
 
 func init() {
-	GetImageLimitCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetImageLimitCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetImageLimitCmd.MarkFlagRequired("namespace")
 }

@@ -40,8 +40,8 @@ var DeleteTemplateSlugCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteTemplateSlugCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeleteTemplateSlugCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeleteTemplateSlugCmd.MarkFlagRequired("namespace")
-	DeleteTemplateSlugCmd.Flags().StringP("templateSlug", "", " ", "Template slug")
+	DeleteTemplateSlugCmd.Flags().StringP("templateSlug", "", "", "Template slug")
 	_ = DeleteTemplateSlugCmd.MarkFlagRequired("templateSlug")
 }

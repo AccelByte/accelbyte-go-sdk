@@ -39,6 +39,6 @@ var GetStadiaIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetStadiaIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetStadiaIAPConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetStadiaIAPConfigCmd.MarkFlagRequired("namespace")
 }

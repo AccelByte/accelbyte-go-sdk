@@ -39,6 +39,6 @@ var GetMyProfileInfoCmd = &cobra.Command{
 }
 
 func init() {
-	GetMyProfileInfoCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetMyProfileInfoCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetMyProfileInfoCmd.MarkFlagRequired("namespace")
 }

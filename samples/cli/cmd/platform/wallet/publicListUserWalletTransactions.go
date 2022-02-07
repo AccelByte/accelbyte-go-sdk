@@ -47,11 +47,11 @@ var PublicListUserWalletTransactionsCmd = &cobra.Command{
 }
 
 func init() {
-	PublicListUserWalletTransactionsCmd.Flags().StringP("currencyCode", "", " ", "Currency code")
+	PublicListUserWalletTransactionsCmd.Flags().StringP("currencyCode", "", "", "Currency code")
 	_ = PublicListUserWalletTransactionsCmd.MarkFlagRequired("currencyCode")
-	PublicListUserWalletTransactionsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicListUserWalletTransactionsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicListUserWalletTransactionsCmd.MarkFlagRequired("namespace")
-	PublicListUserWalletTransactionsCmd.Flags().StringP("userId", "", " ", "User id")
+	PublicListUserWalletTransactionsCmd.Flags().StringP("userId", "", "", "User id")
 	_ = PublicListUserWalletTransactionsCmd.MarkFlagRequired("userId")
 	PublicListUserWalletTransactionsCmd.Flags().Int32P("limit", "", 20, "Limit")
 	PublicListUserWalletTransactionsCmd.Flags().Int32P("offset", "", 0, "Offset")

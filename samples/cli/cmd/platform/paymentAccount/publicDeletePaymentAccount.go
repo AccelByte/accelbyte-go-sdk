@@ -44,12 +44,12 @@ var PublicDeletePaymentAccountCmd = &cobra.Command{
 }
 
 func init() {
-	PublicDeletePaymentAccountCmd.Flags().StringP("id", "", " ", "Id")
+	PublicDeletePaymentAccountCmd.Flags().StringP("id", "", "", "Id")
 	_ = PublicDeletePaymentAccountCmd.MarkFlagRequired("id")
-	PublicDeletePaymentAccountCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicDeletePaymentAccountCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicDeletePaymentAccountCmd.MarkFlagRequired("namespace")
-	PublicDeletePaymentAccountCmd.Flags().StringP("type", "", " ", "Type")
+	PublicDeletePaymentAccountCmd.Flags().StringP("type", "", "", "Type")
 	_ = PublicDeletePaymentAccountCmd.MarkFlagRequired("type")
-	PublicDeletePaymentAccountCmd.Flags().StringP("userId", "", " ", "User id")
+	PublicDeletePaymentAccountCmd.Flags().StringP("userId", "", "", "User id")
 	_ = PublicDeletePaymentAccountCmd.MarkFlagRequired("userId")
 }

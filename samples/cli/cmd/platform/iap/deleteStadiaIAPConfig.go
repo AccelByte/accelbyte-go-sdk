@@ -38,6 +38,6 @@ var DeleteStadiaIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteStadiaIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeleteStadiaIAPConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeleteStadiaIAPConfigCmd.MarkFlagRequired("namespace")
 }

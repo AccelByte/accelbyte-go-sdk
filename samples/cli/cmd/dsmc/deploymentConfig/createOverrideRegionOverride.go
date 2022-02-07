@@ -54,14 +54,14 @@ var CreateOverrideRegionOverrideCmd = &cobra.Command{
 }
 
 func init() {
-	CreateOverrideRegionOverrideCmd.Flags().StringP("body", "", " ", "Body")
+	CreateOverrideRegionOverrideCmd.Flags().StringP("body", "", "", "Body")
 	_ = CreateOverrideRegionOverrideCmd.MarkFlagRequired("body")
-	CreateOverrideRegionOverrideCmd.Flags().StringP("deployment", "", " ", "Deployment")
+	CreateOverrideRegionOverrideCmd.Flags().StringP("deployment", "", "", "Deployment")
 	_ = CreateOverrideRegionOverrideCmd.MarkFlagRequired("deployment")
-	CreateOverrideRegionOverrideCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	CreateOverrideRegionOverrideCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = CreateOverrideRegionOverrideCmd.MarkFlagRequired("namespace")
-	CreateOverrideRegionOverrideCmd.Flags().StringP("region", "", " ", "Region")
+	CreateOverrideRegionOverrideCmd.Flags().StringP("region", "", "", "Region")
 	_ = CreateOverrideRegionOverrideCmd.MarkFlagRequired("region")
-	CreateOverrideRegionOverrideCmd.Flags().StringP("version", "", " ", "Version")
+	CreateOverrideRegionOverrideCmd.Flags().StringP("version", "", "", "Version")
 	_ = CreateOverrideRegionOverrideCmd.MarkFlagRequired("version")
 }

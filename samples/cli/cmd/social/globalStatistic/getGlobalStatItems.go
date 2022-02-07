@@ -43,7 +43,7 @@ var GetGlobalStatItemsCmd = &cobra.Command{
 }
 
 func init() {
-	GetGlobalStatItemsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetGlobalStatItemsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetGlobalStatItemsCmd.MarkFlagRequired("namespace")
 	GetGlobalStatItemsCmd.Flags().Int32P("limit", "", 20, "Limit")
 	GetGlobalStatItemsCmd.Flags().Int32P("offset", "", 0, "Offset")

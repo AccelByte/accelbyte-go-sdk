@@ -38,6 +38,6 @@ var AdminUpdateAdminRoleStatusV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateAdminRoleStatusV3Cmd.Flags().StringP("roleId", "", " ", "Role id")
+	AdminUpdateAdminRoleStatusV3Cmd.Flags().StringP("roleId", "", "", "Role id")
 	_ = AdminUpdateAdminRoleStatusV3Cmd.MarkFlagRequired("roleId")
 }

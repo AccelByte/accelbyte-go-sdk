@@ -40,8 +40,8 @@ var DeleteStatCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteStatCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeleteStatCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeleteStatCmd.MarkFlagRequired("namespace")
-	DeleteStatCmd.Flags().StringP("statCode", "", " ", "Stat code")
+	DeleteStatCmd.Flags().StringP("statCode", "", "", "Stat code")
 	_ = DeleteStatCmd.MarkFlagRequired("statCode")
 }

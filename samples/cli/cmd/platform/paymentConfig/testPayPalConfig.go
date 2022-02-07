@@ -48,6 +48,6 @@ var TestPayPalConfigCmd = &cobra.Command{
 }
 
 func init() {
-	TestPayPalConfigCmd.Flags().StringP("body", "", " ", "Body")
+	TestPayPalConfigCmd.Flags().StringP("body", "", "", "Body")
 	TestPayPalConfigCmd.Flags().BoolP("sandbox", "", false, "Sandbox")
 }

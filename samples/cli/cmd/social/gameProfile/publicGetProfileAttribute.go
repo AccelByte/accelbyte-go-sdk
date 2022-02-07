@@ -45,12 +45,12 @@ var PublicGetProfileAttributeCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetProfileAttributeCmd.Flags().StringP("attributeName", "", " ", "Attribute name")
+	PublicGetProfileAttributeCmd.Flags().StringP("attributeName", "", "", "Attribute name")
 	_ = PublicGetProfileAttributeCmd.MarkFlagRequired("attributeName")
-	PublicGetProfileAttributeCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicGetProfileAttributeCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicGetProfileAttributeCmd.MarkFlagRequired("namespace")
-	PublicGetProfileAttributeCmd.Flags().StringP("profileId", "", " ", "Profile id")
+	PublicGetProfileAttributeCmd.Flags().StringP("profileId", "", "", "Profile id")
 	_ = PublicGetProfileAttributeCmd.MarkFlagRequired("profileId")
-	PublicGetProfileAttributeCmd.Flags().StringP("userId", "", " ", "User id")
+	PublicGetProfileAttributeCmd.Flags().StringP("userId", "", "", "User id")
 	_ = PublicGetProfileAttributeCmd.MarkFlagRequired("userId")
 }

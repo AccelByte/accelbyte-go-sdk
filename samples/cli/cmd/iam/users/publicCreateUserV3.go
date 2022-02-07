@@ -48,8 +48,8 @@ var PublicCreateUserV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicCreateUserV3Cmd.Flags().StringP("body", "", " ", "Body")
+	PublicCreateUserV3Cmd.Flags().StringP("body", "", "", "Body")
 	_ = PublicCreateUserV3Cmd.MarkFlagRequired("body")
-	PublicCreateUserV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicCreateUserV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicCreateUserV3Cmd.MarkFlagRequired("namespace")
 }

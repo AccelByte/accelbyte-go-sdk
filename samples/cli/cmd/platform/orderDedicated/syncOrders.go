@@ -43,9 +43,9 @@ var SyncOrdersCmd = &cobra.Command{
 }
 
 func init() {
-	SyncOrdersCmd.Flags().StringP("nextEvaluatedKey", "", " ", "Next evaluated key")
-	SyncOrdersCmd.Flags().StringP("end", "", " ", "End")
+	SyncOrdersCmd.Flags().StringP("nextEvaluatedKey", "", "", "Next evaluated key")
+	SyncOrdersCmd.Flags().StringP("end", "", "", "End")
 	_ = SyncOrdersCmd.MarkFlagRequired("end")
-	SyncOrdersCmd.Flags().StringP("start", "", " ", "Start")
+	SyncOrdersCmd.Flags().StringP("start", "", "", "Start")
 	_ = SyncOrdersCmd.MarkFlagRequired("start")
 }

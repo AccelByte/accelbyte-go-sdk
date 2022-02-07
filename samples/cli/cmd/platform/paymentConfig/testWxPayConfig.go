@@ -46,5 +46,5 @@ var TestWxPayConfigCmd = &cobra.Command{
 }
 
 func init() {
-	TestWxPayConfigCmd.Flags().StringP("body", "", " ", "Body")
+	TestWxPayConfigCmd.Flags().StringP("body", "", "", "Body")
 }

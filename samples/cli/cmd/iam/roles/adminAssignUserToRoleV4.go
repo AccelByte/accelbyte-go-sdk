@@ -48,8 +48,8 @@ var AdminAssignUserToRoleV4Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminAssignUserToRoleV4Cmd.Flags().StringP("body", "", " ", "Body")
+	AdminAssignUserToRoleV4Cmd.Flags().StringP("body", "", "", "Body")
 	_ = AdminAssignUserToRoleV4Cmd.MarkFlagRequired("body")
-	AdminAssignUserToRoleV4Cmd.Flags().StringP("roleId", "", " ", "Role id")
+	AdminAssignUserToRoleV4Cmd.Flags().StringP("roleId", "", "", "Role id")
 	_ = AdminAssignUserToRoleV4Cmd.MarkFlagRequired("roleId")
 }

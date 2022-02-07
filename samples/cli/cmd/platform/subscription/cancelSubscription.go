@@ -54,12 +54,12 @@ var CancelSubscriptionCmd = &cobra.Command{
 }
 
 func init() {
-	CancelSubscriptionCmd.Flags().StringP("body", "", " ", "Body")
-	CancelSubscriptionCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	CancelSubscriptionCmd.Flags().StringP("body", "", "", "Body")
+	CancelSubscriptionCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = CancelSubscriptionCmd.MarkFlagRequired("namespace")
-	CancelSubscriptionCmd.Flags().StringP("subscriptionId", "", " ", "Subscription id")
+	CancelSubscriptionCmd.Flags().StringP("subscriptionId", "", "", "Subscription id")
 	_ = CancelSubscriptionCmd.MarkFlagRequired("subscriptionId")
-	CancelSubscriptionCmd.Flags().StringP("userId", "", " ", "User id")
+	CancelSubscriptionCmd.Flags().StringP("userId", "", "", "User id")
 	_ = CancelSubscriptionCmd.MarkFlagRequired("userId")
 	CancelSubscriptionCmd.Flags().BoolP("force", "", false, "Force")
 }

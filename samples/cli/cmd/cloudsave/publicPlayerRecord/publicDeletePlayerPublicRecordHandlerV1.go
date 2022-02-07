@@ -40,8 +40,8 @@ var PublicDeletePlayerPublicRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicDeletePlayerPublicRecordHandlerV1Cmd.Flags().StringP("key", "", " ", "Key")
+	PublicDeletePlayerPublicRecordHandlerV1Cmd.Flags().StringP("key", "", "", "Key")
 	_ = PublicDeletePlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("key")
-	PublicDeletePlayerPublicRecordHandlerV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicDeletePlayerPublicRecordHandlerV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicDeletePlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("namespace")
 }

@@ -48,7 +48,7 @@ var UpdatePaymentProviderConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdatePaymentProviderConfigCmd.Flags().StringP("body", "", " ", "Body")
-	UpdatePaymentProviderConfigCmd.Flags().StringP("id", "", " ", "Id")
+	UpdatePaymentProviderConfigCmd.Flags().StringP("body", "", "", "Body")
+	UpdatePaymentProviderConfigCmd.Flags().StringP("id", "", "", "Id")
 	_ = UpdatePaymentProviderConfigCmd.MarkFlagRequired("id")
 }

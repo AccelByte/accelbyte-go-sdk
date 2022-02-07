@@ -59,17 +59,17 @@ var QuerySessionCmd = &cobra.Command{
 }
 
 func init() {
-	QuerySessionCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	QuerySessionCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = QuerySessionCmd.MarkFlagRequired("namespace")
-	QuerySessionCmd.Flags().StringP("game_mode", "", " ", "Game mode")
-	QuerySessionCmd.Flags().StringP("game_version", "", " ", "Game version")
-	QuerySessionCmd.Flags().StringP("joinable", "", " ", "Joinable")
+	QuerySessionCmd.Flags().StringP("game_mode", "", "", "Game mode")
+	QuerySessionCmd.Flags().StringP("game_version", "", "", "Game version")
+	QuerySessionCmd.Flags().StringP("joinable", "", "", "Joinable")
 	QuerySessionCmd.Flags().StringP("limit", "", "20", "Limit")
-	QuerySessionCmd.Flags().StringP("match_exist", "", " ", "Match exist")
-	QuerySessionCmd.Flags().StringP("match_id", "", " ", "Match id")
+	QuerySessionCmd.Flags().StringP("match_exist", "", "", "Match exist")
+	QuerySessionCmd.Flags().StringP("match_id", "", "", "Match id")
 	QuerySessionCmd.Flags().StringP("offset", "", "0", "Offset")
-	QuerySessionCmd.Flags().StringP("server_status", "", " ", "Server status")
-	QuerySessionCmd.Flags().StringP("user_id", "", " ", "User id")
-	QuerySessionCmd.Flags().StringP("session_type", "", " ", "Session type")
+	QuerySessionCmd.Flags().StringP("server_status", "", "", "Server status")
+	QuerySessionCmd.Flags().StringP("user_id", "", "", "User id")
+	QuerySessionCmd.Flags().StringP("session_type", "", "", "Session type")
 	_ = QuerySessionCmd.MarkFlagRequired("session_type")
 }

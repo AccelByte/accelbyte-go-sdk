@@ -49,12 +49,12 @@ var GetUserStatItemsCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserStatItemsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetUserStatItemsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetUserStatItemsCmd.MarkFlagRequired("namespace")
-	GetUserStatItemsCmd.Flags().StringP("userId", "", " ", "User id")
+	GetUserStatItemsCmd.Flags().StringP("userId", "", "", "User id")
 	_ = GetUserStatItemsCmd.MarkFlagRequired("userId")
 	GetUserStatItemsCmd.Flags().Int32P("limit", "", 20, "Limit")
 	GetUserStatItemsCmd.Flags().Int32P("offset", "", 0, "Offset")
-	GetUserStatItemsCmd.Flags().StringP("statCodes", "", " ", "Stat codes")
-	GetUserStatItemsCmd.Flags().StringP("tags", "", " ", "Tags")
+	GetUserStatItemsCmd.Flags().StringP("statCodes", "", "", "Stat codes")
+	GetUserStatItemsCmd.Flags().StringP("tags", "", "", "Tags")
 }

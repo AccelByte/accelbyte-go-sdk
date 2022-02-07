@@ -43,10 +43,10 @@ var BulkFetchStatItems1Cmd = &cobra.Command{
 }
 
 func init() {
-	BulkFetchStatItems1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	BulkFetchStatItems1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = BulkFetchStatItems1Cmd.MarkFlagRequired("namespace")
-	BulkFetchStatItems1Cmd.Flags().StringP("statCode", "", " ", "Stat code")
+	BulkFetchStatItems1Cmd.Flags().StringP("statCode", "", "", "Stat code")
 	_ = BulkFetchStatItems1Cmd.MarkFlagRequired("statCode")
-	BulkFetchStatItems1Cmd.Flags().StringP("userIds", "", " ", "User ids")
+	BulkFetchStatItems1Cmd.Flags().StringP("userIds", "", "", "User ids")
 	_ = BulkFetchStatItems1Cmd.MarkFlagRequired("userIds")
 }

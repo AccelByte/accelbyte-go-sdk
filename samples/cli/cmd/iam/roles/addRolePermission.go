@@ -51,12 +51,12 @@ var AddRolePermissionCmd = &cobra.Command{
 }
 
 func init() {
-	AddRolePermissionCmd.Flags().StringP("body", "", " ", "Body")
+	AddRolePermissionCmd.Flags().StringP("body", "", "", "Body")
 	_ = AddRolePermissionCmd.MarkFlagRequired("body")
 	AddRolePermissionCmd.Flags().Int64P("action", "", -1, "Action")
 	_ = AddRolePermissionCmd.MarkFlagRequired("action")
-	AddRolePermissionCmd.Flags().StringP("resource", "", " ", "Resource")
+	AddRolePermissionCmd.Flags().StringP("resource", "", "", "Resource")
 	_ = AddRolePermissionCmd.MarkFlagRequired("resource")
-	AddRolePermissionCmd.Flags().StringP("roleId", "", " ", "Role id")
+	AddRolePermissionCmd.Flags().StringP("roleId", "", "", "Role id")
 	_ = AddRolePermissionCmd.MarkFlagRequired("roleId")
 }

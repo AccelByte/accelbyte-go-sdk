@@ -45,5 +45,5 @@ var ChangePreferenceConsentCmd = &cobra.Command{
 }
 
 func init() {
-	ChangePreferenceConsentCmd.Flags().StringP("body", "", " ", "Body")
+	ChangePreferenceConsentCmd.Flags().StringP("body", "", "", "Body")
 }

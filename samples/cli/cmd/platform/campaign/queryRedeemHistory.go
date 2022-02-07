@@ -49,12 +49,12 @@ var QueryRedeemHistoryCmd = &cobra.Command{
 }
 
 func init() {
-	QueryRedeemHistoryCmd.Flags().StringP("campaignId", "", " ", "Campaign id")
+	QueryRedeemHistoryCmd.Flags().StringP("campaignId", "", "", "Campaign id")
 	_ = QueryRedeemHistoryCmd.MarkFlagRequired("campaignId")
-	QueryRedeemHistoryCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	QueryRedeemHistoryCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = QueryRedeemHistoryCmd.MarkFlagRequired("namespace")
-	QueryRedeemHistoryCmd.Flags().StringP("code", "", " ", "Code")
+	QueryRedeemHistoryCmd.Flags().StringP("code", "", "", "Code")
 	QueryRedeemHistoryCmd.Flags().Int32P("limit", "", 20, "Limit")
 	QueryRedeemHistoryCmd.Flags().Int32P("offset", "", 0, "Offset")
-	QueryRedeemHistoryCmd.Flags().StringP("userId", "", " ", "User id")
+	QueryRedeemHistoryCmd.Flags().StringP("userId", "", "", "User id")
 }

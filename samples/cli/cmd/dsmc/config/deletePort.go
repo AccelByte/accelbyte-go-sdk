@@ -41,8 +41,8 @@ var DeletePortCmd = &cobra.Command{
 }
 
 func init() {
-	DeletePortCmd.Flags().StringP("name", "", " ", "Name")
+	DeletePortCmd.Flags().StringP("name", "", "", "Name")
 	_ = DeletePortCmd.MarkFlagRequired("name")
-	DeletePortCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeletePortCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeletePortCmd.MarkFlagRequired("namespace")
 }

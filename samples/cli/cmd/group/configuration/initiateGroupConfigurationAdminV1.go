@@ -39,6 +39,6 @@ var InitiateGroupConfigurationAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	InitiateGroupConfigurationAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	InitiateGroupConfigurationAdminV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = InitiateGroupConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
 }

@@ -41,8 +41,8 @@ var EnableCodeCmd = &cobra.Command{
 }
 
 func init() {
-	EnableCodeCmd.Flags().StringP("code", "", " ", "Code")
+	EnableCodeCmd.Flags().StringP("code", "", "", "Code")
 	_ = EnableCodeCmd.MarkFlagRequired("code")
-	EnableCodeCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	EnableCodeCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = EnableCodeCmd.MarkFlagRequired("namespace")
 }

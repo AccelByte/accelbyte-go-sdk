@@ -52,12 +52,12 @@ var UpdateDeploymentOverrideCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateDeploymentOverrideCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateDeploymentOverrideCmd.Flags().StringP("body", "", "", "Body")
 	_ = UpdateDeploymentOverrideCmd.MarkFlagRequired("body")
-	UpdateDeploymentOverrideCmd.Flags().StringP("deployment", "", " ", "Deployment")
+	UpdateDeploymentOverrideCmd.Flags().StringP("deployment", "", "", "Deployment")
 	_ = UpdateDeploymentOverrideCmd.MarkFlagRequired("deployment")
-	UpdateDeploymentOverrideCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UpdateDeploymentOverrideCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UpdateDeploymentOverrideCmd.MarkFlagRequired("namespace")
-	UpdateDeploymentOverrideCmd.Flags().StringP("version", "", " ", "Version")
+	UpdateDeploymentOverrideCmd.Flags().StringP("version", "", "", "Version")
 	_ = UpdateDeploymentOverrideCmd.MarkFlagRequired("version")
 }

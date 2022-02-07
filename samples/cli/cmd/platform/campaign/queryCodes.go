@@ -51,13 +51,13 @@ var QueryCodesCmd = &cobra.Command{
 }
 
 func init() {
-	QueryCodesCmd.Flags().StringP("campaignId", "", " ", "Campaign id")
+	QueryCodesCmd.Flags().StringP("campaignId", "", "", "Campaign id")
 	_ = QueryCodesCmd.MarkFlagRequired("campaignId")
-	QueryCodesCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	QueryCodesCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = QueryCodesCmd.MarkFlagRequired("namespace")
 	QueryCodesCmd.Flags().BoolP("activeOnly", "", false, "Active only")
 	QueryCodesCmd.Flags().Int32P("batchNo", "", 0, "Batch no")
-	QueryCodesCmd.Flags().StringP("code", "", " ", "Code")
+	QueryCodesCmd.Flags().StringP("code", "", "", "Code")
 	QueryCodesCmd.Flags().Int32P("limit", "", 20, "Limit")
 	QueryCodesCmd.Flags().Int32P("offset", "", 0, "Offset")
 }

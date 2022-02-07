@@ -46,5 +46,5 @@ var CreatePaymentProviderConfigCmd = &cobra.Command{
 }
 
 func init() {
-	CreatePaymentProviderConfigCmd.Flags().StringP("body", "", " ", "Body")
+	CreatePaymentProviderConfigCmd.Flags().StringP("body", "", "", "Body")
 }

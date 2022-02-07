@@ -39,6 +39,6 @@ var TestWxPayConfigByIdCmd = &cobra.Command{
 }
 
 func init() {
-	TestWxPayConfigByIdCmd.Flags().StringP("id", "", " ", "Id")
+	TestWxPayConfigByIdCmd.Flags().StringP("id", "", "", "Id")
 	_ = TestWxPayConfigByIdCmd.MarkFlagRequired("id")
 }

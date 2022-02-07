@@ -45,11 +45,11 @@ var GetPaymentPublicConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetPaymentPublicConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetPaymentPublicConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetPaymentPublicConfigCmd.MarkFlagRequired("namespace")
 	GetPaymentPublicConfigCmd.Flags().BoolP("sandbox", "", false, "Sandbox")
-	GetPaymentPublicConfigCmd.Flags().StringP("paymentProvider", "", " ", "Payment provider")
+	GetPaymentPublicConfigCmd.Flags().StringP("paymentProvider", "", "", "Payment provider")
 	_ = GetPaymentPublicConfigCmd.MarkFlagRequired("paymentProvider")
-	GetPaymentPublicConfigCmd.Flags().StringP("region", "", " ", "Region")
+	GetPaymentPublicConfigCmd.Flags().StringP("region", "", "", "Region")
 	_ = GetPaymentPublicConfigCmd.MarkFlagRequired("region")
 }

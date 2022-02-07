@@ -43,10 +43,10 @@ var GetPlayerPublicRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetPlayerPublicRecordHandlerV1Cmd.Flags().StringP("key", "", " ", "Key")
+	GetPlayerPublicRecordHandlerV1Cmd.Flags().StringP("key", "", "", "Key")
 	_ = GetPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("key")
-	GetPlayerPublicRecordHandlerV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetPlayerPublicRecordHandlerV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("namespace")
-	GetPlayerPublicRecordHandlerV1Cmd.Flags().StringP("userId", "", " ", "User id")
+	GetPlayerPublicRecordHandlerV1Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = GetPlayerPublicRecordHandlerV1Cmd.MarkFlagRequired("userId")
 }

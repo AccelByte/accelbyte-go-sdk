@@ -39,6 +39,6 @@ var GetAllNotificationTemplatesV1AdminCmd = &cobra.Command{
 }
 
 func init() {
-	GetAllNotificationTemplatesV1AdminCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetAllNotificationTemplatesV1AdminCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetAllNotificationTemplatesV1AdminCmd.MarkFlagRequired("namespace")
 }

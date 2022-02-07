@@ -50,9 +50,9 @@ var CheckEventConditionCmd = &cobra.Command{
 }
 
 func init() {
-	CheckEventConditionCmd.Flags().StringP("body", "", " ", "Body")
-	CheckEventConditionCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	CheckEventConditionCmd.Flags().StringP("body", "", "", "Body")
+	CheckEventConditionCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = CheckEventConditionCmd.MarkFlagRequired("namespace")
-	CheckEventConditionCmd.Flags().StringP("rewardId", "", " ", "Reward id")
+	CheckEventConditionCmd.Flags().StringP("rewardId", "", "", "Reward id")
 	_ = CheckEventConditionCmd.MarkFlagRequired("rewardId")
 }

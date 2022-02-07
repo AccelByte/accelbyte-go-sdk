@@ -47,9 +47,9 @@ var PublicGetUserPlatformAccountsV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserPlatformAccountsV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicGetUserPlatformAccountsV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicGetUserPlatformAccountsV3Cmd.MarkFlagRequired("namespace")
-	PublicGetUserPlatformAccountsV3Cmd.Flags().StringP("userId", "", " ", "User id")
+	PublicGetUserPlatformAccountsV3Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = PublicGetUserPlatformAccountsV3Cmd.MarkFlagRequired("userId")
 	PublicGetUserPlatformAccountsV3Cmd.Flags().StringP("after", "", "0", "After")
 	PublicGetUserPlatformAccountsV3Cmd.Flags().StringP("before", "", "0", "Before")

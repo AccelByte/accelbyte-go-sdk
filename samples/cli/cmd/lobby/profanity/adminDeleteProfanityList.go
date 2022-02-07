@@ -40,8 +40,8 @@ var AdminDeleteProfanityListCmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteProfanityListCmd.Flags().StringP("list", "", " ", "List")
+	AdminDeleteProfanityListCmd.Flags().StringP("list", "", "", "List")
 	_ = AdminDeleteProfanityListCmd.MarkFlagRequired("list")
-	AdminDeleteProfanityListCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminDeleteProfanityListCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminDeleteProfanityListCmd.MarkFlagRequired("namespace")
 }

@@ -40,8 +40,8 @@ var AnonymizeIntegrationCmd = &cobra.Command{
 }
 
 func init() {
-	AnonymizeIntegrationCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AnonymizeIntegrationCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AnonymizeIntegrationCmd.MarkFlagRequired("namespace")
-	AnonymizeIntegrationCmd.Flags().StringP("userId", "", " ", "User id")
+	AnonymizeIntegrationCmd.Flags().StringP("userId", "", "", "User id")
 	_ = AnonymizeIntegrationCmd.MarkFlagRequired("userId")
 }

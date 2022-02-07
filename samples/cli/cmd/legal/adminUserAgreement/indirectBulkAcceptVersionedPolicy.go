@@ -56,14 +56,14 @@ var IndirectBulkAcceptVersionedPolicyCmd = &cobra.Command{
 }
 
 func init() {
-	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("body", "", " ", "Body")
-	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("body", "", "", "Body")
+	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = IndirectBulkAcceptVersionedPolicyCmd.MarkFlagRequired("namespace")
-	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("userId", "", " ", "User id")
+	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("userId", "", "", "User id")
 	_ = IndirectBulkAcceptVersionedPolicyCmd.MarkFlagRequired("userId")
-	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("publisherUserId", "", " ", "Publisher user id")
-	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("clientId", "", " ", "Client id")
+	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("publisherUserId", "", "", "Publisher user id")
+	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("clientId", "", "", "Client id")
 	_ = IndirectBulkAcceptVersionedPolicyCmd.MarkFlagRequired("clientId")
-	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("countryCode", "", " ", "Country code")
+	IndirectBulkAcceptVersionedPolicyCmd.Flags().StringP("countryCode", "", "", "Country code")
 	_ = IndirectBulkAcceptVersionedPolicyCmd.MarkFlagRequired("countryCode")
 }

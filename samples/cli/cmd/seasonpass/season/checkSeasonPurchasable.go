@@ -49,9 +49,9 @@ var CheckSeasonPurchasableCmd = &cobra.Command{
 }
 
 func init() {
-	CheckSeasonPurchasableCmd.Flags().StringP("body", "", " ", "Body")
-	CheckSeasonPurchasableCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	CheckSeasonPurchasableCmd.Flags().StringP("body", "", "", "Body")
+	CheckSeasonPurchasableCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = CheckSeasonPurchasableCmd.MarkFlagRequired("namespace")
-	CheckSeasonPurchasableCmd.Flags().StringP("userId", "", " ", "User id")
+	CheckSeasonPurchasableCmd.Flags().StringP("userId", "", "", "User id")
 	_ = CheckSeasonPurchasableCmd.MarkFlagRequired("userId")
 }

@@ -50,9 +50,9 @@ var SimulatePaymentOrderNotificationCmd = &cobra.Command{
 }
 
 func init() {
-	SimulatePaymentOrderNotificationCmd.Flags().StringP("body", "", " ", "Body")
-	SimulatePaymentOrderNotificationCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	SimulatePaymentOrderNotificationCmd.Flags().StringP("body", "", "", "Body")
+	SimulatePaymentOrderNotificationCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = SimulatePaymentOrderNotificationCmd.MarkFlagRequired("namespace")
-	SimulatePaymentOrderNotificationCmd.Flags().StringP("paymentOrderNo", "", " ", "Payment order no")
+	SimulatePaymentOrderNotificationCmd.Flags().StringP("paymentOrderNo", "", "", "Payment order no")
 	_ = SimulatePaymentOrderNotificationCmd.MarkFlagRequired("paymentOrderNo")
 }

@@ -39,6 +39,6 @@ var GetPlatformDLCConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetPlatformDLCConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetPlatformDLCConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetPlatformDLCConfigCmd.MarkFlagRequired("namespace")
 }

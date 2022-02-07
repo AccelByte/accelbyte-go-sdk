@@ -43,10 +43,10 @@ var GetUserJusticePlatformAccountCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserJusticePlatformAccountCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetUserJusticePlatformAccountCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetUserJusticePlatformAccountCmd.MarkFlagRequired("namespace")
-	GetUserJusticePlatformAccountCmd.Flags().StringP("targetNamespace", "", " ", "Target namespace")
+	GetUserJusticePlatformAccountCmd.Flags().StringP("targetNamespace", "", "", "Target namespace")
 	_ = GetUserJusticePlatformAccountCmd.MarkFlagRequired("targetNamespace")
-	GetUserJusticePlatformAccountCmd.Flags().StringP("userId", "", " ", "User id")
+	GetUserJusticePlatformAccountCmd.Flags().StringP("userId", "", "", "User id")
 	_ = GetUserJusticePlatformAccountCmd.MarkFlagRequired("userId")
 }

@@ -47,8 +47,8 @@ var SetServerAliasCmd = &cobra.Command{
 }
 
 func init() {
-	SetServerAliasCmd.Flags().StringP("body", "", " ", "Body")
+	SetServerAliasCmd.Flags().StringP("body", "", "", "Body")
 	_ = SetServerAliasCmd.MarkFlagRequired("body")
-	SetServerAliasCmd.Flags().StringP("region", "", " ", "Region")
+	SetServerAliasCmd.Flags().StringP("region", "", "", "Region")
 	_ = SetServerAliasCmd.MarkFlagRequired("region")
 }

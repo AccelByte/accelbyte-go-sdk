@@ -39,6 +39,6 @@ var ExportChannelsCmd = &cobra.Command{
 }
 
 func init() {
-	ExportChannelsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	ExportChannelsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = ExportChannelsCmd.MarkFlagRequired("namespace")
 }

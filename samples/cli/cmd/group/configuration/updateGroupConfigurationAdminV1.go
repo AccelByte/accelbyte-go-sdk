@@ -50,10 +50,10 @@ var UpdateGroupConfigurationAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	UpdateGroupConfigurationAdminV1Cmd.Flags().StringP("body", "", " ", "Body")
+	UpdateGroupConfigurationAdminV1Cmd.Flags().StringP("body", "", "", "Body")
 	_ = UpdateGroupConfigurationAdminV1Cmd.MarkFlagRequired("body")
-	UpdateGroupConfigurationAdminV1Cmd.Flags().StringP("configurationCode", "", " ", "Configuration code")
+	UpdateGroupConfigurationAdminV1Cmd.Flags().StringP("configurationCode", "", "", "Configuration code")
 	_ = UpdateGroupConfigurationAdminV1Cmd.MarkFlagRequired("configurationCode")
-	UpdateGroupConfigurationAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UpdateGroupConfigurationAdminV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UpdateGroupConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
 }

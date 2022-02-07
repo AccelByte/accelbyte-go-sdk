@@ -39,6 +39,6 @@ var ListCurrenciesCmd = &cobra.Command{
 }
 
 func init() {
-	ListCurrenciesCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	ListCurrenciesCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = ListCurrenciesCmd.MarkFlagRequired("namespace")
 }

@@ -41,8 +41,8 @@ var RetrieveSSOLoginPlatformCredentialCmd = &cobra.Command{
 }
 
 func init() {
-	RetrieveSSOLoginPlatformCredentialCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	RetrieveSSOLoginPlatformCredentialCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = RetrieveSSOLoginPlatformCredentialCmd.MarkFlagRequired("namespace")
-	RetrieveSSOLoginPlatformCredentialCmd.Flags().StringP("platformId", "", " ", "Platform id")
+	RetrieveSSOLoginPlatformCredentialCmd.Flags().StringP("platformId", "", "", "Platform id")
 	_ = RetrieveSSOLoginPlatformCredentialCmd.MarkFlagRequired("platformId")
 }

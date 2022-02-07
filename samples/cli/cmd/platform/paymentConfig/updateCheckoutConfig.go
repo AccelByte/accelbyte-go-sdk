@@ -52,8 +52,8 @@ var UpdateCheckoutConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateCheckoutConfigCmd.Flags().StringP("body", "", " ", "Body")
-	UpdateCheckoutConfigCmd.Flags().StringP("id", "", " ", "Id")
+	UpdateCheckoutConfigCmd.Flags().StringP("body", "", "", "Body")
+	UpdateCheckoutConfigCmd.Flags().StringP("id", "", "", "Id")
 	_ = UpdateCheckoutConfigCmd.MarkFlagRequired("id")
 	UpdateCheckoutConfigCmd.Flags().BoolP("sandbox", "", false, "Sandbox")
 	UpdateCheckoutConfigCmd.Flags().BoolP("validate", "", false, "Validate")

@@ -39,6 +39,6 @@ var RetrievePoliciesCmd = &cobra.Command{
 }
 
 func init() {
-	RetrievePoliciesCmd.Flags().StringP("countryCode", "", " ", "Country code")
+	RetrievePoliciesCmd.Flags().StringP("countryCode", "", "", "Country code")
 	_ = RetrievePoliciesCmd.MarkFlagRequired("countryCode")
 }

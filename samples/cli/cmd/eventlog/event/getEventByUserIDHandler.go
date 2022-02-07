@@ -49,15 +49,15 @@ var GetEventByUserIDHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	GetEventByUserIDHandlerCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetEventByUserIDHandlerCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetEventByUserIDHandlerCmd.MarkFlagRequired("namespace")
-	GetEventByUserIDHandlerCmd.Flags().StringP("userId", "", " ", "User id")
+	GetEventByUserIDHandlerCmd.Flags().StringP("userId", "", "", "User id")
 	_ = GetEventByUserIDHandlerCmd.MarkFlagRequired("userId")
 	GetEventByUserIDHandlerCmd.Flags().Float64P("offset", "", 0, "Offset")
-	GetEventByUserIDHandlerCmd.Flags().StringP("endDate", "", " ", "End date")
+	GetEventByUserIDHandlerCmd.Flags().StringP("endDate", "", "", "End date")
 	_ = GetEventByUserIDHandlerCmd.MarkFlagRequired("endDate")
 	GetEventByUserIDHandlerCmd.Flags().Float64P("pageSize", "", 1, "Page size")
 	_ = GetEventByUserIDHandlerCmd.MarkFlagRequired("pageSize")
-	GetEventByUserIDHandlerCmd.Flags().StringP("startDate", "", " ", "Start date")
+	GetEventByUserIDHandlerCmd.Flags().StringP("startDate", "", "", "Start date")
 	_ = GetEventByUserIDHandlerCmd.MarkFlagRequired("startDate")
 }

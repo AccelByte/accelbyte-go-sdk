@@ -54,12 +54,12 @@ var UpdateUserStatItemValue1Cmd = &cobra.Command{
 }
 
 func init() {
-	UpdateUserStatItemValue1Cmd.Flags().StringP("body", "", " ", "Body")
-	UpdateUserStatItemValue1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UpdateUserStatItemValue1Cmd.Flags().StringP("body", "", "", "Body")
+	UpdateUserStatItemValue1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UpdateUserStatItemValue1Cmd.MarkFlagRequired("namespace")
-	UpdateUserStatItemValue1Cmd.Flags().StringP("statCode", "", " ", "Stat code")
+	UpdateUserStatItemValue1Cmd.Flags().StringP("statCode", "", "", "Stat code")
 	_ = UpdateUserStatItemValue1Cmd.MarkFlagRequired("statCode")
-	UpdateUserStatItemValue1Cmd.Flags().StringP("userId", "", " ", "User id")
+	UpdateUserStatItemValue1Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = UpdateUserStatItemValue1Cmd.MarkFlagRequired("userId")
-	UpdateUserStatItemValue1Cmd.Flags().StringP("additionalKey", "", " ", "Additional key")
+	UpdateUserStatItemValue1Cmd.Flags().StringP("additionalKey", "", "", "Additional key")
 }

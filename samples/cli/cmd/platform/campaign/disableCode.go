@@ -41,8 +41,8 @@ var DisableCodeCmd = &cobra.Command{
 }
 
 func init() {
-	DisableCodeCmd.Flags().StringP("code", "", " ", "Code")
+	DisableCodeCmd.Flags().StringP("code", "", "", "Code")
 	_ = DisableCodeCmd.MarkFlagRequired("code")
-	DisableCodeCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DisableCodeCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DisableCodeCmd.MarkFlagRequired("namespace")
 }

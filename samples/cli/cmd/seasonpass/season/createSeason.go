@@ -48,7 +48,7 @@ var CreateSeasonCmd = &cobra.Command{
 }
 
 func init() {
-	CreateSeasonCmd.Flags().StringP("body", "", " ", "Body")
-	CreateSeasonCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	CreateSeasonCmd.Flags().StringP("body", "", "", "Body")
+	CreateSeasonCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = CreateSeasonCmd.MarkFlagRequired("namespace")
 }

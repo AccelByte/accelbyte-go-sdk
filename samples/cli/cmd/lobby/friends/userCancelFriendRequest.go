@@ -47,8 +47,8 @@ var UserCancelFriendRequestCmd = &cobra.Command{
 }
 
 func init() {
-	UserCancelFriendRequestCmd.Flags().StringP("body", "", " ", "Body")
+	UserCancelFriendRequestCmd.Flags().StringP("body", "", "", "Body")
 	_ = UserCancelFriendRequestCmd.MarkFlagRequired("body")
-	UserCancelFriendRequestCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UserCancelFriendRequestCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UserCancelFriendRequestCmd.MarkFlagRequired("namespace")
 }

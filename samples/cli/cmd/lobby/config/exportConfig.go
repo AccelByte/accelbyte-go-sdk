@@ -39,6 +39,6 @@ var ExportConfigCmd = &cobra.Command{
 }
 
 func init() {
-	ExportConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	ExportConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = ExportConfigCmd.MarkFlagRequired("namespace")
 }

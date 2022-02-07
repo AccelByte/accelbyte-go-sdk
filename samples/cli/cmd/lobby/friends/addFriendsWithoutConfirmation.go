@@ -49,10 +49,10 @@ var AddFriendsWithoutConfirmationCmd = &cobra.Command{
 }
 
 func init() {
-	AddFriendsWithoutConfirmationCmd.Flags().StringP("body", "", " ", "Body")
+	AddFriendsWithoutConfirmationCmd.Flags().StringP("body", "", "", "Body")
 	_ = AddFriendsWithoutConfirmationCmd.MarkFlagRequired("body")
-	AddFriendsWithoutConfirmationCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AddFriendsWithoutConfirmationCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AddFriendsWithoutConfirmationCmd.MarkFlagRequired("namespace")
-	AddFriendsWithoutConfirmationCmd.Flags().StringP("userId", "", " ", "User id")
+	AddFriendsWithoutConfirmationCmd.Flags().StringP("userId", "", "", "User id")
 	_ = AddFriendsWithoutConfirmationCmd.MarkFlagRequired("userId")
 }

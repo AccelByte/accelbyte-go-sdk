@@ -49,9 +49,9 @@ var UpdateCustomAttributesPartiallyCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateCustomAttributesPartiallyCmd.Flags().StringP("body", "", " ", "Body")
-	UpdateCustomAttributesPartiallyCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UpdateCustomAttributesPartiallyCmd.Flags().StringP("body", "", "", "Body")
+	UpdateCustomAttributesPartiallyCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UpdateCustomAttributesPartiallyCmd.MarkFlagRequired("namespace")
-	UpdateCustomAttributesPartiallyCmd.Flags().StringP("userId", "", " ", "User id")
+	UpdateCustomAttributesPartiallyCmd.Flags().StringP("userId", "", "", "User id")
 	_ = UpdateCustomAttributesPartiallyCmd.MarkFlagRequired("userId")
 }

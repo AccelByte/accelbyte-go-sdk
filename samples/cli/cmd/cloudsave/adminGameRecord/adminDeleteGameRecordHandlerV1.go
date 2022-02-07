@@ -40,8 +40,8 @@ var AdminDeleteGameRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteGameRecordHandlerV1Cmd.Flags().StringP("key", "", " ", "Key")
+	AdminDeleteGameRecordHandlerV1Cmd.Flags().StringP("key", "", "", "Key")
 	_ = AdminDeleteGameRecordHandlerV1Cmd.MarkFlagRequired("key")
-	AdminDeleteGameRecordHandlerV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminDeleteGameRecordHandlerV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminDeleteGameRecordHandlerV1Cmd.MarkFlagRequired("namespace")
 }

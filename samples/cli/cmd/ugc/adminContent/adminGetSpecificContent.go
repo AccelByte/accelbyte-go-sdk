@@ -41,8 +41,8 @@ var AdminGetSpecificContentCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetSpecificContentCmd.Flags().StringP("contentId", "", " ", "Content id")
+	AdminGetSpecificContentCmd.Flags().StringP("contentId", "", "", "Content id")
 	_ = AdminGetSpecificContentCmd.MarkFlagRequired("contentId")
-	AdminGetSpecificContentCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminGetSpecificContentCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminGetSpecificContentCmd.MarkFlagRequired("namespace")
 }

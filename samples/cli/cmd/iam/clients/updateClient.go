@@ -48,8 +48,8 @@ var UpdateClientCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateClientCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateClientCmd.Flags().StringP("body", "", "", "Body")
 	_ = UpdateClientCmd.MarkFlagRequired("body")
-	UpdateClientCmd.Flags().StringP("clientId", "", " ", "Client id")
+	UpdateClientCmd.Flags().StringP("clientId", "", "", "Client id")
 	_ = UpdateClientCmd.MarkFlagRequired("clientId")
 }

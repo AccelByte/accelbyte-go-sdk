@@ -41,8 +41,8 @@ var DeleteSessionLocalDSCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteSessionLocalDSCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeleteSessionLocalDSCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeleteSessionLocalDSCmd.MarkFlagRequired("namespace")
-	DeleteSessionLocalDSCmd.Flags().StringP("sessionID", "", " ", "Session ID")
+	DeleteSessionLocalDSCmd.Flags().StringP("sessionID", "", "", "Session ID")
 	_ = DeleteSessionLocalDSCmd.MarkFlagRequired("sessionID")
 }

@@ -49,10 +49,10 @@ var PublicLinkPlatformAccountCmd = &cobra.Command{
 }
 
 func init() {
-	PublicLinkPlatformAccountCmd.Flags().StringP("body", "", " ", "Body")
+	PublicLinkPlatformAccountCmd.Flags().StringP("body", "", "", "Body")
 	_ = PublicLinkPlatformAccountCmd.MarkFlagRequired("body")
-	PublicLinkPlatformAccountCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicLinkPlatformAccountCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicLinkPlatformAccountCmd.MarkFlagRequired("namespace")
-	PublicLinkPlatformAccountCmd.Flags().StringP("userId", "", " ", "User id")
+	PublicLinkPlatformAccountCmd.Flags().StringP("userId", "", "", "User id")
 	_ = PublicLinkPlatformAccountCmd.MarkFlagRequired("userId")
 }

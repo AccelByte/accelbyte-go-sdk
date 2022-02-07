@@ -43,7 +43,7 @@ var GetGroupInvitationRequestPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetGroupInvitationRequestPublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetGroupInvitationRequestPublicV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetGroupInvitationRequestPublicV1Cmd.MarkFlagRequired("namespace")
 	GetGroupInvitationRequestPublicV1Cmd.Flags().Int64P("limit", "", 20, "Limit")
 	GetGroupInvitationRequestPublicV1Cmd.Flags().Int64P("offset", "", 0, "Offset")

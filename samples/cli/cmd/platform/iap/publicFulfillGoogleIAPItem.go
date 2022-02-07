@@ -49,9 +49,9 @@ var PublicFulfillGoogleIAPItemCmd = &cobra.Command{
 }
 
 func init() {
-	PublicFulfillGoogleIAPItemCmd.Flags().StringP("body", "", " ", "Body")
-	PublicFulfillGoogleIAPItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicFulfillGoogleIAPItemCmd.Flags().StringP("body", "", "", "Body")
+	PublicFulfillGoogleIAPItemCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicFulfillGoogleIAPItemCmd.MarkFlagRequired("namespace")
-	PublicFulfillGoogleIAPItemCmd.Flags().StringP("userId", "", " ", "User id")
+	PublicFulfillGoogleIAPItemCmd.Flags().StringP("userId", "", "", "User id")
 	_ = PublicFulfillGoogleIAPItemCmd.MarkFlagRequired("userId")
 }

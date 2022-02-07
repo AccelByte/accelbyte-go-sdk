@@ -43,7 +43,7 @@ var ListGroupConfigurationAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	ListGroupConfigurationAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	ListGroupConfigurationAdminV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = ListGroupConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
 	ListGroupConfigurationAdminV1Cmd.Flags().Int64P("limit", "", 20, "Limit")
 	ListGroupConfigurationAdminV1Cmd.Flags().Int64P("offset", "", 0, "Offset")

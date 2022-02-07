@@ -52,11 +52,11 @@ var DebitUserWalletCmd = &cobra.Command{
 }
 
 func init() {
-	DebitUserWalletCmd.Flags().StringP("body", "", " ", "Body")
-	DebitUserWalletCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DebitUserWalletCmd.Flags().StringP("body", "", "", "Body")
+	DebitUserWalletCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DebitUserWalletCmd.MarkFlagRequired("namespace")
-	DebitUserWalletCmd.Flags().StringP("userId", "", " ", "User id")
+	DebitUserWalletCmd.Flags().StringP("userId", "", "", "User id")
 	_ = DebitUserWalletCmd.MarkFlagRequired("userId")
-	DebitUserWalletCmd.Flags().StringP("walletId", "", " ", "Wallet id")
+	DebitUserWalletCmd.Flags().StringP("walletId", "", "", "Wallet id")
 	_ = DebitUserWalletCmd.MarkFlagRequired("walletId")
 }

@@ -45,12 +45,12 @@ var DeleteOverrideRegionOverrideCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteOverrideRegionOverrideCmd.Flags().StringP("deployment", "", " ", "Deployment")
+	DeleteOverrideRegionOverrideCmd.Flags().StringP("deployment", "", "", "Deployment")
 	_ = DeleteOverrideRegionOverrideCmd.MarkFlagRequired("deployment")
-	DeleteOverrideRegionOverrideCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeleteOverrideRegionOverrideCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeleteOverrideRegionOverrideCmd.MarkFlagRequired("namespace")
-	DeleteOverrideRegionOverrideCmd.Flags().StringP("region", "", " ", "Region")
+	DeleteOverrideRegionOverrideCmd.Flags().StringP("region", "", "", "Region")
 	_ = DeleteOverrideRegionOverrideCmd.MarkFlagRequired("region")
-	DeleteOverrideRegionOverrideCmd.Flags().StringP("version", "", " ", "Version")
+	DeleteOverrideRegionOverrideCmd.Flags().StringP("version", "", "", "Version")
 	_ = DeleteOverrideRegionOverrideCmd.MarkFlagRequired("version")
 }

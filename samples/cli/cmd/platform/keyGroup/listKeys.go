@@ -47,11 +47,11 @@ var ListKeysCmd = &cobra.Command{
 }
 
 func init() {
-	ListKeysCmd.Flags().StringP("keyGroupId", "", " ", "Key group id")
+	ListKeysCmd.Flags().StringP("keyGroupId", "", "", "Key group id")
 	_ = ListKeysCmd.MarkFlagRequired("keyGroupId")
-	ListKeysCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	ListKeysCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = ListKeysCmd.MarkFlagRequired("namespace")
 	ListKeysCmd.Flags().Int32P("limit", "", 20, "Limit")
 	ListKeysCmd.Flags().Int32P("offset", "", 0, "Offset")
-	ListKeysCmd.Flags().StringP("status", "", " ", "Status")
+	ListKeysCmd.Flags().StringP("status", "", "", "Status")
 }

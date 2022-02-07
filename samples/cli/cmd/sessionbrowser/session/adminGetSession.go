@@ -41,8 +41,8 @@ var AdminGetSessionCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetSessionCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminGetSessionCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminGetSessionCmd.MarkFlagRequired("namespace")
-	AdminGetSessionCmd.Flags().StringP("sessionID", "", " ", "Session ID")
+	AdminGetSessionCmd.Flags().StringP("sessionID", "", "", "Session ID")
 	_ = AdminGetSessionCmd.MarkFlagRequired("sessionID")
 }

@@ -47,8 +47,8 @@ var UpdateRolePermissionsCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateRolePermissionsCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateRolePermissionsCmd.Flags().StringP("body", "", "", "Body")
 	_ = UpdateRolePermissionsCmd.MarkFlagRequired("body")
-	UpdateRolePermissionsCmd.Flags().StringP("roleId", "", " ", "Role id")
+	UpdateRolePermissionsCmd.Flags().StringP("roleId", "", "", "Role id")
 	_ = UpdateRolePermissionsCmd.MarkFlagRequired("roleId")
 }

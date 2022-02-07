@@ -40,8 +40,8 @@ var AdminDeleteTagCmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteTagCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminDeleteTagCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminDeleteTagCmd.MarkFlagRequired("namespace")
-	AdminDeleteTagCmd.Flags().StringP("tagId", "", " ", "Tag id")
+	AdminDeleteTagCmd.Flags().StringP("tagId", "", "", "Tag id")
 	_ = AdminDeleteTagCmd.MarkFlagRequired("tagId")
 }

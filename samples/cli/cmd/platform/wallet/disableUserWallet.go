@@ -42,10 +42,10 @@ var DisableUserWalletCmd = &cobra.Command{
 }
 
 func init() {
-	DisableUserWalletCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DisableUserWalletCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DisableUserWalletCmd.MarkFlagRequired("namespace")
-	DisableUserWalletCmd.Flags().StringP("userId", "", " ", "User id")
+	DisableUserWalletCmd.Flags().StringP("userId", "", "", "User id")
 	_ = DisableUserWalletCmd.MarkFlagRequired("userId")
-	DisableUserWalletCmd.Flags().StringP("walletId", "", " ", "Wallet id")
+	DisableUserWalletCmd.Flags().StringP("walletId", "", "", "Wallet id")
 	_ = DisableUserWalletCmd.MarkFlagRequired("walletId")
 }

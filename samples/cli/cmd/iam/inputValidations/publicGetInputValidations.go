@@ -42,5 +42,5 @@ var PublicGetInputValidationsCmd = &cobra.Command{
 
 func init() {
 	PublicGetInputValidationsCmd.Flags().BoolP("defaultOnEmpty", "", false, "Default on empty")
-	PublicGetInputValidationsCmd.Flags().StringP("languageCode", "", " ", "Language code")
+	PublicGetInputValidationsCmd.Flags().StringP("languageCode", "", "", "Language code")
 }

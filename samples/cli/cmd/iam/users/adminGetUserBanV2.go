@@ -43,9 +43,9 @@ var AdminGetUserBanV2Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetUserBanV2Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminGetUserBanV2Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminGetUserBanV2Cmd.MarkFlagRequired("namespace")
-	AdminGetUserBanV2Cmd.Flags().StringP("userId", "", " ", "User id")
+	AdminGetUserBanV2Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = AdminGetUserBanV2Cmd.MarkFlagRequired("userId")
 	AdminGetUserBanV2Cmd.Flags().BoolP("activeOnly", "", false, "Active only")
 }

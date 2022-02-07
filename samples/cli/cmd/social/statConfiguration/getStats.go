@@ -43,7 +43,7 @@ var GetStatsCmd = &cobra.Command{
 }
 
 func init() {
-	GetStatsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetStatsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetStatsCmd.MarkFlagRequired("namespace")
 	GetStatsCmd.Flags().Int32P("limit", "", 20, "Limit")
 	GetStatsCmd.Flags().Int32P("offset", "", 0, "Offset")

@@ -39,6 +39,6 @@ var AdminDeleteThirdPartyConfigCmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteThirdPartyConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminDeleteThirdPartyConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminDeleteThirdPartyConfigCmd.MarkFlagRequired("namespace")
 }

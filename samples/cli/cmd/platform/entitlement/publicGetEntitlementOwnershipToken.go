@@ -61,9 +61,9 @@ var PublicGetEntitlementOwnershipTokenCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetEntitlementOwnershipTokenCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicGetEntitlementOwnershipTokenCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicGetEntitlementOwnershipTokenCmd.MarkFlagRequired("namespace")
-	PublicGetEntitlementOwnershipTokenCmd.Flags().StringP("appIds", "", " ", "App ids")
-	PublicGetEntitlementOwnershipTokenCmd.Flags().StringP("itemIds", "", " ", "Item ids")
-	PublicGetEntitlementOwnershipTokenCmd.Flags().StringP("skus", "", " ", "Skus")
+	PublicGetEntitlementOwnershipTokenCmd.Flags().StringP("appIds", "", "", "App ids")
+	PublicGetEntitlementOwnershipTokenCmd.Flags().StringP("itemIds", "", "", "Item ids")
+	PublicGetEntitlementOwnershipTokenCmd.Flags().StringP("skus", "", "", "Skus")
 }

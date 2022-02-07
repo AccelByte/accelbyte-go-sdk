@@ -61,17 +61,17 @@ var PublicSearchContentCmd = &cobra.Command{
 }
 
 func init() {
-	PublicSearchContentCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicSearchContentCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicSearchContentCmd.MarkFlagRequired("namespace")
-	PublicSearchContentCmd.Flags().StringP("creator", "", " ", "Creator")
-	PublicSearchContentCmd.Flags().StringP("isofficial", "", " ", "Isofficial")
+	PublicSearchContentCmd.Flags().StringP("creator", "", "", "Creator")
+	PublicSearchContentCmd.Flags().StringP("isofficial", "", "", "Isofficial")
 	PublicSearchContentCmd.Flags().StringP("limit", "", "20", "Limit")
-	PublicSearchContentCmd.Flags().StringP("name", "", " ", "Name")
+	PublicSearchContentCmd.Flags().StringP("name", "", "", "Name")
 	PublicSearchContentCmd.Flags().StringP("offset", "", "0", "Offset")
-	PublicSearchContentCmd.Flags().StringP("orderby", "", " ", "Orderby")
-	PublicSearchContentCmd.Flags().StringP("sortby", "", " ", "Sortby")
-	PublicSearchContentCmd.Flags().StringP("subtype", "", " ", "Subtype")
-	PublicSearchContentCmd.Flags().StringP("tags", "", " ", "Tags")
-	PublicSearchContentCmd.Flags().StringP("type", "", " ", "Type")
-	PublicSearchContentCmd.Flags().StringP("userId", "", " ", "User id")
+	PublicSearchContentCmd.Flags().StringP("orderby", "", "", "Orderby")
+	PublicSearchContentCmd.Flags().StringP("sortby", "", "", "Sortby")
+	PublicSearchContentCmd.Flags().StringP("subtype", "", "", "Subtype")
+	PublicSearchContentCmd.Flags().StringP("tags", "", "", "Tags")
+	PublicSearchContentCmd.Flags().StringP("type", "", "", "Type")
+	PublicSearchContentCmd.Flags().StringP("userId", "", "", "User id")
 }

@@ -42,10 +42,10 @@ var DeleteSessionInChannelCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteSessionInChannelCmd.Flags().StringP("channelName", "", " ", "Channel name")
+	DeleteSessionInChannelCmd.Flags().StringP("channelName", "", "", "Channel name")
 	_ = DeleteSessionInChannelCmd.MarkFlagRequired("channelName")
-	DeleteSessionInChannelCmd.Flags().StringP("matchID", "", " ", "Match ID")
+	DeleteSessionInChannelCmd.Flags().StringP("matchID", "", "", "Match ID")
 	_ = DeleteSessionInChannelCmd.MarkFlagRequired("matchID")
-	DeleteSessionInChannelCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeleteSessionInChannelCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeleteSessionInChannelCmd.MarkFlagRequired("namespace")
 }

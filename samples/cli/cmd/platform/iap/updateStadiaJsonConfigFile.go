@@ -47,7 +47,7 @@ var UpdateStadiaJsonConfigFileCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateStadiaJsonConfigFileCmd.Flags().StringP("file", "", " ", "File")
-	UpdateStadiaJsonConfigFileCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UpdateStadiaJsonConfigFileCmd.Flags().StringP("file", "", "", "File")
+	UpdateStadiaJsonConfigFileCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UpdateStadiaJsonConfigFileCmd.MarkFlagRequired("namespace")
 }

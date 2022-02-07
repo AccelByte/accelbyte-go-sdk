@@ -41,8 +41,8 @@ var UserGetFriendshipStatusCmd = &cobra.Command{
 }
 
 func init() {
-	UserGetFriendshipStatusCmd.Flags().StringP("friendId", "", " ", "Friend id")
+	UserGetFriendshipStatusCmd.Flags().StringP("friendId", "", "", "Friend id")
 	_ = UserGetFriendshipStatusCmd.MarkFlagRequired("friendId")
-	UserGetFriendshipStatusCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UserGetFriendshipStatusCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UserGetFriendshipStatusCmd.MarkFlagRequired("namespace")
 }

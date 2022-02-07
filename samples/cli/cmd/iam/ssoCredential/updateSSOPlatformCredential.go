@@ -50,10 +50,10 @@ var UpdateSSOPlatformCredentialCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateSSOPlatformCredentialCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateSSOPlatformCredentialCmd.Flags().StringP("body", "", "", "Body")
 	_ = UpdateSSOPlatformCredentialCmd.MarkFlagRequired("body")
-	UpdateSSOPlatformCredentialCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UpdateSSOPlatformCredentialCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UpdateSSOPlatformCredentialCmd.MarkFlagRequired("namespace")
-	UpdateSSOPlatformCredentialCmd.Flags().StringP("platformId", "", " ", "Platform id")
+	UpdateSSOPlatformCredentialCmd.Flags().StringP("platformId", "", "", "Platform id")
 	_ = UpdateSSOPlatformCredentialCmd.MarkFlagRequired("platformId")
 }

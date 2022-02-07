@@ -46,6 +46,6 @@ var CreateClientCmd = &cobra.Command{
 }
 
 func init() {
-	CreateClientCmd.Flags().StringP("body", "", " ", "Body")
+	CreateClientCmd.Flags().StringP("body", "", "", "Body")
 	_ = CreateClientCmd.MarkFlagRequired("body")
 }

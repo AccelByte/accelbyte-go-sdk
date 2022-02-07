@@ -43,10 +43,10 @@ var RevokeUserEntitlementCmd = &cobra.Command{
 }
 
 func init() {
-	RevokeUserEntitlementCmd.Flags().StringP("entitlementId", "", " ", "Entitlement id")
+	RevokeUserEntitlementCmd.Flags().StringP("entitlementId", "", "", "Entitlement id")
 	_ = RevokeUserEntitlementCmd.MarkFlagRequired("entitlementId")
-	RevokeUserEntitlementCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	RevokeUserEntitlementCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = RevokeUserEntitlementCmd.MarkFlagRequired("namespace")
-	RevokeUserEntitlementCmd.Flags().StringP("userId", "", " ", "User id")
+	RevokeUserEntitlementCmd.Flags().StringP("userId", "", "", "User id")
 	_ = RevokeUserEntitlementCmd.MarkFlagRequired("userId")
 }

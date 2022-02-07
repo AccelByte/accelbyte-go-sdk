@@ -43,7 +43,7 @@ var AdminGetTagCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetTagCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminGetTagCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminGetTagCmd.MarkFlagRequired("namespace")
 	AdminGetTagCmd.Flags().StringP("limit", "", "20", "Limit")
 	AdminGetTagCmd.Flags().StringP("offset", "", "0", "Offset")

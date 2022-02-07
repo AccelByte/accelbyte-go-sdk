@@ -45,9 +45,9 @@ var GetTodayLeaderboardRankingAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetTodayLeaderboardRankingAdminV1Cmd.Flags().StringP("leaderboardCode", "", " ", "Leaderboard code")
+	GetTodayLeaderboardRankingAdminV1Cmd.Flags().StringP("leaderboardCode", "", "", "Leaderboard code")
 	_ = GetTodayLeaderboardRankingAdminV1Cmd.MarkFlagRequired("leaderboardCode")
-	GetTodayLeaderboardRankingAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetTodayLeaderboardRankingAdminV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetTodayLeaderboardRankingAdminV1Cmd.MarkFlagRequired("namespace")
 	GetTodayLeaderboardRankingAdminV1Cmd.Flags().Int64P("limit", "", 20, "Limit")
 	GetTodayLeaderboardRankingAdminV1Cmd.Flags().Int64P("offset", "", 0, "Offset")

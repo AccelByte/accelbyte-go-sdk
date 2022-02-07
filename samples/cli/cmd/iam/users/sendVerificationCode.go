@@ -49,10 +49,10 @@ var SendVerificationCodeCmd = &cobra.Command{
 }
 
 func init() {
-	SendVerificationCodeCmd.Flags().StringP("body", "", " ", "Body")
+	SendVerificationCodeCmd.Flags().StringP("body", "", "", "Body")
 	_ = SendVerificationCodeCmd.MarkFlagRequired("body")
-	SendVerificationCodeCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	SendVerificationCodeCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = SendVerificationCodeCmd.MarkFlagRequired("namespace")
-	SendVerificationCodeCmd.Flags().StringP("userId", "", " ", "User id")
+	SendVerificationCodeCmd.Flags().StringP("userId", "", "", "User id")
 	_ = SendVerificationCodeCmd.MarkFlagRequired("userId")
 }

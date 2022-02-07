@@ -48,8 +48,8 @@ var CreateLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	CreateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("body", "", " ", "Body")
+	CreateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("body", "", "", "Body")
 	_ = CreateLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("body")
-	CreateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	CreateLeaderboardConfigurationAdminV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = CreateLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
 }

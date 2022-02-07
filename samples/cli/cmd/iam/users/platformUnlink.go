@@ -44,11 +44,11 @@ var PlatformUnlinkCmd = &cobra.Command{
 }
 
 func init() {
-	PlatformUnlinkCmd.Flags().StringP("platform_namespace", "", " ", "Platform namespace")
-	PlatformUnlinkCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PlatformUnlinkCmd.Flags().StringP("platform_namespace", "", "", "Platform namespace")
+	PlatformUnlinkCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PlatformUnlinkCmd.MarkFlagRequired("namespace")
-	PlatformUnlinkCmd.Flags().StringP("platformId", "", " ", "Platform id")
+	PlatformUnlinkCmd.Flags().StringP("platformId", "", "", "Platform id")
 	_ = PlatformUnlinkCmd.MarkFlagRequired("platformId")
-	PlatformUnlinkCmd.Flags().StringP("userId", "", " ", "User id")
+	PlatformUnlinkCmd.Flags().StringP("userId", "", "", "User id")
 	_ = PlatformUnlinkCmd.MarkFlagRequired("userId")
 }

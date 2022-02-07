@@ -47,13 +47,13 @@ var AdminRetrieveEligibilitiesCmd = &cobra.Command{
 }
 
 func init() {
-	AdminRetrieveEligibilitiesCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminRetrieveEligibilitiesCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminRetrieveEligibilitiesCmd.MarkFlagRequired("namespace")
-	AdminRetrieveEligibilitiesCmd.Flags().StringP("userId", "", " ", "User id")
+	AdminRetrieveEligibilitiesCmd.Flags().StringP("userId", "", "", "User id")
 	_ = AdminRetrieveEligibilitiesCmd.MarkFlagRequired("userId")
-	AdminRetrieveEligibilitiesCmd.Flags().StringP("publisherUserId", "", " ", "Publisher user id")
-	AdminRetrieveEligibilitiesCmd.Flags().StringP("clientId", "", " ", "Client id")
+	AdminRetrieveEligibilitiesCmd.Flags().StringP("publisherUserId", "", "", "Publisher user id")
+	AdminRetrieveEligibilitiesCmd.Flags().StringP("clientId", "", "", "Client id")
 	_ = AdminRetrieveEligibilitiesCmd.MarkFlagRequired("clientId")
-	AdminRetrieveEligibilitiesCmd.Flags().StringP("countryCode", "", " ", "Country code")
+	AdminRetrieveEligibilitiesCmd.Flags().StringP("countryCode", "", "", "Country code")
 	_ = AdminRetrieveEligibilitiesCmd.MarkFlagRequired("countryCode")
 }

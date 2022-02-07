@@ -48,13 +48,13 @@ var UserAuthenticationV3Cmd = &cobra.Command{
 }
 
 func init() {
-	UserAuthenticationV3Cmd.Flags().StringP("client_id", "", " ", "Client id")
+	UserAuthenticationV3Cmd.Flags().StringP("client_id", "", "", "Client id")
 	UserAuthenticationV3Cmd.Flags().BoolP("extend_exp", "", false, "Extend exp")
-	UserAuthenticationV3Cmd.Flags().StringP("redirect_uri", "", " ", "Redirect uri")
-	UserAuthenticationV3Cmd.Flags().StringP("password", "", " ", "Password")
+	UserAuthenticationV3Cmd.Flags().StringP("redirect_uri", "", "", "Redirect uri")
+	UserAuthenticationV3Cmd.Flags().StringP("password", "", "", "Password")
 	_ = UserAuthenticationV3Cmd.MarkFlagRequired("password")
-	UserAuthenticationV3Cmd.Flags().StringP("request_id", "", " ", "Request id")
+	UserAuthenticationV3Cmd.Flags().StringP("request_id", "", "", "Request id")
 	_ = UserAuthenticationV3Cmd.MarkFlagRequired("request_id")
-	UserAuthenticationV3Cmd.Flags().StringP("user_name", "", " ", "User name")
+	UserAuthenticationV3Cmd.Flags().StringP("user_name", "", "", "User name")
 	_ = UserAuthenticationV3Cmd.MarkFlagRequired("user_name")
 }

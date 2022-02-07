@@ -45,10 +45,10 @@ var PlatformTokenRequestHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	PlatformTokenRequestHandlerCmd.Flags().StringP("device_id", "", " ", "Device id")
-	PlatformTokenRequestHandlerCmd.Flags().StringP("platform_token", "", " ", "Platform token")
-	PlatformTokenRequestHandlerCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PlatformTokenRequestHandlerCmd.Flags().StringP("device_id", "", "", "Device id")
+	PlatformTokenRequestHandlerCmd.Flags().StringP("platform_token", "", "", "Platform token")
+	PlatformTokenRequestHandlerCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PlatformTokenRequestHandlerCmd.MarkFlagRequired("namespace")
-	PlatformTokenRequestHandlerCmd.Flags().StringP("platformId", "", " ", "Platform id")
+	PlatformTokenRequestHandlerCmd.Flags().StringP("platformId", "", "", "Platform id")
 	_ = PlatformTokenRequestHandlerCmd.MarkFlagRequired("platformId")
 }

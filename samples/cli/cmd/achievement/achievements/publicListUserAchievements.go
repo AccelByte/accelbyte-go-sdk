@@ -47,9 +47,9 @@ var PublicListUserAchievementsCmd = &cobra.Command{
 }
 
 func init() {
-	PublicListUserAchievementsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicListUserAchievementsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicListUserAchievementsCmd.MarkFlagRequired("namespace")
-	PublicListUserAchievementsCmd.Flags().StringP("userId", "", " ", "User id")
+	PublicListUserAchievementsCmd.Flags().StringP("userId", "", "", "User id")
 	_ = PublicListUserAchievementsCmd.MarkFlagRequired("userId")
 	PublicListUserAchievementsCmd.Flags().Int64P("limit", "", 20, "Limit")
 	PublicListUserAchievementsCmd.Flags().Int64P("offset", "", 0, "Offset")

@@ -43,9 +43,9 @@ var BulkDisableCodesCmd = &cobra.Command{
 }
 
 func init() {
-	BulkDisableCodesCmd.Flags().StringP("campaignId", "", " ", "Campaign id")
+	BulkDisableCodesCmd.Flags().StringP("campaignId", "", "", "Campaign id")
 	_ = BulkDisableCodesCmd.MarkFlagRequired("campaignId")
-	BulkDisableCodesCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	BulkDisableCodesCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = BulkDisableCodesCmd.MarkFlagRequired("namespace")
 	BulkDisableCodesCmd.Flags().Int32P("batchNo", "", 0, "Batch no")
 }

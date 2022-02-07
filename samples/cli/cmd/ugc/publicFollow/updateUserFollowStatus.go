@@ -50,10 +50,10 @@ var UpdateUserFollowStatusCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateUserFollowStatusCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateUserFollowStatusCmd.Flags().StringP("body", "", "", "Body")
 	_ = UpdateUserFollowStatusCmd.MarkFlagRequired("body")
-	UpdateUserFollowStatusCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UpdateUserFollowStatusCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UpdateUserFollowStatusCmd.MarkFlagRequired("namespace")
-	UpdateUserFollowStatusCmd.Flags().StringP("userId", "", " ", "User id")
+	UpdateUserFollowStatusCmd.Flags().StringP("userId", "", "", "User id")
 	_ = UpdateUserFollowStatusCmd.MarkFlagRequired("userId")
 }

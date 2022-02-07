@@ -48,7 +48,7 @@ var CreateStatCmd = &cobra.Command{
 }
 
 func init() {
-	CreateStatCmd.Flags().StringP("body", "", " ", "Body")
-	CreateStatCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	CreateStatCmd.Flags().StringP("body", "", "", "Body")
+	CreateStatCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = CreateStatCmd.MarkFlagRequired("namespace")
 }

@@ -49,11 +49,11 @@ var AdminGetListDeletionDataRequestCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetListDeletionDataRequestCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminGetListDeletionDataRequestCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminGetListDeletionDataRequestCmd.MarkFlagRequired("namespace")
 	AdminGetListDeletionDataRequestCmd.Flags().StringP("after", "", "0", "After")
 	AdminGetListDeletionDataRequestCmd.Flags().StringP("before", "", "0", "Before")
 	AdminGetListDeletionDataRequestCmd.Flags().Int64P("limit", "", 20, "Limit")
 	AdminGetListDeletionDataRequestCmd.Flags().Int64P("offset", "", 0, "Offset")
-	AdminGetListDeletionDataRequestCmd.Flags().StringP("requestDate", "", " ", "Request date")
+	AdminGetListDeletionDataRequestCmd.Flags().StringP("requestDate", "", "", "Request date")
 }

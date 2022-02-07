@@ -50,9 +50,9 @@ var FulfillItemCmd = &cobra.Command{
 }
 
 func init() {
-	FulfillItemCmd.Flags().StringP("body", "", " ", "Body")
-	FulfillItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	FulfillItemCmd.Flags().StringP("body", "", "", "Body")
+	FulfillItemCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = FulfillItemCmd.MarkFlagRequired("namespace")
-	FulfillItemCmd.Flags().StringP("userId", "", " ", "User id")
+	FulfillItemCmd.Flags().StringP("userId", "", "", "User id")
 	_ = FulfillItemCmd.MarkFlagRequired("userId")
 }

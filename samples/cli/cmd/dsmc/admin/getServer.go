@@ -41,8 +41,8 @@ var GetServerCmd = &cobra.Command{
 }
 
 func init() {
-	GetServerCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetServerCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetServerCmd.MarkFlagRequired("namespace")
-	GetServerCmd.Flags().StringP("podName", "", " ", "Pod name")
+	GetServerCmd.Flags().StringP("podName", "", "", "Pod name")
 	_ = GetServerCmd.MarkFlagRequired("podName")
 }

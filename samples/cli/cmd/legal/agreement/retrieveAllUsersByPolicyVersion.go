@@ -45,9 +45,9 @@ var RetrieveAllUsersByPolicyVersionCmd = &cobra.Command{
 }
 
 func init() {
-	RetrieveAllUsersByPolicyVersionCmd.Flags().StringP("keyword", "", " ", "Keyword")
+	RetrieveAllUsersByPolicyVersionCmd.Flags().StringP("keyword", "", "", "Keyword")
 	RetrieveAllUsersByPolicyVersionCmd.Flags().Int32P("limit", "", 20, "Limit")
 	RetrieveAllUsersByPolicyVersionCmd.Flags().Int32P("offset", "", 0, "Offset")
-	RetrieveAllUsersByPolicyVersionCmd.Flags().StringP("policyVersionId", "", " ", "Policy version id")
+	RetrieveAllUsersByPolicyVersionCmd.Flags().StringP("policyVersionId", "", "", "Policy version id")
 	_ = RetrieveAllUsersByPolicyVersionCmd.MarkFlagRequired("policyVersionId")
 }

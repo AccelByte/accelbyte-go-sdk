@@ -40,8 +40,8 @@ var DeleteUserSlotConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteUserSlotConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeleteUserSlotConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeleteUserSlotConfigCmd.MarkFlagRequired("namespace")
-	DeleteUserSlotConfigCmd.Flags().StringP("userId", "", " ", "User id")
+	DeleteUserSlotConfigCmd.Flags().StringP("userId", "", "", "User id")
 	_ = DeleteUserSlotConfigCmd.MarkFlagRequired("userId")
 }

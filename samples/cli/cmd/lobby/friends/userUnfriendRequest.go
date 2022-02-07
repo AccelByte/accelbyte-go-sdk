@@ -47,8 +47,8 @@ var UserUnfriendRequestCmd = &cobra.Command{
 }
 
 func init() {
-	UserUnfriendRequestCmd.Flags().StringP("body", "", " ", "Body")
+	UserUnfriendRequestCmd.Flags().StringP("body", "", "", "Body")
 	_ = UserUnfriendRequestCmd.MarkFlagRequired("body")
-	UserUnfriendRequestCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UserUnfriendRequestCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UserUnfriendRequestCmd.MarkFlagRequired("namespace")
 }

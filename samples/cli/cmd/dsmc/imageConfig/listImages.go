@@ -49,11 +49,11 @@ var ListImagesCmd = &cobra.Command{
 }
 
 func init() {
-	ListImagesCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	ListImagesCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = ListImagesCmd.MarkFlagRequired("namespace")
 	ListImagesCmd.Flags().Int64P("count", "", 1, "Count")
 	ListImagesCmd.Flags().Int64P("offset", "", 0, "Offset")
-	ListImagesCmd.Flags().StringP("q", "", " ", "Q")
-	ListImagesCmd.Flags().StringP("sortBy", "", " ", "Sort by")
-	ListImagesCmd.Flags().StringP("sortDirection", "", " ", "Sort direction")
+	ListImagesCmd.Flags().StringP("q", "", "", "Q")
+	ListImagesCmd.Flags().StringP("sortBy", "", "", "Sort by")
+	ListImagesCmd.Flags().StringP("sortDirection", "", "", "Sort direction")
 }

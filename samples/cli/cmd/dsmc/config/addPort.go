@@ -50,10 +50,10 @@ var AddPortCmd = &cobra.Command{
 }
 
 func init() {
-	AddPortCmd.Flags().StringP("body", "", " ", "Body")
+	AddPortCmd.Flags().StringP("body", "", "", "Body")
 	_ = AddPortCmd.MarkFlagRequired("body")
-	AddPortCmd.Flags().StringP("name", "", " ", "Name")
+	AddPortCmd.Flags().StringP("name", "", "", "Name")
 	_ = AddPortCmd.MarkFlagRequired("name")
-	AddPortCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AddPortCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AddPortCmd.MarkFlagRequired("namespace")
 }

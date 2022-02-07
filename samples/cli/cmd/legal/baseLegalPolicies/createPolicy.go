@@ -46,5 +46,5 @@ var CreatePolicyCmd = &cobra.Command{
 }
 
 func init() {
-	CreatePolicyCmd.Flags().StringP("body", "", " ", "Body")
+	CreatePolicyCmd.Flags().StringP("body", "", "", "Body")
 }

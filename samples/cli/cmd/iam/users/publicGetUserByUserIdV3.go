@@ -41,8 +41,8 @@ var PublicGetUserByUserIdV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserByUserIdV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicGetUserByUserIdV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicGetUserByUserIdV3Cmd.MarkFlagRequired("namespace")
-	PublicGetUserByUserIdV3Cmd.Flags().StringP("userId", "", " ", "User id")
+	PublicGetUserByUserIdV3Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = PublicGetUserByUserIdV3Cmd.MarkFlagRequired("userId")
 }

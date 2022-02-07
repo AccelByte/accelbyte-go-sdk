@@ -49,11 +49,11 @@ var GetUserSubscriptionBillingHistoriesCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserSubscriptionBillingHistoriesCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetUserSubscriptionBillingHistoriesCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetUserSubscriptionBillingHistoriesCmd.MarkFlagRequired("namespace")
-	GetUserSubscriptionBillingHistoriesCmd.Flags().StringP("subscriptionId", "", " ", "Subscription id")
+	GetUserSubscriptionBillingHistoriesCmd.Flags().StringP("subscriptionId", "", "", "Subscription id")
 	_ = GetUserSubscriptionBillingHistoriesCmd.MarkFlagRequired("subscriptionId")
-	GetUserSubscriptionBillingHistoriesCmd.Flags().StringP("userId", "", " ", "User id")
+	GetUserSubscriptionBillingHistoriesCmd.Flags().StringP("userId", "", "", "User id")
 	_ = GetUserSubscriptionBillingHistoriesCmd.MarkFlagRequired("userId")
 	GetUserSubscriptionBillingHistoriesCmd.Flags().BoolP("excludeFree", "", false, "Exclude free")
 	GetUserSubscriptionBillingHistoriesCmd.Flags().Int32P("limit", "", 20, "Limit")

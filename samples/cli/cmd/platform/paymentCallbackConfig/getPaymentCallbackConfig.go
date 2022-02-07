@@ -39,6 +39,6 @@ var GetPaymentCallbackConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetPaymentCallbackConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetPaymentCallbackConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetPaymentCallbackConfigCmd.MarkFlagRequired("namespace")
 }

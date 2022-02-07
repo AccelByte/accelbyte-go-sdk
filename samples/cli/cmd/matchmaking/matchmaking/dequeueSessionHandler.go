@@ -47,8 +47,8 @@ var DequeueSessionHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	DequeueSessionHandlerCmd.Flags().StringP("body", "", " ", "Body")
+	DequeueSessionHandlerCmd.Flags().StringP("body", "", "", "Body")
 	_ = DequeueSessionHandlerCmd.MarkFlagRequired("body")
-	DequeueSessionHandlerCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DequeueSessionHandlerCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DequeueSessionHandlerCmd.MarkFlagRequired("namespace")
 }

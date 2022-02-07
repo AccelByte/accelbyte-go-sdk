@@ -51,11 +51,11 @@ var ProcessUserOrderNotificationCmd = &cobra.Command{
 }
 
 func init() {
-	ProcessUserOrderNotificationCmd.Flags().StringP("body", "", " ", "Body")
-	ProcessUserOrderNotificationCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	ProcessUserOrderNotificationCmd.Flags().StringP("body", "", "", "Body")
+	ProcessUserOrderNotificationCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = ProcessUserOrderNotificationCmd.MarkFlagRequired("namespace")
-	ProcessUserOrderNotificationCmd.Flags().StringP("orderNo", "", " ", "Order no")
+	ProcessUserOrderNotificationCmd.Flags().StringP("orderNo", "", "", "Order no")
 	_ = ProcessUserOrderNotificationCmd.MarkFlagRequired("orderNo")
-	ProcessUserOrderNotificationCmd.Flags().StringP("userId", "", " ", "User id")
+	ProcessUserOrderNotificationCmd.Flags().StringP("userId", "", "", "User id")
 	_ = ProcessUserOrderNotificationCmd.MarkFlagRequired("userId")
 }

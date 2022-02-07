@@ -52,12 +52,12 @@ var UpdateUserPointAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	UpdateUserPointAdminV1Cmd.Flags().StringP("body", "", " ", "Body")
+	UpdateUserPointAdminV1Cmd.Flags().StringP("body", "", "", "Body")
 	_ = UpdateUserPointAdminV1Cmd.MarkFlagRequired("body")
-	UpdateUserPointAdminV1Cmd.Flags().StringP("leaderboardCode", "", " ", "Leaderboard code")
+	UpdateUserPointAdminV1Cmd.Flags().StringP("leaderboardCode", "", "", "Leaderboard code")
 	_ = UpdateUserPointAdminV1Cmd.MarkFlagRequired("leaderboardCode")
-	UpdateUserPointAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UpdateUserPointAdminV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UpdateUserPointAdminV1Cmd.MarkFlagRequired("namespace")
-	UpdateUserPointAdminV1Cmd.Flags().StringP("userId", "", " ", "User id")
+	UpdateUserPointAdminV1Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = UpdateUserPointAdminV1Cmd.MarkFlagRequired("userId")
 }

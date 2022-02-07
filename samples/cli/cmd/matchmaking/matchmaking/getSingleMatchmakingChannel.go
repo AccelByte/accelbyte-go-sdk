@@ -41,8 +41,8 @@ var GetSingleMatchmakingChannelCmd = &cobra.Command{
 }
 
 func init() {
-	GetSingleMatchmakingChannelCmd.Flags().StringP("channelName", "", " ", "Channel name")
+	GetSingleMatchmakingChannelCmd.Flags().StringP("channelName", "", "", "Channel name")
 	_ = GetSingleMatchmakingChannelCmd.MarkFlagRequired("channelName")
-	GetSingleMatchmakingChannelCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetSingleMatchmakingChannelCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetSingleMatchmakingChannelCmd.MarkFlagRequired("namespace")
 }

@@ -40,8 +40,8 @@ var DeleteTopicByTopicNameCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteTopicByTopicNameCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeleteTopicByTopicNameCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeleteTopicByTopicNameCmd.MarkFlagRequired("namespace")
-	DeleteTopicByTopicNameCmd.Flags().StringP("topic", "", " ", "Topic")
+	DeleteTopicByTopicNameCmd.Flags().StringP("topic", "", "", "Topic")
 	_ = DeleteTopicByTopicNameCmd.MarkFlagRequired("topic")
 }

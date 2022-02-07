@@ -43,9 +43,9 @@ var QueryRewardsCmd = &cobra.Command{
 }
 
 func init() {
-	QueryRewardsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	QueryRewardsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = QueryRewardsCmd.MarkFlagRequired("namespace")
-	QueryRewardsCmd.Flags().StringP("seasonId", "", " ", "Season id")
+	QueryRewardsCmd.Flags().StringP("seasonId", "", "", "Season id")
 	_ = QueryRewardsCmd.MarkFlagRequired("seasonId")
-	QueryRewardsCmd.Flags().StringP("q", "", " ", "Q")
+	QueryRewardsCmd.Flags().StringP("q", "", "", "Q")
 }

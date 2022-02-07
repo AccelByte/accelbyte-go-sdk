@@ -50,10 +50,10 @@ var CreateGroupCmd = &cobra.Command{
 }
 
 func init() {
-	CreateGroupCmd.Flags().StringP("body", "", " ", "Body")
+	CreateGroupCmd.Flags().StringP("body", "", "", "Body")
 	_ = CreateGroupCmd.MarkFlagRequired("body")
-	CreateGroupCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	CreateGroupCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = CreateGroupCmd.MarkFlagRequired("namespace")
-	CreateGroupCmd.Flags().StringP("userId", "", " ", "User id")
+	CreateGroupCmd.Flags().StringP("userId", "", "", "User id")
 	_ = CreateGroupCmd.MarkFlagRequired("userId")
 }

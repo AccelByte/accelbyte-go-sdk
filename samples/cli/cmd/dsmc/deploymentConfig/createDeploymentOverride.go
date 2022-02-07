@@ -52,12 +52,12 @@ var CreateDeploymentOverrideCmd = &cobra.Command{
 }
 
 func init() {
-	CreateDeploymentOverrideCmd.Flags().StringP("body", "", " ", "Body")
+	CreateDeploymentOverrideCmd.Flags().StringP("body", "", "", "Body")
 	_ = CreateDeploymentOverrideCmd.MarkFlagRequired("body")
-	CreateDeploymentOverrideCmd.Flags().StringP("deployment", "", " ", "Deployment")
+	CreateDeploymentOverrideCmd.Flags().StringP("deployment", "", "", "Deployment")
 	_ = CreateDeploymentOverrideCmd.MarkFlagRequired("deployment")
-	CreateDeploymentOverrideCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	CreateDeploymentOverrideCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = CreateDeploymentOverrideCmd.MarkFlagRequired("namespace")
-	CreateDeploymentOverrideCmd.Flags().StringP("version", "", " ", "Version")
+	CreateDeploymentOverrideCmd.Flags().StringP("version", "", "", "Version")
 	_ = CreateDeploymentOverrideCmd.MarkFlagRequired("version")
 }

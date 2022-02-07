@@ -50,10 +50,10 @@ var AdminUpdateUserV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateUserV3Cmd.Flags().StringP("body", "", " ", "Body")
+	AdminUpdateUserV3Cmd.Flags().StringP("body", "", "", "Body")
 	_ = AdminUpdateUserV3Cmd.MarkFlagRequired("body")
-	AdminUpdateUserV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminUpdateUserV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminUpdateUserV3Cmd.MarkFlagRequired("namespace")
-	AdminUpdateUserV3Cmd.Flags().StringP("userId", "", " ", "User id")
+	AdminUpdateUserV3Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = AdminUpdateUserV3Cmd.MarkFlagRequired("userId")
 }

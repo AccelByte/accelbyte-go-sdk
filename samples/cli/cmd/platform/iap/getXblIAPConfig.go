@@ -39,6 +39,6 @@ var GetXblIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetXblIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetXblIAPConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetXblIAPConfigCmd.MarkFlagRequired("namespace")
 }

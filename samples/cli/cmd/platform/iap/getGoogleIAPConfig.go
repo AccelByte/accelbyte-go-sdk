@@ -39,6 +39,6 @@ var GetGoogleIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetGoogleIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetGoogleIAPConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetGoogleIAPConfigCmd.MarkFlagRequired("namespace")
 }

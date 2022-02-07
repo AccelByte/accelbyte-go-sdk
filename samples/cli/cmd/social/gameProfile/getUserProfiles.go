@@ -41,8 +41,8 @@ var GetUserProfilesCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserProfilesCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetUserProfilesCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetUserProfilesCmd.MarkFlagRequired("namespace")
-	GetUserProfilesCmd.Flags().StringP("userId", "", " ", "User id")
+	GetUserProfilesCmd.Flags().StringP("userId", "", "", "User id")
 	_ = GetUserProfilesCmd.MarkFlagRequired("userId")
 }

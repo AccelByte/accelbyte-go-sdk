@@ -47,10 +47,10 @@ var QueryFulfillmentHistoriesCmd = &cobra.Command{
 }
 
 func init() {
-	QueryFulfillmentHistoriesCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	QueryFulfillmentHistoriesCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = QueryFulfillmentHistoriesCmd.MarkFlagRequired("namespace")
 	QueryFulfillmentHistoriesCmd.Flags().Int32P("limit", "", 20, "Limit")
 	QueryFulfillmentHistoriesCmd.Flags().Int32P("offset", "", 0, "Offset")
-	QueryFulfillmentHistoriesCmd.Flags().StringP("status", "", " ", "Status")
-	QueryFulfillmentHistoriesCmd.Flags().StringP("userId", "", " ", "User id")
+	QueryFulfillmentHistoriesCmd.Flags().StringP("status", "", "", "Status")
+	QueryFulfillmentHistoriesCmd.Flags().StringP("userId", "", "", "User id")
 }

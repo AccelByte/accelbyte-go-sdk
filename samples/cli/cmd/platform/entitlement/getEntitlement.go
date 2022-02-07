@@ -41,8 +41,8 @@ var GetEntitlementCmd = &cobra.Command{
 }
 
 func init() {
-	GetEntitlementCmd.Flags().StringP("entitlementId", "", " ", "Entitlement id")
+	GetEntitlementCmd.Flags().StringP("entitlementId", "", "", "Entitlement id")
 	_ = GetEntitlementCmd.MarkFlagRequired("entitlementId")
-	GetEntitlementCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetEntitlementCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetEntitlementCmd.MarkFlagRequired("namespace")
 }

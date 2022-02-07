@@ -47,11 +47,11 @@ var PublicBulkGetItemsCmd = &cobra.Command{
 }
 
 func init() {
-	PublicBulkGetItemsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicBulkGetItemsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicBulkGetItemsCmd.MarkFlagRequired("namespace")
-	PublicBulkGetItemsCmd.Flags().StringP("language", "", " ", "Language")
-	PublicBulkGetItemsCmd.Flags().StringP("region", "", " ", "Region")
-	PublicBulkGetItemsCmd.Flags().StringP("storeId", "", " ", "Store id")
-	PublicBulkGetItemsCmd.Flags().StringP("itemIds", "", " ", "Item ids")
+	PublicBulkGetItemsCmd.Flags().StringP("language", "", "", "Language")
+	PublicBulkGetItemsCmd.Flags().StringP("region", "", "", "Region")
+	PublicBulkGetItemsCmd.Flags().StringP("storeId", "", "", "Store id")
+	PublicBulkGetItemsCmd.Flags().StringP("itemIds", "", "", "Item ids")
 	_ = PublicBulkGetItemsCmd.MarkFlagRequired("itemIds")
 }

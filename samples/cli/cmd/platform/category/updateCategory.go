@@ -52,11 +52,11 @@ var UpdateCategoryCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateCategoryCmd.Flags().StringP("body", "", " ", "Body")
-	UpdateCategoryCmd.Flags().StringP("categoryPath", "", " ", "Category path")
+	UpdateCategoryCmd.Flags().StringP("body", "", "", "Body")
+	UpdateCategoryCmd.Flags().StringP("categoryPath", "", "", "Category path")
 	_ = UpdateCategoryCmd.MarkFlagRequired("categoryPath")
-	UpdateCategoryCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UpdateCategoryCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UpdateCategoryCmd.MarkFlagRequired("namespace")
-	UpdateCategoryCmd.Flags().StringP("storeId", "", " ", "Store id")
+	UpdateCategoryCmd.Flags().StringP("storeId", "", "", "Store id")
 	_ = UpdateCategoryCmd.MarkFlagRequired("storeId")
 }

@@ -38,6 +38,6 @@ var DeleteServerCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteServerCmd.Flags().StringP("region", "", " ", "Region")
+	DeleteServerCmd.Flags().StringP("region", "", "", "Region")
 	_ = DeleteServerCmd.MarkFlagRequired("region")
 }

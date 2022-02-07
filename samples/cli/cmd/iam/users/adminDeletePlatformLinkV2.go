@@ -44,11 +44,11 @@ var AdminDeletePlatformLinkV2Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeletePlatformLinkV2Cmd.Flags().StringP("platform_namespace", "", " ", "Platform namespace")
-	AdminDeletePlatformLinkV2Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminDeletePlatformLinkV2Cmd.Flags().StringP("platform_namespace", "", "", "Platform namespace")
+	AdminDeletePlatformLinkV2Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminDeletePlatformLinkV2Cmd.MarkFlagRequired("namespace")
-	AdminDeletePlatformLinkV2Cmd.Flags().StringP("platformId", "", " ", "Platform id")
+	AdminDeletePlatformLinkV2Cmd.Flags().StringP("platformId", "", "", "Platform id")
 	_ = AdminDeletePlatformLinkV2Cmd.MarkFlagRequired("platformId")
-	AdminDeletePlatformLinkV2Cmd.Flags().StringP("userId", "", " ", "User id")
+	AdminDeletePlatformLinkV2Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = AdminDeletePlatformLinkV2Cmd.MarkFlagRequired("userId")
 }

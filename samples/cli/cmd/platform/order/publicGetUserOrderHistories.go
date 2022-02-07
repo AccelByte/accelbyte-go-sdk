@@ -43,10 +43,10 @@ var PublicGetUserOrderHistoriesCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetUserOrderHistoriesCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicGetUserOrderHistoriesCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicGetUserOrderHistoriesCmd.MarkFlagRequired("namespace")
-	PublicGetUserOrderHistoriesCmd.Flags().StringP("orderNo", "", " ", "Order no")
+	PublicGetUserOrderHistoriesCmd.Flags().StringP("orderNo", "", "", "Order no")
 	_ = PublicGetUserOrderHistoriesCmd.MarkFlagRequired("orderNo")
-	PublicGetUserOrderHistoriesCmd.Flags().StringP("userId", "", " ", "User id")
+	PublicGetUserOrderHistoriesCmd.Flags().StringP("userId", "", "", "User id")
 	_ = PublicGetUserOrderHistoriesCmd.MarkFlagRequired("userId")
 }

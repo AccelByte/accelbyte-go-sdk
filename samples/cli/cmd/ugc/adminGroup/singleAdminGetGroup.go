@@ -41,8 +41,8 @@ var SingleAdminGetGroupCmd = &cobra.Command{
 }
 
 func init() {
-	SingleAdminGetGroupCmd.Flags().StringP("groupId", "", " ", "Group id")
+	SingleAdminGetGroupCmd.Flags().StringP("groupId", "", "", "Group id")
 	_ = SingleAdminGetGroupCmd.MarkFlagRequired("groupId")
-	SingleAdminGetGroupCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	SingleAdminGetGroupCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = SingleAdminGetGroupCmd.MarkFlagRequired("namespace")
 }

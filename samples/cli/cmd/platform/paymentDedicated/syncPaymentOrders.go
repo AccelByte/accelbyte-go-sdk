@@ -43,9 +43,9 @@ var SyncPaymentOrdersCmd = &cobra.Command{
 }
 
 func init() {
-	SyncPaymentOrdersCmd.Flags().StringP("nextEvaluatedKey", "", " ", "Next evaluated key")
-	SyncPaymentOrdersCmd.Flags().StringP("end", "", " ", "End")
+	SyncPaymentOrdersCmd.Flags().StringP("nextEvaluatedKey", "", "", "Next evaluated key")
+	SyncPaymentOrdersCmd.Flags().StringP("end", "", "", "End")
 	_ = SyncPaymentOrdersCmd.MarkFlagRequired("end")
-	SyncPaymentOrdersCmd.Flags().StringP("start", "", " ", "Start")
+	SyncPaymentOrdersCmd.Flags().StringP("start", "", "", "Start")
 	_ = SyncPaymentOrdersCmd.MarkFlagRequired("start")
 }

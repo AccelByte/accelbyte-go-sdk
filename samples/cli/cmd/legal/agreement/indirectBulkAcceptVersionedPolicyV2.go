@@ -54,13 +54,13 @@ var IndirectBulkAcceptVersionedPolicyV2Cmd = &cobra.Command{
 }
 
 func init() {
-	IndirectBulkAcceptVersionedPolicyV2Cmd.Flags().StringP("body", "", " ", "Body")
-	IndirectBulkAcceptVersionedPolicyV2Cmd.Flags().StringP("clientId", "", " ", "Client id")
+	IndirectBulkAcceptVersionedPolicyV2Cmd.Flags().StringP("body", "", "", "Body")
+	IndirectBulkAcceptVersionedPolicyV2Cmd.Flags().StringP("clientId", "", "", "Client id")
 	_ = IndirectBulkAcceptVersionedPolicyV2Cmd.MarkFlagRequired("clientId")
-	IndirectBulkAcceptVersionedPolicyV2Cmd.Flags().StringP("countryCode", "", " ", "Country code")
+	IndirectBulkAcceptVersionedPolicyV2Cmd.Flags().StringP("countryCode", "", "", "Country code")
 	_ = IndirectBulkAcceptVersionedPolicyV2Cmd.MarkFlagRequired("countryCode")
-	IndirectBulkAcceptVersionedPolicyV2Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	IndirectBulkAcceptVersionedPolicyV2Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = IndirectBulkAcceptVersionedPolicyV2Cmd.MarkFlagRequired("namespace")
-	IndirectBulkAcceptVersionedPolicyV2Cmd.Flags().StringP("userId", "", " ", "User id")
+	IndirectBulkAcceptVersionedPolicyV2Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = IndirectBulkAcceptVersionedPolicyV2Cmd.MarkFlagRequired("userId")
 }

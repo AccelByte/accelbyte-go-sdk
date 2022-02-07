@@ -45,6 +45,6 @@ var ImportImagesCmd = &cobra.Command{
 }
 
 func init() {
-	ImportImagesCmd.Flags().StringP("file", "", " ", "File")
+	ImportImagesCmd.Flags().StringP("file", "", "", "File")
 	_ = ImportImagesCmd.MarkFlagRequired("file")
 }

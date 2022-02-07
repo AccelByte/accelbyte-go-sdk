@@ -43,10 +43,10 @@ var GetUserRankingAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetUserRankingAdminV1Cmd.Flags().StringP("leaderboardCode", "", " ", "Leaderboard code")
+	GetUserRankingAdminV1Cmd.Flags().StringP("leaderboardCode", "", "", "Leaderboard code")
 	_ = GetUserRankingAdminV1Cmd.MarkFlagRequired("leaderboardCode")
-	GetUserRankingAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetUserRankingAdminV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetUserRankingAdminV1Cmd.MarkFlagRequired("namespace")
-	GetUserRankingAdminV1Cmd.Flags().StringP("userId", "", " ", "User id")
+	GetUserRankingAdminV1Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = GetUserRankingAdminV1Cmd.MarkFlagRequired("userId")
 }

@@ -41,8 +41,8 @@ var GetLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetLeaderboardConfigurationAdminV1Cmd.Flags().StringP("leaderboardCode", "", " ", "Leaderboard code")
+	GetLeaderboardConfigurationAdminV1Cmd.Flags().StringP("leaderboardCode", "", "", "Leaderboard code")
 	_ = GetLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("leaderboardCode")
-	GetLeaderboardConfigurationAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetLeaderboardConfigurationAdminV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetLeaderboardConfigurationAdminV1Cmd.MarkFlagRequired("namespace")
 }

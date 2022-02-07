@@ -45,10 +45,10 @@ var GetAppCmd = &cobra.Command{
 }
 
 func init() {
-	GetAppCmd.Flags().StringP("itemId", "", " ", "Item id")
+	GetAppCmd.Flags().StringP("itemId", "", "", "Item id")
 	_ = GetAppCmd.MarkFlagRequired("itemId")
-	GetAppCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetAppCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetAppCmd.MarkFlagRequired("namespace")
 	GetAppCmd.Flags().BoolP("activeOnly", "", false, "Active only")
-	GetAppCmd.Flags().StringP("storeId", "", " ", "Store id")
+	GetAppCmd.Flags().StringP("storeId", "", "", "Store id")
 }

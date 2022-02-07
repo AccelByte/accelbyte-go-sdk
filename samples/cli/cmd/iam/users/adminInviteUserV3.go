@@ -48,8 +48,8 @@ var AdminInviteUserV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminInviteUserV3Cmd.Flags().StringP("body", "", " ", "Body")
+	AdminInviteUserV3Cmd.Flags().StringP("body", "", "", "Body")
 	_ = AdminInviteUserV3Cmd.MarkFlagRequired("body")
-	AdminInviteUserV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminInviteUserV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminInviteUserV3Cmd.MarkFlagRequired("namespace")
 }

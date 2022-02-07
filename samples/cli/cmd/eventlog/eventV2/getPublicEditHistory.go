@@ -51,13 +51,13 @@ var GetPublicEditHistoryCmd = &cobra.Command{
 }
 
 func init() {
-	GetPublicEditHistoryCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetPublicEditHistoryCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetPublicEditHistoryCmd.MarkFlagRequired("namespace")
-	GetPublicEditHistoryCmd.Flags().StringP("userId", "", " ", "User id")
+	GetPublicEditHistoryCmd.Flags().StringP("userId", "", "", "User id")
 	_ = GetPublicEditHistoryCmd.MarkFlagRequired("userId")
-	GetPublicEditHistoryCmd.Flags().StringP("endDate", "", " ", "End date")
+	GetPublicEditHistoryCmd.Flags().StringP("endDate", "", "", "End date")
 	GetPublicEditHistoryCmd.Flags().Float64P("offset", "", 0, "Offset")
 	GetPublicEditHistoryCmd.Flags().Float64P("pageSize", "", 1, "Page size")
-	GetPublicEditHistoryCmd.Flags().StringP("startDate", "", " ", "Start date")
-	GetPublicEditHistoryCmd.Flags().StringP("type", "", " ", "Type")
+	GetPublicEditHistoryCmd.Flags().StringP("startDate", "", "", "Start date")
+	GetPublicEditHistoryCmd.Flags().StringP("type", "", "", "Type")
 }

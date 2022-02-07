@@ -48,7 +48,7 @@ var UpdateIAPItemConfigCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateIAPItemConfigCmd.Flags().StringP("body", "", " ", "Body")
-	UpdateIAPItemConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UpdateIAPItemConfigCmd.Flags().StringP("body", "", "", "Body")
+	UpdateIAPItemConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UpdateIAPItemConfigCmd.MarkFlagRequired("namespace")
 }

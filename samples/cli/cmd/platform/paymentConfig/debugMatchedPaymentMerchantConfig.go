@@ -41,6 +41,6 @@ var DebugMatchedPaymentMerchantConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DebugMatchedPaymentMerchantConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
-	DebugMatchedPaymentMerchantConfigCmd.Flags().StringP("region", "", " ", "Region")
+	DebugMatchedPaymentMerchantConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
+	DebugMatchedPaymentMerchantConfigCmd.Flags().StringP("region", "", "", "Region")
 }

@@ -45,6 +45,6 @@ var UpdateImageCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateImageCmd.Flags().StringP("body", "", " ", "Body")
+	UpdateImageCmd.Flags().StringP("body", "", "", "Body")
 	_ = UpdateImageCmd.MarkFlagRequired("body")
 }

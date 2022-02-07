@@ -39,6 +39,6 @@ var ExportImagesCmd = &cobra.Command{
 }
 
 func init() {
-	ExportImagesCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	ExportImagesCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = ExportImagesCmd.MarkFlagRequired("namespace")
 }

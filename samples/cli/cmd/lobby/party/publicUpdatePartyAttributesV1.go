@@ -50,10 +50,10 @@ var PublicUpdatePartyAttributesV1Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicUpdatePartyAttributesV1Cmd.Flags().StringP("body", "", " ", "Body")
+	PublicUpdatePartyAttributesV1Cmd.Flags().StringP("body", "", "", "Body")
 	_ = PublicUpdatePartyAttributesV1Cmd.MarkFlagRequired("body")
-	PublicUpdatePartyAttributesV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicUpdatePartyAttributesV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicUpdatePartyAttributesV1Cmd.MarkFlagRequired("namespace")
-	PublicUpdatePartyAttributesV1Cmd.Flags().StringP("partyId", "", " ", "Party id")
+	PublicUpdatePartyAttributesV1Cmd.Flags().StringP("partyId", "", "", "Party id")
 	_ = PublicUpdatePartyAttributesV1Cmd.MarkFlagRequired("partyId")
 }

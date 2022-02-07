@@ -43,10 +43,10 @@ var AdminGetPlayerSessionAttributeCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetPlayerSessionAttributeCmd.Flags().StringP("attribute", "", " ", "Attribute")
+	AdminGetPlayerSessionAttributeCmd.Flags().StringP("attribute", "", "", "Attribute")
 	_ = AdminGetPlayerSessionAttributeCmd.MarkFlagRequired("attribute")
-	AdminGetPlayerSessionAttributeCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminGetPlayerSessionAttributeCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminGetPlayerSessionAttributeCmd.MarkFlagRequired("namespace")
-	AdminGetPlayerSessionAttributeCmd.Flags().StringP("userId", "", " ", "User id")
+	AdminGetPlayerSessionAttributeCmd.Flags().StringP("userId", "", "", "User id")
 	_ = AdminGetPlayerSessionAttributeCmd.MarkFlagRequired("userId")
 }

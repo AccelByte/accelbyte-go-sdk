@@ -46,5 +46,5 @@ var TestFulfillmentScriptEvalCmd = &cobra.Command{
 }
 
 func init() {
-	TestFulfillmentScriptEvalCmd.Flags().StringP("body", "", " ", "Body")
+	TestFulfillmentScriptEvalCmd.Flags().StringP("body", "", "", "Body")
 }

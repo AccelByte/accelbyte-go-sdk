@@ -57,15 +57,15 @@ var QueryPaymentNotificationsCmd = &cobra.Command{
 }
 
 func init() {
-	QueryPaymentNotificationsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	QueryPaymentNotificationsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = QueryPaymentNotificationsCmd.MarkFlagRequired("namespace")
-	QueryPaymentNotificationsCmd.Flags().StringP("endDate", "", " ", "End date")
-	QueryPaymentNotificationsCmd.Flags().StringP("externalId", "", " ", "External id")
+	QueryPaymentNotificationsCmd.Flags().StringP("endDate", "", "", "End date")
+	QueryPaymentNotificationsCmd.Flags().StringP("externalId", "", "", "External id")
 	QueryPaymentNotificationsCmd.Flags().Int32P("limit", "", 20, "Limit")
-	QueryPaymentNotificationsCmd.Flags().StringP("notificationSource", "", " ", "Notification source")
-	QueryPaymentNotificationsCmd.Flags().StringP("notificationType", "", " ", "Notification type")
+	QueryPaymentNotificationsCmd.Flags().StringP("notificationSource", "", "", "Notification source")
+	QueryPaymentNotificationsCmd.Flags().StringP("notificationType", "", "", "Notification type")
 	QueryPaymentNotificationsCmd.Flags().Int32P("offset", "", 0, "Offset")
-	QueryPaymentNotificationsCmd.Flags().StringP("paymentOrderNo", "", " ", "Payment order no")
-	QueryPaymentNotificationsCmd.Flags().StringP("startDate", "", " ", "Start date")
-	QueryPaymentNotificationsCmd.Flags().StringP("status", "", " ", "Status")
+	QueryPaymentNotificationsCmd.Flags().StringP("paymentOrderNo", "", "", "Payment order no")
+	QueryPaymentNotificationsCmd.Flags().StringP("startDate", "", "", "Start date")
+	QueryPaymentNotificationsCmd.Flags().StringP("status", "", "", "Status")
 }

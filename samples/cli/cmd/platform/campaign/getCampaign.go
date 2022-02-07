@@ -41,8 +41,8 @@ var GetCampaignCmd = &cobra.Command{
 }
 
 func init() {
-	GetCampaignCmd.Flags().StringP("campaignId", "", " ", "Campaign id")
+	GetCampaignCmd.Flags().StringP("campaignId", "", "", "Campaign id")
 	_ = GetCampaignCmd.MarkFlagRequired("campaignId")
-	GetCampaignCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetCampaignCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetCampaignCmd.MarkFlagRequired("namespace")
 }

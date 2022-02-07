@@ -41,8 +41,8 @@ var GetAdminInvitationV3Cmd = &cobra.Command{
 }
 
 func init() {
-	GetAdminInvitationV3Cmd.Flags().StringP("invitationId", "", " ", "Invitation id")
+	GetAdminInvitationV3Cmd.Flags().StringP("invitationId", "", "", "Invitation id")
 	_ = GetAdminInvitationV3Cmd.MarkFlagRequired("invitationId")
-	GetAdminInvitationV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetAdminInvitationV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetAdminInvitationV3Cmd.MarkFlagRequired("namespace")
 }

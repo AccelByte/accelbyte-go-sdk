@@ -41,8 +41,8 @@ var AdminSubmitUserAccountDeletionRequestCmd = &cobra.Command{
 }
 
 func init() {
-	AdminSubmitUserAccountDeletionRequestCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminSubmitUserAccountDeletionRequestCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminSubmitUserAccountDeletionRequestCmd.MarkFlagRequired("namespace")
-	AdminSubmitUserAccountDeletionRequestCmd.Flags().StringP("userId", "", " ", "User id")
+	AdminSubmitUserAccountDeletionRequestCmd.Flags().StringP("userId", "", "", "User id")
 	_ = AdminSubmitUserAccountDeletionRequestCmd.MarkFlagRequired("userId")
 }

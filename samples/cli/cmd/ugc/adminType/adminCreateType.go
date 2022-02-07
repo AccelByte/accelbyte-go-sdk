@@ -48,8 +48,8 @@ var AdminCreateTypeCmd = &cobra.Command{
 }
 
 func init() {
-	AdminCreateTypeCmd.Flags().StringP("body", "", " ", "Body")
+	AdminCreateTypeCmd.Flags().StringP("body", "", "", "Body")
 	_ = AdminCreateTypeCmd.MarkFlagRequired("body")
-	AdminCreateTypeCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminCreateTypeCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminCreateTypeCmd.MarkFlagRequired("namespace")
 }

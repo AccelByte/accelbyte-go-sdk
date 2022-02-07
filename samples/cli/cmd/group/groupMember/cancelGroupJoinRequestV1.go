@@ -41,8 +41,8 @@ var CancelGroupJoinRequestV1Cmd = &cobra.Command{
 }
 
 func init() {
-	CancelGroupJoinRequestV1Cmd.Flags().StringP("groupId", "", " ", "Group id")
+	CancelGroupJoinRequestV1Cmd.Flags().StringP("groupId", "", "", "Group id")
 	_ = CancelGroupJoinRequestV1Cmd.MarkFlagRequired("groupId")
-	CancelGroupJoinRequestV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	CancelGroupJoinRequestV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = CancelGroupJoinRequestV1Cmd.MarkFlagRequired("namespace")
 }

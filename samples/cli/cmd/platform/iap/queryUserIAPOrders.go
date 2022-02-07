@@ -55,15 +55,15 @@ var QueryUserIAPOrdersCmd = &cobra.Command{
 }
 
 func init() {
-	QueryUserIAPOrdersCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	QueryUserIAPOrdersCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = QueryUserIAPOrdersCmd.MarkFlagRequired("namespace")
-	QueryUserIAPOrdersCmd.Flags().StringP("userId", "", " ", "User id")
+	QueryUserIAPOrdersCmd.Flags().StringP("userId", "", "", "User id")
 	_ = QueryUserIAPOrdersCmd.MarkFlagRequired("userId")
-	QueryUserIAPOrdersCmd.Flags().StringP("endTime", "", " ", "End time")
+	QueryUserIAPOrdersCmd.Flags().StringP("endTime", "", "", "End time")
 	QueryUserIAPOrdersCmd.Flags().Int32P("limit", "", 20, "Limit")
 	QueryUserIAPOrdersCmd.Flags().Int32P("offset", "", 0, "Offset")
-	QueryUserIAPOrdersCmd.Flags().StringP("productId", "", " ", "Product id")
-	QueryUserIAPOrdersCmd.Flags().StringP("startTime", "", " ", "Start time")
-	QueryUserIAPOrdersCmd.Flags().StringP("status", "", " ", "Status")
-	QueryUserIAPOrdersCmd.Flags().StringP("type", "", " ", "Type")
+	QueryUserIAPOrdersCmd.Flags().StringP("productId", "", "", "Product id")
+	QueryUserIAPOrdersCmd.Flags().StringP("startTime", "", "", "Start time")
+	QueryUserIAPOrdersCmd.Flags().StringP("status", "", "", "Status")
+	QueryUserIAPOrdersCmd.Flags().StringP("type", "", "", "Type")
 }

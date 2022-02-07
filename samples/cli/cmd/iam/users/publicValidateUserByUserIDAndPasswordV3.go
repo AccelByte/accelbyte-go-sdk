@@ -42,10 +42,10 @@ var PublicValidateUserByUserIDAndPasswordV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicValidateUserByUserIDAndPasswordV3Cmd.Flags().StringP("password", "", " ", "Password")
+	PublicValidateUserByUserIDAndPasswordV3Cmd.Flags().StringP("password", "", "", "Password")
 	_ = PublicValidateUserByUserIDAndPasswordV3Cmd.MarkFlagRequired("password")
-	PublicValidateUserByUserIDAndPasswordV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicValidateUserByUserIDAndPasswordV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicValidateUserByUserIDAndPasswordV3Cmd.MarkFlagRequired("namespace")
-	PublicValidateUserByUserIDAndPasswordV3Cmd.Flags().StringP("userId", "", " ", "User id")
+	PublicValidateUserByUserIDAndPasswordV3Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = PublicValidateUserByUserIDAndPasswordV3Cmd.MarkFlagRequired("userId")
 }

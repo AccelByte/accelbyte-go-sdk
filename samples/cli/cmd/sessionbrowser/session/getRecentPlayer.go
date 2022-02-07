@@ -41,8 +41,8 @@ var GetRecentPlayerCmd = &cobra.Command{
 }
 
 func init() {
-	GetRecentPlayerCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetRecentPlayerCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetRecentPlayerCmd.MarkFlagRequired("namespace")
-	GetRecentPlayerCmd.Flags().StringP("userID", "", " ", "User ID")
+	GetRecentPlayerCmd.Flags().StringP("userID", "", "", "User ID")
 	_ = GetRecentPlayerCmd.MarkFlagRequired("userID")
 }

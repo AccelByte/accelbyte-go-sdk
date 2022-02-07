@@ -49,10 +49,10 @@ var AdminUpdateUserDeletionStatusV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateUserDeletionStatusV3Cmd.Flags().StringP("body", "", " ", "Body")
+	AdminUpdateUserDeletionStatusV3Cmd.Flags().StringP("body", "", "", "Body")
 	_ = AdminUpdateUserDeletionStatusV3Cmd.MarkFlagRequired("body")
-	AdminUpdateUserDeletionStatusV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminUpdateUserDeletionStatusV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminUpdateUserDeletionStatusV3Cmd.MarkFlagRequired("namespace")
-	AdminUpdateUserDeletionStatusV3Cmd.Flags().StringP("userId", "", " ", "User id")
+	AdminUpdateUserDeletionStatusV3Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = AdminUpdateUserDeletionStatusV3Cmd.MarkFlagRequired("userId")
 }

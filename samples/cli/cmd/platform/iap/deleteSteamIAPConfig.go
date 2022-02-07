@@ -38,6 +38,6 @@ var DeleteSteamIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteSteamIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeleteSteamIAPConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeleteSteamIAPConfigCmd.MarkFlagRequired("namespace")
 }

@@ -42,10 +42,10 @@ var AdminDeleteGroupCmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteGroupCmd.Flags().StringP("groupId", "", " ", "Group id")
+	AdminDeleteGroupCmd.Flags().StringP("groupId", "", "", "Group id")
 	_ = AdminDeleteGroupCmd.MarkFlagRequired("groupId")
-	AdminDeleteGroupCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminDeleteGroupCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminDeleteGroupCmd.MarkFlagRequired("namespace")
-	AdminDeleteGroupCmd.Flags().StringP("userId", "", " ", "User id")
+	AdminDeleteGroupCmd.Flags().StringP("userId", "", "", "User id")
 	_ = AdminDeleteGroupCmd.MarkFlagRequired("userId")
 }

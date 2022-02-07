@@ -41,8 +41,8 @@ var GetItemDynamicDataCmd = &cobra.Command{
 }
 
 func init() {
-	GetItemDynamicDataCmd.Flags().StringP("itemId", "", " ", "Item id")
+	GetItemDynamicDataCmd.Flags().StringP("itemId", "", "", "Item id")
 	_ = GetItemDynamicDataCmd.MarkFlagRequired("itemId")
-	GetItemDynamicDataCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetItemDynamicDataCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetItemDynamicDataCmd.MarkFlagRequired("namespace")
 }

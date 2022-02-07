@@ -47,7 +47,7 @@ var GetLeaderboardConfigurationsPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetLeaderboardConfigurationsPublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetLeaderboardConfigurationsPublicV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetLeaderboardConfigurationsPublicV1Cmd.MarkFlagRequired("namespace")
 	GetLeaderboardConfigurationsPublicV1Cmd.Flags().BoolP("isArchived", "", false, "Is archived")
 	GetLeaderboardConfigurationsPublicV1Cmd.Flags().BoolP("isDeleted", "", false, "Is deleted")

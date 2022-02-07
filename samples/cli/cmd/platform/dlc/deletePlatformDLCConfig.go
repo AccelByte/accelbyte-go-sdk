@@ -38,6 +38,6 @@ var DeletePlatformDLCConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeletePlatformDLCConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeletePlatformDLCConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeletePlatformDLCConfigCmd.MarkFlagRequired("namespace")
 }

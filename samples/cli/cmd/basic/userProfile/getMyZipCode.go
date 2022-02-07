@@ -39,6 +39,6 @@ var GetMyZipCodeCmd = &cobra.Command{
 }
 
 func init() {
-	GetMyZipCodeCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetMyZipCodeCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetMyZipCodeCmd.MarkFlagRequired("namespace")
 }

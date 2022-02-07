@@ -48,8 +48,8 @@ var PublicVerifyHeadlessAccountV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicVerifyHeadlessAccountV3Cmd.Flags().StringP("body", "", " ", "Body")
+	PublicVerifyHeadlessAccountV3Cmd.Flags().StringP("body", "", "", "Body")
 	_ = PublicVerifyHeadlessAccountV3Cmd.MarkFlagRequired("body")
-	PublicVerifyHeadlessAccountV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicVerifyHeadlessAccountV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicVerifyHeadlessAccountV3Cmd.MarkFlagRequired("namespace")
 }

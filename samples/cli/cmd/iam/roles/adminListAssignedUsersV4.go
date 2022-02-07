@@ -45,7 +45,7 @@ var AdminListAssignedUsersV4Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminListAssignedUsersV4Cmd.Flags().StringP("roleId", "", " ", "Role id")
+	AdminListAssignedUsersV4Cmd.Flags().StringP("roleId", "", "", "Role id")
 	_ = AdminListAssignedUsersV4Cmd.MarkFlagRequired("roleId")
 	AdminListAssignedUsersV4Cmd.Flags().StringP("after", "", "0", "After")
 	AdminListAssignedUsersV4Cmd.Flags().StringP("before", "", "0", "Before")

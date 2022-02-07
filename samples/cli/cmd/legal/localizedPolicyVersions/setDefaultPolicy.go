@@ -38,6 +38,6 @@ var SetDefaultPolicyCmd = &cobra.Command{
 }
 
 func init() {
-	SetDefaultPolicyCmd.Flags().StringP("localizedPolicyVersionId", "", " ", "Localized policy version id")
+	SetDefaultPolicyCmd.Flags().StringP("localizedPolicyVersionId", "", "", "Localized policy version id")
 	_ = SetDefaultPolicyCmd.MarkFlagRequired("localizedPolicyVersionId")
 }

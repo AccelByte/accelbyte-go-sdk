@@ -41,8 +41,8 @@ var GetPodConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetPodConfigCmd.Flags().StringP("name", "", " ", "Name")
+	GetPodConfigCmd.Flags().StringP("name", "", "", "Name")
 	_ = GetPodConfigCmd.MarkFlagRequired("name")
-	GetPodConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetPodConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetPodConfigCmd.MarkFlagRequired("namespace")
 }

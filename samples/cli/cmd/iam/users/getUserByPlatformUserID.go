@@ -43,10 +43,10 @@ var GetUserByPlatformUserIDCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserByPlatformUserIDCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetUserByPlatformUserIDCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetUserByPlatformUserIDCmd.MarkFlagRequired("namespace")
-	GetUserByPlatformUserIDCmd.Flags().StringP("platformID", "", " ", "Platform ID")
+	GetUserByPlatformUserIDCmd.Flags().StringP("platformID", "", "", "Platform ID")
 	_ = GetUserByPlatformUserIDCmd.MarkFlagRequired("platformID")
-	GetUserByPlatformUserIDCmd.Flags().StringP("platformUserID", "", " ", "Platform user ID")
+	GetUserByPlatformUserIDCmd.Flags().StringP("platformUserID", "", "", "Platform user ID")
 	_ = GetUserByPlatformUserIDCmd.MarkFlagRequired("platformUserID")
 }

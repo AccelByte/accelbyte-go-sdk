@@ -50,10 +50,10 @@ var CreateDeploymentCmd = &cobra.Command{
 }
 
 func init() {
-	CreateDeploymentCmd.Flags().StringP("body", "", " ", "Body")
+	CreateDeploymentCmd.Flags().StringP("body", "", "", "Body")
 	_ = CreateDeploymentCmd.MarkFlagRequired("body")
-	CreateDeploymentCmd.Flags().StringP("deployment", "", " ", "Deployment")
+	CreateDeploymentCmd.Flags().StringP("deployment", "", "", "Deployment")
 	_ = CreateDeploymentCmd.MarkFlagRequired("deployment")
-	CreateDeploymentCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	CreateDeploymentCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = CreateDeploymentCmd.MarkFlagRequired("namespace")
 }

@@ -41,8 +41,8 @@ var PublicGetPartyDataV1Cmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetPartyDataV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicGetPartyDataV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicGetPartyDataV1Cmd.MarkFlagRequired("namespace")
-	PublicGetPartyDataV1Cmd.Flags().StringP("partyId", "", " ", "Party id")
+	PublicGetPartyDataV1Cmd.Flags().StringP("partyId", "", "", "Party id")
 	_ = PublicGetPartyDataV1Cmd.MarkFlagRequired("partyId")
 }

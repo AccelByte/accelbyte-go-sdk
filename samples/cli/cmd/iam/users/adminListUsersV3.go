@@ -43,7 +43,7 @@ var AdminListUsersV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminListUsersV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminListUsersV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminListUsersV3Cmd.MarkFlagRequired("namespace")
 	AdminListUsersV3Cmd.Flags().Int64P("limit", "", 20, "Limit")
 	AdminListUsersV3Cmd.Flags().Int64P("offset", "", 0, "Offset")

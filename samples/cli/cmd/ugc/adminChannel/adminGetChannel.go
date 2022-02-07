@@ -45,9 +45,9 @@ var AdminGetChannelCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetChannelCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminGetChannelCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminGetChannelCmd.MarkFlagRequired("namespace")
-	AdminGetChannelCmd.Flags().StringP("userId", "", " ", "User id")
+	AdminGetChannelCmd.Flags().StringP("userId", "", "", "User id")
 	_ = AdminGetChannelCmd.MarkFlagRequired("userId")
 	AdminGetChannelCmd.Flags().StringP("limit", "", "20", "Limit")
 	AdminGetChannelCmd.Flags().StringP("offset", "", "0", "Offset")

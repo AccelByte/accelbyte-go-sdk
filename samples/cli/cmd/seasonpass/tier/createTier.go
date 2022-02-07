@@ -50,9 +50,9 @@ var CreateTierCmd = &cobra.Command{
 }
 
 func init() {
-	CreateTierCmd.Flags().StringP("body", "", " ", "Body")
-	CreateTierCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	CreateTierCmd.Flags().StringP("body", "", "", "Body")
+	CreateTierCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = CreateTierCmd.MarkFlagRequired("namespace")
-	CreateTierCmd.Flags().StringP("seasonId", "", " ", "Season id")
+	CreateTierCmd.Flags().StringP("seasonId", "", "", "Season id")
 	_ = CreateTierCmd.MarkFlagRequired("seasonId")
 }

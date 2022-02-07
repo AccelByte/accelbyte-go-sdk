@@ -43,7 +43,7 @@ var GetLikedContentCmd = &cobra.Command{
 }
 
 func init() {
-	GetLikedContentCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetLikedContentCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetLikedContentCmd.MarkFlagRequired("namespace")
 	GetLikedContentCmd.Flags().StringP("limit", "", "20", "Limit")
 	GetLikedContentCmd.Flags().StringP("offset", "", "0", "Offset")

@@ -41,7 +41,7 @@ var CountSessionCmd = &cobra.Command{
 }
 
 func init() {
-	CountSessionCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	CountSessionCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = CountSessionCmd.MarkFlagRequired("namespace")
-	CountSessionCmd.Flags().StringP("region", "", " ", "Region")
+	CountSessionCmd.Flags().StringP("region", "", "", "Region")
 }

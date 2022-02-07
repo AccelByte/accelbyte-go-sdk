@@ -39,5 +39,5 @@ var SpecificEventIDDescriptionHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	SpecificEventIDDescriptionHandlerCmd.Flags().StringP("eventIds", "", " ", "Event ids")
+	SpecificEventIDDescriptionHandlerCmd.Flags().StringP("eventIds", "", "", "Event ids")
 }

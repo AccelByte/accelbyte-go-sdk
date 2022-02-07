@@ -50,10 +50,10 @@ var UpdateGroupCustomAttributesPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	UpdateGroupCustomAttributesPublicV1Cmd.Flags().StringP("body", "", " ", "Body")
+	UpdateGroupCustomAttributesPublicV1Cmd.Flags().StringP("body", "", "", "Body")
 	_ = UpdateGroupCustomAttributesPublicV1Cmd.MarkFlagRequired("body")
-	UpdateGroupCustomAttributesPublicV1Cmd.Flags().StringP("groupId", "", " ", "Group id")
+	UpdateGroupCustomAttributesPublicV1Cmd.Flags().StringP("groupId", "", "", "Group id")
 	_ = UpdateGroupCustomAttributesPublicV1Cmd.MarkFlagRequired("groupId")
-	UpdateGroupCustomAttributesPublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UpdateGroupCustomAttributesPublicV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UpdateGroupCustomAttributesPublicV1Cmd.MarkFlagRequired("namespace")
 }

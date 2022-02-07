@@ -43,10 +43,10 @@ var ResetUserStatItemValue1Cmd = &cobra.Command{
 }
 
 func init() {
-	ResetUserStatItemValue1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	ResetUserStatItemValue1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = ResetUserStatItemValue1Cmd.MarkFlagRequired("namespace")
-	ResetUserStatItemValue1Cmd.Flags().StringP("statCode", "", " ", "Stat code")
+	ResetUserStatItemValue1Cmd.Flags().StringP("statCode", "", "", "Stat code")
 	_ = ResetUserStatItemValue1Cmd.MarkFlagRequired("statCode")
-	ResetUserStatItemValue1Cmd.Flags().StringP("userId", "", " ", "User id")
+	ResetUserStatItemValue1Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = ResetUserStatItemValue1Cmd.MarkFlagRequired("userId")
 }

@@ -40,8 +40,8 @@ var AdminDeleteClientV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteClientV3Cmd.Flags().StringP("clientId", "", " ", "Client id")
+	AdminDeleteClientV3Cmd.Flags().StringP("clientId", "", "", "Client id")
 	_ = AdminDeleteClientV3Cmd.MarkFlagRequired("clientId")
-	AdminDeleteClientV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminDeleteClientV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminDeleteClientV3Cmd.MarkFlagRequired("namespace")
 }

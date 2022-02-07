@@ -39,6 +39,6 @@ var LeaveGroupPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	LeaveGroupPublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	LeaveGroupPublicV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = LeaveGroupPublicV1Cmd.MarkFlagRequired("namespace")
 }

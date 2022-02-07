@@ -43,7 +43,7 @@ var GetMemberRolesListAdminV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetMemberRolesListAdminV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetMemberRolesListAdminV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetMemberRolesListAdminV1Cmd.MarkFlagRequired("namespace")
 	GetMemberRolesListAdminV1Cmd.Flags().Int64P("limit", "", 20, "Limit")
 	GetMemberRolesListAdminV1Cmd.Flags().Int64P("offset", "", 0, "Offset")

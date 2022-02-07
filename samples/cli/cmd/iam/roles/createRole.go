@@ -46,6 +46,6 @@ var CreateRoleCmd = &cobra.Command{
 }
 
 func init() {
-	CreateRoleCmd.Flags().StringP("body", "", " ", "Body")
+	CreateRoleCmd.Flags().StringP("body", "", "", "Body")
 	_ = CreateRoleCmd.MarkFlagRequired("body")
 }

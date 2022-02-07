@@ -50,9 +50,9 @@ var PublicRedeemCodeCmd = &cobra.Command{
 }
 
 func init() {
-	PublicRedeemCodeCmd.Flags().StringP("body", "", " ", "Body")
-	PublicRedeemCodeCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicRedeemCodeCmd.Flags().StringP("body", "", "", "Body")
+	PublicRedeemCodeCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicRedeemCodeCmd.MarkFlagRequired("namespace")
-	PublicRedeemCodeCmd.Flags().StringP("userId", "", " ", "User id")
+	PublicRedeemCodeCmd.Flags().StringP("userId", "", "", "User id")
 	_ = PublicRedeemCodeCmd.MarkFlagRequired("userId")
 }

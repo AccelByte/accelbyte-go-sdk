@@ -42,10 +42,10 @@ var DeleteUserSubscriptionCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteUserSubscriptionCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeleteUserSubscriptionCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeleteUserSubscriptionCmd.MarkFlagRequired("namespace")
-	DeleteUserSubscriptionCmd.Flags().StringP("subscriptionId", "", " ", "Subscription id")
+	DeleteUserSubscriptionCmd.Flags().StringP("subscriptionId", "", "", "Subscription id")
 	_ = DeleteUserSubscriptionCmd.MarkFlagRequired("subscriptionId")
-	DeleteUserSubscriptionCmd.Flags().StringP("userId", "", " ", "User id")
+	DeleteUserSubscriptionCmd.Flags().StringP("userId", "", "", "User id")
 	_ = DeleteUserSubscriptionCmd.MarkFlagRequired("userId")
 }

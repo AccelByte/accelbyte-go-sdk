@@ -39,6 +39,6 @@ var GetIAPItemConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetIAPItemConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetIAPItemConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetIAPItemConfigCmd.MarkFlagRequired("namespace")
 }

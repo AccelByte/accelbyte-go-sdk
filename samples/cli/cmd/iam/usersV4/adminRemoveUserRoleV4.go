@@ -49,10 +49,10 @@ var AdminRemoveUserRoleV4Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminRemoveUserRoleV4Cmd.Flags().StringP("body", "", " ", "Body")
+	AdminRemoveUserRoleV4Cmd.Flags().StringP("body", "", "", "Body")
 	_ = AdminRemoveUserRoleV4Cmd.MarkFlagRequired("body")
-	AdminRemoveUserRoleV4Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminRemoveUserRoleV4Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminRemoveUserRoleV4Cmd.MarkFlagRequired("namespace")
-	AdminRemoveUserRoleV4Cmd.Flags().StringP("userId", "", " ", "User id")
+	AdminRemoveUserRoleV4Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = AdminRemoveUserRoleV4Cmd.MarkFlagRequired("userId")
 }

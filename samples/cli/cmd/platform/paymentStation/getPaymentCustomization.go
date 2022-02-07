@@ -45,11 +45,11 @@ var GetPaymentCustomizationCmd = &cobra.Command{
 }
 
 func init() {
-	GetPaymentCustomizationCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetPaymentCustomizationCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetPaymentCustomizationCmd.MarkFlagRequired("namespace")
 	GetPaymentCustomizationCmd.Flags().BoolP("sandbox", "", false, "Sandbox")
-	GetPaymentCustomizationCmd.Flags().StringP("paymentProvider", "", " ", "Payment provider")
+	GetPaymentCustomizationCmd.Flags().StringP("paymentProvider", "", "", "Payment provider")
 	_ = GetPaymentCustomizationCmd.MarkFlagRequired("paymentProvider")
-	GetPaymentCustomizationCmd.Flags().StringP("region", "", " ", "Region")
+	GetPaymentCustomizationCmd.Flags().StringP("region", "", "", "Region")
 	_ = GetPaymentCustomizationCmd.MarkFlagRequired("region")
 }

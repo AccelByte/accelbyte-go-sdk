@@ -40,8 +40,8 @@ var DeleteChannelHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteChannelHandlerCmd.Flags().StringP("channel", "", " ", "Channel")
+	DeleteChannelHandlerCmd.Flags().StringP("channel", "", "", "Channel")
 	_ = DeleteChannelHandlerCmd.MarkFlagRequired("channel")
-	DeleteChannelHandlerCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeleteChannelHandlerCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeleteChannelHandlerCmd.MarkFlagRequired("namespace")
 }

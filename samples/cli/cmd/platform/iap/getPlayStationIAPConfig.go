@@ -39,6 +39,6 @@ var GetPlayStationIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	GetPlayStationIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetPlayStationIAPConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetPlayStationIAPConfigCmd.MarkFlagRequired("namespace")
 }

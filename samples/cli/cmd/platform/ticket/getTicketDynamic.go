@@ -41,8 +41,8 @@ var GetTicketDynamicCmd = &cobra.Command{
 }
 
 func init() {
-	GetTicketDynamicCmd.Flags().StringP("boothName", "", " ", "Booth name")
+	GetTicketDynamicCmd.Flags().StringP("boothName", "", "", "Booth name")
 	_ = GetTicketDynamicCmd.MarkFlagRequired("boothName")
-	GetTicketDynamicCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetTicketDynamicCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetTicketDynamicCmd.MarkFlagRequired("namespace")
 }

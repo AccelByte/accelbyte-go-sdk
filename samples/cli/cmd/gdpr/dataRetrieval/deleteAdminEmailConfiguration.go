@@ -46,8 +46,8 @@ var DeleteAdminEmailConfigurationCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteAdminEmailConfigurationCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeleteAdminEmailConfigurationCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeleteAdminEmailConfigurationCmd.MarkFlagRequired("namespace")
-	DeleteAdminEmailConfigurationCmd.Flags().StringP("emails", "", " ", "Emails")
+	DeleteAdminEmailConfigurationCmd.Flags().StringP("emails", "", "", "Emails")
 	_ = DeleteAdminEmailConfigurationCmd.MarkFlagRequired("emails")
 }

@@ -48,7 +48,7 @@ var ChangeNamespaceStatusCmd = &cobra.Command{
 }
 
 func init() {
-	ChangeNamespaceStatusCmd.Flags().StringP("body", "", " ", "Body")
-	ChangeNamespaceStatusCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	ChangeNamespaceStatusCmd.Flags().StringP("body", "", "", "Body")
+	ChangeNamespaceStatusCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = ChangeNamespaceStatusCmd.MarkFlagRequired("namespace")
 }

@@ -41,8 +41,8 @@ var GetRewardCmd = &cobra.Command{
 }
 
 func init() {
-	GetRewardCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetRewardCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetRewardCmd.MarkFlagRequired("namespace")
-	GetRewardCmd.Flags().StringP("rewardId", "", " ", "Reward id")
+	GetRewardCmd.Flags().StringP("rewardId", "", "", "Reward id")
 	_ = GetRewardCmd.MarkFlagRequired("rewardId")
 }

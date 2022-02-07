@@ -49,10 +49,10 @@ var AdminPutGameRecordHandlerV1Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminPutGameRecordHandlerV1Cmd.Flags().StringP("body", "", " ", "Body")
+	AdminPutGameRecordHandlerV1Cmd.Flags().StringP("body", "", "", "Body")
 	_ = AdminPutGameRecordHandlerV1Cmd.MarkFlagRequired("body")
-	AdminPutGameRecordHandlerV1Cmd.Flags().StringP("key", "", " ", "Key")
+	AdminPutGameRecordHandlerV1Cmd.Flags().StringP("key", "", "", "Key")
 	_ = AdminPutGameRecordHandlerV1Cmd.MarkFlagRequired("key")
-	AdminPutGameRecordHandlerV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminPutGameRecordHandlerV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminPutGameRecordHandlerV1Cmd.MarkFlagRequired("namespace")
 }

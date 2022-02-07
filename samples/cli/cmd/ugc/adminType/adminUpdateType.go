@@ -50,10 +50,10 @@ var AdminUpdateTypeCmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateTypeCmd.Flags().StringP("body", "", " ", "Body")
+	AdminUpdateTypeCmd.Flags().StringP("body", "", "", "Body")
 	_ = AdminUpdateTypeCmd.MarkFlagRequired("body")
-	AdminUpdateTypeCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminUpdateTypeCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminUpdateTypeCmd.MarkFlagRequired("namespace")
-	AdminUpdateTypeCmd.Flags().StringP("typeId", "", " ", "Type id")
+	AdminUpdateTypeCmd.Flags().StringP("typeId", "", "", "Type id")
 	_ = AdminUpdateTypeCmd.MarkFlagRequired("typeId")
 }

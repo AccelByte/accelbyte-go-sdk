@@ -52,12 +52,12 @@ var SetUserLeaderboardVisibilityStatusV2Cmd = &cobra.Command{
 }
 
 func init() {
-	SetUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("body", "", " ", "Body")
+	SetUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("body", "", "", "Body")
 	_ = SetUserLeaderboardVisibilityStatusV2Cmd.MarkFlagRequired("body")
-	SetUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("leaderboardCode", "", " ", "Leaderboard code")
+	SetUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("leaderboardCode", "", "", "Leaderboard code")
 	_ = SetUserLeaderboardVisibilityStatusV2Cmd.MarkFlagRequired("leaderboardCode")
-	SetUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	SetUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = SetUserLeaderboardVisibilityStatusV2Cmd.MarkFlagRequired("namespace")
-	SetUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("userId", "", " ", "User id")
+	SetUserLeaderboardVisibilityStatusV2Cmd.Flags().StringP("userId", "", "", "User id")
 	_ = SetUserLeaderboardVisibilityStatusV2Cmd.MarkFlagRequired("userId")
 }

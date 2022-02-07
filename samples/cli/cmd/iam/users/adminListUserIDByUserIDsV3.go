@@ -48,8 +48,8 @@ var AdminListUserIDByUserIDsV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminListUserIDByUserIDsV3Cmd.Flags().StringP("body", "", " ", "Body")
+	AdminListUserIDByUserIDsV3Cmd.Flags().StringP("body", "", "", "Body")
 	_ = AdminListUserIDByUserIDsV3Cmd.MarkFlagRequired("body")
-	AdminListUserIDByUserIDsV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminListUserIDByUserIDsV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminListUserIDByUserIDsV3Cmd.MarkFlagRequired("namespace")
 }

@@ -59,14 +59,14 @@ var PublicQueryUserEntitlementsCmd = &cobra.Command{
 }
 
 func init() {
-	PublicQueryUserEntitlementsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicQueryUserEntitlementsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicQueryUserEntitlementsCmd.MarkFlagRequired("namespace")
-	PublicQueryUserEntitlementsCmd.Flags().StringP("userId", "", " ", "User id")
+	PublicQueryUserEntitlementsCmd.Flags().StringP("userId", "", "", "User id")
 	_ = PublicQueryUserEntitlementsCmd.MarkFlagRequired("userId")
-	PublicQueryUserEntitlementsCmd.Flags().StringP("appType", "", " ", "App type")
-	PublicQueryUserEntitlementsCmd.Flags().StringP("entitlementClazz", "", " ", "Entitlement clazz")
-	PublicQueryUserEntitlementsCmd.Flags().StringP("entitlementName", "", " ", "Entitlement name")
-	PublicQueryUserEntitlementsCmd.Flags().StringP("itemId", "", " ", "Item id")
+	PublicQueryUserEntitlementsCmd.Flags().StringP("appType", "", "", "App type")
+	PublicQueryUserEntitlementsCmd.Flags().StringP("entitlementClazz", "", "", "Entitlement clazz")
+	PublicQueryUserEntitlementsCmd.Flags().StringP("entitlementName", "", "", "Entitlement name")
+	PublicQueryUserEntitlementsCmd.Flags().StringP("itemId", "", "", "Item id")
 	PublicQueryUserEntitlementsCmd.Flags().Int32P("limit", "", 20, "Limit")
 	PublicQueryUserEntitlementsCmd.Flags().Int32P("offset", "", 0, "Offset")
 }

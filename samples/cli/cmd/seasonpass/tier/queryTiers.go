@@ -45,9 +45,9 @@ var QueryTiersCmd = &cobra.Command{
 }
 
 func init() {
-	QueryTiersCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	QueryTiersCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = QueryTiersCmd.MarkFlagRequired("namespace")
-	QueryTiersCmd.Flags().StringP("seasonId", "", " ", "Season id")
+	QueryTiersCmd.Flags().StringP("seasonId", "", "", "Season id")
 	_ = QueryTiersCmd.MarkFlagRequired("seasonId")
 	QueryTiersCmd.Flags().Int32P("limit", "", 20, "Limit")
 	QueryTiersCmd.Flags().Int32P("offset", "", 0, "Offset")

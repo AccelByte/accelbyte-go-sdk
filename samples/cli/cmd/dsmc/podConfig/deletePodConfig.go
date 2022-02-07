@@ -40,8 +40,8 @@ var DeletePodConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeletePodConfigCmd.Flags().StringP("name", "", " ", "Name")
+	DeletePodConfigCmd.Flags().StringP("name", "", "", "Name")
 	_ = DeletePodConfigCmd.MarkFlagRequired("name")
-	DeletePodConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeletePodConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeletePodConfigCmd.MarkFlagRequired("namespace")
 }

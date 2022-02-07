@@ -47,7 +47,7 @@ var UpdateGoogleP12FileCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateGoogleP12FileCmd.Flags().StringP("file", "", " ", "File")
-	UpdateGoogleP12FileCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UpdateGoogleP12FileCmd.Flags().StringP("file", "", "", "File")
+	UpdateGoogleP12FileCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UpdateGoogleP12FileCmd.MarkFlagRequired("namespace")
 }

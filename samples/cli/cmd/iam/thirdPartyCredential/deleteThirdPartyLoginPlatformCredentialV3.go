@@ -40,8 +40,8 @@ var DeleteThirdPartyLoginPlatformCredentialV3Cmd = &cobra.Command{
 }
 
 func init() {
-	DeleteThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeleteThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeleteThirdPartyLoginPlatformCredentialV3Cmd.MarkFlagRequired("namespace")
-	DeleteThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("platformId", "", " ", "Platform id")
+	DeleteThirdPartyLoginPlatformCredentialV3Cmd.Flags().StringP("platformId", "", "", "Platform id")
 	_ = DeleteThirdPartyLoginPlatformCredentialV3Cmd.MarkFlagRequired("platformId")
 }

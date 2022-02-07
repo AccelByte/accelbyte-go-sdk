@@ -47,8 +47,8 @@ var ResetPasswordCmd = &cobra.Command{
 }
 
 func init() {
-	ResetPasswordCmd.Flags().StringP("body", "", " ", "Body")
+	ResetPasswordCmd.Flags().StringP("body", "", "", "Body")
 	_ = ResetPasswordCmd.MarkFlagRequired("body")
-	ResetPasswordCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	ResetPasswordCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = ResetPasswordCmd.MarkFlagRequired("namespace")
 }

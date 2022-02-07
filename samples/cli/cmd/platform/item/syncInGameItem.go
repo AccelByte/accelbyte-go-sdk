@@ -50,9 +50,9 @@ var SyncInGameItemCmd = &cobra.Command{
 }
 
 func init() {
-	SyncInGameItemCmd.Flags().StringP("body", "", " ", "Body")
-	SyncInGameItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	SyncInGameItemCmd.Flags().StringP("body", "", "", "Body")
+	SyncInGameItemCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = SyncInGameItemCmd.MarkFlagRequired("namespace")
-	SyncInGameItemCmd.Flags().StringP("storeId", "", " ", "Store id")
+	SyncInGameItemCmd.Flags().StringP("storeId", "", "", "Store id")
 	_ = SyncInGameItemCmd.MarkFlagRequired("storeId")
 }

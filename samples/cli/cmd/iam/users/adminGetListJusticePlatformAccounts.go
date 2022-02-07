@@ -41,8 +41,8 @@ var AdminGetListJusticePlatformAccountsCmd = &cobra.Command{
 }
 
 func init() {
-	AdminGetListJusticePlatformAccountsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminGetListJusticePlatformAccountsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminGetListJusticePlatformAccountsCmd.MarkFlagRequired("namespace")
-	AdminGetListJusticePlatformAccountsCmd.Flags().StringP("userId", "", " ", "User id")
+	AdminGetListJusticePlatformAccountsCmd.Flags().StringP("userId", "", "", "User id")
 	_ = AdminGetListJusticePlatformAccountsCmd.MarkFlagRequired("userId")
 }

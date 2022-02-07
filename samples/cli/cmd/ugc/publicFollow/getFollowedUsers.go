@@ -43,7 +43,7 @@ var GetFollowedUsersCmd = &cobra.Command{
 }
 
 func init() {
-	GetFollowedUsersCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetFollowedUsersCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetFollowedUsersCmd.MarkFlagRequired("namespace")
 	GetFollowedUsersCmd.Flags().StringP("limit", "", "20", "Limit")
 	GetFollowedUsersCmd.Flags().StringP("offset", "", "0", "Offset")

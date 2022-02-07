@@ -55,15 +55,15 @@ var QueryUserSubscriptionsCmd = &cobra.Command{
 }
 
 func init() {
-	QueryUserSubscriptionsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	QueryUserSubscriptionsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = QueryUserSubscriptionsCmd.MarkFlagRequired("namespace")
-	QueryUserSubscriptionsCmd.Flags().StringP("userId", "", " ", "User id")
+	QueryUserSubscriptionsCmd.Flags().StringP("userId", "", "", "User id")
 	_ = QueryUserSubscriptionsCmd.MarkFlagRequired("userId")
-	QueryUserSubscriptionsCmd.Flags().StringP("chargeStatus", "", " ", "Charge status")
-	QueryUserSubscriptionsCmd.Flags().StringP("itemId", "", " ", "Item id")
+	QueryUserSubscriptionsCmd.Flags().StringP("chargeStatus", "", "", "Charge status")
+	QueryUserSubscriptionsCmd.Flags().StringP("itemId", "", "", "Item id")
 	QueryUserSubscriptionsCmd.Flags().Int32P("limit", "", 20, "Limit")
 	QueryUserSubscriptionsCmd.Flags().Int32P("offset", "", 0, "Offset")
-	QueryUserSubscriptionsCmd.Flags().StringP("sku", "", " ", "Sku")
-	QueryUserSubscriptionsCmd.Flags().StringP("status", "", " ", "Status")
-	QueryUserSubscriptionsCmd.Flags().StringP("subscribedBy", "", " ", "Subscribed by")
+	QueryUserSubscriptionsCmd.Flags().StringP("sku", "", "", "Sku")
+	QueryUserSubscriptionsCmd.Flags().StringP("status", "", "", "Status")
+	QueryUserSubscriptionsCmd.Flags().StringP("subscribedBy", "", "", "Subscribed by")
 }

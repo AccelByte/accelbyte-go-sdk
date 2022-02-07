@@ -49,9 +49,9 @@ var PublicSubscribeSubscriptionCmd = &cobra.Command{
 }
 
 func init() {
-	PublicSubscribeSubscriptionCmd.Flags().StringP("body", "", " ", "Body")
-	PublicSubscribeSubscriptionCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicSubscribeSubscriptionCmd.Flags().StringP("body", "", "", "Body")
+	PublicSubscribeSubscriptionCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicSubscribeSubscriptionCmd.MarkFlagRequired("namespace")
-	PublicSubscribeSubscriptionCmd.Flags().StringP("userId", "", " ", "User id")
+	PublicSubscribeSubscriptionCmd.Flags().StringP("userId", "", "", "User id")
 	_ = PublicSubscribeSubscriptionCmd.MarkFlagRequired("userId")
 }

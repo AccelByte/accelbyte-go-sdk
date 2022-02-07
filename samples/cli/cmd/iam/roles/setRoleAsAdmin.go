@@ -38,6 +38,6 @@ var SetRoleAsAdminCmd = &cobra.Command{
 }
 
 func init() {
-	SetRoleAsAdminCmd.Flags().StringP("roleId", "", " ", "Role id")
+	SetRoleAsAdminCmd.Flags().StringP("roleId", "", "", "Role id")
 	_ = SetRoleAsAdminCmd.MarkFlagRequired("roleId")
 }

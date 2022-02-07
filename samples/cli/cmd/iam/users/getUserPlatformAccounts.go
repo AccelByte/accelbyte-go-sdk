@@ -41,8 +41,8 @@ var GetUserPlatformAccountsCmd = &cobra.Command{
 }
 
 func init() {
-	GetUserPlatformAccountsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetUserPlatformAccountsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetUserPlatformAccountsCmd.MarkFlagRequired("namespace")
-	GetUserPlatformAccountsCmd.Flags().StringP("userId", "", " ", "User id")
+	GetUserPlatformAccountsCmd.Flags().StringP("userId", "", "", "User id")
 	_ = GetUserPlatformAccountsCmd.MarkFlagRequired("userId")
 }

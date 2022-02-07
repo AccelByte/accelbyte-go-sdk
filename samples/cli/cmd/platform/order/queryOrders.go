@@ -61,14 +61,14 @@ var QueryOrdersCmd = &cobra.Command{
 }
 
 func init() {
-	QueryOrdersCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	QueryOrdersCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = QueryOrdersCmd.MarkFlagRequired("namespace")
-	QueryOrdersCmd.Flags().StringP("endTime", "", " ", "End time")
+	QueryOrdersCmd.Flags().StringP("endTime", "", "", "End time")
 	QueryOrdersCmd.Flags().Int32P("limit", "", 20, "Limit")
 	QueryOrdersCmd.Flags().Int32P("offset", "", 0, "Offset")
-	QueryOrdersCmd.Flags().StringP("orderNos", "", " ", "Order nos")
-	QueryOrdersCmd.Flags().StringP("sortBy", "", " ", "Sort by")
-	QueryOrdersCmd.Flags().StringP("startTime", "", " ", "Start time")
-	QueryOrdersCmd.Flags().StringP("status", "", " ", "Status")
+	QueryOrdersCmd.Flags().StringP("orderNos", "", "", "Order nos")
+	QueryOrdersCmd.Flags().StringP("sortBy", "", "", "Sort by")
+	QueryOrdersCmd.Flags().StringP("startTime", "", "", "Start time")
+	QueryOrdersCmd.Flags().StringP("status", "", "", "Status")
 	QueryOrdersCmd.Flags().BoolP("withTotal", "", false, "With total")
 }

@@ -41,8 +41,8 @@ var GetSessionByUserIDsCmd = &cobra.Command{
 }
 
 func init() {
-	GetSessionByUserIDsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetSessionByUserIDsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetSessionByUserIDsCmd.MarkFlagRequired("namespace")
-	GetSessionByUserIDsCmd.Flags().StringP("user_ids", "", " ", "User ids")
+	GetSessionByUserIDsCmd.Flags().StringP("user_ids", "", "", "User ids")
 	_ = GetSessionByUserIDsCmd.MarkFlagRequired("user_ids")
 }

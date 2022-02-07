@@ -39,6 +39,6 @@ var RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Cmd = &cobra.Comma
 }
 
 func init() {
-	RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Cmd.MarkFlagRequired("namespace")
 }

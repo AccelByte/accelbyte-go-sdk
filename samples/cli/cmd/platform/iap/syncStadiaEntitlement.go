@@ -49,9 +49,9 @@ var SyncStadiaEntitlementCmd = &cobra.Command{
 }
 
 func init() {
-	SyncStadiaEntitlementCmd.Flags().StringP("body", "", " ", "Body")
-	SyncStadiaEntitlementCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	SyncStadiaEntitlementCmd.Flags().StringP("body", "", "", "Body")
+	SyncStadiaEntitlementCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = SyncStadiaEntitlementCmd.MarkFlagRequired("namespace")
-	SyncStadiaEntitlementCmd.Flags().StringP("userId", "", " ", "User id")
+	SyncStadiaEntitlementCmd.Flags().StringP("userId", "", "", "User id")
 	_ = SyncStadiaEntitlementCmd.MarkFlagRequired("userId")
 }

@@ -48,8 +48,8 @@ var AdminVerifyMessageProfanityResponseCmd = &cobra.Command{
 }
 
 func init() {
-	AdminVerifyMessageProfanityResponseCmd.Flags().StringP("body", "", " ", "Body")
+	AdminVerifyMessageProfanityResponseCmd.Flags().StringP("body", "", "", "Body")
 	_ = AdminVerifyMessageProfanityResponseCmd.MarkFlagRequired("body")
-	AdminVerifyMessageProfanityResponseCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminVerifyMessageProfanityResponseCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminVerifyMessageProfanityResponseCmd.MarkFlagRequired("namespace")
 }

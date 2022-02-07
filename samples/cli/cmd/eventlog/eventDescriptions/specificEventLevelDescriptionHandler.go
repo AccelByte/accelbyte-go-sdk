@@ -39,5 +39,5 @@ var SpecificEventLevelDescriptionHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	SpecificEventLevelDescriptionHandlerCmd.Flags().StringP("eventLevels", "", " ", "Event levels")
+	SpecificEventLevelDescriptionHandlerCmd.Flags().StringP("eventLevels", "", "", "Event levels")
 }

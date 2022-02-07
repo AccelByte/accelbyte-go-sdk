@@ -40,8 +40,8 @@ var EnableUserCmd = &cobra.Command{
 }
 
 func init() {
-	EnableUserCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	EnableUserCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = EnableUserCmd.MarkFlagRequired("namespace")
-	EnableUserCmd.Flags().StringP("userId", "", " ", "User id")
+	EnableUserCmd.Flags().StringP("userId", "", "", "User id")
 	_ = EnableUserCmd.MarkFlagRequired("userId")
 }

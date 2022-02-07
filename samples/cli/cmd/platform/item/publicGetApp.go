@@ -47,11 +47,11 @@ var PublicGetAppCmd = &cobra.Command{
 }
 
 func init() {
-	PublicGetAppCmd.Flags().StringP("itemId", "", " ", "Item id")
+	PublicGetAppCmd.Flags().StringP("itemId", "", "", "Item id")
 	_ = PublicGetAppCmd.MarkFlagRequired("itemId")
-	PublicGetAppCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	PublicGetAppCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicGetAppCmd.MarkFlagRequired("namespace")
-	PublicGetAppCmd.Flags().StringP("language", "", " ", "Language")
-	PublicGetAppCmd.Flags().StringP("region", "", " ", "Region")
-	PublicGetAppCmd.Flags().StringP("storeId", "", " ", "Store id")
+	PublicGetAppCmd.Flags().StringP("language", "", "", "Language")
+	PublicGetAppCmd.Flags().StringP("region", "", "", "Region")
+	PublicGetAppCmd.Flags().StringP("storeId", "", "", "Store id")
 }

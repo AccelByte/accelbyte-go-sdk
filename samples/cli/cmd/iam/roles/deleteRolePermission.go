@@ -44,8 +44,8 @@ var DeleteRolePermissionCmd = &cobra.Command{
 func init() {
 	DeleteRolePermissionCmd.Flags().Int64P("action", "", -1, "Action")
 	_ = DeleteRolePermissionCmd.MarkFlagRequired("action")
-	DeleteRolePermissionCmd.Flags().StringP("resource", "", " ", "Resource")
+	DeleteRolePermissionCmd.Flags().StringP("resource", "", "", "Resource")
 	_ = DeleteRolePermissionCmd.MarkFlagRequired("resource")
-	DeleteRolePermissionCmd.Flags().StringP("roleId", "", " ", "Role id")
+	DeleteRolePermissionCmd.Flags().StringP("roleId", "", "", "Role id")
 	_ = DeleteRolePermissionCmd.MarkFlagRequired("roleId")
 }

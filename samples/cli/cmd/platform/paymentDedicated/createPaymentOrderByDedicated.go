@@ -48,7 +48,7 @@ var CreatePaymentOrderByDedicatedCmd = &cobra.Command{
 }
 
 func init() {
-	CreatePaymentOrderByDedicatedCmd.Flags().StringP("body", "", " ", "Body")
-	CreatePaymentOrderByDedicatedCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	CreatePaymentOrderByDedicatedCmd.Flags().StringP("body", "", "", "Body")
+	CreatePaymentOrderByDedicatedCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = CreatePaymentOrderByDedicatedCmd.MarkFlagRequired("namespace")
 }

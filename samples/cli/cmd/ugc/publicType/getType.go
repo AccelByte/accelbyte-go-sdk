@@ -43,7 +43,7 @@ var GetTypeCmd = &cobra.Command{
 }
 
 func init() {
-	GetTypeCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetTypeCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetTypeCmd.MarkFlagRequired("namespace")
 	GetTypeCmd.Flags().StringP("limit", "", "20", "Limit")
 	GetTypeCmd.Flags().StringP("offset", "", "0", "Offset")

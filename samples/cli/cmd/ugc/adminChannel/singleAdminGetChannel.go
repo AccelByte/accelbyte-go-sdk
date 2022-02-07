@@ -43,7 +43,7 @@ var SingleAdminGetChannelCmd = &cobra.Command{
 }
 
 func init() {
-	SingleAdminGetChannelCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	SingleAdminGetChannelCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = SingleAdminGetChannelCmd.MarkFlagRequired("namespace")
 	SingleAdminGetChannelCmd.Flags().StringP("limit", "", "20", "Limit")
 	SingleAdminGetChannelCmd.Flags().StringP("offset", "", "0", "Offset")

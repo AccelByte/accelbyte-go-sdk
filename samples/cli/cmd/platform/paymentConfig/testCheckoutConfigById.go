@@ -41,7 +41,7 @@ var TestCheckoutConfigByIdCmd = &cobra.Command{
 }
 
 func init() {
-	TestCheckoutConfigByIdCmd.Flags().StringP("id", "", " ", "Id")
+	TestCheckoutConfigByIdCmd.Flags().StringP("id", "", "", "Id")
 	_ = TestCheckoutConfigByIdCmd.MarkFlagRequired("id")
 	TestCheckoutConfigByIdCmd.Flags().BoolP("sandbox", "", false, "Sandbox")
 }

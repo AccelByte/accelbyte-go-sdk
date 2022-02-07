@@ -42,10 +42,10 @@ var CreateUserStatItemCmd = &cobra.Command{
 }
 
 func init() {
-	CreateUserStatItemCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	CreateUserStatItemCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = CreateUserStatItemCmd.MarkFlagRequired("namespace")
-	CreateUserStatItemCmd.Flags().StringP("statCode", "", " ", "Stat code")
+	CreateUserStatItemCmd.Flags().StringP("statCode", "", "", "Stat code")
 	_ = CreateUserStatItemCmd.MarkFlagRequired("statCode")
-	CreateUserStatItemCmd.Flags().StringP("userId", "", " ", "User id")
+	CreateUserStatItemCmd.Flags().StringP("userId", "", "", "User id")
 	_ = CreateUserStatItemCmd.MarkFlagRequired("userId")
 }

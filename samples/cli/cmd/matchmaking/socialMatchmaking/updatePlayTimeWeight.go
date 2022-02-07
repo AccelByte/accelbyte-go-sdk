@@ -48,8 +48,8 @@ var UpdatePlayTimeWeightCmd = &cobra.Command{
 }
 
 func init() {
-	UpdatePlayTimeWeightCmd.Flags().StringP("body", "", " ", "Body")
+	UpdatePlayTimeWeightCmd.Flags().StringP("body", "", "", "Body")
 	_ = UpdatePlayTimeWeightCmd.MarkFlagRequired("body")
-	UpdatePlayTimeWeightCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	UpdatePlayTimeWeightCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = UpdatePlayTimeWeightCmd.MarkFlagRequired("namespace")
 }

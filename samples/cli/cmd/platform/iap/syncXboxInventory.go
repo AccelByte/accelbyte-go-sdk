@@ -50,9 +50,9 @@ var SyncXboxInventoryCmd = &cobra.Command{
 }
 
 func init() {
-	SyncXboxInventoryCmd.Flags().StringP("body", "", " ", "Body")
-	SyncXboxInventoryCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	SyncXboxInventoryCmd.Flags().StringP("body", "", "", "Body")
+	SyncXboxInventoryCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = SyncXboxInventoryCmd.MarkFlagRequired("namespace")
-	SyncXboxInventoryCmd.Flags().StringP("userId", "", " ", "User id")
+	SyncXboxInventoryCmd.Flags().StringP("userId", "", "", "User id")
 	_ = SyncXboxInventoryCmd.MarkFlagRequired("userId")
 }

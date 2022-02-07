@@ -41,8 +41,8 @@ var CheckServerLogsCmd = &cobra.Command{
 }
 
 func init() {
-	CheckServerLogsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	CheckServerLogsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = CheckServerLogsCmd.MarkFlagRequired("namespace")
-	CheckServerLogsCmd.Flags().StringP("podName", "", " ", "Pod name")
+	CheckServerLogsCmd.Flags().StringP("podName", "", "", "Pod name")
 	_ = CheckServerLogsCmd.MarkFlagRequired("podName")
 }

@@ -50,10 +50,10 @@ var AdminUpdateCountryAgeRestrictionV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminUpdateCountryAgeRestrictionV3Cmd.Flags().StringP("body", "", " ", "Body")
+	AdminUpdateCountryAgeRestrictionV3Cmd.Flags().StringP("body", "", "", "Body")
 	_ = AdminUpdateCountryAgeRestrictionV3Cmd.MarkFlagRequired("body")
-	AdminUpdateCountryAgeRestrictionV3Cmd.Flags().StringP("countryCode", "", " ", "Country code")
+	AdminUpdateCountryAgeRestrictionV3Cmd.Flags().StringP("countryCode", "", "", "Country code")
 	_ = AdminUpdateCountryAgeRestrictionV3Cmd.MarkFlagRequired("countryCode")
-	AdminUpdateCountryAgeRestrictionV3Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminUpdateCountryAgeRestrictionV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminUpdateCountryAgeRestrictionV3Cmd.MarkFlagRequired("namespace")
 }

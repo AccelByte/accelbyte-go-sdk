@@ -48,8 +48,8 @@ var StoreMatchResultsCmd = &cobra.Command{
 }
 
 func init() {
-	StoreMatchResultsCmd.Flags().StringP("body", "", " ", "Body")
+	StoreMatchResultsCmd.Flags().StringP("body", "", "", "Body")
 	_ = StoreMatchResultsCmd.MarkFlagRequired("body")
-	StoreMatchResultsCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	StoreMatchResultsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = StoreMatchResultsCmd.MarkFlagRequired("namespace")
 }

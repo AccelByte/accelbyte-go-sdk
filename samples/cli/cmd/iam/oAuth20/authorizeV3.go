@@ -52,14 +52,14 @@ var AuthorizeV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AuthorizeV3Cmd.Flags().StringP("code_challenge", "", " ", "Code challenge")
-	AuthorizeV3Cmd.Flags().StringP("code_challenge_method", "", " ", "Code challenge method")
-	AuthorizeV3Cmd.Flags().StringP("redirect_uri", "", " ", "Redirect uri")
-	AuthorizeV3Cmd.Flags().StringP("scope", "", " ", "Scope")
-	AuthorizeV3Cmd.Flags().StringP("state", "", " ", "State")
-	AuthorizeV3Cmd.Flags().StringP("target_auth_page", "", " ", "Target auth page")
-	AuthorizeV3Cmd.Flags().StringP("client_id", "", " ", "Client id")
+	AuthorizeV3Cmd.Flags().StringP("code_challenge", "", "", "Code challenge")
+	AuthorizeV3Cmd.Flags().StringP("code_challenge_method", "", "", "Code challenge method")
+	AuthorizeV3Cmd.Flags().StringP("redirect_uri", "", "", "Redirect uri")
+	AuthorizeV3Cmd.Flags().StringP("scope", "", "", "Scope")
+	AuthorizeV3Cmd.Flags().StringP("state", "", "", "State")
+	AuthorizeV3Cmd.Flags().StringP("target_auth_page", "", "", "Target auth page")
+	AuthorizeV3Cmd.Flags().StringP("client_id", "", "", "Client id")
 	_ = AuthorizeV3Cmd.MarkFlagRequired("client_id")
-	AuthorizeV3Cmd.Flags().StringP("response_type", "", " ", "Response type")
+	AuthorizeV3Cmd.Flags().StringP("response_type", "", "", "Response type")
 	_ = AuthorizeV3Cmd.MarkFlagRequired("response_type")
 }

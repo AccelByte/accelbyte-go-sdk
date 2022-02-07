@@ -47,7 +47,7 @@ var UpdateWxPayConfigCertCmd = &cobra.Command{
 }
 
 func init() {
-	UpdateWxPayConfigCertCmd.Flags().StringP("file", "", " ", "File")
-	UpdateWxPayConfigCertCmd.Flags().StringP("id", "", " ", "Id")
+	UpdateWxPayConfigCertCmd.Flags().StringP("file", "", "", "File")
+	UpdateWxPayConfigCertCmd.Flags().StringP("id", "", "", "Id")
 	_ = UpdateWxPayConfigCertCmd.MarkFlagRequired("id")
 }

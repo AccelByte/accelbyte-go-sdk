@@ -47,8 +47,8 @@ var GetBannedUsersCmd = &cobra.Command{
 }
 
 func init() {
-	GetBannedUsersCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetBannedUsersCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetBannedUsersCmd.MarkFlagRequired("namespace")
-	GetBannedUsersCmd.Flags().StringP("userIds", "", " ", "User ids")
+	GetBannedUsersCmd.Flags().StringP("userIds", "", "", "User ids")
 	_ = GetBannedUsersCmd.MarkFlagRequired("userIds")
 }

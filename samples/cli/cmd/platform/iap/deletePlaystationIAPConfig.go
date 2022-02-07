@@ -38,6 +38,6 @@ var DeletePlaystationIAPConfigCmd = &cobra.Command{
 }
 
 func init() {
-	DeletePlaystationIAPConfigCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeletePlaystationIAPConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeletePlaystationIAPConfigCmd.MarkFlagRequired("namespace")
 }

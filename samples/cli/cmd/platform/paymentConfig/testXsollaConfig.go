@@ -46,5 +46,5 @@ var TestXsollaConfigCmd = &cobra.Command{
 }
 
 func init() {
-	TestXsollaConfigCmd.Flags().StringP("body", "", " ", "Body")
+	TestXsollaConfigCmd.Flags().StringP("body", "", "", "Body")
 }

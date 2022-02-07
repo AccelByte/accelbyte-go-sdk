@@ -45,9 +45,9 @@ var GetGroupJoinRequestPublicV1Cmd = &cobra.Command{
 }
 
 func init() {
-	GetGroupJoinRequestPublicV1Cmd.Flags().StringP("groupId", "", " ", "Group id")
+	GetGroupJoinRequestPublicV1Cmd.Flags().StringP("groupId", "", "", "Group id")
 	_ = GetGroupJoinRequestPublicV1Cmd.MarkFlagRequired("groupId")
-	GetGroupJoinRequestPublicV1Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	GetGroupJoinRequestPublicV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetGroupJoinRequestPublicV1Cmd.MarkFlagRequired("namespace")
 	GetGroupJoinRequestPublicV1Cmd.Flags().Int64P("limit", "", 20, "Limit")
 	GetGroupJoinRequestPublicV1Cmd.Flags().Int64P("offset", "", 0, "Offset")

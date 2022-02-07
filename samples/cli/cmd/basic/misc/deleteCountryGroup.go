@@ -40,8 +40,8 @@ var DeleteCountryGroupCmd = &cobra.Command{
 }
 
 func init() {
-	DeleteCountryGroupCmd.Flags().StringP("countryGroupCode", "", " ", "Country group code")
+	DeleteCountryGroupCmd.Flags().StringP("countryGroupCode", "", "", "Country group code")
 	_ = DeleteCountryGroupCmd.MarkFlagRequired("countryGroupCode")
-	DeleteCountryGroupCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	DeleteCountryGroupCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = DeleteCountryGroupCmd.MarkFlagRequired("namespace")
 }

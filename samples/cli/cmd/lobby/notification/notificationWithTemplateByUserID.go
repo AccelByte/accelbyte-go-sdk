@@ -49,10 +49,10 @@ var NotificationWithTemplateByUserIDCmd = &cobra.Command{
 }
 
 func init() {
-	NotificationWithTemplateByUserIDCmd.Flags().StringP("body", "", " ", "Body")
+	NotificationWithTemplateByUserIDCmd.Flags().StringP("body", "", "", "Body")
 	_ = NotificationWithTemplateByUserIDCmd.MarkFlagRequired("body")
-	NotificationWithTemplateByUserIDCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	NotificationWithTemplateByUserIDCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = NotificationWithTemplateByUserIDCmd.MarkFlagRequired("namespace")
-	NotificationWithTemplateByUserIDCmd.Flags().StringP("userId", "", " ", "User id")
+	NotificationWithTemplateByUserIDCmd.Flags().StringP("userId", "", "", "User id")
 	_ = NotificationWithTemplateByUserIDCmd.MarkFlagRequired("userId")
 }

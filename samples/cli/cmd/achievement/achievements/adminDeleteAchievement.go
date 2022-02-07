@@ -40,8 +40,8 @@ var AdminDeleteAchievementCmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeleteAchievementCmd.Flags().StringP("achievementCode", "", " ", "Achievement code")
+	AdminDeleteAchievementCmd.Flags().StringP("achievementCode", "", "", "Achievement code")
 	_ = AdminDeleteAchievementCmd.MarkFlagRequired("achievementCode")
-	AdminDeleteAchievementCmd.Flags().StringP("namespace", "", " ", "Namespace")
+	AdminDeleteAchievementCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminDeleteAchievementCmd.MarkFlagRequired("namespace")
 }

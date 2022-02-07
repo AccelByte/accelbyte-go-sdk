@@ -48,7 +48,7 @@ var BulkResetUserStatItem2Cmd = &cobra.Command{
 }
 
 func init() {
-	BulkResetUserStatItem2Cmd.Flags().StringP("body", "", " ", "Body")
-	BulkResetUserStatItem2Cmd.Flags().StringP("namespace", "", " ", "Namespace")
+	BulkResetUserStatItem2Cmd.Flags().StringP("body", "", "", "Body")
+	BulkResetUserStatItem2Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = BulkResetUserStatItem2Cmd.MarkFlagRequired("namespace")
 }

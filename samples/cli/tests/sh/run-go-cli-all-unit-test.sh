@@ -10,6 +10,8 @@ delete_file() {
 
 run_script() {
   chmod 755 $1
+  echo "Installing github.com/AccelByte/sample-apps"
+  go install github.com/AccelByte/sample-apps
   echo "Running script $1"
   append_to_file '```tap' $FILE_NAME
   append_to_file $1 $FILE_NAME

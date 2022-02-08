@@ -20,7 +20,6 @@ FAILED_COUNT=0
 export JUSTICE_BASE_URL="http://0.0.0.0:8080"
 export APP_CLIENT_ID="admin"
 export APP_CLIENT_SECRET="admin"
-export NAMESPACE="test"
 
 get_current_year() { echo $(date +'%Y'); }
 get_adult_birthday() { echo "$(( $(get_current_year) - 22))-01-01"; }

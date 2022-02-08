@@ -65,25 +65,29 @@ echo 'TAP version 13'
 echo "1..$OPERATIONS_COUNT"
 
 #- 1 deleteServer
-$ sample-apps Qosm deleteServer -h \
+$ sample-apps Qosm deleteServer \
+    --region 'FtBxyZcD' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteServer'
 delete_file $TEMP_FILE
 
 #- 2 setServerAlias
-$ sample-apps Qosm setServerAlias -h \
+$ sample-apps Qosm setServerAlias \
+    --body '{"alias": "XBpGlsQu"}' \
+    --region 'Ju8vMf0I' \
     >$TEMP_FILE 2>&1
 update_status $? 'setServerAlias'
 delete_file $TEMP_FILE
 
 #- 3 listServer
-$ sample-apps Qosm listServer -h \
+$ sample-apps Qosm listServer \
     >$TEMP_FILE 2>&1
 update_status $? 'listServer'
 delete_file $TEMP_FILE
 
 #- 4 heartbeat
-$ sample-apps Qosm heartbeat -h \
+$ sample-apps Qosm heartbeat \
+    --body '{"ip": "sJkTrd8I", "port": 59, "region": "cV2zXnTK"}' \
     >$TEMP_FILE 2>&1
 update_status $? 'heartbeat'
 delete_file $TEMP_FILE

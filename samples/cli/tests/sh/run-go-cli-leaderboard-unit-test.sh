@@ -22,13 +22,6 @@ export JUSTICE_BASE_URL="http://0.0.0.0:8080"
 export APP_CLIENT_ID="admin"
 export APP_CLIENT_SECRET="admin"
 
-get_current_year() { echo $(date +'%Y'); }
-get_adult_birthday() { echo "$(( $(get_current_year) - 22))-01-01"; }
-
-get_random_int() { echo $(( $1 + ( RANDOM % (($2 - $1)) ) )); }
-get_random_bool() { ( (( (RANDOM % 2) == 1)) && echo "true" ) || ( echo "false" ) }
-get_random_element() { declare -a a=("$@"); r=$((RANDOM % ${#a[@]})); echo ${a[$r]}; }
-
 create_file() {
     touch $1
 }

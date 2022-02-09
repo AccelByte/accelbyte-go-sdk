@@ -9,6 +9,7 @@
 
 MODULE='cmd'
 MODULE_PATH='../samples/cli'
+TEMP_TOKEN="/tmp/justice-sample-apps/userData"
 TEMP_FILE='file.tmp'
 
 OPERATIONS_COUNT=63
@@ -62,9 +63,8 @@ create_file 'tmp.dat'
 
 echo "go install github.com/AccelByte/sample-apps"
 go install github.com/AccelByte/sample-apps
-echo "Login..."
-echo "sample-apps login -u 'admin' -p 'admin'"
-sample-apps login -u 'admin' -p 'admin'
+#rm -f $TEMP_TOKEN
+#echo "\"{"\"access_token"\":"\"foo"\"}"\" >> $TEMP_TOKEN
 echo "1..$OPERATIONS_COUNT"
 
 #- 1 listConfig

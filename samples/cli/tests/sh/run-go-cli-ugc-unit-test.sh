@@ -60,11 +60,15 @@ update_status() {
 
 create_file 'tmp.dat'
 
-echo 'TAP version 13'
+echo "go install github.com/AccelByte/sample-apps"
+go install github.com/AccelByte/sample-apps
+echo "Login..."
+echo "sample-apps login -u 'admin' -p 'admin'"
+sample-apps login -u 'admin' -p 'admin'
 echo "1..$OPERATIONS_COUNT"
 
 #- 1 singleAdminGetChannel
-$ sample-apps Ugc singleAdminGetChannel \
+sample-apps Ugc singleAdminGetChannel \
     --namespace 'FtBxyZcD' \
     --limit 'XBpGlsQu' \
     --offset 'Ju8vMf0I' \
@@ -73,7 +77,7 @@ update_status $? 'singleAdminGetChannel'
 delete_file $TEMP_FILE
 
 #- 2 adminCreateChannel
-$ sample-apps Ugc adminCreateChannel \
+sample-apps Ugc adminCreateChannel \
     --body '{"name": "sJkTrd8I"}' \
     --namespace 'DcV2zXnT' \
     >$TEMP_FILE 2>&1
@@ -81,7 +85,7 @@ update_status $? 'adminCreateChannel'
 delete_file $TEMP_FILE
 
 #- 3 singleAdminUpdateChannel
-$ sample-apps Ugc singleAdminUpdateChannel \
+sample-apps Ugc singleAdminUpdateChannel \
     --body '{"name": "KjXY1bPq"}' \
     --channelId 'amiBxx9C' \
     --namespace 's18EY84e' \
@@ -90,7 +94,7 @@ update_status $? 'singleAdminUpdateChannel'
 delete_file $TEMP_FILE
 
 #- 4 singleAdminDeleteChannel
-$ sample-apps Ugc singleAdminDeleteChannel \
+sample-apps Ugc singleAdminDeleteChannel \
     --channelId 'kItqRzHU' \
     --namespace '1oh570KQ' \
     >$TEMP_FILE 2>&1
@@ -101,7 +105,7 @@ delete_file $TEMP_FILE
 update_status 0 'adminUploadContentDirect (skipped deprecated)'
 
 #- 6 adminUploadContentS3
-$ sample-apps Ugc adminUploadContentS3 \
+sample-apps Ugc adminUploadContentS3 \
     --body '{"contentType": "BVaewc72", "fileExtension": "krSha68n", "name": "3Ynozp1C", "preview": "2KmIQTuB", "subType": "dNEUsxFb", "tags": ["8CJ17M7D"], "type": "JZaMSxEC"}' \
     --channelId 'bZbygyoa' \
     --namespace 'rORoeNHS' \
@@ -110,7 +114,7 @@ update_status $? 'adminUploadContentS3'
 delete_file $TEMP_FILE
 
 #- 7 singleAdminUpdateContentS3
-$ sample-apps Ugc singleAdminUpdateContentS3 \
+sample-apps Ugc singleAdminUpdateContentS3 \
     --body '{"contentType": "b8Rh3kgs", "fileExtension": "9qqJbnQs", "name": "oBgiVpP8", "preview": "Cm3yvASU", "subType": "oxdxxFqm", "tags": ["AGTJ8IEd"], "type": "agEtp4w2"}' \
     --channelId '9KOu9c19' \
     --contentId 'R6XDqWHk' \
@@ -120,7 +124,7 @@ update_status $? 'singleAdminUpdateContentS3'
 delete_file $TEMP_FILE
 
 #- 8 adminSearchChannelSpecificContent
-$ sample-apps Ugc adminSearchChannelSpecificContent \
+sample-apps Ugc adminSearchChannelSpecificContent \
     --channelId 'MfjiX7jp' \
     --namespace 'kVZk3IaQ' \
     --creator 'YEmqGodO' \
@@ -142,7 +146,7 @@ delete_file $TEMP_FILE
 update_status 0 'singleAdminUpdateContentDirect (skipped deprecated)'
 
 #- 10 singleAdminDeleteContent
-$ sample-apps Ugc singleAdminDeleteContent \
+sample-apps Ugc singleAdminDeleteContent \
     --channelId 'yU89ZPOw' \
     --contentId '6zPFJ42c' \
     --namespace 'wmzBBSMN' \
@@ -151,7 +155,7 @@ update_status $? 'singleAdminDeleteContent'
 delete_file $TEMP_FILE
 
 #- 11 singleAdminGetContent
-$ sample-apps Ugc singleAdminGetContent \
+sample-apps Ugc singleAdminGetContent \
     --namespace 'coAAOjKN' \
     --limit 'jfcYHm09' \
     --offset '3aYgBU1s' \
@@ -160,7 +164,7 @@ update_status $? 'singleAdminGetContent'
 delete_file $TEMP_FILE
 
 #- 12 adminSearchContent
-$ sample-apps Ugc adminSearchContent \
+sample-apps Ugc adminSearchContent \
     --namespace 'qjyK0XH4' \
     --creator '5PaRSOFQ' \
     --isofficial 'Btu23REZ' \
@@ -178,7 +182,7 @@ update_status $? 'adminSearchContent'
 delete_file $TEMP_FILE
 
 #- 13 adminGetSpecificContent
-$ sample-apps Ugc adminGetSpecificContent \
+sample-apps Ugc adminGetSpecificContent \
     --contentId 'WvbNYqgU' \
     --namespace 'qslArFPi' \
     >$TEMP_FILE 2>&1
@@ -186,7 +190,7 @@ update_status $? 'adminGetSpecificContent'
 delete_file $TEMP_FILE
 
 #- 14 adminDownloadContentPreview
-$ sample-apps Ugc adminDownloadContentPreview \
+sample-apps Ugc adminDownloadContentPreview \
     --contentId 'HUIvaCv8' \
     --namespace 'kU9dBBpd' \
     >$TEMP_FILE 2>&1
@@ -194,7 +198,7 @@ update_status $? 'adminDownloadContentPreview'
 delete_file $TEMP_FILE
 
 #- 15 adminUpdateScreenshots
-$ sample-apps Ugc adminUpdateScreenshots \
+sample-apps Ugc adminUpdateScreenshots \
     --body '{"screenshots": [{"description": "sJLhsVyE", "screenshotId": "xrkxoot0"}]}' \
     --contentId 'B7WOferc' \
     --namespace 'ZdpMci37' \
@@ -203,7 +207,7 @@ update_status $? 'adminUpdateScreenshots'
 delete_file $TEMP_FILE
 
 #- 16 adminUploadContentScreenshot
-$ sample-apps Ugc adminUploadContentScreenshot \
+sample-apps Ugc adminUploadContentScreenshot \
     --body '{"screenshots": [{"contentType": "Ds7YSfEx", "description": "aI3uzLte", "fileExtension": "bmp"}]}' \
     --contentId 'bFAlt4hr' \
     --namespace '7HmOYiBA' \
@@ -212,7 +216,7 @@ update_status $? 'adminUploadContentScreenshot'
 delete_file $TEMP_FILE
 
 #- 17 adminDeleteContentScreenshot
-$ sample-apps Ugc adminDeleteContentScreenshot \
+sample-apps Ugc adminDeleteContentScreenshot \
     --contentId '5ltAOXml' \
     --namespace 'G6eh1dTd' \
     --screenshotId 'oTFpBIcu' \
@@ -221,7 +225,7 @@ update_status $? 'adminDeleteContentScreenshot'
 delete_file $TEMP_FILE
 
 #- 18 singleAdminGetAllGroups
-$ sample-apps Ugc singleAdminGetAllGroups \
+sample-apps Ugc singleAdminGetAllGroups \
     --namespace 'C1dQY93O' \
     --limit 'JnJ6Te9v' \
     --offset 'D8ldz7Hu' \
@@ -230,7 +234,7 @@ update_status $? 'singleAdminGetAllGroups'
 delete_file $TEMP_FILE
 
 #- 19 adminCreateGroup
-$ sample-apps Ugc adminCreateGroup \
+sample-apps Ugc adminCreateGroup \
     --body '{"contents": ["8AD79kdW"], "name": "unvizU0q"}' \
     --namespace '1pHyhhER' \
     >$TEMP_FILE 2>&1
@@ -238,7 +242,7 @@ update_status $? 'adminCreateGroup'
 delete_file $TEMP_FILE
 
 #- 20 singleAdminGetGroup
-$ sample-apps Ugc singleAdminGetGroup \
+sample-apps Ugc singleAdminGetGroup \
     --groupId 'oGgdrysM' \
     --namespace 'izBGSRdP' \
     >$TEMP_FILE 2>&1
@@ -246,7 +250,7 @@ update_status $? 'singleAdminGetGroup'
 delete_file $TEMP_FILE
 
 #- 21 singleAdminUpdateGroup
-$ sample-apps Ugc singleAdminUpdateGroup \
+sample-apps Ugc singleAdminUpdateGroup \
     --body '{"contents": ["2l7DNSZ8"], "name": "Aq0XiPLQ"}' \
     --groupId 'XSe07Zdd' \
     --namespace 'OGTMlJjB' \
@@ -255,7 +259,7 @@ update_status $? 'singleAdminUpdateGroup'
 delete_file $TEMP_FILE
 
 #- 22 singleAdminDeleteGroup
-$ sample-apps Ugc singleAdminDeleteGroup \
+sample-apps Ugc singleAdminDeleteGroup \
     --groupId 'wj9HJHQK' \
     --namespace 'seEdSXRD' \
     >$TEMP_FILE 2>&1
@@ -263,7 +267,7 @@ update_status $? 'singleAdminDeleteGroup'
 delete_file $TEMP_FILE
 
 #- 23 singleAdminGetGroupContents
-$ sample-apps Ugc singleAdminGetGroupContents \
+sample-apps Ugc singleAdminGetGroupContents \
     --groupId 'Svguauw1' \
     --namespace 'xT7eMwSl' \
     --limit '9MLH0NnT' \
@@ -273,7 +277,7 @@ update_status $? 'singleAdminGetGroupContents'
 delete_file $TEMP_FILE
 
 #- 24 adminGetTag
-$ sample-apps Ugc adminGetTag \
+sample-apps Ugc adminGetTag \
     --namespace 'wJaQa547' \
     --limit 'JllvA8RW' \
     --offset 'SpabUt7x' \
@@ -282,7 +286,7 @@ update_status $? 'adminGetTag'
 delete_file $TEMP_FILE
 
 #- 25 adminCreateTag
-$ sample-apps Ugc adminCreateTag \
+sample-apps Ugc adminCreateTag \
     --body '{"tag": "k6QxyWhf"}' \
     --namespace 'qoWfJw2o' \
     >$TEMP_FILE 2>&1
@@ -290,7 +294,7 @@ update_status $? 'adminCreateTag'
 delete_file $TEMP_FILE
 
 #- 26 adminUpdateTag
-$ sample-apps Ugc adminUpdateTag \
+sample-apps Ugc adminUpdateTag \
     --body '{"tag": "8oWUqvPC"}' \
     --namespace 'Z2HzT7NX' \
     --tagId 'mWDlXsuN' \
@@ -299,7 +303,7 @@ update_status $? 'adminUpdateTag'
 delete_file $TEMP_FILE
 
 #- 27 adminDeleteTag
-$ sample-apps Ugc adminDeleteTag \
+sample-apps Ugc adminDeleteTag \
     --namespace 'IdQJR5ls' \
     --tagId 'NOlvkfwa' \
     >$TEMP_FILE 2>&1
@@ -307,7 +311,7 @@ update_status $? 'adminDeleteTag'
 delete_file $TEMP_FILE
 
 #- 28 adminGetType
-$ sample-apps Ugc adminGetType \
+sample-apps Ugc adminGetType \
     --namespace 'SbnsuLCg' \
     --limit 'ToxuVTek' \
     --offset 'Jgvg6h5H' \
@@ -316,7 +320,7 @@ update_status $? 'adminGetType'
 delete_file $TEMP_FILE
 
 #- 29 adminCreateType
-$ sample-apps Ugc adminCreateType \
+sample-apps Ugc adminCreateType \
     --body '{"subtype": ["IpH0Dvip"], "type": "lEk4vj3L"}' \
     --namespace 'Dp4yqDt8' \
     >$TEMP_FILE 2>&1
@@ -324,7 +328,7 @@ update_status $? 'adminCreateType'
 delete_file $TEMP_FILE
 
 #- 30 adminUpdateType
-$ sample-apps Ugc adminUpdateType \
+sample-apps Ugc adminUpdateType \
     --body '{"subtype": ["QUZDpxlH"], "type": "asinGcjr"}' \
     --namespace 'kmRMttgj' \
     --typeId 'DSaIVBmf' \
@@ -333,7 +337,7 @@ update_status $? 'adminUpdateType'
 delete_file $TEMP_FILE
 
 #- 31 adminDeleteType
-$ sample-apps Ugc adminDeleteType \
+sample-apps Ugc adminDeleteType \
     --namespace 't3Udg7p9' \
     --typeId 'PGmY2H5k' \
     >$TEMP_FILE 2>&1
@@ -341,7 +345,7 @@ update_status $? 'adminDeleteType'
 delete_file $TEMP_FILE
 
 #- 32 adminGetChannel
-$ sample-apps Ugc adminGetChannel \
+sample-apps Ugc adminGetChannel \
     --namespace 'X4MsisSX' \
     --userId '28nARxWR' \
     --limit 'pv5ou5xt' \
@@ -351,7 +355,7 @@ update_status $? 'adminGetChannel'
 delete_file $TEMP_FILE
 
 #- 33 adminDeleteAllUserChannels
-$ sample-apps Ugc adminDeleteAllUserChannels \
+sample-apps Ugc adminDeleteAllUserChannels \
     --namespace 't8UJC5fl' \
     --userId 'Nyj6HsTt' \
     >$TEMP_FILE 2>&1
@@ -359,7 +363,7 @@ update_status $? 'adminDeleteAllUserChannels'
 delete_file $TEMP_FILE
 
 #- 34 adminUpdateChannel
-$ sample-apps Ugc adminUpdateChannel \
+sample-apps Ugc adminUpdateChannel \
     --body '{"name": "X8P3llna"}' \
     --channelId 'aS9lqyyg' \
     --namespace 'PcfkJIxf' \
@@ -369,7 +373,7 @@ update_status $? 'adminUpdateChannel'
 delete_file $TEMP_FILE
 
 #- 35 adminDeleteChannel
-$ sample-apps Ugc adminDeleteChannel \
+sample-apps Ugc adminDeleteChannel \
     --channelId 'bDxVMq7H' \
     --namespace 'Jk0F89xA' \
     --userId 'c3YVfaEN' \
@@ -378,7 +382,7 @@ update_status $? 'adminDeleteChannel'
 delete_file $TEMP_FILE
 
 #- 36 adminUpdateContentS3
-$ sample-apps Ugc adminUpdateContentS3 \
+sample-apps Ugc adminUpdateContentS3 \
     --body '{"contentType": "trl0pTKZ", "fileExtension": "TXqzHuBM", "name": "YQSA2jz1", "preview": "ZOpdOjSy", "subType": "MddB41Ju", "tags": ["Mf7RUyBH"], "type": "Rj8IiRim"}' \
     --channelId 'RllHT6Dc' \
     --contentId '40vFFA6g' \
@@ -392,7 +396,7 @@ delete_file $TEMP_FILE
 update_status 0 'adminUpdateContentDirect (skipped deprecated)'
 
 #- 38 adminDeleteContent
-$ sample-apps Ugc adminDeleteContent \
+sample-apps Ugc adminDeleteContent \
     --channelId 'eqQIqcJV' \
     --contentId 'KmBM1J1I' \
     --namespace 'buTrrkbm' \
@@ -402,7 +406,7 @@ update_status $? 'adminDeleteContent'
 delete_file $TEMP_FILE
 
 #- 39 adminGetContent
-$ sample-apps Ugc adminGetContent \
+sample-apps Ugc adminGetContent \
     --namespace 'EnDXIWrB' \
     --userId 'PlSay46m' \
     --limit 'v71BAZAO' \
@@ -412,7 +416,7 @@ update_status $? 'adminGetContent'
 delete_file $TEMP_FILE
 
 #- 40 adminDeleteAllUserContents
-$ sample-apps Ugc adminDeleteAllUserContents \
+sample-apps Ugc adminDeleteAllUserContents \
     --namespace 'j7tT7TZH' \
     --userId 'WDdCkIsZ' \
     >$TEMP_FILE 2>&1
@@ -420,7 +424,7 @@ update_status $? 'adminDeleteAllUserContents'
 delete_file $TEMP_FILE
 
 #- 41 adminHideUserContent
-$ sample-apps Ugc adminHideUserContent \
+sample-apps Ugc adminHideUserContent \
     --body '{"isHidden": false}' \
     --contentId 'ArWwPHcy' \
     --namespace 'FAdAtYci' \
@@ -430,7 +434,7 @@ update_status $? 'adminHideUserContent'
 delete_file $TEMP_FILE
 
 #- 42 adminGetAllGroups
-$ sample-apps Ugc adminGetAllGroups \
+sample-apps Ugc adminGetAllGroups \
     --namespace '0gwB9tz3' \
     --userId 'vp99XVlV' \
     --limit '8rK3tE6n' \
@@ -440,7 +444,7 @@ update_status $? 'adminGetAllGroups'
 delete_file $TEMP_FILE
 
 #- 43 adminDeleteAllUserGroup
-$ sample-apps Ugc adminDeleteAllUserGroup \
+sample-apps Ugc adminDeleteAllUserGroup \
     --namespace '3L7cUd9p' \
     --userId 'qtv6JfPZ' \
     >$TEMP_FILE 2>&1
@@ -448,7 +452,7 @@ update_status $? 'adminDeleteAllUserGroup'
 delete_file $TEMP_FILE
 
 #- 44 adminGetGroup
-$ sample-apps Ugc adminGetGroup \
+sample-apps Ugc adminGetGroup \
     --groupId 'wcCVOXcV' \
     --namespace 'a80TmCwt' \
     --userId 'D2lAH01o' \
@@ -457,7 +461,7 @@ update_status $? 'adminGetGroup'
 delete_file $TEMP_FILE
 
 #- 45 adminUpdateGroup
-$ sample-apps Ugc adminUpdateGroup \
+sample-apps Ugc adminUpdateGroup \
     --body '{"contents": ["6NdcBIgz"], "name": "rDyWpFBY"}' \
     --groupId 'GmmBawMy' \
     --namespace 'oKyNpdAa' \
@@ -467,7 +471,7 @@ update_status $? 'adminUpdateGroup'
 delete_file $TEMP_FILE
 
 #- 46 adminDeleteGroup
-$ sample-apps Ugc adminDeleteGroup \
+sample-apps Ugc adminDeleteGroup \
     --groupId 'OlQiZY4N' \
     --namespace 'bOQXJ7uO' \
     --userId 'TzNMvuq2' \
@@ -476,7 +480,7 @@ update_status $? 'adminDeleteGroup'
 delete_file $TEMP_FILE
 
 #- 47 adminGetGroupContents
-$ sample-apps Ugc adminGetGroupContents \
+sample-apps Ugc adminGetGroupContents \
     --groupId 'tNl4CX4I' \
     --namespace 'jiK4DEUJ' \
     --userId 'RVK3l9Eb' \
@@ -487,7 +491,7 @@ update_status $? 'adminGetGroupContents'
 delete_file $TEMP_FILE
 
 #- 48 adminDeleteAllUserStates
-$ sample-apps Ugc adminDeleteAllUserStates \
+sample-apps Ugc adminDeleteAllUserStates \
     --namespace 'OlngrdTX' \
     --userId 'CzaPBtkZ' \
     >$TEMP_FILE 2>&1
@@ -495,7 +499,7 @@ update_status $? 'adminDeleteAllUserStates'
 delete_file $TEMP_FILE
 
 #- 49 searchChannelSpecificContent
-$ sample-apps Ugc searchChannelSpecificContent \
+sample-apps Ugc searchChannelSpecificContent \
     --channelId 'Mio4wcyh' \
     --namespace 'loVS3rYp' \
     --creator '8QtcEmCE' \
@@ -514,7 +518,7 @@ update_status $? 'searchChannelSpecificContent'
 delete_file $TEMP_FILE
 
 #- 50 publicSearchContent
-$ sample-apps Ugc publicSearchContent \
+sample-apps Ugc publicSearchContent \
     --namespace '0rW8Efkp' \
     --creator 'aXtwYZJa' \
     --isofficial 'Q4WbwNms' \
@@ -532,7 +536,7 @@ update_status $? 'publicSearchContent'
 delete_file $TEMP_FILE
 
 #- 51 getFollowedContent
-$ sample-apps Ugc getFollowedContent \
+sample-apps Ugc getFollowedContent \
     --namespace 'U6wJhy1j' \
     --limit 'OVkkUlS7' \
     --offset '9527EZ25' \
@@ -541,7 +545,7 @@ update_status $? 'getFollowedContent'
 delete_file $TEMP_FILE
 
 #- 52 getLikedContent
-$ sample-apps Ugc getLikedContent \
+sample-apps Ugc getLikedContent \
     --namespace 'Ia8uCeZF' \
     --limit 'lLtEVpDA' \
     --offset 'EbA82jy7' \
@@ -550,7 +554,7 @@ update_status $? 'getLikedContent'
 delete_file $TEMP_FILE
 
 #- 53 downloadContentByShareCode
-$ sample-apps Ugc downloadContentByShareCode \
+sample-apps Ugc downloadContentByShareCode \
     --namespace '4lq0pDE5' \
     --shareCode 'xRwh5b45' \
     >$TEMP_FILE 2>&1
@@ -558,7 +562,7 @@ update_status $? 'downloadContentByShareCode'
 delete_file $TEMP_FILE
 
 #- 54 publicDownloadContentByContentID
-$ sample-apps Ugc publicDownloadContentByContentID \
+sample-apps Ugc publicDownloadContentByContentID \
     --contentId 'ebpcM7Sc' \
     --namespace 'Ss3UOpAw' \
     >$TEMP_FILE 2>&1
@@ -566,7 +570,7 @@ update_status $? 'publicDownloadContentByContentID'
 delete_file $TEMP_FILE
 
 #- 55 addDownloadCount
-$ sample-apps Ugc addDownloadCount \
+sample-apps Ugc addDownloadCount \
     --contentId 'Ip9rRtn1' \
     --namespace 'PcCxdbum' \
     >$TEMP_FILE 2>&1
@@ -574,7 +578,7 @@ update_status $? 'addDownloadCount'
 delete_file $TEMP_FILE
 
 #- 56 updateContentLikeStatus
-$ sample-apps Ugc updateContentLikeStatus \
+sample-apps Ugc updateContentLikeStatus \
     --body '{"likeStatus": false}' \
     --contentId 'YgOdEBWR' \
     --namespace 'QiW3KFfU' \
@@ -583,7 +587,7 @@ update_status $? 'updateContentLikeStatus'
 delete_file $TEMP_FILE
 
 #- 57 publicDownloadContentPreview
-$ sample-apps Ugc publicDownloadContentPreview \
+sample-apps Ugc publicDownloadContentPreview \
     --contentId '8icH4081' \
     --namespace 'gRB1GyLf' \
     >$TEMP_FILE 2>&1
@@ -591,7 +595,7 @@ update_status $? 'publicDownloadContentPreview'
 delete_file $TEMP_FILE
 
 #- 58 getTag
-$ sample-apps Ugc getTag \
+sample-apps Ugc getTag \
     --namespace 'Lg4RYuEb' \
     --limit 'gUDEcJyI' \
     --offset 'vsPwOr0B' \
@@ -600,7 +604,7 @@ update_status $? 'getTag'
 delete_file $TEMP_FILE
 
 #- 59 getType
-$ sample-apps Ugc getType \
+sample-apps Ugc getType \
     --namespace 'mV5iFvfw' \
     --limit 'FjTSmIEq' \
     --offset 'oLyLeUGm' \
@@ -609,7 +613,7 @@ update_status $? 'getType'
 delete_file $TEMP_FILE
 
 #- 60 getFollowedUsers
-$ sample-apps Ugc getFollowedUsers \
+sample-apps Ugc getFollowedUsers \
     --namespace 'omGX9sXT' \
     --limit 'Z0v8pqLf' \
     --offset 'c5SwGnRe' \
@@ -618,7 +622,7 @@ update_status $? 'getFollowedUsers'
 delete_file $TEMP_FILE
 
 #- 61 getChannels
-$ sample-apps Ugc getChannels \
+sample-apps Ugc getChannels \
     --namespace 'UULDX4QU' \
     --userId 'Ibb5nh68' \
     --limit 'ZnyUtRvW' \
@@ -628,7 +632,7 @@ update_status $? 'getChannels'
 delete_file $TEMP_FILE
 
 #- 62 createChannel
-$ sample-apps Ugc createChannel \
+sample-apps Ugc createChannel \
     --body '{"name": "FrOmjkFr"}' \
     --namespace 'FVA8t0xF' \
     --userId '34Xpt6Zl' \
@@ -637,7 +641,7 @@ update_status $? 'createChannel'
 delete_file $TEMP_FILE
 
 #- 63 deleteAllUserChannel
-$ sample-apps Ugc deleteAllUserChannel \
+sample-apps Ugc deleteAllUserChannel \
     --namespace 'TTic0kr2' \
     --userId 'a0nI2oo7' \
     >$TEMP_FILE 2>&1
@@ -645,7 +649,7 @@ update_status $? 'deleteAllUserChannel'
 delete_file $TEMP_FILE
 
 #- 64 updateChannel
-$ sample-apps Ugc updateChannel \
+sample-apps Ugc updateChannel \
     --body '{"name": "UHCJK5sp"}' \
     --channelId '0aCvIq3a' \
     --namespace 'HVYIlewL' \
@@ -655,7 +659,7 @@ update_status $? 'updateChannel'
 delete_file $TEMP_FILE
 
 #- 65 deleteChannel
-$ sample-apps Ugc deleteChannel \
+sample-apps Ugc deleteChannel \
     --channelId 'j0HTeeWX' \
     --namespace 'lIcRidqc' \
     --userId 'tDpygY0a' \
@@ -667,7 +671,7 @@ delete_file $TEMP_FILE
 update_status 0 'createContentDirect (skipped deprecated)'
 
 #- 67 createContentS3
-$ sample-apps Ugc createContentS3 \
+sample-apps Ugc createContentS3 \
     --body '{"contentType": "x476ED4M", "fileExtension": "MO9Tw2JH", "name": "0qhWIwHW", "preview": "TgzJFRYw", "subType": "6t1IKZLO", "tags": ["6V4Ode46"], "type": "QmCidgdp"}' \
     --channelId 'P7RTC587' \
     --namespace 'lmUmBziP' \
@@ -677,7 +681,7 @@ update_status $? 'createContentS3'
 delete_file $TEMP_FILE
 
 #- 68 updateContentS3
-$ sample-apps Ugc updateContentS3 \
+sample-apps Ugc updateContentS3 \
     --body '{"contentType": "lxfq0Nsr", "fileExtension": "Sjw5Hog0", "name": "blM1d5MS", "preview": "tYGczLIN", "subType": "lEC0OEsE", "tags": ["3yzIsUP0"], "type": "NjluOrGZ"}' \
     --channelId 'TzsLW7Fj' \
     --contentId 'fs9nIkcZ' \
@@ -691,7 +695,7 @@ delete_file $TEMP_FILE
 update_status 0 'updateContentDirect (skipped deprecated)'
 
 #- 70 deleteContent
-$ sample-apps Ugc deleteContent \
+sample-apps Ugc deleteContent \
     --channelId 'xdzxg0UX' \
     --contentId 'cRyHi3u8' \
     --namespace 'BzVWu1tO' \
@@ -701,7 +705,7 @@ update_status $? 'deleteContent'
 delete_file $TEMP_FILE
 
 #- 71 publicGetUserContent
-$ sample-apps Ugc publicGetUserContent \
+sample-apps Ugc publicGetUserContent \
     --namespace 'vGrEbcZU' \
     --userId 'DExH1tay' \
     --limit 'OGXIHzMR' \
@@ -711,7 +715,7 @@ update_status $? 'publicGetUserContent'
 delete_file $TEMP_FILE
 
 #- 72 deleteAllUserContents
-$ sample-apps Ugc deleteAllUserContents \
+sample-apps Ugc deleteAllUserContents \
     --namespace 'ijlrbpyy' \
     --userId 'EcQxVgJI' \
     >$TEMP_FILE 2>&1
@@ -719,7 +723,7 @@ update_status $? 'deleteAllUserContents'
 delete_file $TEMP_FILE
 
 #- 73 updateScreenshots
-$ sample-apps Ugc updateScreenshots \
+sample-apps Ugc updateScreenshots \
     --body '{"screenshots": [{"description": "jMZqcWfM", "screenshotId": "l6dqrpD4"}]}' \
     --contentId 'tnc3ZRB3' \
     --namespace 'IkdtPfAJ' \
@@ -729,7 +733,7 @@ update_status $? 'updateScreenshots'
 delete_file $TEMP_FILE
 
 #- 74 uploadContentScreenshot
-$ sample-apps Ugc uploadContentScreenshot \
+sample-apps Ugc uploadContentScreenshot \
     --body '{"screenshots": [{"contentType": "Q8grtQSv", "description": "6EcALcMI", "fileExtension": "png"}]}' \
     --contentId 'ms5bT51M' \
     --namespace '4yko8S0E' \
@@ -739,7 +743,7 @@ update_status $? 'uploadContentScreenshot'
 delete_file $TEMP_FILE
 
 #- 75 deleteContentScreenshot
-$ sample-apps Ugc deleteContentScreenshot \
+sample-apps Ugc deleteContentScreenshot \
     --contentId 'SyCTyjj4' \
     --namespace 'mCaiuMGK' \
     --screenshotId 'OF5GJJoo' \
@@ -749,7 +753,7 @@ update_status $? 'deleteContentScreenshot'
 delete_file $TEMP_FILE
 
 #- 76 updateUserFollowStatus
-$ sample-apps Ugc updateUserFollowStatus \
+sample-apps Ugc updateUserFollowStatus \
     --body '{"followStatus": false}' \
     --namespace 'BABnOlxD' \
     --userId 'znICQVyq' \
@@ -758,7 +762,7 @@ update_status $? 'updateUserFollowStatus'
 delete_file $TEMP_FILE
 
 #- 77 getGroups
-$ sample-apps Ugc getGroups \
+sample-apps Ugc getGroups \
     --namespace 'Bg34WTtD' \
     --userId 'kn0rtn6t' \
     --limit '0Yx4z12E' \
@@ -768,7 +772,7 @@ update_status $? 'getGroups'
 delete_file $TEMP_FILE
 
 #- 78 createGroup
-$ sample-apps Ugc createGroup \
+sample-apps Ugc createGroup \
     --body '{"contents": ["NTiDX4jE"], "name": "3M2IsTHu"}' \
     --namespace '8QwNyOlX' \
     --userId 'fIWd0mcq' \
@@ -777,7 +781,7 @@ update_status $? 'createGroup'
 delete_file $TEMP_FILE
 
 #- 79 deleteAllUserGroup
-$ sample-apps Ugc deleteAllUserGroup \
+sample-apps Ugc deleteAllUserGroup \
     --namespace '5T4SUc7c' \
     --userId 'WfCKK6Di' \
     >$TEMP_FILE 2>&1
@@ -785,7 +789,7 @@ update_status $? 'deleteAllUserGroup'
 delete_file $TEMP_FILE
 
 #- 80 getGroup
-$ sample-apps Ugc getGroup \
+sample-apps Ugc getGroup \
     --groupId 'j1gFcenE' \
     --namespace 'MySPfhxB' \
     --userId 'enDiTiAq' \
@@ -794,7 +798,7 @@ update_status $? 'getGroup'
 delete_file $TEMP_FILE
 
 #- 81 updateGroup
-$ sample-apps Ugc updateGroup \
+sample-apps Ugc updateGroup \
     --body '{"contents": ["FYmFKjaE"], "name": "Lmmll6oe"}' \
     --groupId 'xId1OKGU' \
     --namespace 'N2Uznd7u' \
@@ -804,7 +808,7 @@ update_status $? 'updateGroup'
 delete_file $TEMP_FILE
 
 #- 82 deleteGroup
-$ sample-apps Ugc deleteGroup \
+sample-apps Ugc deleteGroup \
     --groupId 'SYSV52bH' \
     --namespace 'ifCIf4ts' \
     --userId 'uu6Pkam6' \
@@ -813,7 +817,7 @@ update_status $? 'deleteGroup'
 delete_file $TEMP_FILE
 
 #- 83 getGroupContent
-$ sample-apps Ugc getGroupContent \
+sample-apps Ugc getGroupContent \
     --groupId 'tFSYFt4Z' \
     --namespace 'xA2PzZFR' \
     --userId 'kBNlg6hn' \
@@ -824,7 +828,7 @@ update_status $? 'getGroupContent'
 delete_file $TEMP_FILE
 
 #- 84 deleteAllUserStates
-$ sample-apps Ugc deleteAllUserStates \
+sample-apps Ugc deleteAllUserStates \
     --namespace '0lV6UZMl' \
     --userId 'EbxHNgJR' \
     >$TEMP_FILE 2>&1

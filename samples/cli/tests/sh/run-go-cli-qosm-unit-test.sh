@@ -60,18 +60,22 @@ update_status() {
 
 create_file 'tmp.dat'
 
-echo 'TAP version 13'
+echo "go install github.com/AccelByte/sample-apps"
+go install github.com/AccelByte/sample-apps
+echo "Login..."
+echo "sample-apps login -u 'admin' -p 'admin'"
+sample-apps login -u 'admin' -p 'admin'
 echo "1..$OPERATIONS_COUNT"
 
 #- 1 deleteServer
-$ sample-apps Qosm deleteServer \
+sample-apps Qosm deleteServer \
     --region 'FtBxyZcD' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteServer'
 delete_file $TEMP_FILE
 
 #- 2 setServerAlias
-$ sample-apps Qosm setServerAlias \
+sample-apps Qosm setServerAlias \
     --body '{"alias": "XBpGlsQu"}' \
     --region 'Ju8vMf0I' \
     >$TEMP_FILE 2>&1
@@ -79,13 +83,13 @@ update_status $? 'setServerAlias'
 delete_file $TEMP_FILE
 
 #- 3 listServer
-$ sample-apps Qosm listServer \
+sample-apps Qosm listServer \
     >$TEMP_FILE 2>&1
 update_status $? 'listServer'
 delete_file $TEMP_FILE
 
 #- 4 heartbeat
-$ sample-apps Qosm heartbeat \
+sample-apps Qosm heartbeat \
     --body '{"ip": "sJkTrd8I", "port": 59, "region": "cV2zXnTK"}' \
     >$TEMP_FILE 2>&1
 update_status $? 'heartbeat'

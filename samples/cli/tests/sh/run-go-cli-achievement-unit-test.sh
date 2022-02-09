@@ -60,11 +60,15 @@ update_status() {
 
 create_file 'tmp.dat'
 
-echo 'TAP version 13'
+echo "go install github.com/AccelByte/sample-apps"
+go install github.com/AccelByte/sample-apps
+echo "Login..."
+echo "sample-apps login -u 'admin' -p 'admin'"
+sample-apps login -u 'admin' -p 'admin'
 echo "1..$OPERATIONS_COUNT"
 
 #- 1 adminListAchievements
-$ sample-apps Achievement adminListAchievements \
+sample-apps Achievement adminListAchievements \
     --namespace 'FtBxyZcD' \
     --limit '98' \
     --offset '55' \
@@ -74,7 +78,7 @@ update_status $? 'adminListAchievements'
 delete_file $TEMP_FILE
 
 #- 2 adminCreateNewAchievement
-$ sample-apps Achievement adminCreateNewAchievement \
+sample-apps Achievement adminCreateNewAchievement \
     --body '{"achievementCode": "8vMf0IsJ", "defaultLanguage": "kTrd8IDc", "description": {"V2zXnTKj": "XY1bPqam"}, "goalValue": 0.13454254286494316, "hidden": true, "incremental": true, "lockedIcons": [{"slug": "9Cs18EY8", "url": "4ekItqRz"}], "name": {"HU1oh570": "KQBVaewc"}, "statCode": "72krSha6", "tags": ["8n3Ynozp"], "unlockedIcons": [{"slug": "1C2KmIQT", "url": "uBdNEUsx"}]}' \
     --namespace 'Fb8CJ17M' \
     >$TEMP_FILE 2>&1
@@ -82,14 +86,14 @@ update_status $? 'adminCreateNewAchievement'
 delete_file $TEMP_FILE
 
 #- 3 exportAchievements
-$ sample-apps Achievement exportAchievements \
+sample-apps Achievement exportAchievements \
     --namespace '7DJZaMSx' \
     >$TEMP_FILE 2>&1
 update_status $? 'exportAchievements'
 delete_file $TEMP_FILE
 
 #- 4 importAchievements
-$ sample-apps Achievement importAchievements \
+sample-apps Achievement importAchievements \
     --file 'tmp.dat' \
     --strategy 'ECbZbygy' \
     --namespace 'oarORoeN' \
@@ -98,7 +102,7 @@ update_status $? 'importAchievements'
 delete_file $TEMP_FILE
 
 #- 5 adminGetAchievement
-$ sample-apps Achievement adminGetAchievement \
+sample-apps Achievement adminGetAchievement \
     --achievementCode 'HSb8Rh3k' \
     --namespace 'gs9qqJbn' \
     >$TEMP_FILE 2>&1
@@ -106,7 +110,7 @@ update_status $? 'adminGetAchievement'
 delete_file $TEMP_FILE
 
 #- 6 adminUpdateAchievement
-$ sample-apps Achievement adminUpdateAchievement \
+sample-apps Achievement adminUpdateAchievement \
     --body '{"defaultLanguage": "QsoBgiVp", "description": {"P8Cm3yvA": "SUoxdxxF"}, "goalValue": 0.25046182566340336, "hidden": true, "incremental": true, "lockedIcons": [{"slug": "dagEtp4w", "url": "29KOu9c1"}], "name": {"9R6XDqWH": "kkP8npLE"}, "statCode": "KMfjiX7j", "tags": ["pkVZk3Ia"], "unlockedIcons": [{"slug": "QYEmqGod", "url": "OEGt9gPO"}]}' \
     --achievementCode 'j0c6i0Jk' \
     --namespace 'vIas73uc' \
@@ -115,7 +119,7 @@ update_status $? 'adminUpdateAchievement'
 delete_file $TEMP_FILE
 
 #- 7 adminDeleteAchievement
-$ sample-apps Achievement adminDeleteAchievement \
+sample-apps Achievement adminDeleteAchievement \
     --achievementCode 'YnFAJ3DK' \
     --namespace '5T4Eogg0' \
     >$TEMP_FILE 2>&1
@@ -123,7 +127,7 @@ update_status $? 'adminDeleteAchievement'
 delete_file $TEMP_FILE
 
 #- 8 adminUpdateAchievementListOrder
-$ sample-apps Achievement adminUpdateAchievementListOrder \
+sample-apps Achievement adminUpdateAchievementListOrder \
     --body '{"targetOrder": 100}' \
     --achievementCode '39UoYlpv' \
     --namespace '5bVAgtsD' \
@@ -132,7 +136,7 @@ update_status $? 'adminUpdateAchievementListOrder'
 delete_file $TEMP_FILE
 
 #- 9 adminListUserAchievements
-$ sample-apps Achievement adminListUserAchievements \
+sample-apps Achievement adminListUserAchievements \
     --namespace 'hUTDUscb' \
     --userId 'QDjbTQuP' \
     --limit '76' \
@@ -143,7 +147,7 @@ update_status $? 'adminListUserAchievements'
 delete_file $TEMP_FILE
 
 #- 10 adminUnlockAchievement
-$ sample-apps Achievement adminUnlockAchievement \
+sample-apps Achievement adminUnlockAchievement \
     --achievementCode 'kyU89ZPO' \
     --namespace 'w6zPFJ42' \
     --userId 'cwmzBBSM' \
@@ -152,7 +156,7 @@ update_status $? 'adminUnlockAchievement'
 delete_file $TEMP_FILE
 
 #- 11 publicListAchievements
-$ sample-apps Achievement publicListAchievements \
+sample-apps Achievement publicListAchievements \
     --namespace 'NcoAAOjK' \
     --limit '78' \
     --offset '18' \
@@ -163,7 +167,7 @@ update_status $? 'publicListAchievements'
 delete_file $TEMP_FILE
 
 #- 12 publicGetAchievement
-$ sample-apps Achievement publicGetAchievement \
+sample-apps Achievement publicGetAchievement \
     --achievementCode 'jyK0XH45' \
     --namespace 'PaRSOFQB' \
     --language 'tu23REZ8' \
@@ -172,7 +176,7 @@ update_status $? 'publicGetAchievement'
 delete_file $TEMP_FILE
 
 #- 13 publicListUserAchievements
-$ sample-apps Achievement publicListUserAchievements \
+sample-apps Achievement publicListUserAchievements \
     --namespace 'hRVX7LGO' \
     --userId 'vDdYiQS9' \
     --limit '16' \
@@ -183,7 +187,7 @@ update_status $? 'publicListUserAchievements'
 delete_file $TEMP_FILE
 
 #- 14 publicUnlockAchievement
-$ sample-apps Achievement publicUnlockAchievement \
+sample-apps Achievement publicUnlockAchievement \
     --achievementCode '91pjG9gp' \
     --namespace 'xL6ycTQd' \
     --userId 'vln2LAuS' \

@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 )
 
 // AdminDeletePlatformLinkV2Cmd represents the AdminDeletePlatformLinkV2 command
@@ -27,11 +28,17 @@ var AdminDeletePlatformLinkV2Cmd = &cobra.Command{
 		platformId, _ := cmd.Flags().GetString("platformId")
 		userId, _ := cmd.Flags().GetString("userId")
 		platformNamespace, _ := cmd.Flags().GetString("platformNamespace")
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &users.AdminDeletePlatformLinkV2Params{
 			PlatformNamespace: &platformNamespace,
 			Namespace:         namespace,
 			PlatformID:        platformId,
 			UserID:            userId,
+			HTTPClient:        httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		errInput := usersService.AdminDeletePlatformLinkV2(input)
@@ -44,7 +51,7 @@ var AdminDeletePlatformLinkV2Cmd = &cobra.Command{
 }
 
 func init() {
-	AdminDeletePlatformLinkV2Cmd.Flags().StringP("platform_namespace", "", "", "Platform namespace")
+	AdminDeletePlatformLinkV2Cmd.Flags().StringP("platformNamespace", "", "", "Platform namespace")
 	AdminDeletePlatformLinkV2Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminDeletePlatformLinkV2Cmd.MarkFlagRequired("namespace")
 	AdminDeletePlatformLinkV2Cmd.Flags().StringP("platformId", "", "", "Platform id")

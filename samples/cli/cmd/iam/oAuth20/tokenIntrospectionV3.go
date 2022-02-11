@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 )
 
 // TokenIntrospectionV3Cmd represents the TokenIntrospectionV3 command
@@ -24,8 +25,14 @@ var TokenIntrospectionV3Cmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		token, _ := cmd.Flags().GetString("token")
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &o_auth2_0.TokenIntrospectionV3Params{
-			Token: token,
+			Token:      token,
+			HTTPClient: httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		ok, err := oAuth20Service.TokenIntrospectionV3(input)

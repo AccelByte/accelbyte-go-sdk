@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 )
 
 // DisableUserBanCmd represents the DisableUserBan command
@@ -26,10 +27,16 @@ var DisableUserBanCmd = &cobra.Command{
 		banId, _ := cmd.Flags().GetString("banId")
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &users.DisableUserBanParams{
-			BanID:     banId,
-			Namespace: namespace,
-			UserID:    userId,
+			BanID:      banId,
+			Namespace:  namespace,
+			UserID:     userId,
+			HTTPClient: httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		ok, err := usersService.DisableUserBan(input)

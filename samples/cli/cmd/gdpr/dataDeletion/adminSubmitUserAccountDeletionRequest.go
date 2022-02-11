@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 )
 
 // AdminSubmitUserAccountDeletionRequestCmd represents the AdminSubmitUserAccountDeletionRequest command
@@ -25,9 +26,15 @@ var AdminSubmitUserAccountDeletionRequestCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &data_deletion.AdminSubmitUserAccountDeletionRequestParams{
-			Namespace: namespace,
-			UserID:    userId,
+			Namespace:  namespace,
+			UserID:     userId,
+			HTTPClient: httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		ok, err := dataDeletionService.AdminSubmitUserAccountDeletionRequest(input)

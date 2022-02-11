@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 )
 
 // TokenGrantV3Cmd represents the TokenGrantV3 command
@@ -30,6 +31,11 @@ var TokenGrantV3Cmd = &cobra.Command{
 		codeVerifier, _ := cmd.Flags().GetString("codeVerifier")
 		redirectUri, _ := cmd.Flags().GetString("redirectUri")
 		refreshToken, _ := cmd.Flags().GetString("refreshToken")
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &o_auth2_0.TokenGrantV3Params{
 			DeviceID:     &deviceId,
 			ClientID:     &clientId,
@@ -38,6 +44,7 @@ var TokenGrantV3Cmd = &cobra.Command{
 			RedirectURI:  &redirectUri,
 			RefreshToken: &refreshToken,
 			GrantType:    grantType,
+			HTTPClient:   httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		ok, err := oAuth20Service.TokenGrantV3(input)
@@ -51,12 +58,12 @@ var TokenGrantV3Cmd = &cobra.Command{
 }
 
 func init() {
-	TokenGrantV3Cmd.Flags().StringP("device_id", "", "", "Device id")
-	TokenGrantV3Cmd.Flags().StringP("client_id", "", "", "Client id")
+	TokenGrantV3Cmd.Flags().StringP("deviceId", "", "", "Device id")
+	TokenGrantV3Cmd.Flags().StringP("clientId", "", "", "Client id")
 	TokenGrantV3Cmd.Flags().StringP("code", "", "", "Code")
-	TokenGrantV3Cmd.Flags().StringP("code_verifier", "", "", "Code verifier")
-	TokenGrantV3Cmd.Flags().StringP("redirect_uri", "", "", "Redirect uri")
-	TokenGrantV3Cmd.Flags().StringP("refresh_token", "", "", "Refresh token")
-	TokenGrantV3Cmd.Flags().StringP("grant_type", "", "", "Grant type")
+	TokenGrantV3Cmd.Flags().StringP("codeVerifier", "", "", "Code verifier")
+	TokenGrantV3Cmd.Flags().StringP("redirectUri", "", "", "Redirect uri")
+	TokenGrantV3Cmd.Flags().StringP("refreshToken", "", "", "Refresh token")
+	TokenGrantV3Cmd.Flags().StringP("grantType", "", "", "Grant type")
 	_ = TokenGrantV3Cmd.MarkFlagRequired("grant_type")
 }

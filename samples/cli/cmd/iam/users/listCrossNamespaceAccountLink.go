@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 )
 
 // ListCrossNamespaceAccountLinkCmd represents the ListCrossNamespaceAccountLink command
@@ -27,11 +28,17 @@ var ListCrossNamespaceAccountLinkCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
 		platformId, _ := cmd.Flags().GetString("platformId")
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &users.ListCrossNamespaceAccountLinkParams{
 			PlatformID:   &platformId,
 			LinkingToken: linkingToken,
 			Namespace:    namespace,
 			UserID:       userId,
+			HTTPClient:   httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		errInput := usersService.ListCrossNamespaceAccountLink(input)

@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 )
 
 // PlatformAuthenticationV3Cmd represents the PlatformAuthenticationV3 command
@@ -37,6 +38,11 @@ var PlatformAuthenticationV3Cmd = &cobra.Command{
 		openidReturnTo, _ := cmd.Flags().GetString("openidReturnTo")
 		openidSig, _ := cmd.Flags().GetString("openidSig")
 		openidSigned, _ := cmd.Flags().GetString("openidSigned")
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &o_auth2_0_extension.PlatformAuthenticationV3Params{
 			PlatformID:          platformId,
 			Code:                &code,
@@ -52,6 +58,7 @@ var PlatformAuthenticationV3Cmd = &cobra.Command{
 			OpenidSig:           &openidSig,
 			OpenidSigned:        &openidSigned,
 			State:               state,
+			HTTPClient:          httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		errInput := oAuth20ExtensionService.PlatformAuthenticationV3(input)
@@ -68,16 +75,16 @@ func init() {
 	_ = PlatformAuthenticationV3Cmd.MarkFlagRequired("platformId")
 	PlatformAuthenticationV3Cmd.Flags().StringP("code", "", "", "Code")
 	PlatformAuthenticationV3Cmd.Flags().StringP("error", "", "", "Error")
-	PlatformAuthenticationV3Cmd.Flags().StringP("openid.assoc_handle", "", "", "Openid assoc handle")
-	PlatformAuthenticationV3Cmd.Flags().StringP("openid.claimed_id", "", "", "Openid claimed id")
-	PlatformAuthenticationV3Cmd.Flags().StringP("openid.identity", "", "", "Openid identity")
-	PlatformAuthenticationV3Cmd.Flags().StringP("openid.mode", "", "", "Openid mode")
-	PlatformAuthenticationV3Cmd.Flags().StringP("openid.ns", "", "", "Openid ns")
-	PlatformAuthenticationV3Cmd.Flags().StringP("openid.op_endpoint", "", "", "Openid op endpoint")
-	PlatformAuthenticationV3Cmd.Flags().StringP("openid.response_nonce", "", "", "Openid response nonce")
-	PlatformAuthenticationV3Cmd.Flags().StringP("openid.return_to", "", "", "Openid return to")
-	PlatformAuthenticationV3Cmd.Flags().StringP("openid.sig", "", "", "Openid sig")
-	PlatformAuthenticationV3Cmd.Flags().StringP("openid.signed", "", "", "Openid signed")
+	PlatformAuthenticationV3Cmd.Flags().StringP("openidAssocHandle", "", "", "Openid assoc handle")
+	PlatformAuthenticationV3Cmd.Flags().StringP("openidClaimedId", "", "", "Openid claimed id")
+	PlatformAuthenticationV3Cmd.Flags().StringP("openidIdentity", "", "", "Openid identity")
+	PlatformAuthenticationV3Cmd.Flags().StringP("openidMode", "", "", "Openid mode")
+	PlatformAuthenticationV3Cmd.Flags().StringP("openidNs", "", "", "Openid ns")
+	PlatformAuthenticationV3Cmd.Flags().StringP("openidOpEndpoint", "", "", "Openid op endpoint")
+	PlatformAuthenticationV3Cmd.Flags().StringP("openidResponseNonce", "", "", "Openid response nonce")
+	PlatformAuthenticationV3Cmd.Flags().StringP("openidReturnTo", "", "", "Openid return to")
+	PlatformAuthenticationV3Cmd.Flags().StringP("openidSig", "", "", "Openid sig")
+	PlatformAuthenticationV3Cmd.Flags().StringP("openidSigned", "", "", "Openid signed")
 	PlatformAuthenticationV3Cmd.Flags().StringP("state", "", "", "State")
 	_ = PlatformAuthenticationV3Cmd.MarkFlagRequired("state")
 }

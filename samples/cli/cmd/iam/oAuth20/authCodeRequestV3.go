@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 )
 
 // AuthCodeRequestV3Cmd represents the AuthCodeRequestV3 command
@@ -27,11 +28,17 @@ var AuthCodeRequestV3Cmd = &cobra.Command{
 		requestId, _ := cmd.Flags().GetString("requestId")
 		clientId, _ := cmd.Flags().GetString("clientId")
 		redirectUri, _ := cmd.Flags().GetString("redirectUri")
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &o_auth2_0.AuthCodeRequestV3Params{
 			PlatformID:  platformId,
 			ClientID:    &clientId,
 			RedirectURI: &redirectUri,
 			RequestID:   requestId,
+			HTTPClient:  httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		errInput := oAuth20Service.AuthCodeRequestV3(input)
@@ -46,8 +53,8 @@ var AuthCodeRequestV3Cmd = &cobra.Command{
 func init() {
 	AuthCodeRequestV3Cmd.Flags().StringP("platformId", "", "", "Platform id")
 	_ = AuthCodeRequestV3Cmd.MarkFlagRequired("platformId")
-	AuthCodeRequestV3Cmd.Flags().StringP("client_id", "", "", "Client id")
-	AuthCodeRequestV3Cmd.Flags().StringP("redirect_uri", "", "", "Redirect uri")
-	AuthCodeRequestV3Cmd.Flags().StringP("request_id", "", "", "Request id")
+	AuthCodeRequestV3Cmd.Flags().StringP("clientId", "", "", "Client id")
+	AuthCodeRequestV3Cmd.Flags().StringP("redirectUri", "", "", "Redirect uri")
+	AuthCodeRequestV3Cmd.Flags().StringP("requestId", "", "", "Request id")
 	_ = AuthCodeRequestV3Cmd.MarkFlagRequired("request_id")
 }

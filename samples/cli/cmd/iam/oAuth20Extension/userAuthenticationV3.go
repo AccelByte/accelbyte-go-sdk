@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 )
 
 // UserAuthenticationV3Cmd represents the UserAuthenticationV3 command
@@ -29,6 +30,11 @@ var UserAuthenticationV3Cmd = &cobra.Command{
 		clientId, _ := cmd.Flags().GetString("clientId")
 		extendExp, _ := cmd.Flags().GetBool("extendExp")
 		redirectUri, _ := cmd.Flags().GetString("redirectUri")
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &o_auth2_0_extension.UserAuthenticationV3Params{
 			ClientID:    &clientId,
 			ExtendExp:   &extendExp,
@@ -36,6 +42,7 @@ var UserAuthenticationV3Cmd = &cobra.Command{
 			Password:    password,
 			RequestID:   requestId,
 			UserName:    userName,
+			HTTPClient:  httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		errInput := oAuth20ExtensionService.UserAuthenticationV3(input)
@@ -48,13 +55,13 @@ var UserAuthenticationV3Cmd = &cobra.Command{
 }
 
 func init() {
-	UserAuthenticationV3Cmd.Flags().StringP("client_id", "", "", "Client id")
-	UserAuthenticationV3Cmd.Flags().BoolP("extend_exp", "", false, "Extend exp")
-	UserAuthenticationV3Cmd.Flags().StringP("redirect_uri", "", "", "Redirect uri")
+	UserAuthenticationV3Cmd.Flags().StringP("clientId", "", "", "Client id")
+	UserAuthenticationV3Cmd.Flags().BoolP("extendExp", "", false, "Extend exp")
+	UserAuthenticationV3Cmd.Flags().StringP("redirectUri", "", "", "Redirect uri")
 	UserAuthenticationV3Cmd.Flags().StringP("password", "", "", "Password")
 	_ = UserAuthenticationV3Cmd.MarkFlagRequired("password")
-	UserAuthenticationV3Cmd.Flags().StringP("request_id", "", "", "Request id")
+	UserAuthenticationV3Cmd.Flags().StringP("requestId", "", "", "Request id")
 	_ = UserAuthenticationV3Cmd.MarkFlagRequired("request_id")
-	UserAuthenticationV3Cmd.Flags().StringP("user_name", "", "", "User name")
+	UserAuthenticationV3Cmd.Flags().StringP("userName", "", "", "User name")
 	_ = UserAuthenticationV3Cmd.MarkFlagRequired("user_name")
 }

@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 )
 
 // PublicWebLinkPlatformEstablishCmd represents the PublicWebLinkPlatformEstablish command
@@ -26,10 +27,16 @@ var PublicWebLinkPlatformEstablishCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		platformId, _ := cmd.Flags().GetString("platformId")
 		state, _ := cmd.Flags().GetString("state")
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &users.PublicWebLinkPlatformEstablishParams{
 			Namespace:  namespace,
 			PlatformID: platformId,
 			State:      state,
+			HTTPClient: httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		errInput := usersService.PublicWebLinkPlatformEstablish(input)

@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 )
 
 // PlatformTokenGrantV3Cmd represents the PlatformTokenGrantV3 command
@@ -27,11 +28,17 @@ var PlatformTokenGrantV3Cmd = &cobra.Command{
 		clientId, _ := cmd.Flags().GetString("clientId")
 		deviceId, _ := cmd.Flags().GetString("deviceId")
 		platformToken, _ := cmd.Flags().GetString("platformToken")
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &o_auth2_0.PlatformTokenGrantV3Params{
 			ClientID:      &clientId,
 			DeviceID:      &deviceId,
 			PlatformToken: &platformToken,
 			PlatformID:    platformId,
+			HTTPClient:    httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		ok, err := oAuth20Service.PlatformTokenGrantV3(input)
@@ -45,9 +52,9 @@ var PlatformTokenGrantV3Cmd = &cobra.Command{
 }
 
 func init() {
-	PlatformTokenGrantV3Cmd.Flags().StringP("client_id", "", "", "Client id")
-	PlatformTokenGrantV3Cmd.Flags().StringP("device_id", "", "", "Device id")
-	PlatformTokenGrantV3Cmd.Flags().StringP("platform_token", "", "", "Platform token")
+	PlatformTokenGrantV3Cmd.Flags().StringP("clientId", "", "", "Client id")
+	PlatformTokenGrantV3Cmd.Flags().StringP("deviceId", "", "", "Device id")
+	PlatformTokenGrantV3Cmd.Flags().StringP("platformToken", "", "", "Platform token")
 	PlatformTokenGrantV3Cmd.Flags().StringP("platformId", "", "", "Platform id")
 	_ = PlatformTokenGrantV3Cmd.MarkFlagRequired("platformId")
 }

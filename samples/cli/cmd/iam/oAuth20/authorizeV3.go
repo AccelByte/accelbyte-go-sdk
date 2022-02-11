@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 )
 
 // AuthorizeV3Cmd represents the AuthorizeV3 command
@@ -31,6 +32,11 @@ var AuthorizeV3Cmd = &cobra.Command{
 		scope, _ := cmd.Flags().GetString("scope")
 		state, _ := cmd.Flags().GetString("state")
 		targetAuthPage, _ := cmd.Flags().GetString("targetAuthPage")
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &o_auth2_0.AuthorizeV3Params{
 			CodeChallenge:       &codeChallenge,
 			CodeChallengeMethod: &codeChallengeMethod,
@@ -40,6 +46,7 @@ var AuthorizeV3Cmd = &cobra.Command{
 			TargetAuthPage:      &targetAuthPage,
 			ClientID:            clientId,
 			ResponseType:        responseType,
+			HTTPClient:          httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		errInput := oAuth20Service.AuthorizeV3(input)
@@ -52,14 +59,14 @@ var AuthorizeV3Cmd = &cobra.Command{
 }
 
 func init() {
-	AuthorizeV3Cmd.Flags().StringP("code_challenge", "", "", "Code challenge")
-	AuthorizeV3Cmd.Flags().StringP("code_challenge_method", "", "", "Code challenge method")
-	AuthorizeV3Cmd.Flags().StringP("redirect_uri", "", "", "Redirect uri")
+	AuthorizeV3Cmd.Flags().StringP("codeChallenge", "", "", "Code challenge")
+	AuthorizeV3Cmd.Flags().StringP("codeChallengeMethod", "", "", "Code challenge method")
+	AuthorizeV3Cmd.Flags().StringP("redirectUri", "", "", "Redirect uri")
 	AuthorizeV3Cmd.Flags().StringP("scope", "", "", "Scope")
 	AuthorizeV3Cmd.Flags().StringP("state", "", "", "State")
-	AuthorizeV3Cmd.Flags().StringP("target_auth_page", "", "", "Target auth page")
-	AuthorizeV3Cmd.Flags().StringP("client_id", "", "", "Client id")
+	AuthorizeV3Cmd.Flags().StringP("targetAuthPage", "", "", "Target auth page")
+	AuthorizeV3Cmd.Flags().StringP("clientId", "", "", "Client id")
 	_ = AuthorizeV3Cmd.MarkFlagRequired("client_id")
-	AuthorizeV3Cmd.Flags().StringP("response_type", "", "", "Response type")
+	AuthorizeV3Cmd.Flags().StringP("responseType", "", "", "Response type")
 	_ = AuthorizeV3Cmd.MarkFlagRequired("response_type")
 }

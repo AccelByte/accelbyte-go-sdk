@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 )
 
 // PublicPlatformLinkV2Cmd represents the PublicPlatformLinkV2 command
@@ -27,11 +28,17 @@ var PublicPlatformLinkV2Cmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		platformId, _ := cmd.Flags().GetString("platformId")
 		userId, _ := cmd.Flags().GetString("userId")
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &users.PublicPlatformLinkV2Params{
 			Ticket:     ticket,
 			Namespace:  namespace,
 			PlatformID: platformId,
 			UserID:     userId,
+			HTTPClient: httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		errInput := usersService.PublicPlatformLinkV2(input)

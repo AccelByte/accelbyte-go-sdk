@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 )
 
 // PublicValidateUserByUserIDAndPasswordV3Cmd represents the PublicValidateUserByUserIDAndPasswordV3 command
@@ -26,10 +27,16 @@ var PublicValidateUserByUserIDAndPasswordV3Cmd = &cobra.Command{
 		password, _ := cmd.Flags().GetString("password")
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &users.PublicValidateUserByUserIDAndPasswordV3Params{
-			Password:  password,
-			Namespace: namespace,
-			UserID:    userId,
+			Password:   password,
+			Namespace:  namespace,
+			UserID:     userId,
+			HTTPClient: httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		errInput := usersService.PublicValidateUserByUserIDAndPasswordV3(input)

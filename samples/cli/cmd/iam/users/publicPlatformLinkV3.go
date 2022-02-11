@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 )
 
 // PublicPlatformLinkV3Cmd represents the PublicPlatformLinkV3 command
@@ -27,11 +28,17 @@ var PublicPlatformLinkV3Cmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		platformId, _ := cmd.Flags().GetString("platformId")
 		redirectUri, _ := cmd.Flags().GetString("redirectUri")
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &users.PublicPlatformLinkV3Params{
 			RedirectURI: &redirectUri,
 			Ticket:      ticket,
 			Namespace:   namespace,
 			PlatformID:  platformId,
+			HTTPClient:  httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		errInput := usersService.PublicPlatformLinkV3(input)

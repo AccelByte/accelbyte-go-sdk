@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 	"os"
 )
 
@@ -26,16 +27,22 @@ var ImportRewardsCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		replaceExisting, _ := cmd.Flags().GetBool("replaceExisting")
-		output := cmd.Flag("outputFilePath").Value.String()
-		logrus.Infof("Output %v", output)
-		file, err := os.Create(output)
+		output := cmd.Flag("file").Value.String()
+		logrus.Infof("file %v", output)
+		file, err := os.Open(output)
 		if err != nil {
 			return err
+		}
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
 		}
 		input := &reward.ImportRewardsParams{
 			File:            file,
 			Namespace:       namespace,
 			ReplaceExisting: replaceExisting,
+			HTTPClient:      httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		errInput := rewardService.ImportRewards(input)

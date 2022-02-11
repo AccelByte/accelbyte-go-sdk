@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 )
 
 // AuthorizationCmd represents the Authorization command
@@ -30,6 +31,11 @@ var AuthorizationCmd = &cobra.Command{
 		password, _ := cmd.Flags().GetString("password")
 		scope, _ := cmd.Flags().GetString("scope")
 		state, _ := cmd.Flags().GetString("state")
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &o_auth.AuthorizationParams{
 			Login:        &login,
 			Password:     &password,
@@ -38,6 +44,7 @@ var AuthorizationCmd = &cobra.Command{
 			ClientID:     clientId,
 			RedirectURI:  redirectUri,
 			ResponseType: responseType,
+			HTTPClient:   httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		errInput := oAuthService.Authorization(input)
@@ -54,10 +61,10 @@ func init() {
 	AuthorizationCmd.Flags().StringP("password", "", "", "Password")
 	AuthorizationCmd.Flags().StringP("scope", "", "", "Scope")
 	AuthorizationCmd.Flags().StringP("state", "", "", "State")
-	AuthorizationCmd.Flags().StringP("client_id", "", "", "Client id")
+	AuthorizationCmd.Flags().StringP("clientId", "", "", "Client id")
 	_ = AuthorizationCmd.MarkFlagRequired("client_id")
-	AuthorizationCmd.Flags().StringP("redirect_uri", "", "", "Redirect uri")
+	AuthorizationCmd.Flags().StringP("redirectUri", "", "", "Redirect uri")
 	_ = AuthorizationCmd.MarkFlagRequired("redirect_uri")
-	AuthorizationCmd.Flags().StringP("response_type", "", "", "Response type")
+	AuthorizationCmd.Flags().StringP("responseType", "", "", "Response type")
 	_ = AuthorizationCmd.MarkFlagRequired("response_type")
 }

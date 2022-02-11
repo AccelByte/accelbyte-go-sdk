@@ -12,6 +12,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 	"os"
 )
 
@@ -29,9 +30,9 @@ var PublicCreateUserNamespaceSlotCmd = &cobra.Command{
 		userId, _ := cmd.Flags().GetString("userId")
 		checksum, _ := cmd.Flags().GetString("checksum")
 		customAttribute, _ := cmd.Flags().GetString("customAttribute")
-		output := cmd.Flag("outputFilePath").Value.String()
-		logrus.Infof("Output %v", output)
-		file, err := os.Create(output)
+		output := cmd.Flag("file").Value.String()
+		logrus.Infof("file %v", output)
+		file, err := os.Open(output)
 		if err != nil {
 			return err
 		}
@@ -42,6 +43,11 @@ var PublicCreateUserNamespaceSlotCmd = &cobra.Command{
 		if errTags != nil {
 			return errTags
 		}
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &slot.PublicCreateUserNamespaceSlotParams{
 			Checksum:        &checksum,
 			CustomAttribute: &customAttribute,
@@ -50,6 +56,7 @@ var PublicCreateUserNamespaceSlotCmd = &cobra.Command{
 			UserID:          userId,
 			Label:           &label,
 			Tags:            tags,
+			HTTPClient:      httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		errInput := slotService.PublicCreateUserNamespaceSlot(input)

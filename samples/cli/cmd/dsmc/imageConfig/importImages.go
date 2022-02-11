@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 	"os"
 )
 
@@ -24,14 +25,20 @@ var ImportImagesCmd = &cobra.Command{
 			Client:          factory.NewDsmcClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		output := cmd.Flag("outputFilePath").Value.String()
-		logrus.Infof("Output %v", output)
-		file, err := os.Create(output)
+		output := cmd.Flag("file").Value.String()
+		logrus.Infof("file %v", output)
+		file, err := os.Open(output)
 		if err != nil {
 			return err
 		}
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &image_config.ImportImagesParams{
-			File: file,
+			File:       file,
+			HTTPClient: httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		ok, err := imageConfigService.ImportImages(input)

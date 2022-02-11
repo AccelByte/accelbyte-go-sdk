@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 )
 
 // TokenGrantCmd represents the TokenGrant command
@@ -32,6 +33,11 @@ var TokenGrantCmd = &cobra.Command{
 		redirectUri, _ := cmd.Flags().GetString("redirectUri")
 		refreshToken, _ := cmd.Flags().GetString("refreshToken")
 		username, _ := cmd.Flags().GetString("username")
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &o_auth.TokenGrantParams{
 			DeviceID:     &deviceId,
 			Code:         &code,
@@ -42,6 +48,7 @@ var TokenGrantCmd = &cobra.Command{
 			RefreshToken: &refreshToken,
 			Username:     &username,
 			GrantType:    grantType,
+			HTTPClient:   httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		ok, err := oAuthService.TokenGrant(input)
@@ -55,14 +62,14 @@ var TokenGrantCmd = &cobra.Command{
 }
 
 func init() {
-	TokenGrantCmd.Flags().StringP("Device-Id", "", "", "Device id")
+	TokenGrantCmd.Flags().StringP("deviceId", "", "", "Device id")
 	TokenGrantCmd.Flags().StringP("code", "", "", "Code")
-	TokenGrantCmd.Flags().BoolP("extend_exp", "", false, "Extend exp")
+	TokenGrantCmd.Flags().BoolP("extendExp", "", false, "Extend exp")
 	TokenGrantCmd.Flags().StringP("namespace", "", "", "Namespace")
 	TokenGrantCmd.Flags().StringP("password", "", "", "Password")
-	TokenGrantCmd.Flags().StringP("redirect_uri", "", "", "Redirect uri")
-	TokenGrantCmd.Flags().StringP("refresh_token", "", "", "Refresh token")
+	TokenGrantCmd.Flags().StringP("redirectUri", "", "", "Redirect uri")
+	TokenGrantCmd.Flags().StringP("refreshToken", "", "", "Refresh token")
 	TokenGrantCmd.Flags().StringP("username", "", "", "Username")
-	TokenGrantCmd.Flags().StringP("grant_type", "", "", "Grant type")
+	TokenGrantCmd.Flags().StringP("grantType", "", "", "Grant type")
 	_ = TokenGrantCmd.MarkFlagRequired("grant_type")
 }

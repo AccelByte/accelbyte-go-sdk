@@ -29,9 +29,8 @@ var GetSlotDataCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		slotId, _ := cmd.Flags().GetString("slotId")
 		userId, _ := cmd.Flags().GetString("userId")
-		output := cmd.Flag("outputFilePath").Value.String()
-		logrus.Infof("Output %v", output)
-		file, err := os.Create(output)
+		file, err := os.Create("file")
+		logrus.Infof("Output %v", file)
 		if err != nil {
 			return err
 		}

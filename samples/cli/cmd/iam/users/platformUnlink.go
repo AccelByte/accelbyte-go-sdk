@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 )
 
 // PlatformUnlinkCmd represents the PlatformUnlink command
@@ -27,11 +28,17 @@ var PlatformUnlinkCmd = &cobra.Command{
 		platformId, _ := cmd.Flags().GetString("platformId")
 		userId, _ := cmd.Flags().GetString("userId")
 		platformNamespace, _ := cmd.Flags().GetString("platformNamespace")
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &users.PlatformUnlinkParams{
 			PlatformNamespace: &platformNamespace,
 			Namespace:         namespace,
 			PlatformID:        platformId,
 			UserID:            userId,
+			HTTPClient:        httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		errInput := usersService.PlatformUnlink(input)
@@ -44,7 +51,7 @@ var PlatformUnlinkCmd = &cobra.Command{
 }
 
 func init() {
-	PlatformUnlinkCmd.Flags().StringP("platform_namespace", "", "", "Platform namespace")
+	PlatformUnlinkCmd.Flags().StringP("platformNamespace", "", "", "Platform namespace")
 	PlatformUnlinkCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PlatformUnlinkCmd.MarkFlagRequired("namespace")
 	PlatformUnlinkCmd.Flags().StringP("platformId", "", "", "Platform id")

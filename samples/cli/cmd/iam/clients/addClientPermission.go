@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 )
 
 // AddClientPermissionCmd represents the AddClientPermission command
@@ -26,10 +27,16 @@ var AddClientPermissionCmd = &cobra.Command{
 		action, _ := cmd.Flags().GetInt64("action")
 		clientId, _ := cmd.Flags().GetString("clientId")
 		resource, _ := cmd.Flags().GetString("resource")
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &clients.AddClientPermissionParams{
-			Action:   action,
-			ClientID: clientId,
-			Resource: resource,
+			Action:     action,
+			ClientID:   clientId,
+			Resource:   resource,
+			HTTPClient: httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		errInput := clientsService.AddClientPermission(input)

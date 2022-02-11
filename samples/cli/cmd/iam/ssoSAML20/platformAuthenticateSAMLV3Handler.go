@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 )
 
 // PlatformAuthenticateSAMLV3HandlerCmd represents the PlatformAuthenticateSAMLV3Handler command
@@ -27,11 +28,17 @@ var PlatformAuthenticateSAMLV3HandlerCmd = &cobra.Command{
 		state, _ := cmd.Flags().GetString("state")
 		code, _ := cmd.Flags().GetString("code")
 		error_, _ := cmd.Flags().GetString("error")
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &s_s_o_s_a_m_l_2_0.PlatformAuthenticateSAMLV3HandlerParams{
 			PlatformID: platformId,
 			Code:       &code,
 			Error:      &error_,
 			State:      state,
+			HTTPClient: httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		errInput := ssoSAML20Service.PlatformAuthenticateSAMLV3Handler(input)

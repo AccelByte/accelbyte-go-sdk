@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 )
 
 // LogoutCmd represents the Logout command
@@ -23,7 +24,14 @@ var LogoutCmd = &cobra.Command{
 			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		input := &o_auth2_0_extension.LogoutParams{}
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
+		input := &o_auth2_0_extension.LogoutParams{
+			HTTPClient: httpClient,
+		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		errInput := oAuth20ExtensionService.Logout(input)
 		if errInput != nil {

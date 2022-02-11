@@ -45,6 +45,6 @@ var GetActiveCustomGameSessionsCmd = &cobra.Command{
 func init() {
 	GetActiveCustomGameSessionsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetActiveCustomGameSessionsCmd.MarkFlagRequired("namespace")
-	GetActiveCustomGameSessionsCmd.Flags().StringP("server_region", "", "", "Server region")
-	GetActiveCustomGameSessionsCmd.Flags().StringP("session_id", "", "", "Session id")
+	GetActiveCustomGameSessionsCmd.Flags().StringP("serverRegion", "", "", "Server region")
+	GetActiveCustomGameSessionsCmd.Flags().StringP("sessionId", "", "", "Session id")
 }

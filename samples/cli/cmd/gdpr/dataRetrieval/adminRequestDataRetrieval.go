@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 )
 
 // AdminRequestDataRetrievalCmd represents the AdminRequestDataRetrieval command
@@ -26,10 +27,16 @@ var AdminRequestDataRetrievalCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
 		password, _ := cmd.Flags().GetString("password")
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &data_retrieval.AdminRequestDataRetrievalParams{
-			Password:  &password,
-			Namespace: namespace,
-			UserID:    userId,
+			Password:   &password,
+			Namespace:  namespace,
+			UserID:     userId,
+			HTTPClient: httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		ok, err := dataRetrievalService.AdminRequestDataRetrieval(input)

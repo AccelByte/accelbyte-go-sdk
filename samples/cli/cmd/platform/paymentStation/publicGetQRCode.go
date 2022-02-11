@@ -28,9 +28,8 @@ var PublicGetQRCodeCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		code, _ := cmd.Flags().GetString("code")
-		output := cmd.Flag("outputFilePath").Value.String()
-		logrus.Infof("Output %v", output)
-		file, err := os.Create(output)
+		file, err := os.Create("file")
+		logrus.Infof("Output %v", file)
 		if err != nil {
 			return err
 		}

@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 )
 
 // PlatformTokenRequestHandlerCmd represents the PlatformTokenRequestHandler command
@@ -27,11 +28,17 @@ var PlatformTokenRequestHandlerCmd = &cobra.Command{
 		platformId, _ := cmd.Flags().GetString("platformId")
 		deviceId, _ := cmd.Flags().GetString("deviceId")
 		platformToken, _ := cmd.Flags().GetString("platformToken")
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &o_auth.PlatformTokenRequestHandlerParams{
 			DeviceID:      &deviceId,
 			PlatformToken: &platformToken,
 			Namespace:     namespace,
 			PlatformID:    platformId,
+			HTTPClient:    httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		ok, err := oAuthService.PlatformTokenRequestHandler(input)
@@ -45,8 +52,8 @@ var PlatformTokenRequestHandlerCmd = &cobra.Command{
 }
 
 func init() {
-	PlatformTokenRequestHandlerCmd.Flags().StringP("device_id", "", "", "Device id")
-	PlatformTokenRequestHandlerCmd.Flags().StringP("platform_token", "", "", "Platform token")
+	PlatformTokenRequestHandlerCmd.Flags().StringP("deviceId", "", "", "Device id")
+	PlatformTokenRequestHandlerCmd.Flags().StringP("platformToken", "", "", "Platform token")
 	PlatformTokenRequestHandlerCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PlatformTokenRequestHandlerCmd.MarkFlagRequired("namespace")
 	PlatformTokenRequestHandlerCmd.Flags().StringP("platformId", "", "", "Platform id")

@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 )
 
 // ImportConfigCmd represents the ImportConfig command
@@ -24,8 +25,14 @@ var ImportConfigCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &config.ImportConfigParams{
-			Namespace: namespace,
+			Namespace:  namespace,
+			HTTPClient: httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		ok, err := configService.ImportConfig(input)

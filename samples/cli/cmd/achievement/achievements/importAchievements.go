@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"net/http"
 	"os"
 )
 
@@ -25,17 +26,23 @@ var ImportAchievementsCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		output := cmd.Flag("outputFilePath").Value.String()
-		logrus.Infof("Output %v", output)
-		file, err := os.Create(output)
+		output := cmd.Flag("file").Value.String()
+		logrus.Infof("file %v", output)
+		file, err := os.Open(output)
 		if err != nil {
 			return err
 		}
 		strategy, _ := cmd.Flags().GetString("strategy")
+		httpClient := &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			},
+		}
 		input := &achievements.ImportAchievementsParams{
-			File:      file,
-			Strategy:  &strategy,
-			Namespace: namespace,
+			File:       file,
+			Strategy:   &strategy,
+			Namespace:  namespace,
+			HTTPClient: httpClient,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		ok, err := achievementsService.ImportAchievements(input)

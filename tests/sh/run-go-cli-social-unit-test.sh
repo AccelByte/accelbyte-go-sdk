@@ -12,7 +12,7 @@ MODULE_PATH='../samples/cli'
 TEMP_TOKEN="/tmp/justice-sample-apps/userData"
 TEMP_FILE='file.tmp'
 
-OPERATIONS_COUNT=68
+OPERATIONS_COUNT=69
 
 FINISHED_COUNT=0
 SUCCESS_COUNT=0
@@ -627,52 +627,62 @@ samples/cli/sample-apps Social bulkUpdateUserStatItem \
 update_status $? 'bulkUpdateUserStatItem'
 delete_file $TEMP_FILE
 
-#- 64 deleteUserStatItems2
+#- 64 bulkResetUserStatItemValues
+samples/cli/sample-apps Social bulkResetUserStatItemValues \
+    --body '[{"additionalData": {"cJyIvsPw": {}}, "statCode": "Or0BmV5i"}]' \
+    --namespace 'FvfwFjTS' \
+    --userId 'mIEqoLyL' \
+    --additionalKey 'eUGmomGX' \
+    >$TEMP_FILE 2>&1
+update_status $? 'bulkResetUserStatItemValues'
+delete_file $TEMP_FILE
+
+#- 65 deleteUserStatItems2
 samples/cli/sample-apps Social deleteUserStatItems2 \
-    --namespace 'cJyIvsPw' \
-    --statCode 'Or0BmV5i' \
-    --userId 'FvfwFjTS' \
-    --additionalKey 'mIEqoLyL' \
+    --namespace '9sXTZ0v8' \
+    --statCode 'pqLfc5Sw' \
+    --userId 'GnReUULD' \
+    --additionalKey 'X4QUIbb5' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteUserStatItems2'
 delete_file $TEMP_FILE
 
-#- 65 updateUserStatItemValue
+#- 66 updateUserStatItemValue
 samples/cli/sample-apps Social updateUserStatItemValue \
-    --body '{"additionalData": {"eUGmomGX": {}}, "updateStrategy": "MAX", "value": 0.7715843915712848}' \
-    --namespace 'TZ0v8pqL' \
-    --statCode 'fc5SwGnR' \
-    --userId 'eUULDX4Q' \
-    --additionalKey 'UIbb5nh6' \
+    --body '{"additionalData": {"nh68ZnyU": {}}, "updateStrategy": "MAX", "value": 0.6835501069566925}' \
+    --namespace 'W9hNBSFT' \
+    --statCode 'tFrOmjkF' \
+    --userId 'rFVA8t0x' \
+    --additionalKey 'F34Xpt6Z' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateUserStatItemValue'
 delete_file $TEMP_FILE
 
-#- 66 bulkUpdateUserStatItem1
+#- 67 bulkUpdateUserStatItem1
 samples/cli/sample-apps Social bulkUpdateUserStatItem1 \
-    --body '[{"additionalData": {"8ZnyUtRv": {}}, "additionalKey": "W9hNBSFT", "statCode": "tFrOmjkF", "updateStrategy": "MAX", "userId": "FVA8t0xF", "value": 0.8671862996270036}]' \
-    --namespace 'Xpt6ZlTT' \
+    --body '[{"additionalData": {"lTTic0kr": {}}, "additionalKey": "2a0nI2oo", "statCode": "7UHCJK5s", "updateStrategy": "INCREMENT", "userId": "0aCvIq3a", "value": 0.5171230937144093}]' \
+    --namespace 'YIlewLRu' \
     >$TEMP_FILE 2>&1
 update_status $? 'bulkUpdateUserStatItem1'
 delete_file $TEMP_FILE
 
-#- 67 bulkUpdateUserStatItem2
+#- 68 bulkUpdateUserStatItem2
 samples/cli/sample-apps Social bulkUpdateUserStatItem2 \
-    --body '[{"additionalData": {"ic0kr2a0": {}}, "statCode": "nI2oo7UH", "updateStrategy": "MIN", "value": 0.54840393791272}]' \
-    --namespace '5sp0aCvI' \
-    --userId 'q3aHVYIl' \
-    --additionalKey 'ewLRuHY8' \
+    --body '[{"additionalData": {"HY83bGj0": {}}, "statCode": "HTeeWXlI", "updateStrategy": "OVERRIDE", "value": 0.6843008472893907}]' \
+    --namespace 'idqctDpy' \
+    --userId 'gY0ax476' \
+    --additionalKey 'ED4MMO9T' \
     >$TEMP_FILE 2>&1
 update_status $? 'bulkUpdateUserStatItem2'
 delete_file $TEMP_FILE
 
-#- 68 updateUserStatItemValue1
+#- 69 updateUserStatItemValue1
 samples/cli/sample-apps Social updateUserStatItemValue1 \
-    --body '{"additionalData": {"3bGj0HTe": {}}, "updateStrategy": "OVERRIDE", "value": 0.7554043216031926}' \
-    --namespace 'lIcRidqc' \
-    --statCode 'tDpygY0a' \
-    --userId 'x476ED4M' \
-    --additionalKey 'MO9Tw2JH' \
+    --body '{"additionalData": {"w2JH0qhW": {}}, "updateStrategy": "MAX", "value": 0.5235086363368513}' \
+    --namespace 'TgzJFRYw' \
+    --statCode '6t1IKZLO' \
+    --userId '6V4Ode46' \
+    --additionalKey 'QmCidgdp' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateUserStatItemValue1'
 delete_file $TEMP_FILE

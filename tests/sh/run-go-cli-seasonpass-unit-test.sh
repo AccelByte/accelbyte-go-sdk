@@ -12,7 +12,7 @@ MODULE_PATH='../samples/cli'
 TEMP_TOKEN="/tmp/justice-sample-apps/userData"
 TEMP_FILE='file.tmp'
 
-OPERATIONS_COUNT=38
+OPERATIONS_COUNT=39
 
 FINISHED_COUNT=0
 SUCCESS_COUNT=0
@@ -58,338 +58,348 @@ rm -f $TEMP_TOKEN
 echo {"\"access_token"\":"\"foo"\"} >> $TEMP_TOKEN
 echo "1..$OPERATIONS_COUNT"
 
-#- 1 getPass
-samples/cli/sample-apps Seasonpass getPass \
-    --code 'FtBxyZcD' \
-    --namespace 'XBpGlsQu' \
-    --seasonId 'Ju8vMf0I' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getPass'
-delete_file $TEMP_FILE
-
-#- 2 deletePass
-samples/cli/sample-apps Seasonpass deletePass \
-    --code 'sJkTrd8I' \
-    --namespace 'DcV2zXnT' \
-    --seasonId 'KjXY1bPq' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deletePass'
-delete_file $TEMP_FILE
-
-#- 3 updatePass
-samples/cli/sample-apps Seasonpass updatePass \
-    --body '{"displayOrder": 1, "autoEnroll": false, "passItemId": "iBxx9Cs1", "localizations": {"8EY84ekI": {"title": "tqRzHU1o", "description": "h570KQBV"}}, "images": [{"as": "aewc72kr", "caption": "Sha68n3Y", "height": 26, "width": 29, "imageUrl": "zp1C2KmI", "smallImageUrl": "QTuBdNEU"}]}' \
-    --code 'sxFb8CJ1' \
-    --namespace '7M7DJZaM' \
-    --seasonId 'SxECbZby' \
-    >$TEMP_FILE 2>&1
-update_status $? 'updatePass'
-delete_file $TEMP_FILE
-
-#- 4 queryPasses
-samples/cli/sample-apps Seasonpass queryPasses \
-    --namespace 'gyoarORo' \
-    --seasonId 'eNHSb8Rh' \
-    >$TEMP_FILE 2>&1
-update_status $? 'queryPasses'
-delete_file $TEMP_FILE
-
-#- 5 createPass
-samples/cli/sample-apps Seasonpass createPass \
-    --body '{"code": "3kgs9qqJ", "displayOrder": 2, "autoEnroll": false, "passItemId": "QsoBgiVp", "localizations": {"P8Cm3yvA": {"title": "SUoxdxxF", "description": "qmAGTJ8I"}}, "images": [{"as": "EdagEtp4", "caption": "w29KOu9c", "height": 87, "width": 98, "imageUrl": "DqWHkkP8", "smallImageUrl": "npLEKMfj"}]}' \
-    --namespace 'iX7jpkVZ' \
-    --seasonId 'k3IaQYEm' \
-    >$TEMP_FILE 2>&1
-update_status $? 'createPass'
-delete_file $TEMP_FILE
-
-#- 6 getReward
-samples/cli/sample-apps Seasonpass getReward \
-    --code 'qGodOEGt' \
-    --namespace '9gPOj0c6' \
-    --seasonId 'i0JkvIas' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getReward'
-delete_file $TEMP_FILE
-
-#- 7 deleteReward
-samples/cli/sample-apps Seasonpass deleteReward \
-    --code '73ucYnFA' \
-    --namespace 'J3DK5T4E' \
-    --seasonId 'ogg0Y39U' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deleteReward'
-delete_file $TEMP_FILE
-
-#- 8 updateReward
-samples/cli/sample-apps Seasonpass updateReward \
-    --body '{"type": "ITEM", "itemId": "Ylpv5bVA", "currency": {"namespace": "gtsDhUTD", "currencyCode": "UscbQDjb"}, "quantity": 91, "image": {"as": "QuPMz2PT", "caption": "RlkyU89Z", "height": 82, "width": 80, "imageUrl": "w6zPFJ42", "smallImageUrl": "cwmzBBSM"}, "nullFields": ["NcoAAOjK"]}' \
-    --code 'NjfcYHm0' \
-    --namespace '93aYgBU1' \
-    --seasonId 'sqjyK0XH' \
-    >$TEMP_FILE 2>&1
-update_status $? 'updateReward'
-delete_file $TEMP_FILE
-
-#- 9 queryRewards
-samples/cli/sample-apps Seasonpass queryRewards \
-    --namespace '45PaRSOF' \
-    --seasonId 'QBtu23RE' \
-    --q 'Z8hRVX7L' \
-    >$TEMP_FILE 2>&1
-update_status $? 'queryRewards'
-delete_file $TEMP_FILE
-
-#- 10 createReward
-samples/cli/sample-apps Seasonpass createReward \
-    --body '{"code": "GOvDdYiQ", "type": "ITEM", "itemId": "7mV1C91p", "currency": {"namespace": "jG9gpxL6", "currencyCode": "ycTQdvln"}, "quantity": 74, "image": {"as": "AuSQWEXL", "caption": "6LFE1YHo", "height": 25, "width": 96, "imageUrl": "c8hHtWvb", "smallImageUrl": "NYqgUqsl"}}' \
-    --namespace 'ArFPiHUI' \
-    --seasonId 'vaCv8kU9' \
-    >$TEMP_FILE 2>&1
-update_status $? 'createReward'
-delete_file $TEMP_FILE
-
-#- 11 unpublishSeason
-samples/cli/sample-apps Seasonpass unpublishSeason \
-    --namespace 'dBBpdsJL' \
-    --seasonId 'hsVyExrk' \
-    --force 'True' \
-    >$TEMP_FILE 2>&1
-update_status $? 'unpublishSeason'
-delete_file $TEMP_FILE
-
-#- 12 getSeason
-samples/cli/sample-apps Seasonpass getSeason \
-    --namespace 'oot0B7WO' \
-    --seasonId 'fercZdpM' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getSeason'
-delete_file $TEMP_FILE
-
-#- 13 deleteSeason
-samples/cli/sample-apps Seasonpass deleteSeason \
-    --namespace 'ci37Ds7Y' \
-    --seasonId 'SfExaI3u' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deleteSeason'
-delete_file $TEMP_FILE
-
-#- 14 updateSeason
-samples/cli/sample-apps Seasonpass updateSeason \
-    --body '{"name": "zLteMbFA", "start": "1976-06-06T00:00:00Z", "end": "1999-02-22T00:00:00Z", "defaultLanguage": "r7HmOYiB", "defaultRequiredExp": 53, "draftStoreId": "5ltAOXml", "tierItemId": "G6eh1dTd", "autoClaim": false, "excessStrategy": {"method": "CURRENCY", "currency": "pBIcuC1d", "percentPerExp": 85}, "localizations": {"Y93OJnJ6": {"title": "Te9vD8ld", "description": "z7Hu8AD7"}}, "images": [{"as": "9kdWunvi", "caption": "zU0q1pHy", "height": 15, "width": 15, "imageUrl": "ERoGgdry", "smallImageUrl": "sMizBGSR"}]}' \
-    --namespace 'dP2l7DNS' \
-    --seasonId 'Z8Aq0XiP' \
-    >$TEMP_FILE 2>&1
-update_status $? 'updateSeason'
-delete_file $TEMP_FILE
-
-#- 15 cloneSeason
-samples/cli/sample-apps Seasonpass cloneSeason \
-    --body '{"name": "LQXSe07Z", "start": "1972-01-27T00:00:00Z", "end": "1991-09-17T00:00:00Z"}' \
-    --namespace 'TMlJjBwj' \
-    --seasonId '9HJHQKse' \
-    >$TEMP_FILE 2>&1
-update_status $? 'cloneSeason'
-delete_file $TEMP_FILE
-
-#- 16 querySeasons
+#- 1 querySeasons
 samples/cli/sample-apps Seasonpass querySeasons \
-    --namespace 'EdSXRDSv' \
-    --limit '13' \
-    --offset '41' \
+    --namespace 'FtBxyZcD' \
+    --limit '98' \
+    --offset '55' \
     --status '["DRAFT"]' \
     >$TEMP_FILE 2>&1
 update_status $? 'querySeasons'
 delete_file $TEMP_FILE
 
-#- 17 createSeason
+#- 2 createSeason
 samples/cli/sample-apps Seasonpass createSeason \
-    --body '{"name": "uw1xT7eM", "start": "1982-12-17T00:00:00Z", "end": "1976-11-01T00:00:00Z", "defaultLanguage": "LH0NnTJ2", "defaultRequiredExp": 41, "draftStoreId": "lNzBvwJa", "tierItemId": "Qa547Jll", "autoClaim": true, "excessStrategy": {"method": "CURRENCY", "currency": "8RWSpabU", "percentPerExp": 39}, "localizations": {"7xk6QxyW": {"title": "hfqoWfJw", "description": "2o8oWUqv"}}, "images": [{"as": "PCZ2HzT7", "caption": "NXmWDlXs", "height": 41, "width": 79, "imageUrl": "IdQJR5ls", "smallImageUrl": "NOlvkfwa"}]}' \
-    --namespace 'SbnsuLCg' \
+    --body '{"autoClaim": false, "defaultLanguage": "sQuJu8vM", "defaultRequiredExp": 10, "draftStoreId": "0IsJkTrd", "end": "1988-08-24T00:00:00Z", "excessStrategy": {"currency": "cV2zXnTK", "method": "NONE", "percentPerExp": 99}, "images": [{"as": "Y1bPqami", "caption": "Bxx9Cs18", "height": 61, "imageUrl": "Y84ekItq", "smallImageUrl": "RzHU1oh5", "width": 72}], "localizations": {"QBVaewc7": {"description": "2krSha68", "title": "n3Ynozp1"}}, "name": "C2KmIQTu", "start": "1984-01-23T00:00:00Z", "tierItemId": "NEUsxFb8"}' \
+    --namespace 'CJ17M7DJ' \
     >$TEMP_FILE 2>&1
 update_status $? 'createSeason'
 delete_file $TEMP_FILE
 
-#- 18 retireSeason
+#- 3 getCurrentSeason
+samples/cli/sample-apps Seasonpass getCurrentSeason \
+    --namespace 'ZaMSxECb' \
+    >$TEMP_FILE 2>&1
+update_status $? 'getCurrentSeason'
+delete_file $TEMP_FILE
+
+#- 4 getSeason
+samples/cli/sample-apps Seasonpass getSeason \
+    --namespace 'Zbygyoar' \
+    --seasonId 'ORoeNHSb' \
+    >$TEMP_FILE 2>&1
+update_status $? 'getSeason'
+delete_file $TEMP_FILE
+
+#- 5 deleteSeason
+samples/cli/sample-apps Seasonpass deleteSeason \
+    --namespace '8Rh3kgs9' \
+    --seasonId 'qqJbnQso' \
+    >$TEMP_FILE 2>&1
+update_status $? 'deleteSeason'
+delete_file $TEMP_FILE
+
+#- 6 updateSeason
+samples/cli/sample-apps Seasonpass updateSeason \
+    --body '{"autoClaim": true, "defaultLanguage": "giVpP8Cm", "defaultRequiredExp": 49, "draftStoreId": "vASUoxdx", "end": "1982-09-09T00:00:00Z", "excessStrategy": {"currency": "qmAGTJ8I", "method": "CURRENCY", "percentPerExp": 6}, "images": [{"as": "agEtp4w2", "caption": "9KOu9c19", "height": 87, "imageUrl": "6XDqWHkk", "smallImageUrl": "P8npLEKM", "width": 11}], "localizations": {"jiX7jpkV": {"description": "Zk3IaQYE", "title": "mqGodOEG"}}, "name": "t9gPOj0c", "start": "1975-10-10T00:00:00Z", "tierItemId": "kvIas73u"}' \
+    --namespace 'cYnFAJ3D' \
+    --seasonId 'K5T4Eogg' \
+    >$TEMP_FILE 2>&1
+update_status $? 'updateSeason'
+delete_file $TEMP_FILE
+
+#- 7 cloneSeason
+samples/cli/sample-apps Seasonpass cloneSeason \
+    --body '{"end": "1997-04-22T00:00:00Z", "name": "Ylpv5bVA", "start": "1974-06-05T00:00:00Z"}' \
+    --namespace 'sDhUTDUs' \
+    --seasonId 'cbQDjbTQ' \
+    >$TEMP_FILE 2>&1
+update_status $? 'cloneSeason'
+delete_file $TEMP_FILE
+
+#- 8 queryPasses
+samples/cli/sample-apps Seasonpass queryPasses \
+    --namespace 'uPMz2PTR' \
+    --seasonId 'lkyU89ZP' \
+    >$TEMP_FILE 2>&1
+update_status $? 'queryPasses'
+delete_file $TEMP_FILE
+
+#- 9 createPass
+samples/cli/sample-apps Seasonpass createPass \
+    --body '{"autoEnroll": true, "code": "6zPFJ42c", "displayOrder": 45, "images": [{"as": "mzBBSMNc", "caption": "oAAOjKNj", "height": 11, "imageUrl": "cYHm093a", "smallImageUrl": "YgBU1sqj", "width": 49}], "localizations": {"K0XH45Pa": {"description": "RSOFQBtu", "title": "23REZ8hR"}}, "passItemId": "VX7LGOvD"}' \
+    --namespace 'dYiQS9i7' \
+    --seasonId 'mV1C91pj' \
+    >$TEMP_FILE 2>&1
+update_status $? 'createPass'
+delete_file $TEMP_FILE
+
+#- 10 getPass
+samples/cli/sample-apps Seasonpass getPass \
+    --code 'G9gpxL6y' \
+    --namespace 'cTQdvln2' \
+    --seasonId 'LAuSQWEX' \
+    >$TEMP_FILE 2>&1
+update_status $? 'getPass'
+delete_file $TEMP_FILE
+
+#- 11 deletePass
+samples/cli/sample-apps Seasonpass deletePass \
+    --code 'L6LFE1YH' \
+    --namespace 'o9m126ZW' \
+    --seasonId 'c8hHtWvb' \
+    >$TEMP_FILE 2>&1
+update_status $? 'deletePass'
+delete_file $TEMP_FILE
+
+#- 12 updatePass
+samples/cli/sample-apps Seasonpass updatePass \
+    --body '{"autoEnroll": true, "displayOrder": 12, "images": [{"as": "UqslArFP", "caption": "iHUIvaCv", "height": 20, "imageUrl": "U9dBBpds", "smallImageUrl": "JLhsVyEx", "width": 35}], "localizations": {"kxoot0B7": {"description": "WOfercZd", "title": "pMci37Ds"}}, "passItemId": "7YSfExaI"}' \
+    --code '3uzLteMb' \
+    --namespace 'FAlt4hr7' \
+    --seasonId 'HmOYiBA5' \
+    >$TEMP_FILE 2>&1
+update_status $? 'updatePass'
+delete_file $TEMP_FILE
+
+#- 13 publishSeason
+samples/cli/sample-apps Seasonpass publishSeason \
+    --namespace 'ltAOXmlG' \
+    --seasonId '6eh1dTdo' \
+    >$TEMP_FILE 2>&1
+update_status $? 'publishSeason'
+delete_file $TEMP_FILE
+
+#- 14 retireSeason
 samples/cli/sample-apps Seasonpass retireSeason \
-    --namespace 'ToxuVTek' \
-    --seasonId 'Jgvg6h5H' \
+    --namespace 'TFpBIcuC' \
+    --seasonId '1dQY93OJ' \
     --force 'False' \
     >$TEMP_FILE 2>&1
 update_status $? 'retireSeason'
 delete_file $TEMP_FILE
 
-#- 19 publishSeason
-samples/cli/sample-apps Seasonpass publishSeason \
-    --namespace 'H0DviplE' \
-    --seasonId 'k4vj3LDp' \
+#- 15 queryRewards
+samples/cli/sample-apps Seasonpass queryRewards \
+    --namespace 'J6Te9vD8' \
+    --seasonId 'ldz7Hu8A' \
+    --q 'D79kdWun' \
     >$TEMP_FILE 2>&1
-update_status $? 'publishSeason'
+update_status $? 'queryRewards'
 delete_file $TEMP_FILE
 
-#- 20 getCurrentSeason
-samples/cli/sample-apps Seasonpass getCurrentSeason \
-    --namespace '4yqDt8QU' \
+#- 16 createReward
+samples/cli/sample-apps Seasonpass createReward \
+    --body '{"code": "vizU0q1p", "currency": {"currencyCode": "HyhhERoG", "namespace": "gdrysMiz"}, "image": {"as": "BGSRdP2l", "caption": "7DNSZ8Aq", "height": 98, "imageUrl": "iPLQXSe0", "smallImageUrl": "7ZddOGTM", "width": 23}, "itemId": "JjBwj9HJ", "quantity": 66, "type": "CURRENCY"}' \
+    --namespace 'eEdSXRDS' \
+    --seasonId 'vguauw1x' \
     >$TEMP_FILE 2>&1
-update_status $? 'getCurrentSeason'
+update_status $? 'createReward'
 delete_file $TEMP_FILE
 
-#- 21 updateTier
-samples/cli/sample-apps Seasonpass updateTier \
-    --body '{"requiredExp": 59, "rewards": {"pxlHasin": ["GcjrkmRM"]}}' \
-    --id 'ttgjDSaI' \
-    --namespace 'VBmft3Ud' \
-    --seasonId 'g7p9PGmY' \
+#- 17 getReward
+samples/cli/sample-apps Seasonpass getReward \
+    --code 'T7eMwSl9' \
+    --namespace 'MLH0NnTJ' \
+    --seasonId '2ulNzBvw' \
     >$TEMP_FILE 2>&1
-update_status $? 'updateTier'
+update_status $? 'getReward'
 delete_file $TEMP_FILE
 
-#- 22 deleteTier
-samples/cli/sample-apps Seasonpass deleteTier \
-    --id '2H5kX4Ms' \
-    --namespace 'isSX28nA' \
-    --seasonId 'RxWRpv5o' \
+#- 18 deleteReward
+samples/cli/sample-apps Seasonpass deleteReward \
+    --code 'JaQa547J' \
+    --namespace 'llvA8RWS' \
+    --seasonId 'pabUt7xk' \
     >$TEMP_FILE 2>&1
-update_status $? 'deleteTier'
+update_status $? 'deleteReward'
 delete_file $TEMP_FILE
 
-#- 23 queryTiers
+#- 19 updateReward
+samples/cli/sample-apps Seasonpass updateReward \
+    --body '{"currency": {"currencyCode": "6QxyWhfq", "namespace": "oWfJw2o8"}, "image": {"as": "oWUqvPCZ", "caption": "2HzT7NXm", "height": 96, "imageUrl": "DlXsuNId", "smallImageUrl": "QJR5lsNO", "width": 23}, "itemId": "vkfwaSbn", "nullFields": ["suLCgTox"], "quantity": 41, "type": "ITEM"}' \
+    --code 'kJgvg6h5' \
+    --namespace 'HIpH0Dvi' \
+    --seasonId 'plEk4vj3' \
+    >$TEMP_FILE 2>&1
+update_status $? 'updateReward'
+delete_file $TEMP_FILE
+
+#- 20 queryTiers
 samples/cli/sample-apps Seasonpass queryTiers \
-    --namespace 'u5xtvd28' \
-    --seasonId 'OUfCt8UJ' \
-    --limit '57' \
-    --offset '10' \
+    --namespace 'LDp4yqDt' \
+    --seasonId '8QUZDpxl' \
+    --limit '67' \
+    --offset '1' \
     >$TEMP_FILE 2>&1
 update_status $? 'queryTiers'
 delete_file $TEMP_FILE
 
-#- 24 createTier
+#- 21 createTier
 samples/cli/sample-apps Seasonpass createTier \
-    --body '{"index": 23, "quantity": 79, "tier": {"requiredExp": 48, "rewards": {"j6HsTtX8": ["P3llnaaS"]}}}' \
-    --namespace '9lqyygPc' \
-    --seasonId 'fkJIxfQZ' \
+    --body '{"index": 36, "quantity": 16, "tier": {"requiredExp": 27, "rewards": {"GcjrkmRM": ["ttgjDSaI"]}}}' \
+    --namespace 'VBmft3Ud' \
+    --seasonId 'g7p9PGmY' \
     >$TEMP_FILE 2>&1
 update_status $? 'createTier'
 delete_file $TEMP_FILE
 
-#- 25 existsAnyPassByPassCodes
-samples/cli/sample-apps Seasonpass existsAnyPassByPassCodes \
-    --namespace 'za8kNVbD' \
-    --userId 'xVMq7HJk' \
-    --passCodes '["0F89xAc3"]' \
+#- 22 updateTier
+samples/cli/sample-apps Seasonpass updateTier \
+    --body '{"requiredExp": 67, "rewards": {"5kX4Msis": ["SX28nARx"]}}' \
+    --id 'WRpv5ou5' \
+    --namespace 'xtvd28OU' \
+    --seasonId 'fCt8UJC5' \
     >$TEMP_FILE 2>&1
-update_status $? 'existsAnyPassByPassCodes'
+update_status $? 'updateTier'
 delete_file $TEMP_FILE
 
-#- 26 grantUserTier
-samples/cli/sample-apps Seasonpass grantUserTier \
-    --body '{"count": 100}' \
-    --namespace 'VfaENtrl' \
-    --userId '0pTKZTXq' \
+#- 23 deleteTier
+samples/cli/sample-apps Seasonpass deleteTier \
+    --id 'flNyj6Hs' \
+    --namespace 'TtX8P3ll' \
+    --seasonId 'naaS9lqy' \
     >$TEMP_FILE 2>&1
-update_status $? 'grantUserTier'
+update_status $? 'deleteTier'
 delete_file $TEMP_FILE
 
-#- 27 getUserSeason
-samples/cli/sample-apps Seasonpass getUserSeason \
-    --namespace 'zHuBMYQS' \
-    --seasonId 'A2jz1ZOp' \
-    --userId 'dOjSyMdd' \
+#- 24 reorderTier
+samples/cli/sample-apps Seasonpass reorderTier \
+    --body '{"newIndex": 48}' \
+    --id 'gPcfkJIx' \
+    --namespace 'fQZza8kN' \
+    --seasonId 'VbDxVMq7' \
     >$TEMP_FILE 2>&1
-update_status $? 'getUserSeason'
+update_status $? 'reorderTier'
 delete_file $TEMP_FILE
 
-#- 28 checkSeasonPurchasable
-samples/cli/sample-apps Seasonpass checkSeasonPurchasable \
-    --body '{"passItemId": "B41JuMf7", "tierItemId": "RUyBHRj8", "tierItemCount": 68}' \
-    --namespace 'iRimRllH' \
-    --userId 'T6Dc40vF' \
+#- 25 unpublishSeason
+samples/cli/sample-apps Seasonpass unpublishSeason \
+    --namespace 'HJk0F89x' \
+    --seasonId 'Ac3YVfaE' \
+    --force 'True' \
     >$TEMP_FILE 2>&1
-update_status $? 'checkSeasonPurchasable'
+update_status $? 'unpublishSeason'
 delete_file $TEMP_FILE
 
-#- 29 getCurrentUserSeasonProgression
-samples/cli/sample-apps Seasonpass getCurrentUserSeasonProgression \
-    --namespace 'FA6gpU7E' \
-    --userId 'W3x1dCpm' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getCurrentUserSeasonProgression'
-delete_file $TEMP_FILE
-
-#- 30 resetUserSeason
-samples/cli/sample-apps Seasonpass resetUserSeason \
-    --namespace '55gOeqQI' \
-    --userId 'qcJVKmBM' \
-    >$TEMP_FILE 2>&1
-update_status $? 'resetUserSeason'
-delete_file $TEMP_FILE
-
-#- 31 grantUserPass
-samples/cli/sample-apps Seasonpass grantUserPass \
-    --body '{"passItemId": "1J1IbuTr", "passCode": "rkbmuT1w"}' \
-    --namespace 'hOqmEnDX' \
-    --userId 'IWrBPlSa' \
-    >$TEMP_FILE 2>&1
-update_status $? 'grantUserPass'
-delete_file $TEMP_FILE
-
-#- 32 getUserParticipatedSeasons
+#- 26 getUserParticipatedSeasons
 samples/cli/sample-apps Seasonpass getUserParticipatedSeasons \
-    --namespace 'y46mv71B' \
-    --userId 'AZAOjtFJ' \
-    --limit '42' \
-    --offset '25' \
+    --namespace 'rl0pTKZT' \
+    --userId 'XqzHuBMY' \
+    --limit '85' \
+    --offset '88' \
     >$TEMP_FILE 2>&1
 update_status $? 'getUserParticipatedSeasons'
 delete_file $TEMP_FILE
 
-#- 33 grantUserExp
+#- 27 grantUserExp
 samples/cli/sample-apps Seasonpass grantUserExp \
-    --body '{"exp": 91}' \
-    --namespace 'j7tT7TZH' \
-    --userId 'WDdCkIsZ' \
+    --body '{"exp": 52}' \
+    --namespace '2jz1ZOpd' \
+    --userId 'OjSyMddB' \
     >$TEMP_FILE 2>&1
 update_status $? 'grantUserExp'
 delete_file $TEMP_FILE
 
-#- 34 publicGetCurrentSeason
+#- 28 grantUserPass
+samples/cli/sample-apps Seasonpass grantUserPass \
+    --body '{"passCode": "41JuMf7R", "passItemId": "UyBHRj8I"}' \
+    --namespace 'iRimRllH' \
+    --userId 'T6Dc40vF' \
+    >$TEMP_FILE 2>&1
+update_status $? 'grantUserPass'
+delete_file $TEMP_FILE
+
+#- 29 existsAnyPassByPassCodes
+samples/cli/sample-apps Seasonpass existsAnyPassByPassCodes \
+    --namespace 'FA6gpU7E' \
+    --userId 'W3x1dCpm' \
+    --passCodes '["55gOeqQI"]' \
+    >$TEMP_FILE 2>&1
+update_status $? 'existsAnyPassByPassCodes'
+delete_file $TEMP_FILE
+
+#- 30 getCurrentUserSeasonProgression
+samples/cli/sample-apps Seasonpass getCurrentUserSeasonProgression \
+    --namespace 'qcJVKmBM' \
+    --userId '1J1IbuTr' \
+    >$TEMP_FILE 2>&1
+update_status $? 'getCurrentUserSeasonProgression'
+delete_file $TEMP_FILE
+
+#- 31 checkSeasonPurchasable
+samples/cli/sample-apps Seasonpass checkSeasonPurchasable \
+    --body '{"passItemId": "rkbmuT1w", "tierItemCount": 15, "tierItemId": "OqmEnDXI"}' \
+    --namespace 'WrBPlSay' \
+    --userId '46mv71BA' \
+    >$TEMP_FILE 2>&1
+update_status $? 'checkSeasonPurchasable'
+delete_file $TEMP_FILE
+
+#- 32 resetUserSeason
+samples/cli/sample-apps Seasonpass resetUserSeason \
+    --namespace 'ZAOjtFJ2' \
+    --userId 'vmTj7tT7' \
+    >$TEMP_FILE 2>&1
+update_status $? 'resetUserSeason'
+delete_file $TEMP_FILE
+
+#- 33 grantUserTier
+samples/cli/sample-apps Seasonpass grantUserTier \
+    --body '{"count": 90}' \
+    --namespace 'ZHWDdCkI' \
+    --userId 'sZoArWwP' \
+    >$TEMP_FILE 2>&1
+update_status $? 'grantUserTier'
+delete_file $TEMP_FILE
+
+#- 34 getUserSeason
+samples/cli/sample-apps Seasonpass getUserSeason \
+    --namespace 'HcyFAdAt' \
+    --seasonId 'YciLIgRw' \
+    --userId 'FRr0gwB9' \
+    >$TEMP_FILE 2>&1
+update_status $? 'getUserSeason'
+delete_file $TEMP_FILE
+
+#- 35 publicGetCurrentSeason
 samples/cli/sample-apps Seasonpass publicGetCurrentSeason \
-    --namespace 'oArWwPHc' \
-    --language 'yFAdAtYc' \
+    --namespace 'tz3vp99X' \
+    --language 'VlV8rK3t' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetCurrentSeason'
 delete_file $TEMP_FILE
 
-#- 35 publicClaimUserReward
-samples/cli/sample-apps Seasonpass publicClaimUserReward \
-    --body '{"passCode": "iLIgRwFR", "tierIndex": 35, "rewardCode": "0gwB9tz3"}' \
-    --namespace 'vp99XVlV' \
-    --userId '8rK3tE6n' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicClaimUserReward'
-delete_file $TEMP_FILE
-
 #- 36 publicGetCurrentUserSeason
 samples/cli/sample-apps Seasonpass publicGetCurrentUserSeason \
-    --namespace '0smip1tw' \
-    --userId '3L7cUd9p' \
+    --namespace 'E6n0smip' \
+    --userId '1tw3L7cU' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetCurrentUserSeason'
 delete_file $TEMP_FILE
 
-#- 37 publicBulkClaimUserRewards
+#- 37 publicClaimUserReward
+samples/cli/sample-apps Seasonpass publicClaimUserReward \
+    --body '{"passCode": "d9pqtv6J", "rewardCode": "fPZwcCVO", "tierIndex": 98}' \
+    --namespace 'cVa80TmC' \
+    --userId 'wtD2lAH0' \
+    >$TEMP_FILE 2>&1
+update_status $? 'publicClaimUserReward'
+delete_file $TEMP_FILE
+
+#- 38 publicBulkClaimUserRewards
 samples/cli/sample-apps Seasonpass publicBulkClaimUserRewards \
-    --namespace 'qtv6JfPZ' \
-    --userId 'wcCVOXcV' \
+    --namespace '1o6NdcBI' \
+    --userId 'gzrDyWpF' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicBulkClaimUserRewards'
 delete_file $TEMP_FILE
 
-#- 38 publicGetUserSeason
+#- 39 publicGetUserSeason
 samples/cli/sample-apps Seasonpass publicGetUserSeason \
-    --namespace 'a80TmCwt' \
-    --seasonId 'D2lAH01o' \
-    --userId '6NdcBIgz' \
+    --namespace 'BYGmmBaw' \
+    --seasonId 'MyoKyNpd' \
+    --userId 'Aasm8xwU' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetUserSeason'
 delete_file $TEMP_FILE

@@ -95,6 +95,7 @@ update_status $? 'getActions'
 delete_file $TEMP_FILE
 
 #- 6 banUsers
+# XXX: temporarily disabled
 #samples/cli/sample-apps Basic banUsers \
 #    --body '{"actionId": 3, "comment": "PqamiBxx", "userIds": ["9Cs18EY8"]}' \
 #    --namespace '4ekItqRz' \
@@ -111,6 +112,7 @@ update_status $? 'getBannedUsers'
 delete_file $TEMP_FILE
 
 #- 8 reportUser
+# XXX: temporarily disabled
 #samples/cli/sample-apps Basic reportUser \
 #    --body '{"category": "72krSha6", "description": "8n3Ynozp", "gameSessionId": "1C2KmIQT", "subcategory": "uBdNEUsx", "userId": "Fb8CJ17M"}' \
 #    --namespace '7DJZaMSx' \
@@ -127,6 +129,7 @@ update_status $? 'getUserStatus'
 delete_file $TEMP_FILE
 
 #- 10 unBanUsers
+# XXX: temporarily disabled
 #samples/cli/sample-apps Basic unBanUsers \
 #    --body '{"comment": "HSb8Rh3k", "userIds": ["gs9qqJbn"]}' \
 #    --namespace 'QsoBgiVp' \
@@ -434,6 +437,7 @@ update_status $? 'updateMyZipCode'
 delete_file $TEMP_FILE
 
 #- 49 publicReportUser
+# XXX: temporarily disabled
 #samples/cli/sample-apps Basic publicReportUser \
 #    --body '{"category": "S9lqyygP", "description": "cfkJIxfQ", "gameSessionId": "Zza8kNVb", "subcategory": "DxVMq7HJ", "userId": "k0F89xAc"}' \
 #    --namespace '3YVfaENt' \

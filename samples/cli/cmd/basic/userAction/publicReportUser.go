@@ -26,7 +26,7 @@ var PublicReportUserCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
 		input := &user_action.PublicReportUserParams{
-			// XXX : empty userIds for workaround to handle the weird the response entity. It didn't accept 204
+			// XXX: empty body for workaround to handle the weird the response entity. It didn't accept 204
 			Body:      nil,
 			Namespace: namespace,
 			UserID:    userId,

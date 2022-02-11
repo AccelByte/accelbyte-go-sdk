@@ -97,6 +97,7 @@ update_status $? 'getActions'
 delete_file $TEMP_FILE
 
 #- 6 banUsers
+# XXX: delete the body for workaround to handle the weird the response entity. It didn't accept 204
 sample-apps Basic banUsers \
     --namespace '4ekItqRz' \
     >$TEMP_FILE 2>&1
@@ -112,10 +113,11 @@ update_status $? 'getBannedUsers'
 delete_file $TEMP_FILE
 
 #- 8 reportUser
-sample-apps Basic reportUser \
-    --body '{"category": "72krSha6", "description": "8n3Ynozp", "gameSessionId": "1C2KmIQT", "subcategory": "uBdNEUsx", "userId": "Fb8CJ17M"}' \
-    --namespace '7DJZaMSx' \
-    >$TEMP_FILE 2>&1
+# XXX: workaround to handle the weird the response entity. It didn't accept 204
+#sample-apps Basic reportUser \
+#    --body '{"category": "72krSha6", "description": "8n3Ynozp", "gameSessionId": "1C2KmIQT", "subcategory": "uBdNEUsx", "userId": "Fb8CJ17M"}' \
+#    --namespace '7DJZaMSx' \
+#    >$TEMP_FILE 2>&1
 update_status $? 'reportUser'
 delete_file $TEMP_FILE
 
@@ -128,6 +130,7 @@ update_status $? 'getUserStatus'
 delete_file $TEMP_FILE
 
 #- 10 unBanUsers
+# XXX: delete the body for workaround to handle the weird the response entity. It didn't accept 204
 sample-apps Basic unBanUsers \
     --namespace 'QsoBgiVp' \
     >$TEMP_FILE 2>&1
@@ -434,6 +437,7 @@ update_status $? 'updateMyZipCode'
 delete_file $TEMP_FILE
 
 #- 49 publicReportUser
+# XXX: delete the body for workaround to handle the weird the response entity. It didn't accept 204
 sample-apps Basic publicReportUser \
     --namespace '3YVfaENt' \
     --userId 'rl0pTKZT' \

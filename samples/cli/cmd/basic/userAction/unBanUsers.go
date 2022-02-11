@@ -25,7 +25,7 @@ var UnBanUsersCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		input := &user_action.UnBanUsersParams{
-			// XXX : empty userIds for workaround to handle the weird the response entity. It didn't accept 204
+			// XXX: empty body for workaround to handle the weird the response entity. It didn't accept 204
 			Body:      nil,
 			Namespace: namespace,
 		}

@@ -41,6 +41,10 @@ type ModelsConfigExport struct {
 	// Required: true
 	ConcurrentUsersLimit *int32 `json:"concurrentUsersLimit"`
 
+	// disable party invitation token
+	// Required: true
+	DisablePartyInvitationToken *bool `json:"disablePartyInvitationToken"`
+
 	// enable chat
 	// Required: true
 	EnableChat *bool `json:"enableChat"`
@@ -103,6 +107,10 @@ func (m *ModelsConfigExport) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateConcurrentUsersLimit(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDisablePartyInvitationToken(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -196,6 +204,15 @@ func (m *ModelsConfigExport) validateChatRateLimitDuration(formats strfmt.Regist
 func (m *ModelsConfigExport) validateConcurrentUsersLimit(formats strfmt.Registry) error {
 
 	if err := validate.Required("concurrentUsersLimit", "body", m.ConcurrentUsersLimit); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsConfigExport) validateDisablePartyInvitationToken(formats strfmt.Registry) error {
+
+	if err := validate.Required("disablePartyInvitationToken", "body", m.DisablePartyInvitationToken); err != nil {
 		return err
 	}
 

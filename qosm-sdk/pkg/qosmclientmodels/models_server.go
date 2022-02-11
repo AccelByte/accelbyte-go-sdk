@@ -28,7 +28,7 @@ type ModelsServer struct {
 	// last update
 	// Required: true
 	// Format: date-time
-	LastUpdate *strfmt.DateTime `json:"last_update"`
+	LastUpdate strfmt.DateTime `json:"last_update"`
 
 	// port
 	// Required: true
@@ -97,7 +97,7 @@ func (m *ModelsServer) validateIP(formats strfmt.Registry) error {
 
 func (m *ModelsServer) validateLastUpdate(formats strfmt.Registry) error {
 
-	if err := validate.Required("last_update", "body", m.LastUpdate); err != nil {
+	if err := validate.Required("last_update", "body", strfmt.DateTime(m.LastUpdate)); err != nil {
 		return err
 	}
 

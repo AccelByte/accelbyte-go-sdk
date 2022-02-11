@@ -22,7 +22,7 @@ type CurrencyInfo struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// currency code, alphabet uppercase
 	// Required: true
@@ -51,7 +51,7 @@ type CurrencyInfo struct {
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 }
 
 // Validate validates this currency info
@@ -94,7 +94,7 @@ func (m *CurrencyInfo) Validate(formats strfmt.Registry) error {
 
 func (m *CurrencyInfo) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -186,7 +186,7 @@ func (m *CurrencyInfo) validateNamespace(formats strfmt.Registry) error {
 
 func (m *CurrencyInfo) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

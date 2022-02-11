@@ -27,7 +27,7 @@ type EntitlementHistoryInfo struct {
 	// History create time
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// The id of entitlement
 	// Required: true
@@ -44,7 +44,7 @@ type EntitlementHistoryInfo struct {
 	// History update time
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 
 	// The use count of a consumable entitlement.
 	UseCount int32 `json:"useCount,omitempty"`
@@ -149,7 +149,7 @@ func (m *EntitlementHistoryInfo) validateAction(formats strfmt.Registry) error {
 
 func (m *EntitlementHistoryInfo) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -189,7 +189,7 @@ func (m *EntitlementHistoryInfo) validateOperator(formats strfmt.Registry) error
 
 func (m *EntitlementHistoryInfo) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

@@ -21,11 +21,11 @@ type SubscriptionSummary struct {
 
 	// current period end
 	// Format: date-time
-	CurrentPeriodEnd strfmt.DateTime `json:"currentPeriodEnd,omitempty"`
+	CurrentPeriodEnd *strfmt.DateTime `json:"currentPeriodEnd,omitempty"`
 
 	// current period start
 	// Format: date-time
-	CurrentPeriodStart strfmt.DateTime `json:"currentPeriodStart,omitempty"`
+	CurrentPeriodStart *strfmt.DateTime `json:"currentPeriodStart,omitempty"`
 
 	// subscription id
 	// Required: true

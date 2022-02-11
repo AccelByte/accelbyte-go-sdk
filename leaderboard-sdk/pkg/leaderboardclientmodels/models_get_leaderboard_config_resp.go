@@ -23,7 +23,7 @@ type ModelsGetLeaderboardConfigResp struct {
 
 	// deleted at
 	// Format: date-time
-	DeletedAt strfmt.DateTime `json:"deletedAt,omitempty"`
+	DeletedAt *strfmt.DateTime `json:"deletedAt,omitempty"`
 
 	// descending
 	// Required: true

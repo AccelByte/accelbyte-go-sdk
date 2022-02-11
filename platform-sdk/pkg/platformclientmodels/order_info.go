@@ -21,24 +21,24 @@ type OrderInfo struct {
 
 	// The time of the order chargeback reversed
 	// Format: date-time
-	ChargebackReversedTime strfmt.DateTime `json:"chargebackReversedTime,omitempty"`
+	ChargebackReversedTime *strfmt.DateTime `json:"chargebackReversedTime,omitempty"`
 
 	// The time of the order chargeback
 	// Format: date-time
-	ChargebackTime strfmt.DateTime `json:"chargebackTime,omitempty"`
+	ChargebackTime *strfmt.DateTime `json:"chargebackTime,omitempty"`
 
 	// The time of the order charged
 	// Format: date-time
-	ChargedTime strfmt.DateTime `json:"chargedTime,omitempty"`
+	ChargedTime *strfmt.DateTime `json:"chargedTime,omitempty"`
 
 	// createdAt
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// The time of the order created
 	// Format: date-time
-	CreatedTime strfmt.DateTime `json:"createdTime,omitempty"`
+	CreatedTime *strfmt.DateTime `json:"createdTime,omitempty"`
 
 	// Order currency info
 	// Required: true
@@ -51,14 +51,14 @@ type OrderInfo struct {
 	// payment expire time
 	// Required: true
 	// Format: date-time
-	ExpireTime *strfmt.DateTime `json:"expireTime"`
+	ExpireTime strfmt.DateTime `json:"expireTime"`
 
 	// extra field to store external order information
 	Ext map[string]interface{} `json:"ext,omitempty"`
 
 	// The time of the order fulfilled
 	// Format: date-time
-	FulfilledTime strfmt.DateTime `json:"fulfilledTime,omitempty"`
+	FulfilledTime *strfmt.DateTime `json:"fulfilledTime,omitempty"`
 
 	// Item id
 	// Required: true
@@ -111,7 +111,7 @@ type OrderInfo struct {
 
 	// The time of the order refunded
 	// Format: date-time
-	RefundedTime strfmt.DateTime `json:"refundedTime,omitempty"`
+	RefundedTime *strfmt.DateTime `json:"refundedTime,omitempty"`
 
 	// Order created region
 	Region string `json:"region,omitempty"`
@@ -146,7 +146,7 @@ type OrderInfo struct {
 	// updatedAt
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 
 	// User id
 	// Required: true
@@ -295,7 +295,7 @@ func (m *OrderInfo) validateChargedTime(formats strfmt.Registry) error {
 
 func (m *OrderInfo) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -348,7 +348,7 @@ func (m *OrderInfo) validateDiscountedPrice(formats strfmt.Registry) error {
 
 func (m *OrderInfo) validateExpireTime(formats strfmt.Registry) error {
 
-	if err := validate.Required("expireTime", "body", m.ExpireTime); err != nil {
+	if err := validate.Required("expireTime", "body", strfmt.DateTime(m.ExpireTime)); err != nil {
 		return err
 	}
 
@@ -599,7 +599,7 @@ func (m *OrderInfo) validateStatus(formats strfmt.Registry) error {
 
 func (m *OrderInfo) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

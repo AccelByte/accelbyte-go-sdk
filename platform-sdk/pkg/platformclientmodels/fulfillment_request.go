@@ -24,7 +24,7 @@ type FulfillmentRequest struct {
 
 	// end date time
 	// Format: date-time
-	EndDate strfmt.DateTime `json:"endDate,omitempty"`
+	EndDate *strfmt.DateTime `json:"endDate,omitempty"`
 
 	// itemId
 	ItemID string `json:"itemId,omitempty"`
@@ -54,7 +54,7 @@ type FulfillmentRequest struct {
 
 	// start date time
 	// Format: date-time
-	StartDate strfmt.DateTime `json:"startDate,omitempty"`
+	StartDate *strfmt.DateTime `json:"startDate,omitempty"`
 
 	// storeId
 	StoreID string `json:"storeId,omitempty"`

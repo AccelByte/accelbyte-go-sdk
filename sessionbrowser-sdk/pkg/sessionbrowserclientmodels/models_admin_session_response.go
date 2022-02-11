@@ -24,7 +24,7 @@ type ModelsAdminSessionResponse struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"created_at"`
+	CreatedAt strfmt.DateTime `json:"created_at"`
 
 	// game session setting
 	// Required: true
@@ -152,7 +152,7 @@ func (m *ModelsAdminSessionResponse) validateAllPlayers(formats strfmt.Registry)
 
 func (m *ModelsAdminSessionResponse) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("created_at", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 

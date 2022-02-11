@@ -519,6 +519,22 @@ func (u *UserStatisticService) BulkUpdateUserStatItem(input *user_statistic.Bulk
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use BulkResetUserStatItemValuesShort instead
+func (u *UserStatisticService) BulkResetUserStatItemValues(input *user_statistic.BulkResetUserStatItemValuesParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unprocessableEntity, err := u.Client.UserStatistic.BulkResetUserStatItemValues(input, client.BearerToken(*accessToken.AccessToken))
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use DeleteUserStatItems2Short instead
 func (u *UserStatisticService) DeleteUserStatItems2(input *user_statistic.DeleteUserStatItems2Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
@@ -849,6 +865,14 @@ func (u *UserStatisticService) BulkUpdateUserStatItemV2Short(input *user_statist
 
 func (u *UserStatisticService) BulkUpdateUserStatItemShort(input *user_statistic.BulkUpdateUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
 	ok, err := u.Client.UserStatistic.BulkUpdateUserStatItemShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (u *UserStatisticService) BulkResetUserStatItemValuesShort(input *user_statistic.BulkResetUserStatItemValuesParams, authInfo runtime.ClientAuthInfoWriter) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+	ok, err := u.Client.UserStatistic.BulkResetUserStatItemValuesShort(input, authInfo)
 	if err != nil {
 		return nil, err
 	}

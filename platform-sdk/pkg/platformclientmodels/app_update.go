@@ -53,7 +53,7 @@ type AppUpdate struct {
 
 	// release date in format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
 	// Format: date-time
-	ReleaseDate strfmt.DateTime `json:"releaseDate,omitempty"`
+	ReleaseDate *strfmt.DateTime `json:"releaseDate,omitempty"`
 
 	// website url, max length is 2000
 	WebsiteURL string `json:"websiteUrl,omitempty"`

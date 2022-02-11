@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewTokenGrantV3Params creates a new TokenGrantV3Params object
@@ -92,11 +93,21 @@ type TokenGrantV3Params struct {
 
 	*/
 	DeviceID *string
+	/*ExtendExp
+	  Extend expiration date of refresh token. Only available for grant type 'password'
+
+	*/
+	ExtendExp *bool
 	/*GrantType
 	  Grant Type
 
 	*/
 	GrantType string
+	/*Password
+	  Password (used with grant type 'password'
+
+	*/
+	Password *string
 	/*RedirectURI
 	  Redirect URI (used with grant type 'authorization_code')
 
@@ -107,6 +118,11 @@ type TokenGrantV3Params struct {
 
 	*/
 	RefreshToken *string
+	/*Username
+	  User Name (used with grant type 'password'
+
+	*/
+	Username *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -190,6 +206,17 @@ func (o *TokenGrantV3Params) SetDeviceID(deviceID *string) {
 	o.DeviceID = deviceID
 }
 
+// WithExtendExp adds the extendExp to the token grant v3 params
+func (o *TokenGrantV3Params) WithExtendExp(extendExp *bool) *TokenGrantV3Params {
+	o.SetExtendExp(extendExp)
+	return o
+}
+
+// SetExtendExp adds the extendExp to the token grant v3 params
+func (o *TokenGrantV3Params) SetExtendExp(extendExp *bool) {
+	o.ExtendExp = extendExp
+}
+
 // WithGrantType adds the grantType to the token grant v3 params
 func (o *TokenGrantV3Params) WithGrantType(grantType string) *TokenGrantV3Params {
 	o.SetGrantType(grantType)
@@ -199,6 +226,17 @@ func (o *TokenGrantV3Params) WithGrantType(grantType string) *TokenGrantV3Params
 // SetGrantType adds the grantType to the token grant v3 params
 func (o *TokenGrantV3Params) SetGrantType(grantType string) {
 	o.GrantType = grantType
+}
+
+// WithPassword adds the password to the token grant v3 params
+func (o *TokenGrantV3Params) WithPassword(password *string) *TokenGrantV3Params {
+	o.SetPassword(password)
+	return o
+}
+
+// SetPassword adds the password to the token grant v3 params
+func (o *TokenGrantV3Params) SetPassword(password *string) {
+	o.Password = password
 }
 
 // WithRedirectURI adds the redirectURI to the token grant v3 params
@@ -221,6 +259,17 @@ func (o *TokenGrantV3Params) WithRefreshToken(refreshToken *string) *TokenGrantV
 // SetRefreshToken adds the refreshToken to the token grant v3 params
 func (o *TokenGrantV3Params) SetRefreshToken(refreshToken *string) {
 	o.RefreshToken = refreshToken
+}
+
+// WithUsername adds the username to the token grant v3 params
+func (o *TokenGrantV3Params) WithUsername(username *string) *TokenGrantV3Params {
+	o.SetUsername(username)
+	return o
+}
+
+// SetUsername adds the username to the token grant v3 params
+func (o *TokenGrantV3Params) SetUsername(username *string) {
+	o.Username = username
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -288,6 +337,22 @@ func (o *TokenGrantV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 
 	}
 
+	if o.ExtendExp != nil {
+
+		// form param extend_exp
+		var frExtendExp bool
+		if o.ExtendExp != nil {
+			frExtendExp = *o.ExtendExp
+		}
+		fExtendExp := swag.FormatBool(frExtendExp)
+		if fExtendExp != "" {
+			if err := r.SetFormParam("extend_exp", fExtendExp); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	// form param grant_type
 	frGrantType := o.GrantType
 	fGrantType := frGrantType
@@ -295,6 +360,22 @@ func (o *TokenGrantV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		if err := r.SetFormParam("grant_type", fGrantType); err != nil {
 			return err
 		}
+	}
+
+	if o.Password != nil {
+
+		// form param password
+		var frPassword string
+		if o.Password != nil {
+			frPassword = *o.Password
+		}
+		fPassword := frPassword
+		if fPassword != "" {
+			if err := r.SetFormParam("password", fPassword); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.RedirectURI != nil {
@@ -323,6 +404,22 @@ func (o *TokenGrantV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		fRefreshToken := frRefreshToken
 		if fRefreshToken != "" {
 			if err := r.SetFormParam("refresh_token", fRefreshToken); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Username != nil {
+
+		// form param username
+		var frUsername string
+		if o.Username != nil {
+			frUsername = *o.Username
+		}
+		fUsername := frUsername
+		if fUsername != "" {
+			if err := r.SetFormParam("username", fUsername); err != nil {
 				return err
 			}
 		}

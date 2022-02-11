@@ -19,7 +19,7 @@ type RetrieveUserAcceptedAgreementResponse struct {
 
 	// created at
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"createdAt,omitempty"`
+	CreatedAt *strfmt.DateTime `json:"createdAt,omitempty"`
 
 	// display name
 	DisplayName string `json:"displayName,omitempty"`
@@ -51,11 +51,11 @@ type RetrieveUserAcceptedAgreementResponse struct {
 
 	// signing date
 	// Format: date-time
-	SigningDate strfmt.DateTime `json:"signingDate,omitempty"`
+	SigningDate *strfmt.DateTime `json:"signingDate,omitempty"`
 
 	// updated at
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updatedAt,omitempty"`
+	UpdatedAt *strfmt.DateTime `json:"updatedAt,omitempty"`
 
 	// user Id
 	UserID string `json:"userId,omitempty"`

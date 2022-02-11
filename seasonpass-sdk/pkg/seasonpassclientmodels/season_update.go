@@ -33,7 +33,7 @@ type SeasonUpdate struct {
 
 	// end date time
 	// Format: date-time
-	End strfmt.DateTime `json:"end,omitempty"`
+	End *strfmt.DateTime `json:"end,omitempty"`
 
 	// strategy while exceed final tier exp
 	ExcessStrategy *ExcessStrategy `json:"excessStrategy,omitempty"`
@@ -49,7 +49,7 @@ type SeasonUpdate struct {
 
 	// start date time
 	// Format: date-time
-	Start strfmt.DateTime `json:"start,omitempty"`
+	Start *strfmt.DateTime `json:"start,omitempty"`
 
 	// tier item id
 	TierItemID string `json:"tierItemId,omitempty"`

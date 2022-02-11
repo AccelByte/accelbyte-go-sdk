@@ -33,7 +33,7 @@ type UserProfileInfo struct {
 
 	// date of birth
 	// Format: date
-	DateOfBirth strfmt.Date `json:"dateOfBirth,omitempty"`
+	DateOfBirth *strfmt.Date `json:"dateOfBirth,omitempty"`
 
 	// first name
 	FirstName string `json:"firstName,omitempty"`

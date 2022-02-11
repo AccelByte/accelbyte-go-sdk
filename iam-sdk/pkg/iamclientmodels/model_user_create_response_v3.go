@@ -28,7 +28,7 @@ type ModelUserCreateResponseV3 struct {
 	// date of birth
 	// Required: true
 	// Format: date-time
-	DateOfBirth *strfmt.DateTime `json:"dateOfBirth"`
+	DateOfBirth strfmt.DateTime `json:"dateOfBirth"`
 
 	// display name
 	// Required: true
@@ -105,7 +105,7 @@ func (m *ModelUserCreateResponseV3) validateCountry(formats strfmt.Registry) err
 
 func (m *ModelUserCreateResponseV3) validateDateOfBirth(formats strfmt.Registry) error {
 
-	if err := validate.Required("dateOfBirth", "body", m.DateOfBirth); err != nil {
+	if err := validate.Required("dateOfBirth", "body", strfmt.DateTime(m.DateOfBirth)); err != nil {
 		return err
 	}
 

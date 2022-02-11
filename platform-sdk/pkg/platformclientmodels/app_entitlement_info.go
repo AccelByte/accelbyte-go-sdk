@@ -28,12 +28,12 @@ type AppEntitlementInfo struct {
 
 	// entitlement end date
 	// Format: date-time
-	EndDate strfmt.DateTime `json:"endDate,omitempty"`
+	EndDate *strfmt.DateTime `json:"endDate,omitempty"`
 
 	// entitlement granted at
 	// Required: true
 	// Format: date-time
-	GrantedAt *strfmt.DateTime `json:"grantedAt"`
+	GrantedAt strfmt.DateTime `json:"grantedAt"`
 
 	// item id
 	ItemID string `json:"itemId,omitempty"`
@@ -50,7 +50,7 @@ type AppEntitlementInfo struct {
 
 	// entitlement start date
 	// Format: date-time
-	StartDate strfmt.DateTime `json:"startDate,omitempty"`
+	StartDate *strfmt.DateTime `json:"startDate,omitempty"`
 
 	// entitlement status
 	// Required: true
@@ -171,7 +171,7 @@ func (m *AppEntitlementInfo) validateEndDate(formats strfmt.Registry) error {
 
 func (m *AppEntitlementInfo) validateGrantedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("grantedAt", "body", m.GrantedAt); err != nil {
+	if err := validate.Required("grantedAt", "body", strfmt.DateTime(m.GrantedAt)); err != nil {
 		return err
 	}
 

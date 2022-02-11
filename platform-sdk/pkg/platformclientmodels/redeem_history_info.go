@@ -28,7 +28,7 @@ type RedeemHistoryInfo struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// id
 	// Required: true
@@ -43,12 +43,12 @@ type RedeemHistoryInfo struct {
 
 	// redeemed at
 	// Format: date-time
-	RedeemedAt strfmt.DateTime `json:"redeemedAt,omitempty"`
+	RedeemedAt *strfmt.DateTime `json:"redeemedAt,omitempty"`
 
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 
 	// redeem user id
 	// Required: true
@@ -117,7 +117,7 @@ func (m *RedeemHistoryInfo) validateCode(formats strfmt.Registry) error {
 
 func (m *RedeemHistoryInfo) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -161,7 +161,7 @@ func (m *RedeemHistoryInfo) validateRedeemedAt(formats strfmt.Registry) error {
 
 func (m *RedeemHistoryInfo) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

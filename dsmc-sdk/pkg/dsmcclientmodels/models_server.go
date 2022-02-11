@@ -34,7 +34,7 @@ type ModelsServer struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"created_at"`
+	CreatedAt strfmt.DateTime `json:"created_at"`
 
 	// custom attribute
 	// Required: true
@@ -67,7 +67,7 @@ type ModelsServer struct {
 	// last update
 	// Required: true
 	// Format: date-time
-	LastUpdate *strfmt.DateTime `json:"last_update"`
+	LastUpdate strfmt.DateTime `json:"last_update"`
 
 	// mem limit
 	// Required: true
@@ -253,7 +253,7 @@ func (m *ModelsServer) validateCPULimit(formats strfmt.Registry) error {
 
 func (m *ModelsServer) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("created_at", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -329,7 +329,7 @@ func (m *ModelsServer) validateJobID(formats strfmt.Registry) error {
 
 func (m *ModelsServer) validateLastUpdate(formats strfmt.Registry) error {
 
-	if err := validate.Required("last_update", "body", m.LastUpdate); err != nil {
+	if err := validate.Required("last_update", "body", strfmt.DateTime(m.LastUpdate)); err != nil {
 		return err
 	}
 

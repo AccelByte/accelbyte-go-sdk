@@ -21,7 +21,7 @@ type EntitlementGrant struct {
 
 	// entitlement end date time
 	// Format: date-time
-	EndDate strfmt.DateTime `json:"endDate,omitempty"`
+	EndDate *strfmt.DateTime `json:"endDate,omitempty"`
 
 	// grantedCode, the granted code
 	GrantedCode string `json:"grantedCode,omitempty"`
@@ -50,7 +50,7 @@ type EntitlementGrant struct {
 
 	// entitlement start date time
 	// Format: date-time
-	StartDate strfmt.DateTime `json:"startDate,omitempty"`
+	StartDate *strfmt.DateTime `json:"startDate,omitempty"`
 
 	// storeId
 	StoreID string `json:"storeId,omitempty"`

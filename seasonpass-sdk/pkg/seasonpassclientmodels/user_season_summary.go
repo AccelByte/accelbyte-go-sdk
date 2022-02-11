@@ -22,7 +22,7 @@ type UserSeasonSummary struct {
 
 	// created at
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"createdAt,omitempty"`
+	CreatedAt *strfmt.DateTime `json:"createdAt,omitempty"`
 
 	// gained exp for current tier
 	CurrentExp int32 `json:"currentExp,omitempty"`
@@ -32,7 +32,7 @@ type UserSeasonSummary struct {
 
 	// enroll date time
 	// Format: date-time
-	EnrolledAt strfmt.DateTime `json:"enrolledAt,omitempty"`
+	EnrolledAt *strfmt.DateTime `json:"enrolledAt,omitempty"`
 
 	// enrolled passes
 	// Unique: true
@@ -56,7 +56,7 @@ type UserSeasonSummary struct {
 
 	// updated at
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updatedAt,omitempty"`
+	UpdatedAt *strfmt.DateTime `json:"updatedAt,omitempty"`
 
 	// user id
 	// Required: true

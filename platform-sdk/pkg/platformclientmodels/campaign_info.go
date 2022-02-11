@@ -27,7 +27,7 @@ type CampaignInfo struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// campaign description
 	Description string `json:"description,omitempty"`
@@ -65,11 +65,11 @@ type CampaignInfo struct {
 
 	// redeem end
 	// Format: date-time
-	RedeemEnd strfmt.DateTime `json:"redeemEnd,omitempty"`
+	RedeemEnd *strfmt.DateTime `json:"redeemEnd,omitempty"`
 
 	// redeem start
 	// Format: date-time
-	RedeemStart strfmt.DateTime `json:"redeemStart,omitempty"`
+	RedeemStart *strfmt.DateTime `json:"redeemStart,omitempty"`
 
 	// redeem type
 	// Required: true
@@ -92,7 +92,7 @@ type CampaignInfo struct {
 	// update at
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 }
 
 // Validate validates this campaign info
@@ -180,7 +180,7 @@ func (m *CampaignInfo) validateBoothName(formats strfmt.Registry) error {
 
 func (m *CampaignInfo) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -430,7 +430,7 @@ func (m *CampaignInfo) validateType(formats strfmt.Registry) error {
 
 func (m *CampaignInfo) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

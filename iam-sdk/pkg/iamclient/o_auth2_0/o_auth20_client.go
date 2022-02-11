@@ -933,6 +933,10 @@ func (a *Client) RevokeUserV3Short(params *RevokeUserV3Params, authInfo runtime.
 				in the redirect_uri, which should be the same as generating the
 				authorization code request.
 			&lt;/li&gt;
+			&lt;li&gt;Grant Type == &lt;code&gt;password&lt;/code&gt;:&lt;br /&gt;
+	 			&amp;nbsp;&amp;nbsp;&amp;nbsp; The grant type to use for authenticating a user, whether it&#39;s by email / username and password combination
+				or through platform.
+			&lt;/li&gt;
 			&lt;li&gt;Grant Type == &lt;code&gt;refresh_token&lt;/code&gt;:&lt;br /&gt;
 	 			&amp;nbsp;&amp;nbsp;&amp;nbsp; Used to get a new access token for a valid refresh token.
 			&lt;/li&gt;

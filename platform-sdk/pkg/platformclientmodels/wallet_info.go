@@ -26,7 +26,7 @@ type WalletInfo struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// currency code
 	// Required: true
@@ -52,7 +52,7 @@ type WalletInfo struct {
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 
 	// user id
 	// Required: true
@@ -116,7 +116,7 @@ func (m *WalletInfo) validateBalance(formats strfmt.Registry) error {
 
 func (m *WalletInfo) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -208,7 +208,7 @@ func (m *WalletInfo) validateStatus(formats strfmt.Registry) error {
 
 func (m *WalletInfo) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

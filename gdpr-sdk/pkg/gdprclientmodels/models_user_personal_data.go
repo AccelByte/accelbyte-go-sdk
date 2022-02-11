@@ -20,12 +20,12 @@ type ModelsUserPersonalData struct {
 	// data expiration date
 	// Required: true
 	// Format: date-time
-	DataExpirationDate *strfmt.DateTime `json:"DataExpirationDate"`
+	DataExpirationDate strfmt.DateTime `json:"DataExpirationDate"`
 
 	// request date
 	// Required: true
 	// Format: date-time
-	RequestDate *strfmt.DateTime `json:"RequestDate"`
+	RequestDate strfmt.DateTime `json:"RequestDate"`
 
 	// status
 	// Required: true
@@ -56,7 +56,7 @@ func (m *ModelsUserPersonalData) Validate(formats strfmt.Registry) error {
 
 func (m *ModelsUserPersonalData) validateDataExpirationDate(formats strfmt.Registry) error {
 
-	if err := validate.Required("DataExpirationDate", "body", m.DataExpirationDate); err != nil {
+	if err := validate.Required("DataExpirationDate", "body", strfmt.DateTime(m.DataExpirationDate)); err != nil {
 		return err
 	}
 
@@ -69,7 +69,7 @@ func (m *ModelsUserPersonalData) validateDataExpirationDate(formats strfmt.Regis
 
 func (m *ModelsUserPersonalData) validateRequestDate(formats strfmt.Registry) error {
 
-	if err := validate.Required("RequestDate", "body", m.RequestDate); err != nil {
+	if err := validate.Required("RequestDate", "body", strfmt.DateTime(m.RequestDate)); err != nil {
 		return err
 	}
 

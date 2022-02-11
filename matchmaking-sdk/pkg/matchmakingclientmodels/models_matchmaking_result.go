@@ -76,7 +76,7 @@ type ModelsMatchmakingResult struct {
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updated_at"`
+	UpdatedAt strfmt.DateTime `json:"updated_at"`
 }
 
 // Validate validates this models matchmaking result
@@ -267,7 +267,7 @@ func (m *ModelsMatchmakingResult) validateStatus(formats strfmt.Registry) error 
 
 func (m *ModelsMatchmakingResult) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updated_at", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updated_at", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

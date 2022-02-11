@@ -28,7 +28,7 @@ type ModelUserActiveBanResponse struct {
 	// end date
 	// Required: true
 	// Format: date-time
-	EndDate *strfmt.DateTime `json:"EndDate"`
+	EndDate strfmt.DateTime `json:"EndDate"`
 }
 
 // Validate validates this model user active ban response
@@ -73,7 +73,7 @@ func (m *ModelUserActiveBanResponse) validateBanID(formats strfmt.Registry) erro
 
 func (m *ModelUserActiveBanResponse) validateEndDate(formats strfmt.Registry) error {
 
-	if err := validate.Required("EndDate", "body", m.EndDate); err != nil {
+	if err := validate.Required("EndDate", "body", strfmt.DateTime(m.EndDate)); err != nil {
 		return err
 	}
 

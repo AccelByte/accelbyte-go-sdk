@@ -23,7 +23,7 @@ type IAPOrderInfo struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// credit summary
 	Credits []*CreditSummary `json:"credits"`
@@ -36,7 +36,7 @@ type IAPOrderInfo struct {
 
 	// fulfill time if fulfilled
 	// Format: date-time
-	FulfilledTime strfmt.DateTime `json:"fulfilledTime,omitempty"`
+	FulfilledTime *strfmt.DateTime `json:"fulfilledTime,omitempty"`
 
 	// iap order No
 	// Required: true
@@ -83,13 +83,13 @@ type IAPOrderInfo struct {
 
 	// IAP type
 	// Required: true
-	// Enum: [APPLE GOOGLE PLAYSTATION STEAM XBOX STADIA EPICGAMES]
+	// Enum: [APPLE GOOGLE PLAYSTATION STEAM XBOX STADIA EPICGAMES TWITCH]
 	Type *string `json:"type"`
 
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 
 	// user id
 	// Required: true
@@ -148,7 +148,7 @@ func (m *IAPOrderInfo) Validate(formats strfmt.Registry) error {
 
 func (m *IAPOrderInfo) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -290,7 +290,7 @@ var iAPOrderInfoTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APPLE","GOOGLE","PLAYSTATION","STEAM","XBOX","STADIA","EPICGAMES"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APPLE","GOOGLE","PLAYSTATION","STEAM","XBOX","STADIA","EPICGAMES","TWITCH"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -320,6 +320,9 @@ const (
 
 	// IAPOrderInfoTypeEPICGAMES captures enum value "EPICGAMES"
 	IAPOrderInfoTypeEPICGAMES string = "EPICGAMES"
+
+	// IAPOrderInfoTypeTWITCH captures enum value "TWITCH"
+	IAPOrderInfoTypeTWITCH string = "TWITCH"
 )
 
 // prop value enum
@@ -346,7 +349,7 @@ func (m *IAPOrderInfo) validateType(formats strfmt.Registry) error {
 
 func (m *IAPOrderInfo) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

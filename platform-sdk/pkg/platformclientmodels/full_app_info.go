@@ -61,7 +61,7 @@ type FullAppInfo struct {
 
 	// release date
 	// Format: date-time
-	ReleaseDate strfmt.DateTime `json:"releaseDate,omitempty"`
+	ReleaseDate *strfmt.DateTime `json:"releaseDate,omitempty"`
 
 	// website url
 	WebsiteURL string `json:"websiteUrl,omitempty"`

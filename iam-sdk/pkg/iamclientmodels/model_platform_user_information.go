@@ -27,7 +27,7 @@ type ModelPlatformUserInformation struct {
 	// linked at
 	// Required: true
 	// Format: date-time
-	LinkedAt *strfmt.DateTime `json:"LinkedAt"`
+	LinkedAt strfmt.DateTime `json:"LinkedAt"`
 
 	// namespace
 	// Required: true
@@ -86,7 +86,7 @@ func (m *ModelPlatformUserInformation) validateDisplayName(formats strfmt.Regist
 
 func (m *ModelPlatformUserInformation) validateLinkedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("LinkedAt", "body", m.LinkedAt); err != nil {
+	if err := validate.Required("LinkedAt", "body", strfmt.DateTime(m.LinkedAt)); err != nil {
 		return err
 	}
 

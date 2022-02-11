@@ -314,6 +314,45 @@ func (i *IAPService) DeleteSteamIAPConfig(input *i_a_p.DeleteSteamIAPConfigParam
 	return nil
 }
 
+// Deprecated: Use GetTwitchIAPConfigShort instead
+func (i *IAPService) GetTwitchIAPConfig(input *i_a_p.GetTwitchIAPConfigParams) (*platformclientmodels.TwitchIAPConfigInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.GetTwitchIAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use UpdateTwitchIAPConfigShort instead
+func (i *IAPService) UpdateTwitchIAPConfig(input *i_a_p.UpdateTwitchIAPConfigParams) (*platformclientmodels.TwitchIAPConfigInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.UpdateTwitchIAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use DeleteTwitchIAPConfigShort instead
+func (i *IAPService) DeleteTwitchIAPConfig(input *i_a_p.DeleteTwitchIAPConfigParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = i.Client.Iap.DeleteTwitchIAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 // Deprecated: Use GetXblIAPConfigShort instead
 func (i *IAPService) GetXblIAPConfig(input *i_a_p.GetXblIAPConfigParams) (*platformclientmodels.XblIAPConfigInfo, error) {
 	accessToken, err := i.TokenRepository.GetToken()
@@ -516,6 +555,19 @@ func (i *IAPService) SyncSteamInventory(input *i_a_p.SyncSteamInventoryParams) e
 	return nil
 }
 
+// Deprecated: Use SyncTwitchDropsEntitlementShort instead
+func (i *IAPService) SyncTwitchDropsEntitlement(input *i_a_p.SyncTwitchDropsEntitlementParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = i.Client.Iap.SyncTwitchDropsEntitlement(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 // Deprecated: Use SyncXboxInventoryShort instead
 func (i *IAPService) SyncXboxInventory(input *i_a_p.SyncXboxInventoryParams) ([]*platformclientmodels.XblReconcileResult, error) {
 	accessToken, err := i.TokenRepository.GetToken()
@@ -705,6 +757,30 @@ func (i *IAPService) DeleteSteamIAPConfigShort(input *i_a_p.DeleteSteamIAPConfig
 	return nil
 }
 
+func (i *IAPService) GetTwitchIAPConfigShort(input *i_a_p.GetTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TwitchIAPConfigInfo, error) {
+	ok, err := i.Client.Iap.GetTwitchIAPConfigShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (i *IAPService) UpdateTwitchIAPConfigShort(input *i_a_p.UpdateTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TwitchIAPConfigInfo, error) {
+	ok, err := i.Client.Iap.UpdateTwitchIAPConfigShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (i *IAPService) DeleteTwitchIAPConfigShort(input *i_a_p.DeleteTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := i.Client.Iap.DeleteTwitchIAPConfigShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func (i *IAPService) GetXblIAPConfigShort(input *i_a_p.GetXblIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.XblIAPConfigInfo, error) {
 	ok, err := i.Client.Iap.GetXblIAPConfigShort(input, authInfo)
 	if err != nil {
@@ -803,6 +879,14 @@ func (i *IAPService) SyncStadiaEntitlementShort(input *i_a_p.SyncStadiaEntitleme
 
 func (i *IAPService) SyncSteamInventoryShort(input *i_a_p.SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) error {
 	_, err := i.Client.Iap.SyncSteamInventoryShort(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (i *IAPService) SyncTwitchDropsEntitlementShort(input *i_a_p.SyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := i.Client.Iap.SyncTwitchDropsEntitlementShort(input, authInfo)
 	if err != nil {
 		return err
 	}

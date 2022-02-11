@@ -20,7 +20,7 @@ type RetrieveUserInfoCacheStatusResponse struct {
 	// last updated at
 	// Required: true
 	// Format: date-time
-	LastUpdatedAt *strfmt.DateTime `json:"lastUpdatedAt"`
+	LastUpdatedAt strfmt.DateTime `json:"lastUpdatedAt"`
 
 	// namespace
 	// Required: true
@@ -47,7 +47,7 @@ func (m *RetrieveUserInfoCacheStatusResponse) Validate(formats strfmt.Registry) 
 
 func (m *RetrieveUserInfoCacheStatusResponse) validateLastUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("lastUpdatedAt", "body", m.LastUpdatedAt); err != nil {
+	if err := validate.Required("lastUpdatedAt", "body", strfmt.DateTime(m.LastUpdatedAt)); err != nil {
 		return err
 	}
 

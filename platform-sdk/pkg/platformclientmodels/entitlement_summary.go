@@ -27,11 +27,11 @@ type EntitlementSummary struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// end date time
 	// Format: date-time
-	EndDate strfmt.DateTime `json:"endDate,omitempty"`
+	EndDate *strfmt.DateTime `json:"endDate,omitempty"`
 
 	// granted code
 	GrantedCode string `json:"grantedCode,omitempty"`
@@ -55,7 +55,7 @@ type EntitlementSummary struct {
 
 	// start date time
 	// Format: date-time
-	StartDate strfmt.DateTime `json:"startDate,omitempty"`
+	StartDate *strfmt.DateTime `json:"startDate,omitempty"`
 
 	// item store id, null if published store
 	StoreID string `json:"storeId,omitempty"`
@@ -68,7 +68,7 @@ type EntitlementSummary struct {
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 
 	// userId for this entitlement
 	// Required: true
@@ -175,7 +175,7 @@ func (m *EntitlementSummary) validateClazz(formats strfmt.Registry) error {
 
 func (m *EntitlementSummary) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -275,7 +275,7 @@ func (m *EntitlementSummary) validateType(formats strfmt.Registry) error {
 
 func (m *EntitlementSummary) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

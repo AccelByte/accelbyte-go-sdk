@@ -24,7 +24,7 @@ type ModelsStatusHistory struct {
 	// time stamp
 	// Required: true
 	// Format: date-time
-	TimeStamp *strfmt.DateTime `json:"time_stamp"`
+	TimeStamp strfmt.DateTime `json:"time_stamp"`
 }
 
 // Validate validates this models status history
@@ -56,7 +56,7 @@ func (m *ModelsStatusHistory) validateStatus(formats strfmt.Registry) error {
 
 func (m *ModelsStatusHistory) validateTimeStamp(formats strfmt.Registry) error {
 
-	if err := validate.Required("time_stamp", "body", m.TimeStamp); err != nil {
+	if err := validate.Required("time_stamp", "body", strfmt.DateTime(m.TimeStamp)); err != nil {
 		return err
 	}
 

@@ -50,7 +50,7 @@ type BundledItemInfo struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// description info
 	Description string `json:"description,omitempty"`
@@ -166,7 +166,7 @@ type BundledItemInfo struct {
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 
 	// Item use count, required when entitlement type is consumable or itemType is COINS
 	UseCount int32 `json:"useCount,omitempty"`
@@ -335,7 +335,7 @@ func (m *BundledItemInfo) validateCategoryPath(formats strfmt.Registry) error {
 
 func (m *BundledItemInfo) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -686,7 +686,7 @@ func (m *BundledItemInfo) validateTitle(formats strfmt.Registry) error {
 
 func (m *BundledItemInfo) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

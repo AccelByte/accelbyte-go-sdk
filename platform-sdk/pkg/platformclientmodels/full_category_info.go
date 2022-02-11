@@ -24,7 +24,7 @@ type FullCategoryInfo struct {
 	// Category created time
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// Category localization display name
 	// Required: true
@@ -44,7 +44,7 @@ type FullCategoryInfo struct {
 	// Category updated time
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 }
 
 // Validate validates this full category info
@@ -92,7 +92,7 @@ func (m *FullCategoryInfo) validateCategoryPath(formats strfmt.Registry) error {
 
 func (m *FullCategoryInfo) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -128,7 +128,7 @@ func (m *FullCategoryInfo) validateParentCategoryPath(formats strfmt.Registry) e
 
 func (m *FullCategoryInfo) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

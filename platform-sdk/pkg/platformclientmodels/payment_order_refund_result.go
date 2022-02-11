@@ -22,7 +22,7 @@ type PaymentOrderRefundResult struct {
 	// The time of the order created
 	// Required: true
 	// Format: date-time
-	CreatedTime *strfmt.DateTime `json:"createdTime"`
+	CreatedTime strfmt.DateTime `json:"createdTime"`
 
 	// Payment order namespace
 	// Required: true
@@ -34,7 +34,7 @@ type PaymentOrderRefundResult struct {
 
 	// The time of the order refunded
 	// Format: date-time
-	RefundedTime strfmt.DateTime `json:"refundedTime,omitempty"`
+	RefundedTime *strfmt.DateTime `json:"refundedTime,omitempty"`
 
 	// Payment order status
 	// Required: true
@@ -80,7 +80,7 @@ func (m *PaymentOrderRefundResult) Validate(formats strfmt.Registry) error {
 
 func (m *PaymentOrderRefundResult) validateCreatedTime(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdTime", "body", m.CreatedTime); err != nil {
+	if err := validate.Required("createdTime", "body", strfmt.DateTime(m.CreatedTime)); err != nil {
 		return err
 	}
 

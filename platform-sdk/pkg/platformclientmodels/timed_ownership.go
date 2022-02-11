@@ -19,7 +19,7 @@ type TimedOwnership struct {
 
 	// end date
 	// Format: date-time
-	EndDate strfmt.DateTime `json:"endDate,omitempty"`
+	EndDate *strfmt.DateTime `json:"endDate,omitempty"`
 
 	// ownership
 	// Required: true

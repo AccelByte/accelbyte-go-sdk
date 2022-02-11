@@ -20,7 +20,7 @@ type ModelsGameRecord struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"created_at"`
+	CreatedAt strfmt.DateTime `json:"created_at"`
 
 	// key
 	// Required: true
@@ -33,7 +33,7 @@ type ModelsGameRecord struct {
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updated_at"`
+	UpdatedAt strfmt.DateTime `json:"updated_at"`
 
 	// value
 	// Required: true
@@ -72,7 +72,7 @@ func (m *ModelsGameRecord) Validate(formats strfmt.Registry) error {
 
 func (m *ModelsGameRecord) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("created_at", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("created_at", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -103,7 +103,7 @@ func (m *ModelsGameRecord) validateNamespace(formats strfmt.Registry) error {
 
 func (m *ModelsGameRecord) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updated_at", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updated_at", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

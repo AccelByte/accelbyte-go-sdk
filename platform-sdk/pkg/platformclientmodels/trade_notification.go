@@ -24,23 +24,23 @@ type TradeNotification struct {
 
 	// The time of the order authorised
 	// Format: date-time
-	AuthorisedTime strfmt.DateTime `json:"authorisedTime,omitempty"`
+	AuthorisedTime *strfmt.DateTime `json:"authorisedTime,omitempty"`
 
 	// The time of the order chargeback reversed
 	// Format: date-time
-	ChargebackReversedTime strfmt.DateTime `json:"chargebackReversedTime,omitempty"`
+	ChargebackReversedTime *strfmt.DateTime `json:"chargebackReversedTime,omitempty"`
 
 	// The time of the order chargeback
 	// Format: date-time
-	ChargebackTime strfmt.DateTime `json:"chargebackTime,omitempty"`
+	ChargebackTime *strfmt.DateTime `json:"chargebackTime,omitempty"`
 
 	// The time of the order charged
 	// Format: date-time
-	ChargedTime strfmt.DateTime `json:"chargedTime,omitempty"`
+	ChargedTime *strfmt.DateTime `json:"chargedTime,omitempty"`
 
 	// The time of the order created
 	// Format: date-time
-	CreatedTime strfmt.DateTime `json:"createdTime,omitempty"`
+	CreatedTime *strfmt.DateTime `json:"createdTime,omitempty"`
 
 	// Payment order currency info
 	// Required: true
@@ -62,7 +62,7 @@ type TradeNotification struct {
 	// event issued at
 	// Required: true
 	// Format: date-time
-	IssuedAt *strfmt.DateTime `json:"issuedAt"`
+	IssuedAt strfmt.DateTime `json:"issuedAt"`
 
 	// metadata
 	Metadata map[string]string `json:"metadata,omitempty"`
@@ -102,7 +102,7 @@ type TradeNotification struct {
 
 	// The time of the order refunded
 	// Format: date-time
-	RefundedTime strfmt.DateTime `json:"refundedTime,omitempty"`
+	RefundedTime *strfmt.DateTime `json:"refundedTime,omitempty"`
 
 	// Payment order sales tax
 	SalesTax int32 `json:"salesTax,omitempty"`
@@ -145,7 +145,7 @@ type TradeNotification struct {
 
 	// Transaction end date time
 	// Format: date-time
-	TxEndTime strfmt.DateTime `json:"txEndTime,omitempty"`
+	TxEndTime *strfmt.DateTime `json:"txEndTime,omitempty"`
 
 	// notification type: payment
 	// Required: true
@@ -356,7 +356,7 @@ func (m *TradeNotification) validateExtOrderNo(formats strfmt.Registry) error {
 
 func (m *TradeNotification) validateIssuedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("issuedAt", "body", m.IssuedAt); err != nil {
+	if err := validate.Required("issuedAt", "body", strfmt.DateTime(m.IssuedAt)); err != nil {
 		return err
 	}
 

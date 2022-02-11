@@ -48,7 +48,7 @@ type ClientService interface {
 /*
   CreatePass creates a pass
 
-  This API is used to create a pass for a draft season.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SEASONPASS", action=1 (CREATE)</li><li><i>Returns</i>: created pass</li></ul>
+  This API is used to create a pass for a draft season.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created pass&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CreatePass(params *CreatePassParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePassCreated, *CreatePassBadRequest, *CreatePassNotFound, *CreatePassConflict, *CreatePassUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -66,7 +66,7 @@ func (a *Client) CreatePass(params *CreatePassParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/passes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreatePassReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -115,7 +115,7 @@ func (a *Client) CreatePassShort(params *CreatePassParams, authInfo runtime.Clie
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/passes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreatePassReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -147,7 +147,7 @@ func (a *Client) CreatePassShort(params *CreatePassParams, authInfo runtime.Clie
 /*
   DeletePass deletes a pass
 
-  This API is used to delete a pass permanently, only draft season pass can be deleted. <p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SEASONPASS", action=8 (DELETE)</li></ul>
+  This API is used to delete a pass permanently, only draft season pass can be deleted. &lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DeletePass(params *DeletePassParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePassNoContent, *DeletePassBadRequest, *DeletePassNotFound, *DeletePassConflict, error) {
 	// TODO: Validate the params before sending
@@ -165,7 +165,7 @@ func (a *Client) DeletePass(params *DeletePassParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeletePassReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -211,7 +211,7 @@ func (a *Client) DeletePassShort(params *DeletePassParams, authInfo runtime.Clie
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeletePassReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -241,7 +241,7 @@ func (a *Client) DeletePassShort(params *DeletePassParams, authInfo runtime.Clie
 /*
   GetPass gets a pass
 
-  This API is used to get a pass for a season.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SEASONPASS", action=2 (READ)</li><li><i>Returns</i>: pass data</li></ul>
+  This API is used to get a pass for a season.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: pass data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetPass(params *GetPassParams, authInfo runtime.ClientAuthInfoWriter) (*GetPassOK, *GetPassBadRequest, *GetPassNotFound, error) {
 	// TODO: Validate the params before sending
@@ -259,7 +259,7 @@ func (a *Client) GetPass(params *GetPassParams, authInfo runtime.ClientAuthInfoW
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetPassReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -302,7 +302,7 @@ func (a *Client) GetPassShort(params *GetPassParams, authInfo runtime.ClientAuth
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetPassReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -330,7 +330,7 @@ func (a *Client) GetPassShort(params *GetPassParams, authInfo runtime.ClientAuth
 /*
   GrantUserPass grants pass to user
 
-  This API is used to grant pass to user, it will auto enroll if there's no user season but active published season exist, season only located in non-publisher namespace, otherwise ignore.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS", action=4 (UPDATE)</li><li><i>Returns</i>: user season data</li></ul>
+  This API is used to grant pass to user, it will auto enroll if there&#39;s no user season but active published season exist, season only located in non-publisher namespace, otherwise ignore.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user season data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GrantUserPass(params *GrantUserPassParams, authInfo runtime.ClientAuthInfoWriter) (*GrantUserPassOK, *GrantUserPassBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -348,7 +348,7 @@ func (a *Client) GrantUserPass(params *GrantUserPassParams, authInfo runtime.Cli
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GrantUserPassReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -388,7 +388,7 @@ func (a *Client) GrantUserPassShort(params *GrantUserPassParams, authInfo runtim
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GrantUserPassReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -414,7 +414,7 @@ func (a *Client) GrantUserPassShort(params *GrantUserPassParams, authInfo runtim
 /*
   QueryPasses queries all passes for a season
 
-  This API is used to query all passes for a season.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SEASONPASS", action=2 (READ)</li><li><i>Returns</i>: the list of passes</li></ul>
+  This API is used to query all passes for a season.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of passes&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) QueryPasses(params *QueryPassesParams, authInfo runtime.ClientAuthInfoWriter) (*QueryPassesOK, *QueryPassesBadRequest, *QueryPassesNotFound, error) {
 	// TODO: Validate the params before sending
@@ -432,7 +432,7 @@ func (a *Client) QueryPasses(params *QueryPassesParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/passes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QueryPassesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -475,7 +475,7 @@ func (a *Client) QueryPassesShort(params *QueryPassesParams, authInfo runtime.Cl
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/passes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QueryPassesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -503,7 +503,7 @@ func (a *Client) QueryPassesShort(params *QueryPassesParams, authInfo runtime.Cl
 /*
   UpdatePass updates a pass
 
-  This API is used to update a pass. Only draft season pass can be updated.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SEASONPASS", action=4 (UPDATE)</li><li><i>Returns</i>: updated pass</li></ul>
+  This API is used to update a pass. Only draft season pass can be updated.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated pass&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdatePass(params *UpdatePassParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePassOK, *UpdatePassBadRequest, *UpdatePassNotFound, *UpdatePassConflict, *UpdatePassUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -521,7 +521,7 @@ func (a *Client) UpdatePass(params *UpdatePassParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdatePassReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -570,7 +570,7 @@ func (a *Client) UpdatePassShort(params *UpdatePassParams, authInfo runtime.Clie
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdatePassReader{formats: a.formats},
 		AuthInfo:           authInfo,

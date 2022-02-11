@@ -20,7 +20,7 @@ type ModelsUserAchievementResponse struct {
 	// achieved at
 	// Required: true
 	// Format: date-time
-	AchievedAt *strfmt.DateTime `json:"achievedAt"`
+	AchievedAt strfmt.DateTime `json:"achievedAt"`
 
 	// achievement code
 	// Required: true
@@ -79,7 +79,7 @@ func (m *ModelsUserAchievementResponse) Validate(formats strfmt.Registry) error 
 
 func (m *ModelsUserAchievementResponse) validateAchievedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("achievedAt", "body", m.AchievedAt); err != nil {
+	if err := validate.Required("achievedAt", "body", strfmt.DateTime(m.AchievedAt)); err != nil {
 		return err
 	}
 

@@ -29,12 +29,124 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	AdminJoinPartyV1(params *AdminJoinPartyV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminJoinPartyV1Accepted, *AdminJoinPartyV1BadRequest, *AdminJoinPartyV1Unauthorized, *AdminJoinPartyV1Forbidden, *AdminJoinPartyV1NotFound, *AdminJoinPartyV1PreconditionFailed, *AdminJoinPartyV1InternalServerError, error)
+	AdminJoinPartyV1Short(params *AdminJoinPartyV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminJoinPartyV1Accepted, error)
 	AdminUpdatePartyAttributesV1(params *AdminUpdatePartyAttributesV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdatePartyAttributesV1OK, *AdminUpdatePartyAttributesV1BadRequest, *AdminUpdatePartyAttributesV1Unauthorized, *AdminUpdatePartyAttributesV1Forbidden, *AdminUpdatePartyAttributesV1NotFound, *AdminUpdatePartyAttributesV1PreconditionFailed, *AdminUpdatePartyAttributesV1InternalServerError, error)
 	AdminUpdatePartyAttributesV1Short(params *AdminUpdatePartyAttributesV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdatePartyAttributesV1OK, error)
 	PublicGetMessages(params *PublicGetMessagesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMessagesOK, *PublicGetMessagesInternalServerError, error)
 	PublicGetMessagesShort(params *PublicGetMessagesParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMessagesOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+  AdminJoinPartyV1 admins join a player into a party
+
+  Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [UPDATE]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
+			&lt;br&gt;admin join a player into a party.
+*/
+func (a *Client) AdminJoinPartyV1(params *AdminJoinPartyV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminJoinPartyV1Accepted, *AdminJoinPartyV1BadRequest, *AdminJoinPartyV1Unauthorized, *AdminJoinPartyV1Forbidden, *AdminJoinPartyV1NotFound, *AdminJoinPartyV1PreconditionFailed, *AdminJoinPartyV1InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminJoinPartyV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminJoinPartyV1",
+		Method:             "POST",
+		PathPattern:        "/lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminJoinPartyV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminJoinPartyV1Accepted:
+		return v, nil, nil, nil, nil, nil, nil, nil
+
+	case *AdminJoinPartyV1BadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *AdminJoinPartyV1Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *AdminJoinPartyV1Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
+
+	case *AdminJoinPartyV1NotFound:
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *AdminJoinPartyV1PreconditionFailed:
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *AdminJoinPartyV1InternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminJoinPartyV1Short(params *AdminJoinPartyV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminJoinPartyV1Accepted, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminJoinPartyV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminJoinPartyV1",
+		Method:             "POST",
+		PathPattern:        "/lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminJoinPartyV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminJoinPartyV1Accepted:
+		return v, nil
+	case *AdminJoinPartyV1BadRequest:
+		return nil, v
+	case *AdminJoinPartyV1Unauthorized:
+		return nil, v
+	case *AdminJoinPartyV1Forbidden:
+		return nil, v
+	case *AdminJoinPartyV1NotFound:
+		return nil, v
+	case *AdminJoinPartyV1PreconditionFailed:
+		return nil, v
+	case *AdminJoinPartyV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
 }
 
 /*

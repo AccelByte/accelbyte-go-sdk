@@ -30,7 +30,7 @@ type ModelPublicUserResponseV3 struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// deletion status
 	// Required: true
@@ -51,12 +51,12 @@ type ModelPublicUserResponseV3 struct {
 	// last date of birth changed time
 	// Required: true
 	// Format: date-time
-	LastDateOfBirthChangedTime *strfmt.DateTime `json:"lastDateOfBirthChangedTime"`
+	LastDateOfBirthChangedTime strfmt.DateTime `json:"lastDateOfBirthChangedTime"`
 
 	// last enabled changed time
 	// Required: true
 	// Format: date-time
-	LastEnabledChangedTime *strfmt.DateTime `json:"lastEnabledChangedTime"`
+	LastEnabledChangedTime strfmt.DateTime `json:"lastEnabledChangedTime"`
 
 	// namespace
 	// Required: true
@@ -198,7 +198,7 @@ func (m *ModelPublicUserResponseV3) validateBans(formats strfmt.Registry) error 
 
 func (m *ModelPublicUserResponseV3) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -247,7 +247,7 @@ func (m *ModelPublicUserResponseV3) validateEnabled(formats strfmt.Registry) err
 
 func (m *ModelPublicUserResponseV3) validateLastDateOfBirthChangedTime(formats strfmt.Registry) error {
 
-	if err := validate.Required("lastDateOfBirthChangedTime", "body", m.LastDateOfBirthChangedTime); err != nil {
+	if err := validate.Required("lastDateOfBirthChangedTime", "body", strfmt.DateTime(m.LastDateOfBirthChangedTime)); err != nil {
 		return err
 	}
 
@@ -260,7 +260,7 @@ func (m *ModelPublicUserResponseV3) validateLastDateOfBirthChangedTime(formats s
 
 func (m *ModelPublicUserResponseV3) validateLastEnabledChangedTime(formats strfmt.Registry) error {
 
-	if err := validate.Required("lastEnabledChangedTime", "body", m.LastEnabledChangedTime); err != nil {
+	if err := validate.Required("lastEnabledChangedTime", "body", strfmt.DateTime(m.LastEnabledChangedTime)); err != nil {
 		return err
 	}
 

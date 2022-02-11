@@ -22,7 +22,7 @@ type PaymentNotificationInfo struct {
 	// createdAt
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// external id
 	ExternalID string `json:"externalId,omitempty"`
@@ -63,7 +63,7 @@ type PaymentNotificationInfo struct {
 	// updatedAt
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 }
 
 // Validate validates this payment notification info
@@ -114,7 +114,7 @@ func (m *PaymentNotificationInfo) Validate(formats strfmt.Registry) error {
 
 func (m *PaymentNotificationInfo) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -282,7 +282,7 @@ func (m *PaymentNotificationInfo) validateStatus(formats strfmt.Registry) error 
 
 func (m *PaymentNotificationInfo) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

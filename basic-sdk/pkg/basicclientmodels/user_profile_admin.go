@@ -33,7 +33,7 @@ type UserProfileAdmin struct {
 
 	// date of birth, allowed format: yyyy-MM-dd, valid date range from 1905-01-01 until present
 	// Format: date
-	DateOfBirth strfmt.Date `json:"dateOfBirth,omitempty"`
+	DateOfBirth *strfmt.Date `json:"dateOfBirth,omitempty"`
 
 	// first name
 	FirstName string `json:"firstName,omitempty"`

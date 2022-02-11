@@ -22,7 +22,7 @@ type PaymentOrderCreateResult struct {
 	// The time of the order created
 	// Required: true
 	// Format: date-time
-	CreatedTime *strfmt.DateTime `json:"createdTime"`
+	CreatedTime strfmt.DateTime `json:"createdTime"`
 
 	// Payment order namespace
 	// Required: true
@@ -75,7 +75,7 @@ func (m *PaymentOrderCreateResult) Validate(formats strfmt.Registry) error {
 
 func (m *PaymentOrderCreateResult) validateCreatedTime(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdTime", "body", m.CreatedTime); err != nil {
+	if err := validate.Required("createdTime", "body", strfmt.DateTime(m.CreatedTime)); err != nil {
 		return err
 	}
 

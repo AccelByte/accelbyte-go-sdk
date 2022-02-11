@@ -67,7 +67,7 @@ type AppInfo struct {
 
 	// release date
 	// Format: date-time
-	ReleaseDate strfmt.DateTime `json:"releaseDate,omitempty"`
+	ReleaseDate *strfmt.DateTime `json:"releaseDate,omitempty"`
 
 	// slogan
 	Slogan string `json:"slogan,omitempty"`

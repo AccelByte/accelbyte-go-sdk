@@ -27,7 +27,7 @@ type ModelsDeletionStatus struct {
 
 	// execution date
 	// Format: date-time
-	ExecutionDate strfmt.DateTime `json:"ExecutionDate,omitempty"`
+	ExecutionDate *strfmt.DateTime `json:"ExecutionDate,omitempty"`
 
 	// status
 	// Required: true

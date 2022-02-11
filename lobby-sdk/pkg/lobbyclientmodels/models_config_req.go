@@ -33,6 +33,9 @@ type ModelsConfigReq struct {
 	// concurrent users limit
 	ConcurrentUsersLimit int32 `json:"concurrentUsersLimit,omitempty"`
 
+	// disable party invitation token
+	DisablePartyInvitationToken bool `json:"disablePartyInvitationToken,omitempty"`
+
 	// enable chat
 	EnableChat bool `json:"enableChat,omitempty"`
 

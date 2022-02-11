@@ -24,7 +24,7 @@ type ModelsDeletionData struct {
 	// request date
 	// Required: true
 	// Format: date-time
-	RequestDate *strfmt.DateTime `json:"RequestDate"`
+	RequestDate strfmt.DateTime `json:"RequestDate"`
 
 	// status
 	// Required: true
@@ -72,7 +72,7 @@ func (m *ModelsDeletionData) validateDisplayName(formats strfmt.Registry) error 
 
 func (m *ModelsDeletionData) validateRequestDate(formats strfmt.Registry) error {
 
-	if err := validate.Required("RequestDate", "body", m.RequestDate); err != nil {
+	if err := validate.Required("RequestDate", "body", strfmt.DateTime(m.RequestDate)); err != nil {
 		return err
 	}
 

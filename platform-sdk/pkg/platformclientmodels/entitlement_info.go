@@ -34,11 +34,11 @@ type EntitlementInfo struct {
 	// entitlement created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// entitlement end date
 	// Format: date-time
-	EndDate strfmt.DateTime `json:"endDate,omitempty"`
+	EndDate *strfmt.DateTime `json:"endDate,omitempty"`
 
 	// entitlement features
 	// Unique: true
@@ -47,7 +47,7 @@ type EntitlementInfo struct {
 	// entitlement granted at
 	// Required: true
 	// Format: date-time
-	GrantedAt *strfmt.DateTime `json:"grantedAt"`
+	GrantedAt strfmt.DateTime `json:"grantedAt"`
 
 	// grantedCode, the granted code
 	GrantedCode string `json:"grantedCode,omitempty"`
@@ -88,7 +88,7 @@ type EntitlementInfo struct {
 
 	// entitlement start date
 	// Format: date-time
-	StartDate strfmt.DateTime `json:"startDate,omitempty"`
+	StartDate *strfmt.DateTime `json:"startDate,omitempty"`
 
 	// entitlement status
 	// Required: true
@@ -106,7 +106,7 @@ type EntitlementInfo struct {
 	// entitlement updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 
 	// useCount for entitlement
 	UseCount int32 `json:"useCount,omitempty"`
@@ -301,7 +301,7 @@ func (m *EntitlementInfo) validateClazz(formats strfmt.Registry) error {
 
 func (m *EntitlementInfo) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -340,7 +340,7 @@ func (m *EntitlementInfo) validateFeatures(formats strfmt.Registry) error {
 
 func (m *EntitlementInfo) validateGrantedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("grantedAt", "body", m.GrantedAt); err != nil {
+	if err := validate.Required("grantedAt", "body", strfmt.DateTime(m.GrantedAt)); err != nil {
 		return err
 	}
 
@@ -585,7 +585,7 @@ func (m *EntitlementInfo) validateType(formats strfmt.Registry) error {
 
 func (m *EntitlementInfo) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

@@ -30,7 +30,7 @@ type TelemetryBody struct {
 
 	// Eventtimestamp
 	// Format: date-time
-	EventTimestamp strfmt.DateTime `json:"EventTimestamp,omitempty"`
+	EventTimestamp *strfmt.DateTime `json:"EventTimestamp,omitempty"`
 
 	// Payload
 	// Required: true

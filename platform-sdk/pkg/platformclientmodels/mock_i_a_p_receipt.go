@@ -31,7 +31,7 @@ type MockIAPReceipt struct {
 
 	// The IAP type.
 	// Required: true
-	// Enum: [APPLE GOOGLE PLAYSTATION STEAM XBOX STADIA EPICGAMES]
+	// Enum: [APPLE GOOGLE PLAYSTATION STEAM XBOX STADIA EPICGAMES TWITCH]
 	Type *string `json:"type"`
 }
 
@@ -66,7 +66,7 @@ var mockIAPReceiptTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["APPLE","GOOGLE","PLAYSTATION","STEAM","XBOX","STADIA","EPICGAMES"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["APPLE","GOOGLE","PLAYSTATION","STEAM","XBOX","STADIA","EPICGAMES","TWITCH"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -96,6 +96,9 @@ const (
 
 	// MockIAPReceiptTypeEPICGAMES captures enum value "EPICGAMES"
 	MockIAPReceiptTypeEPICGAMES string = "EPICGAMES"
+
+	// MockIAPReceiptTypeTWITCH captures enum value "TWITCH"
+	MockIAPReceiptTypeTWITCH string = "TWITCH"
 )
 
 // prop value enum

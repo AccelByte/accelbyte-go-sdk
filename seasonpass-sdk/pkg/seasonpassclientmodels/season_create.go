@@ -36,7 +36,7 @@ type SeasonCreate struct {
 	// end date time
 	// Required: true
 	// Format: date-time
-	End *strfmt.DateTime `json:"end"`
+	End strfmt.DateTime `json:"end"`
 
 	// strategy while exceed final tier exp, default NONE
 	ExcessStrategy *ExcessStrategy `json:"excessStrategy,omitempty"`
@@ -55,7 +55,7 @@ type SeasonCreate struct {
 	// start date time
 	// Required: true
 	// Format: date-time
-	Start *strfmt.DateTime `json:"start"`
+	Start strfmt.DateTime `json:"start"`
 
 	// tier item id
 	// Required: true
@@ -128,7 +128,7 @@ func (m *SeasonCreate) validateDraftStoreID(formats strfmt.Registry) error {
 
 func (m *SeasonCreate) validateEnd(formats strfmt.Registry) error {
 
-	if err := validate.Required("end", "body", m.End); err != nil {
+	if err := validate.Required("end", "body", strfmt.DateTime(m.End)); err != nil {
 		return err
 	}
 
@@ -211,7 +211,7 @@ func (m *SeasonCreate) validateName(formats strfmt.Registry) error {
 
 func (m *SeasonCreate) validateStart(formats strfmt.Registry) error {
 
-	if err := validate.Required("start", "body", m.Start); err != nil {
+	if err := validate.Required("start", "body", strfmt.DateTime(m.Start)); err != nil {
 		return err
 	}
 

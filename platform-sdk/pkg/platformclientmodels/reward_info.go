@@ -21,7 +21,7 @@ type RewardInfo struct {
 
 	// created at
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"createdAt,omitempty"`
+	CreatedAt *strfmt.DateTime `json:"createdAt,omitempty"`
 
 	// Description
 	Description string `json:"description,omitempty"`
@@ -40,6 +40,9 @@ type RewardInfo struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	//  The path to get namespace from event payload, if not present, will use default value
+	NamespaceExpression string `json:"namespaceExpression,omitempty"`
+
 	// Reward code
 	RewardCode string `json:"rewardCode,omitempty"`
 
@@ -52,7 +55,10 @@ type RewardInfo struct {
 
 	// updated at
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updatedAt,omitempty"`
+	UpdatedAt *strfmt.DateTime `json:"updatedAt,omitempty"`
+
+	// The path to get userId from event payload, if not present, will use default value
+	UserIDExpression string `json:"userIdExpression,omitempty"`
 }
 
 // Validate validates this reward info

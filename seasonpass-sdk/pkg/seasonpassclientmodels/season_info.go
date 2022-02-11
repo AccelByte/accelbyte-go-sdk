@@ -27,7 +27,7 @@ type SeasonInfo struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// default language, BCP 47 language tag
 	// Required: true
@@ -44,7 +44,7 @@ type SeasonInfo struct {
 	// end date time
 	// Required: true
 	// Format: date-time
-	End *strfmt.DateTime `json:"end"`
+	End strfmt.DateTime `json:"end"`
 
 	// strategy while exceed final tier exp
 	// Required: true
@@ -75,12 +75,12 @@ type SeasonInfo struct {
 
 	// publishedAt
 	// Format: date-time
-	PublishedAt strfmt.DateTime `json:"publishedAt,omitempty"`
+	PublishedAt *strfmt.DateTime `json:"publishedAt,omitempty"`
 
 	// start date time
 	// Required: true
 	// Format: date-time
-	Start *strfmt.DateTime `json:"start"`
+	Start strfmt.DateTime `json:"start"`
 
 	// status
 	// Required: true
@@ -98,7 +98,7 @@ type SeasonInfo struct {
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 }
 
 // Validate validates this season info
@@ -198,7 +198,7 @@ func (m *SeasonInfo) validateAutoClaim(formats strfmt.Registry) error {
 
 func (m *SeasonInfo) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -238,7 +238,7 @@ func (m *SeasonInfo) validateDraftStoreID(formats strfmt.Registry) error {
 
 func (m *SeasonInfo) validateEnd(formats strfmt.Registry) error {
 
-	if err := validate.Required("end", "body", m.End); err != nil {
+	if err := validate.Required("end", "body", strfmt.DateTime(m.End)); err != nil {
 		return err
 	}
 
@@ -365,7 +365,7 @@ func (m *SeasonInfo) validatePublishedAt(formats strfmt.Registry) error {
 
 func (m *SeasonInfo) validateStart(formats strfmt.Registry) error {
 
-	if err := validate.Required("start", "body", m.Start); err != nil {
+	if err := validate.Required("start", "body", strfmt.DateTime(m.Start)); err != nil {
 		return err
 	}
 
@@ -442,7 +442,7 @@ func (m *SeasonInfo) validateTierItemName(formats strfmt.Registry) error {
 
 func (m *SeasonInfo) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

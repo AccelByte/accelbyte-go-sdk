@@ -32,7 +32,7 @@ type BillingHistoryInfo struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// currency
 	// Required: true
@@ -97,12 +97,12 @@ type BillingHistoryInfo struct {
 
 	// transaction end time
 	// Format: date-time
-	TxEndTime strfmt.DateTime `json:"txEndTime,omitempty"`
+	TxEndTime *strfmt.DateTime `json:"txEndTime,omitempty"`
 
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 
 	// user id
 	// Required: true
@@ -208,7 +208,7 @@ func (m *BillingHistoryInfo) validateBillingAccount(formats strfmt.Registry) err
 
 func (m *BillingHistoryInfo) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -367,7 +367,7 @@ func (m *BillingHistoryInfo) validateTxEndTime(formats strfmt.Registry) error {
 
 func (m *BillingHistoryInfo) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

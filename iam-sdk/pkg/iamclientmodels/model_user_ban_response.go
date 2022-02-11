@@ -36,11 +36,11 @@ type ModelUserBanResponse struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"CreatedAt"`
+	CreatedAt strfmt.DateTime `json:"CreatedAt"`
 
 	// disabled date
 	// Format: date-time
-	DisabledDate strfmt.DateTime `json:"DisabledDate,omitempty"`
+	DisabledDate *strfmt.DateTime `json:"DisabledDate,omitempty"`
 
 	// enabled
 	// Required: true
@@ -49,7 +49,7 @@ type ModelUserBanResponse struct {
 	// end date
 	// Required: true
 	// Format: date-time
-	EndDate *strfmt.DateTime `json:"EndDate"`
+	EndDate strfmt.DateTime `json:"EndDate"`
 
 	// namespace
 	// Required: true
@@ -165,7 +165,7 @@ func (m *ModelUserBanResponse) validateComment(formats strfmt.Registry) error {
 
 func (m *ModelUserBanResponse) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("CreatedAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("CreatedAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -200,7 +200,7 @@ func (m *ModelUserBanResponse) validateEnabled(formats strfmt.Registry) error {
 
 func (m *ModelUserBanResponse) validateEndDate(formats strfmt.Registry) error {
 
-	if err := validate.Required("EndDate", "body", m.EndDate); err != nil {
+	if err := validate.Required("EndDate", "body", strfmt.DateTime(m.EndDate)); err != nil {
 		return err
 	}
 

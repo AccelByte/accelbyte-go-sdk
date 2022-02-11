@@ -43,7 +43,7 @@ type ModelsEventV2 struct {
 	// timestamp
 	// Required: true
 	// Format: date-time
-	Timestamp *strfmt.DateTime `json:"timestamp"`
+	Timestamp strfmt.DateTime `json:"timestamp"`
 
 	// trace Id
 	// Required: true
@@ -151,7 +151,7 @@ func (m *ModelsEventV2) validateSessionID(formats strfmt.Registry) error {
 
 func (m *ModelsEventV2) validateTimestamp(formats strfmt.Registry) error {
 
-	if err := validate.Required("timestamp", "body", m.Timestamp); err != nil {
+	if err := validate.Required("timestamp", "body", strfmt.DateTime(m.Timestamp)); err != nil {
 		return err
 	}
 

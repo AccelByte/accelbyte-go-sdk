@@ -34,7 +34,7 @@ type ItemSnapshot struct {
 
 	// createdAt
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"createdAt,omitempty"`
+	CreatedAt *strfmt.DateTime `json:"createdAt,omitempty"`
 
 	// description
 	Description string `json:"description,omitempty"`
@@ -125,7 +125,7 @@ type ItemSnapshot struct {
 
 	// updatedAt
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updatedAt,omitempty"`
+	UpdatedAt *strfmt.DateTime `json:"updatedAt,omitempty"`
 
 	// Item use count, required when entitlement type is consumable or itemType is COINS
 	UseCount int32 `json:"useCount,omitempty"`

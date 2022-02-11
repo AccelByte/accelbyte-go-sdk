@@ -21,7 +21,7 @@ type NamespaceInfo struct {
 
 	// created at
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"createdAt,omitempty"`
+	CreatedAt *strfmt.DateTime `json:"createdAt,omitempty"`
 
 	// display name
 	DisplayName string `json:"displayName,omitempty"`
@@ -35,7 +35,7 @@ type NamespaceInfo struct {
 
 	// updated at
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updatedAt,omitempty"`
+	UpdatedAt *strfmt.DateTime `json:"updatedAt,omitempty"`
 }
 
 // Validate validates this namespace info

@@ -20,7 +20,7 @@ type GlobalStatItemInfo struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// namespace
 	// Required: true
@@ -41,7 +41,7 @@ type GlobalStatItemInfo struct {
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 
 	// value
 	// Required: true
@@ -88,7 +88,7 @@ func (m *GlobalStatItemInfo) Validate(formats strfmt.Registry) error {
 
 func (m *GlobalStatItemInfo) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -141,7 +141,7 @@ func (m *GlobalStatItemInfo) validateTags(formats strfmt.Registry) error {
 
 func (m *GlobalStatItemInfo) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

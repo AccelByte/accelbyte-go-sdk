@@ -24,7 +24,7 @@ type ModelsImageRecord struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// docker path
 	// Required: true
@@ -49,7 +49,7 @@ type ModelsImageRecord struct {
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 
 	// version
 	// Required: true
@@ -113,7 +113,7 @@ func (m *ModelsImageRecord) validateArtifactPath(formats strfmt.Registry) error 
 
 func (m *ModelsImageRecord) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -171,7 +171,7 @@ func (m *ModelsImageRecord) validatePersistent(formats strfmt.Registry) error {
 
 func (m *ModelsImageRecord) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

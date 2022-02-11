@@ -39,6 +39,8 @@ type ClientService interface {
 	GrantUserTierShort(params *GrantUserTierParams, authInfo runtime.ClientAuthInfoWriter) (*GrantUserTierOK, error)
 	QueryTiers(params *QueryTiersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryTiersOK, *QueryTiersBadRequest, *QueryTiersNotFound, error)
 	QueryTiersShort(params *QueryTiersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryTiersOK, error)
+	ReorderTier(params *ReorderTierParams, authInfo runtime.ClientAuthInfoWriter) (*ReorderTierOK, *ReorderTierBadRequest, *ReorderTierNotFound, *ReorderTierConflict, *ReorderTierUnprocessableEntity, error)
+	ReorderTierShort(params *ReorderTierParams, authInfo runtime.ClientAuthInfoWriter) (*ReorderTierOK, error)
 	UpdateTier(params *UpdateTierParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateTierOK, *UpdateTierBadRequest, *UpdateTierNotFound, *UpdateTierConflict, *UpdateTierUnprocessableEntity, error)
 	UpdateTierShort(params *UpdateTierParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateTierOK, error)
 
@@ -48,7 +50,7 @@ type ClientService interface {
 /*
   CreateTier creates tier
 
-  This API is used to create tier for a draft season, can create multiple tiers at same time.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SEASONPASS", action=1 (CREATE)</li></ul>
+  This API is used to create tier for a draft season, can create multiple tiers at same time.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=1 (CREATE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CreateTier(params *CreateTierParams, authInfo runtime.ClientAuthInfoWriter) (*CreateTierCreated, *CreateTierBadRequest, *CreateTierNotFound, *CreateTierConflict, *CreateTierUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -66,7 +68,7 @@ func (a *Client) CreateTier(params *CreateTierParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/tiers",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateTierReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -115,7 +117,7 @@ func (a *Client) CreateTierShort(params *CreateTierParams, authInfo runtime.Clie
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/tiers",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateTierReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -147,7 +149,7 @@ func (a *Client) CreateTierShort(params *CreateTierParams, authInfo runtime.Clie
 /*
   DeleteTier deletes a tier
 
-  This API is used to delete a tier permanently, only draft season pass can be deleted. <p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SEASONPASS", action=8 (DELETE)</li></ul>
+  This API is used to delete a tier permanently, only draft season pass can be deleted. &lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DeleteTier(params *DeleteTierParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTierNoContent, *DeleteTierBadRequest, *DeleteTierNotFound, *DeleteTierConflict, error) {
 	// TODO: Validate the params before sending
@@ -165,7 +167,7 @@ func (a *Client) DeleteTier(params *DeleteTierParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteTierReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -211,7 +213,7 @@ func (a *Client) DeleteTierShort(params *DeleteTierParams, authInfo runtime.Clie
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteTierReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -241,7 +243,7 @@ func (a *Client) DeleteTierShort(params *DeleteTierParams, authInfo runtime.Clie
 /*
   GrantUserExp grants exp to user
 
-  This API is used to grant exp to user, it will auto enroll if there's no user season but active published season exist, season only located in non-publisher namespace, otherwise ignore.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS", action=4 (UPDATE)</li><li><i>Returns</i>: user season data</li></ul>
+  This API is used to grant exp to user, it will auto enroll if there&#39;s no user season but active published season exist, season only located in non-publisher namespace, otherwise ignore.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user season data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GrantUserExp(params *GrantUserExpParams, authInfo runtime.ClientAuthInfoWriter) (*GrantUserExpOK, *GrantUserExpBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -259,7 +261,7 @@ func (a *Client) GrantUserExp(params *GrantUserExpParams, authInfo runtime.Clien
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/seasons/current/exp",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GrantUserExpReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -299,7 +301,7 @@ func (a *Client) GrantUserExpShort(params *GrantUserExpParams, authInfo runtime.
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/seasons/current/exp",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GrantUserExpReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -325,7 +327,7 @@ func (a *Client) GrantUserExpShort(params *GrantUserExpParams, authInfo runtime.
 /*
   GrantUserTier grants tier to user
 
-  This API is used to grant tier to user, it will auto enroll if there's no user season but active published season exist, season only located in non-publisher namespace, otherwise ignore.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS", action=4 (UPDATE)</li><li><i>Returns</i>: user season data</li></ul>
+  This API is used to grant tier to user, it will auto enroll if there&#39;s no user season but active published season exist, season only located in non-publisher namespace, otherwise ignore.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user season data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GrantUserTier(params *GrantUserTierParams, authInfo runtime.ClientAuthInfoWriter) (*GrantUserTierOK, *GrantUserTierBadRequest, *GrantUserTierNotFound, error) {
 	// TODO: Validate the params before sending
@@ -343,7 +345,7 @@ func (a *Client) GrantUserTier(params *GrantUserTierParams, authInfo runtime.Cli
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GrantUserTierReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -386,7 +388,7 @@ func (a *Client) GrantUserTierShort(params *GrantUserTierParams, authInfo runtim
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GrantUserTierReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -414,7 +416,7 @@ func (a *Client) GrantUserTierShort(params *GrantUserTierParams, authInfo runtim
 /*
   QueryTiers queries paginated tiers for a season
 
-  This API is used to query paginated tiers for a season.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SEASONPASS", action=2 (READ)</li><li><i>Returns</i>: the list of passes</li></ul>
+  This API is used to query paginated tiers for a season.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of passes&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) QueryTiers(params *QueryTiersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryTiersOK, *QueryTiersBadRequest, *QueryTiersNotFound, error) {
 	// TODO: Validate the params before sending
@@ -432,7 +434,7 @@ func (a *Client) QueryTiers(params *QueryTiersParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/tiers",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QueryTiersReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -475,7 +477,7 @@ func (a *Client) QueryTiersShort(params *QueryTiersParams, authInfo runtime.Clie
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/tiers",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QueryTiersReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -501,9 +503,108 @@ func (a *Client) QueryTiersShort(params *QueryTiersParams, authInfo runtime.Clie
 }
 
 /*
+  ReorderTier reorders a tier
+
+  This API is used to reorder a tier. Only draft season pass can be updated.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) ReorderTier(params *ReorderTierParams, authInfo runtime.ClientAuthInfoWriter) (*ReorderTierOK, *ReorderTierBadRequest, *ReorderTierNotFound, *ReorderTierConflict, *ReorderTierUnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewReorderTierParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "reorderTier",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ReorderTierReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ReorderTierOK:
+		return v, nil, nil, nil, nil, nil
+
+	case *ReorderTierBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *ReorderTierNotFound:
+		return nil, nil, v, nil, nil, nil
+
+	case *ReorderTierConflict:
+		return nil, nil, nil, v, nil, nil
+
+	case *ReorderTierUnprocessableEntity:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) ReorderTierShort(params *ReorderTierParams, authInfo runtime.ClientAuthInfoWriter) (*ReorderTierOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewReorderTierParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "reorderTier",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ReorderTierReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *ReorderTierOK:
+		return v, nil
+	case *ReorderTierBadRequest:
+		return nil, v
+	case *ReorderTierNotFound:
+		return nil, v
+	case *ReorderTierConflict:
+		return nil, v
+	case *ReorderTierUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
   UpdateTier updates a tier
 
-  This API is used to update a tier. Only draft season pass can be updated.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SEASONPASS", action=4 (UPDATE)</li></ul>
+  This API is used to update a tier. Only draft season pass can be updated.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateTier(params *UpdateTierParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateTierOK, *UpdateTierBadRequest, *UpdateTierNotFound, *UpdateTierConflict, *UpdateTierUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -521,7 +622,7 @@ func (a *Client) UpdateTier(params *UpdateTierParams, authInfo runtime.ClientAut
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateTierReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -570,7 +671,7 @@ func (a *Client) UpdateTierShort(params *UpdateTierParams, authInfo runtime.Clie
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateTierReader{formats: a.formats},
 		AuthInfo:           authInfo,

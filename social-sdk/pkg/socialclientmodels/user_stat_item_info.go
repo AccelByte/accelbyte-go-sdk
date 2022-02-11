@@ -20,7 +20,7 @@ type UserStatItemInfo struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// namespace
 	// Required: true
@@ -41,7 +41,7 @@ type UserStatItemInfo struct {
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 
 	// user Id
 	// Required: true
@@ -96,7 +96,7 @@ func (m *UserStatItemInfo) Validate(formats strfmt.Registry) error {
 
 func (m *UserStatItemInfo) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -149,7 +149,7 @@ func (m *UserStatItemInfo) validateTags(formats strfmt.Registry) error {
 
 func (m *UserStatItemInfo) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

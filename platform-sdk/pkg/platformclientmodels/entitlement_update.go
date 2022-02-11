@@ -21,14 +21,14 @@ type EntitlementUpdate struct {
 
 	// end date of the entitlement. yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
 	// Format: date-time
-	EndDate strfmt.DateTime `json:"endDate,omitempty"`
+	EndDate *strfmt.DateTime `json:"endDate,omitempty"`
 
 	// nullFieldList
 	NullFieldList []string `json:"nullFieldList"`
 
 	// start date of the entitlement. yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
 	// Format: date-time
-	StartDate strfmt.DateTime `json:"startDate,omitempty"`
+	StartDate *strfmt.DateTime `json:"startDate,omitempty"`
 
 	// status
 	// Enum: [ACTIVE INACTIVE CONSUMED REVOKED]

@@ -30,7 +30,7 @@ type HierarchicalCategoryInfo struct {
 	// Category created time
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// Category display name
 	// Required: true
@@ -50,7 +50,7 @@ type HierarchicalCategoryInfo struct {
 	// Category updated time
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 }
 
 // Validate validates this hierarchical category info
@@ -127,7 +127,7 @@ func (m *HierarchicalCategoryInfo) validateChildCategories(formats strfmt.Regist
 
 func (m *HierarchicalCategoryInfo) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -167,7 +167,7 @@ func (m *HierarchicalCategoryInfo) validateParentCategoryPath(formats strfmt.Reg
 
 func (m *HierarchicalCategoryInfo) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

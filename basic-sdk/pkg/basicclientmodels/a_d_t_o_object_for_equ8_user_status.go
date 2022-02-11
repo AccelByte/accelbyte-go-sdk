@@ -25,14 +25,14 @@ type ADTOObjectForEqu8UserStatus struct {
 
 	// action end date
 	// Format: date-time
-	Expires strfmt.DateTime `json:"expires,omitempty"`
+	Expires *strfmt.DateTime `json:"expires,omitempty"`
 
 	// current user
 	UserID string `json:"userId,omitempty"`
 
 	// action start date
 	// Format: date-time
-	When strfmt.DateTime `json:"when,omitempty"`
+	When *strfmt.DateTime `json:"when,omitempty"`
 }
 
 // Validate validates this a d t o object for equ8 user status

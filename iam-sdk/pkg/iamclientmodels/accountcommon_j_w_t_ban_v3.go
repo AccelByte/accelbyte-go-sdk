@@ -23,7 +23,7 @@ type AccountcommonJWTBanV3 struct {
 
 	// disabled date
 	// Format: date-time
-	DisabledDate strfmt.DateTime `json:"disabledDate,omitempty"`
+	DisabledDate *strfmt.DateTime `json:"disabledDate,omitempty"`
 
 	// enabled
 	// Required: true
@@ -32,7 +32,7 @@ type AccountcommonJWTBanV3 struct {
 	// end date
 	// Required: true
 	// Format: date-time
-	EndDate *strfmt.DateTime `json:"endDate"`
+	EndDate strfmt.DateTime `json:"endDate"`
 
 	// targeted namespace
 	// Required: true
@@ -102,7 +102,7 @@ func (m *AccountcommonJWTBanV3) validateEnabled(formats strfmt.Registry) error {
 
 func (m *AccountcommonJWTBanV3) validateEndDate(formats strfmt.Registry) error {
 
-	if err := validate.Required("endDate", "body", m.EndDate); err != nil {
+	if err := validate.Required("endDate", "body", strfmt.DateTime(m.EndDate)); err != nil {
 		return err
 	}
 

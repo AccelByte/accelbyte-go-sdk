@@ -19,72 +19,6 @@ type PassService struct {
 	TokenRepository repository.TokenRepository
 }
 
-// Deprecated: Use GetPassShort instead
-func (p *PassService) GetPass(input *pass.GetPassParams) (*seasonpassclientmodels.PassInfo, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, notFound, badRequest, err := p.Client.Pass.GetPass(input, client.BearerToken(*accessToken.AccessToken))
-	if notFound != nil {
-		return nil, notFound
-	}
-	if badRequest != nil {
-		return nil, badRequest
-	}
-	if err != nil {
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-// Deprecated: Use DeletePassShort instead
-func (p *PassService) DeletePass(input *pass.DeletePassParams) error {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, notFound, conflict, badRequest, err := p.Client.Pass.DeletePass(input, client.BearerToken(*accessToken.AccessToken))
-	if notFound != nil {
-		return notFound
-	}
-	if conflict != nil {
-		return conflict
-	}
-	if badRequest != nil {
-		return badRequest
-	}
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-// Deprecated: Use UpdatePassShort instead
-func (p *PassService) UpdatePass(input *pass.UpdatePassParams) (*seasonpassclientmodels.PassInfo, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, notFound, badRequest, conflict, unprocessableEntity, err := p.Client.Pass.UpdatePass(input, client.BearerToken(*accessToken.AccessToken))
-	if notFound != nil {
-		return nil, notFound
-	}
-	if badRequest != nil {
-		return nil, badRequest
-	}
-	if conflict != nil {
-		return nil, conflict
-	}
-	if unprocessableEntity != nil {
-		return nil, unprocessableEntity
-	}
-	if err != nil {
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
 // Deprecated: Use QueryPassesShort instead
 func (p *PassService) QueryPasses(input *pass.QueryPassesParams) ([]*seasonpassclientmodels.PassInfo, error) {
 	accessToken, err := p.TokenRepository.GetToken()
@@ -110,12 +44,12 @@ func (p *PassService) CreatePass(input *pass.CreatePassParams) (*seasonpassclien
 	if err != nil {
 		return nil, err
 	}
-	created, notFound, badRequest, conflict, unprocessableEntity, err := p.Client.Pass.CreatePass(input, client.BearerToken(*accessToken.AccessToken))
-	if notFound != nil {
-		return nil, notFound
-	}
+	created, badRequest, notFound, conflict, unprocessableEntity, err := p.Client.Pass.CreatePass(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
 	}
 	if conflict != nil {
 		return nil, conflict
@@ -127,6 +61,72 @@ func (p *PassService) CreatePass(input *pass.CreatePassParams) (*seasonpassclien
 		return nil, err
 	}
 	return created.GetPayload(), nil
+}
+
+// Deprecated: Use GetPassShort instead
+func (p *PassService) GetPass(input *pass.GetPassParams) (*seasonpassclientmodels.PassInfo, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, notFound, err := p.Client.Pass.GetPass(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use DeletePassShort instead
+func (p *PassService) DeletePass(input *pass.DeletePassParams) error {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, notFound, conflict, err := p.Client.Pass.DeletePass(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if conflict != nil {
+		return conflict
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+// Deprecated: Use UpdatePassShort instead
+func (p *PassService) UpdatePass(input *pass.UpdatePassParams) (*seasonpassclientmodels.PassInfo, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, notFound, conflict, unprocessableEntity, err := p.Client.Pass.UpdatePass(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if conflict != nil {
+		return nil, conflict
+	}
+	if unprocessableEntity != nil {
+		return nil, unprocessableEntity
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
 }
 
 // Deprecated: Use GrantUserPassShort instead
@@ -143,6 +143,22 @@ func (p *PassService) GrantUserPass(input *pass.GrantUserPassParams) (*seasonpas
 		return nil, err
 	}
 	return ok.GetPayload(), nil
+}
+
+func (p *PassService) QueryPassesShort(input *pass.QueryPassesParams, authInfo runtime.ClientAuthInfoWriter) ([]*seasonpassclientmodels.PassInfo, error) {
+	ok, err := p.Client.Pass.QueryPassesShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (p *PassService) CreatePassShort(input *pass.CreatePassParams, authInfo runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.PassInfo, error) {
+	created, err := p.Client.Pass.CreatePassShort(input, authInfo)
+	if err != nil {
+		return nil, err
+	}
+	return created.GetPayload(), nil
 }
 
 func (p *PassService) GetPassShort(input *pass.GetPassParams, authInfo runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.PassInfo, error) {
@@ -167,22 +183,6 @@ func (p *PassService) UpdatePassShort(input *pass.UpdatePassParams, authInfo run
 		return nil, err
 	}
 	return ok.GetPayload(), nil
-}
-
-func (p *PassService) QueryPassesShort(input *pass.QueryPassesParams, authInfo runtime.ClientAuthInfoWriter) ([]*seasonpassclientmodels.PassInfo, error) {
-	ok, err := p.Client.Pass.QueryPassesShort(input, authInfo)
-	if err != nil {
-		return nil, err
-	}
-	return ok.GetPayload(), nil
-}
-
-func (p *PassService) CreatePassShort(input *pass.CreatePassParams, authInfo runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.PassInfo, error) {
-	created, err := p.Client.Pass.CreatePassShort(input, authInfo)
-	if err != nil {
-		return nil, err
-	}
-	return created.GetPayload(), nil
 }
 
 func (p *PassService) GrantUserPassShort(input *pass.GrantUserPassParams, authInfo runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.UserSeasonSummary, error) {

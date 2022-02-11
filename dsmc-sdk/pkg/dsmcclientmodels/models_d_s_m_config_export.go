@@ -26,7 +26,7 @@ type ModelsDSMConfigExport struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// creation timeout
 	// Required: true
@@ -79,7 +79,7 @@ type ModelsDSMConfigExport struct {
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 }
 
 // Validate validates this models d s m config export
@@ -163,7 +163,7 @@ func (m *ModelsDSMConfigExport) validateClaimTimeout(formats strfmt.Registry) er
 
 func (m *ModelsDSMConfigExport) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -328,7 +328,7 @@ func (m *ModelsDSMConfigExport) validateUnreachableTimeout(formats strfmt.Regist
 
 func (m *ModelsDSMConfigExport) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

@@ -47,6 +47,8 @@ type ClientService interface {
 	BulkIncUserStatItem1Short(params *BulkIncUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkIncUserStatItem1OK, error)
 	BulkResetUserStatItem(params *BulkResetUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItemOK, *BulkResetUserStatItemUnprocessableEntity, error)
 	BulkResetUserStatItemShort(params *BulkResetUserStatItemParams, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItemOK, error)
+	BulkResetUserStatItemValues(params *BulkResetUserStatItemValuesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItemValuesOK, *BulkResetUserStatItemValuesUnprocessableEntity, error)
+	BulkResetUserStatItemValuesShort(params *BulkResetUserStatItemValuesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItemValuesOK, error)
 	BulkResetUserStatItem1(params *BulkResetUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem1OK, *BulkResetUserStatItem1UnprocessableEntity, error)
 	BulkResetUserStatItem1Short(params *BulkResetUserStatItem1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem1OK, error)
 	BulkResetUserStatItem2(params *BulkResetUserStatItem2Params, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItem2OK, *BulkResetUserStatItem2UnprocessableEntity, error)
@@ -861,6 +863,93 @@ func (a *Client) BulkResetUserStatItemShort(params *BulkResetUserStatItemParams,
 	case *BulkResetUserStatItemOK:
 		return v, nil
 	case *BulkResetUserStatItemUnprocessableEntity:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  BulkResetUserStatItemValues bulks reset user s statitem values
+
+  Bulk reset user&#39;s statitem values for given namespace and user.
+Other detail info:
++ *Required permission*: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM&#34;, action=4 (UPDATE)
++ *Returns*: bulk updated result
+*/
+func (a *Client) BulkResetUserStatItemValues(params *BulkResetUserStatItemValuesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItemValuesOK, *BulkResetUserStatItemValuesUnprocessableEntity, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkResetUserStatItemValuesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkResetUserStatItemValues",
+		Method:             "PUT",
+		PathPattern:        "/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkResetUserStatItemValuesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkResetUserStatItemValuesOK:
+		return v, nil, nil
+
+	case *BulkResetUserStatItemValuesUnprocessableEntity:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) BulkResetUserStatItemValuesShort(params *BulkResetUserStatItemValuesParams, authInfo runtime.ClientAuthInfoWriter) (*BulkResetUserStatItemValuesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBulkResetUserStatItemValuesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "bulkResetUserStatItemValues",
+		Method:             "PUT",
+		PathPattern:        "/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BulkResetUserStatItemValuesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *BulkResetUserStatItemValuesOK:
+		return v, nil
+	case *BulkResetUserStatItemValuesUnprocessableEntity:
 		return nil, v
 
 	default:

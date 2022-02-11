@@ -28,7 +28,7 @@ type RetrievePolicyResponse struct {
 
 	// created at
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"createdAt,omitempty"`
+	CreatedAt *strfmt.DateTime `json:"createdAt,omitempty"`
 
 	// description
 	Description string `json:"description,omitempty"`
@@ -65,7 +65,7 @@ type RetrievePolicyResponse struct {
 
 	// updated at
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updatedAt,omitempty"`
+	UpdatedAt *strfmt.DateTime `json:"updatedAt,omitempty"`
 }
 
 // Validate validates this retrieve policy response

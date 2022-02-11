@@ -74,7 +74,7 @@ type ClientService interface {
 /*
   CheckSeasonPurchasable checks pass or tier purchasable
 
-  This API is used to check pass or tier purchasable, season only located in non-publisher namespace.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS", action=2 (READ)</li></ul>
+  This API is used to check pass or tier purchasable, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CheckSeasonPurchasable(params *CheckSeasonPurchasableParams, authInfo runtime.ClientAuthInfoWriter) (*CheckSeasonPurchasableNoContent, *CheckSeasonPurchasableBadRequest, *CheckSeasonPurchasableNotFound, *CheckSeasonPurchasableConflict, error) {
 	// TODO: Validate the params before sending
@@ -92,7 +92,7 @@ func (a *Client) CheckSeasonPurchasable(params *CheckSeasonPurchasableParams, au
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CheckSeasonPurchasableReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -138,7 +138,7 @@ func (a *Client) CheckSeasonPurchasableShort(params *CheckSeasonPurchasableParam
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CheckSeasonPurchasableReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -168,7 +168,7 @@ func (a *Client) CheckSeasonPurchasableShort(params *CheckSeasonPurchasableParam
 /*
   CloneSeason clones a season
 
-  This API is used to clone a season.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SEASONPASS", action=1 (CREATE)</li><li><i>Returns</i>: cloned season info</li></ul>
+  This API is used to clone a season.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: cloned season info&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CloneSeason(params *CloneSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*CloneSeasonOK, *CloneSeasonBadRequest, *CloneSeasonNotFound, *CloneSeasonUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -186,7 +186,7 @@ func (a *Client) CloneSeason(params *CloneSeasonParams, authInfo runtime.ClientA
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/clone",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CloneSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -232,7 +232,7 @@ func (a *Client) CloneSeasonShort(params *CloneSeasonParams, authInfo runtime.Cl
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/clone",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CloneSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -262,7 +262,7 @@ func (a *Client) CloneSeasonShort(params *CloneSeasonParams, authInfo runtime.Cl
 /*
   CreateSeason creates a season
 
-  This API is used to create a season, season only allowed in non-publisher namespace.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SEASONPASS", action=1 (CREATE)</li><li><i>Returns</i>: created season</li></ul>
+  This API is used to create a season, season only allowed in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created season&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CreateSeason(params *CreateSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSeasonCreated, *CreateSeasonBadRequest, *CreateSeasonNotFound, *CreateSeasonUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -280,7 +280,7 @@ func (a *Client) CreateSeason(params *CreateSeasonParams, authInfo runtime.Clien
 		PathPattern:        "/admin/namespaces/{namespace}/seasons",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -326,7 +326,7 @@ func (a *Client) CreateSeasonShort(params *CreateSeasonParams, authInfo runtime.
 		PathPattern:        "/admin/namespaces/{namespace}/seasons",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -356,7 +356,7 @@ func (a *Client) CreateSeasonShort(params *CreateSeasonParams, authInfo runtime.
 /*
   DeleteSeason deletes a season
 
-  This API is used to delete a season permanently, only draft season can be deleted. <p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SEASONPASS", action=8 (DELETE)</li></ul>
+  This API is used to delete a season permanently, only draft season can be deleted. &lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DeleteSeason(params *DeleteSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSeasonNoContent, *DeleteSeasonBadRequest, *DeleteSeasonNotFound, *DeleteSeasonConflict, error) {
 	// TODO: Validate the params before sending
@@ -374,7 +374,7 @@ func (a *Client) DeleteSeason(params *DeleteSeasonParams, authInfo runtime.Clien
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -420,7 +420,7 @@ func (a *Client) DeleteSeasonShort(params *DeleteSeasonParams, authInfo runtime.
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -450,7 +450,7 @@ func (a *Client) DeleteSeasonShort(params *DeleteSeasonParams, authInfo runtime.
 /*
   ExistsAnyPassByPassCodes gets ownership for any pass codes
 
-  [SERVICE COMMUNICATION ONLY]This API is used to get ownership for any pass codes, season only located in non-publisher namespace.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS", action=2 (READ)</li><li><i>Returns</i>: ownership</li></ul>
+  [SERVICE COMMUNICATION ONLY]This API is used to get ownership for any pass codes, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: ownership&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) ExistsAnyPassByPassCodes(params *ExistsAnyPassByPassCodesParams, authInfo runtime.ClientAuthInfoWriter) (*ExistsAnyPassByPassCodesOK, *ExistsAnyPassByPassCodesBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -468,7 +468,7 @@ func (a *Client) ExistsAnyPassByPassCodes(params *ExistsAnyPassByPassCodesParams
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes/ownership/any",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ExistsAnyPassByPassCodesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -508,7 +508,7 @@ func (a *Client) ExistsAnyPassByPassCodesShort(params *ExistsAnyPassByPassCodesP
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes/ownership/any",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ExistsAnyPassByPassCodesReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -534,7 +534,7 @@ func (a *Client) ExistsAnyPassByPassCodesShort(params *ExistsAnyPassByPassCodesP
 /*
   GetCurrentSeason gets current published season summary
 
-  [SERVICE COMMUNICATION ONLY]This API is used to get current published season summary which includes previous published season summary if exists, season only located in non-publisher namespace.<p>Other detail info: <ul><li><i>Returns</i>: season summary data</li></ul>
+  [SERVICE COMMUNICATION ONLY]This API is used to get current published season summary which includes previous published season summary if exists, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: season summary data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetCurrentSeason(params *GetCurrentSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentSeasonOK, *GetCurrentSeasonBadRequest, *GetCurrentSeasonNotFound, error) {
 	// TODO: Validate the params before sending
@@ -552,7 +552,7 @@ func (a *Client) GetCurrentSeason(params *GetCurrentSeasonParams, authInfo runti
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/current",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetCurrentSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -595,7 +595,7 @@ func (a *Client) GetCurrentSeasonShort(params *GetCurrentSeasonParams, authInfo 
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/current",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetCurrentSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -623,7 +623,7 @@ func (a *Client) GetCurrentSeasonShort(params *GetCurrentSeasonParams, authInfo 
 /*
   GetCurrentUserSeasonProgression gets current user season progression
 
-  This API is used to get current user season progression, season only located in non-publisher namespace.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS", action=2 (READ)</li><li><i>Returns</i>: user season progression</li></ul>
+  This API is used to get current user season progression, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user season progression&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetCurrentUserSeasonProgression(params *GetCurrentUserSeasonProgressionParams, authInfo runtime.ClientAuthInfoWriter) (*GetCurrentUserSeasonProgressionOK, *GetCurrentUserSeasonProgressionBadRequest, *GetCurrentUserSeasonProgressionNotFound, error) {
 	// TODO: Validate the params before sending
@@ -641,7 +641,7 @@ func (a *Client) GetCurrentUserSeasonProgression(params *GetCurrentUserSeasonPro
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/seasons/current/progression",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetCurrentUserSeasonProgressionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -684,7 +684,7 @@ func (a *Client) GetCurrentUserSeasonProgressionShort(params *GetCurrentUserSeas
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/seasons/current/progression",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetCurrentUserSeasonProgressionReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -712,7 +712,7 @@ func (a *Client) GetCurrentUserSeasonProgressionShort(params *GetCurrentUserSeas
 /*
   GetSeason gets a season
 
-  This API is used to get a season, season only located in non-publisher namespace.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SEASONPASS", action=2 (READ)</li><li><i>Returns</i>: season data</li></ul>
+  This API is used to get a season, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: season data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetSeason(params *GetSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*GetSeasonOK, *GetSeasonBadRequest, *GetSeasonNotFound, error) {
 	// TODO: Validate the params before sending
@@ -730,7 +730,7 @@ func (a *Client) GetSeason(params *GetSeasonParams, authInfo runtime.ClientAuthI
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -773,7 +773,7 @@ func (a *Client) GetSeasonShort(params *GetSeasonParams, authInfo runtime.Client
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -801,7 +801,7 @@ func (a *Client) GetSeasonShort(params *GetSeasonParams, authInfo runtime.Client
 /*
   GetUserParticipatedSeasons gets user participated season data
 
-  This API is used to get user participated season data, season only located in non-publisher namespace.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS", action=2 (READ)</li><li><i>Returns</i>: user participated season data</li></ul>
+  This API is used to get user participated season data, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user participated season data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetUserParticipatedSeasons(params *GetUserParticipatedSeasonsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserParticipatedSeasonsOK, *GetUserParticipatedSeasonsBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -819,7 +819,7 @@ func (a *Client) GetUserParticipatedSeasons(params *GetUserParticipatedSeasonsPa
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/seasons",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserParticipatedSeasonsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -859,7 +859,7 @@ func (a *Client) GetUserParticipatedSeasonsShort(params *GetUserParticipatedSeas
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/seasons",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserParticipatedSeasonsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -885,7 +885,7 @@ func (a *Client) GetUserParticipatedSeasonsShort(params *GetUserParticipatedSeas
 /*
   GetUserSeason gets user season data
 
-  This API is used to get user season data, season only located in non-publisher namespace.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS", action=2 (READ)</li><li><i>Returns</i>: user season data</li></ul>
+  This API is used to get user season data, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user season data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetUserSeason(params *GetUserSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserSeasonOK, *GetUserSeasonBadRequest, *GetUserSeasonNotFound, error) {
 	// TODO: Validate the params before sending
@@ -903,7 +903,7 @@ func (a *Client) GetUserSeason(params *GetUserSeasonParams, authInfo runtime.Cli
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -946,7 +946,7 @@ func (a *Client) GetUserSeasonShort(params *GetUserSeasonParams, authInfo runtim
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUserSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -974,7 +974,7 @@ func (a *Client) GetUserSeasonShort(params *GetUserSeasonParams, authInfo runtim
 /*
   PublicGetCurrentSeason gets current published season
 
-  This API is used to get current published season, season only located in non-publisher namespace.<p>Other detail info: <ul><li><i>Returns</i>: localized season data</li></ul>
+  This API is used to get current published season, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: localized season data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicGetCurrentSeason(params *PublicGetCurrentSeasonParams) (*PublicGetCurrentSeasonOK, *PublicGetCurrentSeasonBadRequest, *PublicGetCurrentSeasonNotFound, error) {
 	// TODO: Validate the params before sending
@@ -992,7 +992,7 @@ func (a *Client) PublicGetCurrentSeason(params *PublicGetCurrentSeasonParams) (*
 		PathPattern:        "/public/namespaces/{namespace}/seasons/current",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetCurrentSeasonReader{formats: a.formats},
 		Context:            params.Context,
@@ -1034,7 +1034,7 @@ func (a *Client) PublicGetCurrentSeasonShort(params *PublicGetCurrentSeasonParam
 		PathPattern:        "/public/namespaces/{namespace}/seasons/current",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetCurrentSeasonReader{formats: a.formats},
 		Context:            params.Context,
@@ -1061,7 +1061,7 @@ func (a *Client) PublicGetCurrentSeasonShort(params *PublicGetCurrentSeasonParam
 /*
   PublicGetCurrentUserSeason gets current user season data
 
-  This API is used to get current user season data, it will auto enroll if there's no user season but active published season exist, season only located in non-publisher namespace.<p>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:SEASONPASS", action=2 (READ)</li><li><i>Returns</i>: user season data</li></ul>
+  This API is used to get current user season data, it will auto enroll if there&#39;s no user season but active published season exist, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user season data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicGetCurrentUserSeason(params *PublicGetCurrentUserSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCurrentUserSeasonOK, *PublicGetCurrentUserSeasonBadRequest, *PublicGetCurrentUserSeasonNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1079,7 +1079,7 @@ func (a *Client) PublicGetCurrentUserSeason(params *PublicGetCurrentUserSeasonPa
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/seasons/current/data",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetCurrentUserSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1122,7 +1122,7 @@ func (a *Client) PublicGetCurrentUserSeasonShort(params *PublicGetCurrentUserSea
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/seasons/current/data",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetCurrentUserSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1150,7 +1150,7 @@ func (a *Client) PublicGetCurrentUserSeasonShort(params *PublicGetCurrentUserSea
 /*
   PublicGetUserSeason gets user season data
 
-  This API is used to get user season data, season only located in non-publisher namespace.<p>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:SEASONPASS", action=2 (READ)</li><li><i>Returns</i>: user season data</li></ul>
+  This API is used to get user season data, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user season data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicGetUserSeason(params *PublicGetUserSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserSeasonOK, *PublicGetUserSeasonBadRequest, *PublicGetUserSeasonNotFound, error) {
 	// TODO: Validate the params before sending
@@ -1168,7 +1168,7 @@ func (a *Client) PublicGetUserSeason(params *PublicGetUserSeasonParams, authInfo
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetUserSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1211,7 +1211,7 @@ func (a *Client) PublicGetUserSeasonShort(params *PublicGetUserSeasonParams, aut
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicGetUserSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1239,7 +1239,7 @@ func (a *Client) PublicGetUserSeasonShort(params *PublicGetUserSeasonParams, aut
 /*
   PublishSeason publishes a season
 
-  This API is used to publish a draft season, only one published season allowed at same time in a namespace.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SEASONPASS", action=4 (UPDATE)</li><li><i>Returns</i>: published season</li></ul>
+  This API is used to publish a draft season, only one published season allowed at same time in a namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: published season&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublishSeason(params *PublishSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*PublishSeasonOK, *PublishSeasonBadRequest, *PublishSeasonNotFound, *PublishSeasonConflict, error) {
 	// TODO: Validate the params before sending
@@ -1257,7 +1257,7 @@ func (a *Client) PublishSeason(params *PublishSeasonParams, authInfo runtime.Cli
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/publish",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublishSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1303,7 +1303,7 @@ func (a *Client) PublishSeasonShort(params *PublishSeasonParams, authInfo runtim
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/publish",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublishSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1333,7 +1333,7 @@ func (a *Client) PublishSeasonShort(params *PublishSeasonParams, authInfo runtim
 /*
   QuerySeasons queries seasons
 
-  This API is used to query seasons, seasons only located in non-publisher namespace.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SEASONPASS", action=2 (READ)</li><li><i>Returns</i>: the list of season basic info</li></ul>
+  This API is used to query seasons, seasons only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of season basic info&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) QuerySeasons(params *QuerySeasonsParams, authInfo runtime.ClientAuthInfoWriter) (*QuerySeasonsOK, *QuerySeasonsBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -1351,7 +1351,7 @@ func (a *Client) QuerySeasons(params *QuerySeasonsParams, authInfo runtime.Clien
 		PathPattern:        "/admin/namespaces/{namespace}/seasons",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QuerySeasonsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1391,7 +1391,7 @@ func (a *Client) QuerySeasonsShort(params *QuerySeasonsParams, authInfo runtime.
 		PathPattern:        "/admin/namespaces/{namespace}/seasons",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QuerySeasonsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1417,7 +1417,7 @@ func (a *Client) QuerySeasonsShort(params *QuerySeasonsParams, authInfo runtime.
 /*
   ResetUserSeason resets user data in current season
 
-  <b>[TEST FACILITY ONLY] Forbidden in live environment. </b>This API is used to reset user data in current season, it will not revoke the rewarded entitlements.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS", action=8 (DELETE)</li></ul>
+  &lt;b&gt;[TEST FACILITY ONLY] Forbidden in live environment. &lt;/b&gt;This API is used to reset user data in current season, it will not revoke the rewarded entitlements.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) ResetUserSeason(params *ResetUserSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*ResetUserSeasonNoContent, *ResetUserSeasonBadRequest, error) {
 	// TODO: Validate the params before sending
@@ -1435,7 +1435,7 @@ func (a *Client) ResetUserSeason(params *ResetUserSeasonParams, authInfo runtime
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/seasons/current/reset",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ResetUserSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1475,7 +1475,7 @@ func (a *Client) ResetUserSeasonShort(params *ResetUserSeasonParams, authInfo ru
 		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/seasons/current/reset",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &ResetUserSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1501,7 +1501,7 @@ func (a *Client) ResetUserSeasonShort(params *ResetUserSeasonParams, authInfo ru
 /*
   RetireSeason retires a season
 
-  This API is used to retire a published season, if the season has not ended it will report error except with force.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SEASONPASS", action=4 (UPDATE)</li><li><i>Returns</i>: season info</li></ul>
+  This API is used to retire a published season, if the season has not ended it will report error except with force.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: season info&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) RetireSeason(params *RetireSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*RetireSeasonOK, *RetireSeasonBadRequest, *RetireSeasonNotFound, *RetireSeasonConflict, error) {
 	// TODO: Validate the params before sending
@@ -1519,7 +1519,7 @@ func (a *Client) RetireSeason(params *RetireSeasonParams, authInfo runtime.Clien
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/retire",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RetireSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1565,7 +1565,7 @@ func (a *Client) RetireSeasonShort(params *RetireSeasonParams, authInfo runtime.
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/retire",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &RetireSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1595,7 +1595,7 @@ func (a *Client) RetireSeasonShort(params *RetireSeasonParams, authInfo runtime.
 /*
   UnpublishSeason unpublishes a season
 
-  This API is used to unpublish a published season, if the season already started it will report error except with force.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SEASONPASS", action=4 (UPDATE)</li><li><i>Returns</i>: season info</li></ul>
+  This API is used to unpublish a published season, if the season already started it will report error except with force.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: season info&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UnpublishSeason(params *UnpublishSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*UnpublishSeasonOK, *UnpublishSeasonBadRequest, *UnpublishSeasonNotFound, *UnpublishSeasonConflict, error) {
 	// TODO: Validate the params before sending
@@ -1613,7 +1613,7 @@ func (a *Client) UnpublishSeason(params *UnpublishSeasonParams, authInfo runtime
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/unpublish",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UnpublishSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1659,7 +1659,7 @@ func (a *Client) UnpublishSeasonShort(params *UnpublishSeasonParams, authInfo ru
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/unpublish",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UnpublishSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1689,7 +1689,7 @@ func (a *Client) UnpublishSeasonShort(params *UnpublishSeasonParams, authInfo ru
 /*
   UpdateSeason updates a season
 
-  This API is used to update a season. Only draft season can be updated.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SEASONPASS", action=4 (UPDATE)</li><li><i>Returns</i>: updated season</li></ul>
+  This API is used to update a season. Only draft season can be updated.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated season&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateSeason(params *UpdateSeasonParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSeasonOK, *UpdateSeasonBadRequest, *UpdateSeasonNotFound, *UpdateSeasonConflict, *UpdateSeasonUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -1707,7 +1707,7 @@ func (a *Client) UpdateSeason(params *UpdateSeasonParams, authInfo runtime.Clien
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -1756,7 +1756,7 @@ func (a *Client) UpdateSeasonShort(params *UpdateSeasonParams, authInfo runtime.
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateSeasonReader{formats: a.formats},
 		AuthInfo:           authInfo,

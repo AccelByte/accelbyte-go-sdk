@@ -34,7 +34,7 @@ type SubscriptionInfo struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// currency
 	Currency *CurrencySummary `json:"currency,omitempty"`
@@ -44,18 +44,18 @@ type SubscriptionInfo struct {
 
 	// current period end
 	// Format: date-time
-	CurrentPeriodEnd strfmt.DateTime `json:"currentPeriodEnd,omitempty"`
+	CurrentPeriodEnd *strfmt.DateTime `json:"currentPeriodEnd,omitempty"`
 
 	// current period start
 	// Format: date-time
-	CurrentPeriodStart strfmt.DateTime `json:"currentPeriodStart,omitempty"`
+	CurrentPeriodStart *strfmt.DateTime `json:"currentPeriodStart,omitempty"`
 
 	// description
 	Description string `json:"description,omitempty"`
 
 	// end date time if exist, at current it's not used
 	// Format: date-time
-	End strfmt.DateTime `json:"end,omitempty"`
+	End *strfmt.DateTime `json:"end,omitempty"`
 
 	// granted entitlement summary
 	Entitlements []*EntitlementSummary `json:"entitlements"`
@@ -91,7 +91,7 @@ type SubscriptionInfo struct {
 
 	// next billing date
 	// Format: date-time
-	NextBillingDate strfmt.DateTime `json:"nextBillingDate,omitempty"`
+	NextBillingDate *strfmt.DateTime `json:"nextBillingDate,omitempty"`
 
 	// whether user paid from the subscription start
 	Paid bool `json:"paid,omitempty"`
@@ -133,7 +133,7 @@ type SubscriptionInfo struct {
 
 	// start date time, it will record the first time subscribed
 	// Format: date-time
-	Start strfmt.DateTime `json:"start,omitempty"`
+	Start *strfmt.DateTime `json:"start,omitempty"`
 
 	// status
 	// Required: true
@@ -142,7 +142,7 @@ type SubscriptionInfo struct {
 
 	// subscribed date time
 	// Format: date-time
-	SubscribedAt strfmt.DateTime `json:"subscribedAt,omitempty"`
+	SubscribedAt *strfmt.DateTime `json:"subscribedAt,omitempty"`
 
 	// subscribed by PLATFORM(system granted) or USER(subscribed by userself)
 	// Enum: [USER PLATFORM]
@@ -162,12 +162,12 @@ type SubscriptionInfo struct {
 
 	// unsubscribed date time
 	// Format: date-time
-	UnsubscribedAt strfmt.DateTime `json:"unsubscribedAt,omitempty"`
+	UnsubscribedAt *strfmt.DateTime `json:"unsubscribedAt,omitempty"`
 
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 
 	// user id
 	// Required: true
@@ -352,7 +352,7 @@ func (m *SubscriptionInfo) validateChargeStatus(formats strfmt.Registry) error {
 
 func (m *SubscriptionInfo) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -681,7 +681,7 @@ func (m *SubscriptionInfo) validateUnsubscribedAt(formats strfmt.Registry) error
 
 func (m *SubscriptionInfo) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

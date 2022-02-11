@@ -22,7 +22,7 @@ type PaymentOrder struct {
 
 	// authorised time
 	// Format: date-time
-	AuthorisedTime strfmt.DateTime `json:"authorisedTime,omitempty"`
+	AuthorisedTime *strfmt.DateTime `json:"authorisedTime,omitempty"`
 
 	// channel
 	// Enum: [EXTERNAL INTERNAL]
@@ -30,26 +30,26 @@ type PaymentOrder struct {
 
 	// chargeback reversed time
 	// Format: date-time
-	ChargebackReversedTime strfmt.DateTime `json:"chargebackReversedTime,omitempty"`
+	ChargebackReversedTime *strfmt.DateTime `json:"chargebackReversedTime,omitempty"`
 
 	// chargeback time
 	// Format: date-time
-	ChargebackTime strfmt.DateTime `json:"chargebackTime,omitempty"`
+	ChargebackTime *strfmt.DateTime `json:"chargebackTime,omitempty"`
 
 	// charged time
 	// Format: date-time
-	ChargedTime strfmt.DateTime `json:"chargedTime,omitempty"`
+	ChargedTime *strfmt.DateTime `json:"chargedTime,omitempty"`
 
 	// charging
 	Charging bool `json:"charging,omitempty"`
 
 	// created at
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"createdAt,omitempty"`
+	CreatedAt *strfmt.DateTime `json:"createdAt,omitempty"`
 
 	// created time
 	// Format: date-time
-	CreatedTime strfmt.DateTime `json:"createdTime,omitempty"`
+	CreatedTime *strfmt.DateTime `json:"createdTime,omitempty"`
 
 	// currency
 	Currency *CurrencySummary `json:"currency,omitempty"`
@@ -112,7 +112,7 @@ type PaymentOrder struct {
 
 	// refunded time
 	// Format: date-time
-	RefundedTime strfmt.DateTime `json:"refundedTime,omitempty"`
+	RefundedTime *strfmt.DateTime `json:"refundedTime,omitempty"`
 
 	// region
 	Region string `json:"region,omitempty"`
@@ -171,7 +171,7 @@ type PaymentOrder struct {
 
 	// updated at
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updatedAt,omitempty"`
+	UpdatedAt *strfmt.DateTime `json:"updatedAt,omitempty"`
 
 	// user Id
 	UserID string `json:"userId,omitempty"`

@@ -24,7 +24,7 @@ type OauthcommonUserRevocationListRecord struct {
 	// revoked at
 	// Required: true
 	// Format: date-time
-	RevokedAt *strfmt.DateTime `json:"revoked_at"`
+	RevokedAt strfmt.DateTime `json:"revoked_at"`
 }
 
 // Validate validates this oauthcommon user revocation list record
@@ -56,7 +56,7 @@ func (m *OauthcommonUserRevocationListRecord) validateID(formats strfmt.Registry
 
 func (m *OauthcommonUserRevocationListRecord) validateRevokedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("revoked_at", "body", m.RevokedAt); err != nil {
+	if err := validate.Required("revoked_at", "body", strfmt.DateTime(m.RevokedAt)); err != nil {
 		return err
 	}
 

@@ -27,7 +27,7 @@ type OrderHistoryInfo struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// The namespace of this order
 	// Required: true
@@ -47,7 +47,7 @@ type OrderHistoryInfo struct {
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 
 	// The owner of the order
 	// Required: true
@@ -167,7 +167,7 @@ func (m *OrderHistoryInfo) validateAction(formats strfmt.Registry) error {
 
 func (m *OrderHistoryInfo) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -207,7 +207,7 @@ func (m *OrderHistoryInfo) validateOrderNo(formats strfmt.Registry) error {
 
 func (m *OrderHistoryInfo) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

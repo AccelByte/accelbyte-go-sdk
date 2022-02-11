@@ -22,7 +22,7 @@ type SeasonSummary struct {
 	// end date time
 	// Required: true
 	// Format: date-time
-	End *strfmt.DateTime `json:"end"`
+	End strfmt.DateTime `json:"end"`
 
 	// id
 	// Required: true
@@ -45,12 +45,12 @@ type SeasonSummary struct {
 
 	// publishedAt
 	// Format: date-time
-	PublishedAt strfmt.DateTime `json:"publishedAt,omitempty"`
+	PublishedAt *strfmt.DateTime `json:"publishedAt,omitempty"`
 
 	// start date time
 	// Required: true
 	// Format: date-time
-	Start *strfmt.DateTime `json:"start"`
+	Start strfmt.DateTime `json:"start"`
 
 	// status
 	// Required: true
@@ -106,7 +106,7 @@ func (m *SeasonSummary) Validate(formats strfmt.Registry) error {
 
 func (m *SeasonSummary) validateEnd(formats strfmt.Registry) error {
 
-	if err := validate.Required("end", "body", m.End); err != nil {
+	if err := validate.Required("end", "body", strfmt.DateTime(m.End)); err != nil {
 		return err
 	}
 
@@ -190,7 +190,7 @@ func (m *SeasonSummary) validatePublishedAt(formats strfmt.Registry) error {
 
 func (m *SeasonSummary) validateStart(formats strfmt.Registry) error {
 
-	if err := validate.Required("start", "body", m.Start); err != nil {
+	if err := validate.Required("start", "body", strfmt.DateTime(m.Start)); err != nil {
 		return err
 	}
 

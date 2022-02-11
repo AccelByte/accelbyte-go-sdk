@@ -68,7 +68,7 @@ type Transaction struct {
 
 	// tx end time
 	// Format: date-time
-	TxEndTime strfmt.DateTime `json:"txEndTime,omitempty"`
+	TxEndTime *strfmt.DateTime `json:"txEndTime,omitempty"`
 
 	// tx Id
 	TxID string `json:"txId,omitempty"`

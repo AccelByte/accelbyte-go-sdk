@@ -22,7 +22,7 @@ type ListSeasonInfo struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// default language, BCP 47 language tag
 	// Required: true
@@ -31,7 +31,7 @@ type ListSeasonInfo struct {
 	// end date time
 	// Required: true
 	// Format: date-time
-	End *strfmt.DateTime `json:"end"`
+	End strfmt.DateTime `json:"end"`
 
 	// id
 	// Required: true
@@ -51,12 +51,12 @@ type ListSeasonInfo struct {
 
 	// publishedAt
 	// Format: date-time
-	PublishedAt strfmt.DateTime `json:"publishedAt,omitempty"`
+	PublishedAt *strfmt.DateTime `json:"publishedAt,omitempty"`
 
 	// start date time
 	// Required: true
 	// Format: date-time
-	Start *strfmt.DateTime `json:"start"`
+	Start strfmt.DateTime `json:"start"`
 
 	// status
 	// Required: true
@@ -66,7 +66,7 @@ type ListSeasonInfo struct {
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 }
 
 // Validate validates this list season info
@@ -125,7 +125,7 @@ func (m *ListSeasonInfo) Validate(formats strfmt.Registry) error {
 
 func (m *ListSeasonInfo) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -147,7 +147,7 @@ func (m *ListSeasonInfo) validateDefaultLanguage(formats strfmt.Registry) error 
 
 func (m *ListSeasonInfo) validateEnd(formats strfmt.Registry) error {
 
-	if err := validate.Required("end", "body", m.End); err != nil {
+	if err := validate.Required("end", "body", strfmt.DateTime(m.End)); err != nil {
 		return err
 	}
 
@@ -213,7 +213,7 @@ func (m *ListSeasonInfo) validatePublishedAt(formats strfmt.Registry) error {
 
 func (m *ListSeasonInfo) validateStart(formats strfmt.Registry) error {
 
-	if err := validate.Required("start", "body", m.Start); err != nil {
+	if err := validate.Required("start", "body", strfmt.DateTime(m.Start)); err != nil {
 		return err
 	}
 
@@ -272,7 +272,7 @@ func (m *ListSeasonInfo) validateStatus(formats strfmt.Registry) error {
 
 func (m *ListSeasonInfo) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

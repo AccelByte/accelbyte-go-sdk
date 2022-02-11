@@ -27,7 +27,7 @@ type LocalizedSeasonInfo struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// description info
 	Description string `json:"description,omitempty"`
@@ -35,7 +35,7 @@ type LocalizedSeasonInfo struct {
 	// end date time
 	// Required: true
 	// Format: date-time
-	End *strfmt.DateTime `json:"end"`
+	End strfmt.DateTime `json:"end"`
 
 	// id
 	// Required: true
@@ -66,7 +66,7 @@ type LocalizedSeasonInfo struct {
 
 	// publishedAt
 	// Format: date-time
-	PublishedAt strfmt.DateTime `json:"publishedAt,omitempty"`
+	PublishedAt *strfmt.DateTime `json:"publishedAt,omitempty"`
 
 	// rewards info
 	// Required: true
@@ -75,7 +75,7 @@ type LocalizedSeasonInfo struct {
 	// start date time
 	// Required: true
 	// Format: date-time
-	Start *strfmt.DateTime `json:"start"`
+	Start strfmt.DateTime `json:"start"`
 
 	// status
 	// Required: true
@@ -96,7 +96,7 @@ type LocalizedSeasonInfo struct {
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 }
 
 // Validate validates this localized season info
@@ -188,7 +188,7 @@ func (m *LocalizedSeasonInfo) validateAutoClaim(formats strfmt.Registry) error {
 
 func (m *LocalizedSeasonInfo) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -201,7 +201,7 @@ func (m *LocalizedSeasonInfo) validateCreatedAt(formats strfmt.Registry) error {
 
 func (m *LocalizedSeasonInfo) validateEnd(formats strfmt.Registry) error {
 
-	if err := validate.Required("end", "body", m.End); err != nil {
+	if err := validate.Required("end", "body", strfmt.DateTime(m.End)); err != nil {
 		return err
 	}
 
@@ -344,7 +344,7 @@ func (m *LocalizedSeasonInfo) validateRewards(formats strfmt.Registry) error {
 
 func (m *LocalizedSeasonInfo) validateStart(formats strfmt.Registry) error {
 
-	if err := validate.Required("start", "body", m.Start); err != nil {
+	if err := validate.Required("start", "body", strfmt.DateTime(m.Start)); err != nil {
 		return err
 	}
 
@@ -437,7 +437,7 @@ func (m *LocalizedSeasonInfo) validateTiers(formats strfmt.Registry) error {
 
 func (m *LocalizedSeasonInfo) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

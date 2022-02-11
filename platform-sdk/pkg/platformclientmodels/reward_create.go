@@ -32,12 +32,18 @@ type RewardCreate struct {
 	// Max awarded per user
 	MaxAwardedPerUser int32 `json:"maxAwardedPerUser,omitempty"`
 
+	//  The path to get namespace from event payload, if not present, will use default value "$.[0].namespace"
+	NamespaceExpression string `json:"namespaceExpression,omitempty"`
+
 	// Reward code
 	// Required: true
 	RewardCode *string `json:"rewardCode"`
 
 	// list of reward condition
 	RewardConditions []*RewardCondition `json:"rewardConditions"`
+
+	// The path to get userId from event payload, if not present, will use default value "$.[0].userId"
+	UserIDExpression string `json:"userIdExpression,omitempty"`
 }
 
 // Validate validates this reward create

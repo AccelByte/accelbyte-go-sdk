@@ -26,7 +26,7 @@ type ModelsAchievement struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"CreatedAt"`
+	CreatedAt strfmt.DateTime `json:"CreatedAt"`
 
 	// default language
 	// Required: true
@@ -83,7 +83,7 @@ type ModelsAchievement struct {
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"UpdatedAt"`
+	UpdatedAt strfmt.DateTime `json:"UpdatedAt"`
 }
 
 // Validate validates this models achievement
@@ -171,7 +171,7 @@ func (m *ModelsAchievement) validateAchievementCode(formats strfmt.Registry) err
 
 func (m *ModelsAchievement) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("CreatedAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("CreatedAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -325,7 +325,7 @@ func (m *ModelsAchievement) validateUnlockedIcons(formats strfmt.Registry) error
 
 func (m *ModelsAchievement) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("UpdatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("UpdatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

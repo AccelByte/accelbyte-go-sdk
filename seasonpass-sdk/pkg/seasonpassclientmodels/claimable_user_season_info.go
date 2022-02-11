@@ -28,7 +28,7 @@ type ClaimableUserSeasonInfo struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// gained exp for current tier
 	// Required: true
@@ -41,7 +41,7 @@ type ClaimableUserSeasonInfo struct {
 	// enroll date time
 	// Required: true
 	// Format: date-time
-	EnrolledAt *strfmt.DateTime `json:"enrolledAt"`
+	EnrolledAt strfmt.DateTime `json:"enrolledAt"`
 
 	// enrolled passes
 	// Required: true
@@ -78,7 +78,7 @@ type ClaimableUserSeasonInfo struct {
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 
 	// user id
 	// Required: true
@@ -183,7 +183,7 @@ func (m *ClaimableUserSeasonInfo) validateCleared(formats strfmt.Registry) error
 
 func (m *ClaimableUserSeasonInfo) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -214,7 +214,7 @@ func (m *ClaimableUserSeasonInfo) validateCurrentTierIndex(formats strfmt.Regist
 
 func (m *ClaimableUserSeasonInfo) validateEnrolledAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("enrolledAt", "body", m.EnrolledAt); err != nil {
+	if err := validate.Required("enrolledAt", "body", strfmt.DateTime(m.EnrolledAt)); err != nil {
 		return err
 	}
 
@@ -316,7 +316,7 @@ func (m *ClaimableUserSeasonInfo) validateToClaimRewards(formats strfmt.Registry
 
 func (m *ClaimableUserSeasonInfo) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

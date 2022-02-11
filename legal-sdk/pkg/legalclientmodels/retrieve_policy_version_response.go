@@ -25,7 +25,7 @@ type RetrievePolicyVersionResponse struct {
 
 	// created at
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"createdAt,omitempty"`
+	CreatedAt *strfmt.DateTime `json:"createdAt,omitempty"`
 
 	// description
 	Description string `json:"description,omitempty"`
@@ -55,14 +55,14 @@ type RetrievePolicyVersionResponse struct {
 
 	// published date
 	// Format: date-time
-	PublishedDate strfmt.DateTime `json:"publishedDate,omitempty"`
+	PublishedDate *strfmt.DateTime `json:"publishedDate,omitempty"`
 
 	// status
 	Status string `json:"status,omitempty"`
 
 	// updated at
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updatedAt,omitempty"`
+	UpdatedAt *strfmt.DateTime `json:"updatedAt,omitempty"`
 }
 
 // Validate validates this retrieve policy version response

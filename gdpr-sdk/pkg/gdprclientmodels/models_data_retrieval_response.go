@@ -24,7 +24,7 @@ type ModelsDataRetrievalResponse struct {
 	// request date
 	// Required: true
 	// Format: date-time
-	RequestDate *strfmt.DateTime `json:"RequestDate"`
+	RequestDate strfmt.DateTime `json:"RequestDate"`
 
 	// user ID
 	// Required: true
@@ -64,7 +64,7 @@ func (m *ModelsDataRetrievalResponse) validateNamespace(formats strfmt.Registry)
 
 func (m *ModelsDataRetrievalResponse) validateRequestDate(formats strfmt.Registry) error {
 
-	if err := validate.Required("RequestDate", "body", m.RequestDate); err != nil {
+	if err := validate.Required("RequestDate", "body", strfmt.DateTime(m.RequestDate)); err != nil {
 		return err
 	}
 

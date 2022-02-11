@@ -45,11 +45,11 @@ type CampaignCreate struct {
 
 	// redeem end time in yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
 	// Format: date-time
-	RedeemEnd strfmt.DateTime `json:"redeemEnd,omitempty"`
+	RedeemEnd *strfmt.DateTime `json:"redeemEnd,omitempty"`
 
 	// redeem start time in yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
 	// Format: date-time
-	RedeemStart strfmt.DateTime `json:"redeemStart,omitempty"`
+	RedeemStart *strfmt.DateTime `json:"redeemStart,omitempty"`
 
 	// Redeem Type. Allowed values: ITEM. ITEM for default
 	// Enum: [ITEM]

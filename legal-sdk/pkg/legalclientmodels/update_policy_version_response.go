@@ -23,7 +23,7 @@ type UpdatePolicyVersionResponse struct {
 
 	// created at
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"createdAt,omitempty"`
+	CreatedAt *strfmt.DateTime `json:"createdAt,omitempty"`
 
 	// description
 	Description string `json:"description,omitempty"`
@@ -40,14 +40,14 @@ type UpdatePolicyVersionResponse struct {
 
 	// published date
 	// Format: date-time
-	PublishedDate strfmt.DateTime `json:"publishedDate,omitempty"`
+	PublishedDate *strfmt.DateTime `json:"publishedDate,omitempty"`
 
 	// status
 	Status string `json:"status,omitempty"`
 
 	// updated at
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updatedAt,omitempty"`
+	UpdatedAt *strfmt.DateTime `json:"updatedAt,omitempty"`
 }
 
 // Validate validates this update policy version response

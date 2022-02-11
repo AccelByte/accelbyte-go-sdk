@@ -26,7 +26,7 @@ type ModelUserInvitationV3 struct {
 	// expired at
 	// Required: true
 	// Format: date-time
-	ExpiredAt *strfmt.DateTime `json:"expiredAt"`
+	ExpiredAt strfmt.DateTime `json:"expiredAt"`
 
 	// id
 	ID string `json:"id,omitempty"`
@@ -69,7 +69,7 @@ func (m *ModelUserInvitationV3) validateEmail(formats strfmt.Registry) error {
 
 func (m *ModelUserInvitationV3) validateExpiredAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("expiredAt", "body", m.ExpiredAt); err != nil {
+	if err := validate.Required("expiredAt", "body", strfmt.DateTime(m.ExpiredAt)); err != nil {
 		return err
 	}
 

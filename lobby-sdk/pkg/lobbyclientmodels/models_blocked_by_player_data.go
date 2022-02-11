@@ -20,7 +20,7 @@ type ModelsBlockedByPlayerData struct {
 	// blocked at
 	// Required: true
 	// Format: date-time
-	BlockedAt *strfmt.DateTime `json:"blockedAt"`
+	BlockedAt strfmt.DateTime `json:"blockedAt"`
 
 	// user Id
 	// Required: true
@@ -47,7 +47,7 @@ func (m *ModelsBlockedByPlayerData) Validate(formats strfmt.Registry) error {
 
 func (m *ModelsBlockedByPlayerData) validateBlockedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("blockedAt", "body", m.BlockedAt); err != nil {
+	if err := validate.Required("blockedAt", "body", strfmt.DateTime(m.BlockedAt)); err != nil {
 		return err
 	}
 

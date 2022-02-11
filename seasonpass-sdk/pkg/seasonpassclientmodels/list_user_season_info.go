@@ -28,7 +28,7 @@ type ListUserSeasonInfo struct {
 	// enroll date time
 	// Required: true
 	// Format: date-time
-	EnrolledAt *strfmt.DateTime `json:"enrolledAt"`
+	EnrolledAt strfmt.DateTime `json:"enrolledAt"`
 
 	// id
 	// Required: true
@@ -121,7 +121,7 @@ func (m *ListUserSeasonInfo) validateCurrentTierIndex(formats strfmt.Registry) e
 
 func (m *ListUserSeasonInfo) validateEnrolledAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("enrolledAt", "body", m.EnrolledAt); err != nil {
+	if err := validate.Required("enrolledAt", "body", strfmt.DateTime(m.EnrolledAt)); err != nil {
 		return err
 	}
 

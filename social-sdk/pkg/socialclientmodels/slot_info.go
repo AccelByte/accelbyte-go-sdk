@@ -25,15 +25,15 @@ type SlotInfo struct {
 
 	// date accessed
 	// Format: date-time
-	DateAccessed strfmt.DateTime `json:"dateAccessed,omitempty"`
+	DateAccessed *strfmt.DateTime `json:"dateAccessed,omitempty"`
 
 	// date created
 	// Format: date-time
-	DateCreated strfmt.DateTime `json:"dateCreated,omitempty"`
+	DateCreated *strfmt.DateTime `json:"dateCreated,omitempty"`
 
 	// date modified
 	// Format: date-time
-	DateModified strfmt.DateTime `json:"dateModified,omitempty"`
+	DateModified *strfmt.DateTime `json:"dateModified,omitempty"`
 
 	// label
 	Label string `json:"label,omitempty"`

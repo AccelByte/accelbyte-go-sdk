@@ -38,7 +38,7 @@ type RegionDataItem struct {
 
 	// Discount expire date time
 	// Format: date-time
-	DiscountExpireAt strfmt.DateTime `json:"discountExpireAt,omitempty"`
+	DiscountExpireAt *strfmt.DateTime `json:"discountExpireAt,omitempty"`
 
 	// Discount percentage，default is 0, if this value is not 0, it will override the discountAmount
 	// Maximum: 100
@@ -47,14 +47,14 @@ type RegionDataItem struct {
 
 	// DiscountPurchaseAt
 	// Format: date-time
-	DiscountPurchaseAt strfmt.DateTime `json:"discountPurchaseAt,omitempty"`
+	DiscountPurchaseAt *strfmt.DateTime `json:"discountPurchaseAt,omitempty"`
 
 	// discounted price
 	DiscountedPrice int32 `json:"discountedPrice,omitempty"`
 
 	// ExpireAt
 	// Format: date-time
-	ExpireAt strfmt.DateTime `json:"expireAt,omitempty"`
+	ExpireAt *strfmt.DateTime `json:"expireAt,omitempty"`
 
 	// price value, set to 0 if it's free
 	// Required: true
@@ -62,7 +62,7 @@ type RegionDataItem struct {
 
 	// PurchaseAt
 	// Format: date-time
-	PurchaseAt strfmt.DateTime `json:"purchaseAt,omitempty"`
+	PurchaseAt *strfmt.DateTime `json:"purchaseAt,omitempty"`
 
 	// trial price, required while fixedTrialCycles set, should >=0 and <= price, default same as trialPrice
 	TrialPrice int32 `json:"trialPrice,omitempty"`

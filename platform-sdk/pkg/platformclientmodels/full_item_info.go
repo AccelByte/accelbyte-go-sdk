@@ -47,7 +47,7 @@ type FullItemInfo struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// display order
 	DisplayOrder int32 `json:"displayOrder,omitempty"`
@@ -147,7 +147,7 @@ type FullItemInfo struct {
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 
 	// Item use count, required when entitlement type is consumable or itemType is COINS
 	UseCount int32 `json:"useCount,omitempty"`
@@ -308,7 +308,7 @@ func (m *FullItemInfo) validateCategoryPath(formats strfmt.Registry) error {
 
 func (m *FullItemInfo) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -649,7 +649,7 @@ func (m *FullItemInfo) validateTags(formats strfmt.Registry) error {
 
 func (m *FullItemInfo) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

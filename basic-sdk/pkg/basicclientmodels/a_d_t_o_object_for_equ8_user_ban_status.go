@@ -19,7 +19,7 @@ type ADTOObjectForEqu8UserBanStatus struct {
 
 	// expire time, null if the user is permanently banned
 	// Format: date-time
-	Expires strfmt.DateTime `json:"expires,omitempty"`
+	Expires *strfmt.DateTime `json:"expires,omitempty"`
 
 	// userId
 	UserID string `json:"userId,omitempty"`

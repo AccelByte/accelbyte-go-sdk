@@ -43,6 +43,8 @@ type ClientService interface {
 	DeleteStadiaIAPConfigShort(params *DeleteStadiaIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteStadiaIAPConfigNoContent, error)
 	DeleteSteamIAPConfig(params *DeleteSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSteamIAPConfigNoContent, error)
 	DeleteSteamIAPConfigShort(params *DeleteSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteSteamIAPConfigNoContent, error)
+	DeleteTwitchIAPConfig(params *DeleteTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTwitchIAPConfigNoContent, error)
+	DeleteTwitchIAPConfigShort(params *DeleteTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTwitchIAPConfigNoContent, error)
 	DeleteXblAPConfig(params *DeleteXblAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteXblAPConfigNoContent, error)
 	DeleteXblAPConfigShort(params *DeleteXblAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteXblAPConfigNoContent, error)
 	GetAppleIAPConfig(params *GetAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetAppleIAPConfigOK, error)
@@ -59,6 +61,8 @@ type ClientService interface {
 	GetStadiaIAPConfigShort(params *GetStadiaIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetStadiaIAPConfigOK, error)
 	GetSteamIAPConfig(params *GetSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetSteamIAPConfigOK, error)
 	GetSteamIAPConfigShort(params *GetSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetSteamIAPConfigOK, error)
+	GetTwitchIAPConfig(params *GetTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetTwitchIAPConfigOK, error)
+	GetTwitchIAPConfigShort(params *GetTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetTwitchIAPConfigOK, error)
 	GetXblIAPConfig(params *GetXblIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetXblIAPConfigOK, *GetXblIAPConfigNotFound, error)
 	GetXblIAPConfigShort(params *GetXblIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetXblIAPConfigOK, error)
 	MockFulfillIAPItem(params *MockFulfillIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*MockFulfillIAPItemNoContent, *MockFulfillIAPItemBadRequest, *MockFulfillIAPItemNotFound, *MockFulfillIAPItemConflict, error)
@@ -79,6 +83,8 @@ type ClientService interface {
 	SyncStadiaEntitlementShort(params *SyncStadiaEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncStadiaEntitlementNoContent, error)
 	SyncSteamInventory(params *SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamInventoryNoContent, error)
 	SyncSteamInventoryShort(params *SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncSteamInventoryNoContent, error)
+	SyncTwitchDropsEntitlement(params *SyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlementNoContent, error)
+	SyncTwitchDropsEntitlementShort(params *SyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlementNoContent, error)
 	SyncXboxInventory(params *SyncXboxInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxInventoryOK, error)
 	SyncXboxInventoryShort(params *SyncXboxInventoryParams, authInfo runtime.ClientAuthInfoWriter) (*SyncXboxInventoryOK, error)
 	UpdateAppleIAPConfig(params *UpdateAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAppleIAPConfigOK, error)
@@ -97,6 +103,8 @@ type ClientService interface {
 	UpdateStadiaJSONConfigFileShort(params *UpdateStadiaJSONConfigFileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStadiaJSONConfigFileOK, error)
 	UpdateSteamIAPConfig(params *UpdateSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSteamIAPConfigOK, error)
 	UpdateSteamIAPConfigShort(params *UpdateSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSteamIAPConfigOK, error)
+	UpdateTwitchIAPConfig(params *UpdateTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateTwitchIAPConfigOK, error)
+	UpdateTwitchIAPConfigShort(params *UpdateTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateTwitchIAPConfigOK, error)
 	UpdateXblBPCertFile(params *UpdateXblBPCertFileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXblBPCertFileOK, error)
 	UpdateXblBPCertFileShort(params *UpdateXblBPCertFileParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXblBPCertFileOK, error)
 	UpdateXblIAPConfig(params *UpdateXblIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateXblIAPConfigOK, error)
@@ -651,6 +659,85 @@ func (a *Client) DeleteSteamIAPConfigShort(params *DeleteSteamIAPConfigParams, a
 	switch v := result.(type) {
 
 	case *DeleteSteamIAPConfigNoContent:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  DeleteTwitchIAPConfig deletes twitch iap config
+
+  Delete twitch iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) DeleteTwitchIAPConfig(params *DeleteTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTwitchIAPConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteTwitchIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteTwitchIAPConfig",
+		Method:             "DELETE",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/twitch",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteTwitchIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteTwitchIAPConfigNoContent:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteTwitchIAPConfigShort(params *DeleteTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTwitchIAPConfigNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteTwitchIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteTwitchIAPConfig",
+		Method:             "DELETE",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/twitch",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteTwitchIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteTwitchIAPConfigNoContent:
 		return v, nil
 
 	default:
@@ -1293,6 +1380,85 @@ func (a *Client) GetSteamIAPConfigShort(params *GetSteamIAPConfigParams, authInf
 	switch v := result.(type) {
 
 	case *GetSteamIAPConfigOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetTwitchIAPConfig gets twitch iap config
+
+  Get twitch iap config.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: twitch iap config&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) GetTwitchIAPConfig(params *GetTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetTwitchIAPConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetTwitchIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getTwitchIAPConfig",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/twitch",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetTwitchIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetTwitchIAPConfigOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetTwitchIAPConfigShort(params *GetTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*GetTwitchIAPConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetTwitchIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getTwitchIAPConfig",
+		Method:             "GET",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/twitch",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetTwitchIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetTwitchIAPConfigOK:
 		return v, nil
 
 	default:
@@ -2146,6 +2312,85 @@ func (a *Client) SyncSteamInventoryShort(params *SyncSteamInventoryParams, authI
 }
 
 /*
+  SyncTwitchDropsEntitlement syncs twitch drops entitlements
+
+  Sync twitch drops entitlements.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) SyncTwitchDropsEntitlement(params *SyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlementNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSyncTwitchDropsEntitlementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "syncTwitchDropsEntitlement",
+		Method:             "PUT",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/twitch/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SyncTwitchDropsEntitlementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SyncTwitchDropsEntitlementNoContent:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) SyncTwitchDropsEntitlementShort(params *SyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*SyncTwitchDropsEntitlementNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSyncTwitchDropsEntitlementParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "syncTwitchDropsEntitlement",
+		Method:             "PUT",
+		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/twitch/sync",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SyncTwitchDropsEntitlementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *SyncTwitchDropsEntitlementNoContent:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
   SyncXboxInventory syncs xbox inventory
 
   Sync Xbox inventory&#39;s items.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
@@ -2854,6 +3099,85 @@ func (a *Client) UpdateSteamIAPConfigShort(params *UpdateSteamIAPConfigParams, a
 	switch v := result.(type) {
 
 	case *UpdateSteamIAPConfigOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  UpdateTwitchIAPConfig updates twitch iap config
+
+  Update twitch iap config. Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated twitch iap config&lt;/li&gt;&lt;/ul&gt;
+*/
+func (a *Client) UpdateTwitchIAPConfig(params *UpdateTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateTwitchIAPConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateTwitchIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateTwitchIAPConfig",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/twitch",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateTwitchIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateTwitchIAPConfigOK:
+		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) UpdateTwitchIAPConfigShort(params *UpdateTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateTwitchIAPConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateTwitchIAPConfigParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateTwitchIAPConfig",
+		Method:             "PUT",
+		PathPattern:        "/admin/namespaces/{namespace}/iap/config/twitch",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateTwitchIAPConfigReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *UpdateTwitchIAPConfigOK:
 		return v, nil
 
 	default:

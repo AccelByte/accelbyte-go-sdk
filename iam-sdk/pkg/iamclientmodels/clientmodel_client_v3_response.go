@@ -42,12 +42,12 @@ type ClientmodelClientV3Response struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// modified at
 	// Required: true
 	// Format: date-time
-	ModifiedAt *strfmt.DateTime `json:"modifiedAt"`
+	ModifiedAt strfmt.DateTime `json:"modifiedAt"`
 
 	// namespace
 	// Required: true
@@ -183,7 +183,7 @@ func (m *ClientmodelClientV3Response) validateClientPermissions(formats strfmt.R
 
 func (m *ClientmodelClientV3Response) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -196,7 +196,7 @@ func (m *ClientmodelClientV3Response) validateCreatedAt(formats strfmt.Registry)
 
 func (m *ClientmodelClientV3Response) validateModifiedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("modifiedAt", "body", m.ModifiedAt); err != nil {
+	if err := validate.Required("modifiedAt", "body", strfmt.DateTime(m.ModifiedAt)); err != nil {
 		return err
 	}
 

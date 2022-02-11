@@ -21,18 +21,18 @@ type Order struct {
 
 	// chargeback reversed time
 	// Format: date-time
-	ChargebackReversedTime strfmt.DateTime `json:"chargebackReversedTime,omitempty"`
+	ChargebackReversedTime *strfmt.DateTime `json:"chargebackReversedTime,omitempty"`
 
 	// chargeback time
 	// Format: date-time
-	ChargebackTime strfmt.DateTime `json:"chargebackTime,omitempty"`
+	ChargebackTime *strfmt.DateTime `json:"chargebackTime,omitempty"`
 
 	// charged
 	Charged bool `json:"charged,omitempty"`
 
 	// charged time
 	// Format: date-time
-	ChargedTime strfmt.DateTime `json:"chargedTime,omitempty"`
+	ChargedTime *strfmt.DateTime `json:"chargedTime,omitempty"`
 
 	// count item Id
 	CountItemID string `json:"countItemId,omitempty"`
@@ -45,11 +45,11 @@ type Order struct {
 
 	// created at
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"createdAt,omitempty"`
+	CreatedAt *strfmt.DateTime `json:"createdAt,omitempty"`
 
 	// created time
 	// Format: date-time
-	CreatedTime strfmt.DateTime `json:"createdTime,omitempty"`
+	CreatedTime *strfmt.DateTime `json:"createdTime,omitempty"`
 
 	// currency
 	Currency *CurrencySummary `json:"currency,omitempty"`
@@ -59,7 +59,7 @@ type Order struct {
 
 	// expire time
 	// Format: date-time
-	ExpireTime strfmt.DateTime `json:"expireTime,omitempty"`
+	ExpireTime *strfmt.DateTime `json:"expireTime,omitempty"`
 
 	// ext
 	Ext map[string]interface{} `json:"ext,omitempty"`
@@ -69,7 +69,7 @@ type Order struct {
 
 	// fulfilled time
 	// Format: date-time
-	FulfilledTime strfmt.DateTime `json:"fulfilledTime,omitempty"`
+	FulfilledTime *strfmt.DateTime `json:"fulfilledTime,omitempty"`
 
 	// item Id
 	ItemID string `json:"itemId,omitempty"`
@@ -116,7 +116,7 @@ type Order struct {
 
 	// refunded time
 	// Format: date-time
-	RefundedTime strfmt.DateTime `json:"refundedTime,omitempty"`
+	RefundedTime *strfmt.DateTime `json:"refundedTime,omitempty"`
 
 	// region
 	Region string `json:"region,omitempty"`
@@ -154,7 +154,7 @@ type Order struct {
 
 	// updated at
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updatedAt,omitempty"`
+	UpdatedAt *strfmt.DateTime `json:"updatedAt,omitempty"`
 
 	// user Id
 	UserID string `json:"userId,omitempty"`

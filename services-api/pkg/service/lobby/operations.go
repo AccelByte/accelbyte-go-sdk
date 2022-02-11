@@ -50,6 +50,37 @@ func (o *OperationsService) AdminUpdatePartyAttributesV1(input *operations.Admin
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use AdminJoinPartyV1Short instead
+func (o *OperationsService) AdminJoinPartyV1(input *operations.AdminJoinPartyV1Params) error {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, preconditionFailed, internalServerError, err := o.Client.Operations.AdminJoinPartyV1(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if preconditionFailed != nil {
+		return preconditionFailed
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 // Deprecated: Use PublicGetMessagesShort instead
 func (o *OperationsService) PublicGetMessages(input *operations.PublicGetMessagesParams) ([]*lobbyclientmodels.LogAppMessageDeclaration, error) {
 	accessToken, err := o.TokenRepository.GetToken()
@@ -72,6 +103,14 @@ func (o *OperationsService) AdminUpdatePartyAttributesV1Short(input *operations.
 		return nil, err
 	}
 	return ok.GetPayload(), nil
+}
+
+func (o *OperationsService) AdminJoinPartyV1Short(input *operations.AdminJoinPartyV1Params, authInfo runtime.ClientAuthInfoWriter) error {
+	_, err := o.Client.Operations.AdminJoinPartyV1Short(input, authInfo)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *OperationsService) PublicGetMessagesShort(input *operations.PublicGetMessagesParams, authInfo runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.LogAppMessageDeclaration, error) {

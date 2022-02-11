@@ -50,7 +50,7 @@ type ClientService interface {
 /*
   CreateReward creates a reward
 
-  This API is used to create a reward for a draft season.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SEASONPASS", action=1 (CREATE)</li><li><i>Returns</i>: created reward</li></ul>
+  This API is used to create a reward for a draft season.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=1 (CREATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: created reward&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) CreateReward(params *CreateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*CreateRewardCreated, *CreateRewardBadRequest, *CreateRewardNotFound, *CreateRewardConflict, *CreateRewardUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -68,7 +68,7 @@ func (a *Client) CreateReward(params *CreateRewardParams, authInfo runtime.Clien
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/rewards",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateRewardReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -117,7 +117,7 @@ func (a *Client) CreateRewardShort(params *CreateRewardParams, authInfo runtime.
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/rewards",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateRewardReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -149,7 +149,7 @@ func (a *Client) CreateRewardShort(params *CreateRewardParams, authInfo runtime.
 /*
   DeleteReward deletes a reward
 
-  This API is used to delete a reward permanently, only draft season reward can be deleted. <p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SEASONPASS", action=8 (DELETE)</li></ul>
+  This API is used to delete a reward permanently, only draft season reward can be deleted. &lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=8 (DELETE)&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) DeleteReward(params *DeleteRewardParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRewardNoContent, *DeleteRewardBadRequest, *DeleteRewardNotFound, *DeleteRewardConflict, error) {
 	// TODO: Validate the params before sending
@@ -167,7 +167,7 @@ func (a *Client) DeleteReward(params *DeleteRewardParams, authInfo runtime.Clien
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteRewardReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -213,7 +213,7 @@ func (a *Client) DeleteRewardShort(params *DeleteRewardParams, authInfo runtime.
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteRewardReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -243,7 +243,7 @@ func (a *Client) DeleteRewardShort(params *DeleteRewardParams, authInfo runtime.
 /*
   GetReward gets a reward
 
-  This API is used to get a reward for a season.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SEASONPASS", action=2 (READ)</li><li><i>Returns</i>: reward data</li></ul>
+  This API is used to get a reward for a season.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: reward data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetReward(params *GetRewardParams, authInfo runtime.ClientAuthInfoWriter) (*GetRewardOK, *GetRewardBadRequest, *GetRewardNotFound, error) {
 	// TODO: Validate the params before sending
@@ -261,7 +261,7 @@ func (a *Client) GetReward(params *GetRewardParams, authInfo runtime.ClientAuthI
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetRewardReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -304,7 +304,7 @@ func (a *Client) GetRewardShort(params *GetRewardParams, authInfo runtime.Client
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetRewardReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -332,7 +332,7 @@ func (a *Client) GetRewardShort(params *GetRewardParams, authInfo runtime.Client
 /*
   PublicBulkClaimUserRewards bulks claim all remained rewards
 
-  This API is used to bulk claim all remained rewards, season only located in non-publisher namespace.<p>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:SEASONPASS", action=4 (UPDATE)</li><li><i>Returns</i>: user season data</li></ul>
+  This API is used to bulk claim all remained rewards, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user season data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicBulkClaimUserRewards(params *PublicBulkClaimUserRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*PublicBulkClaimUserRewardsOK, *PublicBulkClaimUserRewardsBadRequest, *PublicBulkClaimUserRewardsNotFound, error) {
 	// TODO: Validate the params before sending
@@ -350,7 +350,7 @@ func (a *Client) PublicBulkClaimUserRewards(params *PublicBulkClaimUserRewardsPa
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicBulkClaimUserRewardsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -393,7 +393,7 @@ func (a *Client) PublicBulkClaimUserRewardsShort(params *PublicBulkClaimUserRewa
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicBulkClaimUserRewardsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -421,7 +421,7 @@ func (a *Client) PublicBulkClaimUserRewardsShort(params *PublicBulkClaimUserRewa
 /*
   PublicClaimUserReward claims tier reward
 
-  This API is used to claim reward, season only located in non-publisher namespace.<p>Other detail info: <ul><li><i>Required permission</i>: resource="NAMESPACE:{namespace}:USER:{userId}:SEASONPASS", action=4 (UPDATE)</li><li><i>Returns</i>: user season data</li></ul>
+  This API is used to claim reward, season only located in non-publisher namespace.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: user season data&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) PublicClaimUserReward(params *PublicClaimUserRewardParams, authInfo runtime.ClientAuthInfoWriter) (*PublicClaimUserRewardOK, *PublicClaimUserRewardBadRequest, *PublicClaimUserRewardNotFound, *PublicClaimUserRewardConflict, error) {
 	// TODO: Validate the params before sending
@@ -439,7 +439,7 @@ func (a *Client) PublicClaimUserReward(params *PublicClaimUserRewardParams, auth
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicClaimUserRewardReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -485,7 +485,7 @@ func (a *Client) PublicClaimUserRewardShort(params *PublicClaimUserRewardParams,
 		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PublicClaimUserRewardReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -515,7 +515,7 @@ func (a *Client) PublicClaimUserRewardShort(params *PublicClaimUserRewardParams,
 /*
   QueryRewards queries all rewards for a season
 
-  This API is used to query rewards for a season.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SEASONPASS", action=2 (READ)</li><li><i>Returns</i>: the list of rewards</li></ul>
+  This API is used to query rewards for a season.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=2 (READ)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: the list of rewards&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) QueryRewards(params *QueryRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryRewardsOK, *QueryRewardsBadRequest, *QueryRewardsNotFound, error) {
 	// TODO: Validate the params before sending
@@ -533,7 +533,7 @@ func (a *Client) QueryRewards(params *QueryRewardsParams, authInfo runtime.Clien
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/rewards",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QueryRewardsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -576,7 +576,7 @@ func (a *Client) QueryRewardsShort(params *QueryRewardsParams, authInfo runtime.
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/rewards",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &QueryRewardsReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -604,7 +604,7 @@ func (a *Client) QueryRewardsShort(params *QueryRewardsParams, authInfo runtime.
 /*
   UpdateReward updates a reward
 
-  This API is used to update a reward. Only draft season reward can be updated.<p>Other detail info: <ul><li><i>Required permission</i>: resource="ADMIN:NAMESPACE:{namespace}:SEASONPASS", action=4 (UPDATE)</li><li><i>Returns</i>: updated reward</li></ul>
+  This API is used to update a reward. Only draft season reward can be updated.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: updated reward&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) UpdateReward(params *UpdateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateRewardOK, *UpdateRewardBadRequest, *UpdateRewardNotFound, *UpdateRewardConflict, *UpdateRewardUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
@@ -622,7 +622,7 @@ func (a *Client) UpdateReward(params *UpdateRewardParams, authInfo runtime.Clien
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateRewardReader{formats: a.formats},
 		AuthInfo:           authInfo,
@@ -671,7 +671,7 @@ func (a *Client) UpdateRewardShort(params *UpdateRewardParams, authInfo runtime.
 		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
+		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &UpdateRewardReader{formats: a.formats},
 		AuthInfo:           authInfo,

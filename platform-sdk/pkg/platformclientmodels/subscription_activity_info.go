@@ -31,7 +31,7 @@ type SubscriptionActivityInfo struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// subscription current cycle number
 	// Required: true
@@ -72,7 +72,7 @@ type SubscriptionActivityInfo struct {
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt *strfmt.DateTime `json:"updatedAt"`
+	UpdatedAt strfmt.DateTime `json:"updatedAt"`
 
 	// Subscription user id
 	// Required: true
@@ -195,7 +195,7 @@ func (m *SubscriptionActivityInfo) validateChargedCycles(formats strfmt.Registry
 
 func (m *SubscriptionActivityInfo) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -287,7 +287,7 @@ func (m *SubscriptionActivityInfo) validateSubscriptionID(formats strfmt.Registr
 
 func (m *SubscriptionActivityInfo) validateUpdatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
+	if err := validate.Required("updatedAt", "body", strfmt.DateTime(m.UpdatedAt)); err != nil {
 		return err
 	}
 

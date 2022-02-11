@@ -30,7 +30,7 @@ type ModelPublicUserResponse struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"CreatedAt"`
+	CreatedAt strfmt.DateTime `json:"CreatedAt"`
 
 	// deletion status
 	// Required: true
@@ -51,7 +51,7 @@ type ModelPublicUserResponse struct {
 	// last enabled changed time
 	// Required: true
 	// Format: date-time
-	LastEnabledChangedTime *strfmt.DateTime `json:"LastEnabledChangedTime"`
+	LastEnabledChangedTime strfmt.DateTime `json:"LastEnabledChangedTime"`
 
 	// login Id
 	// Required: true
@@ -200,7 +200,7 @@ func (m *ModelPublicUserResponse) validateBans(formats strfmt.Registry) error {
 
 func (m *ModelPublicUserResponse) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("CreatedAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("CreatedAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -249,7 +249,7 @@ func (m *ModelPublicUserResponse) validateEnabled(formats strfmt.Registry) error
 
 func (m *ModelPublicUserResponse) validateLastEnabledChangedTime(formats strfmt.Registry) error {
 
-	if err := validate.Required("LastEnabledChangedTime", "body", m.LastEnabledChangedTime); err != nil {
+	if err := validate.Required("LastEnabledChangedTime", "body", strfmt.DateTime(m.LastEnabledChangedTime)); err != nil {
 		return err
 	}
 

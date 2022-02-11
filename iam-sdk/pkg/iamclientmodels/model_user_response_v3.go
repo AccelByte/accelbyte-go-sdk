@@ -34,12 +34,12 @@ type ModelUserResponseV3 struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"createdAt"`
+	CreatedAt strfmt.DateTime `json:"createdAt"`
 
 	// date of birth
 	// Required: true
 	// Format: date-time
-	DateOfBirth *strfmt.DateTime `json:"dateOfBirth"`
+	DateOfBirth strfmt.DateTime `json:"dateOfBirth"`
 
 	// deletion status
 	// Required: true
@@ -64,12 +64,12 @@ type ModelUserResponseV3 struct {
 	// last date of birth changed time
 	// Required: true
 	// Format: date-time
-	LastDateOfBirthChangedTime *strfmt.DateTime `json:"lastDateOfBirthChangedTime"`
+	LastDateOfBirthChangedTime strfmt.DateTime `json:"lastDateOfBirthChangedTime"`
 
 	// last enabled changed time
 	// Required: true
 	// Format: date-time
-	LastEnabledChangedTime *strfmt.DateTime `json:"lastEnabledChangedTime"`
+	LastEnabledChangedTime strfmt.DateTime `json:"lastEnabledChangedTime"`
 
 	// namespace
 	// Required: true
@@ -252,7 +252,7 @@ func (m *ModelUserResponseV3) validateCountry(formats strfmt.Registry) error {
 
 func (m *ModelUserResponseV3) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("createdAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("createdAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 
@@ -265,7 +265,7 @@ func (m *ModelUserResponseV3) validateCreatedAt(formats strfmt.Registry) error {
 
 func (m *ModelUserResponseV3) validateDateOfBirth(formats strfmt.Registry) error {
 
-	if err := validate.Required("dateOfBirth", "body", m.DateOfBirth); err != nil {
+	if err := validate.Required("dateOfBirth", "body", strfmt.DateTime(m.DateOfBirth)); err != nil {
 		return err
 	}
 
@@ -323,7 +323,7 @@ func (m *ModelUserResponseV3) validateEnabled(formats strfmt.Registry) error {
 
 func (m *ModelUserResponseV3) validateLastDateOfBirthChangedTime(formats strfmt.Registry) error {
 
-	if err := validate.Required("lastDateOfBirthChangedTime", "body", m.LastDateOfBirthChangedTime); err != nil {
+	if err := validate.Required("lastDateOfBirthChangedTime", "body", strfmt.DateTime(m.LastDateOfBirthChangedTime)); err != nil {
 		return err
 	}
 
@@ -336,7 +336,7 @@ func (m *ModelUserResponseV3) validateLastDateOfBirthChangedTime(formats strfmt.
 
 func (m *ModelUserResponseV3) validateLastEnabledChangedTime(formats strfmt.Registry) error {
 
-	if err := validate.Required("lastEnabledChangedTime", "body", m.LastEnabledChangedTime); err != nil {
+	if err := validate.Required("lastEnabledChangedTime", "body", strfmt.DateTime(m.LastEnabledChangedTime)); err != nil {
 		return err
 	}
 

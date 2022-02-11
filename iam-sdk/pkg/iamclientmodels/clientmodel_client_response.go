@@ -34,7 +34,7 @@ type ClientmodelClientResponse struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt *strfmt.DateTime `json:"CreatedAt"`
+	CreatedAt strfmt.DateTime `json:"CreatedAt"`
 
 	// namespace
 	// Required: true
@@ -124,7 +124,7 @@ func (m *ClientmodelClientResponse) validateClientPermissions(formats strfmt.Reg
 
 func (m *ClientmodelClientResponse) validateCreatedAt(formats strfmt.Registry) error {
 
-	if err := validate.Required("CreatedAt", "body", m.CreatedAt); err != nil {
+	if err := validate.Required("CreatedAt", "body", strfmt.DateTime(m.CreatedAt)); err != nil {
 		return err
 	}
 

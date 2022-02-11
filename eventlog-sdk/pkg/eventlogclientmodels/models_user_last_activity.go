@@ -20,7 +20,7 @@ type ModelsUserLastActivity struct {
 	// last activity time
 	// Required: true
 	// Format: date-time
-	LastActivityTime *strfmt.DateTime `json:"LastActivityTime"`
+	LastActivityTime strfmt.DateTime `json:"LastActivityTime"`
 
 	// namespace
 	// Required: true
@@ -55,7 +55,7 @@ func (m *ModelsUserLastActivity) Validate(formats strfmt.Registry) error {
 
 func (m *ModelsUserLastActivity) validateLastActivityTime(formats strfmt.Registry) error {
 
-	if err := validate.Required("LastActivityTime", "body", m.LastActivityTime); err != nil {
+	if err := validate.Required("LastActivityTime", "body", strfmt.DateTime(m.LastActivityTime)); err != nil {
 		return err
 	}
 

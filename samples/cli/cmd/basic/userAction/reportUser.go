@@ -48,7 +48,7 @@ var ReportUserCmd = &cobra.Command{
 }
 
 func init() {
-	ReportUserCmd.Flags().StringP("body", "", "", "Body")
-	ReportUserCmd.Flags().StringP("namespace", "", "", "Namespace")
+	ReportUserCmd.Flags().StringP("body", "", " ", "Body")
+	ReportUserCmd.Flags().StringP("namespace", "", " ", "Namespace")
 	_ = ReportUserCmd.MarkFlagRequired("namespace")
 }

@@ -5,9 +5,7 @@
 package userAction
 
 import (
-	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_action"
-	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -27,14 +25,9 @@ var PublicReportUserCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
-		bodyString := cmd.Flag("body").Value.String()
-		var body *basicclientmodels.UserReportRequest
-		errBody := json.Unmarshal([]byte(bodyString), &body)
-		if errBody != nil {
-			return errBody
-		}
 		input := &user_action.PublicReportUserParams{
-			Body:      body,
+			// XXX : empty userIds for workaround to handle the weird the response entity. It didn't accept 204
+			Body:      nil,
 			Namespace: namespace,
 			UserID:    userId,
 		}
@@ -50,7 +43,6 @@ var PublicReportUserCmd = &cobra.Command{
 }
 
 func init() {
-	PublicReportUserCmd.Flags().StringP("body", "", "", "Body")
 	PublicReportUserCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicReportUserCmd.MarkFlagRequired("namespace")
 	PublicReportUserCmd.Flags().StringP("userId", "", "", "User id")

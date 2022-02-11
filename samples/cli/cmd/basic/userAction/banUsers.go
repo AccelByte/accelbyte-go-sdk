@@ -5,9 +5,7 @@
 package userAction
 
 import (
-	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_action"
-	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -26,14 +24,9 @@ var BanUsersCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		bodyString := cmd.Flag("body").Value.String()
-		var body *basicclientmodels.UserBanRequest
-		errBody := json.Unmarshal([]byte(bodyString), &body)
-		if errBody != nil {
-			return errBody
-		}
 		input := &user_action.BanUsersParams{
-			Body:      body,
+			// XXX : empty userIds for workaround to handle the weird the response entity. It didn't accept 400 and 204
+			Body:      nil,
 			Namespace: namespace,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
@@ -48,7 +41,6 @@ var BanUsersCmd = &cobra.Command{
 }
 
 func init() {
-	BanUsersCmd.Flags().StringP("body", "", "", "Body")
 	BanUsersCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = BanUsersCmd.MarkFlagRequired("namespace")
 }

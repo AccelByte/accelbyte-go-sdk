@@ -8,7 +8,7 @@
     },
     "description": "Justice Cloudsave Service",
     "title": "justice-cloudsave-service",
-    "version": "2.1.0"
+    "version": "2.2.0"
   },
   "schemes": [
     "https"
@@ -2281,7 +2281,8 @@
       "properties": {
         "created_at": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "key": {
           "type": "string"
@@ -2291,7 +2292,8 @@
         },
         "updated_at": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "value": {
           "type": "object"
@@ -2368,7 +2370,8 @@
       "properties": {
         "created_at": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "is_public": {
           "type": "boolean"
@@ -2381,7 +2384,8 @@
         },
         "updated_at": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "user_id": {
           "type": "string"

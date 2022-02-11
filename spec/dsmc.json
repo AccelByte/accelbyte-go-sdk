@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice DSM Controller Service",
     "title": "justice-dsm-controller-service",
-    "version": "2.13.1"
+    "version": "2.14.0"
   },
   "schemes": [
     "https"
@@ -4965,7 +4965,8 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "creation_timeout": {
           "format": "int32",
@@ -5024,7 +5025,8 @@
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [
@@ -5216,7 +5218,8 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "enable_region_overrides": {
           "type": "boolean"
@@ -5261,7 +5264,8 @@
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "use_buffer_percent": {
           "type": "boolean"
@@ -5366,7 +5370,8 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "dockerPath": {
           "type": "string"
@@ -5385,7 +5390,8 @@
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "version": {
           "type": "string"
@@ -5569,7 +5575,8 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "mem_limit": {
           "format": "int32",
@@ -5589,7 +5596,8 @@
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [
@@ -5735,7 +5743,8 @@
         },
         "created_at": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "custom_attribute": {
           "type": "string"
@@ -5760,7 +5769,8 @@
         },
         "last_update": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "mem_limit": {
           "format": "int32",
@@ -5911,7 +5921,8 @@
         },
         "time_stamp": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [

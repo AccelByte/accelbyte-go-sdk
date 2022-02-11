@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.1.1"
+    "version": "4.2.0"
   },
   "schemes": [
     "https"
@@ -3863,6 +3863,142 @@
           }
         ],
         "summary": "Update steam iap config",
+        "tags": [
+          "IAP"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG"
+        }
+      }
+    },
+    "/admin/namespaces/{namespace}/iap/config/twitch": {
+      "delete": {
+        "description": "Delete twitch iap config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "deleteTwitchIAPConfig",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Delete successfully"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete twitch iap config",
+        "tags": [
+          "IAP"
+        ],
+        "x-authorization": {
+          "action": "8",
+          "resource": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG"
+        }
+      },
+      "get": {
+        "description": "Get twitch iap config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: twitch iap config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "getTwitchIAPConfig",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/TwitchIAPConfigInfo"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get twitch iap config",
+        "tags": [
+          "IAP"
+        ],
+        "x-authorization": {
+          "action": "2",
+          "resource": "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG"
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update twitch iap config. Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated twitch iap config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "updateTwitchIAPConfig",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/TwitchIAPConfigRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/TwitchIAPConfigInfo"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Update twitch iap config",
         "tags": [
           "IAP"
         ],
@@ -11236,6 +11372,7 @@
               "PLAYSTATION",
               "STADIA",
               "STEAM",
+              "TWITCH",
               "XBOX"
             ],
             "in": "query",
@@ -19642,6 +19779,61 @@
         }
       }
     },
+    "/public/namespaces/{namespace}/users/{userId}/iap/twitch/sync": {
+      "put": {
+        "description": "Sync twitch drops entitlements.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "operationId": "syncTwitchDropsEntitlement",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/TwitchSyncRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Sync Successful"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Sync twitch drops entitlements.",
+        "tags": [
+          "IAP"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "NAMESPACE:{namespace}:USER:{userId}:IAP"
+        }
+      }
+    },
     "/public/namespaces/{namespace}/users/{userId}/iap/xbl/sync": {
       "put": {
         "description": "Sync Xbox inventory\u0026#39;s items.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
@@ -21075,12 +21267,14 @@
         "endDate": {
           "description": "entitlement end date",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "grantedAt": {
           "description": "entitlement granted at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "itemId": {
           "description": "item id",
@@ -21101,7 +21295,8 @@
         "startDate": {
           "description": "entitlement start date",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "status": {
           "description": "entitlement status",
@@ -21264,7 +21459,8 @@
         "releaseDate": {
           "description": "release date",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "slogan": {
           "description": "slogan",
@@ -21401,7 +21597,8 @@
         "releaseDate": {
           "description": "release date in format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "websiteUrl": {
           "description": "website url, max length is 2000",
@@ -21490,7 +21687,8 @@
         "createdAt": {
           "description": "Category created time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "namespace": {
           "description": "Category namespace",
@@ -21506,7 +21704,8 @@
         "updatedAt": {
           "description": "Category updated time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [
@@ -21541,7 +21740,8 @@
         "createdAt": {
           "description": "created at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "entitlementType": {
           "description": "Entitlement type",
@@ -21616,7 +21816,8 @@
         "updatedAt": {
           "description": "updated at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "useCount": {
           "description": "Item use count, required when entitlement type is consumable or itemType is COINS",
@@ -21681,7 +21882,8 @@
         "createdAt": {
           "description": "created at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "currency": {
           "$ref": "#/definitions/CurrencySummary",
@@ -21765,12 +21967,14 @@
         "txEndTime": {
           "description": "transaction end time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "updatedAt": {
           "description": "updated at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "userId": {
           "description": "user id",
@@ -21868,7 +22072,8 @@
         "createdAt": {
           "description": "created at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "description": {
           "description": "description info",
@@ -22052,7 +22257,8 @@
         "updatedAt": {
           "description": "updated at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "useCount": {
           "description": "Item use count, required when entitlement type is consumable or itemType is COINS",
@@ -22117,12 +22323,14 @@
         "redeemEnd": {
           "description": "redeem end time in yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "redeemStart": {
           "description": "redeem start time in yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "redeemType": {
           "description": "Redeem Type. Allowed values: ITEM. ITEM for default",
@@ -22205,7 +22413,8 @@
         "createdAt": {
           "description": "created at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "description": {
           "description": "campaign description",
@@ -22253,12 +22462,14 @@
         "redeemEnd": {
           "description": "redeem end",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "redeemStart": {
           "description": "redeem start",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "redeemType": {
           "description": "redeem type",
@@ -22292,7 +22503,8 @@
         "updatedAt": {
           "description": "update at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [
@@ -22371,12 +22583,14 @@
         "redeemEnd": {
           "description": "redeem end time in yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "redeemStart": {
           "description": "redeem start time in yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "redeemType": {
           "description": "Redeem Type. Allowed values: ITEM",
@@ -22450,7 +22664,8 @@
         "createdAt": {
           "description": "Category created time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "displayName": {
           "description": "Category display name",
@@ -22470,7 +22685,8 @@
         "updatedAt": {
           "description": "Category updated time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [
@@ -22562,7 +22778,8 @@
         "createdAt": {
           "description": "created at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "id": {
           "description": "code id",
@@ -22597,12 +22814,14 @@
         "redeemEnd": {
           "description": "redeem end",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "redeemStart": {
           "description": "redeem start",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "redeemType": {
           "description": "redeem type",
@@ -22639,7 +22858,8 @@
         "updatedAt": {
           "description": "updated at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "value": {
           "description": "code value",
@@ -22817,7 +23037,8 @@
         "createdAt": {
           "description": "created at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "currencyCode": {
           "description": "currency code, alphabet uppercase",
@@ -22854,7 +23075,8 @@
         "updatedAt": {
           "description": "updated at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [
@@ -23001,7 +23223,8 @@
         "endDate": {
           "description": "entitlement end date time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "grantedCode": {
           "description": "grantedCode, the granted code",
@@ -23046,7 +23269,8 @@
         "startDate": {
           "description": "entitlement start date time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "storeId": {
           "description": "storeId",
@@ -23077,7 +23301,8 @@
         "createdAt": {
           "description": "History create time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "entitlementId": {
           "description": "The id of entitlement",
@@ -23094,7 +23319,8 @@
         "updatedAt": {
           "description": "History update time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "useCount": {
           "description": "The use count of a consumable entitlement.",
@@ -23147,12 +23373,14 @@
         "createdAt": {
           "description": "entitlement created at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "endDate": {
           "description": "entitlement end date",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "features": {
           "description": "entitlement features",
@@ -23165,7 +23393,8 @@
         "grantedAt": {
           "description": "entitlement granted at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "grantedCode": {
           "description": "grantedCode, the granted code",
@@ -23221,7 +23450,8 @@
         "startDate": {
           "description": "entitlement start date",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "status": {
           "description": "entitlement status",
@@ -23248,7 +23478,8 @@
         "updatedAt": {
           "description": "entitlement updated at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "useCount": {
           "description": "useCount for entitlement",
@@ -23307,12 +23538,14 @@
         "createdAt": {
           "description": "created at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "endDate": {
           "description": "end date time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "grantedCode": {
           "description": "granted code",
@@ -23342,7 +23575,8 @@
         "startDate": {
           "description": "start date time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "storeId": {
           "description": "item store id, null if published store",
@@ -23359,7 +23593,8 @@
         "updatedAt": {
           "description": "updated at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "userId": {
           "description": "userId for this entitlement",
@@ -23383,7 +23618,8 @@
         "endDate": {
           "description": "end date of the entitlement. yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "nullFieldList": {
           "description": "nullFieldList",
@@ -23395,7 +23631,8 @@
         "startDate": {
           "description": "start date of the entitlement. yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "status": {
           "description": "status",
@@ -23703,7 +23940,8 @@
         "createdAt": {
           "description": "created at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "creditSummaries": {
           "description": "credit granted",
@@ -23760,7 +23998,8 @@
         "updatedAt": {
           "description": "updated at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "userId": {
           "description": "userId",
@@ -23854,7 +24093,8 @@
         "endDate": {
           "description": "end date time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "itemId": {
           "description": "itemId",
@@ -23904,7 +24144,8 @@
         "startDate": {
           "description": "start date time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "storeId": {
           "description": "storeId",
@@ -24174,7 +24415,8 @@
         "releaseDate": {
           "description": "release date",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "websiteUrl": {
           "description": "website url",
@@ -24196,7 +24438,8 @@
         "createdAt": {
           "description": "Category created time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "localizationDisplayNames": {
           "additionalProperties": {
@@ -24219,7 +24462,8 @@
         "updatedAt": {
           "description": "Category updated time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [
@@ -24275,7 +24519,8 @@
         "createdAt": {
           "description": "created at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "displayOrder": {
           "description": "display order",
@@ -24443,7 +24688,8 @@
         "updatedAt": {
           "description": "updated at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "useCount": {
           "description": "Item use count, required when entitlement type is consumable or itemType is COINS",
@@ -24599,7 +24845,8 @@
         "createdAt": {
           "description": "Category created time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "displayName": {
           "description": "Category display name",
@@ -24619,7 +24866,8 @@
         "updatedAt": {
           "description": "Category updated time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [
@@ -24676,7 +24924,8 @@
         "createdAt": {
           "description": "created at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "credits": {
           "description": "credit summary",
@@ -24699,7 +24948,8 @@
         "fulfilledTime": {
           "description": "fulfill time if fulfilled",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "iapOrderNo": {
           "description": "iap order No",
@@ -24770,14 +25020,16 @@
             "STEAM",
             "XBOX",
             "STADIA",
-            "EPICGAMES"
+            "EPICGAMES",
+            "TWITCH"
           ],
           "type": "string"
         },
         "updatedAt": {
           "description": "updated at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "userId": {
           "description": "user id",
@@ -25201,7 +25453,8 @@
         "createdAt": {
           "description": "created at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "description": {
           "description": "description info",
@@ -25385,7 +25638,8 @@
         "updatedAt": {
           "description": "updated at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "useCount": {
           "description": "Item use count, required when entitlement type is consumable or itemType is COINS",
@@ -25466,7 +25720,8 @@
         "createdAt": {
           "description": "createdAt",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "description": {
           "description": "description",
@@ -25602,7 +25857,8 @@
         "updatedAt": {
           "description": "updatedAt",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "useCount": {
           "description": "Item use count, required when entitlement type is consumable or itemType is COINS",
@@ -25885,7 +26141,8 @@
         "createdAt": {
           "description": "created at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "description": {
           "description": "description",
@@ -25921,7 +26178,8 @@
         "updatedAt": {
           "description": "updated at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [
@@ -25998,7 +26256,8 @@
         "createdAt": {
           "description": "created at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "id": {
           "description": "key id",
@@ -26027,7 +26286,8 @@
         "updatedAt": {
           "description": "updated at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "value": {
           "description": "key value",
@@ -26113,7 +26373,8 @@
             "STEAM",
             "XBOX",
             "STADIA",
-            "EPICGAMES"
+            "EPICGAMES",
+            "TWITCH"
           ],
           "type": "string"
         }
@@ -26152,18 +26413,21 @@
       "properties": {
         "chargebackReversedTime": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "chargebackTime": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "charged": {
           "type": "boolean"
         },
         "chargedTime": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "countItemId": {
           "type": "string"
@@ -26176,11 +26440,13 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "createdTime": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "currency": {
           "$ref": "#/definitions/CurrencySummary"
@@ -26191,7 +26457,8 @@
         },
         "expireTime": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "ext": {
           "additionalProperties": {
@@ -26204,7 +26471,8 @@
         },
         "fulfilledTime": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "itemId": {
           "type": "string"
@@ -26265,7 +26533,8 @@
         },
         "refundedTime": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "region": {
           "type": "string"
@@ -26321,7 +26590,8 @@
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "userId": {
           "type": "string"
@@ -26429,7 +26699,8 @@
         "createdAt": {
           "description": "created at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "namespace": {
           "description": "The namespace of this order",
@@ -26450,7 +26721,8 @@
         "updatedAt": {
           "description": "updated at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "userId": {
           "description": "The owner of the order",
@@ -26473,27 +26745,32 @@
         "chargebackReversedTime": {
           "description": "The time of the order chargeback reversed",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "chargebackTime": {
           "description": "The time of the order chargeback",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "chargedTime": {
           "description": "The time of the order charged",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "createdAt": {
           "description": "createdAt",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "createdTime": {
           "description": "The time of the order created",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "currency": {
           "$ref": "#/definitions/CurrencySummary",
@@ -26507,7 +26784,8 @@
         "expireTime": {
           "description": "payment expire time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "ext": {
           "additionalProperties": {
@@ -26519,7 +26797,8 @@
         "fulfilledTime": {
           "description": "The time of the order fulfilled",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "itemId": {
           "description": "Item id",
@@ -26595,7 +26874,8 @@
         "refundedTime": {
           "description": "The time of the order refunded",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "region": {
           "description": "Order created region",
@@ -26654,7 +26934,8 @@
         "updatedAt": {
           "description": "updatedAt",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "userId": {
           "description": "User id",
@@ -26971,7 +27252,8 @@
         "createdAt": {
           "description": "created at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "id": {
           "description": "id",
@@ -26996,7 +27278,8 @@
         "updatedAt": {
           "description": "updated at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "wxPayConfig": {
           "$ref": "#/definitions/WxPayConfigInfo",
@@ -27050,7 +27333,8 @@
         "createdAt": {
           "description": "createdAt",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "externalId": {
           "description": "external id",
@@ -27107,7 +27391,8 @@
         "updatedAt": {
           "description": "updatedAt",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [
@@ -27145,7 +27430,8 @@
       "properties": {
         "authorisedTime": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "channel": {
           "enum": [
@@ -27156,26 +27442,31 @@
         },
         "chargebackReversedTime": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "chargebackTime": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "chargedTime": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "charging": {
           "type": "boolean"
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "createdTime": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "currency": {
           "$ref": "#/definitions/CurrencySummary"
@@ -27265,7 +27556,8 @@
         },
         "refundedTime": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "region": {
           "type": "string"
@@ -27347,7 +27639,8 @@
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "userId": {
           "type": "string"
@@ -27527,7 +27820,8 @@
         "createdTime": {
           "description": "The time of the order created",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "namespace": {
           "description": "Payment order namespace",
@@ -27631,7 +27925,8 @@
         "authorisedTime": {
           "description": "The time of the order authorised",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "channel": {
           "description": "Payment order channel: EXTERNAL or INTERNAL",
@@ -27644,17 +27939,20 @@
         "chargebackReversedTime": {
           "description": "The time of the order chargeback reversed time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "chargebackTime": {
           "description": "The time of the order chargeback time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "chargedTime": {
           "description": "The time of the order charged",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "charging": {
           "description": "if charging is true, means user have finished transaction, platform is waiting for payment notification",
@@ -27663,12 +27961,14 @@
         "createdAt": {
           "description": "createdAt",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "createdTime": {
           "description": "The time of the order created",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "currency": {
           "$ref": "#/definitions/CurrencySummary",
@@ -27778,7 +28078,8 @@
         "refundedTime": {
           "description": "The time of the order refunded",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "region": {
           "description": "Payment user region",
@@ -27870,7 +28171,8 @@
         "updatedAt": {
           "description": "updatedAt",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "userId": {
           "description": "User id",
@@ -28002,7 +28304,8 @@
         "createdTime": {
           "description": "The time of the order created",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "namespace": {
           "description": "Payment order namespace",
@@ -28015,7 +28318,8 @@
         "refundedTime": {
           "description": "The time of the order refunded",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "status": {
           "description": "Payment order status",
@@ -28655,7 +28959,8 @@
         "createdAt": {
           "description": "created at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "description": {
           "description": "description info",
@@ -28846,7 +29151,8 @@
         "updatedAt": {
           "description": "updated at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "useCount": {
           "description": "Item use count, required when entitlement type is consumable or itemType is COINS",
@@ -28948,7 +29254,8 @@
         "createdAt": {
           "description": "created at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "id": {
           "description": "id",
@@ -28964,12 +29271,14 @@
         },
         "redeemedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "updatedAt": {
           "description": "updated at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "userId": {
           "description": "redeem user id",
@@ -29089,7 +29398,8 @@
         "discountExpireAt": {
           "description": "Discount expire date time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "discountPercentage": {
           "description": "Discount percentage，default is 0, if this value is not 0, it will override the discountAmount",
@@ -29101,7 +29411,8 @@
         "discountPurchaseAt": {
           "description": "DiscountPurchaseAt",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "discountedPrice": {
           "format": "int32",
@@ -29110,7 +29421,8 @@
         "expireAt": {
           "description": "ExpireAt",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "price": {
           "description": "price value, set to 0 if it's free",
@@ -29120,7 +29432,8 @@
         "purchaseAt": {
           "description": "PurchaseAt",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "trialPrice": {
           "description": "trial price, required while fixedTrialCycles set, should \u003e=0 and \u003c= price, default same as trialPrice",
@@ -29220,6 +29533,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "namespaceExpression": {
+          "description": " The path to get namespace from event payload, if not present, will use default value \"$.[0].namespace\"",
+          "type": "string"
+        },
         "rewardCode": {
           "description": "Reward code",
           "type": "string"
@@ -29230,6 +29547,10 @@
             "$ref": "#/definitions/RewardCondition"
           },
           "type": "array"
+        },
+        "userIdExpression": {
+          "description": "The path to get userId from event payload, if not present, will use default value \"$.[0].userId\"",
+          "type": "string"
         }
       },
       "required": [
@@ -29243,7 +29564,8 @@
         "createdAt": {
           "description": "created at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "description": {
           "description": "Description",
@@ -29267,6 +29589,10 @@
           "description": "Reward namespace",
           "type": "string"
         },
+        "namespaceExpression": {
+          "description": " The path to get namespace from event payload, if not present, will use default value",
+          "type": "string"
+        },
         "rewardCode": {
           "description": "Reward code",
           "type": "string"
@@ -29285,6 +29611,11 @@
         "updatedAt": {
           "description": "updated at",
           "format": "date-time",
+          "type": "string",
+          "x-nullable": true
+        },
+        "userIdExpression": {
+          "description": "The path to get userId from event payload, if not present, will use default value",
           "type": "string"
         }
       },
@@ -29349,6 +29680,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "namespaceExpression": {
+          "description": " The path to get namespace from event payload, if not present, will use default value \"$.[0].namespace\"",
+          "type": "string"
+        },
         "rewardCode": {
           "description": "rewardCode",
           "type": "string"
@@ -29359,6 +29694,10 @@
             "$ref": "#/definitions/RewardCondition"
           },
           "type": "array"
+        },
+        "userIdExpression": {
+          "description": "The path to get userId from event payload, if not present, will use default value \"$.[0].userId\"",
+          "type": "string"
         }
       },
       "required": [
@@ -29467,12 +29806,14 @@
         "createdAt": {
           "description": "entitlement created at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "endDate": {
           "description": "entitlement end date",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "features": {
           "description": "entitlement features",
@@ -29485,7 +29826,8 @@
         "grantedAt": {
           "description": "entitlement granted at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "grantedCode": {
           "description": "grantedCode, the granted code",
@@ -29546,7 +29888,8 @@
         "startDate": {
           "description": "entitlement start date",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "status": {
           "description": "entitlement status",
@@ -29573,7 +29916,8 @@
         "updatedAt": {
           "description": "entitlement updated at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "useCount": {
           "description": "useCount for entitlement",
@@ -29664,7 +30008,8 @@
       "properties": {
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "namespace": {
           "type": "string"
@@ -29678,7 +30023,8 @@
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         }
       },
       "type": "object"
@@ -29759,7 +30105,8 @@
         "createdAt": {
           "description": "Backup created time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "id": {
           "description": "Backup id",
@@ -29776,7 +30123,8 @@
         "updatedAt": {
           "description": "Backup updated time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [
@@ -29833,7 +30181,8 @@
         "createdAt": {
           "description": "Store created time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "defaultLanguage": {
           "description": "Default language",
@@ -29858,7 +30207,8 @@
         "publishedTime": {
           "description": "Store published time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "storeId": {
           "description": "Store id",
@@ -29885,7 +30235,8 @@
         "updatedAt": {
           "description": "Store updated time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [
@@ -30033,7 +30384,8 @@
         "createdAt": {
           "description": "created at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "currentCycle": {
           "description": "subscription current cycle number",
@@ -30085,7 +30437,8 @@
         "updatedAt": {
           "description": "updated at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "userId": {
           "description": "Subscription user id",
@@ -30149,7 +30502,8 @@
         "createdAt": {
           "description": "created at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "currency": {
           "$ref": "#/definitions/CurrencySummary",
@@ -30163,12 +30517,14 @@
         "currentPeriodEnd": {
           "description": "current period end",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "currentPeriodStart": {
           "description": "current period start",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "description": {
           "description": "description",
@@ -30177,7 +30533,8 @@
         "end": {
           "description": "end date time if exist, at current it's not used",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "entitlements": {
           "description": "granted entitlement summary",
@@ -30221,7 +30578,8 @@
         "nextBillingDate": {
           "description": "next billing date",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "paid": {
           "description": "whether user paid from the subscription start",
@@ -30276,7 +30634,8 @@
         "start": {
           "description": "start date time, it will record the first time subscribed",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "status": {
           "description": "status",
@@ -30291,7 +30650,8 @@
         "subscribedAt": {
           "description": "subscribed date time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "subscribedBy": {
           "description": "subscribed by PLATFORM(system granted) or USER(subscribed by userself)",
@@ -30322,12 +30682,14 @@
         "unsubscribedAt": {
           "description": "unsubscribed date time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "updatedAt": {
           "description": "updated at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "userId": {
           "description": "user id",
@@ -30373,12 +30735,14 @@
         "currentPeriodEnd": {
           "description": "current period end",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "currentPeriodStart": {
           "description": "current period start",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "id": {
           "description": "subscription id",
@@ -30583,7 +30947,8 @@
         "endDate": {
           "description": "end date",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "owned": {
           "description": "ownership",
@@ -30604,27 +30969,32 @@
         "authorisedTime": {
           "description": "The time of the order authorised",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "chargebackReversedTime": {
           "description": "The time of the order chargeback reversed",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "chargebackTime": {
           "description": "The time of the order chargeback",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "chargedTime": {
           "description": "The time of the order charged",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "createdTime": {
           "description": "The time of the order created",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "currency": {
           "$ref": "#/definitions/CurrencySummary",
@@ -30652,7 +31022,8 @@
         "issuedAt": {
           "description": "event issued at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "metadata": {
           "additionalProperties": {
@@ -30713,7 +31084,8 @@
         "refundedTime": {
           "description": "The time of the order refunded",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "salesTax": {
           "description": "Payment order sales tax",
@@ -30786,7 +31158,8 @@
         "txEndTime": {
           "description": "Transaction end date time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "type": {
           "description": "notification type: payment",
@@ -30885,7 +31258,8 @@
         },
         "txEndTime": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "txId": {
           "type": "string"
@@ -30907,6 +31281,64 @@
         "vat": {
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "TwitchIAPConfigInfo": {
+      "properties": {
+        "clientId": {
+          "description": "twitch client id",
+          "type": "string"
+        },
+        "clientSecret": {
+          "description": "twitch client secret",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "namespace",
+          "type": "string"
+        },
+        "organizationId": {
+          "description": "twitch organization Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "namespace"
+      ],
+      "type": "object"
+    },
+    "TwitchIAPConfigRequest": {
+      "properties": {
+        "clientId": {
+          "description": "twitch client id",
+          "type": "string"
+        },
+        "clientSecret": {
+          "description": "twitch client secret",
+          "type": "string"
+        },
+        "organizationId": {
+          "description": "twitch organization Id",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TwitchSyncRequest": {
+      "properties": {
+        "gameId": {
+          "description": "game id",
+          "type": "string"
+        },
+        "language": {
+          "description": "language value from language tag, allowed format: en, en-US",
+          "type": "string"
+        },
+        "region": {
+          "description": "country value from ISO countries",
+          "type": "string"
         }
       },
       "type": "object"
@@ -30945,7 +31377,8 @@
         "createdAt": {
           "description": "created at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "currencyCode": {
           "description": "currency code",
@@ -30974,7 +31407,8 @@
         "updatedAt": {
           "description": "updated at",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "userId": {
           "description": "user id",
@@ -31026,7 +31460,8 @@
         "createdAt": {
           "description": "Transaction created time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "currencyCode": {
           "description": "Transaction currency code",
@@ -31047,7 +31482,8 @@
         "updatedAt": {
           "description": "Transaction updated time",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "userId": {
           "description": "Wallet owner's userId",

@@ -2783,7 +2783,8 @@
         },
         "updated_at": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [

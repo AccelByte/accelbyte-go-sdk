@@ -8,7 +8,7 @@
     },
     "description": "Justice Basic Service",
     "title": "justice-basic-service",
-    "version": "1.31.0"
+    "version": "1.32.0"
   },
   "schemes": [
     "https"
@@ -4121,7 +4121,8 @@
         "expires": {
           "description": "expire time, null if the user is permanently banned",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "userId": {
           "description": "userId",
@@ -4144,7 +4145,8 @@
         "expires": {
           "description": "action end date",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "userId": {
           "description": "current user",
@@ -4153,7 +4155,8 @@
         "when": {
           "description": "action start date",
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         }
       },
       "type": "object"
@@ -4362,7 +4365,8 @@
       "properties": {
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "displayName": {
           "type": "string"
@@ -4380,7 +4384,8 @@
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         }
       },
       "type": "object"
@@ -4516,7 +4521,8 @@
         "dateOfBirth": {
           "description": "date of birth, allowed format: yyyy-MM-dd, valid date range from 1905-01-01 until present",
           "format": "date",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "firstName": {
           "type": "string"
@@ -4582,7 +4588,8 @@
         "dateOfBirth": {
           "description": "date of birth, allowed format: yyyy-MM-dd, valid date range from 1905-01-01 until present",
           "format": "date",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "firstName": {
           "type": "string"
@@ -4620,7 +4627,8 @@
         },
         "dateOfBirth": {
           "format": "date",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "firstName": {
           "type": "string"
@@ -4677,7 +4685,8 @@
         "dateOfBirth": {
           "description": "date of birth, allowed format: yyyy-MM-dd, valid date range from 1905-01-01 until present",
           "format": "date",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "firstName": {
           "type": "string"
@@ -4721,7 +4730,8 @@
         },
         "dateOfBirth": {
           "format": "date",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "firstName": {
           "type": "string"
@@ -4784,7 +4794,8 @@
         "dateOfBirth": {
           "description": "date of birth, allowed format: yyyy-MM-dd, valid date range from 1905-01-01 until present",
           "format": "date",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "firstName": {
           "type": "string"
@@ -4883,7 +4894,8 @@
         "dateOfBirth": {
           "description": "date of birth, allowed format: yyyy-MM-dd, valid date range from 1905-01-01 until present",
           "format": "date",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "firstName": {
           "type": "string"

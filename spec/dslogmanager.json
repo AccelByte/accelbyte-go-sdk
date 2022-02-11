@@ -758,7 +758,8 @@
         },
         "last_update": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "mem_limit": {
           "format": "int32",
@@ -831,7 +832,8 @@
         },
         "time_stamp": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [

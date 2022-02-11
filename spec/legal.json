@@ -8,7 +8,7 @@
     },
     "description": "Justice Legal Service",
     "title": "justice-legal-service",
-    "version": "1.16.0"
+    "version": "1.17.0"
   },
   "schemes": [
     "https"
@@ -2244,7 +2244,8 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "description": {
           "type": "string"
@@ -2273,7 +2274,8 @@
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         }
       },
       "required": [
@@ -2299,7 +2301,8 @@
       "properties": {
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "description": {
           "type": "string"
@@ -2312,7 +2315,8 @@
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         }
       },
       "required": [
@@ -2342,7 +2346,8 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "description": {
           "type": "string"
@@ -2358,7 +2363,8 @@
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         }
       },
       "required": [
@@ -2442,7 +2448,8 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "description": {
           "type": "string"
@@ -2458,14 +2465,16 @@
         },
         "publishedDate": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "status": {
           "type": "string"
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         }
       },
       "required": [
@@ -2510,7 +2519,8 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "description": {
           "type": "string"
@@ -2538,7 +2548,8 @@
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         }
       },
       "required": [
@@ -2556,7 +2567,8 @@
       "properties": {
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "description": {
           "type": "string"
@@ -2575,14 +2587,16 @@
         },
         "publishedDate": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "status": {
           "type": "string"
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         }
       },
       "required": [
@@ -2597,7 +2611,8 @@
       "properties": {
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "description": {
           "type": "string"
@@ -2622,14 +2637,16 @@
         },
         "publishedDate": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "status": {
           "type": "string"
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         }
       },
       "required": [
@@ -2647,7 +2664,8 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "description": {
           "type": "string"
@@ -2678,11 +2696,13 @@
         },
         "signingDate": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "userId": {
           "type": "string"
@@ -2707,7 +2727,8 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "description": {
           "type": "string"
@@ -2741,7 +2762,8 @@
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         }
       },
       "required": [
@@ -2776,7 +2798,8 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "description": {
           "type": "string"
@@ -2805,7 +2828,8 @@
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         }
       },
       "required": [
@@ -2839,7 +2863,8 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "description": {
           "type": "string"
@@ -2858,7 +2883,8 @@
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         }
       },
       "required": [
@@ -2888,7 +2914,8 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "description": {
           "type": "string"
@@ -2935,7 +2962,8 @@
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         }
       },
       "required": [
@@ -2962,7 +2990,8 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "description": {
           "type": "string"
@@ -2996,7 +3025,8 @@
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         }
       },
       "required": [
@@ -3014,7 +3044,8 @@
       "properties": {
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "description": {
           "type": "string"
@@ -3030,7 +3061,8 @@
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         }
       },
       "required": [
@@ -3048,7 +3080,8 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "description": {
           "type": "string"
@@ -3076,14 +3109,16 @@
         },
         "publishedDate": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "status": {
           "type": "string"
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         }
       },
       "required": [
@@ -3099,7 +3134,8 @@
       "properties": {
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "displayName": {
           "type": "string"
@@ -3130,11 +3166,13 @@
         },
         "signingDate": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "userId": {
           "type": "string"
@@ -3219,7 +3257,8 @@
       "properties": {
         "lastUpdatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "namespace": {
           "type": "string"
@@ -3282,7 +3321,8 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "description": {
           "type": "string"
@@ -3311,7 +3351,8 @@
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         }
       },
       "required": [
@@ -3355,7 +3396,8 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "description": {
           "type": "string"
@@ -3368,7 +3410,8 @@
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         }
       },
       "required": [
@@ -3432,7 +3475,8 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "description": {
           "type": "string"
@@ -3448,14 +3492,16 @@
         },
         "publishedDate": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "status": {
           "type": "string"
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         }
       },
       "required": [

@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "5.1.1"
+    "version": "5.2.0"
   },
   "schemes": [
     "https"
@@ -101,10 +101,7 @@
     "HasScope": {
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
-      "scopes": {
-        "The": "The",
-        "of": "of"
-      },
+      "scopes": {},
       "tokenUrl": "https://dumy.oauth.net/token",
       "type": "oauth2"
     },
@@ -12936,10 +12933,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "The"
-            ],
             "authorization": []
           }
         ],
@@ -13307,7 +13300,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "\u0026lt;p\u0026gt;This endpoint supports grant type:\u0026lt;/p\u0026gt;\u0026lt;ol\u0026gt;\n\t \t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;authorization_code\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t\t\t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; It generates the user token by given the authorization\n\t\t\t\tcode which generated in \u0026#34;/v3/oauth/auth\u0026#34; API response. It should also pass\n\t\t\t\tin the redirect_uri, which should be the same as generating the\n\t\t\t\tauthorization code request.\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;refresh_token\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; Used to get a new access token for a valid refresh token.\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;client_credentials\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; It generates a token by checking the client credentials provided through Authorization header.\n\t\t\t\u0026lt;/li\u0026gt;\u0026lt;/ol\u0026gt;\n\t\t\t\u0026lt;h2\u0026gt;Access Token Content\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Following is the access token’s content:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt;. It is the namespace the token was generated from.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;display_name\u0026lt;/strong\u0026gt;. The display name of the sub. It is empty if the token is generated from the client credential\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;roles\u0026lt;/strong\u0026gt;. The sub’s roles. It is empty if the token is generated from the client credential\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;namespace_roles\u0026lt;/strong\u0026gt;. The sub’s roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;permissions\u0026lt;/strong\u0026gt;. The sub or aud’ permissions\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;bans\u0026lt;/strong\u0026gt;. The sub’s list of bans. It is used by the IAM client for validating the token.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;jflgs\u0026lt;/strong\u0026gt;. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;1: Email Address Verified\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;2: Phone Number Verified\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;4: Anonymous\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;8: Suspicious Login\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;aud\u0026lt;/strong\u0026gt;. The aud is the targeted resource server.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;iat\u0026lt;/strong\u0026gt;. The time the token issues at. It is in Epoch time format\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;exp\u0026lt;/strong\u0026gt;. The time the token expires. It is in Epoch time format\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;client_id\u0026lt;/strong\u0026gt;. The UserID. The sub is omitted if the token is generated from client credential\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\t\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;scope\u0026lt;/strong\u0026gt;. The scope of the access request, expressed as a list of space-delimited, case-sensitive strings\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;h2\u0026gt;Bans\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The JWT contains user\u0026#39;s active bans with its expiry date. List of ban types can be obtained from /bans.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;h2\u0026gt;Track Login History\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will track login history to detect suspicious login activity, please provide \u0026#34;device_id\u0026#34; (alphanumeric) in request header parameter otherwise we will set to \u0026#34;unknown\u0026#34;.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Align with General Data Protection Regulation in Europe, user login history will be kept within 28 days by default\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;action code: 10703",
+        "description": "\u0026lt;p\u0026gt;This endpoint supports grant type:\u0026lt;/p\u0026gt;\u0026lt;ol\u0026gt;\n\t \t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;authorization_code\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t\t\t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; It generates the user token by given the authorization\n\t\t\t\tcode which generated in \u0026#34;/v3/oauth/auth\u0026#34; API response. It should also pass\n\t\t\t\tin the redirect_uri, which should be the same as generating the\n\t\t\t\tauthorization code request.\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;password\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; The grant type to use for authenticating a user, whether it\u0026#39;s by email / username and password combination\n\t\t\t\tor through platform.\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;refresh_token\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; Used to get a new access token for a valid refresh token.\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;Grant Type == \u0026lt;code\u0026gt;client_credentials\u0026lt;/code\u0026gt;:\u0026lt;br /\u0026gt;\n\t \t\t\t\u0026amp;nbsp;\u0026amp;nbsp;\u0026amp;nbsp; It generates a token by checking the client credentials provided through Authorization header.\n\t\t\t\u0026lt;/li\u0026gt;\u0026lt;/ol\u0026gt;\n\t\t\t\u0026lt;h2\u0026gt;Access Token Content\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Following is the access token’s content:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt;. It is the namespace the token was generated from.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;display_name\u0026lt;/strong\u0026gt;. The display name of the sub. It is empty if the token is generated from the client credential\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;roles\u0026lt;/strong\u0026gt;. The sub’s roles. It is empty if the token is generated from the client credential\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;namespace_roles\u0026lt;/strong\u0026gt;. The sub’s roles scoped to namespace. Improvement from roles, which make the role scoped to specific namespace instead of global to publisher namespace\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;permissions\u0026lt;/strong\u0026gt;. The sub or aud’ permissions\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;bans\u0026lt;/strong\u0026gt;. The sub’s list of bans. It is used by the IAM client for validating the token.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;jflgs\u0026lt;/strong\u0026gt;. It stands for Justice Flags. It is a special flag used for storing additional status information regarding the sub. It is implemented as a bit mask. Following explains what each bit represents:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;1: Email Address Verified\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;2: Phone Number Verified\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;4: Anonymous\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;p\u0026gt;8: Suspicious Login\u0026lt;/p\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;aud\u0026lt;/strong\u0026gt;. The aud is the targeted resource server.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;iat\u0026lt;/strong\u0026gt;. The time the token issues at. It is in Epoch time format\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;exp\u0026lt;/strong\u0026gt;. The time the token expires. It is in Epoch time format\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;client_id\u0026lt;/strong\u0026gt;. The UserID. The sub is omitted if the token is generated from client credential\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\t\n\t\t\t\u0026lt;li\u0026gt;\n\t\t\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;scope\u0026lt;/strong\u0026gt;. The scope of the access request, expressed as a list of space-delimited, case-sensitive strings\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;h2\u0026gt;Bans\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The JWT contains user\u0026#39;s active bans with its expiry date. List of ban types can be obtained from /bans.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;h2\u0026gt;Track Login History\u0026lt;/h2\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will track login history to detect suspicious login activity, please provide \u0026#34;device_id\u0026#34; (alphanumeric) in request header parameter otherwise we will set to \u0026#34;unknown\u0026#34;.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Align with General Data Protection Regulation in Europe, user login history will be kept within 28 days by default\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;action code: 10703",
         "operationId": "TokenGrantV3",
         "parameters": [
           {
@@ -13316,11 +13309,24 @@
             "enum": [
               "authorization_code",
               "client_credentials",
+              "password",
               "refresh_token"
             ],
             "in": "formData",
             "name": "grant_type",
             "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User Name (used with grant type 'password'",
+            "in": "formData",
+            "name": "username",
+            "type": "string"
+          },
+          {
+            "description": "Password (used with grant type 'password'",
+            "in": "formData",
+            "name": "password",
             "type": "string"
           },
           {
@@ -13352,6 +13358,12 @@
             "in": "formData",
             "name": "refresh_token",
             "type": "string"
+          },
+          {
+            "description": "Extend expiration date of refresh token. Only available for grant type 'password'",
+            "in": "formData",
+            "name": "extend_exp",
+            "type": "boolean"
           },
           {
             "description": "DeviceID (Used on grant type 'password' to track login history) ex. 90252d14544846d79f367148e3f9a3d9",
@@ -13391,10 +13403,6 @@
         },
         "security": [
           {
-            "HasPermission": [],
-            "HasScope": [
-              "of"
-            ],
             "authorization": []
           }
         ],
@@ -17864,7 +17872,8 @@
         },
         "endDate": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [
@@ -17917,11 +17926,13 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "dateOfBirth": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "deletionStatus": {
           "type": "boolean"
@@ -17940,11 +17951,13 @@
         },
         "lastDateOfBirthChangedTime": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "lastEnabledChangedTime": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "namespace": {
           "type": "string"
@@ -18111,7 +18124,8 @@
         },
         "dateOfBirth": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "displayName": {
           "type": "string"
@@ -18451,14 +18465,16 @@
         },
         "disabledDate": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "enabled": {
           "type": "boolean"
         },
         "endDate": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "targetedNamespace": {
           "type": "string"
@@ -19213,7 +19229,8 @@
         },
         "CreatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "Namespace": {
           "type": "string"
@@ -19308,11 +19325,13 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "modifiedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "namespace": {
           "type": "string"
@@ -20181,7 +20200,8 @@
         },
         "LinkedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "Namespace": {
           "type": "string"
@@ -20251,7 +20271,8 @@
       "properties": {
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "displayName": {
           "type": "string"
@@ -20287,7 +20308,8 @@
         },
         "CreatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "DeletionStatus": {
           "type": "boolean"
@@ -20303,7 +20325,8 @@
         },
         "LastEnabledChangedTime": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "LoginId": {
           "type": "string"
@@ -20379,7 +20402,8 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "deletionStatus": {
           "type": "boolean"
@@ -20395,11 +20419,13 @@
         },
         "lastDateOfBirthChangedTime": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "lastEnabledChangedTime": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "namespace": {
           "type": "string"
@@ -21404,7 +21430,8 @@
         },
         "EndDate": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [
@@ -21423,7 +21450,8 @@
         },
         "endDate": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [
@@ -21448,18 +21476,21 @@
         },
         "CreatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "DisabledDate": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "Enabled": {
           "type": "boolean"
         },
         "EndDate": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "Namespace": {
           "type": "string"
@@ -21500,18 +21531,21 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "disabledDate": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "enabled": {
           "type": "boolean"
         },
         "endDate": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "namespace": {
           "type": "string"
@@ -21707,7 +21741,8 @@
         },
         "DateOfBirth": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "DisplayName": {
           "type": "string"
@@ -21742,7 +21777,8 @@
         },
         "dateOfBirth": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "displayName": {
           "type": "string"
@@ -21858,7 +21894,8 @@
         },
         "expiredAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "id": {
           "type": "string"
@@ -21991,11 +22028,13 @@
         },
         "CreatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "DateOfBirth": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "DeletionStatus": {
           "type": "boolean"
@@ -22014,11 +22053,13 @@
         },
         "LastDateOfBirthChangedTime": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "LastEnabledChangedTime": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "LoginId": {
           "type": "string"
@@ -22110,11 +22151,13 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "dateOfBirth": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "deletionStatus": {
           "type": "boolean"
@@ -22133,11 +22176,13 @@
         },
         "lastDateOfBirthChangedTime": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "lastEnabledChangedTime": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "namespace": {
           "type": "string"
@@ -22550,7 +22595,8 @@
         },
         "revoked_at": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [

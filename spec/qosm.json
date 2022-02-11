@@ -281,7 +281,8 @@
         },
         "last_update": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "port": {
           "format": "int32",

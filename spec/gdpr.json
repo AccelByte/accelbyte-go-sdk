@@ -8,7 +8,7 @@
     },
     "description": "Justice GDPR Service",
     "title": "justice-gdpr-service",
-    "version": "1.12.0"
+    "version": "1.13.0"
   },
   "schemes": [
     "https"
@@ -1583,7 +1583,8 @@
         },
         "RequestDate": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "UserID": {
           "type": "string"
@@ -1602,7 +1603,8 @@
         },
         "RequestDate": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "Status": {
           "type": "string"
@@ -1628,7 +1630,8 @@
         },
         "ExecutionDate": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "Status": {
           "type": "string"
@@ -1704,14 +1707,16 @@
       "properties": {
         "DataExpirationDate": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "DisplayName": {
           "type": "string"
         },
         "RequestDate": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "ServiceErrors": {
           "additionalProperties": {
@@ -1770,11 +1775,13 @@
       "properties": {
         "DataExpirationDate": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "RequestDate": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "Status": {
           "type": "string"

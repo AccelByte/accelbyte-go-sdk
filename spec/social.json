@@ -8,7 +8,7 @@
     },
     "description": "Justice Social Service",
     "title": "justice-social-service",
-    "version": "1.23.0"
+    "version": "1.24.0"
   },
   "schemes": [
     "https"
@@ -4395,6 +4395,88 @@
         }
       }
     },
+    "/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Bulk reset user\u0026#39;s statitem values for given namespace and user.  \nOther detail info:\n+ *Required permission*: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=4 (UPDATE)\n+ *Returns*: bulk updated result",
+        "operationId": "bulkResetUserStatItemValues",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "additional key",
+            "in": "query",
+            "name": "additionalKey",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/A DTO object for resetting user stat items"
+              },
+              "type": "array"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/BulkStatItemOperationResult"
+              },
+              "type": "array"
+            }
+          },
+          "422": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorEntity"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          },
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM [UPDATE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Bulk reset user's statitem values",
+        "tags": [
+          "UserStatistic"
+        ],
+        "x-authorization": {
+          "action": "4",
+          "resource": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM"
+        }
+      }
+    },
     "/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems": {
       "delete": {
         "description": "Delete user\u0026#39;s stat items for given namespace, statCode, and user Id. \nIf query param *additionalKey* is provided, it will delete user stat items of specific key (i.e. characterName). \nOtherwise, it will delete all stat items related to the user Id. \n\u0026lt;br\u0026gt;Delete user\u0026#39;s statItems given stat code.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: no content\u0026lt;/li\u0026gt;\u0026lt;/li\u0026gt;",
@@ -4830,6 +4912,25 @@
     }
   },
   "definitions": {
+    "A DTO object for resetting user stat items": {
+      "properties": {
+        "additionalData": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "additional data to be published in event payload",
+          "type": "object"
+        },
+        "statCode": {
+          "description": "stat code",
+          "type": "string"
+        }
+      },
+      "required": [
+        "statCode"
+      ],
+      "type": "object"
+    },
     "Attribute": {
       "properties": {
         "name": {
@@ -5199,7 +5300,8 @@
       "properties": {
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "namespace": {
           "type": "string"
@@ -5219,7 +5321,8 @@
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "value": {
           "format": "double",
@@ -5304,15 +5407,18 @@
         },
         "dateAccessed": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "dateCreated": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "dateModified": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "label": {
           "type": "string"
@@ -5456,7 +5562,8 @@
       "properties": {
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "defaultValue": {
           "format": "double",
@@ -5511,7 +5618,8 @@
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [
@@ -5662,7 +5770,8 @@
       "properties": {
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "namespace": {
           "type": "string"
@@ -5682,7 +5791,8 @@
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "userId": {
           "type": "string"

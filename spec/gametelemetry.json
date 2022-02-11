@@ -184,7 +184,8 @@
         "EventTimestamp": {
           "format": "date-time",
           "title": "Eventtimestamp",
-          "type": "string"
+          "type": "string",
+          "x-nullable": true
         },
         "Payload": {
           "title": "Payload",

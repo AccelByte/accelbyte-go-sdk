@@ -2271,7 +2271,8 @@
         },
         "timestamp": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "traceId": {
           "type": "string"
@@ -2441,7 +2442,8 @@
       "properties": {
         "LastActivityTime": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "Namespace": {
           "type": "string"

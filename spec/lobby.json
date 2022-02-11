@@ -3158,6 +3158,94 @@
         "summary": "admin update party attributes"
       }
     },
+    "/lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [UPDATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;admin join a player into a party.",
+        "operationId": "adminJoinPartyV1",
+        "parameters": [
+          {
+            "description": "namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "party ID",
+            "in": "path",
+            "name": "partyId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "412": {
+            "description": "Precondition Failed",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponseBody"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [UPDATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "admin join a player into a party"
+      }
+    },
     "/lobby/v1/admin/party/namespaces/{namespace}/users/{userId}/party": {
       "get": {
         "consumes": [
@@ -7830,7 +7918,8 @@
       "properties": {
         "blockedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "userId": {
           "type": "string"
@@ -7845,7 +7934,8 @@
       "properties": {
         "blockedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "blockedUserId": {
           "type": "string"
@@ -7879,6 +7969,9 @@
         "concurrentUsersLimit": {
           "format": "int32",
           "type": "integer"
+        },
+        "disablePartyInvitationToken": {
+          "type": "boolean"
         },
         "enableChat": {
           "type": "boolean"
@@ -7937,6 +8030,9 @@
           "format": "int32",
           "type": "integer"
         },
+        "disablePartyInvitationToken": {
+          "type": "boolean"
+        },
         "enableChat": {
           "type": "boolean"
         },
@@ -7976,6 +8072,7 @@
         "chatRateLimitBurst",
         "chatRateLimitDuration",
         "concurrentUsersLimit",
+        "disablePartyInvitationToken",
         "enableChat",
         "entitlementCheck",
         "entitlementItemID",
@@ -8023,6 +8120,9 @@
         "concurrentUsersLimit": {
           "format": "int32",
           "type": "integer"
+        },
+        "disablePartyInvitationToken": {
+          "type": "boolean"
         },
         "enableChat": {
           "type": "boolean"

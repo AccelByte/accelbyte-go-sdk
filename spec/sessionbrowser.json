@@ -1189,7 +1189,8 @@
         },
         "created_at": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "game_session_setting": {
           "$ref": "#/definitions/models.GameSessionSetting"
@@ -1308,7 +1309,8 @@
         },
         "created_at": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "game_session_setting": {
           "$ref": "#/definitions/models.GameSessionSetting"
@@ -1364,7 +1366,8 @@
         },
         "created_at": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "game_session_setting": {
           "$ref": "#/definitions/models.GameSessionSetting"
@@ -1499,7 +1502,8 @@
         },
         "created_at": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "deployment": {
           "type": "string",
@@ -1640,7 +1644,8 @@
       "properties": {
         "created_at": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "namespace": {
           "type": "string"
@@ -1653,7 +1658,8 @@
         },
         "updated_at": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "user_id": {
           "type": "string"
@@ -1716,7 +1722,8 @@
         },
         "last_update": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "mem_limit": {
           "format": "int32",
@@ -1828,7 +1835,8 @@
         },
         "created_at": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "game_session_setting": {
           "$ref": "#/definitions/models.GameSessionSetting"
@@ -1897,7 +1905,8 @@
         },
         "time_stamp": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [

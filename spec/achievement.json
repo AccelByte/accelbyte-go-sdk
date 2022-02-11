@@ -1168,7 +1168,8 @@
         },
         "CreatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "DefaultLanguage": {
           "type": "string"
@@ -1228,7 +1229,8 @@
         },
         "UpdatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [
@@ -1334,7 +1336,8 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "defaultLanguage": {
           "type": "string"
@@ -1391,7 +1394,8 @@
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [
@@ -1566,7 +1570,8 @@
         },
         "createdAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "description": {
           "type": "string"
@@ -1614,7 +1619,8 @@
         },
         "updatedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         }
       },
       "required": [
@@ -1653,7 +1659,8 @@
       "properties": {
         "achievedAt": {
           "format": "date-time",
-          "type": "string"
+          "type": "string",
+          "x-nullable": false
         },
         "achievementCode": {
           "type": "string"

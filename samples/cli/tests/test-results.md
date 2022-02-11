@@ -9,25 +9,7 @@ ok 1 listConfig
 ok 2 saveConfig (skipped deprecated)
 ok 3 updateImage
 ok 4 createImage
-not ok 5 - importImages
-  ---
-  error: |-
-    panic: runtime error: invalid memory address or nil pointer dereference panic: runtime error: invalid memory address or nil pointer dereference
-    [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x129e6ef] [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x129e6ef]
-     
-    goroutine 1 [running]: goroutine 1 [running]:
-    github.com/AccelByte/sample-apps/cmd/dsmc/imageConfig.glob..func7(0x2c1f9a0, {0x19ec621, 0x2, 0x2}) github.com/AccelByte/sample-apps/cmd/dsmc/imageConfig.glob..func7(0x2c1f9a0, {0x19ec621, 0x2, 0x2})
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/dsmc/imageConfig/importImages.go:27 +0x8f /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/dsmc/imageConfig/importImages.go:27 +0x8f
-    github.com/spf13/cobra.(*Command).execute(0x2c1f9a0, {0xc000811e20, 0x2, 0x2}) github.com/spf13/cobra.(*Command).execute(0x2c1f9a0, {0xc000811e20, 0x2, 0x2})
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e
-    github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520) github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad
-    github.com/spf13/cobra.(*Command).Execute(...) github.com/spf13/cobra.(*Command).Execute(...)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897 /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897
-    github.com/AccelByte/sample-apps/cmd.Execute() github.com/AccelByte/sample-apps/cmd.Execute()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25
-    main.main() main.main()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6
+ok 5 importImages
 ok 6 getConfig
 ok 7 createConfig
 ok 8 deleteConfig
@@ -72,25 +54,7 @@ ok 46 listSession
 ok 47 countSession
 ok 48 deleteSession
 ok 49 exportConfigV1
-not ok 50 - importConfigV1
-  ---
-  error: |-
-    panic: runtime error: invalid memory address or nil pointer dereference panic: runtime error: invalid memory address or nil pointer dereference
-    [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x129c4d6] [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x129c4d6]
-     
-    goroutine 1 [running]: goroutine 1 [running]:
-    github.com/AccelByte/sample-apps/cmd/dsmc/config.glob..func8(0x2c1c020, {0x19ec621, 0x4, 0x4}) github.com/AccelByte/sample-apps/cmd/dsmc/config.glob..func8(0x2c1c020, {0x19ec621, 0x4, 0x4})
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/dsmc/config/importConfigV1.go:28 +0xb6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/dsmc/config/importConfigV1.go:28 +0xb6
-    github.com/spf13/cobra.(*Command).execute(0x2c1c020, {0xc0005b04c0, 0x4, 0x4}) github.com/spf13/cobra.(*Command).execute(0x2c1c020, {0xc0005b04c0, 0x4, 0x4})
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e
-    github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520) github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad
-    github.com/spf13/cobra.(*Command).Execute(...) github.com/spf13/cobra.(*Command).Execute(...)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897 /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897
-    github.com/AccelByte/sample-apps/cmd.Execute() github.com/AccelByte/sample-apps/cmd.Execute()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25
-    main.main() main.main()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6
+ok 50 importConfigV1
 ok 51 imageDetailClient
 ok 52 deregisterLocalServer
 ok 53 registerLocalServer
@@ -114,25 +78,7 @@ go install github.com/AccelByte/sample-apps
 ok 1 adminListAchievements
 ok 2 adminCreateNewAchievement
 ok 3 exportAchievements
-not ok 4 - importAchievements
-  ---
-  error: |-
-    panic: runtime error: invalid memory address or nil pointer dereference panic: runtime error: invalid memory address or nil pointer dereference
-    [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x1279376] [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x1279376]
-     
-    goroutine 1 [running]: goroutine 1 [running]:
-    github.com/AccelByte/sample-apps/cmd/achievement/achievements.glob..func10(0x2c0aaa0, {0x19ec621, 0x6, 0x6}) github.com/AccelByte/sample-apps/cmd/achievement/achievements.glob..func10(0x2c0aaa0, {0x19ec621, 0x6, 0x6})
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/achievement/achievements/importAchievements.go:28 +0xb6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/achievement/achievements/importAchievements.go:28 +0xb6
-    github.com/spf13/cobra.(*Command).execute(0x2c0aaa0, {0xc0000883c0, 0x6, 0x6}) github.com/spf13/cobra.(*Command).execute(0x2c0aaa0, {0xc0000883c0, 0x6, 0x6})
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e
-    github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520) github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad
-    github.com/spf13/cobra.(*Command).Execute(...) github.com/spf13/cobra.(*Command).Execute(...)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897 /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897
-    github.com/AccelByte/sample-apps/cmd.Execute() github.com/AccelByte/sample-apps/cmd.Execute()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25
-    main.main() main.main()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6
+ok 4 importAchievements
 ok 5 adminGetAchievement
 ok 6 adminUpdateAchievement
 ok 7 adminDeleteAchievement
@@ -158,25 +104,7 @@ ok 5 getClient
 ok 6 updateClient
 ok 7 deleteClient (skipped deprecated)
 ok 8 updateClientPermission
-not ok 9 - addClientPermission
-  ---
-  error: |-
-    time="2022-02-09T21:53:56+07:00" level=info msg="Base URL : http://0.0.0.0:8080" time="2022-02-09T21:53:56+07:00" level=info msg="Base URL : http://0.0.0.0:8080"
-    time="2022-02-09T21:53:56+07:00" level=error msg="none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try */*" time="2022-02-09T21:53:56+07:00" level=error msg="none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try */*"
-    Error: none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try */* Error: none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try sh/run-go-cli-achievement-unit-test.sh sh/run-go-cli-all-unit-test.sh sh/run-go-cli-basic-unit-test.sh sh/run-go-cli-cloudsave-unit-test.sh sh/run-go-cli-dslogmanager-unit-test.sh sh/run-go-cli-dsmc-unit-test.sh sh/run-go-cli-eventlog-unit-test.sh sh/run-go-cli-gametelemetry-unit-test.sh sh/run-go-cli-gdpr-unit-test.sh sh/run-go-cli-group-unit-test.sh sh/run-go-cli-iam-unit-test.sh sh/run-go-cli-leaderboard-unit-test.sh sh/run-go-cli-legal-unit-test.sh sh/run-go-cli-lobby-unit-test.sh sh/run-go-cli-matchmaking-unit-test.sh sh/run-go-cli-platform-unit-test.sh sh/run-go-cli-qosm-unit-test.sh sh/run-go-cli-seasonpass-unit-test.sh sh/run-go-cli-sessionbrowser-unit-test.sh sh/run-go-cli-social-unit-test.sh sh/run-go-cli-ugc-unit-test.sh
-    Usage: Usage:
-    sample-apps Iam addClientPermission [flags] sample-apps Iam addClientPermission [flags]
-     
-    Flags: Flags:
-    --action int        Action (default -1) --action int Action (default -1)
-    --clientId string   Client id (default " ") --clientId string Client id (default " ")
-    -h, --help              help for addClientPermission -h, --help help for addClientPermission
-    --resource string   Resource (default " ") --resource string Resource (default " ")
-     
-    Global Flags: Global Flags:
-    --config string   config file (default is $HOME/.sample-apps.yaml) --config string config file (default is $HOME/.sample-apps.yaml)
-     
-    Error: none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try */* Error: none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try sh/run-go-cli-achievement-unit-test.sh sh/run-go-cli-all-unit-test.sh sh/run-go-cli-basic-unit-test.sh sh/run-go-cli-cloudsave-unit-test.sh sh/run-go-cli-dslogmanager-unit-test.sh sh/run-go-cli-dsmc-unit-test.sh sh/run-go-cli-eventlog-unit-test.sh sh/run-go-cli-gametelemetry-unit-test.sh sh/run-go-cli-gdpr-unit-test.sh sh/run-go-cli-group-unit-test.sh sh/run-go-cli-iam-unit-test.sh sh/run-go-cli-leaderboard-unit-test.sh sh/run-go-cli-legal-unit-test.sh sh/run-go-cli-lobby-unit-test.sh sh/run-go-cli-matchmaking-unit-test.sh sh/run-go-cli-platform-unit-test.sh sh/run-go-cli-qosm-unit-test.sh sh/run-go-cli-seasonpass-unit-test.sh sh/run-go-cli-sessionbrowser-unit-test.sh sh/run-go-cli-social-unit-test.sh sh/run-go-cli-ugc-unit-test.sh
+ok 9 addClientPermission
 ok 10 deleteClientPermission
 ok 11 updateClientSecret
 ok 12 getClientsbyNamespace
@@ -195,46 +123,8 @@ ok 24 updateUser
 ok 25 deleteUser
 ok 26 banUser
 ok 27 getUserBanHistory
-not ok 28 - disableUserBan
-  ---
-  error: |-
-    time="2022-02-09T21:53:56+07:00" level=info msg="Base URL : http://0.0.0.0:8080" time="2022-02-09T21:53:56+07:00" level=info msg="Base URL : http://0.0.0.0:8080"
-    time="2022-02-09T21:53:56+07:00" level=info msg="Response <nil>" time="2022-02-09T21:53:56+07:00" level=info msg="Response <nil>"
-    time="2022-02-09T21:53:56+07:00" level=error msg="none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try */*" time="2022-02-09T21:53:56+07:00" level=error msg="none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try */*"
-    Error: none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try */* Error: none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try sh/run-go-cli-achievement-unit-test.sh sh/run-go-cli-all-unit-test.sh sh/run-go-cli-basic-unit-test.sh sh/run-go-cli-cloudsave-unit-test.sh sh/run-go-cli-dslogmanager-unit-test.sh sh/run-go-cli-dsmc-unit-test.sh sh/run-go-cli-eventlog-unit-test.sh sh/run-go-cli-gametelemetry-unit-test.sh sh/run-go-cli-gdpr-unit-test.sh sh/run-go-cli-group-unit-test.sh sh/run-go-cli-iam-unit-test.sh sh/run-go-cli-leaderboard-unit-test.sh sh/run-go-cli-legal-unit-test.sh sh/run-go-cli-lobby-unit-test.sh sh/run-go-cli-matchmaking-unit-test.sh sh/run-go-cli-platform-unit-test.sh sh/run-go-cli-qosm-unit-test.sh sh/run-go-cli-seasonpass-unit-test.sh sh/run-go-cli-sessionbrowser-unit-test.sh sh/run-go-cli-social-unit-test.sh sh/run-go-cli-ugc-unit-test.sh
-    Usage: Usage:
-    sample-apps Iam disableUserBan [flags] sample-apps Iam disableUserBan [flags]
-     
-    Flags: Flags:
-    --banId string       Ban id (default " ") --banId string Ban id (default " ")
-    -h, --help               help for disableUserBan -h, --help help for disableUserBan
-    --namespace string   Namespace (default " ") --namespace string Namespace (default " ")
-    --userId string      User id (default " ") --userId string User id (default " ")
-     
-    Global Flags: Global Flags:
-    --config string   config file (default is $HOME/.sample-apps.yaml) --config string config file (default is $HOME/.sample-apps.yaml)
-     
-    Error: none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try */* Error: none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try sh/run-go-cli-achievement-unit-test.sh sh/run-go-cli-all-unit-test.sh sh/run-go-cli-basic-unit-test.sh sh/run-go-cli-cloudsave-unit-test.sh sh/run-go-cli-dslogmanager-unit-test.sh sh/run-go-cli-dsmc-unit-test.sh sh/run-go-cli-eventlog-unit-test.sh sh/run-go-cli-gametelemetry-unit-test.sh sh/run-go-cli-gdpr-unit-test.sh sh/run-go-cli-group-unit-test.sh sh/run-go-cli-iam-unit-test.sh sh/run-go-cli-leaderboard-unit-test.sh sh/run-go-cli-legal-unit-test.sh sh/run-go-cli-lobby-unit-test.sh sh/run-go-cli-matchmaking-unit-test.sh sh/run-go-cli-platform-unit-test.sh sh/run-go-cli-qosm-unit-test.sh sh/run-go-cli-seasonpass-unit-test.sh sh/run-go-cli-sessionbrowser-unit-test.sh sh/run-go-cli-social-unit-test.sh sh/run-go-cli-ugc-unit-test.sh
-not ok 29 - enableUserBan
-  ---
-  error: |-
-    time="2022-02-09T21:53:56+07:00" level=info msg="Base URL : http://0.0.0.0:8080" time="2022-02-09T21:53:56+07:00" level=info msg="Base URL : http://0.0.0.0:8080"
-    time="2022-02-09T21:53:56+07:00" level=info msg="Response <nil>" time="2022-02-09T21:53:56+07:00" level=info msg="Response <nil>"
-    time="2022-02-09T21:53:56+07:00" level=error msg="none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try */*" time="2022-02-09T21:53:56+07:00" level=error msg="none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try */*"
-    Error: none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try */* Error: none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try sh/run-go-cli-achievement-unit-test.sh sh/run-go-cli-all-unit-test.sh sh/run-go-cli-basic-unit-test.sh sh/run-go-cli-cloudsave-unit-test.sh sh/run-go-cli-dslogmanager-unit-test.sh sh/run-go-cli-dsmc-unit-test.sh sh/run-go-cli-eventlog-unit-test.sh sh/run-go-cli-gametelemetry-unit-test.sh sh/run-go-cli-gdpr-unit-test.sh sh/run-go-cli-group-unit-test.sh sh/run-go-cli-iam-unit-test.sh sh/run-go-cli-leaderboard-unit-test.sh sh/run-go-cli-legal-unit-test.sh sh/run-go-cli-lobby-unit-test.sh sh/run-go-cli-matchmaking-unit-test.sh sh/run-go-cli-platform-unit-test.sh sh/run-go-cli-qosm-unit-test.sh sh/run-go-cli-seasonpass-unit-test.sh sh/run-go-cli-sessionbrowser-unit-test.sh sh/run-go-cli-social-unit-test.sh sh/run-go-cli-ugc-unit-test.sh
-    Usage: Usage:
-    sample-apps Iam enableUserBan [flags] sample-apps Iam enableUserBan [flags]
-     
-    Flags: Flags:
-    --banId string       Ban id (default " ") --banId string Ban id (default " ")
-    -h, --help               help for enableUserBan -h, --help help for enableUserBan
-    --namespace string   Namespace (default " ") --namespace string Namespace (default " ")
-    --userId string      User id (default " ") --userId string User id (default " ")
-     
-    Global Flags: Global Flags:
-    --config string   config file (default is $HOME/.sample-apps.yaml) --config string config file (default is $HOME/.sample-apps.yaml)
-     
-    Error: none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try */* Error: none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try sh/run-go-cli-achievement-unit-test.sh sh/run-go-cli-all-unit-test.sh sh/run-go-cli-basic-unit-test.sh sh/run-go-cli-cloudsave-unit-test.sh sh/run-go-cli-dslogmanager-unit-test.sh sh/run-go-cli-dsmc-unit-test.sh sh/run-go-cli-eventlog-unit-test.sh sh/run-go-cli-gametelemetry-unit-test.sh sh/run-go-cli-gdpr-unit-test.sh sh/run-go-cli-group-unit-test.sh sh/run-go-cli-iam-unit-test.sh sh/run-go-cli-leaderboard-unit-test.sh sh/run-go-cli-legal-unit-test.sh sh/run-go-cli-lobby-unit-test.sh sh/run-go-cli-matchmaking-unit-test.sh sh/run-go-cli-platform-unit-test.sh sh/run-go-cli-qosm-unit-test.sh sh/run-go-cli-seasonpass-unit-test.sh sh/run-go-cli-sessionbrowser-unit-test.sh sh/run-go-cli-social-unit-test.sh sh/run-go-cli-ugc-unit-test.sh
+ok 28 disableUserBan
+ok 29 enableUserBan
 ok 30 listCrossNamespaceAccountLink (skipped deprecated)
 ok 31 disableUser (skipped deprecated)
 ok 32 enableUser (skipped deprecated)
@@ -258,29 +148,7 @@ ok 49 upgradeHeadlessAccount
 ok 50 upgradeHeadlessAccountWithVerificationCode
 ok 51 userVerification
 ok 52 sendVerificationCode
-not ok 53 - authorization
-  ---
-  error: |-
-    time="2022-02-09T21:53:56+07:00" level=info msg="Base URL : http://0.0.0.0:8080" time="2022-02-09T21:53:56+07:00" level=info msg="Base URL : http://0.0.0.0:8080"
-    time="2022-02-09T21:53:56+07:00" level=error msg="no consumer: "application/problem+json"" time="2022-02-09T21:53:56+07:00" level=error msg="no consumer: "application/problem+json""
-    Error: no consumer: "application/problem+json" Error: no consumer: "application/problem+json"
-    Usage: Usage:
-    sample-apps Iam authorization [flags] sample-apps Iam authorization [flags]
-     
-    Flags: Flags:
-    --clientId string       Client id (default " ") --clientId string Client id (default " ")
-    -h, --help                  help for authorization -h, --help help for authorization
-    --login string          Login (default " ") --login string Login (default " ")
-    --password string       Password (default " ") --password string Password (default " ")
-    --redirectUri string    Redirect uri (default " ") --redirectUri string Redirect uri (default " ")
-    --responseType string   Response type (default " ") --responseType string Response type (default " ")
-    --scope string          Scope (default " ") --scope string Scope (default " ")
-    --state string          State (default " ") --state string State (default " ")
-     
-    Global Flags: Global Flags:
-    --config string   config file (default is $HOME/.sample-apps.yaml) --config string config file (default is $HOME/.sample-apps.yaml)
-     
-    Error: no consumer: "application/problem+json" Error: no consumer: "application/problem+json"
+ok 53 authorization
 ok 54 getJWKS
 ok 55 platformTokenRequestHandler (skipped deprecated)
 ok 56 revokeUser
@@ -316,24 +184,7 @@ ok 85 adminUpdateUserV2
 ok 86 adminBanUserV2
 ok 87 adminGetUserBanV2
 ok 88 adminDisableUserV2
-not ok 89 - adminEnableUserV2
-  ---
-  error: |-
-    time="2022-02-09T21:53:57+07:00" level=info msg="Base URL : http://0.0.0.0:8080" time="2022-02-09T21:53:57+07:00" level=info msg="Base URL : http://0.0.0.0:8080"
-    time="2022-02-09T21:53:57+07:00" level=error msg="none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try */*" time="2022-02-09T21:53:57+07:00" level=error msg="none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try */*"
-    Error: none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try */* Error: none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try sh/run-go-cli-achievement-unit-test.sh sh/run-go-cli-all-unit-test.sh sh/run-go-cli-basic-unit-test.sh sh/run-go-cli-cloudsave-unit-test.sh sh/run-go-cli-dslogmanager-unit-test.sh sh/run-go-cli-dsmc-unit-test.sh sh/run-go-cli-eventlog-unit-test.sh sh/run-go-cli-gametelemetry-unit-test.sh sh/run-go-cli-gdpr-unit-test.sh sh/run-go-cli-group-unit-test.sh sh/run-go-cli-iam-unit-test.sh sh/run-go-cli-leaderboard-unit-test.sh sh/run-go-cli-legal-unit-test.sh sh/run-go-cli-lobby-unit-test.sh sh/run-go-cli-matchmaking-unit-test.sh sh/run-go-cli-platform-unit-test.sh sh/run-go-cli-qosm-unit-test.sh sh/run-go-cli-seasonpass-unit-test.sh sh/run-go-cli-sessionbrowser-unit-test.sh sh/run-go-cli-social-unit-test.sh sh/run-go-cli-ugc-unit-test.sh
-    Usage: Usage:
-    sample-apps Iam adminEnableUserV2 [flags] sample-apps Iam adminEnableUserV2 [flags]
-     
-    Flags: Flags:
-    -h, --help               help for adminEnableUserV2 -h, --help help for adminEnableUserV2
-    --namespace string   Namespace (default " ") --namespace string Namespace (default " ")
-    --userId string      User id (default " ") --userId string User id (default " ")
-     
-    Global Flags: Global Flags:
-    --config string   config file (default is $HOME/.sample-apps.yaml) --config string config file (default is $HOME/.sample-apps.yaml)
-     
-    Error: none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try */* Error: none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try sh/run-go-cli-achievement-unit-test.sh sh/run-go-cli-all-unit-test.sh sh/run-go-cli-basic-unit-test.sh sh/run-go-cli-cloudsave-unit-test.sh sh/run-go-cli-dslogmanager-unit-test.sh sh/run-go-cli-dsmc-unit-test.sh sh/run-go-cli-eventlog-unit-test.sh sh/run-go-cli-gametelemetry-unit-test.sh sh/run-go-cli-gdpr-unit-test.sh sh/run-go-cli-group-unit-test.sh sh/run-go-cli-iam-unit-test.sh sh/run-go-cli-leaderboard-unit-test.sh sh/run-go-cli-legal-unit-test.sh sh/run-go-cli-lobby-unit-test.sh sh/run-go-cli-matchmaking-unit-test.sh sh/run-go-cli-platform-unit-test.sh sh/run-go-cli-qosm-unit-test.sh sh/run-go-cli-seasonpass-unit-test.sh sh/run-go-cli-sessionbrowser-unit-test.sh sh/run-go-cli-social-unit-test.sh sh/run-go-cli-ugc-unit-test.sh
+ok 89 adminEnableUserV2
 ok 90 adminResetPasswordV2
 ok 91 adminDeletePlatformLinkV2
 ok 92 adminPutUserRolesV2
@@ -437,128 +288,21 @@ ok 189 adminAddRolePermissionsV3
 ok 190 adminDeleteRolePermissionsV3
 ok 191 adminDeleteRolePermissionV3
 ok 192 adminGetMyUserV3
-not ok 193 - userAuthenticationV3
-  ---
-  error: |-
-    time="2022-02-09T21:53:58+07:00" level=info msg="Base URL : http://0.0.0.0:8080" time="2022-02-09T21:53:58+07:00" level=info msg="Base URL : http://0.0.0.0:8080"
-    time="2022-02-09T21:53:58+07:00" level=error msg="no consumer: "application/problem+json"" time="2022-02-09T21:53:58+07:00" level=error msg="no consumer: "application/problem+json""
-    Error: no consumer: "application/problem+json" Error: no consumer: "application/problem+json"
-    Usage: Usage:
-    sample-apps Iam userAuthenticationV3 [flags] sample-apps Iam userAuthenticationV3 [flags]
-     
-    Flags: Flags:
-    --clientId string      Client id (default " ") --clientId string Client id (default " ")
-    --extendExp            Extend exp --extendExp Extend exp
-    -h, --help                 help for userAuthenticationV3 -h, --help help for userAuthenticationV3
-    --password string      Password (default " ") --password string Password (default " ")
-    --redirectUri string   Redirect uri (default " ") --redirectUri string Redirect uri (default " ")
-    --requestId string     Request id (default " ") --requestId string Request id (default " ")
-    --userName string      User name (default " ") --userName string User name (default " ")
-     
-    Global Flags: Global Flags:
-    --config string   config file (default is $HOME/.sample-apps.yaml) --config string config file (default is $HOME/.sample-apps.yaml)
-     
-    Error: no consumer: "application/problem+json" Error: no consumer: "application/problem+json"
+ok 193 userAuthenticationV3
 ok 194 getCountryLocationV3
-not ok 195 - logout
-  ---
-  error: |-
-    time="2022-02-09T21:53:58+07:00" level=info msg="Base URL : http://0.0.0.0:8080" time="2022-02-09T21:53:58+07:00" level=info msg="Base URL : http://0.0.0.0:8080"
-    time="2022-02-09T21:53:58+07:00" level=error msg="none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try */*" time="2022-02-09T21:53:58+07:00" level=error msg="none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try */*"
-    Error: none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try */* Error: none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try sh/run-go-cli-achievement-unit-test.sh sh/run-go-cli-all-unit-test.sh sh/run-go-cli-basic-unit-test.sh sh/run-go-cli-cloudsave-unit-test.sh sh/run-go-cli-dslogmanager-unit-test.sh sh/run-go-cli-dsmc-unit-test.sh sh/run-go-cli-eventlog-unit-test.sh sh/run-go-cli-gametelemetry-unit-test.sh sh/run-go-cli-gdpr-unit-test.sh sh/run-go-cli-group-unit-test.sh sh/run-go-cli-iam-unit-test.sh sh/run-go-cli-leaderboard-unit-test.sh sh/run-go-cli-legal-unit-test.sh sh/run-go-cli-lobby-unit-test.sh sh/run-go-cli-matchmaking-unit-test.sh sh/run-go-cli-platform-unit-test.sh sh/run-go-cli-qosm-unit-test.sh sh/run-go-cli-seasonpass-unit-test.sh sh/run-go-cli-sessionbrowser-unit-test.sh sh/run-go-cli-social-unit-test.sh sh/run-go-cli-ugc-unit-test.sh
-    Usage: Usage:
-    sample-apps Iam logout [flags] sample-apps Iam logout [flags]
-     
-    Flags: Flags:
-    -h, --help   help for logout -h, --help help for logout
-     
-    Global Flags: Global Flags:
-    --config string   config file (default is $HOME/.sample-apps.yaml) --config string config file (default is $HOME/.sample-apps.yaml)
-     
-    Error: none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try */* Error: none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try sh/run-go-cli-achievement-unit-test.sh sh/run-go-cli-all-unit-test.sh sh/run-go-cli-basic-unit-test.sh sh/run-go-cli-cloudsave-unit-test.sh sh/run-go-cli-dslogmanager-unit-test.sh sh/run-go-cli-dsmc-unit-test.sh sh/run-go-cli-eventlog-unit-test.sh sh/run-go-cli-gametelemetry-unit-test.sh sh/run-go-cli-gdpr-unit-test.sh sh/run-go-cli-group-unit-test.sh sh/run-go-cli-iam-unit-test.sh sh/run-go-cli-leaderboard-unit-test.sh sh/run-go-cli-legal-unit-test.sh sh/run-go-cli-lobby-unit-test.sh sh/run-go-cli-matchmaking-unit-test.sh sh/run-go-cli-platform-unit-test.sh sh/run-go-cli-qosm-unit-test.sh sh/run-go-cli-seasonpass-unit-test.sh sh/run-go-cli-sessionbrowser-unit-test.sh sh/run-go-cli-social-unit-test.sh sh/run-go-cli-ugc-unit-test.sh
+ok 195 logout
 ok 196 adminRetrieveUserThirdPartyPlatformTokenV3
 ok 197 revokeUserV3
-not ok 198 - authorizeV3
-  ---
-  error: |-
-    time="2022-02-09T21:53:58+07:00" level=info msg="Base URL : http://0.0.0.0:8080" time="2022-02-09T21:53:58+07:00" level=info msg="Base URL : http://0.0.0.0:8080"
-    time="2022-02-09T21:53:58+07:00" level=error msg="no consumer: "application/problem+json"" time="2022-02-09T21:53:58+07:00" level=error msg="no consumer: "application/problem+json""
-    Error: no consumer: "application/problem+json" Error: no consumer: "application/problem+json"
-    Usage: Usage:
-    sample-apps Iam authorizeV3 [flags] sample-apps Iam authorizeV3 [flags]
-     
-    Flags: Flags:
-    --clientId string              Client id (default " ") --clientId string Client id (default " ")
-    --codeChallenge string         Code challenge (default " ") --codeChallenge string Code challenge (default " ")
-    --codeChallengeMethod string   Code challenge method (default " ") --codeChallengeMethod string Code challenge method (default " ")
-    -h, --help                         help for authorizeV3 -h, --help help for authorizeV3
-    --redirectUri string           Redirect uri (default " ") --redirectUri string Redirect uri (default " ")
-    --responseType string          Response type (default " ") --responseType string Response type (default " ")
-    --scope string                 Scope (default " ") --scope string Scope (default " ")
-    --state string                 State (default " ") --state string State (default " ")
-    --targetAuthPage string        Target auth page (default " ") --targetAuthPage string Target auth page (default " ")
-     
-    Global Flags: Global Flags:
-    --config string   config file (default is $HOME/.sample-apps.yaml) --config string config file (default is $HOME/.sample-apps.yaml)
-     
-    Error: no consumer: "application/problem+json" Error: no consumer: "application/problem+json"
+ok 198 authorizeV3
 ok 199 tokenIntrospectionV3
 ok 200 getJWKSV3
 ok 201 retrieveUserThirdPartyPlatformTokenV3
-not ok 202 - authCodeRequestV3
-  ---
-  error: |-
-    time="2022-02-09T21:53:58+07:00" level=info msg="Base URL : http://0.0.0.0:8080" time="2022-02-09T21:53:58+07:00" level=info msg="Base URL : http://0.0.0.0:8080"
-    time="2022-02-09T21:53:58+07:00" level=error msg="no consumer: "application/problem+json"" time="2022-02-09T21:53:58+07:00" level=error msg="no consumer: "application/problem+json""
-    Error: no consumer: "application/problem+json" Error: no consumer: "application/problem+json"
-    Usage: Usage:
-    sample-apps Iam authCodeRequestV3 [flags] sample-apps Iam authCodeRequestV3 [flags]
-     
-    Flags: Flags:
-    --clientId string      Client id (default " ") --clientId string Client id (default " ")
-    -h, --help                 help for authCodeRequestV3 -h, --help help for authCodeRequestV3
-    --platformId string    Platform id (default " ") --platformId string Platform id (default " ")
-    --redirectUri string   Redirect uri (default " ") --redirectUri string Redirect uri (default " ")
-    --requestId string     Request id (default " ") --requestId string Request id (default " ")
-     
-    Global Flags: Global Flags:
-    --config string   config file (default is $HOME/.sample-apps.yaml) --config string config file (default is $HOME/.sample-apps.yaml)
-     
-    Error: no consumer: "application/problem+json" Error: no consumer: "application/problem+json"
+ok 202 authCodeRequestV3
 ok 203 platformTokenGrantV3
 ok 204 getRevocationListV3
 ok 205 tokenRevocationV3
 ok 206 tokenGrantV3
-not ok 207 - platformAuthenticationV3
-  ---
-  error: |-
-    time="2022-02-09T21:53:58+07:00" level=info msg="Base URL : http://0.0.0.0:8080" time="2022-02-09T21:53:58+07:00" level=info msg="Base URL : http://0.0.0.0:8080"
-    time="2022-02-09T21:53:58+07:00" level=error msg="none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try */*" time="2022-02-09T21:53:58+07:00" level=error msg="none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try */*"
-    Error: none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try */* Error: none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try sh/run-go-cli-achievement-unit-test.sh sh/run-go-cli-all-unit-test.sh sh/run-go-cli-basic-unit-test.sh sh/run-go-cli-cloudsave-unit-test.sh sh/run-go-cli-dslogmanager-unit-test.sh sh/run-go-cli-dsmc-unit-test.sh sh/run-go-cli-eventlog-unit-test.sh sh/run-go-cli-gametelemetry-unit-test.sh sh/run-go-cli-gdpr-unit-test.sh sh/run-go-cli-group-unit-test.sh sh/run-go-cli-iam-unit-test.sh sh/run-go-cli-leaderboard-unit-test.sh sh/run-go-cli-legal-unit-test.sh sh/run-go-cli-lobby-unit-test.sh sh/run-go-cli-matchmaking-unit-test.sh sh/run-go-cli-platform-unit-test.sh sh/run-go-cli-qosm-unit-test.sh sh/run-go-cli-seasonpass-unit-test.sh sh/run-go-cli-sessionbrowser-unit-test.sh sh/run-go-cli-social-unit-test.sh sh/run-go-cli-ugc-unit-test.sh
-    Usage: Usage:
-    sample-apps Iam platformAuthenticationV3 [flags] sample-apps Iam platformAuthenticationV3 [flags]
-     
-    Flags: Flags:
-    --code string                  Code (default " ") --code string Code (default " ")
-    --error string                 Error (default " ") --error string Error (default " ")
-    -h, --help                         help for platformAuthenticationV3 -h, --help help for platformAuthenticationV3
-    --openidAssocHandle string     Openid assoc handle (default " ") --openidAssocHandle string Openid assoc handle (default " ")
-    --openidClaimedId string       Openid claimed id (default " ") --openidClaimedId string Openid claimed id (default " ")
-    --openidIdentity string        Openid identity (default " ") --openidIdentity string Openid identity (default " ")
-    --openidMode string            Openid mode (default " ") --openidMode string Openid mode (default " ")
-    --openidNs string              Openid ns (default " ") --openidNs string Openid ns (default " ")
-    --openidOpEndpoint string      Openid op endpoint (default " ") --openidOpEndpoint string Openid op endpoint (default " ")
-    --openidResponseNonce string   Openid response nonce (default " ") --openidResponseNonce string Openid response nonce (default " ")
-    --openidReturnTo string        Openid return to (default " ") --openidReturnTo string Openid return to (default " ")
-    --openidSig string             Openid sig (default " ") --openidSig string Openid sig (default " ")
-    --openidSigned string          Openid signed (default " ") --openidSigned string Openid signed (default " ")
-    --platformId string            Platform id (default " ") --platformId string Platform id (default " ")
-    --state string                 State (default " ") --state string State (default " ")
-     
-    Global Flags: Global Flags:
-    --config string   config file (default is $HOME/.sample-apps.yaml) --config string config file (default is $HOME/.sample-apps.yaml)
-     
-    Error: none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try */* Error: none of producers: map[application/json:0x7b19a0 application/octet-stream:0x7b0260 application/x-yaml:0x862940 application/xml:0x7b2400 text/csv:0x7b1460 text/html:0x7b1ee0 text/plain:0x7b1ee0] registered. try sh/run-go-cli-achievement-unit-test.sh sh/run-go-cli-all-unit-test.sh sh/run-go-cli-basic-unit-test.sh sh/run-go-cli-cloudsave-unit-test.sh sh/run-go-cli-dslogmanager-unit-test.sh sh/run-go-cli-dsmc-unit-test.sh sh/run-go-cli-eventlog-unit-test.sh sh/run-go-cli-gametelemetry-unit-test.sh sh/run-go-cli-gdpr-unit-test.sh sh/run-go-cli-group-unit-test.sh sh/run-go-cli-iam-unit-test.sh sh/run-go-cli-leaderboard-unit-test.sh sh/run-go-cli-legal-unit-test.sh sh/run-go-cli-lobby-unit-test.sh sh/run-go-cli-matchmaking-unit-test.sh sh/run-go-cli-platform-unit-test.sh sh/run-go-cli-qosm-unit-test.sh sh/run-go-cli-seasonpass-unit-test.sh sh/run-go-cli-sessionbrowser-unit-test.sh sh/run-go-cli-social-unit-test.sh sh/run-go-cli-ugc-unit-test.sh
+ok 207 platformAuthenticationV3
 ok 208 publicGetInputValidations
 ok 209 retrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3
 ok 210 publicListUserIDByPlatformUserIDsV3
@@ -582,25 +326,7 @@ ok 227 publicCreateJusticeUser
 ok 228 publicPlatformLinkV3
 ok 229 publicPlatformUnlinkV3
 ok 230 publicWebLinkPlatform
-not ok 231 - publicWebLinkPlatformEstablish
-  ---
-  error: |-
-    time="2022-02-09T21:53:59+07:00" level=info msg="Base URL : http://0.0.0.0:8080" time="2022-02-09T21:53:59+07:00" level=info msg="Base URL : http://0.0.0.0:8080"
-    time="2022-02-09T21:53:59+07:00" level=error msg="no consumer: "application/problem+json"" time="2022-02-09T21:53:59+07:00" level=error msg="no consumer: "application/problem+json""
-    Error: no consumer: "application/problem+json" Error: no consumer: "application/problem+json"
-    Usage: Usage:
-    sample-apps Iam publicWebLinkPlatformEstablish [flags] sample-apps Iam publicWebLinkPlatformEstablish [flags]
-     
-    Flags: Flags:
-    -h, --help                help for publicWebLinkPlatformEstablish -h, --help help for publicWebLinkPlatformEstablish
-    --namespace string    Namespace (default " ") --namespace string Namespace (default " ")
-    --platformId string   Platform id (default " ") --platformId string Platform id (default " ")
-    --state string        State (default " ") --state string State (default " ")
-     
-    Global Flags: Global Flags:
-    --config string   config file (default is $HOME/.sample-apps.yaml) --config string config file (default is $HOME/.sample-apps.yaml)
-     
-    Error: no consumer: "application/problem+json" Error: no consumer: "application/problem+json"
+ok 231 publicWebLinkPlatformEstablish
 ok 232 resetPasswordV3
 ok 233 publicGetUserByUserIdV3
 ok 234 publicGetUserBanHistoryV3
@@ -611,26 +337,7 @@ ok 238 publicValidateUserByUserIDAndPasswordV3
 ok 239 publicGetRolesV3
 ok 240 publicGetRoleV3
 ok 241 publicGetMyUserV3
-not ok 242 - platformAuthenticateSAMLV3Handler
-  ---
-  error: |-
-    time="2022-02-09T21:53:59+07:00" level=info msg="Base URL : http://0.0.0.0:8080" time="2022-02-09T21:53:59+07:00" level=info msg="Base URL : http://0.0.0.0:8080"
-    time="2022-02-09T21:53:59+07:00" level=error msg="no consumer: "application/problem+json"" time="2022-02-09T21:53:59+07:00" level=error msg="no consumer: "application/problem+json""
-    Error: no consumer: "application/problem+json" Error: no consumer: "application/problem+json"
-    Usage: Usage:
-    sample-apps Iam platformAuthenticateSAMLV3Handler [flags] sample-apps Iam platformAuthenticateSAMLV3Handler [flags]
-     
-    Flags: Flags:
-    --code string         Code (default " ") --code string Code (default " ")
-    --error string        Error (default " ") --error string Error (default " ")
-    -h, --help                help for platformAuthenticateSAMLV3Handler -h, --help help for platformAuthenticateSAMLV3Handler
-    --platformId string   Platform id (default " ") --platformId string Platform id (default " ")
-    --state string        State (default " ") --state string State (default " ")
-     
-    Global Flags: Global Flags:
-    --config string   config file (default is $HOME/.sample-apps.yaml) --config string config file (default is $HOME/.sample-apps.yaml)
-     
-    Error: no consumer: "application/problem+json" Error: no consumer: "application/problem+json"
+ok 242 platformAuthenticateSAMLV3Handler
 ok 243 loginSSOClient
 ok 244 logoutSSOClient
 ok 245 adminUpdateUserV4
@@ -843,25 +550,7 @@ ok 6 deleteUserSlotConfig
 ok 7 getUserProfiles
 ok 8 getProfile
 ok 9 getUserNamespaceSlots
-not ok 10 - getSlotData
-  ---
-  error: |-
-    panic: runtime error: invalid memory address or nil pointer dereference panic: runtime error: invalid memory address or nil pointer dereference
-    [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x13d5331] [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x13d5331]
-     
-    goroutine 1 [running]: goroutine 1 [running]:
-    github.com/AccelByte/sample-apps/cmd/social/slot.glob..func1(0x2cb7ca0, {0x19ec621, 0x6, 0x6}) github.com/AccelByte/sample-apps/cmd/social/slot.glob..func1(0x2cb7ca0, {0x19ec621, 0x6, 0x6})
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/social/slot/getSlotData.go:32 +0x111 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/social/slot/getSlotData.go:32 +0x111
-    github.com/spf13/cobra.(*Command).execute(0x2cb7ca0, {0xc0000883c0, 0x6, 0x6}) github.com/spf13/cobra.(*Command).execute(0x2cb7ca0, {0xc0000883c0, 0x6, 0x6})
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e
-    github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520) github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad
-    github.com/spf13/cobra.(*Command).Execute(...) github.com/spf13/cobra.(*Command).Execute(...)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897 /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897
-    github.com/AccelByte/sample-apps/cmd.Execute() github.com/AccelByte/sample-apps/cmd.Execute()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25
-    main.main() main.main()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6
+ok 10 getSlotData
 ok 11 publicGetUserGameProfiles
 ok 12 publicGetUserProfiles
 ok 13 publicCreateProfile
@@ -871,63 +560,9 @@ ok 16 publicDeleteProfile
 ok 17 publicGetProfileAttribute
 ok 18 publicUpdateAttribute
 ok 19 publicGetUserNamespaceSlots
-not ok 20 - publicCreateUserNamespaceSlot
-  ---
-  error: |-
-    panic: runtime error: invalid memory address or nil pointer dereference panic: runtime error: invalid memory address or nil pointer dereference
-    [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x13d59ef] [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x13d59ef]
-     
-    goroutine 1 [running]: goroutine 1 [running]:
-    github.com/AccelByte/sample-apps/cmd/social/slot.glob..func3(0x2cb81a0, {0x19ec621, 0xe, 0xe}) github.com/AccelByte/sample-apps/cmd/social/slot.glob..func3(0x2cb81a0, {0x19ec621, 0xe, 0xe})
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/social/slot/publicCreateUserNamespaceSlot.go:32 +0x18f /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/social/slot/publicCreateUserNamespaceSlot.go:32 +0x18f
-    github.com/spf13/cobra.(*Command).execute(0x2cb81a0, {0xc0001c40e0, 0xe, 0xe}) github.com/spf13/cobra.(*Command).execute(0x2cb81a0, {0xc0001c40e0, 0xe, 0xe})
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e
-    github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520) github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad
-    github.com/spf13/cobra.(*Command).Execute(...) github.com/spf13/cobra.(*Command).Execute(...)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897 /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897
-    github.com/AccelByte/sample-apps/cmd.Execute() github.com/AccelByte/sample-apps/cmd.Execute()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25
-    main.main() main.main()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6
-not ok 21 - publicGetSlotData
-  ---
-  error: |-
-    panic: runtime error: invalid memory address or nil pointer dereference panic: runtime error: invalid memory address or nil pointer dereference
-    [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x13d60d1] [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x13d60d1]
-     
-    goroutine 1 [running]: goroutine 1 [running]:
-    github.com/AccelByte/sample-apps/cmd/social/slot.glob..func5(0x2cb86a0, {0x19ec621, 0x6, 0x6}) github.com/AccelByte/sample-apps/cmd/social/slot.glob..func5(0x2cb86a0, {0x19ec621, 0x6, 0x6})
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/social/slot/publicGetSlotData.go:32 +0x111 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/social/slot/publicGetSlotData.go:32 +0x111
-    github.com/spf13/cobra.(*Command).execute(0x2cb86a0, {0xc00036e420, 0x6, 0x6}) github.com/spf13/cobra.(*Command).execute(0x2cb86a0, {0xc00036e420, 0x6, 0x6})
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e
-    github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520) github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad
-    github.com/spf13/cobra.(*Command).Execute(...) github.com/spf13/cobra.(*Command).Execute(...)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897 /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897
-    github.com/AccelByte/sample-apps/cmd.Execute() github.com/AccelByte/sample-apps/cmd.Execute()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25
-    main.main() main.main()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6
-not ok 22 - publicUpdateUserNamespaceSlot
-  ---
-  error: |-
-    panic: runtime error: invalid memory address or nil pointer dereference panic: runtime error: invalid memory address or nil pointer dereference
-    [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x13d67c5] [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x13d67c5]
-     
-    goroutine 1 [running]: goroutine 1 [running]:
-    github.com/AccelByte/sample-apps/cmd/social/slot.glob..func7(0x2cb8ba0, {0x19ec621, 0x10, 0x10}) github.com/AccelByte/sample-apps/cmd/social/slot.glob..func7(0x2cb8ba0, {0x19ec621, 0x10, 0x10})
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/social/slot/publicUpdateUserNamespaceSlot.go:33 +0x1c5 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/social/slot/publicUpdateUserNamespaceSlot.go:33 +0x1c5
-    github.com/spf13/cobra.(*Command).execute(0x2cb8ba0, {0xc000256d00, 0x10, 0x10}) github.com/spf13/cobra.(*Command).execute(0x2cb8ba0, {0xc000256d00, 0x10, 0x10})
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e
-    github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520) github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad
-    github.com/spf13/cobra.(*Command).Execute(...) github.com/spf13/cobra.(*Command).Execute(...)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897 /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897
-    github.com/AccelByte/sample-apps/cmd.Execute() github.com/AccelByte/sample-apps/cmd.Execute()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25
-    main.main() main.main()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6
+ok 20 publicCreateUserNamespaceSlot
+ok 21 publicGetSlotData
+ok 22 publicUpdateUserNamespaceSlot
 ok 23 publicDeleteUserNamespaceSlot
 ok 24 publicUpdateUserNamespaceSlotMetadata
 ok 25 getGlobalStatItems
@@ -938,25 +573,7 @@ ok 29 bulkResetUserStatItem
 ok 30 getStats
 ok 31 createStat
 ok 32 exportStats
-not ok 33 - importStats
-  ---
-  error: |-
-    panic: runtime error: invalid memory address or nil pointer dereference panic: runtime error: invalid memory address or nil pointer dereference
-    [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x13e2bd6] [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x13e2bd6]
-     
-    goroutine 1 [running]: goroutine 1 [running]:
-    github.com/AccelByte/sample-apps/cmd/social/statConfiguration.glob..func7(0x2cbaea0, {0x19ec621, 0x6, 0x6}) github.com/AccelByte/sample-apps/cmd/social/statConfiguration.glob..func7(0x2cbaea0, {0x19ec621, 0x6, 0x6})
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/social/statConfiguration/importStats.go:28 +0xb6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/social/statConfiguration/importStats.go:28 +0xb6
-    github.com/spf13/cobra.(*Command).execute(0x2cbaea0, {0xc000890360, 0x6, 0x6}) github.com/spf13/cobra.(*Command).execute(0x2cbaea0, {0xc000890360, 0x6, 0x6})
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e
-    github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520) github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad
-    github.com/spf13/cobra.(*Command).Execute(...) github.com/spf13/cobra.(*Command).Execute(...)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897 /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897
-    github.com/AccelByte/sample-apps/cmd.Execute() github.com/AccelByte/sample-apps/cmd.Execute()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25
-    main.main() main.main()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6
+ok 33 importStats
 ok 34 queryStats
 ok 35 getStat
 ok 36 deleteStat
@@ -1051,25 +668,7 @@ ok 49 deleteEpicGamesIAPConfig
 ok 50 getGoogleIAPConfig
 ok 51 updateGoogleIAPConfig
 ok 52 deleteGoogleIAPConfig
-not ok 53 - updateGoogleP12File
-  ---
-  error: |-
-    panic: runtime error: invalid memory address or nil pointer dereference panic: runtime error: invalid memory address or nil pointer dereference
-    [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x137f556] [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x137f556]
-     
-    goroutine 1 [running]: goroutine 1 [running]:
-    github.com/AccelByte/sample-apps/cmd/platform/iap.glob..func30(0x2c8e3a0, {0x19ec621, 0x4, 0x4}) github.com/AccelByte/sample-apps/cmd/platform/iap.glob..func30(0x2c8e3a0, {0x19ec621, 0x4, 0x4})
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/platform/iap/updateGoogleP12File.go:28 +0xb6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/platform/iap/updateGoogleP12File.go:28 +0xb6
-    github.com/spf13/cobra.(*Command).execute(0x2c8e3a0, {0xc00050c480, 0x4, 0x4}) github.com/spf13/cobra.(*Command).execute(0x2c8e3a0, {0xc00050c480, 0x4, 0x4})
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e
-    github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520) github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad
-    github.com/spf13/cobra.(*Command).Execute(...) github.com/spf13/cobra.(*Command).Execute(...)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897 /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897
-    github.com/AccelByte/sample-apps/cmd.Execute() github.com/AccelByte/sample-apps/cmd.Execute()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25
-    main.main() main.main()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6
+ok 53 updateGoogleP12File
 ok 54 getIAPItemConfig
 ok 55 updateIAPItemConfig
 ok 56 deleteIAPItemConfig
@@ -1078,50 +677,14 @@ ok 58 updatePlaystationIAPConfig
 ok 59 deletePlaystationIAPConfig
 ok 60 getStadiaIAPConfig
 ok 61 deleteStadiaIAPConfig
-not ok 62 - updateStadiaJsonConfigFile
-  ---
-  error: |-
-    panic: runtime error: invalid memory address or nil pointer dereference panic: runtime error: invalid memory address or nil pointer dereference
-    [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x137fd76] [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x137fd76]
-     
-    goroutine 1 [running]: goroutine 1 [running]:
-    github.com/AccelByte/sample-apps/cmd/platform/iap.glob..func33(0x2c8eda0, {0x19ec621, 0x4, 0x4}) github.com/AccelByte/sample-apps/cmd/platform/iap.glob..func33(0x2c8eda0, {0x19ec621, 0x4, 0x4})
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/platform/iap/updateStadiaJsonConfigFile.go:28 +0xb6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/platform/iap/updateStadiaJsonConfigFile.go:28 +0xb6
-    github.com/spf13/cobra.(*Command).execute(0x2c8eda0, {0xc000598300, 0x4, 0x4}) github.com/spf13/cobra.(*Command).execute(0x2c8eda0, {0xc000598300, 0x4, 0x4})
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e
-    github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520) github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad
-    github.com/spf13/cobra.(*Command).Execute(...) github.com/spf13/cobra.(*Command).Execute(...)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897 /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897
-    github.com/AccelByte/sample-apps/cmd.Execute() github.com/AccelByte/sample-apps/cmd.Execute()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25
-    main.main() main.main()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6
+ok 62 updateStadiaJsonConfigFile
 ok 63 getSteamIAPConfig
 ok 64 updateSteamIAPConfig
 ok 65 deleteSteamIAPConfig
 ok 66 getXblIAPConfig
 ok 67 updateXblIAPConfig
 ok 68 deleteXblAPConfig
-not ok 69 - updateXblBPCertFile
-  ---
-  error: |-
-    panic: runtime error: invalid memory address or nil pointer dereference panic: runtime error: invalid memory address or nil pointer dereference
-    [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x13802f6] [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x13802f6]
-     
-    goroutine 1 [running]: goroutine 1 [running]:
-    github.com/AccelByte/sample-apps/cmd/platform/iap.glob..func35(0x2c8f2a0, {0x19ec621, 0x6, 0x6}) github.com/AccelByte/sample-apps/cmd/platform/iap.glob..func35(0x2c8f2a0, {0x19ec621, 0x6, 0x6})
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/platform/iap/updateXblBPCertFile.go:28 +0xb6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/platform/iap/updateXblBPCertFile.go:28 +0xb6
-    github.com/spf13/cobra.(*Command).execute(0x2c8f2a0, {0xc00035e420, 0x6, 0x6}) github.com/spf13/cobra.(*Command).execute(0x2c8f2a0, {0xc00035e420, 0x6, 0x6})
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e
-    github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520) github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad
-    github.com/spf13/cobra.(*Command).Execute(...) github.com/spf13/cobra.(*Command).Execute(...)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897 /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897
-    github.com/AccelByte/sample-apps/cmd.Execute() github.com/AccelByte/sample-apps/cmd.Execute()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25
-    main.main() main.main()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6
+ok 69 updateXblBPCertFile
 ok 70 syncInGameItem
 ok 71 createItem
 ok 72 getItemByAppId
@@ -1152,25 +715,7 @@ ok 96 getKeyGroup
 ok 97 updateKeyGroup
 ok 98 getKeyGroupDynamic
 ok 99 listKeys
-not ok 100 - uploadKeys
-  ---
-  error: |-
-    panic: runtime error: invalid memory address or nil pointer dereference panic: runtime error: invalid memory address or nil pointer dereference
-    [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x138dba9] [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x138dba9]
-     
-    goroutine 1 [running]: goroutine 1 [running]:
-    github.com/AccelByte/sample-apps/cmd/platform/keyGroup.glob..func7(0x2c965a0, {0x19ec621, 0x6, 0x6}) github.com/AccelByte/sample-apps/cmd/platform/keyGroup.glob..func7(0x2c965a0, {0x19ec621, 0x6, 0x6})
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/platform/keyGroup/uploadKeys.go:29 +0xe9 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/platform/keyGroup/uploadKeys.go:29 +0xe9
-    github.com/spf13/cobra.(*Command).execute(0x2c965a0, {0xc00080e360, 0x6, 0x6}) github.com/spf13/cobra.(*Command).execute(0x2c965a0, {0xc00080e360, 0x6, 0x6})
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e
-    github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520) github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad
-    github.com/spf13/cobra.(*Command).Execute(...) github.com/spf13/cobra.(*Command).Execute(...)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897 /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897
-    github.com/AccelByte/sample-apps/cmd.Execute() github.com/AccelByte/sample-apps/cmd.Execute()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25
-    main.main() main.main()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6
+ok 100 uploadKeys
 ok 101 queryOrders
 ok 102 getOrderStatistics
 ok 103 getOrder
@@ -1189,50 +734,14 @@ ok 115 getPaymentOrderChargeStatus
 ok 116 createReward
 ok 117 queryRewards
 ok 118 exportRewards
-not ok 119 - importRewards
-  ---
-  error: |-
-    panic: runtime error: invalid memory address or nil pointer dereference panic: runtime error: invalid memory address or nil pointer dereference
-    [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x1399675] [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x1399675]
-     
-    goroutine 1 [running]: goroutine 1 [running]:
-    github.com/AccelByte/sample-apps/cmd/platform/reward.glob..func8(0x2ca4420, {0x19ec621, 0x6, 0x6}) github.com/AccelByte/sample-apps/cmd/platform/reward.glob..func8(0x2ca4420, {0x19ec621, 0x6, 0x6})
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/platform/reward/importRewards.go:29 +0xd5 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/platform/reward/importRewards.go:29 +0xd5
-    github.com/spf13/cobra.(*Command).execute(0x2ca4420, {0xc00035e420, 0x6, 0x6}) github.com/spf13/cobra.(*Command).execute(0x2ca4420, {0xc00035e420, 0x6, 0x6})
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e
-    github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520) github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad
-    github.com/spf13/cobra.(*Command).Execute(...) github.com/spf13/cobra.(*Command).Execute(...)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897 /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897
-    github.com/AccelByte/sample-apps/cmd.Execute() github.com/AccelByte/sample-apps/cmd.Execute()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25
-    main.main() main.main()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6
+ok 119 importRewards
 ok 120 getReward
 ok 121 updateReward
 ok 122 deleteReward
 ok 123 checkEventCondition
 ok 124 listStores
 ok 125 createStore
-not ok 126 - importStore
-  ---
-  error: |-
-    panic: runtime error: invalid memory address or nil pointer dereference panic: runtime error: invalid memory address or nil pointer dereference
-    [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x139c176] [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x139c176]
-     
-    goroutine 1 [running]: goroutine 1 [running]:
-    github.com/AccelByte/sample-apps/cmd/platform/store.glob..func9(0x2ca6720, {0x19ec621, 0x6, 0x6}) github.com/AccelByte/sample-apps/cmd/platform/store.glob..func9(0x2ca6720, {0x19ec621, 0x6, 0x6})
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/platform/store/importStore.go:28 +0xb6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/platform/store/importStore.go:28 +0xb6
-    github.com/spf13/cobra.(*Command).execute(0x2ca6720, {0xc000360420, 0x6, 0x6}) github.com/spf13/cobra.(*Command).execute(0x2ca6720, {0xc000360420, 0x6, 0x6})
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e
-    github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520) github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad
-    github.com/spf13/cobra.(*Command).Execute(...) github.com/spf13/cobra.(*Command).Execute(...)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897 /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897
-    github.com/AccelByte/sample-apps/cmd.Execute() github.com/AccelByte/sample-apps/cmd.Execute()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25
-    main.main() main.main()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6
+ok 126 importStore
 ok 127 getPublishedStore
 ok 128 deletePublishedStore
 ok 129 getPublishedStoreBackup
@@ -1241,23 +750,7 @@ ok 131 getStore
 ok 132 updateStore
 ok 133 deleteStore
 ok 134 cloneStore
-not ok 135 - exportStore
-  ---
-  error: |-
-    time="2022-02-09T21:54:06+07:00" level=error msg="no consumer: "application/zip"" time="2022-02-09T21:54:06+07:00" level=error msg="no consumer: "application/zip""
-    Error: no consumer: "application/zip" Error: no consumer: "application/zip"
-    Usage: Usage:
-    sample-apps Platform exportStore [flags] sample-apps Platform exportStore [flags]
-     
-    Flags: Flags:
-    -h, --help               help for exportStore -h, --help help for exportStore
-    --namespace string   Namespace (default " ") --namespace string Namespace (default " ")
-    --storeId string     Store id (default " ") --storeId string Store id (default " ")
-     
-    Global Flags: Global Flags:
-    --config string   config file (default is $HOME/.sample-apps.yaml) --config string config file (default is $HOME/.sample-apps.yaml)
-     
-    Error: no consumer: "application/zip" Error: no consumer: "application/zip"
+ok 135 exportStore
 ok 136 querySubscriptions
 ok 137 recurringChargeSubscription
 ok 138 getTicketDynamic
@@ -1305,24 +798,7 @@ ok 179 fulfillUserOrder
 ok 180 getUserOrderGrant
 ok 181 getUserOrderHistories
 ok 182 processUserOrderNotification
-not ok 183 - downloadUserOrderReceipt
-  ---
-  error: |-
-    time="2022-02-09T21:54:07+07:00" level=error msg="no consumer: "application/pdf"" time="2022-02-09T21:54:07+07:00" level=error msg="no consumer: "application/pdf""
-    Error: no consumer: "application/pdf" Error: no consumer: "application/pdf"
-    Usage: Usage:
-    sample-apps Platform downloadUserOrderReceipt [flags] sample-apps Platform downloadUserOrderReceipt [flags]
-     
-    Flags: Flags:
-    -h, --help               help for downloadUserOrderReceipt -h, --help help for downloadUserOrderReceipt
-    --namespace string   Namespace (default " ") --namespace string Namespace (default " ")
-    --orderNo string     Order no (default " ") --orderNo string Order no (default " ")
-    --userId string      User id (default " ") --userId string User id (default " ")
-     
-    Global Flags: Global Flags:
-    --config string   config file (default is $HOME/.sample-apps.yaml) --config string config file (default is $HOME/.sample-apps.yaml)
-     
-    Error: no consumer: "application/pdf" Error: no consumer: "application/pdf"
+ok 183 downloadUserOrderReceipt
 ok 184 createUserPaymentOrder
 ok 185 refundUserPaymentOrder
 ok 186 applyUserRedemption
@@ -1368,25 +844,7 @@ ok 225 testPayPalConfigById
 ok 226 updateStripeConfig
 ok 227 testStripeConfigById
 ok 228 updateWxPayConfig
-not ok 229 - updateWxPayConfigCert
-  ---
-  error: |-
-    panic: runtime error: invalid memory address or nil pointer dereference panic: runtime error: invalid memory address or nil pointer dereference
-    [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x13b0d76] [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x13b0d76]
-     
-    goroutine 1 [running]: goroutine 1 [running]:
-    github.com/AccelByte/sample-apps/cmd/platform/paymentConfig.glob..func32(0x2c9f920, {0x19ec621, 0x4, 0x4}) github.com/AccelByte/sample-apps/cmd/platform/paymentConfig.glob..func32(0x2c9f920, {0x19ec621, 0x4, 0x4})
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/platform/paymentConfig/updateWxPayConfigCert.go:28 +0xb6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/platform/paymentConfig/updateWxPayConfigCert.go:28 +0xb6
-    github.com/spf13/cobra.(*Command).execute(0x2c9f920, {0xc0000d6400, 0x4, 0x4}) github.com/spf13/cobra.(*Command).execute(0x2c9f920, {0xc0000d6400, 0x4, 0x4})
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e
-    github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520) github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad
-    github.com/spf13/cobra.(*Command).Execute(...) github.com/spf13/cobra.(*Command).Execute(...)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897 /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897
-    github.com/AccelByte/sample-apps/cmd.Execute() github.com/AccelByte/sample-apps/cmd.Execute()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25
-    main.main() main.main()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6
+ok 229 updateWxPayConfigCert
 ok 230 testWxPayConfigById
 ok 231 updateXsollaConfig
 ok 232 testXsollaConfigById
@@ -1422,25 +880,7 @@ ok 261 publicGetUnpaidPaymentOrder
 ok 262 pay
 ok 263 publicCheckPaymentOrderPaidStatus
 ok 264 getPaymentPublicConfig
-not ok 265 - publicGetQRCode
-  ---
-  error: |-
-    panic: runtime error: invalid memory address or nil pointer dereference panic: runtime error: invalid memory address or nil pointer dereference
-    [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x13b3de8] [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x13b3de8]
-     
-    goroutine 1 [running]: goroutine 1 [running]:
-    github.com/AccelByte/sample-apps/cmd/platform/paymentStation.glob..func8(0x2ca28a0, {0x19ec621, 0x4, 0x4}) github.com/AccelByte/sample-apps/cmd/platform/paymentStation.glob..func8(0x2ca28a0, {0x19ec621, 0x4, 0x4})
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/platform/paymentStation/publicGetQRCode.go:31 +0xe8 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/platform/paymentStation/publicGetQRCode.go:31 +0xe8
-    github.com/spf13/cobra.(*Command).execute(0x2ca28a0, {0xc00062a4c0, 0x4, 0x4}) github.com/spf13/cobra.(*Command).execute(0x2ca28a0, {0xc00062a4c0, 0x4, 0x4})
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e
-    github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520) github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad
-    github.com/spf13/cobra.(*Command).Execute(...) github.com/spf13/cobra.(*Command).Execute(...)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897 /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897
-    github.com/AccelByte/sample-apps/cmd.Execute() github.com/AccelByte/sample-apps/cmd.Execute()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25
-    main.main() main.main()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6
+ok 265 publicGetQRCode
 ok 266 publicNormalizePaymentReturnUrl
 ok 267 getPaymentTaxValue
 ok 268 getRewardByCode
@@ -1480,24 +920,7 @@ ok 301 publicCreateUserOrder
 ok 302 publicGetUserOrder
 ok 303 publicCancelUserOrder
 ok 304 publicGetUserOrderHistories
-not ok 305 - publicDownloadUserOrderReceipt
-  ---
-  error: |-
-    time="2022-02-09T21:54:08+07:00" level=error msg="no consumer: "application/pdf"" time="2022-02-09T21:54:08+07:00" level=error msg="no consumer: "application/pdf""
-    Error: no consumer: "application/pdf" Error: no consumer: "application/pdf"
-    Usage: Usage:
-    sample-apps Platform publicDownloadUserOrderReceipt [flags] sample-apps Platform publicDownloadUserOrderReceipt [flags]
-     
-    Flags: Flags:
-    -h, --help               help for publicDownloadUserOrderReceipt -h, --help help for publicDownloadUserOrderReceipt
-    --namespace string   Namespace (default " ") --namespace string Namespace (default " ")
-    --orderNo string     Order no (default " ") --orderNo string Order no (default " ")
-    --userId string      User id (default " ") --userId string User id (default " ")
-     
-    Global Flags: Global Flags:
-    --config string   config file (default is $HOME/.sample-apps.yaml) --config string config file (default is $HOME/.sample-apps.yaml)
-     
-    Error: no consumer: "application/pdf" Error: no consumer: "application/pdf"
+ok 305 publicDownloadUserOrderReceipt
 ok 306 publicGetPaymentAccounts
 ok 307 publicDeletePaymentAccount
 ok 308 publicQueryUserSubscriptions
@@ -1832,25 +1255,7 @@ ok 10 updatePlayTimeWeight
 ok 11 getAllPartyInAllChannel
 ok 12 bulkGetSessions
 ok 13 exportChannels
-not ok 14 - importChannels
-  ---
-  error: |-
-    panic: runtime error: invalid memory address or nil pointer dereference panic: runtime error: invalid memory address or nil pointer dereference
-    [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x134a4f6] [signal SIGSEGV: segmentation violation code=0x1 addr=0x30 pc=0x134a4f6]
-     
-    goroutine 1 [running]: goroutine 1 [running]:
-    github.com/AccelByte/sample-apps/cmd/matchmaking/matchmaking.glob..func15(0x2c78320, {0x19ec621, 0x6, 0x6}) github.com/AccelByte/sample-apps/cmd/matchmaking/matchmaking.glob..func15(0x2c78320, {0x19ec621, 0x6, 0x6})
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/matchmaking/matchmaking/importChannels.go:28 +0xb6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/matchmaking/matchmaking/importChannels.go:28 +0xb6
-    github.com/spf13/cobra.(*Command).execute(0x2c78320, {0xc00035e420, 0x6, 0x6}) github.com/spf13/cobra.(*Command).execute(0x2c78320, {0xc00035e420, 0x6, 0x6})
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:852 +0x60e
-    github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520) github.com/spf13/cobra.(*Command).ExecuteC(0x2c08520)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960 +0x3ad
-    github.com/spf13/cobra.(*Command).Execute(...) github.com/spf13/cobra.(*Command).Execute(...)
-    /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897 /home/ruli/go/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897
-    github.com/AccelByte/sample-apps/cmd.Execute() github.com/AccelByte/sample-apps/cmd.Execute()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/cmd/root.go:56 +0x25
-    main.main() main.main()
-    /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6 /home/ruli/Workspace/Bitbucket/justice-codegen-go-sdk/samples/cli/main.go:103 +0x4b6
+ok 14 importChannels
 ok 15 getSingleMatchmakingChannel
 ok 16 updateMatchmakingChannel
 ok 17 getAllPartyInChannel
@@ -1909,42 +1314,12 @@ sh/run-go-cli-dslogmanager-unit-test.sh
 
 go install github.com/AccelByte/sample-apps
 1..6
-not ok 1 - listTerminatedServers
-  ---
-  error: |-
-    Error: unknown command "Dslogmanager" for "sample-apps" Error: unknown command "Dslogmanager" for "sample-apps"
-    Run 'sample-apps --help' for usage. Run 'sample-apps --help' for usage.
-    Error: unknown command "Dslogmanager" for "sample-apps" Error: unknown command "Dslogmanager" for "sample-apps"
-not ok 2 - downloadServerLogs
-  ---
-  error: |-
-    Error: unknown command "Dslogmanager" for "sample-apps" Error: unknown command "Dslogmanager" for "sample-apps"
-    Run 'sample-apps --help' for usage. Run 'sample-apps --help' for usage.
-    Error: unknown command "Dslogmanager" for "sample-apps" Error: unknown command "Dslogmanager" for "sample-apps"
-not ok 3 - checkServerLogs
-  ---
-  error: |-
-    Error: unknown command "Dslogmanager" for "sample-apps" Error: unknown command "Dslogmanager" for "sample-apps"
-    Run 'sample-apps --help' for usage. Run 'sample-apps --help' for usage.
-    Error: unknown command "Dslogmanager" for "sample-apps" Error: unknown command "Dslogmanager" for "sample-apps"
-not ok 4 - batchDownloadServerLogs
-  ---
-  error: |-
-    Error: unknown command "Dslogmanager" for "sample-apps" Error: unknown command "Dslogmanager" for "sample-apps"
-    Run 'sample-apps --help' for usage. Run 'sample-apps --help' for usage.
-    Error: unknown command "Dslogmanager" for "sample-apps" Error: unknown command "Dslogmanager" for "sample-apps"
-not ok 5 - listAllTerminatedServers
-  ---
-  error: |-
-    Error: unknown command "Dslogmanager" for "sample-apps" Error: unknown command "Dslogmanager" for "sample-apps"
-    Run 'sample-apps --help' for usage. Run 'sample-apps --help' for usage.
-    Error: unknown command "Dslogmanager" for "sample-apps" Error: unknown command "Dslogmanager" for "sample-apps"
-not ok 6 - publicGetMessages
-  ---
-  error: |-
-    Error: unknown command "Dslogmanager" for "sample-apps" Error: unknown command "Dslogmanager" for "sample-apps"
-    Run 'sample-apps --help' for usage. Run 'sample-apps --help' for usage.
-    Error: unknown command "Dslogmanager" for "sample-apps" Error: unknown command "Dslogmanager" for "sample-apps"
+ok 1 listTerminatedServers
+ok 2 downloadServerLogs
+ok 3 checkServerLogs
+ok 4 batchDownloadServerLogs
+ok 5 listAllTerminatedServers
+ok 6 publicGetMessages
 ```
 
 ```tap
@@ -1957,62 +1332,11 @@ ok 2 createNamespace
 ok 3 getNamespace
 ok 4 deleteNamespace
 ok 5 getActions
-not ok 6 - banUsers
-  ---
-  error: |-
-    time="2022-02-09T21:54:16+07:00" level=info msg="Response <nil>" time="2022-02-09T21:54:16+07:00" level=info msg="Response <nil>"
-    time="2022-02-09T21:54:16+07:00" level=error msg="Requested POST /v1/admin/namespaces/{namespace}/actions/ban returns an error 204: " time="2022-02-09T21:54:16+07:00" level=error msg="Requested POST /v1/admin/namespaces/{namespace}/actions/ban returns an error 204: "
-    Error: Requested POST /v1/admin/namespaces/{namespace}/actions/ban returns an error 204: Error: Requested POST /v1/admin/namespaces/{namespace}/actions/ban returns an error 204:
-    Usage: Usage:
-    sample-apps Basic banUsers [flags] sample-apps Basic banUsers [flags]
-     
-    Flags: Flags:
-    --body string        Body (default " ") --body string Body (default " ")
-    -h, --help               help for banUsers -h, --help help for banUsers
-    --namespace string   Namespace (default " ") --namespace string Namespace (default " ")
-     
-    Global Flags: Global Flags:
-    --config string   config file (default is $HOME/.sample-apps.yaml) --config string config file (default is $HOME/.sample-apps.yaml)
-     
-    Error: Requested POST /v1/admin/namespaces/{namespace}/actions/ban returns an error 204: Error: Requested POST /v1/admin/namespaces/{namespace}/actions/ban returns an error 204:
+ok 6 banUsers
 ok 7 getBannedUsers
-not ok 8 - reportUser
-  ---
-  error: |-
-    time="2022-02-09T21:54:16+07:00" level=info msg="Response <nil>" time="2022-02-09T21:54:16+07:00" level=info msg="Response <nil>"
-    time="2022-02-09T21:54:16+07:00" level=error msg="Requested POST /v1/admin/namespaces/{namespace}/actions/report returns an error 204: " time="2022-02-09T21:54:16+07:00" level=error msg="Requested POST /v1/admin/namespaces/{namespace}/actions/report returns an error 204: "
-    Error: Requested POST /v1/admin/namespaces/{namespace}/actions/report returns an error 204: Error: Requested POST /v1/admin/namespaces/{namespace}/actions/report returns an error 204:
-    Usage: Usage:
-    sample-apps Basic reportUser [flags] sample-apps Basic reportUser [flags]
-     
-    Flags: Flags:
-    --body string        Body (default " ") --body string Body (default " ")
-    -h, --help               help for reportUser -h, --help help for reportUser
-    --namespace string   Namespace (default " ") --namespace string Namespace (default " ")
-     
-    Global Flags: Global Flags:
-    --config string   config file (default is $HOME/.sample-apps.yaml) --config string config file (default is $HOME/.sample-apps.yaml)
-     
-    Error: Requested POST /v1/admin/namespaces/{namespace}/actions/report returns an error 204: Error: Requested POST /v1/admin/namespaces/{namespace}/actions/report returns an error 204:
+ok 8 reportUser
 ok 9 getUserStatus
-not ok 10 - unBanUsers
-  ---
-  error: |-
-    time="2022-02-09T21:54:16+07:00" level=info msg="Response <nil>" time="2022-02-09T21:54:16+07:00" level=info msg="Response <nil>"
-    time="2022-02-09T21:54:16+07:00" level=error msg="Requested POST /v1/admin/namespaces/{namespace}/actions/unban returns an error 204: " time="2022-02-09T21:54:16+07:00" level=error msg="Requested POST /v1/admin/namespaces/{namespace}/actions/unban returns an error 204: "
-    Error: Requested POST /v1/admin/namespaces/{namespace}/actions/unban returns an error 204: Error: Requested POST /v1/admin/namespaces/{namespace}/actions/unban returns an error 204:
-    Usage: Usage:
-    sample-apps Basic unBanUsers [flags] sample-apps Basic unBanUsers [flags]
-     
-    Flags: Flags:
-    --body string        Body (default " ") --body string Body (default " ")
-    -h, --help               help for unBanUsers -h, --help help for unBanUsers
-    --namespace string   Namespace (default " ") --namespace string Namespace (default " ")
-     
-    Global Flags: Global Flags:
-    --config string   config file (default is $HOME/.sample-apps.yaml) --config string config file (default is $HOME/.sample-apps.yaml)
-     
-    Error: Requested POST /v1/admin/namespaces/{namespace}/actions/unban returns an error 204: Error: Requested POST /v1/admin/namespaces/{namespace}/actions/unban returns an error 204:
+ok 10 unBanUsers
 ok 11 updateNamespace
 ok 12 getConfig
 ok 13 deleteConfig
@@ -2051,25 +1375,7 @@ ok 45 updateMyProfile
 ok 46 createMyProfile
 ok 47 getMyZipCode
 ok 48 updateMyZipCode
-not ok 49 - publicReportUser
-  ---
-  error: |-
-    time="2022-02-09T21:54:16+07:00" level=info msg="Response <nil>" time="2022-02-09T21:54:16+07:00" level=info msg="Response <nil>"
-    time="2022-02-09T21:54:16+07:00" level=error msg="Requested POST /v1/public/namespaces/{namespace}/users/{userId}/actions/report returns an error 204: " time="2022-02-09T21:54:16+07:00" level=error msg="Requested POST /v1/public/namespaces/{namespace}/users/{userId}/actions/report returns an error 204: "
-    Error: Requested POST /v1/public/namespaces/{namespace}/users/{userId}/actions/report returns an error 204: Error: Requested POST /v1/public/namespaces/{namespace}/users/{userId}/actions/report returns an error 204:
-    Usage: Usage:
-    sample-apps Basic publicReportUser [flags] sample-apps Basic publicReportUser [flags]
-     
-    Flags: Flags:
-    --body string        Body (default " ") --body string Body (default " ")
-    -h, --help               help for publicReportUser -h, --help help for publicReportUser
-    --namespace string   Namespace (default " ") --namespace string Namespace (default " ")
-    --userId string      User id (default " ") --userId string User id (default " ")
-     
-    Global Flags: Global Flags:
-    --config string   config file (default is $HOME/.sample-apps.yaml) --config string config file (default is $HOME/.sample-apps.yaml)
-     
-    Error: Requested POST /v1/public/namespaces/{namespace}/users/{userId}/actions/report returns an error 204: Error: Requested POST /v1/public/namespaces/{namespace}/users/{userId}/actions/report returns an error 204:
+ok 49 publicReportUser
 ok 50 publicGeneratedUserUploadContentUrl
 ok 51 publicGetUserProfileInfo
 ok 52 publicUpdateUserProfile

@@ -84,6 +84,7 @@ func init() {
 	SocialCmd.AddCommand(userStatistic.ResetUserStatItemValue1Cmd)
 	SocialCmd.AddCommand(userStatistic.BulkUpdateUserStatItemV2Cmd)
 	SocialCmd.AddCommand(userStatistic.BulkUpdateUserStatItemCmd)
+	SocialCmd.AddCommand(userStatistic.BulkResetUserStatItemValuesCmd)
 	SocialCmd.AddCommand(userStatistic.DeleteUserStatItems2Cmd)
 	SocialCmd.AddCommand(userStatistic.UpdateUserStatItemValueCmd)
 	SocialCmd.AddCommand(userStatistic.BulkUpdateUserStatItem1Cmd)

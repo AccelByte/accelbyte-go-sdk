@@ -114,4 +114,5 @@ func init() {
 	LobbyCmd.AddCommand(notification.NotificationWithTemplateByUserIDCmd)
 	LobbyCmd.AddCommand(operations.PublicGetMessagesCmd)
 	LobbyCmd.AddCommand(operations.AdminUpdatePartyAttributesV1Cmd)
+	LobbyCmd.AddCommand(operations.AdminJoinPartyV1Cmd)
 }

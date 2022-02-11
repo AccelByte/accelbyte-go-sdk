@@ -54,14 +54,12 @@ update_status() {
 
 create_file 'tmp.dat'
 
-echo "go install github.com/AccelByte/sample-apps"
-go install github.com/AccelByte/sample-apps
-#rm -f $TEMP_TOKEN
-#echo "\"{"\"access_token"\":"\"foo"\"}"\" >> $TEMP_TOKEN
+rm -f $TEMP_TOKEN
+echo {"\"access_token"\":"\"foo"\"} >> $TEMP_TOKEN
 echo "1..$OPERATIONS_COUNT"
 
 #- 1 listTerminatedServers
-sample-apps Dslogmanager listTerminatedServers \
+samples/cli/sample-apps Dslogmanager listTerminatedServers \
     --namespace 'FtBxyZcD' \
     --deployment 'XBpGlsQu' \
     --endDate 'Ju8vMf0I' \
@@ -81,7 +79,7 @@ update_status $? 'listTerminatedServers'
 delete_file $TEMP_FILE
 
 #- 2 downloadServerLogs
-sample-apps Dslogmanager downloadServerLogs \
+samples/cli/sample-apps Dslogmanager downloadServerLogs \
     --namespace 'KmIQTuBd' \
     --podName 'NEUsxFb8' \
     >$TEMP_FILE 2>&1
@@ -89,7 +87,7 @@ update_status $? 'downloadServerLogs'
 delete_file $TEMP_FILE
 
 #- 3 checkServerLogs
-sample-apps Dslogmanager checkServerLogs \
+samples/cli/sample-apps Dslogmanager checkServerLogs \
     --namespace 'CJ17M7DJ' \
     --podName 'ZaMSxECb' \
     >$TEMP_FILE 2>&1
@@ -97,14 +95,14 @@ update_status $? 'checkServerLogs'
 delete_file $TEMP_FILE
 
 #- 4 batchDownloadServerLogs
-sample-apps Dslogmanager batchDownloadServerLogs \
+samples/cli/sample-apps Dslogmanager batchDownloadServerLogs \
     --body '{"Downloads": [{"alloc_id": "Zbygyoar", "namespace": "ORoeNHSb", "pod_name": "8Rh3kgs9"}]}' \
     >$TEMP_FILE 2>&1
 update_status $? 'batchDownloadServerLogs'
 delete_file $TEMP_FILE
 
 #- 5 listAllTerminatedServers
-sample-apps Dslogmanager listAllTerminatedServers \
+samples/cli/sample-apps Dslogmanager listAllTerminatedServers \
     --deployment 'qqJbnQso' \
     --endDate 'BgiVpP8C' \
     --gameMode 'm3yvASUo' \
@@ -124,7 +122,7 @@ update_status $? 'listAllTerminatedServers'
 delete_file $TEMP_FILE
 
 #- 6 publicGetMessages
-sample-apps Dslogmanager publicGetMessages \
+samples/cli/sample-apps Dslogmanager publicGetMessages \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetMessages'
 delete_file $TEMP_FILE

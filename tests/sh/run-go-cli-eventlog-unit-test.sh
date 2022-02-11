@@ -54,10 +54,8 @@ update_status() {
 
 create_file 'tmp.dat'
 
-echo "go install github.com/AccelByte/sample-apps"
-go install github.com/AccelByte/sample-apps
-#rm -f $TEMP_TOKEN
-#echo "\"{"\"access_token"\":"\"foo"\"}"\" >> $TEMP_TOKEN
+rm -f $TEMP_TOKEN
+echo {"\"access_token"\":"\"foo"\"} >> $TEMP_TOKEN
 echo "1..$OPERATIONS_COUNT"
 
 #- 1 agentTypeDescriptionHandler
@@ -145,7 +143,7 @@ update_status 0 'unregisterEventIDHandler (skipped deprecated)'
 update_status 0 'getRegisteredEventsByEventTypeHandler (skipped deprecated)'
 
 #- 29 queryEventStreamHandler
-sample-apps Eventlog queryEventStreamHandler \
+samples/cli/sample-apps Eventlog queryEventStreamHandler \
     --body '{"clientId": "FtBxyZcD", "eventName": "XBpGlsQu", "payloadQuery": {"Ju8vMf0I": {}}, "sessionId": "sJkTrd8I", "traceId": "DcV2zXnT", "userId": "KjXY1bPq", "version": 1}' \
     --namespace 'miBxx9Cs' \
     --endDate '18EY84ek' \
@@ -157,7 +155,7 @@ update_status $? 'queryEventStreamHandler'
 delete_file $TEMP_FILE
 
 #- 30 getEventSpecificUserV2Handler
-sample-apps Eventlog getEventSpecificUserV2Handler \
+samples/cli/sample-apps Eventlog getEventSpecificUserV2Handler \
     --namespace '0KQBVaew' \
     --userId 'c72krSha' \
     --endDate '68n3Ynoz' \
@@ -170,7 +168,7 @@ update_status $? 'getEventSpecificUserV2Handler'
 delete_file $TEMP_FILE
 
 #- 31 getPublicEditHistory
-sample-apps Eventlog getPublicEditHistory \
+samples/cli/sample-apps Eventlog getPublicEditHistory \
     --namespace 'CJ17M7DJ' \
     --userId 'ZaMSxECb' \
     --endDate 'Zbygyoar' \
@@ -183,7 +181,7 @@ update_status $? 'getPublicEditHistory'
 delete_file $TEMP_FILE
 
 #- 32 getUserEventsV2Public
-sample-apps Eventlog getUserEventsV2Public \
+samples/cli/sample-apps Eventlog getUserEventsV2Public \
     --namespace 'nQsoBgiV' \
     --userId 'pP8Cm3yv' \
     --endDate 'ASUoxdxx' \

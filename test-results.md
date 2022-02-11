@@ -1,9 +1,8 @@
 # Test Results
 
 ```tap
-sh/run-go-cli-dsmc-unit-test.sh
+tests/sh/run-go-cli-dsmc-unit-test.sh
 
-go install github.com/AccelByte/sample-apps
 1..63
 ok 1 listConfig
 ok 2 saveConfig (skipped deprecated)
@@ -71,9 +70,8 @@ ok 63 publicGetMessages
 ```
 
 ```tap
-sh/run-go-cli-achievement-unit-test.sh
+tests/sh/run-go-cli-achievement-unit-test.sh
 
-go install github.com/AccelByte/sample-apps
 1..14
 ok 1 adminListAchievements
 ok 2 adminCreateNewAchievement
@@ -92,9 +90,8 @@ ok 14 publicUnlockAchievement
 ```
 
 ```tap
-sh/run-go-cli-iam-unit-test.sh
+tests/sh/run-go-cli-iam-unit-test.sh
 
-go install github.com/AccelByte/sample-apps
 1..270
 ok 1 getBansType
 ok 2 getListBanReason
@@ -369,9 +366,8 @@ ok 270 publicUpgradeHeadlessAccountV4
 ```
 
 ```tap
-sh/run-go-cli-seasonpass-unit-test.sh
+tests/sh/run-go-cli-seasonpass-unit-test.sh
 
-go install github.com/AccelByte/sample-apps
 1..38
 ok 1 getPass
 ok 2 deletePass
@@ -414,9 +410,8 @@ ok 38 publicGetUserSeason
 ```
 
 ```tap
-sh/run-go-cli-lobby-unit-test.sh
+tests/sh/run-go-cli-lobby-unit-test.sh
 
-go install github.com/AccelByte/sample-apps
 1..89
 ok 1 getUserFriendsUpdated
 ok 2 getUserIncomingFriends
@@ -510,9 +505,8 @@ ok 89 notificationWithTemplateByUserID
 ```
 
 ```tap
-sh/run-go-cli-gdpr-unit-test.sh
+tests/sh/run-go-cli-gdpr-unit-test.sh
 
-go install github.com/AccelByte/sample-apps
 1..20
 ok 1 adminGetListDeletionDataRequest
 ok 2 getAdminEmailConfiguration
@@ -537,9 +531,8 @@ ok 20 publicGeneratePersonalDataURL
 ```
 
 ```tap
-sh/run-go-cli-social-unit-test.sh
+tests/sh/run-go-cli-social-unit-test.sh
 
-go install github.com/AccelByte/sample-apps
 1..68
 ok 1 getNamespaceSlotConfig
 ok 2 updateNamespaceSlotConfig
@@ -612,9 +605,8 @@ ok 68 updateUserStatItemValue1
 ```
 
 ```tap
-sh/run-go-cli-platform-unit-test.sh
+tests/sh/run-go-cli-platform-unit-test.sh
 
-go install github.com/AccelByte/sample-apps
 1..316
 ok 1 listFulfillmentScripts
 ok 2 testFulfillmentScriptEval
@@ -935,9 +927,8 @@ ok 316 publicListUserWalletTransactions
 ```
 
 ```tap
-sh/run-go-cli-sessionbrowser-unit-test.sh
+tests/sh/run-go-cli-sessionbrowser-unit-test.sh
 
-go install github.com/AccelByte/sample-apps
 1..15
 ok 1 getTotalActiveSession
 ok 2 getActiveCustomGameSessions
@@ -957,9 +948,8 @@ ok 15 getRecentPlayer
 ```
 
 ```tap
-sh/run-go-cli-leaderboard-unit-test.sh
+tests/sh/run-go-cli-leaderboard-unit-test.sh
 
-go install github.com/AccelByte/sample-apps
 1..34
 ok 1 getLeaderboardConfigurationsAdminV1
 ok 2 createLeaderboardConfigurationAdminV1
@@ -998,9 +988,8 @@ ok 34 getAllTimeLeaderboardRankingPublicV2
 ```
 
 ```tap
-sh/run-go-cli-eventlog-unit-test.sh
+tests/sh/run-go-cli-eventlog-unit-test.sh
 
-go install github.com/AccelByte/sample-apps
 1..32
 ok 1 agentTypeDescriptionHandler (skipped deprecated)
 ok 2 specificAgentTypeDescriptionHandler (skipped deprecated)
@@ -1037,9 +1026,8 @@ ok 32 getUserEventsV2Public
 ```
 
 ```tap
-sh/run-go-cli-ugc-unit-test.sh
+tests/sh/run-go-cli-ugc-unit-test.sh
 
-go install github.com/AccelByte/sample-apps
 1..84
 ok 1 singleAdminGetChannel
 ok 2 adminCreateChannel
@@ -1128,9 +1116,8 @@ ok 84 deleteAllUserStates
 ```
 
 ```tap
-sh/run-go-cli-group-unit-test.sh
+tests/sh/run-go-cli-group-unit-test.sh
 
-go install github.com/AccelByte/sample-apps
 1..44
 ok 1 listGroupConfigurationAdminV1
 ok 2 createGroupConfigurationAdminV1
@@ -1179,9 +1166,8 @@ ok 44 kickGroupMemberPublicV1
 ```
 
 ```tap
-sh/run-go-cli-qosm-unit-test.sh
+tests/sh/run-go-cli-qosm-unit-test.sh
 
-go install github.com/AccelByte/sample-apps
 1..4
 ok 1 deleteServer
 ok 2 setServerAlias
@@ -1190,9 +1176,8 @@ ok 4 heartbeat
 ```
 
 ```tap
-sh/run-go-cli-legal-unit-test.sh
+tests/sh/run-go-cli-legal-unit-test.sh
 
-go install github.com/AccelByte/sample-apps
 1..41
 ok 1 retrieveAcceptedAgreements
 ok 2 retrieveAllUsersByPolicyVersion
@@ -1238,9 +1223,8 @@ ok 41 checkReadiness
 ```
 
 ```tap
-sh/run-go-cli-matchmaking-unit-test.sh
+tests/sh/run-go-cli-matchmaking-unit-test.sh
 
-go install github.com/AccelByte/sample-apps
 1..28
 ok 1 getHealthcheckInfo
 ok 2 handlerV3Healthz
@@ -1273,9 +1257,8 @@ ok 28 versionCheckHandler
 ```
 
 ```tap
-sh/run-go-cli-cloudsave-unit-test.sh
+tests/sh/run-go-cli-cloudsave-unit-test.sh
 
-go install github.com/AccelByte/sample-apps
 1..30
 ok 1 listGameRecordsHandlerV1
 ok 2 adminGetGameRecordHandlerV1
@@ -1310,9 +1293,8 @@ ok 30 postPlayerPublicRecordHandlerV1
 ```
 
 ```tap
-sh/run-go-cli-dslogmanager-unit-test.sh
+tests/sh/run-go-cli-dslogmanager-unit-test.sh
 
-go install github.com/AccelByte/sample-apps
 1..6
 ok 1 listTerminatedServers
 ok 2 downloadServerLogs
@@ -1323,73 +1305,67 @@ ok 6 publicGetMessages
 ```
 
 ```tap
-sh/run-go-cli-basic-unit-test.sh
+tests/sh/run-go-cli-basic-unit-test.sh
 
-go install github.com/AccelByte/sample-apps
 1..57
 ok 1 getNamespaces
 ok 2 createNamespace
 ok 3 getNamespace
 ok 4 deleteNamespace
 ok 5 getActions
-ok 6 banUsers
-ok 7 getBannedUsers
-ok 8 reportUser
-ok 9 getUserStatus
-ok 10 unBanUsers
-ok 11 updateNamespace
-ok 12 getConfig
-ok 13 deleteConfig
-ok 14 updateConfig
-ok 15 generatedUploadUrl
-ok 16 getCountries
-ok 17 getCountryGroups
-ok 18 addCountryGroup
-ok 19 updateCountryGroup
-ok 20 deleteCountryGroup
-ok 21 getLanguages
-ok 22 getTimeZones
-ok 23 adminGetUserProfilePublicInfoByIds
-ok 24 getNamespacePublisher
-ok 25 changeNamespaceStatus
-ok 26 anonymizeUserProfile
-ok 27 generatedUserUploadContentUrl
-ok 28 getUserProfileInfo
-ok 29 updateUserProfile
-ok 30 deleteUserProfile
-ok 31 getCustomAttributesInfo
-ok 32 updateCustomAttributesPartially
-ok 33 getPrivateCustomAttributesInfo
-ok 34 updatePrivateCustomAttributesPartially
-ok 35 updateUserProfileStatus
-ok 36 publicGetTime
-ok 37 publicGetNamespaces
-ok 38 publicGeneratedUploadUrl
-ok 39 publicGetCountries
-ok 40 publicGetLanguages
-ok 41 publicGetTimeZones
-ok 42 publicGetUserProfilePublicInfoByIds
-ok 43 publicGetNamespacePublisher
-ok 44 getMyProfileInfo
-ok 45 updateMyProfile
-ok 46 createMyProfile
-ok 47 getMyZipCode
-ok 48 updateMyZipCode
-ok 49 publicReportUser
-ok 50 publicGeneratedUserUploadContentUrl
-ok 51 publicGetUserProfileInfo
-ok 52 publicUpdateUserProfile
-ok 53 publicCreateUserProfile
-ok 54 publicGetCustomAttributesInfo
-ok 55 publicUpdateCustomAttributesPartially
-ok 56 publicGetUserProfilePublicInfo
-ok 57 publicUpdateUserProfileStatus
+ok 6 getBannedUsers
+ok 7 getUserStatus
+ok 8 updateNamespace
+ok 9 getConfig
+ok 10 deleteConfig
+ok 11 updateConfig
+ok 12 generatedUploadUrl
+ok 13 getCountries
+ok 14 getCountryGroups
+ok 15 addCountryGroup
+ok 16 updateCountryGroup
+ok 17 deleteCountryGroup
+ok 18 getLanguages
+ok 19 getTimeZones
+ok 20 adminGetUserProfilePublicInfoByIds
+ok 21 getNamespacePublisher
+ok 22 changeNamespaceStatus
+ok 23 anonymizeUserProfile
+ok 24 generatedUserUploadContentUrl
+ok 25 getUserProfileInfo
+ok 26 updateUserProfile
+ok 27 deleteUserProfile
+ok 28 getCustomAttributesInfo
+ok 29 updateCustomAttributesPartially
+ok 30 getPrivateCustomAttributesInfo
+ok 31 updatePrivateCustomAttributesPartially
+ok 32 updateUserProfileStatus
+ok 33 publicGetTime
+ok 34 publicGetNamespaces
+ok 35 publicGeneratedUploadUrl
+ok 36 publicGetCountries
+ok 37 publicGetLanguages
+ok 38 publicGetTimeZones
+ok 39 publicGetUserProfilePublicInfoByIds
+ok 40 publicGetNamespacePublisher
+ok 41 getMyProfileInfo
+ok 42 updateMyProfile
+ok 43 createMyProfile
+ok 44 getMyZipCode
+ok 45 updateMyZipCode
+ok 46 publicGeneratedUserUploadContentUrl
+ok 47 publicGetUserProfileInfo
+ok 48 publicUpdateUserProfile
+ok 49 publicCreateUserProfile
+ok 50 publicGetCustomAttributesInfo
+ok 51 publicUpdateCustomAttributesPartially
+ok 52 publicGetUserProfilePublicInfo
+ok 53 publicUpdateUserProfileStatus
 ```
 
 ```tap
-sh/run-go-cli-gametelemetry-unit-test.sh
+tests/sh/run-go-cli-gametelemetry-unit-test.sh
 
-go install github.com/AccelByte/sample-apps
 1..3
 ok 1 protectedSaveEventsGameTelemetryV1ProtectedEventsPost
 ok 2 protectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGet

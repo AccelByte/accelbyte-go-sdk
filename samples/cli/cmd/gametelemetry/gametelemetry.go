@@ -5,6 +5,7 @@
 package gametelemetry
 
 import (
+	"github.com/AccelByte/sample-apps/cmd/gametelemetry/operations"
 	"github.com/spf13/cobra"
 )
 
@@ -15,4 +16,7 @@ var GametelemetryCmd = &cobra.Command{
 }
 
 func init() {
+	GametelemetryCmd.AddCommand(operations.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd)
+	GametelemetryCmd.AddCommand(operations.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePutCmd)
+	GametelemetryCmd.AddCommand(operations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGetCmd)
 }

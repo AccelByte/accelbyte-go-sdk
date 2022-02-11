@@ -8,6 +8,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/achievement"
 	"github.com/AccelByte/sample-apps/cmd/basic"
 	"github.com/AccelByte/sample-apps/cmd/cloudsave"
+	"github.com/AccelByte/sample-apps/cmd/dslogmanager"
 	"github.com/AccelByte/sample-apps/cmd/dsmc"
 	"github.com/AccelByte/sample-apps/cmd/eventlog"
 	"github.com/AccelByte/sample-apps/cmd/gametelemetry"
@@ -74,6 +75,7 @@ func init() {
 	RootCmd.AddCommand(basic.BasicCmd)
 	RootCmd.AddCommand(cloudsave.CloudsaveCmd)
 	RootCmd.AddCommand(dsmc.DsmcCmd)
+	RootCmd.AddCommand(dslogmanager.DslogmanagerCmd)
 	RootCmd.AddCommand(eventlog.EventlogCmd)
 	RootCmd.AddCommand(gametelemetry.GametelemetryCmd)
 	RootCmd.AddCommand(gdpr.GdprCmd)

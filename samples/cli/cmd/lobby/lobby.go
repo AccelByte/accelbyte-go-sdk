@@ -9,6 +9,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/lobby/config"
 	"github.com/AccelByte/sample-apps/cmd/lobby/friends"
 	"github.com/AccelByte/sample-apps/cmd/lobby/notification"
+	"github.com/AccelByte/sample-apps/cmd/lobby/operations"
 	"github.com/AccelByte/sample-apps/cmd/lobby/party"
 	"github.com/AccelByte/sample-apps/cmd/lobby/player"
 	"github.com/AccelByte/sample-apps/cmd/lobby/presence"
@@ -111,4 +112,6 @@ func init() {
 	LobbyCmd.AddCommand(notification.DeleteTopicByTopicNameCmd)
 	LobbyCmd.AddCommand(notification.FreeFormNotificationByUserIDCmd)
 	LobbyCmd.AddCommand(notification.NotificationWithTemplateByUserIDCmd)
+	LobbyCmd.AddCommand(operations.PublicGetMessagesCmd)
+	LobbyCmd.AddCommand(operations.AdminUpdatePartyAttributesV1Cmd)
 }

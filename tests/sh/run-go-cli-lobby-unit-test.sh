@@ -55,6 +55,7 @@ update_status() {
 create_file 'tmp.dat'
 
 rm -f $TEMP_TOKEN
+mkdir -p $(dirname $TEMP_TOKEN)
 echo {"\"access_token"\":"\"foo"\"} >> $TEMP_TOKEN
 echo "1..$OPERATIONS_COUNT"
 

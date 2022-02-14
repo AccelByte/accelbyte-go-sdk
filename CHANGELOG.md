@@ -1,3 +1,43 @@
+<a name="v0.12.0"></a>
+## [v0.12.0] - 2022-02-15
+
+### Chore
+- **api:** regenerate all services
+- **cli:** regenerate all cli
+- **cli:** delete the whitespace in default value
+- **cli:** delete manually written cli
+- **cli-test:** update test-result.md for test against mock server
+- **cli-test:** delete namespace
+- **cli-test:** add XXX comments for workaround basic endpoint
+- **cli-test:** add go install sample-apps
+- **cli-test:** delete unit test stage in jenkins
+- **cli-test:** change folder and adjust the template
+- **sh-unit-tests:** regenerate sh unit tests
+- **spec:** update spec files
+- **titleMM:** update to the latest release SDK
+
+### Docs
+- update CHANGELOG.md for v0.12.0 release
+
+### Feat
+- **cli-test:** add test in Makefile
+- **cli-test:** add Jenkins file nightly
+- **cli-test:** add stage of unit test in Jenkinsfile
+- **cli-test:** initialization for unit test against mock server
+
+### Fix
+- **cli-test:** convert init param name for camel case
+- **cli-test:** add HTTP client in CLI for 404 error
+- **cli-test:** add missing root command and operations in CLI
+- **cli-test:** comment and disable certain Basic CLI for a while
+- **cli-test:** unknown flag and missing operations
+- **cli-test:** error time parse should follow Unix's epoch time (Go version)
+- **cli-test:** add temporary token file
+- **cli-test:** the shell script execute directly without symbol
+- **cli-test:** add parameter
+- **cli-test:** add custom producers and consumers in facade.gotmpl
+
+
 <a name="v0.11.0"></a>
 ## [v0.11.0] - 2022-02-02
 
@@ -337,6 +377,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.12.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.11.0...v0.12.0
 [v0.11.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.10.0...v0.11.0
 [v0.10.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.9.0...v0.10.0
 [v0.9.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.8.0...v0.9.0

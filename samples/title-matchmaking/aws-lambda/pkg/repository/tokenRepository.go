@@ -36,9 +36,9 @@ func ConvertTokenToTokenResponseV3(accessToken string) (*models.OauthmodelTokenR
 		return accessToken, nil
 	})
 	if parsedToken != nil {
-		jsonPayload, err := json.Marshal(parsedToken.Claims)
-		if err != nil {
-			return nil, err
+		jsonPayload, errMarshal := json.Marshal(parsedToken.Claims)
+		if errMarshal != nil {
+			return nil, errMarshal
 		}
 		err = json.Unmarshal(jsonPayload, tokenResponseV3)
 		if err != nil {

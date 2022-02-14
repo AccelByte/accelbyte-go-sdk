@@ -5,7 +5,7 @@
 package dao
 
 import (
-	"aws-lambda-functions/pkg/title-matchmaking/models"
+	"aws-lambda/pkg/title-matchmaking/models"
 )
 
 // Channel is the DAO of isolated channelList list to be iterated

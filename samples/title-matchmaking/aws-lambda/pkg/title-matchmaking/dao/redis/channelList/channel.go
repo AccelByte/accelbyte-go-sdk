@@ -5,8 +5,8 @@
 package channelList
 
 import (
-	"aws-lambda-functions/pkg/constants"
-	"aws-lambda-functions/pkg/title-matchmaking/models"
+	"aws-lambda/pkg/constants"
+	"aws-lambda/pkg/title-matchmaking/models"
 	"context"
 	"fmt"
 	"github.com/go-redis/redis/v8"

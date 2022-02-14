@@ -5,14 +5,17 @@
 package service
 
 import (
-	"aws-lambda-functions/pkg/constants"
-	"aws-lambda-functions/pkg/repository"
-	"aws-lambda-functions/pkg/repositoryGame"
-	"aws-lambda-functions/pkg/title-matchmaking/models"
-	"aws-lambda-functions/pkg/utils"
+	"aws-lambda/pkg/constants"
+	"aws-lambda/pkg/repository"
+	"aws-lambda/pkg/repositoryGame"
+	"aws-lambda/pkg/title-matchmaking/models"
+	"aws-lambda/pkg/utils"
 	"context"
 	"encoding/json"
 	"fmt"
+	dsmcSession "github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/session"
+	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
+	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient/session"
 	"log"
 	"net/http"
 	"os"
@@ -30,14 +33,18 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	services "github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
+	iamService "github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/sessionbrowser"
+
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclientmodels"
 )
 
 var (
 	configImpl              repository.ConfigRepositoryImpl
 	tokenRepositoryImpl     repository.TokenRepositoryImpl
-	oauthService            services.OauthService
+	oauthService            iamService.OAuth20Service
 	configGameImpl          repositoryGame.ConfigRepositoryGameImpl
 	tokenRepositoryGameImpl repositoryGame.TokenRepositoryGameImpl
 )
@@ -102,8 +109,8 @@ func (titleMMService *TitleMatchmakingService) StartMatchmaking(req *events.APIG
 
 	// get token from game client for DSMC
 	log.Print("Config Repo Game Client Id : ", configGameImpl.GetClientId())
-	oauthService = services.OauthService{
-		IamService:       factory.NewIamClient(&configGameImpl),
+	oauthService = iamService.OAuth20Service{
+		Client:           factory.NewIamClient(&configGameImpl),
 		ConfigRepository: &configGameImpl,
 		TokenRepository:  &tokenRepositoryGameImpl,
 	}
@@ -528,18 +535,23 @@ func (titleMMService *TitleMatchmakingService) validatePermissionHandler(reqToke
 
 // GO-SDK lobby service
 func sendNotificationSearching(namespace, userId string) error {
-	async := false
 	message := "searching"
 	topic := constants.MatchmakingNotificationTopic
-	content := lobbyclientmodels.ModelFreeFormNotificationRequest{
+	body := lobbyclientmodels.ModelFreeFormNotificationRequest{
 		Message: &message,
 		Topic:   &topic,
 	}
-	gameNotificationService := services.GameNotificationService{
-		LobbyClient:     factory.NewLobbyClient(&configImpl),
+	input := &notification.FreeFormNotificationByUserIDParams{
+		Body:      &body,
+		Namespace: namespace,
+		UserID:    userId,
+	}
+	gameNotificationService := lobby.NotificationService{
+		Client:          factory.NewLobbyClient(&configImpl),
 		TokenRepository: &tokenRepositoryImpl,
 	}
-	sendNotificationSearchingErr := gameNotificationService.FreeFormNotificationByUserID(namespace, userId, &async, &content)
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	sendNotificationSearchingErr := gameNotificationService.FreeFormNotificationByUserID(input)
 	if sendNotificationSearchingErr != nil {
 		log.Printf("Unable to send notification match searching to lobby. userId : %+v", userId)
 		log.Print(sendNotificationSearchingErr.Error())
@@ -577,18 +589,23 @@ func createSession(namespaceGame string) (*sessionbrowserclientmodels.ModelsSess
 		Password:              &password,
 		Settings:              &settings,
 	}
-	bodyRequest := sessionbrowserclientmodels.ModelsCreateSessionRequest{
+	sessionBrowserService := sessionbrowser.SessionService{
+		Client:          factory.NewSessionbrowserClient(&configImpl),
+		TokenRepository: &tokenRepositoryImpl,
+	}
+	body := sessionbrowserclientmodels.ModelsCreateSessionRequest{
 		GameSessionSetting: &gameSetting,
 		GameVersion:        &gameVersion,
 		Namespace:          &namespaceGame,
 		SessionType:        &sessionType,
 		Username:           &username,
 	}
-	sessionBrowserService := services.SessionBrowserService{
-		SessionBrowserServiceClient: factory.NewSessionClient(&configImpl),
-		TokenRepository:             &tokenRepositoryImpl,
+	input := &session.CreateSessionParams{
+		Body:      &body,
+		Namespace: namespaceGame,
 	}
-	createSessionResp, err := sessionBrowserService.CreateSession(namespaceGame, &bodyRequest)
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	createSessionResp, err := sessionBrowserService.CreateSession(input)
 	if err != nil {
 		log.Printf("Unable to create session. namespace : %s. Error: %v", namespaceGame, err)
 		return createSessionResp, err
@@ -644,11 +661,11 @@ func registerSessionDSMC(sessionId, gameMode, namespaceGame, partyId string,
 	podName := ""
 	region := ""
 
-	serverService := services.GameSessionService{
-		DSMCClient:      factory.NewDSMCClient(&configGameImpl),
+	dsmcService := dsmc.SessionService{
+		Client:          factory.NewDsmcClient(&configGameImpl),
 		TokenRepository: oauthService.TokenRepository,
 	}
-	content := dsmcclientmodels.ModelsCreateSessionRequest{
+	body := dsmcclientmodels.ModelsCreateSessionRequest{
 		ClientVersion:  &clientVersion,
 		Configuration:  &configuration,
 		Deployment:     &deployment,
@@ -659,7 +676,12 @@ func registerSessionDSMC(sessionId, gameMode, namespaceGame, partyId string,
 		Region:         &region,
 		SessionID:      &sessionId,
 	}
-	registerSession, registerSessionErr := serverService.CreateSession(namespaceGame, &content)
+	input := &dsmcSession.CreateSessionParams{
+		Body:      &body,
+		Namespace: namespaceGame,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	registerSession, registerSessionErr := dsmcService.CreateSession(input)
 	if registerSessionErr != nil {
 		log.Print(registerSessionErr)
 	}
@@ -668,12 +690,17 @@ func registerSessionDSMC(sessionId, gameMode, namespaceGame, partyId string,
 
 // GO-SDK DSMC service
 func claimServer(namespaceGame string, sessionID *string) error {
-	serverService := services.GameSessionService{
-		DSMCClient:      factory.NewDSMCClient(&configGameImpl),
+	dsmcService := dsmc.SessionService{
+		Client:          factory.NewDsmcClient(&configGameImpl),
 		TokenRepository: oauthService.TokenRepository,
 	}
-	content := dsmcclientmodels.ModelsClaimSessionRequest{SessionID: sessionID}
-	claimServerErr := serverService.ClaimServer(namespaceGame, &content)
+	body := dsmcclientmodels.ModelsClaimSessionRequest{SessionID: sessionID}
+	input := &dsmcSession.ClaimServerParams{
+		Body:      &body,
+		Namespace: namespaceGame,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	claimServerErr := dsmcService.ClaimServer(input)
 	if claimServerErr != nil {
 		log.Print(claimServerErr)
 	}
@@ -683,11 +710,16 @@ func claimServer(namespaceGame string, sessionID *string) error {
 
 // GO-SDK DSMC service
 func getServer(namespaceGame, sessionID string) (*dsmcclientmodels.ModelsSessionResponse, error) {
-	serverService := services.GameSessionService{
-		DSMCClient:      factory.NewDSMCClient(&configGameImpl),
+	dsmcService := dsmc.SessionService{
+		Client:          factory.NewDsmcClient(&configGameImpl),
 		TokenRepository: oauthService.TokenRepository,
 	}
-	getSession, getSessionErr := serverService.GetSession(namespaceGame, sessionID)
+	input := &dsmcSession.GetSessionParams{
+		Namespace: namespaceGame,
+		SessionID: sessionID,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	getSession, getSessionErr := dsmcService.GetSession(input)
 	if getSessionErr != nil {
 		log.Print(getSessionErr)
 	}
@@ -705,11 +737,17 @@ func addPlayer(namespaceGame, userId, sessionId string) (*sessionbrowserclientmo
 		AsSpectator: &asSpectators,
 		UserID:      &userId,
 	}
-	sessionBrowserService := services.SessionBrowserService{
-		SessionBrowserServiceClient: factory.NewSessionClient(&configImpl),
-		TokenRepository:             &tokenRepositoryImpl,
+	input := &session.AddPlayerToSessionParams{
+		Body:      &body,
+		Namespace: namespaceGame,
+		SessionID: sessionId,
 	}
-	addPlayerResp, addPlayerErr := sessionBrowserService.AddPlayerToSession(namespaceGame, sessionId, &body)
+	sessionBrowserService := sessionbrowser.SessionService{
+		Client:          factory.NewSessionbrowserClient(&configImpl),
+		TokenRepository: &tokenRepositoryImpl,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	addPlayerResp, addPlayerErr := sessionBrowserService.AddPlayerToSession(input)
 	if addPlayerErr != nil {
 		log.Printf("Unable to add player to session id %v. namespace : %s. Error: %v", sessionId, namespaceGame, addPlayerErr)
 		return addPlayerResp, addPlayerErr
@@ -725,11 +763,16 @@ func addPlayer(namespaceGame, userId, sessionId string) (*sessionbrowserclientmo
 
 // GO-SDK session browser service
 func getSessionUpdate(namespaceGame, sessionId string) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
-	sessionBrowserService := services.SessionBrowserService{
-		SessionBrowserServiceClient: factory.NewSessionClient(&configImpl),
-		TokenRepository:             &tokenRepositoryImpl,
+	sessionBrowserService := sessionbrowser.SessionService{
+		Client:          factory.NewSessionbrowserClient(&configImpl),
+		TokenRepository: &tokenRepositoryImpl,
 	}
-	getSession, getSessionErr := sessionBrowserService.GetSession(namespaceGame, sessionId)
+	input := &session.GetSessionParams{
+		Namespace: namespaceGame,
+		SessionID: sessionId,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	getSession, getSessionErr := sessionBrowserService.GetSession(input)
 	if getSessionErr != nil {
 		log.Print(getSessionErr)
 		return getSession, getSessionErr
@@ -763,20 +806,24 @@ func sendNotificationFound(
 	IP string,
 	port int32,
 	allUsers []string) (bool, error) {
-	async := false
 	topic := constants.MatchmakingNotificationTopic
-	gameNotificationService := services.GameNotificationService{
-		LobbyClient:     factory.NewLobbyClient(&configImpl),
+	gameNotificationService := lobby.NotificationService{
+		Client:          factory.NewLobbyClient(&configImpl),
 		TokenRepository: &tokenRepositoryImpl,
 	}
 	messageIPPort := fmt.Sprintf("found %v %v", IP, port)
-	contentPort := lobbyclientmodels.ModelFreeFormNotificationRequest{
+	body := lobbyclientmodels.ModelFreeFormNotificationRequest{
 		Message: &messageIPPort,
 		Topic:   &topic,
 	}
 	for _, userIdToSend := range allUsers {
-		sendNotificationMatchFoundErr := gameNotificationService.FreeFormNotificationByUserID(
-			namespace, userIdToSend, &async, &contentPort)
+		input := &notification.FreeFormNotificationByUserIDParams{
+			Body:      &body,
+			Namespace: namespace,
+			UserID:    userIdToSend,
+		}
+		//lint:ignore SA1019 Ignore the deprecation warnings
+		sendNotificationMatchFoundErr := gameNotificationService.FreeFormNotificationByUserID(input)
 		if sendNotificationMatchFoundErr != nil {
 			log.Print(sendNotificationMatchFoundErr)
 			return false, sendNotificationMatchFoundErr

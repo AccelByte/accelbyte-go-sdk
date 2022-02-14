@@ -13,7 +13,5 @@ require (
 	github.com/sirupsen/logrus v1.8.1
 )
 
-retract (
-	// Published v1 too early
-	[v1.0.0, v1.0.1]
-)
+// Published v1 too early
+retract [v1.0.0, v1.0.1]

@@ -5,10 +5,10 @@
 package service
 
 import (
-	"aws-lambda-functions/pkg/config"
-	"aws-lambda-functions/pkg/title-matchmaking/dao"
-	daoRedis "aws-lambda-functions/pkg/title-matchmaking/dao/redis"
-	"aws-lambda-functions/pkg/title-matchmaking/dao/redis/constant"
+	"aws-lambda/pkg/config"
+	"aws-lambda/pkg/title-matchmaking/dao"
+	daoRedis "aws-lambda/pkg/title-matchmaking/dao/redis"
+	"aws-lambda/pkg/title-matchmaking/dao/redis/constant"
 	auth "github.com/AccelByte/go-restful-plugins/v4/pkg/auth/iam"
 	"github.com/AccelByte/iam-go-sdk"
 	"github.com/emicklei/go-restful/v3"

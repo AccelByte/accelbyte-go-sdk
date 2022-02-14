@@ -5,11 +5,11 @@
 package main
 
 import (
-	"aws-lambda-functions/pkg/config"
-	"aws-lambda-functions/pkg/title-matchmaking/dao"
-	daoRedis "aws-lambda-functions/pkg/title-matchmaking/dao/redis"
-	channelList2 "aws-lambda-functions/pkg/title-matchmaking/dao/redis/channelList"
-	"aws-lambda-functions/pkg/utils"
+	"aws-lambda/pkg/config"
+	"aws-lambda/pkg/title-matchmaking/dao"
+	daoRedis "aws-lambda/pkg/title-matchmaking/dao/redis"
+	channelList2 "aws-lambda/pkg/title-matchmaking/dao/redis/channelList"
+	"aws-lambda/pkg/utils"
 	"flag"
 	"fmt"
 	"log"
@@ -23,7 +23,7 @@ import (
 
 	"github.com/aws/aws-lambda-go/lambda"
 
-	"aws-lambda-functions/pkg/title-matchmaking/service"
+	"aws-lambda/pkg/title-matchmaking/service"
 )
 
 var (

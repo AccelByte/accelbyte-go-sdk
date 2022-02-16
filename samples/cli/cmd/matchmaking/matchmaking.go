@@ -6,6 +6,7 @@ package matchmaking
 
 import (
 	"github.com/AccelByte/sample-apps/cmd/matchmaking/matchmaking"
+	"github.com/AccelByte/sample-apps/cmd/matchmaking/operations"
 	"github.com/AccelByte/sample-apps/cmd/matchmaking/socialMatchmaking"
 	"github.com/spf13/cobra"
 )
@@ -17,6 +18,8 @@ var MatchmakingCmd = &cobra.Command{
 }
 
 func init() {
+	MatchmakingCmd.AddCommand(operations.GetHealthcheckInfoCmd)
+	MatchmakingCmd.AddCommand(operations.HandlerV3HealthzCmd)
 	MatchmakingCmd.AddCommand(matchmaking.GetAllChannelsHandlerCmd)
 	MatchmakingCmd.AddCommand(matchmaking.CreateChannelHandlerCmd)
 	MatchmakingCmd.AddCommand(matchmaking.DeleteChannelHandlerCmd)
@@ -38,7 +41,9 @@ func init() {
 	MatchmakingCmd.AddCommand(matchmaking.DeleteUserFromSessionInChannelCmd)
 	MatchmakingCmd.AddCommand(matchmaking.SearchSessionsCmd)
 	MatchmakingCmd.AddCommand(matchmaking.GetSessionHistoryDetailedCmd)
+	MatchmakingCmd.AddCommand(operations.PublicGetMessagesCmd)
 	MatchmakingCmd.AddCommand(matchmaking.PublicGetAllMatchmakingChannelCmd)
 	MatchmakingCmd.AddCommand(matchmaking.PublicGetSingleMatchmakingChannelCmd)
 	MatchmakingCmd.AddCommand(matchmaking.SearchSessionsV2Cmd)
+	MatchmakingCmd.AddCommand(operations.VersionCheckHandlerCmd)
 }

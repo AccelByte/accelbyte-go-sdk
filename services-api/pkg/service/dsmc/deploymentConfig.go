@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/deployment_config"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -375,112 +374,168 @@ func (d *DeploymentConfigService) UpdateOverrideRegionOverride(input *deployment
 	return ok.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) GetAllDeploymentShort(input *deployment_config.GetAllDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListDeploymentResponse, error) {
-	ok, err := d.Client.DeploymentConfig.GetAllDeploymentShort(input, authInfo)
+func (d *DeploymentConfigService) GetAllDeploymentShort(input *deployment_config.GetAllDeploymentParams) (*dsmcclientmodels.ModelsListDeploymentResponse, error) {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := d.Client.DeploymentConfig.GetAllDeploymentShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) GetDeploymentShort(input *deployment_config.GetDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	ok, err := d.Client.DeploymentConfig.GetDeploymentShort(input, authInfo)
+func (d *DeploymentConfigService) GetDeploymentShort(input *deployment_config.GetDeploymentParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := d.Client.DeploymentConfig.GetDeploymentShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) CreateDeploymentShort(input *deployment_config.CreateDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	created, err := d.Client.DeploymentConfig.CreateDeploymentShort(input, authInfo)
+func (d *DeploymentConfigService) CreateDeploymentShort(input *deployment_config.CreateDeploymentParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := d.Client.DeploymentConfig.CreateDeploymentShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) DeleteDeploymentShort(input *deployment_config.DeleteDeploymentParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := d.Client.DeploymentConfig.DeleteDeploymentShort(input, authInfo)
+func (d *DeploymentConfigService) DeleteDeploymentShort(input *deployment_config.DeleteDeploymentParams) error {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = d.Client.DeploymentConfig.DeleteDeploymentShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (d *DeploymentConfigService) UpdateDeploymentShort(input *deployment_config.UpdateDeploymentParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	ok, err := d.Client.DeploymentConfig.UpdateDeploymentShort(input, authInfo)
+func (d *DeploymentConfigService) UpdateDeploymentShort(input *deployment_config.UpdateDeploymentParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := d.Client.DeploymentConfig.UpdateDeploymentShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) CreateRootRegionOverrideShort(input *deployment_config.CreateRootRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	created, err := d.Client.DeploymentConfig.CreateRootRegionOverrideShort(input, authInfo)
+func (d *DeploymentConfigService) CreateRootRegionOverrideShort(input *deployment_config.CreateRootRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := d.Client.DeploymentConfig.CreateRootRegionOverrideShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) DeleteRootRegionOverrideShort(input *deployment_config.DeleteRootRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	ok, err := d.Client.DeploymentConfig.DeleteRootRegionOverrideShort(input, authInfo)
+func (d *DeploymentConfigService) DeleteRootRegionOverrideShort(input *deployment_config.DeleteRootRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := d.Client.DeploymentConfig.DeleteRootRegionOverrideShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) UpdateRootRegionOverrideShort(input *deployment_config.UpdateRootRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	ok, err := d.Client.DeploymentConfig.UpdateRootRegionOverrideShort(input, authInfo)
+func (d *DeploymentConfigService) UpdateRootRegionOverrideShort(input *deployment_config.UpdateRootRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := d.Client.DeploymentConfig.UpdateRootRegionOverrideShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) CreateDeploymentOverrideShort(input *deployment_config.CreateDeploymentOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	created, err := d.Client.DeploymentConfig.CreateDeploymentOverrideShort(input, authInfo)
+func (d *DeploymentConfigService) CreateDeploymentOverrideShort(input *deployment_config.CreateDeploymentOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := d.Client.DeploymentConfig.CreateDeploymentOverrideShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) DeleteDeploymentOverrideShort(input *deployment_config.DeleteDeploymentOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	ok, err := d.Client.DeploymentConfig.DeleteDeploymentOverrideShort(input, authInfo)
+func (d *DeploymentConfigService) DeleteDeploymentOverrideShort(input *deployment_config.DeleteDeploymentOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := d.Client.DeploymentConfig.DeleteDeploymentOverrideShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) UpdateDeploymentOverrideShort(input *deployment_config.UpdateDeploymentOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	ok, err := d.Client.DeploymentConfig.UpdateDeploymentOverrideShort(input, authInfo)
+func (d *DeploymentConfigService) UpdateDeploymentOverrideShort(input *deployment_config.UpdateDeploymentOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := d.Client.DeploymentConfig.UpdateDeploymentOverrideShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) CreateOverrideRegionOverrideShort(input *deployment_config.CreateOverrideRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	created, err := d.Client.DeploymentConfig.CreateOverrideRegionOverrideShort(input, authInfo)
+func (d *DeploymentConfigService) CreateOverrideRegionOverrideShort(input *deployment_config.CreateOverrideRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := d.Client.DeploymentConfig.CreateOverrideRegionOverrideShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) DeleteOverrideRegionOverrideShort(input *deployment_config.DeleteOverrideRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	ok, err := d.Client.DeploymentConfig.DeleteOverrideRegionOverrideShort(input, authInfo)
+func (d *DeploymentConfigService) DeleteOverrideRegionOverrideShort(input *deployment_config.DeleteOverrideRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := d.Client.DeploymentConfig.DeleteOverrideRegionOverrideShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) UpdateOverrideRegionOverrideShort(input *deployment_config.UpdateOverrideRegionOverrideParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	ok, err := d.Client.DeploymentConfig.UpdateOverrideRegionOverrideShort(input, authInfo)
+func (d *DeploymentConfigService) UpdateOverrideRegionOverrideShort(input *deployment_config.UpdateOverrideRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := d.Client.DeploymentConfig.UpdateOverrideRegionOverrideShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

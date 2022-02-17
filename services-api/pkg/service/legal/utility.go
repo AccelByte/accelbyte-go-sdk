@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/utility"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -32,8 +31,12 @@ func (u *UtilityService) CheckReadiness(input *utility.CheckReadinessParams) (*l
 	return ok.GetPayload(), nil
 }
 
-func (u *UtilityService) CheckReadinessShort(input *utility.CheckReadinessParams, authInfo runtime.ClientAuthInfoWriter) (*legalclientmodels.LegalReadinessStatusResponse, error) {
-	ok, err := u.Client.Utility.CheckReadinessShort(input, authInfo)
+func (u *UtilityService) CheckReadinessShort(input *utility.CheckReadinessParams) (*legalclientmodels.LegalReadinessStatusResponse, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.Utility.CheckReadinessShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

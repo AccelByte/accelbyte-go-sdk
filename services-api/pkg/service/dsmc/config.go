@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -307,96 +306,144 @@ func (c *ConfigService) ImportConfigV1(input *config.ImportConfigV1Params) (*dsm
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) ListConfigShort(input *config.ListConfigParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListConfigResponse, error) {
-	ok, err := c.Client.Config.ListConfigShort(input, authInfo)
+func (c *ConfigService) ListConfigShort(input *config.ListConfigParams) (*dsmcclientmodels.ModelsListConfigResponse, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := c.Client.Config.ListConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) SaveConfigShort(input *config.SaveConfigParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := c.Client.Config.SaveConfigShort(input, authInfo)
+func (c *ConfigService) SaveConfigShort(input *config.SaveConfigParams) error {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = c.Client.Config.SaveConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (c *ConfigService) GetConfigShort(input *config.GetConfigParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
-	ok, err := c.Client.Config.GetConfigShort(input, authInfo)
+func (c *ConfigService) GetConfigShort(input *config.GetConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := c.Client.Config.GetConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) CreateConfigShort(input *config.CreateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
-	created, err := c.Client.Config.CreateConfigShort(input, authInfo)
+func (c *ConfigService) CreateConfigShort(input *config.CreateConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := c.Client.Config.CreateConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (c *ConfigService) DeleteConfigShort(input *config.DeleteConfigParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := c.Client.Config.DeleteConfigShort(input, authInfo)
+func (c *ConfigService) DeleteConfigShort(input *config.DeleteConfigParams) error {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = c.Client.Config.DeleteConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (c *ConfigService) UpdateConfigShort(input *config.UpdateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
-	ok, err := c.Client.Config.UpdateConfigShort(input, authInfo)
+func (c *ConfigService) UpdateConfigShort(input *config.UpdateConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := c.Client.Config.UpdateConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) ClearCacheShort(input *config.ClearCacheParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := c.Client.Config.ClearCacheShort(input, authInfo)
+func (c *ConfigService) ClearCacheShort(input *config.ClearCacheParams) error {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = c.Client.Config.ClearCacheShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (c *ConfigService) AddPortShort(input *config.AddPortParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
-	created, err := c.Client.Config.AddPortShort(input, authInfo)
+func (c *ConfigService) AddPortShort(input *config.AddPortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := c.Client.Config.AddPortShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (c *ConfigService) DeletePortShort(input *config.DeletePortParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
-	ok, err := c.Client.Config.DeletePortShort(input, authInfo)
+func (c *ConfigService) DeletePortShort(input *config.DeletePortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := c.Client.Config.DeletePortShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) UpdatePortShort(input *config.UpdatePortParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
-	ok, err := c.Client.Config.UpdatePortShort(input, authInfo)
+func (c *ConfigService) UpdatePortShort(input *config.UpdatePortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := c.Client.Config.UpdatePortShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) ExportConfigV1Short(input *config.ExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDSMConfigExport, error) {
-	ok, err := c.Client.Config.ExportConfigV1Short(input, authInfo)
+func (c *ConfigService) ExportConfigV1Short(input *config.ExportConfigV1Params) (*dsmcclientmodels.ModelsDSMConfigExport, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := c.Client.Config.ExportConfigV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) ImportConfigV1Short(input *config.ImportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsImportResponse, error) {
-	ok, err := c.Client.Config.ImportConfigV1Short(input, authInfo)
+func (c *ConfigService) ImportConfigV1Short(input *config.ImportConfigV1Params) (*dsmcclientmodels.ModelsImportResponse, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := c.Client.Config.ImportConfigV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

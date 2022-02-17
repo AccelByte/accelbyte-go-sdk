@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_like"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -63,16 +62,24 @@ func (p *PublicLikeService) UpdateContentLikeStatus(input *public_like.UpdateCon
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicLikeService) GetLikedContentShort(input *public_like.GetLikedContentParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
-	ok, err := p.Client.PublicLike.GetLikedContentShort(input, authInfo)
+func (p *PublicLikeService) GetLikedContentShort(input *public_like.GetLikedContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PublicLike.GetLikedContentShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicLikeService) UpdateContentLikeStatusShort(input *public_like.UpdateContentLikeStatusParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsContentLikeResponse, error) {
-	ok, err := p.Client.PublicLike.UpdateContentLikeStatusShort(input, authInfo)
+func (p *PublicLikeService) UpdateContentLikeStatusShort(input *public_like.UpdateContentLikeStatusParams) (*ugcclientmodels.ModelsContentLikeResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PublicLike.UpdateContentLikeStatusShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

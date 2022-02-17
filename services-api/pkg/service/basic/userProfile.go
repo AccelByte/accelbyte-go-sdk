@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_profile"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -519,72 +518,108 @@ func (u *UserProfileService) PublicUpdateUserProfileStatus(input *user_profile.P
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) AdminGetUserProfilePublicInfoByIdsShort(input *user_profile.AdminGetUserProfilePublicInfoByIdsParams, authInfo runtime.ClientAuthInfoWriter) ([]*basicclientmodels.UserProfilePublicInfo, error) {
-	ok, err := u.Client.UserProfile.AdminGetUserProfilePublicInfoByIdsShort(input, authInfo)
+func (u *UserProfileService) AdminGetUserProfilePublicInfoByIdsShort(input *user_profile.AdminGetUserProfilePublicInfoByIdsParams) ([]*basicclientmodels.UserProfilePublicInfo, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UserProfile.AdminGetUserProfilePublicInfoByIdsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) GetUserProfileInfoShort(input *user_profile.GetUserProfileInfoParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
-	ok, err := u.Client.UserProfile.GetUserProfileInfoShort(input, authInfo)
+func (u *UserProfileService) GetUserProfileInfoShort(input *user_profile.GetUserProfileInfoParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UserProfile.GetUserProfileInfoShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) UpdateUserProfileShort(input *user_profile.UpdateUserProfileParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
-	ok, err := u.Client.UserProfile.UpdateUserProfileShort(input, authInfo)
+func (u *UserProfileService) UpdateUserProfileShort(input *user_profile.UpdateUserProfileParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UserProfile.UpdateUserProfileShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) DeleteUserProfileShort(input *user_profile.DeleteUserProfileParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
-	ok, err := u.Client.UserProfile.DeleteUserProfileShort(input, authInfo)
+func (u *UserProfileService) DeleteUserProfileShort(input *user_profile.DeleteUserProfileParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UserProfile.DeleteUserProfileShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) GetCustomAttributesInfoShort(input *user_profile.GetCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
-	ok, err := u.Client.UserProfile.GetCustomAttributesInfoShort(input, authInfo)
+func (u *UserProfileService) GetCustomAttributesInfoShort(input *user_profile.GetCustomAttributesInfoParams) (map[string]interface{}, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UserProfile.GetCustomAttributesInfoShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) UpdateCustomAttributesPartiallyShort(input *user_profile.UpdateCustomAttributesPartiallyParams, authInfo runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
-	ok, err := u.Client.UserProfile.UpdateCustomAttributesPartiallyShort(input, authInfo)
+func (u *UserProfileService) UpdateCustomAttributesPartiallyShort(input *user_profile.UpdateCustomAttributesPartiallyParams) (map[string]interface{}, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UserProfile.UpdateCustomAttributesPartiallyShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) GetPrivateCustomAttributesInfoShort(input *user_profile.GetPrivateCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
-	ok, err := u.Client.UserProfile.GetPrivateCustomAttributesInfoShort(input, authInfo)
+func (u *UserProfileService) GetPrivateCustomAttributesInfoShort(input *user_profile.GetPrivateCustomAttributesInfoParams) (map[string]interface{}, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UserProfile.GetPrivateCustomAttributesInfoShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) UpdatePrivateCustomAttributesPartiallyShort(input *user_profile.UpdatePrivateCustomAttributesPartiallyParams, authInfo runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
-	ok, err := u.Client.UserProfile.UpdatePrivateCustomAttributesPartiallyShort(input, authInfo)
+func (u *UserProfileService) UpdatePrivateCustomAttributesPartiallyShort(input *user_profile.UpdatePrivateCustomAttributesPartiallyParams) (map[string]interface{}, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UserProfile.UpdatePrivateCustomAttributesPartiallyShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) UpdateUserProfileStatusShort(input *user_profile.UpdateUserProfileStatusParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
-	ok, err := u.Client.UserProfile.UpdateUserProfileStatusShort(input, authInfo)
+func (u *UserProfileService) UpdateUserProfileStatusShort(input *user_profile.UpdateUserProfileStatusParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UserProfile.UpdateUserProfileStatusShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -599,80 +634,120 @@ func (u *UserProfileService) PublicGetUserProfilePublicInfoByIdsShort(input *use
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) GetMyProfileInfoShort(input *user_profile.GetMyProfileInfoParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
-	ok, err := u.Client.UserProfile.GetMyProfileInfoShort(input, authInfo)
+func (u *UserProfileService) GetMyProfileInfoShort(input *user_profile.GetMyProfileInfoParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UserProfile.GetMyProfileInfoShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) UpdateMyProfileShort(input *user_profile.UpdateMyProfileParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
-	ok, err := u.Client.UserProfile.UpdateMyProfileShort(input, authInfo)
+func (u *UserProfileService) UpdateMyProfileShort(input *user_profile.UpdateMyProfileParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UserProfile.UpdateMyProfileShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) CreateMyProfileShort(input *user_profile.CreateMyProfileParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
-	created, err := u.Client.UserProfile.CreateMyProfileShort(input, authInfo)
+func (u *UserProfileService) CreateMyProfileShort(input *user_profile.CreateMyProfileParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := u.Client.UserProfile.CreateMyProfileShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (u *UserProfileService) GetMyZipCodeShort(input *user_profile.GetMyZipCodeParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.UserZipCode, error) {
-	ok, err := u.Client.UserProfile.GetMyZipCodeShort(input, authInfo)
+func (u *UserProfileService) GetMyZipCodeShort(input *user_profile.GetMyZipCodeParams) (*basicclientmodels.UserZipCode, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UserProfile.GetMyZipCodeShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) UpdateMyZipCodeShort(input *user_profile.UpdateMyZipCodeParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.UserZipCode, error) {
-	ok, err := u.Client.UserProfile.UpdateMyZipCodeShort(input, authInfo)
+func (u *UserProfileService) UpdateMyZipCodeShort(input *user_profile.UpdateMyZipCodeParams) (*basicclientmodels.UserZipCode, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UserProfile.UpdateMyZipCodeShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) PublicGetUserProfileInfoShort(input *user_profile.PublicGetUserProfileInfoParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfileInfo, error) {
-	ok, err := u.Client.UserProfile.PublicGetUserProfileInfoShort(input, authInfo)
+func (u *UserProfileService) PublicGetUserProfileInfoShort(input *user_profile.PublicGetUserProfileInfoParams) (*basicclientmodels.UserProfileInfo, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UserProfile.PublicGetUserProfileInfoShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) PublicUpdateUserProfileShort(input *user_profile.PublicUpdateUserProfileParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfileInfo, error) {
-	ok, err := u.Client.UserProfile.PublicUpdateUserProfileShort(input, authInfo)
+func (u *UserProfileService) PublicUpdateUserProfileShort(input *user_profile.PublicUpdateUserProfileParams) (*basicclientmodels.UserProfileInfo, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UserProfile.PublicUpdateUserProfileShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) PublicCreateUserProfileShort(input *user_profile.PublicCreateUserProfileParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfileInfo, error) {
-	created, err := u.Client.UserProfile.PublicCreateUserProfileShort(input, authInfo)
+func (u *UserProfileService) PublicCreateUserProfileShort(input *user_profile.PublicCreateUserProfileParams) (*basicclientmodels.UserProfileInfo, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := u.Client.UserProfile.PublicCreateUserProfileShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (u *UserProfileService) PublicGetCustomAttributesInfoShort(input *user_profile.PublicGetCustomAttributesInfoParams, authInfo runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
-	ok, err := u.Client.UserProfile.PublicGetCustomAttributesInfoShort(input, authInfo)
+func (u *UserProfileService) PublicGetCustomAttributesInfoShort(input *user_profile.PublicGetCustomAttributesInfoParams) (map[string]interface{}, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UserProfile.PublicGetCustomAttributesInfoShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) PublicUpdateCustomAttributesPartiallyShort(input *user_profile.PublicUpdateCustomAttributesPartiallyParams, authInfo runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
-	ok, err := u.Client.UserProfile.PublicUpdateCustomAttributesPartiallyShort(input, authInfo)
+func (u *UserProfileService) PublicUpdateCustomAttributesPartiallyShort(input *user_profile.PublicUpdateCustomAttributesPartiallyParams) (map[string]interface{}, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UserProfile.PublicUpdateCustomAttributesPartiallyShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -687,8 +762,12 @@ func (u *UserProfileService) PublicGetUserProfilePublicInfoShort(input *user_pro
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) PublicUpdateUserProfileStatusShort(input *user_profile.PublicUpdateUserProfileStatusParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfileInfo, error) {
-	ok, err := u.Client.UserProfile.PublicUpdateUserProfileStatusShort(input, authInfo)
+func (u *UserProfileService) PublicUpdateUserProfileStatusShort(input *user_profile.PublicUpdateUserProfileStatusParams) (*basicclientmodels.UserProfileInfo, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UserProfile.PublicUpdateUserProfileStatusShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

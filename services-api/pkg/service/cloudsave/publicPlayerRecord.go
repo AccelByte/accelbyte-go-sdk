@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_player_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -205,72 +204,108 @@ func (p *PublicPlayerRecordService) PostPlayerPublicRecordHandlerV1(input *publi
 	return nil
 }
 
-func (p *PublicPlayerRecordService) BulkGetPlayerPublicRecordHandlerV1Short(input *public_player_record.BulkGetPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsBulkGetPlayerRecordResponse, error) {
-	ok, err := p.Client.PublicPlayerRecord.BulkGetPlayerPublicRecordHandlerV1Short(input, authInfo)
+func (p *PublicPlayerRecordService) BulkGetPlayerPublicRecordHandlerV1Short(input *public_player_record.BulkGetPlayerPublicRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsBulkGetPlayerRecordResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PublicPlayerRecord.BulkGetPlayerPublicRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicPlayerRecordService) PublicDeletePlayerPublicRecordHandlerV1Short(input *public_player_record.PublicDeletePlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := p.Client.PublicPlayerRecord.PublicDeletePlayerPublicRecordHandlerV1Short(input, authInfo)
+func (p *PublicPlayerRecordService) PublicDeletePlayerPublicRecordHandlerV1Short(input *public_player_record.PublicDeletePlayerPublicRecordHandlerV1Params) error {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = p.Client.PublicPlayerRecord.PublicDeletePlayerPublicRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (p *PublicPlayerRecordService) GetPlayerRecordHandlerV1Short(input *public_player_record.GetPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsPlayerRecord, error) {
-	ok, err := p.Client.PublicPlayerRecord.GetPlayerRecordHandlerV1Short(input, authInfo)
+func (p *PublicPlayerRecordService) GetPlayerRecordHandlerV1Short(input *public_player_record.GetPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecord, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PublicPlayerRecord.GetPlayerRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicPlayerRecordService) PutPlayerRecordHandlerV1Short(input *public_player_record.PutPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := p.Client.PublicPlayerRecord.PutPlayerRecordHandlerV1Short(input, authInfo)
+func (p *PublicPlayerRecordService) PutPlayerRecordHandlerV1Short(input *public_player_record.PutPlayerRecordHandlerV1Params) error {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = p.Client.PublicPlayerRecord.PutPlayerRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (p *PublicPlayerRecordService) PostPlayerRecordHandlerV1Short(input *public_player_record.PostPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := p.Client.PublicPlayerRecord.PostPlayerRecordHandlerV1Short(input, authInfo)
+func (p *PublicPlayerRecordService) PostPlayerRecordHandlerV1Short(input *public_player_record.PostPlayerRecordHandlerV1Params) error {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = p.Client.PublicPlayerRecord.PostPlayerRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (p *PublicPlayerRecordService) DeletePlayerRecordHandlerV1Short(input *public_player_record.DeletePlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := p.Client.PublicPlayerRecord.DeletePlayerRecordHandlerV1Short(input, authInfo)
+func (p *PublicPlayerRecordService) DeletePlayerRecordHandlerV1Short(input *public_player_record.DeletePlayerRecordHandlerV1Params) error {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = p.Client.PublicPlayerRecord.DeletePlayerRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (p *PublicPlayerRecordService) GetPlayerPublicRecordHandlerV1Short(input *public_player_record.GetPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsPlayerRecord, error) {
-	ok, err := p.Client.PublicPlayerRecord.GetPlayerPublicRecordHandlerV1Short(input, authInfo)
+func (p *PublicPlayerRecordService) GetPlayerPublicRecordHandlerV1Short(input *public_player_record.GetPlayerPublicRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecord, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PublicPlayerRecord.GetPlayerPublicRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicPlayerRecordService) PutPlayerPublicRecordHandlerV1Short(input *public_player_record.PutPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := p.Client.PublicPlayerRecord.PutPlayerPublicRecordHandlerV1Short(input, authInfo)
+func (p *PublicPlayerRecordService) PutPlayerPublicRecordHandlerV1Short(input *public_player_record.PutPlayerPublicRecordHandlerV1Params) error {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = p.Client.PublicPlayerRecord.PutPlayerPublicRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (p *PublicPlayerRecordService) PostPlayerPublicRecordHandlerV1Short(input *public_player_record.PostPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := p.Client.PublicPlayerRecord.PostPlayerPublicRecordHandlerV1Short(input, authInfo)
+func (p *PublicPlayerRecordService) PostPlayerPublicRecordHandlerV1Short(input *public_player_record.PostPlayerPublicRecordHandlerV1Params) error {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = p.Client.PublicPlayerRecord.PostPlayerPublicRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}

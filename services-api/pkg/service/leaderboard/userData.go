@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/user_data"
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -44,8 +43,12 @@ func (u *UserDataService) GetUserLeaderboardRankingsAdminV1(input *user_data.Get
 	return ok.GetPayload(), nil
 }
 
-func (u *UserDataService) GetUserLeaderboardRankingsAdminV1Short(input *user_data.GetUserLeaderboardRankingsAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetAllUserLeaderboardsResp, error) {
-	ok, err := u.Client.UserData.GetUserLeaderboardRankingsAdminV1Short(input, authInfo)
+func (u *UserDataService) GetUserLeaderboardRankingsAdminV1Short(input *user_data.GetUserLeaderboardRankingsAdminV1Params) (*leaderboardclientmodels.ModelsGetAllUserLeaderboardsResp, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UserData.GetUserLeaderboardRankingsAdminV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

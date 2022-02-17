@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient/tier"
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -170,56 +169,84 @@ func (t *TierService) GrantUserTier(input *tier.GrantUserTierParams) (*seasonpas
 	return ok.GetPayload(), nil
 }
 
-func (t *TierService) QueryTiersShort(input *tier.QueryTiersParams, authInfo runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.TierPagingSlicedResult, error) {
-	ok, err := t.Client.Tier.QueryTiersShort(input, authInfo)
+func (t *TierService) QueryTiersShort(input *tier.QueryTiersParams) (*seasonpassclientmodels.TierPagingSlicedResult, error) {
+	accessToken, err := t.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := t.Client.Tier.QueryTiersShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (t *TierService) CreateTierShort(input *tier.CreateTierParams, authInfo runtime.ClientAuthInfoWriter) ([]*seasonpassclientmodels.Tier, error) {
-	created, err := t.Client.Tier.CreateTierShort(input, authInfo)
+func (t *TierService) CreateTierShort(input *tier.CreateTierParams) ([]*seasonpassclientmodels.Tier, error) {
+	accessToken, err := t.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := t.Client.Tier.CreateTierShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (t *TierService) UpdateTierShort(input *tier.UpdateTierParams, authInfo runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.Tier, error) {
-	ok, err := t.Client.Tier.UpdateTierShort(input, authInfo)
+func (t *TierService) UpdateTierShort(input *tier.UpdateTierParams) (*seasonpassclientmodels.Tier, error) {
+	accessToken, err := t.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := t.Client.Tier.UpdateTierShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (t *TierService) DeleteTierShort(input *tier.DeleteTierParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := t.Client.Tier.DeleteTierShort(input, authInfo)
+func (t *TierService) DeleteTierShort(input *tier.DeleteTierParams) error {
+	accessToken, err := t.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = t.Client.Tier.DeleteTierShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (t *TierService) ReorderTierShort(input *tier.ReorderTierParams, authInfo runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.Tier, error) {
-	ok, err := t.Client.Tier.ReorderTierShort(input, authInfo)
+func (t *TierService) ReorderTierShort(input *tier.ReorderTierParams) (*seasonpassclientmodels.Tier, error) {
+	accessToken, err := t.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := t.Client.Tier.ReorderTierShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (t *TierService) GrantUserExpShort(input *tier.GrantUserExpParams, authInfo runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.UserSeasonSummary, error) {
-	ok, err := t.Client.Tier.GrantUserExpShort(input, authInfo)
+func (t *TierService) GrantUserExpShort(input *tier.GrantUserExpParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
+	accessToken, err := t.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := t.Client.Tier.GrantUserExpShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (t *TierService) GrantUserTierShort(input *tier.GrantUserTierParams, authInfo runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.UserSeasonSummary, error) {
-	ok, err := t.Client.Tier.GrantUserTierShort(input, authInfo)
+func (t *TierService) GrantUserTierShort(input *tier.GrantUserTierParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
+	accessToken, err := t.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := t.Client.Tier.GrantUserTierShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

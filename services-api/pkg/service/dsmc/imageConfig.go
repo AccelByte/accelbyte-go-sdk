@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/image_config"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -232,72 +231,108 @@ func (i *ImageConfigService) ImageDetailClient(input *image_config.ImageDetailCl
 	return ok.GetPayload(), nil
 }
 
-func (i *ImageConfigService) UpdateImageShort(input *image_config.UpdateImageParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := i.Client.ImageConfig.UpdateImageShort(input, authInfo)
+func (i *ImageConfigService) UpdateImageShort(input *image_config.UpdateImageParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = i.Client.ImageConfig.UpdateImageShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (i *ImageConfigService) CreateImageShort(input *image_config.CreateImageParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := i.Client.ImageConfig.CreateImageShort(input, authInfo)
+func (i *ImageConfigService) CreateImageShort(input *image_config.CreateImageParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = i.Client.ImageConfig.CreateImageShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (i *ImageConfigService) ImportImagesShort(input *image_config.ImportImagesParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsImportResponse, error) {
-	ok, err := i.Client.ImageConfig.ImportImagesShort(input, authInfo)
+func (i *ImageConfigService) ImportImagesShort(input *image_config.ImportImagesParams) (*dsmcclientmodels.ModelsImportResponse, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.ImageConfig.ImportImagesShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ImageConfigService) ListImagesShort(input *image_config.ListImagesParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListImageResponse, error) {
-	ok, err := i.Client.ImageConfig.ListImagesShort(input, authInfo)
+func (i *ImageConfigService) ListImagesShort(input *image_config.ListImagesParams) (*dsmcclientmodels.ModelsListImageResponse, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.ImageConfig.ListImagesShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ImageConfigService) DeleteImageShort(input *image_config.DeleteImageParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := i.Client.ImageConfig.DeleteImageShort(input, authInfo)
+func (i *ImageConfigService) DeleteImageShort(input *image_config.DeleteImageParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = i.Client.ImageConfig.DeleteImageShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (i *ImageConfigService) ExportImagesShort(input *image_config.ExportImagesParams, authInfo runtime.ClientAuthInfoWriter) ([]*dsmcclientmodels.ModelsImageRecord, error) {
-	ok, err := i.Client.ImageConfig.ExportImagesShort(input, authInfo)
+func (i *ImageConfigService) ExportImagesShort(input *image_config.ExportImagesParams) ([]*dsmcclientmodels.ModelsImageRecord, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.ImageConfig.ExportImagesShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ImageConfigService) GetImageLimitShort(input *image_config.GetImageLimitParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsGetImageLimitResponse, error) {
-	ok, err := i.Client.ImageConfig.GetImageLimitShort(input, authInfo)
+func (i *ImageConfigService) GetImageLimitShort(input *image_config.GetImageLimitParams) (*dsmcclientmodels.ModelsGetImageLimitResponse, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.ImageConfig.GetImageLimitShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ImageConfigService) GetImageDetailShort(input *image_config.GetImageDetailParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
-	ok, err := i.Client.ImageConfig.GetImageDetailShort(input, authInfo)
+func (i *ImageConfigService) GetImageDetailShort(input *image_config.GetImageDetailParams) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.ImageConfig.GetImageDetailShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ImageConfigService) ImageDetailClientShort(input *image_config.ImageDetailClientParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
-	ok, err := i.Client.ImageConfig.ImageDetailClientShort(input, authInfo)
+func (i *ImageConfigService) ImageDetailClientShort(input *image_config.ImageDetailClientParams) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.ImageConfig.ImageDetailClientShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

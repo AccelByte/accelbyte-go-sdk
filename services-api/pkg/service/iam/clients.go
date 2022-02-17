@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/clients"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -495,160 +494,240 @@ func (c *ClientsService) AdminDeleteClientPermissionV3(input *clients.AdminDelet
 	return nil
 }
 
-func (c *ClientsService) GetClientsShort(input *clients.GetClientsParams, authInfo runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ClientmodelClientResponse, error) {
-	ok, err := c.Client.Clients.GetClientsShort(input, authInfo)
+func (c *ClientsService) GetClientsShort(input *clients.GetClientsParams) ([]*iamclientmodels.ClientmodelClientResponse, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := c.Client.Clients.GetClientsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (c *ClientsService) CreateClientShort(input *clients.CreateClientParams, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientCreationResponse, error) {
-	created, err := c.Client.Clients.CreateClientShort(input, authInfo)
+func (c *ClientsService) CreateClientShort(input *clients.CreateClientParams) (*iamclientmodels.ClientmodelClientCreationResponse, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := c.Client.Clients.CreateClientShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (c *ClientsService) GetClientShort(input *clients.GetClientParams, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientResponse, error) {
-	ok, err := c.Client.Clients.GetClientShort(input, authInfo)
+func (c *ClientsService) GetClientShort(input *clients.GetClientParams) (*iamclientmodels.ClientmodelClientResponse, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := c.Client.Clients.GetClientShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (c *ClientsService) UpdateClientShort(input *clients.UpdateClientParams, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientResponse, error) {
-	ok, err := c.Client.Clients.UpdateClientShort(input, authInfo)
+func (c *ClientsService) UpdateClientShort(input *clients.UpdateClientParams) (*iamclientmodels.ClientmodelClientResponse, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := c.Client.Clients.UpdateClientShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (c *ClientsService) DeleteClientShort(input *clients.DeleteClientParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := c.Client.Clients.DeleteClientShort(input, authInfo)
+func (c *ClientsService) DeleteClientShort(input *clients.DeleteClientParams) error {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = c.Client.Clients.DeleteClientShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (c *ClientsService) UpdateClientPermissionShort(input *clients.UpdateClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := c.Client.Clients.UpdateClientPermissionShort(input, authInfo)
+func (c *ClientsService) UpdateClientPermissionShort(input *clients.UpdateClientPermissionParams) error {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = c.Client.Clients.UpdateClientPermissionShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (c *ClientsService) AddClientPermissionShort(input *clients.AddClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := c.Client.Clients.AddClientPermissionShort(input, authInfo)
+func (c *ClientsService) AddClientPermissionShort(input *clients.AddClientPermissionParams) error {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = c.Client.Clients.AddClientPermissionShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (c *ClientsService) DeleteClientPermissionShort(input *clients.DeleteClientPermissionParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := c.Client.Clients.DeleteClientPermissionShort(input, authInfo)
+func (c *ClientsService) DeleteClientPermissionShort(input *clients.DeleteClientPermissionParams) error {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = c.Client.Clients.DeleteClientPermissionShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (c *ClientsService) UpdateClientSecretShort(input *clients.UpdateClientSecretParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := c.Client.Clients.UpdateClientSecretShort(input, authInfo)
+func (c *ClientsService) UpdateClientSecretShort(input *clients.UpdateClientSecretParams) error {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = c.Client.Clients.UpdateClientSecretShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (c *ClientsService) GetClientsbyNamespaceShort(input *clients.GetClientsbyNamespaceParams, authInfo runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ClientmodelClientResponse, error) {
-	ok, err := c.Client.Clients.GetClientsbyNamespaceShort(input, authInfo)
+func (c *ClientsService) GetClientsbyNamespaceShort(input *clients.GetClientsbyNamespaceParams) ([]*iamclientmodels.ClientmodelClientResponse, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := c.Client.Clients.GetClientsbyNamespaceShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (c *ClientsService) CreateClientByNamespaceShort(input *clients.CreateClientByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientCreationResponse, error) {
-	created, err := c.Client.Clients.CreateClientByNamespaceShort(input, authInfo)
+func (c *ClientsService) CreateClientByNamespaceShort(input *clients.CreateClientByNamespaceParams) (*iamclientmodels.ClientmodelClientCreationResponse, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := c.Client.Clients.CreateClientByNamespaceShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (c *ClientsService) DeleteClientByNamespaceShort(input *clients.DeleteClientByNamespaceParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := c.Client.Clients.DeleteClientByNamespaceShort(input, authInfo)
+func (c *ClientsService) DeleteClientByNamespaceShort(input *clients.DeleteClientByNamespaceParams) error {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = c.Client.Clients.DeleteClientByNamespaceShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (c *ClientsService) AdminGetClientsByNamespaceV3Short(input *clients.AdminGetClientsByNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientsV3Response, error) {
-	ok, err := c.Client.Clients.AdminGetClientsByNamespaceV3Short(input, authInfo)
+func (c *ClientsService) AdminGetClientsByNamespaceV3Short(input *clients.AdminGetClientsByNamespaceV3Params) (*iamclientmodels.ClientmodelClientsV3Response, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := c.Client.Clients.AdminGetClientsByNamespaceV3Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (c *ClientsService) AdminCreateClientV3Short(input *clients.AdminCreateClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientV3Response, error) {
-	created, err := c.Client.Clients.AdminCreateClientV3Short(input, authInfo)
+func (c *ClientsService) AdminCreateClientV3Short(input *clients.AdminCreateClientV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := c.Client.Clients.AdminCreateClientV3Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (c *ClientsService) AdminGetClientsbyNamespacebyIDV3Short(input *clients.AdminGetClientsbyNamespacebyIDV3Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientV3Response, error) {
-	ok, err := c.Client.Clients.AdminGetClientsbyNamespacebyIDV3Short(input, authInfo)
+func (c *ClientsService) AdminGetClientsbyNamespacebyIDV3Short(input *clients.AdminGetClientsbyNamespacebyIDV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := c.Client.Clients.AdminGetClientsbyNamespacebyIDV3Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (c *ClientsService) AdminDeleteClientV3Short(input *clients.AdminDeleteClientV3Params, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := c.Client.Clients.AdminDeleteClientV3Short(input, authInfo)
+func (c *ClientsService) AdminDeleteClientV3Short(input *clients.AdminDeleteClientV3Params) error {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = c.Client.Clients.AdminDeleteClientV3Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (c *ClientsService) AdminUpdateClientV3Short(input *clients.AdminUpdateClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientV3Response, error) {
-	ok, err := c.Client.Clients.AdminUpdateClientV3Short(input, authInfo)
+func (c *ClientsService) AdminUpdateClientV3Short(input *clients.AdminUpdateClientV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := c.Client.Clients.AdminUpdateClientV3Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (c *ClientsService) AdminUpdateClientPermissionV3Short(input *clients.AdminUpdateClientPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := c.Client.Clients.AdminUpdateClientPermissionV3Short(input, authInfo)
+func (c *ClientsService) AdminUpdateClientPermissionV3Short(input *clients.AdminUpdateClientPermissionV3Params) error {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = c.Client.Clients.AdminUpdateClientPermissionV3Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (c *ClientsService) AdminAddClientPermissionsV3Short(input *clients.AdminAddClientPermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := c.Client.Clients.AdminAddClientPermissionsV3Short(input, authInfo)
+func (c *ClientsService) AdminAddClientPermissionsV3Short(input *clients.AdminAddClientPermissionsV3Params) error {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = c.Client.Clients.AdminAddClientPermissionsV3Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (c *ClientsService) AdminDeleteClientPermissionV3Short(input *clients.AdminDeleteClientPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := c.Client.Clients.AdminDeleteClientPermissionV3Short(input, authInfo)
+func (c *ClientsService) AdminDeleteClientPermissionV3Short(input *clients.AdminDeleteClientPermissionV3Params) error {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = c.Client.Clients.AdminDeleteClientPermissionV3Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}

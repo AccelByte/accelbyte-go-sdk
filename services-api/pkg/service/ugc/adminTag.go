@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_tag"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -116,32 +115,48 @@ func (a *AdminTagService) AdminDeleteTag(input *admin_tag.AdminDeleteTagParams) 
 	return nil
 }
 
-func (a *AdminTagService) AdminGetTagShort(input *admin_tag.AdminGetTagParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
-	ok, err := a.Client.AdminTag.AdminGetTagShort(input, authInfo)
+func (a *AdminTagService) AdminGetTagShort(input *admin_tag.AdminGetTagParams) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := a.Client.AdminTag.AdminGetTagShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminTagService) AdminCreateTagShort(input *admin_tag.AdminCreateTagParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateTagResponse, error) {
-	created, err := a.Client.AdminTag.AdminCreateTagShort(input, authInfo)
+func (a *AdminTagService) AdminCreateTagShort(input *admin_tag.AdminCreateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := a.Client.AdminTag.AdminCreateTagShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (a *AdminTagService) AdminUpdateTagShort(input *admin_tag.AdminUpdateTagParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateTagResponse, error) {
-	ok, err := a.Client.AdminTag.AdminUpdateTagShort(input, authInfo)
+func (a *AdminTagService) AdminUpdateTagShort(input *admin_tag.AdminUpdateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := a.Client.AdminTag.AdminUpdateTagShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminTagService) AdminDeleteTagShort(input *admin_tag.AdminDeleteTagParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.AdminTag.AdminDeleteTagShort(input, authInfo)
+func (a *AdminTagService) AdminDeleteTagShort(input *admin_tag.AdminDeleteTagParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.AdminTag.AdminDeleteTagShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}

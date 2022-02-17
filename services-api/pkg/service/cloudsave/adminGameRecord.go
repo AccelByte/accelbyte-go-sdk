@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_game_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -117,40 +116,60 @@ func (a *AdminGameRecordService) AdminDeleteGameRecordHandlerV1(input *admin_gam
 	return nil
 }
 
-func (a *AdminGameRecordService) ListGameRecordsHandlerV1Short(input *admin_game_record.ListGameRecordsHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsListGameRecordKeys, error) {
-	ok, err := a.Client.AdminGameRecord.ListGameRecordsHandlerV1Short(input, authInfo)
+func (a *AdminGameRecordService) ListGameRecordsHandlerV1Short(input *admin_game_record.ListGameRecordsHandlerV1Params) (*cloudsaveclientmodels.ModelsListGameRecordKeys, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := a.Client.AdminGameRecord.ListGameRecordsHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminGameRecordService) AdminGetGameRecordHandlerV1Short(input *admin_game_record.AdminGetGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsGameRecord, error) {
-	ok, err := a.Client.AdminGameRecord.AdminGetGameRecordHandlerV1Short(input, authInfo)
+func (a *AdminGameRecordService) AdminGetGameRecordHandlerV1Short(input *admin_game_record.AdminGetGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecord, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := a.Client.AdminGameRecord.AdminGetGameRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminGameRecordService) AdminPutGameRecordHandlerV1Short(input *admin_game_record.AdminPutGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.AdminGameRecord.AdminPutGameRecordHandlerV1Short(input, authInfo)
+func (a *AdminGameRecordService) AdminPutGameRecordHandlerV1Short(input *admin_game_record.AdminPutGameRecordHandlerV1Params) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.AdminGameRecord.AdminPutGameRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AdminGameRecordService) AdminPostGameRecordHandlerV1Short(input *admin_game_record.AdminPostGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.AdminGameRecord.AdminPostGameRecordHandlerV1Short(input, authInfo)
+func (a *AdminGameRecordService) AdminPostGameRecordHandlerV1Short(input *admin_game_record.AdminPostGameRecordHandlerV1Params) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.AdminGameRecord.AdminPostGameRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AdminGameRecordService) AdminDeleteGameRecordHandlerV1Short(input *admin_game_record.AdminDeleteGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.AdminGameRecord.AdminDeleteGameRecordHandlerV1Short(input, authInfo)
+func (a *AdminGameRecordService) AdminDeleteGameRecordHandlerV1Short(input *admin_game_record.AdminDeleteGameRecordHandlerV1Params) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.AdminGameRecord.AdminDeleteGameRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}

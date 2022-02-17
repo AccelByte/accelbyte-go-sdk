@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_account"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -45,16 +44,24 @@ func (p *PaymentAccountService) PublicDeletePaymentAccount(input *payment_accoun
 	return nil
 }
 
-func (p *PaymentAccountService) PublicGetPaymentAccountsShort(input *payment_account.PublicGetPaymentAccountsParams, authInfo runtime.ClientAuthInfoWriter) ([]*platformclientmodels.PaymentAccount, error) {
-	ok, err := p.Client.PaymentAccount.PublicGetPaymentAccountsShort(input, authInfo)
+func (p *PaymentAccountService) PublicGetPaymentAccountsShort(input *payment_account.PublicGetPaymentAccountsParams) ([]*platformclientmodels.PaymentAccount, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentAccount.PublicGetPaymentAccountsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentAccountService) PublicDeletePaymentAccountShort(input *payment_account.PublicDeletePaymentAccountParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := p.Client.PaymentAccount.PublicDeletePaymentAccountShort(input, authInfo)
+func (p *PaymentAccountService) PublicDeletePaymentAccountShort(input *payment_account.PublicDeletePaymentAccountParams) error {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = p.Client.PaymentAccount.PublicDeletePaymentAccountShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}

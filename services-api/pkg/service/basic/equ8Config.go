@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/e_q_u8_config"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -70,24 +69,36 @@ func (e *EQU8ConfigService) UpdateConfig(input *e_q_u8_config.UpdateConfigParams
 	return ok.GetPayload(), nil
 }
 
-func (e *EQU8ConfigService) GetConfigShort(input *e_q_u8_config.GetConfigParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.Equ8Config, error) {
-	ok, err := e.Client.EqU8Config.GetConfigShort(input, authInfo)
+func (e *EQU8ConfigService) GetConfigShort(input *e_q_u8_config.GetConfigParams) (*basicclientmodels.Equ8Config, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.EqU8Config.GetConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EQU8ConfigService) DeleteConfigShort(input *e_q_u8_config.DeleteConfigParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := e.Client.EqU8Config.DeleteConfigShort(input, authInfo)
+func (e *EQU8ConfigService) DeleteConfigShort(input *e_q_u8_config.DeleteConfigParams) error {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = e.Client.EqU8Config.DeleteConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (e *EQU8ConfigService) UpdateConfigShort(input *e_q_u8_config.UpdateConfigParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.Equ8Config, error) {
-	ok, err := e.Client.EqU8Config.UpdateConfigShort(input, authInfo)
+func (e *EQU8ConfigService) UpdateConfigShort(input *e_q_u8_config.UpdateConfigParams) (*basicclientmodels.Equ8Config, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.EqU8Config.UpdateConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

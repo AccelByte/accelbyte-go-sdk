@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/presence"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -41,8 +40,12 @@ func (p *PresenceService) UsersPresenceHandlerV1(input *presence.UsersPresenceHa
 	return ok.GetPayload(), nil
 }
 
-func (p *PresenceService) UsersPresenceHandlerV1Short(input *presence.UsersPresenceHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*lobbyclientmodels.HandlersGetUsersPresenceResponse, error) {
-	ok, err := p.Client.Presence.UsersPresenceHandlerV1Short(input, authInfo)
+func (p *PresenceService) UsersPresenceHandlerV1Short(input *presence.UsersPresenceHandlerV1Params) (*lobbyclientmodels.HandlersGetUsersPresenceResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.Presence.UsersPresenceHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

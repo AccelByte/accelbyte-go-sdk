@@ -9,7 +9,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/concurrent_record"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -68,16 +67,24 @@ func (c *ConcurrentRecordService) PutPlayerPublicRecordConcurrentHandlerV1(input
 	return nil
 }
 
-func (c *ConcurrentRecordService) PutGameRecordConcurrentHandlerV1Short(input *concurrent_record.PutGameRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := c.Client.ConcurrentRecord.PutGameRecordConcurrentHandlerV1Short(input, authInfo)
+func (c *ConcurrentRecordService) PutGameRecordConcurrentHandlerV1Short(input *concurrent_record.PutGameRecordConcurrentHandlerV1Params) error {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = c.Client.ConcurrentRecord.PutGameRecordConcurrentHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (c *ConcurrentRecordService) PutPlayerPublicRecordConcurrentHandlerV1Short(input *concurrent_record.PutPlayerPublicRecordConcurrentHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := c.Client.ConcurrentRecord.PutPlayerPublicRecordConcurrentHandlerV1Short(input, authInfo)
+func (c *ConcurrentRecordService) PutPlayerPublicRecordConcurrentHandlerV1Short(input *concurrent_record.PutPlayerPublicRecordConcurrentHandlerV1Params) error {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = c.Client.ConcurrentRecord.PutPlayerPublicRecordConcurrentHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}

@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/stat_configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -154,72 +153,108 @@ func (s *StatConfigurationService) CreateStat1(input *stat_configuration.CreateS
 	return created.GetPayload(), nil
 }
 
-func (s *StatConfigurationService) GetStatsShort(input *stat_configuration.GetStatsParams, authInfo runtime.ClientAuthInfoWriter) (*socialclientmodels.StatPagingSlicedResult, error) {
-	ok, err := s.Client.StatConfiguration.GetStatsShort(input, authInfo)
+func (s *StatConfigurationService) GetStatsShort(input *stat_configuration.GetStatsParams) (*socialclientmodels.StatPagingSlicedResult, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.StatConfiguration.GetStatsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (s *StatConfigurationService) CreateStatShort(input *stat_configuration.CreateStatParams, authInfo runtime.ClientAuthInfoWriter) (*socialclientmodels.StatInfo, error) {
-	created, err := s.Client.StatConfiguration.CreateStatShort(input, authInfo)
+func (s *StatConfigurationService) CreateStatShort(input *stat_configuration.CreateStatParams) (*socialclientmodels.StatInfo, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := s.Client.StatConfiguration.CreateStatShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (s *StatConfigurationService) ExportStatsShort(input *stat_configuration.ExportStatsParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := s.Client.StatConfiguration.ExportStatsShort(input, authInfo)
+func (s *StatConfigurationService) ExportStatsShort(input *stat_configuration.ExportStatsParams) error {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = s.Client.StatConfiguration.ExportStatsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (s *StatConfigurationService) ImportStatsShort(input *stat_configuration.ImportStatsParams, authInfo runtime.ClientAuthInfoWriter) (*socialclientmodels.StatImportInfo, error) {
-	ok, err := s.Client.StatConfiguration.ImportStatsShort(input, authInfo)
+func (s *StatConfigurationService) ImportStatsShort(input *stat_configuration.ImportStatsParams) (*socialclientmodels.StatImportInfo, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.StatConfiguration.ImportStatsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (s *StatConfigurationService) QueryStatsShort(input *stat_configuration.QueryStatsParams, authInfo runtime.ClientAuthInfoWriter) (*socialclientmodels.StatPagingSlicedResult, error) {
-	ok, err := s.Client.StatConfiguration.QueryStatsShort(input, authInfo)
+func (s *StatConfigurationService) QueryStatsShort(input *stat_configuration.QueryStatsParams) (*socialclientmodels.StatPagingSlicedResult, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.StatConfiguration.QueryStatsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (s *StatConfigurationService) GetStatShort(input *stat_configuration.GetStatParams, authInfo runtime.ClientAuthInfoWriter) (*socialclientmodels.StatInfo, error) {
-	ok, err := s.Client.StatConfiguration.GetStatShort(input, authInfo)
+func (s *StatConfigurationService) GetStatShort(input *stat_configuration.GetStatParams) (*socialclientmodels.StatInfo, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.StatConfiguration.GetStatShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (s *StatConfigurationService) DeleteStatShort(input *stat_configuration.DeleteStatParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := s.Client.StatConfiguration.DeleteStatShort(input, authInfo)
+func (s *StatConfigurationService) DeleteStatShort(input *stat_configuration.DeleteStatParams) error {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = s.Client.StatConfiguration.DeleteStatShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (s *StatConfigurationService) UpdateStatShort(input *stat_configuration.UpdateStatParams, authInfo runtime.ClientAuthInfoWriter) (*socialclientmodels.StatInfo, error) {
-	ok, err := s.Client.StatConfiguration.UpdateStatShort(input, authInfo)
+func (s *StatConfigurationService) UpdateStatShort(input *stat_configuration.UpdateStatParams) (*socialclientmodels.StatInfo, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.StatConfiguration.UpdateStatShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (s *StatConfigurationService) CreateStat1Short(input *stat_configuration.CreateStat1Params, authInfo runtime.ClientAuthInfoWriter) (*socialclientmodels.StatInfo, error) {
-	created, err := s.Client.StatConfiguration.CreateStat1Short(input, authInfo)
+func (s *StatConfigurationService) CreateStat1Short(input *stat_configuration.CreateStat1Params) (*socialclientmodels.StatInfo, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := s.Client.StatConfiguration.CreateStat1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

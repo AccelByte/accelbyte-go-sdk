@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/policy_versions"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -99,40 +98,60 @@ func (p *PolicyVersionsService) RetrievePolicyVersions(input *policy_versions.Re
 	return ok.GetPayload(), nil
 }
 
-func (p *PolicyVersionsService) UpdatePolicyVersionShort(input *policy_versions.UpdatePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*legalclientmodels.UpdatePolicyVersionResponse, error) {
-	ok, err := p.Client.PolicyVersions.UpdatePolicyVersionShort(input, authInfo)
+func (p *PolicyVersionsService) UpdatePolicyVersionShort(input *policy_versions.UpdatePolicyVersionParams) (*legalclientmodels.UpdatePolicyVersionResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PolicyVersions.UpdatePolicyVersionShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PolicyVersionsService) PublishPolicyVersionShort(input *policy_versions.PublishPolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := p.Client.PolicyVersions.PublishPolicyVersionShort(input, authInfo)
+func (p *PolicyVersionsService) PublishPolicyVersionShort(input *policy_versions.PublishPolicyVersionParams) error {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = p.Client.PolicyVersions.PublishPolicyVersionShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (p *PolicyVersionsService) RetrieveSinglePolicyVersionShort(input *policy_versions.RetrieveSinglePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrievePolicyVersionResponse, error) {
-	ok, err := p.Client.PolicyVersions.RetrieveSinglePolicyVersionShort(input, authInfo)
+func (p *PolicyVersionsService) RetrieveSinglePolicyVersionShort(input *policy_versions.RetrieveSinglePolicyVersionParams) ([]*legalclientmodels.RetrievePolicyVersionResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PolicyVersions.RetrieveSinglePolicyVersionShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PolicyVersionsService) CreatePolicyVersionShort(input *policy_versions.CreatePolicyVersionParams, authInfo runtime.ClientAuthInfoWriter) (*legalclientmodels.CreatePolicyVersionResponse, error) {
-	created, err := p.Client.PolicyVersions.CreatePolicyVersionShort(input, authInfo)
+func (p *PolicyVersionsService) CreatePolicyVersionShort(input *policy_versions.CreatePolicyVersionParams) (*legalclientmodels.CreatePolicyVersionResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := p.Client.PolicyVersions.CreatePolicyVersionShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (p *PolicyVersionsService) RetrievePolicyVersionsShort(input *policy_versions.RetrievePolicyVersionsParams, authInfo runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrievePolicyVersionResponse, error) {
-	ok, err := p.Client.PolicyVersions.RetrievePolicyVersionsShort(input, authInfo)
+func (p *PolicyVersionsService) RetrievePolicyVersionsShort(input *policy_versions.RetrievePolicyVersionsParams) ([]*legalclientmodels.RetrievePolicyVersionResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PolicyVersions.RetrievePolicyVersionsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

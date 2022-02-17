@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/admin"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -240,88 +239,132 @@ func (a *AdminService) DeleteSession(input *admin.DeleteSessionParams) error {
 	return nil
 }
 
-func (a *AdminService) ListServerShort(input *admin.ListServerParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListServerResponse, error) {
-	ok, err := a.Client.Admin.ListServerShort(input, authInfo)
+func (a *AdminService) ListServerShort(input *admin.ListServerParams) (*dsmcclientmodels.ModelsListServerResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := a.Client.Admin.ListServerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) CountServerShort(input *admin.CountServerParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsCountServerResponse, error) {
-	ok, err := a.Client.Admin.CountServerShort(input, authInfo)
+func (a *AdminService) CountServerShort(input *admin.CountServerParams) (*dsmcclientmodels.ModelsCountServerResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := a.Client.Admin.CountServerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) CountServerDetailedShort(input *admin.CountServerDetailedParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDetailedCountServerResponse, error) {
-	ok, err := a.Client.Admin.CountServerDetailedShort(input, authInfo)
+func (a *AdminService) CountServerDetailedShort(input *admin.CountServerDetailedParams) (*dsmcclientmodels.ModelsDetailedCountServerResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := a.Client.Admin.CountServerDetailedShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) ListLocalServerShort(input *admin.ListLocalServerParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListServerResponse, error) {
-	ok, err := a.Client.Admin.ListLocalServerShort(input, authInfo)
+func (a *AdminService) ListLocalServerShort(input *admin.ListLocalServerParams) (*dsmcclientmodels.ModelsListServerResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := a.Client.Admin.ListLocalServerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) DeleteLocalServerShort(input *admin.DeleteLocalServerParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Admin.DeleteLocalServerShort(input, authInfo)
+func (a *AdminService) DeleteLocalServerShort(input *admin.DeleteLocalServerParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Admin.DeleteLocalServerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AdminService) GetServerShort(input *admin.GetServerParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsServer, error) {
-	ok, err := a.Client.Admin.GetServerShort(input, authInfo)
+func (a *AdminService) GetServerShort(input *admin.GetServerParams) (*dsmcclientmodels.ModelsServer, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := a.Client.Admin.GetServerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Admin.DeleteServerShort(input, authInfo)
+func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Admin.DeleteServerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AdminService) GetServerLogsShort(input *admin.GetServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsServerLogs, error) {
-	ok, err := a.Client.Admin.GetServerLogsShort(input, authInfo)
+func (a *AdminService) GetServerLogsShort(input *admin.GetServerLogsParams) (*dsmcclientmodels.ModelsServerLogs, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := a.Client.Admin.GetServerLogsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) ListSessionShort(input *admin.ListSessionParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListSessionResponse, error) {
-	ok, err := a.Client.Admin.ListSessionShort(input, authInfo)
+func (a *AdminService) ListSessionShort(input *admin.ListSessionParams) (*dsmcclientmodels.ModelsListSessionResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := a.Client.Admin.ListSessionShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) CountSessionShort(input *admin.CountSessionParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsCountSessionResponse, error) {
-	ok, err := a.Client.Admin.CountSessionShort(input, authInfo)
+func (a *AdminService) CountSessionShort(input *admin.CountSessionParams) (*dsmcclientmodels.ModelsCountSessionResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := a.Client.Admin.CountSessionShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) DeleteSessionShort(input *admin.DeleteSessionParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Admin.DeleteSessionShort(input, authInfo)
+func (a *AdminService) DeleteSessionShort(input *admin.DeleteSessionParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Admin.DeleteSessionShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}

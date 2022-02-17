@@ -9,7 +9,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o_s_a_m_l_2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -31,8 +30,12 @@ func (s *SSOSAML20Service) PlatformAuthenticateSAMLV3Handler(input *s_s_o_s_a_m_
 	return nil
 }
 
-func (s *SSOSAML20Service) PlatformAuthenticateSAMLV3HandlerShort(input *s_s_o_s_a_m_l_2_0.PlatformAuthenticateSAMLV3HandlerParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := s.Client.Ssosaml20.PlatformAuthenticateSAMLV3HandlerShort(input, authInfo)
+func (s *SSOSAML20Service) PlatformAuthenticateSAMLV3HandlerShort(input *s_s_o_s_a_m_l_2_0.PlatformAuthenticateSAMLV3HandlerParams) error {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = s.Client.Ssosaml20.PlatformAuthenticateSAMLV3HandlerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}

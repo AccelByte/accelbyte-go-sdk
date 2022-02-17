@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/currency"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -127,48 +126,72 @@ func (c *CurrencyService) PublicListCurrencies(input *currency.PublicListCurrenc
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) ListCurrenciesShort(input *currency.ListCurrenciesParams, authInfo runtime.ClientAuthInfoWriter) ([]*platformclientmodels.CurrencyInfo, error) {
-	ok, err := c.Client.Currency.ListCurrenciesShort(input, authInfo)
+func (c *CurrencyService) ListCurrenciesShort(input *currency.ListCurrenciesParams) ([]*platformclientmodels.CurrencyInfo, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := c.Client.Currency.ListCurrenciesShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) CreateCurrencyShort(input *currency.CreateCurrencyParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.CurrencyInfo, error) {
-	ok, err := c.Client.Currency.CreateCurrencyShort(input, authInfo)
+func (c *CurrencyService) CreateCurrencyShort(input *currency.CreateCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := c.Client.Currency.CreateCurrencyShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) UpdateCurrencyShort(input *currency.UpdateCurrencyParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.CurrencyInfo, error) {
-	ok, err := c.Client.Currency.UpdateCurrencyShort(input, authInfo)
+func (c *CurrencyService) UpdateCurrencyShort(input *currency.UpdateCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := c.Client.Currency.UpdateCurrencyShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) DeleteCurrencyShort(input *currency.DeleteCurrencyParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.CurrencyInfo, error) {
-	ok, err := c.Client.Currency.DeleteCurrencyShort(input, authInfo)
+func (c *CurrencyService) DeleteCurrencyShort(input *currency.DeleteCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := c.Client.Currency.DeleteCurrencyShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) GetCurrencyConfigShort(input *currency.GetCurrencyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.CurrencyConfig, error) {
-	ok, err := c.Client.Currency.GetCurrencyConfigShort(input, authInfo)
+func (c *CurrencyService) GetCurrencyConfigShort(input *currency.GetCurrencyConfigParams) (*platformclientmodels.CurrencyConfig, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := c.Client.Currency.GetCurrencyConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) GetCurrencySummaryShort(input *currency.GetCurrencySummaryParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.CurrencySummary, error) {
-	ok, err := c.Client.Currency.GetCurrencySummaryShort(input, authInfo)
+func (c *CurrencyService) GetCurrencySummaryShort(input *currency.GetCurrencySummaryParams) (*platformclientmodels.CurrencySummary, error) {
+	accessToken, err := c.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := c.Client.Currency.GetCurrencySummaryShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

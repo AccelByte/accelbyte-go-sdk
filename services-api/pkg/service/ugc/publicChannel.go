@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_channel"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -110,32 +109,48 @@ func (p *PublicChannelService) DeleteChannel(input *public_channel.DeleteChannel
 	return nil
 }
 
-func (p *PublicChannelService) GetChannelsShort(input *public_channel.GetChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
-	ok, err := p.Client.PublicChannel.GetChannelsShort(input, authInfo)
+func (p *PublicChannelService) GetChannelsShort(input *public_channel.GetChannelsParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PublicChannel.GetChannelsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicChannelService) CreateChannelShort(input *public_channel.CreateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsChannelResponse, error) {
-	created, err := p.Client.PublicChannel.CreateChannelShort(input, authInfo)
+func (p *PublicChannelService) CreateChannelShort(input *public_channel.CreateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := p.Client.PublicChannel.CreateChannelShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (p *PublicChannelService) UpdateChannelShort(input *public_channel.UpdateChannelParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsChannelResponse, error) {
-	ok, err := p.Client.PublicChannel.UpdateChannelShort(input, authInfo)
+func (p *PublicChannelService) UpdateChannelShort(input *public_channel.UpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PublicChannel.UpdateChannelShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicChannelService) DeleteChannelShort(input *public_channel.DeleteChannelParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := p.Client.PublicChannel.DeleteChannelShort(input, authInfo)
+func (p *PublicChannelService) DeleteChannelShort(input *public_channel.DeleteChannelParams) error {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = p.Client.PublicChannel.DeleteChannelShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}

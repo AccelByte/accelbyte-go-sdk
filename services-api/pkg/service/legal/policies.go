@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/policies"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -92,24 +91,36 @@ func (p *PoliciesService) RetrieveLatestPoliciesByNamespaceAndCountryPublic(inpu
 	return ok.GetPayload(), nil
 }
 
-func (p *PoliciesService) RetrievePoliciesShort(input *policies.RetrievePoliciesParams, authInfo runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrievePolicyResponse, error) {
-	ok, err := p.Client.Policies.RetrievePoliciesShort(input, authInfo)
+func (p *PoliciesService) RetrievePoliciesShort(input *policies.RetrievePoliciesParams) ([]*legalclientmodels.RetrievePolicyResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.Policies.RetrievePoliciesShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PoliciesService) UpdatePolicyShort(input *policies.UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := p.Client.Policies.UpdatePolicyShort(input, authInfo)
+func (p *PoliciesService) UpdatePolicyShort(input *policies.UpdatePolicyParams) error {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = p.Client.Policies.UpdatePolicyShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (p *PoliciesService) SetDefaultPolicy1Short(input *policies.SetDefaultPolicy1Params, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := p.Client.Policies.SetDefaultPolicy1Short(input, authInfo)
+func (p *PoliciesService) SetDefaultPolicy1Short(input *policies.SetDefaultPolicy1Params) error {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = p.Client.Policies.SetDefaultPolicy1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -124,8 +135,12 @@ func (p *PoliciesService) RetrieveLatestPoliciesShort(input *policies.RetrieveLa
 	return ok.GetPayload(), nil
 }
 
-func (p *PoliciesService) RetrieveLatestPoliciesPublicShort(input *policies.RetrieveLatestPoliciesPublicParams, authInfo runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
-	ok, err := p.Client.Policies.RetrieveLatestPoliciesPublicShort(input, authInfo)
+func (p *PoliciesService) RetrieveLatestPoliciesPublicShort(input *policies.RetrieveLatestPoliciesPublicParams) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.Policies.RetrieveLatestPoliciesPublicShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/wallet"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -248,104 +247,156 @@ func (w *WalletService) PublicListUserWalletTransactions(input *wallet.PublicLis
 	return ok.GetPayload(), nil
 }
 
-func (w *WalletService) CheckWalletShort(input *wallet.CheckWalletParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := w.Client.Wallet.CheckWalletShort(input, authInfo)
+func (w *WalletService) CheckWalletShort(input *wallet.CheckWalletParams) error {
+	accessToken, err := w.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = w.Client.Wallet.CheckWalletShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (w *WalletService) CreditUserWalletShort(input *wallet.CreditUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletInfo, error) {
-	ok, err := w.Client.Wallet.CreditUserWalletShort(input, authInfo)
+func (w *WalletService) CreditUserWalletShort(input *wallet.CreditUserWalletParams) (*platformclientmodels.WalletInfo, error) {
+	accessToken, err := w.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := w.Client.Wallet.CreditUserWalletShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (w *WalletService) PayWithUserWalletShort(input *wallet.PayWithUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletInfo, error) {
-	ok, err := w.Client.Wallet.PayWithUserWalletShort(input, authInfo)
+func (w *WalletService) PayWithUserWalletShort(input *wallet.PayWithUserWalletParams) (*platformclientmodels.WalletInfo, error) {
+	accessToken, err := w.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := w.Client.Wallet.PayWithUserWalletShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (w *WalletService) GetUserWalletShort(input *wallet.GetUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletInfo, error) {
-	ok, err := w.Client.Wallet.GetUserWalletShort(input, authInfo)
+func (w *WalletService) GetUserWalletShort(input *wallet.GetUserWalletParams) (*platformclientmodels.WalletInfo, error) {
+	accessToken, err := w.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := w.Client.Wallet.GetUserWalletShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (w *WalletService) DebitUserWalletShort(input *wallet.DebitUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletInfo, error) {
-	ok, err := w.Client.Wallet.DebitUserWalletShort(input, authInfo)
+func (w *WalletService) DebitUserWalletShort(input *wallet.DebitUserWalletParams) (*platformclientmodels.WalletInfo, error) {
+	accessToken, err := w.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := w.Client.Wallet.DebitUserWalletShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (w *WalletService) DisableUserWalletShort(input *wallet.DisableUserWalletParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := w.Client.Wallet.DisableUserWalletShort(input, authInfo)
+func (w *WalletService) DisableUserWalletShort(input *wallet.DisableUserWalletParams) error {
+	accessToken, err := w.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = w.Client.Wallet.DisableUserWalletShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (w *WalletService) EnableUserWalletShort(input *wallet.EnableUserWalletParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := w.Client.Wallet.EnableUserWalletShort(input, authInfo)
+func (w *WalletService) EnableUserWalletShort(input *wallet.EnableUserWalletParams) error {
+	accessToken, err := w.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = w.Client.Wallet.EnableUserWalletShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (w *WalletService) ListUserWalletTransactionsShort(input *wallet.ListUserWalletTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletTransactionPagingSlicedResult, error) {
-	ok, err := w.Client.Wallet.ListUserWalletTransactionsShort(input, authInfo)
+func (w *WalletService) ListUserWalletTransactionsShort(input *wallet.ListUserWalletTransactionsParams) (*platformclientmodels.WalletTransactionPagingSlicedResult, error) {
+	accessToken, err := w.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := w.Client.Wallet.ListUserWalletTransactionsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (w *WalletService) QueryWalletsShort(input *wallet.QueryWalletsParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletPagingSlicedResult, error) {
-	ok, err := w.Client.Wallet.QueryWalletsShort(input, authInfo)
+func (w *WalletService) QueryWalletsShort(input *wallet.QueryWalletsParams) (*platformclientmodels.WalletPagingSlicedResult, error) {
+	accessToken, err := w.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := w.Client.Wallet.QueryWalletsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (w *WalletService) GetWalletShort(input *wallet.GetWalletParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletInfo, error) {
-	ok, err := w.Client.Wallet.GetWalletShort(input, authInfo)
+func (w *WalletService) GetWalletShort(input *wallet.GetWalletParams) (*platformclientmodels.WalletInfo, error) {
+	accessToken, err := w.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := w.Client.Wallet.GetWalletShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (w *WalletService) PublicGetMyWalletShort(input *wallet.PublicGetMyWalletParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletInfo, error) {
-	ok, err := w.Client.Wallet.PublicGetMyWalletShort(input, authInfo)
+func (w *WalletService) PublicGetMyWalletShort(input *wallet.PublicGetMyWalletParams) (*platformclientmodels.WalletInfo, error) {
+	accessToken, err := w.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := w.Client.Wallet.PublicGetMyWalletShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (w *WalletService) PublicGetWalletShort(input *wallet.PublicGetWalletParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletInfo, error) {
-	ok, err := w.Client.Wallet.PublicGetWalletShort(input, authInfo)
+func (w *WalletService) PublicGetWalletShort(input *wallet.PublicGetWalletParams) (*platformclientmodels.WalletInfo, error) {
+	accessToken, err := w.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := w.Client.Wallet.PublicGetWalletShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (w *WalletService) PublicListUserWalletTransactionsShort(input *wallet.PublicListUserWalletTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletTransactionPagingSlicedResult, error) {
-	ok, err := w.Client.Wallet.PublicListUserWalletTransactionsShort(input, authInfo)
+func (w *WalletService) PublicListUserWalletTransactionsShort(input *wallet.PublicListUserWalletTransactionsParams) (*platformclientmodels.WalletTransactionPagingSlicedResult, error) {
+	accessToken, err := w.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := w.Client.Wallet.PublicListUserWalletTransactionsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

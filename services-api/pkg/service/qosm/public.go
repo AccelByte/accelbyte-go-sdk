@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/qosm-sdk/pkg/qosmclient/public"
 	"github.com/AccelByte/accelbyte-go-sdk/qosm-sdk/pkg/qosmclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -35,8 +34,12 @@ func (p *PublicService) ListServer(input *public.ListServerParams) (*qosmclientm
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicService) ListServerShort(input *public.ListServerParams, authInfo runtime.ClientAuthInfoWriter) (*qosmclientmodels.ModelsListServerResponse, error) {
-	ok, err := p.Client.Public.ListServerShort(input, authInfo)
+func (p *PublicService) ListServerShort(input *public.ListServerParams) (*qosmclientmodels.ModelsListServerResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.Public.ListServerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

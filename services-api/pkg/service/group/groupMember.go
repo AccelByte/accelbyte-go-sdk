@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group_member"
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -370,96 +369,144 @@ func (g *GroupMemberService) KickGroupMemberPublicV1(input *group_member.KickGro
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) GetGroupMembersListAdminV1Short(input *group_member.GetGroupMembersListAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetGroupMemberListResponseV1, error) {
-	ok, err := g.Client.GroupMember.GetGroupMembersListAdminV1Short(input, authInfo)
+func (g *GroupMemberService) GetGroupMembersListAdminV1Short(input *group_member.GetGroupMembersListAdminV1Params) (*groupclientmodels.ModelsGetGroupMemberListResponseV1, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.GroupMember.GetGroupMembersListAdminV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) AcceptGroupInvitationPublicV1Short(input *group_member.AcceptGroupInvitationPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
-	ok, err := g.Client.GroupMember.AcceptGroupInvitationPublicV1Short(input, authInfo)
+func (g *GroupMemberService) AcceptGroupInvitationPublicV1Short(input *group_member.AcceptGroupInvitationPublicV1Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.GroupMember.AcceptGroupInvitationPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) RejectGroupInvitationPublicV1Short(input *group_member.RejectGroupInvitationPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
-	ok, err := g.Client.GroupMember.RejectGroupInvitationPublicV1Short(input, authInfo)
+func (g *GroupMemberService) RejectGroupInvitationPublicV1Short(input *group_member.RejectGroupInvitationPublicV1Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.GroupMember.RejectGroupInvitationPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) JoinGroupV1Short(input *group_member.JoinGroupV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsJoinGroupResponseV1, error) {
-	created, err := g.Client.GroupMember.JoinGroupV1Short(input, authInfo)
+func (g *GroupMemberService) JoinGroupV1Short(input *group_member.JoinGroupV1Params) (*groupclientmodels.ModelsJoinGroupResponseV1, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := g.Client.GroupMember.JoinGroupV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (g *GroupMemberService) CancelGroupJoinRequestV1Short(input *group_member.CancelGroupJoinRequestV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
-	ok, err := g.Client.GroupMember.CancelGroupJoinRequestV1Short(input, authInfo)
+func (g *GroupMemberService) CancelGroupJoinRequestV1Short(input *group_member.CancelGroupJoinRequestV1Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.GroupMember.CancelGroupJoinRequestV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) GetGroupMembersListPublicV1Short(input *group_member.GetGroupMembersListPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetGroupMemberListResponseV1, error) {
-	ok, err := g.Client.GroupMember.GetGroupMembersListPublicV1Short(input, authInfo)
+func (g *GroupMemberService) GetGroupMembersListPublicV1Short(input *group_member.GetGroupMembersListPublicV1Params) (*groupclientmodels.ModelsGetGroupMemberListResponseV1, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.GroupMember.GetGroupMembersListPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) LeaveGroupPublicV1Short(input *group_member.LeaveGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsLeaveGroupResponseV1, error) {
-	ok, err := g.Client.GroupMember.LeaveGroupPublicV1Short(input, authInfo)
+func (g *GroupMemberService) LeaveGroupPublicV1Short(input *group_member.LeaveGroupPublicV1Params) (*groupclientmodels.ModelsLeaveGroupResponseV1, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.GroupMember.LeaveGroupPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) GetUserGroupInformationPublicV1Short(input *group_member.GetUserGroupInformationPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetUserGroupInformationResponseV1, error) {
-	ok, err := g.Client.GroupMember.GetUserGroupInformationPublicV1Short(input, authInfo)
+func (g *GroupMemberService) GetUserGroupInformationPublicV1Short(input *group_member.GetUserGroupInformationPublicV1Params) (*groupclientmodels.ModelsGetUserGroupInformationResponseV1, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.GroupMember.GetUserGroupInformationPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) InviteGroupPublicV1Short(input *group_member.InviteGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsUserInvitationResponseV1, error) {
-	ok, err := g.Client.GroupMember.InviteGroupPublicV1Short(input, authInfo)
+func (g *GroupMemberService) InviteGroupPublicV1Short(input *group_member.InviteGroupPublicV1Params) (*groupclientmodels.ModelsUserInvitationResponseV1, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.GroupMember.InviteGroupPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) AcceptGroupJoinRequestPublicV1Short(input *group_member.AcceptGroupJoinRequestPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
-	ok, err := g.Client.GroupMember.AcceptGroupJoinRequestPublicV1Short(input, authInfo)
+func (g *GroupMemberService) AcceptGroupJoinRequestPublicV1Short(input *group_member.AcceptGroupJoinRequestPublicV1Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.GroupMember.AcceptGroupJoinRequestPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) RejectGroupJoinRequestPublicV1Short(input *group_member.RejectGroupJoinRequestPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
-	ok, err := g.Client.GroupMember.RejectGroupJoinRequestPublicV1Short(input, authInfo)
+func (g *GroupMemberService) RejectGroupJoinRequestPublicV1Short(input *group_member.RejectGroupJoinRequestPublicV1Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.GroupMember.RejectGroupJoinRequestPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) KickGroupMemberPublicV1Short(input *group_member.KickGroupMemberPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsKickGroupMemberResponseV1, error) {
-	ok, err := g.Client.GroupMember.KickGroupMemberPublicV1Short(input, authInfo)
+func (g *GroupMemberService) KickGroupMemberPublicV1Short(input *group_member.KickGroupMemberPublicV1Params) (*groupclientmodels.ModelsKickGroupMemberResponseV1, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.GroupMember.KickGroupMemberPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

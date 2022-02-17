@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/item"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -550,192 +549,288 @@ func (i *ItemService) PublicGetItem(input *item.PublicGetItemParams) (*platformc
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) SyncInGameItemShort(input *item.SyncInGameItemParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
-	ok, err := i.Client.Item.SyncInGameItemShort(input, authInfo)
+func (i *ItemService) SyncInGameItemShort(input *item.SyncInGameItemParams) (*platformclientmodels.FullItemInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Item.SyncInGameItemShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) CreateItemShort(input *item.CreateItemParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
-	created, err := i.Client.Item.CreateItemShort(input, authInfo)
+func (i *ItemService) CreateItemShort(input *item.CreateItemParams) (*platformclientmodels.FullItemInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := i.Client.Item.CreateItemShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (i *ItemService) GetItemByAppIDShort(input *item.GetItemByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
-	ok, err := i.Client.Item.GetItemByAppIDShort(input, authInfo)
+func (i *ItemService) GetItemByAppIDShort(input *item.GetItemByAppIDParams) (*platformclientmodels.FullItemInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Item.GetItemByAppIDShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) QueryItemsShort(input *item.QueryItemsParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemPagingSlicedResult, error) {
-	ok, err := i.Client.Item.QueryItemsShort(input, authInfo)
+func (i *ItemService) QueryItemsShort(input *item.QueryItemsParams) (*platformclientmodels.FullItemPagingSlicedResult, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Item.QueryItemsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) ListBasicItemsByFeaturesShort(input *item.ListBasicItemsByFeaturesParams, authInfo runtime.ClientAuthInfoWriter) ([]*platformclientmodels.BasicItem, error) {
-	ok, err := i.Client.Item.ListBasicItemsByFeaturesShort(input, authInfo)
+func (i *ItemService) ListBasicItemsByFeaturesShort(input *item.ListBasicItemsByFeaturesParams) ([]*platformclientmodels.BasicItem, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Item.ListBasicItemsByFeaturesShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) GetItemBySkuShort(input *item.GetItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
-	ok, err := i.Client.Item.GetItemBySkuShort(input, authInfo)
+func (i *ItemService) GetItemBySkuShort(input *item.GetItemBySkuParams) (*platformclientmodels.FullItemInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Item.GetItemBySkuShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) GetLocaleItemBySkuShort(input *item.GetLocaleItemBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PopulatedItemInfo, error) {
-	ok, err := i.Client.Item.GetLocaleItemBySkuShort(input, authInfo)
+func (i *ItemService) GetLocaleItemBySkuShort(input *item.GetLocaleItemBySkuParams) (*platformclientmodels.PopulatedItemInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Item.GetLocaleItemBySkuShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) GetItemIDBySkuShort(input *item.GetItemIDBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.ItemID, error) {
-	ok, err := i.Client.Item.GetItemIDBySkuShort(input, authInfo)
+func (i *ItemService) GetItemIDBySkuShort(input *item.GetItemIDBySkuParams) (*platformclientmodels.ItemID, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Item.GetItemIDBySkuShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) BulkGetLocaleItemsShort(input *item.BulkGetLocaleItemsParams, authInfo runtime.ClientAuthInfoWriter) ([]*platformclientmodels.ItemInfo, error) {
-	ok, err := i.Client.Item.BulkGetLocaleItemsShort(input, authInfo)
+func (i *ItemService) BulkGetLocaleItemsShort(input *item.BulkGetLocaleItemsParams) ([]*platformclientmodels.ItemInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Item.BulkGetLocaleItemsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) SearchItemsShort(input *item.SearchItemsParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemPagingSlicedResult, error) {
-	ok, err := i.Client.Item.SearchItemsShort(input, authInfo)
+func (i *ItemService) SearchItemsShort(input *item.SearchItemsParams) (*platformclientmodels.FullItemPagingSlicedResult, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Item.SearchItemsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) QueryUncategorizedItemsShort(input *item.QueryUncategorizedItemsParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemPagingSlicedResult, error) {
-	ok, err := i.Client.Item.QueryUncategorizedItemsShort(input, authInfo)
+func (i *ItemService) QueryUncategorizedItemsShort(input *item.QueryUncategorizedItemsParams) (*platformclientmodels.FullItemPagingSlicedResult, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Item.QueryUncategorizedItemsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) GetItemShort(input *item.GetItemParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
-	ok, err := i.Client.Item.GetItemShort(input, authInfo)
+func (i *ItemService) GetItemShort(input *item.GetItemParams) (*platformclientmodels.FullItemInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Item.GetItemShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) UpdateItemShort(input *item.UpdateItemParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
-	ok, err := i.Client.Item.UpdateItemShort(input, authInfo)
+func (i *ItemService) UpdateItemShort(input *item.UpdateItemParams) (*platformclientmodels.FullItemInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Item.UpdateItemShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) DeleteItemShort(input *item.DeleteItemParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := i.Client.Item.DeleteItemShort(input, authInfo)
+func (i *ItemService) DeleteItemShort(input *item.DeleteItemParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = i.Client.Item.DeleteItemShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (i *ItemService) AcquireItemShort(input *item.AcquireItemParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.ItemAcquireResult, error) {
-	ok, err := i.Client.Item.AcquireItemShort(input, authInfo)
+func (i *ItemService) AcquireItemShort(input *item.AcquireItemParams) (*platformclientmodels.ItemAcquireResult, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Item.AcquireItemShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) GetAppShort(input *item.GetAppParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.FullAppInfo, error) {
-	ok, err := i.Client.Item.GetAppShort(input, authInfo)
+func (i *ItemService) GetAppShort(input *item.GetAppParams) (*platformclientmodels.FullAppInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Item.GetAppShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) UpdateAppShort(input *item.UpdateAppParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.FullAppInfo, error) {
-	ok, err := i.Client.Item.UpdateAppShort(input, authInfo)
+func (i *ItemService) UpdateAppShort(input *item.UpdateAppParams) (*platformclientmodels.FullAppInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Item.UpdateAppShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) DisableItemShort(input *item.DisableItemParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
-	ok, err := i.Client.Item.DisableItemShort(input, authInfo)
+func (i *ItemService) DisableItemShort(input *item.DisableItemParams) (*platformclientmodels.FullItemInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Item.DisableItemShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) GetItemDynamicDataShort(input *item.GetItemDynamicDataParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.ItemDynamicDataInfo, error) {
-	ok, err := i.Client.Item.GetItemDynamicDataShort(input, authInfo)
+func (i *ItemService) GetItemDynamicDataShort(input *item.GetItemDynamicDataParams) (*platformclientmodels.ItemDynamicDataInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Item.GetItemDynamicDataShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) EnableItemShort(input *item.EnableItemParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
-	ok, err := i.Client.Item.EnableItemShort(input, authInfo)
+func (i *ItemService) EnableItemShort(input *item.EnableItemParams) (*platformclientmodels.FullItemInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Item.EnableItemShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) FeatureItemShort(input *item.FeatureItemParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
-	ok, err := i.Client.Item.FeatureItemShort(input, authInfo)
+func (i *ItemService) FeatureItemShort(input *item.FeatureItemParams) (*platformclientmodels.FullItemInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Item.FeatureItemShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) DefeatureItemShort(input *item.DefeatureItemParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
-	ok, err := i.Client.Item.DefeatureItemShort(input, authInfo)
+func (i *ItemService) DefeatureItemShort(input *item.DefeatureItemParams) (*platformclientmodels.FullItemInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Item.DefeatureItemShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) GetLocaleItemShort(input *item.GetLocaleItemParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PopulatedItemInfo, error) {
-	ok, err := i.Client.Item.GetLocaleItemShort(input, authInfo)
+func (i *ItemService) GetLocaleItemShort(input *item.GetLocaleItemParams) (*platformclientmodels.PopulatedItemInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Item.GetLocaleItemShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) ReturnItemShort(input *item.ReturnItemParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := i.Client.Item.ReturnItemShort(input, authInfo)
+func (i *ItemService) ReturnItemShort(input *item.ReturnItemParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = i.Client.Item.ReturnItemShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}

@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event_registry"
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -178,48 +177,72 @@ func (e *EventRegistryService) GetRegisteredEventsByEventTypeHandler(input *even
 	return ok.GetPayload(), nil
 }
 
-func (e *EventRegistryService) GetRegisteredEventsHandlerShort(input *event_registry.GetRegisteredEventsHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventRegistry, error) {
-	ok, err := e.Client.EventRegistry.GetRegisteredEventsHandlerShort(input, authInfo)
+func (e *EventRegistryService) GetRegisteredEventsHandlerShort(input *event_registry.GetRegisteredEventsHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.EventRegistry.GetRegisteredEventsHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EventRegistryService) RegisterEventHandlerShort(input *event_registry.RegisterEventHandlerParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := e.Client.EventRegistry.RegisterEventHandlerShort(input, authInfo)
+func (e *EventRegistryService) RegisterEventHandlerShort(input *event_registry.RegisterEventHandlerParams) error {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = e.Client.EventRegistry.RegisterEventHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (e *EventRegistryService) GetRegisteredEventIDHandlerShort(input *event_registry.GetRegisteredEventIDHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventRegistry, error) {
-	ok, err := e.Client.EventRegistry.GetRegisteredEventIDHandlerShort(input, authInfo)
+func (e *EventRegistryService) GetRegisteredEventIDHandlerShort(input *event_registry.GetRegisteredEventIDHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.EventRegistry.GetRegisteredEventIDHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EventRegistryService) UpdateEventRegistryHandlerShort(input *event_registry.UpdateEventRegistryHandlerParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := e.Client.EventRegistry.UpdateEventRegistryHandlerShort(input, authInfo)
+func (e *EventRegistryService) UpdateEventRegistryHandlerShort(input *event_registry.UpdateEventRegistryHandlerParams) error {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = e.Client.EventRegistry.UpdateEventRegistryHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (e *EventRegistryService) UnregisterEventIDHandlerShort(input *event_registry.UnregisterEventIDHandlerParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := e.Client.EventRegistry.UnregisterEventIDHandlerShort(input, authInfo)
+func (e *EventRegistryService) UnregisterEventIDHandlerShort(input *event_registry.UnregisterEventIDHandlerParams) error {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = e.Client.EventRegistry.UnregisterEventIDHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (e *EventRegistryService) GetRegisteredEventsByEventTypeHandlerShort(input *event_registry.GetRegisteredEventsByEventTypeHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventRegistry, error) {
-	ok, err := e.Client.EventRegistry.GetRegisteredEventsByEventTypeHandlerShort(input, authInfo)
+func (e *EventRegistryService) GetRegisteredEventsByEventTypeHandlerShort(input *event_registry.GetRegisteredEventsByEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.EventRegistry.GetRegisteredEventsByEventTypeHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

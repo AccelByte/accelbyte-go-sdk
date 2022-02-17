@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_dedicated"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -85,24 +84,36 @@ func (p *PaymentDedicatedService) SyncPaymentOrders(input *payment_dedicated.Syn
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentDedicatedService) CreatePaymentOrderByDedicatedShort(input *payment_dedicated.CreatePaymentOrderByDedicatedParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentOrderCreateResult, error) {
-	created, err := p.Client.PaymentDedicated.CreatePaymentOrderByDedicatedShort(input, authInfo)
+func (p *PaymentDedicatedService) CreatePaymentOrderByDedicatedShort(input *payment_dedicated.CreatePaymentOrderByDedicatedParams) (*platformclientmodels.PaymentOrderCreateResult, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := p.Client.PaymentDedicated.CreatePaymentOrderByDedicatedShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (p *PaymentDedicatedService) RefundPaymentOrderByDedicatedShort(input *payment_dedicated.RefundPaymentOrderByDedicatedParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentOrderRefundResult, error) {
-	ok, err := p.Client.PaymentDedicated.RefundPaymentOrderByDedicatedShort(input, authInfo)
+func (p *PaymentDedicatedService) RefundPaymentOrderByDedicatedShort(input *payment_dedicated.RefundPaymentOrderByDedicatedParams) (*platformclientmodels.PaymentOrderRefundResult, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentDedicated.RefundPaymentOrderByDedicatedShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentDedicatedService) SyncPaymentOrdersShort(input *payment_dedicated.SyncPaymentOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentOrderSyncResult, error) {
-	ok, err := p.Client.PaymentDedicated.SyncPaymentOrdersShort(input, authInfo)
+func (p *PaymentDedicatedService) SyncPaymentOrdersShort(input *payment_dedicated.SyncPaymentOrdersParams) (*platformclientmodels.PaymentOrderSyncResult, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentDedicated.SyncPaymentOrdersShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

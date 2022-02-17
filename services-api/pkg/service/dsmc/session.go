@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/session"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -103,24 +102,36 @@ func (s *SessionService) GetSession(input *session.GetSessionParams) (*dsmcclien
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsSessionResponse, error) {
-	ok, err := s.Client.Session.CreateSessionShort(input, authInfo)
+func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams) (*dsmcclientmodels.ModelsSessionResponse, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.Session.CreateSessionShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) ClaimServerShort(input *session.ClaimServerParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := s.Client.Session.ClaimServerShort(input, authInfo)
+func (s *SessionService) ClaimServerShort(input *session.ClaimServerParams) error {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = s.Client.Session.ClaimServerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (s *SessionService) GetSessionShort(input *session.GetSessionParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsSessionResponse, error) {
-	ok, err := s.Client.Session.GetSessionShort(input, authInfo)
+func (s *SessionService) GetSessionShort(input *session.GetSessionParams) (*dsmcclientmodels.ModelsSessionResponse, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.Session.GetSessionShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

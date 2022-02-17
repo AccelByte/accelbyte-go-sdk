@@ -9,7 +9,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -53,16 +52,24 @@ func (s *SSOService) LogoutSSOClient(input *s_s_o.LogoutSSOClientParams) error {
 	return nil
 }
 
-func (s *SSOService) LoginSSOClientShort(input *s_s_o.LoginSSOClientParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := s.Client.Sso.LoginSSOClientShort(input, authInfo)
+func (s *SSOService) LoginSSOClientShort(input *s_s_o.LoginSSOClientParams) error {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = s.Client.Sso.LoginSSOClientShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (s *SSOService) LogoutSSOClientShort(input *s_s_o.LogoutSSOClientParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := s.Client.Sso.LogoutSSOClientShort(input, authInfo)
+func (s *SSOService) LogoutSSOClientShort(input *s_s_o.LogoutSSOClientParams) error {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = s.Client.Sso.LogoutSSOClientShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}

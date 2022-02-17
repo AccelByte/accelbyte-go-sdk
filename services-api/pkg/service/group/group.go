@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group"
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -377,104 +376,156 @@ func (g *GroupService) DeleteGroupPredefinedRulePublicV1(input *group.DeleteGrou
 	return nil
 }
 
-func (g *GroupService) GetGroupListAdminV1Short(input *group.GetGroupListAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetGroupsListResponseV1, error) {
-	ok, err := g.Client.Group.GetGroupListAdminV1Short(input, authInfo)
+func (g *GroupService) GetGroupListAdminV1Short(input *group.GetGroupListAdminV1Params) (*groupclientmodels.ModelsGetGroupsListResponseV1, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.Group.GetGroupListAdminV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) GetSingleGroupAdminV1Short(input *group.GetSingleGroupAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
-	ok, err := g.Client.Group.GetSingleGroupAdminV1Short(input, authInfo)
+func (g *GroupService) GetSingleGroupAdminV1Short(input *group.GetSingleGroupAdminV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.Group.GetSingleGroupAdminV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) DeleteGroupAdminV1Short(input *group.DeleteGroupAdminV1Params, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := g.Client.Group.DeleteGroupAdminV1Short(input, authInfo)
+func (g *GroupService) DeleteGroupAdminV1Short(input *group.DeleteGroupAdminV1Params) error {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = g.Client.Group.DeleteGroupAdminV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (g *GroupService) GetGroupListPublicV1Short(input *group.GetGroupListPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetGroupsListResponseV1, error) {
-	ok, err := g.Client.Group.GetGroupListPublicV1Short(input, authInfo)
+func (g *GroupService) GetGroupListPublicV1Short(input *group.GetGroupListPublicV1Params) (*groupclientmodels.ModelsGetGroupsListResponseV1, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.Group.GetGroupListPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) CreateNewGroupPublicV1Short(input *group.CreateNewGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
-	created, err := g.Client.Group.CreateNewGroupPublicV1Short(input, authInfo)
+func (g *GroupService) CreateNewGroupPublicV1Short(input *group.CreateNewGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := g.Client.Group.CreateNewGroupPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (g *GroupService) GetSingleGroupPublicV1Short(input *group.GetSingleGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
-	ok, err := g.Client.Group.GetSingleGroupPublicV1Short(input, authInfo)
+func (g *GroupService) GetSingleGroupPublicV1Short(input *group.GetSingleGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.Group.GetSingleGroupPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) UpdateSingleGroupV1Short(input *group.UpdateSingleGroupV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
-	ok, err := g.Client.Group.UpdateSingleGroupV1Short(input, authInfo)
+func (g *GroupService) UpdateSingleGroupV1Short(input *group.UpdateSingleGroupV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.Group.UpdateSingleGroupV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) DeleteGroupPublicV1Short(input *group.DeleteGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := g.Client.Group.DeleteGroupPublicV1Short(input, authInfo)
+func (g *GroupService) DeleteGroupPublicV1Short(input *group.DeleteGroupPublicV1Params) error {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = g.Client.Group.DeleteGroupPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (g *GroupService) UpdatePatchSingleGroupPublicV1Short(input *group.UpdatePatchSingleGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
-	ok, err := g.Client.Group.UpdatePatchSingleGroupPublicV1Short(input, authInfo)
+func (g *GroupService) UpdatePatchSingleGroupPublicV1Short(input *group.UpdatePatchSingleGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.Group.UpdatePatchSingleGroupPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) UpdateGroupCustomAttributesPublicV1Short(input *group.UpdateGroupCustomAttributesPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
-	ok, err := g.Client.Group.UpdateGroupCustomAttributesPublicV1Short(input, authInfo)
+func (g *GroupService) UpdateGroupCustomAttributesPublicV1Short(input *group.UpdateGroupCustomAttributesPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.Group.UpdateGroupCustomAttributesPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) UpdateGroupCustomRulePublicV1Short(input *group.UpdateGroupCustomRulePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
-	ok, err := g.Client.Group.UpdateGroupCustomRulePublicV1Short(input, authInfo)
+func (g *GroupService) UpdateGroupCustomRulePublicV1Short(input *group.UpdateGroupCustomRulePublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.Group.UpdateGroupCustomRulePublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) UpdateGroupPredefinedRulePublicV1Short(input *group.UpdateGroupPredefinedRulePublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
-	ok, err := g.Client.Group.UpdateGroupPredefinedRulePublicV1Short(input, authInfo)
+func (g *GroupService) UpdateGroupPredefinedRulePublicV1Short(input *group.UpdateGroupPredefinedRulePublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.Group.UpdateGroupPredefinedRulePublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) DeleteGroupPredefinedRulePublicV1Short(input *group.DeleteGroupPredefinedRulePublicV1Params, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := g.Client.Group.DeleteGroupPredefinedRulePublicV1Short(input, authInfo)
+func (g *GroupService) DeleteGroupPredefinedRulePublicV1Short(input *group.DeleteGroupPredefinedRulePublicV1Params) error {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = g.Client.Group.DeleteGroupPredefinedRulePublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}

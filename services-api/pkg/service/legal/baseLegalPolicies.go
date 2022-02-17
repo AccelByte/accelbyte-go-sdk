@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/base_legal_policies"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -112,48 +111,72 @@ func (b *BaseLegalPoliciesService) RetrieveAllPolicyTypes(input *base_legal_poli
 	return ok.GetPayload(), nil
 }
 
-func (b *BaseLegalPoliciesService) RetrieveAllLegalPoliciesShort(input *base_legal_policies.RetrieveAllLegalPoliciesParams, authInfo runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrieveBasePolicyResponse, error) {
-	ok, err := b.Client.BaseLegalPolicies.RetrieveAllLegalPoliciesShort(input, authInfo)
+func (b *BaseLegalPoliciesService) RetrieveAllLegalPoliciesShort(input *base_legal_policies.RetrieveAllLegalPoliciesParams) ([]*legalclientmodels.RetrieveBasePolicyResponse, error) {
+	accessToken, err := b.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := b.Client.BaseLegalPolicies.RetrieveAllLegalPoliciesShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (b *BaseLegalPoliciesService) CreatePolicyShort(input *base_legal_policies.CreatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*legalclientmodels.CreateBasePolicyResponse, error) {
-	created, err := b.Client.BaseLegalPolicies.CreatePolicyShort(input, authInfo)
+func (b *BaseLegalPoliciesService) CreatePolicyShort(input *base_legal_policies.CreatePolicyParams) (*legalclientmodels.CreateBasePolicyResponse, error) {
+	accessToken, err := b.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := b.Client.BaseLegalPolicies.CreatePolicyShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (b *BaseLegalPoliciesService) RetrieveSinglePolicyShort(input *base_legal_policies.RetrieveSinglePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*legalclientmodels.RetrieveBasePolicyResponse, error) {
-	ok, err := b.Client.BaseLegalPolicies.RetrieveSinglePolicyShort(input, authInfo)
+func (b *BaseLegalPoliciesService) RetrieveSinglePolicyShort(input *base_legal_policies.RetrieveSinglePolicyParams) (*legalclientmodels.RetrieveBasePolicyResponse, error) {
+	accessToken, err := b.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := b.Client.BaseLegalPolicies.RetrieveSinglePolicyShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (b *BaseLegalPoliciesService) PartialUpdatePolicyShort(input *base_legal_policies.PartialUpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*legalclientmodels.UpdateBasePolicyResponse, error) {
-	ok, err := b.Client.BaseLegalPolicies.PartialUpdatePolicyShort(input, authInfo)
+func (b *BaseLegalPoliciesService) PartialUpdatePolicyShort(input *base_legal_policies.PartialUpdatePolicyParams) (*legalclientmodels.UpdateBasePolicyResponse, error) {
+	accessToken, err := b.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := b.Client.BaseLegalPolicies.PartialUpdatePolicyShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (b *BaseLegalPoliciesService) RetrievePolicyCountryShort(input *base_legal_policies.RetrievePolicyCountryParams, authInfo runtime.ClientAuthInfoWriter) (*legalclientmodels.RetrievePolicyResponse, error) {
-	ok, err := b.Client.BaseLegalPolicies.RetrievePolicyCountryShort(input, authInfo)
+func (b *BaseLegalPoliciesService) RetrievePolicyCountryShort(input *base_legal_policies.RetrievePolicyCountryParams) (*legalclientmodels.RetrievePolicyResponse, error) {
+	accessToken, err := b.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := b.Client.BaseLegalPolicies.RetrievePolicyCountryShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (b *BaseLegalPoliciesService) RetrieveAllPolicyTypesShort(input *base_legal_policies.RetrieveAllPolicyTypesParams, authInfo runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrievePolicyTypeResponse, error) {
-	ok, err := b.Client.BaseLegalPolicies.RetrieveAllPolicyTypesShort(input, authInfo)
+func (b *BaseLegalPoliciesService) RetrieveAllPolicyTypesShort(input *base_legal_policies.RetrieveAllPolicyTypesParams) ([]*legalclientmodels.RetrievePolicyTypeResponse, error) {
+	accessToken, err := b.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := b.Client.BaseLegalPolicies.RetrieveAllPolicyTypesShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

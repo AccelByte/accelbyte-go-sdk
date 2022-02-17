@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/key_group"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -137,56 +136,84 @@ func (k *KeyGroupService) UploadKeys(input *key_group.UploadKeysParams) (*platfo
 	return ok.GetPayload(), nil
 }
 
-func (k *KeyGroupService) QueryKeyGroupsShort(input *key_group.QueryKeyGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.KeyGroupPagingSlicedResult, error) {
-	ok, err := k.Client.KeyGroup.QueryKeyGroupsShort(input, authInfo)
+func (k *KeyGroupService) QueryKeyGroupsShort(input *key_group.QueryKeyGroupsParams) (*platformclientmodels.KeyGroupPagingSlicedResult, error) {
+	accessToken, err := k.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := k.Client.KeyGroup.QueryKeyGroupsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (k *KeyGroupService) CreateKeyGroupShort(input *key_group.CreateKeyGroupParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.KeyGroupInfo, error) {
-	created, err := k.Client.KeyGroup.CreateKeyGroupShort(input, authInfo)
+func (k *KeyGroupService) CreateKeyGroupShort(input *key_group.CreateKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
+	accessToken, err := k.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := k.Client.KeyGroup.CreateKeyGroupShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (k *KeyGroupService) GetKeyGroupShort(input *key_group.GetKeyGroupParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.KeyGroupInfo, error) {
-	ok, err := k.Client.KeyGroup.GetKeyGroupShort(input, authInfo)
+func (k *KeyGroupService) GetKeyGroupShort(input *key_group.GetKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
+	accessToken, err := k.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := k.Client.KeyGroup.GetKeyGroupShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (k *KeyGroupService) UpdateKeyGroupShort(input *key_group.UpdateKeyGroupParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.KeyGroupInfo, error) {
-	ok, err := k.Client.KeyGroup.UpdateKeyGroupShort(input, authInfo)
+func (k *KeyGroupService) UpdateKeyGroupShort(input *key_group.UpdateKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
+	accessToken, err := k.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := k.Client.KeyGroup.UpdateKeyGroupShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (k *KeyGroupService) GetKeyGroupDynamicShort(input *key_group.GetKeyGroupDynamicParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.KeyGroupDynamicInfo, error) {
-	ok, err := k.Client.KeyGroup.GetKeyGroupDynamicShort(input, authInfo)
+func (k *KeyGroupService) GetKeyGroupDynamicShort(input *key_group.GetKeyGroupDynamicParams) (*platformclientmodels.KeyGroupDynamicInfo, error) {
+	accessToken, err := k.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := k.Client.KeyGroup.GetKeyGroupDynamicShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (k *KeyGroupService) ListKeysShort(input *key_group.ListKeysParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.KeyPagingSliceResult, error) {
-	ok, err := k.Client.KeyGroup.ListKeysShort(input, authInfo)
+func (k *KeyGroupService) ListKeysShort(input *key_group.ListKeysParams) (*platformclientmodels.KeyPagingSliceResult, error) {
+	accessToken, err := k.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := k.Client.KeyGroup.ListKeysShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (k *KeyGroupService) UploadKeysShort(input *key_group.UploadKeysParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.BulkOperationResult, error) {
-	ok, err := k.Client.KeyGroup.UploadKeysShort(input, authInfo)
+func (k *KeyGroupService) UploadKeysShort(input *key_group.UploadKeysParams) (*platformclientmodels.BulkOperationResult, error) {
+	accessToken, err := k.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := k.Client.KeyGroup.UploadKeysShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_download_count"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -44,8 +43,12 @@ func (p *PublicDownloadCountService) AddDownloadCount(input *public_download_cou
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicDownloadCountService) AddDownloadCountShort(input *public_download_count.AddDownloadCountParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsAddDownloadCountResponse, error) {
-	ok, err := p.Client.PublicDownloadCount.AddDownloadCountShort(input, authInfo)
+func (p *PublicDownloadCountService) AddDownloadCountShort(input *public_download_count.AddDownloadCountParams) (*ugcclientmodels.ModelsAddDownloadCountResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PublicDownloadCount.AddDownloadCountShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/social_matchmaking"
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -47,8 +46,12 @@ func (s *SocialMatchmakingService) UpdatePlayTimeWeight(input *social_matchmakin
 	return ok.GetPayload(), nil
 }
 
-func (s *SocialMatchmakingService) UpdatePlayTimeWeightShort(input *social_matchmaking.UpdatePlayTimeWeightParams, authInfo runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ModelsUpdatePlayerPlaytimeWeightResponse, error) {
-	ok, err := s.Client.SocialMatchmaking.UpdatePlayTimeWeightShort(input, authInfo)
+func (s *SocialMatchmakingService) UpdatePlayTimeWeightShort(input *social_matchmaking.UpdatePlayTimeWeightParams) (*matchmakingclientmodels.ModelsUpdatePlayerPlaytimeWeightResponse, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.SocialMatchmaking.UpdatePlayTimeWeightShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

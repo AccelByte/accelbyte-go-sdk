@@ -9,7 +9,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/qosm-sdk/pkg/qosmclient"
 	"github.com/AccelByte/accelbyte-go-sdk/qosm-sdk/pkg/qosmclient/admin"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -56,16 +55,24 @@ func (a *AdminService) SetServerAlias(input *admin.SetServerAliasParams) error {
 	return nil
 }
 
-func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Admin.DeleteServerShort(input, authInfo)
+func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Admin.DeleteServerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AdminService) SetServerAliasShort(input *admin.SetServerAliasParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Admin.SetServerAliasShort(input, authInfo)
+func (a *AdminService) SetServerAliasShort(input *admin.SetServerAliasParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Admin.SetServerAliasShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}

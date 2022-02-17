@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_type"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -41,8 +40,12 @@ func (p *PublicTypeService) GetType(input *public_type.GetTypeParams) (*ugcclien
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicTypeService) GetTypeShort(input *public_type.GetTypeParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedGetTypeResponse, error) {
-	ok, err := p.Client.PublicType.GetTypeShort(input, authInfo)
+func (p *PublicTypeService) GetTypeShort(input *public_type.GetTypeParams) (*ugcclientmodels.ModelsPaginatedGetTypeResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PublicType.GetTypeShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

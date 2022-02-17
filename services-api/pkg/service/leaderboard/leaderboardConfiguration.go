@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -259,72 +258,108 @@ func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV2(i
 	return ok.GetPayload(), nil
 }
 
-func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsAdminV1Short(input *leaderboard_configuration.GetLeaderboardConfigurationsAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetAllLeaderboardConfigsResp, error) {
-	ok, err := l.Client.LeaderboardConfiguration.GetLeaderboardConfigurationsAdminV1Short(input, authInfo)
+func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsAdminV1Short(input *leaderboard_configuration.GetLeaderboardConfigurationsAdminV1Params) (*leaderboardclientmodels.ModelsGetAllLeaderboardConfigsResp, error) {
+	accessToken, err := l.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := l.Client.LeaderboardConfiguration.GetLeaderboardConfigurationsAdminV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (l *LeaderboardConfigurationService) CreateLeaderboardConfigurationAdminV1Short(input *leaderboard_configuration.CreateLeaderboardConfigurationAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsLeaderboardConfigReq, error) {
-	created, err := l.Client.LeaderboardConfiguration.CreateLeaderboardConfigurationAdminV1Short(input, authInfo)
+func (l *LeaderboardConfigurationService) CreateLeaderboardConfigurationAdminV1Short(input *leaderboard_configuration.CreateLeaderboardConfigurationAdminV1Params) (*leaderboardclientmodels.ModelsLeaderboardConfigReq, error) {
+	accessToken, err := l.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := l.Client.LeaderboardConfiguration.CreateLeaderboardConfigurationAdminV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (l *LeaderboardConfigurationService) DeleteBulkLeaderboardConfigurationAdminV1Short(input *leaderboard_configuration.DeleteBulkLeaderboardConfigurationAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsDeleteBulkLeaderboardsResp, error) {
-	ok, err := l.Client.LeaderboardConfiguration.DeleteBulkLeaderboardConfigurationAdminV1Short(input, authInfo)
+func (l *LeaderboardConfigurationService) DeleteBulkLeaderboardConfigurationAdminV1Short(input *leaderboard_configuration.DeleteBulkLeaderboardConfigurationAdminV1Params) (*leaderboardclientmodels.ModelsDeleteBulkLeaderboardsResp, error) {
+	accessToken, err := l.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := l.Client.LeaderboardConfiguration.DeleteBulkLeaderboardConfigurationAdminV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationAdminV1Short(input *leaderboard_configuration.GetLeaderboardConfigurationAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetLeaderboardConfigResp, error) {
-	ok, err := l.Client.LeaderboardConfiguration.GetLeaderboardConfigurationAdminV1Short(input, authInfo)
+func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationAdminV1Short(input *leaderboard_configuration.GetLeaderboardConfigurationAdminV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardConfigResp, error) {
+	accessToken, err := l.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := l.Client.LeaderboardConfiguration.GetLeaderboardConfigurationAdminV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (l *LeaderboardConfigurationService) UpdateLeaderboardConfigurationAdminV1Short(input *leaderboard_configuration.UpdateLeaderboardConfigurationAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetLeaderboardConfigResp, error) {
-	ok, err := l.Client.LeaderboardConfiguration.UpdateLeaderboardConfigurationAdminV1Short(input, authInfo)
+func (l *LeaderboardConfigurationService) UpdateLeaderboardConfigurationAdminV1Short(input *leaderboard_configuration.UpdateLeaderboardConfigurationAdminV1Params) (*leaderboardclientmodels.ModelsGetLeaderboardConfigResp, error) {
+	accessToken, err := l.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := l.Client.LeaderboardConfiguration.UpdateLeaderboardConfigurationAdminV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (l *LeaderboardConfigurationService) DeleteLeaderboardConfigurationAdminV1Short(input *leaderboard_configuration.DeleteLeaderboardConfigurationAdminV1Params, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := l.Client.LeaderboardConfiguration.DeleteLeaderboardConfigurationAdminV1Short(input, authInfo)
+func (l *LeaderboardConfigurationService) DeleteLeaderboardConfigurationAdminV1Short(input *leaderboard_configuration.DeleteLeaderboardConfigurationAdminV1Params) error {
+	accessToken, err := l.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = l.Client.LeaderboardConfiguration.DeleteLeaderboardConfigurationAdminV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV1Short(input *leaderboard_configuration.GetLeaderboardConfigurationsPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetAllLeaderboardConfigsPublicResp, error) {
-	ok, err := l.Client.LeaderboardConfiguration.GetLeaderboardConfigurationsPublicV1Short(input, authInfo)
+func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV1Short(input *leaderboard_configuration.GetLeaderboardConfigurationsPublicV1Params) (*leaderboardclientmodels.ModelsGetAllLeaderboardConfigsPublicResp, error) {
+	accessToken, err := l.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := l.Client.LeaderboardConfiguration.GetLeaderboardConfigurationsPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (l *LeaderboardConfigurationService) CreateLeaderboardConfigurationPublicV1Short(input *leaderboard_configuration.CreateLeaderboardConfigurationPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsLeaderboardConfigReq, error) {
-	created, err := l.Client.LeaderboardConfiguration.CreateLeaderboardConfigurationPublicV1Short(input, authInfo)
+func (l *LeaderboardConfigurationService) CreateLeaderboardConfigurationPublicV1Short(input *leaderboard_configuration.CreateLeaderboardConfigurationPublicV1Params) (*leaderboardclientmodels.ModelsLeaderboardConfigReq, error) {
+	accessToken, err := l.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := l.Client.LeaderboardConfiguration.CreateLeaderboardConfigurationPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV2Short(input *leaderboard_configuration.GetLeaderboardConfigurationsPublicV2Params, authInfo runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.V2GetAllLeaderboardConfigsPublicResp, error) {
-	ok, err := l.Client.LeaderboardConfiguration.GetLeaderboardConfigurationsPublicV2Short(input, authInfo)
+func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV2Short(input *leaderboard_configuration.GetLeaderboardConfigurationsPublicV2Params) (*leaderboardclientmodels.V2GetAllLeaderboardConfigsPublicResp, error) {
+	accessToken, err := l.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := l.Client.LeaderboardConfiguration.GetLeaderboardConfigurationsPublicV2Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

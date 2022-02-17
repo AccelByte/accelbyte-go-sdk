@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -341,152 +340,228 @@ func (o *OrderService) PublicDownloadUserOrderReceipt(input *order.PublicDownloa
 	return nil
 }
 
-func (o *OrderService) QueryOrdersShort(input *order.QueryOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderPagingResult, error) {
-	ok, err := o.Client.Order.QueryOrdersShort(input, authInfo)
+func (o *OrderService) QueryOrdersShort(input *order.QueryOrdersParams) (*platformclientmodels.OrderPagingResult, error) {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := o.Client.Order.QueryOrdersShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) GetOrderStatisticsShort(input *order.GetOrderStatisticsParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderStatistics, error) {
-	ok, err := o.Client.Order.GetOrderStatisticsShort(input, authInfo)
+func (o *OrderService) GetOrderStatisticsShort(input *order.GetOrderStatisticsParams) (*platformclientmodels.OrderStatistics, error) {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := o.Client.Order.GetOrderStatisticsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) GetOrderShort(input *order.GetOrderParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderInfo, error) {
-	ok, err := o.Client.Order.GetOrderShort(input, authInfo)
+func (o *OrderService) GetOrderShort(input *order.GetOrderParams) (*platformclientmodels.OrderInfo, error) {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := o.Client.Order.GetOrderShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) RefundOrderShort(input *order.RefundOrderParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderInfo, error) {
-	ok, err := o.Client.Order.RefundOrderShort(input, authInfo)
+func (o *OrderService) RefundOrderShort(input *order.RefundOrderParams) (*platformclientmodels.OrderInfo, error) {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := o.Client.Order.RefundOrderShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) QueryUserOrdersShort(input *order.QueryUserOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderPagingSlicedResult, error) {
-	ok, err := o.Client.Order.QueryUserOrdersShort(input, authInfo)
+func (o *OrderService) QueryUserOrdersShort(input *order.QueryUserOrdersParams) (*platformclientmodels.OrderPagingSlicedResult, error) {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := o.Client.Order.QueryUserOrdersShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) CountOfPurchasedItemShort(input *order.CountOfPurchasedItemParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PurchasedItemCount, error) {
-	ok, err := o.Client.Order.CountOfPurchasedItemShort(input, authInfo)
+func (o *OrderService) CountOfPurchasedItemShort(input *order.CountOfPurchasedItemParams) (*platformclientmodels.PurchasedItemCount, error) {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := o.Client.Order.CountOfPurchasedItemShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) GetUserOrderShort(input *order.GetUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderInfo, error) {
-	ok, err := o.Client.Order.GetUserOrderShort(input, authInfo)
+func (o *OrderService) GetUserOrderShort(input *order.GetUserOrderParams) (*platformclientmodels.OrderInfo, error) {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := o.Client.Order.GetUserOrderShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) UpdateUserOrderStatusShort(input *order.UpdateUserOrderStatusParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderInfo, error) {
-	ok, err := o.Client.Order.UpdateUserOrderStatusShort(input, authInfo)
+func (o *OrderService) UpdateUserOrderStatusShort(input *order.UpdateUserOrderStatusParams) (*platformclientmodels.OrderInfo, error) {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := o.Client.Order.UpdateUserOrderStatusShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) FulfillUserOrderShort(input *order.FulfillUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderInfo, error) {
-	ok, err := o.Client.Order.FulfillUserOrderShort(input, authInfo)
+func (o *OrderService) FulfillUserOrderShort(input *order.FulfillUserOrderParams) (*platformclientmodels.OrderInfo, error) {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := o.Client.Order.FulfillUserOrderShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) GetUserOrderGrantShort(input *order.GetUserOrderGrantParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderGrantInfo, error) {
-	ok, err := o.Client.Order.GetUserOrderGrantShort(input, authInfo)
+func (o *OrderService) GetUserOrderGrantShort(input *order.GetUserOrderGrantParams) (*platformclientmodels.OrderGrantInfo, error) {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := o.Client.Order.GetUserOrderGrantShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) GetUserOrderHistoriesShort(input *order.GetUserOrderHistoriesParams, authInfo runtime.ClientAuthInfoWriter) ([]*platformclientmodels.OrderHistoryInfo, error) {
-	ok, err := o.Client.Order.GetUserOrderHistoriesShort(input, authInfo)
+func (o *OrderService) GetUserOrderHistoriesShort(input *order.GetUserOrderHistoriesParams) ([]*platformclientmodels.OrderHistoryInfo, error) {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := o.Client.Order.GetUserOrderHistoriesShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) ProcessUserOrderNotificationShort(input *order.ProcessUserOrderNotificationParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := o.Client.Order.ProcessUserOrderNotificationShort(input, authInfo)
+func (o *OrderService) ProcessUserOrderNotificationShort(input *order.ProcessUserOrderNotificationParams) error {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = o.Client.Order.ProcessUserOrderNotificationShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *OrderService) DownloadUserOrderReceiptShort(input *order.DownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := o.Client.Order.DownloadUserOrderReceiptShort(input, authInfo)
+func (o *OrderService) DownloadUserOrderReceiptShort(input *order.DownloadUserOrderReceiptParams) error {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = o.Client.Order.DownloadUserOrderReceiptShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *OrderService) PublicQueryUserOrdersShort(input *order.PublicQueryUserOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderPagingSlicedResult, error) {
-	ok, err := o.Client.Order.PublicQueryUserOrdersShort(input, authInfo)
+func (o *OrderService) PublicQueryUserOrdersShort(input *order.PublicQueryUserOrdersParams) (*platformclientmodels.OrderPagingSlicedResult, error) {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := o.Client.Order.PublicQueryUserOrdersShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) PublicCreateUserOrderShort(input *order.PublicCreateUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderInfo, error) {
-	created, err := o.Client.Order.PublicCreateUserOrderShort(input, authInfo)
+func (o *OrderService) PublicCreateUserOrderShort(input *order.PublicCreateUserOrderParams) (*platformclientmodels.OrderInfo, error) {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := o.Client.Order.PublicCreateUserOrderShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (o *OrderService) PublicGetUserOrderShort(input *order.PublicGetUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderInfo, error) {
-	ok, err := o.Client.Order.PublicGetUserOrderShort(input, authInfo)
+func (o *OrderService) PublicGetUserOrderShort(input *order.PublicGetUserOrderParams) (*platformclientmodels.OrderInfo, error) {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := o.Client.Order.PublicGetUserOrderShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) PublicCancelUserOrderShort(input *order.PublicCancelUserOrderParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderInfo, error) {
-	ok, err := o.Client.Order.PublicCancelUserOrderShort(input, authInfo)
+func (o *OrderService) PublicCancelUserOrderShort(input *order.PublicCancelUserOrderParams) (*platformclientmodels.OrderInfo, error) {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := o.Client.Order.PublicCancelUserOrderShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) PublicGetUserOrderHistoriesShort(input *order.PublicGetUserOrderHistoriesParams, authInfo runtime.ClientAuthInfoWriter) ([]*platformclientmodels.OrderHistoryInfo, error) {
-	ok, err := o.Client.Order.PublicGetUserOrderHistoriesShort(input, authInfo)
+func (o *OrderService) PublicGetUserOrderHistoriesShort(input *order.PublicGetUserOrderHistoriesParams) ([]*platformclientmodels.OrderHistoryInfo, error) {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := o.Client.Order.PublicGetUserOrderHistoriesShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) PublicDownloadUserOrderReceiptShort(input *order.PublicDownloadUserOrderReceiptParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := o.Client.Order.PublicDownloadUserOrderReceiptShort(input, authInfo)
+func (o *OrderService) PublicDownloadUserOrderReceiptShort(input *order.PublicDownloadUserOrderReceiptParams) error {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = o.Client.Order.PublicDownloadUserOrderReceiptShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}

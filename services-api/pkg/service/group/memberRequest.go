@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/member_request"
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -69,16 +68,24 @@ func (m *MemberRequestService) GetGroupInvitationRequestPublicV1(input *member_r
 	return ok.GetPayload(), nil
 }
 
-func (m *MemberRequestService) GetGroupJoinRequestPublicV1Short(input *member_request.GetGroupJoinRequestPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetMemberRequestsListResponseV1, error) {
-	ok, err := m.Client.MemberRequest.GetGroupJoinRequestPublicV1Short(input, authInfo)
+func (m *MemberRequestService) GetGroupJoinRequestPublicV1Short(input *member_request.GetGroupJoinRequestPublicV1Params) (*groupclientmodels.ModelsGetMemberRequestsListResponseV1, error) {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := m.Client.MemberRequest.GetGroupJoinRequestPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (m *MemberRequestService) GetGroupInvitationRequestPublicV1Short(input *member_request.GetGroupInvitationRequestPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetMemberRequestsListResponseV1, error) {
-	ok, err := m.Client.MemberRequest.GetGroupInvitationRequestPublicV1Short(input, authInfo)
+func (m *MemberRequestService) GetGroupInvitationRequestPublicV1Short(input *member_request.GetGroupInvitationRequestPublicV1Params) (*groupclientmodels.ModelsGetMemberRequestsListResponseV1, error) {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := m.Client.MemberRequest.GetGroupInvitationRequestPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/party"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -134,32 +133,48 @@ func (p *PartyService) PublicUpdatePartyAttributesV1(input *party.PublicUpdatePa
 	return ok.GetPayload(), nil
 }
 
-func (p *PartyService) AdminGetPartyDataV1Short(input *party.AdminGetPartyDataV1Params, authInfo runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsPartyData, error) {
-	ok, err := p.Client.Party.AdminGetPartyDataV1Short(input, authInfo)
+func (p *PartyService) AdminGetPartyDataV1Short(input *party.AdminGetPartyDataV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.Party.AdminGetPartyDataV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PartyService) AdminGetUserPartyV1Short(input *party.AdminGetUserPartyV1Params, authInfo runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsPartyData, error) {
-	ok, err := p.Client.Party.AdminGetUserPartyV1Short(input, authInfo)
+func (p *PartyService) AdminGetUserPartyV1Short(input *party.AdminGetUserPartyV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.Party.AdminGetUserPartyV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PartyService) PublicGetPartyDataV1Short(input *party.PublicGetPartyDataV1Params, authInfo runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsPartyData, error) {
-	ok, err := p.Client.Party.PublicGetPartyDataV1Short(input, authInfo)
+func (p *PartyService) PublicGetPartyDataV1Short(input *party.PublicGetPartyDataV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.Party.PublicGetPartyDataV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PartyService) PublicUpdatePartyAttributesV1Short(input *party.PublicUpdatePartyAttributesV1Params, authInfo runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsPartyData, error) {
-	ok, err := p.Client.Party.PublicUpdatePartyAttributesV1Short(input, authInfo)
+func (p *PartyService) PublicUpdatePartyAttributesV1Short(input *party.PublicUpdatePartyAttributesV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.Party.PublicUpdatePartyAttributesV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

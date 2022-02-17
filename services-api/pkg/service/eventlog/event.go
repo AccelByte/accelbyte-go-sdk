@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event"
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -268,72 +267,108 @@ func (e *EventService) GetEventByUserEventIDAndEventTypeHandler(input *event.Get
 	return ok.GetPayload(), nil
 }
 
-func (e *EventService) GetEventByNamespaceHandlerShort(input *event.GetEventByNamespaceHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
-	ok, err := e.Client.Event.GetEventByNamespaceHandlerShort(input, authInfo)
+func (e *EventService) GetEventByNamespaceHandlerShort(input *event.GetEventByNamespaceHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Event.GetEventByNamespaceHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EventService) PostEventHandlerShort(input *event.PostEventHandlerParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := e.Client.Event.PostEventHandlerShort(input, authInfo)
+func (e *EventService) PostEventHandlerShort(input *event.PostEventHandlerParams) error {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = e.Client.Event.PostEventHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (e *EventService) GetEventByEventIDHandlerShort(input *event.GetEventByEventIDHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
-	ok, err := e.Client.Event.GetEventByEventIDHandlerShort(input, authInfo)
+func (e *EventService) GetEventByEventIDHandlerShort(input *event.GetEventByEventIDHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Event.GetEventByEventIDHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EventService) GetEventByEventTypeHandlerShort(input *event.GetEventByEventTypeHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
-	ok, err := e.Client.Event.GetEventByEventTypeHandlerShort(input, authInfo)
+func (e *EventService) GetEventByEventTypeHandlerShort(input *event.GetEventByEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Event.GetEventByEventTypeHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EventService) GetEventByEventTypeAndEventIDHandlerShort(input *event.GetEventByEventTypeAndEventIDHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
-	ok, err := e.Client.Event.GetEventByEventTypeAndEventIDHandlerShort(input, authInfo)
+func (e *EventService) GetEventByEventTypeAndEventIDHandlerShort(input *event.GetEventByEventTypeAndEventIDHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Event.GetEventByEventTypeAndEventIDHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EventService) GetEventByUserIDHandlerShort(input *event.GetEventByUserIDHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
-	ok, err := e.Client.Event.GetEventByUserIDHandlerShort(input, authInfo)
+func (e *EventService) GetEventByUserIDHandlerShort(input *event.GetEventByUserIDHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Event.GetEventByUserIDHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EventService) GetEventByUserIDAndEventIDHandlerShort(input *event.GetEventByUserIDAndEventIDHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
-	ok, err := e.Client.Event.GetEventByUserIDAndEventIDHandlerShort(input, authInfo)
+func (e *EventService) GetEventByUserIDAndEventIDHandlerShort(input *event.GetEventByUserIDAndEventIDHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Event.GetEventByUserIDAndEventIDHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EventService) GetEventByUserIDAndEventTypeHandlerShort(input *event.GetEventByUserIDAndEventTypeHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
-	ok, err := e.Client.Event.GetEventByUserIDAndEventTypeHandlerShort(input, authInfo)
+func (e *EventService) GetEventByUserIDAndEventTypeHandlerShort(input *event.GetEventByUserIDAndEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Event.GetEventByUserIDAndEventTypeHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EventService) GetEventByUserEventIDAndEventTypeHandlerShort(input *event.GetEventByUserEventIDAndEventTypeHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
-	ok, err := e.Client.Event.GetEventByUserEventIDAndEventTypeHandlerShort(input, authInfo)
+func (e *EventService) GetEventByUserEventIDAndEventTypeHandlerShort(input *event.GetEventByUserEventIDAndEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Event.GetEventByUserEventIDAndEventTypeHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

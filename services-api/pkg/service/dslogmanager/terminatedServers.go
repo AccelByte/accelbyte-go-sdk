@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclient/terminated_servers"
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -79,24 +78,36 @@ func (t *TerminatedServersService) CheckServerLogs(input *terminated_servers.Che
 	return ok.GetPayload(), nil
 }
 
-func (t *TerminatedServersService) ListTerminatedServersShort(input *terminated_servers.ListTerminatedServersParams, authInfo runtime.ClientAuthInfoWriter) (*dslogmanagerclientmodels.ModelsListTerminatedServersResponse, error) {
-	ok, err := t.Client.TerminatedServers.ListTerminatedServersShort(input, authInfo)
+func (t *TerminatedServersService) ListTerminatedServersShort(input *terminated_servers.ListTerminatedServersParams) (*dslogmanagerclientmodels.ModelsListTerminatedServersResponse, error) {
+	accessToken, err := t.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := t.Client.TerminatedServers.ListTerminatedServersShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (t *TerminatedServersService) DownloadServerLogsShort(input *terminated_servers.DownloadServerLogsParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := t.Client.TerminatedServers.DownloadServerLogsShort(input, authInfo)
+func (t *TerminatedServersService) DownloadServerLogsShort(input *terminated_servers.DownloadServerLogsParams) error {
+	accessToken, err := t.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = t.Client.TerminatedServers.DownloadServerLogsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (t *TerminatedServersService) CheckServerLogsShort(input *terminated_servers.CheckServerLogsParams, authInfo runtime.ClientAuthInfoWriter) (*dslogmanagerclientmodels.ModelsLogFileStatus, error) {
-	ok, err := t.Client.TerminatedServers.CheckServerLogsShort(input, authInfo)
+func (t *TerminatedServersService) CheckServerLogsShort(input *terminated_servers.CheckServerLogsParams) (*dslogmanagerclientmodels.ModelsLogFileStatus, error) {
+	accessToken, err := t.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := t.Client.TerminatedServers.CheckServerLogsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

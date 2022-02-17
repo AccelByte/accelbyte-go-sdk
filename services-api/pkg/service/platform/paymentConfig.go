@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_config"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -548,272 +547,408 @@ func (p *PaymentConfigService) UpdatePaymentTaxConfig(input *payment_config.Upda
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestAdyenConfigShort(input *payment_config.TestAdyenConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
-	ok, err := p.Client.PaymentConfig.TestAdyenConfigShort(input, authInfo)
+func (p *PaymentConfigService) TestAdyenConfigShort(input *payment_config.TestAdyenConfigParams) (*platformclientmodels.TestResult, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.TestAdyenConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestAliPayConfigShort(input *payment_config.TestAliPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
-	ok, err := p.Client.PaymentConfig.TestAliPayConfigShort(input, authInfo)
+func (p *PaymentConfigService) TestAliPayConfigShort(input *payment_config.TestAliPayConfigParams) (*platformclientmodels.TestResult, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.TestAliPayConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestCheckoutConfigShort(input *payment_config.TestCheckoutConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
-	ok, err := p.Client.PaymentConfig.TestCheckoutConfigShort(input, authInfo)
+func (p *PaymentConfigService) TestCheckoutConfigShort(input *payment_config.TestCheckoutConfigParams) (*platformclientmodels.TestResult, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.TestCheckoutConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) DebugMatchedPaymentMerchantConfigShort(input *payment_config.DebugMatchedPaymentMerchantConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
-	ok, err := p.Client.PaymentConfig.DebugMatchedPaymentMerchantConfigShort(input, authInfo)
+func (p *PaymentConfigService) DebugMatchedPaymentMerchantConfigShort(input *payment_config.DebugMatchedPaymentMerchantConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.DebugMatchedPaymentMerchantConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestPayPalConfigShort(input *payment_config.TestPayPalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
-	ok, err := p.Client.PaymentConfig.TestPayPalConfigShort(input, authInfo)
+func (p *PaymentConfigService) TestPayPalConfigShort(input *payment_config.TestPayPalConfigParams) (*platformclientmodels.TestResult, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.TestPayPalConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestStripeConfigShort(input *payment_config.TestStripeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
-	ok, err := p.Client.PaymentConfig.TestStripeConfigShort(input, authInfo)
+func (p *PaymentConfigService) TestStripeConfigShort(input *payment_config.TestStripeConfigParams) (*platformclientmodels.TestResult, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.TestStripeConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestWxPayConfigShort(input *payment_config.TestWxPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
-	ok, err := p.Client.PaymentConfig.TestWxPayConfigShort(input, authInfo)
+func (p *PaymentConfigService) TestWxPayConfigShort(input *payment_config.TestWxPayConfigParams) (*platformclientmodels.TestResult, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.TestWxPayConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestXsollaConfigShort(input *payment_config.TestXsollaConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
-	ok, err := p.Client.PaymentConfig.TestXsollaConfigShort(input, authInfo)
+func (p *PaymentConfigService) TestXsollaConfigShort(input *payment_config.TestXsollaConfigParams) (*platformclientmodels.TestResult, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.TestXsollaConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) GetPaymentMerchantConfigShort(input *payment_config.GetPaymentMerchantConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
-	ok, err := p.Client.PaymentConfig.GetPaymentMerchantConfigShort(input, authInfo)
+func (p *PaymentConfigService) GetPaymentMerchantConfigShort(input *payment_config.GetPaymentMerchantConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.GetPaymentMerchantConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) UpdateAdyenConfigShort(input *payment_config.UpdateAdyenConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
-	ok, err := p.Client.PaymentConfig.UpdateAdyenConfigShort(input, authInfo)
+func (p *PaymentConfigService) UpdateAdyenConfigShort(input *payment_config.UpdateAdyenConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.UpdateAdyenConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestAdyenConfigByIDShort(input *payment_config.TestAdyenConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
-	ok, err := p.Client.PaymentConfig.TestAdyenConfigByIDShort(input, authInfo)
+func (p *PaymentConfigService) TestAdyenConfigByIDShort(input *payment_config.TestAdyenConfigByIDParams) (*platformclientmodels.TestResult, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.TestAdyenConfigByIDShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) UpdateAliPayConfigShort(input *payment_config.UpdateAliPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
-	ok, err := p.Client.PaymentConfig.UpdateAliPayConfigShort(input, authInfo)
+func (p *PaymentConfigService) UpdateAliPayConfigShort(input *payment_config.UpdateAliPayConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.UpdateAliPayConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestAliPayConfigByIDShort(input *payment_config.TestAliPayConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
-	ok, err := p.Client.PaymentConfig.TestAliPayConfigByIDShort(input, authInfo)
+func (p *PaymentConfigService) TestAliPayConfigByIDShort(input *payment_config.TestAliPayConfigByIDParams) (*platformclientmodels.TestResult, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.TestAliPayConfigByIDShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) UpdateCheckoutConfigShort(input *payment_config.UpdateCheckoutConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
-	ok, err := p.Client.PaymentConfig.UpdateCheckoutConfigShort(input, authInfo)
+func (p *PaymentConfigService) UpdateCheckoutConfigShort(input *payment_config.UpdateCheckoutConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.UpdateCheckoutConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestCheckoutConfigByIDShort(input *payment_config.TestCheckoutConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
-	ok, err := p.Client.PaymentConfig.TestCheckoutConfigByIDShort(input, authInfo)
+func (p *PaymentConfigService) TestCheckoutConfigByIDShort(input *payment_config.TestCheckoutConfigByIDParams) (*platformclientmodels.TestResult, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.TestCheckoutConfigByIDShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) UpdatePayPalConfigShort(input *payment_config.UpdatePayPalConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
-	ok, err := p.Client.PaymentConfig.UpdatePayPalConfigShort(input, authInfo)
+func (p *PaymentConfigService) UpdatePayPalConfigShort(input *payment_config.UpdatePayPalConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.UpdatePayPalConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestPayPalConfigByIDShort(input *payment_config.TestPayPalConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
-	ok, err := p.Client.PaymentConfig.TestPayPalConfigByIDShort(input, authInfo)
+func (p *PaymentConfigService) TestPayPalConfigByIDShort(input *payment_config.TestPayPalConfigByIDParams) (*platformclientmodels.TestResult, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.TestPayPalConfigByIDShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) UpdateStripeConfigShort(input *payment_config.UpdateStripeConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
-	ok, err := p.Client.PaymentConfig.UpdateStripeConfigShort(input, authInfo)
+func (p *PaymentConfigService) UpdateStripeConfigShort(input *payment_config.UpdateStripeConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.UpdateStripeConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestStripeConfigByIDShort(input *payment_config.TestStripeConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
-	ok, err := p.Client.PaymentConfig.TestStripeConfigByIDShort(input, authInfo)
+func (p *PaymentConfigService) TestStripeConfigByIDShort(input *payment_config.TestStripeConfigByIDParams) (*platformclientmodels.TestResult, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.TestStripeConfigByIDShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) UpdateWxPayConfigShort(input *payment_config.UpdateWxPayConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
-	ok, err := p.Client.PaymentConfig.UpdateWxPayConfigShort(input, authInfo)
+func (p *PaymentConfigService) UpdateWxPayConfigShort(input *payment_config.UpdateWxPayConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.UpdateWxPayConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) UpdateWxPayConfigCertShort(input *payment_config.UpdateWxPayConfigCertParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
-	ok, err := p.Client.PaymentConfig.UpdateWxPayConfigCertShort(input, authInfo)
+func (p *PaymentConfigService) UpdateWxPayConfigCertShort(input *payment_config.UpdateWxPayConfigCertParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.UpdateWxPayConfigCertShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestWxPayConfigByIDShort(input *payment_config.TestWxPayConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
-	ok, err := p.Client.PaymentConfig.TestWxPayConfigByIDShort(input, authInfo)
+func (p *PaymentConfigService) TestWxPayConfigByIDShort(input *payment_config.TestWxPayConfigByIDParams) (*platformclientmodels.TestResult, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.TestWxPayConfigByIDShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) UpdateXsollaConfigShort(input *payment_config.UpdateXsollaConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
-	ok, err := p.Client.PaymentConfig.UpdateXsollaConfigShort(input, authInfo)
+func (p *PaymentConfigService) UpdateXsollaConfigShort(input *payment_config.UpdateXsollaConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.UpdateXsollaConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) TestXsollaConfigByIDShort(input *payment_config.TestXsollaConfigByIDParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
-	ok, err := p.Client.PaymentConfig.TestXsollaConfigByIDShort(input, authInfo)
+func (p *PaymentConfigService) TestXsollaConfigByIDShort(input *payment_config.TestXsollaConfigByIDParams) (*platformclientmodels.TestResult, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.TestXsollaConfigByIDShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) UpdateXsollaUIConfigShort(input *payment_config.UpdateXsollaUIConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
-	ok, err := p.Client.PaymentConfig.UpdateXsollaUIConfigShort(input, authInfo)
+func (p *PaymentConfigService) UpdateXsollaUIConfigShort(input *payment_config.UpdateXsollaUIConfigParams) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.UpdateXsollaUIConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) QueryPaymentProviderConfigShort(input *payment_config.QueryPaymentProviderConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentProviderConfigPagingSlicedResult, error) {
-	ok, err := p.Client.PaymentConfig.QueryPaymentProviderConfigShort(input, authInfo)
+func (p *PaymentConfigService) QueryPaymentProviderConfigShort(input *payment_config.QueryPaymentProviderConfigParams) (*platformclientmodels.PaymentProviderConfigPagingSlicedResult, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.QueryPaymentProviderConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) CreatePaymentProviderConfigShort(input *payment_config.CreatePaymentProviderConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentProviderConfigInfo, error) {
-	ok, err := p.Client.PaymentConfig.CreatePaymentProviderConfigShort(input, authInfo)
+func (p *PaymentConfigService) CreatePaymentProviderConfigShort(input *payment_config.CreatePaymentProviderConfigParams) (*platformclientmodels.PaymentProviderConfigInfo, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.CreatePaymentProviderConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) GetAggregatePaymentProvidersShort(input *payment_config.GetAggregatePaymentProvidersParams, authInfo runtime.ClientAuthInfoWriter) ([]string, error) {
-	ok, err := p.Client.PaymentConfig.GetAggregatePaymentProvidersShort(input, authInfo)
+func (p *PaymentConfigService) GetAggregatePaymentProvidersShort(input *payment_config.GetAggregatePaymentProvidersParams) ([]string, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.GetAggregatePaymentProvidersShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) DebugMatchedPaymentProviderConfigShort(input *payment_config.DebugMatchedPaymentProviderConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentProviderConfigInfo, error) {
-	ok, err := p.Client.PaymentConfig.DebugMatchedPaymentProviderConfigShort(input, authInfo)
+func (p *PaymentConfigService) DebugMatchedPaymentProviderConfigShort(input *payment_config.DebugMatchedPaymentProviderConfigParams) (*platformclientmodels.PaymentProviderConfigInfo, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.DebugMatchedPaymentProviderConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) GetSpecialPaymentProvidersShort(input *payment_config.GetSpecialPaymentProvidersParams, authInfo runtime.ClientAuthInfoWriter) ([]string, error) {
-	ok, err := p.Client.PaymentConfig.GetSpecialPaymentProvidersShort(input, authInfo)
+func (p *PaymentConfigService) GetSpecialPaymentProvidersShort(input *payment_config.GetSpecialPaymentProvidersParams) ([]string, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.GetSpecialPaymentProvidersShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) UpdatePaymentProviderConfigShort(input *payment_config.UpdatePaymentProviderConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentProviderConfigInfo, error) {
-	ok, err := p.Client.PaymentConfig.UpdatePaymentProviderConfigShort(input, authInfo)
+func (p *PaymentConfigService) UpdatePaymentProviderConfigShort(input *payment_config.UpdatePaymentProviderConfigParams) (*platformclientmodels.PaymentProviderConfigInfo, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.UpdatePaymentProviderConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) DeletePaymentProviderConfigShort(input *payment_config.DeletePaymentProviderConfigParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := p.Client.PaymentConfig.DeletePaymentProviderConfigShort(input, authInfo)
+func (p *PaymentConfigService) DeletePaymentProviderConfigShort(input *payment_config.DeletePaymentProviderConfigParams) error {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = p.Client.PaymentConfig.DeletePaymentProviderConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (p *PaymentConfigService) GetPaymentTaxConfigShort(input *payment_config.GetPaymentTaxConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentTaxConfigInfo, error) {
-	ok, err := p.Client.PaymentConfig.GetPaymentTaxConfigShort(input, authInfo)
+func (p *PaymentConfigService) GetPaymentTaxConfigShort(input *payment_config.GetPaymentTaxConfigParams) (*platformclientmodels.PaymentTaxConfigInfo, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.GetPaymentTaxConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentConfigService) UpdatePaymentTaxConfigShort(input *payment_config.UpdatePaymentTaxConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentTaxConfigInfo, error) {
-	ok, err := p.Client.PaymentConfig.UpdatePaymentTaxConfigShort(input, authInfo)
+func (p *PaymentConfigService) UpdatePaymentTaxConfigShort(input *payment_config.UpdatePaymentTaxConfigParams) (*platformclientmodels.PaymentTaxConfigInfo, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentConfig.UpdatePaymentTaxConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

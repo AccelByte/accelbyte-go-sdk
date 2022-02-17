@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/friends"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -321,88 +320,132 @@ func (f *FriendsService) GetListOfFriends(input *friends.GetListOfFriendsParams)
 	return ok.GetPayload(), nil
 }
 
-func (f *FriendsService) GetUserFriendsUpdatedShort(input *friends.GetUserFriendsUpdatedParams, authInfo runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelGetUserFriendsResponse, error) {
-	ok, err := f.Client.Friends.GetUserFriendsUpdatedShort(input, authInfo)
+func (f *FriendsService) GetUserFriendsUpdatedShort(input *friends.GetUserFriendsUpdatedParams) ([]*lobbyclientmodels.ModelGetUserFriendsResponse, error) {
+	accessToken, err := f.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := f.Client.Friends.GetUserFriendsUpdatedShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (f *FriendsService) GetUserIncomingFriendsShort(input *friends.GetUserIncomingFriendsParams, authInfo runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelGetUserIncomingFriendsResponse, error) {
-	ok, err := f.Client.Friends.GetUserIncomingFriendsShort(input, authInfo)
+func (f *FriendsService) GetUserIncomingFriendsShort(input *friends.GetUserIncomingFriendsParams) ([]*lobbyclientmodels.ModelGetUserIncomingFriendsResponse, error) {
+	accessToken, err := f.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := f.Client.Friends.GetUserIncomingFriendsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (f *FriendsService) GetUserOutgoingFriendsShort(input *friends.GetUserOutgoingFriendsParams, authInfo runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelGetUserOutgoingFriendsResponse, error) {
-	ok, err := f.Client.Friends.GetUserOutgoingFriendsShort(input, authInfo)
+func (f *FriendsService) GetUserOutgoingFriendsShort(input *friends.GetUserOutgoingFriendsParams) ([]*lobbyclientmodels.ModelGetUserOutgoingFriendsResponse, error) {
+	accessToken, err := f.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := f.Client.Friends.GetUserOutgoingFriendsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (f *FriendsService) UserRequestFriendShort(input *friends.UserRequestFriendParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := f.Client.Friends.UserRequestFriendShort(input, authInfo)
+func (f *FriendsService) UserRequestFriendShort(input *friends.UserRequestFriendParams) error {
+	accessToken, err := f.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = f.Client.Friends.UserRequestFriendShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (f *FriendsService) UserAcceptFriendRequestShort(input *friends.UserAcceptFriendRequestParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := f.Client.Friends.UserAcceptFriendRequestShort(input, authInfo)
+func (f *FriendsService) UserAcceptFriendRequestShort(input *friends.UserAcceptFriendRequestParams) error {
+	accessToken, err := f.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = f.Client.Friends.UserAcceptFriendRequestShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (f *FriendsService) UserCancelFriendRequestShort(input *friends.UserCancelFriendRequestParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := f.Client.Friends.UserCancelFriendRequestShort(input, authInfo)
+func (f *FriendsService) UserCancelFriendRequestShort(input *friends.UserCancelFriendRequestParams) error {
+	accessToken, err := f.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = f.Client.Friends.UserCancelFriendRequestShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (f *FriendsService) UserRejectFriendRequestShort(input *friends.UserRejectFriendRequestParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := f.Client.Friends.UserRejectFriendRequestShort(input, authInfo)
+func (f *FriendsService) UserRejectFriendRequestShort(input *friends.UserRejectFriendRequestParams) error {
+	accessToken, err := f.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = f.Client.Friends.UserRejectFriendRequestShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (f *FriendsService) UserGetFriendshipStatusShort(input *friends.UserGetFriendshipStatusParams, authInfo runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelUserGetFriendshipStatusResponse, error) {
-	ok, err := f.Client.Friends.UserGetFriendshipStatusShort(input, authInfo)
+func (f *FriendsService) UserGetFriendshipStatusShort(input *friends.UserGetFriendshipStatusParams) (*lobbyclientmodels.ModelUserGetFriendshipStatusResponse, error) {
+	accessToken, err := f.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := f.Client.Friends.UserGetFriendshipStatusShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (f *FriendsService) UserUnfriendRequestShort(input *friends.UserUnfriendRequestParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := f.Client.Friends.UserUnfriendRequestShort(input, authInfo)
+func (f *FriendsService) UserUnfriendRequestShort(input *friends.UserUnfriendRequestParams) error {
+	accessToken, err := f.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = f.Client.Friends.UserUnfriendRequestShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (f *FriendsService) AddFriendsWithoutConfirmationShort(input *friends.AddFriendsWithoutConfirmationParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := f.Client.Friends.AddFriendsWithoutConfirmationShort(input, authInfo)
+func (f *FriendsService) AddFriendsWithoutConfirmationShort(input *friends.AddFriendsWithoutConfirmationParams) error {
+	accessToken, err := f.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = f.Client.Friends.AddFriendsWithoutConfirmationShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (f *FriendsService) GetListOfFriendsShort(input *friends.GetListOfFriendsParams, authInfo runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelGetFriendsResponse, error) {
-	ok, err := f.Client.Friends.GetListOfFriendsShort(input, authInfo)
+func (f *FriendsService) GetListOfFriendsShort(input *friends.GetListOfFriendsParams) (*lobbyclientmodels.ModelGetFriendsResponse, error) {
+	accessToken, err := f.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := f.Client.Friends.GetListOfFriendsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

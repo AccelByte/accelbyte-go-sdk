@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -354,112 +353,168 @@ func (a *AchievementsService) PublicUnlockAchievement(input *achievements.Public
 	return nil
 }
 
-func (a *AchievementsService) AdminListAchievementsShort(input *achievements.AdminListAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*achievementclientmodels.ModelsPaginatedAchievementResponse, error) {
-	ok, err := a.Client.Achievements.AdminListAchievementsShort(input, authInfo)
+func (a *AchievementsService) AdminListAchievementsShort(input *achievements.AdminListAchievementsParams) (*achievementclientmodels.ModelsPaginatedAchievementResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := a.Client.Achievements.AdminListAchievementsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) AdminCreateNewAchievementShort(input *achievements.AdminCreateNewAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*achievementclientmodels.ModelsAchievementResponse, error) {
-	created, err := a.Client.Achievements.AdminCreateNewAchievementShort(input, authInfo)
+func (a *AchievementsService) AdminCreateNewAchievementShort(input *achievements.AdminCreateNewAchievementParams) (*achievementclientmodels.ModelsAchievementResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := a.Client.Achievements.AdminCreateNewAchievementShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (a *AchievementsService) ExportAchievementsShort(input *achievements.ExportAchievementsParams, authInfo runtime.ClientAuthInfoWriter) ([]*achievementclientmodels.ModelsAchievement, error) {
-	ok, err := a.Client.Achievements.ExportAchievementsShort(input, authInfo)
+func (a *AchievementsService) ExportAchievementsShort(input *achievements.ExportAchievementsParams) ([]*achievementclientmodels.ModelsAchievement, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := a.Client.Achievements.ExportAchievementsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) ImportAchievementsShort(input *achievements.ImportAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*achievementclientmodels.ServiceImportConfigResponse, error) {
-	ok, err := a.Client.Achievements.ImportAchievementsShort(input, authInfo)
+func (a *AchievementsService) ImportAchievementsShort(input *achievements.ImportAchievementsParams) (*achievementclientmodels.ServiceImportConfigResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := a.Client.Achievements.ImportAchievementsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) AdminGetAchievementShort(input *achievements.AdminGetAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*achievementclientmodels.ModelsAchievementResponse, error) {
-	ok, err := a.Client.Achievements.AdminGetAchievementShort(input, authInfo)
+func (a *AchievementsService) AdminGetAchievementShort(input *achievements.AdminGetAchievementParams) (*achievementclientmodels.ModelsAchievementResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := a.Client.Achievements.AdminGetAchievementShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) AdminUpdateAchievementShort(input *achievements.AdminUpdateAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*achievementclientmodels.ModelsAchievementResponse, error) {
-	ok, err := a.Client.Achievements.AdminUpdateAchievementShort(input, authInfo)
+func (a *AchievementsService) AdminUpdateAchievementShort(input *achievements.AdminUpdateAchievementParams) (*achievementclientmodels.ModelsAchievementResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := a.Client.Achievements.AdminUpdateAchievementShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) AdminDeleteAchievementShort(input *achievements.AdminDeleteAchievementParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Achievements.AdminDeleteAchievementShort(input, authInfo)
+func (a *AchievementsService) AdminDeleteAchievementShort(input *achievements.AdminDeleteAchievementParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Achievements.AdminDeleteAchievementShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AchievementsService) AdminUpdateAchievementListOrderShort(input *achievements.AdminUpdateAchievementListOrderParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Achievements.AdminUpdateAchievementListOrderShort(input, authInfo)
+func (a *AchievementsService) AdminUpdateAchievementListOrderShort(input *achievements.AdminUpdateAchievementListOrderParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Achievements.AdminUpdateAchievementListOrderShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AchievementsService) AdminListUserAchievementsShort(input *achievements.AdminListUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*achievementclientmodels.ModelsPaginatedUserAchievementResponse, error) {
-	ok, err := a.Client.Achievements.AdminListUserAchievementsShort(input, authInfo)
+func (a *AchievementsService) AdminListUserAchievementsShort(input *achievements.AdminListUserAchievementsParams) (*achievementclientmodels.ModelsPaginatedUserAchievementResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := a.Client.Achievements.AdminListUserAchievementsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) AdminUnlockAchievementShort(input *achievements.AdminUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Achievements.AdminUnlockAchievementShort(input, authInfo)
+func (a *AchievementsService) AdminUnlockAchievementShort(input *achievements.AdminUnlockAchievementParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Achievements.AdminUnlockAchievementShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AchievementsService) PublicListAchievementsShort(input *achievements.PublicListAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*achievementclientmodels.ModelsPublicAchievementsResponse, error) {
-	ok, err := a.Client.Achievements.PublicListAchievementsShort(input, authInfo)
+func (a *AchievementsService) PublicListAchievementsShort(input *achievements.PublicListAchievementsParams) (*achievementclientmodels.ModelsPublicAchievementsResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := a.Client.Achievements.PublicListAchievementsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) PublicGetAchievementShort(input *achievements.PublicGetAchievementParams, authInfo runtime.ClientAuthInfoWriter) (*achievementclientmodels.ModelsPublicAchievementResponse, error) {
-	ok, err := a.Client.Achievements.PublicGetAchievementShort(input, authInfo)
+func (a *AchievementsService) PublicGetAchievementShort(input *achievements.PublicGetAchievementParams) (*achievementclientmodels.ModelsPublicAchievementResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := a.Client.Achievements.PublicGetAchievementShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) PublicListUserAchievementsShort(input *achievements.PublicListUserAchievementsParams, authInfo runtime.ClientAuthInfoWriter) (*achievementclientmodels.ModelsPaginatedUserAchievementResponse, error) {
-	ok, err := a.Client.Achievements.PublicListUserAchievementsShort(input, authInfo)
+func (a *AchievementsService) PublicListUserAchievementsShort(input *achievements.PublicListUserAchievementsParams) (*achievementclientmodels.ModelsPaginatedUserAchievementResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := a.Client.Achievements.PublicListUserAchievementsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) PublicUnlockAchievementShort(input *achievements.PublicUnlockAchievementParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Achievements.PublicUnlockAchievementShort(input, authInfo)
+func (a *AchievementsService) PublicUnlockAchievementShort(input *achievements.PublicUnlockAchievementParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Achievements.PublicUnlockAchievementShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}

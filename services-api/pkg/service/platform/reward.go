@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/reward"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -201,88 +200,132 @@ func (r *RewardService) GetReward1(input *reward.GetReward1Params) (*platformcli
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) CreateRewardShort(input *reward.CreateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.RewardInfo, error) {
-	ok, err := r.Client.Reward.CreateRewardShort(input, authInfo)
+func (r *RewardService) CreateRewardShort(input *reward.CreateRewardParams) (*platformclientmodels.RewardInfo, error) {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := r.Client.Reward.CreateRewardShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.RewardPagingSlicedResult, error) {
-	ok, err := r.Client.Reward.QueryRewardsShort(input, authInfo)
+func (r *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams) (*platformclientmodels.RewardPagingSlicedResult, error) {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := r.Client.Reward.QueryRewardsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) ExportRewardsShort(input *reward.ExportRewardsParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := r.Client.Reward.ExportRewardsShort(input, authInfo)
+func (r *RewardService) ExportRewardsShort(input *reward.ExportRewardsParams) error {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = r.Client.Reward.ExportRewardsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (r *RewardService) ImportRewardsShort(input *reward.ImportRewardsParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := r.Client.Reward.ImportRewardsShort(input, authInfo)
+func (r *RewardService) ImportRewardsShort(input *reward.ImportRewardsParams) error {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = r.Client.Reward.ImportRewardsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (r *RewardService) GetRewardShort(input *reward.GetRewardParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.RewardInfo, error) {
-	ok, err := r.Client.Reward.GetRewardShort(input, authInfo)
+func (r *RewardService) GetRewardShort(input *reward.GetRewardParams) (*platformclientmodels.RewardInfo, error) {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := r.Client.Reward.GetRewardShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) UpdateRewardShort(input *reward.UpdateRewardParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.RewardInfo, error) {
-	ok, err := r.Client.Reward.UpdateRewardShort(input, authInfo)
+func (r *RewardService) UpdateRewardShort(input *reward.UpdateRewardParams) (*platformclientmodels.RewardInfo, error) {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := r.Client.Reward.UpdateRewardShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.RewardInfo, error) {
-	ok, err := r.Client.Reward.DeleteRewardShort(input, authInfo)
+func (r *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams) (*platformclientmodels.RewardInfo, error) {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := r.Client.Reward.DeleteRewardShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) CheckEventConditionShort(input *reward.CheckEventConditionParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.ConditionMatchResult, error) {
-	ok, err := r.Client.Reward.CheckEventConditionShort(input, authInfo)
+func (r *RewardService) CheckEventConditionShort(input *reward.CheckEventConditionParams) (*platformclientmodels.ConditionMatchResult, error) {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := r.Client.Reward.CheckEventConditionShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) GetRewardByCodeShort(input *reward.GetRewardByCodeParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.RewardInfo, error) {
-	ok, err := r.Client.Reward.GetRewardByCodeShort(input, authInfo)
+func (r *RewardService) GetRewardByCodeShort(input *reward.GetRewardByCodeParams) (*platformclientmodels.RewardInfo, error) {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := r.Client.Reward.GetRewardByCodeShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) QueryRewards1Short(input *reward.QueryRewards1Params, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.RewardPagingSlicedResult, error) {
-	ok, err := r.Client.Reward.QueryRewards1Short(input, authInfo)
+func (r *RewardService) QueryRewards1Short(input *reward.QueryRewards1Params) (*platformclientmodels.RewardPagingSlicedResult, error) {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := r.Client.Reward.QueryRewards1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) GetReward1Short(input *reward.GetReward1Params, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.RewardInfo, error) {
-	ok, err := r.Client.Reward.GetReward1Short(input, authInfo)
+func (r *RewardService) GetReward1Short(input *reward.GetReward1Params) (*platformclientmodels.RewardInfo, error) {
+	accessToken, err := r.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := r.Client.Reward.GetReward1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

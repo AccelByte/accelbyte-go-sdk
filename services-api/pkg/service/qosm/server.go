@@ -9,7 +9,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/qosm-sdk/pkg/qosmclient"
 	"github.com/AccelByte/accelbyte-go-sdk/qosm-sdk/pkg/qosmclient/server"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -37,8 +36,12 @@ func (s *ServerService) Heartbeat(input *server.HeartbeatParams) error {
 	return nil
 }
 
-func (s *ServerService) HeartbeatShort(input *server.HeartbeatParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := s.Client.Server.HeartbeatShort(input, authInfo)
+func (s *ServerService) HeartbeatShort(input *server.HeartbeatParams) error {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = s.Client.Server.HeartbeatShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}

@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -581,320 +580,480 @@ func (i *IAPService) SyncXboxInventory(input *i_a_p.SyncXboxInventoryParams) ([]
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) GetAppleIAPConfigShort(input *i_a_p.GetAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.AppleIAPConfigInfo, error) {
-	ok, err := i.Client.Iap.GetAppleIAPConfigShort(input, authInfo)
+func (i *IAPService) GetAppleIAPConfigShort(input *i_a_p.GetAppleIAPConfigParams) (*platformclientmodels.AppleIAPConfigInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.GetAppleIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) UpdateAppleIAPConfigShort(input *i_a_p.UpdateAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.AppleIAPConfigInfo, error) {
-	ok, err := i.Client.Iap.UpdateAppleIAPConfigShort(input, authInfo)
+func (i *IAPService) UpdateAppleIAPConfigShort(input *i_a_p.UpdateAppleIAPConfigParams) (*platformclientmodels.AppleIAPConfigInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.UpdateAppleIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) DeleteAppleIAPConfigShort(input *i_a_p.DeleteAppleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := i.Client.Iap.DeleteAppleIAPConfigShort(input, authInfo)
+func (i *IAPService) DeleteAppleIAPConfigShort(input *i_a_p.DeleteAppleIAPConfigParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = i.Client.Iap.DeleteAppleIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (i *IAPService) GetEpicGamesIAPConfigShort(input *i_a_p.GetEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.EpicGamesIAPConfigInfo, error) {
-	ok, err := i.Client.Iap.GetEpicGamesIAPConfigShort(input, authInfo)
+func (i *IAPService) GetEpicGamesIAPConfigShort(input *i_a_p.GetEpicGamesIAPConfigParams) (*platformclientmodels.EpicGamesIAPConfigInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.GetEpicGamesIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) UpdateEpicGamesIAPConfigShort(input *i_a_p.UpdateEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.EpicGamesIAPConfigInfo, error) {
-	ok, err := i.Client.Iap.UpdateEpicGamesIAPConfigShort(input, authInfo)
+func (i *IAPService) UpdateEpicGamesIAPConfigShort(input *i_a_p.UpdateEpicGamesIAPConfigParams) (*platformclientmodels.EpicGamesIAPConfigInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.UpdateEpicGamesIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) DeleteEpicGamesIAPConfigShort(input *i_a_p.DeleteEpicGamesIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := i.Client.Iap.DeleteEpicGamesIAPConfigShort(input, authInfo)
+func (i *IAPService) DeleteEpicGamesIAPConfigShort(input *i_a_p.DeleteEpicGamesIAPConfigParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = i.Client.Iap.DeleteEpicGamesIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (i *IAPService) GetGoogleIAPConfigShort(input *i_a_p.GetGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.GoogleIAPConfigInfo, error) {
-	ok, err := i.Client.Iap.GetGoogleIAPConfigShort(input, authInfo)
+func (i *IAPService) GetGoogleIAPConfigShort(input *i_a_p.GetGoogleIAPConfigParams) (*platformclientmodels.GoogleIAPConfigInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.GetGoogleIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) UpdateGoogleIAPConfigShort(input *i_a_p.UpdateGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.GoogleIAPConfigInfo, error) {
-	ok, err := i.Client.Iap.UpdateGoogleIAPConfigShort(input, authInfo)
+func (i *IAPService) UpdateGoogleIAPConfigShort(input *i_a_p.UpdateGoogleIAPConfigParams) (*platformclientmodels.GoogleIAPConfigInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.UpdateGoogleIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) DeleteGoogleIAPConfigShort(input *i_a_p.DeleteGoogleIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := i.Client.Iap.DeleteGoogleIAPConfigShort(input, authInfo)
+func (i *IAPService) DeleteGoogleIAPConfigShort(input *i_a_p.DeleteGoogleIAPConfigParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = i.Client.Iap.DeleteGoogleIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (i *IAPService) UpdateGoogleP12FileShort(input *i_a_p.UpdateGoogleP12FileParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.GoogleIAPConfigInfo, error) {
-	ok, err := i.Client.Iap.UpdateGoogleP12FileShort(input, authInfo)
+func (i *IAPService) UpdateGoogleP12FileShort(input *i_a_p.UpdateGoogleP12FileParams) (*platformclientmodels.GoogleIAPConfigInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.UpdateGoogleP12FileShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) GetIAPItemConfigShort(input *i_a_p.GetIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.IAPItemConfigInfo, error) {
-	ok, err := i.Client.Iap.GetIAPItemConfigShort(input, authInfo)
+func (i *IAPService) GetIAPItemConfigShort(input *i_a_p.GetIAPItemConfigParams) (*platformclientmodels.IAPItemConfigInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.GetIAPItemConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) UpdateIAPItemConfigShort(input *i_a_p.UpdateIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.IAPItemConfigInfo, error) {
-	ok, err := i.Client.Iap.UpdateIAPItemConfigShort(input, authInfo)
+func (i *IAPService) UpdateIAPItemConfigShort(input *i_a_p.UpdateIAPItemConfigParams) (*platformclientmodels.IAPItemConfigInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.UpdateIAPItemConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) DeleteIAPItemConfigShort(input *i_a_p.DeleteIAPItemConfigParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := i.Client.Iap.DeleteIAPItemConfigShort(input, authInfo)
+func (i *IAPService) DeleteIAPItemConfigShort(input *i_a_p.DeleteIAPItemConfigParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = i.Client.Iap.DeleteIAPItemConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (i *IAPService) GetPlayStationIAPConfigShort(input *i_a_p.GetPlayStationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PlayStationIAPConfigInfo, error) {
-	ok, err := i.Client.Iap.GetPlayStationIAPConfigShort(input, authInfo)
+func (i *IAPService) GetPlayStationIAPConfigShort(input *i_a_p.GetPlayStationIAPConfigParams) (*platformclientmodels.PlayStationIAPConfigInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.GetPlayStationIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) UpdatePlaystationIAPConfigShort(input *i_a_p.UpdatePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PlayStationIAPConfigInfo, error) {
-	ok, err := i.Client.Iap.UpdatePlaystationIAPConfigShort(input, authInfo)
+func (i *IAPService) UpdatePlaystationIAPConfigShort(input *i_a_p.UpdatePlaystationIAPConfigParams) (*platformclientmodels.PlayStationIAPConfigInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.UpdatePlaystationIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) DeletePlaystationIAPConfigShort(input *i_a_p.DeletePlaystationIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := i.Client.Iap.DeletePlaystationIAPConfigShort(input, authInfo)
+func (i *IAPService) DeletePlaystationIAPConfigShort(input *i_a_p.DeletePlaystationIAPConfigParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = i.Client.Iap.DeletePlaystationIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (i *IAPService) GetStadiaIAPConfigShort(input *i_a_p.GetStadiaIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.StadiaIAPConfigInfo, error) {
-	ok, err := i.Client.Iap.GetStadiaIAPConfigShort(input, authInfo)
+func (i *IAPService) GetStadiaIAPConfigShort(input *i_a_p.GetStadiaIAPConfigParams) (*platformclientmodels.StadiaIAPConfigInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.GetStadiaIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) DeleteStadiaIAPConfigShort(input *i_a_p.DeleteStadiaIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := i.Client.Iap.DeleteStadiaIAPConfigShort(input, authInfo)
+func (i *IAPService) DeleteStadiaIAPConfigShort(input *i_a_p.DeleteStadiaIAPConfigParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = i.Client.Iap.DeleteStadiaIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (i *IAPService) UpdateStadiaJSONConfigFileShort(input *i_a_p.UpdateStadiaJSONConfigFileParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.StadiaIAPConfigInfo, error) {
-	ok, err := i.Client.Iap.UpdateStadiaJSONConfigFileShort(input, authInfo)
+func (i *IAPService) UpdateStadiaJSONConfigFileShort(input *i_a_p.UpdateStadiaJSONConfigFileParams) (*platformclientmodels.StadiaIAPConfigInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.UpdateStadiaJSONConfigFileShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) GetSteamIAPConfigShort(input *i_a_p.GetSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.SteamIAPConfig, error) {
-	ok, err := i.Client.Iap.GetSteamIAPConfigShort(input, authInfo)
+func (i *IAPService) GetSteamIAPConfigShort(input *i_a_p.GetSteamIAPConfigParams) (*platformclientmodels.SteamIAPConfig, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.GetSteamIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) UpdateSteamIAPConfigShort(input *i_a_p.UpdateSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.SteamIAPConfigInfo, error) {
-	ok, err := i.Client.Iap.UpdateSteamIAPConfigShort(input, authInfo)
+func (i *IAPService) UpdateSteamIAPConfigShort(input *i_a_p.UpdateSteamIAPConfigParams) (*platformclientmodels.SteamIAPConfigInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.UpdateSteamIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) DeleteSteamIAPConfigShort(input *i_a_p.DeleteSteamIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := i.Client.Iap.DeleteSteamIAPConfigShort(input, authInfo)
+func (i *IAPService) DeleteSteamIAPConfigShort(input *i_a_p.DeleteSteamIAPConfigParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = i.Client.Iap.DeleteSteamIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (i *IAPService) GetTwitchIAPConfigShort(input *i_a_p.GetTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TwitchIAPConfigInfo, error) {
-	ok, err := i.Client.Iap.GetTwitchIAPConfigShort(input, authInfo)
+func (i *IAPService) GetTwitchIAPConfigShort(input *i_a_p.GetTwitchIAPConfigParams) (*platformclientmodels.TwitchIAPConfigInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.GetTwitchIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) UpdateTwitchIAPConfigShort(input *i_a_p.UpdateTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TwitchIAPConfigInfo, error) {
-	ok, err := i.Client.Iap.UpdateTwitchIAPConfigShort(input, authInfo)
+func (i *IAPService) UpdateTwitchIAPConfigShort(input *i_a_p.UpdateTwitchIAPConfigParams) (*platformclientmodels.TwitchIAPConfigInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.UpdateTwitchIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) DeleteTwitchIAPConfigShort(input *i_a_p.DeleteTwitchIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := i.Client.Iap.DeleteTwitchIAPConfigShort(input, authInfo)
+func (i *IAPService) DeleteTwitchIAPConfigShort(input *i_a_p.DeleteTwitchIAPConfigParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = i.Client.Iap.DeleteTwitchIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (i *IAPService) GetXblIAPConfigShort(input *i_a_p.GetXblIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.XblIAPConfigInfo, error) {
-	ok, err := i.Client.Iap.GetXblIAPConfigShort(input, authInfo)
+func (i *IAPService) GetXblIAPConfigShort(input *i_a_p.GetXblIAPConfigParams) (*platformclientmodels.XblIAPConfigInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.GetXblIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) UpdateXblIAPConfigShort(input *i_a_p.UpdateXblIAPConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.XblIAPConfigInfo, error) {
-	ok, err := i.Client.Iap.UpdateXblIAPConfigShort(input, authInfo)
+func (i *IAPService) UpdateXblIAPConfigShort(input *i_a_p.UpdateXblIAPConfigParams) (*platformclientmodels.XblIAPConfigInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.UpdateXblIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) DeleteXblAPConfigShort(input *i_a_p.DeleteXblAPConfigParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := i.Client.Iap.DeleteXblAPConfigShort(input, authInfo)
+func (i *IAPService) DeleteXblAPConfigShort(input *i_a_p.DeleteXblAPConfigParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = i.Client.Iap.DeleteXblAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (i *IAPService) UpdateXblBPCertFileShort(input *i_a_p.UpdateXblBPCertFileParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.XblIAPConfigInfo, error) {
-	ok, err := i.Client.Iap.UpdateXblBPCertFileShort(input, authInfo)
+func (i *IAPService) UpdateXblBPCertFileShort(input *i_a_p.UpdateXblBPCertFileParams) (*platformclientmodels.XblIAPConfigInfo, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.UpdateXblBPCertFileShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) QueryUserIAPOrdersShort(input *i_a_p.QueryUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.IAPOrderPagingSlicedResult, error) {
-	ok, err := i.Client.Iap.QueryUserIAPOrdersShort(input, authInfo)
+func (i *IAPService) QueryUserIAPOrdersShort(input *i_a_p.QueryUserIAPOrdersParams) (*platformclientmodels.IAPOrderPagingSlicedResult, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.QueryUserIAPOrdersShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) QueryAllUserIAPOrdersShort(input *i_a_p.QueryAllUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.IAPOrderPagingSlicedResult, error) {
-	ok, err := i.Client.Iap.QueryAllUserIAPOrdersShort(input, authInfo)
+func (i *IAPService) QueryAllUserIAPOrdersShort(input *i_a_p.QueryAllUserIAPOrdersParams) (*platformclientmodels.IAPOrderPagingSlicedResult, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.QueryAllUserIAPOrdersShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) MockFulfillIAPItemShort(input *i_a_p.MockFulfillIAPItemParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := i.Client.Iap.MockFulfillIAPItemShort(input, authInfo)
+func (i *IAPService) MockFulfillIAPItemShort(input *i_a_p.MockFulfillIAPItemParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = i.Client.Iap.MockFulfillIAPItemShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (i *IAPService) PublicFulfillAppleIAPItemShort(input *i_a_p.PublicFulfillAppleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := i.Client.Iap.PublicFulfillAppleIAPItemShort(input, authInfo)
+func (i *IAPService) PublicFulfillAppleIAPItemShort(input *i_a_p.PublicFulfillAppleIAPItemParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = i.Client.Iap.PublicFulfillAppleIAPItemShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (i *IAPService) SyncEpicGamesInventoryShort(input *i_a_p.SyncEpicGamesInventoryParams, authInfo runtime.ClientAuthInfoWriter) ([]*platformclientmodels.EpicGamesReconcileResult, error) {
-	ok, err := i.Client.Iap.SyncEpicGamesInventoryShort(input, authInfo)
+func (i *IAPService) SyncEpicGamesInventoryShort(input *i_a_p.SyncEpicGamesInventoryParams) ([]*platformclientmodels.EpicGamesReconcileResult, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.SyncEpicGamesInventoryShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) PublicFulfillGoogleIAPItemShort(input *i_a_p.PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := i.Client.Iap.PublicFulfillGoogleIAPItemShort(input, authInfo)
+func (i *IAPService) PublicFulfillGoogleIAPItemShort(input *i_a_p.PublicFulfillGoogleIAPItemParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = i.Client.Iap.PublicFulfillGoogleIAPItemShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (i *IAPService) PublicReconcilePlayStationStoreShort(input *i_a_p.PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) ([]*platformclientmodels.PlayStationReconcileResult, error) {
-	ok, err := i.Client.Iap.PublicReconcilePlayStationStoreShort(input, authInfo)
+func (i *IAPService) PublicReconcilePlayStationStoreShort(input *i_a_p.PublicReconcilePlayStationStoreParams) ([]*platformclientmodels.PlayStationReconcileResult, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.PublicReconcilePlayStationStoreShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) SyncStadiaEntitlementShort(input *i_a_p.SyncStadiaEntitlementParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := i.Client.Iap.SyncStadiaEntitlementShort(input, authInfo)
+func (i *IAPService) SyncStadiaEntitlementShort(input *i_a_p.SyncStadiaEntitlementParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = i.Client.Iap.SyncStadiaEntitlementShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (i *IAPService) SyncSteamInventoryShort(input *i_a_p.SyncSteamInventoryParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := i.Client.Iap.SyncSteamInventoryShort(input, authInfo)
+func (i *IAPService) SyncSteamInventoryShort(input *i_a_p.SyncSteamInventoryParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = i.Client.Iap.SyncSteamInventoryShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (i *IAPService) SyncTwitchDropsEntitlementShort(input *i_a_p.SyncTwitchDropsEntitlementParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := i.Client.Iap.SyncTwitchDropsEntitlementShort(input, authInfo)
+func (i *IAPService) SyncTwitchDropsEntitlementShort(input *i_a_p.SyncTwitchDropsEntitlementParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = i.Client.Iap.SyncTwitchDropsEntitlementShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (i *IAPService) SyncXboxInventoryShort(input *i_a_p.SyncXboxInventoryParams, authInfo runtime.ClientAuthInfoWriter) ([]*platformclientmodels.XblReconcileResult, error) {
-	ok, err := i.Client.Iap.SyncXboxInventoryShort(input, authInfo)
+func (i *IAPService) SyncXboxInventoryShort(input *i_a_p.SyncXboxInventoryParams) ([]*platformclientmodels.XblReconcileResult, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.Iap.SyncXboxInventoryShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

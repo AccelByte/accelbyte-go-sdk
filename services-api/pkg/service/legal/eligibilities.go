@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/eligibilities"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -45,16 +44,24 @@ func (e *EligibilitiesService) RetrieveEligibilitiesPublicIndirect(input *eligib
 	return ok.GetPayload(), nil
 }
 
-func (e *EligibilitiesService) RetrieveEligibilitiesPublicShort(input *eligibilities.RetrieveEligibilitiesPublicParams, authInfo runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrieveUserEligibilitiesResponse, error) {
-	ok, err := e.Client.Eligibilities.RetrieveEligibilitiesPublicShort(input, authInfo)
+func (e *EligibilitiesService) RetrieveEligibilitiesPublicShort(input *eligibilities.RetrieveEligibilitiesPublicParams) ([]*legalclientmodels.RetrieveUserEligibilitiesResponse, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Eligibilities.RetrieveEligibilitiesPublicShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EligibilitiesService) RetrieveEligibilitiesPublicIndirectShort(input *eligibilities.RetrieveEligibilitiesPublicIndirectParams, authInfo runtime.ClientAuthInfoWriter) (*legalclientmodels.RetrieveUserEligibilitiesIndirectResponse, error) {
-	ok, err := e.Client.Eligibilities.RetrieveEligibilitiesPublicIndirectShort(input, authInfo)
+func (e *EligibilitiesService) RetrieveEligibilitiesPublicIndirectShort(input *eligibilities.RetrieveEligibilitiesPublicIndirectParams) (*legalclientmodels.RetrieveUserEligibilitiesIndirectResponse, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Eligibilities.RetrieveEligibilitiesPublicIndirectShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

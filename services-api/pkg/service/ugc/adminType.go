@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_type"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -116,32 +115,48 @@ func (a *AdminTypeService) AdminDeleteType(input *admin_type.AdminDeleteTypePara
 	return nil
 }
 
-func (a *AdminTypeService) AdminGetTypeShort(input *admin_type.AdminGetTypeParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedGetTypeResponse, error) {
-	ok, err := a.Client.AdminType.AdminGetTypeShort(input, authInfo)
+func (a *AdminTypeService) AdminGetTypeShort(input *admin_type.AdminGetTypeParams) (*ugcclientmodels.ModelsPaginatedGetTypeResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := a.Client.AdminType.AdminGetTypeShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminTypeService) AdminCreateTypeShort(input *admin_type.AdminCreateTypeParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
-	created, err := a.Client.AdminType.AdminCreateTypeShort(input, authInfo)
+func (a *AdminTypeService) AdminCreateTypeShort(input *admin_type.AdminCreateTypeParams) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := a.Client.AdminType.AdminCreateTypeShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (a *AdminTypeService) AdminUpdateTypeShort(input *admin_type.AdminUpdateTypeParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
-	ok, err := a.Client.AdminType.AdminUpdateTypeShort(input, authInfo)
+func (a *AdminTypeService) AdminUpdateTypeShort(input *admin_type.AdminUpdateTypeParams) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := a.Client.AdminType.AdminUpdateTypeShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminTypeService) AdminDeleteTypeShort(input *admin_type.AdminDeleteTypeParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.AdminType.AdminDeleteTypeShort(input, authInfo)
+func (a *AdminTypeService) AdminDeleteTypeShort(input *admin_type.AdminDeleteTypeParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.AdminType.AdminDeleteTypeShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}

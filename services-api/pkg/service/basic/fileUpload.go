@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/file_upload"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -125,32 +124,48 @@ func (f *FileUploadService) PublicGeneratedUserUploadContentURL(input *file_uplo
 	return ok.GetPayload(), nil
 }
 
-func (f *FileUploadService) GeneratedUploadURLShort(input *file_upload.GeneratedUploadURLParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.FileUploadURLInfo, error) {
-	ok, err := f.Client.FileUpload.GeneratedUploadURLShort(input, authInfo)
+func (f *FileUploadService) GeneratedUploadURLShort(input *file_upload.GeneratedUploadURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
+	accessToken, err := f.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := f.Client.FileUpload.GeneratedUploadURLShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (f *FileUploadService) GeneratedUserUploadContentURLShort(input *file_upload.GeneratedUserUploadContentURLParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.FileUploadURLInfo, error) {
-	ok, err := f.Client.FileUpload.GeneratedUserUploadContentURLShort(input, authInfo)
+func (f *FileUploadService) GeneratedUserUploadContentURLShort(input *file_upload.GeneratedUserUploadContentURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
+	accessToken, err := f.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := f.Client.FileUpload.GeneratedUserUploadContentURLShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (f *FileUploadService) PublicGeneratedUploadURLShort(input *file_upload.PublicGeneratedUploadURLParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.FileUploadURLInfo, error) {
-	ok, err := f.Client.FileUpload.PublicGeneratedUploadURLShort(input, authInfo)
+func (f *FileUploadService) PublicGeneratedUploadURLShort(input *file_upload.PublicGeneratedUploadURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
+	accessToken, err := f.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := f.Client.FileUpload.PublicGeneratedUploadURLShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (f *FileUploadService) PublicGeneratedUserUploadContentURLShort(input *file_upload.PublicGeneratedUserUploadContentURLParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.FileUploadURLInfo, error) {
-	ok, err := f.Client.FileUpload.PublicGeneratedUserUploadContentURLShort(input, authInfo)
+func (f *FileUploadService) PublicGeneratedUserUploadContentURLShort(input *file_upload.PublicGeneratedUserUploadContentURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
+	accessToken, err := f.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := f.Client.FileUpload.PublicGeneratedUserUploadContentURLShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

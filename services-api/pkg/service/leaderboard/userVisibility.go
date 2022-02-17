@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/user_visibility"
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -131,32 +130,48 @@ func (u *UserVisibilityService) SetUserVisibilityStatusV2(input *user_visibility
 	return ok.GetPayload(), nil
 }
 
-func (u *UserVisibilityService) GetHiddenUsersV2Short(input *user_visibility.GetHiddenUsersV2Params, authInfo runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetHiddenUserResponse, error) {
-	ok, err := u.Client.UserVisibility.GetHiddenUsersV2Short(input, authInfo)
+func (u *UserVisibilityService) GetHiddenUsersV2Short(input *user_visibility.GetHiddenUsersV2Params) (*leaderboardclientmodels.ModelsGetHiddenUserResponse, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UserVisibility.GetHiddenUsersV2Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UserVisibilityService) GetUserVisibilityStatusV2Short(input *user_visibility.GetUserVisibilityStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
-	ok, err := u.Client.UserVisibility.GetUserVisibilityStatusV2Short(input, authInfo)
+func (u *UserVisibilityService) GetUserVisibilityStatusV2Short(input *user_visibility.GetUserVisibilityStatusV2Params) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UserVisibility.GetUserVisibilityStatusV2Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UserVisibilityService) SetUserLeaderboardVisibilityStatusV2Short(input *user_visibility.SetUserLeaderboardVisibilityStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
-	ok, err := u.Client.UserVisibility.SetUserLeaderboardVisibilityStatusV2Short(input, authInfo)
+func (u *UserVisibilityService) SetUserLeaderboardVisibilityStatusV2Short(input *user_visibility.SetUserLeaderboardVisibilityStatusV2Params) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UserVisibility.SetUserLeaderboardVisibilityStatusV2Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UserVisibilityService) SetUserVisibilityStatusV2Short(input *user_visibility.SetUserVisibilityStatusV2Params, authInfo runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
-	ok, err := u.Client.UserVisibility.SetUserVisibilityStatusV2Short(input, authInfo)
+func (u *UserVisibilityService) SetUserVisibilityStatusV2Short(input *user_visibility.SetUserVisibilityStatusV2Params) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UserVisibility.SetUserVisibilityStatusV2Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -569,296 +568,444 @@ func (e *EntitlementService) PublicConsumeUserEntitlement(input *entitlement.Pub
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) QueryEntitlementsShort(input *entitlement.QueryEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementPagingSlicedResult, error) {
-	ok, err := e.Client.Entitlement.QueryEntitlementsShort(input, authInfo)
+func (e *EntitlementService) QueryEntitlementsShort(input *entitlement.QueryEntitlementsParams) (*platformclientmodels.EntitlementPagingSlicedResult, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.QueryEntitlementsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) GetEntitlementShort(input *entitlement.GetEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
-	ok, err := e.Client.Entitlement.GetEntitlementShort(input, authInfo)
+func (e *EntitlementService) GetEntitlementShort(input *entitlement.GetEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.GetEntitlementShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) QueryUserEntitlementsShort(input *entitlement.QueryUserEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementPagingSlicedResult, error) {
-	ok, err := e.Client.Entitlement.QueryUserEntitlementsShort(input, authInfo)
+func (e *EntitlementService) QueryUserEntitlementsShort(input *entitlement.QueryUserEntitlementsParams) (*platformclientmodels.EntitlementPagingSlicedResult, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.QueryUserEntitlementsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) GrantUserEntitlementShort(input *entitlement.GrantUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) ([]*platformclientmodels.StackableEntitlementInfo, error) {
-	created, err := e.Client.Entitlement.GrantUserEntitlementShort(input, authInfo)
+func (e *EntitlementService) GrantUserEntitlementShort(input *entitlement.GrantUserEntitlementParams) ([]*platformclientmodels.StackableEntitlementInfo, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := e.Client.Entitlement.GrantUserEntitlementShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (e *EntitlementService) GetUserAppEntitlementByAppIDShort(input *entitlement.GetUserAppEntitlementByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.AppEntitlementInfo, error) {
-	ok, err := e.Client.Entitlement.GetUserAppEntitlementByAppIDShort(input, authInfo)
+func (e *EntitlementService) GetUserAppEntitlementByAppIDShort(input *entitlement.GetUserAppEntitlementByAppIDParams) (*platformclientmodels.AppEntitlementInfo, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.GetUserAppEntitlementByAppIDShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) QueryUserEntitlementsByAppTypeShort(input *entitlement.QueryUserEntitlementsByAppTypeParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.AppEntitlementPagingSlicedResult, error) {
-	ok, err := e.Client.Entitlement.QueryUserEntitlementsByAppTypeShort(input, authInfo)
+func (e *EntitlementService) QueryUserEntitlementsByAppTypeShort(input *entitlement.QueryUserEntitlementsByAppTypeParams) (*platformclientmodels.AppEntitlementPagingSlicedResult, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.QueryUserEntitlementsByAppTypeShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) GetUserEntitlementByItemIDShort(input *entitlement.GetUserEntitlementByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
-	ok, err := e.Client.Entitlement.GetUserEntitlementByItemIDShort(input, authInfo)
+func (e *EntitlementService) GetUserEntitlementByItemIDShort(input *entitlement.GetUserEntitlementByItemIDParams) (*platformclientmodels.EntitlementInfo, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.GetUserEntitlementByItemIDShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) GetUserEntitlementBySkuShort(input *entitlement.GetUserEntitlementBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
-	ok, err := e.Client.Entitlement.GetUserEntitlementBySkuShort(input, authInfo)
+func (e *EntitlementService) GetUserEntitlementBySkuShort(input *entitlement.GetUserEntitlementBySkuParams) (*platformclientmodels.EntitlementInfo, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.GetUserEntitlementBySkuShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) ExistsAnyUserActiveEntitlementShort(input *entitlement.ExistsAnyUserActiveEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.Ownership, error) {
-	ok, err := e.Client.Entitlement.ExistsAnyUserActiveEntitlementShort(input, authInfo)
+func (e *EntitlementService) ExistsAnyUserActiveEntitlementShort(input *entitlement.ExistsAnyUserActiveEntitlementParams) (*platformclientmodels.Ownership, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.ExistsAnyUserActiveEntitlementShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) ExistsAnyUserActiveEntitlementByItemIdsShort(input *entitlement.ExistsAnyUserActiveEntitlementByItemIdsParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.Ownership, error) {
-	ok, err := e.Client.Entitlement.ExistsAnyUserActiveEntitlementByItemIdsShort(input, authInfo)
+func (e *EntitlementService) ExistsAnyUserActiveEntitlementByItemIdsShort(input *entitlement.ExistsAnyUserActiveEntitlementByItemIdsParams) (*platformclientmodels.Ownership, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.ExistsAnyUserActiveEntitlementByItemIdsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) GetUserAppEntitlementOwnershipByAppIDShort(input *entitlement.GetUserAppEntitlementOwnershipByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.Ownership, error) {
-	ok, err := e.Client.Entitlement.GetUserAppEntitlementOwnershipByAppIDShort(input, authInfo)
+func (e *EntitlementService) GetUserAppEntitlementOwnershipByAppIDShort(input *entitlement.GetUserAppEntitlementOwnershipByAppIDParams) (*platformclientmodels.Ownership, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.GetUserAppEntitlementOwnershipByAppIDShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) GetUserEntitlementOwnershipByItemIDShort(input *entitlement.GetUserEntitlementOwnershipByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TimedOwnership, error) {
-	ok, err := e.Client.Entitlement.GetUserEntitlementOwnershipByItemIDShort(input, authInfo)
+func (e *EntitlementService) GetUserEntitlementOwnershipByItemIDShort(input *entitlement.GetUserEntitlementOwnershipByItemIDParams) (*platformclientmodels.TimedOwnership, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.GetUserEntitlementOwnershipByItemIDShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) GetUserEntitlementOwnershipBySkuShort(input *entitlement.GetUserEntitlementOwnershipBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TimedOwnership, error) {
-	ok, err := e.Client.Entitlement.GetUserEntitlementOwnershipBySkuShort(input, authInfo)
+func (e *EntitlementService) GetUserEntitlementOwnershipBySkuShort(input *entitlement.GetUserEntitlementOwnershipBySkuParams) (*platformclientmodels.TimedOwnership, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.GetUserEntitlementOwnershipBySkuShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) RevokeUserEntitlementsShort(input *entitlement.RevokeUserEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.BulkOperationResult, error) {
-	ok, err := e.Client.Entitlement.RevokeUserEntitlementsShort(input, authInfo)
+func (e *EntitlementService) RevokeUserEntitlementsShort(input *entitlement.RevokeUserEntitlementsParams) (*platformclientmodels.BulkOperationResult, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.RevokeUserEntitlementsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) GetUserEntitlementShort(input *entitlement.GetUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
-	ok, err := e.Client.Entitlement.GetUserEntitlementShort(input, authInfo)
+func (e *EntitlementService) GetUserEntitlementShort(input *entitlement.GetUserEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.GetUserEntitlementShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) UpdateUserEntitlementShort(input *entitlement.UpdateUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
-	ok, err := e.Client.Entitlement.UpdateUserEntitlementShort(input, authInfo)
+func (e *EntitlementService) UpdateUserEntitlementShort(input *entitlement.UpdateUserEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.UpdateUserEntitlementShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) ConsumeUserEntitlementShort(input *entitlement.ConsumeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
-	ok, err := e.Client.Entitlement.ConsumeUserEntitlementShort(input, authInfo)
+func (e *EntitlementService) ConsumeUserEntitlementShort(input *entitlement.ConsumeUserEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.ConsumeUserEntitlementShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) DisableUserEntitlementShort(input *entitlement.DisableUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
-	ok, err := e.Client.Entitlement.DisableUserEntitlementShort(input, authInfo)
+func (e *EntitlementService) DisableUserEntitlementShort(input *entitlement.DisableUserEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.DisableUserEntitlementShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) EnableUserEntitlementShort(input *entitlement.EnableUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
-	ok, err := e.Client.Entitlement.EnableUserEntitlementShort(input, authInfo)
+func (e *EntitlementService) EnableUserEntitlementShort(input *entitlement.EnableUserEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.EnableUserEntitlementShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) GetUserEntitlementHistoriesShort(input *entitlement.GetUserEntitlementHistoriesParams, authInfo runtime.ClientAuthInfoWriter) ([]*platformclientmodels.EntitlementHistoryInfo, error) {
-	ok, err := e.Client.Entitlement.GetUserEntitlementHistoriesShort(input, authInfo)
+func (e *EntitlementService) GetUserEntitlementHistoriesShort(input *entitlement.GetUserEntitlementHistoriesParams) ([]*platformclientmodels.EntitlementHistoryInfo, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.GetUserEntitlementHistoriesShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) RevokeUserEntitlementShort(input *entitlement.RevokeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
-	ok, err := e.Client.Entitlement.RevokeUserEntitlementShort(input, authInfo)
+func (e *EntitlementService) RevokeUserEntitlementShort(input *entitlement.RevokeUserEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.RevokeUserEntitlementShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicExistsAnyMyActiveEntitlementShort(input *entitlement.PublicExistsAnyMyActiveEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.Ownership, error) {
-	ok, err := e.Client.Entitlement.PublicExistsAnyMyActiveEntitlementShort(input, authInfo)
+func (e *EntitlementService) PublicExistsAnyMyActiveEntitlementShort(input *entitlement.PublicExistsAnyMyActiveEntitlementParams) (*platformclientmodels.Ownership, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.PublicExistsAnyMyActiveEntitlementShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicGetMyAppEntitlementOwnershipByAppIDShort(input *entitlement.PublicGetMyAppEntitlementOwnershipByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.Ownership, error) {
-	ok, err := e.Client.Entitlement.PublicGetMyAppEntitlementOwnershipByAppIDShort(input, authInfo)
+func (e *EntitlementService) PublicGetMyAppEntitlementOwnershipByAppIDShort(input *entitlement.PublicGetMyAppEntitlementOwnershipByAppIDParams) (*platformclientmodels.Ownership, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.PublicGetMyAppEntitlementOwnershipByAppIDShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicGetMyEntitlementOwnershipByItemIDShort(input *entitlement.PublicGetMyEntitlementOwnershipByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TimedOwnership, error) {
-	ok, err := e.Client.Entitlement.PublicGetMyEntitlementOwnershipByItemIDShort(input, authInfo)
+func (e *EntitlementService) PublicGetMyEntitlementOwnershipByItemIDShort(input *entitlement.PublicGetMyEntitlementOwnershipByItemIDParams) (*platformclientmodels.TimedOwnership, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.PublicGetMyEntitlementOwnershipByItemIDShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicGetMyEntitlementOwnershipBySkuShort(input *entitlement.PublicGetMyEntitlementOwnershipBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TimedOwnership, error) {
-	ok, err := e.Client.Entitlement.PublicGetMyEntitlementOwnershipBySkuShort(input, authInfo)
+func (e *EntitlementService) PublicGetMyEntitlementOwnershipBySkuShort(input *entitlement.PublicGetMyEntitlementOwnershipBySkuParams) (*platformclientmodels.TimedOwnership, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.PublicGetMyEntitlementOwnershipBySkuShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicGetEntitlementOwnershipTokenShort(input *entitlement.PublicGetEntitlementOwnershipTokenParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.OwnershipToken, error) {
-	ok, err := e.Client.Entitlement.PublicGetEntitlementOwnershipTokenShort(input, authInfo)
+func (e *EntitlementService) PublicGetEntitlementOwnershipTokenShort(input *entitlement.PublicGetEntitlementOwnershipTokenParams) (*platformclientmodels.OwnershipToken, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.PublicGetEntitlementOwnershipTokenShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicQueryUserEntitlementsShort(input *entitlement.PublicQueryUserEntitlementsParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementPagingSlicedResult, error) {
-	ok, err := e.Client.Entitlement.PublicQueryUserEntitlementsShort(input, authInfo)
+func (e *EntitlementService) PublicQueryUserEntitlementsShort(input *entitlement.PublicQueryUserEntitlementsParams) (*platformclientmodels.EntitlementPagingSlicedResult, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.PublicQueryUserEntitlementsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicGetUserAppEntitlementByAppIDShort(input *entitlement.PublicGetUserAppEntitlementByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.AppEntitlementInfo, error) {
-	ok, err := e.Client.Entitlement.PublicGetUserAppEntitlementByAppIDShort(input, authInfo)
+func (e *EntitlementService) PublicGetUserAppEntitlementByAppIDShort(input *entitlement.PublicGetUserAppEntitlementByAppIDParams) (*platformclientmodels.AppEntitlementInfo, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.PublicGetUserAppEntitlementByAppIDShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicQueryUserEntitlementsByAppTypeShort(input *entitlement.PublicQueryUserEntitlementsByAppTypeParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.AppEntitlementPagingSlicedResult, error) {
-	ok, err := e.Client.Entitlement.PublicQueryUserEntitlementsByAppTypeShort(input, authInfo)
+func (e *EntitlementService) PublicQueryUserEntitlementsByAppTypeShort(input *entitlement.PublicQueryUserEntitlementsByAppTypeParams) (*platformclientmodels.AppEntitlementPagingSlicedResult, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.PublicQueryUserEntitlementsByAppTypeShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicGetUserEntitlementByItemIDShort(input *entitlement.PublicGetUserEntitlementByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
-	ok, err := e.Client.Entitlement.PublicGetUserEntitlementByItemIDShort(input, authInfo)
+func (e *EntitlementService) PublicGetUserEntitlementByItemIDShort(input *entitlement.PublicGetUserEntitlementByItemIDParams) (*platformclientmodels.EntitlementInfo, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.PublicGetUserEntitlementByItemIDShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicGetUserEntitlementBySkuShort(input *entitlement.PublicGetUserEntitlementBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
-	ok, err := e.Client.Entitlement.PublicGetUserEntitlementBySkuShort(input, authInfo)
+func (e *EntitlementService) PublicGetUserEntitlementBySkuShort(input *entitlement.PublicGetUserEntitlementBySkuParams) (*platformclientmodels.EntitlementInfo, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.PublicGetUserEntitlementBySkuShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicExistsAnyUserActiveEntitlementShort(input *entitlement.PublicExistsAnyUserActiveEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.Ownership, error) {
-	ok, err := e.Client.Entitlement.PublicExistsAnyUserActiveEntitlementShort(input, authInfo)
+func (e *EntitlementService) PublicExistsAnyUserActiveEntitlementShort(input *entitlement.PublicExistsAnyUserActiveEntitlementParams) (*platformclientmodels.Ownership, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.PublicExistsAnyUserActiveEntitlementShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicGetUserAppEntitlementOwnershipByAppIDShort(input *entitlement.PublicGetUserAppEntitlementOwnershipByAppIDParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.Ownership, error) {
-	ok, err := e.Client.Entitlement.PublicGetUserAppEntitlementOwnershipByAppIDShort(input, authInfo)
+func (e *EntitlementService) PublicGetUserAppEntitlementOwnershipByAppIDShort(input *entitlement.PublicGetUserAppEntitlementOwnershipByAppIDParams) (*platformclientmodels.Ownership, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.PublicGetUserAppEntitlementOwnershipByAppIDShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicGetUserEntitlementOwnershipByItemIDShort(input *entitlement.PublicGetUserEntitlementOwnershipByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TimedOwnership, error) {
-	ok, err := e.Client.Entitlement.PublicGetUserEntitlementOwnershipByItemIDShort(input, authInfo)
+func (e *EntitlementService) PublicGetUserEntitlementOwnershipByItemIDShort(input *entitlement.PublicGetUserEntitlementOwnershipByItemIDParams) (*platformclientmodels.TimedOwnership, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.PublicGetUserEntitlementOwnershipByItemIDShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicGetUserEntitlementOwnershipBySkuShort(input *entitlement.PublicGetUserEntitlementOwnershipBySkuParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.TimedOwnership, error) {
-	ok, err := e.Client.Entitlement.PublicGetUserEntitlementOwnershipBySkuShort(input, authInfo)
+func (e *EntitlementService) PublicGetUserEntitlementOwnershipBySkuShort(input *entitlement.PublicGetUserEntitlementOwnershipBySkuParams) (*platformclientmodels.TimedOwnership, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.PublicGetUserEntitlementOwnershipBySkuShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicGetUserEntitlementShort(input *entitlement.PublicGetUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
-	ok, err := e.Client.Entitlement.PublicGetUserEntitlementShort(input, authInfo)
+func (e *EntitlementService) PublicGetUserEntitlementShort(input *entitlement.PublicGetUserEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.PublicGetUserEntitlementShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicConsumeUserEntitlementShort(input *entitlement.PublicConsumeUserEntitlementParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
-	ok, err := e.Client.Entitlement.PublicConsumeUserEntitlementShort(input, authInfo)
+func (e *EntitlementService) PublicConsumeUserEntitlementShort(input *entitlement.PublicConsumeUserEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
+	accessToken, err := e.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := e.Client.Entitlement.PublicConsumeUserEntitlementShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

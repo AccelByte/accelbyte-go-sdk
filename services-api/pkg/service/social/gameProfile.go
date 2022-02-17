@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/game_profile"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -179,80 +178,120 @@ func (g *GameProfileService) PublicUpdateAttribute(input *game_profile.PublicUpd
 	return ok.GetPayload(), nil
 }
 
-func (g *GameProfileService) GetUserProfilesShort(input *game_profile.GetUserProfilesParams, authInfo runtime.ClientAuthInfoWriter) ([]*socialclientmodels.GameProfileHeader, error) {
-	ok, err := g.Client.GameProfile.GetUserProfilesShort(input, authInfo)
+func (g *GameProfileService) GetUserProfilesShort(input *game_profile.GetUserProfilesParams) ([]*socialclientmodels.GameProfileHeader, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.GameProfile.GetUserProfilesShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GameProfileService) GetProfileShort(input *game_profile.GetProfileParams, authInfo runtime.ClientAuthInfoWriter) (*socialclientmodels.GameProfileInfo, error) {
-	ok, err := g.Client.GameProfile.GetProfileShort(input, authInfo)
+func (g *GameProfileService) GetProfileShort(input *game_profile.GetProfileParams) (*socialclientmodels.GameProfileInfo, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.GameProfile.GetProfileShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GameProfileService) PublicGetUserGameProfilesShort(input *game_profile.PublicGetUserGameProfilesParams, authInfo runtime.ClientAuthInfoWriter) ([]*socialclientmodels.UserGameProfiles, error) {
-	ok, err := g.Client.GameProfile.PublicGetUserGameProfilesShort(input, authInfo)
+func (g *GameProfileService) PublicGetUserGameProfilesShort(input *game_profile.PublicGetUserGameProfilesParams) ([]*socialclientmodels.UserGameProfiles, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.GameProfile.PublicGetUserGameProfilesShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GameProfileService) PublicGetUserProfilesShort(input *game_profile.PublicGetUserProfilesParams, authInfo runtime.ClientAuthInfoWriter) ([]*socialclientmodels.GameProfileHeader, error) {
-	ok, err := g.Client.GameProfile.PublicGetUserProfilesShort(input, authInfo)
+func (g *GameProfileService) PublicGetUserProfilesShort(input *game_profile.PublicGetUserProfilesParams) ([]*socialclientmodels.GameProfileHeader, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.GameProfile.PublicGetUserProfilesShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GameProfileService) PublicCreateProfileShort(input *game_profile.PublicCreateProfileParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := g.Client.GameProfile.PublicCreateProfileShort(input, authInfo)
+func (g *GameProfileService) PublicCreateProfileShort(input *game_profile.PublicCreateProfileParams) error {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = g.Client.GameProfile.PublicCreateProfileShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (g *GameProfileService) PublicGetProfileShort(input *game_profile.PublicGetProfileParams, authInfo runtime.ClientAuthInfoWriter) (*socialclientmodels.GameProfileInfo, error) {
-	ok, err := g.Client.GameProfile.PublicGetProfileShort(input, authInfo)
+func (g *GameProfileService) PublicGetProfileShort(input *game_profile.PublicGetProfileParams) (*socialclientmodels.GameProfileInfo, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.GameProfile.PublicGetProfileShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GameProfileService) PublicUpdateProfileShort(input *game_profile.PublicUpdateProfileParams, authInfo runtime.ClientAuthInfoWriter) (*socialclientmodels.GameProfileInfo, error) {
-	ok, err := g.Client.GameProfile.PublicUpdateProfileShort(input, authInfo)
+func (g *GameProfileService) PublicUpdateProfileShort(input *game_profile.PublicUpdateProfileParams) (*socialclientmodels.GameProfileInfo, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.GameProfile.PublicUpdateProfileShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GameProfileService) PublicDeleteProfileShort(input *game_profile.PublicDeleteProfileParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := g.Client.GameProfile.PublicDeleteProfileShort(input, authInfo)
+func (g *GameProfileService) PublicDeleteProfileShort(input *game_profile.PublicDeleteProfileParams) error {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = g.Client.GameProfile.PublicDeleteProfileShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (g *GameProfileService) PublicGetProfileAttributeShort(input *game_profile.PublicGetProfileAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*socialclientmodels.Attribute, error) {
-	ok, err := g.Client.GameProfile.PublicGetProfileAttributeShort(input, authInfo)
+func (g *GameProfileService) PublicGetProfileAttributeShort(input *game_profile.PublicGetProfileAttributeParams) (*socialclientmodels.Attribute, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.GameProfile.PublicGetProfileAttributeShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (g *GameProfileService) PublicUpdateAttributeShort(input *game_profile.PublicUpdateAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*socialclientmodels.GameProfileInfo, error) {
-	ok, err := g.Client.GameProfile.PublicUpdateAttributeShort(input, authInfo)
+func (g *GameProfileService) PublicUpdateAttributeShort(input *game_profile.PublicUpdateAttributeParams) (*socialclientmodels.GameProfileInfo, error) {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := g.Client.GameProfile.PublicUpdateAttributeShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/namespace"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -238,72 +237,108 @@ func (n *NamespaceService) PublicGetNamespacePublisher(input *namespace.PublicGe
 	return ok.GetPayload(), nil
 }
 
-func (n *NamespaceService) GetNamespacesShort(input *namespace.GetNamespacesParams, authInfo runtime.ClientAuthInfoWriter) ([]*basicclientmodels.NamespaceInfo, error) {
-	ok, err := n.Client.Namespace.GetNamespacesShort(input, authInfo)
+func (n *NamespaceService) GetNamespacesShort(input *namespace.GetNamespacesParams) ([]*basicclientmodels.NamespaceInfo, error) {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := n.Client.Namespace.GetNamespacesShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (n *NamespaceService) CreateNamespaceShort(input *namespace.CreateNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.NamespaceInfo, error) {
-	created, err := n.Client.Namespace.CreateNamespaceShort(input, authInfo)
+func (n *NamespaceService) CreateNamespaceShort(input *namespace.CreateNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := n.Client.Namespace.CreateNamespaceShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (n *NamespaceService) GetNamespaceShort(input *namespace.GetNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.NamespaceInfo, error) {
-	ok, err := n.Client.Namespace.GetNamespaceShort(input, authInfo)
+func (n *NamespaceService) GetNamespaceShort(input *namespace.GetNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := n.Client.Namespace.GetNamespaceShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (n *NamespaceService) DeleteNamespaceShort(input *namespace.DeleteNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.NamespaceInfo, error) {
-	ok, err := n.Client.Namespace.DeleteNamespaceShort(input, authInfo)
+func (n *NamespaceService) DeleteNamespaceShort(input *namespace.DeleteNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := n.Client.Namespace.DeleteNamespaceShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (n *NamespaceService) UpdateNamespaceShort(input *namespace.UpdateNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.NamespaceInfo, error) {
-	ok, err := n.Client.Namespace.UpdateNamespaceShort(input, authInfo)
+func (n *NamespaceService) UpdateNamespaceShort(input *namespace.UpdateNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := n.Client.Namespace.UpdateNamespaceShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (n *NamespaceService) GetNamespacePublisherShort(input *namespace.GetNamespacePublisherParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.NamespacePublisherInfo, error) {
-	ok, err := n.Client.Namespace.GetNamespacePublisherShort(input, authInfo)
+func (n *NamespaceService) GetNamespacePublisherShort(input *namespace.GetNamespacePublisherParams) (*basicclientmodels.NamespacePublisherInfo, error) {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := n.Client.Namespace.GetNamespacePublisherShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (n *NamespaceService) ChangeNamespaceStatusShort(input *namespace.ChangeNamespaceStatusParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.NamespaceInfo, error) {
-	ok, err := n.Client.Namespace.ChangeNamespaceStatusShort(input, authInfo)
+func (n *NamespaceService) ChangeNamespaceStatusShort(input *namespace.ChangeNamespaceStatusParams) (*basicclientmodels.NamespaceInfo, error) {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := n.Client.Namespace.ChangeNamespaceStatusShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (n *NamespaceService) PublicGetNamespacesShort(input *namespace.PublicGetNamespacesParams, authInfo runtime.ClientAuthInfoWriter) ([]*basicclientmodels.NamespaceInfo, error) {
-	ok, err := n.Client.Namespace.PublicGetNamespacesShort(input, authInfo)
+func (n *NamespaceService) PublicGetNamespacesShort(input *namespace.PublicGetNamespacesParams) ([]*basicclientmodels.NamespaceInfo, error) {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := n.Client.Namespace.PublicGetNamespacesShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (n *NamespaceService) PublicGetNamespacePublisherShort(input *namespace.PublicGetNamespacePublisherParams, authInfo runtime.ClientAuthInfoWriter) (*basicclientmodels.NamespacePublisherInfo, error) {
-	ok, err := n.Client.Namespace.PublicGetNamespacePublisherShort(input, authInfo)
+func (n *NamespaceService) PublicGetNamespacePublisherShort(input *namespace.PublicGetNamespacePublisherParams) (*basicclientmodels.NamespacePublisherInfo, error) {
+	accessToken, err := n.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := n.Client.Namespace.PublicGetNamespacePublisherShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

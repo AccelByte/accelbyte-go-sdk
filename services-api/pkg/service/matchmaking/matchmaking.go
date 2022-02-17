@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -645,184 +644,276 @@ func (m *MatchmakingService) SearchSessionsV2(input *matchmaking.SearchSessionsV
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) GetAllChannelsHandlerShort(input *matchmaking.GetAllChannelsHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ModelsGetChannelsResponse, error) {
-	ok, err := m.Client.Matchmaking.GetAllChannelsHandlerShort(input, authInfo)
+func (m *MatchmakingService) GetAllChannelsHandlerShort(input *matchmaking.GetAllChannelsHandlerParams) (*matchmakingclientmodels.ModelsGetChannelsResponse, error) {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := m.Client.Matchmaking.GetAllChannelsHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) CreateChannelHandlerShort(input *matchmaking.CreateChannelHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ModelsCreateChannelResponse, error) {
-	created, err := m.Client.Matchmaking.CreateChannelHandlerShort(input, authInfo)
+func (m *MatchmakingService) CreateChannelHandlerShort(input *matchmaking.CreateChannelHandlerParams) (*matchmakingclientmodels.ModelsCreateChannelResponse, error) {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := m.Client.Matchmaking.CreateChannelHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (m *MatchmakingService) DeleteChannelHandlerShort(input *matchmaking.DeleteChannelHandlerParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := m.Client.Matchmaking.DeleteChannelHandlerShort(input, authInfo)
+func (m *MatchmakingService) DeleteChannelHandlerShort(input *matchmaking.DeleteChannelHandlerParams) error {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = m.Client.Matchmaking.DeleteChannelHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *MatchmakingService) StoreMatchResultsShort(input *matchmaking.StoreMatchResultsParams, authInfo runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ModelsMatchResultResponse, error) {
-	ok, err := m.Client.Matchmaking.StoreMatchResultsShort(input, authInfo)
+func (m *MatchmakingService) StoreMatchResultsShort(input *matchmaking.StoreMatchResultsParams) (*matchmakingclientmodels.ModelsMatchResultResponse, error) {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := m.Client.Matchmaking.StoreMatchResultsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) QueueSessionHandlerShort(input *matchmaking.QueueSessionHandlerParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := m.Client.Matchmaking.QueueSessionHandlerShort(input, authInfo)
+func (m *MatchmakingService) QueueSessionHandlerShort(input *matchmaking.QueueSessionHandlerParams) error {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = m.Client.Matchmaking.QueueSessionHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *MatchmakingService) DequeueSessionHandlerShort(input *matchmaking.DequeueSessionHandlerParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := m.Client.Matchmaking.DequeueSessionHandlerShort(input, authInfo)
+func (m *MatchmakingService) DequeueSessionHandlerShort(input *matchmaking.DequeueSessionHandlerParams) error {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = m.Client.Matchmaking.DequeueSessionHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *MatchmakingService) QuerySessionHandlerShort(input *matchmaking.QuerySessionHandlerParams, authInfo runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ModelsMatchmakingResult, error) {
-	ok, err := m.Client.Matchmaking.QuerySessionHandlerShort(input, authInfo)
+func (m *MatchmakingService) QuerySessionHandlerShort(input *matchmaking.QuerySessionHandlerParams) (*matchmakingclientmodels.ModelsMatchmakingResult, error) {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := m.Client.Matchmaking.QuerySessionHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) GetAllPartyInAllChannelShort(input *matchmaking.GetAllPartyInAllChannelParams, authInfo runtime.ClientAuthInfoWriter) (map[string][]matchmakingclientmodels.ModelsMatchingParty, error) {
-	ok, err := m.Client.Matchmaking.GetAllPartyInAllChannelShort(input, authInfo)
+func (m *MatchmakingService) GetAllPartyInAllChannelShort(input *matchmaking.GetAllPartyInAllChannelParams) (map[string][]matchmakingclientmodels.ModelsMatchingParty, error) {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := m.Client.Matchmaking.GetAllPartyInAllChannelShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) BulkGetSessionsShort(input *matchmaking.BulkGetSessionsParams, authInfo runtime.ClientAuthInfoWriter) ([]*matchmakingclientmodels.ModelsMatchmakingResult, error) {
-	ok, err := m.Client.Matchmaking.BulkGetSessionsShort(input, authInfo)
+func (m *MatchmakingService) BulkGetSessionsShort(input *matchmaking.BulkGetSessionsParams) ([]*matchmakingclientmodels.ModelsMatchmakingResult, error) {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := m.Client.Matchmaking.BulkGetSessionsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) ExportChannelsShort(input *matchmaking.ExportChannelsParams, authInfo runtime.ClientAuthInfoWriter) ([]*matchmakingclientmodels.ModelsChannelV1, error) {
-	ok, err := m.Client.Matchmaking.ExportChannelsShort(input, authInfo)
+func (m *MatchmakingService) ExportChannelsShort(input *matchmaking.ExportChannelsParams) ([]*matchmakingclientmodels.ModelsChannelV1, error) {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := m.Client.Matchmaking.ExportChannelsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) ImportChannelsShort(input *matchmaking.ImportChannelsParams, authInfo runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ModelsImportConfigResponse, error) {
-	ok, err := m.Client.Matchmaking.ImportChannelsShort(input, authInfo)
+func (m *MatchmakingService) ImportChannelsShort(input *matchmaking.ImportChannelsParams) (*matchmakingclientmodels.ModelsImportConfigResponse, error) {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := m.Client.Matchmaking.ImportChannelsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) GetSingleMatchmakingChannelShort(input *matchmaking.GetSingleMatchmakingChannelParams, authInfo runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ModelsChannelV1, error) {
-	ok, err := m.Client.Matchmaking.GetSingleMatchmakingChannelShort(input, authInfo)
+func (m *MatchmakingService) GetSingleMatchmakingChannelShort(input *matchmaking.GetSingleMatchmakingChannelParams) (*matchmakingclientmodels.ModelsChannelV1, error) {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := m.Client.Matchmaking.GetSingleMatchmakingChannelShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) UpdateMatchmakingChannelShort(input *matchmaking.UpdateMatchmakingChannelParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := m.Client.Matchmaking.UpdateMatchmakingChannelShort(input, authInfo)
+func (m *MatchmakingService) UpdateMatchmakingChannelShort(input *matchmaking.UpdateMatchmakingChannelParams) error {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = m.Client.Matchmaking.UpdateMatchmakingChannelShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *MatchmakingService) GetAllPartyInChannelShort(input *matchmaking.GetAllPartyInChannelParams, authInfo runtime.ClientAuthInfoWriter) ([]*matchmakingclientmodels.ModelsMatchingParty, error) {
-	ok, err := m.Client.Matchmaking.GetAllPartyInChannelShort(input, authInfo)
+func (m *MatchmakingService) GetAllPartyInChannelShort(input *matchmaking.GetAllPartyInChannelParams) ([]*matchmakingclientmodels.ModelsMatchingParty, error) {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := m.Client.Matchmaking.GetAllPartyInChannelShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) GetAllSessionsInChannelShort(input *matchmaking.GetAllSessionsInChannelParams, authInfo runtime.ClientAuthInfoWriter) ([]*matchmakingclientmodels.ModelsMatchmakingResult, error) {
-	ok, err := m.Client.Matchmaking.GetAllSessionsInChannelShort(input, authInfo)
+func (m *MatchmakingService) GetAllSessionsInChannelShort(input *matchmaking.GetAllSessionsInChannelParams) ([]*matchmakingclientmodels.ModelsMatchmakingResult, error) {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := m.Client.Matchmaking.GetAllSessionsInChannelShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) AddUserIntoSessionInChannelShort(input *matchmaking.AddUserIntoSessionInChannelParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := m.Client.Matchmaking.AddUserIntoSessionInChannelShort(input, authInfo)
+func (m *MatchmakingService) AddUserIntoSessionInChannelShort(input *matchmaking.AddUserIntoSessionInChannelParams) error {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = m.Client.Matchmaking.AddUserIntoSessionInChannelShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *MatchmakingService) DeleteSessionInChannelShort(input *matchmaking.DeleteSessionInChannelParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := m.Client.Matchmaking.DeleteSessionInChannelShort(input, authInfo)
+func (m *MatchmakingService) DeleteSessionInChannelShort(input *matchmaking.DeleteSessionInChannelParams) error {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = m.Client.Matchmaking.DeleteSessionInChannelShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *MatchmakingService) DeleteUserFromSessionInChannelShort(input *matchmaking.DeleteUserFromSessionInChannelParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := m.Client.Matchmaking.DeleteUserFromSessionInChannelShort(input, authInfo)
+func (m *MatchmakingService) DeleteUserFromSessionInChannelShort(input *matchmaking.DeleteUserFromSessionInChannelParams) error {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = m.Client.Matchmaking.DeleteUserFromSessionInChannelShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *MatchmakingService) SearchSessionsShort(input *matchmaking.SearchSessionsParams, authInfo runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ServiceGetSessionHistorySearchResponse, error) {
-	ok, err := m.Client.Matchmaking.SearchSessionsShort(input, authInfo)
+func (m *MatchmakingService) SearchSessionsShort(input *matchmaking.SearchSessionsParams) (*matchmakingclientmodels.ServiceGetSessionHistorySearchResponse, error) {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := m.Client.Matchmaking.SearchSessionsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) GetSessionHistoryDetailedShort(input *matchmaking.GetSessionHistoryDetailedParams, authInfo runtime.ClientAuthInfoWriter) ([]*matchmakingclientmodels.ServiceGetSessionHistoryDetailedResponseItem, error) {
-	ok, err := m.Client.Matchmaking.GetSessionHistoryDetailedShort(input, authInfo)
+func (m *MatchmakingService) GetSessionHistoryDetailedShort(input *matchmaking.GetSessionHistoryDetailedParams) ([]*matchmakingclientmodels.ServiceGetSessionHistoryDetailedResponseItem, error) {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := m.Client.Matchmaking.GetSessionHistoryDetailedShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) PublicGetAllMatchmakingChannelShort(input *matchmaking.PublicGetAllMatchmakingChannelParams, authInfo runtime.ClientAuthInfoWriter) ([]*matchmakingclientmodels.ModelsChannelV1, error) {
-	ok, err := m.Client.Matchmaking.PublicGetAllMatchmakingChannelShort(input, authInfo)
+func (m *MatchmakingService) PublicGetAllMatchmakingChannelShort(input *matchmaking.PublicGetAllMatchmakingChannelParams) ([]*matchmakingclientmodels.ModelsChannelV1, error) {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := m.Client.Matchmaking.PublicGetAllMatchmakingChannelShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) PublicGetSingleMatchmakingChannelShort(input *matchmaking.PublicGetSingleMatchmakingChannelParams, authInfo runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ModelsChannelV1, error) {
-	ok, err := m.Client.Matchmaking.PublicGetSingleMatchmakingChannelShort(input, authInfo)
+func (m *MatchmakingService) PublicGetSingleMatchmakingChannelShort(input *matchmaking.PublicGetSingleMatchmakingChannelParams) (*matchmakingclientmodels.ModelsChannelV1, error) {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := m.Client.Matchmaking.PublicGetSingleMatchmakingChannelShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) SearchSessionsV2Short(input *matchmaking.SearchSessionsV2Params, authInfo runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ServiceGetSessionHistorySearchResponseV2, error) {
-	ok, err := m.Client.Matchmaking.SearchSessionsV2Short(input, authInfo)
+func (m *MatchmakingService) SearchSessionsV2Short(input *matchmaking.SearchSessionsV2Params) (*matchmakingclientmodels.ServiceGetSessionHistorySearchResponseV2, error) {
+	accessToken, err := m.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := m.Client.Matchmaking.SearchSessionsV2Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

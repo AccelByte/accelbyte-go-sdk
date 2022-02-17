@@ -9,7 +9,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/anonymization"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -40,8 +39,12 @@ func (a *AnonymizationService) AnonymizeUserProfile(input *anonymization.Anonymi
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizeUserProfileShort(input *anonymization.AnonymizeUserProfileParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Anonymization.AnonymizeUserProfileShort(input, authInfo)
+func (a *AnonymizationService) AnonymizeUserProfileShort(input *anonymization.AnonymizeUserProfileParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Anonymization.AnonymizeUserProfileShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}

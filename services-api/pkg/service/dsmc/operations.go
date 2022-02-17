@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/operations"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -35,8 +34,12 @@ func (o *OperationsService) PublicGetMessages(input *operations.PublicGetMessage
 	return ok.GetPayload(), nil
 }
 
-func (o *OperationsService) PublicGetMessagesShort(input *operations.PublicGetMessagesParams, authInfo runtime.ClientAuthInfoWriter) ([]*dsmcclientmodels.LogAppMessageDeclaration, error) {
-	ok, err := o.Client.Operations.PublicGetMessagesShort(input, authInfo)
+func (o *OperationsService) PublicGetMessagesShort(input *operations.PublicGetMessagesParams) ([]*dsmcclientmodels.LogAppMessageDeclaration, error) {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := o.Client.Operations.PublicGetMessagesShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

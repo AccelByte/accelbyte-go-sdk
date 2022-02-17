@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/user_info"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -58,24 +57,36 @@ func (u *UserInfoService) InvalidateUserInfoCache(input *user_info.InvalidateUse
 	return nil
 }
 
-func (u *UserInfoService) GetUserInfoStatusShort(input *user_info.GetUserInfoStatusParams, authInfo runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrieveUserInfoCacheStatusResponse, error) {
-	ok, err := u.Client.UserInfo.GetUserInfoStatusShort(input, authInfo)
+func (u *UserInfoService) GetUserInfoStatusShort(input *user_info.GetUserInfoStatusParams) ([]*legalclientmodels.RetrieveUserInfoCacheStatusResponse, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UserInfo.GetUserInfoStatusShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UserInfoService) SyncUserInfoShort(input *user_info.SyncUserInfoParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := u.Client.UserInfo.SyncUserInfoShort(input, authInfo)
+func (u *UserInfoService) SyncUserInfoShort(input *user_info.SyncUserInfoParams) error {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = u.Client.UserInfo.SyncUserInfoShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (u *UserInfoService) InvalidateUserInfoCacheShort(input *user_info.InvalidateUserInfoCacheParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := u.Client.UserInfo.InvalidateUserInfoCacheShort(input, authInfo)
+func (u *UserInfoService) InvalidateUserInfoCacheShort(input *user_info.InvalidateUserInfoCacheParams) error {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = u.Client.UserInfo.InvalidateUserInfoCacheShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}

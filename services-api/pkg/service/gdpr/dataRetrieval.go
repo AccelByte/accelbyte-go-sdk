@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -326,104 +325,156 @@ func (d *DataRetrievalService) PublicGeneratePersonalDataURL(input *data_retriev
 	return ok.GetPayload(), nil
 }
 
-func (d *DataRetrievalService) GetAdminEmailConfigurationShort(input *data_retrieval.GetAdminEmailConfigurationParams, authInfo runtime.ClientAuthInfoWriter) ([]string, error) {
-	ok, err := d.Client.DataRetrieval.GetAdminEmailConfigurationShort(input, authInfo)
+func (d *DataRetrievalService) GetAdminEmailConfigurationShort(input *data_retrieval.GetAdminEmailConfigurationParams) ([]string, error) {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := d.Client.DataRetrieval.GetAdminEmailConfigurationShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (d *DataRetrievalService) UpdateAdminEmailConfigurationShort(input *data_retrieval.UpdateAdminEmailConfigurationParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := d.Client.DataRetrieval.UpdateAdminEmailConfigurationShort(input, authInfo)
+func (d *DataRetrievalService) UpdateAdminEmailConfigurationShort(input *data_retrieval.UpdateAdminEmailConfigurationParams) error {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = d.Client.DataRetrieval.UpdateAdminEmailConfigurationShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (d *DataRetrievalService) SaveAdminEmailConfigurationShort(input *data_retrieval.SaveAdminEmailConfigurationParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := d.Client.DataRetrieval.SaveAdminEmailConfigurationShort(input, authInfo)
+func (d *DataRetrievalService) SaveAdminEmailConfigurationShort(input *data_retrieval.SaveAdminEmailConfigurationParams) error {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = d.Client.DataRetrieval.SaveAdminEmailConfigurationShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (d *DataRetrievalService) DeleteAdminEmailConfigurationShort(input *data_retrieval.DeleteAdminEmailConfigurationParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := d.Client.DataRetrieval.DeleteAdminEmailConfigurationShort(input, authInfo)
+func (d *DataRetrievalService) DeleteAdminEmailConfigurationShort(input *data_retrieval.DeleteAdminEmailConfigurationParams) error {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = d.Client.DataRetrieval.DeleteAdminEmailConfigurationShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (d *DataRetrievalService) AdminGetListPersonalDataRequestShort(input *data_retrieval.AdminGetListPersonalDataRequestParams, authInfo runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsListPersonalDataResponse, error) {
-	ok, err := d.Client.DataRetrieval.AdminGetListPersonalDataRequestShort(input, authInfo)
+func (d *DataRetrievalService) AdminGetListPersonalDataRequestShort(input *data_retrieval.AdminGetListPersonalDataRequestParams) (*gdprclientmodels.ModelsListPersonalDataResponse, error) {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := d.Client.DataRetrieval.AdminGetListPersonalDataRequestShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (d *DataRetrievalService) AdminGetUserPersonalDataRequestsShort(input *data_retrieval.AdminGetUserPersonalDataRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsUserPersonalDataResponse, error) {
-	ok, err := d.Client.DataRetrieval.AdminGetUserPersonalDataRequestsShort(input, authInfo)
+func (d *DataRetrievalService) AdminGetUserPersonalDataRequestsShort(input *data_retrieval.AdminGetUserPersonalDataRequestsParams) (*gdprclientmodels.ModelsUserPersonalDataResponse, error) {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := d.Client.DataRetrieval.AdminGetUserPersonalDataRequestsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (d *DataRetrievalService) AdminRequestDataRetrievalShort(input *data_retrieval.AdminRequestDataRetrievalParams, authInfo runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsDataRetrievalResponse, error) {
-	created, err := d.Client.DataRetrieval.AdminRequestDataRetrievalShort(input, authInfo)
+func (d *DataRetrievalService) AdminRequestDataRetrievalShort(input *data_retrieval.AdminRequestDataRetrievalParams) (*gdprclientmodels.ModelsDataRetrievalResponse, error) {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := d.Client.DataRetrieval.AdminRequestDataRetrievalShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (d *DataRetrievalService) AdminCancelUserPersonalDataRequestShort(input *data_retrieval.AdminCancelUserPersonalDataRequestParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := d.Client.DataRetrieval.AdminCancelUserPersonalDataRequestShort(input, authInfo)
+func (d *DataRetrievalService) AdminCancelUserPersonalDataRequestShort(input *data_retrieval.AdminCancelUserPersonalDataRequestParams) error {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = d.Client.DataRetrieval.AdminCancelUserPersonalDataRequestShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (d *DataRetrievalService) AdminGeneratePersonalDataURLShort(input *data_retrieval.AdminGeneratePersonalDataURLParams, authInfo runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsUserDataURL, error) {
-	ok, err := d.Client.DataRetrieval.AdminGeneratePersonalDataURLShort(input, authInfo)
+func (d *DataRetrievalService) AdminGeneratePersonalDataURLShort(input *data_retrieval.AdminGeneratePersonalDataURLParams) (*gdprclientmodels.ModelsUserDataURL, error) {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := d.Client.DataRetrieval.AdminGeneratePersonalDataURLShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (d *DataRetrievalService) PublicGetUserPersonalDataRequestsShort(input *data_retrieval.PublicGetUserPersonalDataRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsUserPersonalDataResponse, error) {
-	ok, err := d.Client.DataRetrieval.PublicGetUserPersonalDataRequestsShort(input, authInfo)
+func (d *DataRetrievalService) PublicGetUserPersonalDataRequestsShort(input *data_retrieval.PublicGetUserPersonalDataRequestsParams) (*gdprclientmodels.ModelsUserPersonalDataResponse, error) {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := d.Client.DataRetrieval.PublicGetUserPersonalDataRequestsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (d *DataRetrievalService) PublicRequestDataRetrievalShort(input *data_retrieval.PublicRequestDataRetrievalParams, authInfo runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsDataRetrievalResponse, error) {
-	created, err := d.Client.DataRetrieval.PublicRequestDataRetrievalShort(input, authInfo)
+func (d *DataRetrievalService) PublicRequestDataRetrievalShort(input *data_retrieval.PublicRequestDataRetrievalParams) (*gdprclientmodels.ModelsDataRetrievalResponse, error) {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := d.Client.DataRetrieval.PublicRequestDataRetrievalShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (d *DataRetrievalService) PublicCancelUserPersonalDataRequestShort(input *data_retrieval.PublicCancelUserPersonalDataRequestParams, authInfo runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsListPersonalDataResponse, error) {
-	noContent, err := d.Client.DataRetrieval.PublicCancelUserPersonalDataRequestShort(input, authInfo)
+func (d *DataRetrievalService) PublicCancelUserPersonalDataRequestShort(input *data_retrieval.PublicCancelUserPersonalDataRequestParams) (*gdprclientmodels.ModelsListPersonalDataResponse, error) {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	noContent, err := d.Client.DataRetrieval.PublicCancelUserPersonalDataRequestShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return noContent.GetPayload(), nil
 }
 
-func (d *DataRetrievalService) PublicGeneratePersonalDataURLShort(input *data_retrieval.PublicGeneratePersonalDataURLParams, authInfo runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsUserDataURL, error) {
-	ok, err := d.Client.DataRetrieval.PublicGeneratePersonalDataURLShort(input, authInfo)
+func (d *DataRetrievalService) PublicGeneratePersonalDataURLShort(input *data_retrieval.PublicGeneratePersonalDataURLParams) (*gdprclientmodels.ModelsUserDataURL, error) {
+	accessToken, err := d.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := d.Client.DataRetrieval.PublicGeneratePersonalDataURLShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

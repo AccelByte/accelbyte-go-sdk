@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_group"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -154,48 +153,72 @@ func (p *PublicGroupService) GetGroupContent(input *public_group.GetGroupContent
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicGroupService) GetGroupsShort(input *public_group.GetGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedGroupResponse, error) {
-	ok, err := p.Client.PublicGroup.GetGroupsShort(input, authInfo)
+func (p *PublicGroupService) GetGroupsShort(input *public_group.GetGroupsParams) (*ugcclientmodels.ModelsPaginatedGroupResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PublicGroup.GetGroupsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicGroupService) CreateGroupShort(input *public_group.CreateGroupParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
-	created, err := p.Client.PublicGroup.CreateGroupShort(input, authInfo)
+func (p *PublicGroupService) CreateGroupShort(input *public_group.CreateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := p.Client.PublicGroup.CreateGroupShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (p *PublicGroupService) GetGroupShort(input *public_group.GetGroupParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
-	ok, err := p.Client.PublicGroup.GetGroupShort(input, authInfo)
+func (p *PublicGroupService) GetGroupShort(input *public_group.GetGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PublicGroup.GetGroupShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicGroupService) UpdateGroupShort(input *public_group.UpdateGroupParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
-	ok, err := p.Client.PublicGroup.UpdateGroupShort(input, authInfo)
+func (p *PublicGroupService) UpdateGroupShort(input *public_group.UpdateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PublicGroup.UpdateGroupShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicGroupService) DeleteGroupShort(input *public_group.DeleteGroupParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := p.Client.PublicGroup.DeleteGroupShort(input, authInfo)
+func (p *PublicGroupService) DeleteGroupShort(input *public_group.DeleteGroupParams) error {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = p.Client.PublicGroup.DeleteGroupShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (p *PublicGroupService) GetGroupContentShort(input *public_group.GetGroupContentParams, authInfo runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
-	ok, err := p.Client.PublicGroup.GetGroupContentShort(input, authInfo)
+func (p *PublicGroupService) GetGroupContentShort(input *public_group.GetGroupContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PublicGroup.GetGroupContentShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

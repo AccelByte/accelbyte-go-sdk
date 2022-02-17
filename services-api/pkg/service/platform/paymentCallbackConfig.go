@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_callback_config"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -48,16 +47,24 @@ func (p *PaymentCallbackConfigService) UpdatePaymentCallbackConfig(input *paymen
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentCallbackConfigService) GetPaymentCallbackConfigShort(input *payment_callback_config.GetPaymentCallbackConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentCallbackConfigInfo, error) {
-	ok, err := p.Client.PaymentCallbackConfig.GetPaymentCallbackConfigShort(input, authInfo)
+func (p *PaymentCallbackConfigService) GetPaymentCallbackConfigShort(input *payment_callback_config.GetPaymentCallbackConfigParams) (*platformclientmodels.PaymentCallbackConfigInfo, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentCallbackConfig.GetPaymentCallbackConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentCallbackConfigService) UpdatePaymentCallbackConfigShort(input *payment_callback_config.UpdatePaymentCallbackConfigParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentCallbackConfigInfo, error) {
-	ok, err := p.Client.PaymentCallbackConfig.UpdatePaymentCallbackConfigShort(input, authInfo)
+func (p *PaymentCallbackConfigService) UpdatePaymentCallbackConfigShort(input *payment_callback_config.UpdatePaymentCallbackConfigParams) (*platformclientmodels.PaymentCallbackConfigInfo, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PaymentCallbackConfig.UpdatePaymentCallbackConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

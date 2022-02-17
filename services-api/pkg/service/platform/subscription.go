@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/subscription"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -326,152 +325,228 @@ func (s *SubscriptionService) PublicGetUserSubscriptionBillingHistories(input *s
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) QuerySubscriptionsShort(input *subscription.QuerySubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
-	ok, err := s.Client.Subscription.QuerySubscriptionsShort(input, authInfo)
+func (s *SubscriptionService) QuerySubscriptionsShort(input *subscription.QuerySubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.Subscription.QuerySubscriptionsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) RecurringChargeSubscriptionShort(input *subscription.RecurringChargeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.RecurringChargeResult, error) {
-	ok, err := s.Client.Subscription.RecurringChargeSubscriptionShort(input, authInfo)
+func (s *SubscriptionService) RecurringChargeSubscriptionShort(input *subscription.RecurringChargeSubscriptionParams) (*platformclientmodels.RecurringChargeResult, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.Subscription.RecurringChargeSubscriptionShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) QueryUserSubscriptionsShort(input *subscription.QueryUserSubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
-	ok, err := s.Client.Subscription.QueryUserSubscriptionsShort(input, authInfo)
+func (s *SubscriptionService) QueryUserSubscriptionsShort(input *subscription.QueryUserSubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.Subscription.QueryUserSubscriptionsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) GetUserSubscriptionActivitiesShort(input *subscription.GetUserSubscriptionActivitiesParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionActivityPagingSlicedResult, error) {
-	ok, err := s.Client.Subscription.GetUserSubscriptionActivitiesShort(input, authInfo)
+func (s *SubscriptionService) GetUserSubscriptionActivitiesShort(input *subscription.GetUserSubscriptionActivitiesParams) (*platformclientmodels.SubscriptionActivityPagingSlicedResult, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.Subscription.GetUserSubscriptionActivitiesShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) PlatformSubscribeSubscriptionShort(input *subscription.PlatformSubscribeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
-	ok, err := s.Client.Subscription.PlatformSubscribeSubscriptionShort(input, authInfo)
+func (s *SubscriptionService) PlatformSubscribeSubscriptionShort(input *subscription.PlatformSubscribeSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.Subscription.PlatformSubscribeSubscriptionShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) CheckUserSubscriptionSubscribableByItemIDShort(input *subscription.CheckUserSubscriptionSubscribableByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.Subscribable, error) {
-	ok, err := s.Client.Subscription.CheckUserSubscriptionSubscribableByItemIDShort(input, authInfo)
+func (s *SubscriptionService) CheckUserSubscriptionSubscribableByItemIDShort(input *subscription.CheckUserSubscriptionSubscribableByItemIDParams) (*platformclientmodels.Subscribable, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.Subscription.CheckUserSubscriptionSubscribableByItemIDShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) GetUserSubscriptionShort(input *subscription.GetUserSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
-	ok, err := s.Client.Subscription.GetUserSubscriptionShort(input, authInfo)
+func (s *SubscriptionService) GetUserSubscriptionShort(input *subscription.GetUserSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.Subscription.GetUserSubscriptionShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) DeleteUserSubscriptionShort(input *subscription.DeleteUserSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := s.Client.Subscription.DeleteUserSubscriptionShort(input, authInfo)
+func (s *SubscriptionService) DeleteUserSubscriptionShort(input *subscription.DeleteUserSubscriptionParams) error {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = s.Client.Subscription.DeleteUserSubscriptionShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (s *SubscriptionService) CancelSubscriptionShort(input *subscription.CancelSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
-	ok, err := s.Client.Subscription.CancelSubscriptionShort(input, authInfo)
+func (s *SubscriptionService) CancelSubscriptionShort(input *subscription.CancelSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.Subscription.CancelSubscriptionShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) GrantDaysToSubscriptionShort(input *subscription.GrantDaysToSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
-	ok, err := s.Client.Subscription.GrantDaysToSubscriptionShort(input, authInfo)
+func (s *SubscriptionService) GrantDaysToSubscriptionShort(input *subscription.GrantDaysToSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.Subscription.GrantDaysToSubscriptionShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) GetUserSubscriptionBillingHistoriesShort(input *subscription.GetUserSubscriptionBillingHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
-	ok, err := s.Client.Subscription.GetUserSubscriptionBillingHistoriesShort(input, authInfo)
+func (s *SubscriptionService) GetUserSubscriptionBillingHistoriesShort(input *subscription.GetUserSubscriptionBillingHistoriesParams) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.Subscription.GetUserSubscriptionBillingHistoriesShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) ProcessUserSubscriptionNotificationShort(input *subscription.ProcessUserSubscriptionNotificationParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := s.Client.Subscription.ProcessUserSubscriptionNotificationShort(input, authInfo)
+func (s *SubscriptionService) ProcessUserSubscriptionNotificationShort(input *subscription.ProcessUserSubscriptionNotificationParams) error {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = s.Client.Subscription.ProcessUserSubscriptionNotificationShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (s *SubscriptionService) PublicQueryUserSubscriptionsShort(input *subscription.PublicQueryUserSubscriptionsParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
-	ok, err := s.Client.Subscription.PublicQueryUserSubscriptionsShort(input, authInfo)
+func (s *SubscriptionService) PublicQueryUserSubscriptionsShort(input *subscription.PublicQueryUserSubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.Subscription.PublicQueryUserSubscriptionsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) PublicSubscribeSubscriptionShort(input *subscription.PublicSubscribeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := s.Client.Subscription.PublicSubscribeSubscriptionShort(input, authInfo)
+func (s *SubscriptionService) PublicSubscribeSubscriptionShort(input *subscription.PublicSubscribeSubscriptionParams) error {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = s.Client.Subscription.PublicSubscribeSubscriptionShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (s *SubscriptionService) PublicCheckUserSubscriptionSubscribableByItemIDShort(input *subscription.PublicCheckUserSubscriptionSubscribableByItemIDParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.Subscribable, error) {
-	ok, err := s.Client.Subscription.PublicCheckUserSubscriptionSubscribableByItemIDShort(input, authInfo)
+func (s *SubscriptionService) PublicCheckUserSubscriptionSubscribableByItemIDShort(input *subscription.PublicCheckUserSubscriptionSubscribableByItemIDParams) (*platformclientmodels.Subscribable, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.Subscription.PublicCheckUserSubscriptionSubscribableByItemIDShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) PublicGetUserSubscriptionShort(input *subscription.PublicGetUserSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
-	ok, err := s.Client.Subscription.PublicGetUserSubscriptionShort(input, authInfo)
+func (s *SubscriptionService) PublicGetUserSubscriptionShort(input *subscription.PublicGetUserSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.Subscription.PublicGetUserSubscriptionShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) PublicChangeSubscriptionBillingAccountShort(input *subscription.PublicChangeSubscriptionBillingAccountParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
-	ok, err := s.Client.Subscription.PublicChangeSubscriptionBillingAccountShort(input, authInfo)
+func (s *SubscriptionService) PublicChangeSubscriptionBillingAccountShort(input *subscription.PublicChangeSubscriptionBillingAccountParams) (*platformclientmodels.SubscriptionInfo, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.Subscription.PublicChangeSubscriptionBillingAccountShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) PublicCancelSubscriptionShort(input *subscription.PublicCancelSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
-	ok, err := s.Client.Subscription.PublicCancelSubscriptionShort(input, authInfo)
+func (s *SubscriptionService) PublicCancelSubscriptionShort(input *subscription.PublicCancelSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.Subscription.PublicCancelSubscriptionShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) PublicGetUserSubscriptionBillingHistoriesShort(input *subscription.PublicGetUserSubscriptionBillingHistoriesParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
-	ok, err := s.Client.Subscription.PublicGetUserSubscriptionBillingHistoriesShort(input, authInfo)
+func (s *SubscriptionService) PublicGetUserSubscriptionBillingHistoriesShort(input *subscription.PublicGetUserSubscriptionBillingHistoriesParams) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.Subscription.PublicGetUserSubscriptionBillingHistoriesShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

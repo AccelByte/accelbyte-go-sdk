@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/bans"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -133,48 +132,72 @@ func (b *BansService) AdminGetBansTypeWithNamespaceV3(input *bans.AdminGetBansTy
 	return ok.GetPayload(), nil
 }
 
-func (b *BansService) GetBansTypeShort(input *bans.GetBansTypeParams, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonBans, error) {
-	ok, err := b.Client.Bans.GetBansTypeShort(input, authInfo)
+func (b *BansService) GetBansTypeShort(input *bans.GetBansTypeParams) (*iamclientmodels.AccountcommonBans, error) {
+	accessToken, err := b.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := b.Client.Bans.GetBansTypeShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (b *BansService) GetListBanReasonShort(input *bans.GetListBanReasonParams, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonBanReasons, error) {
-	ok, err := b.Client.Bans.GetListBanReasonShort(input, authInfo)
+func (b *BansService) GetListBanReasonShort(input *bans.GetListBanReasonParams) (*iamclientmodels.AccountcommonBanReasons, error) {
+	accessToken, err := b.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := b.Client.Bans.GetListBanReasonShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (b *BansService) AdminGetBansTypeV3Short(input *bans.AdminGetBansTypeV3Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonBansV3, error) {
-	ok, err := b.Client.Bans.AdminGetBansTypeV3Short(input, authInfo)
+func (b *BansService) AdminGetBansTypeV3Short(input *bans.AdminGetBansTypeV3Params) (*iamclientmodels.AccountcommonBansV3, error) {
+	accessToken, err := b.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := b.Client.Bans.AdminGetBansTypeV3Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (b *BansService) AdminGetListBanReasonV3Short(input *bans.AdminGetListBanReasonV3Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonBanReasonsV3, error) {
-	ok, err := b.Client.Bans.AdminGetListBanReasonV3Short(input, authInfo)
+func (b *BansService) AdminGetListBanReasonV3Short(input *bans.AdminGetListBanReasonV3Params) (*iamclientmodels.AccountcommonBanReasonsV3, error) {
+	accessToken, err := b.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := b.Client.Bans.AdminGetListBanReasonV3Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (b *BansService) AdminGetBannedUsersV3Short(input *bans.AdminGetBannedUsersV3Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelGetUserBanV3Response, error) {
-	ok, err := b.Client.Bans.AdminGetBannedUsersV3Short(input, authInfo)
+func (b *BansService) AdminGetBannedUsersV3Short(input *bans.AdminGetBannedUsersV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
+	accessToken, err := b.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := b.Client.Bans.AdminGetBannedUsersV3Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (b *BansService) AdminGetBansTypeWithNamespaceV3Short(input *bans.AdminGetBansTypeWithNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonBansV3, error) {
-	ok, err := b.Client.Bans.AdminGetBansTypeWithNamespaceV3Short(input, authInfo)
+func (b *BansService) AdminGetBansTypeWithNamespaceV3Short(input *bans.AdminGetBansTypeWithNamespaceV3Params) (*iamclientmodels.AccountcommonBansV3, error) {
+	accessToken, err := b.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := b.Client.Bans.AdminGetBansTypeWithNamespaceV3Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

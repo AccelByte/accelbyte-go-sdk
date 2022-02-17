@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/server"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -141,40 +140,60 @@ func (s *ServerService) GetServerSession(input *server.GetServerSessionParams) (
 	return ok.GetPayload(), nil
 }
 
-func (s *ServerService) DeregisterLocalServerShort(input *server.DeregisterLocalServerParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := s.Client.Server.DeregisterLocalServerShort(input, authInfo)
+func (s *ServerService) DeregisterLocalServerShort(input *server.DeregisterLocalServerParams) error {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = s.Client.Server.DeregisterLocalServerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (s *ServerService) RegisterLocalServerShort(input *server.RegisterLocalServerParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsServer, error) {
-	ok, err := s.Client.Server.RegisterLocalServerShort(input, authInfo)
+func (s *ServerService) RegisterLocalServerShort(input *server.RegisterLocalServerParams) (*dsmcclientmodels.ModelsServer, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.Server.RegisterLocalServerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (s *ServerService) RegisterServerShort(input *server.RegisterServerParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsServer, error) {
-	ok, err := s.Client.Server.RegisterServerShort(input, authInfo)
+func (s *ServerService) RegisterServerShort(input *server.RegisterServerParams) (*dsmcclientmodels.ModelsServer, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.Server.RegisterServerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (s *ServerService) ShutdownServerShort(input *server.ShutdownServerParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := s.Client.Server.ShutdownServerShort(input, authInfo)
+func (s *ServerService) ShutdownServerShort(input *server.ShutdownServerParams) error {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = s.Client.Server.ShutdownServerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (s *ServerService) GetServerSessionShort(input *server.GetServerSessionParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsServerSessionResponse, error) {
-	ok, err := s.Client.Server.GetServerSessionShort(input, authInfo)
+func (s *ServerService) GetServerSessionShort(input *server.GetServerSessionParams) (*dsmcclientmodels.ModelsServerSessionResponse, error) {
+	accessToken, err := s.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := s.Client.Server.GetServerSessionShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

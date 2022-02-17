@@ -9,7 +9,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/anonymization"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -194,64 +193,96 @@ func (a *AnonymizationService) DeleteAllUserStates(input *anonymization.DeleteAl
 	return nil
 }
 
-func (a *AnonymizationService) AdminDeleteAllUserChannelsShort(input *anonymization.AdminDeleteAllUserChannelsParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Anonymization.AdminDeleteAllUserChannelsShort(input, authInfo)
+func (a *AnonymizationService) AdminDeleteAllUserChannelsShort(input *anonymization.AdminDeleteAllUserChannelsParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Anonymization.AdminDeleteAllUserChannelsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AnonymizationService) AdminDeleteAllUserContentsShort(input *anonymization.AdminDeleteAllUserContentsParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Anonymization.AdminDeleteAllUserContentsShort(input, authInfo)
+func (a *AnonymizationService) AdminDeleteAllUserContentsShort(input *anonymization.AdminDeleteAllUserContentsParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Anonymization.AdminDeleteAllUserContentsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AnonymizationService) AdminDeleteAllUserGroupShort(input *anonymization.AdminDeleteAllUserGroupParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Anonymization.AdminDeleteAllUserGroupShort(input, authInfo)
+func (a *AnonymizationService) AdminDeleteAllUserGroupShort(input *anonymization.AdminDeleteAllUserGroupParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Anonymization.AdminDeleteAllUserGroupShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AnonymizationService) AdminDeleteAllUserStatesShort(input *anonymization.AdminDeleteAllUserStatesParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Anonymization.AdminDeleteAllUserStatesShort(input, authInfo)
+func (a *AnonymizationService) AdminDeleteAllUserStatesShort(input *anonymization.AdminDeleteAllUserStatesParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Anonymization.AdminDeleteAllUserStatesShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AnonymizationService) DeleteAllUserChannelShort(input *anonymization.DeleteAllUserChannelParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Anonymization.DeleteAllUserChannelShort(input, authInfo)
+func (a *AnonymizationService) DeleteAllUserChannelShort(input *anonymization.DeleteAllUserChannelParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Anonymization.DeleteAllUserChannelShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AnonymizationService) DeleteAllUserContentsShort(input *anonymization.DeleteAllUserContentsParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Anonymization.DeleteAllUserContentsShort(input, authInfo)
+func (a *AnonymizationService) DeleteAllUserContentsShort(input *anonymization.DeleteAllUserContentsParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Anonymization.DeleteAllUserContentsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AnonymizationService) DeleteAllUserGroupShort(input *anonymization.DeleteAllUserGroupParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Anonymization.DeleteAllUserGroupShort(input, authInfo)
+func (a *AnonymizationService) DeleteAllUserGroupShort(input *anonymization.DeleteAllUserGroupParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Anonymization.DeleteAllUserGroupShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AnonymizationService) DeleteAllUserStatesShort(input *anonymization.DeleteAllUserStatesParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Anonymization.DeleteAllUserStatesShort(input, authInfo)
+func (a *AnonymizationService) DeleteAllUserStatesShort(input *anonymization.DeleteAllUserStatesParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Anonymization.DeleteAllUserStatesShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}

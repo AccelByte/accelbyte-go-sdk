@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users_v4"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -421,120 +420,180 @@ func (u *UsersV4Service) PublicUpgradeHeadlessAccountV4(input *users_v4.PublicUp
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersV4Service) AdminUpdateUserV4Short(input *users_v4.AdminUpdateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
-	ok, err := u.Client.UsersV4.AdminUpdateUserV4Short(input, authInfo)
+func (u *UsersV4Service) AdminUpdateUserV4Short(input *users_v4.AdminUpdateUserV4Params) (*iamclientmodels.ModelUserResponseV3, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UsersV4.AdminUpdateUserV4Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersV4Service) AdminUpdateUserEmailAddressV4Short(input *users_v4.AdminUpdateUserEmailAddressV4Params, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := u.Client.UsersV4.AdminUpdateUserEmailAddressV4Short(input, authInfo)
+func (u *UsersV4Service) AdminUpdateUserEmailAddressV4Short(input *users_v4.AdminUpdateUserEmailAddressV4Params) error {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = u.Client.UsersV4.AdminUpdateUserEmailAddressV4Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (u *UsersV4Service) AdminListUserRolesV4Short(input *users_v4.AdminListUserRolesV4Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelListUserRolesV4Response, error) {
-	ok, err := u.Client.UsersV4.AdminListUserRolesV4Short(input, authInfo)
+func (u *UsersV4Service) AdminListUserRolesV4Short(input *users_v4.AdminListUserRolesV4Params) (*iamclientmodels.ModelListUserRolesV4Response, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UsersV4.AdminListUserRolesV4Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersV4Service) AdminUpdateUserRoleV4Short(input *users_v4.AdminUpdateUserRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelListUserRolesV4Response, error) {
-	ok, err := u.Client.UsersV4.AdminUpdateUserRoleV4Short(input, authInfo)
+func (u *UsersV4Service) AdminUpdateUserRoleV4Short(input *users_v4.AdminUpdateUserRoleV4Params) (*iamclientmodels.ModelListUserRolesV4Response, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UsersV4.AdminUpdateUserRoleV4Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersV4Service) AdminAddUserRoleV4Short(input *users_v4.AdminAddUserRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelListUserRolesV4Response, error) {
-	ok, err := u.Client.UsersV4.AdminAddUserRoleV4Short(input, authInfo)
+func (u *UsersV4Service) AdminAddUserRoleV4Short(input *users_v4.AdminAddUserRoleV4Params) (*iamclientmodels.ModelListUserRolesV4Response, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UsersV4.AdminAddUserRoleV4Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersV4Service) AdminRemoveUserRoleV4Short(input *users_v4.AdminRemoveUserRoleV4Params, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := u.Client.UsersV4.AdminRemoveUserRoleV4Short(input, authInfo)
+func (u *UsersV4Service) AdminRemoveUserRoleV4Short(input *users_v4.AdminRemoveUserRoleV4Params) error {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = u.Client.UsersV4.AdminRemoveUserRoleV4Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (u *UsersV4Service) AdminUpdateMyUserV4Short(input *users_v4.AdminUpdateMyUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
-	ok, err := u.Client.UsersV4.AdminUpdateMyUserV4Short(input, authInfo)
+func (u *UsersV4Service) AdminUpdateMyUserV4Short(input *users_v4.AdminUpdateMyUserV4Params) (*iamclientmodels.ModelUserResponseV3, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UsersV4.AdminUpdateMyUserV4Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersV4Service) AdminInviteUserV4Short(input *users_v4.AdminInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelInviteUserResponseV3, error) {
-	created, err := u.Client.UsersV4.AdminInviteUserV4Short(input, authInfo)
+func (u *UsersV4Service) AdminInviteUserV4Short(input *users_v4.AdminInviteUserV4Params) (*iamclientmodels.ModelInviteUserResponseV3, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := u.Client.UsersV4.AdminInviteUserV4Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (u *UsersV4Service) PublicCreateTestUserV4Short(input *users_v4.PublicCreateTestUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountCreateUserResponseV4, error) {
-	created, err := u.Client.UsersV4.PublicCreateTestUserV4Short(input, authInfo)
+func (u *UsersV4Service) PublicCreateTestUserV4Short(input *users_v4.PublicCreateTestUserV4Params) (*iamclientmodels.AccountCreateUserResponseV4, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := u.Client.UsersV4.PublicCreateTestUserV4Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (u *UsersV4Service) PublicCreateUserV4Short(input *users_v4.PublicCreateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountCreateUserResponseV4, error) {
-	created, err := u.Client.UsersV4.PublicCreateUserV4Short(input, authInfo)
+func (u *UsersV4Service) PublicCreateUserV4Short(input *users_v4.PublicCreateUserV4Params) (*iamclientmodels.AccountCreateUserResponseV4, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := u.Client.UsersV4.PublicCreateUserV4Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (u *UsersV4Service) CreateUserFromInvitationV4Short(input *users_v4.CreateUserFromInvitationV4Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountCreateUserResponseV4, error) {
-	created, err := u.Client.UsersV4.CreateUserFromInvitationV4Short(input, authInfo)
+func (u *UsersV4Service) CreateUserFromInvitationV4Short(input *users_v4.CreateUserFromInvitationV4Params) (*iamclientmodels.AccountCreateUserResponseV4, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := u.Client.UsersV4.CreateUserFromInvitationV4Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (u *UsersV4Service) PublicUpdateUserV4Short(input *users_v4.PublicUpdateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
-	ok, err := u.Client.UsersV4.PublicUpdateUserV4Short(input, authInfo)
+func (u *UsersV4Service) PublicUpdateUserV4Short(input *users_v4.PublicUpdateUserV4Params) (*iamclientmodels.ModelUserResponseV3, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UsersV4.PublicUpdateUserV4Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersV4Service) PublicUpdateUserEmailAddressV4Short(input *users_v4.PublicUpdateUserEmailAddressV4Params, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := u.Client.UsersV4.PublicUpdateUserEmailAddressV4Short(input, authInfo)
+func (u *UsersV4Service) PublicUpdateUserEmailAddressV4Short(input *users_v4.PublicUpdateUserEmailAddressV4Params) error {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = u.Client.UsersV4.PublicUpdateUserEmailAddressV4Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (u *UsersV4Service) PublicUpgradeHeadlessAccountWithVerificationCodeV4Short(input *users_v4.PublicUpgradeHeadlessAccountWithVerificationCodeV4Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountUserResponseV4, error) {
-	ok, err := u.Client.UsersV4.PublicUpgradeHeadlessAccountWithVerificationCodeV4Short(input, authInfo)
+func (u *UsersV4Service) PublicUpgradeHeadlessAccountWithVerificationCodeV4Short(input *users_v4.PublicUpgradeHeadlessAccountWithVerificationCodeV4Params) (*iamclientmodels.AccountUserResponseV4, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UsersV4.PublicUpgradeHeadlessAccountWithVerificationCodeV4Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersV4Service) PublicUpgradeHeadlessAccountV4Short(input *users_v4.PublicUpgradeHeadlessAccountV4Params, authInfo runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountUserResponseV4, error) {
-	ok, err := u.Client.UsersV4.PublicUpgradeHeadlessAccountV4Short(input, authInfo)
+func (u *UsersV4Service) PublicUpgradeHeadlessAccountV4Short(input *users_v4.PublicUpgradeHeadlessAccountV4Params) (*iamclientmodels.AccountUserResponseV4, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.UsersV4.PublicUpgradeHeadlessAccountV4Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

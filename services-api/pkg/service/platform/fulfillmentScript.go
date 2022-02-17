@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/fulfillment_script"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -106,48 +105,72 @@ func (f *FulfillmentScriptService) UpdateFulfillmentScript(input *fulfillment_sc
 	return ok.GetPayload(), nil
 }
 
-func (f *FulfillmentScriptService) ListFulfillmentScriptsShort(input *fulfillment_script.ListFulfillmentScriptsParams, authInfo runtime.ClientAuthInfoWriter) ([]*platformclientmodels.FulfillmentScriptInfo, error) {
-	ok, err := f.Client.FulfillmentScript.ListFulfillmentScriptsShort(input, authInfo)
+func (f *FulfillmentScriptService) ListFulfillmentScriptsShort(input *fulfillment_script.ListFulfillmentScriptsParams) ([]*platformclientmodels.FulfillmentScriptInfo, error) {
+	accessToken, err := f.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := f.Client.FulfillmentScript.ListFulfillmentScriptsShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (f *FulfillmentScriptService) TestFulfillmentScriptEvalShort(input *fulfillment_script.TestFulfillmentScriptEvalParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.FulfillmentScriptEvalTestResult, error) {
-	ok, err := f.Client.FulfillmentScript.TestFulfillmentScriptEvalShort(input, authInfo)
+func (f *FulfillmentScriptService) TestFulfillmentScriptEvalShort(input *fulfillment_script.TestFulfillmentScriptEvalParams) (*platformclientmodels.FulfillmentScriptEvalTestResult, error) {
+	accessToken, err := f.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := f.Client.FulfillmentScript.TestFulfillmentScriptEvalShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (f *FulfillmentScriptService) GetFulfillmentScriptShort(input *fulfillment_script.GetFulfillmentScriptParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.FulfillmentScriptInfo, error) {
-	ok, err := f.Client.FulfillmentScript.GetFulfillmentScriptShort(input, authInfo)
+func (f *FulfillmentScriptService) GetFulfillmentScriptShort(input *fulfillment_script.GetFulfillmentScriptParams) (*platformclientmodels.FulfillmentScriptInfo, error) {
+	accessToken, err := f.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := f.Client.FulfillmentScript.GetFulfillmentScriptShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (f *FulfillmentScriptService) CreateFulfillmentScriptShort(input *fulfillment_script.CreateFulfillmentScriptParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.FulfillmentScriptInfo, error) {
-	created, err := f.Client.FulfillmentScript.CreateFulfillmentScriptShort(input, authInfo)
+func (f *FulfillmentScriptService) CreateFulfillmentScriptShort(input *fulfillment_script.CreateFulfillmentScriptParams) (*platformclientmodels.FulfillmentScriptInfo, error) {
+	accessToken, err := f.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := f.Client.FulfillmentScript.CreateFulfillmentScriptShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (f *FulfillmentScriptService) DeleteFulfillmentScriptShort(input *fulfillment_script.DeleteFulfillmentScriptParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := f.Client.FulfillmentScript.DeleteFulfillmentScriptShort(input, authInfo)
+func (f *FulfillmentScriptService) DeleteFulfillmentScriptShort(input *fulfillment_script.DeleteFulfillmentScriptParams) error {
+	accessToken, err := f.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = f.Client.FulfillmentScript.DeleteFulfillmentScriptShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (f *FulfillmentScriptService) UpdateFulfillmentScriptShort(input *fulfillment_script.UpdateFulfillmentScriptParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.FulfillmentScriptInfo, error) {
-	ok, err := f.Client.FulfillmentScript.UpdateFulfillmentScriptShort(input, authInfo)
+func (f *FulfillmentScriptService) UpdateFulfillmentScriptShort(input *fulfillment_script.UpdateFulfillmentScriptParams) (*platformclientmodels.FulfillmentScriptInfo, error) {
+	accessToken, err := f.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := f.Client.FulfillmentScript.UpdateFulfillmentScriptShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

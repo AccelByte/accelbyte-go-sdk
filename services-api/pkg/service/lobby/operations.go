@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/operations"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -97,24 +96,36 @@ func (o *OperationsService) PublicGetMessages(input *operations.PublicGetMessage
 	return ok.GetPayload(), nil
 }
 
-func (o *OperationsService) AdminUpdatePartyAttributesV1Short(input *operations.AdminUpdatePartyAttributesV1Params, authInfo runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsPartyData, error) {
-	ok, err := o.Client.Operations.AdminUpdatePartyAttributesV1Short(input, authInfo)
+func (o *OperationsService) AdminUpdatePartyAttributesV1Short(input *operations.AdminUpdatePartyAttributesV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := o.Client.Operations.AdminUpdatePartyAttributesV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (o *OperationsService) AdminJoinPartyV1Short(input *operations.AdminJoinPartyV1Params, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := o.Client.Operations.AdminJoinPartyV1Short(input, authInfo)
+func (o *OperationsService) AdminJoinPartyV1Short(input *operations.AdminJoinPartyV1Params) error {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = o.Client.Operations.AdminJoinPartyV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *OperationsService) PublicGetMessagesShort(input *operations.PublicGetMessagesParams, authInfo runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.LogAppMessageDeclaration, error) {
-	ok, err := o.Client.Operations.PublicGetMessagesShort(input, authInfo)
+func (o *OperationsService) PublicGetMessagesShort(input *operations.PublicGetMessagesParams) ([]*lobbyclientmodels.LogAppMessageDeclaration, error) {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := o.Client.Operations.PublicGetMessagesShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

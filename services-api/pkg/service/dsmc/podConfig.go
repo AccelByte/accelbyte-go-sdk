@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/pod_config"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -147,40 +146,60 @@ func (p *PodConfigService) UpdatePodConfig(input *pod_config.UpdatePodConfigPara
 	return ok.GetPayload(), nil
 }
 
-func (p *PodConfigService) GetAllPodConfigShort(input *pod_config.GetAllPodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListPodConfigResponse, error) {
-	ok, err := p.Client.PodConfig.GetAllPodConfigShort(input, authInfo)
+func (p *PodConfigService) GetAllPodConfigShort(input *pod_config.GetAllPodConfigParams) (*dsmcclientmodels.ModelsListPodConfigResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PodConfig.GetAllPodConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PodConfigService) GetPodConfigShort(input *pod_config.GetPodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
-	ok, err := p.Client.PodConfig.GetPodConfigShort(input, authInfo)
+func (p *PodConfigService) GetPodConfigShort(input *pod_config.GetPodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PodConfig.GetPodConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (p *PodConfigService) CreatePodConfigShort(input *pod_config.CreatePodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
-	created, err := p.Client.PodConfig.CreatePodConfigShort(input, authInfo)
+func (p *PodConfigService) CreatePodConfigShort(input *pod_config.CreatePodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := p.Client.PodConfig.CreatePodConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (p *PodConfigService) DeletePodConfigShort(input *pod_config.DeletePodConfigParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := p.Client.PodConfig.DeletePodConfigShort(input, authInfo)
+func (p *PodConfigService) DeletePodConfigShort(input *pod_config.DeletePodConfigParams) error {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = p.Client.PodConfig.DeletePodConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (p *PodConfigService) UpdatePodConfigShort(input *pod_config.UpdatePodConfigParams, authInfo runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
-	ok, err := p.Client.PodConfig.UpdatePodConfigShort(input, authInfo)
+func (p *PodConfigService) UpdatePodConfigShort(input *pod_config.UpdatePodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PodConfig.UpdatePodConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

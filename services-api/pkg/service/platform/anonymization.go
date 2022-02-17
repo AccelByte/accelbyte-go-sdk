@@ -9,7 +9,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/anonymization"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -122,64 +121,96 @@ func (a *AnonymizationService) AnonymizeWallet(input *anonymization.AnonymizeWal
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizeCampaignShort(input *anonymization.AnonymizeCampaignParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Anonymization.AnonymizeCampaignShort(input, authInfo)
+func (a *AnonymizationService) AnonymizeCampaignShort(input *anonymization.AnonymizeCampaignParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Anonymization.AnonymizeCampaignShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizeEntitlementShort(input *anonymization.AnonymizeEntitlementParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Anonymization.AnonymizeEntitlementShort(input, authInfo)
+func (a *AnonymizationService) AnonymizeEntitlementShort(input *anonymization.AnonymizeEntitlementParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Anonymization.AnonymizeEntitlementShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizeFulfillmentShort(input *anonymization.AnonymizeFulfillmentParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Anonymization.AnonymizeFulfillmentShort(input, authInfo)
+func (a *AnonymizationService) AnonymizeFulfillmentShort(input *anonymization.AnonymizeFulfillmentParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Anonymization.AnonymizeFulfillmentShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizeIntegrationShort(input *anonymization.AnonymizeIntegrationParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Anonymization.AnonymizeIntegrationShort(input, authInfo)
+func (a *AnonymizationService) AnonymizeIntegrationShort(input *anonymization.AnonymizeIntegrationParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Anonymization.AnonymizeIntegrationShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizeOrderShort(input *anonymization.AnonymizeOrderParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Anonymization.AnonymizeOrderShort(input, authInfo)
+func (a *AnonymizationService) AnonymizeOrderShort(input *anonymization.AnonymizeOrderParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Anonymization.AnonymizeOrderShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizePaymentShort(input *anonymization.AnonymizePaymentParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Anonymization.AnonymizePaymentShort(input, authInfo)
+func (a *AnonymizationService) AnonymizePaymentShort(input *anonymization.AnonymizePaymentParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Anonymization.AnonymizePaymentShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizeSubscriptionShort(input *anonymization.AnonymizeSubscriptionParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Anonymization.AnonymizeSubscriptionShort(input, authInfo)
+func (a *AnonymizationService) AnonymizeSubscriptionShort(input *anonymization.AnonymizeSubscriptionParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Anonymization.AnonymizeSubscriptionShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizeWalletShort(input *anonymization.AnonymizeWalletParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Anonymization.AnonymizeWalletShort(input, authInfo)
+func (a *AnonymizationService) AnonymizeWalletShort(input *anonymization.AnonymizeWalletParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Anonymization.AnonymizeWalletShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}

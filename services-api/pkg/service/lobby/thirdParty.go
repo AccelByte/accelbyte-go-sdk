@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/third_party"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -119,32 +118,48 @@ func (t *ThirdPartyService) AdminDeleteThirdPartyConfig(input *third_party.Admin
 	return noContent.GetPayload(), nil
 }
 
-func (t *ThirdPartyService) AdminGetThirdPartyConfigShort(input *third_party.AdminGetThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsGetConfigResponse, error) {
-	ok, err := t.Client.ThirdParty.AdminGetThirdPartyConfigShort(input, authInfo)
+func (t *ThirdPartyService) AdminGetThirdPartyConfigShort(input *third_party.AdminGetThirdPartyConfigParams) (*lobbyclientmodels.ModelsGetConfigResponse, error) {
+	accessToken, err := t.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := t.Client.ThirdParty.AdminGetThirdPartyConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (t *ThirdPartyService) AdminUpdateThirdPartyConfigShort(input *third_party.AdminUpdateThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsUpdateConfigResponse, error) {
-	ok, err := t.Client.ThirdParty.AdminUpdateThirdPartyConfigShort(input, authInfo)
+func (t *ThirdPartyService) AdminUpdateThirdPartyConfigShort(input *third_party.AdminUpdateThirdPartyConfigParams) (*lobbyclientmodels.ModelsUpdateConfigResponse, error) {
+	accessToken, err := t.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := t.Client.ThirdParty.AdminUpdateThirdPartyConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (t *ThirdPartyService) AdminCreateThirdPartyConfigShort(input *third_party.AdminCreateThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsCreateConfigResponse, error) {
-	created, err := t.Client.ThirdParty.AdminCreateThirdPartyConfigShort(input, authInfo)
+func (t *ThirdPartyService) AdminCreateThirdPartyConfigShort(input *third_party.AdminCreateThirdPartyConfigParams) (*lobbyclientmodels.ModelsCreateConfigResponse, error) {
+	accessToken, err := t.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	created, err := t.Client.ThirdParty.AdminCreateThirdPartyConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return created.GetPayload(), nil
 }
 
-func (t *ThirdPartyService) AdminDeleteThirdPartyConfigShort(input *third_party.AdminDeleteThirdPartyConfigParams, authInfo runtime.ClientAuthInfoWriter) (string, error) {
-	noContent, err := t.Client.ThirdParty.AdminDeleteThirdPartyConfigShort(input, authInfo)
+func (t *ThirdPartyService) AdminDeleteThirdPartyConfigShort(input *third_party.AdminDeleteThirdPartyConfigParams) (string, error) {
+	accessToken, err := t.TokenRepository.GetToken()
+	if err != nil {
+		return "", err
+	}
+	noContent, err := t.Client.ThirdParty.AdminDeleteThirdPartyConfigShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return "", err
 	}

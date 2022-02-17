@@ -9,7 +9,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/anonymization"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -34,8 +33,12 @@ func (a *AnonymizationService) AnonymizeUserAgreement(input *anonymization.Anony
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizeUserAgreementShort(input *anonymization.AnonymizeUserAgreementParams, authInfo runtime.ClientAuthInfoWriter) error {
-	_, err := a.Client.Anonymization.AnonymizeUserAgreementShort(input, authInfo)
+func (a *AnonymizationService) AnonymizeUserAgreementShort(input *anonymization.AnonymizeUserAgreementParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Anonymization.AnonymizeUserAgreementShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}

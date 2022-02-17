@@ -10,7 +10,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/order_dedicated"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -32,8 +31,12 @@ func (o *OrderDedicatedService) SyncOrders(input *order_dedicated.SyncOrdersPara
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderDedicatedService) SyncOrdersShort(input *order_dedicated.SyncOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderSyncResult, error) {
-	ok, err := o.Client.OrderDedicated.SyncOrdersShort(input, authInfo)
+func (o *OrderDedicatedService) SyncOrdersShort(input *order_dedicated.SyncOrdersParams) (*platformclientmodels.OrderSyncResult, error) {
+	accessToken, err := o.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := o.Client.OrderDedicated.SyncOrdersShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

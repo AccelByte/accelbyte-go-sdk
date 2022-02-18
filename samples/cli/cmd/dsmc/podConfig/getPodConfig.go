@@ -5,6 +5,7 @@
 package podConfig
 
 import (
+	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/pod_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
@@ -31,10 +32,16 @@ var GetPodConfigCmd = &cobra.Command{
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		ok, err := podConfigService.GetPodConfig(input)
-		logrus.Infof("Response %v", ok)
 		if err != nil {
 			logrus.Error(err)
 			return err
+		} else {
+			response, errIndent := json.MarshalIndent(ok, "", "    ")
+			if errIndent != nil {
+				return errIndent
+			} else {
+				logrus.Infof("Response %s", string(response))
+			}
 		}
 		return nil
 	},

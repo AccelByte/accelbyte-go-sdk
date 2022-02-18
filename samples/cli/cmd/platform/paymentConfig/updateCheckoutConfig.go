@@ -42,10 +42,16 @@ var UpdateCheckoutConfigCmd = &cobra.Command{
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		ok, err := paymentConfigService.UpdateCheckoutConfig(input)
-		logrus.Infof("Response %v", ok)
 		if err != nil {
 			logrus.Error(err)
 			return err
+		} else {
+			response, errIndent := json.MarshalIndent(ok, "", "    ")
+			if errIndent != nil {
+				return errIndent
+			} else {
+				logrus.Infof("Response %s", string(response))
+			}
 		}
 		return nil
 	},

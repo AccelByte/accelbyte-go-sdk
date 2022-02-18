@@ -5,6 +5,7 @@
 package adminPlayerRecord
 
 import (
+	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_player_record"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/cloudsave"
@@ -33,10 +34,16 @@ var AdminGetPlayerRecordHandlerV1Cmd = &cobra.Command{
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		ok, err := adminPlayerRecordService.AdminGetPlayerRecordHandlerV1(input)
-		logrus.Infof("Response %v", ok)
 		if err != nil {
 			logrus.Error(err)
 			return err
+		} else {
+			response, errIndent := json.MarshalIndent(ok, "", "    ")
+			if errIndent != nil {
+				return errIndent
+			} else {
+				logrus.Infof("Response %s", string(response))
+			}
 		}
 		return nil
 	},

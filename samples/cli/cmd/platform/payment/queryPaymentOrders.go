@@ -5,6 +5,7 @@
 package payment
 
 import (
+	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
@@ -39,10 +40,16 @@ var QueryPaymentOrdersCmd = &cobra.Command{
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		ok, err := paymentService.QueryPaymentOrders(input)
-		logrus.Infof("Response %v", ok)
 		if err != nil {
 			logrus.Error(err)
 			return err
+		} else {
+			response, errIndent := json.MarshalIndent(ok, "", "    ")
+			if errIndent != nil {
+				return errIndent
+			} else {
+				logrus.Infof("Response %s", string(response))
+			}
 		}
 		return nil
 	},

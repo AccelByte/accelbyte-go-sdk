@@ -5,6 +5,7 @@
 package paymentConfig
 
 import (
+	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
@@ -26,10 +27,16 @@ var GetAggregatePaymentProvidersCmd = &cobra.Command{
 		input := &payment_config.GetAggregatePaymentProvidersParams{}
 		//lint:ignore SA1019 Ignore the deprecation warnings
 		ok, err := paymentConfigService.GetAggregatePaymentProviders(input)
-		logrus.Infof("Response %v", ok)
 		if err != nil {
 			logrus.Error(err)
 			return err
+		} else {
+			response, errIndent := json.MarshalIndent(ok, "", "    ")
+			if errIndent != nil {
+				return errIndent
+			} else {
+				logrus.Infof("Response %s", string(response))
+			}
 		}
 		return nil
 	},

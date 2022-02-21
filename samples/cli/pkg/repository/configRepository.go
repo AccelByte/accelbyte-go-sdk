@@ -13,6 +13,10 @@ func (configRepository *ConfigRepositoryImpl) GetClientSecret() string {
 	return models.ClientSecret
 }
 
+func (configRepository *ConfigRepositoryImpl) GetClientAppName() string {
+	return models.ClientAppName
+}
+
 // Empty string will use default base URL provided by SDK
 func (configRepository *ConfigRepositoryImpl) GetJusticeBaseUrl() string {
 	return models.JusticeBaseURL

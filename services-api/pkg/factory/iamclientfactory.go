@@ -25,6 +25,7 @@ func NewIamClient(configRepository repository.ConfigRepository) *iamclient.Justi
 				Schemes:  []string{baseUrlSplit[0]},
 			}
 			iamClientInstance = iamclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+
 		} else {
 			iamClientInstance = iamclient.NewHTTPClient(nil)
 		}

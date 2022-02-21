@@ -6,6 +6,9 @@ package dsmcclient
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"fmt"
+	"net/http"
+	"os"
 	"strings"
 	"time"
 
@@ -44,6 +47,23 @@ func NewHTTPClient(formats strfmt.Registry) *JusticeDsmcService {
 	return NewHTTPClientWithConfig(formats, nil)
 }
 
+func SetUserAgent(inner http.RoundTripper, userAgent string) http.RoundTripper {
+	return &customTransport{
+		inner: inner,
+		Agent: userAgent,
+	}
+}
+
+type customTransport struct {
+	inner http.RoundTripper
+	Agent string
+}
+
+func (c *customTransport) RoundTrip(r *http.Request) (*http.Response, error) {
+	r.Header.Set("User-Agent", c.Agent)
+	return c.inner.RoundTrip(r)
+}
+
 // NewHTTPClientWithConfig creates a new justice dsmc service HTTP client,
 // using a customizable transport config.
 func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *JusticeDsmcService {
@@ -62,6 +82,11 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *Jus
 	transport.Consumers["application/zip"] = runtime.JSONConsumer()
 	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
+
+	// optional custom user-agent for request header
+	appName := os.Getenv("APP_CLIENT_NAME")
+	userAgent := fmt.Sprintf("AccelByteGoSDK/v0.12.0 (%v)", appName)
+	transport.Transport = SetUserAgent(transport.Transport, userAgent)
 
 	return New(transport, formats)
 }

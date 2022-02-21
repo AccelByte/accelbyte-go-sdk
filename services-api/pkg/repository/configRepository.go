@@ -8,4 +8,5 @@ type ConfigRepository interface {
 	GetClientId() string
 	GetClientSecret() string
 	GetJusticeBaseUrl() string
+	GetClientAppName() string
 }

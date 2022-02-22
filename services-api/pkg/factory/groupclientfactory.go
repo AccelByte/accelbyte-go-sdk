@@ -8,6 +8,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/sirupsen/logrus"
 )
 
 var groupClientInstance *groupclient.JusticeGroupService
@@ -16,6 +17,7 @@ func NewGroupClient(configRepository repository.ConfigRepository) *groupclient.J
 	if groupClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		if len(baseUrl) > 0 {
+			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
 			httpClientConfig := &groupclient.TransportConfig{
 				Host:     baseUrlSplit[1],

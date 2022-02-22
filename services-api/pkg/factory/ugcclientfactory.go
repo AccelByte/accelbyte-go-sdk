@@ -1,7 +1,6 @@
 // Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
-
 package factory
 
 import (
@@ -9,6 +8,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
+	"github.com/sirupsen/logrus"
 )
 
 var ugcClientInstance *ugcclient.JusticeUgcService
@@ -17,6 +17,7 @@ func NewUgcClient(configRepository repository.ConfigRepository) *ugcclient.Justi
 	if ugcClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		if len(baseUrl) > 0 {
+			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
 			httpClientConfig := &ugcclient.TransportConfig{
 				Host:     baseUrlSplit[1],
@@ -27,6 +28,8 @@ func NewUgcClient(configRepository repository.ConfigRepository) *ugcclient.Justi
 		} else {
 			ugcClientInstance = ugcclient.NewHTTPClient(nil)
 		}
+
 	}
+
 	return ugcClientInstance
 }

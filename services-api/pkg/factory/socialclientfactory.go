@@ -6,9 +6,9 @@ package factory
 import (
 	"strings"
 
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/client"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient"
+	"github.com/sirupsen/logrus"
 )
 
 var socialClientInstance *socialclient.JusticeSocialService
@@ -17,18 +17,18 @@ func NewSocialClient(configRepository repository.ConfigRepository) *socialclient
 	if socialClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		if len(baseUrl) > 0 {
+			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
 			httpClientConfig := &socialclient.TransportConfig{
 				Host:     baseUrlSplit[1],
 				BasePath: "/social",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			//socialClientInstance = socialclient.NewHTTPClientWithConfig(nil, httpClientConfig)
-			socialClientInstance = client.NewCustomSocialHttpClientWithConfig(nil, httpClientConfig)
+			socialClientInstance = socialclient.NewHTTPClientWithConfig(nil, httpClientConfig)
 		} else {
-			//socialClientInstance = socialclient.NewHTTPClient(nil)
-			socialClientInstance = client.NewCustomSocialHttpClient(nil)
+			socialClientInstance = socialclient.NewHTTPClient(nil)
 		}
+
 	}
 
 	return socialClientInstance

@@ -8,6 +8,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/sirupsen/logrus"
 )
 
 var basicClientInstance *basicclient.JusticeBasicService
@@ -16,6 +17,7 @@ func NewBasicClient(configRepository repository.ConfigRepository) *basicclient.J
 	if basicClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		if len(baseUrl) > 0 {
+			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
 			httpClientConfig := &basicclient.TransportConfig{
 				Host:     baseUrlSplit[1],

@@ -8,6 +8,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/sirupsen/logrus"
 )
 
 var platformClientInstance *platformclient.JusticePlatformService
@@ -16,6 +17,7 @@ func NewPlatformClient(configRepository repository.ConfigRepository) *platformcl
 	if platformClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		if len(baseUrl) > 0 {
+			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
 			httpClientConfig := &platformclient.TransportConfig{
 				Host:     baseUrlSplit[1],
@@ -28,5 +30,6 @@ func NewPlatformClient(configRepository repository.ConfigRepository) *platformcl
 		}
 
 	}
+
 	return platformClientInstance
 }

@@ -8,6 +8,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/sirupsen/logrus"
 )
 
 var legalClientInstance *legalclient.JusticeLegalService
@@ -16,6 +17,7 @@ func NewLegalClient(configRepository repository.ConfigRepository) *legalclient.J
 	if legalClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		if len(baseUrl) > 0 {
+			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
 			httpClientConfig := &legalclient.TransportConfig{
 				Host:     baseUrlSplit[1],
@@ -26,6 +28,7 @@ func NewLegalClient(configRepository repository.ConfigRepository) *legalclient.J
 		} else {
 			legalClientInstance = legalclient.NewHTTPClient(nil)
 		}
+
 	}
 
 	return legalClientInstance

@@ -8,6 +8,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient"
+	"github.com/sirupsen/logrus"
 )
 
 var sessionbrowserClientInstance *sessionbrowserclient.JusticeSessionbrowserService
@@ -16,6 +17,7 @@ func NewSessionbrowserClient(configRepository repository.ConfigRepository) *sess
 	if sessionbrowserClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		if len(baseUrl) > 0 {
+			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
 			httpClientConfig := &sessionbrowserclient.TransportConfig{
 				Host:     baseUrlSplit[1],
@@ -26,6 +28,7 @@ func NewSessionbrowserClient(configRepository repository.ConfigRepository) *sess
 		} else {
 			sessionbrowserClientInstance = sessionbrowserclient.NewHTTPClient(nil)
 		}
+
 	}
 
 	return sessionbrowserClientInstance

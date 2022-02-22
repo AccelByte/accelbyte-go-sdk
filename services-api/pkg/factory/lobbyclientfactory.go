@@ -8,6 +8,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/sirupsen/logrus"
 )
 
 var lobbyClientInstance *lobbyclient.JusticeLobbyService
@@ -16,6 +17,7 @@ func NewLobbyClient(configRepository repository.ConfigRepository) *lobbyclient.J
 	if lobbyClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		if len(baseUrl) > 0 {
+			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
 			httpClientConfig := &lobbyclient.TransportConfig{
 				Host:     baseUrlSplit[1],
@@ -28,5 +30,6 @@ func NewLobbyClient(configRepository repository.ConfigRepository) *lobbyclient.J
 		}
 
 	}
+
 	return lobbyClientInstance
 }

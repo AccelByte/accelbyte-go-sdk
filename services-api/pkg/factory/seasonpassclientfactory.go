@@ -8,6 +8,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/sirupsen/logrus"
 )
 
 var seasonpassClientInstance *seasonpassclient.JusticeSeasonpassService
@@ -16,6 +17,7 @@ func NewSeasonpassClient(configRepository repository.ConfigRepository) *seasonpa
 	if seasonpassClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		if len(baseUrl) > 0 {
+			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
 			httpClientConfig := &seasonpassclient.TransportConfig{
 				Host:     baseUrlSplit[1],

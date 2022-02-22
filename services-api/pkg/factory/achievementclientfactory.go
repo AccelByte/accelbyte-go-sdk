@@ -1,14 +1,14 @@
 // Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
-
 package factory
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient"
 	"strings"
 
+	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/sirupsen/logrus"
 )
 
 var achievementClientInstance *achievementclient.JusticeAchievementService
@@ -17,6 +17,7 @@ func NewAchievementClient(configRepository repository.ConfigRepository) *achieve
 	if achievementClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		if len(baseUrl) > 0 {
+			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
 			httpClientConfig := &achievementclient.TransportConfig{
 				Host:     baseUrlSplit[1],
@@ -27,6 +28,8 @@ func NewAchievementClient(configRepository repository.ConfigRepository) *achieve
 		} else {
 			achievementClientInstance = achievementclient.NewHTTPClient(nil)
 		}
+
 	}
+
 	return achievementClientInstance
 }

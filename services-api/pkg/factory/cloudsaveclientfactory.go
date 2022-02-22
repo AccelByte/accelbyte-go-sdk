@@ -8,25 +8,28 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/sirupsen/logrus"
 )
 
-var cloudSaveClientInstance *cloudsaveclient.JusticeCloudsaveService
+var cloudsaveClientInstance *cloudsaveclient.JusticeCloudsaveService
 
 func NewCloudsaveClient(configRepository repository.ConfigRepository) *cloudsaveclient.JusticeCloudsaveService {
-	if cloudSaveClientInstance == nil {
+	if cloudsaveClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		if len(baseUrl) > 0 {
+			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
 			httpClientConfig := &cloudsaveclient.TransportConfig{
 				Host:     baseUrlSplit[1],
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			cloudSaveClientInstance = cloudsaveclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+			cloudsaveClientInstance = cloudsaveclient.NewHTTPClientWithConfig(nil, httpClientConfig)
 		} else {
-			cloudSaveClientInstance = cloudsaveclient.NewHTTPClient(nil)
+			cloudsaveClientInstance = cloudsaveclient.NewHTTPClient(nil)
 		}
 
 	}
-	return cloudSaveClientInstance
+
+	return cloudsaveClientInstance
 }

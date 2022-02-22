@@ -4,9 +4,11 @@
 package factory
 
 import (
+	"strings"
+
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"strings"
+	"github.com/sirupsen/logrus"
 )
 
 var gdprClientInstance *gdprclient.JusticeGdprService
@@ -15,6 +17,7 @@ func NewGdprClient(configRepository repository.ConfigRepository) *gdprclient.Jus
 	if gdprClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		if len(baseUrl) > 0 {
+			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
 			httpClientConfig := &gdprclient.TransportConfig{
 				Host:     baseUrlSplit[1],

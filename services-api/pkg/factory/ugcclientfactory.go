@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/sirupsen/logrus"
 )
@@ -16,6 +17,7 @@ var ugcClientInstance *ugcclient.JusticeUgcService
 func NewUgcClient(configRepository repository.ConfigRepository) *ugcclient.JusticeUgcService {
 	if ugcClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
+		xAmazonTraceId := utils.AmazonTraceIdGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -24,7 +26,8 @@ func NewUgcClient(configRepository repository.ConfigRepository) *ugcclient.Justi
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			ugcClientInstance = ugcclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+			ugcClientInstance = ugcclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			ugcClientInstance = ugcclient.NewHTTPClient(nil)
 		}

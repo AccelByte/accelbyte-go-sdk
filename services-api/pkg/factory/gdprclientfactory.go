@@ -8,6 +8,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/sirupsen/logrus"
 )
 
@@ -16,6 +17,7 @@ var gdprClientInstance *gdprclient.JusticeGdprService
 func NewGdprClient(configRepository repository.ConfigRepository) *gdprclient.JusticeGdprService {
 	if gdprClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
+		xAmazonTraceId := utils.AmazonTraceIdGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -24,7 +26,8 @@ func NewGdprClient(configRepository repository.ConfigRepository) *gdprclient.Jus
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			gdprClientInstance = gdprclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+			gdprClientInstance = gdprclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			gdprClientInstance = gdprclient.NewHTTPClient(nil)
 		}

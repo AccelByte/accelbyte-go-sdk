@@ -8,6 +8,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/sirupsen/logrus"
 )
 
@@ -16,6 +17,7 @@ var legalClientInstance *legalclient.JusticeLegalService
 func NewLegalClient(configRepository repository.ConfigRepository) *legalclient.JusticeLegalService {
 	if legalClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
+		xAmazonTraceId := utils.AmazonTraceIdGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -24,7 +26,8 @@ func NewLegalClient(configRepository repository.ConfigRepository) *legalclient.J
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			legalClientInstance = legalclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+			legalClientInstance = legalclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			legalClientInstance = legalclient.NewHTTPClient(nil)
 		}

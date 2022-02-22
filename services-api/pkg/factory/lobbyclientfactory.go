@@ -8,6 +8,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/sirupsen/logrus"
 )
 
@@ -16,6 +17,7 @@ var lobbyClientInstance *lobbyclient.JusticeLobbyService
 func NewLobbyClient(configRepository repository.ConfigRepository) *lobbyclient.JusticeLobbyService {
 	if lobbyClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
+		xAmazonTraceId := utils.AmazonTraceIdGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -24,7 +26,8 @@ func NewLobbyClient(configRepository repository.ConfigRepository) *lobbyclient.J
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			lobbyClientInstance = lobbyclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+			lobbyClientInstance = lobbyclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			lobbyClientInstance = lobbyclient.NewHTTPClient(nil)
 		}

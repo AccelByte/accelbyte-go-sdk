@@ -8,6 +8,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/sirupsen/logrus"
 )
 
@@ -16,6 +17,7 @@ var leaderboardClientInstance *leaderboardclient.JusticeLeaderboardService
 func NewLeaderboardClient(configRepository repository.ConfigRepository) *leaderboardclient.JusticeLeaderboardService {
 	if leaderboardClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
+		xAmazonTraceId := utils.AmazonTraceIdGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -24,7 +26,8 @@ func NewLeaderboardClient(configRepository repository.ConfigRepository) *leaderb
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			leaderboardClientInstance = leaderboardclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+			leaderboardClientInstance = leaderboardclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			leaderboardClientInstance = leaderboardclient.NewHTTPClient(nil)
 		}

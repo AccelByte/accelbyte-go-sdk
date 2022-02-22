@@ -8,6 +8,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/sirupsen/logrus"
 )
 
@@ -16,6 +17,7 @@ var basicClientInstance *basicclient.JusticeBasicService
 func NewBasicClient(configRepository repository.ConfigRepository) *basicclient.JusticeBasicService {
 	if basicClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
+		xAmazonTraceId := utils.AmazonTraceIdGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -24,7 +26,8 @@ func NewBasicClient(configRepository repository.ConfigRepository) *basicclient.J
 				BasePath: "/basic",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			basicClientInstance = basicclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+			basicClientInstance = basicclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			basicClientInstance = basicclient.NewHTTPClient(nil)
 		}

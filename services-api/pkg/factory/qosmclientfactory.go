@@ -8,6 +8,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/qosm-sdk/pkg/qosmclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/sirupsen/logrus"
 )
 
@@ -16,6 +17,7 @@ var qosmClientInstance *qosmclient.JusticeQosmService
 func NewQosmClient(configRepository repository.ConfigRepository) *qosmclient.JusticeQosmService {
 	if qosmClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
+		xAmazonTraceId := utils.AmazonTraceIdGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -24,7 +26,8 @@ func NewQosmClient(configRepository repository.ConfigRepository) *qosmclient.Jus
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			qosmClientInstance = qosmclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+			qosmClientInstance = qosmclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			qosmClientInstance = qosmclient.NewHTTPClient(nil)
 		}

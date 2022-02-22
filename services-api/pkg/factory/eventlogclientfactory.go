@@ -8,6 +8,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/sirupsen/logrus"
 )
 
@@ -16,6 +17,7 @@ var eventlogClientInstance *eventlogclient.JusticeEventlogService
 func NewEventlogClient(configRepository repository.ConfigRepository) *eventlogclient.JusticeEventlogService {
 	if eventlogClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
+		xAmazonTraceId := utils.AmazonTraceIdGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -24,7 +26,8 @@ func NewEventlogClient(configRepository repository.ConfigRepository) *eventlogcl
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			eventlogClientInstance = eventlogclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+			eventlogClientInstance = eventlogclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			eventlogClientInstance = eventlogclient.NewHTTPClient(nil)
 		}

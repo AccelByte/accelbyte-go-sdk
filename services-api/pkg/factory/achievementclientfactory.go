@@ -8,6 +8,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/sirupsen/logrus"
 )
 
@@ -16,6 +17,7 @@ var achievementClientInstance *achievementclient.JusticeAchievementService
 func NewAchievementClient(configRepository repository.ConfigRepository) *achievementclient.JusticeAchievementService {
 	if achievementClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
+		xAmazonTraceId := utils.AmazonTraceIdGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -24,7 +26,8 @@ func NewAchievementClient(configRepository repository.ConfigRepository) *achieve
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			achievementClientInstance = achievementclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+			achievementClientInstance = achievementclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			achievementClientInstance = achievementclient.NewHTTPClient(nil)
 		}

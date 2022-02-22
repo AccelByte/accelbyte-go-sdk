@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient"
 	"github.com/sirupsen/logrus"
 )
@@ -16,6 +17,7 @@ var sessionbrowserClientInstance *sessionbrowserclient.JusticeSessionbrowserServ
 func NewSessionbrowserClient(configRepository repository.ConfigRepository) *sessionbrowserclient.JusticeSessionbrowserService {
 	if sessionbrowserClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
+		xAmazonTraceId := utils.AmazonTraceIdGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -24,7 +26,8 @@ func NewSessionbrowserClient(configRepository repository.ConfigRepository) *sess
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			sessionbrowserClientInstance = sessionbrowserclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+			sessionbrowserClientInstance = sessionbrowserclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			sessionbrowserClientInstance = sessionbrowserclient.NewHTTPClient(nil)
 		}

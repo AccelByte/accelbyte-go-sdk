@@ -8,6 +8,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/sirupsen/logrus"
 )
 
@@ -16,6 +17,7 @@ var matchmakingClientInstance *matchmakingclient.JusticeMatchmakingService
 func NewMatchmakingClient(configRepository repository.ConfigRepository) *matchmakingclient.JusticeMatchmakingService {
 	if matchmakingClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
+		xAmazonTraceId := utils.AmazonTraceIdGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -24,7 +26,8 @@ func NewMatchmakingClient(configRepository repository.ConfigRepository) *matchma
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			matchmakingClientInstance = matchmakingclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+			matchmakingClientInstance = matchmakingclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			matchmakingClientInstance = matchmakingclient.NewHTTPClient(nil)
 		}

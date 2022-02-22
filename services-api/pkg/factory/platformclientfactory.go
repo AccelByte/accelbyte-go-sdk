@@ -8,6 +8,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/sirupsen/logrus"
 )
 
@@ -16,6 +17,7 @@ var platformClientInstance *platformclient.JusticePlatformService
 func NewPlatformClient(configRepository repository.ConfigRepository) *platformclient.JusticePlatformService {
 	if platformClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
+		xAmazonTraceId := utils.AmazonTraceIdGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -24,7 +26,8 @@ func NewPlatformClient(configRepository repository.ConfigRepository) *platformcl
 				BasePath: "/platform",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			platformClientInstance = platformclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+			platformClientInstance = platformclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			platformClientInstance = platformclient.NewHTTPClient(nil)
 		}

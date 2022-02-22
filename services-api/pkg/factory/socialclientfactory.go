@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient"
 	"github.com/sirupsen/logrus"
 )
@@ -16,6 +17,7 @@ var socialClientInstance *socialclient.JusticeSocialService
 func NewSocialClient(configRepository repository.ConfigRepository) *socialclient.JusticeSocialService {
 	if socialClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
+		xAmazonTraceId := utils.AmazonTraceIdGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -24,7 +26,8 @@ func NewSocialClient(configRepository repository.ConfigRepository) *socialclient
 				BasePath: "/social",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			socialClientInstance = socialclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+			socialClientInstance = socialclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			socialClientInstance = socialclient.NewHTTPClient(nil)
 		}

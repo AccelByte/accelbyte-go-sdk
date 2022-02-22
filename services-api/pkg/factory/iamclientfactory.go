@@ -8,6 +8,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/sirupsen/logrus"
 )
 
@@ -16,6 +17,7 @@ var iamClientInstance *iamclient.JusticeIamService
 func NewIamClient(configRepository repository.ConfigRepository) *iamclient.JusticeIamService {
 	if iamClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
+		xAmazonTraceId := utils.AmazonTraceIdGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -24,7 +26,8 @@ func NewIamClient(configRepository repository.ConfigRepository) *iamclient.Justi
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			iamClientInstance = iamclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+			iamClientInstance = iamclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			iamClientInstance = iamclient.NewHTTPClient(nil)
 		}

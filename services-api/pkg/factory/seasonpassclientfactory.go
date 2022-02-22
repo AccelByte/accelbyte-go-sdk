@@ -8,6 +8,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/sirupsen/logrus"
 )
 
@@ -16,6 +17,7 @@ var seasonpassClientInstance *seasonpassclient.JusticeSeasonpassService
 func NewSeasonpassClient(configRepository repository.ConfigRepository) *seasonpassclient.JusticeSeasonpassService {
 	if seasonpassClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
+		xAmazonTraceId := utils.AmazonTraceIdGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -24,7 +26,8 @@ func NewSeasonpassClient(configRepository repository.ConfigRepository) *seasonpa
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			seasonpassClientInstance = seasonpassclient.NewHTTPClientWithConfig(nil, httpClientConfig)
+			seasonpassClientInstance = seasonpassclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			seasonpassClientInstance = seasonpassclient.NewHTTPClient(nil)
 		}

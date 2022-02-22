@@ -6,9 +6,7 @@ package platformclient
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"fmt"
 	"net/http"
-	"os"
 	"strings"
 	"time"
 
@@ -59,7 +57,7 @@ var DefaultSchemes = []string{"https"}
 
 // NewHTTPClient creates a new justice platform service HTTP client.
 func NewHTTPClient(formats strfmt.Registry) *JusticePlatformService {
-	return NewHTTPClientWithConfig(formats, nil, "")
+	return NewHTTPClientWithConfig(formats, nil, "", "")
 }
 
 func SetUserAgent(inner http.RoundTripper, userAgent string) http.RoundTripper {
@@ -90,7 +88,7 @@ func (c *customTransport) RoundTrip(r *http.Request) (*http.Response, error) {
 
 // NewHTTPClientWithConfig creates a new justice platform service HTTP client,
 // using a customizable transport config.
-func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, amazonTraceId string) *JusticePlatformService {
+func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, userAgent, amazonTraceId string) *JusticePlatformService {
 	// ensure nullable parameters have default
 	if cfg == nil {
 		cfg = DefaultTransportConfig()
@@ -108,8 +106,6 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, amaz
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
 
 	// optional custom user-agent for request header
-	appName := os.Getenv("APP_CLIENT_NAME")
-	userAgent := fmt.Sprintf("AccelByteGoSDK/v0.12.0 (%v)", appName)
 	transport.Transport = SetUserAgent(transport.Transport, userAgent)
 
 	// optional custom amazonTraceId for request header

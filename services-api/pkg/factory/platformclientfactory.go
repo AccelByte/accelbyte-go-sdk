@@ -18,6 +18,7 @@ func NewPlatformClient(configRepository repository.ConfigRepository) *platformcl
 	if platformClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		xAmazonTraceId := utils.AmazonTraceIdGen()
+		userAgent := utils.UserAgentGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -26,7 +27,7 @@ func NewPlatformClient(configRepository repository.ConfigRepository) *platformcl
 				BasePath: "/platform",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			platformClientInstance = platformclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			platformClientInstance = platformclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			platformClientInstance = platformclient.NewHTTPClient(nil)

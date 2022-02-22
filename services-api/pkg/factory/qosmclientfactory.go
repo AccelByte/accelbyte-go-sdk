@@ -18,6 +18,7 @@ func NewQosmClient(configRepository repository.ConfigRepository) *qosmclient.Jus
 	if qosmClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		xAmazonTraceId := utils.AmazonTraceIdGen()
+		userAgent := utils.UserAgentGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -26,7 +27,7 @@ func NewQosmClient(configRepository repository.ConfigRepository) *qosmclient.Jus
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			qosmClientInstance = qosmclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			qosmClientInstance = qosmclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			qosmClientInstance = qosmclient.NewHTTPClient(nil)

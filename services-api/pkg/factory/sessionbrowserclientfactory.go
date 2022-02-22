@@ -18,6 +18,7 @@ func NewSessionbrowserClient(configRepository repository.ConfigRepository) *sess
 	if sessionbrowserClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		xAmazonTraceId := utils.AmazonTraceIdGen()
+		userAgent := utils.UserAgentGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -26,7 +27,7 @@ func NewSessionbrowserClient(configRepository repository.ConfigRepository) *sess
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			sessionbrowserClientInstance = sessionbrowserclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			sessionbrowserClientInstance = sessionbrowserclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			sessionbrowserClientInstance = sessionbrowserclient.NewHTTPClient(nil)

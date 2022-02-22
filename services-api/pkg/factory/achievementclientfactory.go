@@ -18,6 +18,7 @@ func NewAchievementClient(configRepository repository.ConfigRepository) *achieve
 	if achievementClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		xAmazonTraceId := utils.AmazonTraceIdGen()
+		userAgent := utils.UserAgentGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -26,7 +27,7 @@ func NewAchievementClient(configRepository repository.ConfigRepository) *achieve
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			achievementClientInstance = achievementclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			achievementClientInstance = achievementclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			achievementClientInstance = achievementclient.NewHTTPClient(nil)

@@ -18,6 +18,7 @@ func NewCloudsaveClient(configRepository repository.ConfigRepository) *cloudsave
 	if cloudsaveClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		xAmazonTraceId := utils.AmazonTraceIdGen()
+		userAgent := utils.UserAgentGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -26,7 +27,7 @@ func NewCloudsaveClient(configRepository repository.ConfigRepository) *cloudsave
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			cloudsaveClientInstance = cloudsaveclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			cloudsaveClientInstance = cloudsaveclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			cloudsaveClientInstance = cloudsaveclient.NewHTTPClient(nil)

@@ -18,6 +18,7 @@ func NewBasicClient(configRepository repository.ConfigRepository) *basicclient.J
 	if basicClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		xAmazonTraceId := utils.AmazonTraceIdGen()
+		userAgent := utils.UserAgentGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -26,7 +27,7 @@ func NewBasicClient(configRepository repository.ConfigRepository) *basicclient.J
 				BasePath: "/basic",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			basicClientInstance = basicclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			basicClientInstance = basicclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			basicClientInstance = basicclient.NewHTTPClient(nil)

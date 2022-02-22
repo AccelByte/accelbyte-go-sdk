@@ -18,6 +18,7 @@ func NewSeasonpassClient(configRepository repository.ConfigRepository) *seasonpa
 	if seasonpassClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		xAmazonTraceId := utils.AmazonTraceIdGen()
+		userAgent := utils.UserAgentGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -26,7 +27,7 @@ func NewSeasonpassClient(configRepository repository.ConfigRepository) *seasonpa
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			seasonpassClientInstance = seasonpassclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			seasonpassClientInstance = seasonpassclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			seasonpassClientInstance = seasonpassclient.NewHTTPClient(nil)

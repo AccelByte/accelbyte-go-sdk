@@ -18,6 +18,7 @@ func NewLobbyClient(configRepository repository.ConfigRepository) *lobbyclient.J
 	if lobbyClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		xAmazonTraceId := utils.AmazonTraceIdGen()
+		userAgent := utils.UserAgentGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -26,7 +27,7 @@ func NewLobbyClient(configRepository repository.ConfigRepository) *lobbyclient.J
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			lobbyClientInstance = lobbyclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			lobbyClientInstance = lobbyclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			lobbyClientInstance = lobbyclient.NewHTTPClient(nil)

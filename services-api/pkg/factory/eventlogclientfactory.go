@@ -18,6 +18,7 @@ func NewEventlogClient(configRepository repository.ConfigRepository) *eventlogcl
 	if eventlogClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		xAmazonTraceId := utils.AmazonTraceIdGen()
+		userAgent := utils.UserAgentGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -26,7 +27,7 @@ func NewEventlogClient(configRepository repository.ConfigRepository) *eventlogcl
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			eventlogClientInstance = eventlogclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			eventlogClientInstance = eventlogclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			eventlogClientInstance = eventlogclient.NewHTTPClient(nil)

@@ -18,6 +18,7 @@ func NewGametelemetryClient(configRepository repository.ConfigRepository) *gamet
 	if gametelemetryClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		xAmazonTraceId := utils.AmazonTraceIdGen()
+		userAgent := utils.UserAgentGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -26,7 +27,7 @@ func NewGametelemetryClient(configRepository repository.ConfigRepository) *gamet
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			gametelemetryClientInstance = gametelemetryclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			gametelemetryClientInstance = gametelemetryclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			gametelemetryClientInstance = gametelemetryclient.NewHTTPClient(nil)

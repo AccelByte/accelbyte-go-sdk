@@ -18,6 +18,7 @@ func NewMatchmakingClient(configRepository repository.ConfigRepository) *matchma
 	if matchmakingClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		xAmazonTraceId := utils.AmazonTraceIdGen()
+		userAgent := utils.UserAgentGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -26,7 +27,7 @@ func NewMatchmakingClient(configRepository repository.ConfigRepository) *matchma
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			matchmakingClientInstance = matchmakingclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			matchmakingClientInstance = matchmakingclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			matchmakingClientInstance = matchmakingclient.NewHTTPClient(nil)

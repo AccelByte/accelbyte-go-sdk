@@ -18,6 +18,7 @@ func NewLeaderboardClient(configRepository repository.ConfigRepository) *leaderb
 	if leaderboardClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		xAmazonTraceId := utils.AmazonTraceIdGen()
+		userAgent := utils.UserAgentGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -26,7 +27,7 @@ func NewLeaderboardClient(configRepository repository.ConfigRepository) *leaderb
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			leaderboardClientInstance = leaderboardclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			leaderboardClientInstance = leaderboardclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			leaderboardClientInstance = leaderboardclient.NewHTTPClient(nil)

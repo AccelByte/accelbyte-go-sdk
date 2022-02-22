@@ -18,6 +18,7 @@ func NewIamClient(configRepository repository.ConfigRepository) *iamclient.Justi
 	if iamClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		xAmazonTraceId := utils.AmazonTraceIdGen()
+		userAgent := utils.UserAgentGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -26,7 +27,7 @@ func NewIamClient(configRepository repository.ConfigRepository) *iamclient.Justi
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			iamClientInstance = iamclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			iamClientInstance = iamclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			iamClientInstance = iamclient.NewHTTPClient(nil)

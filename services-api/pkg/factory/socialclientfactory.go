@@ -18,6 +18,7 @@ func NewSocialClient(configRepository repository.ConfigRepository) *socialclient
 	if socialClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		xAmazonTraceId := utils.AmazonTraceIdGen()
+		userAgent := utils.UserAgentGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -26,7 +27,7 @@ func NewSocialClient(configRepository repository.ConfigRepository) *socialclient
 				BasePath: "/social",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			socialClientInstance = socialclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			socialClientInstance = socialclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			socialClientInstance = socialclient.NewHTTPClient(nil)

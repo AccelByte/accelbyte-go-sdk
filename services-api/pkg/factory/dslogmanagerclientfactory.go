@@ -18,6 +18,7 @@ func NewDslogmanagerClient(configRepository repository.ConfigRepository) *dslogm
 	if dslogmanagerClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		xAmazonTraceId := utils.AmazonTraceIdGen()
+		userAgent := utils.UserAgentGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -26,7 +27,7 @@ func NewDslogmanagerClient(configRepository repository.ConfigRepository) *dslogm
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			dslogmanagerClientInstance = dslogmanagerclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			dslogmanagerClientInstance = dslogmanagerclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			dslogmanagerClientInstance = dslogmanagerclient.NewHTTPClient(nil)

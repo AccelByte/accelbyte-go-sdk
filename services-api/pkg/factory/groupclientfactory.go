@@ -18,6 +18,7 @@ func NewGroupClient(configRepository repository.ConfigRepository) *groupclient.J
 	if groupClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		xAmazonTraceId := utils.AmazonTraceIdGen()
+		userAgent := utils.UserAgentGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -26,7 +27,7 @@ func NewGroupClient(configRepository repository.ConfigRepository) *groupclient.J
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			groupClientInstance = groupclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			groupClientInstance = groupclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			groupClientInstance = groupclient.NewHTTPClient(nil)

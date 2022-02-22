@@ -18,6 +18,7 @@ func NewDsmcClient(configRepository repository.ConfigRepository) *dsmcclient.Jus
 	if dsmcClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		xAmazonTraceId := utils.AmazonTraceIdGen()
+		userAgent := utils.UserAgentGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -26,7 +27,7 @@ func NewDsmcClient(configRepository repository.ConfigRepository) *dsmcclient.Jus
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			dsmcClientInstance = dsmcclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			dsmcClientInstance = dsmcclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			dsmcClientInstance = dsmcclient.NewHTTPClient(nil)

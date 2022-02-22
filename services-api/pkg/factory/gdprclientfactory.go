@@ -18,6 +18,7 @@ func NewGdprClient(configRepository repository.ConfigRepository) *gdprclient.Jus
 	if gdprClientInstance == nil {
 		baseUrl := configRepository.GetJusticeBaseUrl()
 		xAmazonTraceId := utils.AmazonTraceIdGen()
+		userAgent := utils.UserAgentGen()
 		if len(baseUrl) > 0 {
 			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
@@ -26,7 +27,7 @@ func NewGdprClient(configRepository repository.ConfigRepository) *gdprclient.Jus
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			gdprClientInstance = gdprclient.NewHTTPClientWithConfig(nil, httpClientConfig, xAmazonTraceId)
+			gdprClientInstance = gdprclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
 		} else {
 			gdprClientInstance = gdprclient.NewHTTPClient(nil)

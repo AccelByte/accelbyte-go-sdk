@@ -14,17 +14,16 @@ import (
 )
 
 type OAuth20ExtensionService struct {
-	Client          *iamclient.JusticeIamService
-	TokenRepository repository.TokenRepository
+	Client           *iamclient.JusticeIamService
+	ConfigRepository repository.ConfigRepository
+	TokenRepository  repository.TokenRepository
 }
 
 // Deprecated: Use UserAuthenticationV3Short instead
 func (o *OAuth20ExtensionService) UserAuthenticationV3(input *o_auth2_0_extension.UserAuthenticationV3Params) error {
-	accessToken, err := o.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = o.Client.OAuth20Extension.UserAuthenticationV3(input, client.BearerToken(*accessToken.AccessToken))
+	clientId := o.ConfigRepository.GetClientId()
+	clientSecret := o.ConfigRepository.GetClientSecret()
+	_, err := o.Client.OAuth20Extension.UserAuthenticationV3(input, client.BasicAuth(clientId, clientSecret))
 	if err != nil {
 		return err
 	}

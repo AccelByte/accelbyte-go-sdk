@@ -65,11 +65,9 @@ func (o *OAuth20Service) RevokeUserV3(input *o_auth2_0.RevokeUserV3Params) error
 
 // Deprecated: Use AuthorizeV3Short instead
 func (o *OAuth20Service) AuthorizeV3(input *o_auth2_0.AuthorizeV3Params) error {
-	accessToken, err := o.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = o.Client.OAuth20.AuthorizeV3(input, client.BearerToken(*accessToken.AccessToken))
+	clientId := o.ConfigRepository.GetClientId()
+	clientSecret := o.ConfigRepository.GetClientSecret()
+	_, err := o.Client.OAuth20.AuthorizeV3(input, client.BasicAuth(clientId, clientSecret))
 	if err != nil {
 		return err
 	}
@@ -145,11 +143,9 @@ func (o *OAuth20Service) AuthCodeRequestV3(input *o_auth2_0.AuthCodeRequestV3Par
 
 // Deprecated: Use PlatformTokenGrantV3Short instead
 func (o *OAuth20Service) PlatformTokenGrantV3(input *o_auth2_0.PlatformTokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponse, error) {
-	accessToken, err := o.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, badRequest, unauthorized, err := o.Client.OAuth20.PlatformTokenGrantV3(input, client.BearerToken(*accessToken.AccessToken))
+	clientId := o.ConfigRepository.GetClientId()
+	clientSecret := o.ConfigRepository.GetClientSecret()
+	ok, badRequest, unauthorized, err := o.Client.OAuth20.PlatformTokenGrantV3(input, client.BasicAuth(clientId, clientSecret))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -199,11 +195,9 @@ func (o *OAuth20Service) TokenRevocationV3(input *o_auth2_0.TokenRevocationV3Par
 
 // Deprecated: Use TokenGrantV3Short instead
 func (o *OAuth20Service) TokenGrantV3(input *o_auth2_0.TokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
-	accessToken, err := o.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, badRequest, unauthorized, forbidden, err := o.Client.OAuth20.TokenGrantV3(input, client.BearerToken(*accessToken.AccessToken))
+	clientId := o.ConfigRepository.GetClientId()
+	clientSecret := o.ConfigRepository.GetClientSecret()
+	ok, badRequest, unauthorized, forbidden, err := o.Client.OAuth20.TokenGrantV3(input, client.BasicAuth(clientId, clientSecret))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -304,11 +298,9 @@ func (o *OAuth20Service) AuthCodeRequestV3Short(input *o_auth2_0.AuthCodeRequest
 }
 
 func (o *OAuth20Service) PlatformTokenGrantV3Short(input *o_auth2_0.PlatformTokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponse, error) {
-	accessToken, err := o.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := o.Client.OAuth20.PlatformTokenGrantV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	clientId := o.ConfigRepository.GetClientId()
+	clientSecret := o.ConfigRepository.GetClientSecret()
+	ok, err := o.Client.OAuth20.PlatformTokenGrantV3Short(input, client.BasicAuth(clientId, clientSecret))
 	if err != nil {
 		return nil, err
 	}

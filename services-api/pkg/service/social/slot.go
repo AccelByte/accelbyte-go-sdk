@@ -5,12 +5,14 @@
 package social
 
 import (
+	"io"
+
+	"github.com/go-openapi/runtime/client"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
-	"github.com/go-openapi/runtime/client"
-	"io"
 )
 
 type SlotService struct {

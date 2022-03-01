@@ -39,10 +39,17 @@ var PublicFulfillGoogleIAPItemCmd = &cobra.Command{
 			UserID:    userId,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := iapService.PublicFulfillGoogleIAPItem(input)
-		if errInput != nil {
-			logrus.Error(errInput)
-			return errInput
+		ok, err := iapService.PublicFulfillGoogleIAPItem(input)
+		if err != nil {
+			logrus.Error(err)
+			return err
+		} else {
+			response, errIndent := json.MarshalIndent(ok, "", "    ")
+			if errIndent != nil {
+				return errIndent
+			} else {
+				logrus.Infof("Response %s", string(response))
+			}
 		}
 		return nil
 	},

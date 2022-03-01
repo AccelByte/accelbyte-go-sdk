@@ -6,13 +6,15 @@ package userAction
 
 import (
 	"encoding/json"
+
+	"github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
+
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_action"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
 	"github.com/AccelByte/sample-apps/pkg/repository"
-	"github.com/sirupsen/logrus"
-	"github.com/spf13/cobra"
 )
 
 // PublicReportUserCmd represents the PublicReportUser command

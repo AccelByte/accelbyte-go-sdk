@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.2.0"
+    "version": "4.3.2"
   },
   "schemes": [
     "https"
@@ -19556,8 +19556,11 @@
           "application/json"
         ],
         "responses": {
-          "204": {
-            "description": "Fulfill item successfully"
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/GoogleReceiptResolveResult"
+            }
           },
           "400": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e39122\u003c/td\u003e\u003ctd\u003eGoogle iap receipt is invalid with status code [{statusCode}] and error message [{message}]\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e35123\u003c/td\u003e\u003ctd\u003eWallet [{walletId}] is inactive\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e38121\u003c/td\u003e\u003ctd\u003eDuplicate permanent item exists\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e38122\u003c/td\u003e\u003ctd\u003eSubscription endDate required\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
@@ -24773,6 +24776,10 @@
     },
     "GoogleIAPReceipt": {
       "properties": {
+        "autoAck": {
+          "description": "If invoke Google play's Acknowledge after sync an durable item",
+          "type": "boolean"
+        },
         "language": {
           "description": "language value from language tag, allowed format: en, en-US",
           "type": "string"
@@ -24810,6 +24817,15 @@
         "purchaseTime",
         "purchaseToken"
       ],
+      "type": "object"
+    },
+    "GoogleReceiptResolveResult": {
+      "properties": {
+        "needConsume": {
+          "description": "if client side need consume this receipt's product by invoke Google Billing client's consumeAsync",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "GrantSubscriptionDaysRequest": {

@@ -1,0 +1,1303 @@
+info:
+  title: justice-lobby-ws-service
+  version: 0.1.0
+swagger: "2.0"
+definitions:
+  acceptFriendsNotif:
+    properties:
+      friendId:
+        type: string
+    type: object
+    x-tag: Friends
+    x-type: notification
+  acceptFriendsRequest:
+    properties:
+      friendId:
+        type: string
+      id:
+        type: string
+    required:
+    - id
+    - friendId
+    type: object
+    x-pair: acceptFriendsResponse
+    x-tag: Friends
+    x-type: request
+  acceptFriendsResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+    type: object
+    x-pair: acceptFriendsRequest
+    x-tag: Friends
+    x-type: response
+  blockPlayerNotif:
+    properties:
+      blockedUserId:
+        type: string
+      userId:
+        type: string
+    type: object
+    x-tag: Friends
+    x-type: notification
+  blockPlayerRequest:
+    properties:
+      blockUserId:
+        type: string
+      id:
+        type: string
+      namespace:
+        type: string
+    required:
+    - id
+    - namespace
+    - blockUserId
+    type: object
+    x-pair: blockPlayerResponse
+    x-tag: Friends
+    x-type: request
+  blockPlayerResponse:
+    properties:
+      blockUserId:
+        type: string
+      code:
+        type: integer
+      id:
+        type: string
+      namespace:
+        type: string
+    type: object
+    x-pair: blockPlayerRequest
+    x-tag: Friends
+    x-type: response
+  cancelFriendsNotif:
+    properties:
+      userId:
+        type: string
+    type: object
+    x-tag: Friends
+    x-type: notification
+  cancelFriendsRequest:
+    properties:
+      friendId:
+        type: string
+      id:
+        type: string
+    required:
+    - id
+    - friendId
+    type: object
+    x-pair: cancelFriendsResponse
+    x-tag: Friends
+    x-type: request
+  cancelFriendsResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+    type: object
+    x-pair: cancelFriendsRequest
+    x-tag: Friends
+    x-type: response
+  cancelMatchmakingRequest:
+    properties:
+      gameMode:
+        type: string
+      id:
+        type: string
+      isTempParty:
+        type: boolean
+    required:
+    - id
+    - gameMode
+    - isTempParty
+    type: object
+    x-pair: cancelMatchmakingResponse
+    x-tag: Matchmaking
+    x-type: request
+  cancelMatchmakingResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+    type: object
+    x-pair: cancelMatchmakingRequest
+    x-tag: Matchmaking
+    x-type: response
+  channelChatNotif:
+    properties:
+      channelSlug:
+        type: string
+      from:
+        type: string
+      payload:
+        type: string
+      sentAt:
+        type: string
+    type: object
+    x-tag: Channel Chat
+    x-type: notification
+  clientResetRequest:
+    properties:
+      namespace:
+        type: string
+      userId:
+        type: string
+    required:
+    - userId
+    - namespace
+    type: object
+    x-tag: Lobby
+    x-type: request
+  connectNotif:
+    properties:
+      lobbySessionId:
+        type: string
+    type: object
+    x-tag: Server Messages
+    x-type: notification
+  disconnectNotif:
+    properties:
+      connectionId:
+        type: string
+      namespace:
+        type: string
+    type: object
+    x-tag: Server Messages
+    x-type: notification
+  dsNotif:
+    properties:
+      alternateIps:
+        type: array
+        items:
+          type: string
+      customAttribute:
+        type: string
+      deployment:
+        type: string
+      gameVersion:
+        type: string
+      imageVersion:
+        type: string
+      ip:
+        type: string
+      isOK:
+        type: boolean
+      isOverrideGameVersion:
+        type: boolean
+      lastUpdate:
+        type: string
+      matchId:
+        type: string
+      message:
+        type: string
+      namespace:
+        type: string
+      podName:
+        type: string
+      port:
+        type: integer
+      ports:
+        type: object
+        additionalProperties:
+          type: integer
+      protocol:
+        type: string
+      provider:
+        type: string
+      region:
+        type: string
+      sessionId:
+        type: string
+      status:
+        type: string
+    type: object
+    x-tag: DSM
+    x-type: notification
+  errorNotif:
+    properties:
+      message:
+        type: string
+    type: object
+    x-tag: Server Messages
+    x-type: notification
+  exitAllChannel:
+    properties:
+      namespace:
+        type: string
+      userId:
+        type: string
+    type: object
+    x-tag: Channel Chat
+  friendsStatusRequest:
+    properties:
+      id:
+        type: string
+    required:
+    - id
+    type: object
+    x-pair: friendsStatusResponse
+    x-tag: Presence
+    x-type: request
+  friendsStatusResponse:
+    properties:
+      activity:
+        type: array
+        items:
+          type: string
+      availability:
+        type: array
+        items:
+          type: integer
+      code:
+        type: integer
+      friendIds:
+        type: array
+        items:
+          type: string
+      id:
+        type: string
+      lastSeenAt:
+        type: array
+        items:
+          type: string
+    type: object
+    x-pair: friendsStatusRequest
+    x-tag: Presence
+    x-type: response
+  getAllSessionAttributeRequest:
+    properties:
+      id:
+        type: string
+    required:
+    - id
+    type: object
+    x-pair: getAllSessionAttributeResponse
+    x-tag: Session Attribute
+    x-type: request
+  getAllSessionAttributeResponse:
+    properties:
+      attributes:
+        type: object
+        additionalProperties:
+          type: string
+      code:
+        type: integer
+      id:
+        type: string
+    type: object
+    x-pair: getAllSessionAttributeRequest
+    x-tag: Session Attribute
+    x-type: response
+  getFriendshipStatusRequest:
+    properties:
+      friendId:
+        type: string
+      id:
+        type: string
+    required:
+    - id
+    - friendId
+    type: object
+    x-pair: getFriendshipStatusResponse
+    x-tag: Friends
+    x-type: request
+  getFriendshipStatusResponse:
+    properties:
+      code:
+        type: integer
+      friendshipStatus:
+        type: string
+      id:
+        type: string
+    type: object
+    x-pair: getFriendshipStatusRequest
+    x-tag: Friends
+    x-type: response
+  getSessionAttributeRequest:
+    properties:
+      id:
+        type: string
+      key:
+        type: string
+    required:
+    - id
+    - key
+    type: object
+    x-pair: getSessionAttributeResponse
+    x-tag: Session Attribute
+    x-type: request
+  getSessionAttributeResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+      value:
+        type: string
+    type: object
+    x-pair: getSessionAttributeRequest
+    x-tag: Session Attribute
+    x-type: response
+  heartbeat:
+    type: object
+    x-tag: Server Messages
+  joinDefaultChannelRequest:
+    properties:
+      id:
+        type: string
+    required:
+    - id
+    type: object
+    x-pair: joinDefaultChannelResponse
+    x-tag: Channel Chat
+    x-type: request
+  joinDefaultChannelResponse:
+    properties:
+      channelSlug:
+        type: string
+      code:
+        type: integer
+      id:
+        type: string
+    type: object
+    x-pair: joinDefaultChannelRequest
+    x-tag: Channel Chat
+    x-type: response
+  listIncomingFriendsRequest:
+    properties:
+      id:
+        type: string
+    required:
+    - id
+    type: object
+    x-pair: listIncomingFriendsResponse
+    x-tag: Friends
+    x-type: request
+  listIncomingFriendsResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+      userIds:
+        type: array
+        items:
+          type: string
+    type: object
+    x-pair: listIncomingFriendsRequest
+    x-tag: Friends
+    x-type: response
+  listOfFriendsRequest:
+    properties:
+      friendId:
+        type: string
+      id:
+        type: string
+    required:
+    - id
+    - friendId
+    type: object
+    x-pair: listOfFriendsResponse
+    x-tag: Friends
+    x-type: request
+  listOfFriendsResponse:
+    properties:
+      code:
+        type: integer
+      friendIds:
+        type: array
+        items:
+          type: string
+      id:
+        type: string
+    type: object
+    x-pair: listOfFriendsRequest
+    x-tag: Friends
+    x-type: response
+  listOnlineFriendsRequest:
+    properties:
+      id:
+        type: string
+    required:
+    - id
+    type: object
+    x-tag: Presence
+    x-type: request
+  listOutgoingFriendsRequest:
+    properties:
+      id:
+        type: string
+    required:
+    - id
+    type: object
+    x-pair: listOutgoingFriendsResponse
+    x-tag: Friends
+    x-type: request
+  listOutgoingFriendsResponse:
+    properties:
+      code:
+        type: integer
+      friendIds:
+        type: array
+        items:
+          type: string
+      id:
+        type: string
+    type: object
+    x-pair: listOutgoingFriendsRequest
+    x-tag: Friends
+    x-type: response
+  matchmakingNotif:
+    properties:
+      counterPartyMember:
+        type: array
+        items:
+          type: string
+      matchId:
+        type: string
+      message:
+        type: string
+      partyMember:
+        type: array
+        items:
+          type: string
+      readyDuration:
+        type: integer
+      status:
+        type: string
+    type: object
+    x-tag: Matchmaking
+    x-type: notification
+  messageNotif:
+    properties:
+      from:
+        type: string
+      id:
+        type: string
+      payload:
+        type: string
+      sentAt:
+        type: integer
+      to:
+        type: string
+      topic:
+        type: string
+    type: object
+    x-tag: Notification
+    x-type: notification
+  offlineNotificationRequest:
+    properties:
+      id:
+        type: string
+    required:
+    - id
+    type: object
+    x-pair: offlineNotificationResponse
+    x-tag: Notification
+    x-type: request
+  offlineNotificationResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+    type: object
+    x-pair: offlineNotificationRequest
+    x-tag: Notification
+    x-type: response
+  onlineFriends:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+      onlineFriendIds:
+        type: array
+        items:
+          type: string
+    type: object
+    x-tag: Presence
+  partyChatNotif:
+    properties:
+      from:
+        type: string
+      id:
+        type: string
+      payload:
+        type: string
+      receivedAt:
+        type: integer
+      to:
+        type: string
+    type: object
+    x-tag: Party
+    x-type: notification
+  partyChatRequest:
+    properties:
+      from:
+        type: string
+      id:
+        type: string
+      payload:
+        type: string
+      receivedAt:
+        type: integer
+      to:
+        type: string
+    required:
+    - id
+    - from
+    - to
+    - payload
+    - receivedAt
+    type: object
+    x-pair: partyChatResponse
+    x-tag: Party
+    x-type: request
+  partyChatResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+    type: object
+    x-pair: partyChatRequest
+    x-tag: Party
+    x-type: response
+  partyCreateRequest:
+    properties:
+      id:
+        type: string
+    required:
+    - id
+    type: object
+    x-pair: partyCreateResponse
+    x-tag: Party
+    x-type: request
+  partyCreateResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+      invitationToken:
+        type: string
+      invitees:
+        type: string
+      leaderId:
+        type: string
+      members:
+        type: string
+      partyId:
+        type: string
+    type: object
+    x-pair: partyCreateRequest
+    x-tag: Party
+    x-type: response
+  partyDataUpdateNotif:
+    properties:
+      customAttributes:
+        type: object
+        additionalProperties: true
+      invitees:
+        type: array
+        items:
+          type: string
+      leader:
+        type: string
+      members:
+        type: array
+        items:
+          type: string
+      namespace:
+        type: string
+      partyId:
+        type: string
+      updatedAt:
+        type: integer
+    type: object
+    x-tag: Party
+    x-type: notification
+  partyGetInvitedNotif:
+    properties:
+      from:
+        type: string
+      invitationToken:
+        type: string
+      partyId:
+        type: string
+    type: object
+    x-tag: Party
+    x-type: notification
+  partyInfoRequest:
+    properties:
+      id:
+        type: string
+    required:
+    - id
+    type: object
+    x-pair: partyInfoResponse
+    x-tag: Party
+    x-type: request
+  partyInfoResponse:
+    properties:
+      code:
+        type: integer
+      customAttributes:
+        type: object
+        additionalProperties: true
+      id:
+        type: string
+      invitationToken:
+        type: string
+      invitees:
+        type: string
+      leaderId:
+        type: string
+      members:
+        type: string
+      partyId:
+        type: string
+    type: object
+    x-pair: partyInfoRequest
+    x-tag: Party
+    x-type: response
+  partyInviteNotif:
+    properties:
+      inviteeId:
+        type: string
+      inviterId:
+        type: string
+    type: object
+    x-tag: Party
+    x-type: notification
+  partyInviteRequest:
+    properties:
+      friendId:
+        type: string
+      id:
+        type: string
+    required:
+    - id
+    - friendId
+    type: object
+    x-pair: partyInviteResponse
+    x-tag: Party
+    x-type: request
+  partyInviteResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+    type: object
+    x-pair: partyInviteRequest
+    x-tag: Party
+    x-type: response
+  partyJoinNotif:
+    properties:
+      userId:
+        type: string
+    type: object
+    x-tag: Party
+    x-type: notification
+  partyJoinRequest:
+    properties:
+      id:
+        type: string
+      invitationToken:
+        type: string
+      partyId:
+        type: string
+    required:
+    - id
+    - partyId
+    - invitationToken
+    type: object
+    x-pair: partyJoinResponse
+    x-tag: Party
+    x-type: request
+  partyJoinResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+      invitationToken:
+        type: string
+      invitees:
+        type: string
+      leaderId:
+        type: string
+      members:
+        type: string
+      partyId:
+        type: string
+    type: object
+    x-pair: partyJoinRequest
+    x-tag: Party
+    x-type: response
+  partyKickNotif:
+    properties:
+      leaderId:
+        type: string
+      partyId:
+        type: string
+      userId:
+        type: string
+    type: object
+    x-tag: Party
+    x-type: notification
+  partyKickRequest:
+    properties:
+      id:
+        type: string
+      memberId:
+        type: string
+    required:
+    - id
+    - memberId
+    type: object
+    x-pair: partyKickResponse
+    x-tag: Party
+    x-type: request
+  partyKickResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+    type: object
+    x-pair: partyKickRequest
+    x-tag: Party
+    x-type: response
+  partyLeaveNotif:
+    properties:
+      leaderId:
+        type: string
+      userId:
+        type: string
+    type: object
+    x-tag: Party
+    x-type: notification
+  partyLeaveRequest:
+    properties:
+      id:
+        type: string
+      ignoreUserRegistry:
+        type: boolean
+    required:
+    - id
+    - ignoreUserRegistry
+    type: object
+    x-pair: partyLeaveResponse
+    x-tag: Party
+    x-type: request
+  partyLeaveResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+    type: object
+    x-pair: partyLeaveRequest
+    x-tag: Party
+    x-type: response
+  partyPromoteLeaderRequest:
+    properties:
+      id:
+        type: string
+      newLeaderUserId:
+        type: string
+    required:
+    - id
+    - newLeaderUserId
+    type: object
+    x-pair: partyPromoteLeaderResponse
+    x-tag: Party
+    x-type: request
+  partyPromoteLeaderResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+      invitationToken:
+        type: string
+      invitees:
+        type: string
+      leaderId:
+        type: string
+      members:
+        type: string
+      partyId:
+        type: string
+    type: object
+    x-pair: partyPromoteLeaderRequest
+    x-tag: Party
+    x-type: response
+  partyRejectNotif:
+    properties:
+      leaderId:
+        type: string
+      partyId:
+        type: string
+      userId:
+        type: string
+    type: object
+    x-tag: Party
+    x-type: notification
+  partyRejectRequest:
+    properties:
+      id:
+        type: string
+      invitationToken:
+        type: string
+      partyId:
+        type: string
+    required:
+    - id
+    - partyId
+    - invitationToken
+    type: object
+    x-pair: partyRejectResponse
+    x-tag: Party
+    x-type: request
+  partyRejectResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+      partyId:
+        type: string
+    type: object
+    x-pair: partyRejectRequest
+    x-tag: Party
+    x-type: response
+  personalChatHistoryRequest:
+    properties:
+      friendId:
+        type: string
+      id:
+        type: string
+    required:
+    - id
+    - friendId
+    type: object
+    x-pair: personalChatHistoryResponse
+    x-tag: Party
+    x-type: request
+  personalChatHistoryResponse:
+    properties:
+      chat:
+        type: string
+      code:
+        type: integer
+      friendId:
+        type: string
+      id:
+        type: string
+    type: object
+    x-pair: personalChatHistoryRequest
+    x-tag: Party
+    x-type: response
+  personalChatNotif:
+    properties:
+      from:
+        type: string
+      id:
+        type: string
+      payload:
+        type: string
+      receivedAt:
+        type: integer
+      to:
+        type: string
+    type: object
+    x-tag: Party
+    x-type: notification
+  personalChatRequest:
+    properties:
+      from:
+        type: string
+      id:
+        type: string
+      payload:
+        type: string
+      receivedAt:
+        type: integer
+      to:
+        type: string
+    required:
+    - id
+    - from
+    - to
+    - payload
+    - receivedAt
+    type: object
+    x-pair: personalChatResponse
+    x-tag: Party
+    x-type: request
+  personalChatResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+    type: object
+    x-pair: personalChatRequest
+    x-tag: Party
+    x-type: response
+  rejectFriendsNotif:
+    properties:
+      userId:
+        type: string
+    type: object
+    x-tag: Friends
+    x-type: notification
+  rejectFriendsRequest:
+    properties:
+      friendId:
+        type: string
+      id:
+        type: string
+    required:
+    - id
+    - friendId
+    type: object
+    x-pair: rejectFriendsResponse
+    x-tag: Friends
+    x-type: request
+  rejectFriendsResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+    type: object
+    x-pair: rejectFriendsRequest
+    x-tag: Friends
+    x-type: response
+  rematchmakingNotif:
+    properties:
+      banDuration:
+        type: integer
+    type: object
+    x-tag: Matchmaking
+    x-type: notification
+  requestFriendsNotif:
+    properties:
+      friendId:
+        type: string
+    type: object
+    x-tag: Friends
+    x-type: notification
+  requestFriendsRequest:
+    properties:
+      friendId:
+        type: string
+      id:
+        type: string
+    required:
+    - id
+    - friendId
+    type: object
+    x-pair: requestFriendsResponse
+    x-tag: Friends
+    x-type: request
+  requestFriendsResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+    type: object
+    x-pair: requestFriendsRequest
+    x-tag: Friends
+    x-type: response
+  sendChannelChatRequest:
+    properties:
+      channelSlug:
+        type: string
+      id:
+        type: string
+      payload:
+        type: string
+    required:
+    - id
+    - channelSlug
+    - payload
+    type: object
+    x-pair: sendChannelChatResponse
+    x-tag: Channel Chat
+    x-type: request
+  sendChannelChatResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+    type: object
+    x-pair: sendChannelChatRequest
+    x-tag: Channel Chat
+    x-type: response
+  setReadyConsentNotif:
+    properties:
+      matchId:
+        type: string
+      userId:
+        type: string
+    type: object
+    x-tag: Matchmaking
+    x-type: notification
+  setReadyConsentRequest:
+    properties:
+      id:
+        type: string
+      matchId:
+        type: string
+    required:
+    - id
+    - matchId
+    type: object
+    x-pair: setReadyConsentResponse
+    x-tag: Matchmaking
+    x-type: request
+  setReadyConsentResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+    type: object
+    x-pair: setReadyConsentRequest
+    x-tag: Matchmaking
+    x-type: response
+  setSessionAttributeRequest:
+    properties:
+      id:
+        type: string
+      key:
+        type: string
+      namespace:
+        type: string
+      value:
+        type: string
+    required:
+    - id
+    - namespace
+    - key
+    - value
+    type: object
+    x-pair: setSessionAttributeResponse
+    x-tag: Session Attribute
+    x-type: request
+  setSessionAttributeResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+    type: object
+    x-pair: setSessionAttributeRequest
+    x-tag: Session Attribute
+    x-type: response
+  setUserStatusRequest:
+    properties:
+      activity:
+        type: string
+      availability:
+        type: integer
+      id:
+        type: string
+    required:
+    - id
+    - availability
+    - activity
+    type: object
+    x-pair: setUserStatusResponse
+    x-tag: Presence
+    x-type: request
+  setUserStatusResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+    type: object
+    x-pair: setUserStatusRequest
+    x-tag: Presence
+    x-type: response
+  shutdownNotif:
+    properties:
+      message:
+        type: string
+    type: object
+    x-tag: Server Messages
+    x-type: notification
+  signalingP2PNotif:
+    properties:
+      destinationId:
+        type: string
+      message:
+        type: string
+    type: object
+    x-tag: Signaling
+    x-type: notification
+  startMatchmakingRequest:
+    properties:
+      extraAttributes:
+        type: string
+      gameMode:
+        type: string
+      id:
+        type: string
+      partyAttributes:
+        type: object
+        additionalProperties: true
+      priority:
+        type: integer
+      tempParty:
+        type: string
+    required:
+    - id
+    - gameMode
+    - priority
+    - partyAttributes
+    - tempParty
+    - extraAttributes
+    type: object
+    x-pair: startMatchmakingResponse
+    x-tag: Matchmaking
+    x-type: request
+  startMatchmakingResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+    type: object
+    x-pair: startMatchmakingRequest
+    x-tag: Matchmaking
+    x-type: response
+  systemComponentsStatus:
+    properties:
+      components:
+        type: object
+        additionalProperties:
+          type: boolean
+    type: object
+    x-tag: System Events
+  unblockPlayerNotif:
+    properties:
+      unblockedUserId:
+        type: string
+      userId:
+        type: string
+    type: object
+    x-tag: Friends
+    x-type: notification
+  unblockPlayerRequest:
+    properties:
+      id:
+        type: string
+      namespace:
+        type: string
+      unblockedUserId:
+        type: string
+    required:
+    - id
+    - namespace
+    - unblockedUserId
+    type: object
+    x-pair: unblockPlayerResponse
+    x-tag: Friends
+    x-type: request
+  unblockPlayerResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+      namespace:
+        type: string
+      unblockedUserId:
+        type: string
+    type: object
+    x-pair: unblockPlayerRequest
+    x-tag: Friends
+    x-type: response
+  unfriendNotif:
+    properties:
+      friendId:
+        type: string
+    type: object
+    x-tag: Friends
+    x-type: notification
+  unfriendRequest:
+    properties:
+      friendId:
+        type: string
+      id:
+        type: string
+    required:
+    - id
+    - friendId
+    type: object
+    x-pair: unfriendResponse
+    x-tag: Friends
+    x-type: request
+  unfriendResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+    type: object
+    x-pair: unfriendRequest
+    x-tag: Friends
+    x-type: response
+  userBannedNotification:
+    type: object
+    x-tag: Channel Chat
+  userMetricRequest:
+    properties:
+      id:
+        type: string
+    required:
+    - id
+    type: object
+    x-pair: userMetricResponse
+    x-tag: User Metric
+    x-type: request
+  userMetricResponse:
+    properties:
+      code:
+        type: integer
+      id:
+        type: string
+      playerCount:
+        type: integer
+    type: object
+    x-pair: userMetricRequest
+    x-tag: User Metric
+    x-type: response
+  userStatusNotif:
+    properties:
+      activity:
+        type: string
+      availability:
+        type: integer
+      lastSeenAt:
+        type: string
+      userId:
+        type: string
+    type: object
+    x-tag: Presence
+    x-type: notification

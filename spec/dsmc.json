@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice DSM Controller Service",
     "title": "justice-dsm-controller-service",
-    "version": "2.14.0"
+    "version": "2.14.1"
   },
   "schemes": [
     "https"
@@ -340,6 +340,72 @@
           }
         ],
         "summary": "import images for a namespace",
+        "tags": [
+          "Image Config"
+        ]
+      }
+    },
+    "/dsmcontroller/admin/images/patches": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "```\nRequired permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE] \nRequired scope: social\n\nThis endpoint will create image patch.\n\nSample image:\n{\n\t\u0026#34;namespace\u0026#34;:\u0026#34;dewa\u0026#34;,\n\t\u0026#34;version\u0026#34;:\u0026#34;1.0.0\u0026#34;,\n\t\u0026#34;patchVersion\u0026#34;:\u0026#34;1.0.0-patch\u0026#34;,\n\t\u0026#34;image\u0026#34;:\u0026#34;144436415367.dkr.ecr.us-west-2.amazonaws.com/dewa:1.0.0-patch\u0026#34;,\n\t\u0026#34;persistent\u0026#34;:false\n}\n```",
+        "operationId": "CreateImagePatch",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.CreateImagePatchRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "image patch created"
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "409": {
+            "description": "conflict. duplicate image patch version record",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create image patch",
         "tags": [
           "Image Config"
         ]
@@ -2822,6 +2888,98 @@
         ]
       }
     },
+    "/dsmcontroller/admin/namespaces/{namespace}/images/patches": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]\n\nRequired scope: social\n\nThis endpoint will delete an image patch that specified in the request parameter",
+        "operationId": "DeleteImagePatch",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "registry image patch URI that will be deleted",
+            "in": "query",
+            "name": "imageURI",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "image version that will be deleted",
+            "in": "query",
+            "name": "version",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "image patch version that will be deleted",
+            "in": "query",
+            "name": "versionPatch",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "image deleted"
+          },
+          "400": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "malformed request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "422": {
+            "description": "unprocessable entity",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Delete an image patch",
+        "tags": [
+          "Image Config"
+        ]
+      }
+    },
     "/dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}": {
       "get": {
         "consumes": [
@@ -2886,6 +3044,145 @@
           }
         ],
         "summary": "DS Image Detail",
+        "tags": [
+          "Image Config"
+        ]
+      }
+    },
+    "/dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint get image patches by version.",
+        "operationId": "GetImagePatches",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "version of the ds",
+            "in": "path",
+            "name": "version",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/models.ListImagePatchesResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Get All Image Patches by Version",
+        "tags": [
+          "Image Config"
+        ]
+      }
+    },
+    "/dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches/{versionPatch}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]\n\nRequired scope: social\n\nThis endpoint get specific image patch version of dedicated servers version.",
+        "operationId": "GetImagePatchDetail",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "version of the game",
+            "in": "path",
+            "name": "version",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "version of the image patch",
+            "in": "path",
+            "name": "versionPatch",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/models.GetImagePatchDetailResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "image version not found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "DS Image patch Detail",
         "tags": [
           "Image Config"
         ]
@@ -4821,6 +5118,40 @@
         "use_buffer_percent"
       ]
     },
+    "models.CreateImagePatchRequest": {
+      "properties": {
+        "artifactPath": {
+          "type": "string"
+        },
+        "dockerPath": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "patchVersion": {
+          "type": "string"
+        },
+        "persistent": {
+          "type": "boolean"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifactPath",
+        "dockerPath",
+        "image",
+        "namespace",
+        "patchVersion",
+        "persistent",
+        "version"
+      ]
+    },
     "models.CreateImageRequest": {
       "properties": {
         "artifactPath": {
@@ -4934,6 +5265,9 @@
         },
         "namespace": {
           "type": "string"
+        },
+        "notification_payload": {
+          "$ref": "#/definitions/models.MatchResult.notification_payload"
         },
         "pod_name": {
           "type": "string"
@@ -5363,6 +5697,16 @@
         "image_limit"
       ]
     },
+    "models.GetImagePatchDetailResponse": {
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/models.PatchImageRecord"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
     "models.ImageRecord": {
       "properties": {
         "artifactPath": {
@@ -5485,6 +5829,19 @@
         "paging"
       ]
     },
+    "models.ListImagePatchesResponse": {
+      "properties": {
+        "images": {
+          "items": {
+            "$ref": "#/definitions/models.PatchImageRecord"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "images"
+      ]
+    },
     "models.ListImageResponse": {
       "properties": {
         "images": {
@@ -5553,6 +5910,7 @@
         "sessions"
       ]
     },
+    "models.MatchResult.notification_payload": {},
     "models.PagingCursor": {
       "properties": {
         "next": {
@@ -5565,6 +5923,56 @@
       "required": [
         "next",
         "previous"
+      ]
+    },
+    "models.PatchImageRecord": {
+      "properties": {
+        "artifactPath": {
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "dockerPath": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "modifiedBy": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "patchVersion": {
+          "type": "string"
+        },
+        "persistent": {
+          "type": "boolean"
+        },
+        "updatedAt": {
+          "format": "date-time",
+          "type": "string",
+          "x-nullable": false
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifactPath",
+        "createdAt",
+        "dockerPath",
+        "image",
+        "modifiedBy",
+        "namespace",
+        "patchVersion",
+        "persistent",
+        "updatedAt",
+        "version"
       ]
     },
     "models.PodConfigRecord": {

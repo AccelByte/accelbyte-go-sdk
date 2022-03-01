@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "5.2.0"
+    "version": "5.3.0"
   },
   "schemes": [
     "https"
@@ -12646,11 +12646,6 @@
             }
           }
         },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
         "summary": "Authentication API",
         "tags": [
           "OAuth2.0 - Extension"
@@ -12931,11 +12926,6 @@
             }
           }
         },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
         "summary": "OAuth2 authorize API",
         "tags": [
           "OAuth2.0"
@@ -13202,11 +13192,6 @@
             }
           }
         },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
         "summary": "OAuth2 access token generation specific to platform",
         "tags": [
           "OAuth2.0"
@@ -13401,11 +13386,6 @@
             }
           }
         },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
         "summary": "OAuth2 access token generation endpoint",
         "tags": [
           "OAuth2.0"

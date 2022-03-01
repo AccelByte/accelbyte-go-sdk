@@ -1,3 +1,33 @@
+<a name="v0.13.0"></a>
+## [v0.13.0] - 2022-03-02
+
+### Chore
+- **api:** regenerate all services
+- **api:** move the app name to the utils
+- **cli:** regenerate all cli
+- **cli:** add indentation for CLI's JSON response
+- **factory:** generate with template
+- **sh-unit-tests:** regenerate sh unit tests
+- **spec:** update spec files
+- **wrapper:** change the year of copyright header
+- **wrapper:** delete auth info runtime from parameter for short simplified wrapper
+
+### Docs
+- update CHANGELOG.md for v0.13.0 release
+
+### Feat
+- **api:** add amazon trace id
+- **api:** add information of user agent and app name
+- **cli:** add information of app name
+
+### Fix
+- **api:** regenerate client with custom config template
+- **api:** change the factory with custom config
+- **cli:** change into basic authentication and add config repository
+- **cli:** add missing operation import
+- **wrapper:** change into basic authentication
+
+
 <a name="v0.12.0"></a>
 ## [v0.12.0] - 2022-02-15
 
@@ -377,6 +407,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.13.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.12.0...v0.13.0
 [v0.12.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.11.0...v0.12.0
 [v0.11.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.10.0...v0.11.0
 [v0.10.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.9.0...v0.10.0

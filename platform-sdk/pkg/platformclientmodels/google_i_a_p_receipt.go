@@ -17,6 +17,9 @@ import (
 // swagger:model GoogleIAPReceipt
 type GoogleIAPReceipt struct {
 
+	// If invoke Google play's Acknowledge after sync an durable item
+	AutoAck bool `json:"autoAck,omitempty"`
+
 	// language value from language tag, allowed format: en, en-US
 	Language string `json:"language,omitempty"`
 

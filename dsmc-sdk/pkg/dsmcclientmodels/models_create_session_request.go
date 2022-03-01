@@ -43,6 +43,9 @@ type ModelsCreateSessionRequest struct {
 	// Required: true
 	Namespace *string `json:"namespace"`
 
+	// notification payload
+	NotificationPayload ModelsMatchResultNotificationPayload `json:"notification_payload,omitempty"`
+
 	// pod name
 	// Required: true
 	PodName *string `json:"pod_name"`

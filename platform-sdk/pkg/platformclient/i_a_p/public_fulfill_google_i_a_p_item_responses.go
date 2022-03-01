@@ -24,8 +24,8 @@ type PublicFulfillGoogleIAPItemReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PublicFulfillGoogleIAPItemReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 204:
-		result := NewPublicFulfillGoogleIAPItemNoContent()
+	case 200:
+		result := NewPublicFulfillGoogleIAPItemOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -59,23 +59,35 @@ func (o *PublicFulfillGoogleIAPItemReader) ReadResponse(response runtime.ClientR
 	}
 }
 
-// NewPublicFulfillGoogleIAPItemNoContent creates a PublicFulfillGoogleIAPItemNoContent with default headers values
-func NewPublicFulfillGoogleIAPItemNoContent() *PublicFulfillGoogleIAPItemNoContent {
-	return &PublicFulfillGoogleIAPItemNoContent{}
+// NewPublicFulfillGoogleIAPItemOK creates a PublicFulfillGoogleIAPItemOK with default headers values
+func NewPublicFulfillGoogleIAPItemOK() *PublicFulfillGoogleIAPItemOK {
+	return &PublicFulfillGoogleIAPItemOK{}
 }
 
-/*PublicFulfillGoogleIAPItemNoContent handles this case with default header values.
+/*PublicFulfillGoogleIAPItemOK handles this case with default header values.
 
-  Fulfill item successfully
+  Successful operation
 */
-type PublicFulfillGoogleIAPItemNoContent struct {
+type PublicFulfillGoogleIAPItemOK struct {
+	Payload *platformclientmodels.GoogleReceiptResolveResult
 }
 
-func (o *PublicFulfillGoogleIAPItemNoContent) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemNoContent ", 204)
+func (o *PublicFulfillGoogleIAPItemOK) Error() string {
+	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemOK  %+v", 200, o.Payload)
 }
 
-func (o *PublicFulfillGoogleIAPItemNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *PublicFulfillGoogleIAPItemOK) GetPayload() *platformclientmodels.GoogleReceiptResolveResult {
+	return o.Payload
+}
+
+func (o *PublicFulfillGoogleIAPItemOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(platformclientmodels.GoogleReceiptResolveResult)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

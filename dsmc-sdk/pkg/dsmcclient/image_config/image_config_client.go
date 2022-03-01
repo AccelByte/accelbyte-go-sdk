@@ -31,14 +31,22 @@ type Client struct {
 type ClientService interface {
 	CreateImage(params *CreateImageParams, authInfo runtime.ClientAuthInfoWriter) (*CreateImageNoContent, *CreateImageBadRequest, *CreateImageUnauthorized, *CreateImageConflict, *CreateImageInternalServerError, error)
 	CreateImageShort(params *CreateImageParams, authInfo runtime.ClientAuthInfoWriter) (*CreateImageNoContent, error)
+	CreateImagePatch(params *CreateImagePatchParams, authInfo runtime.ClientAuthInfoWriter) (*CreateImagePatchCreated, *CreateImagePatchBadRequest, *CreateImagePatchUnauthorized, *CreateImagePatchConflict, *CreateImagePatchInternalServerError, error)
+	CreateImagePatchShort(params *CreateImagePatchParams, authInfo runtime.ClientAuthInfoWriter) (*CreateImagePatchCreated, error)
 	DeleteImage(params *DeleteImageParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteImageNoContent, *DeleteImageBadRequest, *DeleteImageUnauthorized, *DeleteImageNotFound, *DeleteImageUnprocessableEntity, *DeleteImageInternalServerError, error)
 	DeleteImageShort(params *DeleteImageParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteImageNoContent, error)
+	DeleteImagePatch(params *DeleteImagePatchParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteImagePatchNoContent, *DeleteImagePatchBadRequest, *DeleteImagePatchUnauthorized, *DeleteImagePatchNotFound, *DeleteImagePatchUnprocessableEntity, *DeleteImagePatchInternalServerError, error)
+	DeleteImagePatchShort(params *DeleteImagePatchParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteImagePatchNoContent, error)
 	ExportImages(params *ExportImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ExportImagesOK, *ExportImagesUnauthorized, *ExportImagesForbidden, *ExportImagesNotFound, *ExportImagesInternalServerError, error)
 	ExportImagesShort(params *ExportImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ExportImagesOK, error)
 	GetImageDetail(params *GetImageDetailParams, authInfo runtime.ClientAuthInfoWriter) (*GetImageDetailOK, *GetImageDetailUnauthorized, *GetImageDetailNotFound, *GetImageDetailInternalServerError, error)
 	GetImageDetailShort(params *GetImageDetailParams, authInfo runtime.ClientAuthInfoWriter) (*GetImageDetailOK, error)
 	GetImageLimit(params *GetImageLimitParams, authInfo runtime.ClientAuthInfoWriter) (*GetImageLimitOK, *GetImageLimitBadRequest, *GetImageLimitUnauthorized, *GetImageLimitInternalServerError, error)
 	GetImageLimitShort(params *GetImageLimitParams, authInfo runtime.ClientAuthInfoWriter) (*GetImageLimitOK, error)
+	GetImagePatchDetail(params *GetImagePatchDetailParams, authInfo runtime.ClientAuthInfoWriter) (*GetImagePatchDetailOK, *GetImagePatchDetailUnauthorized, *GetImagePatchDetailNotFound, *GetImagePatchDetailInternalServerError, error)
+	GetImagePatchDetailShort(params *GetImagePatchDetailParams, authInfo runtime.ClientAuthInfoWriter) (*GetImagePatchDetailOK, error)
+	GetImagePatches(params *GetImagePatchesParams, authInfo runtime.ClientAuthInfoWriter) (*GetImagePatchesOK, *GetImagePatchesUnauthorized, *GetImagePatchesInternalServerError, error)
+	GetImagePatchesShort(params *GetImagePatchesParams, authInfo runtime.ClientAuthInfoWriter) (*GetImagePatchesOK, error)
 	ImageDetailClient(params *ImageDetailClientParams, authInfo runtime.ClientAuthInfoWriter) (*ImageDetailClientOK, *ImageDetailClientUnauthorized, *ImageDetailClientNotFound, *ImageDetailClientInternalServerError, error)
 	ImageDetailClientShort(params *ImageDetailClientParams, authInfo runtime.ClientAuthInfoWriter) (*ImageDetailClientOK, error)
 	ImportImages(params *ImportImagesParams, authInfo runtime.ClientAuthInfoWriter) (*ImportImagesOK, *ImportImagesBadRequest, *ImportImagesUnauthorized, *ImportImagesForbidden, *ImportImagesInternalServerError, error)
@@ -164,6 +172,119 @@ func (a *Client) CreateImageShort(params *CreateImageParams, authInfo runtime.Cl
 }
 
 /*
+  CreateImagePatch creates image patch
+
+  ```
+Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]
+Required scope: social
+
+This endpoint will create image patch.
+
+Sample image:
+{
+	&#34;namespace&#34;:&#34;dewa&#34;,
+	&#34;version&#34;:&#34;1.0.0&#34;,
+	&#34;patchVersion&#34;:&#34;1.0.0-patch&#34;,
+	&#34;image&#34;:&#34;144436415367.dkr.ecr.us-west-2.amazonaws.com/dewa:1.0.0-patch&#34;,
+	&#34;persistent&#34;:false
+}
+```
+*/
+func (a *Client) CreateImagePatch(params *CreateImagePatchParams, authInfo runtime.ClientAuthInfoWriter) (*CreateImagePatchCreated, *CreateImagePatchBadRequest, *CreateImagePatchUnauthorized, *CreateImagePatchConflict, *CreateImagePatchInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateImagePatchParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreateImagePatch",
+		Method:             "POST",
+		PathPattern:        "/dsmcontroller/admin/images/patches",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateImagePatchReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateImagePatchCreated:
+		return v, nil, nil, nil, nil, nil
+
+	case *CreateImagePatchBadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *CreateImagePatchUnauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *CreateImagePatchConflict:
+		return nil, nil, nil, v, nil, nil
+
+	case *CreateImagePatchInternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) CreateImagePatchShort(params *CreateImagePatchParams, authInfo runtime.ClientAuthInfoWriter) (*CreateImagePatchCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateImagePatchParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CreateImagePatch",
+		Method:             "POST",
+		PathPattern:        "/dsmcontroller/admin/images/patches",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateImagePatchReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *CreateImagePatchCreated:
+		return v, nil
+	case *CreateImagePatchBadRequest:
+		return nil, v
+	case *CreateImagePatchUnauthorized:
+		return nil, v
+	case *CreateImagePatchConflict:
+		return nil, v
+	case *CreateImagePatchInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
   DeleteImage deletes an image
 
   Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]
@@ -264,6 +385,114 @@ func (a *Client) DeleteImageShort(params *DeleteImageParams, authInfo runtime.Cl
 	case *DeleteImageUnprocessableEntity:
 		return nil, v
 	case *DeleteImageInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  DeleteImagePatch deletes an image patch
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]
+
+Required scope: social
+
+This endpoint will delete an image patch that specified in the request parameter
+*/
+func (a *Client) DeleteImagePatch(params *DeleteImagePatchParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteImagePatchNoContent, *DeleteImagePatchBadRequest, *DeleteImagePatchUnauthorized, *DeleteImagePatchNotFound, *DeleteImagePatchUnprocessableEntity, *DeleteImagePatchInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteImagePatchParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteImagePatch",
+		Method:             "DELETE",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/images/patches",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteImagePatchReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteImagePatchNoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *DeleteImagePatchBadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *DeleteImagePatchUnauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *DeleteImagePatchNotFound:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *DeleteImagePatchUnprocessableEntity:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *DeleteImagePatchInternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) DeleteImagePatchShort(params *DeleteImagePatchParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteImagePatchNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteImagePatchParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteImagePatch",
+		Method:             "DELETE",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/images/patches",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteImagePatchReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *DeleteImagePatchNoContent:
+		return v, nil
+	case *DeleteImagePatchBadRequest:
+		return nil, v
+	case *DeleteImagePatchUnauthorized:
+		return nil, v
+	case *DeleteImagePatchNotFound:
+		return nil, v
+	case *DeleteImagePatchUnprocessableEntity:
+		return nil, v
+	case *DeleteImagePatchInternalServerError:
 		return nil, v
 
 	default:
@@ -564,6 +793,197 @@ func (a *Client) GetImageLimitShort(params *GetImageLimitParams, authInfo runtim
 	case *GetImageLimitUnauthorized:
 		return nil, v
 	case *GetImageLimitInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetImagePatchDetail ds s image patch detail
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint get specific image patch version of dedicated servers version.
+*/
+func (a *Client) GetImagePatchDetail(params *GetImagePatchDetailParams, authInfo runtime.ClientAuthInfoWriter) (*GetImagePatchDetailOK, *GetImagePatchDetailUnauthorized, *GetImagePatchDetailNotFound, *GetImagePatchDetailInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetImagePatchDetailParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetImagePatchDetail",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches/{versionPatch}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetImagePatchDetailReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetImagePatchDetailOK:
+		return v, nil, nil, nil, nil
+
+	case *GetImagePatchDetailUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *GetImagePatchDetailNotFound:
+		return nil, nil, v, nil, nil
+
+	case *GetImagePatchDetailInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetImagePatchDetailShort(params *GetImagePatchDetailParams, authInfo runtime.ClientAuthInfoWriter) (*GetImagePatchDetailOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetImagePatchDetailParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetImagePatchDetail",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches/{versionPatch}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetImagePatchDetailReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetImagePatchDetailOK:
+		return v, nil
+	case *GetImagePatchDetailUnauthorized:
+		return nil, v
+	case *GetImagePatchDetailNotFound:
+		return nil, v
+	case *GetImagePatchDetailInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetImagePatches gets all image patches by version
+
+  Required permission: ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]
+
+Required scope: social
+
+This endpoint get image patches by version.
+*/
+func (a *Client) GetImagePatches(params *GetImagePatchesParams, authInfo runtime.ClientAuthInfoWriter) (*GetImagePatchesOK, *GetImagePatchesUnauthorized, *GetImagePatchesInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetImagePatchesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetImagePatches",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetImagePatchesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetImagePatchesOK:
+		return v, nil, nil, nil
+
+	case *GetImagePatchesUnauthorized:
+		return nil, v, nil, nil
+
+	case *GetImagePatchesInternalServerError:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetImagePatchesShort(params *GetImagePatchesParams, authInfo runtime.ClientAuthInfoWriter) (*GetImagePatchesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetImagePatchesParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetImagePatches",
+		Method:             "GET",
+		PathPattern:        "/dsmcontroller/admin/namespaces/{namespace}/images/versions/{version}/patches",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetImagePatchesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetImagePatchesOK:
+		return v, nil
+	case *GetImagePatchesUnauthorized:
+		return nil, v
+	case *GetImagePatchesInternalServerError:
 		return nil, v
 
 	default:

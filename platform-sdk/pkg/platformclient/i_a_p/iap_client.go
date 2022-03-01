@@ -69,8 +69,8 @@ type ClientService interface {
 	MockFulfillIAPItemShort(params *MockFulfillIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*MockFulfillIAPItemNoContent, error)
 	PublicFulfillAppleIAPItem(params *PublicFulfillAppleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillAppleIAPItemNoContent, *PublicFulfillAppleIAPItemBadRequest, *PublicFulfillAppleIAPItemNotFound, *PublicFulfillAppleIAPItemConflict, error)
 	PublicFulfillAppleIAPItemShort(params *PublicFulfillAppleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillAppleIAPItemNoContent, error)
-	PublicFulfillGoogleIAPItem(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemNoContent, *PublicFulfillGoogleIAPItemBadRequest, *PublicFulfillGoogleIAPItemNotFound, *PublicFulfillGoogleIAPItemConflict, error)
-	PublicFulfillGoogleIAPItemShort(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemNoContent, error)
+	PublicFulfillGoogleIAPItem(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemOK, *PublicFulfillGoogleIAPItemBadRequest, *PublicFulfillGoogleIAPItemNotFound, *PublicFulfillGoogleIAPItemConflict, error)
+	PublicFulfillGoogleIAPItemShort(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemOK, error)
 	PublicReconcilePlayStationStore(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, *PublicReconcilePlayStationStoreBadRequest, error)
 	PublicReconcilePlayStationStoreShort(params *PublicReconcilePlayStationStoreParams, authInfo runtime.ClientAuthInfoWriter) (*PublicReconcilePlayStationStoreOK, error)
 	QueryAllUserIAPOrders(params *QueryAllUserIAPOrdersParams, authInfo runtime.ClientAuthInfoWriter) (*QueryAllUserIAPOrdersOK, error)
@@ -1743,7 +1743,7 @@ func (a *Client) PublicFulfillAppleIAPItemShort(params *PublicFulfillAppleIAPIte
 
   Verify google iap receipt and fulfill item.&lt;p&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;NAMESPACE:{namespace}:USER:{userId}:IAP&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: &lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) PublicFulfillGoogleIAPItem(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemNoContent, *PublicFulfillGoogleIAPItemBadRequest, *PublicFulfillGoogleIAPItemNotFound, *PublicFulfillGoogleIAPItemConflict, error) {
+func (a *Client) PublicFulfillGoogleIAPItem(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemOK, *PublicFulfillGoogleIAPItemBadRequest, *PublicFulfillGoogleIAPItemNotFound, *PublicFulfillGoogleIAPItemConflict, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicFulfillGoogleIAPItemParams()
@@ -1772,7 +1772,7 @@ func (a *Client) PublicFulfillGoogleIAPItem(params *PublicFulfillGoogleIAPItemPa
 
 	switch v := result.(type) {
 
-	case *PublicFulfillGoogleIAPItemNoContent:
+	case *PublicFulfillGoogleIAPItemOK:
 		return v, nil, nil, nil, nil
 
 	case *PublicFulfillGoogleIAPItemBadRequest:
@@ -1789,7 +1789,7 @@ func (a *Client) PublicFulfillGoogleIAPItem(params *PublicFulfillGoogleIAPItemPa
 	}
 }
 
-func (a *Client) PublicFulfillGoogleIAPItemShort(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemNoContent, error) {
+func (a *Client) PublicFulfillGoogleIAPItemShort(params *PublicFulfillGoogleIAPItemParams, authInfo runtime.ClientAuthInfoWriter) (*PublicFulfillGoogleIAPItemOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicFulfillGoogleIAPItemParams()
@@ -1818,7 +1818,7 @@ func (a *Client) PublicFulfillGoogleIAPItemShort(params *PublicFulfillGoogleIAPI
 
 	switch v := result.(type) {
 
-	case *PublicFulfillGoogleIAPItemNoContent:
+	case *PublicFulfillGoogleIAPItemOK:
 		return v, nil
 	case *PublicFulfillGoogleIAPItemBadRequest:
 		return nil, v

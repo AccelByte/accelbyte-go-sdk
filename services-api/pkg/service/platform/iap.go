@@ -490,25 +490,25 @@ func (i *IAPService) SyncEpicGamesInventory(input *i_a_p.SyncEpicGamesInventoryP
 }
 
 // Deprecated: Use PublicFulfillGoogleIAPItemShort instead
-func (i *IAPService) PublicFulfillGoogleIAPItem(input *i_a_p.PublicFulfillGoogleIAPItemParams) error {
+func (i *IAPService) PublicFulfillGoogleIAPItem(input *i_a_p.PublicFulfillGoogleIAPItemParams) (*platformclientmodels.GoogleReceiptResolveResult, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	_, badRequest, notFound, conflict, err := i.Client.Iap.PublicFulfillGoogleIAPItem(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, conflict, err := i.Client.Iap.PublicFulfillGoogleIAPItem(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
-		return badRequest
+		return nil, badRequest
 	}
 	if notFound != nil {
-		return notFound
+		return nil, notFound
 	}
 	if conflict != nil {
-		return conflict
+		return nil, conflict
 	}
 	if err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	return ok.GetPayload(), nil
 }
 
 // Deprecated: Use PublicReconcilePlayStationStoreShort instead
@@ -987,16 +987,16 @@ func (i *IAPService) SyncEpicGamesInventoryShort(input *i_a_p.SyncEpicGamesInven
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) PublicFulfillGoogleIAPItemShort(input *i_a_p.PublicFulfillGoogleIAPItemParams) error {
+func (i *IAPService) PublicFulfillGoogleIAPItemShort(input *i_a_p.PublicFulfillGoogleIAPItemParams) (*platformclientmodels.GoogleReceiptResolveResult, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return nil, err
 	}
-	_, err = i.Client.Iap.PublicFulfillGoogleIAPItemShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.PublicFulfillGoogleIAPItemShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	return ok.GetPayload(), nil
 }
 
 func (i *IAPService) PublicReconcilePlayStationStoreShort(input *i_a_p.PublicReconcilePlayStationStoreParams) ([]*platformclientmodels.PlayStationReconcileResult, error) {

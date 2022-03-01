@@ -89,6 +89,31 @@ func (i *ImageConfigService) ImportImages(input *image_config.ImportImagesParams
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use CreateImagePatchShort instead
+func (i *ImageConfigService) CreateImagePatch(input *image_config.CreateImagePatchParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, conflict, internalServerError, err := i.Client.ImageConfig.CreateImagePatch(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if conflict != nil {
+		return conflict
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 // Deprecated: Use ListImagesShort instead
 func (i *ImageConfigService) ListImages(input *image_config.ListImagesParams) (*dsmcclientmodels.ModelsListImageResponse, error) {
 	accessToken, err := i.TokenRepository.GetToken()
@@ -186,6 +211,34 @@ func (i *ImageConfigService) GetImageLimit(input *image_config.GetImageLimitPara
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use DeleteImagePatchShort instead
+func (i *ImageConfigService) DeleteImagePatch(input *image_config.DeleteImagePatchParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, notFound, unprocessableEntity, internalServerError, err := i.Client.ImageConfig.DeleteImagePatch(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if unprocessableEntity != nil {
+		return unprocessableEntity
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 // Deprecated: Use GetImageDetailShort instead
 func (i *ImageConfigService) GetImageDetail(input *image_config.GetImageDetailParams) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
 	accessToken, err := i.TokenRepository.GetToken()
@@ -193,6 +246,47 @@ func (i *ImageConfigService) GetImageDetail(input *image_config.GetImageDetailPa
 		return nil, err
 	}
 	ok, unauthorized, notFound, internalServerError, err := i.Client.ImageConfig.GetImageDetail(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use GetImagePatchesShort instead
+func (i *ImageConfigService) GetImagePatches(input *image_config.GetImagePatchesParams) (*dsmcclientmodels.ModelsListImagePatchesResponse, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, internalServerError, err := i.Client.ImageConfig.GetImagePatches(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use GetImagePatchDetailShort instead
+func (i *ImageConfigService) GetImagePatchDetail(input *image_config.GetImagePatchDetailParams) (*dsmcclientmodels.ModelsGetImagePatchDetailResponse, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, notFound, internalServerError, err := i.Client.ImageConfig.GetImagePatchDetail(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -266,6 +360,18 @@ func (i *ImageConfigService) ImportImagesShort(input *image_config.ImportImagesP
 	return ok.GetPayload(), nil
 }
 
+func (i *ImageConfigService) CreateImagePatchShort(input *image_config.CreateImagePatchParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = i.Client.ImageConfig.CreateImagePatchShort(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func (i *ImageConfigService) ListImagesShort(input *image_config.ListImagesParams) (*dsmcclientmodels.ModelsListImageResponse, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
@@ -314,12 +420,48 @@ func (i *ImageConfigService) GetImageLimitShort(input *image_config.GetImageLimi
 	return ok.GetPayload(), nil
 }
 
+func (i *ImageConfigService) DeleteImagePatchShort(input *image_config.DeleteImagePatchParams) error {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = i.Client.ImageConfig.DeleteImagePatchShort(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func (i *ImageConfigService) GetImageDetailShort(input *image_config.GetImageDetailParams) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
 	accessToken, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
 	ok, err := i.Client.ImageConfig.GetImageDetailShort(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (i *ImageConfigService) GetImagePatchesShort(input *image_config.GetImagePatchesParams) (*dsmcclientmodels.ModelsListImagePatchesResponse, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.ImageConfig.GetImagePatchesShort(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
+func (i *ImageConfigService) GetImagePatchDetailShort(input *image_config.GetImagePatchDetailParams) (*dsmcclientmodels.ModelsGetImagePatchDetailResponse, error) {
+	accessToken, err := i.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := i.Client.ImageConfig.GetImagePatchDetailShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

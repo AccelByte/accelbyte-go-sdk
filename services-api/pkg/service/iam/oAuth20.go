@@ -5,12 +5,11 @@
 package iam
 
 import (
-	"github.com/go-openapi/runtime/client"
-
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/go-openapi/runtime/client"
 )
 
 type OAuth20Service struct {
@@ -238,11 +237,9 @@ func (o *OAuth20Service) RevokeUserV3Short(input *o_auth2_0.RevokeUserV3Params) 
 }
 
 func (o *OAuth20Service) AuthorizeV3Short(input *o_auth2_0.AuthorizeV3Params) error {
-	accessToken, err := o.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = o.Client.OAuth20.AuthorizeV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	clientId := o.ConfigRepository.GetClientId()
+	clientSecret := o.ConfigRepository.GetClientSecret()
+	_, err := o.Client.OAuth20.AuthorizeV3Short(input, client.BasicAuth(clientId, clientSecret))
 	if err != nil {
 		return err
 	}
@@ -332,11 +329,9 @@ func (o *OAuth20Service) TokenRevocationV3Short(input *o_auth2_0.TokenRevocation
 }
 
 func (o *OAuth20Service) TokenGrantV3Short(input *o_auth2_0.TokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
-	accessToken, err := o.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := o.Client.OAuth20.TokenGrantV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	clientId := o.ConfigRepository.GetClientId()
+	clientSecret := o.ConfigRepository.GetClientSecret()
+	ok, err := o.Client.OAuth20.TokenGrantV3Short(input, client.BasicAuth(clientId, clientSecret))
 	if err != nil {
 		return nil, err
 	}

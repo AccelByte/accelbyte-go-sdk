@@ -70,11 +70,9 @@ func (o *OAuth20ExtensionService) PlatformAuthenticationV3(input *o_auth2_0_exte
 }
 
 func (o *OAuth20ExtensionService) UserAuthenticationV3Short(input *o_auth2_0_extension.UserAuthenticationV3Params) error {
-	accessToken, err := o.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = o.Client.OAuth20Extension.UserAuthenticationV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	clientId := o.ConfigRepository.GetClientId()
+	clientSecret := o.ConfigRepository.GetClientSecret()
+	_, err := o.Client.OAuth20Extension.UserAuthenticationV3Short(input, client.BasicAuth(clientId, clientSecret))
 	if err != nil {
 		return err
 	}

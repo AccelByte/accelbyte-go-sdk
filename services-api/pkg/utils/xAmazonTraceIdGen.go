@@ -7,8 +7,9 @@ package utils
 import (
 	"context"
 	"fmt"
-	"go.opentelemetry.io/contrib/propagators/aws/xray"
 	"time"
+
+	"go.opentelemetry.io/contrib/propagators/aws/xray"
 )
 
 var (
@@ -20,10 +21,9 @@ func AmazonTraceIdGen() string {
 	defer cancel()
 
 	gen := xray.NewIDGenerator()
-	traceID, spanID := gen.NewIDs(ctx)
-	xrayTraceID := traceID.String()
-	xTraceID := fmt.Sprintf("1-%s-%s", xrayTraceID[0:8], xrayTraceID[8:])
-	xAmazonTraceId = fmt.Sprintf("Root=%v;Parent=%v;Sampled=0", xTraceID, spanID)
+	traceID, _ := gen.NewIDs(ctx)
+	traceIDString := traceID.String()
+	xRayTraceID := fmt.Sprintf("1-%s-%s", traceIDString[0:8], traceIDString[8:])
 
-	return xAmazonTraceId
+	return xRayTraceID
 }

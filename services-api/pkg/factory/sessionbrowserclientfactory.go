@@ -6,10 +6,14 @@ package factory
 import (
 	"strings"
 
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
+	"github.com/sirupsen/logrus"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient"
-	"github.com/sirupsen/logrus"
 )
 
 var sessionbrowserClientInstance *sessionbrowserclient.JusticeSessionbrowserService
@@ -27,13 +31,43 @@ func NewSessionbrowserClient(configRepository repository.ConfigRepository) *sess
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			sessionbrowserClientInstance = sessionbrowserclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
-			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
+			sessionbrowserClientInstance = newCustomSessionbrowserHttpClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 		} else {
-			sessionbrowserClientInstance = sessionbrowserclient.NewHTTPClient(nil)
+			sessionbrowserClientInstance = newCustomSessionbrowserHttpClient(nil)
 		}
 
 	}
 
 	return sessionbrowserClientInstance
+}
+
+func newCustomSessionbrowserHttpClientWithConfig(formats strfmt.Registry, cfg *sessionbrowserclient.TransportConfig, userAgent, xAmazonTraceId string) *sessionbrowserclient.JusticeSessionbrowserService {
+	if cfg == nil {
+		cfg = sessionbrowserclient.DefaultTransportConfig()
+	}
+
+	transport := client.New(cfg.Host, cfg.BasePath, cfg.Schemes)
+	// add unsupported mime type. Please see this open issue https://github.com/go-swagger/go-swagger/issues/1244 for more details.
+	transport.Producers["*/*"] = runtime.JSONProducer()
+	transport.Consumers["application/problem+json"] = runtime.JSONConsumer()
+	transport.Consumers["application/x-www-form-urlencoded"] = runtime.JSONConsumer()
+	transport.Consumers["application/zip"] = runtime.JSONConsumer()
+	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
+	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
+
+	// optional custom user-agent for request header
+	if userAgent != "" {
+		transport.Transport = utils.SetUserAgent(transport.Transport, userAgent)
+	}
+
+	// optional custom amazonTraceId for request header
+	if xAmazonTraceId != "" {
+		transport.Transport = utils.SetXAmznTraceId(transport.Transport, xAmazonTraceId)
+	}
+
+	return sessionbrowserclient.New(transport, formats)
+}
+
+func newCustomSessionbrowserHttpClient(formats strfmt.Registry) *sessionbrowserclient.JusticeSessionbrowserService {
+	return newCustomSessionbrowserHttpClientWithConfig(formats, nil, "", "")
 }

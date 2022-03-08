@@ -56,6 +56,7 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *Jus
 		cfg = DefaultTransportConfig()
 	}
 
+	// create transport and client
 	transport := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
 	return New(transport, formats)
 }

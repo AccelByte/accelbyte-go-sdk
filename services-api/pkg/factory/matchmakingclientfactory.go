@@ -6,10 +6,14 @@ package factory
 import (
 	"strings"
 
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
+	"github.com/sirupsen/logrus"
+
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
-	"github.com/sirupsen/logrus"
 )
 
 var matchmakingClientInstance *matchmakingclient.JusticeMatchmakingService
@@ -27,13 +31,43 @@ func NewMatchmakingClient(configRepository repository.ConfigRepository) *matchma
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			matchmakingClientInstance = matchmakingclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
-			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
+			matchmakingClientInstance = newCustomMatchmakingHttpClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 		} else {
-			matchmakingClientInstance = matchmakingclient.NewHTTPClient(nil)
+			matchmakingClientInstance = newCustomMatchmakingHttpClient(nil)
 		}
 
 	}
 
 	return matchmakingClientInstance
+}
+
+func newCustomMatchmakingHttpClientWithConfig(formats strfmt.Registry, cfg *matchmakingclient.TransportConfig, userAgent, xAmazonTraceId string) *matchmakingclient.JusticeMatchmakingService {
+	if cfg == nil {
+		cfg = matchmakingclient.DefaultTransportConfig()
+	}
+
+	transport := client.New(cfg.Host, cfg.BasePath, cfg.Schemes)
+	// add unsupported mime type. Please see this open issue https://github.com/go-swagger/go-swagger/issues/1244 for more details.
+	transport.Producers["*/*"] = runtime.JSONProducer()
+	transport.Consumers["application/problem+json"] = runtime.JSONConsumer()
+	transport.Consumers["application/x-www-form-urlencoded"] = runtime.JSONConsumer()
+	transport.Consumers["application/zip"] = runtime.JSONConsumer()
+	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
+	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
+
+	// optional custom user-agent for request header
+	if userAgent != "" {
+		transport.Transport = utils.SetUserAgent(transport.Transport, userAgent)
+	}
+
+	// optional custom amazonTraceId for request header
+	if xAmazonTraceId != "" {
+		transport.Transport = utils.SetXAmznTraceId(transport.Transport, xAmazonTraceId)
+	}
+
+	return matchmakingclient.New(transport, formats)
+}
+
+func newCustomMatchmakingHttpClient(formats strfmt.Registry) *matchmakingclient.JusticeMatchmakingService {
+	return newCustomMatchmakingHttpClientWithConfig(formats, nil, "", "")
 }

@@ -6,10 +6,14 @@ package factory
 import (
 	"strings"
 
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
+	"github.com/sirupsen/logrus"
+
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
-	"github.com/sirupsen/logrus"
 )
 
 var dslogmanagerClientInstance *dslogmanagerclient.JusticeDslogmanagerService
@@ -27,13 +31,43 @@ func NewDslogmanagerClient(configRepository repository.ConfigRepository) *dslogm
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			dslogmanagerClientInstance = dslogmanagerclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
-			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
+			dslogmanagerClientInstance = newCustomDslogmanagerHttpClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 		} else {
-			dslogmanagerClientInstance = dslogmanagerclient.NewHTTPClient(nil)
+			dslogmanagerClientInstance = newCustomDslogmanagerHttpClient(nil)
 		}
 
 	}
 
 	return dslogmanagerClientInstance
+}
+
+func newCustomDslogmanagerHttpClientWithConfig(formats strfmt.Registry, cfg *dslogmanagerclient.TransportConfig, userAgent, xAmazonTraceId string) *dslogmanagerclient.JusticeDslogmanagerService {
+	if cfg == nil {
+		cfg = dslogmanagerclient.DefaultTransportConfig()
+	}
+
+	transport := client.New(cfg.Host, cfg.BasePath, cfg.Schemes)
+	// add unsupported mime type. Please see this open issue https://github.com/go-swagger/go-swagger/issues/1244 for more details.
+	transport.Producers["*/*"] = runtime.JSONProducer()
+	transport.Consumers["application/problem+json"] = runtime.JSONConsumer()
+	transport.Consumers["application/x-www-form-urlencoded"] = runtime.JSONConsumer()
+	transport.Consumers["application/zip"] = runtime.JSONConsumer()
+	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
+	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
+
+	// optional custom user-agent for request header
+	if userAgent != "" {
+		transport.Transport = utils.SetUserAgent(transport.Transport, userAgent)
+	}
+
+	// optional custom amazonTraceId for request header
+	if xAmazonTraceId != "" {
+		transport.Transport = utils.SetXAmznTraceId(transport.Transport, xAmazonTraceId)
+	}
+
+	return dslogmanagerclient.New(transport, formats)
+}
+
+func newCustomDslogmanagerHttpClient(formats strfmt.Registry) *dslogmanagerclient.JusticeDslogmanagerService {
+	return newCustomDslogmanagerHttpClientWithConfig(formats, nil, "", "")
 }

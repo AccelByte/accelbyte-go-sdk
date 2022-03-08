@@ -6,10 +6,14 @@ package factory
 import (
 	"strings"
 
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
+	"github.com/sirupsen/logrus"
+
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
-	"github.com/sirupsen/logrus"
 )
 
 var basicClientInstance *basicclient.JusticeBasicService
@@ -27,13 +31,43 @@ func NewBasicClient(configRepository repository.ConfigRepository) *basicclient.J
 				BasePath: "/basic",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			basicClientInstance = basicclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
-			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
+			basicClientInstance = newCustomBasicHttpClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 		} else {
-			basicClientInstance = basicclient.NewHTTPClient(nil)
+			basicClientInstance = newCustomBasicHttpClient(nil)
 		}
 
 	}
 
 	return basicClientInstance
+}
+
+func newCustomBasicHttpClientWithConfig(formats strfmt.Registry, cfg *basicclient.TransportConfig, userAgent, xAmazonTraceId string) *basicclient.JusticeBasicService {
+	if cfg == nil {
+		cfg = basicclient.DefaultTransportConfig()
+	}
+
+	transport := client.New(cfg.Host, cfg.BasePath, cfg.Schemes)
+	// add unsupported mime type. Please see this open issue https://github.com/go-swagger/go-swagger/issues/1244 for more details.
+	transport.Producers["*/*"] = runtime.JSONProducer()
+	transport.Consumers["application/problem+json"] = runtime.JSONConsumer()
+	transport.Consumers["application/x-www-form-urlencoded"] = runtime.JSONConsumer()
+	transport.Consumers["application/zip"] = runtime.JSONConsumer()
+	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
+	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
+
+	// optional custom user-agent for request header
+	if userAgent != "" {
+		transport.Transport = utils.SetUserAgent(transport.Transport, userAgent)
+	}
+
+	// optional custom amazonTraceId for request header
+	if xAmazonTraceId != "" {
+		transport.Transport = utils.SetXAmznTraceId(transport.Transport, xAmazonTraceId)
+	}
+
+	return basicclient.New(transport, formats)
+}
+
+func newCustomBasicHttpClient(formats strfmt.Registry) *basicclient.JusticeBasicService {
+	return newCustomBasicHttpClientWithConfig(formats, nil, "", "")
 }

@@ -6,7 +6,6 @@ package achievementclient
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"net/http"
 	"strings"
 	"time"
 
@@ -34,38 +33,12 @@ var DefaultSchemes = []string{"https"}
 
 // NewHTTPClient creates a new justice achievement service HTTP client.
 func NewHTTPClient(formats strfmt.Registry) *JusticeAchievementService {
-	return NewHTTPClientWithConfig(formats, nil, "", "")
-}
-
-func SetUserAgent(inner http.RoundTripper, userAgent string) http.RoundTripper {
-	return &customTransport{
-		inner: inner,
-		Agent: userAgent,
-	}
-}
-
-func SetXAmznTraceId(inner http.RoundTripper, xAmznTraceId string) http.RoundTripper {
-	return &customTransport{
-		inner:        inner,
-		XAmznTraceId: xAmznTraceId,
-	}
-}
-
-type customTransport struct {
-	inner        http.RoundTripper
-	Agent        string
-	XAmznTraceId string
-}
-
-func (c *customTransport) RoundTrip(r *http.Request) (*http.Response, error) {
-	r.Header.Set("User-Agent", c.Agent)
-	r.Header.Set("X-Amzn-Trace-Id", c.Agent)
-	return c.inner.RoundTrip(r)
+	return NewHTTPClientWithConfig(formats, nil)
 }
 
 // NewHTTPClientWithConfig creates a new justice achievement service HTTP client,
 // using a customizable transport config.
-func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, userAgent, amazonTraceId string) *JusticeAchievementService {
+func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *JusticeAchievementService {
 	// ensure nullable parameters have default
 	if cfg == nil {
 		cfg = DefaultTransportConfig()
@@ -73,21 +46,6 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 
 	// create transport and client
 	transport := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
-
-	// optional custom producers and consumer
-	transport.Producers["*/*"] = runtime.JSONProducer()
-	transport.Consumers["application/problem+json"] = runtime.JSONConsumer()
-	transport.Consumers["application/x-www-form-urlencoded"] = runtime.JSONConsumer()
-	transport.Consumers["application/zip"] = runtime.JSONConsumer()
-	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
-	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
-
-	// optional custom user-agent for request header
-	transport.Transport = SetUserAgent(transport.Transport, userAgent)
-
-	// optional custom amazonTraceId for request header
-	transport.Transport = SetXAmznTraceId(transport.Transport, amazonTraceId)
-
 	return New(transport, formats)
 }
 

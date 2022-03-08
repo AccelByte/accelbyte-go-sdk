@@ -6,10 +6,14 @@ package factory
 import (
 	"strings"
 
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
+	"github.com/sirupsen/logrus"
+
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
-	"github.com/sirupsen/logrus"
 )
 
 var achievementClientInstance *achievementclient.JusticeAchievementService
@@ -27,13 +31,43 @@ func NewAchievementClient(configRepository repository.ConfigRepository) *achieve
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			achievementClientInstance = achievementclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
-			logrus.Infof("Amazon Trace ID: \"%+v\"", xAmazonTraceId)
+			achievementClientInstance = newCustomAchievementHttpClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 		} else {
-			achievementClientInstance = achievementclient.NewHTTPClient(nil)
+			achievementClientInstance = newCustomAchievementHttpClient(nil)
 		}
 
 	}
 
 	return achievementClientInstance
+}
+
+func newCustomAchievementHttpClientWithConfig(formats strfmt.Registry, cfg *achievementclient.TransportConfig, userAgent, xAmazonTraceId string) *achievementclient.JusticeAchievementService {
+	if cfg == nil {
+		cfg = achievementclient.DefaultTransportConfig()
+	}
+
+	transport := client.New(cfg.Host, cfg.BasePath, cfg.Schemes)
+	// add unsupported mime type. Please see this open issue https://github.com/go-swagger/go-swagger/issues/1244 for more details.
+	transport.Producers["*/*"] = runtime.JSONProducer()
+	transport.Consumers["application/problem+json"] = runtime.JSONConsumer()
+	transport.Consumers["application/x-www-form-urlencoded"] = runtime.JSONConsumer()
+	transport.Consumers["application/zip"] = runtime.JSONConsumer()
+	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
+	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
+
+	// optional custom user-agent for request header
+	if userAgent != "" {
+		transport.Transport = utils.SetUserAgent(transport.Transport, userAgent)
+	}
+
+	// optional custom amazonTraceId for request header
+	if xAmazonTraceId != "" {
+		transport.Transport = utils.SetXAmznTraceId(transport.Transport, xAmazonTraceId)
+	}
+
+	return achievementclient.New(transport, formats)
+}
+
+func newCustomAchievementHttpClient(formats strfmt.Registry) *achievementclient.JusticeAchievementService {
+	return newCustomAchievementHttpClientWithConfig(formats, nil, "", "")
 }

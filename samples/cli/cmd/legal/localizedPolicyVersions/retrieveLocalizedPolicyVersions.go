@@ -5,7 +5,6 @@
 package localizedPolicyVersions
 
 import (
-	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/localized_policy_versions"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/legal"
@@ -34,12 +33,7 @@ var RetrieveLocalizedPolicyVersionsCmd = &cobra.Command{
 			logrus.Error(err)
 			return err
 		} else {
-			response, errIndent := json.MarshalIndent(ok, "", "    ")
-			if errIndent != nil {
-				return errIndent
-			} else {
-				logrus.Infof("Response %s", string(response))
-			}
+			logrus.Infof("Response CLI success", ok)
 		}
 		return nil
 	},

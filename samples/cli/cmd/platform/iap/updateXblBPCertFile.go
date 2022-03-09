@@ -5,7 +5,6 @@
 package iap
 
 import (
-	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
@@ -51,12 +50,7 @@ var UpdateXblBPCertFileCmd = &cobra.Command{
 			logrus.Error(err)
 			return err
 		} else {
-			response, errIndent := json.MarshalIndent(ok, "", "    ")
-			if errIndent != nil {
-				return errIndent
-			} else {
-				logrus.Infof("Response %s", string(response))
-			}
+			logrus.Infof("Response CLI success", ok)
 		}
 		return nil
 	},

@@ -5,7 +5,6 @@
 package dataDeletion
 
 import (
-	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_deletion"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gdpr"
@@ -43,12 +42,7 @@ var AdminSubmitUserAccountDeletionRequestCmd = &cobra.Command{
 			logrus.Error(err)
 			return err
 		} else {
-			response, errIndent := json.MarshalIndent(ok, "", "    ")
-			if errIndent != nil {
-				return errIndent
-			} else {
-				logrus.Infof("Response %s", string(response))
-			}
+			logrus.Infof("Response CLI success", ok)
 		}
 		return nil
 	},

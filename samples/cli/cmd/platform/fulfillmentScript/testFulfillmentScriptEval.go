@@ -40,12 +40,7 @@ var TestFulfillmentScriptEvalCmd = &cobra.Command{
 			logrus.Error(err)
 			return err
 		} else {
-			response, errIndent := json.MarshalIndent(ok, "", "    ")
-			if errIndent != nil {
-				return errIndent
-			} else {
-				logrus.Infof("Response %s", string(response))
-			}
+			logrus.Infof("Response CLI success", ok)
 		}
 		return nil
 	},

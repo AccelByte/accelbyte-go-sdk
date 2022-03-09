@@ -5,7 +5,6 @@
 package gameProfile
 
 import (
-	"encoding/json"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/game_profile"
@@ -38,12 +37,7 @@ var GetProfileCmd = &cobra.Command{
 			logrus.Error(err)
 			return err
 		} else {
-			response, errIndent := json.MarshalIndent(ok, "", "    ")
-			if errIndent != nil {
-				return errIndent
-			} else {
-				logrus.Infof("Response %s", string(response))
-			}
+			logrus.Infof("Response CLI success", ok)
 		}
 		return nil
 	},

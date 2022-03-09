@@ -6,15 +6,13 @@ package userAction
 
 import (
 	"encoding/json"
-
-	"github.com/sirupsen/logrus"
-	"github.com/spf13/cobra"
-
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_action"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/basic"
 	"github.com/AccelByte/sample-apps/pkg/repository"
+	"github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
 )
 
 // UnBanUsersCmd represents the UnBanUsers command
@@ -35,8 +33,7 @@ var UnBanUsersCmd = &cobra.Command{
 			return errBody
 		}
 		input := &user_action.UnBanUsersParams{
-			// XXX: empty body for workaround to handle the weird the response entity. It didn't accept 204
-			Body:      nil,
+			Body:      body,
 			Namespace: namespace,
 		}
 		//lint:ignore SA1019 Ignore the deprecation warnings
@@ -45,12 +42,7 @@ var UnBanUsersCmd = &cobra.Command{
 			logrus.Error(err)
 			return err
 		} else {
-			response, errIndent := json.MarshalIndent(ok, "", "    ")
-			if errIndent != nil {
-				return errIndent
-			} else {
-				logrus.Infof("Response %s", string(response))
-			}
+			logrus.Infof("Response CLI success", ok)
 		}
 		return nil
 	},

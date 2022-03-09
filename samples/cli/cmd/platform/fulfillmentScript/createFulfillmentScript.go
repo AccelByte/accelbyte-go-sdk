@@ -42,7 +42,7 @@ var CreateFulfillmentScriptCmd = &cobra.Command{
 			logrus.Error(err)
 			return err
 		} else {
-			logrus.Infof("Response CLI success", ok)
+			logrus.Infof("Response CLI success: %+v", ok)
 		}
 		return nil
 	},

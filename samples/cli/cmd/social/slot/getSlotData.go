@@ -46,7 +46,7 @@ var GetSlotDataCmd = &cobra.Command{
 			logrus.Error(err)
 			return err
 		} else {
-			logrus.Infof("Response CLI success", ok)
+			logrus.Infof("Response CLI success: %+v", ok)
 		}
 		_, err = io.Copy(file, writer)
 		if err != nil {

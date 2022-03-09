@@ -6,13 +6,15 @@ package userStatistic
 
 import (
 	"encoding/json"
+
+	"github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
 	"github.com/AccelByte/sample-apps/pkg/repository"
-	"github.com/sirupsen/logrus"
-	"github.com/spf13/cobra"
 )
 
 // BulkResetUserStatItem2Cmd represents the BulkResetUserStatItem2 command
@@ -42,7 +44,7 @@ var BulkResetUserStatItem2Cmd = &cobra.Command{
 			logrus.Error(err)
 			return err
 		} else {
-			logrus.Infof("Response CLI success", ok)
+			logrus.Infof("Response CLI success: %+v", ok)
 		}
 		return nil
 	},

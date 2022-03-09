@@ -12,10 +12,6 @@ import (
 	"go.opentelemetry.io/contrib/propagators/aws/xray"
 )
 
-var (
-	xAmazonTraceId string
-)
-
 func AmazonTraceIdGen() string {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()

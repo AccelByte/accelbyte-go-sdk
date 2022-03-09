@@ -6,9 +6,6 @@ package factory
 import (
 	"strings"
 
-	"github.com/go-openapi/runtime"
-	"github.com/go-openapi/runtime/client"
-	"github.com/go-openapi/strfmt"
 	"github.com/sirupsen/logrus"
 
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient"
@@ -38,28 +35,4 @@ func NewLegalClient(configRepository repository.ConfigRepository) *legalclient.J
 	}
 
 	return legalClientInstance
-}
-
-func newCustomLegalHttpClientWithConfig(formats strfmt.Registry, cfg *legalclient.TransportConfig, userAgent, xAmazonTraceId string) *legalclient.JusticeLegalService {
-	if cfg == nil {
-		cfg = legalclient.DefaultTransportConfig()
-	}
-
-	transport := client.New(cfg.Host, cfg.BasePath, cfg.Schemes)
-	// add unsupported mime type. Please see this open issue https://github.com/go-swagger/go-swagger/issues/1244 for more details.
-	transport.Producers["*/*"] = runtime.JSONProducer()
-	transport.Consumers["application/problem+json"] = runtime.JSONConsumer()
-	transport.Consumers["application/x-www-form-urlencoded"] = runtime.JSONConsumer()
-	transport.Consumers["application/zip"] = runtime.JSONConsumer()
-	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
-	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
-
-	// optional custom request header
-	transport.Transport = utils.SetHeader(transport.Transport, userAgent, xAmazonTraceId)
-
-	return legalclient.New(transport, formats)
-}
-
-func newCustomLegalHttpClient(formats strfmt.Registry) *legalclient.JusticeLegalService {
-	return newCustomLegalHttpClientWithConfig(formats, nil, "", "")
 }

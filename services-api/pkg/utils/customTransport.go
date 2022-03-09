@@ -20,20 +20,6 @@ func SetHeader(inner http.RoundTripper, userAgent, xAmazonTraceId string) http.R
 	}
 }
 
-func SetUserAgent(inner http.RoundTripper, userAgent string) http.RoundTripper {
-	return &customTransport{
-		inner:     inner,
-		UserAgent: userAgent,
-	}
-}
-
-func SetXAmznTraceId(inner http.RoundTripper, xAmznTraceId string) http.RoundTripper {
-	return &customTransport{
-		inner:          inner,
-		XAmazonTraceId: xAmznTraceId,
-	}
-}
-
 type customTransport struct {
 	inner          http.RoundTripper
 	UserAgent      string

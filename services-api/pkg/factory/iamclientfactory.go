@@ -6,9 +6,6 @@ package factory
 import (
 	"strings"
 
-	"github.com/go-openapi/runtime"
-	"github.com/go-openapi/runtime/client"
-	"github.com/go-openapi/strfmt"
 	"github.com/sirupsen/logrus"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
@@ -38,28 +35,4 @@ func NewIamClient(configRepository repository.ConfigRepository) *iamclient.Justi
 	}
 
 	return iamClientInstance
-}
-
-func newCustomIamHttpClientWithConfig(formats strfmt.Registry, cfg *iamclient.TransportConfig, userAgent, xAmazonTraceId string) *iamclient.JusticeIamService {
-	if cfg == nil {
-		cfg = iamclient.DefaultTransportConfig()
-	}
-
-	transport := client.New(cfg.Host, cfg.BasePath, cfg.Schemes)
-	// add unsupported mime type. Please see this open issue https://github.com/go-swagger/go-swagger/issues/1244 for more details.
-	transport.Producers["*/*"] = runtime.JSONProducer()
-	transport.Consumers["application/problem+json"] = runtime.JSONConsumer()
-	transport.Consumers["application/x-www-form-urlencoded"] = runtime.JSONConsumer()
-	transport.Consumers["application/zip"] = runtime.JSONConsumer()
-	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
-	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
-
-	// optional custom request header
-	transport.Transport = utils.SetHeader(transport.Transport, userAgent, xAmazonTraceId)
-
-	return iamclient.New(transport, formats)
-}
-
-func newCustomIamHttpClient(formats strfmt.Registry) *iamclient.JusticeIamService {
-	return newCustomIamHttpClientWithConfig(formats, nil, "", "")
 }

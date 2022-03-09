@@ -6,9 +6,6 @@ package factory
 import (
 	"strings"
 
-	"github.com/go-openapi/runtime"
-	"github.com/go-openapi/runtime/client"
-	"github.com/go-openapi/strfmt"
 	"github.com/sirupsen/logrus"
 
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient"
@@ -38,28 +35,4 @@ func NewEventlogClient(configRepository repository.ConfigRepository) *eventlogcl
 	}
 
 	return eventlogClientInstance
-}
-
-func newCustomEventlogHttpClientWithConfig(formats strfmt.Registry, cfg *eventlogclient.TransportConfig, userAgent, xAmazonTraceId string) *eventlogclient.JusticeEventlogService {
-	if cfg == nil {
-		cfg = eventlogclient.DefaultTransportConfig()
-	}
-
-	transport := client.New(cfg.Host, cfg.BasePath, cfg.Schemes)
-	// add unsupported mime type. Please see this open issue https://github.com/go-swagger/go-swagger/issues/1244 for more details.
-	transport.Producers["*/*"] = runtime.JSONProducer()
-	transport.Consumers["application/problem+json"] = runtime.JSONConsumer()
-	transport.Consumers["application/x-www-form-urlencoded"] = runtime.JSONConsumer()
-	transport.Consumers["application/zip"] = runtime.JSONConsumer()
-	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
-	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
-
-	// optional custom request header
-	transport.Transport = utils.SetHeader(transport.Transport, userAgent, xAmazonTraceId)
-
-	return eventlogclient.New(transport, formats)
-}
-
-func newCustomEventlogHttpClient(formats strfmt.Registry) *eventlogclient.JusticeEventlogService {
-	return newCustomEventlogHttpClientWithConfig(formats, nil, "", "")
 }

@@ -31,11 +31,10 @@ func NewBasicClient(configRepository repository.ConfigRepository) *basicclient.J
 				BasePath: "/basic",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			basicClientInstance = newCustomBasicHttpClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
+			basicClientInstance = basicclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 		} else {
-			basicClientInstance = newCustomBasicHttpClient(nil)
+			basicClientInstance = basicclient.NewHTTPClient(nil)
 		}
-
 	}
 
 	return basicClientInstance
@@ -55,15 +54,8 @@ func newCustomBasicHttpClientWithConfig(formats strfmt.Registry, cfg *basicclien
 	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
 
-	// optional custom user-agent for request header
-	if userAgent != "" {
-		transport.Transport = utils.SetUserAgent(transport.Transport, userAgent)
-	}
-
-	// optional custom amazonTraceId for request header
-	if xAmazonTraceId != "" {
-		transport.Transport = utils.SetXAmznTraceId(transport.Transport, xAmazonTraceId)
-	}
+	// optional custom request header
+	transport.Transport = utils.SetHeader(transport.Transport, userAgent, xAmazonTraceId)
 
 	return basicclient.New(transport, formats)
 }

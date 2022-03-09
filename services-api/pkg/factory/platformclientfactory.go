@@ -31,11 +31,10 @@ func NewPlatformClient(configRepository repository.ConfigRepository) *platformcl
 				BasePath: "/platform",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			platformClientInstance = newCustomPlatformHttpClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
+			platformClientInstance = platformclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 		} else {
-			platformClientInstance = newCustomPlatformHttpClient(nil)
+			platformClientInstance = platformclient.NewHTTPClient(nil)
 		}
-
 	}
 
 	return platformClientInstance
@@ -55,15 +54,8 @@ func newCustomPlatformHttpClientWithConfig(formats strfmt.Registry, cfg *platfor
 	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
 
-	// optional custom user-agent for request header
-	if userAgent != "" {
-		transport.Transport = utils.SetUserAgent(transport.Transport, userAgent)
-	}
-
-	// optional custom amazonTraceId for request header
-	if xAmazonTraceId != "" {
-		transport.Transport = utils.SetXAmznTraceId(transport.Transport, xAmazonTraceId)
-	}
+	// optional custom request header
+	transport.Transport = utils.SetHeader(transport.Transport, userAgent, xAmazonTraceId)
 
 	return platformclient.New(transport, formats)
 }

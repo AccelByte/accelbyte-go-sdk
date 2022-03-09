@@ -31,11 +31,10 @@ func NewIamClient(configRepository repository.ConfigRepository) *iamclient.Justi
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			iamClientInstance = newCustomIamHttpClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
+			iamClientInstance = iamclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 		} else {
-			iamClientInstance = newCustomIamHttpClient(nil)
+			iamClientInstance = iamclient.NewHTTPClient(nil)
 		}
-
 	}
 
 	return iamClientInstance
@@ -55,15 +54,8 @@ func newCustomIamHttpClientWithConfig(formats strfmt.Registry, cfg *iamclient.Tr
 	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
 
-	// optional custom user-agent for request header
-	if userAgent != "" {
-		transport.Transport = utils.SetUserAgent(transport.Transport, userAgent)
-	}
-
-	// optional custom amazonTraceId for request header
-	if xAmazonTraceId != "" {
-		transport.Transport = utils.SetXAmznTraceId(transport.Transport, xAmazonTraceId)
-	}
+	// optional custom request header
+	transport.Transport = utils.SetHeader(transport.Transport, userAgent, xAmazonTraceId)
 
 	return iamclient.New(transport, formats)
 }

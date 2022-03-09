@@ -31,11 +31,10 @@ func NewCloudsaveClient(configRepository repository.ConfigRepository) *cloudsave
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			cloudsaveClientInstance = newCustomCloudsaveHttpClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
+			cloudsaveClientInstance = cloudsaveclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 		} else {
-			cloudsaveClientInstance = newCustomCloudsaveHttpClient(nil)
+			cloudsaveClientInstance = cloudsaveclient.NewHTTPClient(nil)
 		}
-
 	}
 
 	return cloudsaveClientInstance
@@ -55,15 +54,8 @@ func newCustomCloudsaveHttpClientWithConfig(formats strfmt.Registry, cfg *clouds
 	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
 
-	// optional custom user-agent for request header
-	if userAgent != "" {
-		transport.Transport = utils.SetUserAgent(transport.Transport, userAgent)
-	}
-
-	// optional custom amazonTraceId for request header
-	if xAmazonTraceId != "" {
-		transport.Transport = utils.SetXAmznTraceId(transport.Transport, xAmazonTraceId)
-	}
+	// optional custom request header
+	transport.Transport = utils.SetHeader(transport.Transport, userAgent, xAmazonTraceId)
 
 	return cloudsaveclient.New(transport, formats)
 }

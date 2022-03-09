@@ -31,11 +31,10 @@ func NewQosmClient(configRepository repository.ConfigRepository) *qosmclient.Jus
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			qosmClientInstance = newCustomQosmHttpClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
+			qosmClientInstance = qosmclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 		} else {
-			qosmClientInstance = newCustomQosmHttpClient(nil)
+			qosmClientInstance = qosmclient.NewHTTPClient(nil)
 		}
-
 	}
 
 	return qosmClientInstance
@@ -55,15 +54,8 @@ func newCustomQosmHttpClientWithConfig(formats strfmt.Registry, cfg *qosmclient.
 	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
 
-	// optional custom user-agent for request header
-	if userAgent != "" {
-		transport.Transport = utils.SetUserAgent(transport.Transport, userAgent)
-	}
-
-	// optional custom amazonTraceId for request header
-	if xAmazonTraceId != "" {
-		transport.Transport = utils.SetXAmznTraceId(transport.Transport, xAmazonTraceId)
-	}
+	// optional custom request header
+	transport.Transport = utils.SetHeader(transport.Transport, userAgent, xAmazonTraceId)
 
 	return qosmclient.New(transport, formats)
 }

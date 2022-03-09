@@ -31,11 +31,10 @@ func NewLegalClient(configRepository repository.ConfigRepository) *legalclient.J
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			legalClientInstance = newCustomLegalHttpClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
+			legalClientInstance = legalclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 		} else {
-			legalClientInstance = newCustomLegalHttpClient(nil)
+			legalClientInstance = legalclient.NewHTTPClient(nil)
 		}
-
 	}
 
 	return legalClientInstance
@@ -55,15 +54,8 @@ func newCustomLegalHttpClientWithConfig(formats strfmt.Registry, cfg *legalclien
 	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
 
-	// optional custom user-agent for request header
-	if userAgent != "" {
-		transport.Transport = utils.SetUserAgent(transport.Transport, userAgent)
-	}
-
-	// optional custom amazonTraceId for request header
-	if xAmazonTraceId != "" {
-		transport.Transport = utils.SetXAmznTraceId(transport.Transport, xAmazonTraceId)
-	}
+	// optional custom request header
+	transport.Transport = utils.SetHeader(transport.Transport, userAgent, xAmazonTraceId)
 
 	return legalclient.New(transport, formats)
 }

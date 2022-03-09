@@ -31,11 +31,10 @@ func NewGdprClient(configRepository repository.ConfigRepository) *gdprclient.Jus
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			gdprClientInstance = newCustomGdprHttpClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
+			gdprClientInstance = gdprclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 		} else {
-			gdprClientInstance = newCustomGdprHttpClient(nil)
+			gdprClientInstance = gdprclient.NewHTTPClient(nil)
 		}
-
 	}
 
 	return gdprClientInstance
@@ -55,15 +54,8 @@ func newCustomGdprHttpClientWithConfig(formats strfmt.Registry, cfg *gdprclient.
 	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
 
-	// optional custom user-agent for request header
-	if userAgent != "" {
-		transport.Transport = utils.SetUserAgent(transport.Transport, userAgent)
-	}
-
-	// optional custom amazonTraceId for request header
-	if xAmazonTraceId != "" {
-		transport.Transport = utils.SetXAmznTraceId(transport.Transport, xAmazonTraceId)
-	}
+	// optional custom request header
+	transport.Transport = utils.SetHeader(transport.Transport, userAgent, xAmazonTraceId)
 
 	return gdprclient.New(transport, formats)
 }

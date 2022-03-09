@@ -31,11 +31,10 @@ func NewSocialClient(configRepository repository.ConfigRepository) *socialclient
 				BasePath: "/social",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			socialClientInstance = newCustomSocialHttpClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
+			socialClientInstance = socialclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 		} else {
-			socialClientInstance = newCustomSocialHttpClient(nil)
+			socialClientInstance = socialclient.NewHTTPClient(nil)
 		}
-
 	}
 
 	return socialClientInstance
@@ -55,15 +54,8 @@ func newCustomSocialHttpClientWithConfig(formats strfmt.Registry, cfg *socialcli
 	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
 
-	// optional custom user-agent for request header
-	if userAgent != "" {
-		transport.Transport = utils.SetUserAgent(transport.Transport, userAgent)
-	}
-
-	// optional custom amazonTraceId for request header
-	if xAmazonTraceId != "" {
-		transport.Transport = utils.SetXAmznTraceId(transport.Transport, xAmazonTraceId)
-	}
+	// optional custom request header
+	transport.Transport = utils.SetHeader(transport.Transport, userAgent, xAmazonTraceId)
 
 	return socialclient.New(transport, formats)
 }

@@ -31,11 +31,10 @@ func NewMatchmakingClient(configRepository repository.ConfigRepository) *matchma
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			matchmakingClientInstance = newCustomMatchmakingHttpClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
+			matchmakingClientInstance = matchmakingclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 		} else {
-			matchmakingClientInstance = newCustomMatchmakingHttpClient(nil)
+			matchmakingClientInstance = matchmakingclient.NewHTTPClient(nil)
 		}
-
 	}
 
 	return matchmakingClientInstance
@@ -55,15 +54,8 @@ func newCustomMatchmakingHttpClientWithConfig(formats strfmt.Registry, cfg *matc
 	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
 
-	// optional custom user-agent for request header
-	if userAgent != "" {
-		transport.Transport = utils.SetUserAgent(transport.Transport, userAgent)
-	}
-
-	// optional custom amazonTraceId for request header
-	if xAmazonTraceId != "" {
-		transport.Transport = utils.SetXAmznTraceId(transport.Transport, xAmazonTraceId)
-	}
+	// optional custom request header
+	transport.Transport = utils.SetHeader(transport.Transport, userAgent, xAmazonTraceId)
 
 	return matchmakingclient.New(transport, formats)
 }

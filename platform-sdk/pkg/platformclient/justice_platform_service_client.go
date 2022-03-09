@@ -37,6 +37,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/subscription"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/ticket"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/wallet"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
 
 // Default justice platform service HTTP client.
@@ -56,12 +57,12 @@ var DefaultSchemes = []string{"https"}
 
 // NewHTTPClient creates a new justice platform service HTTP client.
 func NewHTTPClient(formats strfmt.Registry) *JusticePlatformService {
-	return NewHTTPClientWithConfig(formats, nil)
+	return NewHTTPClientWithConfig(formats, nil, "", "")
 }
 
 // NewHTTPClientWithConfig creates a new justice platform service HTTP client,
 // using a customizable transport config.
-func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *JusticePlatformService {
+func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, userAgent, XAmazonTraceId string) *JusticePlatformService {
 	// ensure nullable parameters have default
 	if cfg == nil {
 		cfg = DefaultTransportConfig()
@@ -69,6 +70,18 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *Jus
 
 	// create transport and client
 	transport := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
+
+	// optional custom producers and consumer
+	transport.Producers["*/*"] = runtime.JSONProducer()
+	transport.Consumers["application/problem+json"] = runtime.JSONConsumer()
+	transport.Consumers["application/x-www-form-urlencoded"] = runtime.JSONConsumer()
+	transport.Consumers["application/zip"] = runtime.JSONConsumer()
+	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
+	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
+
+	// optional custom request header
+	transport.Transport = utils.SetHeader(transport.Transport, userAgent, XAmazonTraceId)
+
 	return New(transport, formats)
 }
 

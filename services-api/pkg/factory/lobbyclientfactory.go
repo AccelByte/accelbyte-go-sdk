@@ -31,11 +31,10 @@ func NewLobbyClient(configRepository repository.ConfigRepository) *lobbyclient.J
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			lobbyClientInstance = newCustomLobbyHttpClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
+			lobbyClientInstance = lobbyclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 		} else {
-			lobbyClientInstance = newCustomLobbyHttpClient(nil)
+			lobbyClientInstance = lobbyclient.NewHTTPClient(nil)
 		}
-
 	}
 
 	return lobbyClientInstance
@@ -55,15 +54,8 @@ func newCustomLobbyHttpClientWithConfig(formats strfmt.Registry, cfg *lobbyclien
 	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
 
-	// optional custom user-agent for request header
-	if userAgent != "" {
-		transport.Transport = utils.SetUserAgent(transport.Transport, userAgent)
-	}
-
-	// optional custom amazonTraceId for request header
-	if xAmazonTraceId != "" {
-		transport.Transport = utils.SetXAmznTraceId(transport.Transport, xAmazonTraceId)
-	}
+	// optional custom request header
+	transport.Transport = utils.SetHeader(transport.Transport, userAgent, xAmazonTraceId)
 
 	return lobbyclient.New(transport, formats)
 }

@@ -31,11 +31,10 @@ func NewDsmcClient(configRepository repository.ConfigRepository) *dsmcclient.Jus
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			dsmcClientInstance = newCustomDsmcHttpClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
+			dsmcClientInstance = dsmcclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 		} else {
-			dsmcClientInstance = newCustomDsmcHttpClient(nil)
+			dsmcClientInstance = dsmcclient.NewHTTPClient(nil)
 		}
-
 	}
 
 	return dsmcClientInstance
@@ -55,15 +54,8 @@ func newCustomDsmcHttpClientWithConfig(formats strfmt.Registry, cfg *dsmcclient.
 	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
 
-	// optional custom user-agent for request header
-	if userAgent != "" {
-		transport.Transport = utils.SetUserAgent(transport.Transport, userAgent)
-	}
-
-	// optional custom amazonTraceId for request header
-	if xAmazonTraceId != "" {
-		transport.Transport = utils.SetXAmznTraceId(transport.Transport, xAmazonTraceId)
-	}
+	// optional custom request header
+	transport.Transport = utils.SetHeader(transport.Transport, userAgent, xAmazonTraceId)
 
 	return dsmcclient.New(transport, formats)
 }

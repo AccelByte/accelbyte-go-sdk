@@ -31,11 +31,10 @@ func NewEventlogClient(configRepository repository.ConfigRepository) *eventlogcl
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			eventlogClientInstance = newCustomEventlogHttpClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
+			eventlogClientInstance = eventlogclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 		} else {
-			eventlogClientInstance = newCustomEventlogHttpClient(nil)
+			eventlogClientInstance = eventlogclient.NewHTTPClient(nil)
 		}
-
 	}
 
 	return eventlogClientInstance
@@ -55,15 +54,8 @@ func newCustomEventlogHttpClientWithConfig(formats strfmt.Registry, cfg *eventlo
 	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
 
-	// optional custom user-agent for request header
-	if userAgent != "" {
-		transport.Transport = utils.SetUserAgent(transport.Transport, userAgent)
-	}
-
-	// optional custom amazonTraceId for request header
-	if xAmazonTraceId != "" {
-		transport.Transport = utils.SetXAmznTraceId(transport.Transport, xAmazonTraceId)
-	}
+	// optional custom request header
+	transport.Transport = utils.SetHeader(transport.Transport, userAgent, xAmazonTraceId)
 
 	return eventlogclient.New(transport, formats)
 }

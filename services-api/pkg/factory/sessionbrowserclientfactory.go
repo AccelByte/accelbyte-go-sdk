@@ -31,11 +31,10 @@ func NewSessionbrowserClient(configRepository repository.ConfigRepository) *sess
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			sessionbrowserClientInstance = newCustomSessionbrowserHttpClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
+			sessionbrowserClientInstance = sessionbrowserclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 		} else {
-			sessionbrowserClientInstance = newCustomSessionbrowserHttpClient(nil)
+			sessionbrowserClientInstance = sessionbrowserclient.NewHTTPClient(nil)
 		}
-
 	}
 
 	return sessionbrowserClientInstance
@@ -55,15 +54,8 @@ func newCustomSessionbrowserHttpClientWithConfig(formats strfmt.Registry, cfg *s
 	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
 
-	// optional custom user-agent for request header
-	if userAgent != "" {
-		transport.Transport = utils.SetUserAgent(transport.Transport, userAgent)
-	}
-
-	// optional custom amazonTraceId for request header
-	if xAmazonTraceId != "" {
-		transport.Transport = utils.SetXAmznTraceId(transport.Transport, xAmazonTraceId)
-	}
+	// optional custom request header
+	transport.Transport = utils.SetHeader(transport.Transport, userAgent, xAmazonTraceId)
 
 	return sessionbrowserclient.New(transport, formats)
 }

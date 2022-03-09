@@ -31,11 +31,10 @@ func NewUgcClient(configRepository repository.ConfigRepository) *ugcclient.Justi
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			ugcClientInstance = newCustomUgcHttpClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
+			ugcClientInstance = ugcclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 		} else {
-			ugcClientInstance = newCustomUgcHttpClient(nil)
+			ugcClientInstance = ugcclient.NewHTTPClient(nil)
 		}
-
 	}
 
 	return ugcClientInstance
@@ -55,15 +54,8 @@ func newCustomUgcHttpClientWithConfig(formats strfmt.Registry, cfg *ugcclient.Tr
 	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
 
-	// optional custom user-agent for request header
-	if userAgent != "" {
-		transport.Transport = utils.SetUserAgent(transport.Transport, userAgent)
-	}
-
-	// optional custom amazonTraceId for request header
-	if xAmazonTraceId != "" {
-		transport.Transport = utils.SetXAmznTraceId(transport.Transport, xAmazonTraceId)
-	}
+	// optional custom request header
+	transport.Transport = utils.SetHeader(transport.Transport, userAgent, xAmazonTraceId)
 
 	return ugcclient.New(transport, formats)
 }

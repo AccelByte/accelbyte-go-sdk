@@ -22,6 +22,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/public"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/server"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/session"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
 
 // Default justice dsmc service HTTP client.
@@ -41,12 +42,12 @@ var DefaultSchemes = []string{"https"}
 
 // NewHTTPClient creates a new justice dsmc service HTTP client.
 func NewHTTPClient(formats strfmt.Registry) *JusticeDsmcService {
-	return NewHTTPClientWithConfig(formats, nil)
+	return NewHTTPClientWithConfig(formats, nil, "", "")
 }
 
 // NewHTTPClientWithConfig creates a new justice dsmc service HTTP client,
 // using a customizable transport config.
-func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *JusticeDsmcService {
+func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, userAgent, XAmazonTraceId string) *JusticeDsmcService {
 	// ensure nullable parameters have default
 	if cfg == nil {
 		cfg = DefaultTransportConfig()
@@ -54,6 +55,18 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *Jus
 
 	// create transport and client
 	transport := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
+
+	// optional custom producers and consumer
+	transport.Producers["*/*"] = runtime.JSONProducer()
+	transport.Consumers["application/problem+json"] = runtime.JSONConsumer()
+	transport.Consumers["application/x-www-form-urlencoded"] = runtime.JSONConsumer()
+	transport.Consumers["application/zip"] = runtime.JSONConsumer()
+	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
+	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
+
+	// optional custom request header
+	transport.Transport = utils.SetHeader(transport.Transport, userAgent, XAmazonTraceId)
+
 	return New(transport, formats)
 }
 

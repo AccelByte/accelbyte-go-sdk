@@ -31,11 +31,10 @@ func NewGametelemetryClient(configRepository repository.ConfigRepository) *gamet
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			gametelemetryClientInstance = newCustomGametelemetryHttpClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
+			gametelemetryClientInstance = gametelemetryclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 		} else {
-			gametelemetryClientInstance = newCustomGametelemetryHttpClient(nil)
+			gametelemetryClientInstance = gametelemetryclient.NewHTTPClient(nil)
 		}
-
 	}
 
 	return gametelemetryClientInstance
@@ -55,15 +54,8 @@ func newCustomGametelemetryHttpClientWithConfig(formats strfmt.Registry, cfg *ga
 	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
 
-	// optional custom user-agent for request header
-	if userAgent != "" {
-		transport.Transport = utils.SetUserAgent(transport.Transport, userAgent)
-	}
-
-	// optional custom amazonTraceId for request header
-	if xAmazonTraceId != "" {
-		transport.Transport = utils.SetXAmznTraceId(transport.Transport, xAmazonTraceId)
-	}
+	// optional custom request header
+	transport.Transport = utils.SetHeader(transport.Transport, userAgent, xAmazonTraceId)
 
 	return gametelemetryclient.New(transport, formats)
 }

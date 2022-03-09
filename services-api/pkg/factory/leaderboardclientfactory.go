@@ -31,11 +31,10 @@ func NewLeaderboardClient(configRepository repository.ConfigRepository) *leaderb
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			leaderboardClientInstance = newCustomLeaderboardHttpClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
+			leaderboardClientInstance = leaderboardclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 		} else {
-			leaderboardClientInstance = newCustomLeaderboardHttpClient(nil)
+			leaderboardClientInstance = leaderboardclient.NewHTTPClient(nil)
 		}
-
 	}
 
 	return leaderboardClientInstance
@@ -55,15 +54,8 @@ func newCustomLeaderboardHttpClientWithConfig(formats strfmt.Registry, cfg *lead
 	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
 
-	// optional custom user-agent for request header
-	if userAgent != "" {
-		transport.Transport = utils.SetUserAgent(transport.Transport, userAgent)
-	}
-
-	// optional custom amazonTraceId for request header
-	if xAmazonTraceId != "" {
-		transport.Transport = utils.SetXAmznTraceId(transport.Transport, xAmazonTraceId)
-	}
+	// optional custom request header
+	transport.Transport = utils.SetHeader(transport.Transport, userAgent, xAmazonTraceId)
 
 	return leaderboardclient.New(transport, formats)
 }

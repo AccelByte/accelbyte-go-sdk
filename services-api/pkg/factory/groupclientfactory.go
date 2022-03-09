@@ -31,11 +31,10 @@ func NewGroupClient(configRepository repository.ConfigRepository) *groupclient.J
 				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
-			groupClientInstance = newCustomGroupHttpClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
+			groupClientInstance = groupclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
 		} else {
-			groupClientInstance = newCustomGroupHttpClient(nil)
+			groupClientInstance = groupclient.NewHTTPClient(nil)
 		}
-
 	}
 
 	return groupClientInstance
@@ -55,15 +54,8 @@ func newCustomGroupHttpClientWithConfig(formats strfmt.Registry, cfg *groupclien
 	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
 
-	// optional custom user-agent for request header
-	if userAgent != "" {
-		transport.Transport = utils.SetUserAgent(transport.Transport, userAgent)
-	}
-
-	// optional custom amazonTraceId for request header
-	if xAmazonTraceId != "" {
-		transport.Transport = utils.SetXAmznTraceId(transport.Transport, xAmazonTraceId)
-	}
+	// optional custom request header
+	transport.Transport = utils.SetHeader(transport.Transport, userAgent, xAmazonTraceId)
 
 	return groupclient.New(transport, formats)
 }

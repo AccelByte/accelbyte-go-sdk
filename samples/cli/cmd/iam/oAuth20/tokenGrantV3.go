@@ -21,8 +21,9 @@ var TokenGrantV3Cmd = &cobra.Command{
 	Long:  `Token grant V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		oAuth20Service := &iam.OAuth20Service{
-			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-			TokenRepository: &repository.TokenRepositoryImpl{},
+			Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+			ConfigRepository: &repository.ConfigRepositoryImpl{},
+			TokenRepository:  &repository.TokenRepositoryImpl{},
 		}
 		grantType, _ := cmd.Flags().GetString("grantType")
 		deviceId, _ := cmd.Flags().GetString("deviceId")

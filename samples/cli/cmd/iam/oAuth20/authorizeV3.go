@@ -5,13 +5,15 @@
 package oAuth20
 
 import (
+	"net/http"
+
+	"github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
+
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
-	"github.com/sirupsen/logrus"
-	"github.com/spf13/cobra"
-	"net/http"
 )
 
 // AuthorizeV3Cmd represents the AuthorizeV3 command
@@ -21,8 +23,9 @@ var AuthorizeV3Cmd = &cobra.Command{
 	Long:  `Authorize V3`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		oAuth20Service := &iam.OAuth20Service{
-			Client:          factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
-			TokenRepository: &repository.TokenRepositoryImpl{},
+			Client:           factory.NewIamClient(&repository.ConfigRepositoryImpl{}),
+			ConfigRepository: &repository.ConfigRepositoryImpl{},
+			TokenRepository:  &repository.TokenRepositoryImpl{},
 		}
 		clientId, _ := cmd.Flags().GetString("clientId")
 		responseType, _ := cmd.Flags().GetString("responseType")

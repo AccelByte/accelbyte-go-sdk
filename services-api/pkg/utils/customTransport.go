@@ -6,6 +6,7 @@ package utils
 
 import (
 	"net/http"
+	"os"
 
 	"github.com/sirupsen/logrus"
 
@@ -27,18 +28,21 @@ type customTransport struct {
 }
 
 func (c *customTransport) RoundTrip(r *http.Request) (*http.Response, error) {
-	r.Header.Set("User-Agent", c.UserAgent)
-	r.Header.Set("X-Amzn-Trace-Id", c.XAmazonTraceId)
+	r.Header.Add("User-Agent", c.UserAgent)
+	r.Header.Add("X-Amzn-Trace-Id", c.XAmazonTraceId)
 
-	// logger request
-	logrus.Infof("Request: %s", logger.LogRequest(r))
+	// enabling log
+	if os.Getenv("ENABLE_LOG") == "true" {
+		// logger request
+		logrus.Infof("Request: %s", logger.LogRequest(r))
 
-	// logger response
-	res, err := c.inner.RoundTrip(r)
-	if err != nil {
-		logrus.Error("failed to use the RoundTrip method")
+		// logger response
+		res, err := c.inner.RoundTrip(r)
+		if err != nil {
+			logrus.Error("failed to use the RoundTrip method")
+		}
+		logrus.Infof("Response: %s", logger.LogResponse(res))
+		return res, nil
 	}
-	logrus.Infof("Response: %s", logger.LogResponse(res))
-
-	return res, nil
+	return c.inner.RoundTrip(r)
 }

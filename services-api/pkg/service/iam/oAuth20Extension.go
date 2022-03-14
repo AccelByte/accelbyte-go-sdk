@@ -5,6 +5,9 @@
 package iam
 
 import (
+	"errors"
+	"net/url"
+
 	"github.com/go-openapi/runtime/client"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
@@ -20,14 +23,27 @@ type OAuth20ExtensionService struct {
 }
 
 // Deprecated: Use UserAuthenticationV3Short instead
-func (o *OAuth20ExtensionService) UserAuthenticationV3(input *o_auth2_0_extension.UserAuthenticationV3Params) error {
+func (o *OAuth20ExtensionService) UserAuthenticationV3(input *o_auth2_0_extension.UserAuthenticationV3Params) (string, error) {
 	clientId := o.ConfigRepository.GetClientId()
 	clientSecret := o.ConfigRepository.GetClientSecret()
-	_, err := o.Client.OAuth20Extension.UserAuthenticationV3(input, client.BasicAuth(clientId, clientSecret))
+	ok, err := o.Client.OAuth20Extension.UserAuthenticationV3(input, client.BasicAuth(clientId, clientSecret))
 	if err != nil {
-		return err
+		return "", err
 	}
-	return nil
+	parsedUrl, err := url.Parse(ok.Location)
+	if err != nil {
+		return "", err
+	}
+	query, err := url.ParseQuery(parsedUrl.RawQuery)
+	if err != nil {
+		return "", err
+	}
+	errorDescParam := query["error_description"]
+	if errorDescParam != nil {
+		return "", errors.New(errorDescParam[0])
+	}
+	code := query["code"][0]
+	return code, nil
 }
 
 // Deprecated: Use GetCountryLocationV3Short instead

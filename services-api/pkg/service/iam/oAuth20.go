@@ -5,6 +5,8 @@
 package iam
 
 import (
+	"net/url"
+
 	"github.com/go-openapi/runtime/client"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
@@ -64,14 +66,23 @@ func (o *OAuth20Service) RevokeUserV3(input *o_auth2_0.RevokeUserV3Params) error
 }
 
 // Deprecated: Use AuthorizeV3Short instead
-func (o *OAuth20Service) AuthorizeV3(input *o_auth2_0.AuthorizeV3Params) error {
+func (o *OAuth20Service) AuthorizeV3(input *o_auth2_0.AuthorizeV3Params) (string, error) {
 	clientId := o.ConfigRepository.GetClientId()
 	clientSecret := o.ConfigRepository.GetClientSecret()
-	_, err := o.Client.OAuth20.AuthorizeV3(input, client.BasicAuth(clientId, clientSecret))
+	ok, err := o.Client.OAuth20.AuthorizeV3(input, client.BasicAuth(clientId, clientSecret))
 	if err != nil {
-		return err
+		return "", err
 	}
-	return nil
+	parsedUrl, err := url.Parse(ok.Location)
+	if err != nil {
+		return "", err
+	}
+	query, err := url.ParseQuery(parsedUrl.RawQuery)
+	if err != nil {
+		return "", err
+	}
+	requestId := query["request_id"][0]
+	return requestId, nil
 }
 
 // Deprecated: Use TokenIntrospectionV3Short instead

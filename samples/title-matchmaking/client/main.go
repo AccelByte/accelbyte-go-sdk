@@ -4,14 +4,6 @@ import (
 	"bufio"
 	"encoding/json"
 	"fmt"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/model"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/connectionutils"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/parser"
-	"github.com/AccelByte/sample-apps/pkg/repository"
-	"github.com/AccelByte/sample-apps/pkg/utils"
-	"github.com/sirupsen/logrus"
 	"io/ioutil"
 	"log"
 	"net"
@@ -19,6 +11,16 @@ import (
 	"os"
 	"strconv"
 	"strings"
+
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/model"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/connectionutils"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/parser"
+	"github.com/sirupsen/logrus"
+
+	"github.com/AccelByte/sample-apps/pkg/repository"
+	"github.com/AccelByte/sample-apps/pkg/utils"
 )
 
 const (
@@ -252,7 +254,7 @@ func decodeWSMessage(msg string) map[string]string {
 
 func isIPValid(ip string) bool {
 	if net.ParseIP(ip) == nil {
-		logrus.Errorf("Invalid IP Addres : %s", ip)
+		logrus.Errorf("Invalid IP Address : %s", ip)
 		return false
 	} else {
 		return true

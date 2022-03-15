@@ -5,12 +5,13 @@
 package matchmaking
 
 import (
+	"github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
+
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
 	"github.com/AccelByte/sample-apps/pkg/repository"
-	"github.com/sirupsen/logrus"
-	"github.com/spf13/cobra"
 )
 
 // SearchSessionsV2Cmd represents the SearchSessionsV2 command
@@ -24,8 +25,8 @@ var SearchSessionsV2Cmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		limit, _ := cmd.Flags().GetFloat64("limit")
-		offset, _ := cmd.Flags().GetFloat64("offset")
+		limit, _ := cmd.Flags().GetInt64("limit")
+		offset, _ := cmd.Flags().GetInt64("offset")
 		channel, _ := cmd.Flags().GetString("channel")
 		deleted, _ := cmd.Flags().GetBool("deleted")
 		matchID, _ := cmd.Flags().GetString("matchID")
@@ -61,8 +62,8 @@ func init() {
 	SearchSessionsV2Cmd.Flags().StringP("matchID", "", "", "Match ID")
 	SearchSessionsV2Cmd.Flags().StringP("partyID", "", "", "Party ID")
 	SearchSessionsV2Cmd.Flags().StringP("userID", "", "", "User ID")
-	SearchSessionsV2Cmd.Flags().Float64P("limit", "", 20, "Limit")
+	SearchSessionsV2Cmd.Flags().Int64P("limit", "", 20, "Limit")
 	_ = SearchSessionsV2Cmd.MarkFlagRequired("limit")
-	SearchSessionsV2Cmd.Flags().Float64P("offset", "", 0, "Offset")
+	SearchSessionsV2Cmd.Flags().Int64P("offset", "", 0, "Offset")
 	_ = SearchSessionsV2Cmd.MarkFlagRequired("offset")
 }

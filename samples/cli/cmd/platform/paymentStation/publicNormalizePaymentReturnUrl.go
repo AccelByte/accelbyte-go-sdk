@@ -32,7 +32,9 @@ var PublicNormalizePaymentReturnUrlCmd = &cobra.Command{
 		foreinginvoice, _ := cmd.Flags().GetString("foreinginvoice")
 		invoiceId, _ := cmd.Flags().GetString("invoiceId")
 		payload, _ := cmd.Flags().GetString("payload")
+		redirectResult, _ := cmd.Flags().GetString("redirectResult")
 		resultCode, _ := cmd.Flags().GetString("resultCode")
+		sessionId, _ := cmd.Flags().GetString("sessionId")
 		status, _ := cmd.Flags().GetString("status")
 		token, _ := cmd.Flags().GetString("token")
 		type_, _ := cmd.Flags().GetString("type")
@@ -43,7 +45,9 @@ var PublicNormalizePaymentReturnUrlCmd = &cobra.Command{
 			Foreinginvoice:  &foreinginvoice,
 			InvoiceID:       &invoiceId,
 			Payload:         &payload,
+			RedirectResult:  &redirectResult,
 			ResultCode:      &resultCode,
+			SessionID:       &sessionId,
 			Status:          &status,
 			Token:           &token,
 			Type:            &type_,
@@ -70,7 +74,9 @@ func init() {
 	PublicNormalizePaymentReturnUrlCmd.Flags().StringP("foreinginvoice", "", "", "Foreinginvoice")
 	PublicNormalizePaymentReturnUrlCmd.Flags().StringP("invoiceId", "", "", "Invoice id")
 	PublicNormalizePaymentReturnUrlCmd.Flags().StringP("payload", "", "", "Payload")
+	PublicNormalizePaymentReturnUrlCmd.Flags().StringP("redirectResult", "", "", "Redirect result")
 	PublicNormalizePaymentReturnUrlCmd.Flags().StringP("resultCode", "", "", "Result code")
+	PublicNormalizePaymentReturnUrlCmd.Flags().StringP("sessionId", "", "", "Session id")
 	PublicNormalizePaymentReturnUrlCmd.Flags().StringP("status", "", "", "Status")
 	PublicNormalizePaymentReturnUrlCmd.Flags().StringP("token", "", "", "Token")
 	PublicNormalizePaymentReturnUrlCmd.Flags().StringP("type", "", "", "Type")

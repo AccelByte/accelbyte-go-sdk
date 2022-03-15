@@ -28,9 +28,9 @@ var GetEventByUserEventIDAndEventTypeHandlerCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
 		endDate, _ := cmd.Flags().GetString("endDate")
-		pageSize, _ := cmd.Flags().GetFloat64("pageSize")
+		pageSize, _ := cmd.Flags().GetInt64("pageSize")
 		startDate, _ := cmd.Flags().GetString("startDate")
-		offset, _ := cmd.Flags().GetFloat64("offset")
+		offset, _ := cmd.Flags().GetInt64("offset")
 		input := &event.GetEventByUserEventIDAndEventTypeHandlerParams{
 			EventID:   eventId,
 			EventType: eventType,
@@ -62,10 +62,10 @@ func init() {
 	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("namespace")
 	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("userId", "", "", "User id")
 	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("userId")
-	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("offset", "", 0, "Offset")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().Int64P("offset", "", 0, "Offset")
 	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("endDate", "", "", "End date")
 	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("endDate")
-	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().Float64P("pageSize", "", 1, "Page size")
+	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().Int64P("pageSize", "", 1, "Page size")
 	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("pageSize")
 	GetEventByUserEventIDAndEventTypeHandlerCmd.Flags().StringP("startDate", "", "", "Start date")
 	_ = GetEventByUserEventIDAndEventTypeHandlerCmd.MarkFlagRequired("startDate")

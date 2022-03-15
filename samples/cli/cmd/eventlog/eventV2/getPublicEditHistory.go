@@ -26,8 +26,8 @@ var GetPublicEditHistoryCmd = &cobra.Command{
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
 		endDate, _ := cmd.Flags().GetString("endDate")
-		offset, _ := cmd.Flags().GetFloat64("offset")
-		pageSize, _ := cmd.Flags().GetFloat64("pageSize")
+		offset, _ := cmd.Flags().GetInt64("offset")
+		pageSize, _ := cmd.Flags().GetInt64("pageSize")
 		startDate, _ := cmd.Flags().GetString("startDate")
 		type_, _ := cmd.Flags().GetString("type")
 		input := &event_v2.GetPublicEditHistoryParams{
@@ -57,8 +57,8 @@ func init() {
 	GetPublicEditHistoryCmd.Flags().StringP("userId", "", "", "User id")
 	_ = GetPublicEditHistoryCmd.MarkFlagRequired("userId")
 	GetPublicEditHistoryCmd.Flags().StringP("endDate", "", "", "End date")
-	GetPublicEditHistoryCmd.Flags().Float64P("offset", "", 0, "Offset")
-	GetPublicEditHistoryCmd.Flags().Float64P("pageSize", "", 1, "Page size")
+	GetPublicEditHistoryCmd.Flags().Int64P("offset", "", 0, "Offset")
+	GetPublicEditHistoryCmd.Flags().Int64P("pageSize", "", 1, "Page size")
 	GetPublicEditHistoryCmd.Flags().StringP("startDate", "", "", "Start date")
 	GetPublicEditHistoryCmd.Flags().StringP("type", "", "", "Type")
 }

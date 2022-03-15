@@ -24,8 +24,8 @@ var SearchSessionsCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		limit, _ := cmd.Flags().GetFloat64("limit")
-		offset, _ := cmd.Flags().GetFloat64("offset")
+		limit, _ := cmd.Flags().GetInt64("limit")
+		offset, _ := cmd.Flags().GetInt64("offset")
 		channel, _ := cmd.Flags().GetString("channel")
 		deleted, _ := cmd.Flags().GetBool("deleted")
 		matchID, _ := cmd.Flags().GetString("matchID")
@@ -61,8 +61,8 @@ func init() {
 	SearchSessionsCmd.Flags().StringP("matchID", "", "", "Match ID")
 	SearchSessionsCmd.Flags().StringP("partyID", "", "", "Party ID")
 	SearchSessionsCmd.Flags().StringP("userID", "", "", "User ID")
-	SearchSessionsCmd.Flags().Float64P("limit", "", 20, "Limit")
+	SearchSessionsCmd.Flags().Int64P("limit", "", 20, "Limit")
 	_ = SearchSessionsCmd.MarkFlagRequired("limit")
-	SearchSessionsCmd.Flags().Float64P("offset", "", 0, "Offset")
+	SearchSessionsCmd.Flags().Int64P("offset", "", 0, "Offset")
 	_ = SearchSessionsCmd.MarkFlagRequired("offset")
 }

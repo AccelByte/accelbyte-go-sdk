@@ -27,7 +27,7 @@ var AdminGetUserLoginHistoriesV3Cmd = &cobra.Command{
 		userId, _ := cmd.Flags().GetString("userId")
 		after, _ := cmd.Flags().GetFloat64("after")
 		before, _ := cmd.Flags().GetFloat64("before")
-		limit, _ := cmd.Flags().GetFloat64("limit")
+		limit, _ := cmd.Flags().GetInt64("limit")
 		input := &users.AdminGetUserLoginHistoriesV3Params{
 			Namespace: namespace,
 			UserID:    userId,
@@ -54,5 +54,5 @@ func init() {
 	_ = AdminGetUserLoginHistoriesV3Cmd.MarkFlagRequired("userId")
 	AdminGetUserLoginHistoriesV3Cmd.Flags().Float64P("after", "", 0, "After")
 	AdminGetUserLoginHistoriesV3Cmd.Flags().Float64P("before", "", 0, "Before")
-	AdminGetUserLoginHistoriesV3Cmd.Flags().Float64P("limit", "", 20, "Limit")
+	AdminGetUserLoginHistoriesV3Cmd.Flags().Int64P("limit", "", 20, "Limit")
 }

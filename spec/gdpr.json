@@ -1623,7 +1623,8 @@
     "models.DeletionStatus": {
       "properties": {
         "DeletionStatus": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "DisplayName": {
           "type": "string"

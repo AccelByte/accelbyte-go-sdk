@@ -8,12 +8,11 @@
     },
     "description": "Justice Social Service",
     "title": "justice-social-service",
-    "version": "1.25.0"
+    "version": "1.26.0"
   },
   "schemes": [
     "https"
   ],
-  "basePath": "/social",
   "tags": [
     {
       "name": "GameProfile"
@@ -92,7 +91,7 @@
   },
   "swagger": "2.0",
   "paths": {
-    "/admin/namespaces/{namespace}/config": {
+    "/social/admin/namespaces/{namespace}/config": {
       "delete": {
         "description": "Deletes a namespace slot configuration, the configuration will be default after delete.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SLOTCONFIG\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteNamespaceSlotConfig",
@@ -228,7 +227,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/config": {
+    "/social/admin/namespaces/{namespace}/users/{userId}/config": {
       "delete": {
         "description": "Deletes a user slot configuration in given namespace, the namespace slot configuration will be returned after delete.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/li\u0026gt;",
         "operationId": "deleteUserSlotConfig",
@@ -385,7 +384,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/profiles": {
+    "/social/admin/namespaces/{namespace}/users/{userId}/profiles": {
       "get": {
         "description": "Returns all profiles\u0026#39; header for a user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of profiles\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserProfiles",
@@ -440,7 +439,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/profiles/{profileId}": {
+    "/social/admin/namespaces/{namespace}/users/{userId}/profiles/{profileId}": {
       "get": {
         "description": "Returns profile for a user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: game profile info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getProfile",
@@ -505,7 +504,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/slots": {
+    "/social/admin/namespaces/{namespace}/users/{userId}/slots": {
       "get": {
         "description": "Get slots for a given user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of slots\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserNamespaceSlots",
@@ -560,7 +559,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/slots/{slotId}": {
+    "/social/admin/namespaces/{namespace}/users/{userId}/slots/{slotId}": {
       "get": {
         "description": "Get slot data.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: slot data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getSlotData",
@@ -626,7 +625,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/profiles": {
+    "/social/public/namespaces/{namespace}/profiles": {
       "get": {
         "description": "Returns all profiles for specified users.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:GAMEPROFILE\u0026#34;, action=2 (READ)\n\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of profiles\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserGameProfiles",
@@ -691,7 +690,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/profiles": {
+    "/social/public/namespaces/{namespace}/users/{userId}/profiles": {
       "get": {
         "description": "Returns all profiles\u0026#39; header for a user.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of profiles\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserProfiles",
@@ -810,7 +809,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}": {
+    "/social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}": {
       "delete": {
         "description": "Deletes game profile.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicDeleteProfile",
@@ -1012,7 +1011,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}": {
+    "/social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}": {
       "get": {
         "description": "Returns game profile attribute.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: attribute info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetProfileAttribute",
@@ -1171,7 +1170,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/slots": {
+    "/social/public/namespaces/{namespace}/users/{userId}/slots": {
       "get": {
         "description": "Get list of slots for a given user in namespace.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of slots\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserNamespaceSlots",
@@ -1326,7 +1325,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/slots/{slotId}": {
+    "/social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}": {
       "delete": {
         "description": "Deletes the slot.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SLOTDATA\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicDeleteUserNamespaceSlot",
@@ -1562,7 +1561,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/slots/{slotId}/metadata": {
+    "/social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}/metadata": {
       "put": {
         "consumes": [
           "application/json"
@@ -1638,7 +1637,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/globalstatitems": {
+    "/social/v1/admin/namespaces/{namespace}/globalstatitems": {
       "get": {
         "description": "List global statItems by pagination.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STATITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat items\u0026lt;/li\u0026gt;ul",
         "operationId": "getGlobalStatItems",
@@ -1699,7 +1698,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/statitems/bulk": {
+    "/social/v1/admin/namespaces/{namespace}/statitems/bulk": {
       "get": {
         "description": "Bulk fetch multiple user\u0026#39;s statitem value for a given namespace and statCode.  \nOther detail info:\n+ *Required permission*: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STATITEM\u0026#34;, action=2 (READ)\n+ *Returns*: list of user\u0026#39;s statItem",
         "operationId": "bulkFetchStatItems",
@@ -1767,7 +1766,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/statitems/value/bulk": {
+    "/social/v1/admin/namespaces/{namespace}/statitems/value/bulk": {
       "patch": {
         "consumes": [
           "application/json"
@@ -1901,7 +1900,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/statitems/value/reset/bulk": {
+    "/social/v1/admin/namespaces/{namespace}/statitems/value/reset/bulk": {
       "put": {
         "consumes": [
           "application/json"
@@ -1969,7 +1968,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/stats": {
+    "/social/v1/admin/namespaces/{namespace}/stats": {
       "get": {
         "description": "List stats by pagination.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stats\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getStats",
@@ -2090,7 +2089,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/stats/export": {
+    "/social/v1/admin/namespaces/{namespace}/stats/export": {
       "get": {
         "description": "Export all stat configurations for a given namespace into file  At current, only JSON file is supported.\u0026lt;p\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;*Required permission*: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "exportStats",
@@ -2132,7 +2131,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/stats/import": {
+    "/social/v1/admin/namespaces/{namespace}/stats/import": {
       "post": {
         "consumes": [
           "multipart/form-data"
@@ -2158,7 +2157,8 @@
             "in": "query",
             "name": "replaceExisting",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -2199,7 +2199,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/stats/search": {
+    "/social/v1/admin/namespaces/{namespace}/stats/search": {
       "get": {
         "description": "Query stats stats by keyword.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;i\u0026gt;: stats\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryStats",
@@ -2267,7 +2267,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/stats/{statCode}": {
+    "/social/v1/admin/namespaces/{namespace}/stats/{statCode}": {
       "delete": {
         "description": "Deletes stat template.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteStat",
@@ -2442,7 +2442,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/users/{userId}/statitems": {
+    "/social/v1/admin/namespaces/{namespace}/users/{userId}/statitems": {
       "get": {
         "description": "List user\u0026#39;s statItems.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserStatItems",
@@ -2524,7 +2524,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/users/{userId}/statitems/bulk": {
+    "/social/v1/admin/namespaces/{namespace}/users/{userId}/statitems/bulk": {
       "post": {
         "consumes": [
           "application/json"
@@ -2599,7 +2599,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk": {
+    "/social/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk": {
       "patch": {
         "consumes": [
           "application/json"
@@ -2747,7 +2747,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk": {
+    "/social/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk": {
       "put": {
         "consumes": [
           "application/json"
@@ -2822,7 +2822,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems": {
+    "/social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems": {
       "delete": {
         "description": "This endpoint is for testing purpose. Use this endpoint for cleaning up after testing.\u0026lt;br\u0026gt;Delete user\u0026#39;s statItems given stat code.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: no content\u0026lt;/li\u0026gt;\u0026lt;/li\u0026gt;",
         "operationId": "deleteUserStatItems",
@@ -2965,7 +2965,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value": {
+    "/social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value": {
       "patch": {
         "consumes": [
           "application/json"
@@ -3053,7 +3053,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset": {
+    "/social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset": {
       "put": {
         "consumes": [
           "application/json"
@@ -3142,7 +3142,7 @@
         }
       }
     },
-    "/v1/public/namespaces/{namespace}/statitems/bulk": {
+    "/social/v1/public/namespaces/{namespace}/statitems/bulk": {
       "get": {
         "description": "Public bulk fetch multiple user\u0026#39;s statitem value for a given namespace and statCode.  \nOther detail info:\n+ *Required permission*: resource=\u0026#34;NAMESPACE:{namespace}:STATITEM\u0026#34;, action=2 (READ)\n+ *Returns*: list of user\u0026#39;s statItem",
         "operationId": "bulkFetchStatItems_1",
@@ -3210,7 +3210,7 @@
         }
       }
     },
-    "/v1/public/namespaces/{namespace}/statitems/value/bulk": {
+    "/social/v1/public/namespaces/{namespace}/statitems/value/bulk": {
       "patch": {
         "consumes": [
           "application/json"
@@ -3344,7 +3344,7 @@
         }
       }
     },
-    "/v1/public/namespaces/{namespace}/statitems/value/reset/bulk": {
+    "/social/v1/public/namespaces/{namespace}/statitems/value/reset/bulk": {
       "put": {
         "consumes": [
           "application/json"
@@ -3412,7 +3412,7 @@
         }
       }
     },
-    "/v1/public/namespaces/{namespace}/stats": {
+    "/social/v1/public/namespaces/{namespace}/stats": {
       "post": {
         "consumes": [
           "application/json"
@@ -3474,7 +3474,7 @@
         }
       }
     },
-    "/v1/public/namespaces/{namespace}/users/{userId}/statitems": {
+    "/social/v1/public/namespaces/{namespace}/users/{userId}/statitems": {
       "get": {
         "description": "Public list all statItems by pagination.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: stat items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicQueryUserStatItems",
@@ -3556,7 +3556,7 @@
         }
       }
     },
-    "/v1/public/namespaces/{namespace}/users/{userId}/statitems/bulk": {
+    "/social/v1/public/namespaces/{namespace}/users/{userId}/statitems/bulk": {
       "post": {
         "consumes": [
           "application/json"
@@ -3631,7 +3631,7 @@
         }
       }
     },
-    "/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk": {
+    "/social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk": {
       "patch": {
         "consumes": [
           "application/json"
@@ -3779,7 +3779,7 @@
         }
       }
     },
-    "/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk": {
+    "/social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk": {
       "put": {
         "consumes": [
           "application/json"
@@ -3854,7 +3854,7 @@
         }
       }
     },
-    "/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems": {
+    "/social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems": {
       "delete": {
         "description": "Delete user\u0026#39;s statItems given stat code.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: no content\u0026lt;/li\u0026gt;\u0026lt;/li\u0026gt;",
         "operationId": "deleteUserStatItems_1",
@@ -3997,7 +3997,7 @@
         }
       }
     },
-    "/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value": {
+    "/social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value": {
       "patch": {
         "consumes": [
           "application/json"
@@ -4171,7 +4171,7 @@
         }
       }
     },
-    "/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset": {
+    "/social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset": {
       "put": {
         "consumes": [
           "application/json"
@@ -4245,7 +4245,7 @@
         }
       }
     },
-    "/v2/admin/namespaces/{namespace}/statitems/value/bulk": {
+    "/social/v2/admin/namespaces/{namespace}/statitems/value/bulk": {
       "put": {
         "consumes": [
           "application/json"
@@ -4313,7 +4313,7 @@
         }
       }
     },
-    "/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk": {
+    "/social/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk": {
       "put": {
         "consumes": [
           "application/json"
@@ -4395,7 +4395,7 @@
         }
       }
     },
-    "/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk": {
+    "/social/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk": {
       "put": {
         "consumes": [
           "application/json"
@@ -4477,7 +4477,7 @@
         }
       }
     },
-    "/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems": {
+    "/social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems": {
       "delete": {
         "description": "Delete user\u0026#39;s stat items for given namespace, statCode, and user Id. \nIf query param *additionalKey* is provided, it will delete user stat items of specific key (i.e. characterName). \nOtherwise, it will delete all stat items related to the user Id. \n\u0026lt;br\u0026gt;Delete user\u0026#39;s statItems given stat code.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:STATITEM\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: no content\u0026lt;/li\u0026gt;\u0026lt;/li\u0026gt;",
         "operationId": "deleteUserStatItems_2",
@@ -4558,7 +4558,7 @@
         }
       }
     },
-    "/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value": {
+    "/social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value": {
       "put": {
         "consumes": [
           "application/json"
@@ -4659,7 +4659,7 @@
         }
       }
     },
-    "/v2/public/namespaces/{namespace}/statitems/value/bulk": {
+    "/social/v2/public/namespaces/{namespace}/statitems/value/bulk": {
       "put": {
         "consumes": [
           "application/json"
@@ -4727,7 +4727,7 @@
         }
       }
     },
-    "/v2/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk": {
+    "/social/v2/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk": {
       "put": {
         "consumes": [
           "application/json"
@@ -4809,7 +4809,7 @@
         }
       }
     },
-    "/v2/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value": {
+    "/social/v2/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value": {
       "put": {
         "consumes": [
           "application/json"
@@ -4977,7 +4977,8 @@
           "type": "string"
         },
         "success": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "type": "object"
@@ -5481,7 +5482,8 @@
           "type": "string"
         },
         "incrementOnly": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "maximum": {
           "format": "double",
@@ -5495,7 +5497,8 @@
           "type": "string"
         },
         "setAsGlobal": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "setBy": {
           "enum": [
@@ -5573,7 +5576,8 @@
           "type": "string"
         },
         "incrementOnly": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "maximum": {
           "format": "double",
@@ -5590,7 +5594,8 @@
           "type": "string"
         },
         "setAsGlobal": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "setBy": {
           "enum": [

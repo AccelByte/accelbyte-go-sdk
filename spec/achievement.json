@@ -684,7 +684,8 @@
             "description": "prefer to query achieved",
             "in": "query",
             "name": "preferUnlocked",
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -1031,7 +1032,8 @@
             "description": "prefer to query achieved",
             "in": "query",
             "name": "preferUnlocked",
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -1185,13 +1187,15 @@
           "type": "number"
         },
         "Hidden": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "ID": {
           "type": "string"
         },
         "Incremental": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "ListOrder": {
           "format": "int32",
@@ -1282,10 +1286,12 @@
           "type": "number"
         },
         "hidden": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "incremental": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "lockedIcons": {
           "items": {
@@ -1353,10 +1359,12 @@
           "type": "number"
         },
         "hidden": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "incremental": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "listOrder": {
           "format": "int32",
@@ -1430,10 +1438,12 @@
           "type": "number"
         },
         "hidden": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "incremental": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "lockedIcons": {
           "items": {
@@ -1581,10 +1591,12 @@
           "type": "number"
         },
         "hidden": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "incremental": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "listOrder": {
           "format": "int32",

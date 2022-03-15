@@ -8,12 +8,11 @@
     },
     "description": "Justice SeasonPass Service",
     "title": "justice-seasonpass-service",
-    "version": "1.9.0"
+    "version": "1.10.0"
   },
   "schemes": [
     "https"
   ],
-  "basePath": "/seasonpass",
   "tags": [
     {
       "name": "Pass"
@@ -61,7 +60,7 @@
   },
   "swagger": "2.0",
   "paths": {
-    "/admin/namespaces/{namespace}/seasons": {
+    "/seasonpass/admin/namespaces/{namespace}/seasons": {
       "get": {
         "description": "This API is used to query seasons, seasons only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of season basic info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "querySeasons",
@@ -216,7 +215,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/seasons/current": {
+    "/seasonpass/admin/namespaces/{namespace}/seasons/current": {
       "get": {
         "description": "[SERVICE COMMUNICATION ONLY]This API is used to get current published season summary which includes previous published season summary if exists, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: season summary data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getCurrentSeason",
@@ -267,7 +266,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/seasons/{seasonId}": {
+    "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}": {
       "delete": {
         "description": "This API is used to delete a season permanently, only draft season can be deleted. \u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteSeason",
@@ -477,7 +476,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/seasons/{seasonId}/clone": {
+    "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/clone": {
       "post": {
         "consumes": [
           "application/json"
@@ -556,7 +555,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/seasons/{seasonId}/passes": {
+    "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes": {
       "get": {
         "description": "This API is used to query all passes for a season.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of passes\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryPasses",
@@ -705,7 +704,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}": {
+    "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}": {
       "delete": {
         "description": "This API is used to delete a pass permanently, only draft season pass can be deleted. \u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deletePass",
@@ -933,7 +932,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/seasons/{seasonId}/publish": {
+    "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/publish": {
       "put": {
         "consumes": [
           "application/json"
@@ -1004,7 +1003,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/seasons/{seasonId}/retire": {
+    "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/retire": {
       "put": {
         "consumes": [
           "application/json"
@@ -1029,7 +1028,8 @@
             "in": "query",
             "name": "force",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -1082,7 +1082,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/seasons/{seasonId}/rewards": {
+    "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards": {
       "get": {
         "description": "This API is used to query rewards for a season.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of rewards\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryRewards",
@@ -1237,7 +1237,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}": {
+    "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}": {
       "delete": {
         "description": "This API is used to delete a reward permanently, only draft season reward can be deleted. \u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteReward",
@@ -1465,7 +1465,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/seasons/{seasonId}/tiers": {
+    "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers": {
       "get": {
         "description": "This API is used to query paginated tiers for a season.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of passes\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryTiers",
@@ -1632,7 +1632,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}": {
+    "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}": {
       "delete": {
         "description": "This API is used to delete a tier permanently, only draft season pass can be deleted. \u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:SEASONPASS\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteTier",
@@ -1793,7 +1793,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder": {
+    "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder": {
       "put": {
         "consumes": [
           "application/json"
@@ -1884,7 +1884,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/seasons/{seasonId}/unpublish": {
+    "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/unpublish": {
       "put": {
         "consumes": [
           "application/json"
@@ -1909,7 +1909,8 @@
             "in": "query",
             "name": "force",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -1962,7 +1963,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/seasons": {
+    "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons": {
       "get": {
         "description": "This API is used to get user participated season data, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user participated season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserParticipatedSeasons",
@@ -2037,7 +2038,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/seasons/current/exp": {
+    "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/exp": {
       "post": {
         "description": "This API is used to grant exp to user, it will auto enroll if there\u0026#39;s no user season but active published season exist, season only located in non-publisher namespace, otherwise ignore.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "grantUserExp",
@@ -2102,7 +2103,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes": {
+    "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes": {
       "post": {
         "description": "This API is used to grant pass to user, it will auto enroll if there\u0026#39;s no user season but active published season exist, season only located in non-publisher namespace, otherwise ignore.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "grantUserPass",
@@ -2167,7 +2168,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes/ownership/any": {
+    "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes/ownership/any": {
       "get": {
         "description": "[SERVICE COMMUNICATION ONLY]This API is used to get ownership for any pass codes, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: ownership\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "existsAnyPassByPassCodes",
@@ -2234,7 +2235,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/seasons/current/progression": {
+    "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/progression": {
       "get": {
         "description": "This API is used to get current user season progression, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season progression\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getCurrentUserSeasonProgression",
@@ -2297,7 +2298,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable": {
+    "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable": {
       "post": {
         "description": "This API is used to check pass or tier purchasable, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "checkSeasonPurchasable",
@@ -2371,7 +2372,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/seasons/current/reset": {
+    "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/reset": {
       "delete": {
         "description": "\u0026lt;b\u0026gt;[TEST FACILITY ONLY] Forbidden in live environment. \u0026lt;/b\u0026gt;This API is used to reset user data in current season, it will not revoke the rewarded entitlements.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "resetUserSeason",
@@ -2425,7 +2426,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers": {
+    "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers": {
       "post": {
         "description": "This API is used to grant tier to user, it will auto enroll if there\u0026#39;s no user season but active published season exist, season only located in non-publisher namespace, otherwise ignore.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "grantUserTier",
@@ -2496,7 +2497,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data": {
+    "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data": {
       "get": {
         "description": "This API is used to get user season data, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserSeason",
@@ -2565,7 +2566,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/seasons/current": {
+    "/seasonpass/public/namespaces/{namespace}/seasons/current": {
       "get": {
         "description": "This API is used to get current published season, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: localized season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetCurrentSeason",
@@ -2613,7 +2614,7 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/seasons/current/data": {
+    "/seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/data": {
       "get": {
         "description": "This API is used to get current user season data, it will auto enroll if there\u0026#39;s no user season but active published season exist, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetCurrentUserSeason",
@@ -2676,7 +2677,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards": {
+    "/seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards": {
       "post": {
         "description": "This API is used to claim reward, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicClaimUserReward",
@@ -2753,7 +2754,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk": {
+    "/seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk": {
       "post": {
         "description": "This API is used to bulk claim all remained rewards, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicBulkClaimUserRewards",
@@ -2816,7 +2817,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data": {
+    "/seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data": {
       "get": {
         "description": "This API is used to get user season data, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserSeason",
@@ -2941,7 +2942,8 @@
         },
         "cleared": {
           "description": "whether cleared all tiers",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "createdAt": {
           "description": "created at",
@@ -3258,7 +3260,8 @@
       "properties": {
         "cleared": {
           "description": "whether cleared all tiers",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "currentTierIndex": {
           "description": "current tier index, zero based",
@@ -3350,7 +3353,8 @@
       "properties": {
         "autoEnroll": {
           "description": "autoEnroll",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "code": {
           "description": "code",
@@ -3422,7 +3426,8 @@
       "properties": {
         "autoClaim": {
           "description": "whether auto claim rewards",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "createdAt": {
           "description": "created at",
@@ -3550,7 +3555,8 @@
       "properties": {
         "owned": {
           "description": "ownership",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -3574,7 +3580,8 @@
       "properties": {
         "autoEnroll": {
           "description": "autoEnroll for free pass, default false",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "code": {
           "description": "code, allowed characters from a-z0-9_:- and start/end in alphanumeric, max length is 255",
@@ -3617,7 +3624,8 @@
       "properties": {
         "autoEnroll": {
           "description": "autoEnroll",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "code": {
           "description": "code",
@@ -3689,7 +3697,8 @@
       "properties": {
         "autoEnroll": {
           "description": "autoEnroll for free pass",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "displayOrder": {
           "description": "displayOrder for frontend to arrange the pass",
@@ -3915,7 +3924,8 @@
       "properties": {
         "autoClaim": {
           "description": "whether auto claim rewards, default true",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "defaultLanguage": {
           "description": "default language, BCP 47 language tag, default is en",
@@ -3985,7 +3995,8 @@
       "properties": {
         "autoClaim": {
           "description": "whether auto claim rewards",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "createdAt": {
           "description": "created at",
@@ -4176,7 +4187,8 @@
       "properties": {
         "autoClaim": {
           "description": "whether auto claim rewards",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "defaultLanguage": {
           "description": "default language, BCP 47 language tag",
@@ -4402,7 +4414,8 @@
       "properties": {
         "cleared": {
           "description": "whether cleared all tiers",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "createdAt": {
           "description": "created at",

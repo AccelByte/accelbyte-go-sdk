@@ -8,12 +8,11 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.3.2"
+    "version": "4.4.2"
   },
   "schemes": [
     "https"
   ],
-  "basePath": "/platform",
   "tags": [
     {
       "name": "Anonymization"
@@ -205,7 +204,7 @@
   },
   "swagger": "2.0",
   "paths": {
-    "/admin/fulfillment/scripts": {
+    "/platform/admin/fulfillment/scripts": {
       "get": {
         "description": "List all fulfillment scripts.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:FULFILLMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "listFulfillmentScripts",
@@ -242,7 +241,7 @@
         }
       }
     },
-    "/admin/fulfillment/scripts/tests/eval": {
+    "/platform/admin/fulfillment/scripts/tests/eval": {
       "post": {
         "description": "\u0026lt;b\u0026gt;[TEST FACILITY ONLY]\u0026lt;/b\u0026gt;Test eval fulfillment script.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:FULFILLMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "testFulfillmentScriptEval",
@@ -285,7 +284,7 @@
         }
       }
     },
-    "/admin/fulfillment/scripts/{id}": {
+    "/platform/admin/fulfillment/scripts/{id}": {
       "delete": {
         "description": "Delete fulfillment script.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:FULFILLMENT\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteFulfillmentScript",
@@ -477,7 +476,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/campaigns": {
+    "/platform/admin/namespaces/{namespace}/campaigns": {
       "get": {
         "description": "Query campaigns, if name is presented, it\u0026#39;s fuzzy match.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN\u0026#34;, action=2 (READ) (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: slice of campaigns\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryCampaigns",
@@ -614,7 +613,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/campaigns/{campaignId}": {
+    "/platform/admin/namespaces/{namespace}/campaigns/{campaignId}": {
       "get": {
         "description": "Get campaign info.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: campaign info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getCampaign",
@@ -747,7 +746,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/campaigns/{campaignId}/dynamic": {
+    "/platform/admin/namespaces/{namespace}/campaigns/{campaignId}/dynamic": {
       "get": {
         "description": "Get campaign dynamic.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: campaign dynamic\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getCampaignDynamic",
@@ -803,7 +802,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/categories": {
+    "/platform/admin/namespaces/{namespace}/categories": {
       "get": {
         "description": "This API is used to get root categories.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:CATEGORY\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: root category data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getRootCategories",
@@ -942,7 +941,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/categories/basic": {
+    "/platform/admin/namespaces/{namespace}/categories/basic": {
       "get": {
         "description": "This API is used to list all categories\u0026#39; basic info of a store ordered by category path.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:CATEGORY\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of categories\u0026#39; paths\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "listCategoriesBasic",
@@ -997,7 +996,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/categories/{categoryPath}": {
+    "/platform/admin/namespaces/{namespace}/categories/{categoryPath}": {
       "delete": {
         "description": "This API is used to delete category by category path. \u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:CATEGORY\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the deleted category data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteCategory",
@@ -1218,7 +1217,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/categories/{categoryPath}/children": {
+    "/platform/admin/namespaces/{namespace}/categories/{categoryPath}/children": {
       "get": {
         "description": "This API is used to get child categories by category path.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:CATEGORY\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of child categories data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getChildCategories",
@@ -1279,7 +1278,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/categories/{categoryPath}/descendants": {
+    "/platform/admin/namespaces/{namespace}/categories/{categoryPath}/descendants": {
       "get": {
         "description": "This API is used to get descendant categories by category path.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:CATEGORY\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of descendant categories data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getDescendantCategories",
@@ -1340,7 +1339,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}": {
+    "/platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}": {
       "get": {
         "description": "Query campaign codes.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN\u0026#34;, action=2 (READ) (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of codes\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryCodes",
@@ -1375,7 +1374,8 @@
             "in": "query",
             "name": "activeOnly",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "default": 0,
@@ -1494,7 +1494,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/codes.csv": {
+    "/platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/codes.csv": {
       "get": {
         "description": "Download all or a batch of campaign\u0026#39;s codes as a csv file.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: codes csv file\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "download",
@@ -1548,7 +1548,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/disable/bulk": {
+    "/platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/disable/bulk": {
       "put": {
         "consumes": [
           "application/json"
@@ -1609,7 +1609,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/enable/bulk": {
+    "/platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/enable/bulk": {
       "put": {
         "consumes": [
           "application/json"
@@ -1670,7 +1670,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/history": {
+    "/platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/history": {
       "get": {
         "description": "Query redeem history.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: slice of redeem history\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryRedeemHistory",
@@ -1748,7 +1748,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/codes/{code}": {
+    "/platform/admin/namespaces/{namespace}/codes/{code}": {
       "get": {
         "description": "Get campaign code, it will check code whether available to redeem if redeemable true.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:CAMPAIGN\u0026#34;, action=2 (READ) (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: code info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getCode",
@@ -1770,7 +1770,8 @@
             "in": "query",
             "name": "redeemable",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -1817,7 +1818,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/codes/{code}/disable": {
+    "/platform/admin/namespaces/{namespace}/codes/{code}/disable": {
       "put": {
         "consumes": [
           "application/json"
@@ -1876,7 +1877,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/codes/{code}/enable": {
+    "/platform/admin/namespaces/{namespace}/codes/{code}/enable": {
       "put": {
         "consumes": [
           "application/json"
@@ -1935,7 +1936,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/currencies": {
+    "/platform/admin/namespaces/{namespace}/currencies": {
       "get": {
         "consumes": [
           "application/json"
@@ -2052,7 +2053,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/currencies/{currencyCode}": {
+    "/platform/admin/namespaces/{namespace}/currencies/{currencyCode}": {
       "delete": {
         "description": "Delete a currency by currency code.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:CURRENCY\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteCurrency",
@@ -2182,7 +2183,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/currencies/{currencyCode}/config": {
+    "/platform/admin/namespaces/{namespace}/currencies/{currencyCode}/config": {
       "get": {
         "consumes": [
           "application/json"
@@ -2243,7 +2244,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/currencies/{currencyCode}/summary": {
+    "/platform/admin/namespaces/{namespace}/currencies/{currencyCode}/summary": {
       "get": {
         "consumes": [
           "application/json"
@@ -2304,7 +2305,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/dlc/config/item": {
+    "/platform/admin/namespaces/{namespace}/dlc/config/item": {
       "delete": {
         "consumes": [
           "application/json"
@@ -2453,7 +2454,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/dlc/config/platformMap": {
+    "/platform/admin/namespaces/{namespace}/dlc/config/platformMap": {
       "delete": {
         "consumes": [
           "application/json"
@@ -2602,7 +2603,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/entitlements": {
+    "/platform/admin/namespaces/{namespace}/entitlements": {
       "get": {
         "description": "Query entitlements.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: entitlement list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryEntitlements",
@@ -2665,7 +2666,8 @@
             "in": "query",
             "name": "activeOnly",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "default": 0,
@@ -2716,7 +2718,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/entitlements/{entitlementId}": {
+    "/platform/admin/namespaces/{namespace}/entitlements/{entitlementId}": {
       "get": {
         "description": "Get entitlement.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: entitlement\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getEntitlement",
@@ -2772,7 +2774,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/fulfillment/history": {
+    "/platform/admin/namespaces/{namespace}/fulfillment/history": {
       "get": {
         "description": "Query fulfillment histories in a namespace.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:FULFILLMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: query fulfillment history\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryFulfillmentHistories",
@@ -2848,7 +2850,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/iap/config/apple": {
+    "/platform/admin/namespaces/{namespace}/iap/config/apple": {
       "delete": {
         "description": "Delete apple iap config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteAppleIAPConfig",
@@ -2984,7 +2986,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/iap/config/epicgames": {
+    "/platform/admin/namespaces/{namespace}/iap/config/epicgames": {
       "delete": {
         "description": "Delete epic games iap config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteEpicGamesIAPConfig",
@@ -3126,7 +3128,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/iap/config/google": {
+    "/platform/admin/namespaces/{namespace}/iap/config/google": {
       "delete": {
         "description": "Delete google iap config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteGoogleIAPConfig",
@@ -3262,7 +3264,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/iap/config/google/cert": {
+    "/platform/admin/namespaces/{namespace}/iap/config/google/cert": {
       "put": {
         "consumes": [
           "multipart/form-data"
@@ -3315,7 +3317,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/iap/config/item": {
+    "/platform/admin/namespaces/{namespace}/iap/config/item": {
       "delete": {
         "consumes": [
           "application/json"
@@ -3464,7 +3466,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/iap/config/playstation": {
+    "/platform/admin/namespaces/{namespace}/iap/config/playstation": {
       "delete": {
         "description": "Delete playstation iap config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deletePlaystationIAPConfig",
@@ -3600,7 +3602,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/iap/config/stadia": {
+    "/platform/admin/namespaces/{namespace}/iap/config/stadia": {
       "delete": {
         "description": "Delete stadia iap config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteStadiaIAPConfig",
@@ -3683,7 +3685,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/iap/config/stadia/cert": {
+    "/platform/admin/namespaces/{namespace}/iap/config/stadia/cert": {
       "put": {
         "consumes": [
           "multipart/form-data"
@@ -3736,7 +3738,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/iap/config/steam": {
+    "/platform/admin/namespaces/{namespace}/iap/config/steam": {
       "delete": {
         "description": "Delete steam iap config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteSteamIAPConfig",
@@ -3872,7 +3874,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/iap/config/twitch": {
+    "/platform/admin/namespaces/{namespace}/iap/config/twitch": {
       "delete": {
         "description": "Delete twitch iap config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteTwitchIAPConfig",
@@ -4008,7 +4010,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/iap/config/xbl": {
+    "/platform/admin/namespaces/{namespace}/iap/config/xbl": {
       "delete": {
         "description": "Delete xbl iap config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:IAP:CONFIG\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteXblAPConfig",
@@ -4150,7 +4152,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/iap/config/xbl/cert": {
+    "/platform/admin/namespaces/{namespace}/iap/config/xbl/cert": {
       "put": {
         "consumes": [
           "multipart/form-data"
@@ -4209,7 +4211,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/items": {
+    "/platform/admin/namespaces/{namespace}/items": {
       "post": {
         "consumes": [
           "application/json"
@@ -4379,7 +4381,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/items/byAppId": {
+    "/platform/admin/namespaces/{namespace}/items/byAppId": {
       "get": {
         "description": "This API is used to get the item by appId.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=2 (READ)\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the item with that appId\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getItemByAppId",
@@ -4408,7 +4410,8 @@
             "in": "query",
             "name": "activeOnly",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -4449,7 +4452,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/items/byCriteria": {
+    "/platform/admin/namespaces/{namespace}/items/byCriteria": {
       "get": {
         "description": "This API is used to query items by criteria within a store.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryItems",
@@ -4527,7 +4530,8 @@
             "in": "query",
             "name": "activeOnly",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "description": "exist in region",
@@ -4621,7 +4625,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/items/byFeatures/basic": {
+    "/platform/admin/namespaces/{namespace}/items/byFeatures/basic": {
       "get": {
         "description": "\u0026lt;b\u0026gt;[SERVICE COMMUNICATION ONLY]\u0026lt;/b\u0026gt; This API is used to list basic items by features.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of basic items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "listBasicItemsByFeatures",
@@ -4648,7 +4652,8 @@
             "in": "query",
             "name": "activeOnly",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -4686,7 +4691,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/items/bySku": {
+    "/platform/admin/namespaces/{namespace}/items/bySku": {
       "get": {
         "description": "This API is used to get the item by sku.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=2 (READ)\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the item with sku\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getItemBySku",
@@ -4715,7 +4720,8 @@
             "in": "query",
             "name": "activeOnly",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -4756,7 +4762,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/items/bySku/locale": {
+    "/platform/admin/namespaces/{namespace}/items/bySku/locale": {
       "get": {
         "description": "This API is used to get an item by sku in specific locale. If item not exist in specific region, default region item will return.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: item data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getLocaleItemBySku",
@@ -4798,7 +4804,8 @@
             "in": "query",
             "name": "activeOnly",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "default": false,
@@ -4806,7 +4813,8 @@
             "in": "query",
             "name": "populateBundle",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -4847,7 +4855,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/items/itemId/bySku": {
+    "/platform/admin/namespaces/{namespace}/items/itemId/bySku": {
       "get": {
         "description": "\u0026lt;b\u0026gt;[SERVICE COMMUNICATION ONLY]\u0026lt;/b\u0026gt; This API is used to get the itemId by sku.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=2 (READ)\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the itemId with sku\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getItemIdBySku",
@@ -4876,7 +4884,8 @@
             "in": "query",
             "name": "activeOnly",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -4917,7 +4926,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/items/locale/byIds": {
+    "/platform/admin/namespaces/{namespace}/items/locale/byIds": {
       "get": {
         "description": "This API is used to bulk get locale items. If item not exist in specific region, default region item will return.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of items info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "bulkGetLocaleItems",
@@ -4960,7 +4969,8 @@
             "in": "query",
             "name": "activeOnly",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -5004,7 +5014,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/items/search": {
+    "/platform/admin/namespaces/{namespace}/items/search": {
       "get": {
         "description": "This API is used to search items by keyword in title, description and long description within a store.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=2 (READ)\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "searchItems",
@@ -5039,7 +5049,8 @@
             "in": "query",
             "name": "activeOnly",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "default": 0,
@@ -5098,7 +5109,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/items/uncategorized": {
+    "/platform/admin/namespaces/{namespace}/items/uncategorized": {
       "get": {
         "description": "This API is used to query uncategorized items within a store.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of uncategorized items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryUncategorizedItems",
@@ -5121,7 +5132,8 @@
             "in": "query",
             "name": "activeOnly",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "default": 0,
@@ -5194,7 +5206,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/items/{itemId}": {
+    "/platform/admin/namespaces/{namespace}/items/{itemId}": {
       "delete": {
         "description": "This API is used to delete an item permanently, usually for test purpose.\u0026lt;b\u0026gt;DO NOT delete already published item.\u0026lt;/b\u0026gt;\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteItem",
@@ -5283,7 +5295,8 @@
             "in": "query",
             "name": "activeOnly",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -5413,7 +5426,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/items/{itemId}/acquire": {
+    "/platform/admin/namespaces/{namespace}/items/{itemId}/acquire": {
       "put": {
         "description": "\u0026lt;b\u0026gt;[SERVICE COMMUNICATION ONLY]\u0026lt;/b\u0026gt; This api is used for acquiring a published item while the item is maxCount limited, it will decrease the sale available count.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: acquire result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "acquireItem",
@@ -5477,7 +5490,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/items/{itemId}/app": {
+    "/platform/admin/namespaces/{namespace}/items/{itemId}/app": {
       "get": {
         "description": "This API is used to get an app info.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: app data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getApp",
@@ -5507,7 +5520,8 @@
             "in": "query",
             "name": "activeOnly",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -5625,7 +5639,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/items/{itemId}/disable": {
+    "/platform/admin/namespaces/{namespace}/items/{itemId}/disable": {
       "put": {
         "consumes": [
           "application/json"
@@ -5696,7 +5710,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/items/{itemId}/dynamic": {
+    "/platform/admin/namespaces/{namespace}/items/{itemId}/dynamic": {
       "get": {
         "description": "Get item dynamic data for published item.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: item dynamic data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getItemDynamicData",
@@ -5752,7 +5766,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/items/{itemId}/enable": {
+    "/platform/admin/namespaces/{namespace}/items/{itemId}/enable": {
       "put": {
         "consumes": [
           "application/json"
@@ -5823,7 +5837,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/items/{itemId}/features/{feature}": {
+    "/platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}": {
       "delete": {
         "consumes": [
           "application/json"
@@ -5975,7 +5989,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/items/{itemId}/locale": {
+    "/platform/admin/namespaces/{namespace}/items/{itemId}/locale": {
       "get": {
         "description": "This API is used to get an item in specific locale. If item not exist in specific region, default region item will return.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: item data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getLocaleItem",
@@ -6017,7 +6031,8 @@
             "in": "query",
             "name": "activeOnly",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "default": false,
@@ -6025,7 +6040,8 @@
             "in": "query",
             "name": "populateBundle",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -6066,7 +6082,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/items/{itemId}/return": {
+    "/platform/admin/namespaces/{namespace}/items/{itemId}/return": {
       "put": {
         "description": "\u0026lt;b\u0026gt;[SERVICE COMMUNICATION ONLY]\u0026lt;/b\u0026gt; This api is used for returning a published item while the item is maxCount limited, it will increase the sale available count if orderNo already acquired.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "returnItem",
@@ -6133,7 +6149,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/keygroups": {
+    "/platform/admin/namespaces/{namespace}/keygroups": {
       "get": {
         "description": "Query key groups, if name is presented, it\u0026#39;s fuzzy match.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:KEYGROUP\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: slice of key group\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryKeyGroups",
@@ -6270,7 +6286,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/keygroups/{keyGroupId}": {
+    "/platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}": {
       "get": {
         "description": "Get key group.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:KEYGROUP\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: key group info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getKeyGroup",
@@ -6403,7 +6419,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/keygroups/{keyGroupId}/dynamic": {
+    "/platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/dynamic": {
       "get": {
         "description": "Get key group dynamic.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:KEYGROUP\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: key group info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getKeyGroupDynamic",
@@ -6459,7 +6475,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys": {
+    "/platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys": {
       "get": {
         "description": "This API is used to list keys of a key group.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:KEYGROUP\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: keys\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "listKeys",
@@ -6605,7 +6621,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/orders": {
+    "/platform/admin/namespaces/{namespace}/orders": {
       "get": {
         "description": "Query orders.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ORDER\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: query orders\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryOrders",
@@ -6689,7 +6705,8 @@
             "in": "query",
             "name": "withTotal",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -6730,7 +6747,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/orders/stats": {
+    "/platform/admin/namespaces/{namespace}/orders/stats": {
       "get": {
         "description": "Get Order Statistics.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ORDER\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: order statistics\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getOrderStatistics",
@@ -6774,7 +6791,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/orders/{orderNo}": {
+    "/platform/admin/namespaces/{namespace}/orders/{orderNo}": {
       "get": {
         "description": "Get order by orderNo.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ORDER\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: order instance\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getOrder",
@@ -6830,7 +6847,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/orders/{orderNo}/refund": {
+    "/platform/admin/namespaces/{namespace}/orders/{orderNo}/refund": {
       "put": {
         "consumes": [
           "application/json"
@@ -6909,7 +6926,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/payment/config/callback": {
+    "/platform/admin/namespaces/{namespace}/payment/config/callback": {
       "get": {
         "description": "Get payment callback configuration.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:PAYMENT:CONFIG\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Payment callback config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getPaymentCallbackConfig",
@@ -7012,7 +7029,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/payment/notifications": {
+    "/platform/admin/namespaces/{namespace}/payment/notifications": {
       "get": {
         "description": "Query payment notifications.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:PAYMENT:NOTIFICATION\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Payment notifications\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryPaymentNotifications",
@@ -7132,7 +7149,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/payment/orders": {
+    "/platform/admin/namespaces/{namespace}/payment/orders": {
       "get": {
         "description": "Query payment orders.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:PAYMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: query payment orders\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryPaymentOrders",
@@ -7312,7 +7329,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/payment/orders/byExtTxId": {
+    "/platform/admin/namespaces/{namespace}/payment/orders/byExtTxId": {
       "get": {
         "description": "List external order No by external transaction id.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:PAYMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: payment orders\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "listExtOrderNoByExtTxId",
@@ -7365,7 +7382,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}": {
+    "/platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}": {
       "get": {
         "description": "Get payment order by paymentOrderNo.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:PAYMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: payment order instance\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getPaymentOrder",
@@ -7495,7 +7512,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/refund": {
+    "/platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/refund": {
       "put": {
         "consumes": [
           "application/json"
@@ -7577,7 +7594,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification": {
+    "/platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification": {
       "put": {
         "description": "\u0026lt;b\u0026gt;[TEST FACILITY ONLY] Forbidden in live environment. \u0026lt;/b\u0026gt; Simulate payment notification on sandbox payment order, usually for test usage to simulate real currency payment notification.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:PAYMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: notification process result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "simulatePaymentOrderNotification",
@@ -7647,7 +7664,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status": {
+    "/platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status": {
       "get": {
         "description": "Get payment order charge status.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:PAYMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: payment order charge status\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getPaymentOrderChargeStatus",
@@ -7703,7 +7720,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/rewards": {
+    "/platform/admin/namespaces/{namespace}/rewards": {
       "post": {
         "consumes": [
           "application/json"
@@ -7776,7 +7793,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/rewards/byCriteria": {
+    "/platform/admin/namespaces/{namespace}/rewards/byCriteria": {
       "get": {
         "description": "This API is used to query rewards by criteria.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:REWARD\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of rewards\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryRewards",
@@ -7858,7 +7875,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/rewards/export": {
+    "/platform/admin/namespaces/{namespace}/rewards/export": {
       "get": {
         "description": "Export reward configurations for a given namespace into file. At current, only JSON file is supported.\u0026lt;p\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;*Required permission*: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:REWARD\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "exportRewards",
@@ -7900,7 +7917,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/rewards/import": {
+    "/platform/admin/namespaces/{namespace}/rewards/import": {
       "post": {
         "consumes": [
           "multipart/form-data"
@@ -7926,7 +7943,8 @@
             "in": "query",
             "name": "replaceExisting",
             "required": true,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -7964,7 +7982,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/rewards/{rewardId}": {
+    "/platform/admin/namespaces/{namespace}/rewards/{rewardId}": {
       "delete": {
         "description": "This API is used to delete a reward by reward Id. \u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:REWARD\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the deleted reward data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteReward",
@@ -8143,7 +8161,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/rewards/{rewardId}/match": {
+    "/platform/admin/namespaces/{namespace}/rewards/{rewardId}/match": {
       "put": {
         "description": "\u0026lt;b\u0026gt;[TEST FACILITY ONLY] Forbidden in live environment. \u0026lt;/b\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:REWARD\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: match result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "checkEventCondition",
@@ -8207,7 +8225,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/stores": {
+    "/platform/admin/namespaces/{namespace}/stores": {
       "get": {
         "description": "This API is used to list stores in a namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STORE\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of stores\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "listStores",
@@ -8320,7 +8338,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/stores/import": {
+    "/platform/admin/namespaces/{namespace}/stores/import": {
       "put": {
         "consumes": [
           "multipart/form-data"
@@ -8392,7 +8410,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/stores/published": {
+    "/platform/admin/namespaces/{namespace}/stores/published": {
       "delete": {
         "description": "This API is used to delete published store including category and items before release to public.\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;Warning: Please do not use this API once published to public user.\u0026lt;/b\u0026gt;\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STORE\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deletePublishedStore",
@@ -8492,7 +8510,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/stores/published/backup": {
+    "/platform/admin/namespaces/{namespace}/stores/published/backup": {
       "get": {
         "consumes": [
           "application/json"
@@ -8545,7 +8563,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/stores/published/rollback": {
+    "/platform/admin/namespaces/{namespace}/stores/published/rollback": {
       "put": {
         "consumes": [
           "application/json"
@@ -8598,7 +8616,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/stores/{storeId}": {
+    "/platform/admin/namespaces/{namespace}/stores/{storeId}": {
       "delete": {
         "description": "This API is used to delete a store. Only non published store can be deleted.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STORE\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: store\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteStore",
@@ -8792,7 +8810,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/stores/{storeId}/clone": {
+    "/platform/admin/namespaces/{namespace}/stores/{storeId}/clone": {
       "put": {
         "consumes": [
           "application/json"
@@ -8864,7 +8882,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/stores/{storeId}/export": {
+    "/platform/admin/namespaces/{namespace}/stores/{storeId}/export": {
       "get": {
         "description": "This API is used to export a store.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STORE\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "exportStore",
@@ -8917,7 +8935,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/subscriptions": {
+    "/platform/admin/namespaces/{namespace}/subscriptions": {
       "get": {
         "consumes": [
           "application/json"
@@ -9033,7 +9051,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/subscriptions/{subscriptionId}/recurring": {
+    "/platform/admin/namespaces/{namespace}/subscriptions/{subscriptionId}/recurring": {
       "put": {
         "consumes": [
           "application/json"
@@ -9086,7 +9104,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/tickets/{boothName}": {
+    "/platform/admin/namespaces/{namespace}/tickets/{boothName}": {
       "get": {
         "description": "\u0026lt;b\u0026gt;[SERVICE COMMUNICATION ONLY]\u0026lt;/b\u0026gt; Get ticket(code/key) dynamic based on booth name.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:TICKET\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: ticket dynamic\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getTicketDynamic",
@@ -9142,7 +9160,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/tickets/{boothName}/decrement": {
+    "/platform/admin/namespaces/{namespace}/tickets/{boothName}/decrement": {
       "put": {
         "description": "\u0026lt;b\u0026gt;[SERVICE COMMUNICATION ONLY]\u0026lt;/b\u0026gt; Decrease ticket(code/key) sale if requested orderNo is already increased.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:TICKET\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "decreaseTicketSale",
@@ -9209,7 +9227,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/tickets/{boothName}/id": {
+    "/platform/admin/namespaces/{namespace}/tickets/{boothName}/id": {
       "get": {
         "description": "Get ticket(code/key) booth ID.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:TICKET\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: ticket booth id\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getTicketBoothID",
@@ -9265,7 +9283,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/tickets/{boothName}/increment": {
+    "/platform/admin/namespaces/{namespace}/tickets/{boothName}/increment": {
       "put": {
         "description": "\u0026lt;b\u0026gt;[SERVICE COMMUNICATION ONLY]\u0026lt;/b\u0026gt; increase ticket(code/key) sale.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:TICKET\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Ticket sale increment result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "increaseTicketSale",
@@ -9335,7 +9353,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/anonymization/campaign": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/campaign": {
       "delete": {
         "consumes": [
           "application/json"
@@ -9385,7 +9403,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/anonymization/entitlements": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/entitlements": {
       "delete": {
         "consumes": [
           "application/json"
@@ -9435,7 +9453,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/anonymization/fulfillment": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/fulfillment": {
       "delete": {
         "consumes": [
           "application/json"
@@ -9485,7 +9503,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/anonymization/integrations": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/integrations": {
       "delete": {
         "consumes": [
           "application/json"
@@ -9535,7 +9553,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/anonymization/orders": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/orders": {
       "delete": {
         "consumes": [
           "application/json"
@@ -9585,7 +9603,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/anonymization/payment": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/payment": {
       "delete": {
         "consumes": [
           "application/json"
@@ -9635,7 +9653,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/anonymization/subscriptions": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/subscriptions": {
       "delete": {
         "consumes": [
           "application/json"
@@ -9685,7 +9703,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/anonymization/wallets": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/wallets": {
       "delete": {
         "consumes": [
           "application/json"
@@ -9735,7 +9753,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/entitlements": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements": {
       "get": {
         "description": "Query entitlements for a specific user.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: entitlement list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryUserEntitlements",
@@ -9798,7 +9816,8 @@
             "in": "query",
             "name": "activeOnly",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "default": 0,
@@ -9926,7 +9945,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/entitlements/byAppId": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/byAppId": {
       "get": {
         "description": "Get user app entitlement by appId.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserAppEntitlementByAppId",
@@ -9954,7 +9973,8 @@
             "in": "query",
             "name": "activeOnly",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -9995,7 +10015,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/entitlements/byAppType": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/byAppType": {
       "get": {
         "description": "Query app entitlements by appType.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: app entitlement pagination\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryUserEntitlementsByAppType",
@@ -10029,7 +10049,8 @@
             "in": "query",
             "name": "activeOnly",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "default": 0,
@@ -10080,7 +10101,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/entitlements/byItemId": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/byItemId": {
       "get": {
         "description": "Get user entitlement by itemId.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserEntitlementByItemId",
@@ -10121,7 +10142,8 @@
             "in": "query",
             "name": "activeOnly",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -10162,7 +10184,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/entitlements/bySku": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/bySku": {
       "get": {
         "description": "Get user entitlement by sku.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserEntitlementBySku",
@@ -10203,7 +10225,8 @@
             "in": "query",
             "name": "activeOnly",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -10244,7 +10267,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/any": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/any": {
       "get": {
         "description": "Exists any user active entitlement of specified itemIds, skus and appIds\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "existsAnyUserActiveEntitlement",
@@ -10324,7 +10347,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/anyOf": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/anyOf": {
       "get": {
         "description": "Exists any user active entitlement of specified items.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "existsAnyUserActiveEntitlementByItemIds",
@@ -10384,7 +10407,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/byAppId": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/byAppId": {
       "get": {
         "description": "Get user app entitlement ownership by appId.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserAppEntitlementOwnershipByAppId",
@@ -10440,7 +10463,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/byItemId": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/byItemId": {
       "get": {
         "description": "Get user entitlement ownership by itemId.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserEntitlementOwnershipByItemId",
@@ -10509,7 +10532,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/bySku": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/bySku": {
       "get": {
         "description": "Get user entitlement ownership by sku.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserEntitlementOwnershipBySku",
@@ -10578,7 +10601,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/entitlements/revoke/byIds": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/revoke/byIds": {
       "put": {
         "description": "Revoke user\u0026#39;s entitlements by ids.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: revoke entitlements count\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "revokeUserEntitlements",
@@ -10635,7 +10658,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}": {
       "get": {
         "description": "Get user entitlement.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: entitlement\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserEntitlement",
@@ -10780,7 +10803,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement": {
       "put": {
         "description": "Consume user entitlement. If the entitlement useCount is 0, the status will be CONSUMED.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: consumed entitlement\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "consumeUserEntitlement",
@@ -10856,7 +10879,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/disable": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/disable": {
       "put": {
         "description": "Disable user entitlement if entitlement, only active entitlement can be disable, disabled entitlement can\u0026#39;t consume.\u0026lt;br\u0026gt;\u0026lt;b\u0026gt;Like revoke, it will lose the entitlement ownership, except disabled entitlement can enable.\u0026lt;/b\u0026gt;\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: disable entitlement\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "disableUserEntitlement",
@@ -10924,7 +10947,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/enable": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/enable": {
       "put": {
         "description": "Enable user entitlement.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: enable entitlement\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "enableUserEntitlement",
@@ -10992,7 +11015,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/history": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/history": {
       "get": {
         "description": "Get user entitlement histories.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of entitlement history\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserEntitlementHistories",
@@ -11051,7 +11074,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke": {
       "put": {
         "description": "Revoke user entitlement.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: revoke entitlement\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "revokeUserEntitlement",
@@ -11113,7 +11136,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/fulfillment": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/fulfillment": {
       "post": {
         "consumes": [
           "application/json"
@@ -11192,7 +11215,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/fulfillment/code": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/code": {
       "post": {
         "consumes": [
           "application/json"
@@ -11271,7 +11294,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards": {
       "post": {
         "consumes": [
           "application/json"
@@ -11347,7 +11370,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/iap": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/iap": {
       "get": {
         "description": "Query IAP orders.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: paginated iap orders\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryUserIAPOrders",
@@ -11460,7 +11483,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/iap/all": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/iap/all": {
       "get": {
         "description": "Query all user IAP orders.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of iap orders\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryAllUserIAPOrders",
@@ -11510,7 +11533,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt": {
       "put": {
         "description": "\u0026lt;b\u0026gt;[TEST FACILITY ONLY] Forbidden in live environment. \u0026lt;/b\u0026gt; Mock fulfill iap item without validate receipt.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "mockFulfillIAPItem",
@@ -11583,7 +11606,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/orders": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/orders": {
       "get": {
         "consumes": [
           "application/json"
@@ -11677,7 +11700,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/orders/countOfItem": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/orders/countOfItem": {
       "get": {
         "description": "This API is used to get the count of purchased item which is the order target.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Item purchased count\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "countOfPurchasedItem",
@@ -11733,7 +11756,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}": {
       "get": {
         "consumes": [
           "application/json"
@@ -11881,7 +11904,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill": {
       "put": {
         "consumes": [
           "application/json"
@@ -11958,7 +11981,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/grant": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/grant": {
       "get": {
         "description": "Get user order grant that fulfilled by this order.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: get order grant\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserOrderGrant",
@@ -12014,7 +12037,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history": {
       "get": {
         "description": "Get user order history.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: get order history\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserOrderHistories",
@@ -12073,7 +12096,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/notifications": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/notifications": {
       "post": {
         "consumes": [
           "application/json"
@@ -12140,7 +12163,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf": {
       "get": {
         "description": "Download user order receipt by orderNo.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: order receipt pdf\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "downloadUserOrderReceipt",
@@ -12205,7 +12228,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/payment/orders": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/payment/orders": {
       "post": {
         "consumes": [
           "application/json"
@@ -12296,7 +12319,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/payment/orders/{paymentOrderNo}/refund": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/payment/orders/{paymentOrderNo}/refund": {
       "put": {
         "consumes": [
           "application/json"
@@ -12381,7 +12404,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/redemption": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/redemption": {
       "post": {
         "consumes": [
           "application/json"
@@ -12460,7 +12483,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/subscriptions": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions": {
       "get": {
         "consumes": [
           "application/json"
@@ -12576,7 +12599,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/subscriptions/activities": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/activities": {
       "get": {
         "description": "Get user subscription activity.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: paginated subscription activity\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserSubscriptionActivities",
@@ -12604,7 +12627,8 @@
             "in": "query",
             "name": "excludeSystem",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "default": 0,
@@ -12655,7 +12679,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe": {
       "post": {
         "consumes": [
           "application/json"
@@ -12737,7 +12761,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/subscriptions/subscribable/byItemId": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/subscribable/byItemId": {
       "get": {
         "description": "Check user subscription subscribable by itemId, ACTIVE USER subscription can\u0026#39;t do subscribe again.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: subscribable info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "checkUserSubscriptionSubscribableByItemId",
@@ -12793,7 +12817,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}": {
       "delete": {
         "consumes": [
           "application/json"
@@ -12912,7 +12936,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel": {
       "put": {
         "consumes": [
           "application/json"
@@ -12943,7 +12967,8 @@
             "in": "query",
             "name": "force",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "in": "body",
@@ -12998,7 +13023,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/grant": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/grant": {
       "put": {
         "consumes": [
           "application/json"
@@ -13071,7 +13096,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/history": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/history": {
       "get": {
         "description": "Get user subscription billing histories.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: paginated subscription billing history\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserSubscriptionBillingHistories",
@@ -13099,7 +13124,8 @@
             "in": "query",
             "name": "excludeFree",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "default": 0,
@@ -13150,7 +13176,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/notifications": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/notifications": {
       "post": {
         "consumes": [
           "application/json"
@@ -13217,7 +13243,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}": {
       "post": {
         "consumes": [
           "application/json"
@@ -13302,7 +13328,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check": {
       "get": {
         "consumes": [
           "application/json"
@@ -13378,7 +13404,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit": {
       "put": {
         "consumes": [
           "application/json"
@@ -13465,7 +13491,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/payment": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/payment": {
       "put": {
         "consumes": [
           "application/json"
@@ -13552,7 +13578,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}": {
       "get": {
         "consumes": [
           "application/json"
@@ -13619,7 +13645,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit": {
       "put": {
         "consumes": [
           "application/json"
@@ -13712,7 +13738,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/disable": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/disable": {
       "put": {
         "consumes": [
           "application/json"
@@ -13783,7 +13809,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/enable": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/enable": {
       "put": {
         "consumes": [
           "application/json"
@@ -13854,7 +13880,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/transactions": {
+    "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/transactions": {
       "get": {
         "consumes": [
           "application/json"
@@ -13938,7 +13964,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/wallets": {
+    "/platform/admin/namespaces/{namespace}/wallets": {
       "get": {
         "consumes": [
           "application/json"
@@ -14016,7 +14042,7 @@
         }
       }
     },
-    "/admin/namespaces/{namespace}/wallets/{walletId}": {
+    "/platform/admin/namespaces/{namespace}/wallets/{walletId}": {
       "get": {
         "consumes": [
           "application/json"
@@ -14076,7 +14102,7 @@
         }
       }
     },
-    "/admin/orders": {
+    "/platform/admin/orders": {
       "get": {
         "description": "Sync orders. If response contains nextEvaluatedKey, please use it as query param in the next call to fetch the next batch, a batch has 1000 elements or less.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:ORDER\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: sync orders\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "syncOrders",
@@ -14134,7 +14160,7 @@
         }
       }
     },
-    "/admin/payment/config/merchant/adyenconfig/test": {
+    "/platform/admin/payment/config/merchant/adyenconfig/test": {
       "post": {
         "consumes": [
           "application/json"
@@ -14147,7 +14173,8 @@
             "in": "query",
             "name": "sandbox",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "in": "body",
@@ -14190,7 +14217,7 @@
         }
       }
     },
-    "/admin/payment/config/merchant/alipayconfig/test": {
+    "/platform/admin/payment/config/merchant/alipayconfig/test": {
       "post": {
         "consumes": [
           "application/json"
@@ -14203,7 +14230,8 @@
             "in": "query",
             "name": "sandbox",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "in": "body",
@@ -14246,7 +14274,7 @@
         }
       }
     },
-    "/admin/payment/config/merchant/checkoutconfig/test": {
+    "/platform/admin/payment/config/merchant/checkoutconfig/test": {
       "post": {
         "consumes": [
           "application/json"
@@ -14259,7 +14287,8 @@
             "in": "query",
             "name": "sandbox",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "in": "body",
@@ -14302,7 +14331,7 @@
         }
       }
     },
-    "/admin/payment/config/merchant/matched": {
+    "/platform/admin/payment/config/merchant/matched": {
       "get": {
         "description": "Debug matched payment merchant config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:PAYMENT:CONFIG\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: payment merchant config info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "debugMatchedPaymentMerchantConfig",
@@ -14362,7 +14391,7 @@
         }
       }
     },
-    "/admin/payment/config/merchant/paypalconfig/test": {
+    "/platform/admin/payment/config/merchant/paypalconfig/test": {
       "post": {
         "consumes": [
           "application/json"
@@ -14375,7 +14404,8 @@
             "in": "query",
             "name": "sandbox",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "in": "body",
@@ -14418,7 +14448,7 @@
         }
       }
     },
-    "/admin/payment/config/merchant/stripeconfig/test": {
+    "/platform/admin/payment/config/merchant/stripeconfig/test": {
       "post": {
         "consumes": [
           "application/json"
@@ -14431,7 +14461,8 @@
             "in": "query",
             "name": "sandbox",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "in": "body",
@@ -14474,7 +14505,7 @@
         }
       }
     },
-    "/admin/payment/config/merchant/wxpayconfig/test": {
+    "/platform/admin/payment/config/merchant/wxpayconfig/test": {
       "post": {
         "consumes": [
           "application/json"
@@ -14523,7 +14554,7 @@
         }
       }
     },
-    "/admin/payment/config/merchant/xsollaconfig/test": {
+    "/platform/admin/payment/config/merchant/xsollaconfig/test": {
       "post": {
         "consumes": [
           "application/json"
@@ -14572,7 +14603,7 @@
         }
       }
     },
-    "/admin/payment/config/merchant/{id}": {
+    "/platform/admin/payment/config/merchant/{id}": {
       "get": {
         "description": "Get payment merchant config by id.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:PAYMENT:CONFIG\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: payment merchant config info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getPaymentMerchantConfig",
@@ -14622,7 +14653,7 @@
         }
       }
     },
-    "/admin/payment/config/merchant/{id}/adyenconfig": {
+    "/platform/admin/payment/config/merchant/{id}/adyenconfig": {
       "put": {
         "consumes": [
           "application/json"
@@ -14641,14 +14672,16 @@
             "in": "query",
             "name": "validate",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "default": true,
             "in": "query",
             "name": "sandbox",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "in": "body",
@@ -14697,7 +14730,7 @@
         }
       }
     },
-    "/admin/payment/config/merchant/{id}/adyenconfig/test": {
+    "/platform/admin/payment/config/merchant/{id}/adyenconfig/test": {
       "get": {
         "consumes": [
           "application/json"
@@ -14716,7 +14749,8 @@
             "in": "query",
             "name": "sandbox",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -14757,7 +14791,7 @@
         }
       }
     },
-    "/admin/payment/config/merchant/{id}/alipayconfig": {
+    "/platform/admin/payment/config/merchant/{id}/alipayconfig": {
       "put": {
         "consumes": [
           "application/json"
@@ -14776,14 +14810,16 @@
             "in": "query",
             "name": "validate",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "default": true,
             "in": "query",
             "name": "sandbox",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "in": "body",
@@ -14832,7 +14868,7 @@
         }
       }
     },
-    "/admin/payment/config/merchant/{id}/alipayconfig/test": {
+    "/platform/admin/payment/config/merchant/{id}/alipayconfig/test": {
       "get": {
         "consumes": [
           "application/json"
@@ -14851,7 +14887,8 @@
             "in": "query",
             "name": "sandbox",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -14892,7 +14929,7 @@
         }
       }
     },
-    "/admin/payment/config/merchant/{id}/checkoutconfig": {
+    "/platform/admin/payment/config/merchant/{id}/checkoutconfig": {
       "put": {
         "consumes": [
           "application/json"
@@ -14911,14 +14948,16 @@
             "in": "query",
             "name": "validate",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "default": true,
             "in": "query",
             "name": "sandbox",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "in": "body",
@@ -14967,7 +15006,7 @@
         }
       }
     },
-    "/admin/payment/config/merchant/{id}/checkoutconfig/test": {
+    "/platform/admin/payment/config/merchant/{id}/checkoutconfig/test": {
       "get": {
         "consumes": [
           "application/json"
@@ -14986,7 +15025,8 @@
             "in": "query",
             "name": "sandbox",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -15027,7 +15067,7 @@
         }
       }
     },
-    "/admin/payment/config/merchant/{id}/paypalconfig": {
+    "/platform/admin/payment/config/merchant/{id}/paypalconfig": {
       "put": {
         "consumes": [
           "application/json"
@@ -15046,14 +15086,16 @@
             "in": "query",
             "name": "validate",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "default": true,
             "in": "query",
             "name": "sandbox",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "in": "body",
@@ -15102,7 +15144,7 @@
         }
       }
     },
-    "/admin/payment/config/merchant/{id}/paypalconfig/test": {
+    "/platform/admin/payment/config/merchant/{id}/paypalconfig/test": {
       "get": {
         "consumes": [
           "application/json"
@@ -15121,7 +15163,8 @@
             "in": "query",
             "name": "sandbox",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -15162,7 +15205,7 @@
         }
       }
     },
-    "/admin/payment/config/merchant/{id}/stripeconfig": {
+    "/platform/admin/payment/config/merchant/{id}/stripeconfig": {
       "put": {
         "consumes": [
           "application/json"
@@ -15181,14 +15224,16 @@
             "in": "query",
             "name": "validate",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "default": true,
             "in": "query",
             "name": "sandbox",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "in": "body",
@@ -15237,7 +15282,7 @@
         }
       }
     },
-    "/admin/payment/config/merchant/{id}/stripeconfig/test": {
+    "/platform/admin/payment/config/merchant/{id}/stripeconfig/test": {
       "get": {
         "consumes": [
           "application/json"
@@ -15256,7 +15301,8 @@
             "in": "query",
             "name": "sandbox",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -15297,7 +15343,7 @@
         }
       }
     },
-    "/admin/payment/config/merchant/{id}/wxpayconfig": {
+    "/platform/admin/payment/config/merchant/{id}/wxpayconfig": {
       "put": {
         "consumes": [
           "application/json"
@@ -15316,7 +15362,8 @@
             "in": "query",
             "name": "validate",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "in": "body",
@@ -15365,7 +15412,7 @@
         }
       }
     },
-    "/admin/payment/config/merchant/{id}/wxpayconfig/cert": {
+    "/platform/admin/payment/config/merchant/{id}/wxpayconfig/cert": {
       "put": {
         "consumes": [
           "multipart/form-data"
@@ -15424,7 +15471,7 @@
         }
       }
     },
-    "/admin/payment/config/merchant/{id}/wxpayconfig/test": {
+    "/platform/admin/payment/config/merchant/{id}/wxpayconfig/test": {
       "get": {
         "consumes": [
           "application/json"
@@ -15477,7 +15524,7 @@
         }
       }
     },
-    "/admin/payment/config/merchant/{id}/xsollaconfig": {
+    "/platform/admin/payment/config/merchant/{id}/xsollaconfig": {
       "put": {
         "consumes": [
           "application/json"
@@ -15496,7 +15543,8 @@
             "in": "query",
             "name": "validate",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "in": "body",
@@ -15545,7 +15593,7 @@
         }
       }
     },
-    "/admin/payment/config/merchant/{id}/xsollaconfig/test": {
+    "/platform/admin/payment/config/merchant/{id}/xsollaconfig/test": {
       "get": {
         "consumes": [
           "application/json"
@@ -15598,7 +15646,7 @@
         }
       }
     },
-    "/admin/payment/config/merchant/{id}/xsollauiconfig": {
+    "/platform/admin/payment/config/merchant/{id}/xsollauiconfig": {
       "put": {
         "consumes": [
           "application/json"
@@ -15659,7 +15707,7 @@
         }
       }
     },
-    "/admin/payment/config/provider": {
+    "/platform/admin/payment/config/provider": {
       "get": {
         "description": "Query payment provider config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:PAYMENT:CONFIG\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: payment provider config list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryPaymentProviderConfig",
@@ -15792,7 +15840,7 @@
         }
       }
     },
-    "/admin/payment/config/provider/aggregate": {
+    "/platform/admin/payment/config/provider/aggregate": {
       "get": {
         "description": "Get aggregate payment providers, such as XSOLLA, ADYEN.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:PAYMENT:CONFIG\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: payment provider list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getAggregatePaymentProviders",
@@ -15842,7 +15890,7 @@
         }
       }
     },
-    "/admin/payment/config/provider/matched": {
+    "/platform/admin/payment/config/provider/matched": {
       "get": {
         "description": "Debug matched payment provider config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:PAYMENT:CONFIG\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: payment provider config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "debugMatchedPaymentProviderConfig",
@@ -15902,7 +15950,7 @@
         }
       }
     },
-    "/admin/payment/config/provider/special": {
+    "/platform/admin/payment/config/provider/special": {
       "get": {
         "description": "Get special payment providers, such as ALIPAY, WXPAY.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:PAYMENT:CONFIG\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: payment provider list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getSpecialPaymentProviders",
@@ -15952,7 +16000,7 @@
         }
       }
     },
-    "/admin/payment/config/provider/{id}": {
+    "/platform/admin/payment/config/provider/{id}": {
       "delete": {
         "description": "Delete payment provider config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:PAYMENT:CONFIG\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: payment provider config\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deletePaymentProviderConfig",
@@ -16078,7 +16126,7 @@
         }
       }
     },
-    "/admin/payment/config/tax": {
+    "/platform/admin/payment/config/tax": {
       "get": {
         "description": "Get payment global tax config.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:PAYMENT:CONFIG\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: payment provider list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getPaymentTaxConfig",
@@ -16174,7 +16222,7 @@
         }
       }
     },
-    "/admin/payment/orders": {
+    "/platform/admin/payment/orders": {
       "get": {
         "description": "Sync payment orders. If response contains nextEvaluatedKey, please use it as query param in the next call to fetch the next batch, a batch has 1000 elements or less.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:PAYMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: sync payment orders\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "syncPaymentOrders",
@@ -16232,7 +16280,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/categories": {
+    "/platform/public/namespaces/{namespace}/categories": {
       "get": {
         "description": "This API is used to get root categories.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;PREVIEW\u0026#34;, action=1(CREATE) (user with this permission can view draft store category)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;SANDBOX\u0026#34;, action=1(CREATE) (user with this permission can view draft store category)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: root category data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetRootCategories",
@@ -16278,7 +16326,7 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/categories/download": {
+    "/platform/public/namespaces/{namespace}/categories/download": {
       "get": {
         "description": "This API is used to download store\u0026#39;s structured categories.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;PREVIEW\u0026#34;, action=1(CREATE) (user with this permission can view draft store content)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;SANDBOX\u0026#34;, action=1(CREATE) (user with this permission can view draft store content)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: structured categories\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "downloadCategories",
@@ -16330,7 +16378,7 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/categories/{categoryPath}": {
+    "/platform/public/namespaces/{namespace}/categories/{categoryPath}": {
       "get": {
         "description": "This API is used to get category by category path.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;PREVIEW\u0026#34;, action=1(CREATE) (user with this permission can view draft store category)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;SANDBOX\u0026#34;, action=1 (CREATE)(user with this permission can view draft store category)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: category data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetCategory",
@@ -16385,7 +16433,7 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/categories/{categoryPath}/children": {
+    "/platform/public/namespaces/{namespace}/categories/{categoryPath}/children": {
       "get": {
         "description": "This API is used to get child categories by category path.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;PREVIEW\u0026#34;, action=1(CREATE) (user with this permission can view draft store category)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;SANDBOX\u0026#34;, action=1(CREATE) (user with this permission can view draft store category)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of child categories data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetChildCategories",
@@ -16437,7 +16485,7 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/categories/{categoryPath}/descendants": {
+    "/platform/public/namespaces/{namespace}/categories/{categoryPath}/descendants": {
       "get": {
         "description": "This API is used to get descendant categories by category path.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;PREVIEW\u0026#34;, action=1(CREATE) (user with this permission can view draft store category)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;SANDBOX\u0026#34;, action=1(CREATE) (user with this permission can view draft store category)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of descendant categories data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetDescendantCategories",
@@ -16489,7 +16537,7 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/currencies": {
+    "/platform/public/namespaces/{namespace}/currencies": {
       "get": {
         "consumes": [
           "application/json"
@@ -16525,7 +16573,7 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/items/byAppId": {
+    "/platform/public/namespaces/{namespace}/items/byAppId": {
       "get": {
         "description": "This API is used to get item by appId.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;PREVIEW\u0026#34;, action=1(CREATE) (user with this permission can view draft store item)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;SANDBOX\u0026#34;, action=1(CREATE) (user with this permission can view draft store item)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the item with that appId\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetItemByAppId",
@@ -16585,7 +16633,7 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/items/byCriteria": {
+    "/platform/public/namespaces/{namespace}/items/byCriteria": {
       "get": {
         "description": "This API is used to query items by criteria within a store. If item not exist in specific region, default region item will return.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;PREVIEW\u0026#34;, action=1(CREATE) (user with this permission can view draft store item)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;SANDBOX\u0026#34;, action=1(CREATE) (user with this permission can view draft store item)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicQueryItems",
@@ -16726,7 +16774,7 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/items/bySku": {
+    "/platform/public/namespaces/{namespace}/items/bySku": {
       "get": {
         "description": "This API is used to get the item by sku.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;PREVIEW\u0026#34;, action=1(CREATE) (user with this permission can view draft store item)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;SANDBOX\u0026#34;, action=1(CREATE) (user with this permission can view draft store item)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the item with sku\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetItemBySku",
@@ -16786,7 +16834,7 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/items/locale/byIds": {
+    "/platform/public/namespaces/{namespace}/items/locale/byIds": {
       "get": {
         "description": "This API is used to bulk get locale items. If item not exist in specific region, default region item will return.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;PREVIEW\u0026#34;, action=1(CREATE) (user with this permission can view draft store items)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;SANDBOX\u0026#34;, action=1(CREATE) (user with this permission can view draft store items)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of items info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicBulkGetItems",
@@ -16851,7 +16899,7 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/items/search": {
+    "/platform/public/namespaces/{namespace}/items/search": {
       "get": {
         "description": "This API is used to search items by keyword in title, description and long description, It\u0026#39;s language constrained, also if item not exist in specific region, default region item will return.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;PREVIEW\u0026#34;, action=1(CREATE) (user with this permission can view draft store item)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;SANDBOX\u0026#34;, action=1(CREATE) (user with this permission can view draft store item)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of items\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicSearchItems",
@@ -16929,7 +16977,7 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/items/{itemId}/app/locale": {
+    "/platform/public/namespaces/{namespace}/items/{itemId}/app/locale": {
       "get": {
         "description": "This API is used to get an app in locale. If app not exist in specific region, default region app will return.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;PREVIEW\u0026#34;, action=1(CREATE) (user with this permission can view draft store app)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;SANDBOX\u0026#34;, action=1(CREATE) (user with this permission can view draft store app)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: app data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetApp",
@@ -16990,7 +17038,7 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/items/{itemId}/dynamic": {
+    "/platform/public/namespaces/{namespace}/items/{itemId}/dynamic": {
       "get": {
         "description": "Get item dynamic data for a published item.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: item dynamic data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetItemDynamicData",
@@ -17031,7 +17079,7 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/items/{itemId}/locale": {
+    "/platform/public/namespaces/{namespace}/items/{itemId}/locale": {
       "get": {
         "description": "This API is used to get an item in locale. If item not exist in specific region, default region item will return.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;PREVIEW\u0026#34;, action=1(CREATE) (user with this permission can view draft store item)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;SANDBOX\u0026#34;, action=1(CREATE) (user with this permission can view draft store item)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: item data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetItem",
@@ -17074,7 +17122,8 @@
             "in": "query",
             "name": "populateBundle",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -17100,12 +17149,13 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/payment/customization": {
+    "/platform/public/namespaces/{namespace}/payment/customization": {
       "get": {
         "consumes": [
           "application/json"
         ],
-        "description": "Get payment provider customization, at current only Adyen provide customization.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: customization\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "deprecated": true,
+        "description": "Get payment provider customization, at current only Adyen provide customization. This api has been deprecated, pls use /public/namespaces/{namespace}/payment/publicconfig to get adyen config\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: customization\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getPaymentCustomization",
         "parameters": [
           {
@@ -17141,7 +17191,8 @@
             "in": "query",
             "name": "sandbox",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -17161,7 +17212,7 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/payment/link": {
+    "/platform/public/namespaces/{namespace}/payment/link": {
       "post": {
         "consumes": [
           "application/json"
@@ -17219,7 +17270,7 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/payment/methods": {
+    "/platform/public/namespaces/{namespace}/payment/methods": {
       "get": {
         "consumes": [
           "application/json"
@@ -17266,7 +17317,7 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info": {
+    "/platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info": {
       "get": {
         "consumes": [
           "application/json"
@@ -17316,7 +17367,7 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay": {
+    "/platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay": {
       "post": {
         "consumes": [
           "application/json"
@@ -17405,7 +17456,7 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status": {
+    "/platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status": {
       "get": {
         "consumes": [
           "application/json"
@@ -17449,7 +17500,7 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/payment/publicconfig": {
+    "/platform/public/namespaces/{namespace}/payment/publicconfig": {
       "get": {
         "consumes": [
           "application/json"
@@ -17490,7 +17541,8 @@
             "in": "query",
             "name": "sandbox",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -17513,7 +17565,7 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/payment/qrcode": {
+    "/platform/public/namespaces/{namespace}/payment/qrcode": {
       "get": {
         "description": "Get qrcode.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: QRCode image stream\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetQRCode",
@@ -17549,7 +17601,7 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/payment/returnurl": {
+    "/platform/public/namespaces/{namespace}/payment/returnurl": {
       "get": {
         "description": "Normalize payment return url for payment provider\u0026lt;br\u0026gt;Payment response: \u0026lt;table\u0026gt;\u0026lt;tr\u0026gt;\u0026lt;td\u0026gt;Field\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;Type\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;Required\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;Description\u0026lt;/td\u0026gt;\u0026lt;/tr\u0026gt;\u0026lt;tr\u0026gt;\u0026lt;td\u0026gt;orderNo\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;String\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;Yes\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;order no\u0026lt;/td\u0026gt;\u0026lt;/tr\u0026gt;\u0026lt;tr\u0026gt;\u0026lt;td\u0026gt;paymentStatus\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;String\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;Yes\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;DONE: The payment was successfully completed.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;CANCELLED: The payment was cancelled by the shopper before completion, or the shopper returned to the merchant\u0026#39;s site before completing the transaction.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;PENDING: Inform the shopper that you\u0026#39;ve received their order, and are waiting for the payment to be completed.\n\nWhen the shopper has completed the payment you will receive a successful AUTHORISATION.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;RECEIVED: Inform the shopper that you\u0026#39;ve received their order, and are waiting for the payment to clear.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;UNKNOWN: An error occurred during the payment processing.\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;FAILED: Shopper paid failed because of various reasons.\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/td\u0026gt;\u0026lt;/tr\u0026gt;\u0026lt;tr\u0026gt;\u0026lt;td\u0026gt;reason\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;String\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;No\u0026lt;/td\u0026gt;\u0026lt;td\u0026gt;payment status reason\u0026lt;/td\u0026gt;\u0026lt;/tr\u0026gt;\u0026lt;/table\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;xsolla\u0026lt;/i\u0026gt;: parameters \u0026#39;user_id\u0026#39;, \u0026#39;foreinginvoice\u0026#39;, \u0026#39;invoice_id\u0026#39; and \u0026#39;status\u0026#39; will be automatically added to the link\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;adyen\u0026lt;/i\u0026gt;: https://docs.adyen.com/developers/checkout/web-sdk\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicNormalizePaymentReturnUrl",
@@ -17616,20 +17668,9 @@
             "type": "string"
           },
           {
+            "description": "paypal and xsolla will return this",
             "in": "query",
             "name": "status",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "resultCode",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "payload",
             "required": false,
             "type": "string"
           },
@@ -17650,6 +17691,34 @@
             "description": "PayPal payer id",
             "in": "query",
             "name": "PayerID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "adyen redirect resultCode from checkout sdk",
+            "in": "query",
+            "name": "resultCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "adyen redirect session data for checkout sdk",
+            "in": "query",
+            "name": "payload",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "adyen redirect session Id for drop in",
+            "in": "query",
+            "name": "sessionId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "adyen redirect session data for drop in",
+            "in": "query",
+            "name": "redirectResult",
             "required": false,
             "type": "string"
           }
@@ -17674,7 +17743,7 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/payment/tax": {
+    "/platform/public/namespaces/{namespace}/payment/tax": {
       "get": {
         "consumes": [
           "application/json"
@@ -17746,7 +17815,7 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/rewards/byCode": {
+    "/platform/public/namespaces/{namespace}/rewards/byCode": {
       "get": {
         "description": "This API is used to get reward by reward code.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:REWARD\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: reward instance\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getRewardByCode",
@@ -17802,7 +17871,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/rewards/byCriteria": {
+    "/platform/public/namespaces/{namespace}/rewards/byCriteria": {
       "get": {
         "description": "This API is used to query rewards by criteria.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:REWARD\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of rewards\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "queryRewards_1",
@@ -17885,7 +17954,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/rewards/{rewardId}": {
+    "/platform/public/namespaces/{namespace}/rewards/{rewardId}": {
       "get": {
         "description": "This API is used to get reward by reward Id.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:REWARD\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: reward instance\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getReward_1",
@@ -17941,7 +18010,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/stores": {
+    "/platform/public/namespaces/{namespace}/stores": {
       "get": {
         "description": "This API is used to list all stores in a namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;PREVIEW\u0026#34;, action=1(CREATE) (user with this permission can view draft store)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Optional permission\u0026lt;/i\u0026gt;: resource=\u0026#34;SANDBOX\u0026#34;, action=1(CREATE) (user with this permission can view draft store)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: the list of stores\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicListStores",
@@ -17973,7 +18042,7 @@
         ]
       }
     },
-    "/public/namespaces/{namespace}/users/me/entitlements/ownership/any": {
+    "/platform/public/namespaces/{namespace}/users/me/entitlements/ownership/any": {
       "get": {
         "description": "Exists any my active entitlement of specified itemIds, skus and appIds\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicExistsAnyMyActiveEntitlement",
@@ -18047,7 +18116,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/me/entitlements/ownership/byAppId": {
+    "/platform/public/namespaces/{namespace}/users/me/entitlements/ownership/byAppId": {
       "get": {
         "description": "Get my app entitlement ownership by appId.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Path\u0026#39;s namespace\u0026lt;/i\u0026gt; : \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;can be filled with \u0026lt;b\u0026gt;publisher namespace\u0026lt;/b\u0026gt; in order to get \u0026lt;b\u0026gt;publisher namespace app entitlement ownership\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetMyAppEntitlementOwnershipByAppId",
@@ -18097,7 +18166,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/me/entitlements/ownership/byItemId": {
+    "/platform/public/namespaces/{namespace}/users/me/entitlements/ownership/byItemId": {
       "get": {
         "description": "Get my entitlement ownership by itemId.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Path\u0026#39;s namespace\u0026lt;/i\u0026gt; : \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;can be filled with \u0026lt;b\u0026gt;publisher namespace\u0026lt;/b\u0026gt; in order to get \u0026lt;b\u0026gt;publisher namespace entitlement ownership by sku\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;can be filled with \u0026lt;b\u0026gt;game namespace\u0026lt;/b\u0026gt; in order to get \u0026lt;b\u0026gt;game namespace entitlement ownership by sku\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetMyEntitlementOwnershipByItemId",
@@ -18160,7 +18229,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/me/entitlements/ownership/bySku": {
+    "/platform/public/namespaces/{namespace}/users/me/entitlements/ownership/bySku": {
       "get": {
         "description": "Get my entitlement ownership by sku.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Path\u0026#39;s namespace\u0026lt;/i\u0026gt; : \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;can be filled with \u0026lt;b\u0026gt;publisher namespace\u0026lt;/b\u0026gt; in order to get \u0026lt;b\u0026gt;publisher namespace entitlement ownership by sku\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;can be filled with \u0026lt;b\u0026gt;game namespace\u0026lt;/b\u0026gt; in order to get \u0026lt;b\u0026gt;game namespace entitlement ownership by sku\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetMyEntitlementOwnershipBySku",
@@ -18223,7 +18292,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/me/entitlements/ownershipToken": {
+    "/platform/public/namespaces/{namespace}/users/me/entitlements/ownershipToken": {
       "get": {
         "description": "Gets an entitlement ownership token of specified itemIds, skus and appIds\u0026lt;p\u0026gt;The decoded ownership token header like below:\u0026lt;p\u0026gt;\u0026lt;pre\u0026gt;\u0026lt;code\u0026gt;{\r\n  \u0026#34;kid\u0026#34;: \u0026#34;9fd4cd5f991cebe3323605cd12d3b8bfdfc73fa4\u0026#34;,\r\n  \u0026#34;typ\u0026#34;: \u0026#34;JWT\u0026#34;,\r\n  \u0026#34;alg\u0026#34;: \u0026#34;RS256\u0026#34;\r\n}\r\n\u0026lt;/code\u0026gt;\u0026lt;/pre\u0026gt;That you can get the jwks by api \u0026lt;baseUrl\u0026gt;/platform/jwks, if the configured private key is same as IAM, \u0026lt;p\u0026gt;you can also get jwks from IAM endpoint. \u0026lt;p\u0026gt;The decoded ownership token payload like below:\u0026lt;p\u0026gt;\u0026lt;pre\u0026gt;\u0026lt;code\u0026gt;{\r\n \u0026#34;namespace\u0026#34;: \u0026#34;accelbyte\u0026#34;,\r\n \u0026#34;entitlements\u0026#34;: [\r\n  {\r\n    \u0026#34;itemId\u0026#34;: \u0026#34;4c1296291f604c199f7bb7f0ee02e5f8\u0026#34;,\r\n    \u0026#34;appType\u0026#34;: null,\r\n    \u0026#34;appId\u0026#34;: null,\r\n    \u0026#34;namespace\u0026#34;: \u0026#34;accelbyte\u0026#34;,\r\n    \u0026#34;itemNamespace\u0026#34;: \u0026#34;accelbyte\u0026#34;,\r\n    \u0026#34;sku\u0026#34;: \u0026#34;prime-plus\u0026#34;\r\n  },\r\n  {\r\n    \u0026#34;itemId\u0026#34;: \u0026#34;e8f4974cf45c4e1f8d4f0c6990c518bd\u0026#34;,\r\n    \u0026#34;appType\u0026#34;: \u0026#34;GAME\u0026#34;,\r\n    \u0026#34;appId\u0026#34;: \u0026#34;omeganebula\u0026#34;,\r\n    \u0026#34;namespace\u0026#34;: \u0026#34;accelbyte\u0026#34;,\r\n    \u0026#34;itemNamespace\u0026#34;: \u0026#34;accelbyte\u0026#34;,\r\n    \u0026#34;sku\u0026#34;: \u0026#34;APPG005ON\u0026#34;\r\n  }\r\n ],\r\n\u0026#34;sub\u0026#34;: \u0026#34;66459eb6a4e44e6fb0040bd20c1079a5\u0026#34;,\r\n\u0026#34;exp\u0026#34;: 1619624360,\r\n\u0026#34;iat\u0026#34;: 1619624060\r\n}\r\n\u0026lt;/code\u0026gt;\u0026lt;/pre\u0026gt;\u0026lt;b\u0026gt;if there\u0026#39;s no active entitlement for the specific params, the entitlements section will be omitted\u0026lt;/b\u0026gt;.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetEntitlementOwnershipToken",
@@ -18297,7 +18366,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/me/wallets/{currencyCode}": {
+    "/platform/public/namespaces/{namespace}/users/me/wallets/{currencyCode}": {
       "get": {
         "consumes": [
           "application/json"
@@ -18351,7 +18420,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/dlc/psn/sync": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/dlc/psn/sync": {
       "put": {
         "description": "Synchronize with dlc entitlements in PSN Store.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: result of synchronization\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicSyncPsnDlcInventory",
@@ -18406,7 +18475,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/dlc/steam/sync": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/dlc/steam/sync": {
       "put": {
         "description": "Sync steam dlc.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "syncSteamDLC",
@@ -18455,7 +18524,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/dlc/xbl/sync": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/dlc/xbl/sync": {
       "put": {
         "description": "Sync Xbox inventory\u0026#39;s dlc items.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "syncXboxDLC",
@@ -18504,7 +18573,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/entitlements": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/entitlements": {
       "get": {
         "description": "Query user entitlements for a specific user.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: entitlement list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicQueryUserEntitlements",
@@ -18611,7 +18680,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/entitlements/byAppId": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/byAppId": {
       "get": {
         "description": "Get user app entitlement by appId.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserAppEntitlementByAppId",
@@ -18673,7 +18742,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/entitlements/byAppType": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/byAppType": {
       "get": {
         "description": "Query app entitlements by appType.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: app entitlement pagination\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicQueryUserEntitlementsByAppType",
@@ -18751,7 +18820,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/entitlements/byItemId": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/byItemId": {
       "get": {
         "description": "Get user entitlement by itemId.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserEntitlementByItemId",
@@ -18826,7 +18895,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/entitlements/bySku": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/bySku": {
       "get": {
         "description": "Get user entitlement by sku.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserEntitlementBySku",
@@ -18901,7 +18970,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/any": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/any": {
       "get": {
         "description": "Exists any user active entitlement of specified itemIds, skus and appIds\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicExistsAnyUserActiveEntitlement",
@@ -18981,7 +19050,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/byAppId": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/byAppId": {
       "get": {
         "description": "Get user app entitlement ownership by appId.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserAppEntitlementOwnershipByAppId",
@@ -19037,7 +19106,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/byItemId": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/byItemId": {
       "get": {
         "description": "Get user entitlement ownership by itemId.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserEntitlementOwnershipByItemId",
@@ -19106,7 +19175,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/bySku": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/bySku": {
       "get": {
         "description": "Get user entitlement ownership by sku.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserEntitlementOwnershipBySku",
@@ -19175,7 +19244,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}": {
       "get": {
         "description": "Get user entitlement.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: entitlement\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserEntitlement",
@@ -19237,7 +19306,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement": {
       "put": {
         "description": "Consume user entitlement. If the entitlement useCount is 0, the status will be CONSUMED.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: consumed entitlement\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicConsumeUserEntitlement",
@@ -19313,7 +19382,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/fulfillment/code": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/fulfillment/code": {
       "post": {
         "consumes": [
           "application/json"
@@ -19392,7 +19461,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt": {
       "put": {
         "description": "Verify apple iap receipt and fulfill item.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicFulfillAppleIAPItem",
@@ -19465,7 +19534,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/iap/epicgames/sync": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/iap/epicgames/sync": {
       "put": {
         "description": "Sync epic games inventory\u0026#39;s items.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "syncEpicGamesInventory",
@@ -19526,7 +19595,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/iap/google/receipt": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt": {
       "put": {
         "description": "Verify google iap receipt and fulfill item.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicFulfillGoogleIAPItem",
@@ -19602,7 +19671,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/iap/psn/sync": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/iap/psn/sync": {
       "put": {
         "consumes": [
           "application/json"
@@ -19672,7 +19741,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/iap/stadia/sync": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/iap/stadia/sync": {
       "put": {
         "description": "Sync stadia entitlements.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "syncStadiaEntitlement",
@@ -19727,7 +19796,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/iap/steam/sync": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/iap/steam/sync": {
       "put": {
         "description": "Sync steam inventory\u0026#39;s items.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "syncSteamInventory",
@@ -19782,7 +19851,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/iap/twitch/sync": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/iap/twitch/sync": {
       "put": {
         "description": "Sync twitch drops entitlements.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "syncTwitchDropsEntitlement",
@@ -19837,7 +19906,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/iap/xbl/sync": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/iap/xbl/sync": {
       "put": {
         "description": "Sync Xbox inventory\u0026#39;s items.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "syncXboxInventory",
@@ -19898,7 +19967,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/orders": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/orders": {
       "get": {
         "consumes": [
           "application/json"
@@ -20081,7 +20150,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}": {
       "get": {
         "consumes": [
           "application/json"
@@ -20146,7 +20215,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel": {
       "put": {
         "consumes": [
           "application/json"
@@ -20217,7 +20286,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history": {
       "get": {
         "description": "Get user order histories.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:ORDER\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: get order history\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserOrderHistories",
@@ -20276,7 +20345,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf": {
       "get": {
         "description": "Download user order receipt by orderNo.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:ORDER\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: order receipt pdf\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicDownloadUserOrderReceipt",
@@ -20341,7 +20410,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/payment/accounts": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/payment/accounts": {
       "get": {
         "consumes": [
           "application/json"
@@ -20397,7 +20466,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/payment/accounts/{type}/{id}": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/payment/accounts/{type}/{id}": {
       "delete": {
         "consumes": [
           "application/json"
@@ -20465,7 +20534,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/subscriptions": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/subscriptions": {
       "get": {
         "consumes": [
           "application/json"
@@ -20667,7 +20736,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/subscriptions/subscribable/byItemId": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/subscriptions/subscribable/byItemId": {
       "get": {
         "description": "Check user subscription subscribable by itemId, ACTIVE USER subscription can\u0026#39;t do subscribe again.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: subscribable info\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicCheckUserSubscriptionSubscribableByItemId",
@@ -20723,7 +20792,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}": {
       "get": {
         "consumes": [
           "application/json"
@@ -20788,7 +20857,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount": {
       "put": {
         "consumes": [
           "application/json"
@@ -20865,7 +20934,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel": {
       "put": {
         "consumes": [
           "application/json"
@@ -20944,7 +21013,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/history": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/history": {
       "get": {
         "description": "Get user subscription billing histories.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: paginated subscription history\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserSubscriptionBillingHistories",
@@ -20972,7 +21041,8 @@
             "in": "query",
             "name": "excludeFree",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "default": 0,
@@ -21023,7 +21093,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}": {
       "get": {
         "consumes": [
           "application/json"
@@ -21084,7 +21154,7 @@
         }
       }
     },
-    "/public/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/transactions": {
+    "/platform/public/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/transactions": {
       "get": {
         "consumes": [
           "application/json"
@@ -21188,7 +21258,8 @@
         },
         "authoriseAsCapture": {
           "description": "authorise as capture means no separated capture event",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "blockedPaymentMethods": {
           "description": "specifying the payment methods that are blocked with the paymentMethod.type. paymentMethod.type of each payment method link: https://docs.adyen.com/developers/payment-methods",
@@ -21196,6 +21267,14 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "clientKey": {
+          "description": "client key, max length is 4096",
+          "type": "string"
+        },
+        "dropInSettings": {
+          "description": "Adyen drop in settings json string",
+          "type": "string"
         },
         "liveEndpointUrlPrefix": {
           "description": "Provide the unique live url prefix from the \"API URLs and Response\" menu in the Adyen Customer Area. Under sandbox env, please input random words.",
@@ -21222,7 +21301,7 @@
           "type": "string"
         },
         "settings": {
-          "description": "Adyen settings json string, adyen settings docs: https://docs.adyen.com/checkout/web-sdk/customization/settings/",
+          "description": "Adyen settings json string(Deprecated, please use dropInSettings field) adyen settings docs: https://docs.adyen.com/checkout/web-sdk/customization/settings/",
           "example": "{\"autoFocusOnLoad\":true,\"consolidateCards\":true,\"initialPMCount\":5,\"translations\":{\"deliveryAddress\":{\"en_US\":\"Shipping Address\",\"nl_NL\":\"Verzendadres\"}},\"paymentMethods\":{\"card\":{\"sfStyles\":{\"base\":{\"color\":\"#000\",\"fontSize\":\"14px\",\"lineHeight\":\"14px\",\"fontSmoothing\":\"antialiased\"},\"error\":{\"color\":\"red\"},\"placeholder\":{\"color\":\"#d8d8d8\"},\"validated\":{\"color\":\"green\"}},\"separateDateInputs\":false,\"placeholders\":{\"encryptedCardNumber\":\"4111 1111 1111 1111\",\"encryptedExpiryDate\":\"08/18\",\"encryptedSecurityCode\":\"737\"}}}}",
           "type": "string"
         }
@@ -21651,10 +21730,12 @@
       "properties": {
         "excludeOldTransactions": {
           "description": "Only used for iOS7 style app receipts that contain auto-renewable or non-renewing subscriptions. If value is true, response includes only the latest renewal transaction for any subscriptions.",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "language": {
           "description": "language value from language tag, allowed format: en, en-US",
+          "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",
           "type": "string"
         },
         "productId": {
@@ -21702,7 +21783,8 @@
           "type": "string"
         },
         "root": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "updatedAt": {
           "description": "Category updated time",
@@ -21880,7 +21962,8 @@
         },
         "changeBillingAccount": {
           "description": "Is this payment for billing account change",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "createdAt": {
           "description": "created at",
@@ -21923,7 +22006,8 @@
         },
         "sandbox": {
           "description": "sandbox",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "sku": {
           "description": "subscription sku",
@@ -22156,7 +22240,8 @@
         },
         "listable": {
           "description": "Whether can be visible in Store for public user",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "localExt": {
           "additionalProperties": {
@@ -22188,7 +22273,8 @@
         },
         "purchasable": {
           "description": "Whether can be purchased",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "recurring": {
           "$ref": "#/definitions/Recurring",
@@ -22219,7 +22305,8 @@
         },
         "stackable": {
           "description": "Whether stack the CONSUMABLE entitlement",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "status": {
           "description": "Item status",
@@ -22627,7 +22714,8 @@
       "properties": {
         "immediate": {
           "description": "immediate, default false",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "reason": {
           "description": "cancel reason",
@@ -22683,7 +22771,8 @@
           "type": "string"
         },
         "root": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "updatedAt": {
           "description": "Category updated time",
@@ -22909,7 +22998,8 @@
     "ConditionMatchResult": {
       "properties": {
         "matched": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "matchedConditions": {
           "items": {
@@ -23243,6 +23333,7 @@
         },
         "language": {
           "description": "language value from language tag, allowed format: en, en-US",
+          "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",
           "type": "string"
         },
         "quantity": {
@@ -23448,7 +23539,8 @@
         },
         "stackable": {
           "description": "Whether the CONSUMABLE entitlement is stackable",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "startDate": {
           "description": "entitlement start date",
@@ -23568,7 +23660,8 @@
         },
         "stackable": {
           "description": "Whether the CONSUMABLE entitlement is stackable",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "stackedUseCount": {
           "description": "CONSUMABLE entitlement stacked use count",
@@ -23803,6 +23896,7 @@
         },
         "language": {
           "description": "language value from language tag, allowed format: en, en-US",
+          "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",
           "type": "string"
         },
         "metadata": {
@@ -23818,7 +23912,8 @@
         },
         "omitNotification": {
           "description": "TEST PURPOSE, if set it will not send async notification to the API invoker, only can set true while this payment is sandbox",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "price": {
           "description": "Price of order",
@@ -23839,7 +23934,8 @@
         },
         "sandbox": {
           "description": "TEST PURPOSE, sandbox(Active in real currency mode), default is false",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "sku": {
           "description": "optional, unique identity for the item",
@@ -23903,6 +23999,7 @@
         },
         "language": {
           "description": "language value from language tag, allowed format: en, en-US",
+          "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",
           "type": "string"
         },
         "region": {
@@ -24460,7 +24557,8 @@
           "type": "string"
         },
         "root": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "updatedAt": {
           "description": "Category updated time",
@@ -24595,7 +24693,8 @@
         },
         "listable": {
           "description": "Whether can be visible in Store for public user",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "localizations": {
           "additionalProperties": {
@@ -24624,7 +24723,8 @@
         },
         "purchasable": {
           "description": "Whether can be purchased",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "recurring": {
           "$ref": "#/definitions/Recurring",
@@ -24654,7 +24754,8 @@
         },
         "stackable": {
           "description": "Whether stack the CONSUMABLE entitlement",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "status": {
           "description": "Item status",
@@ -24778,10 +24879,12 @@
       "properties": {
         "autoAck": {
           "description": "If invoke Google play's Acknowledge after sync an durable item",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "language": {
           "description": "language value from language tag, allowed format: en, en-US",
+          "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",
           "type": "string"
         },
         "orderId": {
@@ -24823,7 +24926,8 @@
       "properties": {
         "needConsume": {
           "description": "if client side need consume this receipt's product by invoke Google Billing client's consumeAsync",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "type": "object"
@@ -24877,7 +24981,8 @@
           "type": "string"
         },
         "root": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "updatedAt": {
           "description": "Category updated time",
@@ -25008,7 +25113,8 @@
         },
         "sandbox": {
           "description": "sandbox",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "status": {
           "description": "status",
@@ -25168,7 +25274,8 @@
         },
         "success": {
           "description": "acquire result",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -25277,7 +25384,8 @@
         },
         "listable": {
           "description": "Whether can be visible in Store for public user",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "localizations": {
           "additionalProperties": {
@@ -25302,7 +25410,8 @@
         },
         "purchasable": {
           "description": "Whether can be purchased",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "recurring": {
           "$ref": "#/definitions/Recurring",
@@ -25332,7 +25441,8 @@
         },
         "stackable": {
           "description": "Whether to stack the entitlement when entitlement type is \"CONSUMABLE\"",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "status": {
           "description": "status",
@@ -25550,7 +25660,8 @@
         },
         "listable": {
           "description": "Whether can be visible in Store for public user",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "localExt": {
           "additionalProperties": {
@@ -25582,7 +25693,8 @@
         },
         "purchasable": {
           "description": "Whether can be purchased",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "recurring": {
           "$ref": "#/definitions/Recurring",
@@ -25613,7 +25725,8 @@
         },
         "stackable": {
           "description": "Whether stack the CONSUMABLE entitlement",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "status": {
           "description": "Item status",
@@ -25798,7 +25911,8 @@
         },
         "listable": {
           "description": "Whether can be visible in Store for public user",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "maxCount": {
           "description": "Max count, -1 means UNLIMITED, unset when itemType is CODE",
@@ -25820,7 +25934,8 @@
         },
         "purchasable": {
           "description": "Whether can be purchased",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "recurring": {
           "$ref": "#/definitions/Recurring",
@@ -25848,7 +25963,8 @@
         },
         "stackable": {
           "description": "Whether stack the CONSUMABLE entitlement",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "targetCurrencyCode": {
           "description": "Target currency code of coin item",
@@ -25994,7 +26110,8 @@
         },
         "listable": {
           "description": "Whether can be visible in Store for public user",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "localizations": {
           "additionalProperties": {
@@ -26019,7 +26136,8 @@
         },
         "purchasable": {
           "description": "Whether can be purchased",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "recurring": {
           "$ref": "#/definitions/Recurring",
@@ -26049,7 +26167,8 @@
         },
         "stackable": {
           "description": "Whether to stack the entitlement when entitlement type is \"CONSUMABLE\"",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "status": {
           "description": "status",
@@ -26370,6 +26489,7 @@
       "properties": {
         "language": {
           "description": "language value from language tag, allowed format: en, en-US",
+          "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",
           "type": "string"
         },
         "productId": {
@@ -26438,7 +26558,8 @@
           "x-nullable": true
         },
         "charged": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "chargedTime": {
           "format": "date-time",
@@ -26483,7 +26604,8 @@
           "type": "object"
         },
         "free": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "fulfilledTime": {
           "format": "date-time",
@@ -26567,7 +26689,8 @@
           "type": "integer"
         },
         "sandbox": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "status": {
           "enum": [
@@ -26643,6 +26766,7 @@
         },
         "language": {
           "description": "language value from language tag, allowed format: en, en-US",
+          "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",
           "type": "string"
         },
         "price": {
@@ -26904,7 +27028,8 @@
         },
         "sandbox": {
           "description": "isSandbox, indicate if order is sandbox",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "status": {
           "description": "Order status",
@@ -27069,7 +27194,8 @@
           "type": "object"
         },
         "free": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "type": "object"
@@ -27123,7 +27249,8 @@
       "properties": {
         "owned": {
           "description": "ownership",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -27202,7 +27329,8 @@
       "properties": {
         "dryRun": {
           "description": "mock workflow while set true, default false",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "namespace": {
           "description": "namespace",
@@ -27226,7 +27354,8 @@
       "properties": {
         "dryRun": {
           "description": "mock workflow while set true, default false",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "notifyUrl": {
           "description": "notify url for ECommerce payment notification",
@@ -27472,7 +27601,8 @@
           "x-nullable": true
         },
         "charging": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "createdAt": {
           "format": "date-time",
@@ -27531,7 +27661,8 @@
           "type": "string"
         },
         "omitNotification": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "paymentMethod": {
           "type": "string"
@@ -27590,7 +27721,8 @@
           "type": "integer"
         },
         "sandbox": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "sku": {
           "type": "string"
@@ -27704,7 +27836,8 @@
     "PaymentOrderChargeStatus": {
       "properties": {
         "charging": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "status": {
           "enum": [
@@ -27772,6 +27905,7 @@
         },
         "language": {
           "description": "language value from language tag, allowed format: en, en-US",
+          "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",
           "type": "string"
         },
         "metadata": {
@@ -27787,7 +27921,8 @@
         },
         "omitNotification": {
           "description": "TEST PURPOSE, if set it will not send async notification to the API invoker, only can set true while this payment is sandbox",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "price": {
           "description": "Price of order",
@@ -27808,7 +27943,8 @@
         },
         "sandbox": {
           "description": "TEST PURPOSE, sandbox(Active in real currency mode), default is false",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "sku": {
           "description": "optional, unique identity for the item",
@@ -27891,7 +28027,8 @@
       "properties": {
         "charging": {
           "description": "charging",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "currencyCode": {
           "description": "currency code",
@@ -27919,7 +28056,8 @@
         },
         "sandbox": {
           "description": "isSandbox, indicate if order is sandbox",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "title": {
           "description": "Order title",
@@ -27972,7 +28110,8 @@
         },
         "charging": {
           "description": "if charging is true, means user have finished transaction, platform is waiting for payment notification",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "createdAt": {
           "description": "createdAt",
@@ -28044,7 +28183,8 @@
         },
         "omitNotification": {
           "description": "TEST PURPOSE, if set it will not send async notification to the API invoker, only can set true while this payment is sandbox",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "paymentMethod": {
           "description": "Payment method",
@@ -28112,7 +28252,8 @@
         },
         "sandbox": {
           "description": "isSandbox, indicate if order is sandbox",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "sku": {
           "description": "optional, unique identity for the item",
@@ -28290,11 +28431,13 @@
       "properties": {
         "charging": {
           "description": "charging",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "success": {
           "description": "success",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -28391,7 +28534,8 @@
       "properties": {
         "pending": {
           "description": "payment request process is pending",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "reason": {
           "description": "failed reason",
@@ -28403,7 +28547,8 @@
         },
         "success": {
           "description": "payment request process result",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -28458,11 +28603,13 @@
         },
         "taxJarEnabled": {
           "description": "taxjar api integration enable",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "useGlobalTaxJarApiToken": {
           "description": "only works when taxJarEnabled=true, and if useGlobalTaxJarApiToken is true, we will reset the taxJarApiToken as null",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -28524,11 +28671,13 @@
         },
         "taxJarEnabled": {
           "description": "taxjar integration enabled",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "useGlobalTaxJarApiToken": {
           "description": "if use global taxjar token",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -28585,7 +28734,8 @@
         },
         "taxJarEnabled": {
           "description": "if taxJar integration is enabled",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "taxJarProductCodesMapping": {
           "additionalProperties": {
@@ -28609,7 +28759,8 @@
         },
         "taxJarEnabled": {
           "description": "if taxJar integration is enabled",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "taxJarProductCodesMapping": {
           "additionalProperties": {
@@ -28661,12 +28812,19 @@
         "returnUrl": {
           "description": "return url",
           "type": "string"
+        },
+        "sessionData": {
+          "description": "adyen session data",
+          "type": "string"
+        },
+        "sessionId": {
+          "description": "adyen session id",
+          "type": "string"
         }
       },
       "required": [
         "paymentProvider",
-        "paymentType",
-        "paymentUrl"
+        "paymentType"
       ],
       "type": "object"
     },
@@ -29063,7 +29221,8 @@
         },
         "listable": {
           "description": "Whether can be visible in Store for public user",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "localExt": {
           "additionalProperties": {
@@ -29095,7 +29254,8 @@
         },
         "purchasable": {
           "description": "Whether can be purchased",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "recurring": {
           "$ref": "#/definitions/Recurring",
@@ -29126,7 +29286,8 @@
         },
         "stackable": {
           "description": "Whether stack the CONSUMABLE entitlement",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "status": {
           "description": "Item status",
@@ -29249,7 +29410,8 @@
         },
         "triggered": {
           "description": "triggered or not",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -29894,7 +30056,8 @@
         },
         "stackable": {
           "description": "whether the CONSUMABLE entitlement is stackable",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "stackedUseCount": {
           "description": "CONSUMABLE entitlement stacked use count",
@@ -29986,6 +30149,7 @@
         },
         "language": {
           "description": "language value from language tag, allowed format: en, en-US",
+          "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",
           "type": "string"
         },
         "region": {
@@ -30086,6 +30250,7 @@
         },
         "language": {
           "description": "language value from language tag, allowed format: en, en-US",
+          "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",
           "type": "string"
         },
         "price": {
@@ -30116,7 +30281,8 @@
       "properties": {
         "autoBackup": {
           "description": "Is auto backup",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "createdAt": {
           "description": "Backup created time",
@@ -30218,7 +30384,8 @@
         },
         "published": {
           "description": "If Store is published",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "publishedTime": {
           "description": "Store published time",
@@ -30337,7 +30504,8 @@
       "properties": {
         "subscribable": {
           "description": "subscribable",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -30357,6 +30525,7 @@
         },
         "language": {
           "description": "language value from language tag, allowed format: en, en-US",
+          "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",
           "type": "string"
         },
         "region": {
@@ -30415,11 +30584,13 @@
         },
         "inFixedCycleTrial": {
           "description": "Subscription in fixed cycle trial or not",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "inFixedFreeDays": {
           "description": "Subscription in fixed free days or not",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "namespace": {
           "description": "Subscription namespace",
@@ -30561,7 +30732,8 @@
         },
         "firstSubscribe": {
           "description": "is first subscribe, will enjoy trial if trial available if it's first time subscribe",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "id": {
           "description": "id",
@@ -30569,11 +30741,13 @@
         },
         "inFixedCycleTrial": {
           "description": "whether in fixed cycle trial",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "inFixedFreeDays": {
           "description": "whether in fixed free days",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "itemId": {
           "description": "item id",
@@ -30599,11 +30773,13 @@
         },
         "paid": {
           "description": "whether user paid from the subscription start",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "paymentFlowRequired": {
           "description": "whether need to go to payment station for payment",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "paymentOrderNo": {
           "description": "current payment order no",
@@ -30637,7 +30813,8 @@
         },
         "sandbox": {
           "description": "is sandbox mode",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "sku": {
           "description": "sku",
@@ -30812,7 +30989,8 @@
       "properties": {
         "enableTax": {
           "description": "if enable tax",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "formattedTax": {
           "description": "formattedTax",
@@ -30838,7 +31016,8 @@
         },
         "success": {
           "description": "success",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -30949,7 +31128,8 @@
         },
         "success": {
           "description": "operation result",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -30968,7 +31148,8 @@
         },
         "owned": {
           "description": "ownership",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -31110,7 +31291,8 @@
         },
         "sandbox": {
           "description": "isSandbox, indicate if order is sandbox",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "sku": {
           "description": "optional, unique identity for the item",
@@ -31231,7 +31413,8 @@
           "type": "string"
         },
         "notified": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "paymentMethod": {
           "type": "string"
@@ -31350,6 +31533,7 @@
         },
         "language": {
           "description": "language value from language tag, allowed format: en, en-US",
+          "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",
           "type": "string"
         },
         "region": {
@@ -31730,7 +31914,8 @@
         },
         "showCloseButton": {
           "description": "showCloseButton",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "size": {
           "description": "size",
@@ -31771,7 +31956,8 @@
         },
         "showCloseButton": {
           "description": "Whether to show a Close button in pay station. false by default",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "size": {
           "description": "Payment UI size, MEDIUM for default.",

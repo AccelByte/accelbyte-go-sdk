@@ -402,13 +402,13 @@
             "in": "query",
             "name": "pageSize",
             "required": true,
-            "type": "number"
+            "type": "integer"
           },
           {
             "description": "Offset to query",
             "in": "query",
             "name": "offset",
-            "type": "number"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -550,13 +550,13 @@
             "in": "query",
             "name": "pageSize",
             "required": true,
-            "type": "number"
+            "type": "integer"
           },
           {
             "description": "Offset to query",
             "in": "query",
             "name": "offset",
-            "type": "number"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -641,13 +641,13 @@
             "in": "query",
             "name": "pageSize",
             "required": true,
-            "type": "number"
+            "type": "integer"
           },
           {
             "description": "Offset to query",
             "in": "query",
             "name": "offset",
-            "type": "number"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -739,13 +739,13 @@
             "in": "query",
             "name": "pageSize",
             "required": true,
-            "type": "number"
+            "type": "integer"
           },
           {
             "description": "Offset to query",
             "in": "query",
             "name": "offset",
-            "type": "number"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -830,13 +830,13 @@
             "in": "query",
             "name": "pageSize",
             "required": true,
-            "type": "number"
+            "type": "integer"
           },
           {
             "description": "Offset to query",
             "in": "query",
             "name": "offset",
-            "type": "number"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -963,13 +963,13 @@
             "in": "query",
             "name": "pageSize",
             "required": true,
-            "type": "number"
+            "type": "integer"
           },
           {
             "description": "Offset to query",
             "in": "query",
             "name": "offset",
-            "type": "number"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -1061,13 +1061,13 @@
             "in": "query",
             "name": "pageSize",
             "required": true,
-            "type": "number"
+            "type": "integer"
           },
           {
             "description": "Offset to query",
             "in": "query",
             "name": "offset",
-            "type": "number"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -1159,13 +1159,13 @@
             "in": "query",
             "name": "pageSize",
             "required": true,
-            "type": "number"
+            "type": "integer"
           },
           {
             "description": "Offset to query",
             "in": "query",
             "name": "offset",
-            "type": "number"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -1264,13 +1264,13 @@
             "in": "query",
             "name": "pageSize",
             "required": true,
-            "type": "number"
+            "type": "integer"
           },
           {
             "description": "Offset to query",
             "in": "query",
             "name": "offset",
-            "type": "number"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -1711,7 +1711,7 @@
             "description": "Number of result in a page. Default : 100. Max : 500",
             "in": "query",
             "name": "pageSize",
-            "type": "number"
+            "type": "integer"
           },
           {
             "description": "Starting date. e.g. 2015-03-20T12:27:06Z. Default : 1970-01-01T00:00:00Z",
@@ -1729,7 +1729,7 @@
             "description": "Offset to query. Default : 0",
             "in": "query",
             "name": "offset",
-            "type": "number"
+            "type": "integer"
           },
           {
             "in": "body",
@@ -1806,7 +1806,7 @@
             "description": "Number of result in a page. Default : 100. Max : 500",
             "in": "query",
             "name": "pageSize",
-            "type": "number"
+            "type": "integer"
           },
           {
             "description": "Starting date. e.g. 2015-03-20T12:27:06Z. Default : 1970-01-01T00:00:00Z",
@@ -1824,7 +1824,7 @@
             "description": "Offset to query. Default : 0",
             "in": "query",
             "name": "offset",
-            "type": "number"
+            "type": "integer"
           },
           {
             "description": "Event Name to filter",
@@ -1902,7 +1902,7 @@
             "description": "Number of result in a page. Default : 100. Max : 500",
             "in": "query",
             "name": "pageSize",
-            "type": "number"
+            "type": "integer"
           },
           {
             "description": "Starting date. e.g. 2015-03-20T12:27:06Z. Default : 1970-01-01T00:00:00Z",
@@ -1920,7 +1920,7 @@
             "description": "Offset to query. Default : 0",
             "in": "query",
             "name": "offset",
-            "type": "number"
+            "type": "integer"
           },
           {
             "description": "Edit History type to fetch",
@@ -1992,7 +1992,7 @@
             "description": "Number of result in a page. Default : 100. Max : 500",
             "in": "query",
             "name": "pageSize",
-            "type": "number"
+            "type": "integer"
           },
           {
             "description": "Starting date. e.g. 2015-03-20T12:27:06Z. Default : 1970-01-01T00:00:00Z",
@@ -2010,7 +2010,7 @@
             "description": "Offset to query. Default : 0",
             "in": "query",
             "name": "offset",
-            "type": "number"
+            "type": "integer"
           },
           {
             "description": "Event Name to filter",

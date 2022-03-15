@@ -8,12 +8,11 @@
     },
     "description": "Justice Legal Service",
     "title": "justice-legal-service",
-    "version": "1.17.0"
+    "version": "1.18.1"
   },
   "schemes": [
     "https"
   ],
-  "basePath": "/agreement",
   "tags": [
     {
       "name": "Anonymization"
@@ -81,7 +80,7 @@
   },
   "swagger": "2.0",
   "paths": {
-    "/admin/agreements/policies/users/{userId}": {
+    "/agreement/admin/agreements/policies/users/{userId}": {
       "get": {
         "description": "This API will return all accepted Legal Agreements for specified user. Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveAcceptedAgreements",
@@ -125,7 +124,7 @@
         ]
       }
     },
-    "/admin/agreements/policy-versions/users": {
+    "/agreement/admin/agreements/policy-versions/users": {
       "get": {
         "description": "This API will return all users who has accepted a specific policy version.Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveAllUsersByPolicyVersion",
@@ -199,7 +198,7 @@
         ]
       }
     },
-    "/admin/base-policies": {
+    "/agreement/admin/base-policies": {
       "get": {
         "description": "Retrieve all base policies.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveAllLegalPolicies",
@@ -290,7 +289,7 @@
         ]
       }
     },
-    "/admin/base-policies/{basePolicyId}": {
+    "/agreement/admin/base-policies/{basePolicyId}": {
       "get": {
         "description": "Retrieve a base policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveSinglePolicy",
@@ -390,7 +389,7 @@
         ]
       }
     },
-    "/admin/base-policies/{basePolicyId}/countries/{countryCode}": {
+    "/agreement/admin/base-policies/{basePolicyId}/countries/{countryCode}": {
       "get": {
         "description": "Retrieve a Base Legal Policy based on a Particular Country.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrievePolicyCountry",
@@ -444,7 +443,7 @@
         ]
       }
     },
-    "/admin/localized-policy-versions/versions/{policyVersionId}": {
+    "/agreement/admin/localized-policy-versions/versions/{policyVersionId}": {
       "get": {
         "description": "Retrieve versions of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveLocalizedPolicyVersions",
@@ -547,7 +546,7 @@
         ]
       }
     },
-    "/admin/localized-policy-versions/{localizedPolicyVersionId}": {
+    "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}": {
       "get": {
         "description": "Retrieve a version of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveSingleLocalizedPolicyVersion",
@@ -647,7 +646,7 @@
         ]
       }
     },
-    "/admin/localized-policy-versions/{localizedPolicyVersionId}/attachments": {
+    "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/attachments": {
       "post": {
         "description": "Request presigned URL for  upload attachment for a particular localized version of base policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "requestPresignedURL",
@@ -702,7 +701,7 @@
         ]
       }
     },
-    "/admin/localized-policy-versions/{localizedPolicyVersionId}/default": {
+    "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/default": {
       "patch": {
         "description": "Update a localized version policy to be the default.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "setDefaultPolicy",
@@ -740,7 +739,7 @@
         ]
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/agreements/policies": {
+    "/agreement/admin/namespaces/{namespace}/users/{userId}/agreements/policies": {
       "post": {
         "description": "Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "indirectBulkAcceptVersionedPolicy",
@@ -820,7 +819,7 @@
         ]
       }
     },
-    "/admin/namespaces/{namespace}/users/{userId}/eligibilities": {
+    "/agreement/admin/namespaces/{namespace}/users/{userId}/eligibilities": {
       "get": {
         "description": "Retrieve the active policies and its conformance status by userThis process only supports cross-namespace checking between game namespace and publisher namespace , that means if the active policy already accepted by the same user in publisher namespace, then it will also be considered as eligible in non-publisher namespace.\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "adminRetrieveEligibilities",
@@ -889,7 +888,7 @@
         ]
       }
     },
-    "/admin/policies/countries/{countryCode}": {
+    "/agreement/admin/policies/countries/{countryCode}": {
       "get": {
         "description": "Retrieve all active policies based on a country.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrievePolicies",
@@ -933,7 +932,7 @@
         ]
       }
     },
-    "/admin/policies/versions/{policyVersionId}": {
+    "/agreement/admin/policies/versions/{policyVersionId}": {
       "patch": {
         "description": "Update a particular policy version.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updatePolicyVersion",
@@ -988,7 +987,7 @@
         ]
       }
     },
-    "/admin/policies/versions/{policyVersionId}/latest": {
+    "/agreement/admin/policies/versions/{policyVersionId}/latest": {
       "patch": {
         "description": "Manually publish a version of a particular country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publishPolicyVersion",
@@ -1006,7 +1005,8 @@
             "in": "query",
             "name": "shouldNotify",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -1040,7 +1040,7 @@
         ]
       }
     },
-    "/admin/policies/{policyId}": {
+    "/agreement/admin/policies/{policyId}": {
       "patch": {
         "description": "Update country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updatePolicy",
@@ -1086,7 +1086,7 @@
         ]
       }
     },
-    "/admin/policies/{policyId}/default": {
+    "/agreement/admin/policies/{policyId}/default": {
       "patch": {
         "description": "Update a policy to be the default.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "setDefaultPolicy_1",
@@ -1124,7 +1124,7 @@
         ]
       }
     },
-    "/admin/policies/{policyId}/versions": {
+    "/agreement/admin/policies/{policyId}/versions": {
       "get": {
         "description": "Retrieve a version of a particular country specific policy. If version is not provided, the Legal Service will assume caller requesting all versions from country-specific policy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveSinglePolicyVersion",
@@ -1234,7 +1234,7 @@
         ]
       }
     },
-    "/admin/policy-types": {
+    "/agreement/admin/policy-types": {
       "get": {
         "description": "Retrieve all supported policy types.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveAllPolicyTypes",
@@ -1287,7 +1287,7 @@
         ]
       }
     },
-    "/admin/userInfo": {
+    "/agreement/admin/userInfo": {
       "delete": {
         "description": "\u0026lt;b\u0026gt;Important: GOING TO DEPRECATE\u0026lt;/b\u0026gt;\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;Invalidate user info cache in agreement service.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=8 (DELETE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "invalidateUserInfoCache",
@@ -1401,7 +1401,7 @@
         ]
       }
     },
-    "/admin/users/{userId}/anonymization/agreements": {
+    "/agreement/admin/users/{userId}/anonymization/agreements": {
       "delete": {
         "consumes": [
           "application/json"
@@ -1448,7 +1448,7 @@
         ]
       }
     },
-    "/public/agreements/localized-policy-versions/preferences": {
+    "/agreement/public/agreements/localized-policy-versions/preferences": {
       "patch": {
         "description": "Change marketing preference consent.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "changePreferenceConsent",
@@ -1490,7 +1490,7 @@
         ]
       }
     },
-    "/public/agreements/localized-policy-versions/{localizedPolicyVersionId}": {
+    "/agreement/public/agreements/localized-policy-versions/{localizedPolicyVersionId}": {
       "post": {
         "description": "Accepts a legal policy version. Supply with localized version policy id to accept an agreement.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "acceptVersionedPolicy",
@@ -1522,7 +1522,7 @@
         ]
       }
     },
-    "/public/agreements/policies": {
+    "/agreement/public/agreements/policies": {
       "get": {
         "description": "Retrieve accepted Legal Agreements.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveAgreementsPublic",
@@ -1589,7 +1589,7 @@
         ]
       }
     },
-    "/public/agreements/policies/namespaces/{namespace}/countries/{countryCode}/clients/{clientId}/users/{userId}": {
+    "/agreement/public/agreements/policies/namespaces/{namespace}/countries/{countryCode}/clients/{clientId}/users/{userId}": {
       "post": {
         "description": "\u0026lt;b\u0026gt;IMPORTANT: GOING TO DEPRECATE\u0026lt;/b\u0026gt;\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;Accepts many legal policy versions all at once. Supply with localized version policy id, version policy id, policy id, userId, namespace, country code and client id to accept an agreement. This endpoint used by APIGateway during new user registration.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:LEGAL\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "indirectBulkAcceptVersionedPolicyV2",
@@ -1662,7 +1662,7 @@
         ]
       }
     },
-    "/public/agreements/policies/users/{userId}": {
+    "/agreement/public/agreements/policies/users/{userId}": {
       "post": {
         "description": "Accepts many legal policy versions all at once. Supply with localized version policy id and userId to accept an agreement. This endpoint used by Authentication Service during new user registration.\u0026lt;br\u0026gt;\u0026lt;br/\u0026gt;Available Extra Information to return: \u0026lt;br/\u0026gt;\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;b\u0026gt;userIds\u0026lt;/b\u0026gt; : List of userId mapping (\u0026lt;b\u0026gt;IMPORTANT: GOING TO DEPRECATE\u0026lt;/b\u0026gt;)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "indirectBulkAcceptVersionedPolicy_1",
@@ -1708,7 +1708,7 @@
         ]
       }
     },
-    "/public/eligibilities/namespaces/{namespace}": {
+    "/agreement/public/eligibilities/namespaces/{namespace}": {
       "get": {
         "description": "Retrieve the active policies and its conformance status by user.\u0026lt;br\u0026gt;This process supports cross-namespace checking, that means if the active policy already accepted by the same user in other namespace, then it will be considered as eligible.\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveEligibilitiesPublic",
@@ -1746,7 +1746,7 @@
         ]
       }
     },
-    "/public/eligibilities/namespaces/{namespace}/countries/{countryCode}/clients/{clientId}/users/{userId}": {
+    "/agreement/public/eligibilities/namespaces/{namespace}/countries/{countryCode}/clients/{clientId}/users/{userId}": {
       "get": {
         "description": "Retrieve the active policies and its conformance status by userThis process only supports cross-namespace checking between game namespace and publisher namespace , that means if the active policy already accepted by the same user in publisher namespace, then it will also be considered as eligible in non-publisher namespace.\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveEligibilitiesPublicIndirect",
@@ -1802,7 +1802,7 @@
         ]
       }
     },
-    "/public/localized-policy-versions/{localizedPolicyVersionId}": {
+    "/agreement/public/localized-policy-versions/{localizedPolicyVersionId}": {
       "get": {
         "description": "Retrieve specific localized policy version including the policy version and base policy version where the localized policy version located.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveSingleLocalizedPolicyVersion_1",
@@ -1838,7 +1838,7 @@
         ]
       }
     },
-    "/public/policies": {
+    "/agreement/public/policies": {
       "get": {
         "description": "[TODO] Retrieve one or more legal policies with its versions.\u0026lt;br\u0026gt;If the basePolicyId not supplied, then retrieve only all latest policies version with localeId matched.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:*:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrievePolicyVersions",
@@ -1902,7 +1902,7 @@
         ]
       }
     },
-    "/public/policies/countries/{countryCode}": {
+    "/agreement/public/policies/countries/{countryCode}": {
       "get": {
         "description": "Retrieve all active latest policies based on a country.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Leave the policyType empty if you want to be responded with all policy type\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Fill the tags if you want to filter the responded policy by tags\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Fill the defaultOnEmpty with true if you want to be responded with default country-specific policy if your requested country is not exist\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveLatestPolicies",
@@ -1937,7 +1937,8 @@
             "in": "query",
             "name": "defaultOnEmpty",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -1960,7 +1961,7 @@
         ]
       }
     },
-    "/public/policies/namespaces/{namespace}": {
+    "/agreement/public/policies/namespaces/{namespace}": {
       "get": {
         "description": "Retrieve all active latest policies based on a namespace and country. The country will be read from user token.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Leave the policyType empty if you want to be responded with all policy type\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Fill the tags if you want to filter the responded policy by tags\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Fill the defaultOnEmpty with true if you want to be responded with default country-specific policy if your requested country is not exist\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Fill the alwaysIncludeDefault with true if you want to be responded with always include default policy. If there are duplicate policies (default policies and country specific policies with same base policy) it\u0026#39;ll include policy with same country code, for example:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Document 1 (default): Region US (default), UA\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Document 2 (default): Region US (default)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Document 3 (default): Region US (default)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;User: Region UA\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Query: alwaysIncludeDefault: true\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Response: Document 1 (UA), Document 2 (US), Document 3 (US)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission: login user \u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveLatestPoliciesPublic",
@@ -1995,14 +1996,16 @@
             "in": "query",
             "name": "defaultOnEmpty",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "description": "Always include default",
             "in": "query",
             "name": "alwaysIncludeDefault",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -2036,7 +2039,7 @@
         ]
       }
     },
-    "/public/policies/namespaces/{namespace}/countries/{countryCode}": {
+    "/agreement/public/policies/namespaces/{namespace}/countries/{countryCode}": {
       "get": {
         "description": "Retrieve all active latest policies based on a namespace and country.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Leave the policyType empty if you want to be responded with all policy type\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Fill the tags if you want to filter the responded policy by tags\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Fill the defaultOnEmpty with true if you want to be responded with default country-specific policy if your requested country is not exist\u0026lt;/i\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Fill the alwaysIncludeDefault with true if you want to be responded with always include default policy. If there are duplicate policies (default policies and country specific policies with same base policy) it\u0026#39;ll include policy with same country code, for example:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;Document 1 (default): Region US (default), UA\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Document 2 (default): Region US (default)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Document 3 (default): Region US (default)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;User: Region UA\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Query: alwaysIncludeDefault: true\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;Response: Document 1 (UA), Document 2 (US), Document 3 (US)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "retrieveLatestPoliciesByNamespaceAndCountryPublic",
@@ -2078,14 +2081,16 @@
             "in": "query",
             "name": "defaultOnEmpty",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "description": "Always include default",
             "in": "query",
             "name": "alwaysIncludeDefault",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -2108,7 +2113,7 @@
         ]
       }
     },
-    "/public/readiness": {
+    "/agreement/public/readiness": {
       "get": {
         "description": "Readiness status defined as at least one legal basePolicy is present and having active basePolicy.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:LEGAL\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "checkReadiness",
@@ -2146,7 +2151,8 @@
     "AcceptAgreementRequest": {
       "properties": {
         "isAccepted": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "localizedPolicyVersionId": {
           "type": "string"
@@ -2170,7 +2176,8 @@
       "properties": {
         "comply": {
           "description": "Eligibility Status after Accept Agreement",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "ext": {
           "additionalProperties": {
@@ -2181,7 +2188,8 @@
         },
         "proceed": {
           "description": "DEPRECATED the name is not clear, changed with comply",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -2333,7 +2341,8 @@
           "type": "string"
         },
         "isCommitted": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "type": "object"
@@ -2359,7 +2368,8 @@
           "type": "string"
         },
         "isCommitted": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "updatedAt": {
           "format": "date-time",
@@ -2427,7 +2437,8 @@
     "LegalReadinessStatusResponse": {
       "properties": {
         "isReady": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "type": "object"
@@ -2458,7 +2469,8 @@
           "type": "string"
         },
         "isDefaultSelection": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "localeCode": {
           "type": "string"
@@ -2529,13 +2541,16 @@
           "type": "string"
         },
         "isDefaultOpted": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "isDefaultSelection": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "isMandatory": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "policyName": {
           "type": "string"
@@ -2544,7 +2559,8 @@
           "type": "string"
         },
         "shouldNotifyOnUpdate": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "updatedAt": {
           "format": "date-time",
@@ -2580,10 +2596,12 @@
           "type": "string"
         },
         "isCommitted": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "isInEffect": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "publishedDate": {
           "format": "date-time",
@@ -2624,10 +2642,12 @@
           "type": "string"
         },
         "isCommitted": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "isInEffect": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "localizedPolicyVersions": {
           "items": {
@@ -2677,7 +2697,8 @@
           "type": "string"
         },
         "isAccepted": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "localizedPolicyVersion": {
           "$ref": "#/definitions/LocalizedPolicyVersionObject"
@@ -2924,13 +2945,16 @@
           "type": "string"
         },
         "isDefaultOpted": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "isDefaultSelection": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "isMandatory": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "namespace": {
           "type": "string"
@@ -2951,7 +2975,8 @@
           "type": "string"
         },
         "shouldNotifyOnUpdate": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "tags": {
           "items": {
@@ -3000,13 +3025,16 @@
           "type": "string"
         },
         "isDefaultOpted": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "isDefaultSelection": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "isMandatory": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "policyName": {
           "type": "string"
@@ -3021,7 +3049,8 @@
           "type": "string"
         },
         "shouldNotifyOnUpdate": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "updatedAt": {
           "format": "date-time",
@@ -3054,7 +3083,8 @@
           "type": "string"
         },
         "isNeedDocument": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "policyTypeName": {
           "type": "string"
@@ -3093,10 +3123,12 @@
           "type": "string"
         },
         "isCommitted": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "isInEffect": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "localizedPolicyVersions": {
           "items": {
@@ -3147,7 +3179,8 @@
           "type": "string"
         },
         "isAccepted": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "localizedPolicyVersion": {
           "$ref": "#/definitions/LocalizedPolicyVersionObject"
@@ -3189,7 +3222,8 @@
     "RetrieveUserEligibilitiesIndirectResponse": {
       "properties": {
         "isComply": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -3215,10 +3249,12 @@
           "type": "string"
         },
         "isAccepted": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "isMandatory": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "namespace": {
           "type": "string"
@@ -3425,10 +3461,12 @@
           "type": "string"
         },
         "isDefaultOpted": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "isMandatory": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "policyName": {
           "type": "string"
@@ -3437,7 +3475,8 @@
           "type": "string"
         },
         "shouldNotifyOnUpdate": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -3457,7 +3496,8 @@
           "type": "string"
         },
         "isCommitted": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -3488,7 +3528,8 @@
           "type": "string"
         },
         "isCommitted": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "publishedDate": {
           "format": "date-time",

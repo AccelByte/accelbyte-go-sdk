@@ -8,7 +8,7 @@
     },
     "description": "Justice UGC Service",
     "title": "justice-ugc-service",
-    "version": "1.14.0"
+    "version": "1.15.0"
   },
   "schemes": [
     "https"
@@ -6640,10 +6640,12 @@
           "type": "string"
         },
         "isHidden": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "isOfficial": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "likeCount": {
           "format": "int32",
@@ -6715,7 +6717,8 @@
     "models.ContentLikeRequest": {
       "properties": {
         "likeStatus": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -6728,7 +6731,8 @@
           "type": "string"
         },
         "likeStatus": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -6827,10 +6831,12 @@
           "type": "string"
         },
         "isHidden": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "isOfficial": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "name": {
           "type": "string"
@@ -7033,7 +7039,8 @@
     "models.CreatorFollowState": {
       "properties": {
         "state": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "userId": {
           "type": "string"
@@ -7076,7 +7083,8 @@
     "models.HideContentRequest": {
       "properties": {
         "isHidden": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -7086,7 +7094,8 @@
     "models.LikeState": {
       "properties": {
         "state": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "userId": {
           "type": "string"
@@ -7289,7 +7298,8 @@
     "models.UserFollowRequest": {
       "properties": {
         "followStatus": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -7299,7 +7309,8 @@
     "models.UserFollowResponse": {
       "properties": {
         "followStatus": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "userId": {
           "type": "string"

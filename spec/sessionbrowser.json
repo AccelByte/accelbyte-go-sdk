@@ -1158,7 +1158,8 @@
     "models.AddPlayerRequest": {
       "properties": {
         "as_spectator": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "user_id": {
           "type": "string"
@@ -1172,7 +1173,8 @@
     "models.AddPlayerResponse": {
       "properties": {
         "status": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -1199,7 +1201,8 @@
           "type": "string"
         },
         "joinable": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "match": {
           "$ref": "#/definitions/models.MatchMaking"
@@ -1316,7 +1319,8 @@
           "$ref": "#/definitions/models.GameSessionSetting"
         },
         "joinable": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "namespace": {
           "type": "string"
@@ -1376,7 +1380,8 @@
           "type": "string"
         },
         "joinable": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "match": {
           "$ref": "#/definitions/models.MatchMaking"
@@ -1432,7 +1437,8 @@
     "models.GameSessionSetting": {
       "properties": {
         "allow_join_in_progress": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "current_internal_player": {
           "format": "int32",
@@ -1518,7 +1524,8 @@
         },
         "joinable": {
           "type": "boolean",
-          "x-nullable": true
+          "x-nullable": true,
+          "x-omitempty": false
         },
         "match_id": {
           "type": "string",
@@ -1718,7 +1725,8 @@
           "type": "string"
         },
         "is_override_game_version": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "last_update": {
           "format": "date-time",
@@ -1845,7 +1853,8 @@
           "type": "string"
         },
         "joinable": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "match": {
           "$ref": "#/definitions/models.MatchMaking"

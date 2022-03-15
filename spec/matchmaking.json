@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice Matchmaking Service",
     "title": "Justice Matchmaking Service",
-    "version": "2.13.2"
+    "version": "2.14.0"
   },
   "schemes": [
     "https"
@@ -1655,21 +1655,22 @@
             "description": "only deleted session",
             "in": "query",
             "name": "deleted",
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "description": "limit",
             "in": "query",
             "name": "limit",
             "required": true,
-            "type": "number"
+            "type": "integer"
           },
           {
             "description": "offset",
             "in": "query",
             "name": "offset",
             "required": true,
-            "type": "number"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -2038,21 +2039,22 @@
             "description": "only deleted session",
             "in": "query",
             "name": "deleted",
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "description": "limit",
             "in": "query",
             "name": "limit",
             "required": true,
-            "type": "number"
+            "type": "integer"
           },
           {
             "description": "offset",
             "in": "query",
             "name": "offset",
             "required": true,
-            "type": "number"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -2262,7 +2264,8 @@
           "type": "string"
         },
         "joinable": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "max_delay_ms": {
           "format": "int32",
@@ -2282,13 +2285,15 @@
           "type": "string"
         },
         "social_matchmaking": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "updated_at": {
           "type": "string"
         },
         "use_sub_gamemode": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -2328,7 +2333,8 @@
         },
         "joinable": {
           "type": "boolean",
-          "x-nullable": true
+          "x-nullable": true,
+          "x-omitempty": false
         },
         "max_delay_ms": {
           "format": "int32",
@@ -2346,11 +2352,13 @@
         },
         "social_matchmaking": {
           "type": "boolean",
-          "x-nullable": true
+          "x-nullable": true,
+          "x-omitempty": false
         },
         "use_sub_gamemode": {
           "type": "boolean",
-          "x-nullable": true
+          "x-nullable": true,
+          "x-omitempty": false
         }
       },
       "required": [
@@ -2379,7 +2387,8 @@
           "type": "string"
         },
         "joinable": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "max_delay_ms": {
           "format": "int32",
@@ -2399,13 +2408,15 @@
           "type": "string"
         },
         "socialMatchmaking": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "updatedAt": {
           "type": "string"
         },
         "use_sub_gamemode": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -2440,7 +2451,8 @@
           "type": "string"
         },
         "joinable": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "max_delay_ms": {
           "format": "int32",
@@ -2460,13 +2472,15 @@
           "type": "string"
         },
         "social_matchmaking": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "updated_at": {
           "type": "string"
         },
         "use_sub_gamemode": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -2741,7 +2755,8 @@
         },
         "joinable": {
           "type": "boolean",
-          "x-nullable": true
+          "x-nullable": true,
+          "x-omitempty": false
         },
         "match_id": {
           "type": "string",
@@ -3051,7 +3066,8 @@
         },
         "joinable": {
           "type": "boolean",
-          "x-nullable": true
+          "x-nullable": true,
+          "x-omitempty": false
         },
         "max_delay_ms": {
           "format": "int32",
@@ -3069,11 +3085,13 @@
         },
         "socialMatchmaking": {
           "type": "boolean",
-          "x-nullable": true
+          "x-nullable": true,
+          "x-omitempty": false
         },
         "use_sub_gamemode": {
           "type": "boolean",
-          "x-nullable": true
+          "x-nullable": true,
+          "x-omitempty": false
         }
       },
       "required": [
@@ -3235,7 +3253,8 @@
         },
         "joinable": {
           "type": "boolean",
-          "x-nullable": false
+          "x-nullable": false,
+          "x-omitempty": false
         },
         "match_id": {
           "type": "string",
@@ -3336,7 +3355,8 @@
         },
         "joinable": {
           "type": "boolean",
-          "x-nullable": false
+          "x-nullable": false,
+          "x-omitempty": false
         },
         "match_id": {
           "type": "string",
@@ -3396,7 +3416,8 @@
         },
         "joinable": {
           "type": "boolean",
-          "x-nullable": false
+          "x-nullable": false,
+          "x-omitempty": false
         },
         "match_id": {
           "type": "string",

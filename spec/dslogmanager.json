@@ -8,7 +8,7 @@
     },
     "description": "Justice DS Log Manager Service",
     "title": "justice-ds-log-manager-service",
-    "version": "2.0.0"
+    "version": "2.1.0"
   },
   "schemes": [
     "https"
@@ -617,7 +617,8 @@
     "models.LogFileStatus": {
       "properties": {
         "log_existence": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [

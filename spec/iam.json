@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "5.3.0"
+    "version": "5.4.0"
   },
   "schemes": [
     "https"
@@ -2130,7 +2130,7 @@
             "description": "The number of data retrieved in a page",
             "in": "query",
             "name": "limit",
-            "type": "number"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -3738,7 +3738,8 @@
             "description": "Extend expiration date of refresh token. Only available for grant type 'password'",
             "in": "formData",
             "name": "extend_exp",
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "description": "DeviceID (Used on grant type 'password' to track login history) ex. 90252d14544846d79f367148e3f9a3d9",
@@ -5285,7 +5286,8 @@
             "description": "Filter ban to only returns the active one",
             "in": "query",
             "name": "activeOnly",
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -5717,6 +5719,56 @@
         ]
       }
     },
+    "/iam/v2/public/namespaces/{namespace}/countries/{countryCode}/agerestrictions": {
+      "get": {
+        "operationId": "PublicGetCountryAgeRestriction",
+        "parameters": [
+          {
+            "description": "Namespace",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Country Code ",
+            "in": "path",
+            "name": "countryCode",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/accountcommon.CountryAgeRestriction"
+              },
+              "type": "array"
+            }
+          },
+          "401": {
+            "description": "Unauthorized access"
+          },
+          "404": {
+            "description": "Data not found"
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Public get age restriction by country code",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
     "/iam/v2/public/namespaces/{namespace}/users": {
       "post": {
         "description": "\n\u0026lt;p\u0026gt;Available Authentication Types:\u0026lt;/p\u0026gt;\n\u0026lt;ol\u0026gt;\n\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;EMAILPASSWD\u0026lt;/strong\u0026gt;: an authentication type used for new user registration through email.\u0026lt;/li\u0026gt;\n\u0026lt;/ol\u0026gt;\n\u0026lt;p\u0026gt;Country use ISO3166-1 alpha-2 two letter, e.g. US.\u0026lt;/p\u0026gt;\n",
@@ -6010,7 +6062,8 @@
             "description": "Filter ban to only returns the active one",
             "in": "query",
             "name": "activeOnly",
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -6905,7 +6958,8 @@
             "description": "Filter ban based on the ban status. If you set this, only active ban returned",
             "in": "query",
             "name": "activeOnly",
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "description": "Filter ban based on the ban type. You can see list of ban from GET /iam/v3/admin/bans",
@@ -7084,7 +7138,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Add a new OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]\u0026lt;br\u0026gt;\n\t\tA new client automatically granted with these scopes: commerce, account, analytics, publishing, social.\u0026lt;br\u0026gt;\n\t\taction code: 10301\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientId\u0026lt;/strong\u0026gt; : The client ID. e.g f815e5c44f364993961be3b3f26a7bf4\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;secret\u0026lt;/strong\u0026gt; : The client\u0026#39;s secret. It\u0026#39;s empty if the client\u0026#39;s type is a public client. Otherwise, the client secret is required\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthClientType\u0026lt;/strong\u0026gt; : The OAuth 2.0 client type. The client type determines whether the authorization needs Proof Of Key Exchange or not. \n\t\t\t\t\tA public client type doesn\u0026#39;t have a client secret and should use PKCE flow. \n\t\t\t\t\tA confidential client type has a client secret and don\u0026#39;t use PKCE flow\n\t\t\t\u0026lt;ul\u0026gt;Supported oAuthClientType :\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Public\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Confidential\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used for making sure the token is intended to be used by the client. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "Add a new OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]\u0026lt;br\u0026gt;\n\t\tA new client automatically granted with these scopes: commerce, account, analytics, publishing, social.\u0026lt;br\u0026gt;\n\t\taction code: 10301\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientId\u0026lt;/strong\u0026gt; : The client ID. e.g f815e5c44f364993961be3b3f26a7bf4\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;secret\u0026lt;/strong\u0026gt; : The client\u0026#39;s secret. It\u0026#39;s empty if the client\u0026#39;s type is a public client. Otherwise, the client secret is required\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;oauthClientType\u0026lt;/strong\u0026gt; : The OAuth 2.0 client type. The client type determines whether the authorization needs Proof Of Key Exchange or not. \n\t\t\t\t\tA public client type doesn\u0026#39;t have a client secret and should use PKCE flow. \n\t\t\t\t\tA confidential client type has a client secret and don\u0026#39;t use PKCE flow\n\t\t\t\u0026lt;ul\u0026gt;Supported oAuthClientType :\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Public\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Confidential\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used for making sure the token is intended to be used by the client. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;deletable\u0026lt;/strong\u0026gt; : The flag to identify whether client is deletable (optional). default value: true\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;\n\t\t",
         "operationId": "AdminCreateClientV3",
         "parameters": [
           {
@@ -7202,6 +7256,12 @@
             "schema": {
               "$ref": "#/definitions/restapi.ErrorResponse"
             }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20009\u003c/td\u003e\u003ctd\u003erequest_conflict\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponse"
+            }
           }
         },
         "security": [
@@ -7288,7 +7348,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Updates an OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE].\n\t\t\t\tSpecify only the fields you want to update in the request payload, e.g. {\u0026#34;ClientName\u0026#34;:\u0026#34;E-commerce\u0026#34;, \u0026#34;BaseUri\u0026#34;:\u0026#34;https://example.net\u0026#34;}\n\t\t\u0026lt;br\u0026gt; action code: 10302\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. It should not be empty if the field exists in the body. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. It should not be empty if the field exists in the body.  e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used in the audience checking for making sure the token is used by the right resource server. Required if the application type is a server. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
+        "description": "Updates an OAuth 2.0 client. Protected by the permission: ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE].\n\t\t\t\tSpecify only the fields you want to update in the request payload, e.g. {\u0026#34;ClientName\u0026#34;:\u0026#34;E-commerce\u0026#34;, \u0026#34;BaseUri\u0026#34;:\u0026#34;https://example.net\u0026#34;}\n\t\t\u0026lt;br\u0026gt; action code: 10302\u0026lt;br\u0026gt;\n\t\t\u0026lt;p\u0026gt;\u0026lt;strong\u0026gt;Fields Description:\u0026lt;/strong\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientName\u0026lt;/strong\u0026gt; : The client name. It should not be empty if the field exists in the body. e.g E-commerce\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;namespace\u0026lt;/strong\u0026gt; : The namespace where the client lives. e.g sample-game\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;redirectUri\u0026lt;/strong\u0026gt; : Contains the redirect URI used in OAuth callback. It should not be empty if the field exists in the body.  e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;audiences\u0026lt;/strong\u0026gt; : List of target client IDs who is intended to receive the token. e.g [\u0026#34;eaaa65618fe24293b00a61454182b435\u0026#34;, \u0026#34;40073ee9bc3446d3a051a71b48509a5d\u0026#34;]\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;baseUri\u0026lt;/strong\u0026gt; : A base URI of the application. It is used in the audience checking for making sure the token is used by the right resource server. Required if the application type is a server. e.g https://example.net/platform\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;clientPermissions\u0026lt;/strong\u0026gt; : Contains the client\u0026#39;s permissions\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;deletable\u0026lt;/strong\u0026gt; : The flag to identify whether client is deletable (optional). e.g. true\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t\u0026lt;/p\u0026gt;",
         "operationId": "AdminUpdateClientV3",
         "parameters": [
           {
@@ -9315,7 +9375,8 @@
             "description": "Filter ban based on the ban status. If you set this, only active ban returned",
             "in": "query",
             "name": "activeOnly",
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "description": "The number of data returned in one query. The maximum value of the limit is 100 and the minimum value of the limit is 1. If you set this into -1, then it returns all data. Default: -1. \u003cem\u003eDoesn't work yet\u003c/em\u003e.",
@@ -9650,7 +9711,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\tRedeems a verification code sent to a user to verify the user\u0026#39;s contact address is correct\n\t\t\t\u0026lt;p\u0026gt;Available ContactType : \u0026lt;b\u0026gt;email\u0026lt;b/\u0026gt; or \u0026lt;b\u0026gt;phone\u0026lt;b/\u0026gt; \u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;p\u0026gt;Will verify account and consume code if validateOnly is set false in request body\u0026lt;/p\u0026gt;\t\n\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\nRedeems a verification code sent to a user to verify the user\u0026#39;s contact address is correct\n\u0026lt;p\u0026gt;Available ContactType : \u0026lt;b\u0026gt;email\u0026lt;b/\u0026gt; or \u0026lt;b\u0026gt;phone\u0026lt;b/\u0026gt; \u0026lt;/p\u0026gt;",
         "operationId": "AdminVerifyAccountV3",
         "parameters": [
           {
@@ -9707,7 +9768,7 @@
             "authorization": []
           }
         ],
-        "summary": "Verify account by validating verification code",
+        "summary": "Verify or consume verification code sent to user",
         "tags": [
           "Users"
         ]
@@ -9925,7 +9986,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]\u0026#39;\n        \t\u0026lt;p\u0026gt;The endpoint upgrades a headless account by linking the headless account with the email address and the password.\n\t\t\t\tBy upgrading the headless account into a full account, the user could use the email address and password for using Justice IAM. \u0026lt;/p\u0026gt;\n        \t\u0026lt;p\u0026gt;The endpoint is a shortcut for upgrading a headless account and verifying the email address in one call. \n\t\t\t\tIn order to get a verification code for the endpoint, please check the send verification code endpoint. \u0026lt;/p\u0026gt;\n        \t\u0026lt;p\u0026gt;This endpoint also have an ability to update user data (if the user data field is specified) right after the upgrade account process is done.\u0026lt;br/\u0026gt;\n\t\t\t\tSupported user data fields :\n\t\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\t\u0026lt;li\u0026gt;displayName\u0026lt;/li\u0026gt;\n\t\t\t\t\t\u0026lt;li\u0026gt;dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29\u0026lt;/li\u0026gt;\n\t\t\t\t\t\u0026lt;li\u0026gt;country : format ISO3166-1 alpha-2 two letter, e.g. US\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;action code : 10124\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;p\u0026gt;If validateOnly is set false, will upgrade headless account with verification code\u0026lt;/p\u0026gt; \nRequired permission \u0026#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]\u0026#39;\n     \t\u0026lt;p\u0026gt;The endpoint upgrades a headless account by linking the headless account with the email address and the password.\n\tBy upgrading the headless account into a full account, the user could use the email address and password for using Justice IAM. \u0026lt;/p\u0026gt;\n     \t\u0026lt;p\u0026gt;The endpoint is a shortcut for upgrading a headless account and verifying the email address in one call. \n\tIn order to get a verification code for the endpoint, please check the send verification code endpoint. \u0026lt;/p\u0026gt;\n     \t\u0026lt;p\u0026gt;This endpoint also have an ability to update user data (if the user data field is specified) right after the upgrade account process is done.\u0026lt;br/\u0026gt;\n\tSupported user data fields :\n\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;displayName\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;country : format ISO3166-1 alpha-2 two letter, e.g. US\u0026lt;/li\u0026gt;\n\t\u0026lt;/ul\u0026gt;\n\u0026lt;br\u0026gt;action code : 10124\u0026lt;/p\u0026gt;",
         "operationId": "AdminUpgradeHeadlessAccountV3",
         "parameters": [
           {
@@ -10003,7 +10064,7 @@
             "authorization": []
           }
         ],
-        "summary": "Upgrade headless account with verification code",
+        "summary": "Verify or consume verification code. ",
         "tags": [
           "Users"
         ]
@@ -10095,7 +10156,7 @@
             "description": "The number of data retrieved in a page",
             "in": "query",
             "name": "limit",
-            "type": "number"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -11332,7 +11393,8 @@
             "description": "- true if the expected result should only returns records with wildcard = true\n            - false if the expected result should only returns records with wildcard = false\n            - empty (omitted) if the expected result should returns records with no wildcard filter at all",
             "in": "query",
             "name": "isWildcard",
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "description": "the maximum number of data that may be returned (1...100)",
@@ -11399,7 +11461,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026#39;ADMIN:ROLE [CREATE]\u0026#39; \u0026lt;br\u0026gt;action code: 10401",
+        "description": "Required permission \u0026#39;ADMIN:ROLE [CREATE]\u0026#39;\n\nCreate role request body:\n\t- roleName: specify role name, alphanumeric, cannot have special character (required)\n\t- permissions: specify the permission that this role have\n\t- managers: specify list of user that will act as the managers of this role\n\t- members: specify list of user that will act as the members of this role\n\t- adminRole: specify if role is for admin user (default false)\n\t- isWildcard: specify if role can be assigned to wildcard (*) namespace (default false)\n\t- deletable: specify if role can be deleted or not (default true)\n\n\u0026lt;br\u0026gt;action code: 10401",
         "operationId": "AdminCreateRoleV3",
         "parameters": [
           {
@@ -11498,6 +11560,12 @@
               "$ref": "#/definitions/restapi.ErrorResponse"
             }
           },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20009\u003c/td\u003e\u003ctd\u003erequest_conflict\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/restapi.ErrorResponse"
+            }
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -11579,7 +11647,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026#39;ADMIN:ROLE [UPDATE]\u0026#39; \u0026lt;br\u0026gt;action code: 10402",
+        "description": "Required permission \u0026#39;ADMIN:ROLE [UPDATE]\u0026#39;\n\nUpdate role request body:\n\t- roleName: specify role name, alphanumeric, cannot have special character (required)\n\t- isWildcard: specify if role can be assigned to wildcard (*) namespace (default false)\n\t- deletable: specify if role can be deleted or not (optional)\n\n\u0026lt;br\u0026gt;action code: 10402",
         "operationId": "AdminUpdateRoleV3",
         "parameters": [
           {
@@ -12629,7 +12697,8 @@
             "description": "Extend expiration date of refresh token",
             "in": "formData",
             "name": "extend_exp",
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -13348,7 +13417,8 @@
             "description": "Extend expiration date of refresh token. Only available for grant type 'password'",
             "in": "formData",
             "name": "extend_exp",
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "description": "DeviceID (Used on grant type 'password' to track login history) ex. 90252d14544846d79f367148e3f9a3d9",
@@ -13531,7 +13601,8 @@
             "description": "default true, will return default language if languageCode is empty or language not available",
             "in": "query",
             "name": "defaultOnEmpty",
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -14083,6 +14154,110 @@
         ]
       }
     },
+    "/iam/v3/public/namespaces/{namespace}/users/code/request": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "This endpoint will validate the request\u0026#39;s email address.\n\nIf it already been used, will response 409.\n\nIf it is available, we will send a verification code to this email address. \nThis code can be verified by this \u0026lt;a href=\u0026#34;#operations-Users-PublicVerifyRegistrationCode\u0026#34;\u0026gt;endpoint\u0026lt;/a\u0026gt;.\n",
+        "operationId": "PublicSendRegistrationCode",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.SendRegisterVerificationCodeRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Operation succeeded"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10133\u003c/td\u003e\u003ctd\u003eemail already used\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Send verification code to new unregistered account's email address",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/iam/v3/public/namespaces/{namespace}/users/code/verify": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;p\u0026gt;Verify the registration code\u0026lt;/p\u0026gt;\n",
+        "operationId": "PublicVerifyRegistrationCode",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/model.VerifyRegistrationCode"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Code is valid"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20019\u003c/td\u003e\u003ctd\u003eunable to parse request body\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10138\u003c/td\u003e\u003ctd\u003ecode not match\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Verify the registration code",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
     "/iam/v3/public/namespaces/{namespace}/users/forgot": {
       "post": {
         "consumes": [
@@ -14480,7 +14655,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required valid user authorization\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;Redeems a verification code sent to a user to verify the user\u0026#39;s contact address is correct\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;Available ContactType : \u0026lt;b\u0026gt;email\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;action code: 10107\u0026lt;/p\u0026gt;\n",
+        "description": "\u0026lt;p\u0026gt;Will consume code if validateOnly is set false\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;Required valid user authorization\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;Redeems a verification code sent to a user to verify the user\u0026#39;s contact address is correct\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;Available ContactType : \u0026lt;b\u0026gt;email\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;action code: 10107\u0026lt;/p\u0026gt;\n",
         "operationId": "PublicUserVerificationV3",
         "parameters": [
           {
@@ -14536,7 +14711,7 @@
             "authorization": []
           }
         ],
-        "summary": "Redeem verification code sent to user",
+        "summary": "Validate or consume verification code sent to user",
         "tags": [
           "Users"
         ]
@@ -14547,7 +14722,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Require valid user access token.\n        \t\u0026lt;p\u0026gt;The endpoint upgrades a headless account by linking the headless account with the email address and the password. \n\t\t\tBy upgrading the headless account into a full account, the user could use the email address and password for using Justice IAM. \u0026lt;/p\u0026gt;\n        \t\u0026lt;p\u0026gt;The endpoint is a shortcut for upgrading a headless account and verifying the email address in one call. \n\t\t\tIn order to get a verification code for the endpoint, please check the send verification code endpoint.\u0026lt;/p\u0026gt;\n        \t\u0026lt;p\u0026gt;This endpoint also have an ability to update user data (if the user data field is specified) right after the upgrade account process is done.\u0026lt;br/\u0026gt;\n\t\t\t\tSupported user data fields :\n\t\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\t\u0026lt;li\u0026gt;displayName\u0026lt;/li\u0026gt;\n\t\t\t\t\t\u0026lt;li\u0026gt;dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29\u0026lt;/li\u0026gt;\n\t\t\t\t\t\u0026lt;li\u0026gt;country : format ISO3166-1 alpha-2 two letter, e.g. US\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;/ul\u0026gt;\n        \t\u0026lt;br\u0026gt;action code : 10124\u0026lt;/p\u0026gt;",
+        "description": "\u0026lt;p\u0026gt;If validateOnly is set false, consume code and upgrade headless account and automatically verified the email address if it is succeeded\u0026lt;/p\u0026gt;\nRequire valid user access token.\n     \t\u0026lt;p\u0026gt;The endpoint upgrades a headless account by linking the headless account with the email address and the password. \nBy upgrading the headless account into a full account, the user could use the email address and password for using Justice IAM. \u0026lt;/p\u0026gt;\n     \t\u0026lt;p\u0026gt;The endpoint is a shortcut for upgrading a headless account and verifying the email address in one call. \nIn order to get a verification code for the endpoint, please check the send verification code endpoint.\u0026lt;/p\u0026gt;\n     \t\u0026lt;p\u0026gt;This endpoint also have an ability to update user data (if the user data field is specified) right after the upgrade account process is done.\u0026lt;br/\u0026gt;\n\tSupported user data fields :\n\t\u0026lt;ul\u0026gt;\n\t\t\u0026lt;li\u0026gt;displayName\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29\u0026lt;/li\u0026gt;\n\t\t\u0026lt;li\u0026gt;country : format ISO3166-1 alpha-2 two letter, e.g. US\u0026lt;/li\u0026gt;\n\t\u0026lt;/ul\u0026gt;\n     \t\u0026lt;br\u0026gt;action code : 10124\u0026lt;/p\u0026gt;",
         "operationId": "PublicUpgradeHeadlessAccountV3",
         "parameters": [
           {
@@ -14615,7 +14790,7 @@
             "authorization": []
           }
         ],
-        "summary": "Upgrade headless account and automatically verified the email address if it is succeeded",
+        "summary": "Verify or consume verification code.",
         "tags": [
           "Users"
         ]
@@ -15243,7 +15418,8 @@
             "description": "Filter ban based on the ban status. If you set this, only active ban returned",
             "in": "query",
             "name": "activeOnly",
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "description": "The number of data returned in one query. The maximum value of the limit is 100 and the minimum value of the limit is 1. If you set this into -1, then it returns all data. Default: -1. \u003cem\u003eDoesn't work yet\u003c/em\u003e.",
@@ -15336,7 +15512,7 @@
             "description": "The number of data retrieved in a page",
             "in": "query",
             "name": "limit",
-            "type": "number"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -15619,7 +15795,8 @@
             "description": "- true if the expected result should only returns records with wildcard = true\n            - false if the expected result should only returns records with wildcard = false\n            - empty (omitted) if the expected result should returns records with no wildcard filter at all\n",
             "in": "query",
             "name": "isWildcard",
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -16366,13 +16543,15 @@
             "description": "- true if the expected result should only returns records with wildcard = true\n            - false if the expected result should only returns records with wildcard = false\n            - empty (omitted) if the expected result should returns records with no wildcard filter at all",
             "in": "query",
             "name": "isWildcard",
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "description": "- true if the expected result should only returns records with adminRole = true\n            - false if the expected result should only returns records with adminRole = false\n            - empty (omitted) if the expected result should returns records with no wildcard filter at all",
             "in": "query",
             "name": "adminRole",
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           },
           {
             "description": "the maximum number of data that may be returned (1...100)",
@@ -16433,7 +16612,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:ROLE [CREATE]\n\nCreate role request body:\n- roleName: specify role name, alphanumeric, cannot have special character (required)\n- adminRole: specify if role is for admin user (default false)\n- isWildcard: specify if role can be assigned to wildcard (*) namespace (default false)\n\naction code: 10401",
+        "description": "Required permission: ADMIN:ROLE [CREATE]\n\nCreate role request body:\n- roleName: specify role name, alphanumeric, cannot have special character (required)\n- adminRole: specify if role is for admin user (default false)\n- isWildcard: specify if role can be assigned to wildcard (*) namespace (default false)\n- deletable: specify if role can be deleted (default true)\n\naction code: 10401",
         "operationId": "AdminCreateRoleV4",
         "parameters": [
           {
@@ -16613,7 +16792,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission ADMIN:ROLE [UPDATE]\n\nUpdate role request body:\n- roleName: specify role name, alphanumeric, cannot have special character (required)\n- adminRole: specify if role is for admin user (default false)\n- isWildcard: specify if role can be assigned to wildcard (*) namespace (default false)\n\naction code: 10402",
+        "description": "Required permission ADMIN:ROLE [UPDATE]\n\nUpdate role request body:\n- roleName: specify role name, alphanumeric, cannot have special character (required)\n- adminRole: specify if role is for admin user (default false)\n- isWildcard: specify if role can be assigned to wildcard (*) namespace (default false)\n- deletable: specify if role can be deleted (optional)\n\naction code: 10402",
         "operationId": "AdminUpdateRoleV4",
         "parameters": [
           {
@@ -17751,16 +17930,20 @@
     ".validation": {
       "properties": {
         "allowDigit": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "allowLetter": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "allowSpace": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "allowUnicode": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "description": {
           "items": {
@@ -17769,7 +17952,8 @@
           "type": "array"
         },
         "isCustomRegex": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "letterCase": {
           "type": "string"
@@ -17915,7 +18099,8 @@
           "x-nullable": false
         },
         "deletionStatus": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "displayName": {
           "type": "string"
@@ -17924,10 +18109,12 @@
           "type": "string"
         },
         "emailVerified": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "enabled": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "lastDateOfBirthChangedTime": {
           "format": "date-time",
@@ -17958,7 +18145,8 @@
           "type": "string"
         },
         "phoneVerified": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "platformId": {
           "type": "string"
@@ -18034,7 +18222,8 @@
           "type": "string"
         },
         "verified": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -18061,6 +18250,9 @@
           "default": "EMAILPASSWD",
           "type": "string"
         },
+        "code": {
+          "type": "string"
+        },
         "country": {
           "type": "string"
         },
@@ -18079,18 +18271,23 @@
         "passwordMD5Sum": {
           "type": "string"
         },
+        "reachMinimumAge": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "username": {
           "type": "string"
         }
       },
       "required": [
         "authType",
+        "code",
         "country",
-        "dateOfBirth",
         "displayName",
         "emailAddress",
         "password",
         "passwordMD5Sum",
+        "reachMinimumAge",
         "username"
       ]
     },
@@ -18172,15 +18369,25 @@
         "password": {
           "type": "string"
         },
+        "reachMinimumAge": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "username": {
           "type": "string"
+        },
+        "validateOnly": {
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
         "code",
         "emailAddress",
         "password",
-        "username"
+        "reachMinimumAge",
+        "username",
+        "validateOnly"
       ]
     },
     "accountcommon.Ban": {
@@ -18397,7 +18604,8 @@
           "type": "string"
         },
         "Enable": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -18449,7 +18657,8 @@
           "x-nullable": true
         },
         "enabled": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "endDate": {
           "format": "date-time",
@@ -18674,10 +18883,16 @@
     "accountcommon.Role": {
       "properties": {
         "AdminRole": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "Deletable": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "IsWildcard": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "Managers": {
           "items": {
@@ -18706,6 +18921,7 @@
       },
       "required": [
         "AdminRole",
+        "Deletable",
         "IsWildcard",
         "Managers",
         "Members",
@@ -18789,10 +19005,12 @@
     "accountcommon.RoleV3": {
       "properties": {
         "adminRole": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "isWildcard": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "managers": {
           "items": {
@@ -19168,6 +19386,10 @@
           },
           "type": "array"
         },
+        "deletable": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "namespace": {
           "type": "string"
         },
@@ -19272,6 +19494,10 @@
           },
           "type": "array"
         },
+        "deletable": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "namespace": {
           "type": "string"
         },
@@ -19363,7 +19589,8 @@
     "legal.AcceptedPoliciesRequest": {
       "properties": {
         "isAccepted": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "localizedPolicyVersionId": {
           "type": "string"
@@ -19406,7 +19633,8 @@
           "type": "integer"
         },
         "Enable": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -19421,7 +19649,8 @@
           "type": "integer"
         },
         "enable": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -19436,7 +19665,8 @@
           "type": "integer"
         },
         "Enable": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -19451,7 +19681,8 @@
           "type": "integer"
         },
         "enable": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -19524,7 +19755,8 @@
           "type": "string"
         },
         "skipNotif": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -19538,10 +19770,12 @@
     "model.BanUpdateRequest": {
       "properties": {
         "enabled": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "skipNotif": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -19562,7 +19796,8 @@
           "type": "string"
         },
         "Enable": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -19607,7 +19842,8 @@
           "type": "string"
         },
         "enable": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -19845,7 +20081,8 @@
           "type": "array"
         },
         "isAdmin": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "roles": {
           "items": {
@@ -19875,7 +20112,8 @@
           "type": "array"
         },
         "isAdmin": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "roleId": {
           "type": "string"
@@ -20216,7 +20454,8 @@
           "type": "string"
         },
         "IsActive": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "PlatformId": {
           "type": "string"
@@ -20292,16 +20531,19 @@
           "x-nullable": false
         },
         "DeletionStatus": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "DisplayName": {
           "type": "string"
         },
         "EmailVerified": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "Enabled": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "LastEnabledChangedTime": {
           "format": "date-time",
@@ -20327,7 +20569,8 @@
           "type": "array"
         },
         "PhoneVerified": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "PlatformId": {
           "type": "string"
@@ -20386,16 +20629,19 @@
           "x-nullable": false
         },
         "deletionStatus": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "displayName": {
           "type": "string"
         },
         "emailVerified": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "enabled": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "lastDateOfBirthChangedTime": {
           "format": "date-time",
@@ -20423,7 +20669,8 @@
           "type": "array"
         },
         "phoneVerified": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "platformId": {
           "type": "string"
@@ -20542,7 +20789,8 @@
     "model.RoleAdminStatusResponse": {
       "properties": {
         "AdminRole": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -20552,7 +20800,8 @@
     "model.RoleAdminStatusResponseV3": {
       "properties": {
         "adminRole": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -20562,7 +20811,8 @@
     "model.RoleCreateRequest": {
       "properties": {
         "AdminRole": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "Managers": {
           "items": {
@@ -20597,10 +20847,16 @@
     "model.RoleCreateV3Request": {
       "properties": {
         "adminRole": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "deletable": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "isWildcard": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "managers": {
           "items": {
@@ -20765,7 +21021,8 @@
     "model.RoleResponse": {
       "properties": {
         "IsWildcard": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "Permissions": {
           "items": {
@@ -20790,10 +21047,12 @@
     "model.RoleResponseV3": {
       "properties": {
         "adminRole": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "isWildcard": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "permissions": {
           "items": {
@@ -20819,7 +21078,8 @@
     "model.RoleResponseWithManagers": {
       "properties": {
         "IsWildcard": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "Managers": {
           "items": {
@@ -20868,10 +21128,12 @@
     "model.RoleResponseWithManagersV3": {
       "properties": {
         "adminRole": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "isWildcard": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "managers": {
           "items": {
@@ -20913,8 +21175,13 @@
     },
     "model.RoleUpdateRequestV3": {
       "properties": {
+        "deletable": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "isWildcard": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "roleName": {
           "type": "string"
@@ -20929,11 +21196,17 @@
       "properties": {
         "adminRole": {
           "default": false,
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
+        },
+        "deletable": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "isWildcard": {
           "default": false,
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "roleName": {
           "type": "string"
@@ -20948,10 +21221,12 @@
     "model.RoleV4Response": {
       "properties": {
         "adminRole": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "isWildcard": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "permissions": {
           "items": {
@@ -20989,7 +21264,8 @@
           "type": "string"
         },
         "isActive": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "redirectUri": {
           "type": "string"
@@ -21024,7 +21300,8 @@
           "type": "string"
         },
         "isActive": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "namespace": {
           "type": "string"
@@ -21111,6 +21388,19 @@
         "totalData"
       ]
     },
+    "model.SendRegisterVerificationCodeRequest": {
+      "properties": {
+        "emailAddress": {
+          "type": "string"
+        },
+        "languageTag": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "emailAddress"
+      ]
+    },
     "model.SendVerificationCodeRequest": {
       "properties": {
         "Context": {
@@ -21168,7 +21458,8 @@
           "type": "string"
         },
         "IsActive": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "KeyID": {
           "type": "string"
@@ -21226,7 +21517,8 @@
           "type": "string"
         },
         "IsActive": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "KeyID": {
           "type": "string"
@@ -21302,7 +21594,8 @@
     "model.UpdateUserDeletionStatusRequest": {
       "properties": {
         "enabled": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -21312,7 +21605,8 @@
     "model.UpdateUserStatusRequest": {
       "properties": {
         "enabled": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "reason": {
           "type": "string"
@@ -21392,12 +21686,17 @@
         },
         "password": {
           "type": "string"
+        },
+        "validateOnly": {
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
         "code",
         "emailAddress",
-        "password"
+        "password",
+        "validateOnly"
       ]
     },
     "model.UserActiveBanResponse": {
@@ -21465,7 +21764,8 @@
           "x-nullable": true
         },
         "Enabled": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "EndDate": {
           "format": "date-time",
@@ -21520,7 +21820,8 @@
           "x-nullable": false
         },
         "enabled": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "endDate": {
           "format": "date-time",
@@ -21586,7 +21887,6 @@
           "type": "string"
         },
         "dateOfBirth": {
-          "default": "1990-12-31",
           "type": "string"
         },
         "displayName": {
@@ -21594,14 +21894,18 @@
         },
         "password": {
           "type": "string"
+        },
+        "reachMinimumAge": {
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
         "authType",
         "country",
-        "dateOfBirth",
         "displayName",
-        "password"
+        "password",
+        "reachMinimumAge"
       ]
     },
     "model.UserCreateFromInvitationRequestV4": {
@@ -21621,7 +21925,6 @@
           "type": "string"
         },
         "dateOfBirth": {
-          "default": "1990-12-31",
           "type": "string"
         },
         "displayName": {
@@ -21630,6 +21933,10 @@
         "password": {
           "type": "string"
         },
+        "reachMinimumAge": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "username": {
           "type": "string"
         }
@@ -21637,9 +21944,9 @@
       "required": [
         "authType",
         "country",
-        "dateOfBirth",
         "displayName",
         "password",
+        "reachMinimumAge",
         "username"
       ]
     },
@@ -21686,6 +21993,9 @@
         "authType": {
           "type": "string"
         },
+        "code": {
+          "type": "string"
+        },
         "country": {
           "type": "string"
         },
@@ -21700,15 +22010,20 @@
         },
         "password": {
           "type": "string"
+        },
+        "reachMinimumAge": {
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
         "authType",
+        "code",
         "country",
-        "dateOfBirth",
         "displayName",
         "emailAddress",
-        "password"
+        "password",
+        "reachMinimumAge"
       ]
     },
     "model.UserCreateResponse": {
@@ -21786,7 +22101,8 @@
     "model.UserDeletionStatusResponse": {
       "properties": {
         "deletionStatus": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -22017,7 +22333,8 @@
           "x-nullable": false
         },
         "DeletionStatus": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "DisplayName": {
           "type": "string"
@@ -22026,10 +22343,12 @@
           "type": "string"
         },
         "EmailVerified": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "Enabled": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "LastDateOfBirthChangedTime": {
           "format": "date-time",
@@ -22069,7 +22388,8 @@
           "type": "string"
         },
         "PhoneVerified": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "PlatformId": {
           "type": "string"
@@ -22140,7 +22460,8 @@
           "x-nullable": false
         },
         "deletionStatus": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "displayName": {
           "type": "string"
@@ -22149,10 +22470,12 @@
           "type": "string"
         },
         "emailVerified": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "enabled": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "lastDateOfBirthChangedTime": {
           "format": "date-time",
@@ -22189,7 +22512,8 @@
           "type": "string"
         },
         "phoneVerified": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "platformAvatarUrl": {
           "type": "string"
@@ -22304,12 +22628,17 @@
         },
         "LanguageTag": {
           "type": "string"
+        },
+        "validateOnly": {
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
         "Code",
         "ContactType",
-        "LanguageTag"
+        "LanguageTag",
+        "validateOnly"
       ]
     },
     "model.UserVerificationRequestV3": {
@@ -22322,27 +22651,36 @@
         },
         "languageTag": {
           "type": "string"
+        },
+        "validateOnly": {
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
         "code",
         "contactType",
-        "languageTag"
+        "languageTag",
+        "validateOnly"
       ]
     },
     "model.ValidationDetail": {
       "properties": {
         "allowDigit": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "allowLetter": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "allowSpace": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "allowUnicode": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "description": {
           "items": {
@@ -22351,7 +22689,8 @@
           "type": "array"
         },
         "isCustomRegex": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "letterCase": {
           "type": "string"
@@ -22410,22 +22749,27 @@
     "model.ValidationDetailPublic": {
       "properties": {
         "allowDigit": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "allowLetter": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "allowSpace": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "allowUnicode": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "description": {
           "$ref": "#/definitions/accountcommon.InputValidationDescription"
         },
         "isCustomRegex": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "letterCase": {
           "type": "string"
@@ -22501,6 +22845,20 @@
         "accountUpgrade",
         "passwordReset",
         "updateEmail"
+      ]
+    },
+    "model.VerifyRegistrationCode": {
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "emailAddress"
       ]
     },
     "model.WebLinkingResponse": {
@@ -22625,7 +22983,8 @@
     "oauthmodel.TokenIntrospectResponse": {
       "properties": {
         "active": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "aud": {
           "type": "string"
@@ -22671,7 +23030,8 @@
           "type": "integer"
         },
         "is_comply": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "jflgs": {
           "format": "int32",
@@ -22747,7 +23107,8 @@
           "type": "integer"
         },
         "is_comply": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "jflgs": {
           "format": "int32",

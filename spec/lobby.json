@@ -5685,7 +5685,8 @@
             "description": "return only number of players for each availability status",
             "in": "query",
             "name": "countOnly",
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -7802,10 +7803,12 @@
     "models.AdminCreateProfanityListRequest": {
       "properties": {
         "isEnabled": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "isMandatory": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "name": {
           "type": "string"
@@ -7843,10 +7846,12 @@
     "models.AdminGetProfanityListsListResponse": {
       "properties": {
         "isEnabled": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "isMandatory": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "name": {
           "type": "string"
@@ -7871,10 +7876,12 @@
     "models.AdminUpdateProfanityList": {
       "properties": {
         "isEnabled": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "isMandatory": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "newName": {
           "type": "string"
@@ -7906,7 +7913,8 @@
           "type": "string"
         },
         "hasProfanity": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         }
       },
       "required": [
@@ -7948,15 +7956,21 @@
     },
     "models.Config": {
       "properties": {
+        "allowInviteNonConnectedUser": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "autoKickOnDisconnect": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "autoKickOnDisconnectDelay": {
           "format": "integer",
           "type": "integer"
         },
         "cancelTicketOnDisconnect": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "chatRateLimitBurst": {
           "format": "int32",
@@ -7971,13 +7985,16 @@
           "type": "integer"
         },
         "disablePartyInvitationToken": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "enableChat": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "entitlementCheck": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "entitlementItemID": {
           "type": "string"
@@ -7998,7 +8015,8 @@
           "type": "string"
         },
         "profanityFilter": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "readyConsentTimeout": {
           "format": "integer",
@@ -8008,15 +8026,21 @@
     },
     "models.ConfigExport": {
       "properties": {
+        "allowInviteNonConnectedUser": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "autoKickOnDisconnect": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "autoKickOnDisconnectDelay": {
           "format": "integer",
           "type": "integer"
         },
         "cancelTicketOnDisconnect": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "chatRateLimitBurst": {
           "format": "int32",
@@ -8031,13 +8055,16 @@
           "type": "integer"
         },
         "disablePartyInvitationToken": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "enableChat": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "entitlementCheck": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "entitlementItemID": {
           "type": "string"
@@ -8058,7 +8085,8 @@
           "type": "string"
         },
         "profanityFilter": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "readyConsentTimeout": {
           "format": "integer",
@@ -8099,15 +8127,21 @@
     },
     "models.ConfigReq": {
       "properties": {
+        "allowInviteNonConnectedUser": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "autoKickOnDisconnect": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "autoKickOnDisconnectDelay": {
           "format": "integer",
           "type": "integer"
         },
         "cancelTicketOnDisconnect": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "chatRateLimitBurst": {
           "format": "int32",
@@ -8122,13 +8156,16 @@
           "type": "integer"
         },
         "disablePartyInvitationToken": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "enableChat": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "entitlementCheck": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "entitlementItemID": {
           "type": "string"
@@ -8146,7 +8183,8 @@
           "type": "integer"
         },
         "profanityFilter": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "readyConsentTimeout": {
           "format": "integer",

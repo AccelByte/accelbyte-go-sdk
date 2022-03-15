@@ -8,12 +8,11 @@
     },
     "description": "Justice Basic Service",
     "title": "justice-basic-service",
-    "version": "1.33.0"
+    "version": "1.34.0"
   },
   "schemes": [
     "https"
   ],
-  "basePath": "/basic",
   "tags": [
     {
       "name": "UserAction"
@@ -90,7 +89,7 @@
   },
   "swagger": "2.0",
   "paths": {
-    "/v1/admin/namespaces": {
+    "/basic/v1/admin/namespaces": {
       "get": {
         "description": "Get all namespaces.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11303\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of namespaces\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getNamespaces",
@@ -101,7 +100,8 @@
             "in": "query",
             "name": "activeOnly",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -222,7 +222,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}": {
+    "/basic/v1/admin/namespaces/{namespace}": {
       "delete": {
         "description": "Delete a namespace.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:NAMESPACE\u0026#34;\u0026lt;/b\u0026gt;, action=8 \u0026lt;b\u0026gt;(DELETE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11307\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: deleted namespace\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteNamespace",
@@ -313,7 +313,8 @@
             "in": "query",
             "name": "activeOnly",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -372,7 +373,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/actions": {
+    "/basic/v1/admin/namespaces/{namespace}/actions": {
       "get": {
         "description": "Get configured actions.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:ACTION\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getActions",
@@ -438,7 +439,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/actions/ban": {
+    "/basic/v1/admin/namespaces/{namespace}/actions/ban": {
       "post": {
         "consumes": [
           "application/json"
@@ -512,7 +513,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/actions/banned": {
+    "/basic/v1/admin/namespaces/{namespace}/actions/banned": {
       "get": {
         "description": "Get banned status.\u0026lt;br\u0026gt;Unbanned users will not return, for example: request has 8 userIds, only 5 of then were banned, then the api will these 5 user status.Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:ACTION\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getBannedUsers",
@@ -595,7 +596,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/actions/report": {
+    "/basic/v1/admin/namespaces/{namespace}/actions/report": {
       "post": {
         "consumes": [
           "application/json"
@@ -651,7 +652,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/actions/status": {
+    "/basic/v1/admin/namespaces/{namespace}/actions/status": {
       "get": {
         "description": "Get user status.\u0026lt;br\u0026gt;If actionId does not exist, then the user is not banned.If actionId and expires exist, then the user is temporarily banned, if expires does not exist, then the user is permanently banned.Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:ACTION\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getUserStatus",
@@ -727,7 +728,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/actions/unban": {
+    "/basic/v1/admin/namespaces/{namespace}/actions/unban": {
       "post": {
         "consumes": [
           "application/json"
@@ -801,7 +802,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/basic": {
+    "/basic/v1/admin/namespaces/{namespace}/basic": {
       "patch": {
         "consumes": [
           "application/json"
@@ -887,7 +888,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/equ8/config": {
+    "/basic/v1/admin/namespaces/{namespace}/equ8/config": {
       "delete": {
         "consumes": [
           "application/json"
@@ -1035,7 +1036,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/folders/{folder}/files": {
+    "/basic/v1/admin/namespaces/{namespace}/folders/{folder}/files": {
       "post": {
         "description": "Generate an upload URL. It\u0026#39;s valid for 10 minutes.\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource = \u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:FILEUPLOAD\u0026#34;\u0026lt;/b\u0026gt;, action=1 \u0026lt;b\u0026gt;(CREATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11101\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: URL data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "generatedUploadUrl",
@@ -1118,7 +1119,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/misc/countries": {
+    "/basic/v1/admin/namespaces/{namespace}/misc/countries": {
       "get": {
         "description": "List countries.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11204\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: country code list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getCountries",
@@ -1179,7 +1180,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/misc/countrygroups": {
+    "/basic/v1/admin/namespaces/{namespace}/misc/countrygroups": {
       "get": {
         "description": "List country groups. Will return all available country groups if the query param is not specified\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource = \u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:MISC\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11203\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of country groups\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getCountryGroups",
@@ -1331,7 +1332,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}": {
+    "/basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}": {
       "delete": {
         "description": "Delete a country groups by its country group code. This endpoint usually used for testing purpose to cleanup test data.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource = \u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:MISC\u0026#34;\u0026lt;/b\u0026gt;, action=8 \u0026lt;b\u0026gt;(DELETE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "deleteCountryGroup",
@@ -1484,7 +1485,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/misc/languages": {
+    "/basic/v1/admin/namespaces/{namespace}/misc/languages": {
       "get": {
         "description": "List languages.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11206\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: language list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getLanguages",
@@ -1537,7 +1538,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/misc/timezones": {
+    "/basic/v1/admin/namespaces/{namespace}/misc/timezones": {
       "get": {
         "description": "List time zones.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11205\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: time zones\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getTimeZones",
@@ -1590,7 +1591,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/profiles/public": {
+    "/basic/v1/admin/namespaces/{namespace}/profiles/public": {
       "post": {
         "consumes": [
           "application/json"
@@ -1651,7 +1652,7 @@
         ]
       }
     },
-    "/v1/admin/namespaces/{namespace}/publisher": {
+    "/basic/v1/admin/namespaces/{namespace}/publisher": {
       "get": {
         "consumes": [
           "application/json"
@@ -1723,7 +1724,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/status": {
+    "/basic/v1/admin/namespaces/{namespace}/status": {
       "patch": {
         "consumes": [
           "application/json"
@@ -1809,7 +1810,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles": {
+    "/basic/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles": {
       "delete": {
         "consumes": [
           "application/json"
@@ -1879,7 +1880,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/users/{userId}/files": {
+    "/basic/v1/admin/namespaces/{namespace}/users/{userId}/files": {
       "post": {
         "description": "Generate an upload URL for user content. It\u0026#39;s valid for 10 minutes.\u0026lt;br/\u0026gt;There are 2 kinds of storage limitation per user : maximum file count and maximum file size.\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource = \u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD\u0026#34;\u0026lt;/b\u0026gt;, action=1 \u0026lt;b\u0026gt;(CREATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11102\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Default maximum file count per user\u0026lt;/i\u0026gt;: 10 files\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Default maximum file size per user\u0026lt;/i\u0026gt;: 104857600 bytes\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: URL data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "generatedUserUploadContentUrl",
@@ -1968,7 +1969,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/users/{userId}/profiles": {
+    "/basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles": {
       "delete": {
         "consumes": [
           "application/json"
@@ -2206,7 +2207,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes": {
+    "/basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/customAttributes": {
       "get": {
         "description": "Get user custom attributes.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: custom attributes\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11403\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getCustomAttributesInfo",
@@ -2370,7 +2371,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes": {
+    "/basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes": {
       "get": {
         "description": "Get user private custom attributes.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: custom attributes\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11403\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getPrivateCustomAttributesInfo",
@@ -2534,7 +2535,7 @@
         }
       }
     },
-    "/v1/admin/namespaces/{namespace}/users/{userId}/profiles/status": {
+    "/basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/status": {
       "patch": {
         "consumes": [
           "application/json"
@@ -2621,7 +2622,7 @@
         }
       }
     },
-    "/v1/public/misc/time": {
+    "/basic/v1/public/misc/time": {
       "get": {
         "description": "Get server time",
         "operationId": "publicGetTime",
@@ -2643,7 +2644,7 @@
         ]
       }
     },
-    "/v1/public/namespaces": {
+    "/basic/v1/public/namespaces": {
       "get": {
         "description": "Get all namespaces.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: login user\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11303\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: list of namespaces\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetNamespaces",
@@ -2654,7 +2655,8 @@
             "in": "query",
             "name": "activeOnly",
             "required": false,
-            "type": "boolean"
+            "type": "boolean",
+            "x-omitempty": false
           }
         ],
         "produces": [
@@ -2691,7 +2693,7 @@
         }
       }
     },
-    "/v1/public/namespaces/{namespace}/folders/{folder}/files": {
+    "/basic/v1/public/namespaces/{namespace}/folders/{folder}/files": {
       "post": {
         "description": "Generate an upload URL. It\u0026#39;s valid for 10 minutes.\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource = \u0026lt;b\u0026gt;\u0026#34;NAMESPACE:{namespace}:FILEUPLOAD\u0026#34;\u0026lt;/b\u0026gt;, action=1 \u0026lt;b\u0026gt;(CREATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11101\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: URL data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGeneratedUploadUrl",
@@ -2774,7 +2776,7 @@
         }
       }
     },
-    "/v1/public/namespaces/{namespace}/misc/countries": {
+    "/basic/v1/public/namespaces/{namespace}/misc/countries": {
       "get": {
         "description": "List countries.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: country code list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetCountries",
@@ -2824,7 +2826,7 @@
         }
       }
     },
-    "/v1/public/namespaces/{namespace}/misc/languages": {
+    "/basic/v1/public/namespaces/{namespace}/misc/languages": {
       "get": {
         "description": "List languages.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: language list\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetLanguages",
@@ -2866,7 +2868,7 @@
         }
       }
     },
-    "/v1/public/namespaces/{namespace}/misc/timezones": {
+    "/basic/v1/public/namespaces/{namespace}/misc/timezones": {
       "get": {
         "description": "List time zones.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: time zones\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetTimeZones",
@@ -2908,7 +2910,7 @@
         }
       }
     },
-    "/v1/public/namespaces/{namespace}/profiles/public": {
+    "/basic/v1/public/namespaces/{namespace}/profiles/public": {
       "get": {
         "description": "Get user public profile by ids.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11405\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user public profiles\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserProfilePublicInfoByIds",
@@ -2954,7 +2956,7 @@
         ]
       }
     },
-    "/v1/public/namespaces/{namespace}/publisher": {
+    "/basic/v1/public/namespaces/{namespace}/publisher": {
       "get": {
         "consumes": [
           "application/json"
@@ -3026,7 +3028,7 @@
         }
       }
     },
-    "/v1/public/namespaces/{namespace}/users/me/profiles": {
+    "/basic/v1/public/namespaces/{namespace}/users/me/profiles": {
       "get": {
         "description": "Get my profile\u0026lt;br\u0026gt;\u0026lt;b\u0026gt;Client with user token can get user profile in target namespace\u0026lt;/b\u0026gt;\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;NAMESPACE:{namespace}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11403\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user profile\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Path\u0026#39;s namespace\u0026lt;/i\u0026gt; : \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;can be filled with \u0026lt;b\u0026gt;publisher namespace\u0026lt;/b\u0026gt; in order to get \u0026lt;b\u0026gt;publisher user profile\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;can be filled with \u0026lt;b\u0026gt;game namespace\u0026lt;/b\u0026gt; in order to get \u0026lt;b\u0026gt;game user profile\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Language\u0026lt;/i\u0026gt; : allowed format: en, en-US\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Timezone\u0026lt;/i\u0026gt; : IANA time zone, e.g. Asia/Shanghai\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "getMyProfileInfo",
@@ -3257,7 +3259,7 @@
         }
       }
     },
-    "/v1/public/namespaces/{namespace}/users/me/profiles/zipCode": {
+    "/basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode": {
       "get": {
         "consumes": [
           "application/json"
@@ -3389,7 +3391,7 @@
         }
       }
     },
-    "/v1/public/namespaces/{namespace}/users/{userId}/actions/report": {
+    "/basic/v1/public/namespaces/{namespace}/users/{userId}/actions/report": {
       "post": {
         "consumes": [
           "application/json"
@@ -3458,7 +3460,7 @@
         }
       }
     },
-    "/v1/public/namespaces/{namespace}/users/{userId}/files": {
+    "/basic/v1/public/namespaces/{namespace}/users/{userId}/files": {
       "post": {
         "description": "Generate an upload URL for user content. It\u0026#39;s valid for 10 minutes.\u0026lt;br/\u0026gt;There are 2 kinds of storage limitation per user : maximum file count and maximum file size.\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource = \u0026lt;b\u0026gt;\u0026#34;NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD\u0026#34;\u0026lt;/b\u0026gt;, action=1 \u0026lt;b\u0026gt;(CREATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11102\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Default maximum file count per user\u0026lt;/i\u0026gt;: 10 files\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Default maximum file size per user\u0026lt;/i\u0026gt;: 104857600 bytes\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: URL data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGeneratedUserUploadContentUrl",
@@ -3547,7 +3549,7 @@
         }
       }
     },
-    "/v1/public/namespaces/{namespace}/users/{userId}/profiles": {
+    "/basic/v1/public/namespaces/{namespace}/users/{userId}/profiles": {
       "get": {
         "description": "Get user profile.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;NAMESPACE:{namespace}:USER:{userId}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11403\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user profile\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserProfileInfo",
@@ -3793,7 +3795,7 @@
         }
       }
     },
-    "/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes": {
+    "/basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes": {
       "get": {
         "description": "Get custom attributes info.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026lt;b\u0026gt;\u0026#34;NAMESPACE:{namespace}:USER:{userId}:PROFILE\u0026#34;\u0026lt;/b\u0026gt;, action=2 \u0026lt;b\u0026gt;(READ)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11404\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user custom attributes\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetCustomAttributesInfo",
@@ -3951,7 +3953,7 @@
         }
       }
     },
-    "/v1/public/namespaces/{namespace}/users/{userId}/profiles/public": {
+    "/basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/public": {
       "get": {
         "description": "Get user profile public info.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11404\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user public profile\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicGetUserProfilePublicInfo",
@@ -4000,7 +4002,7 @@
         ]
       }
     },
-    "/v1/public/namespaces/{namespace}/users/{userId}/profiles/status": {
+    "/basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/status": {
       "patch": {
         "consumes": [
           "application/json"
@@ -4394,7 +4396,8 @@
       "properties": {
         "publisher": {
           "description": "inform whether the specified namespace is publisher namespace or not",
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "publisherNamespace": {
           "description": "name of publisher namespace",
@@ -4521,6 +4524,7 @@
         "dateOfBirth": {
           "description": "date of birth, allowed format: yyyy-MM-dd, valid date range from 1905-01-01 until present",
           "format": "date",
+          "pattern": "^(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
           "type": "string",
           "x-nullable": true
         },
@@ -4529,6 +4533,7 @@
         },
         "language": {
           "description": "language value from language tag, allowed format: en, en-US",
+          "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",
           "type": "string"
         },
         "lastName": {
@@ -4588,6 +4593,7 @@
         "dateOfBirth": {
           "description": "date of birth, allowed format: yyyy-MM-dd, valid date range from 1905-01-01 until present",
           "format": "date",
+          "pattern": "^(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
           "type": "string",
           "x-nullable": true
         },
@@ -4596,6 +4602,7 @@
         },
         "language": {
           "description": "language value from language tag, allowed format: en, en-US",
+          "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",
           "type": "string"
         },
         "lastName": {
@@ -4685,6 +4692,7 @@
         "dateOfBirth": {
           "description": "date of birth, allowed format: yyyy-MM-dd, valid date range from 1905-01-01 until present",
           "format": "date",
+          "pattern": "^(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
           "type": "string",
           "x-nullable": true
         },
@@ -4693,6 +4701,7 @@
         },
         "language": {
           "description": "language value from language tag, allowed format: en, en-US",
+          "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",
           "type": "string"
         },
         "lastName": {
@@ -4794,6 +4803,7 @@
         "dateOfBirth": {
           "description": "date of birth, allowed format: yyyy-MM-dd, valid date range from 1905-01-01 until present",
           "format": "date",
+          "pattern": "^(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
           "type": "string",
           "x-nullable": true
         },
@@ -4802,6 +4812,7 @@
         },
         "language": {
           "description": "language value from language tag, allowed format: en, en-US",
+          "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",
           "type": "string"
         },
         "lastName": {
@@ -4894,6 +4905,7 @@
         "dateOfBirth": {
           "description": "date of birth, allowed format: yyyy-MM-dd, valid date range from 1905-01-01 until present",
           "format": "date",
+          "pattern": "^(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
           "type": "string",
           "x-nullable": true
         },
@@ -4902,6 +4914,7 @@
         },
         "language": {
           "description": "language value from language tag, allowed format: en, en-US",
+          "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",
           "type": "string"
         },
         "lastName": {

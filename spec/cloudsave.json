@@ -8,7 +8,7 @@
     },
     "description": "Justice Cloudsave Service",
     "title": "justice-cloudsave-service",
-    "version": "2.2.0"
+    "version": "2.3.0"
   },
   "schemes": [
     "https"
@@ -2374,7 +2374,8 @@
           "x-nullable": false
         },
         "is_public": {
-          "type": "boolean"
+          "type": "boolean",
+          "x-omitempty": false
         },
         "key": {
           "type": "string"

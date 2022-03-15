@@ -148,48 +148,48 @@ samples/cli/sample-apps Eventlog queryEventStreamHandler \
     --body '{"clientId": "FtBxyZcD", "eventName": "XBpGlsQu", "payloadQuery": {"Ju8vMf0I": {}}, "sessionId": "sJkTrd8I", "traceId": "DcV2zXnT", "userId": "KjXY1bPq", "version": 1}' \
     --namespace 'miBxx9Cs' \
     --endDate '18EY84ek' \
-    --offset '0.5428278320418053' \
-    --pageSize '0.25442449510879916' \
-    --startDate 'zHU1oh57' \
+    --offset '69' \
+    --pageSize '39' \
+    --startDate 'qRzHU1oh' \
     >$TEMP_FILE 2>&1
 update_status $? 'queryEventStreamHandler'
 delete_file $TEMP_FILE
 
 #- 30 getEventSpecificUserV2Handler
 samples/cli/sample-apps Eventlog getEventSpecificUserV2Handler \
-    --namespace '0KQBVaew' \
-    --userId 'c72krSha' \
-    --endDate '68n3Ynoz' \
-    --eventName 'p1C2KmIQ' \
-    --offset '0.7164070183072041' \
-    --pageSize '0.4293248358893298' \
-    --startDate 'NEUsxFb8' \
+    --namespace '570KQBVa' \
+    --userId 'ewc72krS' \
+    --endDate 'ha68n3Yn' \
+    --eventName 'ozp1C2Km' \
+    --offset '68' \
+    --pageSize '85' \
+    --startDate 'TuBdNEUs' \
     >$TEMP_FILE 2>&1
 update_status $? 'getEventSpecificUserV2Handler'
 delete_file $TEMP_FILE
 
 #- 31 getPublicEditHistory
 samples/cli/sample-apps Eventlog getPublicEditHistory \
-    --namespace 'CJ17M7DJ' \
-    --userId 'ZaMSxECb' \
-    --endDate 'Zbygyoar' \
-    --offset '0.6376922479490184' \
-    --pageSize '0.22708694688930686' \
-    --startDate 'NHSb8Rh3' \
-    --type 'kgs9qqJb' \
+    --namespace 'xFb8CJ17' \
+    --userId 'M7DJZaMS' \
+    --endDate 'xECbZbyg' \
+    --offset '49' \
+    --pageSize '29' \
+    --startDate 'arORoeNH' \
+    --type 'Sb8Rh3kg' \
     >$TEMP_FILE 2>&1
 update_status $? 'getPublicEditHistory'
 delete_file $TEMP_FILE
 
 #- 32 getUserEventsV2Public
 samples/cli/sample-apps Eventlog getUserEventsV2Public \
-    --namespace 'nQsoBgiV' \
-    --userId 'pP8Cm3yv' \
-    --endDate 'ASUoxdxx' \
-    --eventName 'FqmAGTJ8' \
-    --offset '0.5377505606123282' \
-    --pageSize '0.051312908636605536' \
-    --startDate 'gEtp4w29' \
+    --namespace 's9qqJbnQ' \
+    --userId 'soBgiVpP' \
+    --endDate '8Cm3yvAS' \
+    --eventName 'UoxdxxFq' \
+    --offset '24' \
+    --pageSize '52' \
+    --startDate 'GTJ8IEda' \
     >$TEMP_FILE 2>&1
 update_status $? 'getUserEventsV2Public'
 delete_file $TEMP_FILE

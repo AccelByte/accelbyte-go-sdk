@@ -282,60 +282,60 @@ delete_file $TEMP_FILE
 
 #- 29 updateUserProfile
 samples/cli/sample-apps Basic updateUserProfile \
-    --body '{"avatarLargeUrl": "bNYqgUqs", "avatarSmallUrl": "lArFPiHU", "avatarUrl": "IvaCv8kU", "customAttributes": {"9dBBpdsJ": {}}, "dateOfBirth": "1989-02-28", "firstName": "sVyExrkx", "language": "oot0B7WO", "lastName": "fercZdpM", "status": "ACTIVE", "timeZone": "i37Ds7YS", "zipCode": "fExaI3uz"}' \
-    --namespace 'LteMbFAl' \
-    --userId 't4hr7HmO' \
+    --body '{"avatarLargeUrl": "bNYqgUqs", "avatarSmallUrl": "lArFPiHU", "avatarUrl": "IvaCv8kU", "customAttributes": {"9dBBpdsJ": {}}, "dateOfBirth": "4675-10-13", "firstName": "t0B7WOfe", "language": "CzD", "lastName": "i37Ds7YS", "status": "ACTIVE", "timeZone": "ExaI3uzL", "zipCode": "teMbFAlt"}' \
+    --namespace '4hr7HmOY' \
+    --userId 'iBA5ltAO' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateUserProfile'
 delete_file $TEMP_FILE
 
 #- 30 deleteUserProfile
 samples/cli/sample-apps Basic deleteUserProfile \
-    --namespace 'YiBA5ltA' \
-    --userId 'OXmlG6eh' \
+    --namespace 'XmlG6eh1' \
+    --userId 'dTdoTFpB' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteUserProfile'
 delete_file $TEMP_FILE
 
 #- 31 getCustomAttributesInfo
 samples/cli/sample-apps Basic getCustomAttributesInfo \
-    --namespace '1dTdoTFp' \
-    --userId 'BIcuC1dQ' \
+    --namespace 'IcuC1dQY' \
+    --userId '93OJnJ6T' \
     >$TEMP_FILE 2>&1
 update_status $? 'getCustomAttributesInfo'
 delete_file $TEMP_FILE
 
 #- 32 updateCustomAttributesPartially
 samples/cli/sample-apps Basic updateCustomAttributesPartially \
-    --body '{"Y93OJnJ6": {}}' \
-    --namespace 'Te9vD8ld' \
-    --userId 'z7Hu8AD7' \
+    --body '{"e9vD8ldz": {}}' \
+    --namespace '7Hu8AD79' \
+    --userId 'kdWunviz' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateCustomAttributesPartially'
 delete_file $TEMP_FILE
 
 #- 33 getPrivateCustomAttributesInfo
 samples/cli/sample-apps Basic getPrivateCustomAttributesInfo \
-    --namespace '9kdWunvi' \
-    --userId 'zU0q1pHy' \
+    --namespace 'U0q1pHyh' \
+    --userId 'hERoGgdr' \
     >$TEMP_FILE 2>&1
 update_status $? 'getPrivateCustomAttributesInfo'
 delete_file $TEMP_FILE
 
 #- 34 updatePrivateCustomAttributesPartially
 samples/cli/sample-apps Basic updatePrivateCustomAttributesPartially \
-    --body '{"hhERoGgd": {}}' \
-    --namespace 'rysMizBG' \
-    --userId 'SRdP2l7D' \
+    --body '{"ysMizBGS": {}}' \
+    --namespace 'RdP2l7DN' \
+    --userId 'SZ8Aq0Xi' \
     >$TEMP_FILE 2>&1
 update_status $? 'updatePrivateCustomAttributesPartially'
 delete_file $TEMP_FILE
 
 #- 35 updateUserProfileStatus
 samples/cli/sample-apps Basic updateUserProfileStatus \
-    --body '{"status": "INACTIVE"}' \
-    --namespace 'q0XiPLQX' \
-    --userId 'Se07ZddO' \
+    --body '{"status": "ACTIVE"}' \
+    --namespace '07ZddOGT' \
+    --userId 'MlJjBwj9' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateUserProfileStatus'
 delete_file $TEMP_FILE
@@ -348,91 +348,91 @@ delete_file $TEMP_FILE
 
 #- 37 publicGetNamespaces
 samples/cli/sample-apps Basic publicGetNamespaces \
-    --activeOnly 'False' \
+    --activeOnly 'True' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetNamespaces'
 delete_file $TEMP_FILE
 
 #- 38 publicGeneratedUploadUrl
 samples/cli/sample-apps Basic publicGeneratedUploadUrl \
-    --folder 'JjBwj9HJ' \
-    --namespace 'HQKseEdS' \
-    --fileType 'XRDSvgua' \
+    --folder 'eEdSXRDS' \
+    --namespace 'vguauw1x' \
+    --fileType 'T7eMwSl9' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGeneratedUploadUrl'
 delete_file $TEMP_FILE
 
 #- 39 publicGetCountries
 samples/cli/sample-apps Basic publicGetCountries \
-    --namespace 'uw1xT7eM' \
-    --lang 'wSl9MLH0' \
+    --namespace 'MLH0NnTJ' \
+    --lang '2ulNzBvw' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetCountries'
 delete_file $TEMP_FILE
 
 #- 40 publicGetLanguages
 samples/cli/sample-apps Basic publicGetLanguages \
-    --namespace 'NnTJ2ulN' \
+    --namespace 'JaQa547J' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetLanguages'
 delete_file $TEMP_FILE
 
 #- 41 publicGetTimeZones
 samples/cli/sample-apps Basic publicGetTimeZones \
-    --namespace 'zBvwJaQa' \
+    --namespace 'llvA8RWS' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetTimeZones'
 delete_file $TEMP_FILE
 
 #- 42 publicGetUserProfilePublicInfoByIds
 samples/cli/sample-apps Basic publicGetUserProfilePublicInfoByIds \
-    --namespace '547JllvA' \
-    --userIds '8RWSpabU' \
+    --namespace 'pabUt7xk' \
+    --userIds '6QxyWhfq' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetUserProfilePublicInfoByIds'
 delete_file $TEMP_FILE
 
 #- 43 publicGetNamespacePublisher
 samples/cli/sample-apps Basic publicGetNamespacePublisher \
-    --namespace 't7xk6Qxy' \
+    --namespace 'oWfJw2o8' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetNamespacePublisher'
 delete_file $TEMP_FILE
 
 #- 44 getMyProfileInfo
 samples/cli/sample-apps Basic getMyProfileInfo \
-    --namespace 'WhfqoWfJ' \
+    --namespace 'oWUqvPCZ' \
     >$TEMP_FILE 2>&1
 update_status $? 'getMyProfileInfo'
 delete_file $TEMP_FILE
 
 #- 45 updateMyProfile
 samples/cli/sample-apps Basic updateMyProfile \
-    --body '{"avatarLargeUrl": "w2o8oWUq", "avatarSmallUrl": "vPCZ2HzT", "avatarUrl": "7NXmWDlX", "customAttributes": {"suNIdQJR": {}}, "dateOfBirth": "1999-03-28", "firstName": "sNOlvkfw", "language": "aSbnsuLC", "lastName": "gToxuVTe", "privateCustomAttributes": {"kJgvg6h5": {}}, "timeZone": "HIpH0Dvi", "zipCode": "plEk4vj3"}' \
-    --namespace 'LDp4yqDt' \
+    --body '{"avatarLargeUrl": "2HzT7NXm", "avatarSmallUrl": "WDlXsuNI", "avatarUrl": "dQJR5lsN", "customAttributes": {"OlvkfwaS": {}}, "dateOfBirth": "3459-10-30", "firstName": "xuVTekJg", "language": "GHh-Le", "lastName": "k4vj3LDp", "privateCustomAttributes": {"4yqDt8QU": {}}, "timeZone": "ZDpxlHas", "zipCode": "inGcjrkm"}' \
+    --namespace 'RMttgjDS' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateMyProfile'
 delete_file $TEMP_FILE
 
 #- 46 createMyProfile
 samples/cli/sample-apps Basic createMyProfile \
-    --body '{"avatarLargeUrl": "8QUZDpxl", "avatarSmallUrl": "HasinGcj", "avatarUrl": "rkmRMttg", "customAttributes": {"jDSaIVBm": {}}, "dateOfBirth": "1973-06-08", "firstName": "3Udg7p9P", "language": "GmY2H5kX", "lastName": "4MsisSX2", "privateCustomAttributes": {"8nARxWRp": {}}, "timeZone": "v5ou5xtv"}' \
-    --namespace 'd28OUfCt' \
+    --body '{"avatarLargeUrl": "aIVBmft3", "avatarSmallUrl": "Udg7p9PG", "avatarUrl": "mY2H5kX4", "customAttributes": {"MsisSX28": {}}, "dateOfBirth": "6535-06-25", "firstName": "d28OUfCt", "language": "jcFL_tTxp", "lastName": "lnaaS9lq", "privateCustomAttributes": {"yygPcfkJ": {}}, "timeZone": "IxfQZza8"}' \
+    --namespace 'kNVbDxVM' \
     >$TEMP_FILE 2>&1
 update_status $? 'createMyProfile'
 delete_file $TEMP_FILE
 
 #- 47 getMyZipCode
 samples/cli/sample-apps Basic getMyZipCode \
-    --namespace '8UJC5flN' \
+    --namespace 'q7HJk0F8' \
     >$TEMP_FILE 2>&1
 update_status $? 'getMyZipCode'
 delete_file $TEMP_FILE
 
 #- 48 updateMyZipCode
 samples/cli/sample-apps Basic updateMyZipCode \
-    --userZipCodeUpdate '{"zipCode": "yj6HsTtX"}' \
-    --namespace '8P3llnaa' \
+    --userZipCodeUpdate '{"zipCode": "9xAc3YVf"}' \
+    --namespace 'aENtrl0p' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateMyZipCode'
 delete_file $TEMP_FILE
@@ -449,60 +449,60 @@ delete_file $TEMP_FILE
 
 #- 50 publicGeneratedUserUploadContentUrl
 samples/cli/sample-apps Basic publicGeneratedUserUploadContentUrl \
-    --namespace 'XqzHuBMY' \
-    --userId 'QSA2jz1Z' \
-    --fileType 'OpdOjSyM' \
+    --namespace '6Dc40vFF' \
+    --userId 'A6gpU7EW' \
+    --fileType '3x1dCpm5' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGeneratedUserUploadContentUrl'
 delete_file $TEMP_FILE
 
 #- 51 publicGetUserProfileInfo
 samples/cli/sample-apps Basic publicGetUserProfileInfo \
-    --namespace 'ddB41JuM' \
-    --userId 'f7RUyBHR' \
+    --namespace '5gOeqQIq' \
+    --userId 'cJVKmBM1' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetUserProfileInfo'
 delete_file $TEMP_FILE
 
 #- 52 publicUpdateUserProfile
 samples/cli/sample-apps Basic publicUpdateUserProfile \
-    --body '{"avatarLargeUrl": "j8IiRimR", "avatarSmallUrl": "llHT6Dc4", "avatarUrl": "0vFFA6gp", "customAttributes": {"U7EW3x1d": {}}, "dateOfBirth": "1985-05-01", "firstName": "m55gOeqQ", "language": "IqcJVKmB", "lastName": "M1J1IbuT", "timeZone": "rrkbmuT1", "zipCode": "whOqmEnD"}' \
-    --namespace 'XIWrBPlS' \
-    --userId 'ay46mv71' \
+    --body '{"avatarLargeUrl": "J1IbuTrr", "avatarSmallUrl": "kbmuT1wh", "avatarUrl": "OqmEnDXI", "customAttributes": {"WrBPlSay": {}}, "dateOfBirth": "5666-05-23", "firstName": "Tj7tT7TZ", "language": "wdDc_580", "lastName": "yFAdAtYc", "timeZone": "iLIgRwFR", "zipCode": "r0gwB9tz"}' \
+    --namespace '3vp99XVl' \
+    --userId 'V8rK3tE6' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicUpdateUserProfile'
 delete_file $TEMP_FILE
 
 #- 53 publicCreateUserProfile
 samples/cli/sample-apps Basic publicCreateUserProfile \
-    --body '{"avatarLargeUrl": "BAZAOjtF", "avatarSmallUrl": "J2vmTj7t", "avatarUrl": "T7TZHWDd", "customAttributes": {"CkIsZoAr": {}}, "dateOfBirth": "1995-06-27", "firstName": "PHcyFAdA", "language": "tYciLIgR", "lastName": "wFRr0gwB", "timeZone": "9tz3vp99"}' \
-    --namespace 'XVlV8rK3' \
-    --userId 'tE6n0smi' \
+    --body '{"avatarLargeUrl": "n0smip1t", "avatarSmallUrl": "w3L7cUd9", "avatarUrl": "pqtv6JfP", "customAttributes": {"ZwcCVOXc": {}}, "dateOfBirth": "3754-10-19", "firstName": "dcBIgzrD", "language": "wPf_bAWm_060", "lastName": "sm8xwUfz", "timeZone": "OlQiZY4N"}' \
+    --namespace 'bOQXJ7uO' \
+    --userId 'TzNMvuq2' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicCreateUserProfile'
 delete_file $TEMP_FILE
 
 #- 54 publicGetCustomAttributesInfo
 samples/cli/sample-apps Basic publicGetCustomAttributesInfo \
-    --namespace 'p1tw3L7c' \
-    --userId 'Ud9pqtv6' \
+    --namespace 'tNl4CX4I' \
+    --userId 'jiK4DEUJ' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetCustomAttributesInfo'
 delete_file $TEMP_FILE
 
 #- 55 publicUpdateCustomAttributesPartially
 samples/cli/sample-apps Basic publicUpdateCustomAttributesPartially \
-    --body '{"JfPZwcCV": {}}' \
-    --namespace 'OXcVa80T' \
-    --userId 'mCwtD2lA' \
+    --body '{"RVK3l9Eb": {}}' \
+    --namespace '0R1XRb0R' \
+    --userId 'H8vS1sme' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicUpdateCustomAttributesPartially'
 delete_file $TEMP_FILE
 
 #- 56 publicGetUserProfilePublicInfo
 samples/cli/sample-apps Basic publicGetUserProfilePublicInfo \
-    --namespace 'H01o6Ndc' \
-    --userId 'BIgzrDyW' \
+    --namespace 'OlngrdTX' \
+    --userId 'CzaPBtkZ' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetUserProfilePublicInfo'
 delete_file $TEMP_FILE
@@ -510,8 +510,8 @@ delete_file $TEMP_FILE
 #- 57 publicUpdateUserProfileStatus
 samples/cli/sample-apps Basic publicUpdateUserProfileStatus \
     --body '{"status": "ACTIVE"}' \
-    --namespace 'FBYGmmBa' \
-    --userId 'wMyoKyNp' \
+    --namespace 'o4wcyhlo' \
+    --userId 'VS3rYp8Q' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicUpdateUserProfileStatus'
 delete_file $TEMP_FILE

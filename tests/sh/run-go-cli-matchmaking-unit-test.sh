@@ -237,16 +237,16 @@ samples/cli/sample-apps Matchmaking searchSessions \
     --matchID 'EdSXRDSv' \
     --partyID 'guauw1xT' \
     --userID '7eMwSl9M' \
-    --limit '0.5925349259478901' \
-    --offset '0.8181702317094851' \
+    --limit '75' \
+    --offset '66' \
     >$TEMP_FILE 2>&1
 update_status $? 'searchSessions'
 delete_file $TEMP_FILE
 
 #- 23 getSessionHistoryDetailed
 samples/cli/sample-apps Matchmaking getSessionHistoryDetailed \
-    --matchID 'nTJ2ulNz' \
-    --namespace 'BvwJaQa5' \
+    --matchID '0NnTJ2ul' \
+    --namespace 'NzBvwJaQ' \
     >$TEMP_FILE 2>&1
 update_status $? 'getSessionHistoryDetailed'
 delete_file $TEMP_FILE
@@ -259,29 +259,29 @@ delete_file $TEMP_FILE
 
 #- 25 publicGetAllMatchmakingChannel
 samples/cli/sample-apps Matchmaking publicGetAllMatchmakingChannel \
-    --namespace '47JllvA8' \
+    --namespace 'a547Jllv' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetAllMatchmakingChannel'
 delete_file $TEMP_FILE
 
 #- 26 publicGetSingleMatchmakingChannel
 samples/cli/sample-apps Matchmaking publicGetSingleMatchmakingChannel \
-    --channelName 'RWSpabUt' \
-    --namespace '7xk6QxyW' \
+    --channelName 'A8RWSpab' \
+    --namespace 'Ut7xk6Qx' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetSingleMatchmakingChannel'
 delete_file $TEMP_FILE
 
 #- 27 searchSessionsV2
 samples/cli/sample-apps Matchmaking searchSessionsV2 \
-    --namespace 'hfqoWfJw' \
-    --channel '2o8oWUqv' \
+    --namespace 'yWhfqoWf' \
+    --channel 'Jw2o8oWU' \
     --deleted 'True' \
-    --matchID 'Z2HzT7NX' \
-    --partyID 'mWDlXsuN' \
-    --userID 'IdQJR5ls' \
-    --limit '0.6107156845446877' \
-    --offset '0.18480602905898835' \
+    --matchID 'vPCZ2HzT' \
+    --partyID '7NXmWDlX' \
+    --userID 'suNIdQJR' \
+    --limit '23' \
+    --offset '37' \
     >$TEMP_FILE 2>&1
 update_status $? 'searchSessionsV2'
 delete_file $TEMP_FILE

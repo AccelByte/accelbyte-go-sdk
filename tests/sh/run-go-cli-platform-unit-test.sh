@@ -1046,85 +1046,85 @@ delete_file $TEMP_FILE
 
 #- 112 createPaymentOrderByDedicated
 samples/cli/sample-apps Platform createPaymentOrderByDedicated \
-    --body '{"currencyCode": "tbLLcF67", "currencyNamespace": "1WLtv38H", "customParameters": {"ecczopFm": {}}, "description": "eRwpcJBZ", "extOrderNo": "yi3mLC4K", "extUserId": "zekiSzey", "itemType": "BUNDLE", "language": "lnOQt0jo", "metadata": {"VHgCytC6": "lRG98Yxn"}, "notifyUrl": "HbRdoTKK", "omitNotification": false, "price": 40, "recurringPaymentOrderNo": "SjfZe9i1", "region": "osghF1hz", "returnUrl": "i1Nl47sy", "sandbox": false, "sku": "bzSHZeCL", "subscriptionId": "IvWPVRsd", "targetNamespace": "EqA61yTr", "targetUserId": "MgsycTgm", "title": "Pzc20EuO"}' \
-    --namespace '5dMqGDlS' \
+    --body '{"currencyCode": "tbLLcF67", "currencyNamespace": "1WLtv38H", "customParameters": {"ecczopFm": {}}, "description": "eRwpcJBZ", "extOrderNo": "yi3mLC4K", "extUserId": "zekiSzey", "itemType": "BUNDLE", "language": "No_vhGc-853", "metadata": {"HbRdoTKK": "euSjfZe9"}, "notifyUrl": "i1osghF1", "omitNotification": false, "price": 51, "recurringPaymentOrderNo": "i1Nl47sy", "region": "J5ibzSHZ", "returnUrl": "eCLIvWPV", "sandbox": true, "sku": "dEqA61yT", "subscriptionId": "rMgsycTg", "targetNamespace": "mPzc20Eu", "targetUserId": "O5dMqGDl", "title": "SZPY07rE"}' \
+    --namespace 'VSjzHjL6' \
     >$TEMP_FILE 2>&1
 update_status $? 'createPaymentOrderByDedicated'
 delete_file $TEMP_FILE
 
 #- 113 listExtOrderNoByExtTxId
 samples/cli/sample-apps Platform listExtOrderNoByExtTxId \
-    --namespace 'ZPY07rEV' \
-    --extTxId 'SjzHjL6Z' \
+    --namespace 'ZbXjG6DS' \
+    --extTxId 'mpp3op8h' \
     >$TEMP_FILE 2>&1
 update_status $? 'listExtOrderNoByExtTxId'
 delete_file $TEMP_FILE
 
 #- 114 getPaymentOrder
 samples/cli/sample-apps Platform getPaymentOrder \
-    --namespace 'bXjG6DSm' \
-    --paymentOrderNo 'pp3op8ht' \
+    --namespace 'taRLxtW4' \
+    --paymentOrderNo 'PvFkESTU' \
     >$TEMP_FILE 2>&1
 update_status $? 'getPaymentOrder'
 delete_file $TEMP_FILE
 
 #- 115 chargePaymentOrder
 samples/cli/sample-apps Platform chargePaymentOrder \
-    --body '{"extTxId": "aRLxtW4P", "paymentMethod": "vFkESTUL", "paymentProvider": "WALLET"}' \
-    --namespace 't5F1Le7c' \
-    --paymentOrderNo 'R7q6PWhZ' \
+    --body '{"extTxId": "Lat5F1Le", "paymentMethod": "7cR7q6PW", "paymentProvider": "XSOLLA"}' \
+    --namespace 'ZmmKz41i' \
+    --paymentOrderNo '1Tp78Fip' \
     >$TEMP_FILE 2>&1
 update_status $? 'chargePaymentOrder'
 delete_file $TEMP_FILE
 
 #- 116 refundPaymentOrderByDedicated
 samples/cli/sample-apps Platform refundPaymentOrderByDedicated \
-    --body '{"description": "mmKz41i1"}' \
-    --namespace 'Tp78FipJ' \
-    --paymentOrderNo 'HahViJvL' \
+    --body '{"description": "JHahViJv"}' \
+    --namespace 'LYW0kdml' \
+    --paymentOrderNo 'k2luqSOO' \
     >$TEMP_FILE 2>&1
 update_status $? 'refundPaymentOrderByDedicated'
 delete_file $TEMP_FILE
 
 #- 117 simulatePaymentOrderNotification
 samples/cli/sample-apps Platform simulatePaymentOrderNotification \
-    --body '{"amount": 96, "currencyCode": "0kdmlk2l", "notifyType": "REFUND", "paymentProvider": "CHECKOUT", "salesTax": 88, "vat": 80}' \
-    --namespace 'OA2VOZBo' \
-    --paymentOrderNo 'NbB98PuS' \
+    --body '{"amount": 53, "currencyCode": "2VOZBoNb", "notifyType": "REFUND", "paymentProvider": "ALIPAY", "salesTax": 88, "vat": 65}' \
+    --namespace 'ykqFzPwS' \
+    --paymentOrderNo 'MXT53bBu' \
     >$TEMP_FILE 2>&1
 update_status $? 'simulatePaymentOrderNotification'
 delete_file $TEMP_FILE
 
 #- 118 getPaymentOrderChargeStatus
 samples/cli/sample-apps Platform getPaymentOrderChargeStatus \
-    --namespace 'GykqFzPw' \
-    --paymentOrderNo 'SMXT53bB' \
+    --namespace 'L38beOYD' \
+    --paymentOrderNo 'VuHZQ9LY' \
     >$TEMP_FILE 2>&1
 update_status $? 'getPaymentOrderChargeStatus'
 delete_file $TEMP_FILE
 
 #- 119 createReward
 samples/cli/sample-apps Platform createReward \
-    --body '{"description": "uL38beOY", "eventTopic": "DVuHZQ9L", "maxAwarded": 100, "maxAwardedPerUser": 39, "namespaceExpression": "6w23Wf8i", "rewardCode": "EQo72sH0", "rewardConditions": [{"condition": "aRdcDlDy", "conditionName": "GcsfIuI4", "eventName": "Dv5lEJpK", "rewardItems": [{"duration": 53, "itemId": "yRlzsrRX", "quantity": 60}]}], "userIdExpression": "FZivQOHG"}' \
-    --namespace '6wVicNra' \
+    --body '{"description": "t6w23Wf8", "eventTopic": "iEQo72sH", "maxAwarded": 0, "maxAwardedPerUser": 86, "namespaceExpression": "dcDlDyGc", "rewardCode": "sfIuI4Dv", "rewardConditions": [{"condition": "5lEJpK1A", "conditionName": "yRlzsrRX", "eventName": "EFZivQOH", "rewardItems": [{"duration": 64, "itemId": "6wVicNra", "quantity": 38}]}], "userIdExpression": "svvHLmIo"}' \
+    --namespace 'hfNISLXM' \
     >$TEMP_FILE 2>&1
 update_status $? 'createReward'
 delete_file $TEMP_FILE
 
 #- 120 queryRewards
 samples/cli/sample-apps Platform queryRewards \
-    --namespace 'tsvvHLmI' \
-    --eventTopic 'ohfNISLX' \
-    --limit '77' \
-    --offset '59' \
-    --sortBy 'WDdm5FE4' \
+    --namespace 'DWDdm5FE' \
+    --eventTopic '4lliQMnu' \
+    --limit '38' \
+    --offset '71' \
+    --sortBy 'bpEo4mUN' \
     >$TEMP_FILE 2>&1
 update_status $? 'queryRewards'
 delete_file $TEMP_FILE
 
 #- 121 exportRewards
 samples/cli/sample-apps Platform exportRewards \
-    --namespace 'lliQMnut' \
+    --namespace 'HFtdml2x' \
     >$TEMP_FILE 2>&1
 update_status $? 'exportRewards'
 delete_file $TEMP_FILE
@@ -1132,7 +1132,7 @@ delete_file $TEMP_FILE
 #- 122 importRewards
 samples/cli/sample-apps Platform importRewards \
     --file 'tmp.dat' \
-    --namespace 'JbpEo4mU' \
+    --namespace 'NviWacJc' \
     --replaceExisting 'True' \
     >$TEMP_FILE 2>&1
 update_status $? 'importRewards'
@@ -1140,49 +1140,49 @@ delete_file $TEMP_FILE
 
 #- 123 getReward
 samples/cli/sample-apps Platform getReward \
-    --namespace 'tdml2xNv' \
-    --rewardId 'iWacJc3F' \
+    --namespace 'm7Z548uu' \
+    --rewardId 'KgoCBqS5' \
     >$TEMP_FILE 2>&1
 update_status $? 'getReward'
 delete_file $TEMP_FILE
 
 #- 124 updateReward
 samples/cli/sample-apps Platform updateReward \
-    --body '{"description": "m7Z548uu", "eventTopic": "KgoCBqS5", "maxAwarded": 40, "maxAwardedPerUser": 69, "namespaceExpression": "dCbwCeeq", "rewardCode": "9ouEdDtj", "rewardConditions": [{"condition": "OgsypLkm", "conditionName": "2ZYew5H7", "eventName": "Zm0gnYyj", "rewardItems": [{"duration": 76, "itemId": "Xf9G1nty", "quantity": 9}]}], "userIdExpression": "bvoeHenA"}' \
-    --namespace 'ALKt7Efx' \
-    --rewardId 'IH446oUn' \
+    --body '{"description": "uIdCbwCe", "eventTopic": "eq9ouEdD", "maxAwarded": 39, "maxAwardedPerUser": 19, "namespaceExpression": "OgsypLkm", "rewardCode": "2ZYew5H7", "rewardConditions": [{"condition": "Zm0gnYyj", "conditionName": "6MXf9G1n", "eventName": "tyebvoeH", "rewardItems": [{"duration": 9, "itemId": "nAALKt7E", "quantity": 11}]}], "userIdExpression": "xIH446oU"}' \
+    --namespace 'nP2S74un' \
+    --rewardId 'Xwg0JKqV' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateReward'
 delete_file $TEMP_FILE
 
 #- 125 deleteReward
 samples/cli/sample-apps Platform deleteReward \
-    --namespace 'P2S74unX' \
-    --rewardId 'wg0JKqVW' \
+    --namespace 'WW1rjK1e' \
+    --rewardId 'pwkAvcsY' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteReward'
 delete_file $TEMP_FILE
 
 #- 126 checkEventCondition
 samples/cli/sample-apps Platform checkEventCondition \
-    --body '{"payload": {"W1rjK1ep": {}}}' \
-    --namespace 'wkAvcsYv' \
-    --rewardId 'bgfBVPpT' \
+    --body '{"payload": {"vbgfBVPp": {}}}' \
+    --namespace 'Ta8Yuq7T' \
+    --rewardId 'KiNXmz7e' \
     >$TEMP_FILE 2>&1
 update_status $? 'checkEventCondition'
 delete_file $TEMP_FILE
 
 #- 127 listStores
 samples/cli/sample-apps Platform listStores \
-    --namespace 'a8Yuq7TK' \
+    --namespace 'MrMD5Tba' \
     >$TEMP_FILE 2>&1
 update_status $? 'listStores'
 delete_file $TEMP_FILE
 
 #- 128 createStore
 samples/cli/sample-apps Platform createStore \
-    --body '{"defaultLanguage": "iNXmz7eM", "defaultRegion": "rMD5TbaU", "description": "xTCTng0x", "supportedLanguages": ["jtdBrjs3"], "supportedRegions": ["Kiykt2Ck"], "title": "2gOlSatE"}' \
-    --namespace 'CZ2UgwQL' \
+    --body '{"defaultLanguage": "UxTCTng0", "defaultRegion": "xjtdBrjs", "description": "3Kiykt2C", "supportedLanguages": ["k2gOlSat"], "supportedRegions": ["ECZ2UgwQ"], "title": "LqDqYSxT"}' \
+    --namespace 'PuVlBqir' \
     >$TEMP_FILE 2>&1
 update_status $? 'createStore'
 delete_file $TEMP_FILE
@@ -1190,244 +1190,244 @@ delete_file $TEMP_FILE
 #- 129 importStore
 samples/cli/sample-apps Platform importStore \
     --file 'tmp.dat' \
-    --namespace 'qDqYSxTP' \
-    --storeId 'uVlBqird' \
+    --namespace 'dp3yxnsE' \
+    --storeId 'Tl1SvhQu' \
     >$TEMP_FILE 2>&1
 update_status $? 'importStore'
 delete_file $TEMP_FILE
 
 #- 130 getPublishedStore
 samples/cli/sample-apps Platform getPublishedStore \
-    --namespace 'p3yxnsET' \
+    --namespace 'dsjIhXdx' \
     >$TEMP_FILE 2>&1
 update_status $? 'getPublishedStore'
 delete_file $TEMP_FILE
 
 #- 131 deletePublishedStore
 samples/cli/sample-apps Platform deletePublishedStore \
-    --namespace 'l1SvhQud' \
+    --namespace 'iSoWpnnx' \
     >$TEMP_FILE 2>&1
 update_status $? 'deletePublishedStore'
 delete_file $TEMP_FILE
 
 #- 132 getPublishedStoreBackup
 samples/cli/sample-apps Platform getPublishedStoreBackup \
-    --namespace 'sjIhXdxi' \
+    --namespace 'gX7BCPMq' \
     >$TEMP_FILE 2>&1
 update_status $? 'getPublishedStoreBackup'
 delete_file $TEMP_FILE
 
 #- 133 rollbackPublishedStore
 samples/cli/sample-apps Platform rollbackPublishedStore \
-    --namespace 'SoWpnnxg' \
+    --namespace 'zQIxibhp' \
     >$TEMP_FILE 2>&1
 update_status $? 'rollbackPublishedStore'
 delete_file $TEMP_FILE
 
 #- 134 getStore
 samples/cli/sample-apps Platform getStore \
-    --namespace 'X7BCPMqz' \
-    --storeId 'QIxibhpN' \
+    --namespace 'NYsHtdB3' \
+    --storeId 'IkjuaZqh' \
     >$TEMP_FILE 2>&1
 update_status $? 'getStore'
 delete_file $TEMP_FILE
 
 #- 135 updateStore
 samples/cli/sample-apps Platform updateStore \
-    --body '{"defaultLanguage": "YsHtdB3I", "defaultRegion": "kjuaZqhJ", "description": "ilrZkSSK", "supportedLanguages": ["gP5rxCR7"], "supportedRegions": ["7G9d5CA1"], "title": "GORSbL9n"}' \
-    --namespace '0dbWDEup' \
-    --storeId 'mdLQzPnN' \
+    --body '{"defaultLanguage": "JilrZkSS", "defaultRegion": "KgP5rxCR", "description": "77G9d5CA", "supportedLanguages": ["1GORSbL9"], "supportedRegions": ["n0dbWDEu"], "title": "pmdLQzPn"}' \
+    --namespace 'NfBAcWAr' \
+    --storeId 'bkCfdHIZ' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateStore'
 delete_file $TEMP_FILE
 
 #- 136 deleteStore
 samples/cli/sample-apps Platform deleteStore \
-    --namespace 'fBAcWArb' \
-    --storeId 'kCfdHIZb' \
+    --namespace 'b03otqmB' \
+    --storeId 'uS9V2pCZ' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteStore'
 delete_file $TEMP_FILE
 
 #- 137 cloneStore
 samples/cli/sample-apps Platform cloneStore \
-    --namespace '03otqmBu' \
-    --storeId 'S9V2pCZ2' \
-    --targetStoreId '3UHmk0lp' \
+    --namespace '23UHmk0l' \
+    --storeId 'pJ4JLl01' \
+    --targetStoreId 'qi7L2oDU' \
     >$TEMP_FILE 2>&1
 update_status $? 'cloneStore'
 delete_file $TEMP_FILE
 
 #- 138 exportStore
 samples/cli/sample-apps Platform exportStore \
-    --namespace 'J4JLl01q' \
-    --storeId 'i7L2oDUo' \
+    --namespace 'oVRUb39j' \
+    --storeId '22P4Sp09' \
     >$TEMP_FILE 2>&1
 update_status $? 'exportStore'
 delete_file $TEMP_FILE
 
 #- 139 querySubscriptions
 samples/cli/sample-apps Platform querySubscriptions \
-    --namespace 'VRUb39j2' \
-    --chargeStatus 'CHARGE_FAILED' \
-    --itemId '09cKmjRU' \
-    --limit '3' \
-    --offset '94' \
-    --sku 'BVS7OK2Z' \
+    --namespace 'cKmjRUbZ' \
+    --chargeStatus 'RECURRING_CHARGING' \
+    --itemId 'VS7OK2Zr' \
+    --limit '6' \
+    --offset '4' \
+    --sku 'sckMekRO' \
     --status 'EXPIRED' \
     --subscribedBy 'PLATFORM' \
-    --userId 'csckMekR' \
+    --userId 'K2eFaGLo' \
     >$TEMP_FILE 2>&1
 update_status $? 'querySubscriptions'
 delete_file $TEMP_FILE
 
 #- 140 recurringChargeSubscription
 samples/cli/sample-apps Platform recurringChargeSubscription \
-    --namespace 'OWZ2KUTq' \
-    --subscriptionId 'kK2eFaGL' \
+    --namespace 'SmEEPbLy' \
+    --subscriptionId 'wJsyUie6' \
     >$TEMP_FILE 2>&1
 update_status $? 'recurringChargeSubscription'
 delete_file $TEMP_FILE
 
 #- 141 getTicketDynamic
 samples/cli/sample-apps Platform getTicketDynamic \
-    --boothName 'oSmEEPbL' \
-    --namespace 'ywJsyUie' \
+    --boothName 'fZgLllUP' \
+    --namespace 'sO8lg46S' \
     >$TEMP_FILE 2>&1
 update_status $? 'getTicketDynamic'
 delete_file $TEMP_FILE
 
 #- 142 decreaseTicketSale
 samples/cli/sample-apps Platform decreaseTicketSale \
-    --body '{"orderNo": "6fZgLllU"}' \
-    --boothName 'PsO8lg46' \
-    --namespace 'Si7006vL' \
+    --body '{"orderNo": "i7006vL2"}' \
+    --boothName 'w4aajDAO' \
+    --namespace 'x0iJjYle' \
     >$TEMP_FILE 2>&1
 update_status $? 'decreaseTicketSale'
 delete_file $TEMP_FILE
 
 #- 143 getTicketBoothID
 samples/cli/sample-apps Platform getTicketBoothID \
-    --boothName '2w4aajDA' \
-    --namespace 'Ox0iJjYl' \
+    --boothName 'aktqv2Wk' \
+    --namespace 'ljQuD5mn' \
     >$TEMP_FILE 2>&1
 update_status $? 'getTicketBoothID'
 delete_file $TEMP_FILE
 
 #- 144 increaseTicketSale
 samples/cli/sample-apps Platform increaseTicketSale \
-    --body '{"count": 9, "orderNo": "aktqv2Wk"}' \
-    --boothName 'ljQuD5mn' \
-    --namespace 'JONqHGq8' \
+    --body '{"count": 70, "orderNo": "ONqHGq8m"}' \
+    --boothName 'B7mF2lMF' \
+    --namespace 'caghFXJI' \
     >$TEMP_FILE 2>&1
 update_status $? 'increaseTicketSale'
 delete_file $TEMP_FILE
 
 #- 145 anonymizeCampaign
 samples/cli/sample-apps Platform anonymizeCampaign \
-    --namespace 'mB7mF2lM' \
-    --userId 'FcaghFXJ' \
+    --namespace 'JflRHFcs' \
+    --userId 'IqCy4xDi' \
     >$TEMP_FILE 2>&1
 update_status $? 'anonymizeCampaign'
 delete_file $TEMP_FILE
 
 #- 146 anonymizeEntitlement
 samples/cli/sample-apps Platform anonymizeEntitlement \
-    --namespace 'IJflRHFc' \
-    --userId 'sIqCy4xD' \
+    --namespace 'fSSQ5On2' \
+    --userId 'ccEcl3xe' \
     >$TEMP_FILE 2>&1
 update_status $? 'anonymizeEntitlement'
 delete_file $TEMP_FILE
 
 #- 147 anonymizeFulfillment
 samples/cli/sample-apps Platform anonymizeFulfillment \
-    --namespace 'ifSSQ5On' \
-    --userId '2ccEcl3x' \
+    --namespace 'iO4bwF5J' \
+    --userId 'OjGoGxKM' \
     >$TEMP_FILE 2>&1
 update_status $? 'anonymizeFulfillment'
 delete_file $TEMP_FILE
 
 #- 148 anonymizeIntegration
 samples/cli/sample-apps Platform anonymizeIntegration \
-    --namespace 'eiO4bwF5' \
-    --userId 'JOjGoGxK' \
+    --namespace '3qMce5tf' \
+    --userId 'LcpjFZMK' \
     >$TEMP_FILE 2>&1
 update_status $? 'anonymizeIntegration'
 delete_file $TEMP_FILE
 
 #- 149 anonymizeOrder
 samples/cli/sample-apps Platform anonymizeOrder \
-    --namespace 'M3qMce5t' \
-    --userId 'fLcpjFZM' \
+    --namespace 'Cbp0pEbL' \
+    --userId 'CLFpHxMY' \
     >$TEMP_FILE 2>&1
 update_status $? 'anonymizeOrder'
 delete_file $TEMP_FILE
 
 #- 150 anonymizePayment
 samples/cli/sample-apps Platform anonymizePayment \
-    --namespace 'KCbp0pEb' \
-    --userId 'LCLFpHxM' \
+    --namespace 'F836075x' \
+    --userId 'EpzdnYtp' \
     >$TEMP_FILE 2>&1
 update_status $? 'anonymizePayment'
 delete_file $TEMP_FILE
 
 #- 151 anonymizeSubscription
 samples/cli/sample-apps Platform anonymizeSubscription \
-    --namespace 'YF836075' \
-    --userId 'xEpzdnYt' \
+    --namespace 'ja5ig2is' \
+    --userId 'QZga6Vy7' \
     >$TEMP_FILE 2>&1
 update_status $? 'anonymizeSubscription'
 delete_file $TEMP_FILE
 
 #- 152 anonymizeWallet
 samples/cli/sample-apps Platform anonymizeWallet \
-    --namespace 'pja5ig2i' \
-    --userId 'sQZga6Vy' \
+    --namespace '6izPiQRj' \
+    --userId 'Ya8fv5fI' \
     >$TEMP_FILE 2>&1
 update_status $? 'anonymizeWallet'
 delete_file $TEMP_FILE
 
 #- 153 queryUserEntitlements
 samples/cli/sample-apps Platform queryUserEntitlements \
-    --namespace '76izPiQR' \
-    --userId 'jYa8fv5f' \
+    --namespace 't22tIZhj' \
+    --userId 'hgkigW22' \
     --activeOnly 'True' \
-    --appType 'GAME' \
-    --entitlementClazz 'SUBSCRIPTION' \
-    --entitlementName 'Zhjhgkig' \
-    --itemId '["W22zXMWX"]' \
-    --limit '11' \
-    --offset '2' \
+    --appType 'DEMO' \
+    --entitlementClazz 'APP' \
+    --entitlementName 'cM0GIALI' \
+    --itemId '["bFCQgBcL"]' \
+    --limit '78' \
+    --offset '90' \
     >$TEMP_FILE 2>&1
 update_status $? 'queryUserEntitlements'
 delete_file $TEMP_FILE
 
 #- 154 grantUserEntitlement
 samples/cli/sample-apps Platform grantUserEntitlement \
-    --body '[{"endDate": "1972-11-06T00:00:00Z", "grantedCode": "0GIALIbF", "itemId": "CQgBcLNT", "itemNamespace": "6iOQVYx5", "language": "rW2gMsI1", "quantity": 0, "region": "YBitSn3U", "source": "GIFT", "startDate": "1973-10-18T00:00:00Z", "storeId": "j97I4WYX"}]' \
-    --namespace 'LqjN7ktO' \
-    --userId 'BTraBxWR' \
+    --body '[{"endDate": "1975-11-20T00:00:00Z", "grantedCode": "QVYx5rW2", "itemId": "gMsI1aYB", "itemNamespace": "itSn3UDe", "language": "Jiwy_Tobt_574", "quantity": 64, "region": "lKDwTKXB", "source": "REFERRAL_BONUS", "startDate": "1995-03-07T00:00:00Z", "storeId": "Qcd9IW8k"}]' \
+    --namespace 'iCKeQJWZ' \
+    --userId 'Bvcq1ETv' \
     >$TEMP_FILE 2>&1
 update_status $? 'grantUserEntitlement'
 delete_file $TEMP_FILE
 
 #- 155 getUserAppEntitlementByAppId
 samples/cli/sample-apps Platform getUserAppEntitlementByAppId \
-    --namespace 'TVuYEqGl' \
-    --userId 'KDwTKXBr' \
-    --activeOnly 'False' \
-    --appId 'Qcd9IW8k' \
+    --namespace 'WBxYZJh7' \
+    --userId 'B8gbnSu9' \
+    --activeOnly 'True' \
+    --appId 'D2udaeYp' \
     >$TEMP_FILE 2>&1
 update_status $? 'getUserAppEntitlementByAppId'
 delete_file $TEMP_FILE
 
 #- 156 queryUserEntitlementsByAppType
 samples/cli/sample-apps Platform queryUserEntitlementsByAppType \
-    --namespace 'iCKeQJWZ' \
-    --userId 'Bvcq1ETv' \
-    --activeOnly 'True' \
-    --limit '46' \
-    --offset '70' \
+    --namespace 'CXYSMiy8' \
+    --userId '7CTqEQBg' \
+    --activeOnly 'False' \
+    --limit '48' \
+    --offset '36' \
     --appType 'DEMO' \
     >$TEMP_FILE 2>&1
 update_status $? 'queryUserEntitlementsByAppType'
@@ -1435,391 +1435,391 @@ delete_file $TEMP_FILE
 
 #- 157 getUserEntitlementByItemId
 samples/cli/sample-apps Platform getUserEntitlementByItemId \
-    --namespace '7B8gbnSu' \
-    --userId '9M2OxD2u' \
-    --activeOnly 'False' \
-    --entitlementClazz 'APP' \
-    --itemId 'eYpCXYSM' \
+    --namespace 'lrDcain0' \
+    --userId 'cOVF1zHw' \
+    --activeOnly 'True' \
+    --entitlementClazz 'SUBSCRIPTION' \
+    --itemId '0sJ1Q0kp' \
     >$TEMP_FILE 2>&1
 update_status $? 'getUserEntitlementByItemId'
 delete_file $TEMP_FILE
 
 #- 158 getUserEntitlementBySku
 samples/cli/sample-apps Platform getUserEntitlementBySku \
-    --namespace 'iy87CTqE' \
-    --userId 'QBg36my3' \
+    --namespace 'hMTggSP2' \
+    --userId 'SLcuAP7v' \
     --activeOnly 'True' \
-    --entitlementClazz 'APP' \
-    --sku 'lrDcain0' \
+    --entitlementClazz 'MEDIA' \
+    --sku 'w2nbg8C7' \
     >$TEMP_FILE 2>&1
 update_status $? 'getUserEntitlementBySku'
 delete_file $TEMP_FILE
 
 #- 159 existsAnyUserActiveEntitlement
 samples/cli/sample-apps Platform existsAnyUserActiveEntitlement \
-    --namespace 'cOVF1zHw' \
-    --userId 'DTI0sJ1Q' \
-    --appIds '["0kphMTgg"]' \
-    --itemIds '["SP2SLcuA"]' \
-    --skus '["P7vU971C"]' \
+    --namespace 'Mvywhu6M' \
+    --userId 'jOjuGzo1' \
+    --appIds '["Fz4tU0aS"]' \
+    --itemIds '["n98N8qOU"]' \
+    --skus '["A0z92RaD"]' \
     >$TEMP_FILE 2>&1
 update_status $? 'existsAnyUserActiveEntitlement'
 delete_file $TEMP_FILE
 
 #- 160 existsAnyUserActiveEntitlementByItemIds
 samples/cli/sample-apps Platform existsAnyUserActiveEntitlementByItemIds \
-    --namespace 'zw2nbg8C' \
-    --userId '7Mvywhu6' \
-    --itemIds '["MjOjuGzo"]' \
+    --namespace 'e8ngT8LR' \
+    --userId 'QkMnG1LZ' \
+    --itemIds '["yF2mdYY6"]' \
     >$TEMP_FILE 2>&1
 update_status $? 'existsAnyUserActiveEntitlementByItemIds'
 delete_file $TEMP_FILE
 
 #- 161 getUserAppEntitlementOwnershipByAppId
 samples/cli/sample-apps Platform getUserAppEntitlementOwnershipByAppId \
-    --namespace '1Fz4tU0a' \
-    --userId 'Sn98N8qO' \
-    --appId 'UA0z92Ra' \
+    --namespace 'ZMfuTYTK' \
+    --userId 'sue48qBE' \
+    --appId 'BNAV5BTe' \
     >$TEMP_FILE 2>&1
 update_status $? 'getUserAppEntitlementOwnershipByAppId'
 delete_file $TEMP_FILE
 
 #- 162 getUserEntitlementOwnershipByItemId
 samples/cli/sample-apps Platform getUserEntitlementOwnershipByItemId \
-    --namespace 'De8ngT8L' \
-    --userId 'RQkMnG1L' \
+    --namespace '6ec1zA92' \
+    --userId 'URCLSGPm' \
     --entitlementClazz 'MEDIA' \
-    --itemId 'F2mdYY6Z' \
+    --itemId 'ZWunHW7M' \
     >$TEMP_FILE 2>&1
 update_status $? 'getUserEntitlementOwnershipByItemId'
 delete_file $TEMP_FILE
 
 #- 163 getUserEntitlementOwnershipBySku
 samples/cli/sample-apps Platform getUserEntitlementOwnershipBySku \
-    --namespace 'MfuTYTKs' \
-    --userId 'ue48qBEB' \
-    --entitlementClazz 'SUBSCRIPTION' \
-    --sku 'AV5BTe6e' \
+    --namespace 'Yvr6QA7P' \
+    --userId 'pepc92HA' \
+    --entitlementClazz 'APP' \
+    --sku 'ACdeyfUp' \
     >$TEMP_FILE 2>&1
 update_status $? 'getUserEntitlementOwnershipBySku'
 delete_file $TEMP_FILE
 
 #- 164 revokeUserEntitlements
 samples/cli/sample-apps Platform revokeUserEntitlements \
-    --namespace 'c1zA92UR' \
-    --userId 'CLSGPmRB' \
-    --entitlementIds 'ZWunHW7M' \
+    --namespace 'giPpf8nx' \
+    --userId 'KJ3dnmtP' \
+    --entitlementIds 'wa64Y4gP' \
     >$TEMP_FILE 2>&1
 update_status $? 'revokeUserEntitlements'
 delete_file $TEMP_FILE
 
 #- 165 getUserEntitlement
 samples/cli/sample-apps Platform getUserEntitlement \
-    --entitlementId 'Yvr6QA7P' \
-    --namespace 'pepc92HA' \
-    --userId '94eACdey' \
+    --entitlementId 'EKMhhu9a' \
+    --namespace '6f3xJNtU' \
+    --userId 'lKLlIIAe' \
     >$TEMP_FILE 2>&1
 update_status $? 'getUserEntitlement'
 delete_file $TEMP_FILE
 
 #- 166 updateUserEntitlement
 samples/cli/sample-apps Platform updateUserEntitlement \
-    --body '{"endDate": "1973-05-01T00:00:00Z", "nullFieldList": ["giPpf8nx"], "startDate": "1989-10-11T00:00:00Z", "status": "ACTIVE", "useCount": 26}' \
-    --entitlementId 'mtPwa64Y' \
-    --namespace '4gPEKMhh' \
-    --userId 'u9a6f3xJ' \
+    --body '{"endDate": "1987-01-11T00:00:00Z", "nullFieldList": ["m5M6LsY1"], "startDate": "1994-10-27T00:00:00Z", "status": "CONSUMED", "useCount": 68}' \
+    --entitlementId 'EcRls68M' \
+    --namespace '3MPMRPBe' \
+    --userId 'pyyMz6zf' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateUserEntitlement'
 delete_file $TEMP_FILE
 
 #- 167 consumeUserEntitlement
 samples/cli/sample-apps Platform consumeUserEntitlement \
-    --body '{"useCount": 78}' \
-    --entitlementId 'tUlKLlII' \
-    --namespace 'AeHbm5M6' \
-    --userId 'LsY1VMuI' \
+    --body '{"useCount": 87}' \
+    --entitlementId '1pvTYYtD' \
+    --namespace 'OiEi4RuE' \
+    --userId 'cHCSGhpO' \
     >$TEMP_FILE 2>&1
 update_status $? 'consumeUserEntitlement'
 delete_file $TEMP_FILE
 
 #- 168 disableUserEntitlement
 samples/cli/sample-apps Platform disableUserEntitlement \
-    --entitlementId 'EcRls68M' \
-    --namespace '3MPMRPBe' \
-    --userId 'pyyMz6zf' \
+    --entitlementId 'ZQFlwOiu' \
+    --namespace 'KGDFgK49' \
+    --userId 'YuKnXks0' \
     >$TEMP_FILE 2>&1
 update_status $? 'disableUserEntitlement'
 delete_file $TEMP_FILE
 
 #- 169 enableUserEntitlement
 samples/cli/sample-apps Platform enableUserEntitlement \
-    --entitlementId 'R1pvTYYt' \
-    --namespace 'DOiEi4Ru' \
-    --userId 'EcHCSGhp' \
+    --entitlementId 'm8ANrcRa' \
+    --namespace 'l7ta3foj' \
+    --userId 'A3h4MMW3' \
     >$TEMP_FILE 2>&1
 update_status $? 'enableUserEntitlement'
 delete_file $TEMP_FILE
 
 #- 170 getUserEntitlementHistories
 samples/cli/sample-apps Platform getUserEntitlementHistories \
-    --entitlementId 'OZQFlwOi' \
-    --namespace 'uKGDFgK4' \
-    --userId '9YuKnXks' \
+    --entitlementId 'AJ5zlsFB' \
+    --namespace 'wjvLYvmg' \
+    --userId '6avudQFF' \
     >$TEMP_FILE 2>&1
 update_status $? 'getUserEntitlementHistories'
 delete_file $TEMP_FILE
 
 #- 171 revokeUserEntitlement
 samples/cli/sample-apps Platform revokeUserEntitlement \
-    --entitlementId '0m8ANrcR' \
-    --namespace 'al7ta3fo' \
-    --userId 'jA3h4MMW' \
+    --entitlementId '1CPNY9u2' \
+    --namespace 'dVYdglOO' \
+    --userId 'oCeK0kPK' \
     >$TEMP_FILE 2>&1
 update_status $? 'revokeUserEntitlement'
 delete_file $TEMP_FILE
 
 #- 172 fulfillItem
 samples/cli/sample-apps Platform fulfillItem \
-    --body '{"duration": 53, "endDate": "1988-07-22T00:00:00Z", "itemId": "lsFBwjvL", "itemSku": "Yvmg6avu", "language": "dQFF1CPN", "order": {"currency": {"currencyCode": "Y9u2dVYd", "currencySymbol": "glOOoCeK", "currencyType": "REAL", "decimals": 83, "namespace": "KmBqVux3"}, "ext": {"lXcD8aer": {}}, "free": true}, "orderNo": "AVCqs8XT", "quantity": 46, "region": "y3nJ06Kk", "source": "REFERRAL_BONUS", "startDate": "1973-07-31T00:00:00Z", "storeId": "0ARj9ric"}' \
-    --namespace 'fayvnhi8' \
-    --userId 'MDdY4WLH' \
+    --body '{"duration": 25, "endDate": "1984-05-09T00:00:00Z", "itemId": "Vux3lXcD", "itemSku": "8aertAVC", "language": "qs8XT8xy", "order": {"currency": {"currencyCode": "3nJ06Kks", "currencySymbol": "eA0ARj9r", "currencyType": "REAL", "decimals": 5, "namespace": "fayvnhi8"}, "ext": {"MDdY4WLH": {}}, "free": false}, "orderNo": "aUkYnQp5", "quantity": 9, "region": "gdmVE8Im", "source": "PROMOTION", "startDate": "1981-11-07T00:00:00Z", "storeId": "tQxqWRKH"}' \
+    --namespace 'ohODoWOr' \
+    --userId '98kjBUas' \
     >$TEMP_FILE 2>&1
 update_status $? 'fulfillItem'
 delete_file $TEMP_FILE
 
 #- 173 redeemCode
 samples/cli/sample-apps Platform redeemCode \
-    --body '{"code": "oaUkYnQp", "language": "5egdmVE8", "region": "ImivNtQx"}' \
-    --namespace 'qWRKHohO' \
-    --userId 'DoWOr98k' \
+    --body '{"code": "9jjz2Frg", "language": "Ag_Diov", "region": "5W8tKH8o"}' \
+    --namespace 'u9SdbxSX' \
+    --userId 'crEFCwqe' \
     >$TEMP_FILE 2>&1
 update_status $? 'redeemCode'
 delete_file $TEMP_FILE
 
 #- 174 fulfillRewards
 samples/cli/sample-apps Platform fulfillRewards \
-    --body '{"rewards": [{"currency": {"currencyCode": "jBUas9jj", "namespace": "z2FrgiaG"}, "item": {"itemId": "rcB7dIOV", "itemSku": "KIPSJJHo", "itemType": "5W8tKH8o"}, "quantity": 40, "type": "ITEM"}], "source": "PURCHASE"}' \
-    --namespace 'xSXcrEFC' \
-    --userId 'wqeGNLdI' \
+    --body '{"rewards": [{"currency": {"currencyCode": "GNLdIBRd", "namespace": "liFQVMKE"}, "item": {"itemId": "zVUWlUWD", "itemSku": "s2x1EQU0", "itemType": "oepEvcja"}, "quantity": 88, "type": "ITEM"}], "source": "GIFT"}' \
+    --namespace 'h6jJnFxi' \
+    --userId 'nIHJ1o7a' \
     >$TEMP_FILE 2>&1
 update_status $? 'fulfillRewards'
 delete_file $TEMP_FILE
 
 #- 175 queryUserIAPOrders
 samples/cli/sample-apps Platform queryUserIAPOrders \
-    --namespace 'BRdliFQV' \
-    --userId 'MKEzVUWl' \
-    --endTime 'UWDs2x1E' \
-    --limit '85' \
-    --offset '93' \
-    --productId '0oepEvcj' \
-    --startTime 'aSgEh6jJ' \
-    --status 'FAILED' \
-    --type 'XBOX' \
+    --namespace 'q5Zznd5e' \
+    --userId 'acobTsuR' \
+    --endTime 'lhreQVFI' \
+    --limit '59' \
+    --offset '29' \
+    --productId '8hJWVjKI' \
+    --startTime 'OAw70DvA' \
+    --status 'VERIFIED' \
+    --type 'EPICGAMES' \
     >$TEMP_FILE 2>&1
 update_status $? 'queryUserIAPOrders'
 delete_file $TEMP_FILE
 
 #- 176 queryAllUserIAPOrders
 samples/cli/sample-apps Platform queryAllUserIAPOrders \
-    --namespace 'xinIHJ1o' \
-    --userId '7aq5Zznd' \
+    --namespace 'SGWUvzq1' \
+    --userId 'Za3IBC4v' \
     >$TEMP_FILE 2>&1
 update_status $? 'queryAllUserIAPOrders'
 delete_file $TEMP_FILE
 
 #- 177 mockFulfillIAPItem
 samples/cli/sample-apps Platform mockFulfillIAPItem \
-    --body '{"language": "5eacobTs", "productId": "uRlhreQV", "region": "FID3o8hJ", "type": "PLAYSTATION"}' \
-    --namespace 'KIOAw70D' \
-    --userId 'vAHhSGWU' \
+    --body '{"language": "fSuj", "productId": "aJp1rt7O", "region": "BgBCe6N0", "type": "GOOGLE"}' \
+    --namespace 'I65Mn5tn' \
+    --userId 'gEYXgPVT' \
     >$TEMP_FILE 2>&1
 update_status $? 'mockFulfillIAPItem'
 delete_file $TEMP_FILE
 
 #- 178 queryUserOrders
 samples/cli/sample-apps Platform queryUserOrders \
-    --namespace 'vzq1Za3I' \
-    --userId 'BC4vQFsU' \
-    --itemId 'JPfiaJp1' \
-    --limit '34' \
-    --offset '38' \
-    --status 'REFUND_FAILED' \
+    --namespace '5CqXDZBV' \
+    --userId 'MJyJeKFO' \
+    --itemId '92YDtaZv' \
+    --limit '71' \
+    --offset '28' \
+    --status 'REFUNDING' \
     >$TEMP_FILE 2>&1
 update_status $? 'queryUserOrders'
 delete_file $TEMP_FILE
 
 #- 179 countOfPurchasedItem
 samples/cli/sample-apps Platform countOfPurchasedItem \
-    --namespace 'BgBCe6N0' \
-    --userId 'eI65Mn5t' \
-    --itemId 'ngEYXgPV' \
+    --namespace 'S0OxyipZ' \
+    --userId 'uO4N9S2Y' \
+    --itemId 'CgHa6XBc' \
     >$TEMP_FILE 2>&1
 update_status $? 'countOfPurchasedItem'
 delete_file $TEMP_FILE
 
 #- 180 getUserOrder
 samples/cli/sample-apps Platform getUserOrder \
-    --namespace 'T5CqXDZB' \
-    --orderNo 'VMJyJeKF' \
-    --userId 'O92YDtaZ' \
+    --namespace 'vGRYk5rU' \
+    --orderNo 'tWHCnhmz' \
+    --userId 'zppV7tKN' \
     >$TEMP_FILE 2>&1
 update_status $? 'getUserOrder'
 delete_file $TEMP_FILE
 
 #- 181 updateUserOrderStatus
 samples/cli/sample-apps Platform updateUserOrderStatus \
-    --body '{"status": "FULFILL_FAILED", "statusReason": "JoKS0Oxy"}' \
-    --namespace 'ipZuO4N9' \
-    --orderNo 'S2YCgHa6' \
-    --userId 'XBcvGRYk' \
+    --body '{"status": "CLOSED", "statusReason": "YUQVBXym"}' \
+    --namespace 'WcNlHaFx' \
+    --orderNo 'YaGHUpmB' \
+    --userId 'FyOrFKtx' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateUserOrderStatus'
 delete_file $TEMP_FILE
 
 #- 182 fulfillUserOrder
 samples/cli/sample-apps Platform fulfillUserOrder \
-    --namespace '5rUtWHCn' \
-    --orderNo 'hmzzppV7' \
-    --userId 'tKNKYUQV' \
+    --namespace 'GNAi0fq4' \
+    --orderNo 'xChPLd2l' \
+    --userId 'Oopc7XoV' \
     >$TEMP_FILE 2>&1
 update_status $? 'fulfillUserOrder'
 delete_file $TEMP_FILE
 
 #- 183 getUserOrderGrant
 samples/cli/sample-apps Platform getUserOrderGrant \
-    --namespace 'BXymWcNl' \
-    --orderNo 'HaFxYaGH' \
-    --userId 'UpmBFyOr' \
+    --namespace 'pdd6rCpy' \
+    --orderNo 'MrnH9YHX' \
+    --userId 'h7KnCVOK' \
     >$TEMP_FILE 2>&1
 update_status $? 'getUserOrderGrant'
 delete_file $TEMP_FILE
 
 #- 184 getUserOrderHistories
 samples/cli/sample-apps Platform getUserOrderHistories \
-    --namespace 'FKtxGNAi' \
-    --orderNo '0fq4xChP' \
-    --userId 'Ld2lOopc' \
+    --namespace 'Y2zsBRGt' \
+    --orderNo 'd8QY2OLb' \
+    --userId 'ijrvfr8h' \
     >$TEMP_FILE 2>&1
 update_status $? 'getUserOrderHistories'
 delete_file $TEMP_FILE
 
 #- 185 processUserOrderNotification
 samples/cli/sample-apps Platform processUserOrderNotification \
-    --body '{"additionalData": {"cardSummary": "7XoVpdd6"}, "authorisedTime": "1979-08-15T00:00:00Z", "chargebackReversedTime": "1978-07-11T00:00:00Z", "chargebackTime": "1990-05-16T00:00:00Z", "chargedTime": "1977-09-22T00:00:00Z", "createdTime": "1996-09-16T00:00:00Z", "currency": {"currencyCode": "Xh7KnCVO", "currencySymbol": "KY2zsBRG", "currencyType": "VIRTUAL", "decimals": 7, "namespace": "8QY2OLbi"}, "customParameters": {"jrvfr8hk": {}}, "extOrderNo": "njWUWdMU", "extTxId": "XHvw4pNl", "extUserId": "GLjdBxLM", "issuedAt": "1997-04-28T00:00:00Z", "metadata": {"DAbTgmsE": "YEq2GkYK"}, "namespace": "1vYm9flX", "nonceStr": "Q7CQoemn", "paymentMethod": "QG0dH0NV", "paymentMethodFee": 77, "paymentOrderNo": "9VEHTPqD", "paymentProvider": "XSOLLA", "paymentProviderFee": 20, "paymentStationUrl": "cu5vnz6G", "price": 16, "refundedTime": "1990-11-01T00:00:00Z", "salesTax": 2, "sandbox": false, "sku": "BJHml0LJ", "status": "CHARGED", "statusReason": "pPi4mqhr", "subscriptionId": "uiCZLGGP", "subtotalPrice": 93, "targetNamespace": "XkHNTMap", "targetUserId": "p5SbonsU", "tax": 71, "totalPrice": 72, "totalTax": 53, "txEndTime": "1985-05-17T00:00:00Z", "type": "60EkdFrp", "userId": "LsGt9yTX", "vat": 96}' \
-    --namespace 'USCQcMsH' \
-    --orderNo 'N7reI22k' \
-    --userId 's7I12tAZ' \
+    --body '{"additionalData": {"cardSummary": "knjWUWdM"}, "authorisedTime": "1994-09-24T00:00:00Z", "chargebackReversedTime": "1981-06-26T00:00:00Z", "chargebackTime": "1999-04-28T00:00:00Z", "chargedTime": "1990-04-01T00:00:00Z", "createdTime": "1987-10-27T00:00:00Z", "currency": {"currencyCode": "jdBxLM07", "currencySymbol": "9pDAbTgm", "currencyType": "VIRTUAL", "decimals": 61, "namespace": "YEq2GkYK"}, "customParameters": {"1vYm9flX": {}}, "extOrderNo": "Q7CQoemn", "extTxId": "QG0dH0NV", "extUserId": "M9VEHTPq", "issuedAt": "1985-02-26T00:00:00Z", "metadata": {"kcu5vnz6": "GiNMboBJ"}, "namespace": "Hml0LJmp", "nonceStr": "Pi4mqhru", "paymentMethod": "iCZLGGP5", "paymentMethodFee": 93, "paymentOrderNo": "XkHNTMap", "paymentProvider": "STRIPE", "paymentProviderFee": 88, "paymentStationUrl": "bonsUJKA", "price": 58, "refundedTime": "1979-09-02T00:00:00Z", "salesTax": 21, "sandbox": false, "sku": "FrpLsGt9", "status": "REQUEST_FOR_INFORMATION", "statusReason": "TXWUSCQc", "subscriptionId": "MsHN7reI", "subtotalPrice": 21, "targetNamespace": "s7I12tAZ", "targetUserId": "c8sxxLx9", "tax": 98, "totalPrice": 85, "totalTax": 8, "txEndTime": "1979-11-12T00:00:00Z", "type": "WLm8cNJb", "userId": "YH5J4WiJ", "vat": 74}' \
+    --namespace 'v9NvHwtw' \
+    --orderNo '2Mjcy9ZL' \
+    --userId '6Zs5Bu2X' \
     >$TEMP_FILE 2>&1
 update_status $? 'processUserOrderNotification'
 delete_file $TEMP_FILE
 
 #- 186 downloadUserOrderReceipt
 samples/cli/sample-apps Platform downloadUserOrderReceipt \
-    --namespace 'c8sxxLx9' \
-    --orderNo 'XQeqNWLm' \
-    --userId '8cNJbYH5' \
+    --namespace 'YopLWZeU' \
+    --orderNo 'KJJNftRp' \
+    --userId 'Ggk1iseR' \
     >$TEMP_FILE 2>&1
 update_status $? 'downloadUserOrderReceipt'
 delete_file $TEMP_FILE
 
 #- 187 createUserPaymentOrder
 samples/cli/sample-apps Platform createUserPaymentOrder \
-    --body '{"currencyCode": "J4WiJLv9", "currencyNamespace": "NvHwtw2M", "customParameters": {"jcy9ZL6Z": {}}, "description": "s5Bu2XYo", "extOrderNo": "pLWZeUKJ", "extUserId": "JNftRpGg", "itemType": "INGAMEITEM", "language": "1iseREzz", "metadata": {"RG6z9wmu": "HddyOdib"}, "notifyUrl": "I1LVyqbd", "omitNotification": true, "price": 65, "recurringPaymentOrderNo": "ZKAuoIKz", "region": "3Pp3zLWU", "returnUrl": "xMzMtSmM", "sandbox": false, "sku": "ZP8nG0Fo", "subscriptionId": "QP8q7aSs", "title": "b85gAh9R"}' \
-    --namespace 'D3ZzN6N1' \
-    --userId 'iJ8ltt9I' \
+    --body '{"currencyCode": "EzzRG6z9", "currencyNamespace": "wmuHddyO", "customParameters": {"dibI1LVy": {}}, "description": "qbdY8DGZ", "extOrderNo": "KAuoIKz3", "extUserId": "Pp3zLWUx", "itemType": "SEASON", "language": "TsMm", "metadata": {"G0FoQP8q": "7aSsb85g"}, "notifyUrl": "Ah9RD3Zz", "omitNotification": false, "price": 70, "recurringPaymentOrderNo": "8ltt9IRq", "region": "Cflgln6r", "returnUrl": "5f0s5H6l", "sandbox": true, "sku": "f3QHa11h", "subscriptionId": "LLCgw5av", "title": "4LExdabD"}' \
+    --namespace '8g2cvHfM' \
+    --userId 'RupDA5xb' \
     >$TEMP_FILE 2>&1
 update_status $? 'createUserPaymentOrder'
 delete_file $TEMP_FILE
 
 #- 188 refundUserPaymentOrder
 samples/cli/sample-apps Platform refundUserPaymentOrder \
-    --body '{"description": "RqCflgln"}' \
-    --namespace '6r5f0s5H' \
-    --paymentOrderNo '6lCf3QHa' \
-    --userId '11hLLCgw' \
+    --body '{"description": "js3XRdHU"}' \
+    --namespace 'J0GCmflI' \
+    --paymentOrderNo 'XkgJ6zkT' \
+    --userId 'woakq7sE' \
     >$TEMP_FILE 2>&1
 update_status $? 'refundUserPaymentOrder'
 delete_file $TEMP_FILE
 
 #- 189 applyUserRedemption
 samples/cli/sample-apps Platform applyUserRedemption \
-    --body '{"code": "5av4LExd", "orderNo": "abD8g2cv"}' \
-    --namespace 'HfMRupDA' \
-    --userId '5xbjs3XR' \
+    --body '{"code": "ejFZ1NtO", "orderNo": "NXb9w9hs"}' \
+    --namespace 'QHszIsfr' \
+    --userId 'lzKpQdd5' \
     >$TEMP_FILE 2>&1
 update_status $? 'applyUserRedemption'
 delete_file $TEMP_FILE
 
 #- 190 queryUserSubscriptions
 samples/cli/sample-apps Platform queryUserSubscriptions \
-    --namespace 'dHUJ0GCm' \
-    --userId 'flIXkgJ6' \
+    --namespace '8dZP5Rvr' \
+    --userId 'inNtvBtq' \
     --chargeStatus 'RECURRING_CHARGING' \
-    --itemId 'kTwoakq7' \
-    --limit '37' \
-    --offset '60' \
-    --sku 'ejFZ1NtO' \
-    --status 'ACTIVE' \
-    --subscribedBy 'USER' \
+    --itemId 'SkA68mIV' \
+    --limit '70' \
+    --offset '31' \
+    --sku 'SVxBsLht' \
+    --status 'INIT' \
+    --subscribedBy 'PLATFORM' \
     >$TEMP_FILE 2>&1
 update_status $? 'queryUserSubscriptions'
 delete_file $TEMP_FILE
 
 #- 191 getUserSubscriptionActivities
 samples/cli/sample-apps Platform getUserSubscriptionActivities \
-    --namespace '9hsQHszI' \
-    --userId 'sfrlzKpQ' \
+    --namespace 'ecToXA4M' \
+    --userId '1oUFPhgo' \
     --excludeSystem 'False' \
-    --limit '6' \
-    --offset '7' \
-    --subscriptionId 'ZP5Rvrin' \
+    --limit '44' \
+    --offset '78' \
+    --subscriptionId 'C4FY69mM' \
     >$TEMP_FILE 2>&1
 update_status $? 'getUserSubscriptionActivities'
 delete_file $TEMP_FILE
 
 #- 192 platformSubscribeSubscription
 samples/cli/sample-apps Platform platformSubscribeSubscription \
-    --body '{"grantDays": 78, "itemId": "tvBtqFSk", "language": "A68mIVYJ", "reason": "5pSVxBsL", "region": "hty3pecT", "source": "oXA4M1oU"}' \
-    --namespace 'FPhgo7Z6' \
-    --userId 'mwNC4FY6' \
+    --body '{"grantDays": 19, "itemId": "oJNOGB83", "language": "Ns6Hl5Po", "reason": "ab6lKoVq", "region": "NBUzIxOf", "source": "glquS2q2"}' \
+    --namespace 'DoWr9zvF' \
+    --userId 'tKa2mOAq' \
     >$TEMP_FILE 2>&1
 update_status $? 'platformSubscribeSubscription'
 delete_file $TEMP_FILE
 
 #- 193 checkUserSubscriptionSubscribableByItemId
 samples/cli/sample-apps Platform checkUserSubscriptionSubscribableByItemId \
-    --namespace '9mM87joJ' \
-    --userId 'NOGB83Ns' \
-    --itemId '6Hl5Poab' \
+    --namespace 'OokV1plx' \
+    --userId 'Q2YriTPf' \
+    --itemId 'ipD67jI2' \
     >$TEMP_FILE 2>&1
 update_status $? 'checkUserSubscriptionSubscribableByItemId'
 delete_file $TEMP_FILE
 
 #- 194 getUserSubscription
 samples/cli/sample-apps Platform getUserSubscription \
-    --namespace '6lKoVqNB' \
-    --subscriptionId 'UzIxOfgl' \
-    --userId 'quS2q2Do' \
+    --namespace 'hiZkrtLn' \
+    --subscriptionId 'h2U1RQlM' \
+    --userId 'xkfNMPNt' \
     >$TEMP_FILE 2>&1
 update_status $? 'getUserSubscription'
 delete_file $TEMP_FILE
 
 #- 195 deleteUserSubscription
 samples/cli/sample-apps Platform deleteUserSubscription \
-    --namespace 'Wr9zvFtK' \
-    --subscriptionId 'a2mOAqOo' \
-    --userId 'kV1plxQ2' \
+    --namespace 'qv2TMz1b' \
+    --subscriptionId '7SnzkXOe' \
+    --userId 'k83Igm1w' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteUserSubscription'
 delete_file $TEMP_FILE
 
 #- 196 cancelSubscription
 samples/cli/sample-apps Platform cancelSubscription \
-    --body '{"immediate": true, "reason": "iTPfipD6"}' \
-    --namespace '7jI2hiZk' \
-    --subscriptionId 'rtLnh2U1' \
-    --userId 'RQlMxkfN' \
+    --body '{"immediate": false, "reason": "SWsYvAsu"}' \
+    --namespace '18obUdc8' \
+    --subscriptionId 'mbvXcwcg' \
+    --userId 'MqOXMziX' \
     --force 'True' \
     >$TEMP_FILE 2>&1
 update_status $? 'cancelSubscription'
@@ -1827,154 +1827,154 @@ delete_file $TEMP_FILE
 
 #- 197 grantDaysToSubscription
 samples/cli/sample-apps Platform grantDaysToSubscription \
-    --body '{"grantDays": 32, "reason": "v2TMz1b7"}' \
-    --namespace 'SnzkXOek' \
-    --subscriptionId '83Igm1wk' \
-    --userId 'SWsYvAsu' \
+    --body '{"grantDays": 94, "reason": "dsEc3ClF"}' \
+    --namespace 'P3mJwusC' \
+    --subscriptionId 'BTe4kLcu' \
+    --userId 'qL40NYge' \
     >$TEMP_FILE 2>&1
 update_status $? 'grantDaysToSubscription'
 delete_file $TEMP_FILE
 
 #- 198 getUserSubscriptionBillingHistories
 samples/cli/sample-apps Platform getUserSubscriptionBillingHistories \
-    --namespace '18obUdc8' \
-    --subscriptionId 'mbvXcwcg' \
-    --userId 'MqOXMziX' \
+    --namespace 'kRavpaGT' \
+    --subscriptionId 'A9BTyCCy' \
+    --userId 'N4Fw9i6m' \
     --excludeFree 'True' \
-    --limit '94' \
-    --offset '7' \
+    --limit '19' \
+    --offset '18' \
     >$TEMP_FILE 2>&1
 update_status $? 'getUserSubscriptionBillingHistories'
 delete_file $TEMP_FILE
 
 #- 199 processUserSubscriptionNotification
 samples/cli/sample-apps Platform processUserSubscriptionNotification \
-    --body '{"additionalData": {"cardSummary": "sEc3ClFP"}, "authorisedTime": "1998-04-05T00:00:00Z", "chargebackReversedTime": "1988-06-23T00:00:00Z", "chargebackTime": "1981-05-23T00:00:00Z", "chargedTime": "1985-08-04T00:00:00Z", "createdTime": "1993-01-30T00:00:00Z", "currency": {"currencyCode": "4kLcuqL4", "currencySymbol": "0NYgekRa", "currencyType": "VIRTUAL", "decimals": 30, "namespace": "aGTA9BTy"}, "customParameters": {"CCyN4Fw9": {}}, "extOrderNo": "i6mI2W3t", "extTxId": "jjCqPVyY", "extUserId": "s01hEYzW", "issuedAt": "1982-05-10T00:00:00Z", "metadata": {"rcxM0DPA": "XQBNMP7j"}, "namespace": "3xfPaoZa", "nonceStr": "WFspkU5k", "paymentMethod": "n6PlPqD4", "paymentMethodFee": 52, "paymentOrderNo": "gfasBfcl", "paymentProvider": "WXPAY", "paymentProviderFee": 14, "paymentStationUrl": "ZjZbLnmg", "price": 15, "refundedTime": "1989-06-27T00:00:00Z", "salesTax": 83, "sandbox": true, "sku": "VIn3qaHP", "status": "REFUNDING", "statusReason": "NulyfrEN", "subscriptionId": "VQkpcaWH", "subtotalPrice": 11, "targetNamespace": "6T2xOOlj", "targetUserId": "n7c6c9ef", "tax": 71, "totalPrice": 68, "totalTax": 91, "txEndTime": "1996-06-30T00:00:00Z", "type": "rgLBFJEk", "userId": "phFz0h6W", "vat": 31}' \
-    --namespace 'oVpVc2HB' \
-    --subscriptionId 'Bmj6cEi0' \
-    --userId '2hXl42ub' \
+    --body '{"additionalData": {"cardSummary": "CqPVyYs0"}, "authorisedTime": "1997-02-23T00:00:00Z", "chargebackReversedTime": "1986-07-21T00:00:00Z", "chargebackTime": "1995-06-25T00:00:00Z", "chargedTime": "1998-05-06T00:00:00Z", "createdTime": "1979-01-16T00:00:00Z", "currency": {"currencyCode": "xM0DPAXQ", "currencySymbol": "BNMP7j3x", "currencyType": "REAL", "decimals": 83, "namespace": "aoZaWFsp"}, "customParameters": {"kU5kn6Pl": {}}, "extOrderNo": "PqD4Agfa", "extTxId": "sBfclBhZ", "extUserId": "jZbLnmgh", "issuedAt": "1989-06-27T00:00:00Z", "metadata": {"PyVIn3qa": "HP7KNuly"}, "namespace": "frENVQkp", "nonceStr": "caWHf6T2", "paymentMethod": "xOOljn7c", "paymentMethodFee": 4, "paymentOrderNo": "9efJI02T", "paymentProvider": "ALIPAY", "paymentProviderFee": 35, "paymentStationUrl": "gLBFJEkp", "price": 14, "refundedTime": "1986-07-23T00:00:00Z", "salesTax": 15, "sandbox": false, "sku": "oVpVc2HB", "status": "REQUEST_FOR_INFORMATION", "statusReason": "mj6cEi02", "subscriptionId": "hXl42ubC", "subtotalPrice": 87, "targetNamespace": "fy4GjKn5", "targetUserId": "ItHXLDZq", "tax": 31, "totalPrice": 87, "totalTax": 15, "txEndTime": "1979-04-20T00:00:00Z", "type": "R742GcbL", "userId": "uQOGMOEz", "vat": 24}' \
+    --namespace 'djNhT0S4' \
+    --subscriptionId '6kqyfMBS' \
+    --userId 'aZc4SA16' \
     >$TEMP_FILE 2>&1
 update_status $? 'processUserSubscriptionNotification'
 delete_file $TEMP_FILE
 
 #- 200 acquireUserTicket
 samples/cli/sample-apps Platform acquireUserTicket \
-    --body '{"count": 57, "orderNo": "Rfy4GjKn"}' \
-    --boothName '5ItHXLDZ' \
-    --namespace 'qpRhqnR7' \
-    --userId '42GcbLuQ' \
+    --body '{"count": 77, "orderNo": "8gQCD7aB"}' \
+    --boothName 'HWCYevNk' \
+    --namespace 'fcQvl4Os' \
+    --userId 'o7tx65zX' \
     >$TEMP_FILE 2>&1
 update_status $? 'acquireUserTicket'
 delete_file $TEMP_FILE
 
 #- 201 checkWallet
 samples/cli/sample-apps Platform checkWallet \
-    --currencyCode 'OGMOEzmd' \
-    --namespace 'jNhT0S46' \
-    --userId 'kqyfMBSa' \
+    --currencyCode 'CiTfjorL' \
+    --namespace 'FqTmIUFU' \
+    --userId 'oonHBI13' \
     >$TEMP_FILE 2>&1
 update_status $? 'checkWallet'
 delete_file $TEMP_FILE
 
 #- 202 creditUserWallet
 samples/cli/sample-apps Platform creditUserWallet \
-    --body '{"amount": 5, "reason": "4SA16M8g", "source": "GIFT"}' \
-    --currencyCode 'D7aBHWCY' \
-    --namespace 'evNkfcQv' \
-    --userId 'l4Oso7tx' \
+    --body '{"amount": 89, "reason": "ZFHfm0F8", "source": "REDEEM_CODE"}' \
+    --currencyCode 'S2BrZ3nq' \
+    --namespace '88YSSD7z' \
+    --userId 'V0C8FvVU' \
     >$TEMP_FILE 2>&1
 update_status $? 'creditUserWallet'
 delete_file $TEMP_FILE
 
 #- 203 payWithUserWallet
 samples/cli/sample-apps Platform payWithUserWallet \
-    --body '{"amount": 50}' \
-    --currencyCode 'XCiTfjor' \
-    --namespace 'LFqTmIUF' \
-    --userId 'UoonHBI1' \
+    --body '{"amount": 21}' \
+    --currencyCode 'RXBGPXId' \
+    --namespace 'ft1biZHu' \
+    --userId 'hWyFPHdX' \
     >$TEMP_FILE 2>&1
 update_status $? 'payWithUserWallet'
 delete_file $TEMP_FILE
 
 #- 204 getUserWallet
 samples/cli/sample-apps Platform getUserWallet \
-    --namespace '3SZFHfm0' \
-    --userId 'F8vS2BrZ' \
-    --walletId '3nq88YSS' \
+    --namespace 'cyvZEhYe' \
+    --userId 'USy5Ukc6' \
+    --walletId '5naP11R8' \
     >$TEMP_FILE 2>&1
 update_status $? 'getUserWallet'
 delete_file $TEMP_FILE
 
 #- 205 debitUserWallet
 samples/cli/sample-apps Platform debitUserWallet \
-    --body '{"amount": 59, "reason": "7zV0C8Fv"}' \
-    --namespace 'VU3kRXBG' \
-    --userId 'PXIdft1b' \
-    --walletId 'iZHuhWyF' \
+    --body '{"amount": 98, "reason": "ww9vq9nM"}' \
+    --namespace 'a2Btgwyu' \
+    --userId 'f2fjV30S' \
+    --walletId 'Lxi7uyha' \
     >$TEMP_FILE 2>&1
 update_status $? 'debitUserWallet'
 delete_file $TEMP_FILE
 
 #- 206 disableUserWallet
 samples/cli/sample-apps Platform disableUserWallet \
-    --namespace 'PHdXcyvZ' \
-    --userId 'EhYeUSy5' \
-    --walletId 'Ukc65naP' \
+    --namespace 'eFtcO9XN' \
+    --userId 'y63QO9vW' \
+    --walletId '0ck7TEDE' \
     >$TEMP_FILE 2>&1
 update_status $? 'disableUserWallet'
 delete_file $TEMP_FILE
 
 #- 207 enableUserWallet
 samples/cli/sample-apps Platform enableUserWallet \
-    --namespace '11R8Xww9' \
-    --userId 'vq9nMa2B' \
-    --walletId 'tgwyuf2f' \
+    --namespace '8LeEQBeG' \
+    --userId 'PLiE6tHC' \
+    --walletId 'r0GPFvT0' \
     >$TEMP_FILE 2>&1
 update_status $? 'enableUserWallet'
 delete_file $TEMP_FILE
 
 #- 208 listUserWalletTransactions
 samples/cli/sample-apps Platform listUserWalletTransactions \
-    --namespace 'jV30SLxi' \
-    --userId '7uyhaeFt' \
-    --walletId 'cO9XNy63' \
-    --limit '85' \
-    --offset '80' \
+    --namespace 'SAK91y5v' \
+    --userId 'CeBIJq0B' \
+    --walletId '9UcI6c5c' \
+    --limit '34' \
+    --offset '9' \
     >$TEMP_FILE 2>&1
 update_status $? 'listUserWalletTransactions'
 delete_file $TEMP_FILE
 
 #- 209 queryWallets
 samples/cli/sample-apps Platform queryWallets \
-    --namespace '9vW0ck7T' \
-    --currencyCode 'EDE8LeEQ' \
-    --limit '54' \
-    --offset '8' \
-    --userId 'GPLiE6tH' \
+    --namespace '9ealHOZp' \
+    --currencyCode 'hcLncnjn' \
+    --limit '25' \
+    --offset '49' \
+    --userId 'U8FSxXdC' \
     >$TEMP_FILE 2>&1
 update_status $? 'queryWallets'
 delete_file $TEMP_FILE
 
 #- 210 getWallet
 samples/cli/sample-apps Platform getWallet \
-    --namespace 'Cr0GPFvT' \
-    --walletId '0SAK91y5' \
+    --namespace 'rskoFqno' \
+    --walletId 'wq9Laz1G' \
     >$TEMP_FILE 2>&1
 update_status $? 'getWallet'
 delete_file $TEMP_FILE
 
 #- 211 syncOrders
 samples/cli/sample-apps Platform syncOrders \
-    --nextEvaluatedKey 'vCeBIJq0' \
-    --end 'B9UcI6c5' \
-    --start 'cre9ealH' \
+    --nextEvaluatedKey 'Lt5Mhf8Z' \
+    --end '7ahmbVPm' \
+    --start '2g7xAFfR' \
     >$TEMP_FILE 2>&1
 update_status $? 'syncOrders'
 delete_file $TEMP_FILE
 
 #- 212 testAdyenConfig
 samples/cli/sample-apps Platform testAdyenConfig \
-    --body '{"allowedPaymentMethods": ["OZphcLnc"], "apiKey": "njnmyU8F", "authoriseAsCapture": true, "blockedPaymentMethods": ["XdCrskoF"], "liveEndpointUrlPrefix": "qnowq9La", "merchantAccount": "z1GLt5Mh", "notificationHmacKey": "f8Z7ahmb", "notificationPassword": "VPm2g7xA", "notificationUsername": "FfRRLUjf", "returnUrl": "WS9sftIf", "settings": "HGe5bUTS"}' \
+    --body '{"allowedPaymentMethods": ["RLUjfWS9"], "apiKey": "sftIfHGe", "authoriseAsCapture": false, "blockedPaymentMethods": ["UTSXOv12"], "clientKey": "PMcRO6E2", "dropInSettings": "Mkre5q7F", "liveEndpointUrlPrefix": "vaACp6he", "merchantAccount": "0fzjkPNN", "notificationHmacKey": "S0BfgF6i", "notificationPassword": "nIRsZ5hr", "notificationUsername": "qNzVszGV", "returnUrl": "P5P1iwhc", "settings": "f30C1KHR"}' \
     --sandbox 'True' \
     >$TEMP_FILE 2>&1
 update_status $? 'testAdyenConfig'
@@ -1982,15 +1982,15 @@ delete_file $TEMP_FILE
 
 #- 213 testAliPayConfig
 samples/cli/sample-apps Platform testAliPayConfig \
-    --body '{"appId": "12PMcRO6", "privateKey": "E2Mkre5q", "publicKey": "7FvaACp6", "returnUrl": "he0fzjkP"}' \
-    --sandbox 'True' \
+    --body '{"appId": "5vbfZvYI", "privateKey": "FFctEKOL", "publicKey": "xSRxe0wm", "returnUrl": "WBMcNiWo"}' \
+    --sandbox 'False' \
     >$TEMP_FILE 2>&1
 update_status $? 'testAliPayConfig'
 delete_file $TEMP_FILE
 
 #- 214 testCheckoutConfig
 samples/cli/sample-apps Platform testCheckoutConfig \
-    --body '{"publicKey": "fgF6inIR", "secretKey": "sZ5hrqNz"}' \
+    --body '{"publicKey": "bB6o6alT", "secretKey": "QcP0EpE9"}' \
     --sandbox 'True' \
     >$TEMP_FILE 2>&1
 update_status $? 'testCheckoutConfig'
@@ -1998,15 +1998,15 @@ delete_file $TEMP_FILE
 
 #- 215 debugMatchedPaymentMerchantConfig
 samples/cli/sample-apps Platform debugMatchedPaymentMerchantConfig \
-    --namespace 'zGVP5P1i' \
-    --region 'whcf30C1' \
+    --namespace 'GNVwkgfJ' \
+    --region 'J2HIalfz' \
     >$TEMP_FILE 2>&1
 update_status $? 'debugMatchedPaymentMerchantConfig'
 delete_file $TEMP_FILE
 
 #- 216 testPayPalConfig
 samples/cli/sample-apps Platform testPayPalConfig \
-    --body '{"clientID": "KHRZHMGy", "clientSecret": "5vbfZvYI", "returnUrl": "FFctEKOL", "webHookId": "xSRxe0wm"}' \
+    --body '{"clientID": "gRpTf9lx", "clientSecret": "F1JPBizX", "returnUrl": "ZtrGe8Ly", "webHookId": "OH24nneZ"}' \
     --sandbox 'True' \
     >$TEMP_FILE 2>&1
 update_status $? 'testPayPalConfig'
@@ -2014,7 +2014,7 @@ delete_file $TEMP_FILE
 
 #- 217 testStripeConfig
 samples/cli/sample-apps Platform testStripeConfig \
-    --body '{"allowedPaymentMethodTypes": ["McNiWoob"], "publishableKey": "B6o6alTQ", "secretKey": "cP0EpE9w", "webhookSecret": "GNVwkgfJ"}' \
+    --body '{"allowedPaymentMethodTypes": ["eRld0bGA"], "publishableKey": "7JxWYzaE", "secretKey": "aimvokcW", "webhookSecret": "X59kwiYH"}' \
     --sandbox 'False' \
     >$TEMP_FILE 2>&1
 update_status $? 'testStripeConfig'
@@ -2022,29 +2022,29 @@ delete_file $TEMP_FILE
 
 #- 218 testWxPayConfig
 samples/cli/sample-apps Platform testWxPayConfig \
-    --body '{"appId": "lfzgRpTf", "key": "9lxF1JPB", "mchid": "izXZtrGe", "returnUrl": "8LyOH24n"}' \
+    --body '{"appId": "HT6Ivd0f", "key": "GpU209nV", "mchid": "RclumQTF", "returnUrl": "vr5rRyYz"}' \
     >$TEMP_FILE 2>&1
 update_status $? 'testWxPayConfig'
 delete_file $TEMP_FILE
 
 #- 219 testXsollaConfig
 samples/cli/sample-apps Platform testXsollaConfig \
-    --body '{"apiKey": "neZHFeRl", "flowCompletionUrl": "d0bGA7Jx", "merchantId": 97, "projectId": 100, "projectSecretKey": "zaEaimvo"}' \
+    --body '{"apiKey": "aNmz3PjM", "flowCompletionUrl": "x2T89NTr", "merchantId": 62, "projectId": 87, "projectSecretKey": "UCXFkrux"}' \
     >$TEMP_FILE 2>&1
 update_status $? 'testXsollaConfig'
 delete_file $TEMP_FILE
 
 #- 220 getPaymentMerchantConfig
 samples/cli/sample-apps Platform getPaymentMerchantConfig \
-    --id 'kcWX59kw' \
+    --id 'egpkcXCf' \
     >$TEMP_FILE 2>&1
 update_status $? 'getPaymentMerchantConfig'
 delete_file $TEMP_FILE
 
 #- 221 updateAdyenConfig
 samples/cli/sample-apps Platform updateAdyenConfig \
-    --body '{"allowedPaymentMethods": ["iYHgHT6I"], "apiKey": "vd0fGpU2", "authoriseAsCapture": false, "blockedPaymentMethods": ["VRclumQT"], "liveEndpointUrlPrefix": "Fvr5rRyY", "merchantAccount": "zaNmz3Pj", "notificationHmacKey": "Mx2T89NT", "notificationPassword": "rFRUCXFk", "notificationUsername": "ruxegpkc", "returnUrl": "XCfzgcvv", "settings": "0WE5EQhc"}' \
-    --id 'omPS1E7c' \
+    --body '{"allowedPaymentMethods": ["zgcvv0WE"], "apiKey": "5EQhcomP", "authoriseAsCapture": true, "blockedPaymentMethods": ["7cpsLgr2"], "clientKey": "zEnjyRNj", "dropInSettings": "EC3FMDcZ", "liveEndpointUrlPrefix": "vwwf8aU9", "merchantAccount": "8In31mF4", "notificationHmacKey": "jlwKyGxT", "notificationPassword": "F1l5q1Np", "notificationUsername": "0sT1X8J2", "returnUrl": "eAWOzjmh", "settings": "9UzIfnho"}' \
+    --id 'o6xUmTle' \
     --sandbox 'False' \
     --validate 'True' \
     >$TEMP_FILE 2>&1
@@ -2053,17 +2053,17 @@ delete_file $TEMP_FILE
 
 #- 222 testAdyenConfigById
 samples/cli/sample-apps Platform testAdyenConfigById \
-    --id 'Lgr2zEnj' \
-    --sandbox 'True' \
+    --id 'M7XhoDxG' \
+    --sandbox 'False' \
     >$TEMP_FILE 2>&1
 update_status $? 'testAdyenConfigById'
 delete_file $TEMP_FILE
 
 #- 223 updateAliPayConfig
 samples/cli/sample-apps Platform updateAliPayConfig \
-    --body '{"appId": "RNjEC3FM", "privateKey": "DcZvwwf8", "publicKey": "aU98In31", "returnUrl": "mF4jlwKy"}' \
-    --id 'GxTF1l5q' \
-    --sandbox 'False' \
+    --body '{"appId": "k2JSfZ64", "privateKey": "wWePq610", "publicKey": "3PONKIS7", "returnUrl": "F9emW4R1"}' \
+    --id '5tAsiG31' \
+    --sandbox 'True' \
     --validate 'True' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateAliPayConfig'
@@ -2071,71 +2071,71 @@ delete_file $TEMP_FILE
 
 #- 224 testAliPayConfigById
 samples/cli/sample-apps Platform testAliPayConfigById \
-    --id 'T1X8J2eA' \
-    --sandbox 'True' \
+    --id 'yUOuOZhm' \
+    --sandbox 'False' \
     >$TEMP_FILE 2>&1
 update_status $? 'testAliPayConfigById'
 delete_file $TEMP_FILE
 
 #- 225 updateCheckoutConfig
 samples/cli/sample-apps Platform updateCheckoutConfig \
-    --body '{"publicKey": "jmh9UzIf", "secretKey": "nhoo6xUm"}' \
-    --id 'TleUnJFM' \
+    --body '{"publicKey": "Hkvek6Aa", "secretKey": "5kNnoclx"}' \
+    --id 's9kxcvIp' \
     --sandbox 'False' \
-    --validate 'False' \
+    --validate 'True' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateCheckoutConfig'
 delete_file $TEMP_FILE
 
 #- 226 testCheckoutConfigById
 samples/cli/sample-apps Platform testCheckoutConfigById \
-    --id 'DxGik2JS' \
-    --sandbox 'False' \
+    --id 'YfWKjY9C' \
+    --sandbox 'True' \
     >$TEMP_FILE 2>&1
 update_status $? 'testCheckoutConfigById'
 delete_file $TEMP_FILE
 
 #- 227 updatePayPalConfig
 samples/cli/sample-apps Platform updatePayPalConfig \
-    --body '{"clientID": "Z64wWePq", "clientSecret": "6103PONK", "returnUrl": "IS7F9emW", "webHookId": "4R15tAsi"}' \
-    --id 'G31CEyUO' \
-    --sandbox 'True' \
-    --validate 'False' \
+    --body '{"clientID": "QYsGyhEO", "clientSecret": "ntEkedM1", "returnUrl": "A0bFqvjx", "webHookId": "bT3YuVda"}' \
+    --id 'BN5RSjhc' \
+    --sandbox 'False' \
+    --validate 'True' \
     >$TEMP_FILE 2>&1
 update_status $? 'updatePayPalConfig'
 delete_file $TEMP_FILE
 
 #- 228 testPayPalConfigById
 samples/cli/sample-apps Platform testPayPalConfigById \
-    --id 'mnHkvek6' \
-    --sandbox 'True' \
+    --id 'DvNrXL84' \
+    --sandbox 'False' \
     >$TEMP_FILE 2>&1
 update_status $? 'testPayPalConfigById'
 delete_file $TEMP_FILE
 
 #- 229 updateStripeConfig
 samples/cli/sample-apps Platform updateStripeConfig \
-    --body '{"allowedPaymentMethodTypes": ["a5kNnocl"], "publishableKey": "xs9kxcvI", "secretKey": "pV7mCYfW", "webhookSecret": "KjY9CsQY"}' \
-    --id 'sGyhEOnt' \
+    --body '{"allowedPaymentMethodTypes": ["fh5tZ0hq"], "publishableKey": "JLjQUmoY", "secretKey": "UnC849OB", "webhookSecret": "NuLZtofG"}' \
+    --id 'AAaMpBQA' \
     --sandbox 'True' \
-    --validate 'False' \
+    --validate 'True' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateStripeConfig'
 delete_file $TEMP_FILE
 
 #- 230 testStripeConfigById
 samples/cli/sample-apps Platform testStripeConfigById \
-    --id 'edM1A0bF' \
-    --sandbox 'True' \
+    --id 'QRy5Qz5V' \
+    --sandbox 'False' \
     >$TEMP_FILE 2>&1
 update_status $? 'testStripeConfigById'
 delete_file $TEMP_FILE
 
 #- 231 updateWxPayConfig
 samples/cli/sample-apps Platform updateWxPayConfig \
-    --body '{"appId": "vjxbT3Yu", "key": "VdaBN5RS", "mchid": "jhcjuDvN", "returnUrl": "rXL845jf"}' \
-    --id 'h5tZ0hqJ' \
-    --validate 'False' \
+    --body '{"appId": "yfBpHjtv", "key": "FwKSJyZe", "mchid": "qvpevcVX", "returnUrl": "Txs9LTor"}' \
+    --id 'Iyx23LhL' \
+    --validate 'True' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateWxPayConfig'
 delete_file $TEMP_FILE
@@ -2143,22 +2143,22 @@ delete_file $TEMP_FILE
 #- 232 updateWxPayConfigCert
 samples/cli/sample-apps Platform updateWxPayConfigCert \
     --file 'tmp.dat' \
-    --id 'QUmoYUnC' \
+    --id '7ds3g3Bu' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateWxPayConfigCert'
 delete_file $TEMP_FILE
 
 #- 233 testWxPayConfigById
 samples/cli/sample-apps Platform testWxPayConfigById \
-    --id '849OBNuL' \
+    --id 'HTPF19dB' \
     >$TEMP_FILE 2>&1
 update_status $? 'testWxPayConfigById'
 delete_file $TEMP_FILE
 
 #- 234 updateXsollaConfig
 samples/cli/sample-apps Platform updateXsollaConfig \
-    --body '{"apiKey": "ZtofGAAa", "flowCompletionUrl": "MpBQArU4", "merchantId": 86, "projectId": 88, "projectSecretKey": "0FQRy5Qz"}' \
-    --id '5VcyfBpH' \
+    --body '{"apiKey": "YFws5Ya4", "flowCompletionUrl": "eOwWqW8H", "merchantId": 16, "projectId": 75, "projectSecretKey": "pTi1W63H"}' \
+    --id 'ccgM5kYu' \
     --validate 'False' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateXsollaConfig'
@@ -2166,32 +2166,32 @@ delete_file $TEMP_FILE
 
 #- 235 testXsollaConfigById
 samples/cli/sample-apps Platform testXsollaConfigById \
-    --id 'tvFwKSJy' \
+    --id 'TL55W4ws' \
     >$TEMP_FILE 2>&1
 update_status $? 'testXsollaConfigById'
 delete_file $TEMP_FILE
 
 #- 236 updateXsollaUIConfig
 samples/cli/sample-apps Platform updateXsollaUIConfig \
-    --body '{"device": "DESKTOP", "showCloseButton": true, "size": "MEDIUM", "theme": "DEFAULT"}' \
-    --id 'evcVXTxs' \
+    --body '{"device": "MOBILE", "showCloseButton": true, "size": "SMALL", "theme": "DEFAULT"}' \
+    --id 'Y1ocKDCV' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateXsollaUIConfig'
 delete_file $TEMP_FILE
 
 #- 237 queryPaymentProviderConfig
 samples/cli/sample-apps Platform queryPaymentProviderConfig \
-    --limit '75' \
-    --namespace 'TorIyx23' \
-    --offset '74' \
-    --region 'hLy7ds3g' \
+    --limit '0' \
+    --namespace 'qrVeegT3' \
+    --offset '40' \
+    --region 'GDIIcvuu' \
     >$TEMP_FILE 2>&1
 update_status $? 'queryPaymentProviderConfig'
 delete_file $TEMP_FILE
 
 #- 238 createPaymentProviderConfig
 samples/cli/sample-apps Platform createPaymentProviderConfig \
-    --body '{"aggregate": "ADYEN", "namespace": "uHTPF19d", "region": "BYFws5Ya", "sandboxTaxJarApiToken": "4eOwWqW8", "specials": ["ADYEN"], "taxJarApiToken": "LpTi1W63", "taxJarEnabled": false, "useGlobalTaxJarApiToken": false}' \
+    --body '{"aggregate": "XSOLLA", "namespace": "kt8TC38m", "region": "YoUanQT4", "sandboxTaxJarApiToken": "Mmznv7r2", "specials": ["ADYEN"], "taxJarApiToken": "thibgeCL", "taxJarEnabled": true, "useGlobalTaxJarApiToken": true}' \
     >$TEMP_FILE 2>&1
 update_status $? 'createPaymentProviderConfig'
 delete_file $TEMP_FILE
@@ -2204,8 +2204,8 @@ delete_file $TEMP_FILE
 
 #- 240 debugMatchedPaymentProviderConfig
 samples/cli/sample-apps Platform debugMatchedPaymentProviderConfig \
-    --namespace 'gM5kYu36' \
-    --region 'JpTL55W4' \
+    --namespace 'OiLgd8Wy' \
+    --region '739QHzw0' \
     >$TEMP_FILE 2>&1
 update_status $? 'debugMatchedPaymentProviderConfig'
 delete_file $TEMP_FILE
@@ -2218,15 +2218,15 @@ delete_file $TEMP_FILE
 
 #- 242 updatePaymentProviderConfig
 samples/cli/sample-apps Platform updatePaymentProviderConfig \
-    --body '{"aggregate": "ADYEN", "namespace": "s3KCyplY", "region": "1ocKDCVa", "sandboxTaxJarApiToken": "qrVeegT3", "specials": ["ALIPAY"], "taxJarApiToken": "GDIIcvuu", "taxJarEnabled": false, "useGlobalTaxJarApiToken": false}' \
-    --id 't8TC38mY' \
+    --body '{"aggregate": "ADYEN", "namespace": "zpd7TV5v", "region": "hMM2i3DM", "sandboxTaxJarApiToken": "6etfI7Tz", "specials": ["PAYPAL"], "taxJarApiToken": "3sKmtsyE", "taxJarEnabled": false, "useGlobalTaxJarApiToken": false}' \
+    --id '3zGu71qT' \
     >$TEMP_FILE 2>&1
 update_status $? 'updatePaymentProviderConfig'
 delete_file $TEMP_FILE
 
 #- 243 deletePaymentProviderConfig
 samples/cli/sample-apps Platform deletePaymentProviderConfig \
-    --id 'oUanQT4M' \
+    --id 'SSJEbWlE' \
     >$TEMP_FILE 2>&1
 update_status $? 'deletePaymentProviderConfig'
 delete_file $TEMP_FILE
@@ -2239,416 +2239,411 @@ delete_file $TEMP_FILE
 
 #- 245 updatePaymentTaxConfig
 samples/cli/sample-apps Platform updatePaymentTaxConfig \
-    --body '{"sandboxTaxJarApiToken": "mznv7r2j", "taxJarApiToken": "thibgeCL", "taxJarEnabled": true, "taxJarProductCodesMapping": {"yOiLgd8W": "y739QHzw"}}' \
+    --body '{"sandboxTaxJarApiToken": "Tp9XOCA1", "taxJarApiToken": "X3HHMTla", "taxJarEnabled": false, "taxJarProductCodesMapping": {"AWQfBuBA": "OCjBfYCc"}}' \
     >$TEMP_FILE 2>&1
 update_status $? 'updatePaymentTaxConfig'
 delete_file $TEMP_FILE
 
 #- 246 syncPaymentOrders
 samples/cli/sample-apps Platform syncPaymentOrders \
-    --nextEvaluatedKey '0TEzpd7T' \
-    --end 'V5vhMM2i' \
-    --start '3DM6etfI' \
+    --nextEvaluatedKey 'plye2GaP' \
+    --end 'NzkrgBH4' \
+    --start 'icml6L36' \
     >$TEMP_FILE 2>&1
 update_status $? 'syncPaymentOrders'
 delete_file $TEMP_FILE
 
 #- 247 publicGetRootCategories
 samples/cli/sample-apps Platform publicGetRootCategories \
-    --namespace '7TzC3sKm' \
-    --language 'tsyEKdO6' \
-    --storeId 'HNm3zGu7' \
+    --namespace 'Vg2F2Q9a' \
+    --language 'ZDJg1OT8' \
+    --storeId '109ot70T' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetRootCategories'
 delete_file $TEMP_FILE
 
 #- 248 downloadCategories
 samples/cli/sample-apps Platform downloadCategories \
-    --namespace '1qTSSJEb' \
-    --language 'WlETp9XO' \
-    --storeId 'CA1X3HHM' \
+    --namespace 'evJgsb2P' \
+    --language 'yFfJ6qcH' \
+    --storeId 'ABdGtV9j' \
     >$TEMP_FILE 2>&1
 update_status $? 'downloadCategories'
 delete_file $TEMP_FILE
 
 #- 249 publicGetCategory
 samples/cli/sample-apps Platform publicGetCategory \
-    --categoryPath 'TlakAWQf' \
-    --namespace 'BuBAOCjB' \
-    --language 'fYCcplye' \
-    --storeId '2GaPNzkr' \
+    --categoryPath 'APqon7Um' \
+    --namespace 'LNy9PkF9' \
+    --language 'SnlbWNcA' \
+    --storeId 'xv8uHDqJ' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetCategory'
 delete_file $TEMP_FILE
 
 #- 250 publicGetChildCategories
 samples/cli/sample-apps Platform publicGetChildCategories \
-    --categoryPath 'gBH4icml' \
-    --namespace '6L36Vg2F' \
-    --language '2Q9aZDJg' \
-    --storeId '1OT8109o' \
+    --categoryPath 'tYC7rznw' \
+    --namespace 'NdLhqXvX' \
+    --language 'Vnjvc0BM' \
+    --storeId 'egJpW1Ze' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetChildCategories'
 delete_file $TEMP_FILE
 
 #- 251 publicGetDescendantCategories
 samples/cli/sample-apps Platform publicGetDescendantCategories \
-    --categoryPath 't70TevJg' \
-    --namespace 'sb2PyFfJ' \
-    --language '6qcHABdG' \
-    --storeId 'tV9jAPqo' \
+    --categoryPath 'uhpLX1BH' \
+    --namespace 'Z4hnOmmy' \
+    --language 'Xu6XtjNC' \
+    --storeId 'qYk9TPUK' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetDescendantCategories'
 delete_file $TEMP_FILE
 
 #- 252 publicListCurrencies
 samples/cli/sample-apps Platform publicListCurrencies \
-    --namespace 'n7UmLNy9' \
+    --namespace 'cDTfR7dp' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicListCurrencies'
 delete_file $TEMP_FILE
 
 #- 253 publicGetItemByAppId
 samples/cli/sample-apps Platform publicGetItemByAppId \
-    --namespace 'PkF9Snlb' \
-    --language 'WNcAxv8u' \
-    --region 'HDqJtYC7' \
-    --storeId 'rznwNdLh' \
-    --appId 'qXvXVnjv' \
+    --namespace 'UEo2Oe08' \
+    --language 'HpeJBfG0' \
+    --region 'nGZHe5lw' \
+    --storeId '2TlkPIxL' \
+    --appId '9v4fpCd0' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetItemByAppId'
 delete_file $TEMP_FILE
 
 #- 254 publicQueryItems
 samples/cli/sample-apps Platform publicQueryItems \
-    --namespace 'c0BMegJp' \
-    --appType 'DEMO' \
-    --baseAppId 'uhpLX1BH' \
-    --categoryPath 'Z4hnOmmy' \
-    --features 'Xu6XtjNC' \
+    --namespace 'Uk5h1kP1' \
+    --appType 'DLC' \
+    --baseAppId 'kkT08Cs6' \
+    --categoryPath 'DdXZWowB' \
+    --features 'gZizMvwH' \
     --itemType 'INGAMEITEM' \
-    --language 'Yk9TPUKc' \
-    --limit '58' \
-    --offset '91' \
-    --region 'fR7dpUEo' \
-    --sortBy '2Oe08Hpe' \
-    --storeId 'JBfG0nGZ' \
-    --tags 'He5lw2Tl' \
+    --language 'zf84MAma' \
+    --limit '48' \
+    --offset '70' \
+    --region 'J6vzDTXx' \
+    --sortBy 'syIaTgp0' \
+    --storeId 'pwnEJL15' \
+    --tags 'kxO4oVUP' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicQueryItems'
 delete_file $TEMP_FILE
 
 #- 255 publicGetItemBySku
 samples/cli/sample-apps Platform publicGetItemBySku \
-    --namespace 'kPIxL9v4' \
-    --language 'fpCd0Uk5' \
-    --region 'h1kP1pkk' \
-    --storeId 'T08Cs6Dd' \
-    --sku 'XZWowBgZ' \
+    --namespace 'ng5JsHAk' \
+    --language 'I47jO1wu' \
+    --region 'AFuZcUwP' \
+    --storeId 'teKdQgUT' \
+    --sku 'F33fYWZf' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetItemBySku'
 delete_file $TEMP_FILE
 
 #- 256 publicBulkGetItems
 samples/cli/sample-apps Platform publicBulkGetItems \
-    --namespace 'izMvwHsz' \
-    --language 'f84MAmay' \
-    --region 'JJ6vzDTX' \
-    --storeId 'xsyIaTgp' \
-    --itemIds '0pwnEJL1' \
+    --namespace 'QMAnziTh' \
+    --language 'aE2btn0u' \
+    --region 'p9GeTQ7X' \
+    --storeId 'ymDSQNYX' \
+    --itemIds 'NEpZyFhI' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicBulkGetItems'
 delete_file $TEMP_FILE
 
 #- 257 publicSearchItems
 samples/cli/sample-apps Platform publicSearchItems \
-    --namespace '5kxO4oVU' \
-    --limit '82' \
-    --offset '27' \
-    --region 'g5JsHAkI' \
-    --storeId '47jO1wuA' \
-    --keyword 'FuZcUwPt' \
-    --language 'eKdQgUTF' \
+    --namespace 'eqiNHtVS' \
+    --limit '27' \
+    --offset '14' \
+    --region 'xby8F6xF' \
+    --storeId '8MhbJAYE' \
+    --keyword 'DN1xszpp' \
+    --language 'R69nsKAS' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicSearchItems'
 delete_file $TEMP_FILE
 
 #- 258 publicGetApp
 samples/cli/sample-apps Platform publicGetApp \
-    --itemId '33fYWZfQ' \
-    --namespace 'MAnziTha' \
-    --language 'E2btn0up' \
-    --region '9GeTQ7Xy' \
-    --storeId 'mDSQNYXN' \
+    --itemId '5zKsTRXd' \
+    --namespace '7b3v2fkZ' \
+    --language 'Ikr06ojU' \
+    --region 'toVJLGXe' \
+    --storeId 'komvwD84' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetApp'
 delete_file $TEMP_FILE
 
 #- 259 publicGetItemDynamicData
 samples/cli/sample-apps Platform publicGetItemDynamicData \
-    --itemId 'EpZyFhIe' \
-    --namespace 'qiNHtVSn' \
+    --itemId '9mo5vIkD' \
+    --namespace 'ZYrYEf1x' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetItemDynamicData'
 delete_file $TEMP_FILE
 
 #- 260 publicGetItem
 samples/cli/sample-apps Platform publicGetItem \
-    --itemId 'hxby8F6x' \
-    --namespace 'F8MhbJAY' \
-    --language 'EDN1xszp' \
-    --populateBundle 'False' \
-    --region 'R69nsKAS' \
-    --storeId '5zKsTRXd' \
+    --itemId 'YnlxHHXj' \
+    --namespace 'FoXtwKW6' \
+    --language 'AOnqnWCu' \
+    --populateBundle 'True' \
+    --region 'G8fNprJx' \
+    --storeId '82nAFexN' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetItem'
 delete_file $TEMP_FILE
 
 #- 261 getPaymentCustomization
-samples/cli/sample-apps Platform getPaymentCustomization \
-    --namespace '7b3v2fkZ' \
-    --sandbox 'False' \
-    --paymentProvider 'STRIPE' \
-    --region '06ojUtoV' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getPaymentCustomization'
-delete_file $TEMP_FILE
+update_status 0 'getPaymentCustomization (skipped deprecated)'
 
 #- 262 publicGetPaymentUrl
 samples/cli/sample-apps Platform publicGetPaymentUrl \
-    --body '{"paymentOrderNo": "JLGXekom", "paymentProvider": "ALIPAY", "returnUrl": "wD849mo5", "ui": "vIkDZYrY", "zipCode": "Ef1xYnlx"}' \
-    --namespace 'HHXjFoXt' \
+    --body '{"paymentOrderNo": "ou1AicsQ", "paymentProvider": "ADYEN", "returnUrl": "Kx5LjetH", "ui": "Ew0aCQpU", "zipCode": "6EGOW0VA"}' \
+    --namespace 'I87DPH0f' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetPaymentUrl'
 delete_file $TEMP_FILE
 
 #- 263 publicGetPaymentMethods
 samples/cli/sample-apps Platform publicGetPaymentMethods \
-    --namespace 'wKW6AOnq' \
-    --paymentOrderNo 'nWCuXMWq' \
+    --namespace 'LLiUqzay' \
+    --paymentOrderNo '0gET8T53' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetPaymentMethods'
 delete_file $TEMP_FILE
 
 #- 264 publicGetUnpaidPaymentOrder
 samples/cli/sample-apps Platform publicGetUnpaidPaymentOrder \
-    --namespace 'G8fNprJx' \
-    --paymentOrderNo '82nAFexN' \
+    --namespace 'yEej7Dsq' \
+    --paymentOrderNo 'sTvNKAXq' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetUnpaidPaymentOrder'
 delete_file $TEMP_FILE
 
 #- 265 pay
 samples/cli/sample-apps Platform pay \
-    --body '{"token": "ou1AicsQ"}' \
-    --namespace 'jKx5Ljet' \
-    --paymentOrderNo 'HEw0aCQp' \
-    --paymentProvider 'XSOLLA' \
-    --zipCode 'GOW0VAI8' \
+    --body '{"token": "fqMJHGeH"}' \
+    --namespace 'aN2k1Eut' \
+    --paymentOrderNo 'm9AAWDcD' \
+    --paymentProvider 'WALLET' \
+    --zipCode '3ISBgZCA' \
     >$TEMP_FILE 2>&1
 update_status $? 'pay'
 delete_file $TEMP_FILE
 
 #- 266 publicCheckPaymentOrderPaidStatus
 samples/cli/sample-apps Platform publicCheckPaymentOrderPaidStatus \
-    --namespace '7DPH0fLL' \
-    --paymentOrderNo 'iUqzay0g' \
+    --namespace 'f2pWOWs4' \
+    --paymentOrderNo 'I2lOHfiu' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicCheckPaymentOrderPaidStatus'
 delete_file $TEMP_FILE
 
 #- 267 getPaymentPublicConfig
 samples/cli/sample-apps Platform getPaymentPublicConfig \
-    --namespace 'ET8T53yE' \
+    --namespace '4HraKYMt' \
     --sandbox 'False' \
-    --paymentProvider 'CHECKOUT' \
-    --region '7DsqsTvN' \
+    --paymentProvider 'WXPAY' \
+    --region 'mvCHMtF1' \
     >$TEMP_FILE 2>&1
 update_status $? 'getPaymentPublicConfig'
 delete_file $TEMP_FILE
 
 #- 268 publicGetQRCode
 samples/cli/sample-apps Platform publicGetQRCode \
-    --namespace 'KAXqfqMJ' \
-    --code 'HGeHaN2k' \
+    --namespace '5a7T0Ihe' \
+    --code 'ywiPE1WU' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetQRCode'
 delete_file $TEMP_FILE
 
 #- 269 publicNormalizePaymentReturnUrl
 samples/cli/sample-apps Platform publicNormalizePaymentReturnUrl \
-    --namespace '1Eutm9AA' \
-    --payerID 'WDcDv3IS' \
-    --foreinginvoice 'BgZCAf2p' \
-    --invoiceId 'WOWs4I2l' \
-    --payload 'OHfiu4Hr' \
-    --resultCode 'aKYMtgBm' \
-    --status 'vCHMtF15' \
-    --token 'a7T0Ihey' \
-    --type 'wiPE1WUR' \
-    --userId '1PTFfJJ4' \
-    --orderNo '6kzfqapb' \
-    --paymentOrderNo 'ByIKoYzY' \
+    --namespace 'R1PTFfJJ' \
+    --payerID '46kzfqap' \
+    --foreinginvoice 'bByIKoYz' \
+    --invoiceId 'YtTWJA3n' \
+    --payload 'FCDgWOpz' \
+    --redirectResult '3yPQfqbe' \
+    --resultCode 'VG7i4VTA' \
+    --sessionId 'huFYhEgQ' \
+    --status 'Bb9Hni6l' \
+    --token 'DMj9gvkB' \
+    --type 'cQjQ56Ru' \
+    --userId 'AvUlMWp8' \
+    --orderNo 'WGpZxCe0' \
+    --paymentOrderNo 'KsmXtGBb' \
     --paymentProvider 'STRIPE' \
-    --returnUrl 'TWJA3nFC' \
+    --returnUrl 'V58TIThQ' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicNormalizePaymentReturnUrl'
 delete_file $TEMP_FILE
 
 #- 270 getPaymentTaxValue
 samples/cli/sample-apps Platform getPaymentTaxValue \
-    --namespace 'DgWOpz3y' \
-    --zipCode 'PQfqbeVG' \
-    --paymentOrderNo '7i4VTAhu' \
-    --paymentProvider 'XSOLLA' \
+    --namespace '52PYNknB' \
+    --zipCode 'Cjirw4hm' \
+    --paymentOrderNo 'fMSl2bET' \
+    --paymentProvider 'WALLET' \
     >$TEMP_FILE 2>&1
 update_status $? 'getPaymentTaxValue'
 delete_file $TEMP_FILE
 
 #- 271 getRewardByCode
 samples/cli/sample-apps Platform getRewardByCode \
-    --namespace 'YhEgQBb9' \
-    --rewardCode 'Hni6lDMj' \
+    --namespace 'FLFOfdl0' \
+    --rewardCode 'yRndbO78' \
     >$TEMP_FILE 2>&1
 update_status $? 'getRewardByCode'
 delete_file $TEMP_FILE
 
 #- 272 queryRewards1
 samples/cli/sample-apps Platform queryRewards1 \
-    --namespace '9gvkBcQj' \
-    --eventTopic 'Q56RuAvU' \
-    --limit '22' \
-    --offset '77' \
-    --sortBy 'Wp8WGpZx' \
+    --namespace 'R8ybYsHx' \
+    --eventTopic '3BIgGuo8' \
+    --limit '23' \
+    --offset '53' \
+    --sortBy '58OI2LMY' \
     >$TEMP_FILE 2>&1
 update_status $? 'queryRewards1'
 delete_file $TEMP_FILE
 
 #- 273 getReward1
 samples/cli/sample-apps Platform getReward1 \
-    --namespace 'Ce0KsmXt' \
-    --rewardId 'GBbKrV58' \
+    --namespace 'RX16nfCJ' \
+    --rewardId '833JKRNc' \
     >$TEMP_FILE 2>&1
 update_status $? 'getReward1'
 delete_file $TEMP_FILE
 
 #- 274 publicListStores
 samples/cli/sample-apps Platform publicListStores \
-    --namespace 'TIThQ52P' \
+    --namespace 'dpuCxSDF' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicListStores'
 delete_file $TEMP_FILE
 
 #- 275 publicExistsAnyMyActiveEntitlement
 samples/cli/sample-apps Platform publicExistsAnyMyActiveEntitlement \
-    --namespace 'YNknBCji' \
-    --appIds '["rw4hmfMS"]' \
-    --itemIds '["l2bETuFL"]' \
-    --skus '["FOfdl0yR"]' \
+    --namespace 'WMVcsOZl' \
+    --appIds '["S0ulerU6"]' \
+    --itemIds '["1drwLngb"]' \
+    --skus '["ZxOGxFwn"]' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicExistsAnyMyActiveEntitlement'
 delete_file $TEMP_FILE
 
 #- 276 publicGetMyAppEntitlementOwnershipByAppId
 samples/cli/sample-apps Platform publicGetMyAppEntitlementOwnershipByAppId \
-    --namespace 'ndbO78R8' \
-    --appId 'ybYsHx3B' \
+    --namespace 'mB60ea7X' \
+    --appId 'ItZS8KIu' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetMyAppEntitlementOwnershipByAppId'
 delete_file $TEMP_FILE
 
 #- 277 publicGetMyEntitlementOwnershipByItemId
 samples/cli/sample-apps Platform publicGetMyEntitlementOwnershipByItemId \
-    --namespace 'IgGuo817' \
+    --namespace '9T604oPa' \
     --entitlementClazz 'CODE' \
-    --itemId 'ZA58OI2L' \
+    --itemId 'gyShKuLB' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetMyEntitlementOwnershipByItemId'
 delete_file $TEMP_FILE
 
 #- 278 publicGetMyEntitlementOwnershipBySku
 samples/cli/sample-apps Platform publicGetMyEntitlementOwnershipBySku \
-    --namespace 'MYRX16nf' \
-    --entitlementClazz 'MEDIA' \
-    --sku 'J833JKRN' \
+    --namespace '7pQLZiWV' \
+    --entitlementClazz 'CODE' \
+    --sku 'c8PVwShV' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetMyEntitlementOwnershipBySku'
 delete_file $TEMP_FILE
 
 #- 279 publicGetEntitlementOwnershipToken
 samples/cli/sample-apps Platform publicGetEntitlementOwnershipToken \
-    --namespace 'cdpuCxSD' \
-    --appIds '["FWMVcsOZ"]' \
-    --itemIds '["lS0ulerU"]' \
-    --skus '["61drwLng"]' \
+    --namespace 'Qz7FY3h2' \
+    --appIds '["oVVScVv3"]' \
+    --itemIds '["YTBM4teO"]' \
+    --skus '["pqevsWvM"]' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetEntitlementOwnershipToken'
 delete_file $TEMP_FILE
 
 #- 280 publicGetMyWallet
 samples/cli/sample-apps Platform publicGetMyWallet \
-    --currencyCode 'bZxOGxFw' \
-    --namespace 'nmB60ea7' \
+    --currencyCode 'hiheE2KM' \
+    --namespace '7Ctal5z7' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetMyWallet'
 delete_file $TEMP_FILE
 
 #- 281 publicSyncPsnDlcInventory
 samples/cli/sample-apps Platform publicSyncPsnDlcInventory \
-    --body '{"serviceLabel": 99}' \
-    --namespace 'ItZS8KIu' \
-    --userId '9T604oPa' \
+    --body '{"serviceLabel": 14}' \
+    --namespace 'LiOYz1jF' \
+    --userId 'fu1y1d77' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicSyncPsnDlcInventory'
 delete_file $TEMP_FILE
 
 #- 282 syncSteamDLC
 samples/cli/sample-apps Platform syncSteamDLC \
-    --body '{"appId": "jgyShKuL", "steamId": "B7pQLZiW"}' \
-    --namespace 'Vmc8PVwS' \
-    --userId 'hVQz7FY3' \
+    --body '{"appId": "D8ZNOfHy", "steamId": "enhbRZ4a"}' \
+    --namespace '9UjjjU0E' \
+    --userId 'ggYLcGiE' \
     >$TEMP_FILE 2>&1
 update_status $? 'syncSteamDLC'
 delete_file $TEMP_FILE
 
 #- 283 syncXboxDLC
 samples/cli/sample-apps Platform syncXboxDLC \
-    --body '{"xstsToken": "h2oVVScV"}' \
-    --namespace 'v3YTBM4t' \
-    --userId 'eOpqevsW' \
+    --body '{"xstsToken": "DZbDl9Ze"}' \
+    --namespace 'ZH3M87v0' \
+    --userId 'FhdKDEfX' \
     >$TEMP_FILE 2>&1
 update_status $? 'syncXboxDLC'
 delete_file $TEMP_FILE
 
 #- 284 publicQueryUserEntitlements
 samples/cli/sample-apps Platform publicQueryUserEntitlements \
-    --namespace 'vMhiheE2' \
-    --userId 'KM7Ctal5' \
-    --appType 'SOFTWARE' \
-    --entitlementClazz 'APP' \
-    --entitlementName 'LiOYz1jF' \
-    --itemId '["fu1y1d77"]' \
-    --limit '58' \
-    --offset '78' \
+    --namespace 'RhaO0AYS' \
+    --userId 'qvcV2Lqf' \
+    --appType 'DEMO' \
+    --entitlementClazz 'MEDIA' \
+    --entitlementName 'X28Je4ky' \
+    --itemId '["PQjgDJNO"]' \
+    --limit '61' \
+    --offset '76' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicQueryUserEntitlements'
 delete_file $TEMP_FILE
 
 #- 285 publicGetUserAppEntitlementByAppId
 samples/cli/sample-apps Platform publicGetUserAppEntitlementByAppId \
-    --namespace 'OfHyenhb' \
-    --userId 'RZ4a9Ujj' \
-    --appId 'jU0EggYL' \
+    --namespace 'tdEtN4sE' \
+    --userId 'ebnQucga' \
+    --appId 'op5NEdhu' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetUserAppEntitlementByAppId'
 delete_file $TEMP_FILE
 
 #- 286 publicQueryUserEntitlementsByAppType
 samples/cli/sample-apps Platform publicQueryUserEntitlementsByAppType \
-    --namespace 'cGiEDZbD' \
-    --userId 'l9ZeZH3M' \
-    --limit '42' \
-    --offset '62' \
+    --namespace 'rScNiUxn' \
+    --userId 'JUewUVhk' \
+    --limit '64' \
+    --offset '87' \
     --appType 'DEMO' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicQueryUserEntitlementsByAppType'
@@ -2656,171 +2651,171 @@ delete_file $TEMP_FILE
 
 #- 287 publicGetUserEntitlementByItemId
 samples/cli/sample-apps Platform publicGetUserEntitlementByItemId \
-    --namespace 'dKDEfXRh' \
-    --userId 'aO0AYSqv' \
-    --entitlementClazz 'APP' \
-    --itemId 'V2LqfgCX' \
+    --namespace 'LCb9evyw' \
+    --userId 'ZywunLIm' \
+    --entitlementClazz 'SUBSCRIPTION' \
+    --itemId 'hyZsb7Yh' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetUserEntitlementByItemId'
 delete_file $TEMP_FILE
 
 #- 288 publicGetUserEntitlementBySku
 samples/cli/sample-apps Platform publicGetUserEntitlementBySku \
-    --namespace '28Je4kyP' \
-    --userId 'QjgDJNOE' \
-    --entitlementClazz 'SUBSCRIPTION' \
-    --sku 'tdEtN4sE' \
+    --namespace 'hQbDxLRK' \
+    --userId 'xzUtpKDC' \
+    --entitlementClazz 'APP' \
+    --sku 'l2otjUWK' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetUserEntitlementBySku'
 delete_file $TEMP_FILE
 
 #- 289 publicExistsAnyUserActiveEntitlement
 samples/cli/sample-apps Platform publicExistsAnyUserActiveEntitlement \
-    --namespace 'ebnQucga' \
-    --userId 'op5NEdhu' \
-    --appIds '["rScNiUxn"]' \
-    --itemIds '["JUewUVhk"]' \
-    --skus '["GRRTgLCb"]' \
+    --namespace 'xgW6n8AJ' \
+    --userId 'aeqxTPgZ' \
+    --appIds '["KFi3SBGl"]' \
+    --itemIds '["CD4ig5ZR"]' \
+    --skus '["oJd1as1W"]' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicExistsAnyUserActiveEntitlement'
 delete_file $TEMP_FILE
 
 #- 290 publicGetUserAppEntitlementOwnershipByAppId
 samples/cli/sample-apps Platform publicGetUserAppEntitlementOwnershipByAppId \
-    --namespace '9evywZyw' \
-    --userId 'unLImNhy' \
-    --appId 'Zsb7YhhQ' \
+    --namespace 'kfh3l8Hy' \
+    --userId 'GWZTdpmT' \
+    --appId 'xPUBFjTI' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetUserAppEntitlementOwnershipByAppId'
 delete_file $TEMP_FILE
 
 #- 291 publicGetUserEntitlementOwnershipByItemId
 samples/cli/sample-apps Platform publicGetUserEntitlementOwnershipByItemId \
-    --namespace 'bDxLRKxz' \
-    --userId 'UtpKDC8g' \
-    --entitlementClazz 'CODE' \
-    --itemId '2otjUWKx' \
+    --namespace 'IKcXlxPf' \
+    --userId 'dDyjJ0ww' \
+    --entitlementClazz 'ENTITLEMENT' \
+    --itemId 'YeljMyoe' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetUserEntitlementOwnershipByItemId'
 delete_file $TEMP_FILE
 
 #- 292 publicGetUserEntitlementOwnershipBySku
 samples/cli/sample-apps Platform publicGetUserEntitlementOwnershipBySku \
-    --namespace 'gW6n8AJa' \
-    --userId 'eqxTPgZK' \
-    --entitlementClazz 'MEDIA' \
-    --sku 'i3SBGlCD' \
+    --namespace 'b3gsMOMd' \
+    --userId 'qbt4PnuF' \
+    --entitlementClazz 'ENTITLEMENT' \
+    --sku '18ijp3Cm' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetUserEntitlementOwnershipBySku'
 delete_file $TEMP_FILE
 
 #- 293 publicGetUserEntitlement
 samples/cli/sample-apps Platform publicGetUserEntitlement \
-    --entitlementId '4ig5ZRoJ' \
-    --namespace 'd1as1Wkf' \
-    --userId 'h3l8HyGW' \
+    --entitlementId 'zrfVIa1v' \
+    --namespace 'i9oky2P7' \
+    --userId 'fIgBRSBl' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetUserEntitlement'
 delete_file $TEMP_FILE
 
 #- 294 publicConsumeUserEntitlement
 samples/cli/sample-apps Platform publicConsumeUserEntitlement \
-    --body '{"useCount": 91}' \
-    --entitlementId 'dpmTxPUB' \
-    --namespace 'FjTIIKcX' \
-    --userId 'lxPfdDyj' \
+    --body '{"useCount": 46}' \
+    --entitlementId 'ukoOTCos' \
+    --namespace 'jAXo6ljB' \
+    --userId 'VW8r7nyN' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicConsumeUserEntitlement'
 delete_file $TEMP_FILE
 
 #- 295 publicRedeemCode
 samples/cli/sample-apps Platform publicRedeemCode \
-    --body '{"code": "J0wwrYel", "language": "jMyoeb3g", "region": "sMOMdqbt"}' \
-    --namespace '4PnuFr18' \
-    --userId 'ijp3Cmzr' \
+    --body '{"code": "cVl6ZB3b", "language": "hUPb-Vxko", "region": "wGRJbZqX"}' \
+    --namespace 'gQ9azOre' \
+    --userId 'TsviZmgm' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicRedeemCode'
 delete_file $TEMP_FILE
 
 #- 296 publicFulfillAppleIAPItem
 samples/cli/sample-apps Platform publicFulfillAppleIAPItem \
-    --body '{"excludeOldTransactions": false, "language": "VIa1vi9o", "productId": "ky2P7fIg", "receiptData": "BRSBlxuk", "region": "oOTCosjA", "transactionId": "Xo6ljBVW"}' \
-    --namespace '8r7nyNcV' \
-    --userId 'l6ZB3bGH' \
+    --body '{"excludeOldTransactions": false, "language": "WMG-649", "productId": "3zT6xRqy", "receiptData": "V0tlLaMY", "region": "L1p95v9m", "transactionId": "OiIFEdQ2"}' \
+    --namespace 'RKeQy2WR' \
+    --userId 'ztR5qztu' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicFulfillAppleIAPItem'
 delete_file $TEMP_FILE
 
 #- 297 syncEpicGamesInventory
 samples/cli/sample-apps Platform syncEpicGamesInventory \
-    --body '{"epicGamesJwtToken": "upBuAL2a"}' \
-    --namespace 'vXKOjwGR' \
-    --userId 'JbZqXgQ9' \
+    --body '{"epicGamesJwtToken": "hVaJDWx2"}' \
+    --namespace 'OdrUV7bh' \
+    --userId 'cKGIOZcB' \
     >$TEMP_FILE 2>&1
 update_status $? 'syncEpicGamesInventory'
 delete_file $TEMP_FILE
 
 #- 298 publicFulfillGoogleIAPItem
 samples/cli/sample-apps Platform publicFulfillGoogleIAPItem \
-    --body '{"autoAck": false, "language": "zOreTsvi", "orderId": "Zmgm0l8Y", "packageName": "r4wmgiwI", "productId": "F5Zx5TII", "purchaseTime": 15, "purchaseToken": "BtL3zT6x", "region": "RqyV0tlL"}' \
-    --namespace 'aMYL1p95' \
-    --userId 'v9mOiIFE' \
+    --body '{"autoAck": false, "language": "xK_XhPU", "orderId": "ZNxhbsaS", "packageName": "FtTmbIf2", "productId": "hFQRmsi0", "purchaseTime": 25, "purchaseToken": "elJQkLtV", "region": "2QnPsmhF"}' \
+    --namespace 'VPtJTGig' \
+    --userId '12OdDnxX' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicFulfillGoogleIAPItem'
 delete_file $TEMP_FILE
 
 #- 299 publicReconcilePlayStationStore
 samples/cli/sample-apps Platform publicReconcilePlayStationStore \
-    --body '{"currencyCode": "dQ2RKeQy", "price": 0.8588554096594884, "productId": "RztR5qzt", "serviceLabel": 40}' \
-    --namespace 'hVaJDWx2' \
-    --userId 'OdrUV7bh' \
+    --body '{"currencyCode": "uJoZgOG4", "price": 0.3073435175433483, "productId": "eWVMI9K1", "serviceLabel": 8}' \
+    --namespace 'J6xC2h6U' \
+    --userId '8TgR2k2R' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicReconcilePlayStationStore'
 delete_file $TEMP_FILE
 
 #- 300 syncStadiaEntitlement
 samples/cli/sample-apps Platform syncStadiaEntitlement \
-    --body '{"appId": "cKGIOZcB", "language": "6NWffXkY", "region": "zes2xHp1", "stadiaPlayerId": "ufZNxhbs"}' \
-    --namespace 'aSFtTmbI' \
-    --userId 'f2hFQRms' \
+    --body '{"appId": "kEr8XbmQ", "language": "UVeM_vb", "region": "QPhwwHR0", "stadiaPlayerId": "qyfFcSCd"}' \
+    --namespace 'kfe5eawF' \
+    --userId 'pdHeH5p8' \
     >$TEMP_FILE 2>&1
 update_status $? 'syncStadiaEntitlement'
 delete_file $TEMP_FILE
 
 #- 301 syncSteamInventory
 samples/cli/sample-apps Platform syncSteamInventory \
-    --body '{"appId": "i02melJQ", "currencyCode": "kLtV2QnP", "language": "smhFVPtJ", "price": 0.7144663595316851, "productId": "ig12OdDn", "region": "xXuJoZgO", "steamId": "G4tOeWVM"}' \
-    --namespace 'I9K1eJ6x' \
-    --userId 'C2h6U8Tg' \
+    --body '{"appId": "Zx8jy7nx", "currencyCode": "GzOTBpmm", "language": "Ue-dTWB-330", "price": 0.013041918173782974, "productId": "LdFifUk9", "region": "p700jB0p", "steamId": "4HpK8pvu"}' \
+    --namespace 'fSxYM0Vk' \
+    --userId 'uqOKrhvM' \
     >$TEMP_FILE 2>&1
 update_status $? 'syncSteamInventory'
 delete_file $TEMP_FILE
 
 #- 302 syncTwitchDropsEntitlement
 samples/cli/sample-apps Platform syncTwitchDropsEntitlement \
-    --body '{"gameId": "R2k2RkEr", "language": "8XbmQNuv", "region": "80Em9nuf"}' \
-    --namespace 'fLGUWnVB' \
-    --userId 'QPhwwHR0' \
+    --body '{"gameId": "wvD04UY8", "language": "HV_RjZa", "region": "6FOuhQIB"}' \
+    --namespace 'Abup1fpW' \
+    --userId 'sO6fW468' \
     >$TEMP_FILE 2>&1
 update_status $? 'syncTwitchDropsEntitlement'
 delete_file $TEMP_FILE
 
 #- 303 syncXboxInventory
 samples/cli/sample-apps Platform syncXboxInventory \
-    --body '{"currencyCode": "qyfFcSCd", "price": 0.1694294220738244, "productId": "e5eawFpd", "xstsToken": "HeH5p8Zx"}' \
-    --namespace '8jy7nxGz' \
-    --userId 'OTBpmmju' \
+    --body '{"currencyCode": "fWxqRkJD", "price": 0.14145640345472266, "productId": "NhYDgVm0", "xstsToken": "TCaos4wy"}' \
+    --namespace 'jaPP6Cle' \
+    --userId 'kQGm25KY' \
     >$TEMP_FILE 2>&1
 update_status $? 'syncXboxInventory'
 delete_file $TEMP_FILE
 
 #- 304 publicQueryUserOrders
 samples/cli/sample-apps Platform publicQueryUserOrders \
-    --namespace 'EEEyDtwb' \
-    --userId 'tA8xsmmc' \
-    --itemId 'aOLdFifU' \
-    --limit '20' \
-    --offset '30' \
+    --namespace 'mFZxQr4x' \
+    --userId 'bV63gcdU' \
+    --itemId '4vyIPJeR' \
+    --limit '18' \
+    --offset '56' \
     --status 'CHARGED' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicQueryUserOrders'
@@ -2828,156 +2823,156 @@ delete_file $TEMP_FILE
 
 #- 305 publicCreateUserOrder
 samples/cli/sample-apps Platform publicCreateUserOrder \
-    --body '{"currencyCode": "B0p4HpK8", "discountedPrice": 30, "ext": {"vufSxYM0": {}}, "itemId": "VkuqOKrh", "language": "vMwvD04U", "price": 100, "quantity": 12, "region": "hvsmSrrJ", "returnUrl": "zAi6FOuh"}' \
-    --namespace 'QIBAbup1' \
-    --userId 'fpWsO6fW' \
+    --body '{"currencyCode": "7UK5nEmw", "discountedPrice": 37, "ext": {"QtSfDqA4": {}}, "itemId": "CysEX4VO", "language": "NeK_EChW-uA", "price": 59, "quantity": 15, "region": "3m2eX31q", "returnUrl": "VPH2VHDz"}' \
+    --namespace 'nf57fQ1P' \
+    --userId 'Y5uDkQ8z' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicCreateUserOrder'
 delete_file $TEMP_FILE
 
 #- 306 publicGetUserOrder
 samples/cli/sample-apps Platform publicGetUserOrder \
-    --namespace '468fWxqR' \
-    --orderNo 'kJDjfNhY' \
-    --userId 'DgVm0TCa' \
+    --namespace 'pNRwycEA' \
+    --orderNo 'ShpFLpqA' \
+    --userId 'x1N5IGeb' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetUserOrder'
 delete_file $TEMP_FILE
 
 #- 307 publicCancelUserOrder
 samples/cli/sample-apps Platform publicCancelUserOrder \
-    --namespace 'os4wyjaP' \
-    --orderNo 'P6ClekQG' \
-    --userId 'm25KYmFZ' \
+    --namespace 'NuvyrghV' \
+    --orderNo 'dsSwDc9N' \
+    --userId 'JRX9ZdaC' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicCancelUserOrder'
 delete_file $TEMP_FILE
 
 #- 308 publicGetUserOrderHistories
 samples/cli/sample-apps Platform publicGetUserOrderHistories \
-    --namespace 'xQr4xbV6' \
-    --orderNo '3gcdU4vy' \
-    --userId 'IPJeRjCj' \
+    --namespace '8sja1J7e' \
+    --orderNo 'ucGSSxZJ' \
+    --userId 'Pto04wTE' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetUserOrderHistories'
 delete_file $TEMP_FILE
 
 #- 309 publicDownloadUserOrderReceipt
 samples/cli/sample-apps Platform publicDownloadUserOrderReceipt \
-    --namespace '7UK5nEmw' \
-    --orderNo 'sQtSfDqA' \
-    --userId '4CysEX4V' \
+    --namespace 'I8isXmyA' \
+    --orderNo 'GW2rZ7bY' \
+    --userId 'vVW26Oay' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicDownloadUserOrderReceipt'
 delete_file $TEMP_FILE
 
 #- 310 publicGetPaymentAccounts
 samples/cli/sample-apps Platform publicGetPaymentAccounts \
-    --namespace 'Oy0n2EkP' \
-    --userId 'BjC4ecHw' \
+    --namespace 'sx72rwV3' \
+    --userId 'MdXNVRDz' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetPaymentAccounts'
 delete_file $TEMP_FILE
 
 #- 311 publicDeletePaymentAccount
 samples/cli/sample-apps Platform publicDeletePaymentAccount \
-    --id 'tSGzayUa' \
-    --namespace 'Dh3m2eX3' \
-    --type 'paypal' \
-    --userId 'VPH2VHDz' \
+    --id 'T2sBbflg' \
+    --namespace '7cD247c1' \
+    --type 'card' \
+    --userId '18StYu6w' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicDeletePaymentAccount'
 delete_file $TEMP_FILE
 
 #- 312 publicQueryUserSubscriptions
 samples/cli/sample-apps Platform publicQueryUserSubscriptions \
-    --namespace 'nf57fQ1P' \
-    --userId 'Y5uDkQ8z' \
-    --chargeStatus 'CHARGE_FAILED' \
-    --itemId 'NRwycEAS' \
-    --limit '14' \
-    --offset '31' \
-    --sku 'FLpqAx1N' \
-    --status 'ACTIVE' \
-    --subscribedBy 'PLATFORM' \
+    --namespace 'b2We3Q6P' \
+    --userId 'm7RBkqWD' \
+    --chargeStatus 'RECURRING_CHARGING' \
+    --itemId 'P4CWnZJj' \
+    --limit '99' \
+    --offset '7' \
+    --sku 'iUv9owF1' \
+    --status 'CANCELLED' \
+    --subscribedBy 'USER' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicQueryUserSubscriptions'
 delete_file $TEMP_FILE
 
 #- 313 publicSubscribeSubscription
 samples/cli/sample-apps Platform publicSubscribeSubscription \
-    --body '{"currencyCode": "NuvyrghV", "itemId": "dsSwDc9N", "language": "JRX9ZdaC", "region": "8sja1J7e", "returnUrl": "ucGSSxZJ", "source": "Pto04wTE"}' \
-    --namespace 'I8isXmyA' \
-    --userId 'GW2rZ7bY' \
+    --body '{"currencyCode": "c03W7oOd", "itemId": "pY5ZJChQ", "language": "Pdu-EXJQ", "region": "nJ6ryQ4w", "returnUrl": "Cg5Itn9T", "source": "YOR2n8qF"}' \
+    --namespace 'jjSZx0Fe' \
+    --userId 'RdmgOta6' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicSubscribeSubscription'
 delete_file $TEMP_FILE
 
 #- 314 publicCheckUserSubscriptionSubscribableByItemId
 samples/cli/sample-apps Platform publicCheckUserSubscriptionSubscribableByItemId \
-    --namespace 'vVW26Oay' \
-    --userId 'sx72rwV3' \
-    --itemId 'MdXNVRDz' \
+    --namespace 'pcKzSPfe' \
+    --userId 'k369fIM1' \
+    --itemId 'tcxwt2Xq' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicCheckUserSubscriptionSubscribableByItemId'
 delete_file $TEMP_FILE
 
 #- 315 publicGetUserSubscription
 samples/cli/sample-apps Platform publicGetUserSubscription \
-    --namespace 'T2sBbflg' \
-    --subscriptionId '7cD247c1' \
-    --userId 'XYYJf18S' \
+    --namespace 'PFaIxBgz' \
+    --subscriptionId 'RO8GKycd' \
+    --userId 'cXuULpvu' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetUserSubscription'
 delete_file $TEMP_FILE
 
 #- 316 publicChangeSubscriptionBillingAccount
 samples/cli/sample-apps Platform publicChangeSubscriptionBillingAccount \
-    --namespace 'tYu6wb2W' \
-    --subscriptionId 'e3Q6Pm7R' \
-    --userId 'BkqWDPEP' \
+    --namespace 'BNRzUbH0' \
+    --subscriptionId 'hI7yCEyj' \
+    --userId 'KXQPnomA' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicChangeSubscriptionBillingAccount'
 delete_file $TEMP_FILE
 
 #- 317 publicCancelSubscription
 samples/cli/sample-apps Platform publicCancelSubscription \
-    --body '{"immediate": true, "reason": "WnZJjXdi"}' \
-    --namespace 'Uv9owF1m' \
-    --subscriptionId 'Qrc03W7o' \
-    --userId 'OdpY5ZJC' \
+    --body '{"immediate": true, "reason": "HMpmDvt4"}' \
+    --namespace 'tkWavQ0j' \
+    --subscriptionId 'o17Qq6AF' \
+    --userId 'dE7URb19' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicCancelSubscription'
 delete_file $TEMP_FILE
 
 #- 318 publicGetUserSubscriptionBillingHistories
 samples/cli/sample-apps Platform publicGetUserSubscriptionBillingHistories \
-    --namespace 'hQtpD2U9' \
-    --subscriptionId 'IQzA2eex' \
-    --userId 'jq3TfnJ6' \
-    --excludeFree 'True' \
-    --limit '49' \
-    --offset '85' \
+    --namespace 'BcvWfPxH' \
+    --subscriptionId 'PQaUClyA' \
+    --userId 'jfGkGwDs' \
+    --excludeFree 'False' \
+    --limit '28' \
+    --offset '79' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetUserSubscriptionBillingHistories'
 delete_file $TEMP_FILE
 
 #- 319 publicGetWallet
 samples/cli/sample-apps Platform publicGetWallet \
-    --currencyCode '4wCg5Itn' \
-    --namespace '9TYOR2n8' \
-    --userId 'qFjjSZx0' \
+    --currencyCode 'dZjNjjtl' \
+    --namespace '8XIGZV3G' \
+    --userId 'BXIHxWGX' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetWallet'
 delete_file $TEMP_FILE
 
 #- 320 publicListUserWalletTransactions
 samples/cli/sample-apps Platform publicListUserWalletTransactions \
-    --currencyCode 'FeRdmgOt' \
-    --namespace 'a6pcKzSP' \
-    --userId 'fek369fI' \
-    --limit '76' \
-    --offset '39' \
+    --currencyCode '4iwwHLoh' \
+    --namespace 'aKvD9nNe' \
+    --userId 'Li2tRrcl' \
+    --limit '77' \
+    --offset '28' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicListUserWalletTransactions'
 delete_file $TEMP_FILE

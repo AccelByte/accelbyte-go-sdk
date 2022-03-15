@@ -172,7 +172,7 @@ delete_file $TEMP_FILE
 
 #- 15 adminUpdateConfigV1
 samples/cli/sample-apps Lobby adminUpdateConfigV1 \
-    --body '{"autoKickOnDisconnect": true, "autoKickOnDisconnectDelay": 33, "cancelTicketOnDisconnect": false, "chatRateLimitBurst": 20, "chatRateLimitDuration": 82, "concurrentUsersLimit": 26, "disablePartyInvitationToken": false, "enableChat": true, "entitlementCheck": false, "entitlementItemID": "jiX7jpkV", "generalRateLimitBurst": 21, "generalRateLimitDuration": 69, "maxPartyMember": 1, "profanityFilter": true, "readyConsentTimeout": 24}' \
+    --body '{"allowInviteNonConnectedUser": true, "autoKickOnDisconnect": true, "autoKickOnDisconnectDelay": 96, "cancelTicketOnDisconnect": false, "chatRateLimitBurst": 20, "chatRateLimitDuration": 82, "concurrentUsersLimit": 26, "disablePartyInvitationToken": false, "enableChat": true, "entitlementCheck": false, "entitlementItemID": "jiX7jpkV", "generalRateLimitBurst": 21, "generalRateLimitDuration": 69, "maxPartyMember": 1, "profanityFilter": true, "readyConsentTimeout": 24}' \
     --namespace 'qGodOEGt' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminUpdateConfigV1'

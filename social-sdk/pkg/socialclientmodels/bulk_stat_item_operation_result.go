@@ -22,7 +22,7 @@ type BulkStatItemOperationResult struct {
 	StatCode string `json:"statCode,omitempty"`
 
 	// success
-	Success bool `json:"success,omitempty"`
+	Success bool `json:"success"`
 }
 
 // Validate validates this bulk stat item operation result

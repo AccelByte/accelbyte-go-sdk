@@ -49,7 +49,7 @@ func (o *FeatureItemReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/items/{itemId}/features/{feature} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type FeatureItemOK struct {
 }
 
 func (o *FeatureItemOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] featureItemOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] featureItemOK  %+v", 200, o.Payload)
 }
 
 func (o *FeatureItemOK) GetPayload() *platformclientmodels.FullItemInfo {
@@ -100,7 +100,7 @@ type FeatureItemNotFound struct {
 }
 
 func (o *FeatureItemNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] featureItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] featureItemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *FeatureItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type FeatureItemConflict struct {
 }
 
 func (o *FeatureItemConflict) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] featureItemConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] featureItemConflict  %+v", 409, o.Payload)
 }
 
 func (o *FeatureItemConflict) GetPayload() *platformclientmodels.ErrorEntity {

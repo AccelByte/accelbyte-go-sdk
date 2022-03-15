@@ -37,7 +37,7 @@ func (o *SyncXboxInventoryReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /public/namespaces/{namespace}/users/{userId}/iap/xbl/sync returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/xbl/sync returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type SyncXboxInventoryOK struct {
 }
 
 func (o *SyncXboxInventoryOK) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/iap/xbl/sync][%d] syncXboxInventoryOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/xbl/sync][%d] syncXboxInventoryOK  %+v", 200, o.Payload)
 }
 
 func (o *SyncXboxInventoryOK) GetPayload() []*platformclientmodels.XblReconcileResult {

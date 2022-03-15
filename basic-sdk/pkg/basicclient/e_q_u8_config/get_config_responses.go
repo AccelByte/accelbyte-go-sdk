@@ -49,7 +49,7 @@ func (o *GetConfigReader) ReadResponse(response runtime.ClientResponse, consumer
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /v1/admin/namespaces/{namespace}/equ8/config returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /basic/v1/admin/namespaces/{namespace}/equ8/config returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type GetConfigOK struct {
 }
 
 func (o *GetConfigOK) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/equ8/config][%d] getConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/equ8/config][%d] getConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *GetConfigOK) GetPayload() *basicclientmodels.Equ8Config {
@@ -100,7 +100,7 @@ type GetConfigNotFound struct {
 }
 
 func (o *GetConfigNotFound) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/equ8/config][%d] getConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/equ8/config][%d] getConfigNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetConfigNotFound) GetPayload() *basicclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type GetConfigInternalServerError struct {
 }
 
 func (o *GetConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/equ8/config][%d] getConfigInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/equ8/config][%d] getConfigInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *GetConfigInternalServerError) GetPayload() *basicclientmodels.ErrorEntity {

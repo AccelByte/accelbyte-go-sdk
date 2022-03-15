@@ -125,7 +125,7 @@ func (a *Client) ConsumeUserEntitlement(params *ConsumeUserEntitlementParams, au
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "consumeUserEntitlement",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -168,7 +168,7 @@ func (a *Client) ConsumeUserEntitlementShort(params *ConsumeUserEntitlementParam
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "consumeUserEntitlement",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -214,7 +214,7 @@ func (a *Client) DisableUserEntitlement(params *DisableUserEntitlementParams, au
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "disableUserEntitlement",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/disable",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/disable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -257,7 +257,7 @@ func (a *Client) DisableUserEntitlementShort(params *DisableUserEntitlementParam
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "disableUserEntitlement",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/disable",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/disable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -303,7 +303,7 @@ func (a *Client) EnableUserEntitlement(params *EnableUserEntitlementParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "enableUserEntitlement",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/enable",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/enable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -346,7 +346,7 @@ func (a *Client) EnableUserEntitlementShort(params *EnableUserEntitlementParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "enableUserEntitlement",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/enable",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/enable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -392,7 +392,7 @@ func (a *Client) ExistsAnyUserActiveEntitlement(params *ExistsAnyUserActiveEntit
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "existsAnyUserActiveEntitlement",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/any",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/any",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -429,7 +429,7 @@ func (a *Client) ExistsAnyUserActiveEntitlementShort(params *ExistsAnyUserActive
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "existsAnyUserActiveEntitlement",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/any",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/any",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -471,7 +471,7 @@ func (a *Client) ExistsAnyUserActiveEntitlementByItemIds(params *ExistsAnyUserAc
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "existsAnyUserActiveEntitlementByItemIds",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/anyOf",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/anyOf",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -508,7 +508,7 @@ func (a *Client) ExistsAnyUserActiveEntitlementByItemIdsShort(params *ExistsAnyU
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "existsAnyUserActiveEntitlementByItemIds",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/anyOf",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/anyOf",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -550,7 +550,7 @@ func (a *Client) GetEntitlement(params *GetEntitlementParams, authInfo runtime.C
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getEntitlement",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/entitlements/{entitlementId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/entitlements/{entitlementId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -590,7 +590,7 @@ func (a *Client) GetEntitlementShort(params *GetEntitlementParams, authInfo runt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getEntitlement",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/entitlements/{entitlementId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/entitlements/{entitlementId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -634,7 +634,7 @@ func (a *Client) GetUserAppEntitlementByAppID(params *GetUserAppEntitlementByApp
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserAppEntitlementByAppId",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/byAppId",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/byAppId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -674,7 +674,7 @@ func (a *Client) GetUserAppEntitlementByAppIDShort(params *GetUserAppEntitlement
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserAppEntitlementByAppId",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/byAppId",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/byAppId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -718,7 +718,7 @@ func (a *Client) GetUserAppEntitlementOwnershipByAppID(params *GetUserAppEntitle
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserAppEntitlementOwnershipByAppId",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/byAppId",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/byAppId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -755,7 +755,7 @@ func (a *Client) GetUserAppEntitlementOwnershipByAppIDShort(params *GetUserAppEn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserAppEntitlementOwnershipByAppId",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/byAppId",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/byAppId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -797,7 +797,7 @@ func (a *Client) GetUserEntitlement(params *GetUserEntitlementParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserEntitlement",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -837,7 +837,7 @@ func (a *Client) GetUserEntitlementShort(params *GetUserEntitlementParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserEntitlement",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -881,7 +881,7 @@ func (a *Client) GetUserEntitlementByItemID(params *GetUserEntitlementByItemIDPa
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserEntitlementByItemId",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/byItemId",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/byItemId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -921,7 +921,7 @@ func (a *Client) GetUserEntitlementByItemIDShort(params *GetUserEntitlementByIte
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserEntitlementByItemId",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/byItemId",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/byItemId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -965,7 +965,7 @@ func (a *Client) GetUserEntitlementBySku(params *GetUserEntitlementBySkuParams, 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserEntitlementBySku",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/bySku",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1005,7 +1005,7 @@ func (a *Client) GetUserEntitlementBySkuShort(params *GetUserEntitlementBySkuPar
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserEntitlementBySku",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/bySku",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1049,7 +1049,7 @@ func (a *Client) GetUserEntitlementHistories(params *GetUserEntitlementHistories
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserEntitlementHistories",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/history",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/history",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1086,7 +1086,7 @@ func (a *Client) GetUserEntitlementHistoriesShort(params *GetUserEntitlementHist
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserEntitlementHistories",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/history",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/history",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1128,7 +1128,7 @@ func (a *Client) GetUserEntitlementOwnershipByItemID(params *GetUserEntitlementO
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserEntitlementOwnershipByItemId",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/byItemId",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/byItemId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1165,7 +1165,7 @@ func (a *Client) GetUserEntitlementOwnershipByItemIDShort(params *GetUserEntitle
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserEntitlementOwnershipByItemId",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/byItemId",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/byItemId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1207,7 +1207,7 @@ func (a *Client) GetUserEntitlementOwnershipBySku(params *GetUserEntitlementOwne
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserEntitlementOwnershipBySku",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/bySku",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1244,7 +1244,7 @@ func (a *Client) GetUserEntitlementOwnershipBySkuShort(params *GetUserEntitlemen
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserEntitlementOwnershipBySku",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/bySku",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1286,7 +1286,7 @@ func (a *Client) GrantUserEntitlement(params *GrantUserEntitlementParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "grantUserEntitlement",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1329,7 +1329,7 @@ func (a *Client) GrantUserEntitlementShort(params *GrantUserEntitlementParams, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "grantUserEntitlement",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1375,7 +1375,7 @@ func (a *Client) PublicConsumeUserEntitlement(params *PublicConsumeUserEntitleme
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicConsumeUserEntitlement",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1418,7 +1418,7 @@ func (a *Client) PublicConsumeUserEntitlementShort(params *PublicConsumeUserEnti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicConsumeUserEntitlement",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1464,7 +1464,7 @@ func (a *Client) PublicExistsAnyMyActiveEntitlement(params *PublicExistsAnyMyAct
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicExistsAnyMyActiveEntitlement",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/me/entitlements/ownership/any",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/me/entitlements/ownership/any",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1501,7 +1501,7 @@ func (a *Client) PublicExistsAnyMyActiveEntitlementShort(params *PublicExistsAny
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicExistsAnyMyActiveEntitlement",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/me/entitlements/ownership/any",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/me/entitlements/ownership/any",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1543,7 +1543,7 @@ func (a *Client) PublicExistsAnyUserActiveEntitlement(params *PublicExistsAnyUse
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicExistsAnyUserActiveEntitlement",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/any",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/any",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1580,7 +1580,7 @@ func (a *Client) PublicExistsAnyUserActiveEntitlementShort(params *PublicExistsA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicExistsAnyUserActiveEntitlement",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/any",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/any",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1651,7 +1651,7 @@ func (a *Client) PublicGetEntitlementOwnershipToken(params *PublicGetEntitlement
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetEntitlementOwnershipToken",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/me/entitlements/ownershipToken",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/me/entitlements/ownershipToken",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1688,7 +1688,7 @@ func (a *Client) PublicGetEntitlementOwnershipTokenShort(params *PublicGetEntitl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetEntitlementOwnershipToken",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/me/entitlements/ownershipToken",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/me/entitlements/ownershipToken",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1730,7 +1730,7 @@ func (a *Client) PublicGetMyAppEntitlementOwnershipByAppID(params *PublicGetMyAp
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetMyAppEntitlementOwnershipByAppId",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/me/entitlements/ownership/byAppId",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/me/entitlements/ownership/byAppId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1767,7 +1767,7 @@ func (a *Client) PublicGetMyAppEntitlementOwnershipByAppIDShort(params *PublicGe
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetMyAppEntitlementOwnershipByAppId",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/me/entitlements/ownership/byAppId",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/me/entitlements/ownership/byAppId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1809,7 +1809,7 @@ func (a *Client) PublicGetMyEntitlementOwnershipByItemID(params *PublicGetMyEnti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetMyEntitlementOwnershipByItemId",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/me/entitlements/ownership/byItemId",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/me/entitlements/ownership/byItemId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1846,7 +1846,7 @@ func (a *Client) PublicGetMyEntitlementOwnershipByItemIDShort(params *PublicGetM
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetMyEntitlementOwnershipByItemId",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/me/entitlements/ownership/byItemId",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/me/entitlements/ownership/byItemId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1888,7 +1888,7 @@ func (a *Client) PublicGetMyEntitlementOwnershipBySku(params *PublicGetMyEntitle
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetMyEntitlementOwnershipBySku",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/me/entitlements/ownership/bySku",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/me/entitlements/ownership/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1925,7 +1925,7 @@ func (a *Client) PublicGetMyEntitlementOwnershipBySkuShort(params *PublicGetMyEn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetMyEntitlementOwnershipBySku",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/me/entitlements/ownership/bySku",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/me/entitlements/ownership/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1967,7 +1967,7 @@ func (a *Client) PublicGetUserAppEntitlementByAppID(params *PublicGetUserAppEnti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserAppEntitlementByAppId",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/byAppId",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/byAppId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2007,7 +2007,7 @@ func (a *Client) PublicGetUserAppEntitlementByAppIDShort(params *PublicGetUserAp
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserAppEntitlementByAppId",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/byAppId",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/byAppId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2051,7 +2051,7 @@ func (a *Client) PublicGetUserAppEntitlementOwnershipByAppID(params *PublicGetUs
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserAppEntitlementOwnershipByAppId",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/byAppId",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/byAppId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2088,7 +2088,7 @@ func (a *Client) PublicGetUserAppEntitlementOwnershipByAppIDShort(params *Public
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserAppEntitlementOwnershipByAppId",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/byAppId",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/byAppId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2130,7 +2130,7 @@ func (a *Client) PublicGetUserEntitlement(params *PublicGetUserEntitlementParams
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserEntitlement",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2170,7 +2170,7 @@ func (a *Client) PublicGetUserEntitlementShort(params *PublicGetUserEntitlementP
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserEntitlement",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2214,7 +2214,7 @@ func (a *Client) PublicGetUserEntitlementByItemID(params *PublicGetUserEntitleme
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserEntitlementByItemId",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/byItemId",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/byItemId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2254,7 +2254,7 @@ func (a *Client) PublicGetUserEntitlementByItemIDShort(params *PublicGetUserEnti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserEntitlementByItemId",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/byItemId",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/byItemId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2298,7 +2298,7 @@ func (a *Client) PublicGetUserEntitlementBySku(params *PublicGetUserEntitlementB
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserEntitlementBySku",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/bySku",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2338,7 +2338,7 @@ func (a *Client) PublicGetUserEntitlementBySkuShort(params *PublicGetUserEntitle
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserEntitlementBySku",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/bySku",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2382,7 +2382,7 @@ func (a *Client) PublicGetUserEntitlementOwnershipByItemID(params *PublicGetUser
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserEntitlementOwnershipByItemId",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/byItemId",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/byItemId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2419,7 +2419,7 @@ func (a *Client) PublicGetUserEntitlementOwnershipByItemIDShort(params *PublicGe
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserEntitlementOwnershipByItemId",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/byItemId",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/byItemId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2461,7 +2461,7 @@ func (a *Client) PublicGetUserEntitlementOwnershipBySku(params *PublicGetUserEnt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserEntitlementOwnershipBySku",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/bySku",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2498,7 +2498,7 @@ func (a *Client) PublicGetUserEntitlementOwnershipBySkuShort(params *PublicGetUs
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserEntitlementOwnershipBySku",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/bySku",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/ownership/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2540,7 +2540,7 @@ func (a *Client) PublicQueryUserEntitlements(params *PublicQueryUserEntitlements
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicQueryUserEntitlements",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2577,7 +2577,7 @@ func (a *Client) PublicQueryUserEntitlementsShort(params *PublicQueryUserEntitle
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicQueryUserEntitlements",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2619,7 +2619,7 @@ func (a *Client) PublicQueryUserEntitlementsByAppType(params *PublicQueryUserEnt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicQueryUserEntitlementsByAppType",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/byAppType",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/byAppType",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2656,7 +2656,7 @@ func (a *Client) PublicQueryUserEntitlementsByAppTypeShort(params *PublicQueryUs
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicQueryUserEntitlementsByAppType",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/entitlements/byAppType",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/byAppType",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2698,7 +2698,7 @@ func (a *Client) QueryEntitlements(params *QueryEntitlementsParams, authInfo run
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryEntitlements",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/entitlements",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/entitlements",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2735,7 +2735,7 @@ func (a *Client) QueryEntitlementsShort(params *QueryEntitlementsParams, authInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryEntitlements",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/entitlements",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/entitlements",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2777,7 +2777,7 @@ func (a *Client) QueryUserEntitlements(params *QueryUserEntitlementsParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryUserEntitlements",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2814,7 +2814,7 @@ func (a *Client) QueryUserEntitlementsShort(params *QueryUserEntitlementsParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryUserEntitlements",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2856,7 +2856,7 @@ func (a *Client) QueryUserEntitlementsByAppType(params *QueryUserEntitlementsByA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryUserEntitlementsByAppType",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/byAppType",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/byAppType",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2893,7 +2893,7 @@ func (a *Client) QueryUserEntitlementsByAppTypeShort(params *QueryUserEntitlemen
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryUserEntitlementsByAppType",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/byAppType",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/byAppType",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2935,7 +2935,7 @@ func (a *Client) RevokeUserEntitlement(params *RevokeUserEntitlementParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "revokeUserEntitlement",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2975,7 +2975,7 @@ func (a *Client) RevokeUserEntitlementShort(params *RevokeUserEntitlementParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "revokeUserEntitlement",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -3019,7 +3019,7 @@ func (a *Client) RevokeUserEntitlements(params *RevokeUserEntitlementsParams, au
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "revokeUserEntitlements",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/revoke/byIds",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/revoke/byIds",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -3056,7 +3056,7 @@ func (a *Client) RevokeUserEntitlementsShort(params *RevokeUserEntitlementsParam
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "revokeUserEntitlements",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/revoke/byIds",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/revoke/byIds",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -3098,7 +3098,7 @@ func (a *Client) UpdateUserEntitlement(params *UpdateUserEntitlementParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateUserEntitlement",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -3144,7 +3144,7 @@ func (a *Client) UpdateUserEntitlementShort(params *UpdateUserEntitlementParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateUserEntitlement",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

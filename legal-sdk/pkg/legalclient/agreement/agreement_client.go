@@ -67,7 +67,7 @@ func (a *Client) AcceptVersionedPolicy(params *AcceptVersionedPolicyParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "acceptVersionedPolicy",
 		Method:             "POST",
-		PathPattern:        "/public/agreements/localized-policy-versions/{localizedPolicyVersionId}",
+		PathPattern:        "/agreement/public/agreements/localized-policy-versions/{localizedPolicyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -104,7 +104,7 @@ func (a *Client) AcceptVersionedPolicyShort(params *AcceptVersionedPolicyParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "acceptVersionedPolicy",
 		Method:             "POST",
-		PathPattern:        "/public/agreements/localized-policy-versions/{localizedPolicyVersionId}",
+		PathPattern:        "/agreement/public/agreements/localized-policy-versions/{localizedPolicyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -146,7 +146,7 @@ func (a *Client) BulkAcceptVersionedPolicy(params *BulkAcceptVersionedPolicyPara
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkAcceptVersionedPolicy",
 		Method:             "POST",
-		PathPattern:        "/public/agreements/policies",
+		PathPattern:        "/agreement/public/agreements/policies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -183,7 +183,7 @@ func (a *Client) BulkAcceptVersionedPolicyShort(params *BulkAcceptVersionedPolic
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkAcceptVersionedPolicy",
 		Method:             "POST",
-		PathPattern:        "/public/agreements/policies",
+		PathPattern:        "/agreement/public/agreements/policies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -225,7 +225,7 @@ func (a *Client) ChangePreferenceConsent(params *ChangePreferenceConsentParams, 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "changePreferenceConsent",
 		Method:             "PATCH",
-		PathPattern:        "/public/agreements/localized-policy-versions/preferences",
+		PathPattern:        "/agreement/public/agreements/localized-policy-versions/preferences",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -265,7 +265,7 @@ func (a *Client) ChangePreferenceConsentShort(params *ChangePreferenceConsentPar
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "changePreferenceConsent",
 		Method:             "PATCH",
-		PathPattern:        "/public/agreements/localized-policy-versions/preferences",
+		PathPattern:        "/agreement/public/agreements/localized-policy-versions/preferences",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -309,7 +309,7 @@ func (a *Client) IndirectBulkAcceptVersionedPolicyV2(params *IndirectBulkAcceptV
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "indirectBulkAcceptVersionedPolicyV2",
 		Method:             "POST",
-		PathPattern:        "/public/agreements/policies/namespaces/{namespace}/countries/{countryCode}/clients/{clientId}/users/{userId}",
+		PathPattern:        "/agreement/public/agreements/policies/namespaces/{namespace}/countries/{countryCode}/clients/{clientId}/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -346,7 +346,7 @@ func (a *Client) IndirectBulkAcceptVersionedPolicyV2Short(params *IndirectBulkAc
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "indirectBulkAcceptVersionedPolicyV2",
 		Method:             "POST",
-		PathPattern:        "/public/agreements/policies/namespaces/{namespace}/countries/{countryCode}/clients/{clientId}/users/{userId}",
+		PathPattern:        "/agreement/public/agreements/policies/namespaces/{namespace}/countries/{countryCode}/clients/{clientId}/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -388,7 +388,7 @@ func (a *Client) IndirectBulkAcceptVersionedPolicy1(params *IndirectBulkAcceptVe
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "indirectBulkAcceptVersionedPolicy_1",
 		Method:             "POST",
-		PathPattern:        "/public/agreements/policies/users/{userId}",
+		PathPattern:        "/agreement/public/agreements/policies/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -425,7 +425,7 @@ func (a *Client) IndirectBulkAcceptVersionedPolicy1Short(params *IndirectBulkAcc
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "indirectBulkAcceptVersionedPolicy_1",
 		Method:             "POST",
-		PathPattern:        "/public/agreements/policies/users/{userId}",
+		PathPattern:        "/agreement/public/agreements/policies/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -467,7 +467,7 @@ func (a *Client) RetrieveAcceptedAgreements(params *RetrieveAcceptedAgreementsPa
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveAcceptedAgreements",
 		Method:             "GET",
-		PathPattern:        "/admin/agreements/policies/users/{userId}",
+		PathPattern:        "/agreement/admin/agreements/policies/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -504,7 +504,7 @@ func (a *Client) RetrieveAcceptedAgreementsShort(params *RetrieveAcceptedAgreeme
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveAcceptedAgreements",
 		Method:             "GET",
-		PathPattern:        "/admin/agreements/policies/users/{userId}",
+		PathPattern:        "/agreement/admin/agreements/policies/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -546,7 +546,7 @@ func (a *Client) RetrieveAgreementsPublic(params *RetrieveAgreementsPublicParams
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveAgreementsPublic",
 		Method:             "GET",
-		PathPattern:        "/public/agreements/policies",
+		PathPattern:        "/agreement/public/agreements/policies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -583,7 +583,7 @@ func (a *Client) RetrieveAgreementsPublicShort(params *RetrieveAgreementsPublicP
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveAgreementsPublic",
 		Method:             "GET",
-		PathPattern:        "/public/agreements/policies",
+		PathPattern:        "/agreement/public/agreements/policies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -625,7 +625,7 @@ func (a *Client) RetrieveAllUsersByPolicyVersion(params *RetrieveAllUsersByPolic
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveAllUsersByPolicyVersion",
 		Method:             "GET",
-		PathPattern:        "/admin/agreements/policy-versions/users",
+		PathPattern:        "/agreement/admin/agreements/policy-versions/users",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -665,7 +665,7 @@ func (a *Client) RetrieveAllUsersByPolicyVersionShort(params *RetrieveAllUsersBy
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveAllUsersByPolicyVersion",
 		Method:             "GET",
-		PathPattern:        "/admin/agreements/policy-versions/users",
+		PathPattern:        "/agreement/admin/agreements/policy-versions/users",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

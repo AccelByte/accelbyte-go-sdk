@@ -68,7 +68,7 @@ type ItemSnapshot struct {
 	Language *string `json:"language"`
 
 	// Whether can be visible in Store for public user
-	Listable bool `json:"listable,omitempty"`
+	Listable bool `json:"listable"`
 
 	// Max count, -1 means UNLIMITED, unset when itemType is CODE
 	MaxCount int32 `json:"maxCount,omitempty"`
@@ -85,7 +85,7 @@ type ItemSnapshot struct {
 	Namespace *string `json:"namespace"`
 
 	// Whether can be purchased
-	Purchasable bool `json:"purchasable,omitempty"`
+	Purchasable bool `json:"purchasable"`
 
 	// recurring for subscription
 	Recurring *Recurring `json:"recurring,omitempty"`
@@ -105,7 +105,7 @@ type ItemSnapshot struct {
 	Sku string `json:"sku,omitempty"`
 
 	// Whether stack the CONSUMABLE entitlement
-	Stackable bool `json:"stackable,omitempty"`
+	Stackable bool `json:"stackable"`
 
 	// Target currency code of coin item
 	TargetCurrencyCode string `json:"targetCurrencyCode,omitempty"`

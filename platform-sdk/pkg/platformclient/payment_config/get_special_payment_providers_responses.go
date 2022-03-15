@@ -35,7 +35,7 @@ func (o *GetSpecialPaymentProvidersReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/payment/config/provider/special returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/payment/config/provider/special returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -53,7 +53,7 @@ type GetSpecialPaymentProvidersOK struct {
 }
 
 func (o *GetSpecialPaymentProvidersOK) Error() string {
-	return fmt.Sprintf("[GET /admin/payment/config/provider/special][%d] getSpecialPaymentProvidersOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/provider/special][%d] getSpecialPaymentProvidersOK  %+v", 200, o.Payload)
 }
 
 func (o *GetSpecialPaymentProvidersOK) GetPayload() []string {

@@ -37,7 +37,7 @@ func (o *PublicGetMyEntitlementOwnershipByItemIDReader) ReadResponse(response ru
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/users/me/entitlements/ownership/byItemId returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/users/me/entitlements/ownership/byItemId returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type PublicGetMyEntitlementOwnershipByItemIDOK struct {
 }
 
 func (o *PublicGetMyEntitlementOwnershipByItemIDOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/me/entitlements/ownership/byItemId][%d] publicGetMyEntitlementOwnershipByItemIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/me/entitlements/ownership/byItemId][%d] publicGetMyEntitlementOwnershipByItemIdOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetMyEntitlementOwnershipByItemIDOK) GetPayload() *platformclientmodels.TimedOwnership {

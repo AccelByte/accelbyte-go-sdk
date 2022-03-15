@@ -16,7 +16,7 @@ import (
 type TaxResult struct {
 
 	// if enable tax
-	EnableTax bool `json:"enableTax,omitempty"`
+	EnableTax bool `json:"enableTax"`
 
 	// formattedTax
 	FormattedTax string `json:"formattedTax,omitempty"`

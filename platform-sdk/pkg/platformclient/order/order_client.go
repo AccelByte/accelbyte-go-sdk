@@ -89,7 +89,7 @@ func (a *Client) CountOfPurchasedItem(params *CountOfPurchasedItemParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "countOfPurchasedItem",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/countOfItem",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/orders/countOfItem",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -126,7 +126,7 @@ func (a *Client) CountOfPurchasedItemShort(params *CountOfPurchasedItemParams, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "countOfPurchasedItem",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/countOfItem",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/orders/countOfItem",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -168,7 +168,7 @@ func (a *Client) DownloadUserOrderReceipt(params *DownloadUserOrderReceiptParams
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "downloadUserOrderReceipt",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf",
 		ProducesMediaTypes: []string{"application/pdf"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -211,7 +211,7 @@ func (a *Client) DownloadUserOrderReceiptShort(params *DownloadUserOrderReceiptP
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "downloadUserOrderReceipt",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf",
 		ProducesMediaTypes: []string{"application/pdf"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -257,7 +257,7 @@ func (a *Client) FulfillUserOrder(params *FulfillUserOrderParams, authInfo runti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "fulfillUserOrder",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -303,7 +303,7 @@ func (a *Client) FulfillUserOrderShort(params *FulfillUserOrderParams, authInfo 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "fulfillUserOrder",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -351,7 +351,7 @@ func (a *Client) GetOrder(params *GetOrderParams, authInfo runtime.ClientAuthInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getOrder",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/orders/{orderNo}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/orders/{orderNo}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -391,7 +391,7 @@ func (a *Client) GetOrderShort(params *GetOrderParams, authInfo runtime.ClientAu
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getOrder",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/orders/{orderNo}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/orders/{orderNo}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -435,7 +435,7 @@ func (a *Client) GetOrderStatistics(params *GetOrderStatisticsParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getOrderStatistics",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/orders/stats",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/orders/stats",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -472,7 +472,7 @@ func (a *Client) GetOrderStatisticsShort(params *GetOrderStatisticsParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getOrderStatistics",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/orders/stats",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/orders/stats",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -514,7 +514,7 @@ func (a *Client) GetUserOrder(params *GetUserOrderParams, authInfo runtime.Clien
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserOrder",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -554,7 +554,7 @@ func (a *Client) GetUserOrderShort(params *GetUserOrderParams, authInfo runtime.
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserOrder",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -598,7 +598,7 @@ func (a *Client) GetUserOrderGrant(params *GetUserOrderGrantParams, authInfo run
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserOrderGrant",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/grant",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/grant",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -635,7 +635,7 @@ func (a *Client) GetUserOrderGrantShort(params *GetUserOrderGrantParams, authInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserOrderGrant",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/grant",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/grant",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -677,7 +677,7 @@ func (a *Client) GetUserOrderHistories(params *GetUserOrderHistoriesParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserOrderHistories",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -714,7 +714,7 @@ func (a *Client) GetUserOrderHistoriesShort(params *GetUserOrderHistoriesParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserOrderHistories",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -756,7 +756,7 @@ func (a *Client) ProcessUserOrderNotification(params *ProcessUserOrderNotificati
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "processUserOrderNotification",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/notifications",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/notifications",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -796,7 +796,7 @@ func (a *Client) ProcessUserOrderNotificationShort(params *ProcessUserOrderNotif
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "processUserOrderNotification",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/notifications",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/notifications",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -840,7 +840,7 @@ func (a *Client) PublicCancelUserOrder(params *PublicCancelUserOrderParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicCancelUserOrder",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -883,7 +883,7 @@ func (a *Client) PublicCancelUserOrderShort(params *PublicCancelUserOrderParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicCancelUserOrder",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -929,7 +929,7 @@ func (a *Client) PublicCreateUserOrder(params *PublicCreateUserOrderParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicCreateUserOrder",
 		Method:             "POST",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -981,7 +981,7 @@ func (a *Client) PublicCreateUserOrderShort(params *PublicCreateUserOrderParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicCreateUserOrder",
 		Method:             "POST",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1033,7 +1033,7 @@ func (a *Client) PublicDownloadUserOrderReceipt(params *PublicDownloadUserOrderR
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicDownloadUserOrderReceipt",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf",
 		ProducesMediaTypes: []string{"application/pdf"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1076,7 +1076,7 @@ func (a *Client) PublicDownloadUserOrderReceiptShort(params *PublicDownloadUserO
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicDownloadUserOrderReceipt",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf",
 		ProducesMediaTypes: []string{"application/pdf"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1122,7 +1122,7 @@ func (a *Client) PublicGetUserOrder(params *PublicGetUserOrderParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserOrder",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1162,7 +1162,7 @@ func (a *Client) PublicGetUserOrderShort(params *PublicGetUserOrderParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserOrder",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1206,7 +1206,7 @@ func (a *Client) PublicGetUserOrderHistories(params *PublicGetUserOrderHistories
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserOrderHistories",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1243,7 +1243,7 @@ func (a *Client) PublicGetUserOrderHistoriesShort(params *PublicGetUserOrderHist
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserOrderHistories",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1285,7 +1285,7 @@ func (a *Client) PublicQueryUserOrders(params *PublicQueryUserOrdersParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicQueryUserOrders",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1322,7 +1322,7 @@ func (a *Client) PublicQueryUserOrdersShort(params *PublicQueryUserOrdersParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicQueryUserOrders",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/orders",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1364,7 +1364,7 @@ func (a *Client) QueryOrders(params *QueryOrdersParams, authInfo runtime.ClientA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryOrders",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/orders",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1404,7 +1404,7 @@ func (a *Client) QueryOrdersShort(params *QueryOrdersParams, authInfo runtime.Cl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryOrders",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/orders",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1448,7 +1448,7 @@ func (a *Client) QueryUserOrders(params *QueryUserOrdersParams, authInfo runtime
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryUserOrders",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1485,7 +1485,7 @@ func (a *Client) QueryUserOrdersShort(params *QueryUserOrdersParams, authInfo ru
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryUserOrders",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1527,7 +1527,7 @@ func (a *Client) RefundOrder(params *RefundOrderParams, authInfo runtime.ClientA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "refundOrder",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/orders/{orderNo}/refund",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/orders/{orderNo}/refund",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1573,7 +1573,7 @@ func (a *Client) RefundOrderShort(params *RefundOrderParams, authInfo runtime.Cl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "refundOrder",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/orders/{orderNo}/refund",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/orders/{orderNo}/refund",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1621,7 +1621,7 @@ func (a *Client) UpdateUserOrderStatus(params *UpdateUserOrderStatusParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateUserOrderStatus",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1667,7 +1667,7 @@ func (a *Client) UpdateUserOrderStatusShort(params *UpdateUserOrderStatusParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateUserOrderStatus",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

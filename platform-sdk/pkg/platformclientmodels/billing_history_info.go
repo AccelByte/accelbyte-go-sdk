@@ -27,7 +27,7 @@ type BillingHistoryInfo struct {
 	BillingAccount *BillingAccount `json:"billingAccount,omitempty"`
 
 	// Is this payment for billing account change
-	ChangeBillingAccount bool `json:"changeBillingAccount,omitempty"`
+	ChangeBillingAccount bool `json:"changeBillingAccount"`
 
 	// created at
 	// Required: true

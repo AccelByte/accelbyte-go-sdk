@@ -36,7 +36,7 @@ type UpdatePolicyVersionResponse struct {
 	ID *string `json:"id"`
 
 	// is committed
-	IsCommitted bool `json:"isCommitted,omitempty"`
+	IsCommitted bool `json:"isCommitted"`
 
 	// published date
 	// Format: date-time

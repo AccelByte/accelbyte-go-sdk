@@ -43,7 +43,7 @@ func (o *AcquireItemReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/items/{itemId}/acquire returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/items/{itemId}/acquire returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type AcquireItemOK struct {
 }
 
 func (o *AcquireItemOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/items/{itemId}/acquire][%d] acquireItemOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/acquire][%d] acquireItemOK  %+v", 200, o.Payload)
 }
 
 func (o *AcquireItemOK) GetPayload() *platformclientmodels.ItemAcquireResult {
@@ -94,7 +94,7 @@ type AcquireItemNotFound struct {
 }
 
 func (o *AcquireItemNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/items/{itemId}/acquire][%d] acquireItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/acquire][%d] acquireItemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *AcquireItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {

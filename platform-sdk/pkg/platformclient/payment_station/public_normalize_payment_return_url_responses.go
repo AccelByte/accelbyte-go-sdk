@@ -40,7 +40,7 @@ func (o *PublicNormalizePaymentReturnURLReader) ReadResponse(response runtime.Cl
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/payment/returnurl returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/payment/returnurl returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -57,7 +57,7 @@ type PublicNormalizePaymentReturnURLNoContent struct {
 }
 
 func (o *PublicNormalizePaymentReturnURLNoContent) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/payment/returnurl][%d] publicNormalizePaymentReturnUrlNoContent ", 204)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/returnurl][%d] publicNormalizePaymentReturnUrlNoContent ", 204)
 }
 
 func (o *PublicNormalizePaymentReturnURLNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -81,7 +81,7 @@ type PublicNormalizePaymentReturnURLTemporaryRedirect struct {
 }
 
 func (o *PublicNormalizePaymentReturnURLTemporaryRedirect) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/payment/returnurl][%d] publicNormalizePaymentReturnUrlTemporaryRedirect ", 307)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/returnurl][%d] publicNormalizePaymentReturnUrlTemporaryRedirect ", 307)
 }
 
 func (o *PublicNormalizePaymentReturnURLTemporaryRedirect) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

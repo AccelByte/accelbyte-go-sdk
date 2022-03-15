@@ -43,7 +43,7 @@ func (o *GrantDaysToSubscriptionReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/grant returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/grant returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GrantDaysToSubscriptionOK struct {
 }
 
 func (o *GrantDaysToSubscriptionOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/grant][%d] grantDaysToSubscriptionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/grant][%d] grantDaysToSubscriptionOK  %+v", 200, o.Payload)
 }
 
 func (o *GrantDaysToSubscriptionOK) GetPayload() *platformclientmodels.SubscriptionInfo {
@@ -94,7 +94,7 @@ type GrantDaysToSubscriptionNotFound struct {
 }
 
 func (o *GrantDaysToSubscriptionNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/grant][%d] grantDaysToSubscriptionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/grant][%d] grantDaysToSubscriptionNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GrantDaysToSubscriptionNotFound) GetPayload() *platformclientmodels.ErrorEntity {

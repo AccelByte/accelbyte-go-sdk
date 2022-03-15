@@ -34,7 +34,7 @@ func (o *DeleteSteamIAPConfigReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /admin/namespaces/{namespace}/iap/config/steam returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /platform/admin/namespaces/{namespace}/iap/config/steam returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -51,7 +51,7 @@ type DeleteSteamIAPConfigNoContent struct {
 }
 
 func (o *DeleteSteamIAPConfigNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/iap/config/steam][%d] deleteSteamIAPConfigNoContent ", 204)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/iap/config/steam][%d] deleteSteamIAPConfigNoContent ", 204)
 }
 
 func (o *DeleteSteamIAPConfigNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

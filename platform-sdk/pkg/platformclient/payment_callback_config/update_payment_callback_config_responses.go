@@ -37,7 +37,7 @@ func (o *UpdatePaymentCallbackConfigReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/payment/config/callback returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/payment/config/callback returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type UpdatePaymentCallbackConfigOK struct {
 }
 
 func (o *UpdatePaymentCallbackConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/payment/config/callback][%d] updatePaymentCallbackConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/config/callback][%d] updatePaymentCallbackConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdatePaymentCallbackConfigOK) GetPayload() *platformclientmodels.PaymentCallbackConfigInfo {

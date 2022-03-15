@@ -43,7 +43,7 @@ func (o *DebugMatchedPaymentProviderConfigReader) ReadResponse(response runtime.
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/payment/config/provider/matched returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/payment/config/provider/matched returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type DebugMatchedPaymentProviderConfigOK struct {
 }
 
 func (o *DebugMatchedPaymentProviderConfigOK) Error() string {
-	return fmt.Sprintf("[GET /admin/payment/config/provider/matched][%d] debugMatchedPaymentProviderConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/provider/matched][%d] debugMatchedPaymentProviderConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *DebugMatchedPaymentProviderConfigOK) GetPayload() *platformclientmodels.PaymentProviderConfigInfo {
@@ -94,7 +94,7 @@ type DebugMatchedPaymentProviderConfigNotFound struct {
 }
 
 func (o *DebugMatchedPaymentProviderConfigNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/payment/config/provider/matched][%d] debugMatchedPaymentProviderConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/provider/matched][%d] debugMatchedPaymentProviderConfigNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DebugMatchedPaymentProviderConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {

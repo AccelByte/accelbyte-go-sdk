@@ -49,7 +49,7 @@ func (o *UpdateCurrencyReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/currencies/{currencyCode} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/currencies/{currencyCode} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type UpdateCurrencyOK struct {
 }
 
 func (o *UpdateCurrencyOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/currencies/{currencyCode}][%d] updateCurrencyOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/currencies/{currencyCode}][%d] updateCurrencyOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateCurrencyOK) GetPayload() *platformclientmodels.CurrencyInfo {
@@ -100,7 +100,7 @@ type UpdateCurrencyNotFound struct {
 }
 
 func (o *UpdateCurrencyNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/currencies/{currencyCode}][%d] updateCurrencyNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/currencies/{currencyCode}][%d] updateCurrencyNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateCurrencyNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type UpdateCurrencyUnprocessableEntity struct {
 }
 
 func (o *UpdateCurrencyUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/currencies/{currencyCode}][%d] updateCurrencyUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/currencies/{currencyCode}][%d] updateCurrencyUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateCurrencyUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

@@ -43,7 +43,7 @@ func (o *GetProfileReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/users/{userId}/profiles/{profileId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /social/admin/namespaces/{namespace}/users/{userId}/profiles/{profileId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetProfileOK struct {
 }
 
 func (o *GetProfileOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] getProfileOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /social/admin/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] getProfileOK  %+v", 200, o.Payload)
 }
 
 func (o *GetProfileOK) GetPayload() *socialclientmodels.GameProfileInfo {
@@ -94,7 +94,7 @@ type GetProfileNotFound struct {
 }
 
 func (o *GetProfileNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] getProfileNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /social/admin/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] getProfileNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetProfileNotFound) GetPayload() *socialclientmodels.ErrorEntity {

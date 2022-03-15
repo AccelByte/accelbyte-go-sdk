@@ -55,7 +55,7 @@ func (o *UpdateStoreReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/stores/{storeId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/stores/{storeId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type UpdateStoreOK struct {
 }
 
 func (o *UpdateStoreOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/stores/{storeId}][%d] updateStoreOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}][%d] updateStoreOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateStoreOK) GetPayload() *platformclientmodels.StoreInfo {
@@ -106,7 +106,7 @@ type UpdateStoreNotFound struct {
 }
 
 func (o *UpdateStoreNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/stores/{storeId}][%d] updateStoreNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}][%d] updateStoreNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateStoreNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type UpdateStoreConflict struct {
 }
 
 func (o *UpdateStoreConflict) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/stores/{storeId}][%d] updateStoreConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}][%d] updateStoreConflict  %+v", 409, o.Payload)
 }
 
 func (o *UpdateStoreConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -172,7 +172,7 @@ type UpdateStoreUnprocessableEntity struct {
 }
 
 func (o *UpdateStoreUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/stores/{storeId}][%d] updateStoreUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}][%d] updateStoreUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateStoreUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

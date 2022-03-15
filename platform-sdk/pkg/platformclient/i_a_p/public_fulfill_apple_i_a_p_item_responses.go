@@ -55,7 +55,7 @@ func (o *PublicFulfillAppleIAPItemReader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /public/namespaces/{namespace}/users/{userId}/iap/apple/receipt returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -72,7 +72,7 @@ type PublicFulfillAppleIAPItemNoContent struct {
 }
 
 func (o *PublicFulfillAppleIAPItemNoContent) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/iap/apple/receipt][%d] publicFulfillAppleIAPItemNoContent ", 204)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt][%d] publicFulfillAppleIAPItemNoContent ", 204)
 }
 
 func (o *PublicFulfillAppleIAPItemNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -94,7 +94,7 @@ type PublicFulfillAppleIAPItemBadRequest struct {
 }
 
 func (o *PublicFulfillAppleIAPItemBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/iap/apple/receipt][%d] publicFulfillAppleIAPItemBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt][%d] publicFulfillAppleIAPItemBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicFulfillAppleIAPItemBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -127,7 +127,7 @@ type PublicFulfillAppleIAPItemNotFound struct {
 }
 
 func (o *PublicFulfillAppleIAPItemNotFound) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/iap/apple/receipt][%d] publicFulfillAppleIAPItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt][%d] publicFulfillAppleIAPItemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicFulfillAppleIAPItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -160,7 +160,7 @@ type PublicFulfillAppleIAPItemConflict struct {
 }
 
 func (o *PublicFulfillAppleIAPItemConflict) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/iap/apple/receipt][%d] publicFulfillAppleIAPItemConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt][%d] publicFulfillAppleIAPItemConflict  %+v", 409, o.Payload)
 }
 
 func (o *PublicFulfillAppleIAPItemConflict) GetPayload() *platformclientmodels.ErrorEntity {

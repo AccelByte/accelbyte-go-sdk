@@ -61,7 +61,7 @@ func (o *UpdateUserProfileStatusReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PATCH /v1/admin/namespaces/{namespace}/users/{userId}/profiles/status returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PATCH /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/status returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type UpdateUserProfileStatusOK struct {
 }
 
 func (o *UpdateUserProfileStatusOK) Error() string {
-	return fmt.Sprintf("[PATCH /v1/admin/namespaces/{namespace}/users/{userId}/profiles/status][%d] updateUserProfileStatusOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/status][%d] updateUserProfileStatusOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateUserProfileStatusOK) GetPayload() *basicclientmodels.UserProfilePrivateInfo {
@@ -112,7 +112,7 @@ type UpdateUserProfileStatusBadRequest struct {
 }
 
 func (o *UpdateUserProfileStatusBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /v1/admin/namespaces/{namespace}/users/{userId}/profiles/status][%d] updateUserProfileStatusBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/status][%d] updateUserProfileStatusBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateUserProfileStatusBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -145,7 +145,7 @@ type UpdateUserProfileStatusUnauthorized struct {
 }
 
 func (o *UpdateUserProfileStatusUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /v1/admin/namespaces/{namespace}/users/{userId}/profiles/status][%d] updateUserProfileStatusUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/status][%d] updateUserProfileStatusUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateUserProfileStatusUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -178,7 +178,7 @@ type UpdateUserProfileStatusForbidden struct {
 }
 
 func (o *UpdateUserProfileStatusForbidden) Error() string {
-	return fmt.Sprintf("[PATCH /v1/admin/namespaces/{namespace}/users/{userId}/profiles/status][%d] updateUserProfileStatusForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/status][%d] updateUserProfileStatusForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateUserProfileStatusForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -211,7 +211,7 @@ type UpdateUserProfileStatusNotFound struct {
 }
 
 func (o *UpdateUserProfileStatusNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /v1/admin/namespaces/{namespace}/users/{userId}/profiles/status][%d] updateUserProfileStatusNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/status][%d] updateUserProfileStatusNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateUserProfileStatusNotFound) GetPayload() *basicclientmodels.ErrorEntity {

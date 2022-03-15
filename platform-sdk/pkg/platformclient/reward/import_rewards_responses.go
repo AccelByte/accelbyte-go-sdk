@@ -43,7 +43,7 @@ func (o *ImportRewardsReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/rewards/import returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/admin/namespaces/{namespace}/rewards/import returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -60,7 +60,7 @@ type ImportRewardsOK struct {
 }
 
 func (o *ImportRewardsOK) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/rewards/import][%d] importRewardsOK ", 200)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/rewards/import][%d] importRewardsOK ", 200)
 }
 
 func (o *ImportRewardsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -82,7 +82,7 @@ type ImportRewardsBadRequest struct {
 }
 
 func (o *ImportRewardsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/rewards/import][%d] importRewardsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/rewards/import][%d] importRewardsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ImportRewardsBadRequest) GetPayload() *platformclientmodels.ErrorEntity {

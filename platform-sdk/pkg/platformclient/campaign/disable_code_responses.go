@@ -43,7 +43,7 @@ func (o *DisableCodeReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/codes/{code}/disable returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/codes/{code}/disable returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type DisableCodeOK struct {
 }
 
 func (o *DisableCodeOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/codes/{code}/disable][%d] disableCodeOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/codes/{code}/disable][%d] disableCodeOK  %+v", 200, o.Payload)
 }
 
 func (o *DisableCodeOK) GetPayload() *platformclientmodels.CodeInfo {
@@ -94,7 +94,7 @@ type DisableCodeNotFound struct {
 }
 
 func (o *DisableCodeNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/codes/{code}/disable][%d] disableCodeNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/codes/{code}/disable][%d] disableCodeNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DisableCodeNotFound) GetPayload() *platformclientmodels.ErrorEntity {

@@ -43,7 +43,7 @@ func (o *GetCurrencyConfigReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/currencies/{currencyCode}/config returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/currencies/{currencyCode}/config returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetCurrencyConfigOK struct {
 }
 
 func (o *GetCurrencyConfigOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/currencies/{currencyCode}/config][%d] getCurrencyConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/currencies/{currencyCode}/config][%d] getCurrencyConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *GetCurrencyConfigOK) GetPayload() *platformclientmodels.CurrencyConfig {
@@ -94,7 +94,7 @@ type GetCurrencyConfigNotFound struct {
 }
 
 func (o *GetCurrencyConfigNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/currencies/{currencyCode}/config][%d] getCurrencyConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/currencies/{currencyCode}/config][%d] getCurrencyConfigNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetCurrencyConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {

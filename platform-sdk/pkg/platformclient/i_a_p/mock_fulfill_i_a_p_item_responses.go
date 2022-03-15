@@ -55,7 +55,7 @@ func (o *MockFulfillIAPItemReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -72,7 +72,7 @@ type MockFulfillIAPItemNoContent struct {
 }
 
 func (o *MockFulfillIAPItemNoContent) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt][%d] mockFulfillIAPItemNoContent ", 204)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt][%d] mockFulfillIAPItemNoContent ", 204)
 }
 
 func (o *MockFulfillIAPItemNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -94,7 +94,7 @@ type MockFulfillIAPItemBadRequest struct {
 }
 
 func (o *MockFulfillIAPItemBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt][%d] mockFulfillIAPItemBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt][%d] mockFulfillIAPItemBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *MockFulfillIAPItemBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -127,7 +127,7 @@ type MockFulfillIAPItemNotFound struct {
 }
 
 func (o *MockFulfillIAPItemNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt][%d] mockFulfillIAPItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt][%d] mockFulfillIAPItemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *MockFulfillIAPItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -160,7 +160,7 @@ type MockFulfillIAPItemConflict struct {
 }
 
 func (o *MockFulfillIAPItemConflict) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt][%d] mockFulfillIAPItemConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt][%d] mockFulfillIAPItemConflict  %+v", 409, o.Payload)
 }
 
 func (o *MockFulfillIAPItemConflict) GetPayload() *platformclientmodels.ErrorEntity {

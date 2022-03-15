@@ -55,7 +55,7 @@ func (a *Client) GetPaymentCallbackConfig(params *GetPaymentCallbackConfigParams
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPaymentCallbackConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/payment/config/callback",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/config/callback",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -95,7 +95,7 @@ func (a *Client) GetPaymentCallbackConfigShort(params *GetPaymentCallbackConfigP
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPaymentCallbackConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/payment/config/callback",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/config/callback",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -139,7 +139,7 @@ func (a *Client) UpdatePaymentCallbackConfig(params *UpdatePaymentCallbackConfig
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updatePaymentCallbackConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/payment/config/callback",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/config/callback",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -176,7 +176,7 @@ func (a *Client) UpdatePaymentCallbackConfigShort(params *UpdatePaymentCallbackC
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updatePaymentCallbackConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/payment/config/callback",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/config/callback",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

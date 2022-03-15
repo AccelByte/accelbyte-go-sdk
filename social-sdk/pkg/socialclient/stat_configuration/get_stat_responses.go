@@ -43,7 +43,7 @@ func (o *GetStatReader) ReadResponse(response runtime.ClientResponse, consumer r
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /v1/admin/namespaces/{namespace}/stats/{statCode} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /social/v1/admin/namespaces/{namespace}/stats/{statCode} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetStatOK struct {
 }
 
 func (o *GetStatOK) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/stats/{statCode}][%d] getStatOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /social/v1/admin/namespaces/{namespace}/stats/{statCode}][%d] getStatOK  %+v", 200, o.Payload)
 }
 
 func (o *GetStatOK) GetPayload() *socialclientmodels.StatInfo {
@@ -94,7 +94,7 @@ type GetStatNotFound struct {
 }
 
 func (o *GetStatNotFound) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/stats/{statCode}][%d] getStatNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /social/v1/admin/namespaces/{namespace}/stats/{statCode}][%d] getStatNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetStatNotFound) GetPayload() *socialclientmodels.ErrorEntity {

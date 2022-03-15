@@ -31,8 +31,7 @@ type ModelUserCreateFromInvitationRequestV3 struct {
 	Country *string `json:"country"`
 
 	// date of birth
-	// Required: true
-	DateOfBirth *string `json:"dateOfBirth"`
+	DateOfBirth string `json:"dateOfBirth,omitempty"`
 
 	// display name
 	// Required: true
@@ -41,6 +40,10 @@ type ModelUserCreateFromInvitationRequestV3 struct {
 	// password
 	// Required: true
 	Password *string `json:"password"`
+
+	// reach minimum age
+	// Required: true
+	ReachMinimumAge *bool `json:"reachMinimumAge"`
 }
 
 // Validate validates this model user create from invitation request v3
@@ -59,15 +62,15 @@ func (m *ModelUserCreateFromInvitationRequestV3) Validate(formats strfmt.Registr
 		res = append(res, err)
 	}
 
-	if err := m.validateDateOfBirth(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateDisplayName(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validatePassword(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateReachMinimumAge(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -120,15 +123,6 @@ func (m *ModelUserCreateFromInvitationRequestV3) validateCountry(formats strfmt.
 	return nil
 }
 
-func (m *ModelUserCreateFromInvitationRequestV3) validateDateOfBirth(formats strfmt.Registry) error {
-
-	if err := validate.Required("dateOfBirth", "body", m.DateOfBirth); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *ModelUserCreateFromInvitationRequestV3) validateDisplayName(formats strfmt.Registry) error {
 
 	if err := validate.Required("displayName", "body", m.DisplayName); err != nil {
@@ -141,6 +135,15 @@ func (m *ModelUserCreateFromInvitationRequestV3) validateDisplayName(formats str
 func (m *ModelUserCreateFromInvitationRequestV3) validatePassword(formats strfmt.Registry) error {
 
 	if err := validate.Required("password", "body", m.Password); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelUserCreateFromInvitationRequestV3) validateReachMinimumAge(formats strfmt.Registry) error {
+
+	if err := validate.Required("reachMinimumAge", "body", m.ReachMinimumAge); err != nil {
 		return err
 	}
 

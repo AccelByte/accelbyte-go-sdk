@@ -55,7 +55,7 @@ func (a *Client) RetrieveEligibilitiesPublic(params *RetrieveEligibilitiesPublic
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveEligibilitiesPublic",
 		Method:             "GET",
-		PathPattern:        "/public/eligibilities/namespaces/{namespace}",
+		PathPattern:        "/agreement/public/eligibilities/namespaces/{namespace}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -92,7 +92,7 @@ func (a *Client) RetrieveEligibilitiesPublicShort(params *RetrieveEligibilitiesP
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveEligibilitiesPublic",
 		Method:             "GET",
-		PathPattern:        "/public/eligibilities/namespaces/{namespace}",
+		PathPattern:        "/agreement/public/eligibilities/namespaces/{namespace}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -134,7 +134,7 @@ func (a *Client) RetrieveEligibilitiesPublicIndirect(params *RetrieveEligibiliti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveEligibilitiesPublicIndirect",
 		Method:             "GET",
-		PathPattern:        "/public/eligibilities/namespaces/{namespace}/countries/{countryCode}/clients/{clientId}/users/{userId}",
+		PathPattern:        "/agreement/public/eligibilities/namespaces/{namespace}/countries/{countryCode}/clients/{clientId}/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -171,7 +171,7 @@ func (a *Client) RetrieveEligibilitiesPublicIndirectShort(params *RetrieveEligib
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveEligibilitiesPublicIndirect",
 		Method:             "GET",
-		PathPattern:        "/public/eligibilities/namespaces/{namespace}/countries/{countryCode}/clients/{clientId}/users/{userId}",
+		PathPattern:        "/agreement/public/eligibilities/namespaces/{namespace}/countries/{countryCode}/clients/{clientId}/users/{userId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

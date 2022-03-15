@@ -81,7 +81,7 @@ func (a *Client) ApplyUserRedemption(params *ApplyUserRedemptionParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "applyUserRedemption",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/redemption",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/redemption",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -127,7 +127,7 @@ func (a *Client) ApplyUserRedemptionShort(params *ApplyUserRedemptionParams, aut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "applyUserRedemption",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/redemption",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/redemption",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -175,7 +175,7 @@ func (a *Client) BulkDisableCodes(params *BulkDisableCodesParams, authInfo runti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkDisableCodes",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/disable/bulk",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/disable/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -212,7 +212,7 @@ func (a *Client) BulkDisableCodesShort(params *BulkDisableCodesParams, authInfo 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkDisableCodes",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/disable/bulk",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/disable/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -254,7 +254,7 @@ func (a *Client) BulkEnableCodes(params *BulkEnableCodesParams, authInfo runtime
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkEnableCodes",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/enable/bulk",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/enable/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -291,7 +291,7 @@ func (a *Client) BulkEnableCodesShort(params *BulkEnableCodesParams, authInfo ru
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkEnableCodes",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/enable/bulk",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/enable/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -333,7 +333,7 @@ func (a *Client) CreateCampaign(params *CreateCampaignParams, authInfo runtime.C
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createCampaign",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/campaigns",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/campaigns",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -376,7 +376,7 @@ func (a *Client) CreateCampaignShort(params *CreateCampaignParams, authInfo runt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createCampaign",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/campaigns",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/campaigns",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -422,7 +422,7 @@ func (a *Client) CreateCodes(params *CreateCodesParams, authInfo runtime.ClientA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createCodes",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -465,7 +465,7 @@ func (a *Client) CreateCodesShort(params *CreateCodesParams, authInfo runtime.Cl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createCodes",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -511,7 +511,7 @@ func (a *Client) DisableCode(params *DisableCodeParams, authInfo runtime.ClientA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "disableCode",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/codes/{code}/disable",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/codes/{code}/disable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -551,7 +551,7 @@ func (a *Client) DisableCodeShort(params *DisableCodeParams, authInfo runtime.Cl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "disableCode",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/codes/{code}/disable",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/codes/{code}/disable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -595,7 +595,7 @@ func (a *Client) Download(params *DownloadParams, authInfo runtime.ClientAuthInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "download",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/codes.csv",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/codes.csv",
 		ProducesMediaTypes: []string{"text/csv"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -632,7 +632,7 @@ func (a *Client) DownloadShort(params *DownloadParams, authInfo runtime.ClientAu
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "download",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/codes.csv",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/codes.csv",
 		ProducesMediaTypes: []string{"text/csv"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -674,7 +674,7 @@ func (a *Client) EnableCode(params *EnableCodeParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "enableCode",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/codes/{code}/enable",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/codes/{code}/enable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -714,7 +714,7 @@ func (a *Client) EnableCodeShort(params *EnableCodeParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "enableCode",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/codes/{code}/enable",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/codes/{code}/enable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -758,7 +758,7 @@ func (a *Client) GetCampaign(params *GetCampaignParams, authInfo runtime.ClientA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCampaign",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/campaigns/{campaignId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/campaigns/{campaignId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -798,7 +798,7 @@ func (a *Client) GetCampaignShort(params *GetCampaignParams, authInfo runtime.Cl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCampaign",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/campaigns/{campaignId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/campaigns/{campaignId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -842,7 +842,7 @@ func (a *Client) GetCampaignDynamic(params *GetCampaignDynamicParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCampaignDynamic",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/campaigns/{campaignId}/dynamic",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/campaigns/{campaignId}/dynamic",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -882,7 +882,7 @@ func (a *Client) GetCampaignDynamicShort(params *GetCampaignDynamicParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCampaignDynamic",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/campaigns/{campaignId}/dynamic",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/campaigns/{campaignId}/dynamic",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -926,7 +926,7 @@ func (a *Client) GetCode(params *GetCodeParams, authInfo runtime.ClientAuthInfoW
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCode",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/codes/{code}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/codes/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -969,7 +969,7 @@ func (a *Client) GetCodeShort(params *GetCodeParams, authInfo runtime.ClientAuth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCode",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/codes/{code}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/codes/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1015,7 +1015,7 @@ func (a *Client) QueryCampaigns(params *QueryCampaignsParams, authInfo runtime.C
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryCampaigns",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/campaigns",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/campaigns",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1052,7 +1052,7 @@ func (a *Client) QueryCampaignsShort(params *QueryCampaignsParams, authInfo runt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryCampaigns",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/campaigns",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/campaigns",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1094,7 +1094,7 @@ func (a *Client) QueryCodes(params *QueryCodesParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryCodes",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1131,7 +1131,7 @@ func (a *Client) QueryCodesShort(params *QueryCodesParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryCodes",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1173,7 +1173,7 @@ func (a *Client) QueryRedeemHistory(params *QueryRedeemHistoryParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryRedeemHistory",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/history",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/history",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1210,7 +1210,7 @@ func (a *Client) QueryRedeemHistoryShort(params *QueryRedeemHistoryParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryRedeemHistory",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/history",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/history",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1252,7 +1252,7 @@ func (a *Client) UpdateCampaign(params *UpdateCampaignParams, authInfo runtime.C
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateCampaign",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/campaigns/{campaignId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/campaigns/{campaignId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1298,7 +1298,7 @@ func (a *Client) UpdateCampaignShort(params *UpdateCampaignParams, authInfo runt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateCampaign",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/campaigns/{campaignId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/campaigns/{campaignId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

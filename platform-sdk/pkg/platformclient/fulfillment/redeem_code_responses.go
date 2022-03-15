@@ -55,7 +55,7 @@ func (o *RedeemCodeReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/users/{userId}/fulfillment/code returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/code returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type RedeemCodeOK struct {
 }
 
 func (o *RedeemCodeOK) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/fulfillment/code][%d] redeemCodeOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/code][%d] redeemCodeOK  %+v", 200, o.Payload)
 }
 
 func (o *RedeemCodeOK) GetPayload() *platformclientmodels.FulfillmentResult {
@@ -106,7 +106,7 @@ type RedeemCodeBadRequest struct {
 }
 
 func (o *RedeemCodeBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/fulfillment/code][%d] redeemCodeBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/code][%d] redeemCodeBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *RedeemCodeBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type RedeemCodeNotFound struct {
 }
 
 func (o *RedeemCodeNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/fulfillment/code][%d] redeemCodeNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/code][%d] redeemCodeNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RedeemCodeNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -172,7 +172,7 @@ type RedeemCodeConflict struct {
 }
 
 func (o *RedeemCodeConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/fulfillment/code][%d] redeemCodeConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/code][%d] redeemCodeConflict  %+v", 409, o.Payload)
 }
 
 func (o *RedeemCodeConflict) GetPayload() *platformclientmodels.ErrorEntity {

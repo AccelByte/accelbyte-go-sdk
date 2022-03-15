@@ -55,7 +55,7 @@ type ClientService interface {
 	AdminDeleteRolePermissionsV3Short(params *AdminDeleteRolePermissionsV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRolePermissionsV3NoContent, error)
 	AdminDeleteRolePermissionsV4(params *AdminDeleteRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRolePermissionsV4NoContent, *AdminDeleteRolePermissionsV4Unauthorized, *AdminDeleteRolePermissionsV4Forbidden, *AdminDeleteRolePermissionsV4NotFound, error)
 	AdminDeleteRolePermissionsV4Short(params *AdminDeleteRolePermissionsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRolePermissionsV4NoContent, error)
-	AdminDeleteRoleV3(params *AdminDeleteRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRoleV3NoContent, *AdminDeleteRoleV3BadRequest, *AdminDeleteRoleV3Unauthorized, *AdminDeleteRoleV3Forbidden, *AdminDeleteRoleV3NotFound, *AdminDeleteRoleV3InternalServerError, error)
+	AdminDeleteRoleV3(params *AdminDeleteRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRoleV3NoContent, *AdminDeleteRoleV3BadRequest, *AdminDeleteRoleV3Unauthorized, *AdminDeleteRoleV3Forbidden, *AdminDeleteRoleV3NotFound, *AdminDeleteRoleV3Conflict, *AdminDeleteRoleV3InternalServerError, error)
 	AdminDeleteRoleV3Short(params *AdminDeleteRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRoleV3NoContent, error)
 	AdminDeleteRoleV4(params *AdminDeleteRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRoleV4NoContent, *AdminDeleteRoleV4BadRequest, *AdminDeleteRoleV4Unauthorized, *AdminDeleteRoleV4Forbidden, *AdminDeleteRoleV4NotFound, *AdminDeleteRoleV4InternalServerError, error)
 	AdminDeleteRoleV4Short(params *AdminDeleteRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRoleV4NoContent, error)
@@ -1046,7 +1046,18 @@ func (a *Client) AdminAssignUserToRoleV4Short(params *AdminAssignUserToRoleV4Par
 /*
   AdminCreateRoleV3 creates role
 
-  Required permission &#39;ADMIN:ROLE [CREATE]&#39; &lt;br&gt;action code: 10401
+  Required permission &#39;ADMIN:ROLE [CREATE]&#39;
+
+Create role request body:
+	- roleName: specify role name, alphanumeric, cannot have special character (required)
+	- permissions: specify the permission that this role have
+	- managers: specify list of user that will act as the managers of this role
+	- members: specify list of user that will act as the members of this role
+	- adminRole: specify if role is for admin user (default false)
+	- isWildcard: specify if role can be assigned to wildcard (*) namespace (default false)
+	- deletable: specify if role can be deleted or not (default true)
+
+&lt;br&gt;action code: 10401
 */
 func (a *Client) AdminCreateRoleV3(params *AdminCreateRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateRoleV3Created, *AdminCreateRoleV3BadRequest, *AdminCreateRoleV3Unauthorized, *AdminCreateRoleV3Forbidden, error) {
 	// TODO: Validate the params before sending
@@ -1146,6 +1157,7 @@ Create role request body:
 - roleName: specify role name, alphanumeric, cannot have special character (required)
 - adminRole: specify if role is for admin user (default false)
 - isWildcard: specify if role can be assigned to wildcard (*) namespace (default false)
+- deletable: specify if role can be deleted (default true)
 
 action code: 10401
 */
@@ -1536,7 +1548,7 @@ func (a *Client) AdminDeleteRolePermissionsV4Short(params *AdminDeleteRolePermis
 
   Required permission &#39;&#39;ADMIN:ROLE [DELETE]&#39;&#39; &lt;br&gt;action code: 10403
 */
-func (a *Client) AdminDeleteRoleV3(params *AdminDeleteRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRoleV3NoContent, *AdminDeleteRoleV3BadRequest, *AdminDeleteRoleV3Unauthorized, *AdminDeleteRoleV3Forbidden, *AdminDeleteRoleV3NotFound, *AdminDeleteRoleV3InternalServerError, error) {
+func (a *Client) AdminDeleteRoleV3(params *AdminDeleteRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteRoleV3NoContent, *AdminDeleteRoleV3BadRequest, *AdminDeleteRoleV3Unauthorized, *AdminDeleteRoleV3Forbidden, *AdminDeleteRoleV3NotFound, *AdminDeleteRoleV3Conflict, *AdminDeleteRoleV3InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminDeleteRoleV3Params()
@@ -1560,31 +1572,34 @@ func (a *Client) AdminDeleteRoleV3(params *AdminDeleteRoleV3Params, authInfo run
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminDeleteRoleV3NoContent:
-		return v, nil, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil, nil
 
 	case *AdminDeleteRoleV3BadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil, nil
 
 	case *AdminDeleteRoleV3Unauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil, nil
 
 	case *AdminDeleteRoleV3Forbidden:
-		return nil, nil, nil, v, nil, nil, nil
+		return nil, nil, nil, v, nil, nil, nil, nil
 
 	case *AdminDeleteRoleV3NotFound:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *AdminDeleteRoleV3Conflict:
+		return nil, nil, nil, nil, nil, v, nil, nil
 
 	case *AdminDeleteRoleV3InternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1626,6 +1641,8 @@ func (a *Client) AdminDeleteRoleV3Short(params *AdminDeleteRoleV3Params, authInf
 	case *AdminDeleteRoleV3Forbidden:
 		return nil, v
 	case *AdminDeleteRoleV3NotFound:
+		return nil, v
+	case *AdminDeleteRoleV3Conflict:
 		return nil, v
 	case *AdminDeleteRoleV3InternalServerError:
 		return nil, v
@@ -3315,7 +3332,14 @@ func (a *Client) AdminUpdateRolePermissionsV4Short(params *AdminUpdateRolePermis
 /*
   AdminUpdateRoleV3 updates role
 
-  Required permission &#39;ADMIN:ROLE [UPDATE]&#39; &lt;br&gt;action code: 10402
+  Required permission &#39;ADMIN:ROLE [UPDATE]&#39;
+
+Update role request body:
+	- roleName: specify role name, alphanumeric, cannot have special character (required)
+	- isWildcard: specify if role can be assigned to wildcard (*) namespace (default false)
+	- deletable: specify if role can be deleted or not (optional)
+
+&lt;br&gt;action code: 10402
 */
 func (a *Client) AdminUpdateRoleV3(params *AdminUpdateRoleV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateRoleV3OK, *AdminUpdateRoleV3BadRequest, *AdminUpdateRoleV3Unauthorized, *AdminUpdateRoleV3Forbidden, *AdminUpdateRoleV3NotFound, error) {
 	// TODO: Validate the params before sending
@@ -3420,6 +3444,7 @@ Update role request body:
 - roleName: specify role name, alphanumeric, cannot have special character (required)
 - adminRole: specify if role is for admin user (default false)
 - isWildcard: specify if role can be assigned to wildcard (*) namespace (default false)
+- deletable: specify if role can be deleted (optional)
 
 action code: 10402
 */

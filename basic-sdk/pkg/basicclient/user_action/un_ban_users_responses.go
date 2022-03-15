@@ -55,7 +55,7 @@ func (o *UnBanUsersReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /v1/admin/namespaces/{namespace}/actions/unban returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /basic/v1/admin/namespaces/{namespace}/actions/unban returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type UnBanUsersBadRequest struct {
 }
 
 func (o *UnBanUsersBadRequest) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/actions/unban][%d] unBanUsersBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/unban][%d] unBanUsersBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UnBanUsersBadRequest) GetPayload() *basicclientmodels.ErrorEntity {
@@ -106,7 +106,7 @@ type UnBanUsersNotFound struct {
 }
 
 func (o *UnBanUsersNotFound) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/actions/unban][%d] unBanUsersNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/unban][%d] unBanUsersNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UnBanUsersNotFound) GetPayload() *basicclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type UnBanUsersUnprocessableEntity struct {
 }
 
 func (o *UnBanUsersUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/actions/unban][%d] unBanUsersUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/unban][%d] unBanUsersUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UnBanUsersUnprocessableEntity) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -172,7 +172,7 @@ type UnBanUsersInternalServerError struct {
 }
 
 func (o *UnBanUsersInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/actions/unban][%d] unBanUsersInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/unban][%d] unBanUsersInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *UnBanUsersInternalServerError) GetPayload() *basicclientmodels.ErrorEntity {

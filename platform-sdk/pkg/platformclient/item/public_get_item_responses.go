@@ -43,7 +43,7 @@ func (o *PublicGetItemReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/items/{itemId}/locale returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/items/{itemId}/locale returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type PublicGetItemOK struct {
 }
 
 func (o *PublicGetItemOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/items/{itemId}/locale][%d] publicGetItemOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/locale][%d] publicGetItemOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetItemOK) GetPayload() *platformclientmodels.PopulatedItemInfo {
@@ -94,7 +94,7 @@ type PublicGetItemNotFound struct {
 }
 
 func (o *PublicGetItemNotFound) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/items/{itemId}/locale][%d] publicGetItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/locale][%d] publicGetItemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicGetItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {

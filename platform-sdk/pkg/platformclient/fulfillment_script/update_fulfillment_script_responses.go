@@ -43,7 +43,7 @@ func (o *UpdateFulfillmentScriptReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PATCH /admin/fulfillment/scripts/{id} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PATCH /platform/admin/fulfillment/scripts/{id} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type UpdateFulfillmentScriptOK struct {
 }
 
 func (o *UpdateFulfillmentScriptOK) Error() string {
-	return fmt.Sprintf("[PATCH /admin/fulfillment/scripts/{id}][%d] updateFulfillmentScriptOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /platform/admin/fulfillment/scripts/{id}][%d] updateFulfillmentScriptOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateFulfillmentScriptOK) GetPayload() *platformclientmodels.FulfillmentScriptInfo {
@@ -94,7 +94,7 @@ type UpdateFulfillmentScriptBadRequest struct {
 }
 
 func (o *UpdateFulfillmentScriptBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /admin/fulfillment/scripts/{id}][%d] updateFulfillmentScriptBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /platform/admin/fulfillment/scripts/{id}][%d] updateFulfillmentScriptBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateFulfillmentScriptBadRequest) GetPayload() *platformclientmodels.ErrorEntity {

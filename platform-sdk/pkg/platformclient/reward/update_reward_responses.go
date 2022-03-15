@@ -49,7 +49,7 @@ func (o *UpdateRewardReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/rewards/{rewardId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/rewards/{rewardId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type UpdateRewardOK struct {
 }
 
 func (o *UpdateRewardOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/rewards/{rewardId}][%d] updateRewardOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/rewards/{rewardId}][%d] updateRewardOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateRewardOK) GetPayload() *platformclientmodels.RewardInfo {
@@ -100,7 +100,7 @@ type UpdateRewardNotFound struct {
 }
 
 func (o *UpdateRewardNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/rewards/{rewardId}][%d] updateRewardNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/rewards/{rewardId}][%d] updateRewardNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateRewardNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type UpdateRewardConflict struct {
 }
 
 func (o *UpdateRewardConflict) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/rewards/{rewardId}][%d] updateRewardConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/rewards/{rewardId}][%d] updateRewardConflict  %+v", 409, o.Payload)
 }
 
 func (o *UpdateRewardConflict) GetPayload() *platformclientmodels.ErrorEntity {

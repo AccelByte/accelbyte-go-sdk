@@ -61,7 +61,7 @@ type SubscriptionInfo struct {
 	Entitlements []*EntitlementSummary `json:"entitlements"`
 
 	// is first subscribe, will enjoy trial if trial available if it's first time subscribe
-	FirstSubscribe bool `json:"firstSubscribe,omitempty"`
+	FirstSubscribe bool `json:"firstSubscribe"`
 
 	// id
 	// Required: true
@@ -94,7 +94,7 @@ type SubscriptionInfo struct {
 	NextBillingDate *strfmt.DateTime `json:"nextBillingDate,omitempty"`
 
 	// whether user paid from the subscription start
-	Paid bool `json:"paid,omitempty"`
+	Paid bool `json:"paid"`
 
 	// whether need to go to payment station for payment
 	// Required: true
@@ -123,7 +123,7 @@ type SubscriptionInfo struct {
 	ReturnURL string `json:"returnUrl,omitempty"`
 
 	// is sandbox mode
-	Sandbox bool `json:"sandbox,omitempty"`
+	Sandbox bool `json:"sandbox"`
 
 	// sku
 	Sku string `json:"sku,omitempty"`

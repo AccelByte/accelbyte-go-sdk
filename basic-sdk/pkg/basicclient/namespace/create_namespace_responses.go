@@ -61,7 +61,7 @@ func (o *CreateNamespaceReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /v1/admin/namespaces returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /basic/v1/admin/namespaces returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type CreateNamespaceCreated struct {
 }
 
 func (o *CreateNamespaceCreated) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces][%d] createNamespaceCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces][%d] createNamespaceCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateNamespaceCreated) GetPayload() *basicclientmodels.NamespaceInfo {
@@ -112,7 +112,7 @@ type CreateNamespaceBadRequest struct {
 }
 
 func (o *CreateNamespaceBadRequest) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces][%d] createNamespaceBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces][%d] createNamespaceBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateNamespaceBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -145,7 +145,7 @@ type CreateNamespaceUnauthorized struct {
 }
 
 func (o *CreateNamespaceUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces][%d] createNamespaceUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces][%d] createNamespaceUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CreateNamespaceUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -178,7 +178,7 @@ type CreateNamespaceForbidden struct {
 }
 
 func (o *CreateNamespaceForbidden) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces][%d] createNamespaceForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces][%d] createNamespaceForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateNamespaceForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -211,7 +211,7 @@ type CreateNamespaceConflict struct {
 }
 
 func (o *CreateNamespaceConflict) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces][%d] createNamespaceConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces][%d] createNamespaceConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateNamespaceConflict) GetPayload() *basicclientmodels.ErrorEntity {

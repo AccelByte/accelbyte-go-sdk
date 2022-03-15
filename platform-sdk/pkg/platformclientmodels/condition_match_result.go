@@ -16,7 +16,7 @@ import (
 type ConditionMatchResult struct {
 
 	// matched
-	Matched bool `json:"matched,omitempty"`
+	Matched bool `json:"matched"`
 
 	// matched conditions
 	MatchedConditions []interface{} `json:"matchedConditions"`

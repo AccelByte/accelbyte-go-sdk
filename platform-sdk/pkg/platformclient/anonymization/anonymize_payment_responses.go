@@ -34,7 +34,7 @@ func (o *AnonymizePaymentReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /admin/namespaces/{namespace}/users/{userId}/anonymization/payment returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /platform/admin/namespaces/{namespace}/users/{userId}/anonymization/payment returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -51,7 +51,7 @@ type AnonymizePaymentNoContent struct {
 }
 
 func (o *AnonymizePaymentNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/users/{userId}/anonymization/payment][%d] anonymizePaymentNoContent ", 204)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/users/{userId}/anonymization/payment][%d] anonymizePaymentNoContent ", 204)
 }
 
 func (o *AnonymizePaymentNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

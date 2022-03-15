@@ -55,7 +55,7 @@ func (o *UpdateMyZipCodeReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PATCH /v1/public/namespaces/{namespace}/users/me/profiles/zipCode returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PATCH /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type UpdateMyZipCodeOK struct {
 }
 
 func (o *UpdateMyZipCodeOK) Error() string {
-	return fmt.Sprintf("[PATCH /v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] updateMyZipCodeOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] updateMyZipCodeOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateMyZipCodeOK) GetPayload() *basicclientmodels.UserZipCode {
@@ -106,7 +106,7 @@ type UpdateMyZipCodeBadRequest struct {
 }
 
 func (o *UpdateMyZipCodeBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] updateMyZipCodeBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] updateMyZipCodeBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateMyZipCodeBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -139,7 +139,7 @@ type UpdateMyZipCodeUnauthorized struct {
 }
 
 func (o *UpdateMyZipCodeUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] updateMyZipCodeUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] updateMyZipCodeUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateMyZipCodeUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -172,7 +172,7 @@ type UpdateMyZipCodeForbidden struct {
 }
 
 func (o *UpdateMyZipCodeForbidden) Error() string {
-	return fmt.Sprintf("[PATCH /v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] updateMyZipCodeForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] updateMyZipCodeForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateMyZipCodeForbidden) GetPayload() *basicclientmodels.ErrorEntity {

@@ -37,7 +37,7 @@ func (o *QueryKeyGroupsReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/keygroups returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/keygroups returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type QueryKeyGroupsOK struct {
 }
 
 func (o *QueryKeyGroupsOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/keygroups][%d] queryKeyGroupsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups][%d] queryKeyGroupsOK  %+v", 200, o.Payload)
 }
 
 func (o *QueryKeyGroupsOK) GetPayload() *platformclientmodels.KeyGroupPagingSlicedResult {

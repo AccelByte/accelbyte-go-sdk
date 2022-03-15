@@ -61,7 +61,7 @@ func (o *UpdateUserStatItemValueReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type UpdateUserStatItemValueOK struct {
 }
 
 func (o *UpdateUserStatItemValueOK) Error() string {
-	return fmt.Sprintf("[PUT /v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValueOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValueOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateUserStatItemValueOK) GetPayload() *socialclientmodels.StatItemIncResult {
@@ -112,7 +112,7 @@ type UpdateUserStatItemValueBadRequest struct {
 }
 
 func (o *UpdateUserStatItemValueBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValueBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValueBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateUserStatItemValueBadRequest) GetPayload() *socialclientmodels.ErrorEntity {
@@ -145,7 +145,7 @@ type UpdateUserStatItemValueNotFound struct {
 }
 
 func (o *UpdateUserStatItemValueNotFound) Error() string {
-	return fmt.Sprintf("[PUT /v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValueNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValueNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateUserStatItemValueNotFound) GetPayload() *socialclientmodels.ErrorEntity {
@@ -178,7 +178,7 @@ type UpdateUserStatItemValueConflict struct {
 }
 
 func (o *UpdateUserStatItemValueConflict) Error() string {
-	return fmt.Sprintf("[PUT /v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValueConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValueConflict  %+v", 409, o.Payload)
 }
 
 func (o *UpdateUserStatItemValueConflict) GetPayload() *socialclientmodels.ErrorEntity {
@@ -211,7 +211,7 @@ type UpdateUserStatItemValueUnprocessableEntity struct {
 }
 
 func (o *UpdateUserStatItemValueUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValueUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value][%d] updateUserStatItemValueUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateUserStatItemValueUnprocessableEntity) GetPayload() *socialclientmodels.ValidationErrorEntity {

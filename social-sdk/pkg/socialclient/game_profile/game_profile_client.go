@@ -71,7 +71,7 @@ func (a *Client) GetProfile(params *GetProfileParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getProfile",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/profiles/{profileId}",
+		PathPattern:        "/social/admin/namespaces/{namespace}/users/{userId}/profiles/{profileId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -111,7 +111,7 @@ func (a *Client) GetProfileShort(params *GetProfileParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getProfile",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/profiles/{profileId}",
+		PathPattern:        "/social/admin/namespaces/{namespace}/users/{userId}/profiles/{profileId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -155,7 +155,7 @@ func (a *Client) GetUserProfiles(params *GetUserProfilesParams, authInfo runtime
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserProfiles",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/profiles",
+		PathPattern:        "/social/admin/namespaces/{namespace}/users/{userId}/profiles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -192,7 +192,7 @@ func (a *Client) GetUserProfilesShort(params *GetUserProfilesParams, authInfo ru
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserProfiles",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/profiles",
+		PathPattern:        "/social/admin/namespaces/{namespace}/users/{userId}/profiles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -234,7 +234,7 @@ func (a *Client) PublicCreateProfile(params *PublicCreateProfileParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicCreateProfile",
 		Method:             "POST",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/profiles",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/profiles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -274,7 +274,7 @@ func (a *Client) PublicCreateProfileShort(params *PublicCreateProfileParams, aut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicCreateProfile",
 		Method:             "POST",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/profiles",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/profiles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -318,7 +318,7 @@ func (a *Client) PublicDeleteProfile(params *PublicDeleteProfileParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicDeleteProfile",
 		Method:             "DELETE",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -358,7 +358,7 @@ func (a *Client) PublicDeleteProfileShort(params *PublicDeleteProfileParams, aut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicDeleteProfile",
 		Method:             "DELETE",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -402,7 +402,7 @@ func (a *Client) PublicGetProfile(params *PublicGetProfileParams, authInfo runti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetProfile",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -442,7 +442,7 @@ func (a *Client) PublicGetProfileShort(params *PublicGetProfileParams, authInfo 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetProfile",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -486,7 +486,7 @@ func (a *Client) PublicGetProfileAttribute(params *PublicGetProfileAttributePara
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetProfileAttribute",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -526,7 +526,7 @@ func (a *Client) PublicGetProfileAttributeShort(params *PublicGetProfileAttribut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetProfileAttribute",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -571,7 +571,7 @@ func (a *Client) PublicGetUserGameProfiles(params *PublicGetUserGameProfilesPara
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserGameProfiles",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/profiles",
+		PathPattern:        "/social/public/namespaces/{namespace}/profiles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -611,7 +611,7 @@ func (a *Client) PublicGetUserGameProfilesShort(params *PublicGetUserGameProfile
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserGameProfiles",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/profiles",
+		PathPattern:        "/social/public/namespaces/{namespace}/profiles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -655,7 +655,7 @@ func (a *Client) PublicGetUserProfiles(params *PublicGetUserProfilesParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserProfiles",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/profiles",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/profiles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -692,7 +692,7 @@ func (a *Client) PublicGetUserProfilesShort(params *PublicGetUserProfilesParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserProfiles",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/profiles",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/profiles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -734,7 +734,7 @@ func (a *Client) PublicUpdateAttribute(params *PublicUpdateAttributeParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicUpdateAttribute",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -777,7 +777,7 @@ func (a *Client) PublicUpdateAttributeShort(params *PublicUpdateAttributeParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicUpdateAttribute",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -823,7 +823,7 @@ func (a *Client) PublicUpdateProfile(params *PublicUpdateProfileParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicUpdateProfile",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -866,7 +866,7 @@ func (a *Client) PublicUpdateProfileShort(params *PublicUpdateProfileParams, aut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicUpdateProfile",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

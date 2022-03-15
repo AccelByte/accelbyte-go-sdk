@@ -43,7 +43,7 @@ func (o *TestXsollaConfigByIDReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/payment/config/merchant/{id}/xsollaconfig/test returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/payment/config/merchant/{id}/xsollaconfig/test returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type TestXsollaConfigByIDOK struct {
 }
 
 func (o *TestXsollaConfigByIDOK) Error() string {
-	return fmt.Sprintf("[GET /admin/payment/config/merchant/{id}/xsollaconfig/test][%d] testXsollaConfigByIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/xsollaconfig/test][%d] testXsollaConfigByIdOK  %+v", 200, o.Payload)
 }
 
 func (o *TestXsollaConfigByIDOK) GetPayload() *platformclientmodels.TestResult {
@@ -94,7 +94,7 @@ type TestXsollaConfigByIDNotFound struct {
 }
 
 func (o *TestXsollaConfigByIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/payment/config/merchant/{id}/xsollaconfig/test][%d] testXsollaConfigByIdNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/xsollaconfig/test][%d] testXsollaConfigByIdNotFound  %+v", 404, o.Payload)
 }
 
 func (o *TestXsollaConfigByIDNotFound) GetPayload() *platformclientmodels.ErrorEntity {

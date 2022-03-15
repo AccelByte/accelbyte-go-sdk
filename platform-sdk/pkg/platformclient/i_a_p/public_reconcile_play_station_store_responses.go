@@ -43,7 +43,7 @@ func (o *PublicReconcilePlayStationStoreReader) ReadResponse(response runtime.Cl
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /public/namespaces/{namespace}/users/{userId}/iap/psn/sync returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/psn/sync returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type PublicReconcilePlayStationStoreOK struct {
 }
 
 func (o *PublicReconcilePlayStationStoreOK) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/iap/psn/sync][%d] publicReconcilePlayStationStoreOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/psn/sync][%d] publicReconcilePlayStationStoreOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicReconcilePlayStationStoreOK) GetPayload() []*platformclientmodels.PlayStationReconcileResult {
@@ -92,7 +92,7 @@ type PublicReconcilePlayStationStoreBadRequest struct {
 }
 
 func (o *PublicReconcilePlayStationStoreBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/iap/psn/sync][%d] publicReconcilePlayStationStoreBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/psn/sync][%d] publicReconcilePlayStationStoreBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicReconcilePlayStationStoreBadRequest) GetPayload() *platformclientmodels.ErrorEntity {

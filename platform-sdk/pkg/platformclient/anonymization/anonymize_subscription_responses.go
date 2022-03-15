@@ -34,7 +34,7 @@ func (o *AnonymizeSubscriptionReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /admin/namespaces/{namespace}/users/{userId}/anonymization/subscriptions returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /platform/admin/namespaces/{namespace}/users/{userId}/anonymization/subscriptions returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -51,7 +51,7 @@ type AnonymizeSubscriptionNoContent struct {
 }
 
 func (o *AnonymizeSubscriptionNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/users/{userId}/anonymization/subscriptions][%d] anonymizeSubscriptionNoContent ", 204)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/users/{userId}/anonymization/subscriptions][%d] anonymizeSubscriptionNoContent ", 204)
 }
 
 func (o *AnonymizeSubscriptionNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -61,7 +61,7 @@ func (o *UpdatePaymentProviderConfigReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/payment/config/provider/{id} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/payment/config/provider/{id} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type UpdatePaymentProviderConfigOK struct {
 }
 
 func (o *UpdatePaymentProviderConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/payment/config/provider/{id}][%d] updatePaymentProviderConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/provider/{id}][%d] updatePaymentProviderConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdatePaymentProviderConfigOK) GetPayload() *platformclientmodels.PaymentProviderConfigInfo {
@@ -112,7 +112,7 @@ type UpdatePaymentProviderConfigBadRequest struct {
 }
 
 func (o *UpdatePaymentProviderConfigBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /admin/payment/config/provider/{id}][%d] updatePaymentProviderConfigBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/provider/{id}][%d] updatePaymentProviderConfigBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdatePaymentProviderConfigBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -145,7 +145,7 @@ type UpdatePaymentProviderConfigNotFound struct {
 }
 
 func (o *UpdatePaymentProviderConfigNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/payment/config/provider/{id}][%d] updatePaymentProviderConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/provider/{id}][%d] updatePaymentProviderConfigNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdatePaymentProviderConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -178,7 +178,7 @@ type UpdatePaymentProviderConfigConflict struct {
 }
 
 func (o *UpdatePaymentProviderConfigConflict) Error() string {
-	return fmt.Sprintf("[PUT /admin/payment/config/provider/{id}][%d] updatePaymentProviderConfigConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/provider/{id}][%d] updatePaymentProviderConfigConflict  %+v", 409, o.Payload)
 }
 
 func (o *UpdatePaymentProviderConfigConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -211,7 +211,7 @@ type UpdatePaymentProviderConfigUnprocessableEntity struct {
 }
 
 func (o *UpdatePaymentProviderConfigUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /admin/payment/config/provider/{id}][%d] updatePaymentProviderConfigUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/provider/{id}][%d] updatePaymentProviderConfigUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdatePaymentProviderConfigUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

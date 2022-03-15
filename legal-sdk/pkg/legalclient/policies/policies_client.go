@@ -63,7 +63,7 @@ func (a *Client) RetrieveLatestPolicies(params *RetrieveLatestPoliciesParams) (*
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveLatestPolicies",
 		Method:             "GET",
-		PathPattern:        "/public/policies/countries/{countryCode}",
+		PathPattern:        "/agreement/public/policies/countries/{countryCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -99,7 +99,7 @@ func (a *Client) RetrieveLatestPoliciesShort(params *RetrieveLatestPoliciesParam
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveLatestPolicies",
 		Method:             "GET",
-		PathPattern:        "/public/policies/countries/{countryCode}",
+		PathPattern:        "/agreement/public/policies/countries/{countryCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -140,7 +140,7 @@ func (a *Client) RetrieveLatestPoliciesByNamespaceAndCountryPublic(params *Retri
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveLatestPoliciesByNamespaceAndCountryPublic",
 		Method:             "GET",
-		PathPattern:        "/public/policies/namespaces/{namespace}/countries/{countryCode}",
+		PathPattern:        "/agreement/public/policies/namespaces/{namespace}/countries/{countryCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -176,7 +176,7 @@ func (a *Client) RetrieveLatestPoliciesByNamespaceAndCountryPublicShort(params *
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveLatestPoliciesByNamespaceAndCountryPublic",
 		Method:             "GET",
-		PathPattern:        "/public/policies/namespaces/{namespace}/countries/{countryCode}",
+		PathPattern:        "/agreement/public/policies/namespaces/{namespace}/countries/{countryCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -217,7 +217,7 @@ func (a *Client) RetrieveLatestPoliciesPublic(params *RetrieveLatestPoliciesPubl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveLatestPoliciesPublic",
 		Method:             "GET",
-		PathPattern:        "/public/policies/namespaces/{namespace}",
+		PathPattern:        "/agreement/public/policies/namespaces/{namespace}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -257,7 +257,7 @@ func (a *Client) RetrieveLatestPoliciesPublicShort(params *RetrieveLatestPolicie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveLatestPoliciesPublic",
 		Method:             "GET",
-		PathPattern:        "/public/policies/namespaces/{namespace}",
+		PathPattern:        "/agreement/public/policies/namespaces/{namespace}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -301,7 +301,7 @@ func (a *Client) RetrievePolicies(params *RetrievePoliciesParams, authInfo runti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrievePolicies",
 		Method:             "GET",
-		PathPattern:        "/admin/policies/countries/{countryCode}",
+		PathPattern:        "/agreement/admin/policies/countries/{countryCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -338,7 +338,7 @@ func (a *Client) RetrievePoliciesShort(params *RetrievePoliciesParams, authInfo 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrievePolicies",
 		Method:             "GET",
-		PathPattern:        "/admin/policies/countries/{countryCode}",
+		PathPattern:        "/agreement/admin/policies/countries/{countryCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -380,7 +380,7 @@ func (a *Client) SetDefaultPolicy1(params *SetDefaultPolicy1Params, authInfo run
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "setDefaultPolicy_1",
 		Method:             "PATCH",
-		PathPattern:        "/admin/policies/{policyId}/default",
+		PathPattern:        "/agreement/admin/policies/{policyId}/default",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -417,7 +417,7 @@ func (a *Client) SetDefaultPolicy1Short(params *SetDefaultPolicy1Params, authInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "setDefaultPolicy_1",
 		Method:             "PATCH",
-		PathPattern:        "/admin/policies/{policyId}/default",
+		PathPattern:        "/agreement/admin/policies/{policyId}/default",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -459,7 +459,7 @@ func (a *Client) UpdatePolicy(params *UpdatePolicyParams, authInfo runtime.Clien
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updatePolicy",
 		Method:             "PATCH",
-		PathPattern:        "/admin/policies/{policyId}",
+		PathPattern:        "/agreement/admin/policies/{policyId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -496,7 +496,7 @@ func (a *Client) UpdatePolicyShort(params *UpdatePolicyParams, authInfo runtime.
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updatePolicy",
 		Method:             "PATCH",
-		PathPattern:        "/admin/policies/{policyId}",
+		PathPattern:        "/agreement/admin/policies/{policyId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

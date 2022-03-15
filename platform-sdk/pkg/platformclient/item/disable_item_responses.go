@@ -49,7 +49,7 @@ func (o *DisableItemReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/items/{itemId}/disable returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/items/{itemId}/disable returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type DisableItemOK struct {
 }
 
 func (o *DisableItemOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/items/{itemId}/disable][%d] disableItemOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/disable][%d] disableItemOK  %+v", 200, o.Payload)
 }
 
 func (o *DisableItemOK) GetPayload() *platformclientmodels.FullItemInfo {
@@ -100,7 +100,7 @@ type DisableItemNotFound struct {
 }
 
 func (o *DisableItemNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/items/{itemId}/disable][%d] disableItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/disable][%d] disableItemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DisableItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type DisableItemConflict struct {
 }
 
 func (o *DisableItemConflict) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/items/{itemId}/disable][%d] disableItemConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/disable][%d] disableItemConflict  %+v", 409, o.Payload)
 }
 
 func (o *DisableItemConflict) GetPayload() *platformclientmodels.ErrorEntity {

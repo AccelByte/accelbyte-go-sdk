@@ -21,7 +21,7 @@ type V2Entry struct {
 	AdditionalData interface{} `json:"additionalData,omitempty"`
 
 	// hidden
-	Hidden bool `json:"hidden,omitempty"`
+	Hidden bool `json:"hidden"`
 
 	// point
 	// Required: true

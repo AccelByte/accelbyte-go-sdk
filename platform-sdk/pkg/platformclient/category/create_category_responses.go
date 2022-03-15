@@ -61,7 +61,7 @@ func (o *CreateCategoryReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/categories returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/admin/namespaces/{namespace}/categories returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type CreateCategoryCreated struct {
 }
 
 func (o *CreateCategoryCreated) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/categories][%d] createCategoryCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/categories][%d] createCategoryCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateCategoryCreated) GetPayload() *platformclientmodels.FullCategoryInfo {
@@ -112,7 +112,7 @@ type CreateCategoryBadRequest struct {
 }
 
 func (o *CreateCategoryBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/categories][%d] createCategoryBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/categories][%d] createCategoryBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateCategoryBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -145,7 +145,7 @@ type CreateCategoryNotFound struct {
 }
 
 func (o *CreateCategoryNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/categories][%d] createCategoryNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/categories][%d] createCategoryNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateCategoryNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -178,7 +178,7 @@ type CreateCategoryConflict struct {
 }
 
 func (o *CreateCategoryConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/categories][%d] createCategoryConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/categories][%d] createCategoryConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateCategoryConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -211,7 +211,7 @@ type CreateCategoryUnprocessableEntity struct {
 }
 
 func (o *CreateCategoryUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/categories][%d] createCategoryUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/categories][%d] createCategoryUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateCategoryUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

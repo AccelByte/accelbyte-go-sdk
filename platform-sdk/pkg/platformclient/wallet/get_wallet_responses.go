@@ -43,7 +43,7 @@ func (o *GetWalletReader) ReadResponse(response runtime.ClientResponse, consumer
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/wallets/{walletId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/wallets/{walletId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetWalletOK struct {
 }
 
 func (o *GetWalletOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/wallets/{walletId}][%d] getWalletOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/wallets/{walletId}][%d] getWalletOK  %+v", 200, o.Payload)
 }
 
 func (o *GetWalletOK) GetPayload() *platformclientmodels.WalletInfo {
@@ -94,7 +94,7 @@ type GetWalletNotFound struct {
 }
 
 func (o *GetWalletNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/wallets/{walletId}][%d] getWalletNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/wallets/{walletId}][%d] getWalletNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetWalletNotFound) GetPayload() *platformclientmodels.ErrorEntity {

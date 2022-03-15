@@ -61,7 +61,7 @@ func (o *PublicGetUserProfileInfoReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /v1/public/namespaces/{namespace}/users/{userId}/profiles returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type PublicGetUserProfileInfoOK struct {
 }
 
 func (o *PublicGetUserProfileInfoOK) Error() string {
-	return fmt.Sprintf("[GET /v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicGetUserProfileInfoOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicGetUserProfileInfoOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetUserProfileInfoOK) GetPayload() *basicclientmodels.UserProfileInfo {
@@ -112,7 +112,7 @@ type PublicGetUserProfileInfoBadRequest struct {
 }
 
 func (o *PublicGetUserProfileInfoBadRequest) Error() string {
-	return fmt.Sprintf("[GET /v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicGetUserProfileInfoBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicGetUserProfileInfoBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicGetUserProfileInfoBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -145,7 +145,7 @@ type PublicGetUserProfileInfoUnauthorized struct {
 }
 
 func (o *PublicGetUserProfileInfoUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicGetUserProfileInfoUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicGetUserProfileInfoUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *PublicGetUserProfileInfoUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -178,7 +178,7 @@ type PublicGetUserProfileInfoForbidden struct {
 }
 
 func (o *PublicGetUserProfileInfoForbidden) Error() string {
-	return fmt.Sprintf("[GET /v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicGetUserProfileInfoForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicGetUserProfileInfoForbidden  %+v", 403, o.Payload)
 }
 
 func (o *PublicGetUserProfileInfoForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -211,7 +211,7 @@ type PublicGetUserProfileInfoNotFound struct {
 }
 
 func (o *PublicGetUserProfileInfoNotFound) Error() string {
-	return fmt.Sprintf("[GET /v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicGetUserProfileInfoNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicGetUserProfileInfoNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicGetUserProfileInfoNotFound) GetPayload() *basicclientmodels.ErrorEntity {

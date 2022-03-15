@@ -22,6 +22,7 @@ type StadiaSyncRequest struct {
 	AppID *string `json:"appId"`
 
 	// language value from language tag, allowed format: en, en-US
+	// Pattern: ^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$
 	Language string `json:"language,omitempty"`
 
 	// country value from ISO countries
@@ -40,6 +41,10 @@ func (m *StadiaSyncRequest) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateLanguage(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateStadiaPlayerID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -53,6 +58,19 @@ func (m *StadiaSyncRequest) Validate(formats strfmt.Registry) error {
 func (m *StadiaSyncRequest) validateAppID(formats strfmt.Registry) error {
 
 	if err := validate.Required("appId", "body", m.AppID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *StadiaSyncRequest) validateLanguage(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Language) { // not required
+		return nil
+	}
+
+	if err := validate.Pattern("language", "body", string(m.Language), `^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$`); err != nil {
 		return err
 	}
 

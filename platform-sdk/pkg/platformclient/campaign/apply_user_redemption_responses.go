@@ -55,7 +55,7 @@ func (o *ApplyUserRedemptionReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/users/{userId}/redemption returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/admin/namespaces/{namespace}/users/{userId}/redemption returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type ApplyUserRedemptionOK struct {
 }
 
 func (o *ApplyUserRedemptionOK) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/redemption][%d] applyUserRedemptionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/redemption][%d] applyUserRedemptionOK  %+v", 200, o.Payload)
 }
 
 func (o *ApplyUserRedemptionOK) GetPayload() *platformclientmodels.RedeemResult {
@@ -106,7 +106,7 @@ type ApplyUserRedemptionNotFound struct {
 }
 
 func (o *ApplyUserRedemptionNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/redemption][%d] applyUserRedemptionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/redemption][%d] applyUserRedemptionNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ApplyUserRedemptionNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type ApplyUserRedemptionConflict struct {
 }
 
 func (o *ApplyUserRedemptionConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/redemption][%d] applyUserRedemptionConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/redemption][%d] applyUserRedemptionConflict  %+v", 409, o.Payload)
 }
 
 func (o *ApplyUserRedemptionConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -172,7 +172,7 @@ type ApplyUserRedemptionUnprocessableEntity struct {
 }
 
 func (o *ApplyUserRedemptionUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/redemption][%d] applyUserRedemptionUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/redemption][%d] applyUserRedemptionUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *ApplyUserRedemptionUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

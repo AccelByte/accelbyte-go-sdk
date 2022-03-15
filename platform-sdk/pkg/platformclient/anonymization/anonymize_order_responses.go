@@ -34,7 +34,7 @@ func (o *AnonymizeOrderReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /admin/namespaces/{namespace}/users/{userId}/anonymization/orders returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /platform/admin/namespaces/{namespace}/users/{userId}/anonymization/orders returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -51,7 +51,7 @@ type AnonymizeOrderNoContent struct {
 }
 
 func (o *AnonymizeOrderNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/users/{userId}/anonymization/orders][%d] anonymizeOrderNoContent ", 204)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/users/{userId}/anonymization/orders][%d] anonymizeOrderNoContent ", 204)
 }
 
 func (o *AnonymizeOrderNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

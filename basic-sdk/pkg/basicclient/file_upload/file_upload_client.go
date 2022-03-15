@@ -59,7 +59,7 @@ func (a *Client) GeneratedUploadURL(params *GeneratedUploadURLParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "generatedUploadUrl",
 		Method:             "POST",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/folders/{folder}/files",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/folders/{folder}/files",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -108,7 +108,7 @@ func (a *Client) GeneratedUploadURLShort(params *GeneratedUploadURLParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "generatedUploadUrl",
 		Method:             "POST",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/folders/{folder}/files",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/folders/{folder}/files",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -158,7 +158,7 @@ func (a *Client) GeneratedUserUploadContentURL(params *GeneratedUserUploadConten
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "generatedUserUploadContentUrl",
 		Method:             "POST",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/files",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/users/{userId}/files",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -210,7 +210,7 @@ func (a *Client) GeneratedUserUploadContentURLShort(params *GeneratedUserUploadC
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "generatedUserUploadContentUrl",
 		Method:             "POST",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/files",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/users/{userId}/files",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -262,7 +262,7 @@ func (a *Client) PublicGeneratedUploadURL(params *PublicGeneratedUploadURLParams
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGeneratedUploadUrl",
 		Method:             "POST",
-		PathPattern:        "/v1/public/namespaces/{namespace}/folders/{folder}/files",
+		PathPattern:        "/basic/v1/public/namespaces/{namespace}/folders/{folder}/files",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -311,7 +311,7 @@ func (a *Client) PublicGeneratedUploadURLShort(params *PublicGeneratedUploadURLP
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGeneratedUploadUrl",
 		Method:             "POST",
-		PathPattern:        "/v1/public/namespaces/{namespace}/folders/{folder}/files",
+		PathPattern:        "/basic/v1/public/namespaces/{namespace}/folders/{folder}/files",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -361,7 +361,7 @@ func (a *Client) PublicGeneratedUserUploadContentURL(params *PublicGeneratedUser
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGeneratedUserUploadContentUrl",
 		Method:             "POST",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/files",
+		PathPattern:        "/basic/v1/public/namespaces/{namespace}/users/{userId}/files",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -413,7 +413,7 @@ func (a *Client) PublicGeneratedUserUploadContentURLShort(params *PublicGenerate
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGeneratedUserUploadContentUrl",
 		Method:             "POST",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/files",
+		PathPattern:        "/basic/v1/public/namespaces/{namespace}/users/{userId}/files",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

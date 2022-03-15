@@ -53,7 +53,7 @@ func (a *Client) AnonymizeUserProfile(params *AnonymizeUserProfileParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeUserProfile",
 		Method:             "DELETE",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -99,7 +99,7 @@ func (a *Client) AnonymizeUserProfileShort(params *AnonymizeUserProfileParams, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeUserProfile",
 		Method:             "DELETE",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

@@ -37,7 +37,7 @@ func (o *TestWxPayConfigReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/payment/config/merchant/wxpayconfig/test returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/admin/payment/config/merchant/wxpayconfig/test returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type TestWxPayConfigOK struct {
 }
 
 func (o *TestWxPayConfigOK) Error() string {
-	return fmt.Sprintf("[POST /admin/payment/config/merchant/wxpayconfig/test][%d] testWxPayConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/payment/config/merchant/wxpayconfig/test][%d] testWxPayConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *TestWxPayConfigOK) GetPayload() *platformclientmodels.TestResult {

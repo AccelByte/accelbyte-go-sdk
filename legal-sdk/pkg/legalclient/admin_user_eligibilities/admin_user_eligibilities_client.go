@@ -53,7 +53,7 @@ func (a *Client) AdminRetrieveEligibilities(params *AdminRetrieveEligibilitiesPa
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminRetrieveEligibilities",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/eligibilities",
+		PathPattern:        "/agreement/admin/namespaces/{namespace}/users/{userId}/eligibilities",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -90,7 +90,7 @@ func (a *Client) AdminRetrieveEligibilitiesShort(params *AdminRetrieveEligibilit
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "adminRetrieveEligibilities",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/eligibilities",
+		PathPattern:        "/agreement/admin/namespaces/{namespace}/users/{userId}/eligibilities",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

@@ -43,7 +43,7 @@ func (o *GetKeyGroupReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/keygroups/{keyGroupId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetKeyGroupOK struct {
 }
 
 func (o *GetKeyGroupOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] getKeyGroupOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] getKeyGroupOK  %+v", 200, o.Payload)
 }
 
 func (o *GetKeyGroupOK) GetPayload() *platformclientmodels.KeyGroupInfo {
@@ -94,7 +94,7 @@ type GetKeyGroupNotFound struct {
 }
 
 func (o *GetKeyGroupNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] getKeyGroupNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] getKeyGroupNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetKeyGroupNotFound) GetPayload() *platformclientmodels.ErrorEntity {

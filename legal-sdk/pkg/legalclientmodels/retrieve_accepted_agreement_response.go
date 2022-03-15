@@ -35,7 +35,7 @@ type RetrieveAcceptedAgreementResponse struct {
 	ID *string `json:"id"`
 
 	// is accepted
-	IsAccepted bool `json:"isAccepted,omitempty"`
+	IsAccepted bool `json:"isAccepted"`
 
 	// localized policy version
 	LocalizedPolicyVersion *LocalizedPolicyVersionObject `json:"localizedPolicyVersion,omitempty"`

@@ -53,7 +53,7 @@ func (a *Client) SyncOrders(params *SyncOrdersParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncOrders",
 		Method:             "GET",
-		PathPattern:        "/admin/orders",
+		PathPattern:        "/platform/admin/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -90,7 +90,7 @@ func (a *Client) SyncOrdersShort(params *SyncOrdersParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncOrders",
 		Method:             "GET",
-		PathPattern:        "/admin/orders",
+		PathPattern:        "/platform/admin/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

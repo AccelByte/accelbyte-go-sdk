@@ -20,7 +20,7 @@ import (
 type PaymentOrderChargeStatus struct {
 
 	// charging
-	Charging bool `json:"charging,omitempty"`
+	Charging bool `json:"charging"`
 
 	// status
 	// Enum: [INIT AUTHORISED AUTHORISE_FAILED CHARGED CHARGE_FAILED NOTIFICATION_OF_CHARGEBACK REQUEST_FOR_INFORMATION CHARGEBACK CHARGEBACK_REVERSED REFUNDING REFUNDED REFUND_FAILED DELETED]

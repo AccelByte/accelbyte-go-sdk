@@ -75,7 +75,7 @@ type SearchSessionsParams struct {
 	  limit
 
 	*/
-	Limit float64
+	Limit int64
 	/*MatchID
 	  ID of the match session
 
@@ -90,7 +90,7 @@ type SearchSessionsParams struct {
 	  offset
 
 	*/
-	Offset float64
+	Offset int64
 	/*PartyID
 	  ID of the party
 
@@ -163,13 +163,13 @@ func (o *SearchSessionsParams) SetDeleted(deleted *bool) {
 }
 
 // WithLimit adds the limit to the search sessions params
-func (o *SearchSessionsParams) WithLimit(limit float64) *SearchSessionsParams {
+func (o *SearchSessionsParams) WithLimit(limit int64) *SearchSessionsParams {
 	o.SetLimit(limit)
 	return o
 }
 
 // SetLimit adds the limit to the search sessions params
-func (o *SearchSessionsParams) SetLimit(limit float64) {
+func (o *SearchSessionsParams) SetLimit(limit int64) {
 	o.Limit = limit
 }
 
@@ -196,13 +196,13 @@ func (o *SearchSessionsParams) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the search sessions params
-func (o *SearchSessionsParams) WithOffset(offset float64) *SearchSessionsParams {
+func (o *SearchSessionsParams) WithOffset(offset int64) *SearchSessionsParams {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the search sessions params
-func (o *SearchSessionsParams) SetOffset(offset float64) {
+func (o *SearchSessionsParams) SetOffset(offset int64) {
 	o.Offset = offset
 }
 
@@ -270,7 +270,7 @@ func (o *SearchSessionsParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 
 	// query param limit
 	qrLimit := o.Limit
-	qLimit := swag.FormatFloat64(qrLimit)
+	qLimit := swag.FormatInt64(qrLimit)
 	if qLimit != "" {
 		if err := r.SetQueryParam("limit", qLimit); err != nil {
 			return err
@@ -300,7 +300,7 @@ func (o *SearchSessionsParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 
 	// query param offset
 	qrOffset := o.Offset
-	qOffset := swag.FormatFloat64(qrOffset)
+	qOffset := swag.FormatInt64(qrOffset)
 	if qOffset != "" {
 		if err := r.SetQueryParam("offset", qOffset); err != nil {
 			return err

@@ -43,7 +43,7 @@ func (o *PublicGetAppReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/items/{itemId}/app/locale returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/items/{itemId}/app/locale returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type PublicGetAppOK struct {
 }
 
 func (o *PublicGetAppOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/items/{itemId}/app/locale][%d] publicGetAppOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/app/locale][%d] publicGetAppOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetAppOK) GetPayload() *platformclientmodels.AppInfo {
@@ -94,7 +94,7 @@ type PublicGetAppNotFound struct {
 }
 
 func (o *PublicGetAppNotFound) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/items/{itemId}/app/locale][%d] publicGetAppNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/app/locale][%d] publicGetAppNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicGetAppNotFound) GetPayload() *platformclientmodels.ErrorEntity {

@@ -61,7 +61,7 @@ func (o *AddCountryGroupReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /v1/admin/namespaces/{namespace}/misc/countrygroups returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /basic/v1/admin/namespaces/{namespace}/misc/countrygroups returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type AddCountryGroupCreated struct {
 }
 
 func (o *AddCountryGroupCreated) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/misc/countrygroups][%d] addCountryGroupCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] addCountryGroupCreated  %+v", 201, o.Payload)
 }
 
 func (o *AddCountryGroupCreated) GetPayload() *basicclientmodels.AddCountryGroupResponse {
@@ -112,7 +112,7 @@ type AddCountryGroupBadRequest struct {
 }
 
 func (o *AddCountryGroupBadRequest) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/misc/countrygroups][%d] addCountryGroupBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] addCountryGroupBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *AddCountryGroupBadRequest) GetPayload() *basicclientmodels.ErrorEntity {
@@ -145,7 +145,7 @@ type AddCountryGroupUnauthorized struct {
 }
 
 func (o *AddCountryGroupUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/misc/countrygroups][%d] addCountryGroupUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] addCountryGroupUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AddCountryGroupUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -178,7 +178,7 @@ type AddCountryGroupForbidden struct {
 }
 
 func (o *AddCountryGroupForbidden) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/misc/countrygroups][%d] addCountryGroupForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] addCountryGroupForbidden  %+v", 403, o.Payload)
 }
 
 func (o *AddCountryGroupForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -211,7 +211,7 @@ type AddCountryGroupConflict struct {
 }
 
 func (o *AddCountryGroupConflict) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/misc/countrygroups][%d] addCountryGroupConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] addCountryGroupConflict  %+v", 409, o.Payload)
 }
 
 func (o *AddCountryGroupConflict) GetPayload() *basicclientmodels.ErrorEntity {

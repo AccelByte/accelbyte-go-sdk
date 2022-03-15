@@ -37,7 +37,7 @@ func (o *CountOfPurchasedItemReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/users/{userId}/orders/countOfItem returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/users/{userId}/orders/countOfItem returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type CountOfPurchasedItemOK struct {
 }
 
 func (o *CountOfPurchasedItemOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/orders/countOfItem][%d] countOfPurchasedItemOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/orders/countOfItem][%d] countOfPurchasedItemOK  %+v", 200, o.Payload)
 }
 
 func (o *CountOfPurchasedItemOK) GetPayload() *platformclientmodels.PurchasedItemCount {

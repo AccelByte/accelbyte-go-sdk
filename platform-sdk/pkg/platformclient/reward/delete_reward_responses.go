@@ -43,7 +43,7 @@ func (o *DeleteRewardReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /admin/namespaces/{namespace}/rewards/{rewardId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /platform/admin/namespaces/{namespace}/rewards/{rewardId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type DeleteRewardOK struct {
 }
 
 func (o *DeleteRewardOK) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/rewards/{rewardId}][%d] deleteRewardOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/rewards/{rewardId}][%d] deleteRewardOK  %+v", 200, o.Payload)
 }
 
 func (o *DeleteRewardOK) GetPayload() *platformclientmodels.RewardInfo {
@@ -94,7 +94,7 @@ type DeleteRewardNotFound struct {
 }
 
 func (o *DeleteRewardNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/rewards/{rewardId}][%d] deleteRewardNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/rewards/{rewardId}][%d] deleteRewardNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteRewardNotFound) GetPayload() *platformclientmodels.ErrorEntity {

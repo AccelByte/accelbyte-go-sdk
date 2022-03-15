@@ -22,10 +22,16 @@ type AdyenConfig struct {
 	APIKey string `json:"apiKey,omitempty"`
 
 	// authorise as capture means no separated capture event
-	AuthoriseAsCapture bool `json:"authoriseAsCapture,omitempty"`
+	AuthoriseAsCapture bool `json:"authoriseAsCapture"`
 
 	// specifying the payment methods that are blocked with the paymentMethod.type. paymentMethod.type of each payment method link: https://docs.adyen.com/developers/payment-methods
 	BlockedPaymentMethods []string `json:"blockedPaymentMethods"`
+
+	// client key, max length is 4096
+	ClientKey string `json:"clientKey,omitempty"`
+
+	// Adyen drop in settings json string
+	DropInSettings string `json:"dropInSettings,omitempty"`
 
 	// Provide the unique live url prefix from the "API URLs and Response" menu in the Adyen Customer Area. Under sandbox env, please input random words.
 	LiveEndpointURLPrefix string `json:"liveEndpointUrlPrefix,omitempty"`
@@ -45,7 +51,7 @@ type AdyenConfig struct {
 	// return url, max length is 2000
 	ReturnURL string `json:"returnUrl,omitempty"`
 
-	// Adyen settings json string, adyen settings docs: https://docs.adyen.com/checkout/web-sdk/customization/settings/
+	// Adyen settings json string(Deprecated, please use dropInSettings field) adyen settings docs: https://docs.adyen.com/checkout/web-sdk/customization/settings/
 	Settings string `json:"settings,omitempty"`
 }
 

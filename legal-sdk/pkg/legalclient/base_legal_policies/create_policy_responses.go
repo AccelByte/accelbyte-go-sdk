@@ -49,7 +49,7 @@ func (o *CreatePolicyReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/base-policies returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /agreement/admin/base-policies returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type CreatePolicyCreated struct {
 }
 
 func (o *CreatePolicyCreated) Error() string {
-	return fmt.Sprintf("[POST /admin/base-policies][%d] createPolicyCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /agreement/admin/base-policies][%d] createPolicyCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreatePolicyCreated) GetPayload() *legalclientmodels.CreateBasePolicyResponse {
@@ -100,7 +100,7 @@ type CreatePolicyConflict struct {
 }
 
 func (o *CreatePolicyConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/base-policies][%d] createPolicyConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /agreement/admin/base-policies][%d] createPolicyConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreatePolicyConflict) GetPayload() *legalclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type CreatePolicyUnprocessableEntity struct {
 }
 
 func (o *CreatePolicyUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/base-policies][%d] createPolicyUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /agreement/admin/base-policies][%d] createPolicyUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreatePolicyUnprocessableEntity) GetPayload() *legalclientmodels.ValidationErrorEntity {

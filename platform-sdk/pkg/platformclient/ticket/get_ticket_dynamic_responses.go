@@ -43,7 +43,7 @@ func (o *GetTicketDynamicReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/tickets/{boothName} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/tickets/{boothName} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetTicketDynamicOK struct {
 }
 
 func (o *GetTicketDynamicOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/tickets/{boothName}][%d] getTicketDynamicOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/tickets/{boothName}][%d] getTicketDynamicOK  %+v", 200, o.Payload)
 }
 
 func (o *GetTicketDynamicOK) GetPayload() *platformclientmodels.TicketDynamicInfo {
@@ -94,7 +94,7 @@ type GetTicketDynamicNotFound struct {
 }
 
 func (o *GetTicketDynamicNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/tickets/{boothName}][%d] getTicketDynamicNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/tickets/{boothName}][%d] getTicketDynamicNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetTicketDynamicNotFound) GetPayload() *platformclientmodels.ErrorEntity {

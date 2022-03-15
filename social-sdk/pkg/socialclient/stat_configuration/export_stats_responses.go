@@ -34,7 +34,7 @@ func (o *ExportStatsReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /v1/admin/namespaces/{namespace}/stats/export returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /social/v1/admin/namespaces/{namespace}/stats/export returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -51,7 +51,7 @@ type ExportStatsOK struct {
 }
 
 func (o *ExportStatsOK) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/stats/export][%d] exportStatsOK ", 200)
+	return fmt.Sprintf("[GET /social/v1/admin/namespaces/{namespace}/stats/export][%d] exportStatsOK ", 200)
 }
 
 func (o *ExportStatsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

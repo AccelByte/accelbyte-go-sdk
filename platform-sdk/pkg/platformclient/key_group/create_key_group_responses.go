@@ -49,7 +49,7 @@ func (o *CreateKeyGroupReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/keygroups returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/admin/namespaces/{namespace}/keygroups returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type CreateKeyGroupCreated struct {
 }
 
 func (o *CreateKeyGroupCreated) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/keygroups][%d] createKeyGroupCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/keygroups][%d] createKeyGroupCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateKeyGroupCreated) GetPayload() *platformclientmodels.KeyGroupInfo {
@@ -100,7 +100,7 @@ type CreateKeyGroupConflict struct {
 }
 
 func (o *CreateKeyGroupConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/keygroups][%d] createKeyGroupConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/keygroups][%d] createKeyGroupConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateKeyGroupConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type CreateKeyGroupUnprocessableEntity struct {
 }
 
 func (o *CreateKeyGroupUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/keygroups][%d] createKeyGroupUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/keygroups][%d] createKeyGroupUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateKeyGroupUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

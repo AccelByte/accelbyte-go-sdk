@@ -43,7 +43,7 @@ func (o *GetUserWalletReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/users/{userId}/wallets/{walletId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetUserWalletOK struct {
 }
 
 func (o *GetUserWalletOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}][%d] getUserWalletOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}][%d] getUserWalletOK  %+v", 200, o.Payload)
 }
 
 func (o *GetUserWalletOK) GetPayload() *platformclientmodels.WalletInfo {
@@ -94,7 +94,7 @@ type GetUserWalletNotFound struct {
 }
 
 func (o *GetUserWalletNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}][%d] getUserWalletNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}][%d] getUserWalletNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetUserWalletNotFound) GetPayload() *platformclientmodels.ErrorEntity {

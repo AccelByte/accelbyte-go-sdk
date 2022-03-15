@@ -53,7 +53,7 @@ func (a *Client) GetGlobalStatItems(params *GetGlobalStatItemsParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getGlobalStatItems",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/globalstatitems",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/globalstatitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -90,7 +90,7 @@ func (a *Client) GetGlobalStatItemsShort(params *GetGlobalStatItemsParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getGlobalStatItems",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/globalstatitems",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/globalstatitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

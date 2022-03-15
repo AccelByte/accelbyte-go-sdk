@@ -27,7 +27,7 @@ type StatCreate struct {
 	Description string `json:"description,omitempty"`
 
 	// increment only
-	IncrementOnly bool `json:"incrementOnly,omitempty"`
+	IncrementOnly bool `json:"incrementOnly"`
 
 	// maximum
 	Maximum float64 `json:"maximum,omitempty"`
@@ -40,7 +40,7 @@ type StatCreate struct {
 	Name *string `json:"name"`
 
 	// set as global
-	SetAsGlobal bool `json:"setAsGlobal,omitempty"`
+	SetAsGlobal bool `json:"setAsGlobal"`
 
 	// set by
 	// Required: true

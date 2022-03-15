@@ -73,7 +73,7 @@ func (a *Client) AddCountryGroup(params *AddCountryGroupParams, authInfo runtime
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addCountryGroup",
 		Method:             "POST",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/misc/countrygroups",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/misc/countrygroups",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -122,7 +122,7 @@ func (a *Client) AddCountryGroupShort(params *AddCountryGroupParams, authInfo ru
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addCountryGroup",
 		Method:             "POST",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/misc/countrygroups",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/misc/countrygroups",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -172,7 +172,7 @@ func (a *Client) DeleteCountryGroup(params *DeleteCountryGroupParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteCountryGroup",
 		Method:             "DELETE",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -221,7 +221,7 @@ func (a *Client) DeleteCountryGroupShort(params *DeleteCountryGroupParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteCountryGroup",
 		Method:             "DELETE",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -271,7 +271,7 @@ func (a *Client) GetCountries(params *GetCountriesParams, authInfo runtime.Clien
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCountries",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/misc/countries",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/misc/countries",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -314,7 +314,7 @@ func (a *Client) GetCountriesShort(params *GetCountriesParams, authInfo runtime.
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCountries",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/misc/countries",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/misc/countries",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -360,7 +360,7 @@ func (a *Client) GetCountryGroups(params *GetCountryGroupsParams, authInfo runti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCountryGroups",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/misc/countrygroups",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/misc/countrygroups",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -409,7 +409,7 @@ func (a *Client) GetCountryGroupsShort(params *GetCountryGroupsParams, authInfo 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCountryGroups",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/misc/countrygroups",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/misc/countrygroups",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -459,7 +459,7 @@ func (a *Client) GetLanguages(params *GetLanguagesParams, authInfo runtime.Clien
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getLanguages",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/misc/languages",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/misc/languages",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -502,7 +502,7 @@ func (a *Client) GetLanguagesShort(params *GetLanguagesParams, authInfo runtime.
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getLanguages",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/misc/languages",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/misc/languages",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -548,7 +548,7 @@ func (a *Client) GetTimeZones(params *GetTimeZonesParams, authInfo runtime.Clien
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getTimeZones",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/misc/timezones",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/misc/timezones",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -591,7 +591,7 @@ func (a *Client) GetTimeZonesShort(params *GetTimeZonesParams, authInfo runtime.
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getTimeZones",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/misc/timezones",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/misc/timezones",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -637,7 +637,7 @@ func (a *Client) PublicGetCountries(params *PublicGetCountriesParams) (*PublicGe
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetCountries",
 		Method:             "GET",
-		PathPattern:        "/v1/public/namespaces/{namespace}/misc/countries",
+		PathPattern:        "/basic/v1/public/namespaces/{namespace}/misc/countries",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -676,7 +676,7 @@ func (a *Client) PublicGetCountriesShort(params *PublicGetCountriesParams) (*Pub
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetCountries",
 		Method:             "GET",
-		PathPattern:        "/v1/public/namespaces/{namespace}/misc/countries",
+		PathPattern:        "/basic/v1/public/namespaces/{namespace}/misc/countries",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -719,7 +719,7 @@ func (a *Client) PublicGetLanguages(params *PublicGetLanguagesParams) (*PublicGe
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetLanguages",
 		Method:             "GET",
-		PathPattern:        "/v1/public/namespaces/{namespace}/misc/languages",
+		PathPattern:        "/basic/v1/public/namespaces/{namespace}/misc/languages",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -758,7 +758,7 @@ func (a *Client) PublicGetLanguagesShort(params *PublicGetLanguagesParams) (*Pub
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetLanguages",
 		Method:             "GET",
-		PathPattern:        "/v1/public/namespaces/{namespace}/misc/languages",
+		PathPattern:        "/basic/v1/public/namespaces/{namespace}/misc/languages",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -801,7 +801,7 @@ func (a *Client) PublicGetTime(params *PublicGetTimeParams) (*PublicGetTimeOK, e
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetTime",
 		Method:             "GET",
-		PathPattern:        "/v1/public/misc/time",
+		PathPattern:        "/basic/v1/public/misc/time",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -837,7 +837,7 @@ func (a *Client) PublicGetTimeShort(params *PublicGetTimeParams) (*PublicGetTime
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetTime",
 		Method:             "GET",
-		PathPattern:        "/v1/public/misc/time",
+		PathPattern:        "/basic/v1/public/misc/time",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -878,7 +878,7 @@ func (a *Client) PublicGetTimeZones(params *PublicGetTimeZonesParams) (*PublicGe
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetTimeZones",
 		Method:             "GET",
-		PathPattern:        "/v1/public/namespaces/{namespace}/misc/timezones",
+		PathPattern:        "/basic/v1/public/namespaces/{namespace}/misc/timezones",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -917,7 +917,7 @@ func (a *Client) PublicGetTimeZonesShort(params *PublicGetTimeZonesParams) (*Pub
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetTimeZones",
 		Method:             "GET",
-		PathPattern:        "/v1/public/namespaces/{namespace}/misc/timezones",
+		PathPattern:        "/basic/v1/public/namespaces/{namespace}/misc/timezones",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -960,7 +960,7 @@ func (a *Client) UpdateCountryGroup(params *UpdateCountryGroupParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateCountryGroup",
 		Method:             "PUT",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1009,7 +1009,7 @@ func (a *Client) UpdateCountryGroupShort(params *UpdateCountryGroupParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateCountryGroup",
 		Method:             "PUT",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

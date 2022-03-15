@@ -55,7 +55,7 @@ func (o *PayReader) ReadResponse(response runtime.ClientResponse, consumer runti
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type PayOK struct {
 }
 
 func (o *PayOK) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay][%d] payOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay][%d] payOK  %+v", 200, o.Payload)
 }
 
 func (o *PayOK) GetPayload() *platformclientmodels.PaymentProcessResult {
@@ -106,7 +106,7 @@ type PayBadRequest struct {
 }
 
 func (o *PayBadRequest) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay][%d] payBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay][%d] payBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PayBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type PayNotFound struct {
 }
 
 func (o *PayNotFound) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay][%d] payNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay][%d] payNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PayNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -172,7 +172,7 @@ type PayConflict struct {
 }
 
 func (o *PayConflict) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay][%d] payConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay][%d] payConflict  %+v", 409, o.Payload)
 }
 
 func (o *PayConflict) GetPayload() *platformclientmodels.ErrorEntity {

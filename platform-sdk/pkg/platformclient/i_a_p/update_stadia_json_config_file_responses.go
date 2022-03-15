@@ -37,7 +37,7 @@ func (o *UpdateStadiaJSONConfigFileReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/iap/config/stadia/cert returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/iap/config/stadia/cert returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type UpdateStadiaJSONConfigFileOK struct {
 }
 
 func (o *UpdateStadiaJSONConfigFileOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/iap/config/stadia/cert][%d] updateStadiaJsonConfigFileOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/iap/config/stadia/cert][%d] updateStadiaJsonConfigFileOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateStadiaJSONConfigFileOK) GetPayload() *platformclientmodels.StadiaIAPConfigInfo {

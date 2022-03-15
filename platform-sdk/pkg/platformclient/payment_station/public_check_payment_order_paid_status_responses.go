@@ -43,7 +43,7 @@ func (o *PublicCheckPaymentOrderPaidStatusReader) ReadResponse(response runtime.
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type PublicCheckPaymentOrderPaidStatusOK struct {
 }
 
 func (o *PublicCheckPaymentOrderPaidStatusOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status][%d] publicCheckPaymentOrderPaidStatusOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status][%d] publicCheckPaymentOrderPaidStatusOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicCheckPaymentOrderPaidStatusOK) GetPayload() *platformclientmodels.PaymentOrderPaidResult {
@@ -94,7 +94,7 @@ type PublicCheckPaymentOrderPaidStatusNotFound struct {
 }
 
 func (o *PublicCheckPaymentOrderPaidStatusNotFound) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status][%d] publicCheckPaymentOrderPaidStatusNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status][%d] publicCheckPaymentOrderPaidStatusNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicCheckPaymentOrderPaidStatusNotFound) GetPayload() *platformclientmodels.ErrorEntity {

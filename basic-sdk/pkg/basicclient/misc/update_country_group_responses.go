@@ -61,7 +61,7 @@ func (o *UpdateCountryGroupReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type UpdateCountryGroupOK struct {
 }
 
 func (o *UpdateCountryGroupOK) Error() string {
-	return fmt.Sprintf("[PUT /v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] updateCountryGroupOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] updateCountryGroupOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateCountryGroupOK) GetPayload() *basicclientmodels.CountryGroupObject {
@@ -112,7 +112,7 @@ type UpdateCountryGroupBadRequest struct {
 }
 
 func (o *UpdateCountryGroupBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] updateCountryGroupBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] updateCountryGroupBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateCountryGroupBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -145,7 +145,7 @@ type UpdateCountryGroupUnauthorized struct {
 }
 
 func (o *UpdateCountryGroupUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] updateCountryGroupUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] updateCountryGroupUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateCountryGroupUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -178,7 +178,7 @@ type UpdateCountryGroupForbidden struct {
 }
 
 func (o *UpdateCountryGroupForbidden) Error() string {
-	return fmt.Sprintf("[PUT /v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] updateCountryGroupForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] updateCountryGroupForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateCountryGroupForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -211,7 +211,7 @@ type UpdateCountryGroupNotFound struct {
 }
 
 func (o *UpdateCountryGroupNotFound) Error() string {
-	return fmt.Sprintf("[PUT /v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] updateCountryGroupNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] updateCountryGroupNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateCountryGroupNotFound) GetPayload() *basicclientmodels.ErrorEntity {

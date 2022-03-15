@@ -34,7 +34,7 @@ func (o *DeleteUserSubscriptionReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -51,7 +51,7 @@ type DeleteUserSubscriptionNoContent struct {
 }
 
 func (o *DeleteUserSubscriptionNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}][%d] deleteUserSubscriptionNoContent ", 204)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}][%d] deleteUserSubscriptionNoContent ", 204)
 }
 
 func (o *DeleteUserSubscriptionNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -34,7 +34,7 @@ func (o *SyncSteamDLCReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /public/namespaces/{namespace}/users/{userId}/dlc/steam/sync returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/public/namespaces/{namespace}/users/{userId}/dlc/steam/sync returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -51,7 +51,7 @@ type SyncSteamDLCNoContent struct {
 }
 
 func (o *SyncSteamDLCNoContent) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/dlc/steam/sync][%d] syncSteamDLCNoContent ", 204)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/dlc/steam/sync][%d] syncSteamDLCNoContent ", 204)
 }
 
 func (o *SyncSteamDLCNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

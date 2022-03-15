@@ -43,7 +43,7 @@ func (o *UpdatePayPalConfigReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/payment/config/merchant/{id}/paypalconfig returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/payment/config/merchant/{id}/paypalconfig returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type UpdatePayPalConfigOK struct {
 }
 
 func (o *UpdatePayPalConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/payment/config/merchant/{id}/paypalconfig][%d] updatePayPalConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/paypalconfig][%d] updatePayPalConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdatePayPalConfigOK) GetPayload() *platformclientmodels.PaymentMerchantConfigInfo {
@@ -94,7 +94,7 @@ type UpdatePayPalConfigNotFound struct {
 }
 
 func (o *UpdatePayPalConfigNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/payment/config/merchant/{id}/paypalconfig][%d] updatePayPalConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/paypalconfig][%d] updatePayPalConfigNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdatePayPalConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {

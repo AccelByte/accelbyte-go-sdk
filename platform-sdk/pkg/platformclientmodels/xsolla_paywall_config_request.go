@@ -24,7 +24,7 @@ type XsollaPaywallConfigRequest struct {
 	Device string `json:"device,omitempty"`
 
 	// Whether to show a Close button in pay station. false by default
-	ShowCloseButton bool `json:"showCloseButton,omitempty"`
+	ShowCloseButton bool `json:"showCloseButton"`
 
 	// Payment UI size, MEDIUM for default.
 	// Enum: [SMALL MEDIUM LARGE]

@@ -34,7 +34,7 @@ func (o *DeleteAppleIAPConfigReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /admin/namespaces/{namespace}/iap/config/apple returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /platform/admin/namespaces/{namespace}/iap/config/apple returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -51,7 +51,7 @@ type DeleteAppleIAPConfigNoContent struct {
 }
 
 func (o *DeleteAppleIAPConfigNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/iap/config/apple][%d] deleteAppleIAPConfigNoContent ", 204)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/iap/config/apple][%d] deleteAppleIAPConfigNoContent ", 204)
 }
 
 func (o *DeleteAppleIAPConfigNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

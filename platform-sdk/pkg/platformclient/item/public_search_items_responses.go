@@ -43,7 +43,7 @@ func (o *PublicSearchItemsReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/items/search returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/items/search returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type PublicSearchItemsOK struct {
 }
 
 func (o *PublicSearchItemsOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/items/search][%d] publicSearchItemsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/search][%d] publicSearchItemsOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicSearchItemsOK) GetPayload() *platformclientmodels.ItemPagingSlicedResult {
@@ -94,7 +94,7 @@ type PublicSearchItemsNotFound struct {
 }
 
 func (o *PublicSearchItemsNotFound) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/items/search][%d] publicSearchItemsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/search][%d] publicSearchItemsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicSearchItemsNotFound) GetPayload() *platformclientmodels.ErrorEntity {

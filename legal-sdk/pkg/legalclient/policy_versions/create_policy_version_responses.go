@@ -43,7 +43,7 @@ func (o *CreatePolicyVersionReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/policies/{policyId}/versions returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /agreement/admin/policies/{policyId}/versions returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type CreatePolicyVersionCreated struct {
 }
 
 func (o *CreatePolicyVersionCreated) Error() string {
-	return fmt.Sprintf("[POST /admin/policies/{policyId}/versions][%d] createPolicyVersionCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /agreement/admin/policies/{policyId}/versions][%d] createPolicyVersionCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreatePolicyVersionCreated) GetPayload() *legalclientmodels.CreatePolicyVersionResponse {
@@ -94,7 +94,7 @@ type CreatePolicyVersionBadRequest struct {
 }
 
 func (o *CreatePolicyVersionBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/policies/{policyId}/versions][%d] createPolicyVersionBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /agreement/admin/policies/{policyId}/versions][%d] createPolicyVersionBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreatePolicyVersionBadRequest) GetPayload() *legalclientmodels.ErrorEntity {

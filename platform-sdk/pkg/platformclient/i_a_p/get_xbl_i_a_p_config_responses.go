@@ -43,7 +43,7 @@ func (o *GetXblIAPConfigReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/iap/config/xbl returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/iap/config/xbl returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetXblIAPConfigOK struct {
 }
 
 func (o *GetXblIAPConfigOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/iap/config/xbl][%d] getXblIAPConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/iap/config/xbl][%d] getXblIAPConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *GetXblIAPConfigOK) GetPayload() *platformclientmodels.XblIAPConfigInfo {
@@ -94,7 +94,7 @@ type GetXblIAPConfigNotFound struct {
 }
 
 func (o *GetXblIAPConfigNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/iap/config/xbl][%d] getXblIAPConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/iap/config/xbl][%d] getXblIAPConfigNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetXblIAPConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {

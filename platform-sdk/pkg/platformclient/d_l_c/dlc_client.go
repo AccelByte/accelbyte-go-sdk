@@ -69,7 +69,7 @@ func (a *Client) DeleteDLCItemConfig(params *DeleteDLCItemConfigParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteDLCItemConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/dlc/config/item",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/dlc/config/item",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -106,7 +106,7 @@ func (a *Client) DeleteDLCItemConfigShort(params *DeleteDLCItemConfigParams, aut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteDLCItemConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/dlc/config/item",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/dlc/config/item",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -148,7 +148,7 @@ func (a *Client) DeletePlatformDLCConfig(params *DeletePlatformDLCConfigParams, 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deletePlatformDLCConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/dlc/config/platformMap",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/dlc/config/platformMap",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -185,7 +185,7 @@ func (a *Client) DeletePlatformDLCConfigShort(params *DeletePlatformDLCConfigPar
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deletePlatformDLCConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/dlc/config/platformMap",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/dlc/config/platformMap",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -227,7 +227,7 @@ func (a *Client) GetDLCItemConfig(params *GetDLCItemConfigParams, authInfo runti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDLCItemConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/dlc/config/item",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/dlc/config/item",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -267,7 +267,7 @@ func (a *Client) GetDLCItemConfigShort(params *GetDLCItemConfigParams, authInfo 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDLCItemConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/dlc/config/item",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/dlc/config/item",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -311,7 +311,7 @@ func (a *Client) GetPlatformDLCConfig(params *GetPlatformDLCConfigParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPlatformDLCConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/dlc/config/platformMap",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/dlc/config/platformMap",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -351,7 +351,7 @@ func (a *Client) GetPlatformDLCConfigShort(params *GetPlatformDLCConfigParams, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPlatformDLCConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/dlc/config/platformMap",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/dlc/config/platformMap",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -395,7 +395,7 @@ func (a *Client) PublicSyncPsnDlcInventory(params *PublicSyncPsnDlcInventoryPara
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicSyncPsnDlcInventory",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/dlc/psn/sync",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/dlc/psn/sync",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -435,7 +435,7 @@ func (a *Client) PublicSyncPsnDlcInventoryShort(params *PublicSyncPsnDlcInventor
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicSyncPsnDlcInventory",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/dlc/psn/sync",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/dlc/psn/sync",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -479,7 +479,7 @@ func (a *Client) SyncSteamDLC(params *SyncSteamDLCParams, authInfo runtime.Clien
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncSteamDLC",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/dlc/steam/sync",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/dlc/steam/sync",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -516,7 +516,7 @@ func (a *Client) SyncSteamDLCShort(params *SyncSteamDLCParams, authInfo runtime.
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncSteamDLC",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/dlc/steam/sync",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/dlc/steam/sync",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -558,7 +558,7 @@ func (a *Client) SyncXboxDLC(params *SyncXboxDLCParams, authInfo runtime.ClientA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncXboxDLC",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/dlc/xbl/sync",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/dlc/xbl/sync",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -595,7 +595,7 @@ func (a *Client) SyncXboxDLCShort(params *SyncXboxDLCParams, authInfo runtime.Cl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncXboxDLC",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/dlc/xbl/sync",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/dlc/xbl/sync",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -637,7 +637,7 @@ func (a *Client) UpdateDLCItemConfig(params *UpdateDLCItemConfigParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateDLCItemConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/dlc/config/item",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/dlc/config/item",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -677,7 +677,7 @@ func (a *Client) UpdateDLCItemConfigShort(params *UpdateDLCItemConfigParams, aut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateDLCItemConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/dlc/config/item",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/dlc/config/item",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -721,7 +721,7 @@ func (a *Client) UpdatePlatformDLCConfig(params *UpdatePlatformDLCConfigParams, 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updatePlatformDLCConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/dlc/config/platformMap",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/dlc/config/platformMap",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -761,7 +761,7 @@ func (a *Client) UpdatePlatformDLCConfigShort(params *UpdatePlatformDLCConfigPar
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updatePlatformDLCConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/dlc/config/platformMap",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/dlc/config/platformMap",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

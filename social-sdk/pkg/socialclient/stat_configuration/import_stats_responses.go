@@ -43,7 +43,7 @@ func (o *ImportStatsReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /v1/admin/namespaces/{namespace}/stats/import returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /social/v1/admin/namespaces/{namespace}/stats/import returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type ImportStatsOK struct {
 }
 
 func (o *ImportStatsOK) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/stats/import][%d] importStatsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/stats/import][%d] importStatsOK  %+v", 200, o.Payload)
 }
 
 func (o *ImportStatsOK) GetPayload() *socialclientmodels.StatImportInfo {
@@ -94,7 +94,7 @@ type ImportStatsBadRequest struct {
 }
 
 func (o *ImportStatsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/stats/import][%d] importStatsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/stats/import][%d] importStatsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ImportStatsBadRequest) GetPayload() *socialclientmodels.ErrorEntity {

@@ -61,7 +61,7 @@ func (o *GetNamespacePublisherReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /v1/admin/namespaces/{namespace}/publisher returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /basic/v1/admin/namespaces/{namespace}/publisher returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type GetNamespacePublisherOK struct {
 }
 
 func (o *GetNamespacePublisherOK) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/publisher][%d] getNamespacePublisherOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/publisher][%d] getNamespacePublisherOK  %+v", 200, o.Payload)
 }
 
 func (o *GetNamespacePublisherOK) GetPayload() *basicclientmodels.NamespacePublisherInfo {
@@ -112,7 +112,7 @@ type GetNamespacePublisherBadRequest struct {
 }
 
 func (o *GetNamespacePublisherBadRequest) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/publisher][%d] getNamespacePublisherBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/publisher][%d] getNamespacePublisherBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetNamespacePublisherBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -145,7 +145,7 @@ type GetNamespacePublisherUnauthorized struct {
 }
 
 func (o *GetNamespacePublisherUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/publisher][%d] getNamespacePublisherUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/publisher][%d] getNamespacePublisherUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetNamespacePublisherUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -178,7 +178,7 @@ type GetNamespacePublisherForbidden struct {
 }
 
 func (o *GetNamespacePublisherForbidden) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/publisher][%d] getNamespacePublisherForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/publisher][%d] getNamespacePublisherForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetNamespacePublisherForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -211,7 +211,7 @@ type GetNamespacePublisherNotFound struct {
 }
 
 func (o *GetNamespacePublisherNotFound) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/publisher][%d] getNamespacePublisherNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/publisher][%d] getNamespacePublisherNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetNamespacePublisherNotFound) GetPayload() *basicclientmodels.ErrorEntity {

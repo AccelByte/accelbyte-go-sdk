@@ -20,7 +20,7 @@ import (
 type PassUpdate struct {
 
 	// autoEnroll for free pass
-	AutoEnroll bool `json:"autoEnroll,omitempty"`
+	AutoEnroll bool `json:"autoEnroll"`
 
 	// displayOrder for frontend to arrange the pass
 	DisplayOrder int32 `json:"displayOrder,omitempty"`

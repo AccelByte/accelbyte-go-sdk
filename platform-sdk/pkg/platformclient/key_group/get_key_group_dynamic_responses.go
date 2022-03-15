@@ -43,7 +43,7 @@ func (o *GetKeyGroupDynamicReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/keygroups/{keyGroupId}/dynamic returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/dynamic returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetKeyGroupDynamicOK struct {
 }
 
 func (o *GetKeyGroupDynamicOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/keygroups/{keyGroupId}/dynamic][%d] getKeyGroupDynamicOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/dynamic][%d] getKeyGroupDynamicOK  %+v", 200, o.Payload)
 }
 
 func (o *GetKeyGroupDynamicOK) GetPayload() *platformclientmodels.KeyGroupDynamicInfo {
@@ -94,7 +94,7 @@ type GetKeyGroupDynamicNotFound struct {
 }
 
 func (o *GetKeyGroupDynamicNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/keygroups/{keyGroupId}/dynamic][%d] getKeyGroupDynamicNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/dynamic][%d] getKeyGroupDynamicNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetKeyGroupDynamicNotFound) GetPayload() *platformclientmodels.ErrorEntity {

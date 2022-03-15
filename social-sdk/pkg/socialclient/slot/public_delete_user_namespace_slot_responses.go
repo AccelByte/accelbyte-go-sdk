@@ -43,7 +43,7 @@ func (o *PublicDeleteUserNamespaceSlotReader) ReadResponse(response runtime.Clie
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /public/namespaces/{namespace}/users/{userId}/slots/{slotId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -60,7 +60,7 @@ type PublicDeleteUserNamespaceSlotNoContent struct {
 }
 
 func (o *PublicDeleteUserNamespaceSlotNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicDeleteUserNamespaceSlotNoContent ", 204)
+	return fmt.Sprintf("[DELETE /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicDeleteUserNamespaceSlotNoContent ", 204)
 }
 
 func (o *PublicDeleteUserNamespaceSlotNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -82,7 +82,7 @@ type PublicDeleteUserNamespaceSlotNotFound struct {
 }
 
 func (o *PublicDeleteUserNamespaceSlotNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicDeleteUserNamespaceSlotNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicDeleteUserNamespaceSlotNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicDeleteUserNamespaceSlotNotFound) GetPayload() *socialclientmodels.ErrorEntity {

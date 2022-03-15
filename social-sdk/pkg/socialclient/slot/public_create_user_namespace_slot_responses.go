@@ -49,7 +49,7 @@ func (o *PublicCreateUserNamespaceSlotReader) ReadResponse(response runtime.Clie
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /public/namespaces/{namespace}/users/{userId}/slots returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /social/public/namespaces/{namespace}/users/{userId}/slots returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -66,7 +66,7 @@ type PublicCreateUserNamespaceSlotCreated struct {
 }
 
 func (o *PublicCreateUserNamespaceSlotCreated) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/users/{userId}/slots][%d] publicCreateUserNamespaceSlotCreated ", 201)
+	return fmt.Sprintf("[POST /social/public/namespaces/{namespace}/users/{userId}/slots][%d] publicCreateUserNamespaceSlotCreated ", 201)
 }
 
 func (o *PublicCreateUserNamespaceSlotCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -88,7 +88,7 @@ type PublicCreateUserNamespaceSlotBadRequest struct {
 }
 
 func (o *PublicCreateUserNamespaceSlotBadRequest) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/users/{userId}/slots][%d] publicCreateUserNamespaceSlotBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /social/public/namespaces/{namespace}/users/{userId}/slots][%d] publicCreateUserNamespaceSlotBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicCreateUserNamespaceSlotBadRequest) GetPayload() *socialclientmodels.ErrorEntity {
@@ -121,7 +121,7 @@ type PublicCreateUserNamespaceSlotConflict struct {
 }
 
 func (o *PublicCreateUserNamespaceSlotConflict) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/users/{userId}/slots][%d] publicCreateUserNamespaceSlotConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /social/public/namespaces/{namespace}/users/{userId}/slots][%d] publicCreateUserNamespaceSlotConflict  %+v", 409, o.Payload)
 }
 
 func (o *PublicCreateUserNamespaceSlotConflict) GetPayload() *socialclientmodels.ErrorEntity {

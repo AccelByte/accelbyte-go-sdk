@@ -34,7 +34,7 @@ func (o *PublicDeletePaymentAccountReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /public/namespaces/{namespace}/users/{userId}/payment/accounts/{type}/{id} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /platform/public/namespaces/{namespace}/users/{userId}/payment/accounts/{type}/{id} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -51,7 +51,7 @@ type PublicDeletePaymentAccountNoContent struct {
 }
 
 func (o *PublicDeletePaymentAccountNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /public/namespaces/{namespace}/users/{userId}/payment/accounts/{type}/{id}][%d] publicDeletePaymentAccountNoContent ", 204)
+	return fmt.Sprintf("[DELETE /platform/public/namespaces/{namespace}/users/{userId}/payment/accounts/{type}/{id}][%d] publicDeletePaymentAccountNoContent ", 204)
 }
 
 func (o *PublicDeletePaymentAccountNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

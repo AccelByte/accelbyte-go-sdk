@@ -43,7 +43,7 @@ func (o *UpdateDLCItemConfigReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/dlc/config/item returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/dlc/config/item returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type UpdateDLCItemConfigOK struct {
 }
 
 func (o *UpdateDLCItemConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/dlc/config/item][%d] updateDLCItemConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/dlc/config/item][%d] updateDLCItemConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateDLCItemConfigOK) GetPayload() *platformclientmodels.DLCItemConfigInfo {
@@ -94,7 +94,7 @@ type UpdateDLCItemConfigUnprocessableEntity struct {
 }
 
 func (o *UpdateDLCItemConfigUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/dlc/config/item][%d] updateDLCItemConfigUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/dlc/config/item][%d] updateDLCItemConfigUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateDLCItemConfigUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

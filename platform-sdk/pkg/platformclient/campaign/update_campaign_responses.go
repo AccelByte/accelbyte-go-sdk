@@ -55,7 +55,7 @@ func (o *UpdateCampaignReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/campaigns/{campaignId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/campaigns/{campaignId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type UpdateCampaignOK struct {
 }
 
 func (o *UpdateCampaignOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/campaigns/{campaignId}][%d] updateCampaignOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] updateCampaignOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateCampaignOK) GetPayload() *platformclientmodels.CampaignInfo {
@@ -106,7 +106,7 @@ type UpdateCampaignNotFound struct {
 }
 
 func (o *UpdateCampaignNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/campaigns/{campaignId}][%d] updateCampaignNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] updateCampaignNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateCampaignNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type UpdateCampaignConflict struct {
 }
 
 func (o *UpdateCampaignConflict) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/campaigns/{campaignId}][%d] updateCampaignConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] updateCampaignConflict  %+v", 409, o.Payload)
 }
 
 func (o *UpdateCampaignConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -172,7 +172,7 @@ type UpdateCampaignUnprocessableEntity struct {
 }
 
 func (o *UpdateCampaignUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/campaigns/{campaignId}][%d] updateCampaignUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] updateCampaignUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateCampaignUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

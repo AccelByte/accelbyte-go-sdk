@@ -119,7 +119,7 @@ func (a *Client) CreatePaymentProviderConfig(params *CreatePaymentProviderConfig
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createPaymentProviderConfig",
 		Method:             "POST",
-		PathPattern:        "/admin/payment/config/provider",
+		PathPattern:        "/platform/admin/payment/config/provider",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -165,7 +165,7 @@ func (a *Client) CreatePaymentProviderConfigShort(params *CreatePaymentProviderC
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createPaymentProviderConfig",
 		Method:             "POST",
-		PathPattern:        "/admin/payment/config/provider",
+		PathPattern:        "/platform/admin/payment/config/provider",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -213,7 +213,7 @@ func (a *Client) DebugMatchedPaymentMerchantConfig(params *DebugMatchedPaymentMe
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "debugMatchedPaymentMerchantConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/merchant/matched",
+		PathPattern:        "/platform/admin/payment/config/merchant/matched",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -253,7 +253,7 @@ func (a *Client) DebugMatchedPaymentMerchantConfigShort(params *DebugMatchedPaym
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "debugMatchedPaymentMerchantConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/merchant/matched",
+		PathPattern:        "/platform/admin/payment/config/merchant/matched",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -297,7 +297,7 @@ func (a *Client) DebugMatchedPaymentProviderConfig(params *DebugMatchedPaymentPr
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "debugMatchedPaymentProviderConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/provider/matched",
+		PathPattern:        "/platform/admin/payment/config/provider/matched",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -337,7 +337,7 @@ func (a *Client) DebugMatchedPaymentProviderConfigShort(params *DebugMatchedPaym
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "debugMatchedPaymentProviderConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/provider/matched",
+		PathPattern:        "/platform/admin/payment/config/provider/matched",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -381,7 +381,7 @@ func (a *Client) DeletePaymentProviderConfig(params *DeletePaymentProviderConfig
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deletePaymentProviderConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/payment/config/provider/{id}",
+		PathPattern:        "/platform/admin/payment/config/provider/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -421,7 +421,7 @@ func (a *Client) DeletePaymentProviderConfigShort(params *DeletePaymentProviderC
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deletePaymentProviderConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/payment/config/provider/{id}",
+		PathPattern:        "/platform/admin/payment/config/provider/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -465,7 +465,7 @@ func (a *Client) GetAggregatePaymentProviders(params *GetAggregatePaymentProvide
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAggregatePaymentProviders",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/provider/aggregate",
+		PathPattern:        "/platform/admin/payment/config/provider/aggregate",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -502,7 +502,7 @@ func (a *Client) GetAggregatePaymentProvidersShort(params *GetAggregatePaymentPr
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAggregatePaymentProviders",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/provider/aggregate",
+		PathPattern:        "/platform/admin/payment/config/provider/aggregate",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -544,7 +544,7 @@ func (a *Client) GetPaymentMerchantConfig(params *GetPaymentMerchantConfigParams
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPaymentMerchantConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/merchant/{id}",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -584,7 +584,7 @@ func (a *Client) GetPaymentMerchantConfigShort(params *GetPaymentMerchantConfigP
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPaymentMerchantConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/merchant/{id}",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -628,7 +628,7 @@ func (a *Client) GetPaymentTaxConfig(params *GetPaymentTaxConfigParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPaymentTaxConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/tax",
+		PathPattern:        "/platform/admin/payment/config/tax",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -665,7 +665,7 @@ func (a *Client) GetPaymentTaxConfigShort(params *GetPaymentTaxConfigParams, aut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPaymentTaxConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/tax",
+		PathPattern:        "/platform/admin/payment/config/tax",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -707,7 +707,7 @@ func (a *Client) GetSpecialPaymentProviders(params *GetSpecialPaymentProvidersPa
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getSpecialPaymentProviders",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/provider/special",
+		PathPattern:        "/platform/admin/payment/config/provider/special",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -744,7 +744,7 @@ func (a *Client) GetSpecialPaymentProvidersShort(params *GetSpecialPaymentProvid
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getSpecialPaymentProviders",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/provider/special",
+		PathPattern:        "/platform/admin/payment/config/provider/special",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -786,7 +786,7 @@ func (a *Client) QueryPaymentProviderConfig(params *QueryPaymentProviderConfigPa
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryPaymentProviderConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/provider",
+		PathPattern:        "/platform/admin/payment/config/provider",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -823,7 +823,7 @@ func (a *Client) QueryPaymentProviderConfigShort(params *QueryPaymentProviderCon
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryPaymentProviderConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/provider",
+		PathPattern:        "/platform/admin/payment/config/provider",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -865,7 +865,7 @@ func (a *Client) TestAdyenConfig(params *TestAdyenConfigParams, authInfo runtime
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testAdyenConfig",
 		Method:             "POST",
-		PathPattern:        "/admin/payment/config/merchant/adyenconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/adyenconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -902,7 +902,7 @@ func (a *Client) TestAdyenConfigShort(params *TestAdyenConfigParams, authInfo ru
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testAdyenConfig",
 		Method:             "POST",
-		PathPattern:        "/admin/payment/config/merchant/adyenconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/adyenconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -944,7 +944,7 @@ func (a *Client) TestAdyenConfigByID(params *TestAdyenConfigByIDParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testAdyenConfigById",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/merchant/{id}/adyenconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/adyenconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -984,7 +984,7 @@ func (a *Client) TestAdyenConfigByIDShort(params *TestAdyenConfigByIDParams, aut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testAdyenConfigById",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/merchant/{id}/adyenconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/adyenconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1028,7 +1028,7 @@ func (a *Client) TestAliPayConfig(params *TestAliPayConfigParams, authInfo runti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testAliPayConfig",
 		Method:             "POST",
-		PathPattern:        "/admin/payment/config/merchant/alipayconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/alipayconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1065,7 +1065,7 @@ func (a *Client) TestAliPayConfigShort(params *TestAliPayConfigParams, authInfo 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testAliPayConfig",
 		Method:             "POST",
-		PathPattern:        "/admin/payment/config/merchant/alipayconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/alipayconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1107,7 +1107,7 @@ func (a *Client) TestAliPayConfigByID(params *TestAliPayConfigByIDParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testAliPayConfigById",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/merchant/{id}/alipayconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/alipayconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1147,7 +1147,7 @@ func (a *Client) TestAliPayConfigByIDShort(params *TestAliPayConfigByIDParams, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testAliPayConfigById",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/merchant/{id}/alipayconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/alipayconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1191,7 +1191,7 @@ func (a *Client) TestCheckoutConfig(params *TestCheckoutConfigParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testCheckoutConfig",
 		Method:             "POST",
-		PathPattern:        "/admin/payment/config/merchant/checkoutconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/checkoutconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1228,7 +1228,7 @@ func (a *Client) TestCheckoutConfigShort(params *TestCheckoutConfigParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testCheckoutConfig",
 		Method:             "POST",
-		PathPattern:        "/admin/payment/config/merchant/checkoutconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/checkoutconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1270,7 +1270,7 @@ func (a *Client) TestCheckoutConfigByID(params *TestCheckoutConfigByIDParams, au
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testCheckoutConfigById",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/merchant/{id}/checkoutconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/checkoutconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1310,7 +1310,7 @@ func (a *Client) TestCheckoutConfigByIDShort(params *TestCheckoutConfigByIDParam
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testCheckoutConfigById",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/merchant/{id}/checkoutconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/checkoutconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1354,7 +1354,7 @@ func (a *Client) TestPayPalConfig(params *TestPayPalConfigParams, authInfo runti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testPayPalConfig",
 		Method:             "POST",
-		PathPattern:        "/admin/payment/config/merchant/paypalconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/paypalconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1391,7 +1391,7 @@ func (a *Client) TestPayPalConfigShort(params *TestPayPalConfigParams, authInfo 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testPayPalConfig",
 		Method:             "POST",
-		PathPattern:        "/admin/payment/config/merchant/paypalconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/paypalconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1433,7 +1433,7 @@ func (a *Client) TestPayPalConfigByID(params *TestPayPalConfigByIDParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testPayPalConfigById",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/merchant/{id}/paypalconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/paypalconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1473,7 +1473,7 @@ func (a *Client) TestPayPalConfigByIDShort(params *TestPayPalConfigByIDParams, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testPayPalConfigById",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/merchant/{id}/paypalconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/paypalconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1517,7 +1517,7 @@ func (a *Client) TestStripeConfig(params *TestStripeConfigParams, authInfo runti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testStripeConfig",
 		Method:             "POST",
-		PathPattern:        "/admin/payment/config/merchant/stripeconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/stripeconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1554,7 +1554,7 @@ func (a *Client) TestStripeConfigShort(params *TestStripeConfigParams, authInfo 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testStripeConfig",
 		Method:             "POST",
-		PathPattern:        "/admin/payment/config/merchant/stripeconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/stripeconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1596,7 +1596,7 @@ func (a *Client) TestStripeConfigByID(params *TestStripeConfigByIDParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testStripeConfigById",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/merchant/{id}/stripeconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/stripeconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1636,7 +1636,7 @@ func (a *Client) TestStripeConfigByIDShort(params *TestStripeConfigByIDParams, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testStripeConfigById",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/merchant/{id}/stripeconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/stripeconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1680,7 +1680,7 @@ func (a *Client) TestWxPayConfig(params *TestWxPayConfigParams, authInfo runtime
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testWxPayConfig",
 		Method:             "POST",
-		PathPattern:        "/admin/payment/config/merchant/wxpayconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/wxpayconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1717,7 +1717,7 @@ func (a *Client) TestWxPayConfigShort(params *TestWxPayConfigParams, authInfo ru
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testWxPayConfig",
 		Method:             "POST",
-		PathPattern:        "/admin/payment/config/merchant/wxpayconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/wxpayconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1759,7 +1759,7 @@ func (a *Client) TestWxPayConfigByID(params *TestWxPayConfigByIDParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testWxPayConfigById",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/merchant/{id}/wxpayconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/wxpayconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1799,7 +1799,7 @@ func (a *Client) TestWxPayConfigByIDShort(params *TestWxPayConfigByIDParams, aut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testWxPayConfigById",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/merchant/{id}/wxpayconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/wxpayconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1843,7 +1843,7 @@ func (a *Client) TestXsollaConfig(params *TestXsollaConfigParams, authInfo runti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testXsollaConfig",
 		Method:             "POST",
-		PathPattern:        "/admin/payment/config/merchant/xsollaconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/xsollaconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1880,7 +1880,7 @@ func (a *Client) TestXsollaConfigShort(params *TestXsollaConfigParams, authInfo 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testXsollaConfig",
 		Method:             "POST",
-		PathPattern:        "/admin/payment/config/merchant/xsollaconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/xsollaconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1922,7 +1922,7 @@ func (a *Client) TestXsollaConfigByID(params *TestXsollaConfigByIDParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testXsollaConfigById",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/merchant/{id}/xsollaconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/xsollaconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1962,7 +1962,7 @@ func (a *Client) TestXsollaConfigByIDShort(params *TestXsollaConfigByIDParams, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testXsollaConfigById",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/config/merchant/{id}/xsollaconfig/test",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/xsollaconfig/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2006,7 +2006,7 @@ func (a *Client) UpdateAdyenConfig(params *UpdateAdyenConfigParams, authInfo run
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateAdyenConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/payment/config/merchant/{id}/adyenconfig",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/adyenconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2046,7 +2046,7 @@ func (a *Client) UpdateAdyenConfigShort(params *UpdateAdyenConfigParams, authInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateAdyenConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/payment/config/merchant/{id}/adyenconfig",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/adyenconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2090,7 +2090,7 @@ func (a *Client) UpdateAliPayConfig(params *UpdateAliPayConfigParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateAliPayConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/payment/config/merchant/{id}/alipayconfig",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/alipayconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2130,7 +2130,7 @@ func (a *Client) UpdateAliPayConfigShort(params *UpdateAliPayConfigParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateAliPayConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/payment/config/merchant/{id}/alipayconfig",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/alipayconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2174,7 +2174,7 @@ func (a *Client) UpdateCheckoutConfig(params *UpdateCheckoutConfigParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateCheckoutConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/payment/config/merchant/{id}/checkoutconfig",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/checkoutconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2214,7 +2214,7 @@ func (a *Client) UpdateCheckoutConfigShort(params *UpdateCheckoutConfigParams, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateCheckoutConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/payment/config/merchant/{id}/checkoutconfig",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/checkoutconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2258,7 +2258,7 @@ func (a *Client) UpdatePayPalConfig(params *UpdatePayPalConfigParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updatePayPalConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/payment/config/merchant/{id}/paypalconfig",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/paypalconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2298,7 +2298,7 @@ func (a *Client) UpdatePayPalConfigShort(params *UpdatePayPalConfigParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updatePayPalConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/payment/config/merchant/{id}/paypalconfig",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/paypalconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2342,7 +2342,7 @@ func (a *Client) UpdatePaymentProviderConfig(params *UpdatePaymentProviderConfig
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updatePaymentProviderConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/payment/config/provider/{id}",
+		PathPattern:        "/platform/admin/payment/config/provider/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2391,7 +2391,7 @@ func (a *Client) UpdatePaymentProviderConfigShort(params *UpdatePaymentProviderC
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updatePaymentProviderConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/payment/config/provider/{id}",
+		PathPattern:        "/platform/admin/payment/config/provider/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2441,7 +2441,7 @@ func (a *Client) UpdatePaymentTaxConfig(params *UpdatePaymentTaxConfigParams, au
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updatePaymentTaxConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/payment/config/tax",
+		PathPattern:        "/platform/admin/payment/config/tax",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2484,7 +2484,7 @@ func (a *Client) UpdatePaymentTaxConfigShort(params *UpdatePaymentTaxConfigParam
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updatePaymentTaxConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/payment/config/tax",
+		PathPattern:        "/platform/admin/payment/config/tax",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2530,7 +2530,7 @@ func (a *Client) UpdateStripeConfig(params *UpdateStripeConfigParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateStripeConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/payment/config/merchant/{id}/stripeconfig",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/stripeconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2570,7 +2570,7 @@ func (a *Client) UpdateStripeConfigShort(params *UpdateStripeConfigParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateStripeConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/payment/config/merchant/{id}/stripeconfig",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/stripeconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2614,7 +2614,7 @@ func (a *Client) UpdateWxPayConfig(params *UpdateWxPayConfigParams, authInfo run
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateWxPayConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/payment/config/merchant/{id}/wxpayconfig",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/wxpayconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2654,7 +2654,7 @@ func (a *Client) UpdateWxPayConfigShort(params *UpdateWxPayConfigParams, authInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateWxPayConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/payment/config/merchant/{id}/wxpayconfig",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/wxpayconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2698,7 +2698,7 @@ func (a *Client) UpdateWxPayConfigCert(params *UpdateWxPayConfigCertParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateWxPayConfigCert",
 		Method:             "PUT",
-		PathPattern:        "/admin/payment/config/merchant/{id}/wxpayconfig/cert",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/wxpayconfig/cert",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
 		Schemes:            []string{"https"},
@@ -2738,7 +2738,7 @@ func (a *Client) UpdateWxPayConfigCertShort(params *UpdateWxPayConfigCertParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateWxPayConfigCert",
 		Method:             "PUT",
-		PathPattern:        "/admin/payment/config/merchant/{id}/wxpayconfig/cert",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/wxpayconfig/cert",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
 		Schemes:            []string{"https"},
@@ -2782,7 +2782,7 @@ func (a *Client) UpdateXsollaConfig(params *UpdateXsollaConfigParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateXsollaConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/payment/config/merchant/{id}/xsollaconfig",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/xsollaconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2822,7 +2822,7 @@ func (a *Client) UpdateXsollaConfigShort(params *UpdateXsollaConfigParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateXsollaConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/payment/config/merchant/{id}/xsollaconfig",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/xsollaconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2866,7 +2866,7 @@ func (a *Client) UpdateXsollaUIConfig(params *UpdateXsollaUIConfigParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateXsollaUIConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/payment/config/merchant/{id}/xsollauiconfig",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/xsollauiconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2906,7 +2906,7 @@ func (a *Client) UpdateXsollaUIConfigShort(params *UpdateXsollaUIConfigParams, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateXsollaUIConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/payment/config/merchant/{id}/xsollauiconfig",
+		PathPattern:        "/platform/admin/payment/config/merchant/{id}/xsollauiconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

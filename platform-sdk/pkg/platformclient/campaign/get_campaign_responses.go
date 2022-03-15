@@ -43,7 +43,7 @@ func (o *GetCampaignReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/campaigns/{campaignId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/campaigns/{campaignId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetCampaignOK struct {
 }
 
 func (o *GetCampaignOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/campaigns/{campaignId}][%d] getCampaignOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] getCampaignOK  %+v", 200, o.Payload)
 }
 
 func (o *GetCampaignOK) GetPayload() *platformclientmodels.CampaignInfo {
@@ -94,7 +94,7 @@ type GetCampaignNotFound struct {
 }
 
 func (o *GetCampaignNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/campaigns/{campaignId}][%d] getCampaignNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/campaigns/{campaignId}][%d] getCampaignNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetCampaignNotFound) GetPayload() *platformclientmodels.ErrorEntity {

@@ -43,7 +43,7 @@ func (o *GetDLCItemConfigReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/dlc/config/item returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/dlc/config/item returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetDLCItemConfigOK struct {
 }
 
 func (o *GetDLCItemConfigOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/dlc/config/item][%d] getDLCItemConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/dlc/config/item][%d] getDLCItemConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *GetDLCItemConfigOK) GetPayload() *platformclientmodels.DLCItemConfigInfo {
@@ -94,7 +94,7 @@ type GetDLCItemConfigNotFound struct {
 }
 
 func (o *GetDLCItemConfigNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/dlc/config/item][%d] getDLCItemConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/dlc/config/item][%d] getDLCItemConfigNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetDLCItemConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {

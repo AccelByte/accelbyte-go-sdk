@@ -49,7 +49,7 @@ func (o *CreateCampaignReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/campaigns returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/admin/namespaces/{namespace}/campaigns returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type CreateCampaignCreated struct {
 }
 
 func (o *CreateCampaignCreated) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/campaigns][%d] createCampaignCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/campaigns][%d] createCampaignCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateCampaignCreated) GetPayload() *platformclientmodels.CampaignInfo {
@@ -100,7 +100,7 @@ type CreateCampaignConflict struct {
 }
 
 func (o *CreateCampaignConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/campaigns][%d] createCampaignConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/campaigns][%d] createCampaignConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateCampaignConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type CreateCampaignUnprocessableEntity struct {
 }
 
 func (o *CreateCampaignUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/campaigns][%d] createCampaignUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/campaigns][%d] createCampaignUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateCampaignUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

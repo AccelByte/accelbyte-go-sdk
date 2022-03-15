@@ -55,7 +55,7 @@ func (o *AnonymizeUserProfileReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -72,7 +72,7 @@ type AnonymizeUserProfileNoContent struct {
 }
 
 func (o *AnonymizeUserProfileNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles][%d] anonymizeUserProfileNoContent ", 204)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles][%d] anonymizeUserProfileNoContent ", 204)
 }
 
 func (o *AnonymizeUserProfileNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -94,7 +94,7 @@ type AnonymizeUserProfileBadRequest struct {
 }
 
 func (o *AnonymizeUserProfileBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles][%d] anonymizeUserProfileBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles][%d] anonymizeUserProfileBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *AnonymizeUserProfileBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -127,7 +127,7 @@ type AnonymizeUserProfileUnauthorized struct {
 }
 
 func (o *AnonymizeUserProfileUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles][%d] anonymizeUserProfileUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles][%d] anonymizeUserProfileUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *AnonymizeUserProfileUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -160,7 +160,7 @@ type AnonymizeUserProfileForbidden struct {
 }
 
 func (o *AnonymizeUserProfileForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles][%d] anonymizeUserProfileForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/anonymization/profiles][%d] anonymizeUserProfileForbidden  %+v", 403, o.Payload)
 }
 
 func (o *AnonymizeUserProfileForbidden) GetPayload() *basicclientmodels.ErrorEntity {

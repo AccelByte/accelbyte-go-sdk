@@ -61,7 +61,7 @@ func (o *GetCountryGroupsReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /v1/admin/namespaces/{namespace}/misc/countrygroups returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type GetCountryGroupsOK struct {
 }
 
 func (o *GetCountryGroupsOK) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsOK  %+v", 200, o.Payload)
 }
 
 func (o *GetCountryGroupsOK) GetPayload() []*basicclientmodels.RetrieveCountryGroupResponse {
@@ -110,7 +110,7 @@ type GetCountryGroupsBadRequest struct {
 }
 
 func (o *GetCountryGroupsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetCountryGroupsBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -143,7 +143,7 @@ type GetCountryGroupsUnauthorized struct {
 }
 
 func (o *GetCountryGroupsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetCountryGroupsUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -176,7 +176,7 @@ type GetCountryGroupsForbidden struct {
 }
 
 func (o *GetCountryGroupsForbidden) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetCountryGroupsForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -209,7 +209,7 @@ type GetCountryGroupsNotFound struct {
 }
 
 func (o *GetCountryGroupsNotFound) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countrygroups][%d] getCountryGroupsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetCountryGroupsNotFound) GetPayload() *basicclientmodels.ErrorEntity {

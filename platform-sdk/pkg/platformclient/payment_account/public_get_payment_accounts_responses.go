@@ -37,7 +37,7 @@ func (o *PublicGetPaymentAccountsReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/users/{userId}/payment/accounts returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/users/{userId}/payment/accounts returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type PublicGetPaymentAccountsOK struct {
 }
 
 func (o *PublicGetPaymentAccountsOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/{userId}/payment/accounts][%d] publicGetPaymentAccountsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/payment/accounts][%d] publicGetPaymentAccountsOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetPaymentAccountsOK) GetPayload() []*platformclientmodels.PaymentAccount {

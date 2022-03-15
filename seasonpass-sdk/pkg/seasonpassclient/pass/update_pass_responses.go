@@ -61,7 +61,7 @@ func (o *UpdatePassReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PATCH /admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PATCH /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type UpdatePassOK struct {
 }
 
 func (o *UpdatePassOK) Error() string {
-	return fmt.Sprintf("[PATCH /admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] updatePassOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] updatePassOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdatePassOK) GetPayload() *seasonpassclientmodels.PassInfo {
@@ -112,7 +112,7 @@ type UpdatePassBadRequest struct {
 }
 
 func (o *UpdatePassBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] updatePassBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] updatePassBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdatePassBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -145,7 +145,7 @@ type UpdatePassNotFound struct {
 }
 
 func (o *UpdatePassNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] updatePassNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PATCH /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] updatePassNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdatePassNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -178,7 +178,7 @@ type UpdatePassConflict struct {
 }
 
 func (o *UpdatePassConflict) Error() string {
-	return fmt.Sprintf("[PATCH /admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] updatePassConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PATCH /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] updatePassConflict  %+v", 409, o.Payload)
 }
 
 func (o *UpdatePassConflict) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -211,7 +211,7 @@ type UpdatePassUnprocessableEntity struct {
 }
 
 func (o *UpdatePassUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PATCH /admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] updatePassUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PATCH /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] updatePassUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdatePassUnprocessableEntity) GetPayload() *seasonpassclientmodels.ValidationErrorEntity {

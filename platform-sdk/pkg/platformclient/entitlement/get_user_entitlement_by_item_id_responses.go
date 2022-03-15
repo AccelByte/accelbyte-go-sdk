@@ -43,7 +43,7 @@ func (o *GetUserEntitlementByItemIDReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/users/{userId}/entitlements/byItemId returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/byItemId returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetUserEntitlementByItemIDOK struct {
 }
 
 func (o *GetUserEntitlementByItemIDOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/entitlements/byItemId][%d] getUserEntitlementByItemIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/byItemId][%d] getUserEntitlementByItemIdOK  %+v", 200, o.Payload)
 }
 
 func (o *GetUserEntitlementByItemIDOK) GetPayload() *platformclientmodels.EntitlementInfo {
@@ -94,7 +94,7 @@ type GetUserEntitlementByItemIDNotFound struct {
 }
 
 func (o *GetUserEntitlementByItemIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/entitlements/byItemId][%d] getUserEntitlementByItemIdNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/byItemId][%d] getUserEntitlementByItemIdNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetUserEntitlementByItemIDNotFound) GetPayload() *platformclientmodels.ErrorEntity {

@@ -61,7 +61,7 @@ func (a *Client) AcquireUserTicket(params *AcquireUserTicketParams, authInfo run
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "acquireUserTicket",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -107,7 +107,7 @@ func (a *Client) AcquireUserTicketShort(params *AcquireUserTicketParams, authInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "acquireUserTicket",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -155,7 +155,7 @@ func (a *Client) DecreaseTicketSale(params *DecreaseTicketSaleParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "decreaseTicketSale",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/tickets/{boothName}/decrement",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/tickets/{boothName}/decrement",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -198,7 +198,7 @@ func (a *Client) DecreaseTicketSaleShort(params *DecreaseTicketSaleParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "decreaseTicketSale",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/tickets/{boothName}/decrement",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/tickets/{boothName}/decrement",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -244,7 +244,7 @@ func (a *Client) GetTicketBoothID(params *GetTicketBoothIDParams, authInfo runti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getTicketBoothID",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/tickets/{boothName}/id",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/tickets/{boothName}/id",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -284,7 +284,7 @@ func (a *Client) GetTicketBoothIDShort(params *GetTicketBoothIDParams, authInfo 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getTicketBoothID",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/tickets/{boothName}/id",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/tickets/{boothName}/id",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -328,7 +328,7 @@ func (a *Client) GetTicketDynamic(params *GetTicketDynamicParams, authInfo runti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getTicketDynamic",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/tickets/{boothName}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/tickets/{boothName}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -368,7 +368,7 @@ func (a *Client) GetTicketDynamicShort(params *GetTicketDynamicParams, authInfo 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getTicketDynamic",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/tickets/{boothName}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/tickets/{boothName}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -412,7 +412,7 @@ func (a *Client) IncreaseTicketSale(params *IncreaseTicketSaleParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "increaseTicketSale",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/tickets/{boothName}/increment",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/tickets/{boothName}/increment",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -455,7 +455,7 @@ func (a *Client) IncreaseTicketSaleShort(params *IncreaseTicketSaleParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "increaseTicketSale",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/tickets/{boothName}/increment",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/tickets/{boothName}/increment",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

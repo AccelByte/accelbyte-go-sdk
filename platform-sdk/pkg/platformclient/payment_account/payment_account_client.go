@@ -55,7 +55,7 @@ func (a *Client) PublicDeletePaymentAccount(params *PublicDeletePaymentAccountPa
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicDeletePaymentAccount",
 		Method:             "DELETE",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/payment/accounts/{type}/{id}",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/payment/accounts/{type}/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -92,7 +92,7 @@ func (a *Client) PublicDeletePaymentAccountShort(params *PublicDeletePaymentAcco
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicDeletePaymentAccount",
 		Method:             "DELETE",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/payment/accounts/{type}/{id}",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/payment/accounts/{type}/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -134,7 +134,7 @@ func (a *Client) PublicGetPaymentAccounts(params *PublicGetPaymentAccountsParams
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetPaymentAccounts",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/payment/accounts",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/payment/accounts",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -171,7 +171,7 @@ func (a *Client) PublicGetPaymentAccountsShort(params *PublicGetPaymentAccountsP
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetPaymentAccounts",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/payment/accounts",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/payment/accounts",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

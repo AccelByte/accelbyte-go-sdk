@@ -34,7 +34,7 @@ func (o *DeleteXblAPConfigReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /admin/namespaces/{namespace}/iap/config/xbl returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /platform/admin/namespaces/{namespace}/iap/config/xbl returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -51,7 +51,7 @@ type DeleteXblAPConfigNoContent struct {
 }
 
 func (o *DeleteXblAPConfigNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/iap/config/xbl][%d] deleteXblAPConfigNoContent ", 204)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/iap/config/xbl][%d] deleteXblAPConfigNoContent ", 204)
 }
 
 func (o *DeleteXblAPConfigNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

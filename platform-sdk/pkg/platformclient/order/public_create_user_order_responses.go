@@ -67,7 +67,7 @@ func (o *PublicCreateUserOrderReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /public/namespaces/{namespace}/users/{userId}/orders returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/public/namespaces/{namespace}/users/{userId}/orders returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -85,7 +85,7 @@ type PublicCreateUserOrderCreated struct {
 }
 
 func (o *PublicCreateUserOrderCreated) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/users/{userId}/orders][%d] publicCreateUserOrderCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/orders][%d] publicCreateUserOrderCreated  %+v", 201, o.Payload)
 }
 
 func (o *PublicCreateUserOrderCreated) GetPayload() *platformclientmodels.OrderInfo {
@@ -118,7 +118,7 @@ type PublicCreateUserOrderBadRequest struct {
 }
 
 func (o *PublicCreateUserOrderBadRequest) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/users/{userId}/orders][%d] publicCreateUserOrderBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/orders][%d] publicCreateUserOrderBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicCreateUserOrderBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -151,7 +151,7 @@ type PublicCreateUserOrderForbidden struct {
 }
 
 func (o *PublicCreateUserOrderForbidden) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/users/{userId}/orders][%d] publicCreateUserOrderForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/orders][%d] publicCreateUserOrderForbidden  %+v", 403, o.Payload)
 }
 
 func (o *PublicCreateUserOrderForbidden) GetPayload() *platformclientmodels.ErrorEntity {
@@ -184,7 +184,7 @@ type PublicCreateUserOrderNotFound struct {
 }
 
 func (o *PublicCreateUserOrderNotFound) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/users/{userId}/orders][%d] publicCreateUserOrderNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/orders][%d] publicCreateUserOrderNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicCreateUserOrderNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -217,7 +217,7 @@ type PublicCreateUserOrderConflict struct {
 }
 
 func (o *PublicCreateUserOrderConflict) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/users/{userId}/orders][%d] publicCreateUserOrderConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/orders][%d] publicCreateUserOrderConflict  %+v", 409, o.Payload)
 }
 
 func (o *PublicCreateUserOrderConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -250,7 +250,7 @@ type PublicCreateUserOrderUnprocessableEntity struct {
 }
 
 func (o *PublicCreateUserOrderUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/users/{userId}/orders][%d] publicCreateUserOrderUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/orders][%d] publicCreateUserOrderUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *PublicCreateUserOrderUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

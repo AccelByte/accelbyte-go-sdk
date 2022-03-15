@@ -49,7 +49,7 @@ func (o *PublicGetUserSeasonReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type PublicGetUserSeasonOK struct {
 }
 
 func (o *PublicGetUserSeasonOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data][%d] publicGetUserSeasonOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data][%d] publicGetUserSeasonOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetUserSeasonOK) GetPayload() *seasonpassclientmodels.ClaimableUserSeasonInfo {
@@ -100,7 +100,7 @@ type PublicGetUserSeasonBadRequest struct {
 }
 
 func (o *PublicGetUserSeasonBadRequest) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data][%d] publicGetUserSeasonBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data][%d] publicGetUserSeasonBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicGetUserSeasonBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type PublicGetUserSeasonNotFound struct {
 }
 
 func (o *PublicGetUserSeasonNotFound) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data][%d] publicGetUserSeasonNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/{seasonId}/data][%d] publicGetUserSeasonNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicGetUserSeasonNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {

@@ -37,7 +37,7 @@ func (o *BulkEnableCodesReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/codes/campaigns/{campaignId}/enable/bulk returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/enable/bulk returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type BulkEnableCodesOK struct {
 }
 
 func (o *BulkEnableCodesOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/codes/campaigns/{campaignId}/enable/bulk][%d] bulkEnableCodesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}/enable/bulk][%d] bulkEnableCodesOK  %+v", 200, o.Payload)
 }
 
 func (o *BulkEnableCodesOK) GetPayload() *platformclientmodels.BulkOperationResult {

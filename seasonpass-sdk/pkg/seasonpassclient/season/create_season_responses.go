@@ -55,7 +55,7 @@ func (o *CreateSeasonReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/seasons returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /seasonpass/admin/namespaces/{namespace}/seasons returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type CreateSeasonCreated struct {
 }
 
 func (o *CreateSeasonCreated) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/seasons][%d] createSeasonCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons][%d] createSeasonCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateSeasonCreated) GetPayload() *seasonpassclientmodels.SeasonInfo {
@@ -106,7 +106,7 @@ type CreateSeasonBadRequest struct {
 }
 
 func (o *CreateSeasonBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/seasons][%d] createSeasonBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons][%d] createSeasonBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateSeasonBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type CreateSeasonNotFound struct {
 }
 
 func (o *CreateSeasonNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/seasons][%d] createSeasonNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons][%d] createSeasonNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateSeasonNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -172,7 +172,7 @@ type CreateSeasonUnprocessableEntity struct {
 }
 
 func (o *CreateSeasonUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/seasons][%d] createSeasonUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons][%d] createSeasonUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateSeasonUnprocessableEntity) GetPayload() *seasonpassclientmodels.ValidationErrorEntity {

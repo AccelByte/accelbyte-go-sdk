@@ -37,7 +37,7 @@ func (o *PublicGetUserNamespaceSlotsReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/users/{userId}/slots returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /social/public/namespaces/{namespace}/users/{userId}/slots returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type PublicGetUserNamespaceSlotsOK struct {
 }
 
 func (o *PublicGetUserNamespaceSlotsOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/{userId}/slots][%d] publicGetUserNamespaceSlotsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/slots][%d] publicGetUserNamespaceSlotsOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetUserNamespaceSlotsOK) GetPayload() []*socialclientmodels.SlotInfo {

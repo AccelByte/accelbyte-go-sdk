@@ -37,7 +37,7 @@ func (o *GetPlayStationIAPConfigReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/iap/config/playstation returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/iap/config/playstation returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type GetPlayStationIAPConfigOK struct {
 }
 
 func (o *GetPlayStationIAPConfigOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/iap/config/playstation][%d] getPlayStationIAPConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/iap/config/playstation][%d] getPlayStationIAPConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *GetPlayStationIAPConfigOK) GetPayload() *platformclientmodels.PlayStationIAPConfigInfo {

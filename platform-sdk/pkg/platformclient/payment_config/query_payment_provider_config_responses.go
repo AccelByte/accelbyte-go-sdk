@@ -37,7 +37,7 @@ func (o *QueryPaymentProviderConfigReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/payment/config/provider returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/payment/config/provider returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type QueryPaymentProviderConfigOK struct {
 }
 
 func (o *QueryPaymentProviderConfigOK) Error() string {
-	return fmt.Sprintf("[GET /admin/payment/config/provider][%d] queryPaymentProviderConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/provider][%d] queryPaymentProviderConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *QueryPaymentProviderConfigOK) GetPayload() *platformclientmodels.PaymentProviderConfigPagingSlicedResult {

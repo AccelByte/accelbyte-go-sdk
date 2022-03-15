@@ -65,7 +65,7 @@ func (a *Client) CreateReward(params *CreateRewardParams, authInfo runtime.Clien
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createReward",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/rewards",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -114,7 +114,7 @@ func (a *Client) CreateRewardShort(params *CreateRewardParams, authInfo runtime.
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createReward",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/rewards",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -164,7 +164,7 @@ func (a *Client) DeleteReward(params *DeleteRewardParams, authInfo runtime.Clien
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteReward",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -210,7 +210,7 @@ func (a *Client) DeleteRewardShort(params *DeleteRewardParams, authInfo runtime.
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteReward",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -258,7 +258,7 @@ func (a *Client) GetReward(params *GetRewardParams, authInfo runtime.ClientAuthI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getReward",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -301,7 +301,7 @@ func (a *Client) GetRewardShort(params *GetRewardParams, authInfo runtime.Client
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getReward",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -347,7 +347,7 @@ func (a *Client) PublicBulkClaimUserRewards(params *PublicBulkClaimUserRewardsPa
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicBulkClaimUserRewards",
 		Method:             "POST",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk",
+		PathPattern:        "/seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -390,7 +390,7 @@ func (a *Client) PublicBulkClaimUserRewardsShort(params *PublicBulkClaimUserRewa
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicBulkClaimUserRewards",
 		Method:             "POST",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk",
+		PathPattern:        "/seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -436,7 +436,7 @@ func (a *Client) PublicClaimUserReward(params *PublicClaimUserRewardParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicClaimUserReward",
 		Method:             "POST",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards",
+		PathPattern:        "/seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -482,7 +482,7 @@ func (a *Client) PublicClaimUserRewardShort(params *PublicClaimUserRewardParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicClaimUserReward",
 		Method:             "POST",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards",
+		PathPattern:        "/seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -530,7 +530,7 @@ func (a *Client) QueryRewards(params *QueryRewardsParams, authInfo runtime.Clien
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryRewards",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/rewards",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -573,7 +573,7 @@ func (a *Client) QueryRewardsShort(params *QueryRewardsParams, authInfo runtime.
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryRewards",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/rewards",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -619,7 +619,7 @@ func (a *Client) UpdateReward(params *UpdateRewardParams, authInfo runtime.Clien
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateReward",
 		Method:             "PATCH",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -668,7 +668,7 @@ func (a *Client) UpdateRewardShort(params *UpdateRewardParams, authInfo runtime.
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateReward",
 		Method:             "PATCH",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

@@ -37,7 +37,7 @@ func (o *PublicQueryUserEntitlementsByAppTypeReader) ReadResponse(response runti
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/users/{userId}/entitlements/byAppType returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/users/{userId}/entitlements/byAppType returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type PublicQueryUserEntitlementsByAppTypeOK struct {
 }
 
 func (o *PublicQueryUserEntitlementsByAppTypeOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/{userId}/entitlements/byAppType][%d] publicQueryUserEntitlementsByAppTypeOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/entitlements/byAppType][%d] publicQueryUserEntitlementsByAppTypeOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicQueryUserEntitlementsByAppTypeOK) GetPayload() *platformclientmodels.AppEntitlementPagingSlicedResult {

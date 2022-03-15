@@ -43,7 +43,7 @@ func (o *ExistsAnyPassByPassCodesReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/users/{userId}/seasons/current/passes/ownership/any returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes/ownership/any returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type ExistsAnyPassByPassCodesOK struct {
 }
 
 func (o *ExistsAnyPassByPassCodesOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/seasons/current/passes/ownership/any][%d] existsAnyPassByPassCodesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes/ownership/any][%d] existsAnyPassByPassCodesOK  %+v", 200, o.Payload)
 }
 
 func (o *ExistsAnyPassByPassCodesOK) GetPayload() *seasonpassclientmodels.Ownership {
@@ -94,7 +94,7 @@ type ExistsAnyPassByPassCodesBadRequest struct {
 }
 
 func (o *ExistsAnyPassByPassCodesBadRequest) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/seasons/current/passes/ownership/any][%d] existsAnyPassByPassCodesBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes/ownership/any][%d] existsAnyPassByPassCodesBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ExistsAnyPassByPassCodesBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {

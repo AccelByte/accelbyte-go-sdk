@@ -49,7 +49,7 @@ func (o *ResetUserStatItemValueReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type ResetUserStatItemValueOK struct {
 }
 
 func (o *ResetUserStatItemValueOK) Error() string {
-	return fmt.Sprintf("[PUT /v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset][%d] resetUserStatItemValueOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset][%d] resetUserStatItemValueOK  %+v", 200, o.Payload)
 }
 
 func (o *ResetUserStatItemValueOK) GetPayload() *socialclientmodels.StatItemIncResult {
@@ -100,7 +100,7 @@ type ResetUserStatItemValueBadRequest struct {
 }
 
 func (o *ResetUserStatItemValueBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset][%d] resetUserStatItemValueBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset][%d] resetUserStatItemValueBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ResetUserStatItemValueBadRequest) GetPayload() *socialclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type ResetUserStatItemValueNotFound struct {
 }
 
 func (o *ResetUserStatItemValueNotFound) Error() string {
-	return fmt.Sprintf("[PUT /v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset][%d] resetUserStatItemValueNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset][%d] resetUserStatItemValueNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ResetUserStatItemValueNotFound) GetPayload() *socialclientmodels.ErrorEntity {

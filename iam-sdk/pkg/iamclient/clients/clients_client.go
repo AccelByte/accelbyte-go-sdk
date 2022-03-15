@@ -37,7 +37,7 @@ type ClientService interface {
 	AdminCreateClientV3Short(params *AdminCreateClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminCreateClientV3Created, error)
 	AdminDeleteClientPermissionV3(params *AdminDeleteClientPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteClientPermissionV3NoContent, *AdminDeleteClientPermissionV3BadRequest, *AdminDeleteClientPermissionV3Unauthorized, *AdminDeleteClientPermissionV3Forbidden, *AdminDeleteClientPermissionV3NotFound, error)
 	AdminDeleteClientPermissionV3Short(params *AdminDeleteClientPermissionV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteClientPermissionV3NoContent, error)
-	AdminDeleteClientV3(params *AdminDeleteClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteClientV3NoContent, *AdminDeleteClientV3BadRequest, *AdminDeleteClientV3Unauthorized, *AdminDeleteClientV3Forbidden, *AdminDeleteClientV3NotFound, error)
+	AdminDeleteClientV3(params *AdminDeleteClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteClientV3NoContent, *AdminDeleteClientV3BadRequest, *AdminDeleteClientV3Unauthorized, *AdminDeleteClientV3Forbidden, *AdminDeleteClientV3NotFound, *AdminDeleteClientV3Conflict, error)
 	AdminDeleteClientV3Short(params *AdminDeleteClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteClientV3NoContent, error)
 	AdminGetClientsByNamespaceV3(params *AdminGetClientsByNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetClientsByNamespaceV3OK, *AdminGetClientsByNamespaceV3BadRequest, *AdminGetClientsByNamespaceV3Unauthorized, *AdminGetClientsByNamespaceV3Forbidden, error)
 	AdminGetClientsByNamespaceV3Short(params *AdminGetClientsByNamespaceV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetClientsByNamespaceV3OK, error)
@@ -295,6 +295,7 @@ func (a *Client) AdminAddClientPermissionsV3Short(params *AdminAddClientPermissi
 		&lt;li&gt;&lt;strong&gt;audiences&lt;/strong&gt; : List of target client IDs who is intended to receive the token. e.g [&#34;eaaa65618fe24293b00a61454182b435&#34;, &#34;40073ee9bc3446d3a051a71b48509a5d&#34;]&lt;/li&gt;
 		&lt;li&gt;&lt;strong&gt;baseUri&lt;/strong&gt; : A base URI of the application. It is used for making sure the token is intended to be used by the client. e.g https://example.net/platform&lt;/li&gt;
 		&lt;li&gt;&lt;strong&gt;clientPermissions&lt;/strong&gt; : Contains the client&#39;s permissions&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;deletable&lt;/strong&gt; : The flag to identify whether client is deletable (optional). default value: true&lt;/li&gt;
 		&lt;/ul&gt;
 		&lt;/p&gt;
 
@@ -497,7 +498,7 @@ func (a *Client) AdminDeleteClientPermissionV3Short(params *AdminDeleteClientPer
 
   Required permission &#39;ADMIN:NAMESPACE:{namespace}:CLIENT [DELETE]&#39;&lt;br&gt;action code : 10310
 */
-func (a *Client) AdminDeleteClientV3(params *AdminDeleteClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteClientV3NoContent, *AdminDeleteClientV3BadRequest, *AdminDeleteClientV3Unauthorized, *AdminDeleteClientV3Forbidden, *AdminDeleteClientV3NotFound, error) {
+func (a *Client) AdminDeleteClientV3(params *AdminDeleteClientV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeleteClientV3NoContent, *AdminDeleteClientV3BadRequest, *AdminDeleteClientV3Unauthorized, *AdminDeleteClientV3Forbidden, *AdminDeleteClientV3NotFound, *AdminDeleteClientV3Conflict, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminDeleteClientV3Params()
@@ -521,28 +522,31 @@ func (a *Client) AdminDeleteClientV3(params *AdminDeleteClientV3Params, authInfo
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminDeleteClientV3NoContent:
-		return v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil, nil
 
 	case *AdminDeleteClientV3BadRequest:
-		return nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil, nil, nil
 
 	case *AdminDeleteClientV3Unauthorized:
-		return nil, nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil, nil
 
 	case *AdminDeleteClientV3Forbidden:
-		return nil, nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil, nil
 
 	case *AdminDeleteClientV3NotFound:
-		return nil, nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminDeleteClientV3Conflict:
+		return nil, nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -584,6 +588,8 @@ func (a *Client) AdminDeleteClientV3Short(params *AdminDeleteClientV3Params, aut
 	case *AdminDeleteClientV3Forbidden:
 		return nil, v
 	case *AdminDeleteClientV3NotFound:
+		return nil, v
+	case *AdminDeleteClientV3Conflict:
 		return nil, v
 
 	default:
@@ -901,6 +907,7 @@ func (a *Client) AdminUpdateClientPermissionV3Short(params *AdminUpdateClientPer
 		&lt;li&gt;&lt;strong&gt;audiences&lt;/strong&gt; : List of target client IDs who is intended to receive the token. e.g [&#34;eaaa65618fe24293b00a61454182b435&#34;, &#34;40073ee9bc3446d3a051a71b48509a5d&#34;]&lt;/li&gt;
 		&lt;li&gt;&lt;strong&gt;baseUri&lt;/strong&gt; : A base URI of the application. It is used in the audience checking for making sure the token is used by the right resource server. Required if the application type is a server. e.g https://example.net/platform&lt;/li&gt;
 		&lt;li&gt;&lt;strong&gt;clientPermissions&lt;/strong&gt; : Contains the client&#39;s permissions&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;deletable&lt;/strong&gt; : The flag to identify whether client is deletable (optional). e.g. true&lt;/li&gt;
 		&lt;/ul&gt;
 		&lt;/p&gt;
 */

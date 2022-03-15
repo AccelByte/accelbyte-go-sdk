@@ -37,7 +37,7 @@ func (o *GetAppReader) ReadResponse(response runtime.ClientResponse, consumer ru
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/items/{itemId}/app returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/items/{itemId}/app returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type GetAppOK struct {
 }
 
 func (o *GetAppOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/items/{itemId}/app][%d] getAppOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/{itemId}/app][%d] getAppOK  %+v", 200, o.Payload)
 }
 
 func (o *GetAppOK) GetPayload() *platformclientmodels.FullAppInfo {

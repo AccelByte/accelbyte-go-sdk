@@ -39,6 +39,7 @@ type UserProfileAdmin struct {
 	FirstName string `json:"firstName,omitempty"`
 
 	// language value from language tag, allowed format: en, en-US
+	// Pattern: ^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$
 	Language string `json:"language,omitempty"`
 
 	// last name
@@ -63,6 +64,10 @@ func (m *UserProfileAdmin) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateLanguage(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateStatus(formats); err != nil {
 		res = append(res, err)
 	}
@@ -80,6 +85,19 @@ func (m *UserProfileAdmin) validateDateOfBirth(formats strfmt.Registry) error {
 	}
 
 	if err := validate.FormatOf("dateOfBirth", "body", "date", m.DateOfBirth.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *UserProfileAdmin) validateLanguage(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Language) { // not required
+		return nil
+	}
+
+	if err := validate.Pattern("language", "body", string(m.Language), `^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$`); err != nil {
 		return err
 	}
 

@@ -49,7 +49,7 @@ func (o *PublicBulkClaimUserRewardsReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type PublicBulkClaimUserRewardsOK struct {
 }
 
 func (o *PublicBulkClaimUserRewardsOK) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk][%d] publicBulkClaimUserRewardsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk][%d] publicBulkClaimUserRewardsOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicBulkClaimUserRewardsOK) GetPayload() *seasonpassclientmodels.ClaimableRewards {
@@ -100,7 +100,7 @@ type PublicBulkClaimUserRewardsBadRequest struct {
 }
 
 func (o *PublicBulkClaimUserRewardsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk][%d] publicBulkClaimUserRewardsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk][%d] publicBulkClaimUserRewardsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicBulkClaimUserRewardsBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type PublicBulkClaimUserRewardsNotFound struct {
 }
 
 func (o *PublicBulkClaimUserRewardsNotFound) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk][%d] publicBulkClaimUserRewardsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards/bulk][%d] publicBulkClaimUserRewardsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicBulkClaimUserRewardsNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {

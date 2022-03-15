@@ -37,7 +37,7 @@ func (o *UpdateUserSlotConfigReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/users/{userId}/config returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /social/admin/namespaces/{namespace}/users/{userId}/config returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type UpdateUserSlotConfigOK struct {
 }
 
 func (o *UpdateUserSlotConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/config][%d] updateUserSlotConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /social/admin/namespaces/{namespace}/users/{userId}/config][%d] updateUserSlotConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateUserSlotConfigOK) GetPayload() *socialclientmodels.UserSlotConfigInfo {

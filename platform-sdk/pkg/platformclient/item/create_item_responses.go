@@ -61,7 +61,7 @@ func (o *CreateItemReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/items returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/admin/namespaces/{namespace}/items returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type CreateItemCreated struct {
 }
 
 func (o *CreateItemCreated) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/items][%d] createItemCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items][%d] createItemCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateItemCreated) GetPayload() *platformclientmodels.FullItemInfo {
@@ -112,7 +112,7 @@ type CreateItemBadRequest struct {
 }
 
 func (o *CreateItemBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/items][%d] createItemBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items][%d] createItemBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateItemBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -145,7 +145,7 @@ type CreateItemNotFound struct {
 }
 
 func (o *CreateItemNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/items][%d] createItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items][%d] createItemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -178,7 +178,7 @@ type CreateItemConflict struct {
 }
 
 func (o *CreateItemConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/items][%d] createItemConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items][%d] createItemConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateItemConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -211,7 +211,7 @@ type CreateItemUnprocessableEntity struct {
 }
 
 func (o *CreateItemUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/items][%d] createItemUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/items][%d] createItemUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateItemUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

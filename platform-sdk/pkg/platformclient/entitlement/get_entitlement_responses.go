@@ -43,7 +43,7 @@ func (o *GetEntitlementReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/entitlements/{entitlementId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/entitlements/{entitlementId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetEntitlementOK struct {
 }
 
 func (o *GetEntitlementOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/entitlements/{entitlementId}][%d] getEntitlementOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/entitlements/{entitlementId}][%d] getEntitlementOK  %+v", 200, o.Payload)
 }
 
 func (o *GetEntitlementOK) GetPayload() *platformclientmodels.EntitlementInfo {
@@ -94,7 +94,7 @@ type GetEntitlementNotFound struct {
 }
 
 func (o *GetEntitlementNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/entitlements/{entitlementId}][%d] getEntitlementNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/entitlements/{entitlementId}][%d] getEntitlementNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetEntitlementNotFound) GetPayload() *platformclientmodels.ErrorEntity {

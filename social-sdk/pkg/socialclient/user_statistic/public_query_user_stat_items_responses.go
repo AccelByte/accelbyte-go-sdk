@@ -37,7 +37,7 @@ func (o *PublicQueryUserStatItemsReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /v1/public/namespaces/{namespace}/users/{userId}/statitems returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /social/v1/public/namespaces/{namespace}/users/{userId}/statitems returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type PublicQueryUserStatItemsOK struct {
 }
 
 func (o *PublicQueryUserStatItemsOK) Error() string {
-	return fmt.Sprintf("[GET /v1/public/namespaces/{namespace}/users/{userId}/statitems][%d] publicQueryUserStatItemsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/users/{userId}/statitems][%d] publicQueryUserStatItemsOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicQueryUserStatItemsOK) GetPayload() *socialclientmodels.UserStatItemPagingSlicedResult {

@@ -43,7 +43,7 @@ func (o *BulkIncUserStatItemValue2Reader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PATCH /v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PATCH /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type BulkIncUserStatItemValue2OK struct {
 }
 
 func (o *BulkIncUserStatItemValue2OK) Error() string {
-	return fmt.Sprintf("[PATCH /v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] bulkIncUserStatItemValue2OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] bulkIncUserStatItemValue2OK  %+v", 200, o.Payload)
 }
 
 func (o *BulkIncUserStatItemValue2OK) GetPayload() []*socialclientmodels.BulkStatItemOperationResult {
@@ -92,7 +92,7 @@ type BulkIncUserStatItemValue2UnprocessableEntity struct {
 }
 
 func (o *BulkIncUserStatItemValue2UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PATCH /v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] bulkIncUserStatItemValue2UnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PATCH /social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk][%d] bulkIncUserStatItemValue2UnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *BulkIncUserStatItemValue2UnprocessableEntity) GetPayload() *socialclientmodels.ValidationErrorEntity {

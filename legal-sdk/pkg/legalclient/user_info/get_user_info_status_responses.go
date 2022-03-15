@@ -37,7 +37,7 @@ func (o *GetUserInfoStatusReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/userInfo returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /agreement/admin/userInfo returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type GetUserInfoStatusOK struct {
 }
 
 func (o *GetUserInfoStatusOK) Error() string {
-	return fmt.Sprintf("[GET /admin/userInfo][%d] getUserInfoStatusOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /agreement/admin/userInfo][%d] getUserInfoStatusOK  %+v", 200, o.Payload)
 }
 
 func (o *GetUserInfoStatusOK) GetPayload() []*legalclientmodels.RetrieveUserInfoCacheStatusResponse {

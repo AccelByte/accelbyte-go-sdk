@@ -49,7 +49,7 @@ func (o *DeleteCategoryReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /admin/namespaces/{namespace}/categories/{categoryPath} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /platform/admin/namespaces/{namespace}/categories/{categoryPath} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type DeleteCategoryOK struct {
 }
 
 func (o *DeleteCategoryOK) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/categories/{categoryPath}][%d] deleteCategoryOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] deleteCategoryOK  %+v", 200, o.Payload)
 }
 
 func (o *DeleteCategoryOK) GetPayload() *platformclientmodels.FullCategoryInfo {
@@ -100,7 +100,7 @@ type DeleteCategoryNotFound struct {
 }
 
 func (o *DeleteCategoryNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/categories/{categoryPath}][%d] deleteCategoryNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] deleteCategoryNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteCategoryNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type DeleteCategoryConflict struct {
 }
 
 func (o *DeleteCategoryConflict) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/categories/{categoryPath}][%d] deleteCategoryConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] deleteCategoryConflict  %+v", 409, o.Payload)
 }
 
 func (o *DeleteCategoryConflict) GetPayload() *platformclientmodels.ErrorEntity {

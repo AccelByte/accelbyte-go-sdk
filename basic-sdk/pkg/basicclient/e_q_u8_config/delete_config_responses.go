@@ -34,7 +34,7 @@ func (o *DeleteConfigReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /v1/admin/namespaces/{namespace}/equ8/config returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /basic/v1/admin/namespaces/{namespace}/equ8/config returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -51,7 +51,7 @@ type DeleteConfigNoContent struct {
 }
 
 func (o *DeleteConfigNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}/equ8/config][%d] deleteConfigNoContent ", 204)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/equ8/config][%d] deleteConfigNoContent ", 204)
 }
 
 func (o *DeleteConfigNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

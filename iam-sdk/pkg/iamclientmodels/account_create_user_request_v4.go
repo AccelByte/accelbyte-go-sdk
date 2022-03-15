@@ -26,13 +26,16 @@ type AccountCreateUserRequestV4 struct {
 	// Required: true
 	AuthType *string `json:"authType"`
 
+	// code
+	// Required: true
+	Code *string `json:"code"`
+
 	// country
 	// Required: true
 	Country *string `json:"country"`
 
 	// date of birth
-	// Required: true
-	DateOfBirth *string `json:"dateOfBirth"`
+	DateOfBirth string `json:"dateOfBirth,omitempty"`
 
 	// display name
 	// Required: true
@@ -49,6 +52,10 @@ type AccountCreateUserRequestV4 struct {
 	// password m d5 sum
 	// Required: true
 	PasswordMD5Sum *string `json:"passwordMD5Sum"`
+
+	// reach minimum age
+	// Required: true
+	ReachMinimumAge *bool `json:"reachMinimumAge"`
 
 	// username
 	// Required: true
@@ -67,11 +74,11 @@ func (m *AccountCreateUserRequestV4) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateCountry(formats); err != nil {
+	if err := m.validateCode(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateDateOfBirth(formats); err != nil {
+	if err := m.validateCountry(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -88,6 +95,10 @@ func (m *AccountCreateUserRequestV4) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePasswordMD5Sum(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateReachMinimumAge(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -135,18 +146,18 @@ func (m *AccountCreateUserRequestV4) validateAuthType(formats strfmt.Registry) e
 	return nil
 }
 
-func (m *AccountCreateUserRequestV4) validateCountry(formats strfmt.Registry) error {
+func (m *AccountCreateUserRequestV4) validateCode(formats strfmt.Registry) error {
 
-	if err := validate.Required("country", "body", m.Country); err != nil {
+	if err := validate.Required("code", "body", m.Code); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *AccountCreateUserRequestV4) validateDateOfBirth(formats strfmt.Registry) error {
+func (m *AccountCreateUserRequestV4) validateCountry(formats strfmt.Registry) error {
 
-	if err := validate.Required("dateOfBirth", "body", m.DateOfBirth); err != nil {
+	if err := validate.Required("country", "body", m.Country); err != nil {
 		return err
 	}
 
@@ -183,6 +194,15 @@ func (m *AccountCreateUserRequestV4) validatePassword(formats strfmt.Registry) e
 func (m *AccountCreateUserRequestV4) validatePasswordMD5Sum(formats strfmt.Registry) error {
 
 	if err := validate.Required("passwordMD5Sum", "body", m.PasswordMD5Sum); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AccountCreateUserRequestV4) validateReachMinimumAge(formats strfmt.Registry) error {
+
+	if err := validate.Required("reachMinimumAge", "body", m.ReachMinimumAge); err != nil {
 		return err
 	}
 

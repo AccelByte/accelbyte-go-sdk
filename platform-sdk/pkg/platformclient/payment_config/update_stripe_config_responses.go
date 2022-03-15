@@ -43,7 +43,7 @@ func (o *UpdateStripeConfigReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/payment/config/merchant/{id}/stripeconfig returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/payment/config/merchant/{id}/stripeconfig returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type UpdateStripeConfigOK struct {
 }
 
 func (o *UpdateStripeConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/payment/config/merchant/{id}/stripeconfig][%d] updateStripeConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/stripeconfig][%d] updateStripeConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateStripeConfigOK) GetPayload() *platformclientmodels.PaymentMerchantConfigInfo {
@@ -94,7 +94,7 @@ type UpdateStripeConfigNotFound struct {
 }
 
 func (o *UpdateStripeConfigNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/payment/config/merchant/{id}/stripeconfig][%d] updateStripeConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/stripeconfig][%d] updateStripeConfigNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateStripeConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {

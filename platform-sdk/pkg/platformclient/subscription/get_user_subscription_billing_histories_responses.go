@@ -37,7 +37,7 @@ func (o *GetUserSubscriptionBillingHistoriesReader) ReadResponse(response runtim
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/history returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/history returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type GetUserSubscriptionBillingHistoriesOK struct {
 }
 
 func (o *GetUserSubscriptionBillingHistoriesOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/history][%d] getUserSubscriptionBillingHistoriesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/history][%d] getUserSubscriptionBillingHistoriesOK  %+v", 200, o.Payload)
 }
 
 func (o *GetUserSubscriptionBillingHistoriesOK) GetPayload() *platformclientmodels.BillingHistoryPagingSlicedResult {

@@ -23,7 +23,7 @@ type OrderSummary struct {
 	Ext map[string]interface{} `json:"ext,omitempty"`
 
 	// free
-	Free bool `json:"free,omitempty"`
+	Free bool `json:"free"`
 }
 
 // Validate validates this order summary

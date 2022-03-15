@@ -43,7 +43,7 @@ func (o *UpdatePlatformDLCConfigReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/dlc/config/platformMap returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/dlc/config/platformMap returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type UpdatePlatformDLCConfigOK struct {
 }
 
 func (o *UpdatePlatformDLCConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/dlc/config/platformMap][%d] updatePlatformDLCConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/dlc/config/platformMap][%d] updatePlatformDLCConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdatePlatformDLCConfigOK) GetPayload() *platformclientmodels.PlatformDLCConfigInfo {
@@ -94,7 +94,7 @@ type UpdatePlatformDLCConfigUnprocessableEntity struct {
 }
 
 func (o *UpdatePlatformDLCConfigUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/dlc/config/platformMap][%d] updatePlatformDLCConfigUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/dlc/config/platformMap][%d] updatePlatformDLCConfigUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdatePlatformDLCConfigUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

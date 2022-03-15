@@ -43,7 +43,7 @@ func (o *TestAliPayConfigByIDReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/payment/config/merchant/{id}/alipayconfig/test returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/payment/config/merchant/{id}/alipayconfig/test returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type TestAliPayConfigByIDOK struct {
 }
 
 func (o *TestAliPayConfigByIDOK) Error() string {
-	return fmt.Sprintf("[GET /admin/payment/config/merchant/{id}/alipayconfig/test][%d] testAliPayConfigByIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/alipayconfig/test][%d] testAliPayConfigByIdOK  %+v", 200, o.Payload)
 }
 
 func (o *TestAliPayConfigByIDOK) GetPayload() *platformclientmodels.TestResult {
@@ -94,7 +94,7 @@ type TestAliPayConfigByIDNotFound struct {
 }
 
 func (o *TestAliPayConfigByIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/payment/config/merchant/{id}/alipayconfig/test][%d] testAliPayConfigByIdNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/alipayconfig/test][%d] testAliPayConfigByIdNotFound  %+v", 404, o.Payload)
 }
 
 func (o *TestAliPayConfigByIDNotFound) GetPayload() *platformclientmodels.ErrorEntity {

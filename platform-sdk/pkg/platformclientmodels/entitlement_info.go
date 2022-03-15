@@ -84,7 +84,7 @@ type EntitlementInfo struct {
 	Source *string `json:"source"`
 
 	// Whether the CONSUMABLE entitlement is stackable
-	Stackable bool `json:"stackable,omitempty"`
+	Stackable bool `json:"stackable"`
 
 	// entitlement start date
 	// Format: date-time

@@ -63,7 +63,7 @@ func (a *Client) CreatePass(params *CreatePassParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createPass",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/passes",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -112,7 +112,7 @@ func (a *Client) CreatePassShort(params *CreatePassParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createPass",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/passes",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -162,7 +162,7 @@ func (a *Client) DeletePass(params *DeletePassParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deletePass",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -208,7 +208,7 @@ func (a *Client) DeletePassShort(params *DeletePassParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deletePass",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -256,7 +256,7 @@ func (a *Client) GetPass(params *GetPassParams, authInfo runtime.ClientAuthInfoW
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPass",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -299,7 +299,7 @@ func (a *Client) GetPassShort(params *GetPassParams, authInfo runtime.ClientAuth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPass",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -345,7 +345,7 @@ func (a *Client) GrantUserPass(params *GrantUserPassParams, authInfo runtime.Cli
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "grantUserPass",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -385,7 +385,7 @@ func (a *Client) GrantUserPassShort(params *GrantUserPassParams, authInfo runtim
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "grantUserPass",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -429,7 +429,7 @@ func (a *Client) QueryPasses(params *QueryPassesParams, authInfo runtime.ClientA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryPasses",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/passes",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -472,7 +472,7 @@ func (a *Client) QueryPassesShort(params *QueryPassesParams, authInfo runtime.Cl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryPasses",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/passes",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -518,7 +518,7 @@ func (a *Client) UpdatePass(params *UpdatePassParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updatePass",
 		Method:             "PATCH",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -567,7 +567,7 @@ func (a *Client) UpdatePassShort(params *UpdatePassParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updatePass",
 		Method:             "PATCH",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

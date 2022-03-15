@@ -37,7 +37,7 @@ func (o *PublicListCurrenciesReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/currencies returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/currencies returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type PublicListCurrenciesOK struct {
 }
 
 func (o *PublicListCurrenciesOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/currencies][%d] publicListCurrenciesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/currencies][%d] publicListCurrenciesOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicListCurrenciesOK) GetPayload() []*platformclientmodels.CurrencyInfo {

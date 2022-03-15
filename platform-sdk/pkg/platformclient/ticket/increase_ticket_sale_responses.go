@@ -49,7 +49,7 @@ func (o *IncreaseTicketSaleReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/tickets/{boothName}/increment returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/tickets/{boothName}/increment returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type IncreaseTicketSaleOK struct {
 }
 
 func (o *IncreaseTicketSaleOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/tickets/{boothName}/increment][%d] increaseTicketSaleOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/tickets/{boothName}/increment][%d] increaseTicketSaleOK  %+v", 200, o.Payload)
 }
 
 func (o *IncreaseTicketSaleOK) GetPayload() *platformclientmodels.TicketSaleIncrementResult {
@@ -100,7 +100,7 @@ type IncreaseTicketSaleNotFound struct {
 }
 
 func (o *IncreaseTicketSaleNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/tickets/{boothName}/increment][%d] increaseTicketSaleNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/tickets/{boothName}/increment][%d] increaseTicketSaleNotFound  %+v", 404, o.Payload)
 }
 
 func (o *IncreaseTicketSaleNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type IncreaseTicketSaleUnprocessableEntity struct {
 }
 
 func (o *IncreaseTicketSaleUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/tickets/{boothName}/increment][%d] increaseTicketSaleUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/tickets/{boothName}/increment][%d] increaseTicketSaleUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *IncreaseTicketSaleUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

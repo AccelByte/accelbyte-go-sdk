@@ -61,7 +61,7 @@ func (a *Client) FulfillItem(params *FulfillItemParams, authInfo runtime.ClientA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "fulfillItem",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/fulfillment",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/fulfillment",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -107,7 +107,7 @@ func (a *Client) FulfillItemShort(params *FulfillItemParams, authInfo runtime.Cl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "fulfillItem",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/fulfillment",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/fulfillment",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -155,7 +155,7 @@ func (a *Client) FulfillRewards(params *FulfillRewardsParams, authInfo runtime.C
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "fulfillRewards",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -201,7 +201,7 @@ func (a *Client) FulfillRewardsShort(params *FulfillRewardsParams, authInfo runt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "fulfillRewards",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -249,7 +249,7 @@ func (a *Client) PublicRedeemCode(params *PublicRedeemCodeParams, authInfo runti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicRedeemCode",
 		Method:             "POST",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/fulfillment/code",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/fulfillment/code",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -295,7 +295,7 @@ func (a *Client) PublicRedeemCodeShort(params *PublicRedeemCodeParams, authInfo 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicRedeemCode",
 		Method:             "POST",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/fulfillment/code",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/fulfillment/code",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -343,7 +343,7 @@ func (a *Client) QueryFulfillmentHistories(params *QueryFulfillmentHistoriesPara
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryFulfillmentHistories",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/fulfillment/history",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/fulfillment/history",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -380,7 +380,7 @@ func (a *Client) QueryFulfillmentHistoriesShort(params *QueryFulfillmentHistorie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryFulfillmentHistories",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/fulfillment/history",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/fulfillment/history",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -422,7 +422,7 @@ func (a *Client) RedeemCode(params *RedeemCodeParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "redeemCode",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/fulfillment/code",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/code",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -468,7 +468,7 @@ func (a *Client) RedeemCodeShort(params *RedeemCodeParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "redeemCode",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/fulfillment/code",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/code",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

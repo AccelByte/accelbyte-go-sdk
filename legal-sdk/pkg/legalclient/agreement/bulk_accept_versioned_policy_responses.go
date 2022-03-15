@@ -37,7 +37,7 @@ func (o *BulkAcceptVersionedPolicyReader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /public/agreements/policies returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /agreement/public/agreements/policies returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type BulkAcceptVersionedPolicyCreated struct {
 }
 
 func (o *BulkAcceptVersionedPolicyCreated) Error() string {
-	return fmt.Sprintf("[POST /public/agreements/policies][%d] bulkAcceptVersionedPolicyCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /agreement/public/agreements/policies][%d] bulkAcceptVersionedPolicyCreated  %+v", 201, o.Payload)
 }
 
 func (o *BulkAcceptVersionedPolicyCreated) GetPayload() *legalclientmodels.AcceptAgreementResponse {

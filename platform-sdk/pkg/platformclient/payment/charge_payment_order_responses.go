@@ -55,7 +55,7 @@ func (o *ChargePaymentOrderReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/payment/orders/{paymentOrderNo} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type ChargePaymentOrderOK struct {
 }
 
 func (o *ChargePaymentOrderOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] chargePaymentOrderOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] chargePaymentOrderOK  %+v", 200, o.Payload)
 }
 
 func (o *ChargePaymentOrderOK) GetPayload() *platformclientmodels.PaymentOrderInfo {
@@ -106,7 +106,7 @@ type ChargePaymentOrderBadRequest struct {
 }
 
 func (o *ChargePaymentOrderBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] chargePaymentOrderBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] chargePaymentOrderBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ChargePaymentOrderBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type ChargePaymentOrderNotFound struct {
 }
 
 func (o *ChargePaymentOrderNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] chargePaymentOrderNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] chargePaymentOrderNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ChargePaymentOrderNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -172,7 +172,7 @@ type ChargePaymentOrderConflict struct {
 }
 
 func (o *ChargePaymentOrderConflict) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] chargePaymentOrderConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] chargePaymentOrderConflict  %+v", 409, o.Payload)
 }
 
 func (o *ChargePaymentOrderConflict) GetPayload() *platformclientmodels.ErrorEntity {

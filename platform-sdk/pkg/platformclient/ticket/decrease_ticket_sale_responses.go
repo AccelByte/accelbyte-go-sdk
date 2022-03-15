@@ -49,7 +49,7 @@ func (o *DecreaseTicketSaleReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/tickets/{boothName}/decrement returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/tickets/{boothName}/decrement returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -66,7 +66,7 @@ type DecreaseTicketSaleNoContent struct {
 }
 
 func (o *DecreaseTicketSaleNoContent) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/tickets/{boothName}/decrement][%d] decreaseTicketSaleNoContent ", 204)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/tickets/{boothName}/decrement][%d] decreaseTicketSaleNoContent ", 204)
 }
 
 func (o *DecreaseTicketSaleNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -88,7 +88,7 @@ type DecreaseTicketSaleNotFound struct {
 }
 
 func (o *DecreaseTicketSaleNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/tickets/{boothName}/decrement][%d] decreaseTicketSaleNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/tickets/{boothName}/decrement][%d] decreaseTicketSaleNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DecreaseTicketSaleNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -121,7 +121,7 @@ type DecreaseTicketSaleUnprocessableEntity struct {
 }
 
 func (o *DecreaseTicketSaleUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/tickets/{boothName}/decrement][%d] decreaseTicketSaleUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/tickets/{boothName}/decrement][%d] decreaseTicketSaleUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *DecreaseTicketSaleUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

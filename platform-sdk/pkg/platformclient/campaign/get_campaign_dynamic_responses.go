@@ -43,7 +43,7 @@ func (o *GetCampaignDynamicReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/campaigns/{campaignId}/dynamic returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/campaigns/{campaignId}/dynamic returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetCampaignDynamicOK struct {
 }
 
 func (o *GetCampaignDynamicOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/campaigns/{campaignId}/dynamic][%d] getCampaignDynamicOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/campaigns/{campaignId}/dynamic][%d] getCampaignDynamicOK  %+v", 200, o.Payload)
 }
 
 func (o *GetCampaignDynamicOK) GetPayload() *platformclientmodels.CampaignDynamicInfo {
@@ -94,7 +94,7 @@ type GetCampaignDynamicNotFound struct {
 }
 
 func (o *GetCampaignDynamicNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/campaigns/{campaignId}/dynamic][%d] getCampaignDynamicNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/campaigns/{campaignId}/dynamic][%d] getCampaignDynamicNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetCampaignDynamicNotFound) GetPayload() *platformclientmodels.ErrorEntity {

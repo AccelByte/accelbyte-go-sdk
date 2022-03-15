@@ -49,7 +49,7 @@ func (o *QueryPassesReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/seasons/{seasonId}/passes returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type QueryPassesOK struct {
 }
 
 func (o *QueryPassesOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/seasons/{seasonId}/passes][%d] queryPassesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes][%d] queryPassesOK  %+v", 200, o.Payload)
 }
 
 func (o *QueryPassesOK) GetPayload() []*seasonpassclientmodels.PassInfo {
@@ -98,7 +98,7 @@ type QueryPassesBadRequest struct {
 }
 
 func (o *QueryPassesBadRequest) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/seasons/{seasonId}/passes][%d] queryPassesBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes][%d] queryPassesBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *QueryPassesBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -131,7 +131,7 @@ type QueryPassesNotFound struct {
 }
 
 func (o *QueryPassesNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/seasons/{seasonId}/passes][%d] queryPassesNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes][%d] queryPassesNotFound  %+v", 404, o.Payload)
 }
 
 func (o *QueryPassesNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {

@@ -43,7 +43,7 @@ func (o *GetItemReader) ReadResponse(response runtime.ClientResponse, consumer r
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/items/{itemId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/items/{itemId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetItemOK struct {
 }
 
 func (o *GetItemOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/items/{itemId}][%d] getItemOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/{itemId}][%d] getItemOK  %+v", 200, o.Payload)
 }
 
 func (o *GetItemOK) GetPayload() *platformclientmodels.FullItemInfo {
@@ -94,7 +94,7 @@ type GetItemNotFound struct {
 }
 
 func (o *GetItemNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/items/{itemId}][%d] getItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/{itemId}][%d] getItemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {

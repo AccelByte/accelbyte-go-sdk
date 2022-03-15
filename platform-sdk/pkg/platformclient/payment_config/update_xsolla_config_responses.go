@@ -43,7 +43,7 @@ func (o *UpdateXsollaConfigReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/payment/config/merchant/{id}/xsollaconfig returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/payment/config/merchant/{id}/xsollaconfig returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type UpdateXsollaConfigOK struct {
 }
 
 func (o *UpdateXsollaConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/payment/config/merchant/{id}/xsollaconfig][%d] updateXsollaConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/xsollaconfig][%d] updateXsollaConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateXsollaConfigOK) GetPayload() *platformclientmodels.PaymentMerchantConfigInfo {
@@ -94,7 +94,7 @@ type UpdateXsollaConfigNotFound struct {
 }
 
 func (o *UpdateXsollaConfigNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/payment/config/merchant/{id}/xsollaconfig][%d] updateXsollaConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/xsollaconfig][%d] updateXsollaConfigNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateXsollaConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {

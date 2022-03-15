@@ -34,7 +34,7 @@ type ModelsChannelRequest struct {
 	GameMode string `json:"game_mode"`
 
 	// joinable
-	Joinable *bool `json:"joinable,omitempty"`
+	Joinable *bool `json:"joinable"`
 
 	// max delay ms
 	// Required: true
@@ -49,10 +49,10 @@ type ModelsChannelRequest struct {
 	SessionQueueTimeoutSeconds int32 `json:"session_queue_timeout_seconds"`
 
 	// social matchmaking
-	SocialMatchmaking *bool `json:"social_matchmaking,omitempty"`
+	SocialMatchmaking *bool `json:"social_matchmaking"`
 
 	// use sub gamemode
-	UseSubGamemode *bool `json:"use_sub_gamemode,omitempty"`
+	UseSubGamemode *bool `json:"use_sub_gamemode"`
 }
 
 // Validate validates this models channel request

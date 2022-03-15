@@ -49,7 +49,7 @@ func (o *PublicConsumeUserEntitlementReader) ReadResponse(response runtime.Clien
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type PublicConsumeUserEntitlementOK struct {
 }
 
 func (o *PublicConsumeUserEntitlementOK) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] publicConsumeUserEntitlementOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] publicConsumeUserEntitlementOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicConsumeUserEntitlementOK) GetPayload() *platformclientmodels.EntitlementInfo {
@@ -100,7 +100,7 @@ type PublicConsumeUserEntitlementNotFound struct {
 }
 
 func (o *PublicConsumeUserEntitlementNotFound) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] publicConsumeUserEntitlementNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] publicConsumeUserEntitlementNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicConsumeUserEntitlementNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type PublicConsumeUserEntitlementConflict struct {
 }
 
 func (o *PublicConsumeUserEntitlementConflict) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] publicConsumeUserEntitlementConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement][%d] publicConsumeUserEntitlementConflict  %+v", 409, o.Payload)
 }
 
 func (o *PublicConsumeUserEntitlementConflict) GetPayload() *platformclientmodels.ErrorEntity {

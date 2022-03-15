@@ -61,7 +61,7 @@ func (o *UpdatePrivateCustomAttributesPartiallyReader) ReadResponse(response run
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type UpdatePrivateCustomAttributesPartiallyOK struct {
 }
 
 func (o *UpdatePrivateCustomAttributesPartiallyOK) Error() string {
-	return fmt.Sprintf("[PUT /v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes][%d] updatePrivateCustomAttributesPartiallyOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes][%d] updatePrivateCustomAttributesPartiallyOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdatePrivateCustomAttributesPartiallyOK) GetPayload() map[string]interface{} {
@@ -110,7 +110,7 @@ type UpdatePrivateCustomAttributesPartiallyBadRequest struct {
 }
 
 func (o *UpdatePrivateCustomAttributesPartiallyBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes][%d] updatePrivateCustomAttributesPartiallyBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes][%d] updatePrivateCustomAttributesPartiallyBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdatePrivateCustomAttributesPartiallyBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -143,7 +143,7 @@ type UpdatePrivateCustomAttributesPartiallyUnauthorized struct {
 }
 
 func (o *UpdatePrivateCustomAttributesPartiallyUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes][%d] updatePrivateCustomAttributesPartiallyUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes][%d] updatePrivateCustomAttributesPartiallyUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdatePrivateCustomAttributesPartiallyUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -176,7 +176,7 @@ type UpdatePrivateCustomAttributesPartiallyForbidden struct {
 }
 
 func (o *UpdatePrivateCustomAttributesPartiallyForbidden) Error() string {
-	return fmt.Sprintf("[PUT /v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes][%d] updatePrivateCustomAttributesPartiallyForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes][%d] updatePrivateCustomAttributesPartiallyForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdatePrivateCustomAttributesPartiallyForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -209,7 +209,7 @@ type UpdatePrivateCustomAttributesPartiallyNotFound struct {
 }
 
 func (o *UpdatePrivateCustomAttributesPartiallyNotFound) Error() string {
-	return fmt.Sprintf("[PUT /v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes][%d] updatePrivateCustomAttributesPartiallyNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes][%d] updatePrivateCustomAttributesPartiallyNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdatePrivateCustomAttributesPartiallyNotFound) GetPayload() *basicclientmodels.ErrorEntity {

@@ -43,7 +43,7 @@ func (o *AnonymizeUserAgreementReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /admin/users/{userId}/anonymization/agreements returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /agreement/admin/users/{userId}/anonymization/agreements returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -60,7 +60,7 @@ type AnonymizeUserAgreementNoContent struct {
 }
 
 func (o *AnonymizeUserAgreementNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /admin/users/{userId}/anonymization/agreements][%d] anonymizeUserAgreementNoContent ", 204)
+	return fmt.Sprintf("[DELETE /agreement/admin/users/{userId}/anonymization/agreements][%d] anonymizeUserAgreementNoContent ", 204)
 }
 
 func (o *AnonymizeUserAgreementNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -82,7 +82,7 @@ type AnonymizeUserAgreementNotFound struct {
 }
 
 func (o *AnonymizeUserAgreementNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /admin/users/{userId}/anonymization/agreements][%d] anonymizeUserAgreementNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /agreement/admin/users/{userId}/anonymization/agreements][%d] anonymizeUserAgreementNotFound  %+v", 404, o.Payload)
 }
 
 func (o *AnonymizeUserAgreementNotFound) GetPayload() *legalclientmodels.ErrorEntity {

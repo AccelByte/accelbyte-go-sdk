@@ -22,7 +22,7 @@ type CreatePolicyVersionRequest struct {
 	DisplayVersion string `json:"displayVersion,omitempty"`
 
 	// is committed
-	IsCommitted bool `json:"isCommitted,omitempty"`
+	IsCommitted bool `json:"isCommitted"`
 }
 
 // Validate validates this create policy version request

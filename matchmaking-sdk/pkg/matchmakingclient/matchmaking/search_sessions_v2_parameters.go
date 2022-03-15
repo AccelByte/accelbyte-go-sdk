@@ -75,7 +75,7 @@ type SearchSessionsV2Params struct {
 	  limit
 
 	*/
-	Limit float64
+	Limit int64
 	/*MatchID
 	  ID of the match session
 
@@ -90,7 +90,7 @@ type SearchSessionsV2Params struct {
 	  offset
 
 	*/
-	Offset float64
+	Offset int64
 	/*PartyID
 	  ID of the party
 
@@ -163,13 +163,13 @@ func (o *SearchSessionsV2Params) SetDeleted(deleted *bool) {
 }
 
 // WithLimit adds the limit to the search sessions v2 params
-func (o *SearchSessionsV2Params) WithLimit(limit float64) *SearchSessionsV2Params {
+func (o *SearchSessionsV2Params) WithLimit(limit int64) *SearchSessionsV2Params {
 	o.SetLimit(limit)
 	return o
 }
 
 // SetLimit adds the limit to the search sessions v2 params
-func (o *SearchSessionsV2Params) SetLimit(limit float64) {
+func (o *SearchSessionsV2Params) SetLimit(limit int64) {
 	o.Limit = limit
 }
 
@@ -196,13 +196,13 @@ func (o *SearchSessionsV2Params) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the search sessions v2 params
-func (o *SearchSessionsV2Params) WithOffset(offset float64) *SearchSessionsV2Params {
+func (o *SearchSessionsV2Params) WithOffset(offset int64) *SearchSessionsV2Params {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the search sessions v2 params
-func (o *SearchSessionsV2Params) SetOffset(offset float64) {
+func (o *SearchSessionsV2Params) SetOffset(offset int64) {
 	o.Offset = offset
 }
 
@@ -270,7 +270,7 @@ func (o *SearchSessionsV2Params) WriteToRequest(r runtime.ClientRequest, reg str
 
 	// query param limit
 	qrLimit := o.Limit
-	qLimit := swag.FormatFloat64(qrLimit)
+	qLimit := swag.FormatInt64(qrLimit)
 	if qLimit != "" {
 		if err := r.SetQueryParam("limit", qLimit); err != nil {
 			return err
@@ -300,7 +300,7 @@ func (o *SearchSessionsV2Params) WriteToRequest(r runtime.ClientRequest, reg str
 
 	// query param offset
 	qrOffset := o.Offset
-	qOffset := swag.FormatFloat64(qrOffset)
+	qOffset := swag.FormatInt64(qrOffset)
 	if qOffset != "" {
 		if err := r.SetQueryParam("offset", qOffset); err != nil {
 			return err

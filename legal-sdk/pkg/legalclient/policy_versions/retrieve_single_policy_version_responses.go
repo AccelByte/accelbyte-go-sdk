@@ -43,7 +43,7 @@ func (o *RetrieveSinglePolicyVersionReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/policies/{policyId}/versions returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /agreement/admin/policies/{policyId}/versions returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type RetrieveSinglePolicyVersionOK struct {
 }
 
 func (o *RetrieveSinglePolicyVersionOK) Error() string {
-	return fmt.Sprintf("[GET /admin/policies/{policyId}/versions][%d] retrieveSinglePolicyVersionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /agreement/admin/policies/{policyId}/versions][%d] retrieveSinglePolicyVersionOK  %+v", 200, o.Payload)
 }
 
 func (o *RetrieveSinglePolicyVersionOK) GetPayload() []*legalclientmodels.RetrievePolicyVersionResponse {
@@ -92,7 +92,7 @@ type RetrieveSinglePolicyVersionNotFound struct {
 }
 
 func (o *RetrieveSinglePolicyVersionNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/policies/{policyId}/versions][%d] retrieveSinglePolicyVersionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /agreement/admin/policies/{policyId}/versions][%d] retrieveSinglePolicyVersionNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RetrieveSinglePolicyVersionNotFound) GetPayload() *legalclientmodels.ErrorEntity {

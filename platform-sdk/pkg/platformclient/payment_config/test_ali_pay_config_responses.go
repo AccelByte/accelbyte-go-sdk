@@ -37,7 +37,7 @@ func (o *TestAliPayConfigReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/payment/config/merchant/alipayconfig/test returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/admin/payment/config/merchant/alipayconfig/test returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type TestAliPayConfigOK struct {
 }
 
 func (o *TestAliPayConfigOK) Error() string {
-	return fmt.Sprintf("[POST /admin/payment/config/merchant/alipayconfig/test][%d] testAliPayConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/payment/config/merchant/alipayconfig/test][%d] testAliPayConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *TestAliPayConfigOK) GetPayload() *platformclientmodels.TestResult {

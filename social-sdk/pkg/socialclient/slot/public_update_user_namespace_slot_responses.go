@@ -49,7 +49,7 @@ func (o *PublicUpdateUserNamespaceSlotReader) ReadResponse(response runtime.Clie
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /public/namespaces/{namespace}/users/{userId}/slots/{slotId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type PublicUpdateUserNamespaceSlotOK struct {
 }
 
 func (o *PublicUpdateUserNamespaceSlotOK) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicUpdateUserNamespaceSlotOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicUpdateUserNamespaceSlotOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicUpdateUserNamespaceSlotOK) GetPayload() *socialclientmodels.SlotInfo {
@@ -100,7 +100,7 @@ type PublicUpdateUserNamespaceSlotBadRequest struct {
 }
 
 func (o *PublicUpdateUserNamespaceSlotBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicUpdateUserNamespaceSlotBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicUpdateUserNamespaceSlotBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicUpdateUserNamespaceSlotBadRequest) GetPayload() *socialclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type PublicUpdateUserNamespaceSlotNotFound struct {
 }
 
 func (o *PublicUpdateUserNamespaceSlotNotFound) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicUpdateUserNamespaceSlotNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicUpdateUserNamespaceSlotNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicUpdateUserNamespaceSlotNotFound) GetPayload() *socialclientmodels.ErrorEntity {

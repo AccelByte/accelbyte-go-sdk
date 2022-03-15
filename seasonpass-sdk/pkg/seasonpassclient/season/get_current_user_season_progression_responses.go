@@ -49,7 +49,7 @@ func (o *GetCurrentUserSeasonProgressionReader) ReadResponse(response runtime.Cl
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/users/{userId}/seasons/current/progression returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/progression returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type GetCurrentUserSeasonProgressionOK struct {
 }
 
 func (o *GetCurrentUserSeasonProgressionOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/seasons/current/progression][%d] getCurrentUserSeasonProgressionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/progression][%d] getCurrentUserSeasonProgressionOK  %+v", 200, o.Payload)
 }
 
 func (o *GetCurrentUserSeasonProgressionOK) GetPayload() *seasonpassclientmodels.UserSeasonSummary {
@@ -100,7 +100,7 @@ type GetCurrentUserSeasonProgressionBadRequest struct {
 }
 
 func (o *GetCurrentUserSeasonProgressionBadRequest) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/seasons/current/progression][%d] getCurrentUserSeasonProgressionBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/progression][%d] getCurrentUserSeasonProgressionBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetCurrentUserSeasonProgressionBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type GetCurrentUserSeasonProgressionNotFound struct {
 }
 
 func (o *GetCurrentUserSeasonProgressionNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/seasons/current/progression][%d] getCurrentUserSeasonProgressionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/progression][%d] getCurrentUserSeasonProgressionNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetCurrentUserSeasonProgressionNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {

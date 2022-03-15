@@ -49,7 +49,7 @@ func (o *PublicUpdateAttributeReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type PublicUpdateAttributeOK struct {
 }
 
 func (o *PublicUpdateAttributeOK) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicUpdateAttributeOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicUpdateAttributeOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicUpdateAttributeOK) GetPayload() *socialclientmodels.GameProfileInfo {
@@ -100,7 +100,7 @@ type PublicUpdateAttributeBadRequest struct {
 }
 
 func (o *PublicUpdateAttributeBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicUpdateAttributeBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicUpdateAttributeBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicUpdateAttributeBadRequest) GetPayload() *socialclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type PublicUpdateAttributeNotFound struct {
 }
 
 func (o *PublicUpdateAttributeNotFound) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicUpdateAttributeNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicUpdateAttributeNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicUpdateAttributeNotFound) GetPayload() *socialclientmodels.ErrorEntity {

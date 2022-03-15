@@ -35,6 +35,7 @@ type EntitlementGrant struct {
 	ItemNamespace *string `json:"itemNamespace"`
 
 	// language value from language tag, allowed format: en, en-US
+	// Pattern: ^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$
 	Language string `json:"language,omitempty"`
 
 	// quantity
@@ -69,6 +70,10 @@ func (m *EntitlementGrant) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateItemNamespace(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLanguage(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -115,6 +120,19 @@ func (m *EntitlementGrant) validateItemID(formats strfmt.Registry) error {
 func (m *EntitlementGrant) validateItemNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("itemNamespace", "body", m.ItemNamespace); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *EntitlementGrant) validateLanguage(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Language) { // not required
+		return nil
+	}
+
+	if err := validate.Pattern("language", "body", string(m.Language), `^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$`); err != nil {
 		return err
 	}
 

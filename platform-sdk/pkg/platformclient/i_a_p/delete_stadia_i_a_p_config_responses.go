@@ -34,7 +34,7 @@ func (o *DeleteStadiaIAPConfigReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /admin/namespaces/{namespace}/iap/config/stadia returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /platform/admin/namespaces/{namespace}/iap/config/stadia returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -51,7 +51,7 @@ type DeleteStadiaIAPConfigNoContent struct {
 }
 
 func (o *DeleteStadiaIAPConfigNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/iap/config/stadia][%d] deleteStadiaIAPConfigNoContent ", 204)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/iap/config/stadia][%d] deleteStadiaIAPConfigNoContent ", 204)
 }
 
 func (o *DeleteStadiaIAPConfigNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

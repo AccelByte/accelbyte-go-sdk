@@ -34,7 +34,7 @@ func (o *UpdatePolicyReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PATCH /admin/policies/{policyId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PATCH /agreement/admin/policies/{policyId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -51,7 +51,7 @@ type UpdatePolicyOK struct {
 }
 
 func (o *UpdatePolicyOK) Error() string {
-	return fmt.Sprintf("[PATCH /admin/policies/{policyId}][%d] updatePolicyOK ", 200)
+	return fmt.Sprintf("[PATCH /agreement/admin/policies/{policyId}][%d] updatePolicyOK ", 200)
 }
 
 func (o *UpdatePolicyOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

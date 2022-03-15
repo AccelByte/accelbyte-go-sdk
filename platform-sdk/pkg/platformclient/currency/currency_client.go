@@ -65,7 +65,7 @@ func (a *Client) CreateCurrency(params *CreateCurrencyParams, authInfo runtime.C
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createCurrency",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/currencies",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/currencies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -108,7 +108,7 @@ func (a *Client) CreateCurrencyShort(params *CreateCurrencyParams, authInfo runt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createCurrency",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/currencies",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/currencies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -154,7 +154,7 @@ func (a *Client) DeleteCurrency(params *DeleteCurrencyParams, authInfo runtime.C
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteCurrency",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/currencies/{currencyCode}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/currencies/{currencyCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -194,7 +194,7 @@ func (a *Client) DeleteCurrencyShort(params *DeleteCurrencyParams, authInfo runt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteCurrency",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/currencies/{currencyCode}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/currencies/{currencyCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -238,7 +238,7 @@ func (a *Client) GetCurrencyConfig(params *GetCurrencyConfigParams, authInfo run
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCurrencyConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/currencies/{currencyCode}/config",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/currencies/{currencyCode}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -278,7 +278,7 @@ func (a *Client) GetCurrencyConfigShort(params *GetCurrencyConfigParams, authInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCurrencyConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/currencies/{currencyCode}/config",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/currencies/{currencyCode}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -322,7 +322,7 @@ func (a *Client) GetCurrencySummary(params *GetCurrencySummaryParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCurrencySummary",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/currencies/{currencyCode}/summary",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/currencies/{currencyCode}/summary",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -362,7 +362,7 @@ func (a *Client) GetCurrencySummaryShort(params *GetCurrencySummaryParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCurrencySummary",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/currencies/{currencyCode}/summary",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/currencies/{currencyCode}/summary",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -406,7 +406,7 @@ func (a *Client) ListCurrencies(params *ListCurrenciesParams, authInfo runtime.C
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listCurrencies",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/currencies",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/currencies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -443,7 +443,7 @@ func (a *Client) ListCurrenciesShort(params *ListCurrenciesParams, authInfo runt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listCurrencies",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/currencies",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/currencies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -485,7 +485,7 @@ func (a *Client) PublicListCurrencies(params *PublicListCurrenciesParams) (*Publ
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicListCurrencies",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/currencies",
+		PathPattern:        "/platform/public/namespaces/{namespace}/currencies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -521,7 +521,7 @@ func (a *Client) PublicListCurrenciesShort(params *PublicListCurrenciesParams) (
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicListCurrencies",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/currencies",
+		PathPattern:        "/platform/public/namespaces/{namespace}/currencies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -562,7 +562,7 @@ func (a *Client) UpdateCurrency(params *UpdateCurrencyParams, authInfo runtime.C
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateCurrency",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/currencies/{currencyCode}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/currencies/{currencyCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -605,7 +605,7 @@ func (a *Client) UpdateCurrencyShort(params *UpdateCurrencyParams, authInfo runt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateCurrency",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/currencies/{currencyCode}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/currencies/{currencyCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

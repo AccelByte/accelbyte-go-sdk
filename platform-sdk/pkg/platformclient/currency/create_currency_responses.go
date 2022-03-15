@@ -49,7 +49,7 @@ func (o *CreateCurrencyReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/currencies returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/admin/namespaces/{namespace}/currencies returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type CreateCurrencyOK struct {
 }
 
 func (o *CreateCurrencyOK) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/currencies][%d] createCurrencyOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/currencies][%d] createCurrencyOK  %+v", 200, o.Payload)
 }
 
 func (o *CreateCurrencyOK) GetPayload() *platformclientmodels.CurrencyInfo {
@@ -100,7 +100,7 @@ type CreateCurrencyConflict struct {
 }
 
 func (o *CreateCurrencyConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/currencies][%d] createCurrencyConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/currencies][%d] createCurrencyConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateCurrencyConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type CreateCurrencyUnprocessableEntity struct {
 }
 
 func (o *CreateCurrencyUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/currencies][%d] createCurrencyUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/currencies][%d] createCurrencyUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateCurrencyUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

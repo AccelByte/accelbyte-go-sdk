@@ -41,7 +41,7 @@ type PaymentOrder struct {
 	ChargedTime *strfmt.DateTime `json:"chargedTime,omitempty"`
 
 	// charging
-	Charging bool `json:"charging,omitempty"`
+	Charging bool `json:"charging"`
 
 	// created at
 	// Format: date-time
@@ -83,7 +83,7 @@ type PaymentOrder struct {
 	NotifyURL string `json:"notifyUrl,omitempty"`
 
 	// omit notification
-	OmitNotification bool `json:"omitNotification,omitempty"`
+	OmitNotification bool `json:"omitNotification"`
 
 	// payment method
 	PaymentMethod string `json:"paymentMethod,omitempty"`
@@ -127,7 +127,7 @@ type PaymentOrder struct {
 	SalesTax int32 `json:"salesTax,omitempty"`
 
 	// sandbox
-	Sandbox bool `json:"sandbox,omitempty"`
+	Sandbox bool `json:"sandbox"`
 
 	// sku
 	Sku string `json:"sku,omitempty"`

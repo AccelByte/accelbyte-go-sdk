@@ -37,7 +37,7 @@ func (o *GetPaymentCustomizationReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/payment/customization returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/payment/customization returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type GetPaymentCustomizationOK struct {
 }
 
 func (o *GetPaymentCustomizationOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/payment/customization][%d] getPaymentCustomizationOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/customization][%d] getPaymentCustomizationOK  %+v", 200, o.Payload)
 }
 
 func (o *GetPaymentCustomizationOK) GetPayload() *platformclientmodels.Customization {

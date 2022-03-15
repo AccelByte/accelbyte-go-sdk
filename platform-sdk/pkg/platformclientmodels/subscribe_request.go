@@ -26,6 +26,7 @@ type SubscribeRequest struct {
 	ItemID *string `json:"itemId"`
 
 	// language value from language tag, allowed format: en, en-US
+	// Pattern: ^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$
 	Language string `json:"language,omitempty"`
 
 	// country value from ISO countries
@@ -50,6 +51,10 @@ func (m *SubscribeRequest) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateLanguage(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -68,6 +73,19 @@ func (m *SubscribeRequest) validateCurrencyCode(formats strfmt.Registry) error {
 func (m *SubscribeRequest) validateItemID(formats strfmt.Registry) error {
 
 	if err := validate.Required("itemId", "body", m.ItemID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *SubscribeRequest) validateLanguage(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Language) { // not required
+		return nil
+	}
+
+	if err := validate.Pattern("language", "body", string(m.Language), `^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$`); err != nil {
 		return err
 	}
 

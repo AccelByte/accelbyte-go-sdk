@@ -28,6 +28,10 @@ type ModelUserVerificationRequest struct {
 	// language tag
 	// Required: true
 	LanguageTag *string `json:"LanguageTag"`
+
+	// validate only
+	// Required: true
+	ValidateOnly *bool `json:"validateOnly"`
 }
 
 // Validate validates this model user verification request
@@ -43,6 +47,10 @@ func (m *ModelUserVerificationRequest) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateLanguageTag(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateValidateOnly(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -73,6 +81,15 @@ func (m *ModelUserVerificationRequest) validateContactType(formats strfmt.Regist
 func (m *ModelUserVerificationRequest) validateLanguageTag(formats strfmt.Registry) error {
 
 	if err := validate.Required("LanguageTag", "body", m.LanguageTag); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelUserVerificationRequest) validateValidateOnly(formats strfmt.Registry) error {
+
+	if err := validate.Required("validateOnly", "body", m.ValidateOnly); err != nil {
 		return err
 	}
 

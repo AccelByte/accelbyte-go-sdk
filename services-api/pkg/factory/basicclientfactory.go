@@ -25,7 +25,7 @@ func NewBasicClient(configRepository repository.ConfigRepository) *basicclient.J
 			baseUrlSplit := strings.Split(baseUrl, "://")
 			httpClientConfig := &basicclient.TransportConfig{
 				Host:     baseUrlSplit[1],
-				BasePath: "/basic",
+				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
 			basicClientInstance = basicclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)

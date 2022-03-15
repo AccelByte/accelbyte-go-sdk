@@ -68,7 +68,7 @@ func (a *Client) GetSlotData(params *GetSlotDataParams, authInfo runtime.ClientA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getSlotData",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/slots/{slotId}",
+		PathPattern:        "/social/admin/namespaces/{namespace}/users/{userId}/slots/{slotId}",
 		ProducesMediaTypes: []string{"application/octet-stream"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -108,7 +108,7 @@ func (a *Client) GetSlotDataShort(params *GetSlotDataParams, authInfo runtime.Cl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getSlotData",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/slots/{slotId}",
+		PathPattern:        "/social/admin/namespaces/{namespace}/users/{userId}/slots/{slotId}",
 		ProducesMediaTypes: []string{"application/octet-stream"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -152,7 +152,7 @@ func (a *Client) GetUserNamespaceSlots(params *GetUserNamespaceSlotsParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserNamespaceSlots",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/slots",
+		PathPattern:        "/social/admin/namespaces/{namespace}/users/{userId}/slots",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -189,7 +189,7 @@ func (a *Client) GetUserNamespaceSlotsShort(params *GetUserNamespaceSlotsParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserNamespaceSlots",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/slots",
+		PathPattern:        "/social/admin/namespaces/{namespace}/users/{userId}/slots",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -231,7 +231,7 @@ func (a *Client) PublicCreateUserNamespaceSlot(params *PublicCreateUserNamespace
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicCreateUserNamespaceSlot",
 		Method:             "POST",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/slots",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/slots",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
 		Schemes:            []string{"https"},
@@ -274,7 +274,7 @@ func (a *Client) PublicCreateUserNamespaceSlotShort(params *PublicCreateUserName
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicCreateUserNamespaceSlot",
 		Method:             "POST",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/slots",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/slots",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
 		Schemes:            []string{"https"},
@@ -320,7 +320,7 @@ func (a *Client) PublicDeleteUserNamespaceSlot(params *PublicDeleteUserNamespace
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicDeleteUserNamespaceSlot",
 		Method:             "DELETE",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/slots/{slotId}",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -360,7 +360,7 @@ func (a *Client) PublicDeleteUserNamespaceSlotShort(params *PublicDeleteUserName
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicDeleteUserNamespaceSlot",
 		Method:             "DELETE",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/slots/{slotId}",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -404,7 +404,7 @@ func (a *Client) PublicGetSlotData(params *PublicGetSlotDataParams, authInfo run
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetSlotData",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/slots/{slotId}",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}",
 		ProducesMediaTypes: []string{"application/octet-stream"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -444,7 +444,7 @@ func (a *Client) PublicGetSlotDataShort(params *PublicGetSlotDataParams, authInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetSlotData",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/slots/{slotId}",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}",
 		ProducesMediaTypes: []string{"application/octet-stream"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -488,7 +488,7 @@ func (a *Client) PublicGetUserNamespaceSlots(params *PublicGetUserNamespaceSlots
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserNamespaceSlots",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/slots",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/slots",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -525,7 +525,7 @@ func (a *Client) PublicGetUserNamespaceSlotsShort(params *PublicGetUserNamespace
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserNamespaceSlots",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/slots",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/slots",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -567,7 +567,7 @@ func (a *Client) PublicUpdateUserNamespaceSlot(params *PublicUpdateUserNamespace
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicUpdateUserNamespaceSlot",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/slots/{slotId}",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
 		Schemes:            []string{"https"},
@@ -610,7 +610,7 @@ func (a *Client) PublicUpdateUserNamespaceSlotShort(params *PublicUpdateUserName
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicUpdateUserNamespaceSlot",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/slots/{slotId}",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
 		Schemes:            []string{"https"},
@@ -656,7 +656,7 @@ func (a *Client) PublicUpdateUserNamespaceSlotMetadata(params *PublicUpdateUserN
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicUpdateUserNamespaceSlotMetadata",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/slots/{slotId}/metadata",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}/metadata",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -696,7 +696,7 @@ func (a *Client) PublicUpdateUserNamespaceSlotMetadataShort(params *PublicUpdate
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicUpdateUserNamespaceSlotMetadata",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/slots/{slotId}/metadata",
+		PathPattern:        "/social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}/metadata",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

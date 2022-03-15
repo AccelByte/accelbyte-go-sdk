@@ -43,7 +43,7 @@ func (o *PublicGetUserGameProfilesReader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/profiles returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /social/public/namespaces/{namespace}/profiles returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type PublicGetUserGameProfilesOK struct {
 }
 
 func (o *PublicGetUserGameProfilesOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/profiles][%d] publicGetUserGameProfilesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/profiles][%d] publicGetUserGameProfilesOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetUserGameProfilesOK) GetPayload() []*socialclientmodels.UserGameProfiles {
@@ -92,7 +92,7 @@ type PublicGetUserGameProfilesBadRequest struct {
 }
 
 func (o *PublicGetUserGameProfilesBadRequest) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/profiles][%d] publicGetUserGameProfilesBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/profiles][%d] publicGetUserGameProfilesBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicGetUserGameProfilesBadRequest) GetPayload() *socialclientmodels.ErrorEntity {

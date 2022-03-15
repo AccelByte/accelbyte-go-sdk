@@ -30,6 +30,9 @@ type ClientmodelClientUpdateV3Request struct {
 	// client permissions
 	ClientPermissions []*AccountcommonPermissionV3 `json:"clientPermissions"`
 
+	// deletable
+	Deletable bool `json:"deletable"`
+
 	// namespace
 	Namespace string `json:"namespace,omitempty"`
 

@@ -57,7 +57,7 @@ func (a *Client) DeleteConfig(params *DeleteConfigParams, authInfo runtime.Clien
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteConfig",
 		Method:             "DELETE",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/equ8/config",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/equ8/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -94,7 +94,7 @@ func (a *Client) DeleteConfigShort(params *DeleteConfigParams, authInfo runtime.
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteConfig",
 		Method:             "DELETE",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/equ8/config",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/equ8/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -136,7 +136,7 @@ func (a *Client) GetConfig(params *GetConfigParams, authInfo runtime.ClientAuthI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getConfig",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/equ8/config",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/equ8/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -179,7 +179,7 @@ func (a *Client) GetConfigShort(params *GetConfigParams, authInfo runtime.Client
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getConfig",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/equ8/config",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/equ8/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -225,7 +225,7 @@ func (a *Client) UpdateConfig(params *UpdateConfigParams, authInfo runtime.Clien
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateConfig",
 		Method:             "PATCH",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/equ8/config",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/equ8/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -268,7 +268,7 @@ func (a *Client) UpdateConfigShort(params *UpdateConfigParams, authInfo runtime.
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateConfig",
 		Method:             "PATCH",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/equ8/config",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/equ8/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

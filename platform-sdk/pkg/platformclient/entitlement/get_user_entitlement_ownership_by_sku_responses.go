@@ -37,7 +37,7 @@ func (o *GetUserEntitlementOwnershipBySkuReader) ReadResponse(response runtime.C
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/bySku returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/bySku returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type GetUserEntitlementOwnershipBySkuOK struct {
 }
 
 func (o *GetUserEntitlementOwnershipBySkuOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/bySku][%d] getUserEntitlementOwnershipBySkuOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/bySku][%d] getUserEntitlementOwnershipBySkuOK  %+v", 200, o.Payload)
 }
 
 func (o *GetUserEntitlementOwnershipBySkuOK) GetPayload() *platformclientmodels.TimedOwnership {

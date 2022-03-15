@@ -49,7 +49,7 @@ func (o *QueryItemsReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/items/byCriteria returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/items/byCriteria returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type QueryItemsOK struct {
 }
 
 func (o *QueryItemsOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/items/byCriteria][%d] queryItemsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/byCriteria][%d] queryItemsOK  %+v", 200, o.Payload)
 }
 
 func (o *QueryItemsOK) GetPayload() *platformclientmodels.FullItemPagingSlicedResult {
@@ -100,7 +100,7 @@ type QueryItemsNotFound struct {
 }
 
 func (o *QueryItemsNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/items/byCriteria][%d] queryItemsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/byCriteria][%d] queryItemsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *QueryItemsNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type QueryItemsUnprocessableEntity struct {
 }
 
 func (o *QueryItemsUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/items/byCriteria][%d] queryItemsUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/byCriteria][%d] queryItemsUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *QueryItemsUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

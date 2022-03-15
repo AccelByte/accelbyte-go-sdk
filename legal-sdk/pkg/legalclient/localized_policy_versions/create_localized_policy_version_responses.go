@@ -49,7 +49,7 @@ func (o *CreateLocalizedPolicyVersionReader) ReadResponse(response runtime.Clien
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/localized-policy-versions/versions/{policyVersionId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /agreement/admin/localized-policy-versions/versions/{policyVersionId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type CreateLocalizedPolicyVersionCreated struct {
 }
 
 func (o *CreateLocalizedPolicyVersionCreated) Error() string {
-	return fmt.Sprintf("[POST /admin/localized-policy-versions/versions/{policyVersionId}][%d] createLocalizedPolicyVersionCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /agreement/admin/localized-policy-versions/versions/{policyVersionId}][%d] createLocalizedPolicyVersionCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateLocalizedPolicyVersionCreated) GetPayload() *legalclientmodels.CreateLocalizedPolicyVersionResponse {
@@ -100,7 +100,7 @@ type CreateLocalizedPolicyVersionBadRequest struct {
 }
 
 func (o *CreateLocalizedPolicyVersionBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/localized-policy-versions/versions/{policyVersionId}][%d] createLocalizedPolicyVersionBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /agreement/admin/localized-policy-versions/versions/{policyVersionId}][%d] createLocalizedPolicyVersionBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateLocalizedPolicyVersionBadRequest) GetPayload() *legalclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type CreateLocalizedPolicyVersionConflict struct {
 }
 
 func (o *CreateLocalizedPolicyVersionConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/localized-policy-versions/versions/{policyVersionId}][%d] createLocalizedPolicyVersionConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /agreement/admin/localized-policy-versions/versions/{policyVersionId}][%d] createLocalizedPolicyVersionConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateLocalizedPolicyVersionConflict) GetPayload() *legalclientmodels.ErrorEntity {

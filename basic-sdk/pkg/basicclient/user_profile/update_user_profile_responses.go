@@ -61,7 +61,7 @@ func (o *UpdateUserProfileReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /v1/admin/namespaces/{namespace}/users/{userId}/profiles returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type UpdateUserProfileOK struct {
 }
 
 func (o *UpdateUserProfileOK) Error() string {
-	return fmt.Sprintf("[PUT /v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] updateUserProfileOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] updateUserProfileOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateUserProfileOK) GetPayload() *basicclientmodels.UserProfilePrivateInfo {
@@ -112,7 +112,7 @@ type UpdateUserProfileBadRequest struct {
 }
 
 func (o *UpdateUserProfileBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] updateUserProfileBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] updateUserProfileBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateUserProfileBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -145,7 +145,7 @@ type UpdateUserProfileUnauthorized struct {
 }
 
 func (o *UpdateUserProfileUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] updateUserProfileUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] updateUserProfileUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *UpdateUserProfileUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -178,7 +178,7 @@ type UpdateUserProfileForbidden struct {
 }
 
 func (o *UpdateUserProfileForbidden) Error() string {
-	return fmt.Sprintf("[PUT /v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] updateUserProfileForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] updateUserProfileForbidden  %+v", 403, o.Payload)
 }
 
 func (o *UpdateUserProfileForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -211,7 +211,7 @@ type UpdateUserProfileNotFound struct {
 }
 
 func (o *UpdateUserProfileNotFound) Error() string {
-	return fmt.Sprintf("[PUT /v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] updateUserProfileNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] updateUserProfileNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateUserProfileNotFound) GetPayload() *basicclientmodels.ErrorEntity {

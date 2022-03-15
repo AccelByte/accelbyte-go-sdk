@@ -37,7 +37,7 @@ func (o *GetNamespaceSlotConfigReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/config returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /social/admin/namespaces/{namespace}/config returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type GetNamespaceSlotConfigOK struct {
 }
 
 func (o *GetNamespaceSlotConfigOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/config][%d] getNamespaceSlotConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /social/admin/namespaces/{namespace}/config][%d] getNamespaceSlotConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *GetNamespaceSlotConfigOK) GetPayload() *socialclientmodels.NamespaceSlotConfigInfo {

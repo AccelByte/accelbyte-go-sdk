@@ -43,7 +43,7 @@ func (o *CreateStat1Reader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /v1/public/namespaces/{namespace}/stats returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /social/v1/public/namespaces/{namespace}/stats returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type CreateStat1Created struct {
 }
 
 func (o *CreateStat1Created) Error() string {
-	return fmt.Sprintf("[POST /v1/public/namespaces/{namespace}/stats][%d] createStat1Created  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /social/v1/public/namespaces/{namespace}/stats][%d] createStat1Created  %+v", 201, o.Payload)
 }
 
 func (o *CreateStat1Created) GetPayload() *socialclientmodels.StatInfo {
@@ -94,7 +94,7 @@ type CreateStat1Conflict struct {
 }
 
 func (o *CreateStat1Conflict) Error() string {
-	return fmt.Sprintf("[POST /v1/public/namespaces/{namespace}/stats][%d] createStat1Conflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /social/v1/public/namespaces/{namespace}/stats][%d] createStat1Conflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateStat1Conflict) GetPayload() *socialclientmodels.ErrorEntity {

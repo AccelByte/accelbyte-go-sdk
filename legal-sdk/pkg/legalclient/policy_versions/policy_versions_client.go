@@ -61,7 +61,7 @@ func (a *Client) CreatePolicyVersion(params *CreatePolicyVersionParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createPolicyVersion",
 		Method:             "POST",
-		PathPattern:        "/admin/policies/{policyId}/versions",
+		PathPattern:        "/agreement/admin/policies/{policyId}/versions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -101,7 +101,7 @@ func (a *Client) CreatePolicyVersionShort(params *CreatePolicyVersionParams, aut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createPolicyVersion",
 		Method:             "POST",
-		PathPattern:        "/admin/policies/{policyId}/versions",
+		PathPattern:        "/agreement/admin/policies/{policyId}/versions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -145,7 +145,7 @@ func (a *Client) PublishPolicyVersion(params *PublishPolicyVersionParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publishPolicyVersion",
 		Method:             "PATCH",
-		PathPattern:        "/admin/policies/versions/{policyVersionId}/latest",
+		PathPattern:        "/agreement/admin/policies/versions/{policyVersionId}/latest",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -185,7 +185,7 @@ func (a *Client) PublishPolicyVersionShort(params *PublishPolicyVersionParams, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publishPolicyVersion",
 		Method:             "PATCH",
-		PathPattern:        "/admin/policies/versions/{policyVersionId}/latest",
+		PathPattern:        "/agreement/admin/policies/versions/{policyVersionId}/latest",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -229,7 +229,7 @@ func (a *Client) RetrievePolicyVersions(params *RetrievePolicyVersionsParams, au
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrievePolicyVersions",
 		Method:             "GET",
-		PathPattern:        "/public/policies",
+		PathPattern:        "/agreement/public/policies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -269,7 +269,7 @@ func (a *Client) RetrievePolicyVersionsShort(params *RetrievePolicyVersionsParam
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrievePolicyVersions",
 		Method:             "GET",
-		PathPattern:        "/public/policies",
+		PathPattern:        "/agreement/public/policies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -313,7 +313,7 @@ func (a *Client) RetrieveSinglePolicyVersion(params *RetrieveSinglePolicyVersion
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveSinglePolicyVersion",
 		Method:             "GET",
-		PathPattern:        "/admin/policies/{policyId}/versions",
+		PathPattern:        "/agreement/admin/policies/{policyId}/versions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -353,7 +353,7 @@ func (a *Client) RetrieveSinglePolicyVersionShort(params *RetrieveSinglePolicyVe
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveSinglePolicyVersion",
 		Method:             "GET",
-		PathPattern:        "/admin/policies/{policyId}/versions",
+		PathPattern:        "/agreement/admin/policies/{policyId}/versions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -397,7 +397,7 @@ func (a *Client) UpdatePolicyVersion(params *UpdatePolicyVersionParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updatePolicyVersion",
 		Method:             "PATCH",
-		PathPattern:        "/admin/policies/versions/{policyVersionId}",
+		PathPattern:        "/agreement/admin/policies/versions/{policyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -437,7 +437,7 @@ func (a *Client) UpdatePolicyVersionShort(params *UpdatePolicyVersionParams, aut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updatePolicyVersion",
 		Method:             "PATCH",
-		PathPattern:        "/admin/policies/versions/{policyVersionId}",
+		PathPattern:        "/agreement/admin/policies/versions/{policyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

@@ -43,7 +43,7 @@ func (o *GetPaymentCallbackConfigReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/payment/config/callback returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/payment/config/callback returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetPaymentCallbackConfigOK struct {
 }
 
 func (o *GetPaymentCallbackConfigOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/payment/config/callback][%d] getPaymentCallbackConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/payment/config/callback][%d] getPaymentCallbackConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *GetPaymentCallbackConfigOK) GetPayload() *platformclientmodels.PaymentCallbackConfigInfo {
@@ -94,7 +94,7 @@ type GetPaymentCallbackConfigNotFound struct {
 }
 
 func (o *GetPaymentCallbackConfigNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/payment/config/callback][%d] getPaymentCallbackConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/payment/config/callback][%d] getPaymentCallbackConfigNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetPaymentCallbackConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {

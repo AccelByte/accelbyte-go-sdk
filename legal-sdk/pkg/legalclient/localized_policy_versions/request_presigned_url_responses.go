@@ -43,7 +43,7 @@ func (o *RequestPresignedURLReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/localized-policy-versions/{localizedPolicyVersionId}/attachments returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/attachments returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type RequestPresignedURLCreated struct {
 }
 
 func (o *RequestPresignedURLCreated) Error() string {
-	return fmt.Sprintf("[POST /admin/localized-policy-versions/{localizedPolicyVersionId}/attachments][%d] requestPresignedUrlCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/attachments][%d] requestPresignedUrlCreated  %+v", 201, o.Payload)
 }
 
 func (o *RequestPresignedURLCreated) GetPayload() *legalclientmodels.UploadLocalizedPolicyVersionAttachmentResponse {
@@ -94,7 +94,7 @@ type RequestPresignedURLBadRequest struct {
 }
 
 func (o *RequestPresignedURLBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/localized-policy-versions/{localizedPolicyVersionId}/attachments][%d] requestPresignedUrlBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/attachments][%d] requestPresignedUrlBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *RequestPresignedURLBadRequest) GetPayload() *legalclientmodels.ErrorEntity {

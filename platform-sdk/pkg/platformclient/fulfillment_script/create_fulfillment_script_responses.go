@@ -43,7 +43,7 @@ func (o *CreateFulfillmentScriptReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/fulfillment/scripts/{id} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/admin/fulfillment/scripts/{id} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type CreateFulfillmentScriptCreated struct {
 }
 
 func (o *CreateFulfillmentScriptCreated) Error() string {
-	return fmt.Sprintf("[POST /admin/fulfillment/scripts/{id}][%d] createFulfillmentScriptCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/fulfillment/scripts/{id}][%d] createFulfillmentScriptCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateFulfillmentScriptCreated) GetPayload() *platformclientmodels.FulfillmentScriptInfo {
@@ -94,7 +94,7 @@ type CreateFulfillmentScriptConflict struct {
 }
 
 func (o *CreateFulfillmentScriptConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/fulfillment/scripts/{id}][%d] createFulfillmentScriptConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/fulfillment/scripts/{id}][%d] createFulfillmentScriptConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateFulfillmentScriptConflict) GetPayload() *platformclientmodels.ErrorEntity {

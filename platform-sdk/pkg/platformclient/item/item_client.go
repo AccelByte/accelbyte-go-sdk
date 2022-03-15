@@ -115,7 +115,7 @@ func (a *Client) AcquireItem(params *AcquireItemParams, authInfo runtime.ClientA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "acquireItem",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/acquire",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}/acquire",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -155,7 +155,7 @@ func (a *Client) AcquireItemShort(params *AcquireItemParams, authInfo runtime.Cl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "acquireItem",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/acquire",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}/acquire",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -199,7 +199,7 @@ func (a *Client) BulkGetLocaleItems(params *BulkGetLocaleItemsParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkGetLocaleItems",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/locale/byIds",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/locale/byIds",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -239,7 +239,7 @@ func (a *Client) BulkGetLocaleItemsShort(params *BulkGetLocaleItemsParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkGetLocaleItems",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/locale/byIds",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/locale/byIds",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -387,7 +387,7 @@ func (a *Client) CreateItem(params *CreateItemParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createItem",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/items",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -436,7 +436,7 @@ func (a *Client) CreateItemShort(params *CreateItemParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createItem",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/items",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -486,7 +486,7 @@ func (a *Client) DefeatureItem(params *DefeatureItemParams, authInfo runtime.Cli
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "defeatureItem",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/features/{feature}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -529,7 +529,7 @@ func (a *Client) DefeatureItemShort(params *DefeatureItemParams, authInfo runtim
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "defeatureItem",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/features/{feature}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -575,7 +575,7 @@ func (a *Client) DeleteItem(params *DeleteItemParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteItem",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -615,7 +615,7 @@ func (a *Client) DeleteItemShort(params *DeleteItemParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteItem",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -659,7 +659,7 @@ func (a *Client) DisableItem(params *DisableItemParams, authInfo runtime.ClientA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "disableItem",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/disable",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}/disable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -702,7 +702,7 @@ func (a *Client) DisableItemShort(params *DisableItemParams, authInfo runtime.Cl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "disableItem",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/disable",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}/disable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -748,7 +748,7 @@ func (a *Client) EnableItem(params *EnableItemParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "enableItem",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/enable",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}/enable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -791,7 +791,7 @@ func (a *Client) EnableItemShort(params *EnableItemParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "enableItem",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/enable",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}/enable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -837,7 +837,7 @@ func (a *Client) FeatureItem(params *FeatureItemParams, authInfo runtime.ClientA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "featureItem",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/features/{feature}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -880,7 +880,7 @@ func (a *Client) FeatureItemShort(params *FeatureItemParams, authInfo runtime.Cl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "featureItem",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/features/{feature}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -926,7 +926,7 @@ func (a *Client) GetApp(params *GetAppParams, authInfo runtime.ClientAuthInfoWri
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getApp",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/app",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}/app",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -963,7 +963,7 @@ func (a *Client) GetAppShort(params *GetAppParams, authInfo runtime.ClientAuthIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getApp",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/app",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}/app",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1005,7 +1005,7 @@ func (a *Client) GetItem(params *GetItemParams, authInfo runtime.ClientAuthInfoW
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getItem",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1045,7 +1045,7 @@ func (a *Client) GetItemShort(params *GetItemParams, authInfo runtime.ClientAuth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getItem",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1089,7 +1089,7 @@ func (a *Client) GetItemByAppID(params *GetItemByAppIDParams, authInfo runtime.C
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getItemByAppId",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/byAppId",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/byAppId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1129,7 +1129,7 @@ func (a *Client) GetItemByAppIDShort(params *GetItemByAppIDParams, authInfo runt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getItemByAppId",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/byAppId",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/byAppId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1173,7 +1173,7 @@ func (a *Client) GetItemBySku(params *GetItemBySkuParams, authInfo runtime.Clien
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getItemBySku",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/bySku",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1213,7 +1213,7 @@ func (a *Client) GetItemBySkuShort(params *GetItemBySkuParams, authInfo runtime.
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getItemBySku",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/bySku",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1257,7 +1257,7 @@ func (a *Client) GetItemDynamicData(params *GetItemDynamicDataParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getItemDynamicData",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/dynamic",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}/dynamic",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1297,7 +1297,7 @@ func (a *Client) GetItemDynamicDataShort(params *GetItemDynamicDataParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getItemDynamicData",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/dynamic",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}/dynamic",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1341,7 +1341,7 @@ func (a *Client) GetItemIDBySku(params *GetItemIDBySkuParams, authInfo runtime.C
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getItemIdBySku",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/itemId/bySku",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/itemId/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1381,7 +1381,7 @@ func (a *Client) GetItemIDBySkuShort(params *GetItemIDBySkuParams, authInfo runt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getItemIdBySku",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/itemId/bySku",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/itemId/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1425,7 +1425,7 @@ func (a *Client) GetLocaleItem(params *GetLocaleItemParams, authInfo runtime.Cli
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getLocaleItem",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/locale",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}/locale",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1465,7 +1465,7 @@ func (a *Client) GetLocaleItemShort(params *GetLocaleItemParams, authInfo runtim
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getLocaleItem",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/locale",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}/locale",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1509,7 +1509,7 @@ func (a *Client) GetLocaleItemBySku(params *GetLocaleItemBySkuParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getLocaleItemBySku",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/bySku/locale",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/bySku/locale",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1549,7 +1549,7 @@ func (a *Client) GetLocaleItemBySkuShort(params *GetLocaleItemBySkuParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getLocaleItemBySku",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/bySku/locale",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/bySku/locale",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1593,7 +1593,7 @@ func (a *Client) ListBasicItemsByFeatures(params *ListBasicItemsByFeaturesParams
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listBasicItemsByFeatures",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/byFeatures/basic",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/byFeatures/basic",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1630,7 +1630,7 @@ func (a *Client) ListBasicItemsByFeaturesShort(params *ListBasicItemsByFeaturesP
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listBasicItemsByFeatures",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/byFeatures/basic",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/byFeatures/basic",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1672,7 +1672,7 @@ func (a *Client) PublicBulkGetItems(params *PublicBulkGetItemsParams) (*PublicBu
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicBulkGetItems",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/items/locale/byIds",
+		PathPattern:        "/platform/public/namespaces/{namespace}/items/locale/byIds",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1711,7 +1711,7 @@ func (a *Client) PublicBulkGetItemsShort(params *PublicBulkGetItemsParams) (*Pub
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicBulkGetItems",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/items/locale/byIds",
+		PathPattern:        "/platform/public/namespaces/{namespace}/items/locale/byIds",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1754,7 +1754,7 @@ func (a *Client) PublicGetApp(params *PublicGetAppParams) (*PublicGetAppOK, *Pub
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetApp",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/items/{itemId}/app/locale",
+		PathPattern:        "/platform/public/namespaces/{namespace}/items/{itemId}/app/locale",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1793,7 +1793,7 @@ func (a *Client) PublicGetAppShort(params *PublicGetAppParams) (*PublicGetAppOK,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetApp",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/items/{itemId}/app/locale",
+		PathPattern:        "/platform/public/namespaces/{namespace}/items/{itemId}/app/locale",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1836,7 +1836,7 @@ func (a *Client) PublicGetItem(params *PublicGetItemParams) (*PublicGetItemOK, *
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetItem",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/items/{itemId}/locale",
+		PathPattern:        "/platform/public/namespaces/{namespace}/items/{itemId}/locale",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1875,7 +1875,7 @@ func (a *Client) PublicGetItemShort(params *PublicGetItemParams) (*PublicGetItem
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetItem",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/items/{itemId}/locale",
+		PathPattern:        "/platform/public/namespaces/{namespace}/items/{itemId}/locale",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1918,7 +1918,7 @@ func (a *Client) PublicGetItemByAppID(params *PublicGetItemByAppIDParams) (*Publ
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetItemByAppId",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/items/byAppId",
+		PathPattern:        "/platform/public/namespaces/{namespace}/items/byAppId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1957,7 +1957,7 @@ func (a *Client) PublicGetItemByAppIDShort(params *PublicGetItemByAppIDParams) (
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetItemByAppId",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/items/byAppId",
+		PathPattern:        "/platform/public/namespaces/{namespace}/items/byAppId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2000,7 +2000,7 @@ func (a *Client) PublicGetItemBySku(params *PublicGetItemBySkuParams) (*PublicGe
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetItemBySku",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/items/bySku",
+		PathPattern:        "/platform/public/namespaces/{namespace}/items/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2039,7 +2039,7 @@ func (a *Client) PublicGetItemBySkuShort(params *PublicGetItemBySkuParams) (*Pub
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetItemBySku",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/items/bySku",
+		PathPattern:        "/platform/public/namespaces/{namespace}/items/bySku",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2082,7 +2082,7 @@ func (a *Client) PublicGetItemDynamicData(params *PublicGetItemDynamicDataParams
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetItemDynamicData",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/items/{itemId}/dynamic",
+		PathPattern:        "/platform/public/namespaces/{namespace}/items/{itemId}/dynamic",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2121,7 +2121,7 @@ func (a *Client) PublicGetItemDynamicDataShort(params *PublicGetItemDynamicDataP
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetItemDynamicData",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/items/{itemId}/dynamic",
+		PathPattern:        "/platform/public/namespaces/{namespace}/items/{itemId}/dynamic",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2164,7 +2164,7 @@ func (a *Client) PublicQueryItems(params *PublicQueryItemsParams) (*PublicQueryI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicQueryItems",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/items/byCriteria",
+		PathPattern:        "/platform/public/namespaces/{namespace}/items/byCriteria",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2206,7 +2206,7 @@ func (a *Client) PublicQueryItemsShort(params *PublicQueryItemsParams) (*PublicQ
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicQueryItems",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/items/byCriteria",
+		PathPattern:        "/platform/public/namespaces/{namespace}/items/byCriteria",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2251,7 +2251,7 @@ func (a *Client) PublicSearchItems(params *PublicSearchItemsParams) (*PublicSear
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicSearchItems",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/items/search",
+		PathPattern:        "/platform/public/namespaces/{namespace}/items/search",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2290,7 +2290,7 @@ func (a *Client) PublicSearchItemsShort(params *PublicSearchItemsParams) (*Publi
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicSearchItems",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/items/search",
+		PathPattern:        "/platform/public/namespaces/{namespace}/items/search",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2333,7 +2333,7 @@ func (a *Client) QueryItems(params *QueryItemsParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryItems",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/byCriteria",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/byCriteria",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2376,7 +2376,7 @@ func (a *Client) QueryItemsShort(params *QueryItemsParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryItems",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/byCriteria",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/byCriteria",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2422,7 +2422,7 @@ func (a *Client) QueryUncategorizedItems(params *QueryUncategorizedItemsParams, 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryUncategorizedItems",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/uncategorized",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/uncategorized",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2465,7 +2465,7 @@ func (a *Client) QueryUncategorizedItemsShort(params *QueryUncategorizedItemsPar
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryUncategorizedItems",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/uncategorized",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/uncategorized",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2511,7 +2511,7 @@ func (a *Client) ReturnItem(params *ReturnItemParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "returnItem",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/return",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}/return",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2554,7 +2554,7 @@ func (a *Client) ReturnItemShort(params *ReturnItemParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "returnItem",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/return",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}/return",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2600,7 +2600,7 @@ func (a *Client) SearchItems(params *SearchItemsParams, authInfo runtime.ClientA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "searchItems",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/search",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/search",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2640,7 +2640,7 @@ func (a *Client) SearchItemsShort(params *SearchItemsParams, authInfo runtime.Cl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "searchItems",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/items/search",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/search",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2684,7 +2684,7 @@ func (a *Client) SyncInGameItem(params *SyncInGameItemParams, authInfo runtime.C
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncInGameItem",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/items",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2733,7 +2733,7 @@ func (a *Client) SyncInGameItemShort(params *SyncInGameItemParams, authInfo runt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncInGameItem",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/items",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2824,7 +2824,7 @@ func (a *Client) UpdateApp(params *UpdateAppParams, authInfo runtime.ClientAuthI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateApp",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/app",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}/app",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2870,7 +2870,7 @@ func (a *Client) UpdateAppShort(params *UpdateAppParams, authInfo runtime.Client
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateApp",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}/app",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}/app",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -3023,7 +3023,7 @@ func (a *Client) UpdateItem(params *UpdateItemParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateItem",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -3072,7 +3072,7 @@ func (a *Client) UpdateItemShort(params *UpdateItemParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateItem",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/items/{itemId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/items/{itemId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

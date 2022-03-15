@@ -43,7 +43,7 @@ func (o *TestStripeConfigByIDReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/payment/config/merchant/{id}/stripeconfig/test returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/payment/config/merchant/{id}/stripeconfig/test returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type TestStripeConfigByIDOK struct {
 }
 
 func (o *TestStripeConfigByIDOK) Error() string {
-	return fmt.Sprintf("[GET /admin/payment/config/merchant/{id}/stripeconfig/test][%d] testStripeConfigByIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/stripeconfig/test][%d] testStripeConfigByIdOK  %+v", 200, o.Payload)
 }
 
 func (o *TestStripeConfigByIDOK) GetPayload() *platformclientmodels.TestResult {
@@ -94,7 +94,7 @@ type TestStripeConfigByIDNotFound struct {
 }
 
 func (o *TestStripeConfigByIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/payment/config/merchant/{id}/stripeconfig/test][%d] testStripeConfigByIdNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/stripeconfig/test][%d] testStripeConfigByIdNotFound  %+v", 404, o.Payload)
 }
 
 func (o *TestStripeConfigByIDNotFound) GetPayload() *platformclientmodels.ErrorEntity {

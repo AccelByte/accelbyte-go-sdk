@@ -55,7 +55,7 @@ func (o *DeleteUserStatItemsReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -72,7 +72,7 @@ type DeleteUserStatItemsNoContent struct {
 }
 
 func (o *DeleteUserStatItemsNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] deleteUserStatItemsNoContent ", 204)
+	return fmt.Sprintf("[DELETE /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] deleteUserStatItemsNoContent ", 204)
 }
 
 func (o *DeleteUserStatItemsNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -94,7 +94,7 @@ type DeleteUserStatItemsUnauthorized struct {
 }
 
 func (o *DeleteUserStatItemsUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] deleteUserStatItemsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] deleteUserStatItemsUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteUserStatItemsUnauthorized) GetPayload() *socialclientmodels.ErrorEntity {
@@ -127,7 +127,7 @@ type DeleteUserStatItemsForbidden struct {
 }
 
 func (o *DeleteUserStatItemsForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] deleteUserStatItemsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] deleteUserStatItemsForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteUserStatItemsForbidden) GetPayload() *socialclientmodels.ErrorEntity {
@@ -160,7 +160,7 @@ type DeleteUserStatItemsNotFound struct {
 }
 
 func (o *DeleteUserStatItemsNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] deleteUserStatItemsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] deleteUserStatItemsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteUserStatItemsNotFound) GetPayload() *socialclientmodels.ErrorEntity {

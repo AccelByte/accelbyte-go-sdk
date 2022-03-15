@@ -31,8 +31,7 @@ type ModelUserCreateFromInvitationRequestV4 struct {
 	Country *string `json:"country"`
 
 	// date of birth
-	// Required: true
-	DateOfBirth *string `json:"dateOfBirth"`
+	DateOfBirth string `json:"dateOfBirth,omitempty"`
 
 	// display name
 	// Required: true
@@ -41,6 +40,10 @@ type ModelUserCreateFromInvitationRequestV4 struct {
 	// password
 	// Required: true
 	Password *string `json:"password"`
+
+	// reach minimum age
+	// Required: true
+	ReachMinimumAge *bool `json:"reachMinimumAge"`
 
 	// username
 	// Required: true
@@ -63,15 +66,15 @@ func (m *ModelUserCreateFromInvitationRequestV4) Validate(formats strfmt.Registr
 		res = append(res, err)
 	}
 
-	if err := m.validateDateOfBirth(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateDisplayName(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validatePassword(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateReachMinimumAge(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -128,15 +131,6 @@ func (m *ModelUserCreateFromInvitationRequestV4) validateCountry(formats strfmt.
 	return nil
 }
 
-func (m *ModelUserCreateFromInvitationRequestV4) validateDateOfBirth(formats strfmt.Registry) error {
-
-	if err := validate.Required("dateOfBirth", "body", m.DateOfBirth); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *ModelUserCreateFromInvitationRequestV4) validateDisplayName(formats strfmt.Registry) error {
 
 	if err := validate.Required("displayName", "body", m.DisplayName); err != nil {
@@ -149,6 +143,15 @@ func (m *ModelUserCreateFromInvitationRequestV4) validateDisplayName(formats str
 func (m *ModelUserCreateFromInvitationRequestV4) validatePassword(formats strfmt.Registry) error {
 
 	if err := validate.Required("password", "body", m.Password); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelUserCreateFromInvitationRequestV4) validateReachMinimumAge(formats strfmt.Registry) error {
+
+	if err := validate.Required("reachMinimumAge", "body", m.ReachMinimumAge); err != nil {
 		return err
 	}
 

@@ -43,7 +43,7 @@ func (o *TestAdyenConfigByIDReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/payment/config/merchant/{id}/adyenconfig/test returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/payment/config/merchant/{id}/adyenconfig/test returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type TestAdyenConfigByIDOK struct {
 }
 
 func (o *TestAdyenConfigByIDOK) Error() string {
-	return fmt.Sprintf("[GET /admin/payment/config/merchant/{id}/adyenconfig/test][%d] testAdyenConfigByIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/adyenconfig/test][%d] testAdyenConfigByIdOK  %+v", 200, o.Payload)
 }
 
 func (o *TestAdyenConfigByIDOK) GetPayload() *platformclientmodels.TestResult {
@@ -94,7 +94,7 @@ type TestAdyenConfigByIDNotFound struct {
 }
 
 func (o *TestAdyenConfigByIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/payment/config/merchant/{id}/adyenconfig/test][%d] testAdyenConfigByIdNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/adyenconfig/test][%d] testAdyenConfigByIdNotFound  %+v", 404, o.Payload)
 }
 
 func (o *TestAdyenConfigByIDNotFound) GetPayload() *platformclientmodels.ErrorEntity {

@@ -43,7 +43,7 @@ func (o *PartialUpdatePolicyReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PATCH /admin/base-policies/{basePolicyId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PATCH /agreement/admin/base-policies/{basePolicyId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type PartialUpdatePolicyOK struct {
 }
 
 func (o *PartialUpdatePolicyOK) Error() string {
-	return fmt.Sprintf("[PATCH /admin/base-policies/{basePolicyId}][%d] partialUpdatePolicyOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /agreement/admin/base-policies/{basePolicyId}][%d] partialUpdatePolicyOK  %+v", 200, o.Payload)
 }
 
 func (o *PartialUpdatePolicyOK) GetPayload() *legalclientmodels.UpdateBasePolicyResponse {
@@ -94,7 +94,7 @@ type PartialUpdatePolicyBadRequest struct {
 }
 
 func (o *PartialUpdatePolicyBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /admin/base-policies/{basePolicyId}][%d] partialUpdatePolicyBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /agreement/admin/base-policies/{basePolicyId}][%d] partialUpdatePolicyBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PartialUpdatePolicyBadRequest) GetPayload() *legalclientmodels.ErrorEntity {

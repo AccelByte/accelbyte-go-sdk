@@ -43,7 +43,7 @@ func (o *GetIAPItemConfigReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/iap/config/item returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/iap/config/item returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetIAPItemConfigOK struct {
 }
 
 func (o *GetIAPItemConfigOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/iap/config/item][%d] getIAPItemConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/iap/config/item][%d] getIAPItemConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *GetIAPItemConfigOK) GetPayload() *platformclientmodels.IAPItemConfigInfo {
@@ -94,7 +94,7 @@ type GetIAPItemConfigNotFound struct {
 }
 
 func (o *GetIAPItemConfigNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/iap/config/item][%d] getIAPItemConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/iap/config/item][%d] getIAPItemConfigNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetIAPItemConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {

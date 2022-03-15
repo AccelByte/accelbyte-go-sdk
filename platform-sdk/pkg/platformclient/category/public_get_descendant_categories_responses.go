@@ -37,7 +37,7 @@ func (o *PublicGetDescendantCategoriesReader) ReadResponse(response runtime.Clie
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/categories/{categoryPath}/descendants returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/categories/{categoryPath}/descendants returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type PublicGetDescendantCategoriesOK struct {
 }
 
 func (o *PublicGetDescendantCategoriesOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/categories/{categoryPath}/descendants][%d] publicGetDescendantCategoriesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/categories/{categoryPath}/descendants][%d] publicGetDescendantCategoriesOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetDescendantCategoriesOK) GetPayload() []*platformclientmodels.CategoryInfo {

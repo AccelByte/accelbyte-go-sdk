@@ -43,7 +43,7 @@ func (o *RevokeUserEntitlementReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type RevokeUserEntitlementOK struct {
 }
 
 func (o *RevokeUserEntitlementOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke][%d] revokeUserEntitlementOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke][%d] revokeUserEntitlementOK  %+v", 200, o.Payload)
 }
 
 func (o *RevokeUserEntitlementOK) GetPayload() *platformclientmodels.EntitlementInfo {
@@ -94,7 +94,7 @@ type RevokeUserEntitlementNotFound struct {
 }
 
 func (o *RevokeUserEntitlementNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke][%d] revokeUserEntitlementNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/revoke][%d] revokeUserEntitlementNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RevokeUserEntitlementNotFound) GetPayload() *platformclientmodels.ErrorEntity {

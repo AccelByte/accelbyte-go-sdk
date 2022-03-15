@@ -43,7 +43,7 @@ func (o *UpdateAliPayConfigReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/payment/config/merchant/{id}/alipayconfig returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/payment/config/merchant/{id}/alipayconfig returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type UpdateAliPayConfigOK struct {
 }
 
 func (o *UpdateAliPayConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/payment/config/merchant/{id}/alipayconfig][%d] updateAliPayConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/alipayconfig][%d] updateAliPayConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateAliPayConfigOK) GetPayload() *platformclientmodels.PaymentMerchantConfigInfo {
@@ -94,7 +94,7 @@ type UpdateAliPayConfigNotFound struct {
 }
 
 func (o *UpdateAliPayConfigNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/payment/config/merchant/{id}/alipayconfig][%d] updateAliPayConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/alipayconfig][%d] updateAliPayConfigNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateAliPayConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {

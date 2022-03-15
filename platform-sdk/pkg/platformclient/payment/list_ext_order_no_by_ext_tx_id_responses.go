@@ -35,7 +35,7 @@ func (o *ListExtOrderNoByExtTxIDReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/payment/orders/byExtTxId returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/payment/orders/byExtTxId returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -53,7 +53,7 @@ type ListExtOrderNoByExtTxIDOK struct {
 }
 
 func (o *ListExtOrderNoByExtTxIDOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/payment/orders/byExtTxId][%d] listExtOrderNoByExtTxIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/payment/orders/byExtTxId][%d] listExtOrderNoByExtTxIdOK  %+v", 200, o.Payload)
 }
 
 func (o *ListExtOrderNoByExtTxIDOK) GetPayload() []string {

@@ -43,7 +43,7 @@ func (o *ResetUserSeasonReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /admin/namespaces/{namespace}/users/{userId}/seasons/current/reset returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/reset returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -60,7 +60,7 @@ type ResetUserSeasonNoContent struct {
 }
 
 func (o *ResetUserSeasonNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/users/{userId}/seasons/current/reset][%d] resetUserSeasonNoContent ", 204)
+	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/reset][%d] resetUserSeasonNoContent ", 204)
 }
 
 func (o *ResetUserSeasonNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -82,7 +82,7 @@ type ResetUserSeasonBadRequest struct {
 }
 
 func (o *ResetUserSeasonBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/users/{userId}/seasons/current/reset][%d] resetUserSeasonBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/reset][%d] resetUserSeasonBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ResetUserSeasonBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {

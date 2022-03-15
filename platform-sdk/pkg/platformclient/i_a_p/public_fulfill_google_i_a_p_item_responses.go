@@ -55,7 +55,7 @@ func (o *PublicFulfillGoogleIAPItemReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /public/namespaces/{namespace}/users/{userId}/iap/google/receipt returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type PublicFulfillGoogleIAPItemOK struct {
 }
 
 func (o *PublicFulfillGoogleIAPItemOK) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicFulfillGoogleIAPItemOK) GetPayload() *platformclientmodels.GoogleReceiptResolveResult {
@@ -106,7 +106,7 @@ type PublicFulfillGoogleIAPItemBadRequest struct {
 }
 
 func (o *PublicFulfillGoogleIAPItemBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicFulfillGoogleIAPItemBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type PublicFulfillGoogleIAPItemNotFound struct {
 }
 
 func (o *PublicFulfillGoogleIAPItemNotFound) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicFulfillGoogleIAPItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -172,7 +172,7 @@ type PublicFulfillGoogleIAPItemConflict struct {
 }
 
 func (o *PublicFulfillGoogleIAPItemConflict) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt][%d] publicFulfillGoogleIAPItemConflict  %+v", 409, o.Payload)
 }
 
 func (o *PublicFulfillGoogleIAPItemConflict) GetPayload() *platformclientmodels.ErrorEntity {

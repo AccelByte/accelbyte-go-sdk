@@ -23,6 +23,10 @@ type AccountcommonRole struct {
 	// Required: true
 	AdminRole *bool `json:"AdminRole"`
 
+	// deletable
+	// Required: true
+	Deletable *bool `json:"Deletable"`
+
 	// is wildcard
 	// Required: true
 	IsWildcard *bool `json:"IsWildcard"`
@@ -53,6 +57,10 @@ func (m *AccountcommonRole) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAdminRole(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDeletable(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -89,6 +97,15 @@ func (m *AccountcommonRole) Validate(formats strfmt.Registry) error {
 func (m *AccountcommonRole) validateAdminRole(formats strfmt.Registry) error {
 
 	if err := validate.Required("AdminRole", "body", m.AdminRole); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AccountcommonRole) validateDeletable(formats strfmt.Registry) error {
+
+	if err := validate.Required("Deletable", "body", m.Deletable); err != nil {
 		return err
 	}
 

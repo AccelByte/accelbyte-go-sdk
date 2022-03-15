@@ -17,6 +17,9 @@ import (
 // swagger:model model.RoleUpdateRequestV3
 type ModelRoleUpdateRequestV3 struct {
 
+	// deletable
+	Deletable bool `json:"deletable"`
+
 	// is wildcard
 	// Required: true
 	IsWildcard *bool `json:"isWildcard"`

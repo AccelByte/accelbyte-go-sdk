@@ -49,7 +49,7 @@ func (o *PublicGetCustomAttributesInfoReader) ReadResponse(response runtime.Clie
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type PublicGetCustomAttributesInfoOK struct {
 }
 
 func (o *PublicGetCustomAttributesInfoOK) Error() string {
-	return fmt.Sprintf("[GET /v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicGetCustomAttributesInfoOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicGetCustomAttributesInfoOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetCustomAttributesInfoOK) GetPayload() map[string]interface{} {
@@ -98,7 +98,7 @@ type PublicGetCustomAttributesInfoUnauthorized struct {
 }
 
 func (o *PublicGetCustomAttributesInfoUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicGetCustomAttributesInfoUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicGetCustomAttributesInfoUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *PublicGetCustomAttributesInfoUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -131,7 +131,7 @@ type PublicGetCustomAttributesInfoNotFound struct {
 }
 
 func (o *PublicGetCustomAttributesInfoNotFound) Error() string {
-	return fmt.Sprintf("[GET /v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicGetCustomAttributesInfoNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/customAttributes][%d] publicGetCustomAttributesInfoNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicGetCustomAttributesInfoNotFound) GetPayload() *basicclientmodels.ErrorEntity {

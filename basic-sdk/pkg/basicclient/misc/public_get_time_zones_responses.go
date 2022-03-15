@@ -43,7 +43,7 @@ func (o *PublicGetTimeZonesReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /v1/public/namespaces/{namespace}/misc/timezones returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /basic/v1/public/namespaces/{namespace}/misc/timezones returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type PublicGetTimeZonesOK struct {
 }
 
 func (o *PublicGetTimeZonesOK) Error() string {
-	return fmt.Sprintf("[GET /v1/public/namespaces/{namespace}/misc/timezones][%d] publicGetTimeZonesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/misc/timezones][%d] publicGetTimeZonesOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetTimeZonesOK) GetPayload() []string {
@@ -92,7 +92,7 @@ type PublicGetTimeZonesBadRequest struct {
 }
 
 func (o *PublicGetTimeZonesBadRequest) Error() string {
-	return fmt.Sprintf("[GET /v1/public/namespaces/{namespace}/misc/timezones][%d] publicGetTimeZonesBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/misc/timezones][%d] publicGetTimeZonesBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicGetTimeZonesBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {

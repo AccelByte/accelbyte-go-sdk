@@ -37,7 +37,7 @@ func (o *UpdateGoogleIAPConfigReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/iap/config/google returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/iap/config/google returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type UpdateGoogleIAPConfigOK struct {
 }
 
 func (o *UpdateGoogleIAPConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/iap/config/google][%d] updateGoogleIAPConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/iap/config/google][%d] updateGoogleIAPConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateGoogleIAPConfigOK) GetPayload() *platformclientmodels.GoogleIAPConfigInfo {

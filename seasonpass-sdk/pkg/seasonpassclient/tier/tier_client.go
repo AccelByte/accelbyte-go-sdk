@@ -65,7 +65,7 @@ func (a *Client) CreateTier(params *CreateTierParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createTier",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/tiers",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -114,7 +114,7 @@ func (a *Client) CreateTierShort(params *CreateTierParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createTier",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/tiers",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -164,7 +164,7 @@ func (a *Client) DeleteTier(params *DeleteTierParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteTier",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -210,7 +210,7 @@ func (a *Client) DeleteTierShort(params *DeleteTierParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteTier",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -258,7 +258,7 @@ func (a *Client) GrantUserExp(params *GrantUserExpParams, authInfo runtime.Clien
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "grantUserExp",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/seasons/current/exp",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/exp",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -298,7 +298,7 @@ func (a *Client) GrantUserExpShort(params *GrantUserExpParams, authInfo runtime.
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "grantUserExp",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/seasons/current/exp",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/exp",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -342,7 +342,7 @@ func (a *Client) GrantUserTier(params *GrantUserTierParams, authInfo runtime.Cli
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "grantUserTier",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -385,7 +385,7 @@ func (a *Client) GrantUserTierShort(params *GrantUserTierParams, authInfo runtim
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "grantUserTier",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -431,7 +431,7 @@ func (a *Client) QueryTiers(params *QueryTiersParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryTiers",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/tiers",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -474,7 +474,7 @@ func (a *Client) QueryTiersShort(params *QueryTiersParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryTiers",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/tiers",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -520,7 +520,7 @@ func (a *Client) ReorderTier(params *ReorderTierParams, authInfo runtime.ClientA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "reorderTier",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -569,7 +569,7 @@ func (a *Client) ReorderTierShort(params *ReorderTierParams, authInfo runtime.Cl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "reorderTier",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}/reorder",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -619,7 +619,7 @@ func (a *Client) UpdateTier(params *UpdateTierParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateTier",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -668,7 +668,7 @@ func (a *Client) UpdateTierShort(params *UpdateTierParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateTier",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}",
+		PathPattern:        "/seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

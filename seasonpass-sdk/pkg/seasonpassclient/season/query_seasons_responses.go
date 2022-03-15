@@ -43,7 +43,7 @@ func (o *QuerySeasonsReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/seasons returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /seasonpass/admin/namespaces/{namespace}/seasons returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type QuerySeasonsOK struct {
 }
 
 func (o *QuerySeasonsOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/seasons][%d] querySeasonsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons][%d] querySeasonsOK  %+v", 200, o.Payload)
 }
 
 func (o *QuerySeasonsOK) GetPayload() *seasonpassclientmodels.ListSeasonInfoPagingSlicedResult {
@@ -94,7 +94,7 @@ type QuerySeasonsBadRequest struct {
 }
 
 func (o *QuerySeasonsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/seasons][%d] querySeasonsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons][%d] querySeasonsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *QuerySeasonsBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {

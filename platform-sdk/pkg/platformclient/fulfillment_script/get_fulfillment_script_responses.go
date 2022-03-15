@@ -43,7 +43,7 @@ func (o *GetFulfillmentScriptReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/fulfillment/scripts/{id} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/fulfillment/scripts/{id} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetFulfillmentScriptOK struct {
 }
 
 func (o *GetFulfillmentScriptOK) Error() string {
-	return fmt.Sprintf("[GET /admin/fulfillment/scripts/{id}][%d] getFulfillmentScriptOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/fulfillment/scripts/{id}][%d] getFulfillmentScriptOK  %+v", 200, o.Payload)
 }
 
 func (o *GetFulfillmentScriptOK) GetPayload() *platformclientmodels.FulfillmentScriptInfo {
@@ -94,7 +94,7 @@ type GetFulfillmentScriptNotFound struct {
 }
 
 func (o *GetFulfillmentScriptNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/fulfillment/scripts/{id}][%d] getFulfillmentScriptNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/fulfillment/scripts/{id}][%d] getFulfillmentScriptNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetFulfillmentScriptNotFound) GetPayload() *platformclientmodels.ErrorEntity {

@@ -63,7 +63,7 @@ func (a *Client) CreatePolicy(params *CreatePolicyParams, authInfo runtime.Clien
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createPolicy",
 		Method:             "POST",
-		PathPattern:        "/admin/base-policies",
+		PathPattern:        "/agreement/admin/base-policies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -106,7 +106,7 @@ func (a *Client) CreatePolicyShort(params *CreatePolicyParams, authInfo runtime.
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createPolicy",
 		Method:             "POST",
-		PathPattern:        "/admin/base-policies",
+		PathPattern:        "/agreement/admin/base-policies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -152,7 +152,7 @@ func (a *Client) PartialUpdatePolicy(params *PartialUpdatePolicyParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "partialUpdatePolicy",
 		Method:             "PATCH",
-		PathPattern:        "/admin/base-policies/{basePolicyId}",
+		PathPattern:        "/agreement/admin/base-policies/{basePolicyId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -192,7 +192,7 @@ func (a *Client) PartialUpdatePolicyShort(params *PartialUpdatePolicyParams, aut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "partialUpdatePolicy",
 		Method:             "PATCH",
-		PathPattern:        "/admin/base-policies/{basePolicyId}",
+		PathPattern:        "/agreement/admin/base-policies/{basePolicyId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -236,7 +236,7 @@ func (a *Client) RetrieveAllLegalPolicies(params *RetrieveAllLegalPoliciesParams
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveAllLegalPolicies",
 		Method:             "GET",
-		PathPattern:        "/admin/base-policies",
+		PathPattern:        "/agreement/admin/base-policies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -273,7 +273,7 @@ func (a *Client) RetrieveAllLegalPoliciesShort(params *RetrieveAllLegalPoliciesP
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveAllLegalPolicies",
 		Method:             "GET",
-		PathPattern:        "/admin/base-policies",
+		PathPattern:        "/agreement/admin/base-policies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -315,7 +315,7 @@ func (a *Client) RetrieveAllPolicyTypes(params *RetrieveAllPolicyTypesParams, au
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveAllPolicyTypes",
 		Method:             "GET",
-		PathPattern:        "/admin/policy-types",
+		PathPattern:        "/agreement/admin/policy-types",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -352,7 +352,7 @@ func (a *Client) RetrieveAllPolicyTypesShort(params *RetrieveAllPolicyTypesParam
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveAllPolicyTypes",
 		Method:             "GET",
-		PathPattern:        "/admin/policy-types",
+		PathPattern:        "/agreement/admin/policy-types",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -394,7 +394,7 @@ func (a *Client) RetrievePolicyCountry(params *RetrievePolicyCountryParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrievePolicyCountry",
 		Method:             "GET",
-		PathPattern:        "/admin/base-policies/{basePolicyId}/countries/{countryCode}",
+		PathPattern:        "/agreement/admin/base-policies/{basePolicyId}/countries/{countryCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -434,7 +434,7 @@ func (a *Client) RetrievePolicyCountryShort(params *RetrievePolicyCountryParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrievePolicyCountry",
 		Method:             "GET",
-		PathPattern:        "/admin/base-policies/{basePolicyId}/countries/{countryCode}",
+		PathPattern:        "/agreement/admin/base-policies/{basePolicyId}/countries/{countryCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -478,7 +478,7 @@ func (a *Client) RetrieveSinglePolicy(params *RetrieveSinglePolicyParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveSinglePolicy",
 		Method:             "GET",
-		PathPattern:        "/admin/base-policies/{basePolicyId}",
+		PathPattern:        "/agreement/admin/base-policies/{basePolicyId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -518,7 +518,7 @@ func (a *Client) RetrieveSinglePolicyShort(params *RetrieveSinglePolicyParams, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveSinglePolicy",
 		Method:             "GET",
-		PathPattern:        "/admin/base-policies/{basePolicyId}",
+		PathPattern:        "/agreement/admin/base-policies/{basePolicyId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

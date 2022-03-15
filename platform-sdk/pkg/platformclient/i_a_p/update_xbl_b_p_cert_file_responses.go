@@ -37,7 +37,7 @@ func (o *UpdateXblBPCertFileReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/iap/config/xbl/cert returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/iap/config/xbl/cert returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type UpdateXblBPCertFileOK struct {
 }
 
 func (o *UpdateXblBPCertFileOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/iap/config/xbl/cert][%d] updateXblBPCertFileOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/iap/config/xbl/cert][%d] updateXblBPCertFileOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateXblBPCertFileOK) GetPayload() *platformclientmodels.XblIAPConfigInfo {

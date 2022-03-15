@@ -63,7 +63,7 @@ func (a *Client) CreateFulfillmentScript(params *CreateFulfillmentScriptParams, 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createFulfillmentScript",
 		Method:             "POST",
-		PathPattern:        "/admin/fulfillment/scripts/{id}",
+		PathPattern:        "/platform/admin/fulfillment/scripts/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -103,7 +103,7 @@ func (a *Client) CreateFulfillmentScriptShort(params *CreateFulfillmentScriptPar
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createFulfillmentScript",
 		Method:             "POST",
-		PathPattern:        "/admin/fulfillment/scripts/{id}",
+		PathPattern:        "/platform/admin/fulfillment/scripts/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -147,7 +147,7 @@ func (a *Client) DeleteFulfillmentScript(params *DeleteFulfillmentScriptParams, 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteFulfillmentScript",
 		Method:             "DELETE",
-		PathPattern:        "/admin/fulfillment/scripts/{id}",
+		PathPattern:        "/platform/admin/fulfillment/scripts/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -184,7 +184,7 @@ func (a *Client) DeleteFulfillmentScriptShort(params *DeleteFulfillmentScriptPar
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteFulfillmentScript",
 		Method:             "DELETE",
-		PathPattern:        "/admin/fulfillment/scripts/{id}",
+		PathPattern:        "/platform/admin/fulfillment/scripts/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -226,7 +226,7 @@ func (a *Client) GetFulfillmentScript(params *GetFulfillmentScriptParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getFulfillmentScript",
 		Method:             "GET",
-		PathPattern:        "/admin/fulfillment/scripts/{id}",
+		PathPattern:        "/platform/admin/fulfillment/scripts/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -266,7 +266,7 @@ func (a *Client) GetFulfillmentScriptShort(params *GetFulfillmentScriptParams, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getFulfillmentScript",
 		Method:             "GET",
-		PathPattern:        "/admin/fulfillment/scripts/{id}",
+		PathPattern:        "/platform/admin/fulfillment/scripts/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -310,7 +310,7 @@ func (a *Client) ListFulfillmentScripts(params *ListFulfillmentScriptsParams, au
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listFulfillmentScripts",
 		Method:             "GET",
-		PathPattern:        "/admin/fulfillment/scripts",
+		PathPattern:        "/platform/admin/fulfillment/scripts",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -347,7 +347,7 @@ func (a *Client) ListFulfillmentScriptsShort(params *ListFulfillmentScriptsParam
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listFulfillmentScripts",
 		Method:             "GET",
-		PathPattern:        "/admin/fulfillment/scripts",
+		PathPattern:        "/platform/admin/fulfillment/scripts",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -389,7 +389,7 @@ func (a *Client) TestFulfillmentScriptEval(params *TestFulfillmentScriptEvalPara
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testFulfillmentScriptEval",
 		Method:             "POST",
-		PathPattern:        "/admin/fulfillment/scripts/tests/eval",
+		PathPattern:        "/platform/admin/fulfillment/scripts/tests/eval",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -426,7 +426,7 @@ func (a *Client) TestFulfillmentScriptEvalShort(params *TestFulfillmentScriptEva
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "testFulfillmentScriptEval",
 		Method:             "POST",
-		PathPattern:        "/admin/fulfillment/scripts/tests/eval",
+		PathPattern:        "/platform/admin/fulfillment/scripts/tests/eval",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -468,7 +468,7 @@ func (a *Client) UpdateFulfillmentScript(params *UpdateFulfillmentScriptParams, 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateFulfillmentScript",
 		Method:             "PATCH",
-		PathPattern:        "/admin/fulfillment/scripts/{id}",
+		PathPattern:        "/platform/admin/fulfillment/scripts/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -508,7 +508,7 @@ func (a *Client) UpdateFulfillmentScriptShort(params *UpdateFulfillmentScriptPar
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateFulfillmentScript",
 		Method:             "PATCH",
-		PathPattern:        "/admin/fulfillment/scripts/{id}",
+		PathPattern:        "/platform/admin/fulfillment/scripts/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

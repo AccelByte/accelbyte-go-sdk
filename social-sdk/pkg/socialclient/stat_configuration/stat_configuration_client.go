@@ -69,7 +69,7 @@ func (a *Client) CreateStat(params *CreateStatParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createStat",
 		Method:             "POST",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/stats",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/stats",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -109,7 +109,7 @@ func (a *Client) CreateStatShort(params *CreateStatParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createStat",
 		Method:             "POST",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/stats",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/stats",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -153,7 +153,7 @@ func (a *Client) CreateStat1(params *CreateStat1Params, authInfo runtime.ClientA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createStat_1",
 		Method:             "POST",
-		PathPattern:        "/v1/public/namespaces/{namespace}/stats",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/stats",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -193,7 +193,7 @@ func (a *Client) CreateStat1Short(params *CreateStat1Params, authInfo runtime.Cl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createStat_1",
 		Method:             "POST",
-		PathPattern:        "/v1/public/namespaces/{namespace}/stats",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/stats",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -237,7 +237,7 @@ func (a *Client) DeleteStat(params *DeleteStatParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteStat",
 		Method:             "DELETE",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/stats/{statCode}",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/stats/{statCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -277,7 +277,7 @@ func (a *Client) DeleteStatShort(params *DeleteStatParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteStat",
 		Method:             "DELETE",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/stats/{statCode}",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/stats/{statCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -321,7 +321,7 @@ func (a *Client) ExportStats(params *ExportStatsParams, authInfo runtime.ClientA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "exportStats",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/stats/export",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/stats/export",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -358,7 +358,7 @@ func (a *Client) ExportStatsShort(params *ExportStatsParams, authInfo runtime.Cl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "exportStats",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/stats/export",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/stats/export",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -400,7 +400,7 @@ func (a *Client) GetStat(params *GetStatParams, authInfo runtime.ClientAuthInfoW
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getStat",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/stats/{statCode}",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/stats/{statCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -440,7 +440,7 @@ func (a *Client) GetStatShort(params *GetStatParams, authInfo runtime.ClientAuth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getStat",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/stats/{statCode}",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/stats/{statCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -484,7 +484,7 @@ func (a *Client) GetStats(params *GetStatsParams, authInfo runtime.ClientAuthInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getStats",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/stats",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/stats",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -521,7 +521,7 @@ func (a *Client) GetStatsShort(params *GetStatsParams, authInfo runtime.ClientAu
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getStats",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/stats",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/stats",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -563,7 +563,7 @@ func (a *Client) ImportStats(params *ImportStatsParams, authInfo runtime.ClientA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "importStats",
 		Method:             "POST",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/stats/import",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/stats/import",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
 		Schemes:            []string{"https"},
@@ -603,7 +603,7 @@ func (a *Client) ImportStatsShort(params *ImportStatsParams, authInfo runtime.Cl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "importStats",
 		Method:             "POST",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/stats/import",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/stats/import",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
 		Schemes:            []string{"https"},
@@ -647,7 +647,7 @@ func (a *Client) QueryStats(params *QueryStatsParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryStats",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/stats/search",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/stats/search",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -684,7 +684,7 @@ func (a *Client) QueryStatsShort(params *QueryStatsParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryStats",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/stats/search",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/stats/search",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -726,7 +726,7 @@ func (a *Client) UpdateStat(params *UpdateStatParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateStat",
 		Method:             "PATCH",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/stats/{statCode}",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/stats/{statCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -766,7 +766,7 @@ func (a *Client) UpdateStatShort(params *UpdateStatParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateStat",
 		Method:             "PATCH",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/stats/{statCode}",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/stats/{statCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

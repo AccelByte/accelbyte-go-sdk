@@ -43,7 +43,7 @@ func (o *PublicGetProfileAttributeReader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type PublicGetProfileAttributeOK struct {
 }
 
 func (o *PublicGetProfileAttributeOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicGetProfileAttributeOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicGetProfileAttributeOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetProfileAttributeOK) GetPayload() *socialclientmodels.Attribute {
@@ -94,7 +94,7 @@ type PublicGetProfileAttributeNotFound struct {
 }
 
 func (o *PublicGetProfileAttributeNotFound) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicGetProfileAttributeNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}/attributes/{attributeName}][%d] publicGetProfileAttributeNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicGetProfileAttributeNotFound) GetPayload() *socialclientmodels.ErrorEntity {

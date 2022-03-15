@@ -40,7 +40,7 @@ func (o *ProcessUserOrderNotificationReader) ReadResponse(response runtime.Clien
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/notifications returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/notifications returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -57,7 +57,7 @@ type ProcessUserOrderNotificationNoContent struct {
 }
 
 func (o *ProcessUserOrderNotificationNoContent) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/notifications][%d] processUserOrderNotificationNoContent ", 204)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/notifications][%d] processUserOrderNotificationNoContent ", 204)
 }
 
 func (o *ProcessUserOrderNotificationNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -78,7 +78,7 @@ type ProcessUserOrderNotificationBadRequest struct {
 }
 
 func (o *ProcessUserOrderNotificationBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/notifications][%d] processUserOrderNotificationBadRequest ", 400)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/notifications][%d] processUserOrderNotificationBadRequest ", 400)
 }
 
 func (o *ProcessUserOrderNotificationBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

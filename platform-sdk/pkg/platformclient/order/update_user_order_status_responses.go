@@ -55,7 +55,7 @@ func (o *UpdateUserOrderStatusReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/users/{userId}/orders/{orderNo} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type UpdateUserOrderStatusOK struct {
 }
 
 func (o *UpdateUserOrderStatusOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}][%d] updateUserOrderStatusOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}][%d] updateUserOrderStatusOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateUserOrderStatusOK) GetPayload() *platformclientmodels.OrderInfo {
@@ -106,7 +106,7 @@ type UpdateUserOrderStatusNotFound struct {
 }
 
 func (o *UpdateUserOrderStatusNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}][%d] updateUserOrderStatusNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}][%d] updateUserOrderStatusNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateUserOrderStatusNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type UpdateUserOrderStatusConflict struct {
 }
 
 func (o *UpdateUserOrderStatusConflict) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}][%d] updateUserOrderStatusConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}][%d] updateUserOrderStatusConflict  %+v", 409, o.Payload)
 }
 
 func (o *UpdateUserOrderStatusConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -172,7 +172,7 @@ type UpdateUserOrderStatusUnprocessableEntity struct {
 }
 
 func (o *UpdateUserOrderStatusUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}][%d] updateUserOrderStatusUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}][%d] updateUserOrderStatusUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateUserOrderStatusUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

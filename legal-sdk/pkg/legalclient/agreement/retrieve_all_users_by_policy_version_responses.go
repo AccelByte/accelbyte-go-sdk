@@ -43,7 +43,7 @@ func (o *RetrieveAllUsersByPolicyVersionReader) ReadResponse(response runtime.Cl
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/agreements/policy-versions/users returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /agreement/admin/agreements/policy-versions/users returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type RetrieveAllUsersByPolicyVersionOK struct {
 }
 
 func (o *RetrieveAllUsersByPolicyVersionOK) Error() string {
-	return fmt.Sprintf("[GET /admin/agreements/policy-versions/users][%d] retrieveAllUsersByPolicyVersionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /agreement/admin/agreements/policy-versions/users][%d] retrieveAllUsersByPolicyVersionOK  %+v", 200, o.Payload)
 }
 
 func (o *RetrieveAllUsersByPolicyVersionOK) GetPayload() []*legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse {
@@ -92,7 +92,7 @@ type RetrieveAllUsersByPolicyVersionNotFound struct {
 }
 
 func (o *RetrieveAllUsersByPolicyVersionNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/agreements/policy-versions/users][%d] retrieveAllUsersByPolicyVersionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /agreement/admin/agreements/policy-versions/users][%d] retrieveAllUsersByPolicyVersionNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RetrieveAllUsersByPolicyVersionNotFound) GetPayload() *legalclientmodels.ErrorEntity {

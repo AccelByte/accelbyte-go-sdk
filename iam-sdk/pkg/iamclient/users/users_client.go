@@ -221,6 +221,8 @@ type ClientService interface {
 	PublicForgotPasswordV3Short(params *PublicForgotPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicForgotPasswordV3NoContent, error)
 	PublicGetAsyncStatus(params *PublicGetAsyncStatusParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetAsyncStatusOK, *PublicGetAsyncStatusUnauthorized, *PublicGetAsyncStatusForbidden, *PublicGetAsyncStatusInternalServerError, error)
 	PublicGetAsyncStatusShort(params *PublicGetAsyncStatusParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetAsyncStatusOK, error)
+	PublicGetCountryAgeRestriction(params *PublicGetCountryAgeRestrictionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCountryAgeRestrictionOK, *PublicGetCountryAgeRestrictionUnauthorized, *PublicGetCountryAgeRestrictionNotFound, error)
+	PublicGetCountryAgeRestrictionShort(params *PublicGetCountryAgeRestrictionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCountryAgeRestrictionOK, error)
 	PublicGetMyUserV3(params *PublicGetMyUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyUserV3OK, *PublicGetMyUserV3Unauthorized, *PublicGetMyUserV3InternalServerError, error)
 	PublicGetMyUserV3Short(params *PublicGetMyUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyUserV3OK, error)
 	PublicGetUserBan(params *PublicGetUserBanParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserBanOK, *PublicGetUserBanUnauthorized, *PublicGetUserBanForbidden, *PublicGetUserBanNotFound, error)
@@ -251,6 +253,8 @@ type ClientService interface {
 	PublicResetPasswordV2Short(params *PublicResetPasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicResetPasswordV2NoContent, error)
 	PublicSearchUserV3(params *PublicSearchUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSearchUserV3OK, *PublicSearchUserV3BadRequest, *PublicSearchUserV3Unauthorized, *PublicSearchUserV3NotFound, *PublicSearchUserV3InternalServerError, error)
 	PublicSearchUserV3Short(params *PublicSearchUserV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSearchUserV3OK, error)
+	PublicSendRegistrationCode(params *PublicSendRegistrationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSendRegistrationCodeNoContent, *PublicSendRegistrationCodeBadRequest, *PublicSendRegistrationCodeConflict, error)
+	PublicSendRegistrationCodeShort(params *PublicSendRegistrationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSendRegistrationCodeNoContent, error)
 	PublicSendVerificationCodeV3(params *PublicSendVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendVerificationCodeV3NoContent, *PublicSendVerificationCodeV3BadRequest, *PublicSendVerificationCodeV3Unauthorized, *PublicSendVerificationCodeV3NotFound, *PublicSendVerificationCodeV3Conflict, *PublicSendVerificationCodeV3TooManyRequests, error)
 	PublicSendVerificationCodeV3Short(params *PublicSendVerificationCodeV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicSendVerificationCodeV3NoContent, error)
 	PublicUpdatePasswordV2(params *PublicUpdatePasswordV2Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdatePasswordV2NoContent, *PublicUpdatePasswordV2BadRequest, *PublicUpdatePasswordV2Unauthorized, *PublicUpdatePasswordV2Forbidden, *PublicUpdatePasswordV2NotFound, *PublicUpdatePasswordV2InternalServerError, error)
@@ -269,6 +273,8 @@ type ClientService interface {
 	PublicValidateUserByUserIDAndPasswordV3Short(params *PublicValidateUserByUserIDAndPasswordV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicValidateUserByUserIDAndPasswordV3NoContent, error)
 	PublicVerifyHeadlessAccountV3(params *PublicVerifyHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicVerifyHeadlessAccountV3OK, *PublicVerifyHeadlessAccountV3BadRequest, *PublicVerifyHeadlessAccountV3Unauthorized, *PublicVerifyHeadlessAccountV3NotFound, *PublicVerifyHeadlessAccountV3Conflict, *PublicVerifyHeadlessAccountV3InternalServerError, error)
 	PublicVerifyHeadlessAccountV3Short(params *PublicVerifyHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicVerifyHeadlessAccountV3OK, error)
+	PublicVerifyRegistrationCode(params *PublicVerifyRegistrationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicVerifyRegistrationCodeNoContent, *PublicVerifyRegistrationCodeBadRequest, error)
+	PublicVerifyRegistrationCodeShort(params *PublicVerifyRegistrationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicVerifyRegistrationCodeNoContent, error)
 	PublicWebLinkPlatform(params *PublicWebLinkPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformOK, *PublicWebLinkPlatformBadRequest, *PublicWebLinkPlatformUnauthorized, *PublicWebLinkPlatformNotFound, error)
 	PublicWebLinkPlatformShort(params *PublicWebLinkPlatformParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformOK, error)
 	PublicWebLinkPlatformEstablish(params *PublicWebLinkPlatformEstablishParams, authInfo runtime.ClientAuthInfoWriter) (*PublicWebLinkPlatformEstablishFound, error)
@@ -5782,21 +5788,22 @@ func (a *Client) AdminUpdateUserV3Short(params *AdminUpdateUserV3Params, authInf
 }
 
 /*
-  AdminUpgradeHeadlessAccountV3 upgrades headless account with verification code
+  AdminUpgradeHeadlessAccountV3 verifies or consume verification code
 
-  Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;
-        	&lt;p&gt;The endpoint upgrades a headless account by linking the headless account with the email address and the password.
-				By upgrading the headless account into a full account, the user could use the email address and password for using Justice IAM. &lt;/p&gt;
-        	&lt;p&gt;The endpoint is a shortcut for upgrading a headless account and verifying the email address in one call.
-				In order to get a verification code for the endpoint, please check the send verification code endpoint. &lt;/p&gt;
-        	&lt;p&gt;This endpoint also have an ability to update user data (if the user data field is specified) right after the upgrade account process is done.&lt;br/&gt;
-				Supported user data fields :
-				&lt;ul&gt;
-					&lt;li&gt;displayName&lt;/li&gt;
-					&lt;li&gt;dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29&lt;/li&gt;
-					&lt;li&gt;country : format ISO3166-1 alpha-2 two letter, e.g. US&lt;/li&gt;
-				&lt;/ul&gt;
-			&lt;br&gt;action code : 10124&lt;/p&gt;
+  &lt;p&gt;If validateOnly is set false, will upgrade headless account with verification code&lt;/p&gt;
+Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;
+     	&lt;p&gt;The endpoint upgrades a headless account by linking the headless account with the email address and the password.
+	By upgrading the headless account into a full account, the user could use the email address and password for using Justice IAM. &lt;/p&gt;
+     	&lt;p&gt;The endpoint is a shortcut for upgrading a headless account and verifying the email address in one call.
+	In order to get a verification code for the endpoint, please check the send verification code endpoint. &lt;/p&gt;
+     	&lt;p&gt;This endpoint also have an ability to update user data (if the user data field is specified) right after the upgrade account process is done.&lt;br/&gt;
+	Supported user data fields :
+	&lt;ul&gt;
+		&lt;li&gt;displayName&lt;/li&gt;
+		&lt;li&gt;dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29&lt;/li&gt;
+		&lt;li&gt;country : format ISO3166-1 alpha-2 two letter, e.g. US&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;br&gt;action code : 10124&lt;/p&gt;
 */
 func (a *Client) AdminUpgradeHeadlessAccountV3(params *AdminUpgradeHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpgradeHeadlessAccountV3OK, *AdminUpgradeHeadlessAccountV3BadRequest, *AdminUpgradeHeadlessAccountV3Unauthorized, *AdminUpgradeHeadlessAccountV3Forbidden, *AdminUpgradeHeadlessAccountV3NotFound, *AdminUpgradeHeadlessAccountV3Conflict, *AdminUpgradeHeadlessAccountV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -5903,11 +5910,12 @@ func (a *Client) AdminUpgradeHeadlessAccountV3Short(params *AdminUpgradeHeadless
 }
 
 /*
-  AdminVerifyAccountV3 verifies account by validating verification code
+  AdminVerifyAccountV3 verifies or consume verification code sent to user
 
-  &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
-			Redeems a verification code sent to a user to verify the user&#39;s contact address is correct
-			&lt;p&gt;Available ContactType : &lt;b&gt;email&lt;b/&gt; or &lt;b&gt;phone&lt;b/&gt; &lt;/p&gt;
+  &lt;p&gt;Will verify account and consume code if validateOnly is set false in request body&lt;/p&gt;
+&lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]&#39;&lt;/p&gt;
+Redeems a verification code sent to a user to verify the user&#39;s contact address is correct
+&lt;p&gt;Available ContactType : &lt;b&gt;email&lt;b/&gt; or &lt;b&gt;phone&lt;b/&gt; &lt;/p&gt;
 */
 func (a *Client) AdminVerifyAccountV3(params *AdminVerifyAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*AdminVerifyAccountV3NoContent, *AdminVerifyAccountV3BadRequest, *AdminVerifyAccountV3Unauthorized, *AdminVerifyAccountV3Forbidden, *AdminVerifyAccountV3NotFound, *AdminVerifyAccountV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -10248,6 +10256,93 @@ func (a *Client) PublicGetAsyncStatusShort(params *PublicGetAsyncStatusParams, a
 }
 
 /*
+  PublicGetCountryAgeRestriction publics get age restriction by country code
+*/
+func (a *Client) PublicGetCountryAgeRestriction(params *PublicGetCountryAgeRestrictionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCountryAgeRestrictionOK, *PublicGetCountryAgeRestrictionUnauthorized, *PublicGetCountryAgeRestrictionNotFound, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetCountryAgeRestrictionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetCountryAgeRestriction",
+		Method:             "GET",
+		PathPattern:        "/iam/v2/public/namespaces/{namespace}/countries/{countryCode}/agerestrictions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetCountryAgeRestrictionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetCountryAgeRestrictionOK:
+		return v, nil, nil, nil
+
+	case *PublicGetCountryAgeRestrictionUnauthorized:
+		return nil, v, nil, nil
+
+	case *PublicGetCountryAgeRestrictionNotFound:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetCountryAgeRestrictionShort(params *PublicGetCountryAgeRestrictionParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetCountryAgeRestrictionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetCountryAgeRestrictionParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetCountryAgeRestriction",
+		Method:             "GET",
+		PathPattern:        "/iam/v2/public/namespaces/{namespace}/countries/{countryCode}/agerestrictions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetCountryAgeRestrictionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetCountryAgeRestrictionOK:
+		return v, nil
+	case *PublicGetCountryAgeRestrictionUnauthorized:
+		return nil, v
+	case *PublicGetCountryAgeRestrictionNotFound:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
   PublicGetMyUserV3 gets my user
 
   &lt;p&gt;Require valid user authorization&lt;br&gt;Get my user data&lt;br&gt;action code : 10147 &lt;/p&gt;
@@ -11798,6 +11893,101 @@ func (a *Client) PublicSearchUserV3Short(params *PublicSearchUserV3Params, authI
 }
 
 /*
+  PublicSendRegistrationCode sends verification code to new unregistered account s email address
+
+  This endpoint will validate the request&#39;s email address.
+
+If it already been used, will response 409.
+
+If it is available, we will send a verification code to this email address.
+This code can be verified by this &lt;a href=&#34;#operations-Users-PublicVerifyRegistrationCode&#34;&gt;endpoint&lt;/a&gt;.
+
+*/
+func (a *Client) PublicSendRegistrationCode(params *PublicSendRegistrationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSendRegistrationCodeNoContent, *PublicSendRegistrationCodeBadRequest, *PublicSendRegistrationCodeConflict, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicSendRegistrationCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicSendRegistrationCode",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/code/request",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicSendRegistrationCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicSendRegistrationCodeNoContent:
+		return v, nil, nil, nil
+
+	case *PublicSendRegistrationCodeBadRequest:
+		return nil, v, nil, nil
+
+	case *PublicSendRegistrationCodeConflict:
+		return nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicSendRegistrationCodeShort(params *PublicSendRegistrationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSendRegistrationCodeNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicSendRegistrationCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicSendRegistrationCode",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/code/request",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicSendRegistrationCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicSendRegistrationCodeNoContent:
+		return v, nil
+	case *PublicSendRegistrationCodeBadRequest:
+		return nil, v
+	case *PublicSendRegistrationCodeConflict:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
   PublicSendVerificationCodeV3 sends verification code to user
 
   Required valid user authorization
@@ -12331,21 +12521,22 @@ func (a *Client) PublicUpdateUserV3Short(params *PublicUpdateUserV3Params, authI
 }
 
 /*
-  PublicUpgradeHeadlessAccountV3 upgrades headless account and automatically verified the email address if it is succeeded
+  PublicUpgradeHeadlessAccountV3 verifies or consume verification code
 
-  Require valid user access token.
-        	&lt;p&gt;The endpoint upgrades a headless account by linking the headless account with the email address and the password.
-			By upgrading the headless account into a full account, the user could use the email address and password for using Justice IAM. &lt;/p&gt;
-        	&lt;p&gt;The endpoint is a shortcut for upgrading a headless account and verifying the email address in one call.
-			In order to get a verification code for the endpoint, please check the send verification code endpoint.&lt;/p&gt;
-        	&lt;p&gt;This endpoint also have an ability to update user data (if the user data field is specified) right after the upgrade account process is done.&lt;br/&gt;
-				Supported user data fields :
-				&lt;ul&gt;
-					&lt;li&gt;displayName&lt;/li&gt;
-					&lt;li&gt;dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29&lt;/li&gt;
-					&lt;li&gt;country : format ISO3166-1 alpha-2 two letter, e.g. US&lt;/li&gt;
-				&lt;/ul&gt;
-        	&lt;br&gt;action code : 10124&lt;/p&gt;
+  &lt;p&gt;If validateOnly is set false, consume code and upgrade headless account and automatically verified the email address if it is succeeded&lt;/p&gt;
+Require valid user access token.
+     	&lt;p&gt;The endpoint upgrades a headless account by linking the headless account with the email address and the password.
+By upgrading the headless account into a full account, the user could use the email address and password for using Justice IAM. &lt;/p&gt;
+     	&lt;p&gt;The endpoint is a shortcut for upgrading a headless account and verifying the email address in one call.
+In order to get a verification code for the endpoint, please check the send verification code endpoint.&lt;/p&gt;
+     	&lt;p&gt;This endpoint also have an ability to update user data (if the user data field is specified) right after the upgrade account process is done.&lt;br/&gt;
+	Supported user data fields :
+	&lt;ul&gt;
+		&lt;li&gt;displayName&lt;/li&gt;
+		&lt;li&gt;dateOfBirth : format YYYY-MM-DD, e.g. 2019-04-29&lt;/li&gt;
+		&lt;li&gt;country : format ISO3166-1 alpha-2 two letter, e.g. US&lt;/li&gt;
+	&lt;/ul&gt;
+     	&lt;br&gt;action code : 10124&lt;/p&gt;
 */
 func (a *Client) PublicUpgradeHeadlessAccountV3(params *PublicUpgradeHeadlessAccountV3Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpgradeHeadlessAccountV3OK, *PublicUpgradeHeadlessAccountV3BadRequest, *PublicUpgradeHeadlessAccountV3Unauthorized, *PublicUpgradeHeadlessAccountV3Forbidden, *PublicUpgradeHeadlessAccountV3NotFound, *PublicUpgradeHeadlessAccountV3Conflict, *PublicUpgradeHeadlessAccountV3InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -12452,9 +12643,10 @@ func (a *Client) PublicUpgradeHeadlessAccountV3Short(params *PublicUpgradeHeadle
 }
 
 /*
-  PublicUserVerificationV3 redeems verification code sent to user
+  PublicUserVerificationV3 validates or consume verification code sent to user
 
-  &lt;p&gt;Required valid user authorization&lt;/p&gt;
+  &lt;p&gt;Will consume code if validateOnly is set false&lt;/p&gt;
+&lt;p&gt;Required valid user authorization&lt;/p&gt;
 &lt;p&gt;Redeems a verification code sent to a user to verify the user&#39;s contact address is correct&lt;/p&gt;
 &lt;p&gt;Available ContactType : &lt;b&gt;email&lt;/b&gt;&lt;/p&gt;
 &lt;p&gt;action code: 10107&lt;/p&gt;
@@ -12760,6 +12952,91 @@ func (a *Client) PublicVerifyHeadlessAccountV3Short(params *PublicVerifyHeadless
 	case *PublicVerifyHeadlessAccountV3Conflict:
 		return nil, v
 	case *PublicVerifyHeadlessAccountV3InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicVerifyRegistrationCode verifies the registration code
+
+  &lt;p&gt;Verify the registration code&lt;/p&gt;
+
+*/
+func (a *Client) PublicVerifyRegistrationCode(params *PublicVerifyRegistrationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicVerifyRegistrationCodeNoContent, *PublicVerifyRegistrationCodeBadRequest, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicVerifyRegistrationCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicVerifyRegistrationCode",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/code/verify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicVerifyRegistrationCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicVerifyRegistrationCodeNoContent:
+		return v, nil, nil
+
+	case *PublicVerifyRegistrationCodeBadRequest:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicVerifyRegistrationCodeShort(params *PublicVerifyRegistrationCodeParams, authInfo runtime.ClientAuthInfoWriter) (*PublicVerifyRegistrationCodeNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicVerifyRegistrationCodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicVerifyRegistrationCode",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/public/namespaces/{namespace}/users/code/verify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicVerifyRegistrationCodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicVerifyRegistrationCodeNoContent:
+		return v, nil
+	case *PublicVerifyRegistrationCodeBadRequest:
 		return nil, v
 
 	default:

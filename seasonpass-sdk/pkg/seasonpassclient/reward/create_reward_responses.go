@@ -61,7 +61,7 @@ func (o *CreateRewardReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/seasons/{seasonId}/rewards returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type CreateRewardCreated struct {
 }
 
 func (o *CreateRewardCreated) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] createRewardCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] createRewardCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateRewardCreated) GetPayload() *seasonpassclientmodels.RewardInfo {
@@ -112,7 +112,7 @@ type CreateRewardBadRequest struct {
 }
 
 func (o *CreateRewardBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] createRewardBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] createRewardBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateRewardBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -145,7 +145,7 @@ type CreateRewardNotFound struct {
 }
 
 func (o *CreateRewardNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] createRewardNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] createRewardNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateRewardNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -178,7 +178,7 @@ type CreateRewardConflict struct {
 }
 
 func (o *CreateRewardConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] createRewardConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] createRewardConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateRewardConflict) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -211,7 +211,7 @@ type CreateRewardUnprocessableEntity struct {
 }
 
 func (o *CreateRewardUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] createRewardUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] createRewardUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateRewardUnprocessableEntity) GetPayload() *seasonpassclientmodels.ValidationErrorEntity {

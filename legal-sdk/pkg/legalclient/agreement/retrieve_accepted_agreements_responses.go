@@ -37,7 +37,7 @@ func (o *RetrieveAcceptedAgreementsReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/agreements/policies/users/{userId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /agreement/admin/agreements/policies/users/{userId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type RetrieveAcceptedAgreementsOK struct {
 }
 
 func (o *RetrieveAcceptedAgreementsOK) Error() string {
-	return fmt.Sprintf("[GET /admin/agreements/policies/users/{userId}][%d] retrieveAcceptedAgreementsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /agreement/admin/agreements/policies/users/{userId}][%d] retrieveAcceptedAgreementsOK  %+v", 200, o.Payload)
 }
 
 func (o *RetrieveAcceptedAgreementsOK) GetPayload() []*legalclientmodels.RetrieveAcceptedAgreementResponse {

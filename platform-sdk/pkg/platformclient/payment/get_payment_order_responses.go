@@ -43,7 +43,7 @@ func (o *GetPaymentOrderReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/payment/orders/{paymentOrderNo} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetPaymentOrderOK struct {
 }
 
 func (o *GetPaymentOrderOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] getPaymentOrderOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] getPaymentOrderOK  %+v", 200, o.Payload)
 }
 
 func (o *GetPaymentOrderOK) GetPayload() *platformclientmodels.PaymentOrderInfo {
@@ -94,7 +94,7 @@ type GetPaymentOrderNotFound struct {
 }
 
 func (o *GetPaymentOrderNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] getPaymentOrderNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}][%d] getPaymentOrderNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetPaymentOrderNotFound) GetPayload() *platformclientmodels.ErrorEntity {

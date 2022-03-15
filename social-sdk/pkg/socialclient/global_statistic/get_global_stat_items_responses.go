@@ -37,7 +37,7 @@ func (o *GetGlobalStatItemsReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /v1/admin/namespaces/{namespace}/globalstatitems returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /social/v1/admin/namespaces/{namespace}/globalstatitems returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type GetGlobalStatItemsOK struct {
 }
 
 func (o *GetGlobalStatItemsOK) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/globalstatitems][%d] getGlobalStatItemsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /social/v1/admin/namespaces/{namespace}/globalstatitems][%d] getGlobalStatItemsOK  %+v", 200, o.Payload)
 }
 
 func (o *GetGlobalStatItemsOK) GetPayload() *socialclientmodels.GlobalStatItemPagingSlicedResult {

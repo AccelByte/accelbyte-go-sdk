@@ -61,7 +61,7 @@ func (o *DeleteUserProfileReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /v1/admin/namespaces/{namespace}/users/{userId}/profiles returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type DeleteUserProfileOK struct {
 }
 
 func (o *DeleteUserProfileOK) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileOK  %+v", 200, o.Payload)
 }
 
 func (o *DeleteUserProfileOK) GetPayload() *basicclientmodels.UserProfilePrivateInfo {
@@ -112,7 +112,7 @@ type DeleteUserProfileBadRequest struct {
 }
 
 func (o *DeleteUserProfileBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteUserProfileBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -145,7 +145,7 @@ type DeleteUserProfileUnauthorized struct {
 }
 
 func (o *DeleteUserProfileUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteUserProfileUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -178,7 +178,7 @@ type DeleteUserProfileForbidden struct {
 }
 
 func (o *DeleteUserProfileForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteUserProfileForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -211,7 +211,7 @@ type DeleteUserProfileNotFound struct {
 }
 
 func (o *DeleteUserProfileNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles][%d] deleteUserProfileNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteUserProfileNotFound) GetPayload() *basicclientmodels.ErrorEntity {

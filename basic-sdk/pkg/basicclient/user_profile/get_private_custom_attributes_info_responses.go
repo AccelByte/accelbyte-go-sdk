@@ -55,7 +55,7 @@ func (o *GetPrivateCustomAttributesInfoReader) ReadResponse(response runtime.Cli
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type GetPrivateCustomAttributesInfoOK struct {
 }
 
 func (o *GetPrivateCustomAttributesInfoOK) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes][%d] getPrivateCustomAttributesInfoOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes][%d] getPrivateCustomAttributesInfoOK  %+v", 200, o.Payload)
 }
 
 func (o *GetPrivateCustomAttributesInfoOK) GetPayload() map[string]interface{} {
@@ -104,7 +104,7 @@ type GetPrivateCustomAttributesInfoUnauthorized struct {
 }
 
 func (o *GetPrivateCustomAttributesInfoUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes][%d] getPrivateCustomAttributesInfoUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes][%d] getPrivateCustomAttributesInfoUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetPrivateCustomAttributesInfoUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -137,7 +137,7 @@ type GetPrivateCustomAttributesInfoForbidden struct {
 }
 
 func (o *GetPrivateCustomAttributesInfoForbidden) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes][%d] getPrivateCustomAttributesInfoForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes][%d] getPrivateCustomAttributesInfoForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetPrivateCustomAttributesInfoForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -170,7 +170,7 @@ type GetPrivateCustomAttributesInfoNotFound struct {
 }
 
 func (o *GetPrivateCustomAttributesInfoNotFound) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes][%d] getPrivateCustomAttributesInfoNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/users/{userId}/profiles/privateCustomAttributes][%d] getPrivateCustomAttributesInfoNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetPrivateCustomAttributesInfoNotFound) GetPayload() *basicclientmodels.ErrorEntity {

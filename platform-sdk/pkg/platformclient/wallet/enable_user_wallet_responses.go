@@ -49,7 +49,7 @@ func (o *EnableUserWalletReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/enable returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/enable returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -66,7 +66,7 @@ type EnableUserWalletNoContent struct {
 }
 
 func (o *EnableUserWalletNoContent) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/enable][%d] enableUserWalletNoContent ", 204)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/enable][%d] enableUserWalletNoContent ", 204)
 }
 
 func (o *EnableUserWalletNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -88,7 +88,7 @@ type EnableUserWalletNotFound struct {
 }
 
 func (o *EnableUserWalletNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/enable][%d] enableUserWalletNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/enable][%d] enableUserWalletNotFound  %+v", 404, o.Payload)
 }
 
 func (o *EnableUserWalletNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -121,7 +121,7 @@ type EnableUserWalletConflict struct {
 }
 
 func (o *EnableUserWalletConflict) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/enable][%d] enableUserWalletConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/enable][%d] enableUserWalletConflict  %+v", 409, o.Payload)
 }
 
 func (o *EnableUserWalletConflict) GetPayload() *platformclientmodels.ErrorEntity {

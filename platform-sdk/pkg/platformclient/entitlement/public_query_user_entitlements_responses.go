@@ -37,7 +37,7 @@ func (o *PublicQueryUserEntitlementsReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/users/{userId}/entitlements returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/users/{userId}/entitlements returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type PublicQueryUserEntitlementsOK struct {
 }
 
 func (o *PublicQueryUserEntitlementsOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/{userId}/entitlements][%d] publicQueryUserEntitlementsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/entitlements][%d] publicQueryUserEntitlementsOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicQueryUserEntitlementsOK) GetPayload() *platformclientmodels.EntitlementPagingSlicedResult {

@@ -55,7 +55,7 @@ func (o *FulfillUserOrderReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type FulfillUserOrderOK struct {
 }
 
 func (o *FulfillUserOrderOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill][%d] fulfillUserOrderOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill][%d] fulfillUserOrderOK  %+v", 200, o.Payload)
 }
 
 func (o *FulfillUserOrderOK) GetPayload() *platformclientmodels.OrderInfo {
@@ -106,7 +106,7 @@ type FulfillUserOrderBadRequest struct {
 }
 
 func (o *FulfillUserOrderBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill][%d] fulfillUserOrderBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill][%d] fulfillUserOrderBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *FulfillUserOrderBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type FulfillUserOrderNotFound struct {
 }
 
 func (o *FulfillUserOrderNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill][%d] fulfillUserOrderNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill][%d] fulfillUserOrderNotFound  %+v", 404, o.Payload)
 }
 
 func (o *FulfillUserOrderNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -172,7 +172,7 @@ type FulfillUserOrderConflict struct {
 }
 
 func (o *FulfillUserOrderConflict) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill][%d] fulfillUserOrderConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/fulfill][%d] fulfillUserOrderConflict  %+v", 409, o.Payload)
 }
 
 func (o *FulfillUserOrderConflict) GetPayload() *platformclientmodels.ErrorEntity {

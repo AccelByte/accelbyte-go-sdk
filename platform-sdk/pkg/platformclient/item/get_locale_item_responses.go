@@ -43,7 +43,7 @@ func (o *GetLocaleItemReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/items/{itemId}/locale returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/items/{itemId}/locale returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetLocaleItemOK struct {
 }
 
 func (o *GetLocaleItemOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/items/{itemId}/locale][%d] getLocaleItemOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/{itemId}/locale][%d] getLocaleItemOK  %+v", 200, o.Payload)
 }
 
 func (o *GetLocaleItemOK) GetPayload() *platformclientmodels.PopulatedItemInfo {
@@ -94,7 +94,7 @@ type GetLocaleItemNotFound struct {
 }
 
 func (o *GetLocaleItemNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/items/{itemId}/locale][%d] getLocaleItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/{itemId}/locale][%d] getLocaleItemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetLocaleItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {

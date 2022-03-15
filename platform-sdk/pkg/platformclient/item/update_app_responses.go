@@ -55,7 +55,7 @@ func (o *UpdateAppReader) ReadResponse(response runtime.ClientResponse, consumer
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/items/{itemId}/app returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/items/{itemId}/app returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type UpdateAppOK struct {
 }
 
 func (o *UpdateAppOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/items/{itemId}/app][%d] updateAppOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/app][%d] updateAppOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateAppOK) GetPayload() *platformclientmodels.FullAppInfo {
@@ -106,7 +106,7 @@ type UpdateAppNotFound struct {
 }
 
 func (o *UpdateAppNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/items/{itemId}/app][%d] updateAppNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/app][%d] updateAppNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateAppNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type UpdateAppConflict struct {
 }
 
 func (o *UpdateAppConflict) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/items/{itemId}/app][%d] updateAppConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/app][%d] updateAppConflict  %+v", 409, o.Payload)
 }
 
 func (o *UpdateAppConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -172,7 +172,7 @@ type UpdateAppUnprocessableEntity struct {
 }
 
 func (o *UpdateAppUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/items/{itemId}/app][%d] updateAppUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/app][%d] updateAppUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateAppUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

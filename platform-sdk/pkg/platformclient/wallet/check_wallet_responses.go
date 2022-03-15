@@ -55,7 +55,7 @@ func (o *CheckWalletReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -72,7 +72,7 @@ type CheckWalletNoContent struct {
 }
 
 func (o *CheckWalletNoContent) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check][%d] checkWalletNoContent ", 204)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check][%d] checkWalletNoContent ", 204)
 }
 
 func (o *CheckWalletNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -94,7 +94,7 @@ type CheckWalletBadRequest struct {
 }
 
 func (o *CheckWalletBadRequest) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check][%d] checkWalletBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check][%d] checkWalletBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CheckWalletBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -127,7 +127,7 @@ type CheckWalletConflict struct {
 }
 
 func (o *CheckWalletConflict) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check][%d] checkWalletConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check][%d] checkWalletConflict  %+v", 409, o.Payload)
 }
 
 func (o *CheckWalletConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -160,7 +160,7 @@ type CheckWalletUnprocessableEntity struct {
 }
 
 func (o *CheckWalletUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check][%d] checkWalletUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check][%d] checkWalletUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CheckWalletUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

@@ -43,7 +43,7 @@ func (o *PublicGetItemByAppIDReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/items/byAppId returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/items/byAppId returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type PublicGetItemByAppIDOK struct {
 }
 
 func (o *PublicGetItemByAppIDOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/items/byAppId][%d] publicGetItemByAppIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/byAppId][%d] publicGetItemByAppIdOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetItemByAppIDOK) GetPayload() *platformclientmodels.ItemInfo {
@@ -94,7 +94,7 @@ type PublicGetItemByAppIDNotFound struct {
 }
 
 func (o *PublicGetItemByAppIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/items/byAppId][%d] publicGetItemByAppIdNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/byAppId][%d] publicGetItemByAppIdNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicGetItemByAppIDNotFound) GetPayload() *platformclientmodels.ErrorEntity {

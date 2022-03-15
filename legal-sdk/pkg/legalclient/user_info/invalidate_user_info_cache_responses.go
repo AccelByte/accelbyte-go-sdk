@@ -34,7 +34,7 @@ func (o *InvalidateUserInfoCacheReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /admin/userInfo returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /agreement/admin/userInfo returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -51,7 +51,7 @@ type InvalidateUserInfoCacheNoContent struct {
 }
 
 func (o *InvalidateUserInfoCacheNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /admin/userInfo][%d] invalidateUserInfoCacheNoContent ", 204)
+	return fmt.Sprintf("[DELETE /agreement/admin/userInfo][%d] invalidateUserInfoCacheNoContent ", 204)
 }
 
 func (o *InvalidateUserInfoCacheNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

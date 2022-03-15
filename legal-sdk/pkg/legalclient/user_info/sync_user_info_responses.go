@@ -34,7 +34,7 @@ func (o *SyncUserInfoReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/userInfo returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /agreement/admin/userInfo returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -51,7 +51,7 @@ type SyncUserInfoOK struct {
 }
 
 func (o *SyncUserInfoOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/userInfo][%d] syncUserInfoOK ", 200)
+	return fmt.Sprintf("[PUT /agreement/admin/userInfo][%d] syncUserInfoOK ", 200)
 }
 
 func (o *SyncUserInfoOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

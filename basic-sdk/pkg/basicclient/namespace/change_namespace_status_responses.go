@@ -67,7 +67,7 @@ func (o *ChangeNamespaceStatusReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PATCH /v1/admin/namespaces/{namespace}/status returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PATCH /basic/v1/admin/namespaces/{namespace}/status returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -85,7 +85,7 @@ type ChangeNamespaceStatusOK struct {
 }
 
 func (o *ChangeNamespaceStatusOK) Error() string {
-	return fmt.Sprintf("[PATCH /v1/admin/namespaces/{namespace}/status][%d] changeNamespaceStatusOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/status][%d] changeNamespaceStatusOK  %+v", 200, o.Payload)
 }
 
 func (o *ChangeNamespaceStatusOK) GetPayload() *basicclientmodels.NamespaceInfo {
@@ -118,7 +118,7 @@ type ChangeNamespaceStatusBadRequest struct {
 }
 
 func (o *ChangeNamespaceStatusBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /v1/admin/namespaces/{namespace}/status][%d] changeNamespaceStatusBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/status][%d] changeNamespaceStatusBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ChangeNamespaceStatusBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -151,7 +151,7 @@ type ChangeNamespaceStatusUnauthorized struct {
 }
 
 func (o *ChangeNamespaceStatusUnauthorized) Error() string {
-	return fmt.Sprintf("[PATCH /v1/admin/namespaces/{namespace}/status][%d] changeNamespaceStatusUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/status][%d] changeNamespaceStatusUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ChangeNamespaceStatusUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -184,7 +184,7 @@ type ChangeNamespaceStatusForbidden struct {
 }
 
 func (o *ChangeNamespaceStatusForbidden) Error() string {
-	return fmt.Sprintf("[PATCH /v1/admin/namespaces/{namespace}/status][%d] changeNamespaceStatusForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/status][%d] changeNamespaceStatusForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ChangeNamespaceStatusForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -217,7 +217,7 @@ type ChangeNamespaceStatusNotFound struct {
 }
 
 func (o *ChangeNamespaceStatusNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /v1/admin/namespaces/{namespace}/status][%d] changeNamespaceStatusNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/status][%d] changeNamespaceStatusNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ChangeNamespaceStatusNotFound) GetPayload() *basicclientmodels.ErrorEntity {
@@ -250,7 +250,7 @@ type ChangeNamespaceStatusConflict struct {
 }
 
 func (o *ChangeNamespaceStatusConflict) Error() string {
-	return fmt.Sprintf("[PATCH /v1/admin/namespaces/{namespace}/status][%d] changeNamespaceStatusConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/status][%d] changeNamespaceStatusConflict  %+v", 409, o.Payload)
 }
 
 func (o *ChangeNamespaceStatusConflict) GetPayload() *basicclientmodels.ErrorEntity {

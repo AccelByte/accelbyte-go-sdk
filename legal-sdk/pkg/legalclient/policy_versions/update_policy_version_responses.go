@@ -43,7 +43,7 @@ func (o *UpdatePolicyVersionReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PATCH /admin/policies/versions/{policyVersionId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PATCH /agreement/admin/policies/versions/{policyVersionId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type UpdatePolicyVersionOK struct {
 }
 
 func (o *UpdatePolicyVersionOK) Error() string {
-	return fmt.Sprintf("[PATCH /admin/policies/versions/{policyVersionId}][%d] updatePolicyVersionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /agreement/admin/policies/versions/{policyVersionId}][%d] updatePolicyVersionOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdatePolicyVersionOK) GetPayload() *legalclientmodels.UpdatePolicyVersionResponse {
@@ -94,7 +94,7 @@ type UpdatePolicyVersionBadRequest struct {
 }
 
 func (o *UpdatePolicyVersionBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /admin/policies/versions/{policyVersionId}][%d] updatePolicyVersionBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /agreement/admin/policies/versions/{policyVersionId}][%d] updatePolicyVersionBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdatePolicyVersionBadRequest) GetPayload() *legalclientmodels.ErrorEntity {

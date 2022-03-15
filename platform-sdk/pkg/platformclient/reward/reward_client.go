@@ -73,7 +73,7 @@ func (a *Client) CheckEventCondition(params *CheckEventConditionParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "checkEventCondition",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/rewards/{rewardId}/match",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/rewards/{rewardId}/match",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -113,7 +113,7 @@ func (a *Client) CheckEventConditionShort(params *CheckEventConditionParams, aut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "checkEventCondition",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/rewards/{rewardId}/match",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/rewards/{rewardId}/match",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -157,7 +157,7 @@ func (a *Client) CreateReward(params *CreateRewardParams, authInfo runtime.Clien
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createReward",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/rewards",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/rewards",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -203,7 +203,7 @@ func (a *Client) CreateRewardShort(params *CreateRewardParams, authInfo runtime.
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createReward",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/rewards",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/rewards",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -251,7 +251,7 @@ func (a *Client) DeleteReward(params *DeleteRewardParams, authInfo runtime.Clien
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteReward",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/rewards/{rewardId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/rewards/{rewardId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -291,7 +291,7 @@ func (a *Client) DeleteRewardShort(params *DeleteRewardParams, authInfo runtime.
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteReward",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/rewards/{rewardId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/rewards/{rewardId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -335,7 +335,7 @@ func (a *Client) ExportRewards(params *ExportRewardsParams, authInfo runtime.Cli
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "exportRewards",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/rewards/export",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/rewards/export",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -372,7 +372,7 @@ func (a *Client) ExportRewardsShort(params *ExportRewardsParams, authInfo runtim
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "exportRewards",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/rewards/export",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/rewards/export",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -414,7 +414,7 @@ func (a *Client) GetReward(params *GetRewardParams, authInfo runtime.ClientAuthI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getReward",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/rewards/{rewardId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/rewards/{rewardId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -454,7 +454,7 @@ func (a *Client) GetRewardShort(params *GetRewardParams, authInfo runtime.Client
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getReward",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/rewards/{rewardId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/rewards/{rewardId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -498,7 +498,7 @@ func (a *Client) GetRewardByCode(params *GetRewardByCodeParams, authInfo runtime
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getRewardByCode",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/rewards/byCode",
+		PathPattern:        "/platform/public/namespaces/{namespace}/rewards/byCode",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -538,7 +538,7 @@ func (a *Client) GetRewardByCodeShort(params *GetRewardByCodeParams, authInfo ru
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getRewardByCode",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/rewards/byCode",
+		PathPattern:        "/platform/public/namespaces/{namespace}/rewards/byCode",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -582,7 +582,7 @@ func (a *Client) GetReward1(params *GetReward1Params, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getReward_1",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/rewards/{rewardId}",
+		PathPattern:        "/platform/public/namespaces/{namespace}/rewards/{rewardId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -622,7 +622,7 @@ func (a *Client) GetReward1Short(params *GetReward1Params, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getReward_1",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/rewards/{rewardId}",
+		PathPattern:        "/platform/public/namespaces/{namespace}/rewards/{rewardId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -666,7 +666,7 @@ func (a *Client) ImportRewards(params *ImportRewardsParams, authInfo runtime.Cli
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "importRewards",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/rewards/import",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/rewards/import",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
 		Schemes:            []string{"https"},
@@ -706,7 +706,7 @@ func (a *Client) ImportRewardsShort(params *ImportRewardsParams, authInfo runtim
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "importRewards",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/rewards/import",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/rewards/import",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
 		Schemes:            []string{"https"},
@@ -750,7 +750,7 @@ func (a *Client) QueryRewards(params *QueryRewardsParams, authInfo runtime.Clien
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryRewards",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/rewards/byCriteria",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/rewards/byCriteria",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -790,7 +790,7 @@ func (a *Client) QueryRewardsShort(params *QueryRewardsParams, authInfo runtime.
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryRewards",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/rewards/byCriteria",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/rewards/byCriteria",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -834,7 +834,7 @@ func (a *Client) QueryRewards1(params *QueryRewards1Params, authInfo runtime.Cli
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryRewards_1",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/rewards/byCriteria",
+		PathPattern:        "/platform/public/namespaces/{namespace}/rewards/byCriteria",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -874,7 +874,7 @@ func (a *Client) QueryRewards1Short(params *QueryRewards1Params, authInfo runtim
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryRewards_1",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/rewards/byCriteria",
+		PathPattern:        "/platform/public/namespaces/{namespace}/rewards/byCriteria",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -918,7 +918,7 @@ func (a *Client) UpdateReward(params *UpdateRewardParams, authInfo runtime.Clien
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateReward",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/rewards/{rewardId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/rewards/{rewardId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -961,7 +961,7 @@ func (a *Client) UpdateRewardShort(params *UpdateRewardParams, authInfo runtime.
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateReward",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/rewards/{rewardId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/rewards/{rewardId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

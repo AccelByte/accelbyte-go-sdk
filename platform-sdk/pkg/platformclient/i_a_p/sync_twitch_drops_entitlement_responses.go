@@ -34,7 +34,7 @@ func (o *SyncTwitchDropsEntitlementReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /public/namespaces/{namespace}/users/{userId}/iap/twitch/sync returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/twitch/sync returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -51,7 +51,7 @@ type SyncTwitchDropsEntitlementNoContent struct {
 }
 
 func (o *SyncTwitchDropsEntitlementNoContent) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/iap/twitch/sync][%d] syncTwitchDropsEntitlementNoContent ", 204)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/twitch/sync][%d] syncTwitchDropsEntitlementNoContent ", 204)
 }
 
 func (o *SyncTwitchDropsEntitlementNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -43,7 +43,7 @@ func (o *UpdateXsollaUIConfigReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/payment/config/merchant/{id}/xsollauiconfig returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/payment/config/merchant/{id}/xsollauiconfig returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type UpdateXsollaUIConfigOK struct {
 }
 
 func (o *UpdateXsollaUIConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/payment/config/merchant/{id}/xsollauiconfig][%d] updateXsollaUiConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/xsollauiconfig][%d] updateXsollaUiConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateXsollaUIConfigOK) GetPayload() *platformclientmodels.PaymentMerchantConfigInfo {
@@ -94,7 +94,7 @@ type UpdateXsollaUIConfigNotFound struct {
 }
 
 func (o *UpdateXsollaUIConfigNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/payment/config/merchant/{id}/xsollauiconfig][%d] updateXsollaUiConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/xsollauiconfig][%d] updateXsollaUiConfigNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateXsollaUIConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {

@@ -61,7 +61,7 @@ func (o *UpdateTierReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type UpdateTierOK struct {
 }
 
 func (o *UpdateTierOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] updateTierOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] updateTierOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateTierOK) GetPayload() *seasonpassclientmodels.Tier {
@@ -112,7 +112,7 @@ type UpdateTierBadRequest struct {
 }
 
 func (o *UpdateTierBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] updateTierBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] updateTierBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateTierBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -145,7 +145,7 @@ type UpdateTierNotFound struct {
 }
 
 func (o *UpdateTierNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] updateTierNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] updateTierNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateTierNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -178,7 +178,7 @@ type UpdateTierConflict struct {
 }
 
 func (o *UpdateTierConflict) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] updateTierConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] updateTierConflict  %+v", 409, o.Payload)
 }
 
 func (o *UpdateTierConflict) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -211,7 +211,7 @@ type UpdateTierUnprocessableEntity struct {
 }
 
 func (o *UpdateTierUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] updateTierUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers/{id}][%d] updateTierUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateTierUnprocessableEntity) GetPayload() *seasonpassclientmodels.ValidationErrorEntity {

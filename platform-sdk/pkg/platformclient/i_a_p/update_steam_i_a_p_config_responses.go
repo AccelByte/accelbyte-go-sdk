@@ -37,7 +37,7 @@ func (o *UpdateSteamIAPConfigReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/iap/config/steam returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/iap/config/steam returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type UpdateSteamIAPConfigOK struct {
 }
 
 func (o *UpdateSteamIAPConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/iap/config/steam][%d] updateSteamIAPConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/iap/config/steam][%d] updateSteamIAPConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateSteamIAPConfigOK) GetPayload() *platformclientmodels.SteamIAPConfigInfo {

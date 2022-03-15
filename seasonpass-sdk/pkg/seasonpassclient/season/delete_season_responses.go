@@ -55,7 +55,7 @@ func (o *DeleteSeasonReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /admin/namespaces/{namespace}/seasons/{seasonId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -72,7 +72,7 @@ type DeleteSeasonNoContent struct {
 }
 
 func (o *DeleteSeasonNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/seasons/{seasonId}][%d] deleteSeasonNoContent ", 204)
+	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}][%d] deleteSeasonNoContent ", 204)
 }
 
 func (o *DeleteSeasonNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -94,7 +94,7 @@ type DeleteSeasonBadRequest struct {
 }
 
 func (o *DeleteSeasonBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/seasons/{seasonId}][%d] deleteSeasonBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}][%d] deleteSeasonBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteSeasonBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -127,7 +127,7 @@ type DeleteSeasonNotFound struct {
 }
 
 func (o *DeleteSeasonNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/seasons/{seasonId}][%d] deleteSeasonNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}][%d] deleteSeasonNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteSeasonNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -160,7 +160,7 @@ type DeleteSeasonConflict struct {
 }
 
 func (o *DeleteSeasonConflict) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/seasons/{seasonId}][%d] deleteSeasonConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[DELETE /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}][%d] deleteSeasonConflict  %+v", 409, o.Payload)
 }
 
 func (o *DeleteSeasonConflict) GetPayload() *seasonpassclientmodels.ErrorEntity {

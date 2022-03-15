@@ -43,7 +43,7 @@ func (o *PublicGetItemDynamicDataReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/items/{itemId}/dynamic returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/items/{itemId}/dynamic returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type PublicGetItemDynamicDataOK struct {
 }
 
 func (o *PublicGetItemDynamicDataOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/items/{itemId}/dynamic][%d] publicGetItemDynamicDataOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/dynamic][%d] publicGetItemDynamicDataOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetItemDynamicDataOK) GetPayload() *platformclientmodels.ItemDynamicDataInfo {
@@ -94,7 +94,7 @@ type PublicGetItemDynamicDataNotFound struct {
 }
 
 func (o *PublicGetItemDynamicDataNotFound) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/items/{itemId}/dynamic][%d] publicGetItemDynamicDataNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/{itemId}/dynamic][%d] publicGetItemDynamicDataNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicGetItemDynamicDataNotFound) GetPayload() *platformclientmodels.ErrorEntity {

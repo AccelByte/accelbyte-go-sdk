@@ -43,7 +43,7 @@ func (o *BulkFetchStatItems1Reader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /v1/public/namespaces/{namespace}/statitems/bulk returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /social/v1/public/namespaces/{namespace}/statitems/bulk returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type BulkFetchStatItems1OK struct {
 }
 
 func (o *BulkFetchStatItems1OK) Error() string {
-	return fmt.Sprintf("[GET /v1/public/namespaces/{namespace}/statitems/bulk][%d] bulkFetchStatItems1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/statitems/bulk][%d] bulkFetchStatItems1OK  %+v", 200, o.Payload)
 }
 
 func (o *BulkFetchStatItems1OK) GetPayload() []*socialclientmodels.UserStatItemInfo {
@@ -92,7 +92,7 @@ type BulkFetchStatItems1UnprocessableEntity struct {
 }
 
 func (o *BulkFetchStatItems1UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /v1/public/namespaces/{namespace}/statitems/bulk][%d] bulkFetchStatItems1UnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[GET /social/v1/public/namespaces/{namespace}/statitems/bulk][%d] bulkFetchStatItems1UnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *BulkFetchStatItems1UnprocessableEntity) GetPayload() *socialclientmodels.ValidationErrorEntity {

@@ -49,7 +49,7 @@ func (o *GetPassReader) ReadResponse(response runtime.ClientResponse, consumer r
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type GetPassOK struct {
 }
 
 func (o *GetPassOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] getPassOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] getPassOK  %+v", 200, o.Payload)
 }
 
 func (o *GetPassOK) GetPayload() *seasonpassclientmodels.PassInfo {
@@ -100,7 +100,7 @@ type GetPassBadRequest struct {
 }
 
 func (o *GetPassBadRequest) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] getPassBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] getPassBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetPassBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type GetPassNotFound struct {
 }
 
 func (o *GetPassNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] getPassNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes/{code}][%d] getPassNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetPassNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {

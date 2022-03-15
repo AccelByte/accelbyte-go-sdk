@@ -67,7 +67,7 @@ func (a *Client) AnonymizeCampaign(params *AnonymizeCampaignParams, authInfo run
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeCampaign",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/anonymization/campaign",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/campaign",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -104,7 +104,7 @@ func (a *Client) AnonymizeCampaignShort(params *AnonymizeCampaignParams, authInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeCampaign",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/anonymization/campaign",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/campaign",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -146,7 +146,7 @@ func (a *Client) AnonymizeEntitlement(params *AnonymizeEntitlementParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeEntitlement",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/anonymization/entitlements",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/entitlements",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -183,7 +183,7 @@ func (a *Client) AnonymizeEntitlementShort(params *AnonymizeEntitlementParams, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeEntitlement",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/anonymization/entitlements",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/entitlements",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -225,7 +225,7 @@ func (a *Client) AnonymizeFulfillment(params *AnonymizeFulfillmentParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeFulfillment",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/anonymization/fulfillment",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/fulfillment",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -262,7 +262,7 @@ func (a *Client) AnonymizeFulfillmentShort(params *AnonymizeFulfillmentParams, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeFulfillment",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/anonymization/fulfillment",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/fulfillment",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -304,7 +304,7 @@ func (a *Client) AnonymizeIntegration(params *AnonymizeIntegrationParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeIntegration",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/anonymization/integrations",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/integrations",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -341,7 +341,7 @@ func (a *Client) AnonymizeIntegrationShort(params *AnonymizeIntegrationParams, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeIntegration",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/anonymization/integrations",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/integrations",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -383,7 +383,7 @@ func (a *Client) AnonymizeOrder(params *AnonymizeOrderParams, authInfo runtime.C
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeOrder",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/anonymization/orders",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -420,7 +420,7 @@ func (a *Client) AnonymizeOrderShort(params *AnonymizeOrderParams, authInfo runt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeOrder",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/anonymization/orders",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -462,7 +462,7 @@ func (a *Client) AnonymizePayment(params *AnonymizePaymentParams, authInfo runti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizePayment",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/anonymization/payment",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/payment",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -499,7 +499,7 @@ func (a *Client) AnonymizePaymentShort(params *AnonymizePaymentParams, authInfo 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizePayment",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/anonymization/payment",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/payment",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -541,7 +541,7 @@ func (a *Client) AnonymizeSubscription(params *AnonymizeSubscriptionParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeSubscription",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/anonymization/subscriptions",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/subscriptions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -578,7 +578,7 @@ func (a *Client) AnonymizeSubscriptionShort(params *AnonymizeSubscriptionParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeSubscription",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/anonymization/subscriptions",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/subscriptions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -620,7 +620,7 @@ func (a *Client) AnonymizeWallet(params *AnonymizeWalletParams, authInfo runtime
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeWallet",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/anonymization/wallets",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/wallets",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -657,7 +657,7 @@ func (a *Client) AnonymizeWalletShort(params *AnonymizeWalletParams, authInfo ru
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeWallet",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/anonymization/wallets",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/anonymization/wallets",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

@@ -63,7 +63,7 @@ func (a *Client) DeleteNamespaceSlotConfig(params *DeleteNamespaceSlotConfigPara
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteNamespaceSlotConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/config",
+		PathPattern:        "/social/admin/namespaces/{namespace}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -100,7 +100,7 @@ func (a *Client) DeleteNamespaceSlotConfigShort(params *DeleteNamespaceSlotConfi
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteNamespaceSlotConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/config",
+		PathPattern:        "/social/admin/namespaces/{namespace}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -142,7 +142,7 @@ func (a *Client) DeleteUserSlotConfig(params *DeleteUserSlotConfigParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteUserSlotConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/config",
+		PathPattern:        "/social/admin/namespaces/{namespace}/users/{userId}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -179,7 +179,7 @@ func (a *Client) DeleteUserSlotConfigShort(params *DeleteUserSlotConfigParams, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteUserSlotConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/config",
+		PathPattern:        "/social/admin/namespaces/{namespace}/users/{userId}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -221,7 +221,7 @@ func (a *Client) GetNamespaceSlotConfig(params *GetNamespaceSlotConfigParams, au
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getNamespaceSlotConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/config",
+		PathPattern:        "/social/admin/namespaces/{namespace}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -258,7 +258,7 @@ func (a *Client) GetNamespaceSlotConfigShort(params *GetNamespaceSlotConfigParam
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getNamespaceSlotConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/config",
+		PathPattern:        "/social/admin/namespaces/{namespace}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -300,7 +300,7 @@ func (a *Client) GetUserSlotConfig(params *GetUserSlotConfigParams, authInfo run
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserSlotConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/config",
+		PathPattern:        "/social/admin/namespaces/{namespace}/users/{userId}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -337,7 +337,7 @@ func (a *Client) GetUserSlotConfigShort(params *GetUserSlotConfigParams, authInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserSlotConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/config",
+		PathPattern:        "/social/admin/namespaces/{namespace}/users/{userId}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -379,7 +379,7 @@ func (a *Client) UpdateNamespaceSlotConfig(params *UpdateNamespaceSlotConfigPara
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateNamespaceSlotConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/config",
+		PathPattern:        "/social/admin/namespaces/{namespace}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -416,7 +416,7 @@ func (a *Client) UpdateNamespaceSlotConfigShort(params *UpdateNamespaceSlotConfi
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateNamespaceSlotConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/config",
+		PathPattern:        "/social/admin/namespaces/{namespace}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -458,7 +458,7 @@ func (a *Client) UpdateUserSlotConfig(params *UpdateUserSlotConfigParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateUserSlotConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/config",
+		PathPattern:        "/social/admin/namespaces/{namespace}/users/{userId}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -495,7 +495,7 @@ func (a *Client) UpdateUserSlotConfigShort(params *UpdateUserSlotConfigParams, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateUserSlotConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/config",
+		PathPattern:        "/social/admin/namespaces/{namespace}/users/{userId}/config",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

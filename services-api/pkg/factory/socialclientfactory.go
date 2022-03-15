@@ -25,7 +25,7 @@ func NewSocialClient(configRepository repository.ConfigRepository) *socialclient
 			baseUrlSplit := strings.Split(baseUrl, "://")
 			httpClientConfig := &socialclient.TransportConfig{
 				Host:     baseUrlSplit[1],
-				BasePath: "/social",
+				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
 			socialClientInstance = socialclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)

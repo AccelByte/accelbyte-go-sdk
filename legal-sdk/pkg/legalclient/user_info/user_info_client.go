@@ -57,7 +57,7 @@ func (a *Client) GetUserInfoStatus(params *GetUserInfoStatusParams, authInfo run
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserInfoStatus",
 		Method:             "GET",
-		PathPattern:        "/admin/userInfo",
+		PathPattern:        "/agreement/admin/userInfo",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -94,7 +94,7 @@ func (a *Client) GetUserInfoStatusShort(params *GetUserInfoStatusParams, authInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserInfoStatus",
 		Method:             "GET",
-		PathPattern:        "/admin/userInfo",
+		PathPattern:        "/agreement/admin/userInfo",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -136,7 +136,7 @@ func (a *Client) InvalidateUserInfoCache(params *InvalidateUserInfoCacheParams, 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "invalidateUserInfoCache",
 		Method:             "DELETE",
-		PathPattern:        "/admin/userInfo",
+		PathPattern:        "/agreement/admin/userInfo",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -173,7 +173,7 @@ func (a *Client) InvalidateUserInfoCacheShort(params *InvalidateUserInfoCachePar
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "invalidateUserInfoCache",
 		Method:             "DELETE",
-		PathPattern:        "/admin/userInfo",
+		PathPattern:        "/agreement/admin/userInfo",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -215,7 +215,7 @@ func (a *Client) SyncUserInfo(params *SyncUserInfoParams, authInfo runtime.Clien
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncUserInfo",
 		Method:             "PUT",
-		PathPattern:        "/admin/userInfo",
+		PathPattern:        "/agreement/admin/userInfo",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -252,7 +252,7 @@ func (a *Client) SyncUserInfoShort(params *SyncUserInfoParams, authInfo runtime.
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncUserInfo",
 		Method:             "PUT",
-		PathPattern:        "/admin/userInfo",
+		PathPattern:        "/agreement/admin/userInfo",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

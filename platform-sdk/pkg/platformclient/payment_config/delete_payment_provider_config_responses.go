@@ -43,7 +43,7 @@ func (o *DeletePaymentProviderConfigReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /admin/payment/config/provider/{id} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /platform/admin/payment/config/provider/{id} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -60,7 +60,7 @@ type DeletePaymentProviderConfigNoContent struct {
 }
 
 func (o *DeletePaymentProviderConfigNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /admin/payment/config/provider/{id}][%d] deletePaymentProviderConfigNoContent ", 204)
+	return fmt.Sprintf("[DELETE /platform/admin/payment/config/provider/{id}][%d] deletePaymentProviderConfigNoContent ", 204)
 }
 
 func (o *DeletePaymentProviderConfigNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -82,7 +82,7 @@ type DeletePaymentProviderConfigNotFound struct {
 }
 
 func (o *DeletePaymentProviderConfigNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /admin/payment/config/provider/{id}][%d] deletePaymentProviderConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/payment/config/provider/{id}][%d] deletePaymentProviderConfigNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeletePaymentProviderConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {

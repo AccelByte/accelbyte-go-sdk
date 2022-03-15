@@ -61,7 +61,7 @@ func (o *DebitUserWalletReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type DebitUserWalletOK struct {
 }
 
 func (o *DebitUserWalletOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit][%d] debitUserWalletOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit][%d] debitUserWalletOK  %+v", 200, o.Payload)
 }
 
 func (o *DebitUserWalletOK) GetPayload() *platformclientmodels.WalletInfo {
@@ -112,7 +112,7 @@ type DebitUserWalletBadRequest struct {
 }
 
 func (o *DebitUserWalletBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit][%d] debitUserWalletBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit][%d] debitUserWalletBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DebitUserWalletBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -145,7 +145,7 @@ type DebitUserWalletNotFound struct {
 }
 
 func (o *DebitUserWalletNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit][%d] debitUserWalletNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit][%d] debitUserWalletNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DebitUserWalletNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -178,7 +178,7 @@ type DebitUserWalletConflict struct {
 }
 
 func (o *DebitUserWalletConflict) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit][%d] debitUserWalletConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit][%d] debitUserWalletConflict  %+v", 409, o.Payload)
 }
 
 func (o *DebitUserWalletConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -211,7 +211,7 @@ type DebitUserWalletUnprocessableEntity struct {
 }
 
 func (o *DebitUserWalletUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit][%d] debitUserWalletUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit][%d] debitUserWalletUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *DebitUserWalletUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

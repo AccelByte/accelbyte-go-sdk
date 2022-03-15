@@ -49,7 +49,7 @@ func (o *PublicGetUserProfilePublicInfoReader) ReadResponse(response runtime.Cli
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /v1/public/namespaces/{namespace}/users/{userId}/profiles/public returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/public returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type PublicGetUserProfilePublicInfoOK struct {
 }
 
 func (o *PublicGetUserProfilePublicInfoOK) Error() string {
-	return fmt.Sprintf("[GET /v1/public/namespaces/{namespace}/users/{userId}/profiles/public][%d] publicGetUserProfilePublicInfoOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/public][%d] publicGetUserProfilePublicInfoOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetUserProfilePublicInfoOK) GetPayload() *basicclientmodels.UserProfilePublicInfo {
@@ -100,7 +100,7 @@ type PublicGetUserProfilePublicInfoBadRequest struct {
 }
 
 func (o *PublicGetUserProfilePublicInfoBadRequest) Error() string {
-	return fmt.Sprintf("[GET /v1/public/namespaces/{namespace}/users/{userId}/profiles/public][%d] publicGetUserProfilePublicInfoBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/public][%d] publicGetUserProfilePublicInfoBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicGetUserProfilePublicInfoBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -133,7 +133,7 @@ type PublicGetUserProfilePublicInfoNotFound struct {
 }
 
 func (o *PublicGetUserProfilePublicInfoNotFound) Error() string {
-	return fmt.Sprintf("[GET /v1/public/namespaces/{namespace}/users/{userId}/profiles/public][%d] publicGetUserProfilePublicInfoNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles/public][%d] publicGetUserProfilePublicInfoNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicGetUserProfilePublicInfoNotFound) GetPayload() *basicclientmodels.ErrorEntity {

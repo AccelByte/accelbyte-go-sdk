@@ -77,7 +77,7 @@ func (a *Client) CloneStore(params *CloneStoreParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "cloneStore",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/stores/{storeId}/clone",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/{storeId}/clone",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -120,7 +120,7 @@ func (a *Client) CloneStoreShort(params *CloneStoreParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "cloneStore",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/stores/{storeId}/clone",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/{storeId}/clone",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -166,7 +166,7 @@ func (a *Client) CreateStore(params *CreateStoreParams, authInfo runtime.ClientA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createStore",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/stores",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -209,7 +209,7 @@ func (a *Client) CreateStoreShort(params *CreateStoreParams, authInfo runtime.Cl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createStore",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/stores",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -255,7 +255,7 @@ func (a *Client) DeletePublishedStore(params *DeletePublishedStoreParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deletePublishedStore",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/stores/published",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/published",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -295,7 +295,7 @@ func (a *Client) DeletePublishedStoreShort(params *DeletePublishedStoreParams, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deletePublishedStore",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/stores/published",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/published",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -339,7 +339,7 @@ func (a *Client) DeleteStore(params *DeleteStoreParams, authInfo runtime.ClientA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteStore",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/stores/{storeId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/{storeId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -382,7 +382,7 @@ func (a *Client) DeleteStoreShort(params *DeleteStoreParams, authInfo runtime.Cl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteStore",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/stores/{storeId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/{storeId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -428,7 +428,7 @@ func (a *Client) ExportStore(params *ExportStoreParams, authInfo runtime.ClientA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "exportStore",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/stores/{storeId}/export",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/{storeId}/export",
 		ProducesMediaTypes: []string{"application/zip"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -468,7 +468,7 @@ func (a *Client) ExportStoreShort(params *ExportStoreParams, authInfo runtime.Cl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "exportStore",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/stores/{storeId}/export",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/{storeId}/export",
 		ProducesMediaTypes: []string{"application/zip"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -512,7 +512,7 @@ func (a *Client) GetPublishedStore(params *GetPublishedStoreParams, authInfo run
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPublishedStore",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/stores/published",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/published",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -552,7 +552,7 @@ func (a *Client) GetPublishedStoreShort(params *GetPublishedStoreParams, authInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPublishedStore",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/stores/published",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/published",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -596,7 +596,7 @@ func (a *Client) GetPublishedStoreBackup(params *GetPublishedStoreBackupParams, 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPublishedStoreBackup",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/stores/published/backup",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/published/backup",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -636,7 +636,7 @@ func (a *Client) GetPublishedStoreBackupShort(params *GetPublishedStoreBackupPar
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPublishedStoreBackup",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/stores/published/backup",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/published/backup",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -680,7 +680,7 @@ func (a *Client) GetStore(params *GetStoreParams, authInfo runtime.ClientAuthInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getStore",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/stores/{storeId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/{storeId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -720,7 +720,7 @@ func (a *Client) GetStoreShort(params *GetStoreParams, authInfo runtime.ClientAu
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getStore",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/stores/{storeId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/{storeId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -764,7 +764,7 @@ func (a *Client) ImportStore(params *ImportStoreParams, authInfo runtime.ClientA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "importStore",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/stores/import",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/import",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
 		Schemes:            []string{"https"},
@@ -807,7 +807,7 @@ func (a *Client) ImportStoreShort(params *ImportStoreParams, authInfo runtime.Cl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "importStore",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/stores/import",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/import",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
 		Schemes:            []string{"https"},
@@ -853,7 +853,7 @@ func (a *Client) ListStores(params *ListStoresParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listStores",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/stores",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -890,7 +890,7 @@ func (a *Client) ListStoresShort(params *ListStoresParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listStores",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/stores",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -932,7 +932,7 @@ func (a *Client) PublicListStores(params *PublicListStoresParams) (*PublicListSt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicListStores",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/stores",
+		PathPattern:        "/platform/public/namespaces/{namespace}/stores",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -968,7 +968,7 @@ func (a *Client) PublicListStoresShort(params *PublicListStoresParams) (*PublicL
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicListStores",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/stores",
+		PathPattern:        "/platform/public/namespaces/{namespace}/stores",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1009,7 +1009,7 @@ func (a *Client) RollbackPublishedStore(params *RollbackPublishedStoreParams, au
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "rollbackPublishedStore",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/stores/published/rollback",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/published/rollback",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1049,7 +1049,7 @@ func (a *Client) RollbackPublishedStoreShort(params *RollbackPublishedStoreParam
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "rollbackPublishedStore",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/stores/published/rollback",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/published/rollback",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1093,7 +1093,7 @@ func (a *Client) UpdateStore(params *UpdateStoreParams, authInfo runtime.ClientA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateStore",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/stores/{storeId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/{storeId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1139,7 +1139,7 @@ func (a *Client) UpdateStoreShort(params *UpdateStoreParams, authInfo runtime.Cl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateStore",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/stores/{storeId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/stores/{storeId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

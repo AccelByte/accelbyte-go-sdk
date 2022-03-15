@@ -49,7 +49,7 @@ func (o *GetNamespacesReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /v1/admin/namespaces returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /basic/v1/admin/namespaces returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type GetNamespacesOK struct {
 }
 
 func (o *GetNamespacesOK) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces][%d] getNamespacesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces][%d] getNamespacesOK  %+v", 200, o.Payload)
 }
 
 func (o *GetNamespacesOK) GetPayload() []*basicclientmodels.NamespaceInfo {
@@ -98,7 +98,7 @@ type GetNamespacesUnauthorized struct {
 }
 
 func (o *GetNamespacesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces][%d] getNamespacesUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces][%d] getNamespacesUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetNamespacesUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -131,7 +131,7 @@ type GetNamespacesForbidden struct {
 }
 
 func (o *GetNamespacesForbidden) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces][%d] getNamespacesForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces][%d] getNamespacesForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetNamespacesForbidden) GetPayload() *basicclientmodels.ErrorEntity {

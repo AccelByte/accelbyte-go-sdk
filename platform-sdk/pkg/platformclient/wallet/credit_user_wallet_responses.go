@@ -55,7 +55,7 @@ func (o *CreditUserWalletReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type CreditUserWalletOK struct {
 }
 
 func (o *CreditUserWalletOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit][%d] creditUserWalletOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit][%d] creditUserWalletOK  %+v", 200, o.Payload)
 }
 
 func (o *CreditUserWalletOK) GetPayload() *platformclientmodels.WalletInfo {
@@ -106,7 +106,7 @@ type CreditUserWalletBadRequest struct {
 }
 
 func (o *CreditUserWalletBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit][%d] creditUserWalletBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit][%d] creditUserWalletBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreditUserWalletBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type CreditUserWalletConflict struct {
 }
 
 func (o *CreditUserWalletConflict) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit][%d] creditUserWalletConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit][%d] creditUserWalletConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreditUserWalletConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -172,7 +172,7 @@ type CreditUserWalletUnprocessableEntity struct {
 }
 
 func (o *CreditUserWalletUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit][%d] creditUserWalletUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit][%d] creditUserWalletUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreditUserWalletUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

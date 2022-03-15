@@ -48,7 +48,7 @@ type EntitlementSummary struct {
 	Namespace *string `json:"namespace"`
 
 	// Whether the CONSUMABLE entitlement is stackable
-	Stackable bool `json:"stackable,omitempty"`
+	Stackable bool `json:"stackable"`
 
 	// CONSUMABLE entitlement stacked use count
 	StackedUseCount int32 `json:"stackedUseCount,omitempty"`

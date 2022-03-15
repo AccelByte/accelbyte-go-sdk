@@ -43,7 +43,7 @@ func (o *UpdateCheckoutConfigReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/payment/config/merchant/{id}/checkoutconfig returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/payment/config/merchant/{id}/checkoutconfig returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type UpdateCheckoutConfigOK struct {
 }
 
 func (o *UpdateCheckoutConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/payment/config/merchant/{id}/checkoutconfig][%d] updateCheckoutConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/checkoutconfig][%d] updateCheckoutConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateCheckoutConfigOK) GetPayload() *platformclientmodels.PaymentMerchantConfigInfo {
@@ -94,7 +94,7 @@ type UpdateCheckoutConfigNotFound struct {
 }
 
 func (o *UpdateCheckoutConfigNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/payment/config/merchant/{id}/checkoutconfig][%d] updateCheckoutConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/checkoutconfig][%d] updateCheckoutConfigNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateCheckoutConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {

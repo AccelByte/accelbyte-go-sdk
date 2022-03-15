@@ -42,10 +42,10 @@ type PaymentProviderConfigEdit struct {
 	TaxJarAPIToken string `json:"taxJarApiToken,omitempty"`
 
 	// taxjar api integration enable
-	TaxJarEnabled bool `json:"taxJarEnabled,omitempty"`
+	TaxJarEnabled bool `json:"taxJarEnabled"`
 
 	// only works when taxJarEnabled=true, and if useGlobalTaxJarApiToken is true, we will reset the taxJarApiToken as null
-	UseGlobalTaxJarAPIToken bool `json:"useGlobalTaxJarApiToken,omitempty"`
+	UseGlobalTaxJarAPIToken bool `json:"useGlobalTaxJarApiToken"`
 }
 
 // Validate validates this payment provider config edit

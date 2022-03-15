@@ -45,7 +45,7 @@ type ModelsMatchMaking struct {
 	GameMode string `json:"game_mode"`
 
 	// joinable
-	Joinable *bool `json:"joinable,omitempty"`
+	Joinable *bool `json:"joinable"`
 
 	// match id
 	// Required: true

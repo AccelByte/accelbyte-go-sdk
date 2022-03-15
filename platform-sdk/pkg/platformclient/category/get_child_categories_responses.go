@@ -37,7 +37,7 @@ func (o *GetChildCategoriesReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/categories/{categoryPath}/children returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/categories/{categoryPath}/children returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type GetChildCategoriesOK struct {
 }
 
 func (o *GetChildCategoriesOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/categories/{categoryPath}/children][%d] getChildCategoriesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/categories/{categoryPath}/children][%d] getChildCategoriesOK  %+v", 200, o.Payload)
 }
 
 func (o *GetChildCategoriesOK) GetPayload() []*platformclientmodels.FullCategoryInfo {

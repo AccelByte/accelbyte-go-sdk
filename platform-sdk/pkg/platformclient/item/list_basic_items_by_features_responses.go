@@ -37,7 +37,7 @@ func (o *ListBasicItemsByFeaturesReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/items/byFeatures/basic returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/items/byFeatures/basic returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type ListBasicItemsByFeaturesOK struct {
 }
 
 func (o *ListBasicItemsByFeaturesOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/items/byFeatures/basic][%d] listBasicItemsByFeaturesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/byFeatures/basic][%d] listBasicItemsByFeaturesOK  %+v", 200, o.Payload)
 }
 
 func (o *ListBasicItemsByFeaturesOK) GetPayload() []*platformclientmodels.BasicItem {

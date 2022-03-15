@@ -49,7 +49,7 @@ func (o *GrantUserEntitlementReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/users/{userId}/entitlements returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/admin/namespaces/{namespace}/users/{userId}/entitlements returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type GrantUserEntitlementCreated struct {
 }
 
 func (o *GrantUserEntitlementCreated) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/entitlements][%d] grantUserEntitlementCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/entitlements][%d] grantUserEntitlementCreated  %+v", 201, o.Payload)
 }
 
 func (o *GrantUserEntitlementCreated) GetPayload() []*platformclientmodels.StackableEntitlementInfo {
@@ -98,7 +98,7 @@ type GrantUserEntitlementNotFound struct {
 }
 
 func (o *GrantUserEntitlementNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/entitlements][%d] grantUserEntitlementNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/entitlements][%d] grantUserEntitlementNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GrantUserEntitlementNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -131,7 +131,7 @@ type GrantUserEntitlementUnprocessableEntity struct {
 }
 
 func (o *GrantUserEntitlementUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/entitlements][%d] grantUserEntitlementUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/entitlements][%d] grantUserEntitlementUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *GrantUserEntitlementUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

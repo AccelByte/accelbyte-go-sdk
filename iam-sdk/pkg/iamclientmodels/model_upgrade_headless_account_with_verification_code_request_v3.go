@@ -37,6 +37,10 @@ type ModelUpgradeHeadlessAccountWithVerificationCodeRequestV3 struct {
 	// password
 	// Required: true
 	Password *string `json:"password"`
+
+	// validate only
+	// Required: true
+	ValidateOnly *bool `json:"validateOnly"`
 }
 
 // Validate validates this model upgrade headless account with verification code request v3
@@ -52,6 +56,10 @@ func (m *ModelUpgradeHeadlessAccountWithVerificationCodeRequestV3) Validate(form
 	}
 
 	if err := m.validatePassword(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateValidateOnly(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -82,6 +90,15 @@ func (m *ModelUpgradeHeadlessAccountWithVerificationCodeRequestV3) validateEmail
 func (m *ModelUpgradeHeadlessAccountWithVerificationCodeRequestV3) validatePassword(formats strfmt.Registry) error {
 
 	if err := validate.Required("password", "body", m.Password); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelUpgradeHeadlessAccountWithVerificationCodeRequestV3) validateValidateOnly(formats strfmt.Registry) error {
+
+	if err := validate.Required("validateOnly", "body", m.ValidateOnly); err != nil {
 		return err
 	}
 

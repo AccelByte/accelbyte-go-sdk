@@ -37,7 +37,7 @@ func (o *GetUserSubscriptionActivitiesReader) ReadResponse(response runtime.Clie
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/users/{userId}/subscriptions/activities returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/activities returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type GetUserSubscriptionActivitiesOK struct {
 }
 
 func (o *GetUserSubscriptionActivitiesOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/subscriptions/activities][%d] getUserSubscriptionActivitiesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/activities][%d] getUserSubscriptionActivitiesOK  %+v", 200, o.Payload)
 }
 
 func (o *GetUserSubscriptionActivitiesOK) GetPayload() *platformclientmodels.SubscriptionActivityPagingSlicedResult {

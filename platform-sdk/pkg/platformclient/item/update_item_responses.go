@@ -61,7 +61,7 @@ func (o *UpdateItemReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/items/{itemId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/items/{itemId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type UpdateItemOK struct {
 }
 
 func (o *UpdateItemOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/items/{itemId}][%d] updateItemOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}][%d] updateItemOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateItemOK) GetPayload() *platformclientmodels.FullItemInfo {
@@ -112,7 +112,7 @@ type UpdateItemBadRequest struct {
 }
 
 func (o *UpdateItemBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/items/{itemId}][%d] updateItemBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}][%d] updateItemBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateItemBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -145,7 +145,7 @@ type UpdateItemNotFound struct {
 }
 
 func (o *UpdateItemNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/items/{itemId}][%d] updateItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}][%d] updateItemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -178,7 +178,7 @@ type UpdateItemConflict struct {
 }
 
 func (o *UpdateItemConflict) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/items/{itemId}][%d] updateItemConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}][%d] updateItemConflict  %+v", 409, o.Payload)
 }
 
 func (o *UpdateItemConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -211,7 +211,7 @@ type UpdateItemUnprocessableEntity struct {
 }
 
 func (o *UpdateItemUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/items/{itemId}][%d] updateItemUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}][%d] updateItemUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateItemUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

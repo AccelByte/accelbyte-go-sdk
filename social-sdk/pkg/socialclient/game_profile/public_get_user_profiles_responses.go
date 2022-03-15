@@ -37,7 +37,7 @@ func (o *PublicGetUserProfilesReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/users/{userId}/profiles returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /social/public/namespaces/{namespace}/users/{userId}/profiles returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type PublicGetUserProfilesOK struct {
 }
 
 func (o *PublicGetUserProfilesOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/{userId}/profiles][%d] publicGetUserProfilesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicGetUserProfilesOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetUserProfilesOK) GetPayload() []*socialclientmodels.GameProfileHeader {

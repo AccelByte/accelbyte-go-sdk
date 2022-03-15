@@ -37,7 +37,7 @@ func (o *AdminRetrieveEligibilitiesReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/users/{userId}/eligibilities returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /agreement/admin/namespaces/{namespace}/users/{userId}/eligibilities returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type AdminRetrieveEligibilitiesOK struct {
 }
 
 func (o *AdminRetrieveEligibilitiesOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/eligibilities][%d] adminRetrieveEligibilitiesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /agreement/admin/namespaces/{namespace}/users/{userId}/eligibilities][%d] adminRetrieveEligibilitiesOK  %+v", 200, o.Payload)
 }
 
 func (o *AdminRetrieveEligibilitiesOK) GetPayload() *legalclientmodels.RetrieveUserEligibilitiesIndirectResponse {

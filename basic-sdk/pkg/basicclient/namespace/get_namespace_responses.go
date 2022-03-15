@@ -61,7 +61,7 @@ func (o *GetNamespaceReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /v1/admin/namespaces/{namespace} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /basic/v1/admin/namespaces/{namespace} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type GetNamespaceOK struct {
 }
 
 func (o *GetNamespaceOK) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}][%d] getNamespaceOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}][%d] getNamespaceOK  %+v", 200, o.Payload)
 }
 
 func (o *GetNamespaceOK) GetPayload() *basicclientmodels.NamespaceInfo {
@@ -112,7 +112,7 @@ type GetNamespaceBadRequest struct {
 }
 
 func (o *GetNamespaceBadRequest) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}][%d] getNamespaceBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}][%d] getNamespaceBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetNamespaceBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -145,7 +145,7 @@ type GetNamespaceUnauthorized struct {
 }
 
 func (o *GetNamespaceUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}][%d] getNamespaceUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}][%d] getNamespaceUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetNamespaceUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -178,7 +178,7 @@ type GetNamespaceForbidden struct {
 }
 
 func (o *GetNamespaceForbidden) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}][%d] getNamespaceForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}][%d] getNamespaceForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetNamespaceForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -211,7 +211,7 @@ type GetNamespaceNotFound struct {
 }
 
 func (o *GetNamespaceNotFound) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}][%d] getNamespaceNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}][%d] getNamespaceNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetNamespaceNotFound) GetPayload() *basicclientmodels.ErrorEntity {

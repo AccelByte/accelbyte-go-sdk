@@ -37,7 +37,7 @@ func (o *GetDescendantCategoriesReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/categories/{categoryPath}/descendants returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/categories/{categoryPath}/descendants returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type GetDescendantCategoriesOK struct {
 }
 
 func (o *GetDescendantCategoriesOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/categories/{categoryPath}/descendants][%d] getDescendantCategoriesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/categories/{categoryPath}/descendants][%d] getDescendantCategoriesOK  %+v", 200, o.Payload)
 }
 
 func (o *GetDescendantCategoriesOK) GetPayload() []*platformclientmodels.FullCategoryInfo {

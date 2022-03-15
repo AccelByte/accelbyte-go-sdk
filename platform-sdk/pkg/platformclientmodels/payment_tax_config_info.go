@@ -22,7 +22,7 @@ type PaymentTaxConfigInfo struct {
 	TaxJarAPIToken string `json:"taxJarApiToken,omitempty"`
 
 	// if taxJar integration is enabled
-	TaxJarEnabled bool `json:"taxJarEnabled,omitempty"`
+	TaxJarEnabled bool `json:"taxJarEnabled"`
 
 	// taxJar product codes mappings
 	TaxJarProductCodesMapping map[string]string `json:"taxJarProductCodesMapping,omitempty"`

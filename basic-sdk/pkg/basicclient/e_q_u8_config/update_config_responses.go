@@ -49,7 +49,7 @@ func (o *UpdateConfigReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PATCH /v1/admin/namespaces/{namespace}/equ8/config returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PATCH /basic/v1/admin/namespaces/{namespace}/equ8/config returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type UpdateConfigOK struct {
 }
 
 func (o *UpdateConfigOK) Error() string {
-	return fmt.Sprintf("[PATCH /v1/admin/namespaces/{namespace}/equ8/config][%d] updateConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/equ8/config][%d] updateConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateConfigOK) GetPayload() *basicclientmodels.Equ8Config {
@@ -100,7 +100,7 @@ type UpdateConfigBadRequest struct {
 }
 
 func (o *UpdateConfigBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /v1/admin/namespaces/{namespace}/equ8/config][%d] updateConfigBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/equ8/config][%d] updateConfigBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateConfigBadRequest) GetPayload() *basicclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type UpdateConfigInternalServerError struct {
 }
 
 func (o *UpdateConfigInternalServerError) Error() string {
-	return fmt.Sprintf("[PATCH /v1/admin/namespaces/{namespace}/equ8/config][%d] updateConfigInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[PATCH /basic/v1/admin/namespaces/{namespace}/equ8/config][%d] updateConfigInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *UpdateConfigInternalServerError) GetPayload() *basicclientmodels.ErrorEntity {

@@ -37,7 +37,7 @@ func (o *RecurringChargeSubscriptionReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/subscriptions/{subscriptionId}/recurring returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/subscriptions/{subscriptionId}/recurring returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type RecurringChargeSubscriptionOK struct {
 }
 
 func (o *RecurringChargeSubscriptionOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/subscriptions/{subscriptionId}/recurring][%d] recurringChargeSubscriptionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/subscriptions/{subscriptionId}/recurring][%d] recurringChargeSubscriptionOK  %+v", 200, o.Payload)
 }
 
 func (o *RecurringChargeSubscriptionOK) GetPayload() *platformclientmodels.RecurringChargeResult {

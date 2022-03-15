@@ -29,13 +29,16 @@ type ModelUserCreateRequestV3 struct {
 	// Required: true
 	AuthType *string `json:"authType"`
 
+	// code
+	// Required: true
+	Code *string `json:"code"`
+
 	// country
 	// Required: true
 	Country *string `json:"country"`
 
 	// date of birth
-	// Required: true
-	DateOfBirth *string `json:"dateOfBirth"`
+	DateOfBirth string `json:"dateOfBirth,omitempty"`
 
 	// display name
 	// Required: true
@@ -48,6 +51,10 @@ type ModelUserCreateRequestV3 struct {
 	// password
 	// Required: true
 	Password *string `json:"password"`
+
+	// reach minimum age
+	// Required: true
+	ReachMinimumAge *bool `json:"reachMinimumAge"`
 }
 
 // Validate validates this model user create request v3
@@ -62,11 +69,11 @@ func (m *ModelUserCreateRequestV3) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateCountry(formats); err != nil {
+	if err := m.validateCode(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateDateOfBirth(formats); err != nil {
+	if err := m.validateCountry(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -79,6 +86,10 @@ func (m *ModelUserCreateRequestV3) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePassword(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateReachMinimumAge(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -122,18 +133,18 @@ func (m *ModelUserCreateRequestV3) validateAuthType(formats strfmt.Registry) err
 	return nil
 }
 
-func (m *ModelUserCreateRequestV3) validateCountry(formats strfmt.Registry) error {
+func (m *ModelUserCreateRequestV3) validateCode(formats strfmt.Registry) error {
 
-	if err := validate.Required("country", "body", m.Country); err != nil {
+	if err := validate.Required("code", "body", m.Code); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *ModelUserCreateRequestV3) validateDateOfBirth(formats strfmt.Registry) error {
+func (m *ModelUserCreateRequestV3) validateCountry(formats strfmt.Registry) error {
 
-	if err := validate.Required("dateOfBirth", "body", m.DateOfBirth); err != nil {
+	if err := validate.Required("country", "body", m.Country); err != nil {
 		return err
 	}
 
@@ -161,6 +172,15 @@ func (m *ModelUserCreateRequestV3) validateEmailAddress(formats strfmt.Registry)
 func (m *ModelUserCreateRequestV3) validatePassword(formats strfmt.Registry) error {
 
 	if err := validate.Required("password", "body", m.Password); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelUserCreateRequestV3) validateReachMinimumAge(formats strfmt.Registry) error {
+
+	if err := validate.Required("reachMinimumAge", "body", m.ReachMinimumAge); err != nil {
 		return err
 	}
 

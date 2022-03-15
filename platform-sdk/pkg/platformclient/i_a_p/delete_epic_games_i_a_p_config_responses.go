@@ -34,7 +34,7 @@ func (o *DeleteEpicGamesIAPConfigReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /admin/namespaces/{namespace}/iap/config/epicgames returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /platform/admin/namespaces/{namespace}/iap/config/epicgames returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -51,7 +51,7 @@ type DeleteEpicGamesIAPConfigNoContent struct {
 }
 
 func (o *DeleteEpicGamesIAPConfigNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/iap/config/epicgames][%d] deleteEpicGamesIAPConfigNoContent ", 204)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/iap/config/epicgames][%d] deleteEpicGamesIAPConfigNoContent ", 204)
 }
 
 func (o *DeleteEpicGamesIAPConfigNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

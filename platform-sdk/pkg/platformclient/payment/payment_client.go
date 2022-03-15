@@ -69,7 +69,7 @@ func (a *Client) ChargePaymentOrder(params *ChargePaymentOrderParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "chargePaymentOrder",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -115,7 +115,7 @@ func (a *Client) ChargePaymentOrderShort(params *ChargePaymentOrderParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "chargePaymentOrder",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -163,7 +163,7 @@ func (a *Client) CreateUserPaymentOrder(params *CreateUserPaymentOrderParams, au
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createUserPaymentOrder",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/payment/orders",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/payment/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -215,7 +215,7 @@ func (a *Client) CreateUserPaymentOrderShort(params *CreateUserPaymentOrderParam
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createUserPaymentOrder",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/payment/orders",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/payment/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -267,7 +267,7 @@ func (a *Client) GetPaymentOrder(params *GetPaymentOrderParams, authInfo runtime
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPaymentOrder",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -307,7 +307,7 @@ func (a *Client) GetPaymentOrderShort(params *GetPaymentOrderParams, authInfo ru
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPaymentOrder",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -351,7 +351,7 @@ func (a *Client) GetPaymentOrderChargeStatus(params *GetPaymentOrderChargeStatus
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPaymentOrderChargeStatus",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -391,7 +391,7 @@ func (a *Client) GetPaymentOrderChargeStatusShort(params *GetPaymentOrderChargeS
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPaymentOrderChargeStatus",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -435,7 +435,7 @@ func (a *Client) ListExtOrderNoByExtTxID(params *ListExtOrderNoByExtTxIDParams, 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listExtOrderNoByExtTxId",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/byExtTxId",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/orders/byExtTxId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -472,7 +472,7 @@ func (a *Client) ListExtOrderNoByExtTxIDShort(params *ListExtOrderNoByExtTxIDPar
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listExtOrderNoByExtTxId",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/byExtTxId",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/orders/byExtTxId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -514,7 +514,7 @@ func (a *Client) QueryPaymentNotifications(params *QueryPaymentNotificationsPara
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryPaymentNotifications",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/payment/notifications",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/notifications",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -551,7 +551,7 @@ func (a *Client) QueryPaymentNotificationsShort(params *QueryPaymentNotification
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryPaymentNotifications",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/payment/notifications",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/notifications",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -593,7 +593,7 @@ func (a *Client) QueryPaymentOrders(params *QueryPaymentOrdersParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryPaymentOrders",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/payment/orders",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -630,7 +630,7 @@ func (a *Client) QueryPaymentOrdersShort(params *QueryPaymentOrdersParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryPaymentOrders",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/payment/orders",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -672,7 +672,7 @@ func (a *Client) RefundUserPaymentOrder(params *RefundUserPaymentOrderParams, au
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "refundUserPaymentOrder",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/payment/orders/{paymentOrderNo}/refund",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/payment/orders/{paymentOrderNo}/refund",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -718,7 +718,7 @@ func (a *Client) RefundUserPaymentOrderShort(params *RefundUserPaymentOrderParam
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "refundUserPaymentOrder",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/payment/orders/{paymentOrderNo}/refund",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/payment/orders/{paymentOrderNo}/refund",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -766,7 +766,7 @@ func (a *Client) SimulatePaymentOrderNotification(params *SimulatePaymentOrderNo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "simulatePaymentOrderNotification",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -809,7 +809,7 @@ func (a *Client) SimulatePaymentOrderNotificationShort(params *SimulatePaymentOr
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "simulatePaymentOrderNotification",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

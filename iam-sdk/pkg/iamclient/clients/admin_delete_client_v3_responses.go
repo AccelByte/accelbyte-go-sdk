@@ -54,6 +54,12 @@ func (o *AdminDeleteClientV3Reader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return result, nil
+	case 409:
+		result := NewAdminDeleteClientV3Conflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -207,6 +213,39 @@ func (o *AdminDeleteClientV3NotFound) GetPayload() *iamclientmodels.RestapiError
 }
 
 func (o *AdminDeleteClientV3NotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(iamclientmodels.RestapiErrorResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAdminDeleteClientV3Conflict creates a AdminDeleteClientV3Conflict with default headers values
+func NewAdminDeleteClientV3Conflict() *AdminDeleteClientV3Conflict {
+	return &AdminDeleteClientV3Conflict{}
+}
+
+/*AdminDeleteClientV3Conflict handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>20009</td><td>request_conflict</td></tr></table>
+*/
+type AdminDeleteClientV3Conflict struct {
+	Payload *iamclientmodels.RestapiErrorResponse
+}
+
+func (o *AdminDeleteClientV3Conflict) Error() string {
+	return fmt.Sprintf("[DELETE /iam/v3/admin/namespaces/{namespace}/clients/{clientId}][%d] adminDeleteClientV3Conflict  %+v", 409, o.Payload)
+}
+
+func (o *AdminDeleteClientV3Conflict) GetPayload() *iamclientmodels.RestapiErrorResponse {
+	return o.Payload
+}
+
+func (o *AdminDeleteClientV3Conflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(iamclientmodels.RestapiErrorResponse)
 

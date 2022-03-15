@@ -49,7 +49,7 @@ func (o *DeleteStoreReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /admin/namespaces/{namespace}/stores/{storeId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /platform/admin/namespaces/{namespace}/stores/{storeId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type DeleteStoreOK struct {
 }
 
 func (o *DeleteStoreOK) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/stores/{storeId}][%d] deleteStoreOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/stores/{storeId}][%d] deleteStoreOK  %+v", 200, o.Payload)
 }
 
 func (o *DeleteStoreOK) GetPayload() *platformclientmodels.StoreInfo {
@@ -100,7 +100,7 @@ type DeleteStoreNotFound struct {
 }
 
 func (o *DeleteStoreNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/stores/{storeId}][%d] deleteStoreNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/stores/{storeId}][%d] deleteStoreNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteStoreNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type DeleteStoreConflict struct {
 }
 
 func (o *DeleteStoreConflict) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/stores/{storeId}][%d] deleteStoreConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/stores/{storeId}][%d] deleteStoreConflict  %+v", 409, o.Payload)
 }
 
 func (o *DeleteStoreConflict) GetPayload() *platformclientmodels.ErrorEntity {

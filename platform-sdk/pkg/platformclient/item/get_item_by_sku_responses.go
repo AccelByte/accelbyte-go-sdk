@@ -43,7 +43,7 @@ func (o *GetItemBySkuReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/items/bySku returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/items/bySku returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetItemBySkuOK struct {
 }
 
 func (o *GetItemBySkuOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/items/bySku][%d] getItemBySkuOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/bySku][%d] getItemBySkuOK  %+v", 200, o.Payload)
 }
 
 func (o *GetItemBySkuOK) GetPayload() *platformclientmodels.FullItemInfo {
@@ -94,7 +94,7 @@ type GetItemBySkuNotFound struct {
 }
 
 func (o *GetItemBySkuNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/items/bySku][%d] getItemBySkuNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/bySku][%d] getItemBySkuNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetItemBySkuNotFound) GetPayload() *platformclientmodels.ErrorEntity {

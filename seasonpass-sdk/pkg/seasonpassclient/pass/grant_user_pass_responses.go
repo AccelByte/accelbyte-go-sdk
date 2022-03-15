@@ -43,7 +43,7 @@ func (o *GrantUserPassReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/users/{userId}/seasons/current/passes returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GrantUserPassOK struct {
 }
 
 func (o *GrantUserPassOK) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/seasons/current/passes][%d] grantUserPassOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes][%d] grantUserPassOK  %+v", 200, o.Payload)
 }
 
 func (o *GrantUserPassOK) GetPayload() *seasonpassclientmodels.UserSeasonSummary {
@@ -94,7 +94,7 @@ type GrantUserPassBadRequest struct {
 }
 
 func (o *GrantUserPassBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/seasons/current/passes][%d] grantUserPassBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes][%d] grantUserPassBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GrantUserPassBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {

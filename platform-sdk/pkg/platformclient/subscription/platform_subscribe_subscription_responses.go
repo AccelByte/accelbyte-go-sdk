@@ -61,7 +61,7 @@ func (o *PlatformSubscribeSubscriptionReader) ReadResponse(response runtime.Clie
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type PlatformSubscribeSubscriptionOK struct {
 }
 
 func (o *PlatformSubscribeSubscriptionOK) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionOK  %+v", 200, o.Payload)
 }
 
 func (o *PlatformSubscribeSubscriptionOK) GetPayload() *platformclientmodels.SubscriptionInfo {
@@ -111,7 +111,7 @@ type PlatformSubscribeSubscriptionCreated struct {
 }
 
 func (o *PlatformSubscribeSubscriptionCreated) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionCreated ", 201)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionCreated ", 201)
 }
 
 func (o *PlatformSubscribeSubscriptionCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -133,7 +133,7 @@ type PlatformSubscribeSubscriptionBadRequest struct {
 }
 
 func (o *PlatformSubscribeSubscriptionBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PlatformSubscribeSubscriptionBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -166,7 +166,7 @@ type PlatformSubscribeSubscriptionNotFound struct {
 }
 
 func (o *PlatformSubscribeSubscriptionNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PlatformSubscribeSubscriptionNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -199,7 +199,7 @@ type PlatformSubscribeSubscriptionUnprocessableEntity struct {
 }
 
 func (o *PlatformSubscribeSubscriptionUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe][%d] platformSubscribeSubscriptionUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *PlatformSubscribeSubscriptionUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

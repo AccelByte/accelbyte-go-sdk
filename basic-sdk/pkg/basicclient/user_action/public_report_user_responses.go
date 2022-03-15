@@ -43,7 +43,7 @@ func (o *PublicReportUserReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /v1/public/namespaces/{namespace}/users/{userId}/actions/report returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /basic/v1/public/namespaces/{namespace}/users/{userId}/actions/report returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type PublicReportUserBadRequest struct {
 }
 
 func (o *PublicReportUserBadRequest) Error() string {
-	return fmt.Sprintf("[POST /v1/public/namespaces/{namespace}/users/{userId}/actions/report][%d] publicReportUserBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/actions/report][%d] publicReportUserBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicReportUserBadRequest) GetPayload() *basicclientmodels.ErrorEntity {
@@ -94,7 +94,7 @@ type PublicReportUserUnprocessableEntity struct {
 }
 
 func (o *PublicReportUserUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /v1/public/namespaces/{namespace}/users/{userId}/actions/report][%d] publicReportUserUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/actions/report][%d] publicReportUserUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *PublicReportUserUnprocessableEntity) GetPayload() *basicclientmodels.ValidationErrorEntity {

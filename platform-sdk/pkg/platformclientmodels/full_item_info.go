@@ -83,7 +83,7 @@ type FullItemInfo struct {
 	ItemType *string `json:"itemType"`
 
 	// Whether can be visible in Store for public user
-	Listable bool `json:"listable,omitempty"`
+	Listable bool `json:"listable"`
 
 	// Item localizations
 	// Required: true
@@ -104,7 +104,7 @@ type FullItemInfo struct {
 	Namespace *string `json:"namespace"`
 
 	// Whether can be purchased
-	Purchasable bool `json:"purchasable,omitempty"`
+	Purchasable bool `json:"purchasable"`
 
 	// recurring for subscription
 	Recurring *Recurring `json:"recurring,omitempty"`
@@ -121,7 +121,7 @@ type FullItemInfo struct {
 	Sku string `json:"sku,omitempty"`
 
 	// Whether stack the CONSUMABLE entitlement
-	Stackable bool `json:"stackable,omitempty"`
+	Stackable bool `json:"stackable"`
 
 	// Item status
 	// Required: true

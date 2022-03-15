@@ -43,7 +43,7 @@ func (o *RetrieveSinglePolicyReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/base-policies/{basePolicyId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /agreement/admin/base-policies/{basePolicyId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type RetrieveSinglePolicyOK struct {
 }
 
 func (o *RetrieveSinglePolicyOK) Error() string {
-	return fmt.Sprintf("[GET /admin/base-policies/{basePolicyId}][%d] retrieveSinglePolicyOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /agreement/admin/base-policies/{basePolicyId}][%d] retrieveSinglePolicyOK  %+v", 200, o.Payload)
 }
 
 func (o *RetrieveSinglePolicyOK) GetPayload() *legalclientmodels.RetrieveBasePolicyResponse {
@@ -94,7 +94,7 @@ type RetrieveSinglePolicyNotFound struct {
 }
 
 func (o *RetrieveSinglePolicyNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/base-policies/{basePolicyId}][%d] retrieveSinglePolicyNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /agreement/admin/base-policies/{basePolicyId}][%d] retrieveSinglePolicyNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RetrieveSinglePolicyNotFound) GetPayload() *legalclientmodels.ErrorEntity {

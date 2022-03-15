@@ -53,7 +53,7 @@ func (a *Client) AnonymizeUserAgreement(params *AnonymizeUserAgreementParams, au
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeUserAgreement",
 		Method:             "DELETE",
-		PathPattern:        "/admin/users/{userId}/anonymization/agreements",
+		PathPattern:        "/agreement/admin/users/{userId}/anonymization/agreements",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -93,7 +93,7 @@ func (a *Client) AnonymizeUserAgreementShort(params *AnonymizeUserAgreementParam
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "anonymizeUserAgreement",
 		Method:             "DELETE",
-		PathPattern:        "/admin/users/{userId}/anonymization/agreements",
+		PathPattern:        "/agreement/admin/users/{userId}/anonymization/agreements",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

@@ -43,7 +43,7 @@ func (o *ChangePreferenceConsentReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PATCH /public/agreements/localized-policy-versions/preferences returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PATCH /agreement/public/agreements/localized-policy-versions/preferences returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -60,7 +60,7 @@ type ChangePreferenceConsentOK struct {
 }
 
 func (o *ChangePreferenceConsentOK) Error() string {
-	return fmt.Sprintf("[PATCH /public/agreements/localized-policy-versions/preferences][%d] changePreferenceConsentOK ", 200)
+	return fmt.Sprintf("[PATCH /agreement/public/agreements/localized-policy-versions/preferences][%d] changePreferenceConsentOK ", 200)
 }
 
 func (o *ChangePreferenceConsentOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -82,7 +82,7 @@ type ChangePreferenceConsentBadRequest struct {
 }
 
 func (o *ChangePreferenceConsentBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /public/agreements/localized-policy-versions/preferences][%d] changePreferenceConsentBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PATCH /agreement/public/agreements/localized-policy-versions/preferences][%d] changePreferenceConsentBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ChangePreferenceConsentBadRequest) GetPayload() *legalclientmodels.ErrorEntity {

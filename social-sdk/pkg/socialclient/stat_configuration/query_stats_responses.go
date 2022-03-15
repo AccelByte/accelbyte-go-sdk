@@ -37,7 +37,7 @@ func (o *QueryStatsReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /v1/admin/namespaces/{namespace}/stats/search returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /social/v1/admin/namespaces/{namespace}/stats/search returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type QueryStatsOK struct {
 }
 
 func (o *QueryStatsOK) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/stats/search][%d] queryStatsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /social/v1/admin/namespaces/{namespace}/stats/search][%d] queryStatsOK  %+v", 200, o.Payload)
 }
 
 func (o *QueryStatsOK) GetPayload() *socialclientmodels.StatPagingSlicedResult {

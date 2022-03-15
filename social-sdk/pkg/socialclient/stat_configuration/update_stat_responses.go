@@ -43,7 +43,7 @@ func (o *UpdateStatReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PATCH /v1/admin/namespaces/{namespace}/stats/{statCode} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PATCH /social/v1/admin/namespaces/{namespace}/stats/{statCode} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type UpdateStatOK struct {
 }
 
 func (o *UpdateStatOK) Error() string {
-	return fmt.Sprintf("[PATCH /v1/admin/namespaces/{namespace}/stats/{statCode}][%d] updateStatOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PATCH /social/v1/admin/namespaces/{namespace}/stats/{statCode}][%d] updateStatOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateStatOK) GetPayload() *socialclientmodels.StatInfo {
@@ -94,7 +94,7 @@ type UpdateStatNotFound struct {
 }
 
 func (o *UpdateStatNotFound) Error() string {
-	return fmt.Sprintf("[PATCH /v1/admin/namespaces/{namespace}/stats/{statCode}][%d] updateStatNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PATCH /social/v1/admin/namespaces/{namespace}/stats/{statCode}][%d] updateStatNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateStatNotFound) GetPayload() *socialclientmodels.ErrorEntity {

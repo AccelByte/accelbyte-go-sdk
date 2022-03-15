@@ -49,7 +49,7 @@ func (o *PublicGetCurrentSeasonReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/seasons/current returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /seasonpass/public/namespaces/{namespace}/seasons/current returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type PublicGetCurrentSeasonOK struct {
 }
 
 func (o *PublicGetCurrentSeasonOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/seasons/current][%d] publicGetCurrentSeasonOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/seasons/current][%d] publicGetCurrentSeasonOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetCurrentSeasonOK) GetPayload() *seasonpassclientmodels.LocalizedSeasonInfo {
@@ -100,7 +100,7 @@ type PublicGetCurrentSeasonBadRequest struct {
 }
 
 func (o *PublicGetCurrentSeasonBadRequest) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/seasons/current][%d] publicGetCurrentSeasonBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/seasons/current][%d] publicGetCurrentSeasonBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicGetCurrentSeasonBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type PublicGetCurrentSeasonNotFound struct {
 }
 
 func (o *PublicGetCurrentSeasonNotFound) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/seasons/current][%d] publicGetCurrentSeasonNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/seasons/current][%d] publicGetCurrentSeasonNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicGetCurrentSeasonNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {

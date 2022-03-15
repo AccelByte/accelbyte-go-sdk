@@ -37,7 +37,7 @@ func (o *SyncEpicGamesInventoryReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /public/namespaces/{namespace}/users/{userId}/iap/epicgames/sync returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/epicgames/sync returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type SyncEpicGamesInventoryOK struct {
 }
 
 func (o *SyncEpicGamesInventoryOK) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/iap/epicgames/sync][%d] syncEpicGamesInventoryOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/iap/epicgames/sync][%d] syncEpicGamesInventoryOK  %+v", 200, o.Payload)
 }
 
 func (o *SyncEpicGamesInventoryOK) GetPayload() []*platformclientmodels.EpicGamesReconcileResult {

@@ -248,14 +248,23 @@ func (o *OAuth20Service) RevokeUserV3Short(input *o_auth2_0.RevokeUserV3Params) 
 	return nil
 }
 
-func (o *OAuth20Service) AuthorizeV3Short(input *o_auth2_0.AuthorizeV3Params) error {
+func (o *OAuth20Service) AuthorizeV3Short(input *o_auth2_0.AuthorizeV3Params) (string, error) {
 	clientId := o.ConfigRepository.GetClientId()
 	clientSecret := o.ConfigRepository.GetClientSecret()
-	_, err := o.Client.OAuth20.AuthorizeV3Short(input, client.BasicAuth(clientId, clientSecret))
+	ok, err := o.Client.OAuth20.AuthorizeV3(input, client.BasicAuth(clientId, clientSecret))
 	if err != nil {
-		return err
+		return "", err
 	}
-	return nil
+	parsedUrl, err := url.Parse(ok.Location)
+	if err != nil {
+		return "", err
+	}
+	query, err := url.ParseQuery(parsedUrl.RawQuery)
+	if err != nil {
+		return "", err
+	}
+	requestId := query["request_id"][0]
+	return requestId, nil
 }
 
 func (o *OAuth20Service) TokenIntrospectionV3Short(input *o_auth2_0.TokenIntrospectionV3Params) (*iamclientmodels.OauthmodelTokenIntrospectResponse, error) {

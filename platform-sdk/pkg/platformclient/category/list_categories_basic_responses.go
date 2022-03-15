@@ -37,7 +37,7 @@ func (o *ListCategoriesBasicReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/categories/basic returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/categories/basic returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type ListCategoriesBasicOK struct {
 }
 
 func (o *ListCategoriesBasicOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/categories/basic][%d] listCategoriesBasicOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/categories/basic][%d] listCategoriesBasicOK  %+v", 200, o.Payload)
 }
 
 func (o *ListCategoriesBasicOK) GetPayload() []*platformclientmodels.BasicCategoryInfo {

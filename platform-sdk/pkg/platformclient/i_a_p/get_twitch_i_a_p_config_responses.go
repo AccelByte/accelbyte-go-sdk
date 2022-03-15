@@ -37,7 +37,7 @@ func (o *GetTwitchIAPConfigReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/iap/config/twitch returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/iap/config/twitch returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type GetTwitchIAPConfigOK struct {
 }
 
 func (o *GetTwitchIAPConfigOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/iap/config/twitch][%d] getTwitchIAPConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/iap/config/twitch][%d] getTwitchIAPConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *GetTwitchIAPConfigOK) GetPayload() *platformclientmodels.TwitchIAPConfigInfo {

@@ -43,7 +43,7 @@ func (o *GetCurrencySummaryReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/currencies/{currencyCode}/summary returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/currencies/{currencyCode}/summary returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetCurrencySummaryOK struct {
 }
 
 func (o *GetCurrencySummaryOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/currencies/{currencyCode}/summary][%d] getCurrencySummaryOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/currencies/{currencyCode}/summary][%d] getCurrencySummaryOK  %+v", 200, o.Payload)
 }
 
 func (o *GetCurrencySummaryOK) GetPayload() *platformclientmodels.CurrencySummary {
@@ -94,7 +94,7 @@ type GetCurrencySummaryNotFound struct {
 }
 
 func (o *GetCurrencySummaryNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/currencies/{currencyCode}/summary][%d] getCurrencySummaryNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/currencies/{currencyCode}/summary][%d] getCurrencySummaryNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetCurrencySummaryNotFound) GetPayload() *platformclientmodels.ErrorEntity {

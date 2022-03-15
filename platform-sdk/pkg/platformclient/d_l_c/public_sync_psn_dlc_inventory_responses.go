@@ -43,7 +43,7 @@ func (o *PublicSyncPsnDlcInventoryReader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /public/namespaces/{namespace}/users/{userId}/dlc/psn/sync returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/public/namespaces/{namespace}/users/{userId}/dlc/psn/sync returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -60,7 +60,7 @@ type PublicSyncPsnDlcInventoryNoContent struct {
 }
 
 func (o *PublicSyncPsnDlcInventoryNoContent) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/dlc/psn/sync][%d] publicSyncPsnDlcInventoryNoContent ", 204)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/dlc/psn/sync][%d] publicSyncPsnDlcInventoryNoContent ", 204)
 }
 
 func (o *PublicSyncPsnDlcInventoryNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -82,7 +82,7 @@ type PublicSyncPsnDlcInventoryBadRequest struct {
 }
 
 func (o *PublicSyncPsnDlcInventoryBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/dlc/psn/sync][%d] publicSyncPsnDlcInventoryBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/dlc/psn/sync][%d] publicSyncPsnDlcInventoryBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicSyncPsnDlcInventoryBadRequest) GetPayload() *platformclientmodels.ErrorEntity {

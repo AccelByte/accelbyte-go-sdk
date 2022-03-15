@@ -49,7 +49,7 @@ func (o *CloneStoreReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/stores/{storeId}/clone returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/clone returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type CloneStoreOK struct {
 }
 
 func (o *CloneStoreOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/stores/{storeId}/clone][%d] cloneStoreOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/clone][%d] cloneStoreOK  %+v", 200, o.Payload)
 }
 
 func (o *CloneStoreOK) GetPayload() *platformclientmodels.StoreInfo {
@@ -100,7 +100,7 @@ type CloneStoreBadRequest struct {
 }
 
 func (o *CloneStoreBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/stores/{storeId}/clone][%d] cloneStoreBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/clone][%d] cloneStoreBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CloneStoreBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type CloneStoreNotFound struct {
 }
 
 func (o *CloneStoreNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/stores/{storeId}/clone][%d] cloneStoreNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/{storeId}/clone][%d] cloneStoreNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CloneStoreNotFound) GetPayload() *platformclientmodels.ErrorEntity {

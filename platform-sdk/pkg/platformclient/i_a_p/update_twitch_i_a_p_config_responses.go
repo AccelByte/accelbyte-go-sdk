@@ -37,7 +37,7 @@ func (o *UpdateTwitchIAPConfigReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/iap/config/twitch returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/iap/config/twitch returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type UpdateTwitchIAPConfigOK struct {
 }
 
 func (o *UpdateTwitchIAPConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/iap/config/twitch][%d] updateTwitchIAPConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/iap/config/twitch][%d] updateTwitchIAPConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateTwitchIAPConfigOK) GetPayload() *platformclientmodels.TwitchIAPConfigInfo {

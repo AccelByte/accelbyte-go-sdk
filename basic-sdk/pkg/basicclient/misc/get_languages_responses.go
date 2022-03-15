@@ -49,7 +49,7 @@ func (o *GetLanguagesReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /v1/admin/namespaces/{namespace}/misc/languages returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /basic/v1/admin/namespaces/{namespace}/misc/languages returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type GetLanguagesOK struct {
 }
 
 func (o *GetLanguagesOK) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/misc/languages][%d] getLanguagesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/languages][%d] getLanguagesOK  %+v", 200, o.Payload)
 }
 
 func (o *GetLanguagesOK) GetPayload() map[string]interface{} {
@@ -98,7 +98,7 @@ type GetLanguagesBadRequest struct {
 }
 
 func (o *GetLanguagesBadRequest) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/misc/languages][%d] getLanguagesBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/languages][%d] getLanguagesBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetLanguagesBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -131,7 +131,7 @@ type GetLanguagesUnauthorized struct {
 }
 
 func (o *GetLanguagesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/misc/languages][%d] getLanguagesUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/languages][%d] getLanguagesUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetLanguagesUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {

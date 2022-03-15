@@ -37,7 +37,7 @@ func (o *UpdatePlaystationIAPConfigReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/iap/config/playstation returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/iap/config/playstation returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type UpdatePlaystationIAPConfigOK struct {
 }
 
 func (o *UpdatePlaystationIAPConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/iap/config/playstation][%d] updatePlaystationIAPConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/iap/config/playstation][%d] updatePlaystationIAPConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdatePlaystationIAPConfigOK) GetPayload() *platformclientmodels.PlayStationIAPConfigInfo {

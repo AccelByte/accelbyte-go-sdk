@@ -80,7 +80,7 @@ func (a *Client) CreateCategory(params *CreateCategoryParams, authInfo runtime.C
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createCategory",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/categories",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/categories",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -129,7 +129,7 @@ func (a *Client) CreateCategoryShort(params *CreateCategoryParams, authInfo runt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createCategory",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/categories",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/categories",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -179,7 +179,7 @@ func (a *Client) DeleteCategory(params *DeleteCategoryParams, authInfo runtime.C
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteCategory",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/categories/{categoryPath}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/categories/{categoryPath}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -222,7 +222,7 @@ func (a *Client) DeleteCategoryShort(params *DeleteCategoryParams, authInfo runt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteCategory",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/categories/{categoryPath}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/categories/{categoryPath}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -268,7 +268,7 @@ func (a *Client) DownloadCategories(params *DownloadCategoriesParams) (*Download
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "downloadCategories",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/categories/download",
+		PathPattern:        "/platform/public/namespaces/{namespace}/categories/download",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -307,7 +307,7 @@ func (a *Client) DownloadCategoriesShort(params *DownloadCategoriesParams) (*Dow
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "downloadCategories",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/categories/download",
+		PathPattern:        "/platform/public/namespaces/{namespace}/categories/download",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -350,7 +350,7 @@ func (a *Client) GetCategory(params *GetCategoryParams, authInfo runtime.ClientA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCategory",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/categories/{categoryPath}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/categories/{categoryPath}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -390,7 +390,7 @@ func (a *Client) GetCategoryShort(params *GetCategoryParams, authInfo runtime.Cl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCategory",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/categories/{categoryPath}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/categories/{categoryPath}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -434,7 +434,7 @@ func (a *Client) GetChildCategories(params *GetChildCategoriesParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getChildCategories",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/categories/{categoryPath}/children",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/categories/{categoryPath}/children",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -471,7 +471,7 @@ func (a *Client) GetChildCategoriesShort(params *GetChildCategoriesParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getChildCategories",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/categories/{categoryPath}/children",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/categories/{categoryPath}/children",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -513,7 +513,7 @@ func (a *Client) GetDescendantCategories(params *GetDescendantCategoriesParams, 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDescendantCategories",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/categories/{categoryPath}/descendants",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/categories/{categoryPath}/descendants",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -550,7 +550,7 @@ func (a *Client) GetDescendantCategoriesShort(params *GetDescendantCategoriesPar
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDescendantCategories",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/categories/{categoryPath}/descendants",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/categories/{categoryPath}/descendants",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -592,7 +592,7 @@ func (a *Client) GetRootCategories(params *GetRootCategoriesParams, authInfo run
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getRootCategories",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/categories",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/categories",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -629,7 +629,7 @@ func (a *Client) GetRootCategoriesShort(params *GetRootCategoriesParams, authInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getRootCategories",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/categories",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/categories",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -671,7 +671,7 @@ func (a *Client) ListCategoriesBasic(params *ListCategoriesBasicParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listCategoriesBasic",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/categories/basic",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/categories/basic",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -708,7 +708,7 @@ func (a *Client) ListCategoriesBasicShort(params *ListCategoriesBasicParams, aut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listCategoriesBasic",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/categories/basic",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/categories/basic",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -750,7 +750,7 @@ func (a *Client) PublicGetCategory(params *PublicGetCategoryParams) (*PublicGetC
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetCategory",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/categories/{categoryPath}",
+		PathPattern:        "/platform/public/namespaces/{namespace}/categories/{categoryPath}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -789,7 +789,7 @@ func (a *Client) PublicGetCategoryShort(params *PublicGetCategoryParams) (*Publi
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetCategory",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/categories/{categoryPath}",
+		PathPattern:        "/platform/public/namespaces/{namespace}/categories/{categoryPath}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -832,7 +832,7 @@ func (a *Client) PublicGetChildCategories(params *PublicGetChildCategoriesParams
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetChildCategories",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/categories/{categoryPath}/children",
+		PathPattern:        "/platform/public/namespaces/{namespace}/categories/{categoryPath}/children",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -868,7 +868,7 @@ func (a *Client) PublicGetChildCategoriesShort(params *PublicGetChildCategoriesP
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetChildCategories",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/categories/{categoryPath}/children",
+		PathPattern:        "/platform/public/namespaces/{namespace}/categories/{categoryPath}/children",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -909,7 +909,7 @@ func (a *Client) PublicGetDescendantCategories(params *PublicGetDescendantCatego
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetDescendantCategories",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/categories/{categoryPath}/descendants",
+		PathPattern:        "/platform/public/namespaces/{namespace}/categories/{categoryPath}/descendants",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -945,7 +945,7 @@ func (a *Client) PublicGetDescendantCategoriesShort(params *PublicGetDescendantC
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetDescendantCategories",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/categories/{categoryPath}/descendants",
+		PathPattern:        "/platform/public/namespaces/{namespace}/categories/{categoryPath}/descendants",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -986,7 +986,7 @@ func (a *Client) PublicGetRootCategories(params *PublicGetRootCategoriesParams) 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetRootCategories",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/categories",
+		PathPattern:        "/platform/public/namespaces/{namespace}/categories",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1022,7 +1022,7 @@ func (a *Client) PublicGetRootCategoriesShort(params *PublicGetRootCategoriesPar
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetRootCategories",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/categories",
+		PathPattern:        "/platform/public/namespaces/{namespace}/categories",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1066,7 +1066,7 @@ func (a *Client) UpdateCategory(params *UpdateCategoryParams, authInfo runtime.C
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateCategory",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/categories/{categoryPath}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/categories/{categoryPath}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1115,7 +1115,7 @@ func (a *Client) UpdateCategoryShort(params *UpdateCategoryParams, authInfo runt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateCategory",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/categories/{categoryPath}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/categories/{categoryPath}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

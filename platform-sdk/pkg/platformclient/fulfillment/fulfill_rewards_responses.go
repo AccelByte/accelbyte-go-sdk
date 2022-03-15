@@ -55,7 +55,7 @@ func (o *FulfillRewardsReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -72,7 +72,7 @@ type FulfillRewardsNoContent struct {
 }
 
 func (o *FulfillRewardsNoContent) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards][%d] fulfillRewardsNoContent ", 204)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards][%d] fulfillRewardsNoContent ", 204)
 }
 
 func (o *FulfillRewardsNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -94,7 +94,7 @@ type FulfillRewardsBadRequest struct {
 }
 
 func (o *FulfillRewardsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards][%d] fulfillRewardsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards][%d] fulfillRewardsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *FulfillRewardsBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -127,7 +127,7 @@ type FulfillRewardsNotFound struct {
 }
 
 func (o *FulfillRewardsNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards][%d] fulfillRewardsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards][%d] fulfillRewardsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *FulfillRewardsNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -160,7 +160,7 @@ type FulfillRewardsConflict struct {
 }
 
 func (o *FulfillRewardsConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards][%d] fulfillRewardsConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/fulfillment/rewards][%d] fulfillRewardsConflict  %+v", 409, o.Payload)
 }
 
 func (o *FulfillRewardsConflict) GetPayload() *platformclientmodels.ErrorEntity {

@@ -1345,6 +1345,25 @@ func (u *UsersService) AdminCreateUserRolesV2(input *users.AdminCreateUserRolesV
 	return nil
 }
 
+// Deprecated: Use PublicGetCountryAgeRestrictionShort instead
+func (u *UsersService) PublicGetCountryAgeRestriction(input *users.PublicGetCountryAgeRestrictionParams) ([]*iamclientmodels.AccountcommonCountryAgeRestriction, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, notFound, err := u.Client.Users.PublicGetCountryAgeRestriction(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use PublicCreateUserV2Short instead
 func (u *UsersService) PublicCreateUserV2(input *users.PublicCreateUserV2Params) (*iamclientmodels.ModelUserCreateResponse, error) {
 	accessToken, err := u.TokenRepository.GetToken()
@@ -2896,6 +2915,41 @@ func (u *UsersService) PublicBulkGetUsers(input *users.PublicBulkGetUsersParams)
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicSendRegistrationCodeShort instead
+func (u *UsersService) PublicSendRegistrationCode(input *users.PublicSendRegistrationCodeParams) error {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, conflict, err := u.Client.Users.PublicSendRegistrationCode(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if conflict != nil {
+		return conflict
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+// Deprecated: Use PublicVerifyRegistrationCodeShort instead
+func (u *UsersService) PublicVerifyRegistrationCode(input *users.PublicVerifyRegistrationCodeParams) error {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, err := u.Client.Users.PublicVerifyRegistrationCode(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 // Deprecated: Use PublicForgotPasswordV3Short instead
 func (u *UsersService) PublicForgotPasswordV3(input *users.PublicForgotPasswordV3Params) error {
 	accessToken, err := u.TokenRepository.GetToken()
@@ -4086,6 +4140,18 @@ func (u *UsersService) AdminCreateUserRolesV2Short(input *users.AdminCreateUserR
 	return nil
 }
 
+func (u *UsersService) PublicGetCountryAgeRestrictionShort(input *users.PublicGetCountryAgeRestrictionParams) ([]*iamclientmodels.AccountcommonCountryAgeRestriction, error) {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := u.Client.Users.PublicGetCountryAgeRestrictionShort(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+	return ok.GetPayload(), nil
+}
+
 func (u *UsersService) PublicCreateUserV2Short(input *users.PublicCreateUserV2Params) (*iamclientmodels.ModelUserCreateResponse, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
@@ -4804,6 +4870,30 @@ func (u *UsersService) PublicBulkGetUsersShort(input *users.PublicBulkGetUsersPa
 		return nil, err
 	}
 	return ok.GetPayload(), nil
+}
+
+func (u *UsersService) PublicSendRegistrationCodeShort(input *users.PublicSendRegistrationCodeParams) error {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = u.Client.Users.PublicSendRegistrationCodeShort(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UsersService) PublicVerifyRegistrationCodeShort(input *users.PublicVerifyRegistrationCodeParams) error {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = u.Client.Users.PublicVerifyRegistrationCodeShort(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UsersService) PublicForgotPasswordV3Short(input *users.PublicForgotPasswordV3Params) error {

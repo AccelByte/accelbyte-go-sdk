@@ -49,7 +49,7 @@ func (o *DisableUserWalletReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/disable returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/disable returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -66,7 +66,7 @@ type DisableUserWalletNoContent struct {
 }
 
 func (o *DisableUserWalletNoContent) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/disable][%d] disableUserWalletNoContent ", 204)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/disable][%d] disableUserWalletNoContent ", 204)
 }
 
 func (o *DisableUserWalletNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -88,7 +88,7 @@ type DisableUserWalletNotFound struct {
 }
 
 func (o *DisableUserWalletNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/disable][%d] disableUserWalletNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/disable][%d] disableUserWalletNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DisableUserWalletNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -121,7 +121,7 @@ type DisableUserWalletConflict struct {
 }
 
 func (o *DisableUserWalletConflict) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/disable][%d] disableUserWalletConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/disable][%d] disableUserWalletConflict  %+v", 409, o.Payload)
 }
 
 func (o *DisableUserWalletConflict) GetPayload() *platformclientmodels.ErrorEntity {

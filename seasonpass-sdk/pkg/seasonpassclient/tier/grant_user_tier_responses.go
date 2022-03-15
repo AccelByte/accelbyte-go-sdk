@@ -49,7 +49,7 @@ func (o *GrantUserTierReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type GrantUserTierOK struct {
 }
 
 func (o *GrantUserTierOK) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers][%d] grantUserTierOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers][%d] grantUserTierOK  %+v", 200, o.Payload)
 }
 
 func (o *GrantUserTierOK) GetPayload() *seasonpassclientmodels.UserSeasonSummary {
@@ -100,7 +100,7 @@ type GrantUserTierBadRequest struct {
 }
 
 func (o *GrantUserTierBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers][%d] grantUserTierBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers][%d] grantUserTierBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GrantUserTierBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type GrantUserTierNotFound struct {
 }
 
 func (o *GrantUserTierNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers][%d] grantUserTierNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers][%d] grantUserTierNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GrantUserTierNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {

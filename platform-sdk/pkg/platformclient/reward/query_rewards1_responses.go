@@ -43,7 +43,7 @@ func (o *QueryRewards1Reader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/rewards/byCriteria returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/rewards/byCriteria returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type QueryRewards1OK struct {
 }
 
 func (o *QueryRewards1OK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/rewards/byCriteria][%d] queryRewards1OK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/rewards/byCriteria][%d] queryRewards1OK  %+v", 200, o.Payload)
 }
 
 func (o *QueryRewards1OK) GetPayload() *platformclientmodels.RewardPagingSlicedResult {
@@ -94,7 +94,7 @@ type QueryRewards1UnprocessableEntity struct {
 }
 
 func (o *QueryRewards1UnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/rewards/byCriteria][%d] queryRewards1UnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/rewards/byCriteria][%d] queryRewards1UnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *QueryRewards1UnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

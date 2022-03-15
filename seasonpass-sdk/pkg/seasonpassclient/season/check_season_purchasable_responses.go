@@ -55,7 +55,7 @@ func (o *CheckSeasonPurchasableReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -72,7 +72,7 @@ type CheckSeasonPurchasableNoContent struct {
 }
 
 func (o *CheckSeasonPurchasableNoContent) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable][%d] checkSeasonPurchasableNoContent ", 204)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable][%d] checkSeasonPurchasableNoContent ", 204)
 }
 
 func (o *CheckSeasonPurchasableNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -94,7 +94,7 @@ type CheckSeasonPurchasableBadRequest struct {
 }
 
 func (o *CheckSeasonPurchasableBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable][%d] checkSeasonPurchasableBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable][%d] checkSeasonPurchasableBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CheckSeasonPurchasableBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -127,7 +127,7 @@ type CheckSeasonPurchasableNotFound struct {
 }
 
 func (o *CheckSeasonPurchasableNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable][%d] checkSeasonPurchasableNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable][%d] checkSeasonPurchasableNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CheckSeasonPurchasableNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -160,7 +160,7 @@ type CheckSeasonPurchasableConflict struct {
 }
 
 func (o *CheckSeasonPurchasableConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable][%d] checkSeasonPurchasableConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable][%d] checkSeasonPurchasableConflict  %+v", 409, o.Payload)
 }
 
 func (o *CheckSeasonPurchasableConflict) GetPayload() *seasonpassclientmodels.ErrorEntity {

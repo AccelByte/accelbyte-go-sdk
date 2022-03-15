@@ -61,7 +61,7 @@ func (o *DeleteCountryGroupReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -78,7 +78,7 @@ type DeleteCountryGroupOK struct {
 }
 
 func (o *DeleteCountryGroupOK) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupOK ", 200)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupOK ", 200)
 }
 
 func (o *DeleteCountryGroupOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -100,7 +100,7 @@ type DeleteCountryGroupBadRequest struct {
 }
 
 func (o *DeleteCountryGroupBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteCountryGroupBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -133,7 +133,7 @@ type DeleteCountryGroupUnauthorized struct {
 }
 
 func (o *DeleteCountryGroupUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteCountryGroupUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -166,7 +166,7 @@ type DeleteCountryGroupForbidden struct {
 }
 
 func (o *DeleteCountryGroupForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteCountryGroupForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -199,7 +199,7 @@ type DeleteCountryGroupNotFound struct {
 }
 
 func (o *DeleteCountryGroupNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}/misc/countrygroups/{countryGroupCode}][%d] deleteCountryGroupNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteCountryGroupNotFound) GetPayload() *basicclientmodels.ErrorEntity {

@@ -37,7 +37,7 @@ func (o *RetrieveLatestPoliciesReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/policies/countries/{countryCode} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /agreement/public/policies/countries/{countryCode} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type RetrieveLatestPoliciesOK struct {
 }
 
 func (o *RetrieveLatestPoliciesOK) Error() string {
-	return fmt.Sprintf("[GET /public/policies/countries/{countryCode}][%d] retrieveLatestPoliciesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /agreement/public/policies/countries/{countryCode}][%d] retrieveLatestPoliciesOK  %+v", 200, o.Payload)
 }
 
 func (o *RetrieveLatestPoliciesOK) GetPayload() []*legalclientmodels.RetrievePolicyPublicResponse {

@@ -43,7 +43,7 @@ func (o *PublicUpdateUserNamespaceSlotMetadataReader) ReadResponse(response runt
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /public/namespaces/{namespace}/users/{userId}/slots/{slotId}/metadata returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}/metadata returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type PublicUpdateUserNamespaceSlotMetadataOK struct {
 }
 
 func (o *PublicUpdateUserNamespaceSlotMetadataOK) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/slots/{slotId}/metadata][%d] publicUpdateUserNamespaceSlotMetadataOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}/metadata][%d] publicUpdateUserNamespaceSlotMetadataOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicUpdateUserNamespaceSlotMetadataOK) GetPayload() *socialclientmodels.SlotInfo {
@@ -94,7 +94,7 @@ type PublicUpdateUserNamespaceSlotMetadataNotFound struct {
 }
 
 func (o *PublicUpdateUserNamespaceSlotMetadataNotFound) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/slots/{slotId}/metadata][%d] publicUpdateUserNamespaceSlotMetadataNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}/metadata][%d] publicUpdateUserNamespaceSlotMetadataNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicUpdateUserNamespaceSlotMetadataNotFound) GetPayload() *socialclientmodels.ErrorEntity {

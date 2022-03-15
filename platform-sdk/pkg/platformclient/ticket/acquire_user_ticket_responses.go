@@ -55,7 +55,7 @@ func (o *AcquireUserTicketReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/users/{userId}/tickets/{boothName} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type AcquireUserTicketOK struct {
 }
 
 func (o *AcquireUserTicketOK) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}][%d] acquireUserTicketOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}][%d] acquireUserTicketOK  %+v", 200, o.Payload)
 }
 
 func (o *AcquireUserTicketOK) GetPayload() *platformclientmodels.TicketAcquireResult {
@@ -106,7 +106,7 @@ type AcquireUserTicketNotFound struct {
 }
 
 func (o *AcquireUserTicketNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}][%d] acquireUserTicketNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}][%d] acquireUserTicketNotFound  %+v", 404, o.Payload)
 }
 
 func (o *AcquireUserTicketNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type AcquireUserTicketConflict struct {
 }
 
 func (o *AcquireUserTicketConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}][%d] acquireUserTicketConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}][%d] acquireUserTicketConflict  %+v", 409, o.Payload)
 }
 
 func (o *AcquireUserTicketConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -172,7 +172,7 @@ type AcquireUserTicketUnprocessableEntity struct {
 }
 
 func (o *AcquireUserTicketUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}][%d] acquireUserTicketUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/tickets/{boothName}][%d] acquireUserTicketUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *AcquireUserTicketUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

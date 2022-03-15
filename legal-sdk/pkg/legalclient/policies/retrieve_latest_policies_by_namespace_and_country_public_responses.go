@@ -37,7 +37,7 @@ func (o *RetrieveLatestPoliciesByNamespaceAndCountryPublicReader) ReadResponse(r
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/policies/namespaces/{namespace}/countries/{countryCode} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /agreement/public/policies/namespaces/{namespace}/countries/{countryCode} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type RetrieveLatestPoliciesByNamespaceAndCountryPublicOK struct {
 }
 
 func (o *RetrieveLatestPoliciesByNamespaceAndCountryPublicOK) Error() string {
-	return fmt.Sprintf("[GET /public/policies/namespaces/{namespace}/countries/{countryCode}][%d] retrieveLatestPoliciesByNamespaceAndCountryPublicOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /agreement/public/policies/namespaces/{namespace}/countries/{countryCode}][%d] retrieveLatestPoliciesByNamespaceAndCountryPublicOK  %+v", 200, o.Payload)
 }
 
 func (o *RetrieveLatestPoliciesByNamespaceAndCountryPublicOK) GetPayload() []*legalclientmodels.RetrievePolicyPublicResponse {

@@ -43,7 +43,7 @@ func (o *DeletePublishedStoreReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /admin/namespaces/{namespace}/stores/published returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /platform/admin/namespaces/{namespace}/stores/published returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type DeletePublishedStoreOK struct {
 }
 
 func (o *DeletePublishedStoreOK) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/stores/published][%d] deletePublishedStoreOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/stores/published][%d] deletePublishedStoreOK  %+v", 200, o.Payload)
 }
 
 func (o *DeletePublishedStoreOK) GetPayload() *platformclientmodels.StoreInfo {
@@ -94,7 +94,7 @@ type DeletePublishedStoreNotFound struct {
 }
 
 func (o *DeletePublishedStoreNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/stores/published][%d] deletePublishedStoreNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/stores/published][%d] deletePublishedStoreNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeletePublishedStoreNotFound) GetPayload() *platformclientmodels.ErrorEntity {

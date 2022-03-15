@@ -49,7 +49,7 @@ func (o *PublicUpdateProfileReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /public/namespaces/{namespace}/users/{userId}/profiles/{profileId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type PublicUpdateProfileOK struct {
 }
 
 func (o *PublicUpdateProfileOK) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicUpdateProfileOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicUpdateProfileOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicUpdateProfileOK) GetPayload() *socialclientmodels.GameProfileInfo {
@@ -100,7 +100,7 @@ type PublicUpdateProfileNotFound struct {
 }
 
 func (o *PublicUpdateProfileNotFound) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicUpdateProfileNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicUpdateProfileNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicUpdateProfileNotFound) GetPayload() *socialclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type PublicUpdateProfileUnprocessableEntity struct {
 }
 
 func (o *PublicUpdateProfileUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicUpdateProfileUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicUpdateProfileUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *PublicUpdateProfileUnprocessableEntity) GetPayload() *socialclientmodels.ValidationErrorEntity {

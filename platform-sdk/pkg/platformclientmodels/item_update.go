@@ -69,7 +69,7 @@ type ItemUpdate struct {
 	ItemType *string `json:"itemType"`
 
 	// Whether can be visible in Store for public user
-	Listable bool `json:"listable,omitempty"`
+	Listable bool `json:"listable"`
 
 	// Localization, key language, value localization content
 	Localizations map[string]Localization `json:"localizations,omitempty"`
@@ -84,7 +84,7 @@ type ItemUpdate struct {
 	Name string `json:"name,omitempty"`
 
 	// Whether can be purchased
-	Purchasable bool `json:"purchasable,omitempty"`
+	Purchasable bool `json:"purchasable"`
 
 	// recurring for subscription
 	Recurring *Recurring `json:"recurring,omitempty"`
@@ -100,7 +100,7 @@ type ItemUpdate struct {
 	Sku string `json:"sku,omitempty"`
 
 	// Whether to stack the entitlement when entitlement type is "CONSUMABLE"
-	Stackable bool `json:"stackable,omitempty"`
+	Stackable bool `json:"stackable"`
 
 	// status
 	// Enum: [ACTIVE INACTIVE]

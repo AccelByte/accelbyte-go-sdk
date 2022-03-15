@@ -18,7 +18,7 @@ import (
 type PaymentCallbackConfigInfo struct {
 
 	// mock workflow while set true, default false
-	DryRun bool `json:"dryRun,omitempty"`
+	DryRun bool `json:"dryRun"`
 
 	// namespace
 	// Required: true

@@ -34,7 +34,7 @@ func (o *SetDefaultPolicy1Reader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PATCH /admin/policies/{policyId}/default returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PATCH /agreement/admin/policies/{policyId}/default returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -51,7 +51,7 @@ type SetDefaultPolicy1OK struct {
 }
 
 func (o *SetDefaultPolicy1OK) Error() string {
-	return fmt.Sprintf("[PATCH /admin/policies/{policyId}/default][%d] setDefaultPolicy1OK ", 200)
+	return fmt.Sprintf("[PATCH /agreement/admin/policies/{policyId}/default][%d] setDefaultPolicy1OK ", 200)
 }
 
 func (o *SetDefaultPolicy1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -28,7 +28,7 @@ type Order struct {
 	ChargebackTime *strfmt.DateTime `json:"chargebackTime,omitempty"`
 
 	// charged
-	Charged bool `json:"charged,omitempty"`
+	Charged bool `json:"charged"`
 
 	// charged time
 	// Format: date-time
@@ -65,7 +65,7 @@ type Order struct {
 	Ext map[string]interface{} `json:"ext,omitempty"`
 
 	// free
-	Free bool `json:"free,omitempty"`
+	Free bool `json:"free"`
 
 	// fulfilled time
 	// Format: date-time
@@ -131,7 +131,7 @@ type Order struct {
 	SalesTax int32 `json:"salesTax,omitempty"`
 
 	// sandbox
-	Sandbox bool `json:"sandbox,omitempty"`
+	Sandbox bool `json:"sandbox"`
 
 	// status
 	// Enum: [INIT CHARGED CHARGEBACK CHARGEBACK_REVERSED FULFILLED FULFILL_FAILED REFUNDING REFUNDED REFUND_FAILED CLOSED DELETED]

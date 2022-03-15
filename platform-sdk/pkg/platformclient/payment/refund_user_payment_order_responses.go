@@ -55,7 +55,7 @@ func (o *RefundUserPaymentOrderReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/users/{userId}/payment/orders/{paymentOrderNo}/refund returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/users/{userId}/payment/orders/{paymentOrderNo}/refund returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type RefundUserPaymentOrderOK struct {
 }
 
 func (o *RefundUserPaymentOrderOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/payment/orders/{paymentOrderNo}/refund][%d] refundUserPaymentOrderOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/payment/orders/{paymentOrderNo}/refund][%d] refundUserPaymentOrderOK  %+v", 200, o.Payload)
 }
 
 func (o *RefundUserPaymentOrderOK) GetPayload() *platformclientmodels.PaymentOrderInfo {
@@ -106,7 +106,7 @@ type RefundUserPaymentOrderNotFound struct {
 }
 
 func (o *RefundUserPaymentOrderNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/payment/orders/{paymentOrderNo}/refund][%d] refundUserPaymentOrderNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/payment/orders/{paymentOrderNo}/refund][%d] refundUserPaymentOrderNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RefundUserPaymentOrderNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type RefundUserPaymentOrderConflict struct {
 }
 
 func (o *RefundUserPaymentOrderConflict) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/payment/orders/{paymentOrderNo}/refund][%d] refundUserPaymentOrderConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/payment/orders/{paymentOrderNo}/refund][%d] refundUserPaymentOrderConflict  %+v", 409, o.Payload)
 }
 
 func (o *RefundUserPaymentOrderConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -172,7 +172,7 @@ type RefundUserPaymentOrderUnprocessableEntity struct {
 }
 
 func (o *RefundUserPaymentOrderUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/payment/orders/{paymentOrderNo}/refund][%d] refundUserPaymentOrderUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/payment/orders/{paymentOrderNo}/refund][%d] refundUserPaymentOrderUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *RefundUserPaymentOrderUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

@@ -49,7 +49,7 @@ func (o *GetCountriesReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /v1/admin/namespaces/{namespace}/misc/countries returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /basic/v1/admin/namespaces/{namespace}/misc/countries returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type GetCountriesOK struct {
 }
 
 func (o *GetCountriesOK) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/misc/countries][%d] getCountriesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countries][%d] getCountriesOK  %+v", 200, o.Payload)
 }
 
 func (o *GetCountriesOK) GetPayload() []*basicclientmodels.CountryObject {
@@ -98,7 +98,7 @@ type GetCountriesBadRequest struct {
 }
 
 func (o *GetCountriesBadRequest) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/misc/countries][%d] getCountriesBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countries][%d] getCountriesBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetCountriesBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -131,7 +131,7 @@ type GetCountriesUnauthorized struct {
 }
 
 func (o *GetCountriesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/misc/countries][%d] getCountriesUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/misc/countries][%d] getCountriesUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetCountriesUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {

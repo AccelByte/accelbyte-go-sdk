@@ -68,7 +68,7 @@ type IAPOrderInfo struct {
 	RetryCount int32 `json:"retryCount,omitempty"`
 
 	// sandbox
-	Sandbox bool `json:"sandbox,omitempty"`
+	Sandbox bool `json:"sandbox"`
 
 	// status
 	// Required: true

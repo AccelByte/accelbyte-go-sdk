@@ -49,7 +49,7 @@ func (o *DownloadUserOrderReceiptReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -66,7 +66,7 @@ type DownloadUserOrderReceiptOK struct {
 }
 
 func (o *DownloadUserOrderReceiptOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf][%d] downloadUserOrderReceiptOK ", 200)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf][%d] downloadUserOrderReceiptOK ", 200)
 }
 
 func (o *DownloadUserOrderReceiptOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -88,7 +88,7 @@ type DownloadUserOrderReceiptNotFound struct {
 }
 
 func (o *DownloadUserOrderReceiptNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf][%d] downloadUserOrderReceiptNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf][%d] downloadUserOrderReceiptNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DownloadUserOrderReceiptNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -121,7 +121,7 @@ type DownloadUserOrderReceiptConflict struct {
 }
 
 func (o *DownloadUserOrderReceiptConflict) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf][%d] downloadUserOrderReceiptConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/orders/{orderNo}/receipt.pdf][%d] downloadUserOrderReceiptConflict  %+v", 409, o.Payload)
 }
 
 func (o *DownloadUserOrderReceiptConflict) GetPayload() *platformclientmodels.ErrorEntity {

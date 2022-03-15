@@ -37,7 +37,7 @@ func (o *IndirectBulkAcceptVersionedPolicyReader) ReadResponse(response runtime.
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/users/{userId}/agreements/policies returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /agreement/admin/namespaces/{namespace}/users/{userId}/agreements/policies returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type IndirectBulkAcceptVersionedPolicyOK struct {
 }
 
 func (o *IndirectBulkAcceptVersionedPolicyOK) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/agreements/policies][%d] indirectBulkAcceptVersionedPolicyOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /agreement/admin/namespaces/{namespace}/users/{userId}/agreements/policies][%d] indirectBulkAcceptVersionedPolicyOK  %+v", 200, o.Payload)
 }
 
 func (o *IndirectBulkAcceptVersionedPolicyOK) GetPayload() *legalclientmodels.AcceptAgreementResponse {

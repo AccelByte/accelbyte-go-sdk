@@ -67,7 +67,7 @@ func (o *GeneratedUserUploadContentURLReader) ReadResponse(response runtime.Clie
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /v1/admin/namespaces/{namespace}/users/{userId}/files returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /basic/v1/admin/namespaces/{namespace}/users/{userId}/files returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -85,7 +85,7 @@ type GeneratedUserUploadContentURLOK struct {
 }
 
 func (o *GeneratedUserUploadContentURLOK) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/users/{userId}/files][%d] generatedUserUploadContentUrlOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/users/{userId}/files][%d] generatedUserUploadContentUrlOK  %+v", 200, o.Payload)
 }
 
 func (o *GeneratedUserUploadContentURLOK) GetPayload() *basicclientmodels.FileUploadURLInfo {
@@ -118,7 +118,7 @@ type GeneratedUserUploadContentURLBadRequest struct {
 }
 
 func (o *GeneratedUserUploadContentURLBadRequest) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/users/{userId}/files][%d] generatedUserUploadContentUrlBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/users/{userId}/files][%d] generatedUserUploadContentUrlBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GeneratedUserUploadContentURLBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -151,7 +151,7 @@ type GeneratedUserUploadContentURLUnauthorized struct {
 }
 
 func (o *GeneratedUserUploadContentURLUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/users/{userId}/files][%d] generatedUserUploadContentUrlUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/users/{userId}/files][%d] generatedUserUploadContentUrlUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GeneratedUserUploadContentURLUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -184,7 +184,7 @@ type GeneratedUserUploadContentURLForbidden struct {
 }
 
 func (o *GeneratedUserUploadContentURLForbidden) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/users/{userId}/files][%d] generatedUserUploadContentUrlForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/users/{userId}/files][%d] generatedUserUploadContentUrlForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GeneratedUserUploadContentURLForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -217,7 +217,7 @@ type GeneratedUserUploadContentURLConflict struct {
 }
 
 func (o *GeneratedUserUploadContentURLConflict) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/users/{userId}/files][%d] generatedUserUploadContentUrlConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/users/{userId}/files][%d] generatedUserUploadContentUrlConflict  %+v", 409, o.Payload)
 }
 
 func (o *GeneratedUserUploadContentURLConflict) GetPayload() *basicclientmodels.ErrorEntity {
@@ -250,7 +250,7 @@ type GeneratedUserUploadContentURLInternalServerError struct {
 }
 
 func (o *GeneratedUserUploadContentURLInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/users/{userId}/files][%d] generatedUserUploadContentUrlInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/users/{userId}/files][%d] generatedUserUploadContentUrlInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *GeneratedUserUploadContentURLInternalServerError) GetPayload() *basicclientmodels.ErrorEntity {

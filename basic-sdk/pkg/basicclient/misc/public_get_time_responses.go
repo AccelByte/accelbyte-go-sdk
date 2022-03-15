@@ -37,7 +37,7 @@ func (o *PublicGetTimeReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /v1/public/misc/time returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /basic/v1/public/misc/time returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type PublicGetTimeOK struct {
 }
 
 func (o *PublicGetTimeOK) Error() string {
-	return fmt.Sprintf("[GET /v1/public/misc/time][%d] publicGetTimeOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/misc/time][%d] publicGetTimeOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetTimeOK) GetPayload() *basicclientmodels.RetrieveTimeResponse {

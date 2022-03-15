@@ -37,7 +37,7 @@ func (o *PublicGetUserOrderHistoriesReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type PublicGetUserOrderHistoriesOK struct {
 }
 
 func (o *PublicGetUserOrderHistoriesOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history][%d] publicGetUserOrderHistoriesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/history][%d] publicGetUserOrderHistoriesOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetUserOrderHistoriesOK) GetPayload() []*platformclientmodels.OrderHistoryInfo {

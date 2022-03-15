@@ -41,10 +41,10 @@ type SubscriptionActivityInfo struct {
 	GrantDays int32 `json:"grantDays,omitempty"`
 
 	// Subscription in fixed cycle trial or not
-	InFixedCycleTrial bool `json:"inFixedCycleTrial,omitempty"`
+	InFixedCycleTrial bool `json:"inFixedCycleTrial"`
 
 	// Subscription in fixed free days or not
-	InFixedFreeDays bool `json:"inFixedFreeDays,omitempty"`
+	InFixedFreeDays bool `json:"inFixedFreeDays"`
 
 	// Subscription namespace
 	// Required: true

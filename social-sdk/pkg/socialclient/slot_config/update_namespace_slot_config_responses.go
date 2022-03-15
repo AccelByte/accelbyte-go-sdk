@@ -37,7 +37,7 @@ func (o *UpdateNamespaceSlotConfigReader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/config returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /social/admin/namespaces/{namespace}/config returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type UpdateNamespaceSlotConfigOK struct {
 }
 
 func (o *UpdateNamespaceSlotConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/config][%d] updateNamespaceSlotConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /social/admin/namespaces/{namespace}/config][%d] updateNamespaceSlotConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateNamespaceSlotConfigOK) GetPayload() *socialclientmodels.NamespaceSlotConfigInfo {

@@ -37,7 +37,7 @@ func (o *UpdateAppleIAPConfigReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/iap/config/apple returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/iap/config/apple returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type UpdateAppleIAPConfigOK struct {
 }
 
 func (o *UpdateAppleIAPConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/iap/config/apple][%d] updateAppleIAPConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/iap/config/apple][%d] updateAppleIAPConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateAppleIAPConfigOK) GetPayload() *platformclientmodels.AppleIAPConfigInfo {

@@ -39,6 +39,9 @@ type ClientmodelClientCreationV3Request struct {
 	// Required: true
 	ClientPermissions []*AccountcommonPermissionV3 `json:"clientPermissions"`
 
+	// deletable
+	Deletable bool `json:"deletable"`
+
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`

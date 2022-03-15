@@ -43,7 +43,7 @@ func (o *RollbackPublishedStoreReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/stores/published/rollback returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/stores/published/rollback returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type RollbackPublishedStoreOK struct {
 }
 
 func (o *RollbackPublishedStoreOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/stores/published/rollback][%d] rollbackPublishedStoreOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/published/rollback][%d] rollbackPublishedStoreOK  %+v", 200, o.Payload)
 }
 
 func (o *RollbackPublishedStoreOK) GetPayload() *platformclientmodels.StoreInfo {
@@ -94,7 +94,7 @@ type RollbackPublishedStoreNotFound struct {
 }
 
 func (o *RollbackPublishedStoreNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/stores/published/rollback][%d] rollbackPublishedStoreNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/published/rollback][%d] rollbackPublishedStoreNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RollbackPublishedStoreNotFound) GetPayload() *platformclientmodels.ErrorEntity {

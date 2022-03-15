@@ -43,7 +43,7 @@ func (o *DeleteCurrencyReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /admin/namespaces/{namespace}/currencies/{currencyCode} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /platform/admin/namespaces/{namespace}/currencies/{currencyCode} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type DeleteCurrencyOK struct {
 }
 
 func (o *DeleteCurrencyOK) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/currencies/{currencyCode}][%d] deleteCurrencyOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/currencies/{currencyCode}][%d] deleteCurrencyOK  %+v", 200, o.Payload)
 }
 
 func (o *DeleteCurrencyOK) GetPayload() *platformclientmodels.CurrencyInfo {
@@ -94,7 +94,7 @@ type DeleteCurrencyNotFound struct {
 }
 
 func (o *DeleteCurrencyNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/currencies/{currencyCode}][%d] deleteCurrencyNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/currencies/{currencyCode}][%d] deleteCurrencyNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteCurrencyNotFound) GetPayload() *platformclientmodels.ErrorEntity {

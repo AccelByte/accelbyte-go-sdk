@@ -61,7 +61,7 @@ func (o *UpdateCategoryReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/categories/{categoryPath} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/categories/{categoryPath} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type UpdateCategoryOK struct {
 }
 
 func (o *UpdateCategoryOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/categories/{categoryPath}][%d] updateCategoryOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] updateCategoryOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateCategoryOK) GetPayload() *platformclientmodels.FullCategoryInfo {
@@ -112,7 +112,7 @@ type UpdateCategoryBadRequest struct {
 }
 
 func (o *UpdateCategoryBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/categories/{categoryPath}][%d] updateCategoryBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] updateCategoryBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateCategoryBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -145,7 +145,7 @@ type UpdateCategoryNotFound struct {
 }
 
 func (o *UpdateCategoryNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/categories/{categoryPath}][%d] updateCategoryNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] updateCategoryNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateCategoryNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -178,7 +178,7 @@ type UpdateCategoryConflict struct {
 }
 
 func (o *UpdateCategoryConflict) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/categories/{categoryPath}][%d] updateCategoryConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] updateCategoryConflict  %+v", 409, o.Payload)
 }
 
 func (o *UpdateCategoryConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -211,7 +211,7 @@ type UpdateCategoryUnprocessableEntity struct {
 }
 
 func (o *UpdateCategoryUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/categories/{categoryPath}][%d] updateCategoryUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] updateCategoryUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateCategoryUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

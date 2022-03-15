@@ -43,7 +43,7 @@ func (o *PublicGetCountriesReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /v1/public/namespaces/{namespace}/misc/countries returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /basic/v1/public/namespaces/{namespace}/misc/countries returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type PublicGetCountriesOK struct {
 }
 
 func (o *PublicGetCountriesOK) Error() string {
-	return fmt.Sprintf("[GET /v1/public/namespaces/{namespace}/misc/countries][%d] publicGetCountriesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/misc/countries][%d] publicGetCountriesOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetCountriesOK) GetPayload() []*basicclientmodels.CountryObject {
@@ -92,7 +92,7 @@ type PublicGetCountriesBadRequest struct {
 }
 
 func (o *PublicGetCountriesBadRequest) Error() string {
-	return fmt.Sprintf("[GET /v1/public/namespaces/{namespace}/misc/countries][%d] publicGetCountriesBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/misc/countries][%d] publicGetCountriesBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicGetCountriesBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {

@@ -55,7 +55,7 @@ func (o *PublicChangeSubscriptionBillingAccountReader) ReadResponse(response run
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type PublicChangeSubscriptionBillingAccountOK struct {
 }
 
 func (o *PublicChangeSubscriptionBillingAccountOK) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount][%d] publicChangeSubscriptionBillingAccountOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount][%d] publicChangeSubscriptionBillingAccountOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicChangeSubscriptionBillingAccountOK) GetPayload() *platformclientmodels.SubscriptionInfo {
@@ -106,7 +106,7 @@ type PublicChangeSubscriptionBillingAccountBadRequest struct {
 }
 
 func (o *PublicChangeSubscriptionBillingAccountBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount][%d] publicChangeSubscriptionBillingAccountBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount][%d] publicChangeSubscriptionBillingAccountBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicChangeSubscriptionBillingAccountBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type PublicChangeSubscriptionBillingAccountNotFound struct {
 }
 
 func (o *PublicChangeSubscriptionBillingAccountNotFound) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount][%d] publicChangeSubscriptionBillingAccountNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount][%d] publicChangeSubscriptionBillingAccountNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicChangeSubscriptionBillingAccountNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -172,7 +172,7 @@ type PublicChangeSubscriptionBillingAccountConflict struct {
 }
 
 func (o *PublicChangeSubscriptionBillingAccountConflict) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount][%d] publicChangeSubscriptionBillingAccountConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount][%d] publicChangeSubscriptionBillingAccountConflict  %+v", 409, o.Payload)
 }
 
 func (o *PublicChangeSubscriptionBillingAccountConflict) GetPayload() *platformclientmodels.ErrorEntity {

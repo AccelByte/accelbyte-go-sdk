@@ -43,7 +43,7 @@ func (o *GetPaymentMerchantConfigReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/payment/config/merchant/{id} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/payment/config/merchant/{id} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetPaymentMerchantConfigOK struct {
 }
 
 func (o *GetPaymentMerchantConfigOK) Error() string {
-	return fmt.Sprintf("[GET /admin/payment/config/merchant/{id}][%d] getPaymentMerchantConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}][%d] getPaymentMerchantConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *GetPaymentMerchantConfigOK) GetPayload() *platformclientmodels.PaymentMerchantConfigInfo {
@@ -94,7 +94,7 @@ type GetPaymentMerchantConfigNotFound struct {
 }
 
 func (o *GetPaymentMerchantConfigNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/payment/config/merchant/{id}][%d] getPaymentMerchantConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}][%d] getPaymentMerchantConfigNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetPaymentMerchantConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {

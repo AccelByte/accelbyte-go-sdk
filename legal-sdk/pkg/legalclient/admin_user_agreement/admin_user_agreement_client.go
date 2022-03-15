@@ -53,7 +53,7 @@ func (a *Client) IndirectBulkAcceptVersionedPolicy(params *IndirectBulkAcceptVer
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "indirectBulkAcceptVersionedPolicy",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/agreements/policies",
+		PathPattern:        "/agreement/admin/namespaces/{namespace}/users/{userId}/agreements/policies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -90,7 +90,7 @@ func (a *Client) IndirectBulkAcceptVersionedPolicyShort(params *IndirectBulkAcce
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "indirectBulkAcceptVersionedPolicy",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/agreements/policies",
+		PathPattern:        "/agreement/admin/namespaces/{namespace}/users/{userId}/agreements/policies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

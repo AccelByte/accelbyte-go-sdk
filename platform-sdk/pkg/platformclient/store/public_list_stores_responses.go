@@ -37,7 +37,7 @@ func (o *PublicListStoresReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/stores returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/stores returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type PublicListStoresOK struct {
 }
 
 func (o *PublicListStoresOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/stores][%d] publicListStoresOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/stores][%d] publicListStoresOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicListStoresOK) GetPayload() []*platformclientmodels.StoreInfo {

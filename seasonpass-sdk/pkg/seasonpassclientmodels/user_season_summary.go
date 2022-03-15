@@ -18,7 +18,7 @@ import (
 type UserSeasonSummary struct {
 
 	// whether cleared all tiers
-	Cleared bool `json:"cleared,omitempty"`
+	Cleared bool `json:"cleared"`
 
 	// created at
 	// Format: date-time

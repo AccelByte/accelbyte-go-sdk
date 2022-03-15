@@ -15,14 +15,17 @@ import (
 // swagger:model models.Config
 type ModelsConfig struct {
 
+	// allow invite non connected user
+	AllowInviteNonConnectedUser bool `json:"allowInviteNonConnectedUser"`
+
 	// auto kick on disconnect
-	AutoKickOnDisconnect bool `json:"autoKickOnDisconnect,omitempty"`
+	AutoKickOnDisconnect bool `json:"autoKickOnDisconnect"`
 
 	// auto kick on disconnect delay
 	AutoKickOnDisconnectDelay int64 `json:"autoKickOnDisconnectDelay,omitempty"`
 
 	// cancel ticket on disconnect
-	CancelTicketOnDisconnect bool `json:"cancelTicketOnDisconnect,omitempty"`
+	CancelTicketOnDisconnect bool `json:"cancelTicketOnDisconnect"`
 
 	// chat rate limit burst
 	ChatRateLimitBurst int32 `json:"chatRateLimitBurst,omitempty"`
@@ -34,13 +37,13 @@ type ModelsConfig struct {
 	ConcurrentUsersLimit int32 `json:"concurrentUsersLimit,omitempty"`
 
 	// disable party invitation token
-	DisablePartyInvitationToken bool `json:"disablePartyInvitationToken,omitempty"`
+	DisablePartyInvitationToken bool `json:"disablePartyInvitationToken"`
 
 	// enable chat
-	EnableChat bool `json:"enableChat,omitempty"`
+	EnableChat bool `json:"enableChat"`
 
 	// entitlement check
-	EntitlementCheck bool `json:"entitlementCheck,omitempty"`
+	EntitlementCheck bool `json:"entitlementCheck"`
 
 	// entitlement item ID
 	EntitlementItemID string `json:"entitlementItemID,omitempty"`
@@ -58,7 +61,7 @@ type ModelsConfig struct {
 	Namespace string `json:"namespace,omitempty"`
 
 	// profanity filter
-	ProfanityFilter bool `json:"profanityFilter,omitempty"`
+	ProfanityFilter bool `json:"profanityFilter"`
 
 	// ready consent timeout
 	ReadyConsentTimeout int64 `json:"readyConsentTimeout,omitempty"`

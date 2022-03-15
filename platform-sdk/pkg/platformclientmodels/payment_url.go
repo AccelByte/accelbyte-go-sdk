@@ -30,11 +30,16 @@ type PaymentURL struct {
 	PaymentType *string `json:"paymentType"`
 
 	// payment url
-	// Required: true
-	PaymentURL *string `json:"paymentUrl"`
+	PaymentURL string `json:"paymentUrl,omitempty"`
 
 	// return url
 	ReturnURL string `json:"returnUrl,omitempty"`
+
+	// adyen session data
+	SessionData string `json:"sessionData,omitempty"`
+
+	// adyen session id
+	SessionID string `json:"sessionId,omitempty"`
 }
 
 // Validate validates this payment Url
@@ -46,10 +51,6 @@ func (m *PaymentURL) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePaymentType(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePaymentURL(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -157,15 +158,6 @@ func (m *PaymentURL) validatePaymentType(formats strfmt.Registry) error {
 
 	// value enum
 	if err := m.validatePaymentTypeEnum("paymentType", "body", *m.PaymentType); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *PaymentURL) validatePaymentURL(formats strfmt.Registry) error {
-
-	if err := validate.Required("paymentUrl", "body", m.PaymentURL); err != nil {
 		return err
 	}
 

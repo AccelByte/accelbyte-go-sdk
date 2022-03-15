@@ -37,7 +37,7 @@ func (o *GetUserAppEntitlementOwnershipByAppIDReader) ReadResponse(response runt
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/byAppId returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/byAppId returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type GetUserAppEntitlementOwnershipByAppIDOK struct {
 }
 
 func (o *GetUserAppEntitlementOwnershipByAppIDOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/byAppId][%d] getUserAppEntitlementOwnershipByAppIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/byAppId][%d] getUserAppEntitlementOwnershipByAppIdOK  %+v", 200, o.Payload)
 }
 
 func (o *GetUserAppEntitlementOwnershipByAppIDOK) GetPayload() *platformclientmodels.Ownership {

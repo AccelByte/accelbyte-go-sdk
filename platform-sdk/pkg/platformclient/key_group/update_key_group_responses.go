@@ -55,7 +55,7 @@ func (o *UpdateKeyGroupReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/keygroups/{keyGroupId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type UpdateKeyGroupOK struct {
 }
 
 func (o *UpdateKeyGroupOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] updateKeyGroupOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] updateKeyGroupOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateKeyGroupOK) GetPayload() *platformclientmodels.KeyGroupInfo {
@@ -106,7 +106,7 @@ type UpdateKeyGroupNotFound struct {
 }
 
 func (o *UpdateKeyGroupNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] updateKeyGroupNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] updateKeyGroupNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateKeyGroupNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type UpdateKeyGroupConflict struct {
 }
 
 func (o *UpdateKeyGroupConflict) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] updateKeyGroupConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] updateKeyGroupConflict  %+v", 409, o.Payload)
 }
 
 func (o *UpdateKeyGroupConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -172,7 +172,7 @@ type UpdateKeyGroupUnprocessableEntity struct {
 }
 
 func (o *UpdateKeyGroupUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] updateKeyGroupUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}][%d] updateKeyGroupUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateKeyGroupUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

@@ -49,7 +49,7 @@ func (o *GetCodeReader) ReadResponse(response runtime.ClientResponse, consumer r
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/codes/{code} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/codes/{code} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type GetCodeOK struct {
 }
 
 func (o *GetCodeOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/codes/{code}][%d] getCodeOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/codes/{code}][%d] getCodeOK  %+v", 200, o.Payload)
 }
 
 func (o *GetCodeOK) GetPayload() *platformclientmodels.CodeInfo {
@@ -100,7 +100,7 @@ type GetCodeNotFound struct {
 }
 
 func (o *GetCodeNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/codes/{code}][%d] getCodeNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/codes/{code}][%d] getCodeNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetCodeNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type GetCodeConflict struct {
 }
 
 func (o *GetCodeConflict) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/codes/{code}][%d] getCodeConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/codes/{code}][%d] getCodeConflict  %+v", 409, o.Payload)
 }
 
 func (o *GetCodeConflict) GetPayload() *platformclientmodels.ErrorEntity {

@@ -37,7 +37,7 @@ func (o *TestFulfillmentScriptEvalReader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/fulfillment/scripts/tests/eval returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/admin/fulfillment/scripts/tests/eval returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type TestFulfillmentScriptEvalOK struct {
 }
 
 func (o *TestFulfillmentScriptEvalOK) Error() string {
-	return fmt.Sprintf("[POST /admin/fulfillment/scripts/tests/eval][%d] testFulfillmentScriptEvalOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/fulfillment/scripts/tests/eval][%d] testFulfillmentScriptEvalOK  %+v", 200, o.Payload)
 }
 
 func (o *TestFulfillmentScriptEvalOK) GetPayload() *platformclientmodels.FulfillmentScriptEvalTestResult {

@@ -49,7 +49,7 @@ func (o *SimulatePaymentOrderNotificationReader) ReadResponse(response runtime.C
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type SimulatePaymentOrderNotificationOK struct {
 }
 
 func (o *SimulatePaymentOrderNotificationOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification][%d] simulatePaymentOrderNotificationOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification][%d] simulatePaymentOrderNotificationOK  %+v", 200, o.Payload)
 }
 
 func (o *SimulatePaymentOrderNotificationOK) GetPayload() *platformclientmodels.NotificationProcessResult {
@@ -100,7 +100,7 @@ type SimulatePaymentOrderNotificationBadRequest struct {
 }
 
 func (o *SimulatePaymentOrderNotificationBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification][%d] simulatePaymentOrderNotificationBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification][%d] simulatePaymentOrderNotificationBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *SimulatePaymentOrderNotificationBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type SimulatePaymentOrderNotificationNotFound struct {
 }
 
 func (o *SimulatePaymentOrderNotificationNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification][%d] simulatePaymentOrderNotificationNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification][%d] simulatePaymentOrderNotificationNotFound  %+v", 404, o.Payload)
 }
 
 func (o *SimulatePaymentOrderNotificationNotFound) GetPayload() *platformclientmodels.ErrorEntity {

@@ -43,7 +43,7 @@ func (o *DeleteItemReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /admin/namespaces/{namespace}/items/{itemId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /platform/admin/namespaces/{namespace}/items/{itemId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -60,7 +60,7 @@ type DeleteItemNoContent struct {
 }
 
 func (o *DeleteItemNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/items/{itemId}][%d] deleteItemNoContent ", 204)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/items/{itemId}][%d] deleteItemNoContent ", 204)
 }
 
 func (o *DeleteItemNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -82,7 +82,7 @@ type DeleteItemNotFound struct {
 }
 
 func (o *DeleteItemNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/items/{itemId}][%d] deleteItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/items/{itemId}][%d] deleteItemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {

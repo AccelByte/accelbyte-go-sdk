@@ -61,7 +61,7 @@ func (o *PublicCreateUserProfileReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /v1/public/namespaces/{namespace}/users/{userId}/profiles returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type PublicCreateUserProfileCreated struct {
 }
 
 func (o *PublicCreateUserProfileCreated) Error() string {
-	return fmt.Sprintf("[POST /v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileCreated  %+v", 201, o.Payload)
 }
 
 func (o *PublicCreateUserProfileCreated) GetPayload() *basicclientmodels.UserProfileInfo {
@@ -112,7 +112,7 @@ type PublicCreateUserProfileBadRequest struct {
 }
 
 func (o *PublicCreateUserProfileBadRequest) Error() string {
-	return fmt.Sprintf("[POST /v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicCreateUserProfileBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -145,7 +145,7 @@ type PublicCreateUserProfileUnauthorized struct {
 }
 
 func (o *PublicCreateUserProfileUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *PublicCreateUserProfileUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -178,7 +178,7 @@ type PublicCreateUserProfileForbidden struct {
 }
 
 func (o *PublicCreateUserProfileForbidden) Error() string {
-	return fmt.Sprintf("[POST /v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileForbidden  %+v", 403, o.Payload)
 }
 
 func (o *PublicCreateUserProfileForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -211,7 +211,7 @@ type PublicCreateUserProfileConflict struct {
 }
 
 func (o *PublicCreateUserProfileConflict) Error() string {
-	return fmt.Sprintf("[POST /v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateUserProfileConflict  %+v", 409, o.Payload)
 }
 
 func (o *PublicCreateUserProfileConflict) GetPayload() *basicclientmodels.ErrorEntity {

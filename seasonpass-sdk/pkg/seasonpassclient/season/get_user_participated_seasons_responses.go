@@ -43,7 +43,7 @@ func (o *GetUserParticipatedSeasonsReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/users/{userId}/seasons returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetUserParticipatedSeasonsOK struct {
 }
 
 func (o *GetUserParticipatedSeasonsOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/seasons][%d] getUserParticipatedSeasonsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons][%d] getUserParticipatedSeasonsOK  %+v", 200, o.Payload)
 }
 
 func (o *GetUserParticipatedSeasonsOK) GetPayload() *seasonpassclientmodels.ListUserSeasonInfoPagingSlicedResult {
@@ -94,7 +94,7 @@ type GetUserParticipatedSeasonsBadRequest struct {
 }
 
 func (o *GetUserParticipatedSeasonsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/seasons][%d] getUserParticipatedSeasonsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons][%d] getUserParticipatedSeasonsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetUserParticipatedSeasonsBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {

@@ -20,7 +20,7 @@ import (
 type PassCreate struct {
 
 	// autoEnroll for free pass, default false
-	AutoEnroll bool `json:"autoEnroll,omitempty"`
+	AutoEnroll bool `json:"autoEnroll"`
 
 	// code, allowed characters from a-z0-9_:- and start/end in alphanumeric, max length is 255
 	// Required: true

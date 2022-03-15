@@ -20,7 +20,7 @@ import (
 type SeasonCreate struct {
 
 	// whether auto claim rewards, default true
-	AutoClaim bool `json:"autoClaim,omitempty"`
+	AutoClaim bool `json:"autoClaim"`
 
 	// default language, BCP 47 language tag, default is en
 	DefaultLanguage string `json:"defaultLanguage,omitempty"`

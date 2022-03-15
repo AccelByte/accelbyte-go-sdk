@@ -43,7 +43,7 @@ func (o *TestWxPayConfigByIDReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/payment/config/merchant/{id}/wxpayconfig/test returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/payment/config/merchant/{id}/wxpayconfig/test returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type TestWxPayConfigByIDOK struct {
 }
 
 func (o *TestWxPayConfigByIDOK) Error() string {
-	return fmt.Sprintf("[GET /admin/payment/config/merchant/{id}/wxpayconfig/test][%d] testWxPayConfigByIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/wxpayconfig/test][%d] testWxPayConfigByIdOK  %+v", 200, o.Payload)
 }
 
 func (o *TestWxPayConfigByIDOK) GetPayload() *platformclientmodels.TestResult {
@@ -94,7 +94,7 @@ type TestWxPayConfigByIDNotFound struct {
 }
 
 func (o *TestWxPayConfigByIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/payment/config/merchant/{id}/wxpayconfig/test][%d] testWxPayConfigByIdNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/wxpayconfig/test][%d] testWxPayConfigByIdNotFound  %+v", 404, o.Payload)
 }
 
 func (o *TestWxPayConfigByIDNotFound) GetPayload() *platformclientmodels.ErrorEntity {

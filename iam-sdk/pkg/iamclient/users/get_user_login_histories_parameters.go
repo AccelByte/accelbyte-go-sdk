@@ -75,7 +75,7 @@ type GetUserLoginHistoriesParams struct {
 	  The number of data retrieved in a page
 
 	*/
-	Limit *float64
+	Limit *int64
 	/*Namespace
 	  Namespace, only accept alphabet and numeric
 
@@ -148,13 +148,13 @@ func (o *GetUserLoginHistoriesParams) SetBefore(before *float64) {
 }
 
 // WithLimit adds the limit to the get user login histories params
-func (o *GetUserLoginHistoriesParams) WithLimit(limit *float64) *GetUserLoginHistoriesParams {
+func (o *GetUserLoginHistoriesParams) WithLimit(limit *int64) *GetUserLoginHistoriesParams {
 	o.SetLimit(limit)
 	return o
 }
 
 // SetLimit adds the limit to the get user login histories params
-func (o *GetUserLoginHistoriesParams) SetLimit(limit *float64) {
+func (o *GetUserLoginHistoriesParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
@@ -223,11 +223,11 @@ func (o *GetUserLoginHistoriesParams) WriteToRequest(r runtime.ClientRequest, re
 	if o.Limit != nil {
 
 		// query param limit
-		var qrLimit float64
+		var qrLimit int64
 		if o.Limit != nil {
 			qrLimit = *o.Limit
 		}
-		qLimit := swag.FormatFloat64(qrLimit)
+		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
 				return err

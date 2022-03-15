@@ -49,7 +49,7 @@ func (o *EnableItemReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/items/{itemId}/enable returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/items/{itemId}/enable returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type EnableItemOK struct {
 }
 
 func (o *EnableItemOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/items/{itemId}/enable][%d] enableItemOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/enable][%d] enableItemOK  %+v", 200, o.Payload)
 }
 
 func (o *EnableItemOK) GetPayload() *platformclientmodels.FullItemInfo {
@@ -100,7 +100,7 @@ type EnableItemNotFound struct {
 }
 
 func (o *EnableItemNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/items/{itemId}/enable][%d] enableItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/enable][%d] enableItemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *EnableItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type EnableItemConflict struct {
 }
 
 func (o *EnableItemConflict) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/items/{itemId}/enable][%d] enableItemConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/enable][%d] enableItemConflict  %+v", 409, o.Payload)
 }
 
 func (o *EnableItemConflict) GetPayload() *platformclientmodels.ErrorEntity {

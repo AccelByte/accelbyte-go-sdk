@@ -49,7 +49,7 @@ func (o *DefeatureItemReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /admin/namespaces/{namespace}/items/{itemId}/features/{feature} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type DefeatureItemOK struct {
 }
 
 func (o *DefeatureItemOK) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] defeatureItemOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] defeatureItemOK  %+v", 200, o.Payload)
 }
 
 func (o *DefeatureItemOK) GetPayload() *platformclientmodels.FullItemInfo {
@@ -100,7 +100,7 @@ type DefeatureItemNotFound struct {
 }
 
 func (o *DefeatureItemNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] defeatureItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] defeatureItemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DefeatureItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type DefeatureItemConflict struct {
 }
 
 func (o *DefeatureItemConflict) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] defeatureItemConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[DELETE /platform/admin/namespaces/{namespace}/items/{itemId}/features/{feature}][%d] defeatureItemConflict  %+v", 409, o.Payload)
 }
 
 func (o *DefeatureItemConflict) GetPayload() *platformclientmodels.ErrorEntity {

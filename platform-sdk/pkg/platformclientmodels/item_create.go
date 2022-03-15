@@ -70,7 +70,7 @@ type ItemCreate struct {
 	ItemType *string `json:"itemType"`
 
 	// Whether can be visible in Store for public user
-	Listable bool `json:"listable,omitempty"`
+	Listable bool `json:"listable"`
 
 	// Localization, key language, value localization content
 	// Required: true
@@ -87,7 +87,7 @@ type ItemCreate struct {
 	Name *string `json:"name"`
 
 	// Whether can be purchased
-	Purchasable bool `json:"purchasable,omitempty"`
+	Purchasable bool `json:"purchasable"`
 
 	// recurring for subscription
 	Recurring *Recurring `json:"recurring,omitempty"`
@@ -104,7 +104,7 @@ type ItemCreate struct {
 	Sku string `json:"sku,omitempty"`
 
 	// Whether to stack the entitlement when entitlement type is "CONSUMABLE"
-	Stackable bool `json:"stackable,omitempty"`
+	Stackable bool `json:"stackable"`
 
 	// status
 	// Required: true

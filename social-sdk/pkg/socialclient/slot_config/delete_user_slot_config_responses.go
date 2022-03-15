@@ -34,7 +34,7 @@ func (o *DeleteUserSlotConfigReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /admin/namespaces/{namespace}/users/{userId}/config returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /social/admin/namespaces/{namespace}/users/{userId}/config returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -51,7 +51,7 @@ type DeleteUserSlotConfigNoContent struct {
 }
 
 func (o *DeleteUserSlotConfigNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /admin/namespaces/{namespace}/users/{userId}/config][%d] deleteUserSlotConfigNoContent ", 204)
+	return fmt.Sprintf("[DELETE /social/admin/namespaces/{namespace}/users/{userId}/config][%d] deleteUserSlotConfigNoContent ", 204)
 }
 
 func (o *DeleteUserSlotConfigNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

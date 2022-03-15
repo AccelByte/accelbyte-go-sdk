@@ -43,7 +43,7 @@ func (o *BulkCreateUserStatItemsReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /v1/admin/namespaces/{namespace}/users/{userId}/statitems/bulk returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /social/v1/admin/namespaces/{namespace}/users/{userId}/statitems/bulk returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type BulkCreateUserStatItemsOK struct {
 }
 
 func (o *BulkCreateUserStatItemsOK) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/users/{userId}/statitems/bulk][%d] bulkCreateUserStatItemsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/users/{userId}/statitems/bulk][%d] bulkCreateUserStatItemsOK  %+v", 200, o.Payload)
 }
 
 func (o *BulkCreateUserStatItemsOK) GetPayload() []*socialclientmodels.BulkStatItemOperationResult {
@@ -92,7 +92,7 @@ type BulkCreateUserStatItemsUnprocessableEntity struct {
 }
 
 func (o *BulkCreateUserStatItemsUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/users/{userId}/statitems/bulk][%d] bulkCreateUserStatItemsUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/users/{userId}/statitems/bulk][%d] bulkCreateUserStatItemsUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *BulkCreateUserStatItemsUnprocessableEntity) GetPayload() *socialclientmodels.ValidationErrorEntity {

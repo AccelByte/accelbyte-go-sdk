@@ -36,7 +36,7 @@ const (
 	DefaultHost string = "demo.accelbyte.io"
 	// DefaultBasePath is the default BasePath
 	// found in Meta (info) section of spec file
-	DefaultBasePath string = "/agreement"
+	DefaultBasePath string = "/"
 )
 
 // DefaultSchemes are the default schemes found in Meta (info) section of spec file
@@ -64,6 +64,7 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 	transport.Consumers["application/x-www-form-urlencoded"] = runtime.JSONConsumer()
 	transport.Consumers["application/zip"] = runtime.JSONConsumer()
 	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
+	transport.Consumers["text/x-log"] = runtime.JSONConsumer()
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
 
 	// optional custom request header

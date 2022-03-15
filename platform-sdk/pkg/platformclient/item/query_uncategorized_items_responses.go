@@ -49,7 +49,7 @@ func (o *QueryUncategorizedItemsReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/items/uncategorized returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/items/uncategorized returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type QueryUncategorizedItemsOK struct {
 }
 
 func (o *QueryUncategorizedItemsOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/items/uncategorized][%d] queryUncategorizedItemsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/uncategorized][%d] queryUncategorizedItemsOK  %+v", 200, o.Payload)
 }
 
 func (o *QueryUncategorizedItemsOK) GetPayload() *platformclientmodels.FullItemPagingSlicedResult {
@@ -100,7 +100,7 @@ type QueryUncategorizedItemsNotFound struct {
 }
 
 func (o *QueryUncategorizedItemsNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/items/uncategorized][%d] queryUncategorizedItemsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/uncategorized][%d] queryUncategorizedItemsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *QueryUncategorizedItemsNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type QueryUncategorizedItemsUnprocessableEntity struct {
 }
 
 func (o *QueryUncategorizedItemsUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/items/uncategorized][%d] queryUncategorizedItemsUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/items/uncategorized][%d] queryUncategorizedItemsUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *QueryUncategorizedItemsUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

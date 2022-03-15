@@ -34,7 +34,7 @@ func (o *DeleteFulfillmentScriptReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /admin/fulfillment/scripts/{id} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /platform/admin/fulfillment/scripts/{id} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -51,7 +51,7 @@ type DeleteFulfillmentScriptNoContent struct {
 }
 
 func (o *DeleteFulfillmentScriptNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /admin/fulfillment/scripts/{id}][%d] deleteFulfillmentScriptNoContent ", 204)
+	return fmt.Sprintf("[DELETE /platform/admin/fulfillment/scripts/{id}][%d] deleteFulfillmentScriptNoContent ", 204)
 }
 
 func (o *DeleteFulfillmentScriptNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

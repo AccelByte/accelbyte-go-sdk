@@ -49,7 +49,7 @@ func (o *PublicCancelUserOrderReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type PublicCancelUserOrderOK struct {
 }
 
 func (o *PublicCancelUserOrderOK) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel][%d] publicCancelUserOrderOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel][%d] publicCancelUserOrderOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicCancelUserOrderOK) GetPayload() *platformclientmodels.OrderInfo {
@@ -100,7 +100,7 @@ type PublicCancelUserOrderNotFound struct {
 }
 
 func (o *PublicCancelUserOrderNotFound) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel][%d] publicCancelUserOrderNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel][%d] publicCancelUserOrderNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicCancelUserOrderNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type PublicCancelUserOrderConflict struct {
 }
 
 func (o *PublicCancelUserOrderConflict) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel][%d] publicCancelUserOrderConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/orders/{orderNo}/cancel][%d] publicCancelUserOrderConflict  %+v", 409, o.Payload)
 }
 
 func (o *PublicCancelUserOrderConflict) GetPayload() *platformclientmodels.ErrorEntity {

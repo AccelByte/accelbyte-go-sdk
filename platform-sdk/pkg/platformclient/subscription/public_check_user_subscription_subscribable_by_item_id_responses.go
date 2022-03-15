@@ -37,7 +37,7 @@ func (o *PublicCheckUserSubscriptionSubscribableByItemIDReader) ReadResponse(res
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/users/{userId}/subscriptions/subscribable/byItemId returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/subscribable/byItemId returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type PublicCheckUserSubscriptionSubscribableByItemIDOK struct {
 }
 
 func (o *PublicCheckUserSubscriptionSubscribableByItemIDOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/{userId}/subscriptions/subscribable/byItemId][%d] publicCheckUserSubscriptionSubscribableByItemIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/subscribable/byItemId][%d] publicCheckUserSubscriptionSubscribableByItemIdOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicCheckUserSubscriptionSubscribableByItemIDOK) GetPayload() *platformclientmodels.Subscribable {

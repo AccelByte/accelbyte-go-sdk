@@ -37,7 +37,7 @@ func (o *TestCheckoutConfigReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/payment/config/merchant/checkoutconfig/test returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/admin/payment/config/merchant/checkoutconfig/test returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type TestCheckoutConfigOK struct {
 }
 
 func (o *TestCheckoutConfigOK) Error() string {
-	return fmt.Sprintf("[POST /admin/payment/config/merchant/checkoutconfig/test][%d] testCheckoutConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/payment/config/merchant/checkoutconfig/test][%d] testCheckoutConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *TestCheckoutConfigOK) GetPayload() *platformclientmodels.TestResult {

@@ -43,7 +43,7 @@ func (o *RetrieveLatestPoliciesPublicReader) ReadResponse(response runtime.Clien
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/policies/namespaces/{namespace} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /agreement/public/policies/namespaces/{namespace} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type RetrieveLatestPoliciesPublicOK struct {
 }
 
 func (o *RetrieveLatestPoliciesPublicOK) Error() string {
-	return fmt.Sprintf("[GET /public/policies/namespaces/{namespace}][%d] retrieveLatestPoliciesPublicOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /agreement/public/policies/namespaces/{namespace}][%d] retrieveLatestPoliciesPublicOK  %+v", 200, o.Payload)
 }
 
 func (o *RetrieveLatestPoliciesPublicOK) GetPayload() []*legalclientmodels.RetrievePolicyPublicResponse {
@@ -92,7 +92,7 @@ type RetrieveLatestPoliciesPublicNotFound struct {
 }
 
 func (o *RetrieveLatestPoliciesPublicNotFound) Error() string {
-	return fmt.Sprintf("[GET /public/policies/namespaces/{namespace}][%d] retrieveLatestPoliciesPublicNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /agreement/public/policies/namespaces/{namespace}][%d] retrieveLatestPoliciesPublicNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RetrieveLatestPoliciesPublicNotFound) GetPayload() *legalclientmodels.ErrorEntity {

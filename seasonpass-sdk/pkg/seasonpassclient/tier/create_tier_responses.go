@@ -61,7 +61,7 @@ func (o *CreateTierReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/seasons/{seasonId}/tiers returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type CreateTierCreated struct {
 }
 
 func (o *CreateTierCreated) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateTierCreated) GetPayload() []*seasonpassclientmodels.Tier {
@@ -110,7 +110,7 @@ type CreateTierBadRequest struct {
 }
 
 func (o *CreateTierBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateTierBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -143,7 +143,7 @@ type CreateTierNotFound struct {
 }
 
 func (o *CreateTierNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateTierNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -176,7 +176,7 @@ type CreateTierConflict struct {
 }
 
 func (o *CreateTierConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateTierConflict) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -209,7 +209,7 @@ type CreateTierUnprocessableEntity struct {
 }
 
 func (o *CreateTierUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] createTierUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateTierUnprocessableEntity) GetPayload() *seasonpassclientmodels.ValidationErrorEntity {

@@ -49,7 +49,7 @@ func (o *UpdatePaymentTaxConfigReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/payment/config/tax returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/payment/config/tax returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type UpdatePaymentTaxConfigOK struct {
 }
 
 func (o *UpdatePaymentTaxConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/payment/config/tax][%d] updatePaymentTaxConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/tax][%d] updatePaymentTaxConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdatePaymentTaxConfigOK) GetPayload() *platformclientmodels.PaymentTaxConfigInfo {
@@ -100,7 +100,7 @@ type UpdatePaymentTaxConfigBadRequest struct {
 }
 
 func (o *UpdatePaymentTaxConfigBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /admin/payment/config/tax][%d] updatePaymentTaxConfigBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/tax][%d] updatePaymentTaxConfigBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdatePaymentTaxConfigBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type UpdatePaymentTaxConfigUnprocessableEntity struct {
 }
 
 func (o *UpdatePaymentTaxConfigUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /admin/payment/config/tax][%d] updatePaymentTaxConfigUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/tax][%d] updatePaymentTaxConfigUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdatePaymentTaxConfigUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

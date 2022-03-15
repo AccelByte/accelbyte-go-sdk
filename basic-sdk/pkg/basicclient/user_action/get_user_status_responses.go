@@ -61,7 +61,7 @@ func (o *GetUserStatusReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /v1/admin/namespaces/{namespace}/actions/status returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /basic/v1/admin/namespaces/{namespace}/actions/status returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type GetUserStatusOK struct {
 }
 
 func (o *GetUserStatusOK) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/actions/status][%d] getUserStatusOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/status][%d] getUserStatusOK  %+v", 200, o.Payload)
 }
 
 func (o *GetUserStatusOK) GetPayload() *basicclientmodels.ADTOObjectForEqu8UserStatus {
@@ -112,7 +112,7 @@ type GetUserStatusBadRequest struct {
 }
 
 func (o *GetUserStatusBadRequest) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/actions/status][%d] getUserStatusBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/status][%d] getUserStatusBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetUserStatusBadRequest) GetPayload() *basicclientmodels.ErrorEntity {
@@ -145,7 +145,7 @@ type GetUserStatusNotFound struct {
 }
 
 func (o *GetUserStatusNotFound) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/actions/status][%d] getUserStatusNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/status][%d] getUserStatusNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetUserStatusNotFound) GetPayload() *basicclientmodels.ErrorEntity {
@@ -178,7 +178,7 @@ type GetUserStatusUnprocessableEntity struct {
 }
 
 func (o *GetUserStatusUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/actions/status][%d] getUserStatusUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/status][%d] getUserStatusUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *GetUserStatusUnprocessableEntity) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -211,7 +211,7 @@ type GetUserStatusInternalServerError struct {
 }
 
 func (o *GetUserStatusInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/actions/status][%d] getUserStatusInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/status][%d] getUserStatusInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *GetUserStatusInternalServerError) GetPayload() *basicclientmodels.ErrorEntity {

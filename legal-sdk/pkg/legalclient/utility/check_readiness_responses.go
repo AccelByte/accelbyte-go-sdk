@@ -37,7 +37,7 @@ func (o *CheckReadinessReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/readiness returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /agreement/public/readiness returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type CheckReadinessOK struct {
 }
 
 func (o *CheckReadinessOK) Error() string {
-	return fmt.Sprintf("[GET /public/readiness][%d] checkReadinessOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /agreement/public/readiness][%d] checkReadinessOK  %+v", 200, o.Payload)
 }
 
 func (o *CheckReadinessOK) GetPayload() *legalclientmodels.LegalReadinessStatusResponse {

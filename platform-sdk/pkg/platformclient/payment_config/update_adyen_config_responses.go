@@ -43,7 +43,7 @@ func (o *UpdateAdyenConfigReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/payment/config/merchant/{id}/adyenconfig returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/payment/config/merchant/{id}/adyenconfig returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type UpdateAdyenConfigOK struct {
 }
 
 func (o *UpdateAdyenConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/payment/config/merchant/{id}/adyenconfig][%d] updateAdyenConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/adyenconfig][%d] updateAdyenConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateAdyenConfigOK) GetPayload() *platformclientmodels.PaymentMerchantConfigInfo {
@@ -94,7 +94,7 @@ type UpdateAdyenConfigNotFound struct {
 }
 
 func (o *UpdateAdyenConfigNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/payment/config/merchant/{id}/adyenconfig][%d] updateAdyenConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/adyenconfig][%d] updateAdyenConfigNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateAdyenConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {

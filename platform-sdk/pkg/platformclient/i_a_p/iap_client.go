@@ -131,7 +131,7 @@ func (a *Client) DeleteAppleIAPConfig(params *DeleteAppleIAPConfigParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteAppleIAPConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/apple",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/apple",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -168,7 +168,7 @@ func (a *Client) DeleteAppleIAPConfigShort(params *DeleteAppleIAPConfigParams, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteAppleIAPConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/apple",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/apple",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -210,7 +210,7 @@ func (a *Client) DeleteEpicGamesIAPConfig(params *DeleteEpicGamesIAPConfigParams
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteEpicGamesIAPConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/epicgames",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/epicgames",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -247,7 +247,7 @@ func (a *Client) DeleteEpicGamesIAPConfigShort(params *DeleteEpicGamesIAPConfigP
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteEpicGamesIAPConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/epicgames",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/epicgames",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -289,7 +289,7 @@ func (a *Client) DeleteGoogleIAPConfig(params *DeleteGoogleIAPConfigParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteGoogleIAPConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/google",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/google",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -326,7 +326,7 @@ func (a *Client) DeleteGoogleIAPConfigShort(params *DeleteGoogleIAPConfigParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteGoogleIAPConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/google",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/google",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -368,7 +368,7 @@ func (a *Client) DeleteIAPItemConfig(params *DeleteIAPItemConfigParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteIAPItemConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/item",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/item",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -405,7 +405,7 @@ func (a *Client) DeleteIAPItemConfigShort(params *DeleteIAPItemConfigParams, aut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteIAPItemConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/item",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/item",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -447,7 +447,7 @@ func (a *Client) DeletePlaystationIAPConfig(params *DeletePlaystationIAPConfigPa
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deletePlaystationIAPConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/playstation",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/playstation",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -484,7 +484,7 @@ func (a *Client) DeletePlaystationIAPConfigShort(params *DeletePlaystationIAPCon
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deletePlaystationIAPConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/playstation",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/playstation",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -526,7 +526,7 @@ func (a *Client) DeleteStadiaIAPConfig(params *DeleteStadiaIAPConfigParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteStadiaIAPConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/stadia",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/stadia",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -563,7 +563,7 @@ func (a *Client) DeleteStadiaIAPConfigShort(params *DeleteStadiaIAPConfigParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteStadiaIAPConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/stadia",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/stadia",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -605,7 +605,7 @@ func (a *Client) DeleteSteamIAPConfig(params *DeleteSteamIAPConfigParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteSteamIAPConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/steam",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/steam",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -642,7 +642,7 @@ func (a *Client) DeleteSteamIAPConfigShort(params *DeleteSteamIAPConfigParams, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteSteamIAPConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/steam",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/steam",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -684,7 +684,7 @@ func (a *Client) DeleteTwitchIAPConfig(params *DeleteTwitchIAPConfigParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteTwitchIAPConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/twitch",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/twitch",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -721,7 +721,7 @@ func (a *Client) DeleteTwitchIAPConfigShort(params *DeleteTwitchIAPConfigParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteTwitchIAPConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/twitch",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/twitch",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -763,7 +763,7 @@ func (a *Client) DeleteXblAPConfig(params *DeleteXblAPConfigParams, authInfo run
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteXblAPConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/xbl",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/xbl",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -800,7 +800,7 @@ func (a *Client) DeleteXblAPConfigShort(params *DeleteXblAPConfigParams, authInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteXblAPConfig",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/xbl",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/xbl",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -842,7 +842,7 @@ func (a *Client) GetAppleIAPConfig(params *GetAppleIAPConfigParams, authInfo run
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAppleIAPConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/apple",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/apple",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -879,7 +879,7 @@ func (a *Client) GetAppleIAPConfigShort(params *GetAppleIAPConfigParams, authInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAppleIAPConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/apple",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/apple",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -921,7 +921,7 @@ func (a *Client) GetEpicGamesIAPConfig(params *GetEpicGamesIAPConfigParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getEpicGamesIAPConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/epicgames",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/epicgames",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -961,7 +961,7 @@ func (a *Client) GetEpicGamesIAPConfigShort(params *GetEpicGamesIAPConfigParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getEpicGamesIAPConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/epicgames",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/epicgames",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1005,7 +1005,7 @@ func (a *Client) GetGoogleIAPConfig(params *GetGoogleIAPConfigParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getGoogleIAPConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/google",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/google",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1042,7 +1042,7 @@ func (a *Client) GetGoogleIAPConfigShort(params *GetGoogleIAPConfigParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getGoogleIAPConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/google",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/google",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1084,7 +1084,7 @@ func (a *Client) GetIAPItemConfig(params *GetIAPItemConfigParams, authInfo runti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getIAPItemConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/item",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/item",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1124,7 +1124,7 @@ func (a *Client) GetIAPItemConfigShort(params *GetIAPItemConfigParams, authInfo 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getIAPItemConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/item",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/item",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1168,7 +1168,7 @@ func (a *Client) GetPlayStationIAPConfig(params *GetPlayStationIAPConfigParams, 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPlayStationIAPConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/playstation",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/playstation",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1205,7 +1205,7 @@ func (a *Client) GetPlayStationIAPConfigShort(params *GetPlayStationIAPConfigPar
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPlayStationIAPConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/playstation",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/playstation",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1247,7 +1247,7 @@ func (a *Client) GetStadiaIAPConfig(params *GetStadiaIAPConfigParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getStadiaIAPConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/stadia",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/stadia",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1284,7 +1284,7 @@ func (a *Client) GetStadiaIAPConfigShort(params *GetStadiaIAPConfigParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getStadiaIAPConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/stadia",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/stadia",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1326,7 +1326,7 @@ func (a *Client) GetSteamIAPConfig(params *GetSteamIAPConfigParams, authInfo run
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getSteamIAPConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/steam",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/steam",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1363,7 +1363,7 @@ func (a *Client) GetSteamIAPConfigShort(params *GetSteamIAPConfigParams, authInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getSteamIAPConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/steam",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/steam",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1405,7 +1405,7 @@ func (a *Client) GetTwitchIAPConfig(params *GetTwitchIAPConfigParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getTwitchIAPConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/twitch",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/twitch",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1442,7 +1442,7 @@ func (a *Client) GetTwitchIAPConfigShort(params *GetTwitchIAPConfigParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getTwitchIAPConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/twitch",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/twitch",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1484,7 +1484,7 @@ func (a *Client) GetXblIAPConfig(params *GetXblIAPConfigParams, authInfo runtime
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getXblIAPConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/xbl",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/xbl",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1524,7 +1524,7 @@ func (a *Client) GetXblIAPConfigShort(params *GetXblIAPConfigParams, authInfo ru
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getXblIAPConfig",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/xbl",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/xbl",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1568,7 +1568,7 @@ func (a *Client) MockFulfillIAPItem(params *MockFulfillIAPItemParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "mockFulfillIAPItem",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1614,7 +1614,7 @@ func (a *Client) MockFulfillIAPItemShort(params *MockFulfillIAPItemParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "mockFulfillIAPItem",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1662,7 +1662,7 @@ func (a *Client) PublicFulfillAppleIAPItem(params *PublicFulfillAppleIAPItemPara
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicFulfillAppleIAPItem",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1708,7 +1708,7 @@ func (a *Client) PublicFulfillAppleIAPItemShort(params *PublicFulfillAppleIAPIte
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicFulfillAppleIAPItem",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1756,7 +1756,7 @@ func (a *Client) PublicFulfillGoogleIAPItem(params *PublicFulfillGoogleIAPItemPa
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicFulfillGoogleIAPItem",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/google/receipt",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1802,7 +1802,7 @@ func (a *Client) PublicFulfillGoogleIAPItemShort(params *PublicFulfillGoogleIAPI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicFulfillGoogleIAPItem",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/google/receipt",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1850,7 +1850,7 @@ func (a *Client) PublicReconcilePlayStationStore(params *PublicReconcilePlayStat
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicReconcilePlayStationStore",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/psn/sync",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/psn/sync",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1890,7 +1890,7 @@ func (a *Client) PublicReconcilePlayStationStoreShort(params *PublicReconcilePla
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicReconcilePlayStationStore",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/psn/sync",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/psn/sync",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1934,7 +1934,7 @@ func (a *Client) QueryAllUserIAPOrders(params *QueryAllUserIAPOrdersParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryAllUserIAPOrders",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/iap/all",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/iap/all",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1971,7 +1971,7 @@ func (a *Client) QueryAllUserIAPOrdersShort(params *QueryAllUserIAPOrdersParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryAllUserIAPOrders",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/iap/all",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/iap/all",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2013,7 +2013,7 @@ func (a *Client) QueryUserIAPOrders(params *QueryUserIAPOrdersParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryUserIAPOrders",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/iap",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/iap",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2050,7 +2050,7 @@ func (a *Client) QueryUserIAPOrdersShort(params *QueryUserIAPOrdersParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryUserIAPOrders",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/iap",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/iap",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2092,7 +2092,7 @@ func (a *Client) SyncEpicGamesInventory(params *SyncEpicGamesInventoryParams, au
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncEpicGamesInventory",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/epicgames/sync",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/epicgames/sync",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2129,7 +2129,7 @@ func (a *Client) SyncEpicGamesInventoryShort(params *SyncEpicGamesInventoryParam
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncEpicGamesInventory",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/epicgames/sync",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/epicgames/sync",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2171,7 +2171,7 @@ func (a *Client) SyncStadiaEntitlement(params *SyncStadiaEntitlementParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncStadiaEntitlement",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/stadia/sync",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/stadia/sync",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2208,7 +2208,7 @@ func (a *Client) SyncStadiaEntitlementShort(params *SyncStadiaEntitlementParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncStadiaEntitlement",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/stadia/sync",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/stadia/sync",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2250,7 +2250,7 @@ func (a *Client) SyncSteamInventory(params *SyncSteamInventoryParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncSteamInventory",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/steam/sync",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/steam/sync",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2287,7 +2287,7 @@ func (a *Client) SyncSteamInventoryShort(params *SyncSteamInventoryParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncSteamInventory",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/steam/sync",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/steam/sync",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2329,7 +2329,7 @@ func (a *Client) SyncTwitchDropsEntitlement(params *SyncTwitchDropsEntitlementPa
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncTwitchDropsEntitlement",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/twitch/sync",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/twitch/sync",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2366,7 +2366,7 @@ func (a *Client) SyncTwitchDropsEntitlementShort(params *SyncTwitchDropsEntitlem
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncTwitchDropsEntitlement",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/twitch/sync",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/twitch/sync",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2408,7 +2408,7 @@ func (a *Client) SyncXboxInventory(params *SyncXboxInventoryParams, authInfo run
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncXboxInventory",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/xbl/sync",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/xbl/sync",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2445,7 +2445,7 @@ func (a *Client) SyncXboxInventoryShort(params *SyncXboxInventoryParams, authInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncXboxInventory",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/iap/xbl/sync",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/iap/xbl/sync",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2487,7 +2487,7 @@ func (a *Client) UpdateAppleIAPConfig(params *UpdateAppleIAPConfigParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateAppleIAPConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/apple",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/apple",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2524,7 +2524,7 @@ func (a *Client) UpdateAppleIAPConfigShort(params *UpdateAppleIAPConfigParams, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateAppleIAPConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/apple",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/apple",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2566,7 +2566,7 @@ func (a *Client) UpdateEpicGamesIAPConfig(params *UpdateEpicGamesIAPConfigParams
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateEpicGamesIAPConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/epicgames",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/epicgames",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2603,7 +2603,7 @@ func (a *Client) UpdateEpicGamesIAPConfigShort(params *UpdateEpicGamesIAPConfigP
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateEpicGamesIAPConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/epicgames",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/epicgames",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2645,7 +2645,7 @@ func (a *Client) UpdateGoogleIAPConfig(params *UpdateGoogleIAPConfigParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateGoogleIAPConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/google",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/google",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2682,7 +2682,7 @@ func (a *Client) UpdateGoogleIAPConfigShort(params *UpdateGoogleIAPConfigParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateGoogleIAPConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/google",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/google",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2724,7 +2724,7 @@ func (a *Client) UpdateGoogleP12File(params *UpdateGoogleP12FileParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateGoogleP12File",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/google/cert",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/google/cert",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
 		Schemes:            []string{"https"},
@@ -2761,7 +2761,7 @@ func (a *Client) UpdateGoogleP12FileShort(params *UpdateGoogleP12FileParams, aut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateGoogleP12File",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/google/cert",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/google/cert",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
 		Schemes:            []string{"https"},
@@ -2803,7 +2803,7 @@ func (a *Client) UpdateIAPItemConfig(params *UpdateIAPItemConfigParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateIAPItemConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/item",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/item",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2843,7 +2843,7 @@ func (a *Client) UpdateIAPItemConfigShort(params *UpdateIAPItemConfigParams, aut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateIAPItemConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/item",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/item",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2887,7 +2887,7 @@ func (a *Client) UpdatePlaystationIAPConfig(params *UpdatePlaystationIAPConfigPa
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updatePlaystationIAPConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/playstation",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/playstation",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2924,7 +2924,7 @@ func (a *Client) UpdatePlaystationIAPConfigShort(params *UpdatePlaystationIAPCon
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updatePlaystationIAPConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/playstation",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/playstation",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2966,7 +2966,7 @@ func (a *Client) UpdateStadiaJSONConfigFile(params *UpdateStadiaJSONConfigFilePa
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateStadiaJsonConfigFile",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/stadia/cert",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/stadia/cert",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
 		Schemes:            []string{"https"},
@@ -3003,7 +3003,7 @@ func (a *Client) UpdateStadiaJSONConfigFileShort(params *UpdateStadiaJSONConfigF
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateStadiaJsonConfigFile",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/stadia/cert",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/stadia/cert",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
 		Schemes:            []string{"https"},
@@ -3045,7 +3045,7 @@ func (a *Client) UpdateSteamIAPConfig(params *UpdateSteamIAPConfigParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateSteamIAPConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/steam",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/steam",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -3082,7 +3082,7 @@ func (a *Client) UpdateSteamIAPConfigShort(params *UpdateSteamIAPConfigParams, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateSteamIAPConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/steam",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/steam",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -3124,7 +3124,7 @@ func (a *Client) UpdateTwitchIAPConfig(params *UpdateTwitchIAPConfigParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateTwitchIAPConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/twitch",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/twitch",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -3161,7 +3161,7 @@ func (a *Client) UpdateTwitchIAPConfigShort(params *UpdateTwitchIAPConfigParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateTwitchIAPConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/twitch",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/twitch",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -3203,7 +3203,7 @@ func (a *Client) UpdateXblBPCertFile(params *UpdateXblBPCertFileParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateXblBPCertFile",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/xbl/cert",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/xbl/cert",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
 		Schemes:            []string{"https"},
@@ -3240,7 +3240,7 @@ func (a *Client) UpdateXblBPCertFileShort(params *UpdateXblBPCertFileParams, aut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateXblBPCertFile",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/xbl/cert",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/xbl/cert",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
 		Schemes:            []string{"https"},
@@ -3282,7 +3282,7 @@ func (a *Client) UpdateXblIAPConfig(params *UpdateXblIAPConfigParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateXblIAPConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/xbl",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/xbl",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -3319,7 +3319,7 @@ func (a *Client) UpdateXblIAPConfigShort(params *UpdateXblIAPConfigParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateXblIAPConfig",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/iap/config/xbl",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/iap/config/xbl",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

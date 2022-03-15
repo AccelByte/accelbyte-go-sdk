@@ -67,7 +67,7 @@ func (o *DeleteNamespaceReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /v1/admin/namespaces/{namespace} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /basic/v1/admin/namespaces/{namespace} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -85,7 +85,7 @@ type DeleteNamespaceOK struct {
 }
 
 func (o *DeleteNamespaceOK) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}][%d] deleteNamespaceOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceOK  %+v", 200, o.Payload)
 }
 
 func (o *DeleteNamespaceOK) GetPayload() *basicclientmodels.NamespaceInfo {
@@ -118,7 +118,7 @@ type DeleteNamespaceBadRequest struct {
 }
 
 func (o *DeleteNamespaceBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}][%d] deleteNamespaceBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *DeleteNamespaceBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -151,7 +151,7 @@ type DeleteNamespaceUnauthorized struct {
 }
 
 func (o *DeleteNamespaceUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}][%d] deleteNamespaceUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *DeleteNamespaceUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -184,7 +184,7 @@ type DeleteNamespaceForbidden struct {
 }
 
 func (o *DeleteNamespaceForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}][%d] deleteNamespaceForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceForbidden  %+v", 403, o.Payload)
 }
 
 func (o *DeleteNamespaceForbidden) GetPayload() *basicclientmodels.ErrorEntity {
@@ -217,7 +217,7 @@ type DeleteNamespaceNotFound struct {
 }
 
 func (o *DeleteNamespaceNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}][%d] deleteNamespaceNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteNamespaceNotFound) GetPayload() *basicclientmodels.ErrorEntity {
@@ -250,7 +250,7 @@ type DeleteNamespaceConflict struct {
 }
 
 func (o *DeleteNamespaceConflict) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}][%d] deleteNamespaceConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[DELETE /basic/v1/admin/namespaces/{namespace}][%d] deleteNamespaceConflict  %+v", 409, o.Payload)
 }
 
 func (o *DeleteNamespaceConflict) GetPayload() *basicclientmodels.ErrorEntity {

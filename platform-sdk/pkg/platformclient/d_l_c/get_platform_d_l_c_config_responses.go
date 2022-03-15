@@ -43,7 +43,7 @@ func (o *GetPlatformDLCConfigReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/dlc/config/platformMap returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/dlc/config/platformMap returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetPlatformDLCConfigOK struct {
 }
 
 func (o *GetPlatformDLCConfigOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/dlc/config/platformMap][%d] getPlatformDLCConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/dlc/config/platformMap][%d] getPlatformDLCConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *GetPlatformDLCConfigOK) GetPayload() *platformclientmodels.PlatformDLCConfigInfo {
@@ -94,7 +94,7 @@ type GetPlatformDLCConfigNotFound struct {
 }
 
 func (o *GetPlatformDLCConfigNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/dlc/config/platformMap][%d] getPlatformDLCConfigNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/dlc/config/platformMap][%d] getPlatformDLCConfigNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetPlatformDLCConfigNotFound) GetPayload() *platformclientmodels.ErrorEntity {

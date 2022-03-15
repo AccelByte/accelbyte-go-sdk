@@ -37,7 +37,7 @@ func (o *UpdateXblIAPConfigReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/iap/config/xbl returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/iap/config/xbl returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type UpdateXblIAPConfigOK struct {
 }
 
 func (o *UpdateXblIAPConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/iap/config/xbl][%d] updateXblIAPConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/iap/config/xbl][%d] updateXblIAPConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateXblIAPConfigOK) GetPayload() *platformclientmodels.XblIAPConfigInfo {

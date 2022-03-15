@@ -43,7 +43,7 @@ func (o *PublicGetUserSubscriptionReader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type PublicGetUserSubscriptionOK struct {
 }
 
 func (o *PublicGetUserSubscriptionOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}][%d] publicGetUserSubscriptionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}][%d] publicGetUserSubscriptionOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetUserSubscriptionOK) GetPayload() *platformclientmodels.SubscriptionInfo {
@@ -94,7 +94,7 @@ type PublicGetUserSubscriptionNotFound struct {
 }
 
 func (o *PublicGetUserSubscriptionNotFound) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}][%d] publicGetUserSubscriptionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}][%d] publicGetUserSubscriptionNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicGetUserSubscriptionNotFound) GetPayload() *platformclientmodels.ErrorEntity {

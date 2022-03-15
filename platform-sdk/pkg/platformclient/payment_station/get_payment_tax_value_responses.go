@@ -49,7 +49,7 @@ func (o *GetPaymentTaxValueReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/payment/tax returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/payment/tax returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type GetPaymentTaxValueOK struct {
 }
 
 func (o *GetPaymentTaxValueOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/payment/tax][%d] getPaymentTaxValueOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/tax][%d] getPaymentTaxValueOK  %+v", 200, o.Payload)
 }
 
 func (o *GetPaymentTaxValueOK) GetPayload() *platformclientmodels.TaxResult {
@@ -100,7 +100,7 @@ type GetPaymentTaxValueBadRequest struct {
 }
 
 func (o *GetPaymentTaxValueBadRequest) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/payment/tax][%d] getPaymentTaxValueBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/tax][%d] getPaymentTaxValueBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetPaymentTaxValueBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type GetPaymentTaxValueNotFound struct {
 }
 
 func (o *GetPaymentTaxValueNotFound) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/payment/tax][%d] getPaymentTaxValueNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/tax][%d] getPaymentTaxValueNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetPaymentTaxValueNotFound) GetPayload() *platformclientmodels.ErrorEntity {

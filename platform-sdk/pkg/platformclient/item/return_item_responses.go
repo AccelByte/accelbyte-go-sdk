@@ -49,7 +49,7 @@ func (o *ReturnItemReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/items/{itemId}/return returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/items/{itemId}/return returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -66,7 +66,7 @@ type ReturnItemNoContent struct {
 }
 
 func (o *ReturnItemNoContent) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/items/{itemId}/return][%d] returnItemNoContent ", 204)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/return][%d] returnItemNoContent ", 204)
 }
 
 func (o *ReturnItemNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -88,7 +88,7 @@ type ReturnItemNotFound struct {
 }
 
 func (o *ReturnItemNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/items/{itemId}/return][%d] returnItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/return][%d] returnItemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ReturnItemNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -121,7 +121,7 @@ type ReturnItemUnprocessableEntity struct {
 }
 
 func (o *ReturnItemUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/items/{itemId}/return][%d] returnItemUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/items/{itemId}/return][%d] returnItemUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *ReturnItemUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

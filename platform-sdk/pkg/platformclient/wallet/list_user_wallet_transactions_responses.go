@@ -43,7 +43,7 @@ func (o *ListUserWalletTransactionsReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/transactions returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/transactions returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type ListUserWalletTransactionsOK struct {
 }
 
 func (o *ListUserWalletTransactionsOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/transactions][%d] listUserWalletTransactionsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/transactions][%d] listUserWalletTransactionsOK  %+v", 200, o.Payload)
 }
 
 func (o *ListUserWalletTransactionsOK) GetPayload() *platformclientmodels.WalletTransactionPagingSlicedResult {
@@ -94,7 +94,7 @@ type ListUserWalletTransactionsNotFound struct {
 }
 
 func (o *ListUserWalletTransactionsNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/transactions][%d] listUserWalletTransactionsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/transactions][%d] listUserWalletTransactionsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ListUserWalletTransactionsNotFound) GetPayload() *platformclientmodels.ErrorEntity {

@@ -43,7 +43,7 @@ func (o *CheckEventConditionReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/rewards/{rewardId}/match returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/rewards/{rewardId}/match returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type CheckEventConditionOK struct {
 }
 
 func (o *CheckEventConditionOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/rewards/{rewardId}/match][%d] checkEventConditionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/rewards/{rewardId}/match][%d] checkEventConditionOK  %+v", 200, o.Payload)
 }
 
 func (o *CheckEventConditionOK) GetPayload() *platformclientmodels.ConditionMatchResult {
@@ -94,7 +94,7 @@ type CheckEventConditionNotFound struct {
 }
 
 func (o *CheckEventConditionNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/rewards/{rewardId}/match][%d] checkEventConditionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/rewards/{rewardId}/match][%d] checkEventConditionNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CheckEventConditionNotFound) GetPayload() *platformclientmodels.ErrorEntity {

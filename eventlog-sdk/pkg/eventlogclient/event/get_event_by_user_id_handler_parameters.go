@@ -75,12 +75,12 @@ type GetEventByUserIDHandlerParams struct {
 	  Offset to query
 
 	*/
-	Offset *float64
+	Offset *int64
 	/*PageSize
 	  Number of result in a page
 
 	*/
-	PageSize float64
+	PageSize int64
 	/*StartDate
 	  Starting date. e.g. 2015-03-20T12:27:06.351Z
 
@@ -153,24 +153,24 @@ func (o *GetEventByUserIDHandlerParams) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the get event by user ID handler params
-func (o *GetEventByUserIDHandlerParams) WithOffset(offset *float64) *GetEventByUserIDHandlerParams {
+func (o *GetEventByUserIDHandlerParams) WithOffset(offset *int64) *GetEventByUserIDHandlerParams {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the get event by user ID handler params
-func (o *GetEventByUserIDHandlerParams) SetOffset(offset *float64) {
+func (o *GetEventByUserIDHandlerParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
 // WithPageSize adds the pageSize to the get event by user ID handler params
-func (o *GetEventByUserIDHandlerParams) WithPageSize(pageSize float64) *GetEventByUserIDHandlerParams {
+func (o *GetEventByUserIDHandlerParams) WithPageSize(pageSize int64) *GetEventByUserIDHandlerParams {
 	o.SetPageSize(pageSize)
 	return o
 }
 
 // SetPageSize adds the pageSize to the get event by user ID handler params
-func (o *GetEventByUserIDHandlerParams) SetPageSize(pageSize float64) {
+func (o *GetEventByUserIDHandlerParams) SetPageSize(pageSize int64) {
 	o.PageSize = pageSize
 }
 
@@ -221,11 +221,11 @@ func (o *GetEventByUserIDHandlerParams) WriteToRequest(r runtime.ClientRequest, 
 	if o.Offset != nil {
 
 		// query param offset
-		var qrOffset float64
+		var qrOffset int64
 		if o.Offset != nil {
 			qrOffset = *o.Offset
 		}
-		qOffset := swag.FormatFloat64(qrOffset)
+		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
 				return err
@@ -236,7 +236,7 @@ func (o *GetEventByUserIDHandlerParams) WriteToRequest(r runtime.ClientRequest, 
 
 	// query param pageSize
 	qrPageSize := o.PageSize
-	qPageSize := swag.FormatFloat64(qrPageSize)
+	qPageSize := swag.FormatInt64(qrPageSize)
 	if qPageSize != "" {
 		if err := r.SetQueryParam("pageSize", qPageSize); err != nil {
 			return err

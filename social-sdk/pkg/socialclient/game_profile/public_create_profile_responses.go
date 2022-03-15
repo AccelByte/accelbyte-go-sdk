@@ -43,7 +43,7 @@ func (o *PublicCreateProfileReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /public/namespaces/{namespace}/users/{userId}/profiles returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /social/public/namespaces/{namespace}/users/{userId}/profiles returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -60,7 +60,7 @@ type PublicCreateProfileCreated struct {
 }
 
 func (o *PublicCreateProfileCreated) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateProfileCreated ", 201)
+	return fmt.Sprintf("[POST /social/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateProfileCreated ", 201)
 }
 
 func (o *PublicCreateProfileCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -82,7 +82,7 @@ type PublicCreateProfileUnprocessableEntity struct {
 }
 
 func (o *PublicCreateProfileUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateProfileUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /social/public/namespaces/{namespace}/users/{userId}/profiles][%d] publicCreateProfileUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *PublicCreateProfileUnprocessableEntity) GetPayload() *socialclientmodels.ValidationErrorEntity {

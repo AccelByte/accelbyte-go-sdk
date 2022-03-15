@@ -37,7 +37,7 @@ func (o *GetUserSlotConfigReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/users/{userId}/config returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /social/admin/namespaces/{namespace}/users/{userId}/config returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type GetUserSlotConfigOK struct {
 }
 
 func (o *GetUserSlotConfigOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/config][%d] getUserSlotConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /social/admin/namespaces/{namespace}/users/{userId}/config][%d] getUserSlotConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *GetUserSlotConfigOK) GetPayload() *socialclientmodels.UserSlotConfigInfo {

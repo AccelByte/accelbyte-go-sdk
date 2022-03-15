@@ -16,7 +16,7 @@ import (
 type CancelRequest struct {
 
 	// immediate, default false
-	Immediate bool `json:"immediate,omitempty"`
+	Immediate bool `json:"immediate"`
 
 	// cancel reason
 	Reason string `json:"reason,omitempty"`

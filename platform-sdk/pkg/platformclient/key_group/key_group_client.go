@@ -65,7 +65,7 @@ func (a *Client) CreateKeyGroup(params *CreateKeyGroupParams, authInfo runtime.C
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createKeyGroup",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/keygroups",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/keygroups",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -108,7 +108,7 @@ func (a *Client) CreateKeyGroupShort(params *CreateKeyGroupParams, authInfo runt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createKeyGroup",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/keygroups",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/keygroups",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -154,7 +154,7 @@ func (a *Client) GetKeyGroup(params *GetKeyGroupParams, authInfo runtime.ClientA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getKeyGroup",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/keygroups/{keyGroupId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -194,7 +194,7 @@ func (a *Client) GetKeyGroupShort(params *GetKeyGroupParams, authInfo runtime.Cl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getKeyGroup",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/keygroups/{keyGroupId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -238,7 +238,7 @@ func (a *Client) GetKeyGroupDynamic(params *GetKeyGroupDynamicParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getKeyGroupDynamic",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/keygroups/{keyGroupId}/dynamic",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/dynamic",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -278,7 +278,7 @@ func (a *Client) GetKeyGroupDynamicShort(params *GetKeyGroupDynamicParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getKeyGroupDynamic",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/keygroups/{keyGroupId}/dynamic",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/dynamic",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -322,7 +322,7 @@ func (a *Client) ListKeys(params *ListKeysParams, authInfo runtime.ClientAuthInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listKeys",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -359,7 +359,7 @@ func (a *Client) ListKeysShort(params *ListKeysParams, authInfo runtime.ClientAu
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listKeys",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -401,7 +401,7 @@ func (a *Client) QueryKeyGroups(params *QueryKeyGroupsParams, authInfo runtime.C
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryKeyGroups",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/keygroups",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/keygroups",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -438,7 +438,7 @@ func (a *Client) QueryKeyGroupsShort(params *QueryKeyGroupsParams, authInfo runt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryKeyGroups",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/keygroups",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/keygroups",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -480,7 +480,7 @@ func (a *Client) UpdateKeyGroup(params *UpdateKeyGroupParams, authInfo runtime.C
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateKeyGroup",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/keygroups/{keyGroupId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -526,7 +526,7 @@ func (a *Client) UpdateKeyGroupShort(params *UpdateKeyGroupParams, authInfo runt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateKeyGroup",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/keygroups/{keyGroupId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -574,7 +574,7 @@ func (a *Client) UploadKeys(params *UploadKeysParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "uploadKeys",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
 		Schemes:            []string{"https"},
@@ -617,7 +617,7 @@ func (a *Client) UploadKeysShort(params *UploadKeysParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "uploadKeys",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"multipart/form-data"},
 		Schemes:            []string{"https"},

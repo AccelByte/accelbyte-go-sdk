@@ -43,7 +43,7 @@ func (o *GetUserAppEntitlementByAppIDReader) ReadResponse(response runtime.Clien
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/users/{userId}/entitlements/byAppId returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/byAppId returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetUserAppEntitlementByAppIDOK struct {
 }
 
 func (o *GetUserAppEntitlementByAppIDOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/entitlements/byAppId][%d] getUserAppEntitlementByAppIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/byAppId][%d] getUserAppEntitlementByAppIdOK  %+v", 200, o.Payload)
 }
 
 func (o *GetUserAppEntitlementByAppIDOK) GetPayload() *platformclientmodels.AppEntitlementInfo {
@@ -94,7 +94,7 @@ type GetUserAppEntitlementByAppIDNotFound struct {
 }
 
 func (o *GetUserAppEntitlementByAppIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/entitlements/byAppId][%d] getUserAppEntitlementByAppIdNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/byAppId][%d] getUserAppEntitlementByAppIdNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetUserAppEntitlementByAppIDNotFound) GetPayload() *platformclientmodels.ErrorEntity {

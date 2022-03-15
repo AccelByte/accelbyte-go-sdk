@@ -42,7 +42,7 @@ type PaymentOrderInfo struct {
 	ChargedTime *strfmt.DateTime `json:"chargedTime,omitempty"`
 
 	// if charging is true, means user have finished transaction, platform is waiting for payment notification
-	Charging bool `json:"charging,omitempty"`
+	Charging bool `json:"charging"`
 
 	// createdAt
 	// Required: true
@@ -88,7 +88,7 @@ type PaymentOrderInfo struct {
 	NotifyURL string `json:"notifyUrl,omitempty"`
 
 	// TEST PURPOSE, if set it will not send async notification to the API invoker, only can set true while this payment is sandbox
-	OmitNotification bool `json:"omitNotification,omitempty"`
+	OmitNotification bool `json:"omitNotification"`
 
 	// Payment method
 	PaymentMethod string `json:"paymentMethod,omitempty"`

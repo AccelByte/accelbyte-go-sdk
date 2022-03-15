@@ -37,7 +37,7 @@ func (o *PublicQueryUserOrdersReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/users/{userId}/orders returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/users/{userId}/orders returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type PublicQueryUserOrdersOK struct {
 }
 
 func (o *PublicQueryUserOrdersOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/{userId}/orders][%d] publicQueryUserOrdersOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/orders][%d] publicQueryUserOrdersOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicQueryUserOrdersOK) GetPayload() *platformclientmodels.OrderPagingSlicedResult {

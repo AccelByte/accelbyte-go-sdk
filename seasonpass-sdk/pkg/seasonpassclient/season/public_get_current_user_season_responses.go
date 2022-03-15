@@ -49,7 +49,7 @@ func (o *PublicGetCurrentUserSeasonReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/users/{userId}/seasons/current/data returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/data returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type PublicGetCurrentUserSeasonOK struct {
 }
 
 func (o *PublicGetCurrentUserSeasonOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/{userId}/seasons/current/data][%d] publicGetCurrentUserSeasonOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/data][%d] publicGetCurrentUserSeasonOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetCurrentUserSeasonOK) GetPayload() *seasonpassclientmodels.ClaimableUserSeasonInfo {
@@ -100,7 +100,7 @@ type PublicGetCurrentUserSeasonBadRequest struct {
 }
 
 func (o *PublicGetCurrentUserSeasonBadRequest) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/{userId}/seasons/current/data][%d] publicGetCurrentUserSeasonBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/data][%d] publicGetCurrentUserSeasonBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicGetCurrentUserSeasonBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type PublicGetCurrentUserSeasonNotFound struct {
 }
 
 func (o *PublicGetCurrentUserSeasonNotFound) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/{userId}/seasons/current/data][%d] publicGetCurrentUserSeasonNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/data][%d] publicGetCurrentUserSeasonNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicGetCurrentUserSeasonNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {

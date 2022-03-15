@@ -43,7 +43,7 @@ func (o *GetPublishedStoreBackupReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/stores/published/backup returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/stores/published/backup returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetPublishedStoreBackupOK struct {
 }
 
 func (o *GetPublishedStoreBackupOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/stores/published/backup][%d] getPublishedStoreBackupOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/published/backup][%d] getPublishedStoreBackupOK  %+v", 200, o.Payload)
 }
 
 func (o *GetPublishedStoreBackupOK) GetPayload() *platformclientmodels.StoreBackupInfo {
@@ -94,7 +94,7 @@ type GetPublishedStoreBackupNotFound struct {
 }
 
 func (o *GetPublishedStoreBackupNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/stores/published/backup][%d] getPublishedStoreBackupNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/published/backup][%d] getPublishedStoreBackupNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetPublishedStoreBackupNotFound) GetPayload() *platformclientmodels.ErrorEntity {

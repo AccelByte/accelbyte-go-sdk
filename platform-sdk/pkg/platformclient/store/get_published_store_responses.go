@@ -43,7 +43,7 @@ func (o *GetPublishedStoreReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/stores/published returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/stores/published returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetPublishedStoreOK struct {
 }
 
 func (o *GetPublishedStoreOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/stores/published][%d] getPublishedStoreOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/published][%d] getPublishedStoreOK  %+v", 200, o.Payload)
 }
 
 func (o *GetPublishedStoreOK) GetPayload() *platformclientmodels.StoreInfo {
@@ -94,7 +94,7 @@ type GetPublishedStoreNotFound struct {
 }
 
 func (o *GetPublishedStoreNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/stores/published][%d] getPublishedStoreNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/published][%d] getPublishedStoreNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetPublishedStoreNotFound) GetPayload() *platformclientmodels.ErrorEntity {

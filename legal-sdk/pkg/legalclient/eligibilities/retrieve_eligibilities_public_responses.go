@@ -37,7 +37,7 @@ func (o *RetrieveEligibilitiesPublicReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/eligibilities/namespaces/{namespace} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /agreement/public/eligibilities/namespaces/{namespace} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type RetrieveEligibilitiesPublicOK struct {
 }
 
 func (o *RetrieveEligibilitiesPublicOK) Error() string {
-	return fmt.Sprintf("[GET /public/eligibilities/namespaces/{namespace}][%d] retrieveEligibilitiesPublicOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /agreement/public/eligibilities/namespaces/{namespace}][%d] retrieveEligibilitiesPublicOK  %+v", 200, o.Payload)
 }
 
 func (o *RetrieveEligibilitiesPublicOK) GetPayload() []*legalclientmodels.RetrieveUserEligibilitiesResponse {

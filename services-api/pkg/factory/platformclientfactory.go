@@ -25,7 +25,7 @@ func NewPlatformClient(configRepository repository.ConfigRepository) *platformcl
 			baseUrlSplit := strings.Split(baseUrl, "://")
 			httpClientConfig := &platformclient.TransportConfig{
 				Host:     baseUrlSplit[1],
-				BasePath: "/platform",
+				BasePath: "",
 				Schemes:  []string{baseUrlSplit[0]},
 			}
 			platformClientInstance = platformclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)

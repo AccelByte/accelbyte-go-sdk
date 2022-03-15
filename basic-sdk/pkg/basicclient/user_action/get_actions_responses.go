@@ -55,7 +55,7 @@ func (o *GetActionsReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /v1/admin/namespaces/{namespace}/actions returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /basic/v1/admin/namespaces/{namespace}/actions returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type GetActionsOK struct {
 }
 
 func (o *GetActionsOK) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/actions][%d] getActionsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions][%d] getActionsOK  %+v", 200, o.Payload)
 }
 
 func (o *GetActionsOK) GetPayload() []*basicclientmodels.Action {
@@ -104,7 +104,7 @@ type GetActionsBadRequest struct {
 }
 
 func (o *GetActionsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/actions][%d] getActionsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions][%d] getActionsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetActionsBadRequest) GetPayload() *basicclientmodels.ErrorEntity {
@@ -137,7 +137,7 @@ type GetActionsNotFound struct {
 }
 
 func (o *GetActionsNotFound) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/actions][%d] getActionsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions][%d] getActionsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetActionsNotFound) GetPayload() *basicclientmodels.ErrorEntity {
@@ -170,7 +170,7 @@ type GetActionsInternalServerError struct {
 }
 
 func (o *GetActionsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/actions][%d] getActionsInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions][%d] getActionsInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *GetActionsInternalServerError) GetPayload() *basicclientmodels.ErrorEntity {

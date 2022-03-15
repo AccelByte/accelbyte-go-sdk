@@ -49,7 +49,7 @@ func (o *CreateCodesReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/codes/campaigns/{campaignId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type CreateCodesCreated struct {
 }
 
 func (o *CreateCodesCreated) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/codes/campaigns/{campaignId}][%d] createCodesCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}][%d] createCodesCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateCodesCreated) GetPayload() *platformclientmodels.CodeCreateResult {
@@ -100,7 +100,7 @@ type CreateCodesNotFound struct {
 }
 
 func (o *CreateCodesNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/codes/campaigns/{campaignId}][%d] createCodesNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}][%d] createCodesNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateCodesNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type CreateCodesUnprocessableEntity struct {
 }
 
 func (o *CreateCodesUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/codes/campaigns/{campaignId}][%d] createCodesUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/codes/campaigns/{campaignId}][%d] createCodesUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateCodesUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

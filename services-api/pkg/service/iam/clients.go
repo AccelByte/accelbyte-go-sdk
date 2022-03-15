@@ -374,7 +374,7 @@ func (c *ClientsService) AdminDeleteClientV3(input *clients.AdminDeleteClientV3P
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := c.Client.Clients.AdminDeleteClientV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, err := c.Client.Clients.AdminDeleteClientV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -386,6 +386,9 @@ func (c *ClientsService) AdminDeleteClientV3(input *clients.AdminDeleteClientV3P
 	}
 	if notFound != nil {
 		return notFound
+	}
+	if conflict != nil {
+		return conflict
 	}
 	if err != nil {
 		return err

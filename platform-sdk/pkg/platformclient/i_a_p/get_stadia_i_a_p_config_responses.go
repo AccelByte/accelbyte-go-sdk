@@ -37,7 +37,7 @@ func (o *GetStadiaIAPConfigReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/iap/config/stadia returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/iap/config/stadia returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type GetStadiaIAPConfigOK struct {
 }
 
 func (o *GetStadiaIAPConfigOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/iap/config/stadia][%d] getStadiaIAPConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/iap/config/stadia][%d] getStadiaIAPConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *GetStadiaIAPConfigOK) GetPayload() *platformclientmodels.StadiaIAPConfigInfo {

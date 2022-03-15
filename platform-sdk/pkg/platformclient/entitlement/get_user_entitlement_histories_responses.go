@@ -37,7 +37,7 @@ func (o *GetUserEntitlementHistoriesReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/history returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/history returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type GetUserEntitlementHistoriesOK struct {
 }
 
 func (o *GetUserEntitlementHistoriesOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/history][%d] getUserEntitlementHistoriesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/history][%d] getUserEntitlementHistoriesOK  %+v", 200, o.Payload)
 }
 
 func (o *GetUserEntitlementHistoriesOK) GetPayload() []*platformclientmodels.EntitlementHistoryInfo {

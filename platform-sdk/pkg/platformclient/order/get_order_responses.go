@@ -43,7 +43,7 @@ func (o *GetOrderReader) ReadResponse(response runtime.ClientResponse, consumer 
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/orders/{orderNo} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/orders/{orderNo} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetOrderOK struct {
 }
 
 func (o *GetOrderOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/orders/{orderNo}][%d] getOrderOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/orders/{orderNo}][%d] getOrderOK  %+v", 200, o.Payload)
 }
 
 func (o *GetOrderOK) GetPayload() *platformclientmodels.OrderInfo {
@@ -94,7 +94,7 @@ type GetOrderNotFound struct {
 }
 
 func (o *GetOrderNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/orders/{orderNo}][%d] getOrderNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/orders/{orderNo}][%d] getOrderNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetOrderNotFound) GetPayload() *platformclientmodels.ErrorEntity {

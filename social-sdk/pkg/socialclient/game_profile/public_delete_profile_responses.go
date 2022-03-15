@@ -43,7 +43,7 @@ func (o *PublicDeleteProfileReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /public/namespaces/{namespace}/users/{userId}/profiles/{profileId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -60,7 +60,7 @@ type PublicDeleteProfileNoContent struct {
 }
 
 func (o *PublicDeleteProfileNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicDeleteProfileNoContent ", 204)
+	return fmt.Sprintf("[DELETE /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicDeleteProfileNoContent ", 204)
 }
 
 func (o *PublicDeleteProfileNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -82,7 +82,7 @@ type PublicDeleteProfileNotFound struct {
 }
 
 func (o *PublicDeleteProfileNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicDeleteProfileNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /social/public/namespaces/{namespace}/users/{userId}/profiles/{profileId}][%d] publicDeleteProfileNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicDeleteProfileNotFound) GetPayload() *socialclientmodels.ErrorEntity {

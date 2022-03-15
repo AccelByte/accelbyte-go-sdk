@@ -37,7 +37,7 @@ func (o *UpdateEpicGamesIAPConfigReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/iap/config/epicgames returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/iap/config/epicgames returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type UpdateEpicGamesIAPConfigOK struct {
 }
 
 func (o *UpdateEpicGamesIAPConfigOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/iap/config/epicgames][%d] updateEpicGamesIAPConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/iap/config/epicgames][%d] updateEpicGamesIAPConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateEpicGamesIAPConfigOK) GetPayload() *platformclientmodels.EpicGamesIAPConfigInfo {

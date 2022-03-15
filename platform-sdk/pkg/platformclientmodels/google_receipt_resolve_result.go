@@ -16,7 +16,7 @@ import (
 type GoogleReceiptResolveResult struct {
 
 	// if client side need consume this receipt's product by invoke Google Billing client's consumeAsync
-	NeedConsume bool `json:"needConsume,omitempty"`
+	NeedConsume bool `json:"needConsume"`
 }
 
 // Validate validates this google receipt resolve result

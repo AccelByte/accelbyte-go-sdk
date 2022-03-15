@@ -49,7 +49,7 @@ func (o *CreateUserStatItemReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -66,7 +66,7 @@ type CreateUserStatItemCreated struct {
 }
 
 func (o *CreateUserStatItemCreated) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] createUserStatItemCreated ", 201)
+	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] createUserStatItemCreated ", 201)
 }
 
 func (o *CreateUserStatItemCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -88,7 +88,7 @@ type CreateUserStatItemNotFound struct {
 }
 
 func (o *CreateUserStatItemNotFound) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] createUserStatItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] createUserStatItemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateUserStatItemNotFound) GetPayload() *socialclientmodels.ErrorEntity {
@@ -121,7 +121,7 @@ type CreateUserStatItemConflict struct {
 }
 
 func (o *CreateUserStatItemConflict) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] createUserStatItemConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] createUserStatItemConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateUserStatItemConflict) GetPayload() *socialclientmodels.ErrorEntity {

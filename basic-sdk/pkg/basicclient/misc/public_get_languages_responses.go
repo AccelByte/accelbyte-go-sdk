@@ -43,7 +43,7 @@ func (o *PublicGetLanguagesReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /v1/public/namespaces/{namespace}/misc/languages returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /basic/v1/public/namespaces/{namespace}/misc/languages returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type PublicGetLanguagesOK struct {
 }
 
 func (o *PublicGetLanguagesOK) Error() string {
-	return fmt.Sprintf("[GET /v1/public/namespaces/{namespace}/misc/languages][%d] publicGetLanguagesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/misc/languages][%d] publicGetLanguagesOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetLanguagesOK) GetPayload() map[string]interface{} {
@@ -92,7 +92,7 @@ type PublicGetLanguagesBadRequest struct {
 }
 
 func (o *PublicGetLanguagesBadRequest) Error() string {
-	return fmt.Sprintf("[GET /v1/public/namespaces/{namespace}/misc/languages][%d] publicGetLanguagesBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/misc/languages][%d] publicGetLanguagesBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicGetLanguagesBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {

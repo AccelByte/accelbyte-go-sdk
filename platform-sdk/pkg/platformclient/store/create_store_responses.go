@@ -49,7 +49,7 @@ func (o *CreateStoreReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/stores returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/admin/namespaces/{namespace}/stores returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type CreateStoreCreated struct {
 }
 
 func (o *CreateStoreCreated) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/stores][%d] createStoreCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/stores][%d] createStoreCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateStoreCreated) GetPayload() *platformclientmodels.StoreInfo {
@@ -100,7 +100,7 @@ type CreateStoreConflict struct {
 }
 
 func (o *CreateStoreConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/stores][%d] createStoreConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/stores][%d] createStoreConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateStoreConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type CreateStoreUnprocessableEntity struct {
 }
 
 func (o *CreateStoreUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/stores][%d] createStoreUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/stores][%d] createStoreUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateStoreUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

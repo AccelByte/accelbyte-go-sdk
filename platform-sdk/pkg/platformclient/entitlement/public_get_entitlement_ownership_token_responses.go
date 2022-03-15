@@ -37,7 +37,7 @@ func (o *PublicGetEntitlementOwnershipTokenReader) ReadResponse(response runtime
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/users/me/entitlements/ownershipToken returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/users/me/entitlements/ownershipToken returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type PublicGetEntitlementOwnershipTokenOK struct {
 }
 
 func (o *PublicGetEntitlementOwnershipTokenOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/me/entitlements/ownershipToken][%d] publicGetEntitlementOwnershipTokenOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/me/entitlements/ownershipToken][%d] publicGetEntitlementOwnershipTokenOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetEntitlementOwnershipTokenOK) GetPayload() *platformclientmodels.OwnershipToken {

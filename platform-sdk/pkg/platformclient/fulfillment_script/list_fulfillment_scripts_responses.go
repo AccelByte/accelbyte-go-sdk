@@ -37,7 +37,7 @@ func (o *ListFulfillmentScriptsReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/fulfillment/scripts returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/fulfillment/scripts returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type ListFulfillmentScriptsOK struct {
 }
 
 func (o *ListFulfillmentScriptsOK) Error() string {
-	return fmt.Sprintf("[GET /admin/fulfillment/scripts][%d] listFulfillmentScriptsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/fulfillment/scripts][%d] listFulfillmentScriptsOK  %+v", 200, o.Payload)
 }
 
 func (o *ListFulfillmentScriptsOK) GetPayload() []*platformclientmodels.FulfillmentScriptInfo {

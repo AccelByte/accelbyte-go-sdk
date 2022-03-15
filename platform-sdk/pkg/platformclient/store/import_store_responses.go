@@ -49,7 +49,7 @@ func (o *ImportStoreReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/stores/import returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/stores/import returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type ImportStoreOK struct {
 }
 
 func (o *ImportStoreOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/stores/import][%d] importStoreOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/import][%d] importStoreOK  %+v", 200, o.Payload)
 }
 
 func (o *ImportStoreOK) GetPayload() *platformclientmodels.StoreInfo {
@@ -100,7 +100,7 @@ type ImportStoreBadRequest struct {
 }
 
 func (o *ImportStoreBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/stores/import][%d] importStoreBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/import][%d] importStoreBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ImportStoreBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type ImportStoreNotFound struct {
 }
 
 func (o *ImportStoreNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/stores/import][%d] importStoreNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/stores/import][%d] importStoreNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ImportStoreNotFound) GetPayload() *platformclientmodels.ErrorEntity {

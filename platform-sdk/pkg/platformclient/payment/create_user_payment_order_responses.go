@@ -67,7 +67,7 @@ func (o *CreateUserPaymentOrderReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/users/{userId}/payment/orders returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/admin/namespaces/{namespace}/users/{userId}/payment/orders returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -85,7 +85,7 @@ type CreateUserPaymentOrderCreated struct {
 }
 
 func (o *CreateUserPaymentOrderCreated) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/payment/orders][%d] createUserPaymentOrderCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/payment/orders][%d] createUserPaymentOrderCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreateUserPaymentOrderCreated) GetPayload() *platformclientmodels.PaymentOrderInfo {
@@ -118,7 +118,7 @@ type CreateUserPaymentOrderBadRequest struct {
 }
 
 func (o *CreateUserPaymentOrderBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/payment/orders][%d] createUserPaymentOrderBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/payment/orders][%d] createUserPaymentOrderBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreateUserPaymentOrderBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -151,7 +151,7 @@ type CreateUserPaymentOrderForbidden struct {
 }
 
 func (o *CreateUserPaymentOrderForbidden) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/payment/orders][%d] createUserPaymentOrderForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/payment/orders][%d] createUserPaymentOrderForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreateUserPaymentOrderForbidden) GetPayload() *platformclientmodels.ErrorEntity {
@@ -184,7 +184,7 @@ type CreateUserPaymentOrderNotFound struct {
 }
 
 func (o *CreateUserPaymentOrderNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/payment/orders][%d] createUserPaymentOrderNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/payment/orders][%d] createUserPaymentOrderNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreateUserPaymentOrderNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -217,7 +217,7 @@ type CreateUserPaymentOrderConflict struct {
 }
 
 func (o *CreateUserPaymentOrderConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/payment/orders][%d] createUserPaymentOrderConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/payment/orders][%d] createUserPaymentOrderConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreateUserPaymentOrderConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -250,7 +250,7 @@ type CreateUserPaymentOrderUnprocessableEntity struct {
 }
 
 func (o *CreateUserPaymentOrderUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/payment/orders][%d] createUserPaymentOrderUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/payment/orders][%d] createUserPaymentOrderUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreateUserPaymentOrderUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

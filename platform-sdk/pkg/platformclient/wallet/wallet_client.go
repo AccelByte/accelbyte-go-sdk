@@ -77,7 +77,7 @@ func (a *Client) CheckWallet(params *CheckWalletParams, authInfo runtime.ClientA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "checkWallet",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -123,7 +123,7 @@ func (a *Client) CheckWalletShort(params *CheckWalletParams, authInfo runtime.Cl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "checkWallet",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/check",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -171,7 +171,7 @@ func (a *Client) CreditUserWallet(params *CreditUserWalletParams, authInfo runti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "creditUserWallet",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -217,7 +217,7 @@ func (a *Client) CreditUserWalletShort(params *CreditUserWalletParams, authInfo 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "creditUserWallet",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/credit",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -265,7 +265,7 @@ func (a *Client) DebitUserWallet(params *DebitUserWalletParams, authInfo runtime
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "debitUserWallet",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -314,7 +314,7 @@ func (a *Client) DebitUserWalletShort(params *DebitUserWalletParams, authInfo ru
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "debitUserWallet",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/debit",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -364,7 +364,7 @@ func (a *Client) DisableUserWallet(params *DisableUserWalletParams, authInfo run
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "disableUserWallet",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/disable",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/disable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -407,7 +407,7 @@ func (a *Client) DisableUserWalletShort(params *DisableUserWalletParams, authInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "disableUserWallet",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/disable",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/disable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -453,7 +453,7 @@ func (a *Client) EnableUserWallet(params *EnableUserWalletParams, authInfo runti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "enableUserWallet",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/enable",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/enable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -496,7 +496,7 @@ func (a *Client) EnableUserWalletShort(params *EnableUserWalletParams, authInfo 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "enableUserWallet",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/enable",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/enable",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -542,7 +542,7 @@ func (a *Client) GetUserWallet(params *GetUserWalletParams, authInfo runtime.Cli
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserWallet",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -582,7 +582,7 @@ func (a *Client) GetUserWalletShort(params *GetUserWalletParams, authInfo runtim
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserWallet",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -626,7 +626,7 @@ func (a *Client) GetWallet(params *GetWalletParams, authInfo runtime.ClientAuthI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getWallet",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/wallets/{walletId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/wallets/{walletId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -666,7 +666,7 @@ func (a *Client) GetWalletShort(params *GetWalletParams, authInfo runtime.Client
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getWallet",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/wallets/{walletId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/wallets/{walletId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -710,7 +710,7 @@ func (a *Client) ListUserWalletTransactions(params *ListUserWalletTransactionsPa
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listUserWalletTransactions",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/transactions",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/transactions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -750,7 +750,7 @@ func (a *Client) ListUserWalletTransactionsShort(params *ListUserWalletTransacti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "listUserWalletTransactions",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/transactions",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{walletId}/transactions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -794,7 +794,7 @@ func (a *Client) PayWithUserWallet(params *PayWithUserWalletParams, authInfo run
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "payWithUserWallet",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/payment",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/payment",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -840,7 +840,7 @@ func (a *Client) PayWithUserWalletShort(params *PayWithUserWalletParams, authInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "payWithUserWallet",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/payment",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/payment",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -888,7 +888,7 @@ func (a *Client) PublicGetMyWallet(params *PublicGetMyWalletParams, authInfo run
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetMyWallet",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/me/wallets/{currencyCode}",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/me/wallets/{currencyCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -925,7 +925,7 @@ func (a *Client) PublicGetMyWalletShort(params *PublicGetMyWalletParams, authInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetMyWallet",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/me/wallets/{currencyCode}",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/me/wallets/{currencyCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -967,7 +967,7 @@ func (a *Client) PublicGetWallet(params *PublicGetWalletParams, authInfo runtime
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetWallet",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1004,7 +1004,7 @@ func (a *Client) PublicGetWalletShort(params *PublicGetWalletParams, authInfo ru
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetWallet",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1046,7 +1046,7 @@ func (a *Client) PublicListUserWalletTransactions(params *PublicListUserWalletTr
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicListUserWalletTransactions",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/transactions",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/transactions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1083,7 +1083,7 @@ func (a *Client) PublicListUserWalletTransactionsShort(params *PublicListUserWal
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicListUserWalletTransactions",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/transactions",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/transactions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1125,7 +1125,7 @@ func (a *Client) QueryWallets(params *QueryWalletsParams, authInfo runtime.Clien
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryWallets",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/wallets",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/wallets",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1162,7 +1162,7 @@ func (a *Client) QueryWalletsShort(params *QueryWalletsParams, authInfo runtime.
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryWallets",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/wallets",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/wallets",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

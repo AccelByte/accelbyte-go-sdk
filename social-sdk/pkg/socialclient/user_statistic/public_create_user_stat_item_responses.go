@@ -49,7 +49,7 @@ func (o *PublicCreateUserStatItemReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -66,7 +66,7 @@ type PublicCreateUserStatItemCreated struct {
 }
 
 func (o *PublicCreateUserStatItemCreated) Error() string {
-	return fmt.Sprintf("[POST /v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] publicCreateUserStatItemCreated ", 201)
+	return fmt.Sprintf("[POST /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] publicCreateUserStatItemCreated ", 201)
 }
 
 func (o *PublicCreateUserStatItemCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -88,7 +88,7 @@ type PublicCreateUserStatItemNotFound struct {
 }
 
 func (o *PublicCreateUserStatItemNotFound) Error() string {
-	return fmt.Sprintf("[POST /v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] publicCreateUserStatItemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] publicCreateUserStatItemNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicCreateUserStatItemNotFound) GetPayload() *socialclientmodels.ErrorEntity {
@@ -121,7 +121,7 @@ type PublicCreateUserStatItemConflict struct {
 }
 
 func (o *PublicCreateUserStatItemConflict) Error() string {
-	return fmt.Sprintf("[POST /v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] publicCreateUserStatItemConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems][%d] publicCreateUserStatItemConflict  %+v", 409, o.Payload)
 }
 
 func (o *PublicCreateUserStatItemConflict) GetPayload() *socialclientmodels.ErrorEntity {

@@ -37,7 +37,7 @@ func (o *SyncOrdersReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/orders returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/orders returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type SyncOrdersOK struct {
 }
 
 func (o *SyncOrdersOK) Error() string {
-	return fmt.Sprintf("[GET /admin/orders][%d] syncOrdersOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/orders][%d] syncOrdersOK  %+v", 200, o.Payload)
 }
 
 func (o *SyncOrdersOK) GetPayload() *platformclientmodels.OrderSyncResult {

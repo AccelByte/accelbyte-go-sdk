@@ -55,7 +55,7 @@ func (o *CreatePaymentProviderConfigReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/payment/config/provider returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/admin/payment/config/provider returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type CreatePaymentProviderConfigOK struct {
 }
 
 func (o *CreatePaymentProviderConfigOK) Error() string {
-	return fmt.Sprintf("[POST /admin/payment/config/provider][%d] createPaymentProviderConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/payment/config/provider][%d] createPaymentProviderConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *CreatePaymentProviderConfigOK) GetPayload() *platformclientmodels.PaymentProviderConfigInfo {
@@ -106,7 +106,7 @@ type CreatePaymentProviderConfigBadRequest struct {
 }
 
 func (o *CreatePaymentProviderConfigBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/payment/config/provider][%d] createPaymentProviderConfigBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/payment/config/provider][%d] createPaymentProviderConfigBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreatePaymentProviderConfigBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type CreatePaymentProviderConfigConflict struct {
 }
 
 func (o *CreatePaymentProviderConfigConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/payment/config/provider][%d] createPaymentProviderConfigConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/payment/config/provider][%d] createPaymentProviderConfigConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreatePaymentProviderConfigConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -172,7 +172,7 @@ type CreatePaymentProviderConfigUnprocessableEntity struct {
 }
 
 func (o *CreatePaymentProviderConfigUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/payment/config/provider][%d] createPaymentProviderConfigUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/payment/config/provider][%d] createPaymentProviderConfigUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreatePaymentProviderConfigUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

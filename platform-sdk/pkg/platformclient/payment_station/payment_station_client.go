@@ -57,7 +57,7 @@ type ClientService interface {
 /*
   GetPaymentCustomization gets payment provider customization
 
-  Get payment provider customization, at current only Adyen provide customization.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: customization&lt;/li&gt;&lt;/ul&gt;
+  Get payment provider customization, at current only Adyen provide customization. This api has been deprecated, pls use /public/namespaces/{namespace}/payment/publicconfig to get adyen config&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Returns&lt;/i&gt;: customization&lt;/li&gt;&lt;/ul&gt;
 */
 func (a *Client) GetPaymentCustomization(params *GetPaymentCustomizationParams) (*GetPaymentCustomizationOK, error) {
 	// TODO: Validate the params before sending
@@ -72,7 +72,7 @@ func (a *Client) GetPaymentCustomization(params *GetPaymentCustomizationParams) 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPaymentCustomization",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/payment/customization",
+		PathPattern:        "/platform/public/namespaces/{namespace}/payment/customization",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -108,7 +108,7 @@ func (a *Client) GetPaymentCustomizationShort(params *GetPaymentCustomizationPar
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPaymentCustomization",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/payment/customization",
+		PathPattern:        "/platform/public/namespaces/{namespace}/payment/customization",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -149,7 +149,7 @@ func (a *Client) GetPaymentPublicConfig(params *GetPaymentPublicConfigParams) (*
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPaymentPublicConfig",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/payment/publicconfig",
+		PathPattern:        "/platform/public/namespaces/{namespace}/payment/publicconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -185,7 +185,7 @@ func (a *Client) GetPaymentPublicConfigShort(params *GetPaymentPublicConfigParam
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPaymentPublicConfig",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/payment/publicconfig",
+		PathPattern:        "/platform/public/namespaces/{namespace}/payment/publicconfig",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -226,7 +226,7 @@ func (a *Client) GetPaymentTaxValue(params *GetPaymentTaxValueParams) (*GetPayme
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPaymentTaxValue",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/payment/tax",
+		PathPattern:        "/platform/public/namespaces/{namespace}/payment/tax",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -268,7 +268,7 @@ func (a *Client) GetPaymentTaxValueShort(params *GetPaymentTaxValueParams) (*Get
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getPaymentTaxValue",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/payment/tax",
+		PathPattern:        "/platform/public/namespaces/{namespace}/payment/tax",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -313,7 +313,7 @@ func (a *Client) Pay(params *PayParams) (*PayOK, *PayBadRequest, *PayNotFound, *
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "pay",
 		Method:             "POST",
-		PathPattern:        "/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay",
+		PathPattern:        "/platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -358,7 +358,7 @@ func (a *Client) PayShort(params *PayParams) (*PayOK, error) {
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "pay",
 		Method:             "POST",
-		PathPattern:        "/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay",
+		PathPattern:        "/platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/pay",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -405,7 +405,7 @@ func (a *Client) PublicCheckPaymentOrderPaidStatus(params *PublicCheckPaymentOrd
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicCheckPaymentOrderPaidStatus",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status",
+		PathPattern:        "/platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -444,7 +444,7 @@ func (a *Client) PublicCheckPaymentOrderPaidStatusShort(params *PublicCheckPayme
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicCheckPaymentOrderPaidStatus",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status",
+		PathPattern:        "/platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/status",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -487,7 +487,7 @@ func (a *Client) PublicGetPaymentMethods(params *PublicGetPaymentMethodsParams) 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetPaymentMethods",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/payment/methods",
+		PathPattern:        "/platform/public/namespaces/{namespace}/payment/methods",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -526,7 +526,7 @@ func (a *Client) PublicGetPaymentMethodsShort(params *PublicGetPaymentMethodsPar
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetPaymentMethods",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/payment/methods",
+		PathPattern:        "/platform/public/namespaces/{namespace}/payment/methods",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -569,7 +569,7 @@ func (a *Client) PublicGetPaymentURL(params *PublicGetPaymentURLParams) (*Public
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetPaymentUrl",
 		Method:             "POST",
-		PathPattern:        "/public/namespaces/{namespace}/payment/link",
+		PathPattern:        "/platform/public/namespaces/{namespace}/payment/link",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -614,7 +614,7 @@ func (a *Client) PublicGetPaymentURLShort(params *PublicGetPaymentURLParams) (*P
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetPaymentUrl",
 		Method:             "POST",
-		PathPattern:        "/public/namespaces/{namespace}/payment/link",
+		PathPattern:        "/platform/public/namespaces/{namespace}/payment/link",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -661,7 +661,7 @@ func (a *Client) PublicGetQRCode(params *PublicGetQRCodeParams, writer io.Writer
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetQRCode",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/payment/qrcode",
+		PathPattern:        "/platform/public/namespaces/{namespace}/payment/qrcode",
 		ProducesMediaTypes: []string{"image/png"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -697,7 +697,7 @@ func (a *Client) PublicGetQRCodeShort(params *PublicGetQRCodeParams, writer io.W
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetQRCode",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/payment/qrcode",
+		PathPattern:        "/platform/public/namespaces/{namespace}/payment/qrcode",
 		ProducesMediaTypes: []string{"image/png"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -738,7 +738,7 @@ func (a *Client) PublicGetUnpaidPaymentOrder(params *PublicGetUnpaidPaymentOrder
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUnpaidPaymentOrder",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info",
+		PathPattern:        "/platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -780,7 +780,7 @@ func (a *Client) PublicGetUnpaidPaymentOrderShort(params *PublicGetUnpaidPayment
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUnpaidPaymentOrder",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info",
+		PathPattern:        "/platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -827,7 +827,7 @@ func (a *Client) PublicNormalizePaymentReturnURL(params *PublicNormalizePaymentR
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicNormalizePaymentReturnUrl",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/payment/returnurl",
+		PathPattern:        "/platform/public/namespaces/{namespace}/payment/returnurl",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -866,7 +866,7 @@ func (a *Client) PublicNormalizePaymentReturnURLShort(params *PublicNormalizePay
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicNormalizePaymentReturnUrl",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/payment/returnurl",
+		PathPattern:        "/platform/public/namespaces/{namespace}/payment/returnurl",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

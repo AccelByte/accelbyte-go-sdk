@@ -41,7 +41,7 @@ type Transaction struct {
 	MerchantID string `json:"merchantId,omitempty"`
 
 	// notified
-	Notified bool `json:"notified,omitempty"`
+	Notified bool `json:"notified"`
 
 	// payment method
 	PaymentMethod string `json:"paymentMethod,omitempty"`

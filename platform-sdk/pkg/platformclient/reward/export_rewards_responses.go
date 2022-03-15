@@ -34,7 +34,7 @@ func (o *ExportRewardsReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/rewards/export returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/rewards/export returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -51,7 +51,7 @@ type ExportRewardsOK struct {
 }
 
 func (o *ExportRewardsOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/rewards/export][%d] exportRewardsOK ", 200)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/rewards/export][%d] exportRewardsOK ", 200)
 }
 
 func (o *ExportRewardsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

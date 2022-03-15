@@ -16,7 +16,7 @@ import (
 type PaymentCallbackConfigUpdate struct {
 
 	// mock workflow while set true, default false
-	DryRun bool `json:"dryRun,omitempty"`
+	DryRun bool `json:"dryRun"`
 
 	// notify url for ECommerce payment notification
 	NotifyURL string `json:"notifyUrl,omitempty"`

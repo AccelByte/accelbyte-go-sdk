@@ -49,7 +49,7 @@ func (o *PublicCancelSubscriptionReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type PublicCancelSubscriptionOK struct {
 }
 
 func (o *PublicCancelSubscriptionOK) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel][%d] publicCancelSubscriptionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel][%d] publicCancelSubscriptionOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicCancelSubscriptionOK) GetPayload() *platformclientmodels.SubscriptionInfo {
@@ -100,7 +100,7 @@ type PublicCancelSubscriptionNotFound struct {
 }
 
 func (o *PublicCancelSubscriptionNotFound) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel][%d] publicCancelSubscriptionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel][%d] publicCancelSubscriptionNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicCancelSubscriptionNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type PublicCancelSubscriptionConflict struct {
 }
 
 func (o *PublicCancelSubscriptionConflict) Error() string {
-	return fmt.Sprintf("[PUT /public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel][%d] publicCancelSubscriptionConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel][%d] publicCancelSubscriptionConflict  %+v", 409, o.Payload)
 }
 
 func (o *PublicCancelSubscriptionConflict) GetPayload() *platformclientmodels.ErrorEntity {

@@ -37,7 +37,7 @@ func (o *GetOrderStatisticsReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/orders/stats returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/orders/stats returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type GetOrderStatisticsOK struct {
 }
 
 func (o *GetOrderStatisticsOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/orders/stats][%d] getOrderStatisticsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/orders/stats][%d] getOrderStatisticsOK  %+v", 200, o.Payload)
 }
 
 func (o *GetOrderStatisticsOK) GetPayload() *platformclientmodels.OrderStatistics {

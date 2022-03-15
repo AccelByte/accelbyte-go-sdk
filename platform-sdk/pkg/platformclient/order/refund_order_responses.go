@@ -55,7 +55,7 @@ func (o *RefundOrderReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/orders/{orderNo}/refund returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/orders/{orderNo}/refund returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type RefundOrderOK struct {
 }
 
 func (o *RefundOrderOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/orders/{orderNo}/refund][%d] refundOrderOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/orders/{orderNo}/refund][%d] refundOrderOK  %+v", 200, o.Payload)
 }
 
 func (o *RefundOrderOK) GetPayload() *platformclientmodels.OrderInfo {
@@ -106,7 +106,7 @@ type RefundOrderNotFound struct {
 }
 
 func (o *RefundOrderNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/orders/{orderNo}/refund][%d] refundOrderNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/orders/{orderNo}/refund][%d] refundOrderNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RefundOrderNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type RefundOrderConflict struct {
 }
 
 func (o *RefundOrderConflict) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/orders/{orderNo}/refund][%d] refundOrderConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/orders/{orderNo}/refund][%d] refundOrderConflict  %+v", 409, o.Payload)
 }
 
 func (o *RefundOrderConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -172,7 +172,7 @@ type RefundOrderUnprocessableEntity struct {
 }
 
 func (o *RefundOrderUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/orders/{orderNo}/refund][%d] refundOrderUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/orders/{orderNo}/refund][%d] refundOrderUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *RefundOrderUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

@@ -43,7 +43,7 @@ func (o *DownloadCategoriesReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/categories/download returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/categories/download returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type DownloadCategoriesOK struct {
 }
 
 func (o *DownloadCategoriesOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/categories/download][%d] downloadCategoriesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/categories/download][%d] downloadCategoriesOK  %+v", 200, o.Payload)
 }
 
 func (o *DownloadCategoriesOK) GetPayload() []*platformclientmodels.HierarchicalCategoryInfo {
@@ -92,7 +92,7 @@ type DownloadCategoriesNotFound struct {
 }
 
 func (o *DownloadCategoriesNotFound) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/categories/download][%d] downloadCategoriesNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/categories/download][%d] downloadCategoriesNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DownloadCategoriesNotFound) GetPayload() *platformclientmodels.ErrorEntity {

@@ -43,7 +43,7 @@ func (o *PublicBulkGetItemsReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/items/locale/byIds returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/items/locale/byIds returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type PublicBulkGetItemsOK struct {
 }
 
 func (o *PublicBulkGetItemsOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/items/locale/byIds][%d] publicBulkGetItemsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/locale/byIds][%d] publicBulkGetItemsOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicBulkGetItemsOK) GetPayload() []*platformclientmodels.ItemInfo {
@@ -92,7 +92,7 @@ type PublicBulkGetItemsNotFound struct {
 }
 
 func (o *PublicBulkGetItemsNotFound) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/items/locale/byIds][%d] publicBulkGetItemsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/items/locale/byIds][%d] publicBulkGetItemsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicBulkGetItemsNotFound) GetPayload() *platformclientmodels.ErrorEntity {

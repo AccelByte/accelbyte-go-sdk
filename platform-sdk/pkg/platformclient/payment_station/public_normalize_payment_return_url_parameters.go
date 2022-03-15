@@ -76,7 +76,10 @@ type PublicNormalizePaymentReturnURLParams struct {
 
 	*/
 	OrderNo string
-	/*Payload*/
+	/*Payload
+	  adyen redirect session data for checkout sdk
+
+	*/
 	Payload *string
 	/*PaymentOrderNo
 	  Platform payment order no
@@ -88,11 +91,27 @@ type PublicNormalizePaymentReturnURLParams struct {
 
 	*/
 	PaymentProvider string
-	/*ResultCode*/
+	/*RedirectResult
+	  adyen redirect session data for drop in
+
+	*/
+	RedirectResult *string
+	/*ResultCode
+	  adyen redirect resultCode from checkout sdk
+
+	*/
 	ResultCode *string
 	/*ReturnURL*/
 	ReturnURL string
-	/*Status*/
+	/*SessionID
+	  adyen redirect session Id for drop in
+
+	*/
+	SessionID *string
+	/*Status
+	  paypal and xsolla will return this
+
+	*/
 	Status *string
 	/*Token
 	  PayPal token
@@ -230,6 +249,17 @@ func (o *PublicNormalizePaymentReturnURLParams) SetPaymentProvider(paymentProvid
 	o.PaymentProvider = paymentProvider
 }
 
+// WithRedirectResult adds the redirectResult to the public normalize payment return Url params
+func (o *PublicNormalizePaymentReturnURLParams) WithRedirectResult(redirectResult *string) *PublicNormalizePaymentReturnURLParams {
+	o.SetRedirectResult(redirectResult)
+	return o
+}
+
+// SetRedirectResult adds the redirectResult to the public normalize payment return Url params
+func (o *PublicNormalizePaymentReturnURLParams) SetRedirectResult(redirectResult *string) {
+	o.RedirectResult = redirectResult
+}
+
 // WithResultCode adds the resultCode to the public normalize payment return Url params
 func (o *PublicNormalizePaymentReturnURLParams) WithResultCode(resultCode *string) *PublicNormalizePaymentReturnURLParams {
 	o.SetResultCode(resultCode)
@@ -250,6 +280,17 @@ func (o *PublicNormalizePaymentReturnURLParams) WithReturnURL(returnURL string) 
 // SetReturnURL adds the returnUrl to the public normalize payment return Url params
 func (o *PublicNormalizePaymentReturnURLParams) SetReturnURL(returnURL string) {
 	o.ReturnURL = returnURL
+}
+
+// WithSessionID adds the sessionID to the public normalize payment return Url params
+func (o *PublicNormalizePaymentReturnURLParams) WithSessionID(sessionID *string) *PublicNormalizePaymentReturnURLParams {
+	o.SetSessionID(sessionID)
+	return o
+}
+
+// SetSessionID adds the sessionId to the public normalize payment return Url params
+func (o *PublicNormalizePaymentReturnURLParams) SetSessionID(sessionID *string) {
+	o.SessionID = sessionID
 }
 
 // WithStatus adds the status to the public normalize payment return Url params
@@ -400,6 +441,22 @@ func (o *PublicNormalizePaymentReturnURLParams) WriteToRequest(r runtime.ClientR
 		}
 	}
 
+	if o.RedirectResult != nil {
+
+		// query param redirectResult
+		var qrRedirectResult string
+		if o.RedirectResult != nil {
+			qrRedirectResult = *o.RedirectResult
+		}
+		qRedirectResult := qrRedirectResult
+		if qRedirectResult != "" {
+			if err := r.SetQueryParam("redirectResult", qRedirectResult); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.ResultCode != nil {
 
 		// query param resultCode
@@ -423,6 +480,22 @@ func (o *PublicNormalizePaymentReturnURLParams) WriteToRequest(r runtime.ClientR
 		if err := r.SetQueryParam("returnUrl", qReturnURL); err != nil {
 			return err
 		}
+	}
+
+	if o.SessionID != nil {
+
+		// query param sessionId
+		var qrSessionID string
+		if o.SessionID != nil {
+			qrSessionID = *o.SessionID
+		}
+		qSessionID := qrSessionID
+		if qSessionID != "" {
+			if err := r.SetQueryParam("sessionId", qSessionID); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if o.Status != nil {

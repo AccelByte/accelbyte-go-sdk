@@ -55,7 +55,7 @@ func (o *BanUsersReader) ReadResponse(response runtime.ClientResponse, consumer 
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /v1/admin/namespaces/{namespace}/actions/ban returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /basic/v1/admin/namespaces/{namespace}/actions/ban returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type BanUsersBadRequest struct {
 }
 
 func (o *BanUsersBadRequest) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/actions/ban][%d] banUsersBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/ban][%d] banUsersBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *BanUsersBadRequest) GetPayload() *basicclientmodels.ErrorEntity {
@@ -106,7 +106,7 @@ type BanUsersNotFound struct {
 }
 
 func (o *BanUsersNotFound) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/actions/ban][%d] banUsersNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/ban][%d] banUsersNotFound  %+v", 404, o.Payload)
 }
 
 func (o *BanUsersNotFound) GetPayload() *basicclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type BanUsersUnprocessableEntity struct {
 }
 
 func (o *BanUsersUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/actions/ban][%d] banUsersUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/ban][%d] banUsersUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *BanUsersUnprocessableEntity) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -172,7 +172,7 @@ type BanUsersInternalServerError struct {
 }
 
 func (o *BanUsersInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/actions/ban][%d] banUsersInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/ban][%d] banUsersInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *BanUsersInternalServerError) GetPayload() *basicclientmodels.ErrorEntity {

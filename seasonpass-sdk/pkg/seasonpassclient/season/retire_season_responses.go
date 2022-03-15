@@ -55,7 +55,7 @@ func (o *RetireSeasonReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/seasons/{seasonId}/retire returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/retire returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type RetireSeasonOK struct {
 }
 
 func (o *RetireSeasonOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/seasons/{seasonId}/retire][%d] retireSeasonOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/retire][%d] retireSeasonOK  %+v", 200, o.Payload)
 }
 
 func (o *RetireSeasonOK) GetPayload() *seasonpassclientmodels.SeasonInfo {
@@ -106,7 +106,7 @@ type RetireSeasonBadRequest struct {
 }
 
 func (o *RetireSeasonBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/seasons/{seasonId}/retire][%d] retireSeasonBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/retire][%d] retireSeasonBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *RetireSeasonBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type RetireSeasonNotFound struct {
 }
 
 func (o *RetireSeasonNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/seasons/{seasonId}/retire][%d] retireSeasonNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/retire][%d] retireSeasonNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RetireSeasonNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -172,7 +172,7 @@ type RetireSeasonConflict struct {
 }
 
 func (o *RetireSeasonConflict) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/seasons/{seasonId}/retire][%d] retireSeasonConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/retire][%d] retireSeasonConflict  %+v", 409, o.Payload)
 }
 
 func (o *RetireSeasonConflict) GetPayload() *seasonpassclientmodels.ErrorEntity {

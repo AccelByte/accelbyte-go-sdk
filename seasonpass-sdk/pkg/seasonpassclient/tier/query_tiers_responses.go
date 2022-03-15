@@ -49,7 +49,7 @@ func (o *QueryTiersReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/seasons/{seasonId}/tiers returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type QueryTiersOK struct {
 }
 
 func (o *QueryTiersOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] queryTiersOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] queryTiersOK  %+v", 200, o.Payload)
 }
 
 func (o *QueryTiersOK) GetPayload() *seasonpassclientmodels.TierPagingSlicedResult {
@@ -100,7 +100,7 @@ type QueryTiersBadRequest struct {
 }
 
 func (o *QueryTiersBadRequest) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] queryTiersBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] queryTiersBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *QueryTiersBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type QueryTiersNotFound struct {
 }
 
 func (o *QueryTiersNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] queryTiersNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/tiers][%d] queryTiersNotFound  %+v", 404, o.Payload)
 }
 
 func (o *QueryTiersNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {

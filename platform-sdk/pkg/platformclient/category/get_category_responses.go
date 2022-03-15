@@ -43,7 +43,7 @@ func (o *GetCategoryReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/categories/{categoryPath} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/categories/{categoryPath} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetCategoryOK struct {
 }
 
 func (o *GetCategoryOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/categories/{categoryPath}][%d] getCategoryOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] getCategoryOK  %+v", 200, o.Payload)
 }
 
 func (o *GetCategoryOK) GetPayload() *platformclientmodels.FullCategoryInfo {
@@ -94,7 +94,7 @@ type GetCategoryNotFound struct {
 }
 
 func (o *GetCategoryNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/categories/{categoryPath}][%d] getCategoryNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/categories/{categoryPath}][%d] getCategoryNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetCategoryNotFound) GetPayload() *platformclientmodels.ErrorEntity {

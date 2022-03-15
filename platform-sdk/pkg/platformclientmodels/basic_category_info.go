@@ -35,7 +35,7 @@ type BasicCategoryInfo struct {
 	ParentCategoryPath *string `json:"parentCategoryPath"`
 
 	// root
-	Root bool `json:"root,omitempty"`
+	Root bool `json:"root"`
 
 	// Category updated time
 	// Required: true

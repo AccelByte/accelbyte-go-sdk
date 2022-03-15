@@ -53,7 +53,7 @@ func (a *Client) CheckReadiness(params *CheckReadinessParams, authInfo runtime.C
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "checkReadiness",
 		Method:             "GET",
-		PathPattern:        "/public/readiness",
+		PathPattern:        "/agreement/public/readiness",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -90,7 +90,7 @@ func (a *Client) CheckReadinessShort(params *CheckReadinessParams, authInfo runt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "checkReadiness",
 		Method:             "GET",
-		PathPattern:        "/public/readiness",
+		PathPattern:        "/agreement/public/readiness",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

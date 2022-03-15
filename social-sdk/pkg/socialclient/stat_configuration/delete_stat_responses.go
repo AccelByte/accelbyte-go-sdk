@@ -43,7 +43,7 @@ func (o *DeleteStatReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested DELETE /v1/admin/namespaces/{namespace}/stats/{statCode} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested DELETE /social/v1/admin/namespaces/{namespace}/stats/{statCode} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -60,7 +60,7 @@ type DeleteStatNoContent struct {
 }
 
 func (o *DeleteStatNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}/stats/{statCode}][%d] deleteStatNoContent ", 204)
+	return fmt.Sprintf("[DELETE /social/v1/admin/namespaces/{namespace}/stats/{statCode}][%d] deleteStatNoContent ", 204)
 }
 
 func (o *DeleteStatNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -82,7 +82,7 @@ type DeleteStatNotFound struct {
 }
 
 func (o *DeleteStatNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /v1/admin/namespaces/{namespace}/stats/{statCode}][%d] deleteStatNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /social/v1/admin/namespaces/{namespace}/stats/{statCode}][%d] deleteStatNotFound  %+v", 404, o.Payload)
 }
 
 func (o *DeleteStatNotFound) GetPayload() *socialclientmodels.ErrorEntity {

@@ -43,7 +43,7 @@ func (o *ExportStoreReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/stores/{storeId}/export returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/stores/{storeId}/export returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -60,7 +60,7 @@ type ExportStoreOK struct {
 }
 
 func (o *ExportStoreOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/stores/{storeId}/export][%d] exportStoreOK ", 200)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/{storeId}/export][%d] exportStoreOK ", 200)
 }
 
 func (o *ExportStoreOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -82,7 +82,7 @@ type ExportStoreNotFound struct {
 }
 
 func (o *ExportStoreNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/stores/{storeId}/export][%d] exportStoreNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/stores/{storeId}/export][%d] exportStoreNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ExportStoreNotFound) GetPayload() *platformclientmodels.ErrorEntity {

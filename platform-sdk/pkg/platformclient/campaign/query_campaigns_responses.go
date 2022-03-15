@@ -37,7 +37,7 @@ func (o *QueryCampaignsReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/campaigns returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/campaigns returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type QueryCampaignsOK struct {
 }
 
 func (o *QueryCampaignsOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/campaigns][%d] queryCampaignsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/campaigns][%d] queryCampaignsOK  %+v", 200, o.Payload)
 }
 
 func (o *QueryCampaignsOK) GetPayload() *platformclientmodels.CampaignPagingSlicedResult {

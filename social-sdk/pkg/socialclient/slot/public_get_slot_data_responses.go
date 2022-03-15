@@ -44,7 +44,7 @@ func (o *PublicGetSlotDataReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/users/{userId}/slots/{slotId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -64,7 +64,7 @@ type PublicGetSlotDataOK struct {
 }
 
 func (o *PublicGetSlotDataOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicGetSlotDataOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicGetSlotDataOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetSlotDataOK) GetPayload() io.Writer {
@@ -95,7 +95,7 @@ type PublicGetSlotDataNotFound struct {
 }
 
 func (o *PublicGetSlotDataNotFound) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicGetSlotDataNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /social/public/namespaces/{namespace}/users/{userId}/slots/{slotId}][%d] publicGetSlotDataNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicGetSlotDataNotFound) GetPayload() *socialclientmodels.ErrorEntity {

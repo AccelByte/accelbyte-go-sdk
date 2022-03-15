@@ -43,7 +43,7 @@ func (o *UpdateLocalizedPolicyVersionReader) ReadResponse(response runtime.Clien
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/localized-policy-versions/{localizedPolicyVersionId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /agreement/admin/localized-policy-versions/{localizedPolicyVersionId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type UpdateLocalizedPolicyVersionOK struct {
 }
 
 func (o *UpdateLocalizedPolicyVersionOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/localized-policy-versions/{localizedPolicyVersionId}][%d] updateLocalizedPolicyVersionOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}][%d] updateLocalizedPolicyVersionOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateLocalizedPolicyVersionOK) GetPayload() *legalclientmodels.UpdateLocalizedPolicyVersionResponse {
@@ -94,7 +94,7 @@ type UpdateLocalizedPolicyVersionBadRequest struct {
 }
 
 func (o *UpdateLocalizedPolicyVersionBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /admin/localized-policy-versions/{localizedPolicyVersionId}][%d] updateLocalizedPolicyVersionBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /agreement/admin/localized-policy-versions/{localizedPolicyVersionId}][%d] updateLocalizedPolicyVersionBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UpdateLocalizedPolicyVersionBadRequest) GetPayload() *legalclientmodels.ErrorEntity {

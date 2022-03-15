@@ -65,7 +65,7 @@ func (a *Client) CreateLocalizedPolicyVersion(params *CreateLocalizedPolicyVersi
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createLocalizedPolicyVersion",
 		Method:             "POST",
-		PathPattern:        "/admin/localized-policy-versions/versions/{policyVersionId}",
+		PathPattern:        "/agreement/admin/localized-policy-versions/versions/{policyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -108,7 +108,7 @@ func (a *Client) CreateLocalizedPolicyVersionShort(params *CreateLocalizedPolicy
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createLocalizedPolicyVersion",
 		Method:             "POST",
-		PathPattern:        "/admin/localized-policy-versions/versions/{policyVersionId}",
+		PathPattern:        "/agreement/admin/localized-policy-versions/versions/{policyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -154,7 +154,7 @@ func (a *Client) RequestPresignedURL(params *RequestPresignedURLParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "requestPresignedURL",
 		Method:             "POST",
-		PathPattern:        "/admin/localized-policy-versions/{localizedPolicyVersionId}/attachments",
+		PathPattern:        "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/attachments",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -194,7 +194,7 @@ func (a *Client) RequestPresignedURLShort(params *RequestPresignedURLParams, aut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "requestPresignedURL",
 		Method:             "POST",
-		PathPattern:        "/admin/localized-policy-versions/{localizedPolicyVersionId}/attachments",
+		PathPattern:        "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/attachments",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -238,7 +238,7 @@ func (a *Client) RetrieveLocalizedPolicyVersions(params *RetrieveLocalizedPolicy
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveLocalizedPolicyVersions",
 		Method:             "GET",
-		PathPattern:        "/admin/localized-policy-versions/versions/{policyVersionId}",
+		PathPattern:        "/agreement/admin/localized-policy-versions/versions/{policyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -275,7 +275,7 @@ func (a *Client) RetrieveLocalizedPolicyVersionsShort(params *RetrieveLocalizedP
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveLocalizedPolicyVersions",
 		Method:             "GET",
-		PathPattern:        "/admin/localized-policy-versions/versions/{policyVersionId}",
+		PathPattern:        "/agreement/admin/localized-policy-versions/versions/{policyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -317,7 +317,7 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion(params *RetrieveSingleLoca
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveSingleLocalizedPolicyVersion",
 		Method:             "GET",
-		PathPattern:        "/admin/localized-policy-versions/{localizedPolicyVersionId}",
+		PathPattern:        "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -357,7 +357,7 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersionShort(params *RetrieveSingl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveSingleLocalizedPolicyVersion",
 		Method:             "GET",
-		PathPattern:        "/admin/localized-policy-versions/{localizedPolicyVersionId}",
+		PathPattern:        "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -401,7 +401,7 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion1(params *RetrieveSingleLoc
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveSingleLocalizedPolicyVersion_1",
 		Method:             "GET",
-		PathPattern:        "/public/localized-policy-versions/{localizedPolicyVersionId}",
+		PathPattern:        "/agreement/public/localized-policy-versions/{localizedPolicyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -440,7 +440,7 @@ func (a *Client) RetrieveSingleLocalizedPolicyVersion1Short(params *RetrieveSing
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "retrieveSingleLocalizedPolicyVersion_1",
 		Method:             "GET",
-		PathPattern:        "/public/localized-policy-versions/{localizedPolicyVersionId}",
+		PathPattern:        "/agreement/public/localized-policy-versions/{localizedPolicyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -483,7 +483,7 @@ func (a *Client) SetDefaultPolicy(params *SetDefaultPolicyParams, authInfo runti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "setDefaultPolicy",
 		Method:             "PATCH",
-		PathPattern:        "/admin/localized-policy-versions/{localizedPolicyVersionId}/default",
+		PathPattern:        "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/default",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -520,7 +520,7 @@ func (a *Client) SetDefaultPolicyShort(params *SetDefaultPolicyParams, authInfo 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "setDefaultPolicy",
 		Method:             "PATCH",
-		PathPattern:        "/admin/localized-policy-versions/{localizedPolicyVersionId}/default",
+		PathPattern:        "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}/default",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -562,7 +562,7 @@ func (a *Client) UpdateLocalizedPolicyVersion(params *UpdateLocalizedPolicyVersi
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateLocalizedPolicyVersion",
 		Method:             "PUT",
-		PathPattern:        "/admin/localized-policy-versions/{localizedPolicyVersionId}",
+		PathPattern:        "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -602,7 +602,7 @@ func (a *Client) UpdateLocalizedPolicyVersionShort(params *UpdateLocalizedPolicy
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateLocalizedPolicyVersion",
 		Method:             "PUT",
-		PathPattern:        "/admin/localized-policy-versions/{localizedPolicyVersionId}",
+		PathPattern:        "/agreement/admin/localized-policy-versions/{localizedPolicyVersionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

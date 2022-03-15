@@ -43,7 +43,7 @@ func (o *GetRewardByCodeReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/rewards/byCode returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/rewards/byCode returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type GetRewardByCodeOK struct {
 }
 
 func (o *GetRewardByCodeOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/rewards/byCode][%d] getRewardByCodeOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/rewards/byCode][%d] getRewardByCodeOK  %+v", 200, o.Payload)
 }
 
 func (o *GetRewardByCodeOK) GetPayload() *platformclientmodels.RewardInfo {
@@ -94,7 +94,7 @@ type GetRewardByCodeNotFound struct {
 }
 
 func (o *GetRewardByCodeNotFound) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/rewards/byCode][%d] getRewardByCodeNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/rewards/byCode][%d] getRewardByCodeNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetRewardByCodeNotFound) GetPayload() *platformclientmodels.ErrorEntity {

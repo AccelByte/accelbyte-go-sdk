@@ -121,7 +121,7 @@ func (a *Client) BulkCreateUserStatItems(params *BulkCreateUserStatItemsParams, 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkCreateUserStatItems",
 		Method:             "POST",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/statitems/bulk",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/users/{userId}/statitems/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -161,7 +161,7 @@ func (a *Client) BulkCreateUserStatItemsShort(params *BulkCreateUserStatItemsPar
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkCreateUserStatItems",
 		Method:             "POST",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/statitems/bulk",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/users/{userId}/statitems/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -208,7 +208,7 @@ func (a *Client) BulkFetchStatItems(params *BulkFetchStatItemsParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkFetchStatItems",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/statitems/bulk",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/statitems/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -248,7 +248,7 @@ func (a *Client) BulkFetchStatItemsShort(params *BulkFetchStatItemsParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkFetchStatItems",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/statitems/bulk",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/statitems/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -295,7 +295,7 @@ func (a *Client) BulkFetchStatItems1(params *BulkFetchStatItems1Params, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkFetchStatItems_1",
 		Method:             "GET",
-		PathPattern:        "/v1/public/namespaces/{namespace}/statitems/bulk",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/statitems/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -335,7 +335,7 @@ func (a *Client) BulkFetchStatItems1Short(params *BulkFetchStatItems1Params, aut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkFetchStatItems_1",
 		Method:             "GET",
-		PathPattern:        "/v1/public/namespaces/{namespace}/statitems/bulk",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/statitems/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -379,7 +379,7 @@ func (a *Client) BulkIncUserStatItem(params *BulkIncUserStatItemParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkIncUserStatItem",
 		Method:             "PUT",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/statitems/value/bulk",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -419,7 +419,7 @@ func (a *Client) BulkIncUserStatItemShort(params *BulkIncUserStatItemParams, aut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkIncUserStatItem",
 		Method:             "PUT",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/statitems/value/bulk",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -463,7 +463,7 @@ func (a *Client) BulkIncUserStatItemValue(params *BulkIncUserStatItemValueParams
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkIncUserStatItemValue",
 		Method:             "PATCH",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/statitems/value/bulk",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -503,7 +503,7 @@ func (a *Client) BulkIncUserStatItemValueShort(params *BulkIncUserStatItemValueP
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkIncUserStatItemValue",
 		Method:             "PATCH",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/statitems/value/bulk",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -547,7 +547,7 @@ func (a *Client) BulkIncUserStatItemValue1(params *BulkIncUserStatItemValue1Para
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkIncUserStatItemValue_1",
 		Method:             "PATCH",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -587,7 +587,7 @@ func (a *Client) BulkIncUserStatItemValue1Short(params *BulkIncUserStatItemValue
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkIncUserStatItemValue_1",
 		Method:             "PATCH",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -631,7 +631,7 @@ func (a *Client) BulkIncUserStatItemValue2(params *BulkIncUserStatItemValue2Para
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkIncUserStatItemValue_2",
 		Method:             "PATCH",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -671,7 +671,7 @@ func (a *Client) BulkIncUserStatItemValue2Short(params *BulkIncUserStatItemValue
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkIncUserStatItemValue_2",
 		Method:             "PATCH",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -715,7 +715,7 @@ func (a *Client) BulkIncUserStatItem1(params *BulkIncUserStatItem1Params, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkIncUserStatItem_1",
 		Method:             "PUT",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -755,7 +755,7 @@ func (a *Client) BulkIncUserStatItem1Short(params *BulkIncUserStatItem1Params, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkIncUserStatItem_1",
 		Method:             "PUT",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -804,7 +804,7 @@ func (a *Client) BulkResetUserStatItem(params *BulkResetUserStatItemParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkResetUserStatItem",
 		Method:             "PUT",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/statitems/value/reset/bulk",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/statitems/value/reset/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -844,7 +844,7 @@ func (a *Client) BulkResetUserStatItemShort(params *BulkResetUserStatItemParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkResetUserStatItem",
 		Method:             "PUT",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/statitems/value/reset/bulk",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/statitems/value/reset/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -891,7 +891,7 @@ func (a *Client) BulkResetUserStatItemValues(params *BulkResetUserStatItemValues
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkResetUserStatItemValues",
 		Method:             "PUT",
-		PathPattern:        "/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk",
+		PathPattern:        "/social/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -931,7 +931,7 @@ func (a *Client) BulkResetUserStatItemValuesShort(params *BulkResetUserStatItemV
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkResetUserStatItemValues",
 		Method:             "PUT",
-		PathPattern:        "/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk",
+		PathPattern:        "/social/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -978,7 +978,7 @@ func (a *Client) BulkResetUserStatItem1(params *BulkResetUserStatItem1Params, au
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkResetUserStatItem_1",
 		Method:             "PUT",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1018,7 +1018,7 @@ func (a *Client) BulkResetUserStatItem1Short(params *BulkResetUserStatItem1Param
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkResetUserStatItem_1",
 		Method:             "PUT",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1067,7 +1067,7 @@ func (a *Client) BulkResetUserStatItem2(params *BulkResetUserStatItem2Params, au
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkResetUserStatItem_2",
 		Method:             "PUT",
-		PathPattern:        "/v1/public/namespaces/{namespace}/statitems/value/reset/bulk",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/statitems/value/reset/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1107,7 +1107,7 @@ func (a *Client) BulkResetUserStatItem2Short(params *BulkResetUserStatItem2Param
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkResetUserStatItem_2",
 		Method:             "PUT",
-		PathPattern:        "/v1/public/namespaces/{namespace}/statitems/value/reset/bulk",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/statitems/value/reset/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1154,7 +1154,7 @@ func (a *Client) BulkResetUserStatItem3(params *BulkResetUserStatItem3Params, au
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkResetUserStatItem_3",
 		Method:             "PUT",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1194,7 +1194,7 @@ func (a *Client) BulkResetUserStatItem3Short(params *BulkResetUserStatItem3Param
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkResetUserStatItem_3",
 		Method:             "PUT",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/reset/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1250,7 +1250,7 @@ func (a *Client) BulkUpdateUserStatItem(params *BulkUpdateUserStatItemParams, au
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkUpdateUserStatItem",
 		Method:             "PUT",
-		PathPattern:        "/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
+		PathPattern:        "/social/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1290,7 +1290,7 @@ func (a *Client) BulkUpdateUserStatItemShort(params *BulkUpdateUserStatItemParam
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkUpdateUserStatItem",
 		Method:             "PUT",
-		PathPattern:        "/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
+		PathPattern:        "/social/v2/admin/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1343,7 +1343,7 @@ func (a *Client) BulkUpdateUserStatItemV2(params *BulkUpdateUserStatItemV2Params
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkUpdateUserStatItemV2",
 		Method:             "PUT",
-		PathPattern:        "/v2/admin/namespaces/{namespace}/statitems/value/bulk",
+		PathPattern:        "/social/v2/admin/namespaces/{namespace}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1383,7 +1383,7 @@ func (a *Client) BulkUpdateUserStatItemV2Short(params *BulkUpdateUserStatItemV2P
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkUpdateUserStatItemV2",
 		Method:             "PUT",
-		PathPattern:        "/v2/admin/namespaces/{namespace}/statitems/value/bulk",
+		PathPattern:        "/social/v2/admin/namespaces/{namespace}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1436,7 +1436,7 @@ func (a *Client) BulkUpdateUserStatItem1(params *BulkUpdateUserStatItem1Params, 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkUpdateUserStatItem_1",
 		Method:             "PUT",
-		PathPattern:        "/v2/public/namespaces/{namespace}/statitems/value/bulk",
+		PathPattern:        "/social/v2/public/namespaces/{namespace}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1476,7 +1476,7 @@ func (a *Client) BulkUpdateUserStatItem1Short(params *BulkUpdateUserStatItem1Par
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkUpdateUserStatItem_1",
 		Method:             "PUT",
-		PathPattern:        "/v2/public/namespaces/{namespace}/statitems/value/bulk",
+		PathPattern:        "/social/v2/public/namespaces/{namespace}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1532,7 +1532,7 @@ func (a *Client) BulkUpdateUserStatItem2(params *BulkUpdateUserStatItem2Params, 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkUpdateUserStatItem_2",
 		Method:             "PUT",
-		PathPattern:        "/v2/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
+		PathPattern:        "/social/v2/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1572,7 +1572,7 @@ func (a *Client) BulkUpdateUserStatItem2Short(params *BulkUpdateUserStatItem2Par
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "bulkUpdateUserStatItem_2",
 		Method:             "PUT",
-		PathPattern:        "/v2/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
+		PathPattern:        "/social/v2/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1616,7 +1616,7 @@ func (a *Client) CreateUserStatItem(params *CreateUserStatItemParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createUserStatItem",
 		Method:             "POST",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1659,7 +1659,7 @@ func (a *Client) CreateUserStatItemShort(params *CreateUserStatItemParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createUserStatItem",
 		Method:             "POST",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1705,7 +1705,7 @@ func (a *Client) DeleteUserStatItems(params *DeleteUserStatItemsParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteUserStatItems",
 		Method:             "DELETE",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1751,7 +1751,7 @@ func (a *Client) DeleteUserStatItemsShort(params *DeleteUserStatItemsParams, aut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteUserStatItems",
 		Method:             "DELETE",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1799,7 +1799,7 @@ func (a *Client) DeleteUserStatItems1(params *DeleteUserStatItems1Params, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteUserStatItems_1",
 		Method:             "DELETE",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1845,7 +1845,7 @@ func (a *Client) DeleteUserStatItems1Short(params *DeleteUserStatItems1Params, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteUserStatItems_1",
 		Method:             "DELETE",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1896,7 +1896,7 @@ func (a *Client) DeleteUserStatItems2(params *DeleteUserStatItems2Params, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteUserStatItems_2",
 		Method:             "DELETE",
-		PathPattern:        "/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
+		PathPattern:        "/social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1942,7 +1942,7 @@ func (a *Client) DeleteUserStatItems2Short(params *DeleteUserStatItems2Params, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteUserStatItems_2",
 		Method:             "DELETE",
-		PathPattern:        "/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
+		PathPattern:        "/social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1990,7 +1990,7 @@ func (a *Client) GetUserStatItems(params *GetUserStatItemsParams, authInfo runti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserStatItems",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/statitems",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/users/{userId}/statitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2027,7 +2027,7 @@ func (a *Client) GetUserStatItemsShort(params *GetUserStatItemsParams, authInfo 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserStatItems",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/statitems",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/users/{userId}/statitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2069,7 +2069,7 @@ func (a *Client) IncUserStatItemValue(params *IncUserStatItemValueParams, authIn
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "incUserStatItemValue",
 		Method:             "PATCH",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2115,7 +2115,7 @@ func (a *Client) IncUserStatItemValueShort(params *IncUserStatItemValueParams, a
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "incUserStatItemValue",
 		Method:             "PATCH",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2163,7 +2163,7 @@ func (a *Client) PublicBulkCreateUserStatItems(params *PublicBulkCreateUserStatI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicBulkCreateUserStatItems",
 		Method:             "POST",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/statitems/bulk",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/statitems/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2203,7 +2203,7 @@ func (a *Client) PublicBulkCreateUserStatItemsShort(params *PublicBulkCreateUser
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicBulkCreateUserStatItems",
 		Method:             "POST",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/statitems/bulk",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/statitems/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2247,7 +2247,7 @@ func (a *Client) PublicBulkIncUserStatItem(params *PublicBulkIncUserStatItemPara
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicBulkIncUserStatItem",
 		Method:             "PUT",
-		PathPattern:        "/v1/public/namespaces/{namespace}/statitems/value/bulk",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2287,7 +2287,7 @@ func (a *Client) PublicBulkIncUserStatItemShort(params *PublicBulkIncUserStatIte
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicBulkIncUserStatItem",
 		Method:             "PUT",
-		PathPattern:        "/v1/public/namespaces/{namespace}/statitems/value/bulk",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2331,7 +2331,7 @@ func (a *Client) PublicBulkIncUserStatItemValue(params *PublicBulkIncUserStatIte
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicBulkIncUserStatItemValue",
 		Method:             "PATCH",
-		PathPattern:        "/v1/public/namespaces/{namespace}/statitems/value/bulk",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2371,7 +2371,7 @@ func (a *Client) PublicBulkIncUserStatItemValueShort(params *PublicBulkIncUserSt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicBulkIncUserStatItemValue",
 		Method:             "PATCH",
-		PathPattern:        "/v1/public/namespaces/{namespace}/statitems/value/bulk",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2415,7 +2415,7 @@ func (a *Client) PublicBulkIncUserStatItem1(params *PublicBulkIncUserStatItem1Pa
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicBulkIncUserStatItem_1",
 		Method:             "PUT",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2455,7 +2455,7 @@ func (a *Client) PublicBulkIncUserStatItem1Short(params *PublicBulkIncUserStatIt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicBulkIncUserStatItem_1",
 		Method:             "PUT",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/statitems/value/bulk",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2499,7 +2499,7 @@ func (a *Client) PublicCreateUserStatItem(params *PublicCreateUserStatItemParams
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicCreateUserStatItem",
 		Method:             "POST",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2542,7 +2542,7 @@ func (a *Client) PublicCreateUserStatItemShort(params *PublicCreateUserStatItemP
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicCreateUserStatItem",
 		Method:             "POST",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2588,7 +2588,7 @@ func (a *Client) PublicIncUserStatItem(params *PublicIncUserStatItemParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicIncUserStatItem",
 		Method:             "PUT",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2634,7 +2634,7 @@ func (a *Client) PublicIncUserStatItemShort(params *PublicIncUserStatItemParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicIncUserStatItem",
 		Method:             "PUT",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2682,7 +2682,7 @@ func (a *Client) PublicIncUserStatItemValue(params *PublicIncUserStatItemValuePa
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicIncUserStatItemValue",
 		Method:             "PATCH",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2728,7 +2728,7 @@ func (a *Client) PublicIncUserStatItemValueShort(params *PublicIncUserStatItemVa
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicIncUserStatItemValue",
 		Method:             "PATCH",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2776,7 +2776,7 @@ func (a *Client) PublicQueryUserStatItems(params *PublicQueryUserStatItemsParams
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicQueryUserStatItems",
 		Method:             "GET",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/statitems",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/statitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2813,7 +2813,7 @@ func (a *Client) PublicQueryUserStatItemsShort(params *PublicQueryUserStatItemsP
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicQueryUserStatItems",
 		Method:             "GET",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/statitems",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/statitems",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2860,7 +2860,7 @@ func (a *Client) ResetUserStatItemValue(params *ResetUserStatItemValueParams, au
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "resetUserStatItemValue",
 		Method:             "PUT",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2903,7 +2903,7 @@ func (a *Client) ResetUserStatItemValueShort(params *ResetUserStatItemValueParam
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "resetUserStatItemValue",
 		Method:             "PUT",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset",
+		PathPattern:        "/social/v1/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2954,7 +2954,7 @@ func (a *Client) ResetUserStatItemValue1(params *ResetUserStatItemValue1Params, 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "resetUserStatItemValue_1",
 		Method:             "PUT",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -2997,7 +2997,7 @@ func (a *Client) ResetUserStatItemValue1Short(params *ResetUserStatItemValue1Par
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "resetUserStatItemValue_1",
 		Method:             "PUT",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset",
+		PathPattern:        "/social/v1/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value/reset",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -3055,7 +3055,7 @@ func (a *Client) UpdateUserStatItemValue(params *UpdateUserStatItemValueParams, 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateUserStatItemValue",
 		Method:             "PUT",
-		PathPattern:        "/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
+		PathPattern:        "/social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -3104,7 +3104,7 @@ func (a *Client) UpdateUserStatItemValueShort(params *UpdateUserStatItemValuePar
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateUserStatItemValue",
 		Method:             "PUT",
-		PathPattern:        "/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
+		PathPattern:        "/social/v2/admin/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -3166,7 +3166,7 @@ func (a *Client) UpdateUserStatItemValue1(params *UpdateUserStatItemValue1Params
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateUserStatItemValue_1",
 		Method:             "PUT",
-		PathPattern:        "/v2/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
+		PathPattern:        "/social/v2/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -3215,7 +3215,7 @@ func (a *Client) UpdateUserStatItemValue1Short(params *UpdateUserStatItemValue1P
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateUserStatItemValue_1",
 		Method:             "PUT",
-		PathPattern:        "/v2/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
+		PathPattern:        "/social/v2/public/namespaces/{namespace}/users/{userId}/stats/{statCode}/statitems/value",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

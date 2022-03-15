@@ -37,7 +37,7 @@ func (o *PublicQueryUserSubscriptionsReader) ReadResponse(response runtime.Clien
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/users/{userId}/subscriptions returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/users/{userId}/subscriptions returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type PublicQueryUserSubscriptionsOK struct {
 }
 
 func (o *PublicQueryUserSubscriptionsOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicQueryUserSubscriptionsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicQueryUserSubscriptionsOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicQueryUserSubscriptionsOK) GetPayload() *platformclientmodels.SubscriptionPagingSlicedResult {

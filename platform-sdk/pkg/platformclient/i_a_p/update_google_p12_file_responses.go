@@ -37,7 +37,7 @@ func (o *UpdateGoogleP12FileReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/iap/config/google/cert returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/iap/config/google/cert returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type UpdateGoogleP12FileOK struct {
 }
 
 func (o *UpdateGoogleP12FileOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/iap/config/google/cert][%d] updateGoogleP12FileOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/iap/config/google/cert][%d] updateGoogleP12FileOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateGoogleP12FileOK) GetPayload() *platformclientmodels.GoogleIAPConfigInfo {

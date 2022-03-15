@@ -49,7 +49,7 @@ func (o *QueryRewardsReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/seasons/{seasonId}/rewards returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type QueryRewardsOK struct {
 }
 
 func (o *QueryRewardsOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] queryRewardsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] queryRewardsOK  %+v", 200, o.Payload)
 }
 
 func (o *QueryRewardsOK) GetPayload() []*seasonpassclientmodels.RewardInfo {
@@ -98,7 +98,7 @@ type QueryRewardsBadRequest struct {
 }
 
 func (o *QueryRewardsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] queryRewardsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] queryRewardsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *QueryRewardsBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -131,7 +131,7 @@ type QueryRewardsNotFound struct {
 }
 
 func (o *QueryRewardsNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] queryRewardsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/rewards][%d] queryRewardsNotFound  %+v", 404, o.Payload)
 }
 
 func (o *QueryRewardsNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {

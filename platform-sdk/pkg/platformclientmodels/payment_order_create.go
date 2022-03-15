@@ -44,6 +44,7 @@ type PaymentOrderCreate struct {
 	ItemType string `json:"itemType,omitempty"`
 
 	// language value from language tag, allowed format: en, en-US
+	// Pattern: ^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$
 	Language string `json:"language,omitempty"`
 
 	// metadata
@@ -53,7 +54,7 @@ type PaymentOrderCreate struct {
 	NotifyURL string `json:"notifyUrl,omitempty"`
 
 	// TEST PURPOSE, if set it will not send async notification to the API invoker, only can set true while this payment is sandbox
-	OmitNotification bool `json:"omitNotification,omitempty"`
+	OmitNotification bool `json:"omitNotification"`
 
 	// Price of order
 	// Required: true
@@ -69,7 +70,7 @@ type PaymentOrderCreate struct {
 	ReturnURL string `json:"returnUrl,omitempty"`
 
 	// TEST PURPOSE, sandbox(Active in real currency mode), default is false
-	Sandbox bool `json:"sandbox,omitempty"`
+	Sandbox bool `json:"sandbox"`
 
 	// optional, unique identity for the item
 	Sku string `json:"sku,omitempty"`
@@ -95,6 +96,10 @@ func (m *PaymentOrderCreate) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateItemType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLanguage(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -185,6 +190,19 @@ func (m *PaymentOrderCreate) validateItemType(formats strfmt.Registry) error {
 
 	// value enum
 	if err := m.validateItemTypeEnum("itemType", "body", m.ItemType); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *PaymentOrderCreate) validateLanguage(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Language) { // not required
+		return nil
+	}
+
+	if err := validate.Pattern("language", "body", string(m.Language), `^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$`); err != nil {
 		return err
 	}
 

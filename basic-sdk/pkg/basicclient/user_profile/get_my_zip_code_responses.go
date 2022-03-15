@@ -49,7 +49,7 @@ func (o *GetMyZipCodeReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /v1/public/namespaces/{namespace}/users/me/profiles/zipCode returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type GetMyZipCodeOK struct {
 }
 
 func (o *GetMyZipCodeOK) Error() string {
-	return fmt.Sprintf("[GET /v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] getMyZipCodeOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] getMyZipCodeOK  %+v", 200, o.Payload)
 }
 
 func (o *GetMyZipCodeOK) GetPayload() *basicclientmodels.UserZipCode {
@@ -100,7 +100,7 @@ type GetMyZipCodeUnauthorized struct {
 }
 
 func (o *GetMyZipCodeUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] getMyZipCodeUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] getMyZipCodeUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *GetMyZipCodeUnauthorized) GetPayload() *basicclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type GetMyZipCodeForbidden struct {
 }
 
 func (o *GetMyZipCodeForbidden) Error() string {
-	return fmt.Sprintf("[GET /v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] getMyZipCodeForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/public/namespaces/{namespace}/users/me/profiles/zipCode][%d] getMyZipCodeForbidden  %+v", 403, o.Payload)
 }
 
 func (o *GetMyZipCodeForbidden) GetPayload() *basicclientmodels.ErrorEntity {

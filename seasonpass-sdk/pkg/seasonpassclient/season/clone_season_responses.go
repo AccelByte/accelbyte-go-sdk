@@ -55,7 +55,7 @@ func (o *CloneSeasonReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/seasons/{seasonId}/clone returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/clone returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type CloneSeasonOK struct {
 }
 
 func (o *CloneSeasonOK) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/seasons/{seasonId}/clone][%d] cloneSeasonOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/clone][%d] cloneSeasonOK  %+v", 200, o.Payload)
 }
 
 func (o *CloneSeasonOK) GetPayload() *seasonpassclientmodels.SeasonInfo {
@@ -106,7 +106,7 @@ type CloneSeasonBadRequest struct {
 }
 
 func (o *CloneSeasonBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/seasons/{seasonId}/clone][%d] cloneSeasonBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/clone][%d] cloneSeasonBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CloneSeasonBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type CloneSeasonNotFound struct {
 }
 
 func (o *CloneSeasonNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/seasons/{seasonId}/clone][%d] cloneSeasonNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/clone][%d] cloneSeasonNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CloneSeasonNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -172,7 +172,7 @@ type CloneSeasonUnprocessableEntity struct {
 }
 
 func (o *CloneSeasonUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/seasons/{seasonId}/clone][%d] cloneSeasonUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/clone][%d] cloneSeasonUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CloneSeasonUnprocessableEntity) GetPayload() *seasonpassclientmodels.ValidationErrorEntity {

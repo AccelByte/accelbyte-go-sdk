@@ -37,7 +37,7 @@ func (o *ExistsAnyUserActiveEntitlementByItemIdsReader) ReadResponse(response ru
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/anyOf returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/anyOf returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type ExistsAnyUserActiveEntitlementByItemIdsOK struct {
 }
 
 func (o *ExistsAnyUserActiveEntitlementByItemIdsOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/anyOf][%d] existsAnyUserActiveEntitlementByItemIdsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/ownership/anyOf][%d] existsAnyUserActiveEntitlementByItemIdsOK  %+v", 200, o.Payload)
 }
 
 func (o *ExistsAnyUserActiveEntitlementByItemIdsOK) GetPayload() *platformclientmodels.Ownership {

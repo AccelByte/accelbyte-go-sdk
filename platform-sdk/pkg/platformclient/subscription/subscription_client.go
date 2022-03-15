@@ -89,7 +89,7 @@ func (a *Client) CancelSubscription(params *CancelSubscriptionParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "cancelSubscription",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -132,7 +132,7 @@ func (a *Client) CancelSubscriptionShort(params *CancelSubscriptionParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "cancelSubscription",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -178,7 +178,7 @@ func (a *Client) CheckUserSubscriptionSubscribableByItemID(params *CheckUserSubs
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "checkUserSubscriptionSubscribableByItemId",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/subscribable/byItemId",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/subscribable/byItemId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -215,7 +215,7 @@ func (a *Client) CheckUserSubscriptionSubscribableByItemIDShort(params *CheckUse
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "checkUserSubscriptionSubscribableByItemId",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/subscribable/byItemId",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/subscribable/byItemId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -257,7 +257,7 @@ func (a *Client) DeleteUserSubscription(params *DeleteUserSubscriptionParams, au
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteUserSubscription",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -294,7 +294,7 @@ func (a *Client) DeleteUserSubscriptionShort(params *DeleteUserSubscriptionParam
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteUserSubscription",
 		Method:             "DELETE",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -336,7 +336,7 @@ func (a *Client) GetUserSubscription(params *GetUserSubscriptionParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserSubscription",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -376,7 +376,7 @@ func (a *Client) GetUserSubscriptionShort(params *GetUserSubscriptionParams, aut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserSubscription",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -420,7 +420,7 @@ func (a *Client) GetUserSubscriptionActivities(params *GetUserSubscriptionActivi
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserSubscriptionActivities",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/activities",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/activities",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -457,7 +457,7 @@ func (a *Client) GetUserSubscriptionActivitiesShort(params *GetUserSubscriptionA
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserSubscriptionActivities",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/activities",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/activities",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -499,7 +499,7 @@ func (a *Client) GetUserSubscriptionBillingHistories(params *GetUserSubscription
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserSubscriptionBillingHistories",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/history",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/history",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -536,7 +536,7 @@ func (a *Client) GetUserSubscriptionBillingHistoriesShort(params *GetUserSubscri
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserSubscriptionBillingHistories",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/history",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/history",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -578,7 +578,7 @@ func (a *Client) GrantDaysToSubscription(params *GrantDaysToSubscriptionParams, 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "grantDaysToSubscription",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/grant",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/grant",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -618,7 +618,7 @@ func (a *Client) GrantDaysToSubscriptionShort(params *GrantDaysToSubscriptionPar
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "grantDaysToSubscription",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/grant",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/grant",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -662,7 +662,7 @@ func (a *Client) PlatformSubscribeSubscription(params *PlatformSubscribeSubscrip
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "platformSubscribeSubscription",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -711,7 +711,7 @@ func (a *Client) PlatformSubscribeSubscriptionShort(params *PlatformSubscribeSub
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "platformSubscribeSubscription",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/platformSubscribe",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -761,7 +761,7 @@ func (a *Client) ProcessUserSubscriptionNotification(params *ProcessUserSubscrip
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "processUserSubscriptionNotification",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/notifications",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/notifications",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -801,7 +801,7 @@ func (a *Client) ProcessUserSubscriptionNotificationShort(params *ProcessUserSub
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "processUserSubscriptionNotification",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/notifications",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/notifications",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -845,7 +845,7 @@ func (a *Client) PublicCancelSubscription(params *PublicCancelSubscriptionParams
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicCancelSubscription",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -888,7 +888,7 @@ func (a *Client) PublicCancelSubscriptionShort(params *PublicCancelSubscriptionP
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicCancelSubscription",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/cancel",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -934,7 +934,7 @@ func (a *Client) PublicChangeSubscriptionBillingAccount(params *PublicChangeSubs
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicChangeSubscriptionBillingAccount",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -980,7 +980,7 @@ func (a *Client) PublicChangeSubscriptionBillingAccountShort(params *PublicChang
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicChangeSubscriptionBillingAccount",
 		Method:             "PUT",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/billingAccount",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1028,7 +1028,7 @@ func (a *Client) PublicCheckUserSubscriptionSubscribableByItemID(params *PublicC
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicCheckUserSubscriptionSubscribableByItemId",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions/subscribable/byItemId",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/subscriptions/subscribable/byItemId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1065,7 +1065,7 @@ func (a *Client) PublicCheckUserSubscriptionSubscribableByItemIDShort(params *Pu
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicCheckUserSubscriptionSubscribableByItemId",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions/subscribable/byItemId",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/subscriptions/subscribable/byItemId",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1107,7 +1107,7 @@ func (a *Client) PublicGetUserSubscription(params *PublicGetUserSubscriptionPara
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserSubscription",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1147,7 +1147,7 @@ func (a *Client) PublicGetUserSubscriptionShort(params *PublicGetUserSubscriptio
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserSubscription",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1191,7 +1191,7 @@ func (a *Client) PublicGetUserSubscriptionBillingHistories(params *PublicGetUser
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserSubscriptionBillingHistories",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/history",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/history",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1228,7 +1228,7 @@ func (a *Client) PublicGetUserSubscriptionBillingHistoriesShort(params *PublicGe
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetUserSubscriptionBillingHistories",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/history",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/history",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1270,7 +1270,7 @@ func (a *Client) PublicQueryUserSubscriptions(params *PublicQueryUserSubscriptio
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicQueryUserSubscriptions",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/subscriptions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1307,7 +1307,7 @@ func (a *Client) PublicQueryUserSubscriptionsShort(params *PublicQueryUserSubscr
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicQueryUserSubscriptions",
 		Method:             "GET",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/subscriptions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1349,7 +1349,7 @@ func (a *Client) PublicSubscribeSubscription(params *PublicSubscribeSubscription
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicSubscribeSubscription",
 		Method:             "POST",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/subscriptions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1401,7 +1401,7 @@ func (a *Client) PublicSubscribeSubscriptionShort(params *PublicSubscribeSubscri
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicSubscribeSubscription",
 		Method:             "POST",
-		PathPattern:        "/public/namespaces/{namespace}/users/{userId}/subscriptions",
+		PathPattern:        "/platform/public/namespaces/{namespace}/users/{userId}/subscriptions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1453,7 +1453,7 @@ func (a *Client) QuerySubscriptions(params *QuerySubscriptionsParams, authInfo r
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "querySubscriptions",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/subscriptions",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/subscriptions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1490,7 +1490,7 @@ func (a *Client) QuerySubscriptionsShort(params *QuerySubscriptionsParams, authI
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "querySubscriptions",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/subscriptions",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/subscriptions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1532,7 +1532,7 @@ func (a *Client) QueryUserSubscriptions(params *QueryUserSubscriptionsParams, au
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryUserSubscriptions",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1569,7 +1569,7 @@ func (a *Client) QueryUserSubscriptionsShort(params *QueryUserSubscriptionsParam
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "queryUserSubscriptions",
 		Method:             "GET",
-		PathPattern:        "/admin/namespaces/{namespace}/users/{userId}/subscriptions",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/users/{userId}/subscriptions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1611,7 +1611,7 @@ func (a *Client) RecurringChargeSubscription(params *RecurringChargeSubscription
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "recurringChargeSubscription",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/subscriptions/{subscriptionId}/recurring",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/subscriptions/{subscriptionId}/recurring",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1648,7 +1648,7 @@ func (a *Client) RecurringChargeSubscriptionShort(params *RecurringChargeSubscri
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "recurringChargeSubscription",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/subscriptions/{subscriptionId}/recurring",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/subscriptions/{subscriptionId}/recurring",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

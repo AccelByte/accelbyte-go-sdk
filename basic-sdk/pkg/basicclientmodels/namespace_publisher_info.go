@@ -16,7 +16,7 @@ import (
 type NamespacePublisherInfo struct {
 
 	// inform whether the specified namespace is publisher namespace or not
-	Publisher bool `json:"publisher,omitempty"`
+	Publisher bool `json:"publisher"`
 
 	// name of publisher namespace
 	PublisherNamespace string `json:"publisherNamespace,omitempty"`

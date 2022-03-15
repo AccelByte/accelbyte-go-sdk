@@ -35,7 +35,7 @@ func (o *GetPaymentPublicConfigReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/payment/publicconfig returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/payment/publicconfig returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -53,7 +53,7 @@ type GetPaymentPublicConfigOK struct {
 }
 
 func (o *GetPaymentPublicConfigOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/payment/publicconfig][%d] getPaymentPublicConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/publicconfig][%d] getPaymentPublicConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *GetPaymentPublicConfigOK) GetPayload() map[string]interface{} {

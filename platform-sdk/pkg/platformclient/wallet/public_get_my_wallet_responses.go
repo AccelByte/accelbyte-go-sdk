@@ -37,7 +37,7 @@ func (o *PublicGetMyWalletReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/users/me/wallets/{currencyCode} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/users/me/wallets/{currencyCode} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type PublicGetMyWalletOK struct {
 }
 
 func (o *PublicGetMyWalletOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/me/wallets/{currencyCode}][%d] publicGetMyWalletOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/me/wallets/{currencyCode}][%d] publicGetMyWalletOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetMyWalletOK) GetPayload() *platformclientmodels.WalletInfo {

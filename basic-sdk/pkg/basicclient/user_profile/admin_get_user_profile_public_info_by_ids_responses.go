@@ -43,7 +43,7 @@ func (o *AdminGetUserProfilePublicInfoByIdsReader) ReadResponse(response runtime
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /v1/admin/namespaces/{namespace}/profiles/public returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /basic/v1/admin/namespaces/{namespace}/profiles/public returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type AdminGetUserProfilePublicInfoByIdsOK struct {
 }
 
 func (o *AdminGetUserProfilePublicInfoByIdsOK) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/profiles/public][%d] adminGetUserProfilePublicInfoByIdsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/profiles/public][%d] adminGetUserProfilePublicInfoByIdsOK  %+v", 200, o.Payload)
 }
 
 func (o *AdminGetUserProfilePublicInfoByIdsOK) GetPayload() []*basicclientmodels.UserProfilePublicInfo {
@@ -92,7 +92,7 @@ type AdminGetUserProfilePublicInfoByIdsBadRequest struct {
 }
 
 func (o *AdminGetUserProfilePublicInfoByIdsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/profiles/public][%d] adminGetUserProfilePublicInfoByIdsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/profiles/public][%d] adminGetUserProfilePublicInfoByIdsBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *AdminGetUserProfilePublicInfoByIdsBadRequest) GetPayload() *basicclientmodels.ValidationErrorEntity {

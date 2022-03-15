@@ -43,7 +43,7 @@ func (o *UpdateWxPayConfigCertReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/payment/config/merchant/{id}/wxpayconfig/cert returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/payment/config/merchant/{id}/wxpayconfig/cert returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type UpdateWxPayConfigCertOK struct {
 }
 
 func (o *UpdateWxPayConfigCertOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/payment/config/merchant/{id}/wxpayconfig/cert][%d] updateWxPayConfigCertOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/wxpayconfig/cert][%d] updateWxPayConfigCertOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateWxPayConfigCertOK) GetPayload() *platformclientmodels.PaymentMerchantConfigInfo {
@@ -94,7 +94,7 @@ type UpdateWxPayConfigCertNotFound struct {
 }
 
 func (o *UpdateWxPayConfigCertNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/payment/config/merchant/{id}/wxpayconfig/cert][%d] updateWxPayConfigCertNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/payment/config/merchant/{id}/wxpayconfig/cert][%d] updateWxPayConfigCertNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateWxPayConfigCertNotFound) GetPayload() *platformclientmodels.ErrorEntity {

@@ -55,7 +55,7 @@ func (o *PublicGetPaymentURLReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /public/namespaces/{namespace}/payment/link returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/public/namespaces/{namespace}/payment/link returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type PublicGetPaymentURLOK struct {
 }
 
 func (o *PublicGetPaymentURLOK) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/payment/link][%d] publicGetPaymentUrlOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/link][%d] publicGetPaymentUrlOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetPaymentURLOK) GetPayload() *platformclientmodels.PaymentURL {
@@ -106,7 +106,7 @@ type PublicGetPaymentURLBadRequest struct {
 }
 
 func (o *PublicGetPaymentURLBadRequest) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/payment/link][%d] publicGetPaymentUrlBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/link][%d] publicGetPaymentUrlBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicGetPaymentURLBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type PublicGetPaymentURLForbidden struct {
 }
 
 func (o *PublicGetPaymentURLForbidden) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/payment/link][%d] publicGetPaymentUrlForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/link][%d] publicGetPaymentUrlForbidden  %+v", 403, o.Payload)
 }
 
 func (o *PublicGetPaymentURLForbidden) GetPayload() *platformclientmodels.ErrorEntity {
@@ -172,7 +172,7 @@ type PublicGetPaymentURLNotFound struct {
 }
 
 func (o *PublicGetPaymentURLNotFound) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/payment/link][%d] publicGetPaymentUrlNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/payment/link][%d] publicGetPaymentUrlNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicGetPaymentURLNotFound) GetPayload() *platformclientmodels.ErrorEntity {

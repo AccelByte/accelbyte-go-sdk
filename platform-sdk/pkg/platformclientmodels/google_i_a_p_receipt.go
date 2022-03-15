@@ -18,9 +18,10 @@ import (
 type GoogleIAPReceipt struct {
 
 	// If invoke Google play's Acknowledge after sync an durable item
-	AutoAck bool `json:"autoAck,omitempty"`
+	AutoAck bool `json:"autoAck"`
 
 	// language value from language tag, allowed format: en, en-US
+	// Pattern: ^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$
 	Language string `json:"language,omitempty"`
 
 	// OrderId returned from google play
@@ -51,6 +52,10 @@ type GoogleIAPReceipt struct {
 func (m *GoogleIAPReceipt) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateLanguage(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateOrderID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -74,6 +79,19 @@ func (m *GoogleIAPReceipt) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GoogleIAPReceipt) validateLanguage(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Language) { // not required
+		return nil
+	}
+
+	if err := validate.Pattern("language", "body", string(m.Language), `^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$`); err != nil {
+		return err
+	}
+
 	return nil
 }
 

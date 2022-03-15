@@ -49,7 +49,7 @@ func (o *PublicGetUnpaidPaymentOrderReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type PublicGetUnpaidPaymentOrderOK struct {
 }
 
 func (o *PublicGetUnpaidPaymentOrderOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info][%d] publicGetUnpaidPaymentOrderOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info][%d] publicGetUnpaidPaymentOrderOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicGetUnpaidPaymentOrderOK) GetPayload() *platformclientmodels.PaymentOrderDetails {
@@ -100,7 +100,7 @@ type PublicGetUnpaidPaymentOrderNotFound struct {
 }
 
 func (o *PublicGetUnpaidPaymentOrderNotFound) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info][%d] publicGetUnpaidPaymentOrderNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info][%d] publicGetUnpaidPaymentOrderNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicGetUnpaidPaymentOrderNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type PublicGetUnpaidPaymentOrderConflict struct {
 }
 
 func (o *PublicGetUnpaidPaymentOrderConflict) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info][%d] publicGetUnpaidPaymentOrderConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/payment/orders/{paymentOrderNo}/info][%d] publicGetUnpaidPaymentOrderConflict  %+v", 409, o.Payload)
 }
 
 func (o *PublicGetUnpaidPaymentOrderConflict) GetPayload() *platformclientmodels.ErrorEntity {

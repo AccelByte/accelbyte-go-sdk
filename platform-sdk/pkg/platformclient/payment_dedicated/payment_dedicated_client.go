@@ -99,7 +99,7 @@ func (a *Client) CreatePaymentOrderByDedicated(params *CreatePaymentOrderByDedic
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createPaymentOrderByDedicated",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/payment/orders",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -151,7 +151,7 @@ func (a *Client) CreatePaymentOrderByDedicatedShort(params *CreatePaymentOrderBy
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createPaymentOrderByDedicated",
 		Method:             "POST",
-		PathPattern:        "/admin/namespaces/{namespace}/payment/orders",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -235,7 +235,7 @@ func (a *Client) RefundPaymentOrderByDedicated(params *RefundPaymentOrderByDedic
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "refundPaymentOrderByDedicated",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/refund",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/refund",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -284,7 +284,7 @@ func (a *Client) RefundPaymentOrderByDedicatedShort(params *RefundPaymentOrderBy
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "refundPaymentOrderByDedicated",
 		Method:             "PUT",
-		PathPattern:        "/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/refund",
+		PathPattern:        "/platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/refund",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -334,7 +334,7 @@ func (a *Client) SyncPaymentOrders(params *SyncPaymentOrdersParams, authInfo run
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncPaymentOrders",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/orders",
+		PathPattern:        "/platform/admin/payment/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -371,7 +371,7 @@ func (a *Client) SyncPaymentOrdersShort(params *SyncPaymentOrdersParams, authInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "syncPaymentOrders",
 		Method:             "GET",
-		PathPattern:        "/admin/payment/orders",
+		PathPattern:        "/platform/admin/payment/orders",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

@@ -67,7 +67,7 @@ func (o *CreatePaymentOrderByDedicatedReader) ReadResponse(response runtime.Clie
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/payment/orders returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/admin/namespaces/{namespace}/payment/orders returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -85,7 +85,7 @@ type CreatePaymentOrderByDedicatedCreated struct {
 }
 
 func (o *CreatePaymentOrderByDedicatedCreated) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreatePaymentOrderByDedicatedCreated) GetPayload() *platformclientmodels.PaymentOrderCreateResult {
@@ -118,7 +118,7 @@ type CreatePaymentOrderByDedicatedBadRequest struct {
 }
 
 func (o *CreatePaymentOrderByDedicatedBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreatePaymentOrderByDedicatedBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -151,7 +151,7 @@ type CreatePaymentOrderByDedicatedForbidden struct {
 }
 
 func (o *CreatePaymentOrderByDedicatedForbidden) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedForbidden  %+v", 403, o.Payload)
 }
 
 func (o *CreatePaymentOrderByDedicatedForbidden) GetPayload() *platformclientmodels.ErrorEntity {
@@ -184,7 +184,7 @@ type CreatePaymentOrderByDedicatedNotFound struct {
 }
 
 func (o *CreatePaymentOrderByDedicatedNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreatePaymentOrderByDedicatedNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -217,7 +217,7 @@ type CreatePaymentOrderByDedicatedConflict struct {
 }
 
 func (o *CreatePaymentOrderByDedicatedConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreatePaymentOrderByDedicatedConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -250,7 +250,7 @@ type CreatePaymentOrderByDedicatedUnprocessableEntity struct {
 }
 
 func (o *CreatePaymentOrderByDedicatedUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/payment/orders][%d] createPaymentOrderByDedicatedUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreatePaymentOrderByDedicatedUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

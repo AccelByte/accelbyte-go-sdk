@@ -17,6 +17,9 @@ import (
 // swagger:model models.ConfigExport
 type ModelsConfigExport struct {
 
+	// allow invite non connected user
+	AllowInviteNonConnectedUser bool `json:"allowInviteNonConnectedUser"`
+
 	// auto kick on disconnect
 	// Required: true
 	AutoKickOnDisconnect *bool `json:"autoKickOnDisconnect"`

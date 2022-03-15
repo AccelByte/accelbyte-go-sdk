@@ -37,7 +37,7 @@ func (o *RetrieveAllLegalPoliciesReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/base-policies returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /agreement/admin/base-policies returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type RetrieveAllLegalPoliciesOK struct {
 }
 
 func (o *RetrieveAllLegalPoliciesOK) Error() string {
-	return fmt.Sprintf("[GET /admin/base-policies][%d] retrieveAllLegalPoliciesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /agreement/admin/base-policies][%d] retrieveAllLegalPoliciesOK  %+v", 200, o.Payload)
 }
 
 func (o *RetrieveAllLegalPoliciesOK) GetPayload() []*legalclientmodels.RetrieveBasePolicyResponse {

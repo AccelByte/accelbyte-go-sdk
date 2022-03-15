@@ -40,7 +40,7 @@ func (o *ProcessUserSubscriptionNotificationReader) ReadResponse(response runtim
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/notifications returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/notifications returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -57,7 +57,7 @@ type ProcessUserSubscriptionNotificationNoContent struct {
 }
 
 func (o *ProcessUserSubscriptionNotificationNoContent) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/notifications][%d] processUserSubscriptionNotificationNoContent ", 204)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/notifications][%d] processUserSubscriptionNotificationNoContent ", 204)
 }
 
 func (o *ProcessUserSubscriptionNotificationNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -78,7 +78,7 @@ type ProcessUserSubscriptionNotificationBadRequest struct {
 }
 
 func (o *ProcessUserSubscriptionNotificationBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/notifications][%d] processUserSubscriptionNotificationBadRequest ", 400)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/users/{userId}/subscriptions/{subscriptionId}/notifications][%d] processUserSubscriptionNotificationBadRequest ", 400)
 }
 
 func (o *ProcessUserSubscriptionNotificationBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

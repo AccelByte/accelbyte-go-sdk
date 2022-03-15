@@ -55,7 +55,7 @@ func (o *PublicClaimUserRewardReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /public/namespaces/{namespace}/users/{userId}/seasons/current/rewards returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type PublicClaimUserRewardOK struct {
 }
 
 func (o *PublicClaimUserRewardOK) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/users/{userId}/seasons/current/rewards][%d] publicClaimUserRewardOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards][%d] publicClaimUserRewardOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicClaimUserRewardOK) GetPayload() *seasonpassclientmodels.ClaimableRewards {
@@ -106,7 +106,7 @@ type PublicClaimUserRewardBadRequest struct {
 }
 
 func (o *PublicClaimUserRewardBadRequest) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/users/{userId}/seasons/current/rewards][%d] publicClaimUserRewardBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards][%d] publicClaimUserRewardBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicClaimUserRewardBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type PublicClaimUserRewardNotFound struct {
 }
 
 func (o *PublicClaimUserRewardNotFound) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/users/{userId}/seasons/current/rewards][%d] publicClaimUserRewardNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards][%d] publicClaimUserRewardNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicClaimUserRewardNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -172,7 +172,7 @@ type PublicClaimUserRewardConflict struct {
 }
 
 func (o *PublicClaimUserRewardConflict) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/users/{userId}/seasons/current/rewards][%d] publicClaimUserRewardConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards][%d] publicClaimUserRewardConflict  %+v", 409, o.Payload)
 }
 
 func (o *PublicClaimUserRewardConflict) GetPayload() *seasonpassclientmodels.ErrorEntity {

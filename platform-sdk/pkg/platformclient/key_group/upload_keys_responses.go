@@ -49,7 +49,7 @@ func (o *UploadKeysReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -67,7 +67,7 @@ type UploadKeysOK struct {
 }
 
 func (o *UploadKeysOK) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys][%d] uploadKeysOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys][%d] uploadKeysOK  %+v", 200, o.Payload)
 }
 
 func (o *UploadKeysOK) GetPayload() *platformclientmodels.BulkOperationResult {
@@ -100,7 +100,7 @@ type UploadKeysBadRequest struct {
 }
 
 func (o *UploadKeysBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys][%d] uploadKeysBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys][%d] uploadKeysBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *UploadKeysBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -133,7 +133,7 @@ type UploadKeysNotFound struct {
 }
 
 func (o *UploadKeysNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys][%d] uploadKeysNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys][%d] uploadKeysNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UploadKeysNotFound) GetPayload() *platformclientmodels.ErrorEntity {

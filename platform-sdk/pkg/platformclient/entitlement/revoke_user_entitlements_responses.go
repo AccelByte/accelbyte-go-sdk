@@ -37,7 +37,7 @@ func (o *RevokeUserEntitlementsReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/users/{userId}/entitlements/revoke/byIds returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/revoke/byIds returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type RevokeUserEntitlementsOK struct {
 }
 
 func (o *RevokeUserEntitlementsOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/entitlements/revoke/byIds][%d] revokeUserEntitlementsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/revoke/byIds][%d] revokeUserEntitlementsOK  %+v", 200, o.Payload)
 }
 
 func (o *RevokeUserEntitlementsOK) GetPayload() *platformclientmodels.BulkOperationResult {

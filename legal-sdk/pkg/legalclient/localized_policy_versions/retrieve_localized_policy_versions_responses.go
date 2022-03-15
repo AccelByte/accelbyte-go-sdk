@@ -37,7 +37,7 @@ func (o *RetrieveLocalizedPolicyVersionsReader) ReadResponse(response runtime.Cl
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/localized-policy-versions/versions/{policyVersionId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /agreement/admin/localized-policy-versions/versions/{policyVersionId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type RetrieveLocalizedPolicyVersionsOK struct {
 }
 
 func (o *RetrieveLocalizedPolicyVersionsOK) Error() string {
-	return fmt.Sprintf("[GET /admin/localized-policy-versions/versions/{policyVersionId}][%d] retrieveLocalizedPolicyVersionsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /agreement/admin/localized-policy-versions/versions/{policyVersionId}][%d] retrieveLocalizedPolicyVersionsOK  %+v", 200, o.Payload)
 }
 
 func (o *RetrieveLocalizedPolicyVersionsOK) GetPayload() []*legalclientmodels.RetrieveLocalizedPolicyVersionResponse {

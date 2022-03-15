@@ -16,7 +16,7 @@ import (
 type LegalReadinessStatusResponse struct {
 
 	// is ready
-	IsReady bool `json:"isReady,omitempty"`
+	IsReady bool `json:"isReady"`
 }
 
 // Validate validates this legal readiness status response

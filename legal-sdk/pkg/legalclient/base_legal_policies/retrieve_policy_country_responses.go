@@ -43,7 +43,7 @@ func (o *RetrievePolicyCountryReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/base-policies/{basePolicyId}/countries/{countryCode} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /agreement/admin/base-policies/{basePolicyId}/countries/{countryCode} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type RetrievePolicyCountryOK struct {
 }
 
 func (o *RetrievePolicyCountryOK) Error() string {
-	return fmt.Sprintf("[GET /admin/base-policies/{basePolicyId}/countries/{countryCode}][%d] retrievePolicyCountryOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /agreement/admin/base-policies/{basePolicyId}/countries/{countryCode}][%d] retrievePolicyCountryOK  %+v", 200, o.Payload)
 }
 
 func (o *RetrievePolicyCountryOK) GetPayload() *legalclientmodels.RetrievePolicyResponse {
@@ -94,7 +94,7 @@ type RetrievePolicyCountryNotFound struct {
 }
 
 func (o *RetrievePolicyCountryNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/base-policies/{basePolicyId}/countries/{countryCode}][%d] retrievePolicyCountryNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /agreement/admin/base-policies/{basePolicyId}/countries/{countryCode}][%d] retrievePolicyCountryNotFound  %+v", 404, o.Payload)
 }
 
 func (o *RetrievePolicyCountryNotFound) GetPayload() *legalclientmodels.ErrorEntity {

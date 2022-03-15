@@ -37,7 +37,7 @@ func (o *GetPaymentTaxConfigReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/payment/config/tax returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/payment/config/tax returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type GetPaymentTaxConfigOK struct {
 }
 
 func (o *GetPaymentTaxConfigOK) Error() string {
-	return fmt.Sprintf("[GET /admin/payment/config/tax][%d] getPaymentTaxConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/tax][%d] getPaymentTaxConfigOK  %+v", 200, o.Payload)
 }
 
 func (o *GetPaymentTaxConfigOK) GetPayload() *platformclientmodels.PaymentTaxConfigInfo {

@@ -23,6 +23,9 @@ type ModelRoleCreateV3Request struct {
 	// Required: true
 	AdminRole *bool `json:"adminRole"`
 
+	// deletable
+	Deletable bool `json:"deletable"`
+
 	// is wildcard
 	// Required: true
 	IsWildcard *bool `json:"isWildcard"`

@@ -65,7 +65,7 @@ func (a *Client) BanUsers(params *BanUsersParams, authInfo runtime.ClientAuthInf
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "banUsers",
 		Method:             "POST",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/actions/ban",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/actions/ban",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -111,7 +111,7 @@ func (a *Client) BanUsersShort(params *BanUsersParams, authInfo runtime.ClientAu
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "banUsers",
 		Method:             "POST",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/actions/ban",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/actions/ban",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -159,7 +159,7 @@ func (a *Client) GetActions(params *GetActionsParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getActions",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/actions",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/actions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -205,7 +205,7 @@ func (a *Client) GetActionsShort(params *GetActionsParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getActions",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/actions",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/actions",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -253,7 +253,7 @@ func (a *Client) GetBannedUsers(params *GetBannedUsersParams, authInfo runtime.C
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getBannedUsers",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/actions/banned",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/actions/banned",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -302,7 +302,7 @@ func (a *Client) GetBannedUsersShort(params *GetBannedUsersParams, authInfo runt
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getBannedUsers",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/actions/banned",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/actions/banned",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -352,7 +352,7 @@ func (a *Client) GetUserStatus(params *GetUserStatusParams, authInfo runtime.Cli
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserStatus",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/actions/status",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/actions/status",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -401,7 +401,7 @@ func (a *Client) GetUserStatusShort(params *GetUserStatusParams, authInfo runtim
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUserStatus",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/actions/status",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/actions/status",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -451,7 +451,7 @@ func (a *Client) PublicReportUser(params *PublicReportUserParams, authInfo runti
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicReportUser",
 		Method:             "POST",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/actions/report",
+		PathPattern:        "/basic/v1/public/namespaces/{namespace}/users/{userId}/actions/report",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -491,7 +491,7 @@ func (a *Client) PublicReportUserShort(params *PublicReportUserParams, authInfo 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicReportUser",
 		Method:             "POST",
-		PathPattern:        "/v1/public/namespaces/{namespace}/users/{userId}/actions/report",
+		PathPattern:        "/basic/v1/public/namespaces/{namespace}/users/{userId}/actions/report",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -535,7 +535,7 @@ func (a *Client) ReportUser(params *ReportUserParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "reportUser",
 		Method:             "POST",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/actions/report",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/actions/report",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -572,7 +572,7 @@ func (a *Client) ReportUserShort(params *ReportUserParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "reportUser",
 		Method:             "POST",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/actions/report",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/actions/report",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -614,7 +614,7 @@ func (a *Client) UnBanUsers(params *UnBanUsersParams, authInfo runtime.ClientAut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "unBanUsers",
 		Method:             "POST",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/actions/unban",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/actions/unban",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -660,7 +660,7 @@ func (a *Client) UnBanUsersShort(params *UnBanUsersParams, authInfo runtime.Clie
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "unBanUsers",
 		Method:             "POST",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/actions/unban",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/actions/unban",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

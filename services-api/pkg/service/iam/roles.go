@@ -502,7 +502,7 @@ func (r *RolesService) AdminDeleteRoleV3(input *roles.AdminDeleteRoleV3Params) e
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := r.Client.Roles.AdminDeleteRoleV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := r.Client.Roles.AdminDeleteRoleV3(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -514,6 +514,9 @@ func (r *RolesService) AdminDeleteRoleV3(input *roles.AdminDeleteRoleV3Params) e
 	}
 	if notFound != nil {
 		return notFound
+	}
+	if conflict != nil {
+		return conflict
 	}
 	if internalServerError != nil {
 		return internalServerError

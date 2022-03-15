@@ -37,7 +37,7 @@ func (o *ReportUserReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /v1/admin/namespaces/{namespace}/actions/report returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /basic/v1/admin/namespaces/{namespace}/actions/report returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type ReportUserUnprocessableEntity struct {
 }
 
 func (o *ReportUserUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /v1/admin/namespaces/{namespace}/actions/report][%d] reportUserUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/report][%d] reportUserUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *ReportUserUnprocessableEntity) GetPayload() *basicclientmodels.ValidationErrorEntity {

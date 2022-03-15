@@ -34,7 +34,7 @@ func (o *AcceptVersionedPolicyReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /public/agreements/localized-policy-versions/{localizedPolicyVersionId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /agreement/public/agreements/localized-policy-versions/{localizedPolicyVersionId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -51,7 +51,7 @@ type AcceptVersionedPolicyCreated struct {
 }
 
 func (o *AcceptVersionedPolicyCreated) Error() string {
-	return fmt.Sprintf("[POST /public/agreements/localized-policy-versions/{localizedPolicyVersionId}][%d] acceptVersionedPolicyCreated ", 201)
+	return fmt.Sprintf("[POST /agreement/public/agreements/localized-policy-versions/{localizedPolicyVersionId}][%d] acceptVersionedPolicyCreated ", 201)
 }
 
 func (o *AcceptVersionedPolicyCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

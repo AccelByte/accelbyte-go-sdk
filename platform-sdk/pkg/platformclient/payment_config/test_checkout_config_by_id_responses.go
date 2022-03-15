@@ -43,7 +43,7 @@ func (o *TestCheckoutConfigByIDReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/payment/config/merchant/{id}/checkoutconfig/test returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/payment/config/merchant/{id}/checkoutconfig/test returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -61,7 +61,7 @@ type TestCheckoutConfigByIDOK struct {
 }
 
 func (o *TestCheckoutConfigByIDOK) Error() string {
-	return fmt.Sprintf("[GET /admin/payment/config/merchant/{id}/checkoutconfig/test][%d] testCheckoutConfigByIdOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/checkoutconfig/test][%d] testCheckoutConfigByIdOK  %+v", 200, o.Payload)
 }
 
 func (o *TestCheckoutConfigByIDOK) GetPayload() *platformclientmodels.TestResult {
@@ -94,7 +94,7 @@ type TestCheckoutConfigByIDNotFound struct {
 }
 
 func (o *TestCheckoutConfigByIDNotFound) Error() string {
-	return fmt.Sprintf("[GET /admin/payment/config/merchant/{id}/checkoutconfig/test][%d] testCheckoutConfigByIdNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/payment/config/merchant/{id}/checkoutconfig/test][%d] testCheckoutConfigByIdNotFound  %+v", 404, o.Payload)
 }
 
 func (o *TestCheckoutConfigByIDNotFound) GetPayload() *platformclientmodels.ErrorEntity {

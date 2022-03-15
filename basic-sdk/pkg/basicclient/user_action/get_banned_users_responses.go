@@ -61,7 +61,7 @@ func (o *GetBannedUsersReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /v1/admin/namespaces/{namespace}/actions/banned returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /basic/v1/admin/namespaces/{namespace}/actions/banned returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type GetBannedUsersOK struct {
 }
 
 func (o *GetBannedUsersOK) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersOK  %+v", 200, o.Payload)
 }
 
 func (o *GetBannedUsersOK) GetPayload() []*basicclientmodels.ADTOObjectForEqu8UserBanStatus {
@@ -110,7 +110,7 @@ type GetBannedUsersBadRequest struct {
 }
 
 func (o *GetBannedUsersBadRequest) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *GetBannedUsersBadRequest) GetPayload() *basicclientmodels.ErrorEntity {
@@ -143,7 +143,7 @@ type GetBannedUsersNotFound struct {
 }
 
 func (o *GetBannedUsersNotFound) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetBannedUsersNotFound) GetPayload() *basicclientmodels.ErrorEntity {
@@ -176,7 +176,7 @@ type GetBannedUsersUnprocessableEntity struct {
 }
 
 func (o *GetBannedUsersUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *GetBannedUsersUnprocessableEntity) GetPayload() *basicclientmodels.ValidationErrorEntity {
@@ -209,7 +209,7 @@ type GetBannedUsersInternalServerError struct {
 }
 
 func (o *GetBannedUsersInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /basic/v1/admin/namespaces/{namespace}/actions/banned][%d] getBannedUsersInternalServerError  %+v", 500, o.Payload)
 }
 
 func (o *GetBannedUsersInternalServerError) GetPayload() *basicclientmodels.ErrorEntity {

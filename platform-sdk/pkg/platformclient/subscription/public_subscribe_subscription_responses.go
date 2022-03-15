@@ -67,7 +67,7 @@ func (o *PublicSubscribeSubscriptionReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /public/namespaces/{namespace}/users/{userId}/subscriptions returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -84,7 +84,7 @@ type PublicSubscribeSubscriptionCreated struct {
 }
 
 func (o *PublicSubscribeSubscriptionCreated) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionCreated ", 201)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionCreated ", 201)
 }
 
 func (o *PublicSubscribeSubscriptionCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -106,7 +106,7 @@ type PublicSubscribeSubscriptionBadRequest struct {
 }
 
 func (o *PublicSubscribeSubscriptionBadRequest) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *PublicSubscribeSubscriptionBadRequest) GetPayload() *platformclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type PublicSubscribeSubscriptionForbidden struct {
 }
 
 func (o *PublicSubscribeSubscriptionForbidden) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionForbidden  %+v", 403, o.Payload)
 }
 
 func (o *PublicSubscribeSubscriptionForbidden) GetPayload() *platformclientmodels.ErrorEntity {
@@ -172,7 +172,7 @@ type PublicSubscribeSubscriptionNotFound struct {
 }
 
 func (o *PublicSubscribeSubscriptionNotFound) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionNotFound  %+v", 404, o.Payload)
 }
 
 func (o *PublicSubscribeSubscriptionNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -205,7 +205,7 @@ type PublicSubscribeSubscriptionConflict struct {
 }
 
 func (o *PublicSubscribeSubscriptionConflict) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionConflict  %+v", 409, o.Payload)
 }
 
 func (o *PublicSubscribeSubscriptionConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -238,7 +238,7 @@ type PublicSubscribeSubscriptionUnprocessableEntity struct {
 }
 
 func (o *PublicSubscribeSubscriptionUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /platform/public/namespaces/{namespace}/users/{userId}/subscriptions][%d] publicSubscribeSubscriptionUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *PublicSubscribeSubscriptionUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

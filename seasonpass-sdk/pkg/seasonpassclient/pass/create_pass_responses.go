@@ -61,7 +61,7 @@ func (o *CreatePassReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested POST /admin/namespaces/{namespace}/seasons/{seasonId}/passes returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -79,7 +79,7 @@ type CreatePassCreated struct {
 }
 
 func (o *CreatePassCreated) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/seasons/{seasonId}/passes][%d] createPassCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes][%d] createPassCreated  %+v", 201, o.Payload)
 }
 
 func (o *CreatePassCreated) GetPayload() *seasonpassclientmodels.PassInfo {
@@ -112,7 +112,7 @@ type CreatePassBadRequest struct {
 }
 
 func (o *CreatePassBadRequest) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/seasons/{seasonId}/passes][%d] createPassBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes][%d] createPassBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CreatePassBadRequest) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -145,7 +145,7 @@ type CreatePassNotFound struct {
 }
 
 func (o *CreatePassNotFound) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/seasons/{seasonId}/passes][%d] createPassNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes][%d] createPassNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CreatePassNotFound) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -178,7 +178,7 @@ type CreatePassConflict struct {
 }
 
 func (o *CreatePassConflict) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/seasons/{seasonId}/passes][%d] createPassConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes][%d] createPassConflict  %+v", 409, o.Payload)
 }
 
 func (o *CreatePassConflict) GetPayload() *seasonpassclientmodels.ErrorEntity {
@@ -211,7 +211,7 @@ type CreatePassUnprocessableEntity struct {
 }
 
 func (o *CreatePassUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /admin/namespaces/{namespace}/seasons/{seasonId}/passes][%d] createPassUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /seasonpass/admin/namespaces/{namespace}/seasons/{seasonId}/passes][%d] createPassUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CreatePassUnprocessableEntity) GetPayload() *seasonpassclientmodels.ValidationErrorEntity {

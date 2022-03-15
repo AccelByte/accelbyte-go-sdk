@@ -37,7 +37,7 @@ func (o *PublicListUserWalletTransactionsReader) ReadResponse(response runtime.C
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /public/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/transactions returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/public/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/transactions returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type PublicListUserWalletTransactionsOK struct {
 }
 
 func (o *PublicListUserWalletTransactionsOK) Error() string {
-	return fmt.Sprintf("[GET /public/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/transactions][%d] publicListUserWalletTransactionsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/public/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/transactions][%d] publicListUserWalletTransactionsOK  %+v", 200, o.Payload)
 }
 
 func (o *PublicListUserWalletTransactionsOK) GetPayload() *platformclientmodels.WalletTransactionPagingSlicedResult {

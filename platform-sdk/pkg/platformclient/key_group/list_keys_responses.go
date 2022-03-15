@@ -37,7 +37,7 @@ func (o *ListKeysReader) ReadResponse(response runtime.ClientResponse, consumer 
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested GET /admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -55,7 +55,7 @@ type ListKeysOK struct {
 }
 
 func (o *ListKeysOK) Error() string {
-	return fmt.Sprintf("[GET /admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys][%d] listKeysOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /platform/admin/namespaces/{namespace}/keygroups/{keyGroupId}/keys][%d] listKeysOK  %+v", 200, o.Payload)
 }
 
 func (o *ListKeysOK) GetPayload() *platformclientmodels.KeyPagingSliceResult {

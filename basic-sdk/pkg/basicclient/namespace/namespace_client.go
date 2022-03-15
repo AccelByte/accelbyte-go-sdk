@@ -69,7 +69,7 @@ func (a *Client) ChangeNamespaceStatus(params *ChangeNamespaceStatusParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "changeNamespaceStatus",
 		Method:             "PATCH",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/status",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/status",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -121,7 +121,7 @@ func (a *Client) ChangeNamespaceStatusShort(params *ChangeNamespaceStatusParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "changeNamespaceStatus",
 		Method:             "PATCH",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/status",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/status",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -173,7 +173,7 @@ func (a *Client) CreateNamespace(params *CreateNamespaceParams, authInfo runtime
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createNamespace",
 		Method:             "POST",
-		PathPattern:        "/v1/admin/namespaces",
+		PathPattern:        "/basic/v1/admin/namespaces",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -222,7 +222,7 @@ func (a *Client) CreateNamespaceShort(params *CreateNamespaceParams, authInfo ru
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "createNamespace",
 		Method:             "POST",
-		PathPattern:        "/v1/admin/namespaces",
+		PathPattern:        "/basic/v1/admin/namespaces",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -272,7 +272,7 @@ func (a *Client) DeleteNamespace(params *DeleteNamespaceParams, authInfo runtime
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteNamespace",
 		Method:             "DELETE",
-		PathPattern:        "/v1/admin/namespaces/{namespace}",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -324,7 +324,7 @@ func (a *Client) DeleteNamespaceShort(params *DeleteNamespaceParams, authInfo ru
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteNamespace",
 		Method:             "DELETE",
-		PathPattern:        "/v1/admin/namespaces/{namespace}",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -376,7 +376,7 @@ func (a *Client) GetNamespace(params *GetNamespaceParams, authInfo runtime.Clien
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getNamespace",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -425,7 +425,7 @@ func (a *Client) GetNamespaceShort(params *GetNamespaceParams, authInfo runtime.
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getNamespace",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -475,7 +475,7 @@ func (a *Client) GetNamespacePublisher(params *GetNamespacePublisherParams, auth
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getNamespacePublisher",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/publisher",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/publisher",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -524,7 +524,7 @@ func (a *Client) GetNamespacePublisherShort(params *GetNamespacePublisherParams,
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getNamespacePublisher",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/publisher",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/publisher",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -574,7 +574,7 @@ func (a *Client) GetNamespaces(params *GetNamespacesParams, authInfo runtime.Cli
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getNamespaces",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces",
+		PathPattern:        "/basic/v1/admin/namespaces",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -617,7 +617,7 @@ func (a *Client) GetNamespacesShort(params *GetNamespacesParams, authInfo runtim
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getNamespaces",
 		Method:             "GET",
-		PathPattern:        "/v1/admin/namespaces",
+		PathPattern:        "/basic/v1/admin/namespaces",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -663,7 +663,7 @@ func (a *Client) PublicGetNamespacePublisher(params *PublicGetNamespacePublisher
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetNamespacePublisher",
 		Method:             "GET",
-		PathPattern:        "/v1/public/namespaces/{namespace}/publisher",
+		PathPattern:        "/basic/v1/public/namespaces/{namespace}/publisher",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -712,7 +712,7 @@ func (a *Client) PublicGetNamespacePublisherShort(params *PublicGetNamespacePubl
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetNamespacePublisher",
 		Method:             "GET",
-		PathPattern:        "/v1/public/namespaces/{namespace}/publisher",
+		PathPattern:        "/basic/v1/public/namespaces/{namespace}/publisher",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -762,7 +762,7 @@ func (a *Client) PublicGetNamespaces(params *PublicGetNamespacesParams, authInfo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetNamespaces",
 		Method:             "GET",
-		PathPattern:        "/v1/public/namespaces",
+		PathPattern:        "/basic/v1/public/namespaces",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -802,7 +802,7 @@ func (a *Client) PublicGetNamespacesShort(params *PublicGetNamespacesParams, aut
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "publicGetNamespaces",
 		Method:             "GET",
-		PathPattern:        "/v1/public/namespaces",
+		PathPattern:        "/basic/v1/public/namespaces",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -846,7 +846,7 @@ func (a *Client) UpdateNamespace(params *UpdateNamespaceParams, authInfo runtime
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateNamespace",
 		Method:             "PATCH",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/basic",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/basic",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -898,7 +898,7 @@ func (a *Client) UpdateNamespaceShort(params *UpdateNamespaceParams, authInfo ru
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateNamespace",
 		Method:             "PATCH",
-		PathPattern:        "/v1/admin/namespaces/{namespace}/basic",
+		PathPattern:        "/basic/v1/admin/namespaces/{namespace}/basic",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

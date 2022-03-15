@@ -55,7 +55,7 @@ func (o *UpdateUserEntitlementReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PUT /admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId} returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -73,7 +73,7 @@ type UpdateUserEntitlementOK struct {
 }
 
 func (o *UpdateUserEntitlementOK) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}][%d] updateUserEntitlementOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}][%d] updateUserEntitlementOK  %+v", 200, o.Payload)
 }
 
 func (o *UpdateUserEntitlementOK) GetPayload() *platformclientmodels.EntitlementInfo {
@@ -106,7 +106,7 @@ type UpdateUserEntitlementNotFound struct {
 }
 
 func (o *UpdateUserEntitlementNotFound) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}][%d] updateUserEntitlementNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}][%d] updateUserEntitlementNotFound  %+v", 404, o.Payload)
 }
 
 func (o *UpdateUserEntitlementNotFound) GetPayload() *platformclientmodels.ErrorEntity {
@@ -139,7 +139,7 @@ type UpdateUserEntitlementConflict struct {
 }
 
 func (o *UpdateUserEntitlementConflict) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}][%d] updateUserEntitlementConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}][%d] updateUserEntitlementConflict  %+v", 409, o.Payload)
 }
 
 func (o *UpdateUserEntitlementConflict) GetPayload() *platformclientmodels.ErrorEntity {
@@ -172,7 +172,7 @@ type UpdateUserEntitlementUnprocessableEntity struct {
 }
 
 func (o *UpdateUserEntitlementUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}][%d] updateUserEntitlementUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}][%d] updateUserEntitlementUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *UpdateUserEntitlementUnprocessableEntity) GetPayload() *platformclientmodels.ValidationErrorEntity {

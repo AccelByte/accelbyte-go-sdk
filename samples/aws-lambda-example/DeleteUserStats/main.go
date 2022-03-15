@@ -4,13 +4,14 @@ import (
 	"encoding/json"
 	"os"
 
+	"github.com/aws/aws-lambda-go/events"
+	"github.com/aws/aws-lambda-go/lambda"
+	"github.com/dgrijalva/jwt-go"
+
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
-	"github.com/aws/aws-lambda-go/events"
-	"github.com/aws/aws-lambda-go/lambda"
-	"github.com/dgrijalva/jwt-go"
 )
 
 type TokenRepositoryImpl struct {
@@ -54,7 +55,7 @@ func Handler(evt events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse,
 			return events.APIGatewayProxyResponse{}, err
 		}
 	}
-	_, err = createUserStatItem(request.Params, tokenRepositoryImpl)
+	_, err = deleteUserStatItems(request.Params, tokenRepositoryImpl)
 	if err != nil {
 		return events.APIGatewayProxyResponse{}, err
 	}
@@ -63,7 +64,7 @@ func Handler(evt events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse,
 	}, nil
 }
 
-func createUserStatItem(params RequestParams, tokenRepositoryImpl *TokenRepositoryImpl) (interface{}, error) {
+func deleteUserStatItems(params RequestParams, tokenRepositoryImpl *TokenRepositoryImpl) (interface{}, error) {
 	statisticService := social.UserStatisticService{
 		Client:          factory.NewSocialClient(&ConfigRepositoryImpl{}),
 		TokenRepository: tokenRepositoryImpl,

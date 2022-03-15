@@ -39,6 +39,18 @@ Resources:
           Properties:
             Path: /GetUserStats
             Method: GET
+  DeleteUserStatsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: DeleteUserStats
+      Handler: main
+      Runtime: go1.x
+      Events:
+        CreateUserStats:
+          Type: Api
+          Properties:
+            Path: /DeleteUserStats
+            Method: DELETE
 
 Outputs:
   CreateUserStatsApi:
@@ -59,3 +71,12 @@ Outputs:
   GetUserStatsFunctionIamRole:
     Description: "Implicit IAM Role created for Get User Stats Function"
     Value: !GetAtt GetUserStatsFunctionRole.Arn
+  DeleteUserStatsApi:
+    Description: "API Gateway endpoint URL for Prod stage for Delete User Stats Function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/DeleteUserStats"
+    DeleteUserStatsFunction:
+      Description: "Delete User Stats Function Function ARN"
+      Value: !GetAtt DeleteUserStatsFunction.Arn
+    DeleteUserStatsFunctionIamRole:
+      Description: "Implicit IAM Role created Delete User Stats Function"
+      Value: !GetAtt DeleteUserStatsFunctionRole.Arn

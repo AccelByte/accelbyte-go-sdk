@@ -1,3 +1,33 @@
+<a name="v0.14.0"></a>
+## [v0.14.0] - 2022-03-15
+
+### Chore
+- **api:** regenerate all services
+- **api:** the basic and bearer security
+- **api:** typecheck linter for unused method
+- **api:** header transport to the client
+- **api:** regenerate after move the custom transport
+- **api:** refactor the custom transport, log, and factory
+- **cli:** regenerate all cli
+- **cli:** response and the config repository for basic security
+- **cli:** typecheck linter for unused method
+- **sh-unit-tests:** regenerate sh unit tests
+- **samples:** govet linter overshadow err
+- **samples:** update yaml file and rename for delete user stats lambda function
+- **spec:** update spec files
+
+### Docs
+- update CHANGELOG.md for v0.14.0 release
+
+### Feat
+- **api:** add the log
+- **samples:** add delete user stat
+- **tests:** add integration tests for how to samples
+
+### Fix
+- **cli:** add config repository for basic security schema
+
+
 <a name="v0.13.0"></a>
 ## [v0.13.0] - 2022-03-02
 
@@ -407,6 +437,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.14.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.13.0...v0.14.0
 [v0.13.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.12.0...v0.13.0
 [v0.12.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.11.0...v0.12.0
 [v0.11.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.10.0...v0.11.0

@@ -30,25 +30,27 @@ Client must create a struct that implement following interface:
 
 For more details, see [samples/cli/pkg/repository](samples/cli/pkg/repository) for more details.
 
-Depending on the HTTP endpoint authorization, there are a few ways to make HTTP requests:
+Depending on the HTTP endpoint authorization, there are a few ways to make HTTP requests in the wrapper:
 
-- No authorization
-
-  No authorization is used for public endpoint, e.g. `/iam/v3/public/namespaces/{namespace}/users` 
-
-  ```go
-  IamService.Users.PublicCreateUserV3(param, nil)
-  ```
 - Basic authorization
 
   ```go
-  IamService.OAuth20.TokenRevocationV3(param, client.BasicAuth(clientId, clientSecret))
+  // iam service
+  o.Client.OAuth20.TokenGrantV3(input, client.BasicAuth(clientId, clientSecret))
   ```
 
 - Bearer token authorization
 
   ```go
-  IamService.Users.AdminAddUserRoleV3(param, client.BearerToken(accessToken))
+  // iam service
+  u.Client.Users.AdminAddUserRoleV3(input, client.BearerToken(*accessToken.AccessToken))
+  ```
+
+- No authorization
+
+  ```go
+  // platform service
+  i.Client.Item.PublicGetItem(input)
   ```
 
 ### Interacting with Justice WebSocket Endpoints

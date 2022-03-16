@@ -1,8 +1,8 @@
 # AccelByte Golang SDK CLI
 
 ## Usage
-1. clone the whole [accelbyte-go-sdk](https://github.com/AccelByte/accelbyte-go-sdk/tree/v0.8.0)
-2. go to [samples/cli](https://github.com/AccelByte/accelbyte-go-sdk/tree/v0.8.0/samples/cli). Make sure you already in this `cli` directory
+1. clone the whole [accelbyte-go-sdk](https://github.com/AccelByte/accelbyte-go-sdk)
+2. go to [samples/cli](https://github.com/AccelByte/accelbyte-go-sdk/tree/main/samples/cli). Make sure you already in this `cli` directory
 
 ### commands
 You could also interact with the SDK using this package's command-line interface.
@@ -11,15 +11,20 @@ You could also interact with the SDK using this package's command-line interface
 sample-apps <command> [options]
 ``` 
 
-To see available commands (HTTP endpoints): 
+To see available service commands (HTTP endpoints): 
 
 ```
 sample-apps -h
 ```
+To see available endpoint of a service command (HTTP endpoints):
+
+```
+sample-apps <ServiceName-command> -h
+```
 To see available options of a specific command (HTTP endpoints):  
 
 ```
-sample-apps <command> -h
+sample-apps <ServiceName-command> <methodName-command> -h
 ```
 
 To enter WebSocket mode (WebSocket endpoints):
@@ -66,47 +71,40 @@ echo %JUSTICE_BASE_URL%
 ### Examples
 
 #### Interacting with Justice HTTP Endpoints
+Note: Please do login
 ```sh
 # Register User
-sample-apps registerUser -b 1995-03-01 -c ID -e ridwan.taufik+cli+3@accelbyte.net -n apiTestRidwanTaufikCli3 --namespace omega -p Password1
+sample-apps Iam publicCreateUserV3 --namespace 'accelbyte' --body '{"PasswordMD5Sum": "string", "acceptedPolicies": [{"isAccepted": true, "localizedPolicyVersionId": "string", "policyId": "string", "policyVersionId": "string"}], "authType": "EMAILPASSWD", "code": "GWUvzq1Z", "country": "US", "dateOfBirth": "2019-04-29", "displayName": "goSDK", "emailAddress": "goSDK@accelbyte.net", "password": "password1", "reachMinimumAge": false}'
 
-# Register Admin User
-sample-apps registerUserAdmin -b 1995-03-01 -c ID -e ridwan.taufik+cli+adm1@accelbyte.net -n apiTestRidwanTaufikAdm1 --namespace omega -p Password1 -roleId <admin_role_id>
-# Note: Admin role ID could be retrieved by user `getUserRoles` command
-
-# Register User Game
-sample-apps registerUser -b 1995-03-01 -c ID -e ridwan.taufik+cli+3@accelbyte.net -n apiTestRidwanTaufikCli3 --namespace accelbytetesting -p Password1
-
-# Get User Roles
-sample-apps getUserRoles
+# Get user roles
+sample-apps Iam adminGetRolesV3 --after '' --before '' --limit '20' --isWildcard 'False'
 
 # Get my profile
-sample-apps getMyProfile --namespace omega
+sample-apps Basic getMyProfileInfo --namespace 'accelbyte'
 ```
 ```sh
 # Verify Token
-sample-apps verifyToken -t 422689 --namespace omega
-# Note: Please do login before verify token
+sample-apps Iam publicUserVerificationV3 --namespace accelbyte --body '{"code":"123456","contactType":"string","languageTag":"en-US","validateOnly":true}'
 
 # Get Store Items
-sample-apps getStoreItem --namespace omega --itemType APP --limit 5 --offset 0
+sample-apps Platform queryItems --namespace 'accelbyte' --activeOnly 'False' --appType 'GAME' --itemType 'INGAMEITEM' --limit '20' --offset '0' --availableDate 'string' --baseAppId 'string' --categoryPath 'string' --features 'string' --region 'string' --sortBy 'string' --storeId 'string' --tags 'string' --targetNamespace 'string'
 
 # Entitlements
-sample-apps grantEntitlement -u d34a444f173f4ed49e44bd9f22418539 -i 4fee6a17fc05454389d588dd87f46c7f -q 1 --namespace omega
-sample-apps getUserEntitlement -u d34a444f173f4ed49e44bd9f22418539 --namespace omega
+sample-apps Platform grantEntitlement --namespace 'accelbyte' --userId 'd34a444f173f4ed49e44bd9f22418539' --body '[{"endDate": "1975-11-20T00:00:00Z", "grantedCode": "string", "itemId": "string", "itemNamespace": "string", "language": "string", "quantity": 64, "region": "string", "source": "REFERRAL_BONUS", "startDate": "1995-03-07T00:00:00Z", "storeId": "string"}]'
+sample-apps Platform getUserEntitlement --namespace 'accelbyte' --userId 'd34a444f173f4ed49e44bd9f22418539' --entitlementId 'string'
 
 # Friends
-sample-apps addFriends -f '["e5ca182435a84802b4996b6bdbeffa85"]' -n omega -u cc58872c06cc44fc8b4ddb7f2b9d72c1
-sample-apps getFriends -n omega -u cc58872c06cc44fc8b4ddb7f2b9d72c1
+sample-apps Lobby addFriendsWithoutConfirmation --namespace 'accelbyte' --userId 'd34a444f173f4ed49e44bd9f22418539' --body '{"friendIds": ["e5ca182435a84802b4996b6bdbeffa85"]}'
+sample-apps Lobby getListOfFriends --namespace 'accelbyte' --userId 'd34a444f173f4ed49e44bd9f22418539'
 
 # Game records
-sample-apps createGameRecord --key sample-key --namespace accelbytetesting --content '{"key2": "value2"}'
-sample-apps getGameRecord --key sample-key --namespace accelbytetesting
+sample-apps Cloudsave postGameRecordHandlerV1 --namespace 'accelbyte' --key 'sample-key' --body '{"key1": "value1"}'
+sample-apps Cloudsave getGameRecordHandlerV1 --namespace 'accelbyte' --key 'sample-key'
 
 # Player records
- sample-apps createPlayerRecord -k sample-player-record -n omega -u cc58872c06cc44fc8b4ddb7f2b9d72c1 -c '{"key1":"value1"}'
- sample-apps getPlayerRecord -k sample-player-record -n omega -u cc58872c06cc44fc8b4ddb7f2b9d72c1
-# Note: make user ID player regitered on specified namespace
+ sample-apps Cloudsave postPlayerPublicRecordHandlerV1 --namespace 'accelbyte' --userId 'd34a444f173f4ed49e44bd9f22418539' --key 'sample-key' --body '{"key1":"value1"}'
+ sample-apps Cloudsave getPlayerPublicRecordHandlerV1 --namespace 'accelbyte' --userId 'd34a444f173f4ed49e44bd9f22418539' --key 'sample-key'
+# Note: make user ID player registered on specified namespace
 ```
 
 #### Interacting with Justice WebSocket Endpoints

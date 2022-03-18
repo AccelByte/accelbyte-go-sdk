@@ -7,12 +7,14 @@ package integration
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io/ioutil"
 	"os"
 
 	"github.com/sirupsen/logrus"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/connectionutils"
 )
 
 /*
@@ -20,10 +22,11 @@ import (
 */
 
 const (
-	BaseURL   = "https://demo.accelbyte.io"
-	Namespace = "accelbyte"
-	Offset    = int64(0)
-	Size      = int64(1)
+	BaseURL       = "https://demo.accelbyte.io"
+	Namespace     = "accelbyte"
+	NamespaceTest = "gosdktest"
+	Offset        = int64(0)
+	Size          = int64(1)
 )
 
 var token iamclientmodels.OauthmodelTokenResponseV3
@@ -68,4 +71,24 @@ func (tokenRepository *TokenRepositoryImpl) GetToken() (*iamclientmodels.Oauthmo
 func (tokenRepository *TokenRepositoryImpl) RemoveToken() error {
 	token = iamclientmodels.OauthmodelTokenResponseV3{}
 	return nil
+}
+
+type ConnectionManagerImpl struct {
+}
+
+var wsConn *connectionutils.WSConnection
+
+func (connManager *ConnectionManagerImpl) Save(conn *connectionutils.WSConnection) {
+	wsConn = conn
+}
+
+func (connManager *ConnectionManagerImpl) Get() *connectionutils.WSConnection {
+	return wsConn
+}
+
+func (connManager *ConnectionManagerImpl) Close() error {
+	if wsConn == nil {
+		return fmt.Errorf("no websocket connection can be closed")
+	}
+	return wsConn.Conn.Close()
 }

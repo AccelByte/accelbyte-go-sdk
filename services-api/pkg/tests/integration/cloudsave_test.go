@@ -75,12 +75,12 @@ func TestIntegrationGetGameRecordHandlerV1(t *testing.T) {
 		Namespace: integration.Namespace,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := publicGameRecordService.GetGameRecordHandlerV1(inputRecord)
-	if err != nil {
-		assert.FailNow(t, err.Error())
+	ok, errOk := publicGameRecordService.GetGameRecordHandlerV1(inputRecord)
+	if errOk != nil {
+		assert.FailNow(t, errOk.Error())
 	}
 
-	assert.Nil(t, err, "err should be nil")
+	assert.Nil(t, errOk, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
 }
 

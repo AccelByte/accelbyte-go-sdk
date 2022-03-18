@@ -21,32 +21,112 @@ var (
 		Client:          factory.NewMatchmakingClient(&integration.ConfigRepositoryImpl{}),
 		TokenRepository: &integration.TokenRepositoryImpl{},
 	}
+	empty           = "-"
+	defaultGameMode = "go_sdk"
+	criteria        = "distance"
+	maxNumber       = int32(2)
+	minNumber       = int32(2)
+	alliance        = &matchmakingclientmodels.ModelsAllianceRule{
+		MaxNumber:       &maxNumber,
+		MinNumber:       &minNumber,
+		PlayerMaxNumber: &maxNumber,
+		PlayerMinNumber: &minNumber,
+	}
+
+	allianceFlexingRules []*matchmakingclientmodels.ModelsAllianceFlexingRule
+	allianceFlexingRule  = &matchmakingclientmodels.ModelsAllianceFlexingRule{
+		Duration:        nil,
+		MaxNumber:       &maxNumber,
+		MinNumber:       &minNumber,
+		PlayerMaxNumber: &maxNumber,
+		PlayerMinNumber: &minNumber,
+	}
+	flexingRule = &matchmakingclientmodels.ModelsFlexingRule{
+		Attribute: "",
+		Criteria:  criteria,
+		Duration:  nil,
+		Reference: 0,
+	}
+	flexingRules []*matchmakingclientmodels.ModelsFlexingRule
+	matchingRule = &matchmakingclientmodels.ModelsMatchingRule{
+		Attribute: "",
+		Criteria:  criteria,
+		Reference: 0,
+	}
+	matchingRules []*matchmakingclientmodels.ModelsMatchingRule
+	matchOptions  *matchmakingclientmodels.ModelsMatchOptionRule
+	subGameModes  = make(map[string]matchmakingclientmodels.ModelsSubGameMode)
+	ruleSet       = &matchmakingclientmodels.ModelsRuleSet{
+		Alliance:            alliance,
+		AllianceFlexingRule: allianceFlexingRules,
+		FlexingRule:         flexingRules,
+		MatchOptions:        matchOptions,
+		MatchingRule:        matchingRules,
+		SubGameModes:        subGameModes,
+	}
+	bodyMatchmaking = &matchmakingclientmodels.ModelsChannelRequest{
+		Deployment:                 empty,
+		Description:                empty,
+		FindMatchTimeoutSeconds:    0,
+		GameMode:                   defaultGameMode,
+		Joinable:                   &defaultBool,
+		MaxDelayMs:                 0,
+		RuleSet:                    ruleSet,
+		SessionQueueTimeoutSeconds: 0,
+		SocialMatchmaking:          &defaultBool,
+		UseSubGamemode:             &defaultBool,
+	}
+	allianceUpdate = &matchmakingclientmodels.ModelsUpdateAllianceRule{
+		MaxNumber:       maxNumber,
+		MinNumber:       minNumber,
+		PlayerMaxNumber: maxNumber,
+		PlayerMinNumber: minNumber,
+	}
+	rulesetUpdate = &matchmakingclientmodels.ModelsUpdateRuleset{
+		Alliance:            allianceUpdate,
+		AllianceFlexingRule: allianceFlexingRules,
+		FlexingRules:        flexingRules,
+		MatchOptions:        matchOptions,
+		MatchingRules:       matchingRules,
+		SubGameModes:        subGameModes,
+	}
+	bodyMatchmakingUpdate = &matchmakingclientmodels.ModelsUpdateChannelRequest{
+		Deployment:                 &empty,
+		Description:                &empty,
+		FindMatchTimeoutSeconds:    nil,
+		Joinable:                   &defaultBool,
+		MaxDelayMs:                 nil,
+		RuleSet:                    rulesetUpdate,
+		SessionQueueTimeoutSeconds: nil,
+		SocialMatchmaking:          &defaultBool,
+		UseSubGamemode:             &defaultBool,
+	}
 )
 
-// Adding user into channel’s session
-func TestIntegrationAddUserIntoSessionInChannel(t *testing.T) {
-	inputMatchmaking := &matchmaking_.AddUserIntoSessionInChannelParams{
-		Body:        nil,
-		ChannelName: "",
-		MatchID:     "",
-		Namespace:   "",
+// Create a channel
+func TestIntegrationCreateChannelHandler(t *testing.T) {
+	allianceFlexingRules = append(allianceFlexingRules, allianceFlexingRule)
+	flexingRules = append(flexingRules, flexingRule)
+	matchingRules = append(matchingRules, matchingRule)
+	inputMatchmaking := &matchmaking_.CreateChannelHandlerParams{
+		Body:      bodyMatchmaking,
+		Namespace: integration.Namespace,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	err := matchmakingService.AddUserIntoSessionInChannel(inputMatchmaking)
+	ok, err := matchmakingService.CreateChannelHandler(inputMatchmaking)
 
 	assert.Nil(t, err, "err should be nil")
+	assert.NotNil(t, ok, "response should not be nil")
 }
 
-// Deleting a user from session in a channel
-func TestIntegrationDeleteUserFromSessionInChannel(t *testing.T) {
-	inputMatchmaking := &matchmaking_.DeleteUserFromSessionInChannelParams{
-		ChannelName: "",
-		MatchID:     "",
-		Namespace:   "",
-		UserID:      "",
+// Deleting a channel
+func TestIntegrationDeleteChannelHandler(t *testing.T) {
+	inputMatchmaking := &matchmaking_.DeleteChannelHandlerParams{
+		Channel:   defaultGameMode,
+		Namespace: integration.Namespace,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	err := matchmakingService.DeleteUserFromSessionInChannel(inputMatchmaking)
+	err := matchmakingService.DeleteChannelHandler(inputMatchmaking)
 
 	assert.Nil(t, err, "err should be nil")
 }
@@ -54,8 +134,8 @@ func TestIntegrationDeleteUserFromSessionInChannel(t *testing.T) {
 // Getting a channel
 func TestIntegrationGetSingleMatchmakingChannel(t *testing.T) {
 	inputMatchmaking := &matchmaking_.GetSingleMatchmakingChannelParams{
-		ChannelName: "",
-		Namespace:   "",
+		ChannelName: defaultGameMode,
+		Namespace:   integration.Namespace,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	ok, err := matchmakingService.GetSingleMatchmakingChannel(inputMatchmaking)
@@ -66,21 +146,10 @@ func TestIntegrationGetSingleMatchmakingChannel(t *testing.T) {
 
 // Updating an achievement
 func TestIntegrationUpdatePatchSinglematchmakingPublicV1(t *testing.T) {
-	bodyMatchmakingUpdate := &matchmakingclientmodels.ModelsUpdateChannelRequest{
-		Deployment:                 nil,
-		Description:                nil,
-		FindMatchTimeoutSeconds:    nil,
-		Joinable:                   nil,
-		MaxDelayMs:                 nil,
-		RuleSet:                    nil,
-		SessionQueueTimeoutSeconds: nil,
-		SocialMatchmaking:          nil,
-		UseSubGamemode:             nil,
-	}
 	inputMatchmaking := &matchmaking_.UpdateMatchmakingChannelParams{
 		Body:        bodyMatchmakingUpdate,
-		ChannelName: "",
-		Namespace:   "",
+		ChannelName: defaultGameMode,
+		Namespace:   integration.Namespace,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	err := matchmakingService.UpdateMatchmakingChannel(inputMatchmaking)

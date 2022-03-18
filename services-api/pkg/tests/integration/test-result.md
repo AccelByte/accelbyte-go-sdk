@@ -32,30 +32,30 @@
 | status | operation-id | error | permissions |
 |-|-|-|-|
 |✔|CreateSession|||
-|x|ClaimServer|||
+|✔|ClaimServer|||
 |✔|GetSession|||
 
 ## EventLog
 | status | operation-id | error | permissions |
 |-|-|-|-|
-|x|QueryEventStreamHandler|||
-|x|GetEventSpecificUserV2Handler|||
+|x|QueryEventStreamHandler||| ---> todo: is not supported by the TextConsumer, can be resolved by supporting TextUnmarshaler interface
+|x|GetEventSpecificUserV2Handler||| ---> todo: is not supported by the TextConsumer, can be resolved by supporting TextUnmarshaler interface
 
 ## GDPR
 | status | operation-id | error | permissions |
 |-|-|-|-|
-|x|SaveAdminEmailConfiguration|||
-|x|DeleteAdminEmailConfiguration|||
+|✔|SaveAdminEmailConfiguration|||
+|✔|DeleteAdminEmailConfiguration|||
 |✔|GetAdminEmailConfiguration|||
-|x|UpdateAdminEmailConfiguration|||
+|✔|UpdateAdminEmailConfiguration|||
 
 ## Group
 | status | operation-id | error | permissions |
 |-|-|-|-|
-|x|CreateNewGroupPublicV1|||
-|x|DeleteGroupPublicV1|||
-|x|GetSingleGroupPublicV1|||
-|x|UpdateSingleGroupPublicV1|||
+|✔|CreateNewGroupPublicV1|||
+|✔|DeleteGroupPublicV1|||
+|✔|GetSingleGroupPublicV1|||
+|✔|UpdateSingleGroupPublicV1|||
 
 ## IAM
 | status | operation-id | error | permissions |
@@ -69,61 +69,62 @@
 ## Leaderboard
 | status | operation-id | error | permissions |
 |-|-|-|-|
-|x|CreateLeaderboardConfigurationAdminV1|||
-|x|DeleteLeaderboardConfigurationAdminV1|||
+|✔|CreateLeaderboardConfigurationAdminV1|||
+|✔|DeleteLeaderboardConfigurationAdminV1|||
 |✔|GetLeaderboardConfigurationAdminV1|||
-|x|UpdateLeaderboardConfigurationAdminV1|||
+|✔|UpdateLeaderboardConfigurationAdminV1|||
 
 ## Legal
 | status | operation-id | error | permissions |
 |-|-|-|-|
-|x|BulkAcceptVersionedPolicy|||
-|x|RetrieveAgreementsPublic|||
-|x|ChangePreferenceConsent|||
+|✔|BulkAcceptVersionedPolicy|||
+|✔|RetrieveAgreementsPublic|||
+|✔|ChangePreferenceConsent|||
 
 ## Lobby
 | status | operation-id | error | permissions |
 |-|-|-|-|
-|x|GetNotificationMessage|||
-|x|GetOfflineNotifucation|||
+|✔|GetNotificationMessage|||
+|✔|GetOfflineNotification|||
 
 ## Matchmaking
 | status | operation-id | error | permissions |
 |-|-|-|-|
-|x|AddUserIntoSessionInChannel|||
-|x|DeleteUserFromSessionInChannel|||
-|x|GetSingleMatchmakingChannel|||
-|x|UpdateMatchmakingChannel|||
+|✔|CreateChannelHandler|||
+|✔|DeleteChannelHandler|||
+|✔|GetSingleMatchmakingChannel|||
+|✔|UpdateMatchmakingChannel|||
 
 ## Platform
 | status | operation-id | error | permissions |
 |-|-|-|-|
-|x|CreateStore|||
-|x|DeleteStore|||
-|x|GetStore|||
-|x|UpdateStore|||
+|✔|CreateStore|||
+|✔|DeleteStore|||
+|✔|GetStore|||
+|✔|UpdateStore|||
 
 ## SessionBrowser
 | status | operation-id | error | permissions |
 |-|-|-|-|
-|x|CreateSession|||
-|x|DeleteSession|||
-|x|GetSession|||
-|x|UpdateSession|||
+|✔|CreateSession|||
+|✔|DeleteSession|||
+|✔|GetSession|||
+|✔|UpdateSession|||
 
 ## Social
 | status | operation-id | error | permissions |
 |-|-|-|-|
-|x|CreateStat|||
-|x|DeleteStat|||
-|x|GetStat|||
-|x|GetStats|||
-|x|QueryStats|||
-|x|UpdateStat|||
+|✔|CreateStat|||
+|✔|DeleteStat|||
+|✔|GetStat|||
+|✔|GetStats|||
+|✔|QueryStats|||
+|✔|UpdateStat|||
 
 ## UGC
 | status | operation-id | error | permissions |
 |-|-|-|-|
-|x|AdminCreateTag|||
-|x|AdminDeleteTag|||
-|x|AdminUpdateTag|||
+|✔|AdminCreateTag|||
+|✔|AdminDeleteTag|||
+|✔|AdminGetTag|||
+|✔|AdminUpdateTag|||

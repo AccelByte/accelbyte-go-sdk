@@ -93,11 +93,11 @@ func TestIntegrationAuthenticate(t *testing.T) {
 		HTTPClient: httpClient,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	expected, err := oAuth20ExtensionService.UserAuthenticationV3(inputAuth)
-	if err != nil {
-		assert.FailNow(t, err.Error())
+	expected, errExpected := oAuth20ExtensionService.UserAuthenticationV3(inputAuth)
+	if errExpected != nil {
+		assert.FailNow(t, errExpected.Error())
 	}
-	assert.Nil(t, err, "err should be nil")
+	assert.Nil(t, errExpected, "err should be nil")
 	assert.NotNil(t, expected, "response should not be nil")
 }
 
@@ -129,9 +129,9 @@ func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 		HTTPClient: httpClient,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	code, err := oAuth20ExtensionService.UserAuthenticationV3(inputAuth)
-	if err != nil {
-		assert.FailNow(t, err.Error())
+	code, errCode := oAuth20ExtensionService.UserAuthenticationV3(inputAuth)
+	if errCode != nil {
+		assert.FailNow(t, errCode.Error())
 	}
 
 	codeVerifier := codeVerifierGenerator.String()
@@ -141,12 +141,12 @@ func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 		GrantType:    "authorization_code",
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	expected, err := oAuth20Service.TokenGrantV3(inputTokenGrant)
-	if err != nil {
-		assert.FailNow(t, err.Error())
+	expected, errExpected := oAuth20Service.TokenGrantV3(inputTokenGrant)
+	if errExpected != nil {
+		assert.FailNow(t, errExpected.Error())
 	}
 
-	assert.Nil(t, err, "err should be nil")
+	assert.Nil(t, errExpected, "err should be nil")
 	assert.NotNil(t, expected, "response should not be nil")
 }
 

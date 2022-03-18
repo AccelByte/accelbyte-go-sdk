@@ -37,23 +37,6 @@ var (
 	}
 )
 
-// Creating a profile
-func TestIntegrationCreateMyProfile(t *testing.T) {
-	input := &user_profile.CreateMyProfileParams{
-		Body:      bodyBasic,
-		Namespace: integration.Namespace,
-	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := userProfileService.CreateMyProfile(input)
-	if err != nil {
-		assert.FailNow(t, err.Error())
-	}
-
-	fmt.Printf(ok.UserID)
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, ok, "response should not be nil")
-}
-
 // Deleting a profile
 func TestIntegrationDeleteUserProfile(t *testing.T) {
 	input := &user_profile.CreateMyProfileParams{
@@ -72,14 +55,31 @@ func TestIntegrationDeleteUserProfile(t *testing.T) {
 		UserID:    ok.UserID,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	expected, err := userProfileService.DeleteUserProfile(inputValue)
+	expected, errExpected := userProfileService.DeleteUserProfile(inputValue)
+	if errExpected != nil {
+		assert.FailNow(t, errExpected.Error())
+	}
+
+	assert.Nil(t, err, "err should be nil")
+	assert.NotNil(t, errExpected, "response should not be nil")
+	assert.Equal(t, expected, ok, "the response have different values")
+}
+
+// Creating a profile
+func TestIntegrationCreateMyProfile(t *testing.T) {
+	input := &user_profile.CreateMyProfileParams{
+		Body:      bodyBasic,
+		Namespace: integration.Namespace,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	ok, err := userProfileService.CreateMyProfile(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
 
+	fmt.Printf(ok.UserID)
 	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, expected, "response should not be nil")
-	assert.Equal(t, expected, ok, "the response have different values")
+	assert.NotNil(t, ok, "response should not be nil")
 }
 
 // Getting a profile
@@ -99,12 +99,12 @@ func TestIntegrationPublicGetUserProfileInfo(t *testing.T) {
 		UserID:    ok.UserID,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	expected, err := userProfileService.PublicGetUserProfileInfo(inputValue)
-	if err != nil {
-		assert.FailNow(t, err.Error())
+	expected, errExpected := userProfileService.PublicGetUserProfileInfo(inputValue)
+	if errExpected != nil {
+		assert.FailNow(t, errExpected.Error())
 	}
 
-	assert.Nil(t, err, "err should be nil")
+	assert.Nil(t, errExpected, "err should be nil")
 	assert.NotNil(t, expected, "response should not be nil")
 }
 
@@ -136,11 +136,11 @@ func TestIntegrationPublicUpdateUserProfile(t *testing.T) {
 		Namespace: integration.Namespace,
 		UserID:    ok.UserID,
 	}
-	expected, err := userProfileService.PublicUpdateUserProfile(inputValue)
-	if err != nil {
-		assert.FailNow(t, err.Error())
+	expected, errExpected := userProfileService.PublicUpdateUserProfile(inputValue)
+	if errExpected != nil {
+		assert.FailNow(t, errExpected.Error())
 	}
 
-	assert.Nil(t, err, "err should be nil")
+	assert.Nil(t, errExpected, "err should be nil")
 	assert.NotNil(t, expected, "response should not be nil")
 }

@@ -21,11 +21,13 @@ var (
 		TokenRepository: &integration.TokenRepositoryImpl{},
 	}
 	body   []string
+	email  = "goSDK@accelbyte.net"
 	emails []string
 )
 
 // Creating admin email configuration
 func TestIntegrationSaveAdminEmailConfiguration(t *testing.T) {
+	body = append(body, email)
 	input := &data_retrieval.SaveAdminEmailConfigurationParams{
 		Body:      body,
 		Namespace: integration.Namespace,
@@ -38,13 +40,14 @@ func TestIntegrationSaveAdminEmailConfiguration(t *testing.T) {
 
 // Deleting admin email configuration
 func TestIntegrationDeleteAdminEmailConfiguration(t *testing.T) {
+	emails = append(emails, email)
 	input := &data_retrieval.DeleteAdminEmailConfigurationParams{
 		Emails:    emails,
 		Namespace: integration.Namespace,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	err := dataRetrievalService.DeleteAdminEmailConfiguration(input)
-	assert.NotNil(t, err, "response should not be nil")
+	assert.Nil(t, err, "response should not be nil")
 }
 
 // Getting admin email addresses configuration
@@ -61,6 +64,7 @@ func TestIntegrationAdminListDataRetrieval(t *testing.T) {
 
 // Updating admin email configuration
 func TestIntegrationUpdateAdminEmailConfiguration(t *testing.T) {
+	body = append(body, email)
 	input := &data_retrieval.UpdateAdminEmailConfigurationParams{
 		Body:      body,
 		Namespace: integration.Namespace,

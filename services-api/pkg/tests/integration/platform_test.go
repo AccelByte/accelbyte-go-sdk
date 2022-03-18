@@ -21,13 +21,22 @@ var (
 		Client:          factory.NewPlatformClient(&integration.ConfigRepositoryImpl{}),
 		TokenRepository: &integration.TokenRepositoryImpl{},
 	}
+	language  = "en-US"
+	region    = "US"
+	title     = "Go Test SDK"
+	bodyStore = &platformclientmodels.StoreCreate{
+		DefaultLanguage: language,
+		DefaultRegion:   region,
+		Description:     title,
+		Title:           &title,
+	}
 )
 
 // Creating a store
 func TestIntegrationCreateStore(t *testing.T) {
 	inputStore := &store.CreateStoreParams{
-		Body:      nil,
-		Namespace: "",
+		Body:      bodyStore,
+		Namespace: integration.NamespaceTest,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	ok, err := storeService.CreateStore(inputStore)
@@ -38,48 +47,79 @@ func TestIntegrationCreateStore(t *testing.T) {
 
 // Deleting a store
 func TestIntegrationDeleteStore(t *testing.T) {
-	inputStore := &store.DeleteStoreParams{
-		Namespace: "",
-		StoreID:   "",
+	inputStoreCreate := &store.CreateStoreParams{
+		Body:      bodyStore,
+		Namespace: integration.NamespaceTest,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := storeService.DeleteStore(inputStore)
+	created, err := storeService.CreateStore(inputStoreCreate)
 
 	assert.Nil(t, err, "err should be nil")
+	assert.NotNil(t, created, "response should not be nil")
+
+	storeId := *created.StoreID
+	inputStore := &store.DeleteStoreParams{
+		Namespace: integration.NamespaceTest,
+		StoreID:   storeId,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	ok, errOk := storeService.DeleteStore(inputStore)
+
+	assert.Nil(t, errOk, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
 }
 
 // Getting a single store
 func TestIntegrationGetStore(t *testing.T) {
-	inputStore := &store.GetStoreParams{
-		Namespace: "",
-		StoreID:   "",
+	inputStoreCreate := &store.CreateStoreParams{
+		Body:      bodyStore,
+		Namespace: integration.NamespaceTest,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := storeService.GetStore(inputStore)
+	created, err := storeService.CreateStore(inputStoreCreate)
 
 	assert.Nil(t, err, "err should be nil")
+	assert.NotNil(t, created, "response should not be nil")
+
+	storeId := *created.StoreID
+	inputStore := &store.GetStoreParams{
+		Namespace: integration.NamespaceTest,
+		StoreID:   storeId,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	ok, errOk := storeService.GetStore(inputStore)
+
+	assert.Nil(t, errOk, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
 }
 
 // Updating a store
 func TestIntegrationUpdateStore(t *testing.T) {
+	inputStoreCreate := &store.CreateStoreParams{
+		Body:      bodyStore,
+		Namespace: integration.NamespaceTest,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	created, err := storeService.CreateStore(inputStoreCreate)
+
+	assert.Nil(t, err, "err should be nil")
+	assert.NotNil(t, created, "response should not be nil")
+
+	storeId := *created.StoreID
 	bodyStoreUpdate := &platformclientmodels.StoreUpdate{
-		DefaultLanguage:    "",
-		DefaultRegion:      "",
-		Description:        "",
-		SupportedLanguages: nil,
-		SupportedRegions:   nil,
-		Title:              nil,
+		DefaultLanguage: language,
+		DefaultRegion:   region,
+		Description:     title,
+		Title:           &title,
 	}
 	inputStore := &store.UpdateStoreParams{
 		Body:      bodyStoreUpdate,
-		Namespace: "",
-		StoreID:   "",
+		Namespace: integration.NamespaceTest,
+		StoreID:   storeId,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := storeService.UpdateStore(inputStore)
+	ok, errOk := storeService.UpdateStore(inputStore)
 
-	assert.Nil(t, err, "err should be nil")
+	assert.Nil(t, errOk, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
 }

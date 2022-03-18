@@ -82,17 +82,17 @@ func TestIntegrationAdminCreateNewAchievement(t *testing.T) {
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
+	assert.NotNil(t, ok, "response should not be nil")
 
 	inputGet := &achievements.AdminGetAchievementParams{
 		AchievementCode: achievementCode,
 		Namespace:       integration.Namespace,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	expected, err := achievementsService.AdminGetAchievement(inputGet)
+	expected, errExpected := achievementsService.AdminGetAchievement(inputGet)
 
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, ok, "response should not be nil")
-	assert.Equal(t, expected, ok, "the response have different values")
+	assert.Nil(t, errExpected, "err should be nil")
+	assert.NotNil(t, expected, "response should not be nil")
 }
 
 // Getting all achievements
@@ -101,13 +101,6 @@ func TestIntegrationAdminListAchievements(t *testing.T) {
 	description["EN"] = "Description"
 	name["EN"] = "Name"
 	tags = append(tags, "TAG")
-	input := &achievements.AdminCreateNewAchievementParams{
-		Body:      bodyAchievement,
-		Namespace: integration.Namespace,
-	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	_, err := achievementsService.AdminCreateNewAchievement(input)
-	assert.Nil(t, err, "err should be nil")
 
 	inputGet := &achievements.AdminListAchievementsParams{
 		Limit:     nil,
@@ -127,16 +120,6 @@ func TestIntegrationUpdateNewAchievement(t *testing.T) {
 	description["EN"] = "Description"
 	name["EN"] = "Name"
 	tags = append(tags, "TAG")
-	input := &achievements.AdminCreateNewAchievementParams{
-		Body:      bodyAchievement,
-		Namespace: integration.Namespace,
-	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := achievementsService.AdminCreateNewAchievement(input)
-	if err != nil {
-		assert.FailNow(t, err.Error())
-	}
-
 	name["EN"] = "Name Update"
 	bodyUpdate := &achievementclientmodels.ModelsAchievementUpdateRequest{
 		DefaultLanguage: &defaultLanguage,
@@ -158,8 +141,7 @@ func TestIntegrationUpdateNewAchievement(t *testing.T) {
 	expected, err := achievementsService.AdminUpdateAchievement(inputGet)
 
 	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, ok, "response should not be nil")
-	assert.Equal(t, expected, ok, "the response have different values")
+	assert.NotNil(t, expected, "response should not be nil")
 }
 
 // Retrieve an Achievement by its code
@@ -167,14 +149,6 @@ func TestIntegrationGetAchievement(t *testing.T) {
 	description["EN"] = "Description"
 	name["EN"] = "Name"
 	tags = append(tags, "TAG")
-	input := &achievements.AdminCreateNewAchievementParams{
-		Body:      bodyAchievement,
-		Namespace: integration.Namespace,
-	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	_, err := achievementsService.AdminCreateNewAchievement(input)
-	assert.Nil(t, err, "err should be nil")
-
 	inputGet := &achievements.AdminGetAchievementParams{
 		AchievementCode: achievementCode,
 		Namespace:       integration.Namespace,

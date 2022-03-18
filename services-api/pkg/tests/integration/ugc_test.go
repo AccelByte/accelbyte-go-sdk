@@ -21,13 +21,16 @@ var (
 		Client:          factory.NewUgcClient(&integration.ConfigRepositoryImpl{}),
 		TokenRepository: &integration.TokenRepositoryImpl{},
 	}
+	tag       = "GoSDKTag"
+	tagUpdate = "GoSDKTagUpdate"
+	bodyTag   = &ugcclientmodels.ModelsCreateTagRequest{Tag: &tag}
 )
 
 // Creating tags
 func TestIntegrationAdminCreateTag(t *testing.T) {
 	inputTag := &admin_tag.AdminCreateTagParams{
-		Body:      nil,
-		Namespace: "",
+		Body:      bodyTag,
+		Namespace: integration.Namespace,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	ok, err := adminTagService.AdminCreateTag(inputTag)
@@ -38,12 +41,22 @@ func TestIntegrationAdminCreateTag(t *testing.T) {
 
 // Deleting a tag
 func TestIntegrationAdminDeleteTag(t *testing.T) {
-	inputTag := &admin_tag.AdminDeleteTagParams{
-		Namespace: "",
-		TagID:     "",
+	inputTagReq := &admin_tag.AdminCreateTagParams{
+		Body:      bodyTag,
+		Namespace: integration.Namespace,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	err := adminTagService.AdminDeleteTag(inputTag)
+	ok, err := adminTagService.AdminCreateTag(inputTagReq)
+	assert.Nil(t, err, "err should be nil")
+	assert.NotNil(t, ok, "response should not be nil")
+
+	tagId := *ok.ID
+	inputTag := &admin_tag.AdminDeleteTagParams{
+		Namespace: integration.Namespace,
+		TagID:     tagId,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	err = adminTagService.AdminDeleteTag(inputTag)
 
 	assert.Nil(t, err, "err should be nil")
 }
@@ -52,7 +65,7 @@ func TestIntegrationAdminDeleteTag(t *testing.T) {
 func TestIntegrationAdminGetTag(t *testing.T) {
 	inputTag := &admin_tag.AdminGetTagParams{
 		Limit:     nil,
-		Namespace: "",
+		Namespace: integration.Namespace,
 		Offset:    nil,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
@@ -64,14 +77,33 @@ func TestIntegrationAdminGetTag(t *testing.T) {
 
 // Updating a tag
 func TestIntegrationAdminUpdateTag(t *testing.T) {
-	bodyTagUpdate := &ugcclientmodels.ModelsCreateTagRequest{Tag: nil}
-	inputTag := &admin_tag.AdminUpdateTagParams{
-		Body:      bodyTagUpdate,
-		Namespace: "",
-		TagID:     "",
+	inputTagReq := &admin_tag.AdminCreateTagParams{
+		Body:      bodyTag,
+		Namespace: integration.Namespace,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := adminTagService.AdminUpdateTag(inputTag)
+	okReq, err := adminTagService.AdminCreateTag(inputTagReq)
+	assert.Nil(t, err, "err should be nil")
+	assert.NotNil(t, okReq, "response should not be nil")
+
+	tagId := *okReq.ID
+	bodyTagUpdate := &ugcclientmodels.ModelsCreateTagRequest{Tag: &tagUpdate}
+	inputTag := &admin_tag.AdminUpdateTagParams{
+		Body:      bodyTagUpdate,
+		Namespace: integration.Namespace,
+		TagID:     tagId,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	ok, errTag := adminTagService.AdminUpdateTag(inputTag)
+	assert.Nil(t, errTag, "err should be nil")
+
+	tagId = *ok.ID
+	inputTagDelete := &admin_tag.AdminDeleteTagParams{
+		Namespace: integration.Namespace,
+		TagID:     tagId,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	err = adminTagService.AdminDeleteTag(inputTagDelete)
 
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")

@@ -21,31 +21,27 @@ var (
 		Client:          factory.NewLeaderboardClient(&integration.ConfigRepositoryImpl{}),
 		TokenRepository: &integration.TokenRepositoryImpl{},
 	}
-)
-
-// Creating a leaderboard
-func TestIntegrationCreateLeaderboardConfigurationAdminV1(t *testing.T) {
-	nameLeaderboard := "test"
-	time := "12:00"
-	dateLeaderboard := int64(1)
-	daily := &leaderboardclientmodels.ModelsDailyConfig{
-		ResetTime: &time,
+	nameLeaderboard     = "test"
+	timeLeaderboard     = "12:00"
+	dateLeaderboard     = int64(1)
+	descending          = false
+	iconURL             = ""
+	leaderboardCode     = "testgo1"
+	seasonPeriod        = int32(0)
+	statCodeLeaderboard = "testgo"
+	startTime           = "2022-07-22T00:00:00Z"
+	daily               = &leaderboardclientmodels.ModelsDailyConfig{
+		ResetTime: &timeLeaderboard,
 	}
-	descending := false
-	iconURL := ""
-	leaderboardCode := "testgo"
-	monthly := &leaderboardclientmodels.ModelsMonthlyConfig{
-		ResetTime: &time,
+	monthly = &leaderboardclientmodels.ModelsMonthlyConfig{
+		ResetTime: &timeLeaderboard,
 		ResetDate: &dateLeaderboard,
 	}
-	seasonPeriod := int32(12)
-	statCodeLeaderboard := "testgo"
-	weekly := &leaderboardclientmodels.ModelsWeeklyConfig{
-		ResetTime: &time,
+	weekly = &leaderboardclientmodels.ModelsWeeklyConfig{
+		ResetTime: &timeLeaderboard,
 		ResetDay:  &dateLeaderboard,
 	}
-	startTime := "2022-07-22T00:00:00Z"
-	bodyReq := &leaderboardclientmodels.ModelsLeaderboardConfigReq{
+	bodyReq = &leaderboardclientmodels.ModelsLeaderboardConfigReq{
 		Daily:           daily,
 		Descending:      &descending,
 		IconURL:         &iconURL,
@@ -57,6 +53,22 @@ func TestIntegrationCreateLeaderboardConfigurationAdminV1(t *testing.T) {
 		StatCode:        &statCodeLeaderboard,
 		Weekly:          weekly,
 	}
+	bodyReqUpdate = &leaderboardclientmodels.ModelsUpdateLeaderboardConfigReq{
+		Daily:        daily,
+		Descending:   &descending,
+		IconURL:      &iconURL,
+		Monthly:      monthly,
+		Name:         &nameLeaderboard,
+		SeasonPeriod: &seasonPeriod,
+		StartTime:    &startTime,
+		StatCode:     &statCodeLeaderboard,
+		Weekly:       weekly,
+	}
+)
+
+// Creating a leaderboard
+// todo: need to replace the leaderboardCode's name, else conflict
+func TestIntegrationCreateLeaderboardConfigurationAdminV1(t *testing.T) {
 	inputLeaderboard := &leaderboard_configuration.CreateLeaderboardConfigurationAdminV1Params{
 		Body:      bodyReq,
 		Namespace: integration.Namespace,
@@ -71,7 +83,7 @@ func TestIntegrationCreateLeaderboardConfigurationAdminV1(t *testing.T) {
 // Deleting a leaderboard
 func TestIntegrationDeleteLeaderboardPublicV1(t *testing.T) {
 	inputLeaderboard := &leaderboard_configuration.DeleteLeaderboardConfigurationAdminV1Params{
-		LeaderboardCode: "",
+		LeaderboardCode: leaderboardCode,
 		Namespace:       integration.Namespace,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
@@ -83,7 +95,7 @@ func TestIntegrationDeleteLeaderboardPublicV1(t *testing.T) {
 // Getting a single leaderboard
 func TestIntegrationGetSingleLeaderboardPublicV1(t *testing.T) {
 	inputLeaderboard := &leaderboard_configuration.GetLeaderboardConfigurationAdminV1Params{
-		LeaderboardCode: "",
+		LeaderboardCode: leaderboardCode,
 		Namespace:       integration.Namespace,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
@@ -96,8 +108,8 @@ func TestIntegrationGetSingleLeaderboardPublicV1(t *testing.T) {
 // Updating a leaderboard
 func TestIntegrationUpdatePatchSingleLeaderboardPublicV1(t *testing.T) {
 	inputLeaderboard := &leaderboard_configuration.UpdateLeaderboardConfigurationAdminV1Params{
-		Body:            nil,
-		LeaderboardCode: "",
+		Body:            bodyReqUpdate,
+		LeaderboardCode: leaderboardCode,
 		Namespace:       integration.Namespace,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings

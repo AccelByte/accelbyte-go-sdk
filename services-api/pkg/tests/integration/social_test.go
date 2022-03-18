@@ -21,13 +21,30 @@ var (
 		Client:          factory.NewSocialClient(&integration.ConfigRepositoryImpl{}),
 		TokenRepository: &integration.TokenRepositoryImpl{},
 	}
+	statCodeSocial = "123gosdkstat"
+	tagsSocial     []string
+	emptyFloat     = float64(1)
+	setBy          = "CLIENT"
+	bodyStatSocial = &socialclientmodels.StatCreate{
+		DefaultValue:  &emptyFloat,
+		Description:   emptyString,
+		IncrementOnly: false,
+		Maximum:       0,
+		Minimum:       0,
+		Name:          &statCodeSocial,
+		SetAsGlobal:   false,
+		SetBy:         &setBy,
+		StatCode:      &statCodeSocial,
+		Tags:          tagsSocial,
+	}
 )
 
 // Creating a statistic
 func TestIntegrationCreateStat(t *testing.T) {
+	tagsSocial = append(tagsSocial, tag)
 	inputStat := &stat_configuration.CreateStatParams{
-		Body:      nil,
-		Namespace: "",
+		Body:      bodyStatSocial,
+		Namespace: integration.Namespace,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	ok, err := statConfigurationService.CreateStat(inputStat)
@@ -39,8 +56,8 @@ func TestIntegrationCreateStat(t *testing.T) {
 // Deleting a statistic
 func TestIntegrationDeleteStat(t *testing.T) {
 	inputStat := &stat_configuration.DeleteStatParams{
-		Namespace: "",
-		StatCode:  "",
+		Namespace: integration.Namespace,
+		StatCode:  statCodeSocial,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	err := statConfigurationService.DeleteStat(inputStat)
@@ -50,14 +67,25 @@ func TestIntegrationDeleteStat(t *testing.T) {
 
 // Getting a statistic by its Stat Code
 func TestIntegrationGetStat(t *testing.T) {
-	inputStat := &stat_configuration.GetStatParams{
-		Namespace: "",
-		StatCode:  "",
+	tagsSocial = append(tagsSocial, tag)
+	inputStatReq := &stat_configuration.CreateStatParams{
+		Body:      bodyStatSocial,
+		Namespace: integration.Namespace,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := statConfigurationService.GetStat(inputStat)
+	okReq, err := statConfigurationService.CreateStat(inputStatReq)
 
 	assert.Nil(t, err, "err should be nil")
+	assert.NotNil(t, okReq, "response should not be nil")
+
+	inputStat := &stat_configuration.GetStatParams{
+		Namespace: integration.Namespace,
+		StatCode:  statCodeSocial,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	ok, errOk := statConfigurationService.GetStat(inputStat)
+
+	assert.Nil(t, errOk, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
 }
 
@@ -65,7 +93,7 @@ func TestIntegrationGetStat(t *testing.T) {
 func TestIntegrationGetStats(t *testing.T) {
 	inputStat := &stat_configuration.GetStatsParams{
 		Limit:     nil,
-		Namespace: "",
+		Namespace: integration.Namespace,
 		Offset:    nil,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
@@ -78,8 +106,9 @@ func TestIntegrationGetStats(t *testing.T) {
 // Querying statistics by keyword
 func TestIntegrationQueryStats(t *testing.T) {
 	inputStat := &stat_configuration.QueryStatsParams{
+		Keyword:   statCodeSocial,
 		Limit:     nil,
-		Namespace: "",
+		Namespace: integration.Namespace,
 		Offset:    nil,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
@@ -93,13 +122,13 @@ func TestIntegrationQueryStats(t *testing.T) {
 func TestIntegrationUpdateStat(t *testing.T) {
 	bodyStatUpdate := &socialclientmodels.StatUpdate{
 		Description: "",
-		Name:        "",
+		Name:        statCodeSocial,
 		Tags:        nil,
 	}
 	inputStat := &stat_configuration.UpdateStatParams{
 		Body:      bodyStatUpdate,
-		Namespace: "",
-		StatCode:  "",
+		Namespace: integration.Namespace,
+		StatCode:  statCodeSocial,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	ok, err := statConfigurationService.UpdateStat(inputStat)

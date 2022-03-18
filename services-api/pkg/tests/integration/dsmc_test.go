@@ -6,6 +6,7 @@ package integration_test
 
 import (
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/assert"
 
@@ -24,7 +25,7 @@ var (
 	namespaceDsmc  = "armadademotestqa"
 	deployment     = "deployruli"
 	gameMode       = "soloyogs"
-	sessionId      = "d10d7eb4-e6aa-48b1-9ba4-9ad48a095636"
+	sessionId      = "cd0717a1-64be-4095-bd7a-6c459384ba0f"
 	emptyString    = ""
 	emptyInterface interface{}
 )
@@ -48,7 +49,7 @@ func TestIntegrationCreateSessionDSMC(t *testing.T) {
 		MatchingParties: matchingParties,
 	}
 	matchingAllies = append(matchingAllies, matchingAlly)
-	bodySession := &dsmcclientmodels.ModelsCreateSessionRequest{
+	bodySessionDsmc := &dsmcclientmodels.ModelsCreateSessionRequest{
 		ClientVersion:       &emptyString,
 		Configuration:       &emptyString,
 		Deployment:          &deployment,
@@ -61,7 +62,7 @@ func TestIntegrationCreateSessionDSMC(t *testing.T) {
 		SessionID:           &sessionId,
 	}
 	inputDsmc := &session.CreateSessionParams{
-		Body:      bodySession,
+		Body:      bodySessionDsmc,
 		Namespace: namespaceDsmc,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
@@ -90,7 +91,7 @@ func TestIntegrationClaimSessionDSMC(t *testing.T) {
 		MatchingParties: matchingParties,
 	}
 	matchingAllies = append(matchingAllies, matchingAlly)
-	bodySession := &dsmcclientmodels.ModelsCreateSessionRequest{
+	bodySessionDsmc := &dsmcclientmodels.ModelsCreateSessionRequest{
 		ClientVersion:       &emptyString,
 		Configuration:       &emptyString,
 		Deployment:          &deployment,
@@ -103,7 +104,7 @@ func TestIntegrationClaimSessionDSMC(t *testing.T) {
 		SessionID:           &sessionId,
 	}
 	inputDsmc := &session.CreateSessionParams{
-		Body:      bodySession,
+		Body:      bodySessionDsmc,
 		Namespace: namespaceDsmc,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
@@ -112,6 +113,8 @@ func TestIntegrationClaimSessionDSMC(t *testing.T) {
 	assert.Nil(t, err, "err should be nil")
 
 	sessionIdResp := ok.Session.ID
+	time.Sleep(5 * time.Second)
+
 	bodyClaim := &dsmcclientmodels.ModelsClaimSessionRequest{SessionID: sessionIdResp}
 	inputClaim := &session.ClaimServerParams{
 		Body:      bodyClaim,
@@ -143,7 +146,7 @@ func TestIntegrationGetSessionDSMC(t *testing.T) {
 		MatchingParties: matchingParties,
 	}
 	matchingAllies = append(matchingAllies, matchingAlly)
-	bodySession := &dsmcclientmodels.ModelsCreateSessionRequest{
+	bodySessionDsmc := &dsmcclientmodels.ModelsCreateSessionRequest{
 		ClientVersion:       &emptyString,
 		Configuration:       &emptyString,
 		Deployment:          &deployment,
@@ -156,7 +159,7 @@ func TestIntegrationGetSessionDSMC(t *testing.T) {
 		SessionID:           &sessionId,
 	}
 	inputDsmc := &session.CreateSessionParams{
-		Body:      bodySession,
+		Body:      bodySessionDsmc,
 		Namespace: namespaceDsmc,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
@@ -169,8 +172,8 @@ func TestIntegrationGetSessionDSMC(t *testing.T) {
 		SessionID: sessionIdResp,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	expected, err := sessionDSMCService.GetSession(inputExpected)
+	expected, errExpected := sessionDSMCService.GetSession(inputExpected)
 
-	assert.Nil(t, err, "err should be nil")
+	assert.Nil(t, errExpected, "err should be nil")
 	assert.NotNil(t, expected, "response should not be nil")
 }

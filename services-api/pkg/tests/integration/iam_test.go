@@ -46,7 +46,7 @@ var (
 func TestIntegrationAuthorizeV3(t *testing.T) {
 	codeVerifierGenerator, _ := utils.CreateCodeVerifier()
 	codeChallenge := codeVerifierGenerator.CodeChallengeS256()
-	clientId := oAuth20Service.ConfigRepository.GetClientId()
+	//clientId := oAuth20Service.ConfigRepository.GetClientId()
 	input := &o_auth2_0.AuthorizeV3Params{
 		CodeChallenge:       &codeChallenge,
 		CodeChallengeMethod: &codeChallengeMethod,
@@ -69,7 +69,7 @@ func TestIntegrationAuthorizeV3(t *testing.T) {
 func TestIntegrationAuthenticate(t *testing.T) {
 	codeVerifierGenerator, _ := utils.CreateCodeVerifier()
 	codeChallenge := codeVerifierGenerator.CodeChallengeS256()
-	clientId := oAuth20ExtensionService.ConfigRepository.GetClientId()
+	//clientId := oAuth20ExtensionService.ConfigRepository.GetClientId()
 	input := &o_auth2_0.AuthorizeV3Params{
 		CodeChallenge:       &codeChallenge,
 		CodeChallengeMethod: &codeChallengeMethod,
@@ -105,7 +105,7 @@ func TestIntegrationAuthenticate(t *testing.T) {
 func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 	codeVerifierGenerator, _ := utils.CreateCodeVerifier()
 	codeChallenge := codeVerifierGenerator.CodeChallengeS256()
-	clientId := oAuth20ExtensionService.ConfigRepository.GetClientId()
+	//clientId := oAuth20ExtensionService.ConfigRepository.GetClientId()
 	input := &o_auth2_0.AuthorizeV3Params{
 		CodeChallenge:       &codeChallenge,
 		CodeChallengeMethod: &codeChallengeMethod,

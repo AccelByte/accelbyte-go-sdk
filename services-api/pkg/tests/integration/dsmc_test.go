@@ -17,49 +17,98 @@ import (
 )
 
 var (
-	sessionService = &dsmc.SessionService{
+	sessionDSMCService = &dsmc.SessionService{
 		Client:          factory.NewDsmcClient(&integration.ConfigRepositoryImpl{}),
 		TokenRepository: &integration.TokenRepositoryImpl{},
 	}
-	namespaceDsmc = integration.Namespace
-	deployment    = "default"
-	gameMode      = "GAME_MODE"
-	sessionId     = "SESSION_ID"
-	bodySession   = &dsmcclientmodels.ModelsCreateSessionRequest{
-		ClientVersion:       nil,
-		Configuration:       nil,
-		Deployment:          &deployment,
-		GameMode:            &gameMode,
-		MatchingAllies:      nil,
-		Namespace:           &namespaceDsmc,
-		NotificationPayload: nil,
-		PodName:             nil,
-		Region:              nil,
-		SessionID:           &sessionId,
-	}
+	namespaceDsmc  = "armadademotestqa"
+	deployment     = "deployruli"
+	gameMode       = "soloyogs"
+	sessionId      = "d10d7eb4-e6aa-48b1-9ba4-9ad48a095636"
+	emptyString    = ""
+	emptyInterface interface{}
 )
 
 // Creating a session
-func TestIntegrationAdminCreateSession(t *testing.T) {
-	input := &session.CreateSessionParams{
+func TestIntegrationCreateSessionDSMC(t *testing.T) {
+	var partyMembers []*dsmcclientmodels.ModelsRequestMatchMember
+	partyMember := &dsmcclientmodels.ModelsRequestMatchMember{
+		UserID: &emptyString,
+	}
+	partyMembers = append(partyMembers, partyMember)
+	var matchingParties []*dsmcclientmodels.ModelsRequestMatchParty
+	matchingParty := &dsmcclientmodels.ModelsRequestMatchParty{
+		PartyAttributes: emptyInterface,
+		PartyID:         &deployment,
+		PartyMembers:    partyMembers,
+	}
+	matchingParties = append(matchingParties, matchingParty)
+	var matchingAllies []*dsmcclientmodels.ModelsRequestMatchingAlly
+	matchingAlly := &dsmcclientmodels.ModelsRequestMatchingAlly{
+		MatchingParties: matchingParties,
+	}
+	matchingAllies = append(matchingAllies, matchingAlly)
+	bodySession := &dsmcclientmodels.ModelsCreateSessionRequest{
+		ClientVersion:       &emptyString,
+		Configuration:       &emptyString,
+		Deployment:          &deployment,
+		GameMode:            &gameMode,
+		MatchingAllies:      matchingAllies,
+		Namespace:           &namespaceDsmc,
+		NotificationPayload: &emptyString,
+		PodName:             &emptyString,
+		Region:              &emptyString,
+		SessionID:           &sessionId,
+	}
+	inputDsmc := &session.CreateSessionParams{
 		Body:      bodySession,
-		Namespace: integration.Namespace,
+		Namespace: namespaceDsmc,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := sessionService.CreateSession(input)
+	ok, err := sessionDSMCService.CreateSession(inputDsmc)
 
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
 }
 
 // Claiming a DS (Dedicated Server)
-func TestIntegrationClaimSession(t *testing.T) {
-	input := &session.CreateSessionParams{
+func TestIntegrationClaimSessionDSMC(t *testing.T) {
+	var partyMembers []*dsmcclientmodels.ModelsRequestMatchMember
+	partyMember := &dsmcclientmodels.ModelsRequestMatchMember{
+		UserID: &emptyString,
+	}
+	partyMembers = append(partyMembers, partyMember)
+	var matchingParties []*dsmcclientmodels.ModelsRequestMatchParty
+	matchingParty := &dsmcclientmodels.ModelsRequestMatchParty{
+		PartyAttributes: emptyInterface,
+		PartyID:         &deployment,
+		PartyMembers:    partyMembers,
+	}
+	matchingParties = append(matchingParties, matchingParty)
+	var matchingAllies []*dsmcclientmodels.ModelsRequestMatchingAlly
+	matchingAlly := &dsmcclientmodels.ModelsRequestMatchingAlly{
+		MatchingParties: matchingParties,
+	}
+	matchingAllies = append(matchingAllies, matchingAlly)
+	bodySession := &dsmcclientmodels.ModelsCreateSessionRequest{
+		ClientVersion:       &emptyString,
+		Configuration:       &emptyString,
+		Deployment:          &deployment,
+		GameMode:            &gameMode,
+		MatchingAllies:      matchingAllies,
+		Namespace:           &namespaceDsmc,
+		NotificationPayload: &emptyString,
+		PodName:             &emptyString,
+		Region:              &emptyString,
+		SessionID:           &sessionId,
+	}
+	inputDsmc := &session.CreateSessionParams{
 		Body:      bodySession,
-		Namespace: integration.Namespace,
+		Namespace: namespaceDsmc,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := sessionService.CreateSession(input)
+	ok, err := sessionDSMCService.CreateSession(inputDsmc)
+
 	assert.Nil(t, err, "err should be nil")
 
 	sessionIdResp := ok.Session.ID
@@ -68,29 +117,60 @@ func TestIntegrationClaimSession(t *testing.T) {
 		Body:      bodyClaim,
 		Namespace: integration.Namespace,
 	}
-	errClaim := sessionService.ClaimServer(inputClaim)
+
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	errClaim := sessionDSMCService.ClaimServer(inputClaim)
 
 	assert.Nil(t, errClaim, "err should be nil")
 }
 
 // Getting a session
-func TestIntegrationGetSession(t *testing.T) {
-	input := &session.CreateSessionParams{
+func TestIntegrationGetSessionDSMC(t *testing.T) {
+	var partyMembers []*dsmcclientmodels.ModelsRequestMatchMember
+	partyMember := &dsmcclientmodels.ModelsRequestMatchMember{
+		UserID: &emptyString,
+	}
+	partyMembers = append(partyMembers, partyMember)
+	var matchingParties []*dsmcclientmodels.ModelsRequestMatchParty
+	matchingParty := &dsmcclientmodels.ModelsRequestMatchParty{
+		PartyAttributes: emptyInterface,
+		PartyID:         &deployment,
+		PartyMembers:    partyMembers,
+	}
+	matchingParties = append(matchingParties, matchingParty)
+	var matchingAllies []*dsmcclientmodels.ModelsRequestMatchingAlly
+	matchingAlly := &dsmcclientmodels.ModelsRequestMatchingAlly{
+		MatchingParties: matchingParties,
+	}
+	matchingAllies = append(matchingAllies, matchingAlly)
+	bodySession := &dsmcclientmodels.ModelsCreateSessionRequest{
+		ClientVersion:       &emptyString,
+		Configuration:       &emptyString,
+		Deployment:          &deployment,
+		GameMode:            &gameMode,
+		MatchingAllies:      matchingAllies,
+		Namespace:           &namespaceDsmc,
+		NotificationPayload: &emptyString,
+		PodName:             &emptyString,
+		Region:              &emptyString,
+		SessionID:           &sessionId,
+	}
+	inputDsmc := &session.CreateSessionParams{
 		Body:      bodySession,
-		Namespace: integration.Namespace,
+		Namespace: namespaceDsmc,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := sessionService.CreateSession(input)
+	ok, err := sessionDSMCService.CreateSession(inputDsmc)
 	assert.Nil(t, err, "err should be nil")
 
 	sessionIdResp := *ok.Session.ID
 	inputExpected := &session.GetSessionParams{
-		Namespace: integration.Namespace,
+		Namespace: namespaceDsmc,
 		SessionID: sessionIdResp,
 	}
-	expected, err := sessionService.GetSession(inputExpected)
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	expected, err := sessionDSMCService.GetSession(inputExpected)
 
 	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, ok, "response should not be nil")
 	assert.NotNil(t, expected, "response should not be nil")
 }

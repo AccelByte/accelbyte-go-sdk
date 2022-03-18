@@ -21,16 +21,28 @@ var (
 		Client:          factory.NewGroupClient(&integration.ConfigRepositoryImpl{}),
 		TokenRepository: &integration.TokenRepositoryImpl{},
 	}
+	configurationCode    = "group-test1"
+	groupDescription     = "DESCRIPTION"
+	groupMaxMember       = int32(1)
+	groupName            = "GROUP_NAME"
+	groupRegion          = "us-west-1"
+	groupType            = "PRIVATE"
+	groupCustomRule      groupclientmodels.ModelsGroupRuleGroupCustomRule
+	groupPredefinedRules []*groupclientmodels.ModelsRule
+	groupRules           = &groupclientmodels.ModelsGroupRule{
+		GroupCustomRule:      groupCustomRule,
+		GroupPredefinedRules: groupPredefinedRules,
+	}
 	bodyGroup = &groupclientmodels.ModelsPublicCreateNewGroupRequestV1{
-		ConfigurationCode: nil,
-		CustomAttributes:  nil,
-		GroupDescription:  nil,
-		GroupIcon:         nil,
-		GroupMaxMember:    nil,
-		GroupName:         nil,
-		GroupRegion:       nil,
-		GroupRules:        nil,
-		GroupType:         nil,
+		ConfigurationCode: &configurationCode,
+		CustomAttributes:  emptyInterface,
+		GroupDescription:  &groupDescription,
+		GroupIcon:         &emptyString,
+		GroupMaxMember:    &groupMaxMember,
+		GroupName:         &groupName,
+		GroupRegion:       &groupRegion,
+		GroupRules:        groupRules,
+		GroupType:         &groupType,
 	}
 )
 

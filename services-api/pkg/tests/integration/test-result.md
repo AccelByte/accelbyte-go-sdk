@@ -31,16 +31,15 @@
 ## DSMC
 | status | operation-id | error | permissions |
 |-|-|-|-|
-|x|CreateSession|||
+|✔|CreateSession|||
 |x|ClaimServer|||
-|x|GetSession|||
+|✔|GetSession|||
 
 ## EventLog
 | status | operation-id | error | permissions |
 |-|-|-|-|
-|x|CreateSession|||
-|x|ClaimServer|||
-|x|GetSession|||
+|x|QueryEventStreamHandler|||
+|x|GetEventSpecificUserV2Handler|||
 
 ## GDPR
 | status | operation-id | error | permissions |

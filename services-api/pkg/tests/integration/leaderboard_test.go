@@ -27,7 +27,7 @@ var (
 func TestIntegrationCreateLeaderboardConfigurationAdminV1(t *testing.T) {
 	nameLeaderboard := "test"
 	time := "12:00"
-	date := int64(1)
+	dateLeaderboard := int64(1)
 	daily := &leaderboardclientmodels.ModelsDailyConfig{
 		ResetTime: &time,
 	}
@@ -36,13 +36,13 @@ func TestIntegrationCreateLeaderboardConfigurationAdminV1(t *testing.T) {
 	leaderboardCode := "testgo"
 	monthly := &leaderboardclientmodels.ModelsMonthlyConfig{
 		ResetTime: &time,
-		ResetDate: &date,
+		ResetDate: &dateLeaderboard,
 	}
 	seasonPeriod := int32(12)
 	statCodeLeaderboard := "testgo"
 	weekly := &leaderboardclientmodels.ModelsWeeklyConfig{
 		ResetTime: &time,
-		ResetDay:  &date,
+		ResetDay:  &dateLeaderboard,
 	}
 	startTime := "2022-07-22T00:00:00Z"
 	bodyReq := &leaderboardclientmodels.ModelsLeaderboardConfigReq{

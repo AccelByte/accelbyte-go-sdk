@@ -22,6 +22,8 @@ import (
 const (
 	BaseURL   = "https://demo.accelbyte.io"
 	Namespace = "accelbyte"
+	Offset    = int64(0)
+	Size      = int64(1)
 )
 
 var token iamclientmodels.OauthmodelTokenResponseV3

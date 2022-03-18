@@ -3,3 +3,83 @@
 // and restrictions contact your company contract manager.
 
 package integration_test
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/store"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
+)
+
+var (
+	storeService = &platform.StoreService{
+		Client:          factory.NewPlatformClient(&integration.ConfigRepositoryImpl{}),
+		TokenRepository: &integration.TokenRepositoryImpl{},
+	}
+)
+
+// Creating a store
+func TestIntegrationCreateStore(t *testing.T) {
+	inputStore := &store.CreateStoreParams{
+		Body:      nil,
+		Namespace: "",
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	ok, err := storeService.CreateStore(inputStore)
+
+	assert.Nil(t, err, "err should be nil")
+	assert.NotNil(t, ok, "response should not be nil")
+}
+
+// Deleting a store
+func TestIntegrationDeleteStore(t *testing.T) {
+	inputStore := &store.DeleteStoreParams{
+		Namespace: "",
+		StoreID:   "",
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	ok, err := storeService.DeleteStore(inputStore)
+
+	assert.Nil(t, err, "err should be nil")
+	assert.NotNil(t, ok, "response should not be nil")
+}
+
+// Getting a single store
+func TestIntegrationGetStore(t *testing.T) {
+	inputStore := &store.GetStoreParams{
+		Namespace: "",
+		StoreID:   "",
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	ok, err := storeService.GetStore(inputStore)
+
+	assert.Nil(t, err, "err should be nil")
+	assert.NotNil(t, ok, "response should not be nil")
+}
+
+// Updating a store
+func TestIntegrationUpdateStore(t *testing.T) {
+	bodyStoreUpdate := &platformclientmodels.StoreUpdate{
+		DefaultLanguage:    "",
+		DefaultRegion:      "",
+		Description:        "",
+		SupportedLanguages: nil,
+		SupportedRegions:   nil,
+		Title:              nil,
+	}
+	inputStore := &store.UpdateStoreParams{
+		Body:      bodyStoreUpdate,
+		Namespace: "",
+		StoreID:   "",
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	ok, err := storeService.UpdateStore(inputStore)
+
+	assert.Nil(t, err, "err should be nil")
+	assert.NotNil(t, ok, "response should not be nil")
+}

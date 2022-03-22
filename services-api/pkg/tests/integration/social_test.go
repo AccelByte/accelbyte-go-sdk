@@ -39,24 +39,10 @@ var (
 	}
 )
 
-// Creating a statistic
-func TestIntegrationCreateStat(t *testing.T) {
-	tagsSocial = append(tagsSocial, tag)
-	inputStat := &stat_configuration.CreateStatParams{
-		Body:      bodyStatSocial,
-		Namespace: integration.Namespace,
-	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := statConfigurationService.CreateStat(inputStat)
-
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, ok, "response should not be nil")
-}
-
 // Deleting a statistic
 func TestIntegrationDeleteStat(t *testing.T) {
 	inputStat := &stat_configuration.DeleteStatParams{
-		Namespace: integration.Namespace,
+		Namespace: integration.NamespaceTest,
 		StatCode:  statCodeSocial,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
@@ -65,21 +51,26 @@ func TestIntegrationDeleteStat(t *testing.T) {
 	assert.Nil(t, err, "err should be nil")
 }
 
+// Creating a statistic
+func TestIntegrationCreateStat(t *testing.T) {
+	tagsSocial = append(tagsSocial, tag)
+	inputStat := &stat_configuration.CreateStatParams{
+		Body:      bodyStatSocial,
+		Namespace: integration.NamespaceTest,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	ok, err := statConfigurationService.CreateStat(inputStat)
+
+	assert.Nil(t, err, "err should be nil")
+	assert.NotNil(t, ok, "response should not be nil")
+}
+
 // Getting a statistic by its Stat Code
 func TestIntegrationGetStat(t *testing.T) {
 	tagsSocial = append(tagsSocial, tag)
-	inputStatReq := &stat_configuration.CreateStatParams{
-		Body:      bodyStatSocial,
-		Namespace: integration.Namespace,
-	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	okReq, err := statConfigurationService.CreateStat(inputStatReq)
-
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, okReq, "response should not be nil")
 
 	inputStat := &stat_configuration.GetStatParams{
-		Namespace: integration.Namespace,
+		Namespace: integration.NamespaceTest,
 		StatCode:  statCodeSocial,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
@@ -93,7 +84,7 @@ func TestIntegrationGetStat(t *testing.T) {
 func TestIntegrationGetStats(t *testing.T) {
 	inputStat := &stat_configuration.GetStatsParams{
 		Limit:     nil,
-		Namespace: integration.Namespace,
+		Namespace: integration.NamespaceTest,
 		Offset:    nil,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
@@ -108,7 +99,7 @@ func TestIntegrationQueryStats(t *testing.T) {
 	inputStat := &stat_configuration.QueryStatsParams{
 		Keyword:   statCodeSocial,
 		Limit:     nil,
-		Namespace: integration.Namespace,
+		Namespace: integration.NamespaceTest,
 		Offset:    nil,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
@@ -127,7 +118,7 @@ func TestIntegrationUpdateStat(t *testing.T) {
 	}
 	inputStat := &stat_configuration.UpdateStatParams{
 		Body:      bodyStatUpdate,
-		Namespace: integration.Namespace,
+		Namespace: integration.NamespaceTest,
 		StatCode:  statCodeSocial,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings

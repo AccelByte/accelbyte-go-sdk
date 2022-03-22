@@ -5,7 +5,6 @@
 package integration_test
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -29,97 +28,13 @@ var (
 		AvatarURL:               "https://picsum.photos/200",
 		CustomAttributes:        nil,
 		DateOfBirth:             nil,
-		FirstName:               "first",
+		FirstName:               "go",
 		Language:                "en",
-		LastName:                "last",
+		LastName:                "sdk",
 		PrivateCustomAttributes: nil,
 		TimeZone:                "Asia/Jakarta",
 	}
-)
-
-// Deleting a profile
-func TestIntegrationDeleteUserProfile(t *testing.T) {
-	input := &user_profile.CreateMyProfileParams{
-		Body:      bodyBasic,
-		Namespace: integration.Namespace,
-	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := userProfileService.CreateMyProfile(input)
-	if err != nil {
-		assert.FailNow(t, err.Error())
-	}
-	fmt.Printf(ok.UserID)
-
-	inputValue := &user_profile.DeleteUserProfileParams{
-		Namespace: integration.Namespace,
-		UserID:    ok.UserID,
-	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	expected, errExpected := userProfileService.DeleteUserProfile(inputValue)
-	if errExpected != nil {
-		assert.FailNow(t, errExpected.Error())
-	}
-
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, errExpected, "response should not be nil")
-	assert.Equal(t, expected, ok, "the response have different values")
-}
-
-// Creating a profile
-func TestIntegrationCreateMyProfile(t *testing.T) {
-	input := &user_profile.CreateMyProfileParams{
-		Body:      bodyBasic,
-		Namespace: integration.Namespace,
-	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := userProfileService.CreateMyProfile(input)
-	if err != nil {
-		assert.FailNow(t, err.Error())
-	}
-
-	fmt.Printf(ok.UserID)
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, ok, "response should not be nil")
-}
-
-// Getting a profile
-func TestIntegrationPublicGetUserProfileInfo(t *testing.T) {
-	input := &user_profile.CreateMyProfileParams{
-		Body:      bodyBasic,
-		Namespace: integration.Namespace,
-	}
-	ok, err := userProfileService.CreateMyProfile(input)
-	if err != nil {
-		assert.FailNow(t, err.Error())
-	}
-	fmt.Printf(ok.UserID)
-
-	inputValue := &user_profile.PublicGetUserProfileInfoParams{
-		Namespace: integration.Namespace,
-		UserID:    ok.UserID,
-	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	expected, errExpected := userProfileService.PublicGetUserProfileInfo(inputValue)
-	if errExpected != nil {
-		assert.FailNow(t, errExpected.Error())
-	}
-
-	assert.Nil(t, errExpected, "err should be nil")
-	assert.NotNil(t, expected, "response should not be nil")
-}
-
-// Updating a profile
-func TestIntegrationPublicUpdateUserProfile(t *testing.T) {
-	input := &user_profile.CreateMyProfileParams{
-		Body:      bodyBasic,
-		Namespace: integration.Namespace,
-	}
-	ok, err := userProfileService.CreateMyProfile(input)
-	if err != nil {
-		assert.FailNow(t, err.Error())
-	}
-
-	bodyValue := &basicclientmodels.UserProfileUpdate{
+	bodyBasicUpdate = &basicclientmodels.UserProfileUpdate{
 		AvatarLargeURL:   "https://picsum.photos/200",
 		AvatarSmallURL:   "https://picsum.photos/200",
 		AvatarURL:        "https://picsum.photos/200",
@@ -131,16 +46,63 @@ func TestIntegrationPublicUpdateUserProfile(t *testing.T) {
 		TimeZone:         "Asia/Jakarta",
 		ZipCode:          "",
 	}
-	inputValue := &user_profile.PublicUpdateUserProfileParams{
-		Body:      bodyValue,
-		Namespace: integration.Namespace,
-		UserID:    ok.UserID,
-	}
-	expected, errExpected := userProfileService.PublicUpdateUserProfile(inputValue)
-	if errExpected != nil {
-		assert.FailNow(t, errExpected.Error())
-	}
+)
 
-	assert.Nil(t, errExpected, "err should be nil")
-	assert.NotNil(t, expected, "response should not be nil")
+func TestIntegrationUserProfile(t *testing.T) {
+	// Creating a profile
+	inputCreate := &user_profile.CreateMyProfileParams{
+		Body:      bodyBasic,
+		Namespace: integration.NamespaceTest,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	created, errCreate := userProfileService.CreateMyProfile(inputCreate)
+	if errCreate != nil {
+		assert.FailNow(t, errCreate.Error())
+	}
+	t.Logf("Profile: %v created", created.UserID)
+
+	// Getting a profile
+	inputGet := &user_profile.PublicGetUserProfileInfoParams{
+		Namespace: integration.NamespaceTest,
+		UserID:    created.UserID,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	get, errGet := userProfileService.PublicGetUserProfileInfo(inputGet)
+	if errGet != nil {
+		assert.FailNow(t, errGet.Error())
+	}
+	t.Logf("Profile: %v get from namespace: %v", get.UserID, get.Namespace)
+
+	// Updating a profile
+	inputUpdate := &user_profile.PublicUpdateUserProfileParams{
+		Body:      bodyBasicUpdate,
+		Namespace: integration.NamespaceTest,
+		UserID:    created.UserID,
+	}
+	updated, errUpdate := userProfileService.PublicUpdateUserProfile(inputUpdate)
+	if errUpdate != nil {
+		assert.FailNow(t, errUpdate.Error())
+	}
+	t.Logf("Profile: %v updated", updated.UserID)
+
+	// Deleting a profile
+	inputDelete := &user_profile.DeleteUserProfileParams{
+		Namespace: integration.NamespaceTest,
+		UserID:    created.UserID,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	deleted, errDelete := userProfileService.DeleteUserProfile(inputDelete)
+	if errDelete != nil {
+		assert.FailNow(t, errDelete.Error())
+	}
+	t.Logf("Profile: %v deleted", created.UserID)
+
+	assert.Nil(t, errCreate, "err should be nil")
+	assert.NotNil(t, created, "response should not be nil")
+	assert.Nil(t, errGet, "err should be nil")
+	assert.NotNil(t, get, "response should not be nil")
+	assert.Nil(t, errUpdate, "err should be nil")
+	assert.NotNil(t, updated, "response should not be nil")
+	assert.Nil(t, errDelete, "err should be nil")
+	assert.NotNil(t, deleted, "response should not be nil")
 }

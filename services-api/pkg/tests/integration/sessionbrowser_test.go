@@ -5,7 +5,6 @@
 package integration_test
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -23,14 +22,13 @@ var (
 		Client:          factory.NewSessionbrowserClient(&integration.ConfigRepositoryImpl{}),
 		TokenRepository: &integration.TokenRepositoryImpl{},
 	}
-	namespaceSession   = integration.Namespace
+	namespaceSession   = integration.NamespaceTest
 	sessionType        = "p2p" // "dedicated server can not be updated"
 	mode               = "mode"
 	mapName            = "mapName"
 	emptyInt32         = int32(0)
 	defaultInt32       = int32(1)
 	defaultBool        = false
-	sessionBrowserId   = "0a486209-6c30-42d5-9fe0-edc67495c723"
 	gameSessionSetting = &sessionbrowserclientmodels.ModelsGameSessionSetting{
 		AllowJoinInProgress:   &defaultBool,
 		CurrentInternalPlayer: &emptyInt32,
@@ -50,62 +48,69 @@ var (
 		SessionType:        &sessionType,
 		Username:           &emptyString,
 	}
-)
-
-// Creating a session
-func TestIntegrationCreateSession(t *testing.T) {
-	inputSession := &session.CreateSessionParams{
-		Body:      bodySession,
-		Namespace: integration.Namespace,
-	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := sessionService.CreateSession(inputSession)
-
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, ok, "response should not be nil")
-	fmt.Printf("sessionId: %v", *ok.SessionID)
-}
-
-// Deleting a session
-func TestIntegrationDeleteSession(t *testing.T) {
-	inputSession := &session.DeleteSessionParams{
-		Namespace: integration.Namespace,
-		SessionID: sessionBrowserId,
-	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := sessionService.DeleteSession(inputSession)
-
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, ok, "response should not be nil")
-}
-
-// Getting a session
-func TestIntegrationGetSession(t *testing.T) {
-	inputMatchmaking := &session.GetSessionParams{
-		Namespace: integration.Namespace,
-		SessionID: sessionBrowserId,
-	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := sessionService.GetSession(inputMatchmaking)
-
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, ok, "response should not be nil")
-}
-
-// Updating a session
-func TestIntegrationUpdateSession(t *testing.T) {
-	bodySessionUpdate := &sessionbrowserclientmodels.ModelsUpdateSessionRequest{
+	bodySessionUpdate = &sessionbrowserclientmodels.ModelsUpdateSessionRequest{
 		GameCurrentPlayer: &defaultInt32,
 		GameMaxPlayer:     &defaultInt32,
 	}
-	inputMatchmaking := &session.UpdateSessionParams{
-		Body:      bodySessionUpdate,
-		Namespace: integration.Namespace,
+)
+
+func TestIntegrationSession(t *testing.T) {
+	// Creating a session
+	inputCreate := &session.CreateSessionParams{
+		Body:      bodySession,
+		Namespace: integration.NamespaceTest,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	created, errCreate := sessionService.CreateSession(inputCreate)
+	if errCreate != nil {
+		assert.FailNow(t, errCreate.Error())
+	}
+	sessionBrowserId := *created.SessionID
+	t.Logf("SessionId: %v created", sessionBrowserId)
+
+	// Getting a session
+	inputGet := &session.GetSessionParams{
+		Namespace: integration.NamespaceTest,
 		SessionID: sessionBrowserId,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := sessionService.UpdateSession(inputMatchmaking)
+	get, errGet := sessionService.GetSession(inputGet)
+	if errGet != nil {
+		assert.FailNow(t, errGet.Error())
+	}
+	t.Logf("SessionId: %v get from namespace: %v", *get.SessionID, *get.Namespace)
 
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, ok, "response should not be nil")
+	// Updating a session
+	inputUpdate := &session.UpdateSessionParams{
+		Body:      bodySessionUpdate,
+		Namespace: integration.NamespaceTest,
+		SessionID: sessionBrowserId,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	updated, errUpdate := sessionService.UpdateSession(inputUpdate)
+	if errUpdate != nil {
+		assert.FailNow(t, errUpdate.Error())
+	}
+	t.Logf("SessionId: %v updated", *updated.SessionID)
+
+	// Deleting a session
+	inputDelete := &session.DeleteSessionParams{
+		Namespace: integration.NamespaceTest,
+		SessionID: sessionBrowserId,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	deleted, errDelete := sessionService.DeleteSession(inputDelete)
+	if errDelete != nil {
+		assert.FailNow(t, errDelete.Error())
+	}
+	t.Logf("SessionId: %v deleted", *deleted.SessionID)
+
+	assert.Nil(t, errCreate, "err should be nil")
+	assert.NotNil(t, created, "response should not be nil")
+	assert.Nil(t, errGet, "err should be nil")
+	assert.NotNil(t, get, "response should not be nil")
+	assert.Nil(t, errUpdate, "err should be nil")
+	assert.NotNil(t, updated, "response should not be nil")
+	assert.Nil(t, errDelete, "err should be nil")
+	assert.NotNil(t, deleted, "response should not be nil")
 }

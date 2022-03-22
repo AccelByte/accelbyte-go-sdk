@@ -21,90 +21,69 @@ var (
 		Client:          factory.NewUgcClient(&integration.ConfigRepositoryImpl{}),
 		TokenRepository: &integration.TokenRepositoryImpl{},
 	}
-	tag       = "GoSDKTag"
-	tagUpdate = "GoSDKTagUpdate"
-	bodyTag   = &ugcclientmodels.ModelsCreateTagRequest{Tag: &tag}
+	tag           = "GoSDKTag"
+	tagUpdate     = "GoSDKTagUpdate"
+	bodyTag       = &ugcclientmodels.ModelsCreateTagRequest{Tag: &tag}
+	bodyTagUpdate = &ugcclientmodels.ModelsCreateTagRequest{Tag: &tagUpdate}
 )
 
-// Creating tags
-func TestIntegrationAdminCreateTag(t *testing.T) {
-	inputTag := &admin_tag.AdminCreateTagParams{
+func TestIntegrationTag(t *testing.T) {
+	// Creating tags
+	inputCreate := &admin_tag.AdminCreateTagParams{
 		Body:      bodyTag,
-		Namespace: integration.Namespace,
+		Namespace: integration.NamespaceTest,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := adminTagService.AdminCreateTag(inputTag)
-
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, ok, "response should not be nil")
-}
-
-// Deleting a tag
-func TestIntegrationAdminDeleteTag(t *testing.T) {
-	inputTagReq := &admin_tag.AdminCreateTagParams{
-		Body:      bodyTag,
-		Namespace: integration.Namespace,
+	created, errCreate := adminTagService.AdminCreateTag(inputCreate)
+	if errCreate != nil {
+		assert.FailNow(t, errCreate.Error())
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := adminTagService.AdminCreateTag(inputTagReq)
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, ok, "response should not be nil")
+	tagId := *created.ID
+	t.Logf("TagId: %v created", tagId)
 
-	tagId := *ok.ID
-	inputTag := &admin_tag.AdminDeleteTagParams{
-		Namespace: integration.Namespace,
-		TagID:     tagId,
-	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	err = adminTagService.AdminDeleteTag(inputTag)
-
-	assert.Nil(t, err, "err should be nil")
-}
-
-// Getting tags
-func TestIntegrationAdminGetTag(t *testing.T) {
-	inputTag := &admin_tag.AdminGetTagParams{
+	// Getting tags
+	inputGet := &admin_tag.AdminGetTagParams{
 		Limit:     nil,
-		Namespace: integration.Namespace,
+		Namespace: integration.NamespaceTest,
 		Offset:    nil,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := adminTagService.AdminGetTag(inputTag)
-
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, ok, "response should not be nil")
-}
-
-// Updating a tag
-func TestIntegrationAdminUpdateTag(t *testing.T) {
-	inputTagReq := &admin_tag.AdminCreateTagParams{
-		Body:      bodyTag,
-		Namespace: integration.Namespace,
+	get, errGet := adminTagService.AdminGetTag(inputGet)
+	if errGet != nil {
+		assert.FailNow(t, errGet.Error())
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	okReq, err := adminTagService.AdminCreateTag(inputTagReq)
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, okReq, "response should not be nil")
+	t.Log("Tag acquired")
 
-	tagId := *okReq.ID
-	bodyTagUpdate := &ugcclientmodels.ModelsCreateTagRequest{Tag: &tagUpdate}
-	inputTag := &admin_tag.AdminUpdateTagParams{
+	// Updating a tag
+	inputUpdate := &admin_tag.AdminUpdateTagParams{
 		Body:      bodyTagUpdate,
-		Namespace: integration.Namespace,
+		Namespace: integration.NamespaceTest,
 		TagID:     tagId,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, errTag := adminTagService.AdminUpdateTag(inputTag)
-	assert.Nil(t, errTag, "err should be nil")
+	updated, errUpdate := adminTagService.AdminUpdateTag(inputUpdate)
+	if errUpdate != nil {
+		assert.FailNow(t, errUpdate.Error())
+	}
+	t.Logf("TagId: %v updated", updated.ID)
 
-	tagId = *ok.ID
-	inputTagDelete := &admin_tag.AdminDeleteTagParams{
-		Namespace: integration.Namespace,
+	// Deleting a tag
+	inputDelete := &admin_tag.AdminDeleteTagParams{
+		Namespace: integration.NamespaceTest,
 		TagID:     tagId,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	err = adminTagService.AdminDeleteTag(inputTagDelete)
+	errDelete := adminTagService.AdminDeleteTag(inputDelete)
+	if errDelete != nil {
+		assert.FailNow(t, errDelete.Error())
+	}
+	t.Logf("TagId: %v deleted", created.ID)
 
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, ok, "response should not be nil")
+	assert.Nil(t, errCreate, "err should be nil")
+	assert.NotNil(t, created, "response should not be nil")
+	assert.Nil(t, errGet, "err should be nil")
+	assert.NotNil(t, get, "response should not be nil")
+	assert.Nil(t, errUpdate, "err should be nil")
+	assert.NotNil(t, updated, "response should not be nil")
+	assert.Nil(t, errDelete, "err should be nil")
 }

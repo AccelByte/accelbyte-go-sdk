@@ -38,8 +38,8 @@
 ## EventLog
 | status | operation-id | error | permissions |
 |-|-|-|-|
-|x|QueryEventStreamHandler||| ---> todo: is not supported by the TextConsumer, can be resolved by supporting TextUnmarshaler interface
-|x|GetEventSpecificUserV2Handler||| ---> todo: is not supported by the TextConsumer, can be resolved by supporting TextUnmarshaler interface
+|x|QueryEventStreamHandler||| ---> Fixme: is not supported by the TextConsumer, can be resolved by supporting TextUnmarshaler interface
+|x|GetEventSpecificUserV2Handler||| ---> Fixme: is not supported by the TextConsumer, can be resolved by supporting TextUnmarshaler interface
 
 ## GDPR
 | status | operation-id | error | permissions |

@@ -15,6 +15,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
+	sessionBrowser "github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient/session"
 )
 
 var (
@@ -22,58 +23,28 @@ var (
 		Client:          factory.NewDsmcClient(&integration.ConfigRepositoryImpl{}),
 		TokenRepository: &integration.TokenRepositoryImpl{},
 	}
-	namespaceDsmc  = "armadademotestqa"
+
 	deployment     = "deployruli"
 	gameMode       = "soloyogs"
-	sessionId      = "cd0717a1-64be-4095-bd7a-6c459384ba0f"
 	emptyString    = ""
 	emptyInterface interface{}
 )
 
-// Creating a session
-func TestIntegrationCreateSessionDSMC(t *testing.T) {
-	var partyMembers []*dsmcclientmodels.ModelsRequestMatchMember
-	partyMember := &dsmcclientmodels.ModelsRequestMatchMember{
-		UserID: &emptyString,
-	}
-	partyMembers = append(partyMembers, partyMember)
-	var matchingParties []*dsmcclientmodels.ModelsRequestMatchParty
-	matchingParty := &dsmcclientmodels.ModelsRequestMatchParty{
-		PartyAttributes: emptyInterface,
-		PartyID:         &deployment,
-		PartyMembers:    partyMembers,
-	}
-	matchingParties = append(matchingParties, matchingParty)
-	var matchingAllies []*dsmcclientmodels.ModelsRequestMatchingAlly
-	matchingAlly := &dsmcclientmodels.ModelsRequestMatchingAlly{
-		MatchingParties: matchingParties,
-	}
-	matchingAllies = append(matchingAllies, matchingAlly)
-	bodySessionDsmc := &dsmcclientmodels.ModelsCreateSessionRequest{
-		ClientVersion:       &emptyString,
-		Configuration:       &emptyString,
-		Deployment:          &deployment,
-		GameMode:            &gameMode,
-		MatchingAllies:      matchingAllies,
-		Namespace:           &namespaceDsmc,
-		NotificationPayload: &emptyString,
-		PodName:             &emptyString,
-		Region:              &emptyString,
-		SessionID:           &sessionId,
-	}
-	inputDsmc := &session.CreateSessionParams{
-		Body:      bodySessionDsmc,
-		Namespace: namespaceDsmc,
+func createSessionBrowser() string {
+	inputSession := &sessionBrowser.CreateSessionParams{
+		Body:      bodySession,
+		Namespace: integration.NamespaceTest,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := sessionDSMCService.CreateSession(inputDsmc)
-
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, ok, "response should not be nil")
+	ok, err := sessionService.CreateSession(inputSession)
+	if err != nil {
+		return ""
+	}
+	return *ok.SessionID
 }
 
-// Claiming a DS (Dedicated Server)
-func TestIntegrationClaimSessionDSMC(t *testing.T) {
+func TestIntegrationSessionDSMC(t *testing.T) {
+	SessionBrowserId := createSessionBrowser()
 	var partyMembers []*dsmcclientmodels.ModelsRequestMatchMember
 	partyMember := &dsmcclientmodels.ModelsRequestMatchMember{
 		UserID: &emptyString,
@@ -91,89 +62,63 @@ func TestIntegrationClaimSessionDSMC(t *testing.T) {
 		MatchingParties: matchingParties,
 	}
 	matchingAllies = append(matchingAllies, matchingAlly)
+	namespace := integration.NamespaceDsmc
 	bodySessionDsmc := &dsmcclientmodels.ModelsCreateSessionRequest{
 		ClientVersion:       &emptyString,
 		Configuration:       &emptyString,
 		Deployment:          &deployment,
 		GameMode:            &gameMode,
 		MatchingAllies:      matchingAllies,
-		Namespace:           &namespaceDsmc,
+		Namespace:           &namespace,
 		NotificationPayload: &emptyString,
 		PodName:             &emptyString,
 		Region:              &emptyString,
-		SessionID:           &sessionId,
+		SessionID:           &SessionBrowserId,
 	}
-	inputDsmc := &session.CreateSessionParams{
+
+	// Creating a session
+	inputCreate := &session.CreateSessionParams{
 		Body:      bodySessionDsmc,
-		Namespace: namespaceDsmc,
+		Namespace: integration.NamespaceDsmc,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := sessionDSMCService.CreateSession(inputDsmc)
+	created, errCreate := sessionDSMCService.CreateSession(inputCreate)
+	if errCreate != nil {
+		assert.FailNow(t, errCreate.Error())
+	}
+	createdSessionId := *created.Session.ID
+	t.Logf("Session DSMC: %v created", createdSessionId)
 
-	assert.Nil(t, err, "err should be nil")
+	// Getting a session
+	inputGet := &session.GetSessionParams{
+		Namespace: integration.NamespaceDsmc,
+		SessionID: createdSessionId,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	get, errGet := sessionDSMCService.GetSession(inputGet)
+	if errGet != nil {
+		assert.FailNow(t, errGet.Error())
+	}
+	t.Logf("Id Session DSMC: %v get from namespace %v", *get.Session.ID, *created.Session.Namespace)
 
-	sessionIdResp := ok.Session.ID
+	// Claiming a DS (Dedicated Server)
 	time.Sleep(5 * time.Second)
 
-	bodyClaim := &dsmcclientmodels.ModelsClaimSessionRequest{SessionID: sessionIdResp}
+	bodyClaim := &dsmcclientmodels.ModelsClaimSessionRequest{SessionID: &createdSessionId}
 	inputClaim := &session.ClaimServerParams{
 		Body:      bodyClaim,
-		Namespace: integration.Namespace,
+		Namespace: integration.NamespaceDsmc,
 	}
-
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	errClaim := sessionDSMCService.ClaimServer(inputClaim)
+	if errClaim != nil {
+		assert.FailNow(t, errClaim.Error())
+	}
+	t.Logf("Id Session DSMC: %v claimed a server", createdSessionId)
 
+	assert.Nil(t, errCreate, "err should be nil")
+	assert.NotNil(t, created, "response should not be nil")
+	assert.Nil(t, errGet, "err should be nil")
+	assert.NotNil(t, get, "response should not be nil")
 	assert.Nil(t, errClaim, "err should be nil")
-}
-
-// Getting a session
-func TestIntegrationGetSessionDSMC(t *testing.T) {
-	var partyMembers []*dsmcclientmodels.ModelsRequestMatchMember
-	partyMember := &dsmcclientmodels.ModelsRequestMatchMember{
-		UserID: &emptyString,
-	}
-	partyMembers = append(partyMembers, partyMember)
-	var matchingParties []*dsmcclientmodels.ModelsRequestMatchParty
-	matchingParty := &dsmcclientmodels.ModelsRequestMatchParty{
-		PartyAttributes: emptyInterface,
-		PartyID:         &deployment,
-		PartyMembers:    partyMembers,
-	}
-	matchingParties = append(matchingParties, matchingParty)
-	var matchingAllies []*dsmcclientmodels.ModelsRequestMatchingAlly
-	matchingAlly := &dsmcclientmodels.ModelsRequestMatchingAlly{
-		MatchingParties: matchingParties,
-	}
-	matchingAllies = append(matchingAllies, matchingAlly)
-	bodySessionDsmc := &dsmcclientmodels.ModelsCreateSessionRequest{
-		ClientVersion:       &emptyString,
-		Configuration:       &emptyString,
-		Deployment:          &deployment,
-		GameMode:            &gameMode,
-		MatchingAllies:      matchingAllies,
-		Namespace:           &namespaceDsmc,
-		NotificationPayload: &emptyString,
-		PodName:             &emptyString,
-		Region:              &emptyString,
-		SessionID:           &sessionId,
-	}
-	inputDsmc := &session.CreateSessionParams{
-		Body:      bodySessionDsmc,
-		Namespace: namespaceDsmc,
-	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := sessionDSMCService.CreateSession(inputDsmc)
-	assert.Nil(t, err, "err should be nil")
-
-	sessionIdResp := *ok.Session.ID
-	inputExpected := &session.GetSessionParams{
-		Namespace: namespaceDsmc,
-		SessionID: sessionIdResp,
-	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	expected, errExpected := sessionDSMCService.GetSession(inputExpected)
-
-	assert.Nil(t, errExpected, "err should be nil")
-	assert.NotNil(t, expected, "response should not be nil")
 }

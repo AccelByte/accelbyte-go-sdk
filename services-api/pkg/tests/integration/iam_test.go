@@ -4,6 +4,8 @@
 
 package integration_test
 
+//lint:ignore SA1019 Ignore the deprecation warnings
+
 import (
 	"net/http"
 	"os"
@@ -40,13 +42,13 @@ var (
 	scope               = "commerce account social publishing analytics"
 	username            = os.Getenv("username")
 	password            = os.Getenv("password")
+	clientId            = oAuth20Service.ConfigRepository.GetClientId()
 )
 
 // Getting an authorization
 func TestIntegrationAuthorizeV3(t *testing.T) {
 	codeVerifierGenerator, _ := utils.CreateCodeVerifier()
 	codeChallenge := codeVerifierGenerator.CodeChallengeS256()
-	//clientId := oAuth20Service.ConfigRepository.GetClientId()
 	input := &o_auth2_0.AuthorizeV3Params{
 		CodeChallenge:       &codeChallenge,
 		CodeChallengeMethod: &codeChallengeMethod,
@@ -69,7 +71,6 @@ func TestIntegrationAuthorizeV3(t *testing.T) {
 func TestIntegrationAuthenticate(t *testing.T) {
 	codeVerifierGenerator, _ := utils.CreateCodeVerifier()
 	codeChallenge := codeVerifierGenerator.CodeChallengeS256()
-	//clientId := oAuth20ExtensionService.ConfigRepository.GetClientId()
 	input := &o_auth2_0.AuthorizeV3Params{
 		CodeChallenge:       &codeChallenge,
 		CodeChallengeMethod: &codeChallengeMethod,
@@ -79,7 +80,6 @@ func TestIntegrationAuthenticate(t *testing.T) {
 		ResponseType:        "code",
 		HTTPClient:          httpClient,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	requestID, err := oAuth20Service.AuthorizeV3(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
@@ -92,7 +92,6 @@ func TestIntegrationAuthenticate(t *testing.T) {
 		UserName:   username,
 		HTTPClient: httpClient,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	expected, errExpected := oAuth20ExtensionService.UserAuthenticationV3(inputAuth)
 	if errExpected != nil {
 		assert.FailNow(t, errExpected.Error())
@@ -105,7 +104,6 @@ func TestIntegrationAuthenticate(t *testing.T) {
 func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 	codeVerifierGenerator, _ := utils.CreateCodeVerifier()
 	codeChallenge := codeVerifierGenerator.CodeChallengeS256()
-	//clientId := oAuth20ExtensionService.ConfigRepository.GetClientId()
 	input := &o_auth2_0.AuthorizeV3Params{
 		CodeChallenge:       &codeChallenge,
 		CodeChallengeMethod: &codeChallengeMethod,
@@ -115,7 +113,6 @@ func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 		ResponseType:        "code",
 		HTTPClient:          httpClient,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	requestID, err := oAuth20Service.AuthorizeV3(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
@@ -128,7 +125,6 @@ func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 		UserName:   username,
 		HTTPClient: httpClient,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	code, errCode := oAuth20ExtensionService.UserAuthenticationV3(inputAuth)
 	if errCode != nil {
 		assert.FailNow(t, errCode.Error())
@@ -140,7 +136,6 @@ func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 		CodeVerifier: &codeVerifier,
 		GrantType:    "authorization_code",
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	expected, errExpected := oAuth20Service.TokenGrantV3(inputTokenGrant)
 	if errExpected != nil {
 		assert.FailNow(t, errExpected.Error())
@@ -150,27 +145,18 @@ func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 	assert.NotNil(t, expected, "response should not be nil")
 }
 
-// Login
-func TestIntegrationLogin(t *testing.T) {
-	err := oAuth20Service.Login(username, password)
-	if err != nil {
-		assert.FailNow(t, err.Error())
+func TestIntegrationOAuth20(t *testing.T) {
+	errLogin := oAuth20Service.Login(username, password)
+	if errLogin != nil {
+		assert.FailNow(t, errLogin.Error())
 	}
+	assert.Nil(t, errLogin, "err should be nil")
 
-	assert.Nil(t, err, "err should be nil")
-}
-
-// Logout
-func TestIntegrationLogout(t *testing.T) {
-	err := oAuth20Service.Login(username, password)
-	if err != nil {
-		assert.FailNow(t, err.Error())
+	errLogout := oAuth20Service.Logout()
+	if errLogout != nil {
+		assert.FailNow(t, errLogout.Error())
 	}
+	assert.Nil(t, errLogout, "err should be nil")
 
-	err = oAuth20Service.Logout()
-	if err != nil {
-		assert.FailNow(t, err.Error())
-	}
-
-	assert.Nil(t, err, "err should be nil")
+	_ = oAuth20Service.Login(username, password)
 }

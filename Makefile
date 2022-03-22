@@ -28,6 +28,13 @@ samples:
 	find -type f -name main.go -exec dirname {} \; | xargs -I{} \
 			sh -c 'echo "{}" && docker run -t --rm -v $$(pwd):/data/ -w /data/ golang:1.16 sh -c "cd {} && go build || exit 255"'
 
+test_integration:
+	rm -f testIntegration.err
+	docker run -t --rm -v $$(pwd):/data/ -w /data/ golang:1.16 sh -c "cd samples/cli && go build" && \
+	bash -c "cd services-api/pkg/tests/integration && go test -v" \
+	done
+	[ ! -f testIntegration.err ] || (rm testIntegration.err && exit 1)
+
 test_cli:
 	@test -n "$(SDK_MOCK_SERVER_PATH)" || (echo "SDK_MOCK_SERVER_PATH is not set" ; exit 1)
 	rm -f test.err

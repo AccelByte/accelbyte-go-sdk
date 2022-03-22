@@ -103,6 +103,18 @@ var (
 	}
 )
 
+// Deleting a channel
+func TestIntegrationDeleteChannelHandler(t *testing.T) {
+	inputMatchmaking := &matchmaking_.DeleteChannelHandlerParams{
+		Channel:   defaultGameMode,
+		Namespace: integration.NamespaceTest,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	err := matchmakingService.DeleteChannelHandler(inputMatchmaking)
+
+	assert.Nil(t, err, "err should be nil")
+}
+
 // Create a channel
 func TestIntegrationCreateChannelHandler(t *testing.T) {
 	allianceFlexingRules = append(allianceFlexingRules, allianceFlexingRule)
@@ -110,7 +122,7 @@ func TestIntegrationCreateChannelHandler(t *testing.T) {
 	matchingRules = append(matchingRules, matchingRule)
 	inputMatchmaking := &matchmaking_.CreateChannelHandlerParams{
 		Body:      bodyMatchmaking,
-		Namespace: integration.Namespace,
+		Namespace: integration.NamespaceTest,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	ok, err := matchmakingService.CreateChannelHandler(inputMatchmaking)
@@ -119,23 +131,11 @@ func TestIntegrationCreateChannelHandler(t *testing.T) {
 	assert.NotNil(t, ok, "response should not be nil")
 }
 
-// Deleting a channel
-func TestIntegrationDeleteChannelHandler(t *testing.T) {
-	inputMatchmaking := &matchmaking_.DeleteChannelHandlerParams{
-		Channel:   defaultGameMode,
-		Namespace: integration.Namespace,
-	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	err := matchmakingService.DeleteChannelHandler(inputMatchmaking)
-
-	assert.Nil(t, err, "err should be nil")
-}
-
 // Getting a channel
 func TestIntegrationGetSingleMatchmakingChannel(t *testing.T) {
 	inputMatchmaking := &matchmaking_.GetSingleMatchmakingChannelParams{
 		ChannelName: defaultGameMode,
-		Namespace:   integration.Namespace,
+		Namespace:   integration.NamespaceTest,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	ok, err := matchmakingService.GetSingleMatchmakingChannel(inputMatchmaking)
@@ -149,7 +149,7 @@ func TestIntegrationUpdatePatchSinglematchmakingPublicV1(t *testing.T) {
 	inputMatchmaking := &matchmaking_.UpdateMatchmakingChannelParams{
 		Body:        bodyMatchmakingUpdate,
 		ChannelName: defaultGameMode,
-		Namespace:   integration.Namespace,
+		Namespace:   integration.NamespaceTest,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	err := matchmakingService.UpdateMatchmakingChannel(inputMatchmaking)

@@ -58,7 +58,7 @@ func decodeWSMessage(msg string) map[string]string {
 	return res
 }
 
-func TestIntegrationGetNotificationMessage(t *testing.T) {
+func TestIntegrationNotification(t *testing.T) {
 	connMgr = &integration.ConnectionManagerImpl{}
 	connection, err := connectionutils.NewWebsocketConnection(oAuth20Service.ConfigRepository, oAuth20Service.TokenRepository, lobbyMessageHandler)
 	assert.Nil(t, err, "err should be nil")
@@ -67,14 +67,6 @@ func TestIntegrationGetNotificationMessage(t *testing.T) {
 
 	err = notificationService.GetNotificationMessage()
 	assert.Nil(t, err, "err should be nil")
-}
-
-func TestIntegrationGetOfflineNotification(t *testing.T) {
-	connMgr = &integration.ConnectionManagerImpl{}
-	connection, err := connectionutils.NewWebsocketConnection(oAuth20Service.ConfigRepository, oAuth20Service.TokenRepository, lobbyMessageHandler)
-	assert.Nil(t, err, "err should be nil")
-
-	connMgr.Save(connection)
 
 	err = notificationService.GetOfflineNotification()
 	assert.Nil(t, err, "err should be nil")

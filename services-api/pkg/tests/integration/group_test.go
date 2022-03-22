@@ -55,85 +55,7 @@ var (
 		GroupRules:        groupRules,
 		GroupType:         &groupType,
 	}
-)
-
-// Creating a group
-// needs to use a token user who are not already joined a group
-func TestIntegrationCreateNewGroupPublicV1(t *testing.T) {
-	ruleDetails = append(ruleDetails, ruleDetail)
-	groupPredefinedRules = append(groupPredefinedRules, groupPredefinedRule)
-	inputGroup := &group_.CreateNewGroupPublicV1Params{
-		Body:      bodyGroup,
-		Namespace: integration.Namespace,
-	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := groupService.CreateNewGroupPublicV1(inputGroup)
-
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, ok, "response should not be nil")
-}
-
-// Deleting a group
-func TestIntegrationDeleteGroupPublicV1(t *testing.T) {
-	inputGroupCreate := &group_.CreateNewGroupPublicV1Params{
-		Body:      bodyGroup,
-		Namespace: integration.Namespace,
-	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	okCreate, err := groupService.CreateNewGroupPublicV1(inputGroupCreate)
-
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, okCreate, "response should not be nil")
-
-	groupId := *okCreate.GroupID
-	inputGroup := &group_.DeleteGroupPublicV1Params{
-		GroupID:   groupId,
-		Namespace: integration.Namespace,
-	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	err = groupService.DeleteGroupPublicV1(inputGroup)
-
-	assert.Nil(t, err, "err should be nil")
-}
-
-// Getting a single group
-func TestIntegrationGetSingleGroupPublicV1(t *testing.T) {
-	inputGroupCreate := &group_.CreateNewGroupPublicV1Params{
-		Body:      bodyGroup,
-		Namespace: integration.Namespace,
-	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	okCreate, err := groupService.CreateNewGroupPublicV1(inputGroupCreate)
-
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, okCreate, "response should not be nil")
-
-	groupId := *okCreate.GroupID
-	inputGroup := &group_.GetSingleGroupPublicV1Params{
-		GroupID:   groupId,
-		Namespace: integration.Namespace,
-	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, errOk := groupService.GetSingleGroupPublicV1(inputGroup)
-
-	assert.Nil(t, errOk, "err should be nil")
-	assert.NotNil(t, ok, "response should not be nil")
-}
-
-// Updating a group
-func TestIntegrationUpdatePatchSingleGroupPublicV1(t *testing.T) {
-	inputGroupCreate := &group_.CreateNewGroupPublicV1Params{
-		Body:      bodyGroup,
-		Namespace: integration.Namespace,
-	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	okCreate, err := groupService.CreateNewGroupPublicV1(inputGroupCreate)
-
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, okCreate, "response should not be nil")
-
-	groupId := *okCreate.GroupID
-	bodyGroupUpdate := &groupclientmodels.ModelsUpdateGroupRequestV1{
+	bodyGroupUpdate = &groupclientmodels.ModelsUpdateGroupRequestV1{
 		CustomAttributes: emptyInterface,
 		GroupDescription: &groupDescription,
 		GroupIcon:        &emptyString,
@@ -141,14 +63,69 @@ func TestIntegrationUpdatePatchSingleGroupPublicV1(t *testing.T) {
 		GroupRegion:      &groupRegion,
 		GroupType:        &groupType,
 	}
-	inputGroup := &group_.UpdatePatchSingleGroupPublicV1Params{
+)
+
+// TODO: migrate to test namespace, forbidden
+func TestIntegrationGroup(t *testing.T) {
+	ruleDetails = append(ruleDetails, ruleDetail)
+	groupPredefinedRules = append(groupPredefinedRules, groupPredefinedRule)
+
+	// Creating a group
+	// needs to use a token user who are not already joined a group
+	inputCreate := &group_.CreateNewGroupPublicV1Params{
+		Body:      bodyGroup,
+		Namespace: integration.Namespace,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	created, errCreate := groupService.CreateNewGroupPublicV1(inputCreate)
+	if errCreate != nil {
+		assert.FailNow(t, errCreate.Error())
+	}
+	groupId := *created.GroupID
+	t.Logf("GroupID: %v created", groupId)
+
+	// Getting a single group
+	inputGet := &group_.GetSingleGroupPublicV1Params{
+		GroupID:   groupId,
+		Namespace: integration.Namespace,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	get, errGet := groupService.GetSingleGroupPublicV1(inputGet)
+	if errGet != nil {
+		assert.FailNow(t, errGet.Error())
+	}
+	t.Logf("GroupID: %v get with name: %v", groupId, *created.GroupName)
+
+	// Updating a group
+	inputUpdate := &group_.UpdatePatchSingleGroupPublicV1Params{
 		Body:      bodyGroupUpdate,
 		GroupID:   groupId,
 		Namespace: integration.Namespace,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, errOk := groupService.UpdatePatchSingleGroupPublicV1(inputGroup)
+	updated, errUpdate := groupService.UpdatePatchSingleGroupPublicV1(inputUpdate)
+	if errUpdate != nil {
+		assert.FailNow(t, errUpdate.Error())
+	}
+	t.Logf("GroupID: %v updated", groupId)
 
-	assert.Nil(t, errOk, "err should be nil")
-	assert.NotNil(t, ok, "response should not be nil")
+	// Deleting a group
+	inputDelete := &group_.DeleteGroupPublicV1Params{
+		GroupID:   groupId,
+		Namespace: integration.Namespace,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	errDelete := groupService.DeleteGroupPublicV1(inputDelete)
+	if errDelete != nil {
+		assert.FailNow(t, errDelete.Error())
+	}
+	t.Logf("GroupID: %v deleted", groupId)
+
+	assert.Nil(t, errGet, "err should be nil")
+	assert.NotNil(t, get, "response should not be nil")
+	assert.Nil(t, errCreate, "err should be nil")
+	assert.NotNil(t, created, "response should not be nil")
+	assert.Nil(t, errUpdate, "err should be nil")
+	assert.NotNil(t, updated, "response should not be nil")
+	assert.Nil(t, errDelete, "err should be nil")
 }

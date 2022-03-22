@@ -5,7 +5,9 @@
 package integration_test
 
 import (
+	"math/rand"
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/assert"
 
@@ -15,6 +17,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/leaderboard"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
 )
+
+const letterBytes = "abcdefghijklmnopqrstuvwxyz1234567890"
 
 var (
 	leaderboardConfigurationService = &leaderboard.LeaderboardConfigurationService{
@@ -26,7 +30,7 @@ var (
 	dateLeaderboard     = int64(1)
 	descending          = false
 	iconURL             = ""
-	leaderboardCode     = "testgo1"
+	leaderboardCode     string
 	seasonPeriod        = int32(0)
 	statCodeLeaderboard = "testgo"
 	startTime           = "2022-07-22T00:00:00Z"
@@ -66,55 +70,73 @@ var (
 	}
 )
 
-// Creating a leaderboard
-// todo: need to replace the leaderboardCode's name, else conflict
 func TestIntegrationCreateLeaderboardConfigurationAdminV1(t *testing.T) {
-	inputLeaderboard := &leaderboard_configuration.CreateLeaderboardConfigurationAdminV1Params{
+	rand.Seed(time.Now().UnixNano())
+	randomString := RandStringBytes(5)
+	leaderboardCode = randomString
+
+	// Creating a leaderboard
+	inputCreate := &leaderboard_configuration.CreateLeaderboardConfigurationAdminV1Params{
 		Body:      bodyReq,
-		Namespace: integration.Namespace,
+		Namespace: integration.NamespaceTest,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := leaderboardConfigurationService.CreateLeaderboardConfigurationAdminV1(inputLeaderboard)
+	created, errCreate := leaderboardConfigurationService.CreateLeaderboardConfigurationAdminV1(inputCreate)
+	if errCreate != nil {
+		assert.FailNow(t, errCreate.Error())
+	}
+	t.Logf("Leaderboard Code: %v created", *created.LeaderboardCode)
 
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, ok, "response should not be nil")
-}
-
-// Deleting a leaderboard
-func TestIntegrationDeleteLeaderboardPublicV1(t *testing.T) {
-	inputLeaderboard := &leaderboard_configuration.DeleteLeaderboardConfigurationAdminV1Params{
+	// Getting a single leaderboard
+	inputGet := &leaderboard_configuration.GetLeaderboardConfigurationAdminV1Params{
 		LeaderboardCode: leaderboardCode,
-		Namespace:       integration.Namespace,
+		Namespace:       integration.NamespaceTest,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	err := leaderboardConfigurationService.DeleteLeaderboardConfigurationAdminV1(inputLeaderboard)
-
-	assert.Nil(t, err, "err should be nil")
-}
-
-// Getting a single leaderboard
-func TestIntegrationGetSingleLeaderboardPublicV1(t *testing.T) {
-	inputLeaderboard := &leaderboard_configuration.GetLeaderboardConfigurationAdminV1Params{
-		LeaderboardCode: leaderboardCode,
-		Namespace:       integration.Namespace,
+	get, errGet := leaderboardConfigurationService.GetLeaderboardConfigurationAdminV1(inputGet)
+	if errGet != nil {
+		assert.FailNow(t, errGet.Error())
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := leaderboardConfigurationService.GetLeaderboardConfigurationAdminV1(inputLeaderboard)
+	t.Logf("Leaderboard Code: %v accuired", *created.LeaderboardCode)
 
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, ok, "response should not be nil")
-}
-
-// Updating a leaderboard
-func TestIntegrationUpdatePatchSingleLeaderboardPublicV1(t *testing.T) {
-	inputLeaderboard := &leaderboard_configuration.UpdateLeaderboardConfigurationAdminV1Params{
+	// Updating a leaderboard
+	inputUpdate := &leaderboard_configuration.UpdateLeaderboardConfigurationAdminV1Params{
 		Body:            bodyReqUpdate,
 		LeaderboardCode: leaderboardCode,
-		Namespace:       integration.Namespace,
+		Namespace:       integration.NamespaceTest,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
-	ok, err := leaderboardConfigurationService.UpdateLeaderboardConfigurationAdminV1(inputLeaderboard)
+	updated, errUpdate := leaderboardConfigurationService.UpdateLeaderboardConfigurationAdminV1(inputUpdate)
+	if errUpdate != nil {
+		assert.FailNow(t, errUpdate.Error())
+	}
+	t.Logf("Leaderboard Code: %v updated", *created.LeaderboardCode)
 
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, ok, "response should not be nil")
+	// Deleting a leaderboard
+	inputLeaderboard := &leaderboard_configuration.DeleteLeaderboardConfigurationAdminV1Params{
+		LeaderboardCode: leaderboardCode,
+		Namespace:       integration.NamespaceTest,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	errDelete := leaderboardConfigurationService.DeleteLeaderboardConfigurationAdminV1(inputLeaderboard)
+	if errDelete != nil {
+		assert.FailNow(t, errDelete.Error())
+	}
+	t.Logf("Leaderboard Code: %v deleted", *created.LeaderboardCode)
+
+	assert.Nil(t, errCreate, "err should be nil")
+	assert.NotNil(t, created, "response should not be nil")
+	assert.Nil(t, errGet, "err should be nil")
+	assert.NotNil(t, get, "response should not be nil")
+	assert.Nil(t, errUpdate, "err should be nil")
+	assert.NotNil(t, updated, "response should not be nil")
+	assert.Nil(t, errDelete, "err should be nil")
+}
+
+func RandStringBytes(n int) string {
+	b := make([]byte, n)
+	for i := range b {
+		b[i] = letterBytes[rand.Intn(len(letterBytes))]
+	}
+	return string(b)
 }

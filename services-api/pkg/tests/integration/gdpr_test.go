@@ -25,6 +25,18 @@ var (
 	emails []string
 )
 
+// Deleting admin email configuration
+func TestIntegrationDeleteAdminEmailConfiguration(t *testing.T) {
+	emails = append(emails, email)
+	input := &data_retrieval.DeleteAdminEmailConfigurationParams{
+		Emails:    emails,
+		Namespace: integration.Namespace,
+	}
+	//lint:ignore SA1019 Ignore the deprecation warnings
+	err := dataRetrievalService.DeleteAdminEmailConfiguration(input)
+	assert.Nil(t, err, "response should not be nil")
+}
+
 // Creating admin email configuration
 func TestIntegrationSaveAdminEmailConfiguration(t *testing.T) {
 	body = append(body, email)
@@ -36,18 +48,6 @@ func TestIntegrationSaveAdminEmailConfiguration(t *testing.T) {
 	err := dataRetrievalService.SaveAdminEmailConfiguration(input)
 
 	assert.Nil(t, err, "err should be nil")
-}
-
-// Deleting admin email configuration
-func TestIntegrationDeleteAdminEmailConfiguration(t *testing.T) {
-	emails = append(emails, email)
-	input := &data_retrieval.DeleteAdminEmailConfigurationParams{
-		Emails:    emails,
-		Namespace: integration.Namespace,
-	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	err := dataRetrievalService.DeleteAdminEmailConfiguration(input)
-	assert.Nil(t, err, "response should not be nil")
 }
 
 // Getting admin email addresses configuration

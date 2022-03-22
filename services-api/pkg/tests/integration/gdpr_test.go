@@ -30,7 +30,7 @@ func TestIntegrationDeleteAdminEmailConfiguration(t *testing.T) {
 	emails = append(emails, email)
 	input := &data_retrieval.DeleteAdminEmailConfigurationParams{
 		Emails:    emails,
-		Namespace: integration.Namespace,
+		Namespace: integration.NamespaceTest,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	err := dataRetrievalService.DeleteAdminEmailConfiguration(input)
@@ -42,7 +42,7 @@ func TestIntegrationSaveAdminEmailConfiguration(t *testing.T) {
 	body = append(body, email)
 	input := &data_retrieval.SaveAdminEmailConfigurationParams{
 		Body:      body,
-		Namespace: integration.Namespace,
+		Namespace: integration.NamespaceTest,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	err := dataRetrievalService.SaveAdminEmailConfiguration(input)
@@ -53,7 +53,7 @@ func TestIntegrationSaveAdminEmailConfiguration(t *testing.T) {
 // Getting admin email addresses configuration
 func TestIntegrationAdminListDataRetrieval(t *testing.T) {
 	input := &data_retrieval.GetAdminEmailConfigurationParams{
-		Namespace: integration.Namespace,
+		Namespace: integration.NamespaceTest,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	ok, err := dataRetrievalService.GetAdminEmailConfiguration(input)
@@ -67,7 +67,7 @@ func TestIntegrationUpdateAdminEmailConfiguration(t *testing.T) {
 	body = append(body, email)
 	input := &data_retrieval.UpdateAdminEmailConfigurationParams{
 		Body:      body,
-		Namespace: integration.Namespace,
+		Namespace: integration.NamespaceTest,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	err := dataRetrievalService.UpdateAdminEmailConfiguration(input)

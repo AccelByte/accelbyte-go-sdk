@@ -22,7 +22,7 @@ var (
 	}
 	limit                 = int64(20)
 	inputTerminatedServer = &terminated_servers.ListTerminatedServersParams{
-		Namespace: integration.Namespace,
+		Namespace: integration.NamespaceTest,
 		Limit:     &limit,
 	}
 )

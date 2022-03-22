@@ -30,7 +30,7 @@ func TestIntegrationPostGameRecordHandlerV1(t *testing.T) {
 	input := &public_game_record.PostGameRecordHandlerV1Params{
 		Body:      bodyRecord,
 		Key:       key,
-		Namespace: integration.Namespace,
+		Namespace: integration.NamespaceTest,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	err := publicGameRecordService.PostGameRecordHandlerV1(input)
@@ -45,7 +45,7 @@ func TestIntegrationPostGameRecordHandlerV1(t *testing.T) {
 func TestIntegrationDeleteGameRecordHandlerV1(t *testing.T) {
 	input := &public_game_record.DeleteGameRecordHandlerV1Params{
 		Key:       key,
-		Namespace: integration.Namespace,
+		Namespace: integration.NamespaceTest,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	err := publicGameRecordService.DeleteGameRecordHandlerV1(input)
@@ -62,7 +62,7 @@ func TestIntegrationGetGameRecordHandlerV1(t *testing.T) {
 	input := &public_game_record.PostGameRecordHandlerV1Params{
 		Body:      bodyRecord,
 		Key:       key,
-		Namespace: integration.Namespace,
+		Namespace: integration.NamespaceTest,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	err := publicGameRecordService.PostGameRecordHandlerV1(input)
@@ -72,7 +72,7 @@ func TestIntegrationGetGameRecordHandlerV1(t *testing.T) {
 
 	inputRecord := &public_game_record.GetGameRecordHandlerV1Params{
 		Key:       key,
-		Namespace: integration.Namespace,
+		Namespace: integration.NamespaceTest,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	ok, errOk := publicGameRecordService.GetGameRecordHandlerV1(inputRecord)
@@ -89,7 +89,7 @@ func TestIntegrationPutGameRecordHandlerV1(t *testing.T) {
 	input := &public_game_record.PutGameRecordHandlerV1Params{
 		Body:      bodyRecord,
 		Key:       key,
-		Namespace: integration.Namespace,
+		Namespace: integration.NamespaceTest,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	err := publicGameRecordService.PutGameRecordHandlerV1(input)

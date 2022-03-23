@@ -147,18 +147,11 @@ func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 	assert.NotNil(t, expected, "response should not be nil")
 }
 
-func TestIntegrationOAuth20(t *testing.T) {
+func TestIntegrationLogin(t *testing.T) {
+	t.Parallel()
 	errLogin := oAuth20Service.Login(username, password)
 	if errLogin != nil {
 		assert.FailNow(t, errLogin.Error())
 	}
 	assert.Nil(t, errLogin, "err should be nil")
-
-	errLogout := oAuth20Service.Logout()
-	if errLogout != nil {
-		assert.FailNow(t, errLogout.Error())
-	}
-	assert.Nil(t, errLogout, "err should be nil")
-
-	_ = oAuth20Service.Login(username, password)
 }

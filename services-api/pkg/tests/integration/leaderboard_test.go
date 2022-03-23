@@ -4,6 +4,8 @@
 
 package integration_test
 
+//lint:ignore SA1019 Ignore the deprecation warnings
+
 import (
 	"math/rand"
 	"testing"
@@ -80,7 +82,6 @@ func TestIntegrationCreateLeaderboardConfigurationAdminV1(t *testing.T) {
 		Body:      bodyReq,
 		Namespace: integration.NamespaceTest,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	created, errCreate := leaderboardConfigurationService.CreateLeaderboardConfigurationAdminV1(inputCreate)
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
@@ -92,7 +93,6 @@ func TestIntegrationCreateLeaderboardConfigurationAdminV1(t *testing.T) {
 		LeaderboardCode: leaderboardCode,
 		Namespace:       integration.NamespaceTest,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	get, errGet := leaderboardConfigurationService.GetLeaderboardConfigurationAdminV1(inputGet)
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
@@ -105,7 +105,6 @@ func TestIntegrationCreateLeaderboardConfigurationAdminV1(t *testing.T) {
 		LeaderboardCode: leaderboardCode,
 		Namespace:       integration.NamespaceTest,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	updated, errUpdate := leaderboardConfigurationService.UpdateLeaderboardConfigurationAdminV1(inputUpdate)
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
@@ -117,7 +116,6 @@ func TestIntegrationCreateLeaderboardConfigurationAdminV1(t *testing.T) {
 		LeaderboardCode: leaderboardCode,
 		Namespace:       integration.NamespaceTest,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	errDelete := leaderboardConfigurationService.DeleteLeaderboardConfigurationAdminV1(inputLeaderboard)
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())

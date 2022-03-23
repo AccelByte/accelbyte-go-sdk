@@ -59,7 +59,6 @@ func TestIntegrationAuthorizeV3(t *testing.T) {
 		ResponseType:        "code",
 		HTTPClient:          httpClient,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	expected, err := oAuth20Service.AuthorizeV3(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())

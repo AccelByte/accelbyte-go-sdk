@@ -4,6 +4,8 @@
 
 package integration_test
 
+//lint:ignore SA1019 Ignore the deprecation warnings
+
 import (
 	"testing"
 
@@ -77,7 +79,6 @@ func TestIntegrationGroup(t *testing.T) {
 		Body:      bodyGroup,
 		Namespace: integration.NamespaceTest,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	created, errCreate := groupService.CreateNewGroupPublicV1(inputCreate)
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
@@ -90,7 +91,6 @@ func TestIntegrationGroup(t *testing.T) {
 		GroupID:   groupId,
 		Namespace: integration.NamespaceTest,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	get, errGet := groupService.GetSingleGroupPublicV1(inputGet)
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
@@ -103,7 +103,6 @@ func TestIntegrationGroup(t *testing.T) {
 		GroupID:   groupId,
 		Namespace: integration.NamespaceTest,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	updated, errUpdate := groupService.UpdatePatchSingleGroupPublicV1(inputUpdate)
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
@@ -115,7 +114,6 @@ func TestIntegrationGroup(t *testing.T) {
 		GroupID:   groupId,
 		Namespace: integration.NamespaceTest,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	errDelete := groupService.DeleteGroupPublicV1(inputDelete)
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())

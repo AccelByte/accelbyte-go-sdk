@@ -4,6 +4,8 @@
 
 package integration_test
 
+//lint:ignore SA1019 Ignore the deprecation warnings
+
 import (
 	"testing"
 
@@ -34,7 +36,6 @@ func TestIntegrationTag(t *testing.T) {
 		Body:      bodyTag,
 		Namespace: integration.NamespaceTest,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	created, errCreate := adminTagService.AdminCreateTag(inputCreate)
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
@@ -48,7 +49,6 @@ func TestIntegrationTag(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		Offset:    nil,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	get, errGet := adminTagService.AdminGetTag(inputGet)
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
@@ -61,7 +61,6 @@ func TestIntegrationTag(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		TagID:     tagId,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	updated, errUpdate := adminTagService.AdminUpdateTag(inputUpdate)
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
@@ -73,7 +72,6 @@ func TestIntegrationTag(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		TagID:     tagId,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	errDelete := adminTagService.AdminDeleteTag(inputDelete)
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())

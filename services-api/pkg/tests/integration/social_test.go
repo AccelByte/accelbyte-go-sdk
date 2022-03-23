@@ -4,6 +4,8 @@
 
 package integration_test
 
+//lint:ignore SA1019 Ignore the deprecation warnings
+
 import (
 	"testing"
 
@@ -45,7 +47,6 @@ func TestIntegrationDeleteStat(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		StatCode:  statCodeSocial,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	err := statConfigurationService.DeleteStat(inputStat)
 
 	assert.Nil(t, err, "err should be nil")
@@ -58,7 +59,6 @@ func TestIntegrationCreateStat(t *testing.T) {
 		Body:      bodyStatSocial,
 		Namespace: integration.NamespaceTest,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	ok, err := statConfigurationService.CreateStat(inputStat)
 
 	assert.Nil(t, err, "err should be nil")
@@ -73,7 +73,6 @@ func TestIntegrationGetStat(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		StatCode:  statCodeSocial,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	ok, errOk := statConfigurationService.GetStat(inputStat)
 
 	assert.Nil(t, errOk, "err should be nil")
@@ -87,7 +86,6 @@ func TestIntegrationGetStats(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		Offset:    nil,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	ok, err := statConfigurationService.GetStats(inputStat)
 
 	assert.Nil(t, err, "err should be nil")
@@ -102,7 +100,6 @@ func TestIntegrationQueryStats(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		Offset:    nil,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	ok, err := statConfigurationService.QueryStats(inputStat)
 
 	assert.Nil(t, err, "err should be nil")
@@ -121,7 +118,6 @@ func TestIntegrationUpdateStat(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		StatCode:  statCodeSocial,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	ok, err := statConfigurationService.UpdateStat(inputStat)
 
 	assert.Nil(t, err, "err should be nil")

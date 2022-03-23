@@ -4,6 +4,8 @@
 
 package integration_test
 
+//lint:ignore SA1019 Ignore the deprecation warnings
+
 import (
 	"testing"
 
@@ -32,7 +34,6 @@ func TestIntegrationPostGameRecordHandlerV1(t *testing.T) {
 		Key:       key,
 		Namespace: integration.NamespaceTest,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	err := publicGameRecordService.PostGameRecordHandlerV1(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
@@ -47,7 +48,6 @@ func TestIntegrationDeleteGameRecordHandlerV1(t *testing.T) {
 		Key:       key,
 		Namespace: integration.NamespaceTest,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	err := publicGameRecordService.DeleteGameRecordHandlerV1(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
@@ -57,14 +57,12 @@ func TestIntegrationDeleteGameRecordHandlerV1(t *testing.T) {
 }
 
 // Getting a game record
-//lint:ignore SA1019 Ignore the deprecation warnings
 func TestIntegrationGetGameRecordHandlerV1(t *testing.T) {
 	input := &public_game_record.PostGameRecordHandlerV1Params{
 		Body:      bodyRecord,
 		Key:       key,
 		Namespace: integration.NamespaceTest,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	err := publicGameRecordService.PostGameRecordHandlerV1(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
@@ -74,7 +72,6 @@ func TestIntegrationGetGameRecordHandlerV1(t *testing.T) {
 		Key:       key,
 		Namespace: integration.NamespaceTest,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	ok, errOk := publicGameRecordService.GetGameRecordHandlerV1(inputRecord)
 	if errOk != nil {
 		assert.FailNow(t, errOk.Error())
@@ -91,7 +88,6 @@ func TestIntegrationPutGameRecordHandlerV1(t *testing.T) {
 		Key:       key,
 		Namespace: integration.NamespaceTest,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	err := publicGameRecordService.PutGameRecordHandlerV1(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())

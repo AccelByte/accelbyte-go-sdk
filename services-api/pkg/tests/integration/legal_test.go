@@ -4,6 +4,8 @@
 
 package integration_test
 
+//lint:ignore SA1019 Ignore the deprecation warnings
+
 import (
 	"testing"
 
@@ -42,7 +44,6 @@ func TestIntegrationBulkAcceptVersionedPolicy(t *testing.T) {
 	inputLegal := &agreement.BulkAcceptVersionedPolicyParams{
 		Body: bodyLegals,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	ok, err := agreementService.BulkAcceptVersionedPolicy(inputLegal)
 
 	assert.Nil(t, err, "err should be nil")
@@ -53,7 +54,6 @@ func TestIntegrationBulkAcceptVersionedPolicy(t *testing.T) {
 func TestIntegrationRetrieveAgreementsPublic(t *testing.T) {
 	t.Parallel()
 	inputLegal := &agreement.RetrieveAgreementsPublicParams{}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	ok, err := agreementService.RetrieveAgreementsPublic(inputLegal)
 
 	assert.Nil(t, err, "err should be nil")
@@ -67,7 +67,6 @@ func TestIntegrationChangePreferenceConsent(t *testing.T) {
 	inputLegal := &agreement.ChangePreferenceConsentParams{
 		Body: bodyLegals,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	err := agreementService.ChangePreferenceConsent(inputLegal)
 
 	assert.Nil(t, err, "err should be nil")

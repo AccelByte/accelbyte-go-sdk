@@ -4,6 +4,8 @@
 
 package integration_test
 
+//lint:ignore SA1019 Ignore the deprecation warnings
+
 import (
 	"testing"
 
@@ -53,7 +55,6 @@ func TestIntegrationAdminDeleteNewAchievement(t *testing.T) {
 		AchievementCode: achievementCode,
 		Namespace:       integration.Namespace,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	err := achievementsService.AdminDeleteAchievement(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
@@ -63,7 +64,6 @@ func TestIntegrationAdminDeleteNewAchievement(t *testing.T) {
 		AchievementCode: achievementCode,
 		Namespace:       integration.Namespace,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	_, err = achievementsService.AdminGetAchievement(inputGet)
 	assert.NotNil(t, err, "response should not be nil")
 }
@@ -77,7 +77,6 @@ func TestIntegrationAdminCreateNewAchievement(t *testing.T) {
 		Body:      bodyAchievement,
 		Namespace: integration.Namespace,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	ok, err := achievementsService.AdminCreateNewAchievement(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
@@ -88,7 +87,6 @@ func TestIntegrationAdminCreateNewAchievement(t *testing.T) {
 		AchievementCode: achievementCode,
 		Namespace:       integration.Namespace,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	expected, errExpected := achievementsService.AdminGetAchievement(inputGet)
 
 	assert.Nil(t, errExpected, "err should be nil")
@@ -108,7 +106,6 @@ func TestIntegrationAdminListAchievements(t *testing.T) {
 		Offset:    nil,
 		SortBy:    nil,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	expected, err := achievementsService.AdminListAchievements(inputGet)
 
 	assert.Nil(t, err, "err should be nil")
@@ -153,7 +150,6 @@ func TestIntegrationGetAchievement(t *testing.T) {
 		AchievementCode: achievementCode,
 		Namespace:       integration.Namespace,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	expected, err := achievementsService.AdminGetAchievement(inputGet)
 
 	assert.Nil(t, err, "err should be nil")

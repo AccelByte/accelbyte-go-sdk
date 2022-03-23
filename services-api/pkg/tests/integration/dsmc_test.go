@@ -4,6 +4,8 @@
 
 package integration_test
 
+//lint:ignore SA1019 Ignore the deprecation warnings
+
 import (
 	"testing"
 	"time"
@@ -35,7 +37,6 @@ func createSessionBrowser() string {
 		Body:      bodySession,
 		Namespace: integration.NamespaceTest,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	ok, err := sessionService.CreateSession(inputSession)
 	if err != nil {
 		return ""
@@ -82,7 +83,6 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 		Body:      bodySessionDsmc,
 		Namespace: integration.NamespaceDsmc,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	created, errCreate := sessionDSMCService.CreateSession(inputCreate)
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
@@ -95,7 +95,6 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 		Namespace: integration.NamespaceDsmc,
 		SessionID: createdSessionId,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	get, errGet := sessionDSMCService.GetSession(inputGet)
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
@@ -110,7 +109,6 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 		Body:      bodyClaim,
 		Namespace: integration.NamespaceDsmc,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
 	errClaim := sessionDSMCService.ClaimServer(inputClaim)
 	if errClaim != nil {
 		assert.FailNow(t, errClaim.Error())

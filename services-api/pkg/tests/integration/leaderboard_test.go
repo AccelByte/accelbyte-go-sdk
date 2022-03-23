@@ -73,6 +73,7 @@ var (
 )
 
 func TestIntegrationCreateLeaderboardConfigurationAdminV1(t *testing.T) {
+	Init()
 	rand.Seed(time.Now().UnixNano())
 	randomString := RandStringBytes(5)
 	leaderboardCode = randomString

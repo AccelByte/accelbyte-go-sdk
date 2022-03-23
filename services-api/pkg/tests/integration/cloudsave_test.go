@@ -29,6 +29,7 @@ var (
 
 // Creating a game record
 func TestIntegrationPostGameRecordHandlerV1(t *testing.T) {
+	Init()
 	input := &public_game_record.PostGameRecordHandlerV1Params{
 		Body:      bodyRecord,
 		Key:       key,
@@ -44,6 +45,7 @@ func TestIntegrationPostGameRecordHandlerV1(t *testing.T) {
 
 // Deleting a game record
 func TestIntegrationDeleteGameRecordHandlerV1(t *testing.T) {
+	Init()
 	input := &public_game_record.DeleteGameRecordHandlerV1Params{
 		Key:       key,
 		Namespace: integration.NamespaceTest,
@@ -58,6 +60,7 @@ func TestIntegrationDeleteGameRecordHandlerV1(t *testing.T) {
 
 // Getting a game record
 func TestIntegrationGetGameRecordHandlerV1(t *testing.T) {
+	Init()
 	input := &public_game_record.PostGameRecordHandlerV1Params{
 		Body:      bodyRecord,
 		Key:       key,
@@ -83,6 +86,7 @@ func TestIntegrationGetGameRecordHandlerV1(t *testing.T) {
 
 // Updating a game record
 func TestIntegrationPutGameRecordHandlerV1(t *testing.T) {
+	Init()
 	input := &public_game_record.PutGameRecordHandlerV1Params{
 		Body:      bodyRecord,
 		Key:       key,

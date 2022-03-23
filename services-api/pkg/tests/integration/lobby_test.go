@@ -60,6 +60,7 @@ func decodeWSMessage(msg string) map[string]string {
 
 func TestIntegrationNotification(t *testing.T) {
 	t.Parallel()
+	Init()
 	connMgr = &integration.ConnectionManagerImpl{}
 	connection, err := connectionutils.NewWebsocketConnection(oAuth20Service.ConfigRepository, oAuth20Service.TokenRepository, lobbyMessageHandler)
 	assert.Nil(t, err, "err should be nil")

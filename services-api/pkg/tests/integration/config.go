@@ -5,13 +5,8 @@
 package integration
 
 import (
-	"encoding/json"
-	"errors"
 	"fmt"
-	"io/ioutil"
 	"os"
-
-	"github.com/sirupsen/logrus"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/connectionutils"
@@ -54,16 +49,6 @@ func (tokenRepository *TokenRepositoryImpl) Store(accessToken iamclientmodels.Oa
 }
 
 func (tokenRepository *TokenRepositoryImpl) GetToken() (*iamclientmodels.OauthmodelTokenResponseV3, error) {
-	content, err := ioutil.ReadFile(os.TempDir() + "/justice-sample-apps/userData")
-	if err != nil {
-		logrus.Error(err)
-		return nil, errors.New("please do login, fail to get")
-	}
-	err = json.Unmarshal(content, &token)
-	if err != nil {
-		logrus.Error(err)
-		return nil, errors.New("please do login, fail to unmarshal")
-	}
 	return &token, nil
 }
 

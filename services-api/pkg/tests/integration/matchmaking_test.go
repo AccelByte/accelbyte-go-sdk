@@ -107,6 +107,7 @@ var (
 
 // Deleting a channel
 func TestIntegrationDeleteChannelHandler(t *testing.T) {
+	Init()
 	inputMatchmaking := &matchmaking_.DeleteChannelHandlerParams{
 		Channel:   defaultGameMode,
 		Namespace: integration.NamespaceTest,
@@ -118,6 +119,7 @@ func TestIntegrationDeleteChannelHandler(t *testing.T) {
 
 // Create a channel
 func TestIntegrationCreateChannelHandler(t *testing.T) {
+	Init()
 	allianceFlexingRules = append(allianceFlexingRules, allianceFlexingRule)
 	flexingRules = append(flexingRules, flexingRule)
 	matchingRules = append(matchingRules, matchingRule)
@@ -133,6 +135,7 @@ func TestIntegrationCreateChannelHandler(t *testing.T) {
 
 // Getting a channel
 func TestIntegrationGetSingleMatchmakingChannel(t *testing.T) {
+	Init()
 	inputMatchmaking := &matchmaking_.GetSingleMatchmakingChannelParams{
 		ChannelName: defaultGameMode,
 		Namespace:   integration.NamespaceTest,
@@ -145,6 +148,7 @@ func TestIntegrationGetSingleMatchmakingChannel(t *testing.T) {
 
 // Updating an achievement
 func TestIntegrationUpdatePatchSinglematchmakingPublicV1(t *testing.T) {
+	Init()
 	inputMatchmaking := &matchmaking_.UpdateMatchmakingChannelParams{
 		Body:        bodyMatchmakingUpdate,
 		ChannelName: defaultGameMode,

@@ -29,6 +29,7 @@ var (
 
 // Deleting admin email configuration
 func TestIntegrationDeleteAdminEmailConfiguration(t *testing.T) {
+	Init()
 	emails = append(emails, email)
 	input := &data_retrieval.DeleteAdminEmailConfigurationParams{
 		Emails:    emails,
@@ -40,6 +41,7 @@ func TestIntegrationDeleteAdminEmailConfiguration(t *testing.T) {
 
 // Creating admin email configuration
 func TestIntegrationSaveAdminEmailConfiguration(t *testing.T) {
+	Init()
 	body = append(body, email)
 	input := &data_retrieval.SaveAdminEmailConfigurationParams{
 		Body:      body,
@@ -52,6 +54,7 @@ func TestIntegrationSaveAdminEmailConfiguration(t *testing.T) {
 
 // Getting admin email addresses configuration
 func TestIntegrationAdminListDataRetrieval(t *testing.T) {
+	Init()
 	input := &data_retrieval.GetAdminEmailConfigurationParams{
 		Namespace: integration.NamespaceTest,
 	}
@@ -63,6 +66,7 @@ func TestIntegrationAdminListDataRetrieval(t *testing.T) {
 
 // Updating admin email configuration
 func TestIntegrationUpdateAdminEmailConfiguration(t *testing.T) {
+	Init()
 	body = append(body, email)
 	input := &data_retrieval.UpdateAdminEmailConfigurationParams{
 		Body:      body,

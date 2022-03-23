@@ -43,6 +43,7 @@ var (
 
 // Deleting a statistic
 func TestIntegrationDeleteStat(t *testing.T) {
+	Init()
 	inputStat := &stat_configuration.DeleteStatParams{
 		Namespace: integration.NamespaceTest,
 		StatCode:  statCodeSocial,
@@ -54,6 +55,7 @@ func TestIntegrationDeleteStat(t *testing.T) {
 
 // Creating a statistic
 func TestIntegrationCreateStat(t *testing.T) {
+	Init()
 	tagsSocial = append(tagsSocial, tag)
 	inputStat := &stat_configuration.CreateStatParams{
 		Body:      bodyStatSocial,
@@ -67,6 +69,7 @@ func TestIntegrationCreateStat(t *testing.T) {
 
 // Getting a statistic by its Stat Code
 func TestIntegrationGetStat(t *testing.T) {
+	Init()
 	tagsSocial = append(tagsSocial, tag)
 
 	inputStat := &stat_configuration.GetStatParams{
@@ -81,6 +84,7 @@ func TestIntegrationGetStat(t *testing.T) {
 
 // Getting all statistics
 func TestIntegrationGetStats(t *testing.T) {
+	Init()
 	inputStat := &stat_configuration.GetStatsParams{
 		Limit:     nil,
 		Namespace: integration.NamespaceTest,
@@ -94,6 +98,7 @@ func TestIntegrationGetStats(t *testing.T) {
 
 // Querying statistics by keyword
 func TestIntegrationQueryStats(t *testing.T) {
+	Init()
 	inputStat := &stat_configuration.QueryStatsParams{
 		Keyword:   statCodeSocial,
 		Limit:     nil,
@@ -108,6 +113,7 @@ func TestIntegrationQueryStats(t *testing.T) {
 
 // Updating a statistic
 func TestIntegrationUpdateStat(t *testing.T) {
+	Init()
 	bodyStatUpdate := &socialclientmodels.StatUpdate{
 		Description: "",
 		Name:        statCodeSocial,

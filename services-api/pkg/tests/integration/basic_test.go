@@ -52,6 +52,7 @@ var (
 
 func TestIntegrationUserProfile(t *testing.T) {
 	t.Parallel()
+	Init()
 	// Creating a profile
 	inputCreate := &user_profile.CreateMyProfileParams{
 		Body:      bodyBasic,

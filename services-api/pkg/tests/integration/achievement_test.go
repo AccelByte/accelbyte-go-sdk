@@ -51,6 +51,7 @@ var (
 
 // Deleting an achievement
 func TestIntegrationAdminDeleteNewAchievement(t *testing.T) {
+	Init()
 	input := &achievements.AdminDeleteAchievementParams{
 		AchievementCode: achievementCode,
 		Namespace:       integration.Namespace,
@@ -70,6 +71,7 @@ func TestIntegrationAdminDeleteNewAchievement(t *testing.T) {
 
 // Creating an achievement
 func TestIntegrationAdminCreateNewAchievement(t *testing.T) {
+	Init()
 	description["EN"] = "Description"
 	name["EN"] = "Name"
 	tags = append(tags, "TAG")
@@ -95,6 +97,7 @@ func TestIntegrationAdminCreateNewAchievement(t *testing.T) {
 
 // Getting all achievements
 func TestIntegrationAdminListAchievements(t *testing.T) {
+	Init()
 	achievementCode = "CODE2"
 	description["EN"] = "Description"
 	name["EN"] = "Name"
@@ -114,6 +117,7 @@ func TestIntegrationAdminListAchievements(t *testing.T) {
 
 // Updating an achievement
 func TestIntegrationUpdateNewAchievement(t *testing.T) {
+	Init()
 	description["EN"] = "Description"
 	name["EN"] = "Name"
 	tags = append(tags, "TAG")
@@ -143,6 +147,7 @@ func TestIntegrationUpdateNewAchievement(t *testing.T) {
 
 // Retrieve an Achievement by its code
 func TestIntegrationGetAchievement(t *testing.T) {
+	Init()
 	description["EN"] = "Description"
 	name["EN"] = "Name"
 	tags = append(tags, "TAG")

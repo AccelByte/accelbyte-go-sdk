@@ -40,14 +40,19 @@ var (
 	codeChallengeMethod = "S256"
 	redirectUri         string
 	scope               = "commerce account social publishing analytics"
-	username            = os.Getenv("username")
-	password            = os.Getenv("password")
+	username            = os.Getenv("USERNAME")
+	password            = os.Getenv("PASSWORD")
 	clientId            = oAuth20Service.ConfigRepository.GetClientId()
 )
+
+func Init() {
+	_ = oAuth20Service.Login(username, password)
+}
 
 // Getting an authorization
 func TestIntegrationAuthorizeV3(t *testing.T) {
 	t.Parallel()
+
 	codeVerifierGenerator, _ := utils.CreateCodeVerifier()
 	codeChallenge := codeVerifierGenerator.CodeChallengeS256()
 	input := &o_auth2_0.AuthorizeV3Params{
@@ -70,6 +75,7 @@ func TestIntegrationAuthorizeV3(t *testing.T) {
 // Getting an authentication
 func TestIntegrationAuthenticate(t *testing.T) {
 	t.Parallel()
+
 	codeVerifierGenerator, _ := utils.CreateCodeVerifier()
 	codeChallenge := codeVerifierGenerator.CodeChallengeS256()
 	input := &o_auth2_0.AuthorizeV3Params{
@@ -104,6 +110,7 @@ func TestIntegrationAuthenticate(t *testing.T) {
 // Getting a token grant
 func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 	t.Parallel()
+
 	codeVerifierGenerator, _ := utils.CreateCodeVerifier()
 	codeChallenge := codeVerifierGenerator.CodeChallengeS256()
 	input := &o_auth2_0.AuthorizeV3Params{
@@ -111,7 +118,7 @@ func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 		CodeChallengeMethod: &codeChallengeMethod,
 		RedirectURI:         &redirectUri,
 		Scope:               &scope,
-		ClientID:            oAuth20Service.ConfigRepository.GetClientId(),
+		ClientID:            clientId,
 		ResponseType:        "code",
 		HTTPClient:          httpClient,
 	}

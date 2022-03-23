@@ -40,6 +40,7 @@ var (
 // Bulk accept policy versions
 func TestIntegrationBulkAcceptVersionedPolicy(t *testing.T) {
 	t.Parallel()
+	Init()
 	bodyLegals = append(bodyLegals, bodyLegal)
 	inputLegal := &agreement.BulkAcceptVersionedPolicyParams{
 		Body: bodyLegals,
@@ -53,6 +54,7 @@ func TestIntegrationBulkAcceptVersionedPolicy(t *testing.T) {
 // Getting agreements
 func TestIntegrationRetrieveAgreementsPublic(t *testing.T) {
 	t.Parallel()
+	Init()
 	inputLegal := &agreement.RetrieveAgreementsPublicParams{}
 	ok, err := agreementService.RetrieveAgreementsPublic(inputLegal)
 
@@ -63,6 +65,7 @@ func TestIntegrationRetrieveAgreementsPublic(t *testing.T) {
 // Updating marketing preference consent
 func TestIntegrationChangePreferenceConsent(t *testing.T) {
 	t.Parallel()
+	Init()
 	bodyLegals = append(bodyLegals, bodyLegal)
 	inputLegal := &agreement.ChangePreferenceConsentParams{
 		Body: bodyLegals,

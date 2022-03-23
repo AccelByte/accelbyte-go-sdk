@@ -16,14 +16,12 @@ import (
 	Please set your client_id and client_secret in to the env before run the test
 */
 
-const (
-	BaseURL       = "https://demo.accelbyte.io"
-	Namespace     = "accelbyte"
-	NamespaceDsmc = "armadademotestqa"
-	NamespaceTest = "gosdktest"
-)
+const NamespaceDsmc = "armadademotestqa"
 
-var token iamclientmodels.OauthmodelTokenResponseV3
+var (
+	NamespaceTest = os.Getenv("AB_NAMESPACE")
+	token         iamclientmodels.OauthmodelTokenResponseV3
+)
 
 type TokenRepositoryImpl struct {
 }
@@ -32,15 +30,15 @@ type ConfigRepositoryImpl struct {
 }
 
 func (configRepository *ConfigRepositoryImpl) GetClientId() string {
-	return os.Getenv("APP_CLIENT_ID")
+	return os.Getenv("AB_CLIENT_ID")
 }
 
 func (configRepository *ConfigRepositoryImpl) GetClientSecret() string {
-	return os.Getenv("APP_CLIENT_SECRET")
+	return os.Getenv("AB_CLIENT_SECRET")
 }
 
 func (configRepository *ConfigRepositoryImpl) GetJusticeBaseUrl() string {
-	return BaseURL
+	return os.Getenv("AB_BASE_URL")
 }
 
 func (tokenRepository *TokenRepositoryImpl) Store(accessToken iamclientmodels.OauthmodelTokenResponseV3) error {

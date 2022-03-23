@@ -23,6 +23,17 @@ var (
 		Client:          factory.NewAchievementClient(&integration.ConfigRepositoryImpl{}),
 		TokenRepository: &integration.TokenRepositoryImpl{},
 	}
+	achievementCode = "GOLANG"
+	defaultLanguage = "EN"
+	description     = make(map[string]string)
+	goalValue       = float64(1)
+	hidden          = false
+	incremental     = false
+	lockedIcons     []*achievementclientmodels.ModelsIcon
+	name            = make(map[string]string)
+	statCode        = "STAT_CODE_GO"
+	tags            []string
+	unlockedIcons   []*achievementclientmodels.ModelsIcon
 	bodyAchievement = &achievementclientmodels.ModelsAchievementRequest{
 		AchievementCode: &achievementCode,
 		DefaultLanguage: &defaultLanguage,
@@ -36,93 +47,7 @@ var (
 		Tags:            tags,
 		UnlockedIcons:   unlockedIcons,
 	}
-	achievementCode = "CODE"
-	defaultLanguage = "EN"
-	description     = make(map[string]string)
-	goalValue       = float64(1)
-	hidden          = false
-	incremental     = false
-	lockedIcons     []*achievementclientmodels.ModelsIcon
-	name            = make(map[string]string)
-	statCode        = "STAT_CODE"
-	tags            []string
-	unlockedIcons   []*achievementclientmodels.ModelsIcon
-)
-
-// Deleting an achievement
-func TestIntegrationAdminDeleteNewAchievement(t *testing.T) {
-	Init()
-	input := &achievements.AdminDeleteAchievementParams{
-		AchievementCode: achievementCode,
-		Namespace:       integration.Namespace,
-	}
-	err := achievementsService.AdminDeleteAchievement(input)
-	if err != nil {
-		assert.FailNow(t, err.Error())
-	}
-
-	inputGet := &achievements.AdminGetAchievementParams{
-		AchievementCode: achievementCode,
-		Namespace:       integration.Namespace,
-	}
-	_, err = achievementsService.AdminGetAchievement(inputGet)
-	assert.NotNil(t, err, "response should not be nil")
-}
-
-// Creating an achievement
-func TestIntegrationAdminCreateNewAchievement(t *testing.T) {
-	Init()
-	description["EN"] = "Description"
-	name["EN"] = "Name"
-	tags = append(tags, "TAG")
-	input := &achievements.AdminCreateNewAchievementParams{
-		Body:      bodyAchievement,
-		Namespace: integration.Namespace,
-	}
-	ok, err := achievementsService.AdminCreateNewAchievement(input)
-	if err != nil {
-		assert.FailNow(t, err.Error())
-	}
-	assert.NotNil(t, ok, "response should not be nil")
-
-	inputGet := &achievements.AdminGetAchievementParams{
-		AchievementCode: achievementCode,
-		Namespace:       integration.Namespace,
-	}
-	expected, errExpected := achievementsService.AdminGetAchievement(inputGet)
-
-	assert.Nil(t, errExpected, "err should be nil")
-	assert.NotNil(t, expected, "response should not be nil")
-}
-
-// Getting all achievements
-func TestIntegrationAdminListAchievements(t *testing.T) {
-	Init()
-	achievementCode = "CODE2"
-	description["EN"] = "Description"
-	name["EN"] = "Name"
-	tags = append(tags, "TAG")
-
-	inputGet := &achievements.AdminListAchievementsParams{
-		Limit:     nil,
-		Namespace: integration.Namespace,
-		Offset:    nil,
-		SortBy:    nil,
-	}
-	expected, err := achievementsService.AdminListAchievements(inputGet)
-
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, expected, "response should not be nil")
-}
-
-// Updating an achievement
-func TestIntegrationUpdateNewAchievement(t *testing.T) {
-	Init()
-	description["EN"] = "Description"
-	name["EN"] = "Name"
-	tags = append(tags, "TAG")
-	name["EN"] = "Name Update"
-	bodyUpdate := &achievementclientmodels.ModelsAchievementUpdateRequest{
+	bodyAchievementUpdate = &achievementclientmodels.ModelsAchievementUpdateRequest{
 		DefaultLanguage: &defaultLanguage,
 		Description:     description,
 		GoalValue:       &goalValue,
@@ -134,29 +59,67 @@ func TestIntegrationUpdateNewAchievement(t *testing.T) {
 		Tags:            tags,
 		UnlockedIcons:   unlockedIcons,
 	}
-	inputGet := &achievements.AdminUpdateAchievementParams{
-		AchievementCode: achievementCode,
-		Body:            bodyUpdate,
-		Namespace:       integration.Namespace,
-	}
-	expected, err := achievementsService.AdminUpdateAchievement(inputGet)
+)
 
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, expected, "response should not be nil")
-}
-
-// Retrieve an Achievement by its code
-func TestIntegrationGetAchievement(t *testing.T) {
+func TestIntegrationAchievement(t *testing.T) {
+	t.Parallel()
 	Init()
+
 	description["EN"] = "Description"
 	name["EN"] = "Name"
 	tags = append(tags, "TAG")
+
+	// Creating an achievement
+	inputCreate := &achievements.AdminCreateNewAchievementParams{
+		Body:      bodyAchievement,
+		Namespace: integration.NamespaceTest,
+	}
+	created, errCreate := achievementsService.AdminCreateNewAchievement(inputCreate)
+	if errCreate != nil {
+		assert.FailNow(t, errCreate.Error())
+	}
+	t.Logf("AchievementCode: %v created", created.AchievementCode)
+
+	// Retrieve an Achievement by its code
 	inputGet := &achievements.AdminGetAchievementParams{
 		AchievementCode: achievementCode,
-		Namespace:       integration.Namespace,
+		Namespace:       integration.NamespaceTest,
 	}
-	expected, err := achievementsService.AdminGetAchievement(inputGet)
+	get, errGet := achievementsService.AdminGetAchievement(inputGet)
 
-	assert.Nil(t, err, "err should be nil")
-	assert.NotNil(t, expected, "response should not be nil")
+	// Updating an achievement
+	inputUpdate := &achievements.AdminUpdateAchievementParams{
+		AchievementCode: achievementCode,
+		Body:            bodyAchievementUpdate,
+		Namespace:       integration.NamespaceTest,
+	}
+	updated, errUpdate := achievementsService.AdminUpdateAchievement(inputUpdate)
+	t.Logf("AchievementCode: %v updated", created.AchievementCode)
+
+	// Getting all achievements
+	inputGetAll := &achievements.AdminListAchievementsParams{
+		Limit:     nil,
+		Namespace: integration.NamespaceTest,
+		Offset:    nil,
+		SortBy:    nil,
+	}
+	getAll, errGetAll := achievementsService.AdminListAchievements(inputGetAll)
+
+	// Deleting an achievement
+	inputDelete := &achievements.AdminDeleteAchievementParams{
+		AchievementCode: achievementCode,
+		Namespace:       integration.NamespaceTest,
+	}
+	errDelete := achievementsService.AdminDeleteAchievement(inputDelete)
+	t.Logf("AchievementCode: %v deleted", created.AchievementCode)
+
+	assert.Nil(t, errCreate, "err should be nil")
+	assert.NotNil(t, created, "response should not be nil")
+	assert.Nil(t, errGet, "err should be nil")
+	assert.NotNil(t, get, "response should not be nil")
+	assert.Nil(t, errUpdate, "err should be nil")
+	assert.NotNil(t, updated, "response should not be nil")
+	assert.Nil(t, errGetAll, "err should be nil")
+	assert.NotNil(t, getAll, "response should not be nil")
+	assert.Nil(t, errDelete, "err should be nil")
 }

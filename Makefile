@@ -4,6 +4,8 @@
 
 .PHONY: samples
 
+#INTEGRATION_TEST_ENV_FILE_PATH ?= $(PWD)/services-api/pkg/tests/integration/integration.env
+
 lint:
 	rm -f lint.err
 	find -type f -iname go.mod -exec dirname {} \; | while read DIRECTORY; do \
@@ -29,11 +31,8 @@ samples:
 			sh -c 'echo "{}" && docker run -t --rm -v $$(pwd):/data/ -w /data/ golang:1.16 sh -c "cd {} && go build || exit 255"'
 
 test_integration:
-	rm -f testIntegration.err
-	docker run -t --rm -v $$(pwd):/data/ -w /data/ golang:1.16 sh -c "cd samples/cli && go build" && \
-	bash -c "cd services-api/pkg/tests/integration && go test -v" \
-	done
-	[ ! -f testIntegration.err ] || (rm testIntegration.err && exit 1)
+	@test -n "$(INTEGRATION_TEST_ENV_FILE_PATH)" || (echo "INTEGRATION_TEST_ENV_FILE_PATH is not set" ; exit 1)
+	docker run -t --rm --env-file $(INTEGRATION_TEST_ENV_FILE_PATH) -v $$(pwd):/data/ -w /data/ golang:1.16 sh -c "go test github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
 
 test_cli:
 	@test -n "$(SDK_MOCK_SERVER_PATH)" || (echo "SDK_MOCK_SERVER_PATH is not set" ; exit 1)

@@ -221,6 +221,10 @@ func (o *OAuth20Service) TokenGrantV3(input *o_auth2_0.TokenGrantV3Params) (*iam
 	if err != nil {
 		return nil, err
 	}
+	errStore := o.TokenRepository.Store(*ok.GetPayload())
+	if errStore != nil {
+		return nil, errStore
+	}
 	return ok.GetPayload(), nil
 }
 

@@ -5,12 +5,14 @@
 package integration_test
 
 //lint:ignore SA1019 Ignore the deprecation warnings
+//lint:ignore SA5011 possible nil pointer dereference
 
 import (
 	"net/http"
 	"os"
 	"testing"
 
+	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
@@ -40,13 +42,29 @@ var (
 	codeChallengeMethod = "S256"
 	redirectUri         string
 	scope               = "commerce account social publishing analytics"
-	username            = os.Getenv("USERNAME")
-	password            = os.Getenv("PASSWORD")
+	username            = os.Getenv("AB_USERNAME")
+	password            = os.Getenv("AB_PASSWORD")
 	clientId            = oAuth20Service.ConfigRepository.GetClientId()
 )
 
 func Init() {
-	_ = oAuth20Service.Login(username, password)
+	input := &o_auth2_0.TokenGrantV3Params{
+		Password:  &password,
+		Username:  &username,
+		GrantType: "password",
+	}
+	accessToken, err := oAuth20Service.TokenGrantV3(input)
+	if err != nil {
+		logrus.Error("failed login")
+	} else if accessToken == nil { //lint:ignore SA5011 possible nil pointer dereference
+		logrus.Error("empty access token")
+	} else {
+		errStore := oAuth20Service.TokenRepository.Store(*accessToken)
+		if errStore != nil {
+			logrus.Error("failed stored the token")
+		}
+		logrus.Infof("token : %v", *accessToken.AccessToken)
+	}
 }
 
 // Getting an authorization
@@ -156,9 +174,15 @@ func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 
 func TestIntegrationLogin(t *testing.T) {
 	t.Parallel()
-	errLogin := oAuth20Service.Login(username, password)
-	if errLogin != nil {
-		assert.FailNow(t, errLogin.Error())
+	input := &o_auth2_0.TokenGrantV3Params{
+		Password:  &password,
+		Username:  &username,
+		GrantType: "password",
 	}
-	assert.Nil(t, errLogin, "err should be nil")
+	ok, err := oAuth20Service.TokenGrantV3(input)
+	if err != nil {
+		assert.FailNow(t, err.Error())
+	}
+	assert.Nil(t, err, "err should be nil")
+	assert.NotNil(t, ok, "response should not be nil")
 }

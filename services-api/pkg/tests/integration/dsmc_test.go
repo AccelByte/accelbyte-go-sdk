@@ -44,6 +44,7 @@ func createSessionBrowser() string {
 }
 
 func TestIntegrationSessionDSMC(t *testing.T) {
+	t.Parallel()
 	SessionBrowserId := createSessionBrowser()
 	var partyMembers []*dsmcclientmodels.ModelsRequestMatchMember
 	partyMember := &dsmcclientmodels.ModelsRequestMatchMember{

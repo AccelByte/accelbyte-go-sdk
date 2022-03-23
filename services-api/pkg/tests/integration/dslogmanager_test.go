@@ -29,6 +29,7 @@ var (
 
 // Getting all terminated servers
 func TestIntegrationListTerminatedServers(t *testing.T) {
+	t.Parallel()
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	ok, err := terminatedServersService.ListTerminatedServers(inputTerminatedServer)
 	if err != nil {

@@ -28,6 +28,7 @@ var (
 )
 
 func TestIntegrationTag(t *testing.T) {
+	t.Parallel()
 	// Creating tags
 	inputCreate := &admin_tag.AdminCreateTagParams{
 		Body:      bodyTag,

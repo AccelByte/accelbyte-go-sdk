@@ -67,6 +67,7 @@ var (
 
 // TODO: migrate to test namespace, forbidden
 func TestIntegrationGroup(t *testing.T) {
+	t.Parallel()
 	ruleDetails = append(ruleDetails, ruleDetail)
 	groupPredefinedRules = append(groupPredefinedRules, groupPredefinedRule)
 
@@ -74,7 +75,7 @@ func TestIntegrationGroup(t *testing.T) {
 	// needs to use a token user who are not already joined a group
 	inputCreate := &group_.CreateNewGroupPublicV1Params{
 		Body:      bodyGroup,
-		Namespace: integration.Namespace,
+		Namespace: integration.NamespaceTest,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	created, errCreate := groupService.CreateNewGroupPublicV1(inputCreate)
@@ -87,7 +88,7 @@ func TestIntegrationGroup(t *testing.T) {
 	// Getting a single group
 	inputGet := &group_.GetSingleGroupPublicV1Params{
 		GroupID:   groupId,
-		Namespace: integration.Namespace,
+		Namespace: integration.NamespaceTest,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	get, errGet := groupService.GetSingleGroupPublicV1(inputGet)
@@ -100,7 +101,7 @@ func TestIntegrationGroup(t *testing.T) {
 	inputUpdate := &group_.UpdatePatchSingleGroupPublicV1Params{
 		Body:      bodyGroupUpdate,
 		GroupID:   groupId,
-		Namespace: integration.Namespace,
+		Namespace: integration.NamespaceTest,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	updated, errUpdate := groupService.UpdatePatchSingleGroupPublicV1(inputUpdate)
@@ -112,7 +113,7 @@ func TestIntegrationGroup(t *testing.T) {
 	// Deleting a group
 	inputDelete := &group_.DeleteGroupPublicV1Params{
 		GroupID:   groupId,
-		Namespace: integration.Namespace,
+		Namespace: integration.NamespaceTest,
 	}
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	errDelete := groupService.DeleteGroupPublicV1(inputDelete)

@@ -22,12 +22,13 @@ var (
 		Client:          factory.NewLegalClient(&integration.ConfigRepositoryImpl{}),
 		TokenRepository: &integration.TokenRepositoryImpl{},
 	}
+	isAccepted               = true
 	bodyLegals               []*legalclientmodels.AcceptAgreementRequest
 	localizedPolicyVersionID = "152b9b0f-7b8e-4a9e-8a9d-8c82420ad8b3"
 	policyVersionId          = "a76ea12c-14fd-46c5-886f-fd3d0ded4408"
 	policyId                 = "6adb3d65-b428-4dbc-a08d-e5126c644557" // the marketing policy
 	bodyLegal                = &legalclientmodels.AcceptAgreementRequest{
-		IsAccepted:               &defaultBool,
+		IsAccepted:               &isAccepted,
 		LocalizedPolicyVersionID: &localizedPolicyVersionID,
 		PolicyID:                 &policyId,
 		PolicyVersionID:          &policyVersionId,
@@ -36,6 +37,7 @@ var (
 
 // Bulk accept policy versions
 func TestIntegrationBulkAcceptVersionedPolicy(t *testing.T) {
+	t.Parallel()
 	bodyLegals = append(bodyLegals, bodyLegal)
 	inputLegal := &agreement.BulkAcceptVersionedPolicyParams{
 		Body: bodyLegals,
@@ -49,6 +51,7 @@ func TestIntegrationBulkAcceptVersionedPolicy(t *testing.T) {
 
 // Getting agreements
 func TestIntegrationRetrieveAgreementsPublic(t *testing.T) {
+	t.Parallel()
 	inputLegal := &agreement.RetrieveAgreementsPublicParams{}
 	//lint:ignore SA1019 Ignore the deprecation warnings
 	ok, err := agreementService.RetrieveAgreementsPublic(inputLegal)
@@ -59,6 +62,7 @@ func TestIntegrationRetrieveAgreementsPublic(t *testing.T) {
 
 // Updating marketing preference consent
 func TestIntegrationChangePreferenceConsent(t *testing.T) {
+	t.Parallel()
 	bodyLegals = append(bodyLegals, bodyLegal)
 	inputLegal := &agreement.ChangePreferenceConsentParams{
 		Body: bodyLegals,

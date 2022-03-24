@@ -27,8 +27,7 @@ var DeleteSteamIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.DeleteSteamIAPConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := iapService.DeleteSteamIAPConfig(input)
+		errInput := iapService.DeleteSteamIAPConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

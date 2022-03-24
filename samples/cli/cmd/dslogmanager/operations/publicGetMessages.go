@@ -24,8 +24,7 @@ var PublicGetMessagesCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &operations.PublicGetMessagesParams{}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := operationsService.PublicGetMessages(input)
+		ok, err := operationsService.PublicGetMessagesShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

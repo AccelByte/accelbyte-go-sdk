@@ -47,8 +47,7 @@ var QuerySessionCmd = &cobra.Command{
 			UserID:       &userId,
 			SessionType:  sessionType,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := sessionService.QuerySession(input)
+		ok, err := sessionService.QuerySessionShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

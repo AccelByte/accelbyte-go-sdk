@@ -27,8 +27,7 @@ var SpecificEventTypeDescriptionHandlerCmd = &cobra.Command{
 		input := &event_descriptions.SpecificEventTypeDescriptionHandlerParams{
 			EventTypes: &eventTypes,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := eventDescriptionsService.SpecificEventTypeDescriptionHandler(input)
+		ok, err := eventDescriptionsService.SpecificEventTypeDescriptionHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

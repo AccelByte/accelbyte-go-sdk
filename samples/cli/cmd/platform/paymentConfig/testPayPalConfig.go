@@ -36,8 +36,7 @@ var TestPayPalConfigCmd = &cobra.Command{
 			Body:    body,
 			Sandbox: &sandbox,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentConfigService.TestPayPalConfig(input)
+		ok, err := paymentConfigService.TestPayPalConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

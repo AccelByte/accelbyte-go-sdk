@@ -27,8 +27,7 @@ var ListCurrenciesCmd = &cobra.Command{
 		input := &currency.ListCurrenciesParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := currencyService.ListCurrencies(input)
+		ok, err := currencyService.ListCurrenciesShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

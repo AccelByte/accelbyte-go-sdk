@@ -40,8 +40,7 @@ var PlatformAuthenticateSAMLV3HandlerCmd = &cobra.Command{
 			State:      state,
 			HTTPClient: httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := ssoSAML20Service.PlatformAuthenticateSAMLV3Handler(input)
+		errInput := ssoSAML20Service.PlatformAuthenticateSAMLV3HandlerShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

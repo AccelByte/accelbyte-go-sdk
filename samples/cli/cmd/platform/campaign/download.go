@@ -31,8 +31,7 @@ var DownloadCmd = &cobra.Command{
 			Namespace:  namespace,
 			BatchNo:    &batchNo,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := campaignService.Download(input)
+		errInput := campaignService.DownloadShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

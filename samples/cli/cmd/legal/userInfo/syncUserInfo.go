@@ -27,8 +27,7 @@ var SyncUserInfoCmd = &cobra.Command{
 		input := &user_info.SyncUserInfoParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := userInfoService.SyncUserInfo(input)
+		errInput := userInfoService.SyncUserInfoShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

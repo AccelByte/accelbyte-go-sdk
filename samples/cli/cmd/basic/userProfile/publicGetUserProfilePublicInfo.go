@@ -29,8 +29,7 @@ var PublicGetUserProfilePublicInfoCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := userProfileService.PublicGetUserProfilePublicInfo(input)
+		ok, err := userProfileService.PublicGetUserProfilePublicInfoShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

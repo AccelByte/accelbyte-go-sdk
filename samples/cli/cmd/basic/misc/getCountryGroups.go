@@ -29,8 +29,7 @@ var GetCountryGroupsCmd = &cobra.Command{
 			Namespace: namespace,
 			GroupCode: &groupCode,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := miscService.GetCountryGroups(input)
+		ok, err := miscService.GetCountryGroupsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

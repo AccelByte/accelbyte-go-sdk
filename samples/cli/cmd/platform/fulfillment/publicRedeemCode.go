@@ -38,8 +38,7 @@ var PublicRedeemCodeCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := fulfillmentService.PublicRedeemCode(input)
+		ok, err := fulfillmentService.PublicRedeemCodeShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

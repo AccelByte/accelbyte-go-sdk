@@ -37,8 +37,7 @@ var ExistsAnyPassByPassCodesCmd = &cobra.Command{
 			UserID:    userId,
 			PassCodes: passCodes,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := seasonService.ExistsAnyPassByPassCodes(input)
+		ok, err := seasonService.ExistsAnyPassByPassCodesShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

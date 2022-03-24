@@ -36,8 +36,7 @@ var PartialUpdatePolicyCmd = &cobra.Command{
 			Body:         body,
 			BasePolicyID: basePolicyId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := baseLegalPoliciesService.PartialUpdatePolicy(input)
+		ok, err := baseLegalPoliciesService.PartialUpdatePolicyShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

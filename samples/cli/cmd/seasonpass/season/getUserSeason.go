@@ -31,8 +31,7 @@ var GetUserSeasonCmd = &cobra.Command{
 			SeasonID:  seasonId,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := seasonService.GetUserSeason(input)
+		ok, err := seasonService.GetUserSeasonShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

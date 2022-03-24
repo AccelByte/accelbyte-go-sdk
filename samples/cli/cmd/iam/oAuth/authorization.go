@@ -46,8 +46,7 @@ var AuthorizationCmd = &cobra.Command{
 			ResponseType: responseType,
 			HTTPClient:   httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := oAuthService.Authorization(input)
+		errInput := oAuthService.AuthorizationShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

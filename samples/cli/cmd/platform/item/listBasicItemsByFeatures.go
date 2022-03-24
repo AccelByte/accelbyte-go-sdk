@@ -37,8 +37,7 @@ var ListBasicItemsByFeaturesCmd = &cobra.Command{
 			ActiveOnly: &activeOnly,
 			Features:   features,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := itemService.ListBasicItemsByFeatures(input)
+		ok, err := itemService.ListBasicItemsByFeaturesShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

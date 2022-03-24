@@ -27,8 +27,7 @@ var GetPaymentMerchantConfigCmd = &cobra.Command{
 		input := &payment_config.GetPaymentMerchantConfigParams{
 			ID: id_,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentConfigService.GetPaymentMerchantConfig(input)
+		ok, err := paymentConfigService.GetPaymentMerchantConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

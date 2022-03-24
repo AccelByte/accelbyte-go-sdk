@@ -27,8 +27,7 @@ var GetXblIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.GetXblIAPConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := iapService.GetXblIAPConfig(input)
+		ok, err := iapService.GetXblIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

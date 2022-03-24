@@ -38,8 +38,7 @@ var GrantUserExpCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := tierService.GrantUserExp(input)
+		ok, err := tierService.GrantUserExpShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

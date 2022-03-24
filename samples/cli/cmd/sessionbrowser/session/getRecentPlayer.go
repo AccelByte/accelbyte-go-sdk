@@ -29,8 +29,7 @@ var GetRecentPlayerCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userID,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := sessionService.GetRecentPlayer(input)
+		ok, err := sessionService.GetRecentPlayerShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

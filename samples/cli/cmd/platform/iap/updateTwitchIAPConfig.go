@@ -36,8 +36,7 @@ var UpdateTwitchIAPConfigCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := iapService.UpdateTwitchIAPConfig(input)
+		ok, err := iapService.UpdateTwitchIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

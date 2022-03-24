@@ -27,8 +27,7 @@ var GetGoogleIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.GetGoogleIAPConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := iapService.GetGoogleIAPConfig(input)
+		ok, err := iapService.GetGoogleIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -34,8 +34,7 @@ var TokenIntrospectionV3Cmd = &cobra.Command{
 			Token:      token,
 			HTTPClient: httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := oAuth20Service.TokenIntrospectionV3(input)
+		ok, err := oAuth20Service.TokenIntrospectionV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -29,8 +29,7 @@ var RevokeUserV3Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := oAuth20Service.RevokeUserV3(input)
+		errInput := oAuth20Service.RevokeUserV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

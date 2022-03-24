@@ -36,8 +36,7 @@ var ClaimServerCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := sessionService.ClaimServer(input)
+		errInput := sessionService.ClaimServerShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

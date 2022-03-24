@@ -42,8 +42,7 @@ var UpdateUserStatItemValue1Cmd = &cobra.Command{
 			UserID:        userId,
 			AdditionalKey: &additionalKey,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := userStatisticService.UpdateUserStatItemValue1(input)
+		ok, err := userStatisticService.UpdateUserStatItemValue1Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

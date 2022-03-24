@@ -29,8 +29,7 @@ var GetNotificationTopicV1AdminCmd = &cobra.Command{
 			Namespace: namespace,
 			TopicName: topicName,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := notificationService.GetNotificationTopicV1Admin(input)
+		ok, err := notificationService.GetNotificationTopicV1AdminShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

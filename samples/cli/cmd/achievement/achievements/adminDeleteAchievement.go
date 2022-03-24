@@ -29,8 +29,7 @@ var AdminDeleteAchievementCmd = &cobra.Command{
 			AchievementCode: achievementCode,
 			Namespace:       namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := achievementsService.AdminDeleteAchievement(input)
+		errInput := achievementsService.AdminDeleteAchievementShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

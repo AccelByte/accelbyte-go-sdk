@@ -38,8 +38,7 @@ var PublicLinkPlatformAccountCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := usersService.PublicLinkPlatformAccount(input)
+		errInput := usersService.PublicLinkPlatformAccountShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

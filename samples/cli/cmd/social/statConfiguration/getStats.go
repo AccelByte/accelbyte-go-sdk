@@ -31,8 +31,7 @@ var GetStatsCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := statConfigurationService.GetStats(input)
+		ok, err := statConfigurationService.GetStatsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

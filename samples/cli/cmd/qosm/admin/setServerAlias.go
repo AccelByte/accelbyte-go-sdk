@@ -36,8 +36,7 @@ var SetServerAliasCmd = &cobra.Command{
 			Body:   body,
 			Region: region,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := adminService.SetServerAlias(input)
+		errInput := adminService.SetServerAliasShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

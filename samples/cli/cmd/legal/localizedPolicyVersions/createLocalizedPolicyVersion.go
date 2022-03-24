@@ -36,8 +36,7 @@ var CreateLocalizedPolicyVersionCmd = &cobra.Command{
 			Body:            body,
 			PolicyVersionID: policyVersionId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := localizedPolicyVersionsService.CreateLocalizedPolicyVersion(input)
+		ok, err := localizedPolicyVersionsService.CreateLocalizedPolicyVersionShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

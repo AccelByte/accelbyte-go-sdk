@@ -29,8 +29,7 @@ var DeleteAllUserGroupCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := anonymizationService.DeleteAllUserGroup(input)
+		errInput := anonymizationService.DeleteAllUserGroupShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

@@ -29,8 +29,7 @@ var GetOrderCmd = &cobra.Command{
 			Namespace: namespace,
 			OrderNo:   orderNo,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := orderService.GetOrder(input)
+		ok, err := orderService.GetOrderShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

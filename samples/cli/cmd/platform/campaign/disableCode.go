@@ -29,8 +29,7 @@ var DisableCodeCmd = &cobra.Command{
 			Code:      code,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := campaignService.DisableCode(input)
+		ok, err := campaignService.DisableCodeShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

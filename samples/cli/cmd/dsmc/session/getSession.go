@@ -29,8 +29,7 @@ var GetSessionCmd = &cobra.Command{
 			Namespace: namespace,
 			SessionID: sessionID,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := sessionService.GetSession(input)
+		ok, err := sessionService.GetSessionShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

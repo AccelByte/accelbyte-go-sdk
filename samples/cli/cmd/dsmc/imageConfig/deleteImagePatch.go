@@ -33,8 +33,7 @@ var DeleteImagePatchCmd = &cobra.Command{
 			Version:      version,
 			VersionPatch: versionPatch,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := imageConfigService.DeleteImagePatch(input)
+		errInput := imageConfigService.DeleteImagePatchShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

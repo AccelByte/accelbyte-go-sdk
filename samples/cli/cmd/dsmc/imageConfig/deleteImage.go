@@ -31,8 +31,7 @@ var DeleteImageCmd = &cobra.Command{
 			ImageURI:  imageURI,
 			Version:   version,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := imageConfigService.DeleteImage(input)
+		errInput := imageConfigService.DeleteImageShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

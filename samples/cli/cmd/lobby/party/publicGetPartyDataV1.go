@@ -29,8 +29,7 @@ var PublicGetPartyDataV1Cmd = &cobra.Command{
 			Namespace: namespace,
 			PartyID:   partyId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := partyService.PublicGetPartyDataV1(input)
+		ok, err := partyService.PublicGetPartyDataV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

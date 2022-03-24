@@ -60,8 +60,7 @@ var PlatformAuthenticationV3Cmd = &cobra.Command{
 			State:               state,
 			HTTPClient:          httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := oAuth20ExtensionService.PlatformAuthenticationV3(input)
+		errInput := oAuth20ExtensionService.PlatformAuthenticationV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

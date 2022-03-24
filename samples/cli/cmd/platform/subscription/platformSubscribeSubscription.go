@@ -38,8 +38,7 @@ var PlatformSubscribeSubscriptionCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := subscriptionService.PlatformSubscribeSubscription(input)
+		ok, err := subscriptionService.PlatformSubscribeSubscriptionShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -40,8 +40,7 @@ var ListCrossNamespaceAccountLinkCmd = &cobra.Command{
 			UserID:       userId,
 			HTTPClient:   httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := usersService.ListCrossNamespaceAccountLink(input)
+		errInput := usersService.ListCrossNamespaceAccountLinkShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

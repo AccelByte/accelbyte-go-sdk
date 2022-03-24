@@ -35,8 +35,7 @@ var PublicListAchievementsCmd = &cobra.Command{
 			SortBy:    &sortBy,
 			Language:  language,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := achievementsService.PublicListAchievements(input)
+		ok, err := achievementsService.PublicListAchievementsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

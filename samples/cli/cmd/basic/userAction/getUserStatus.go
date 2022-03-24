@@ -29,8 +29,7 @@ var GetUserStatusCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := userActionService.GetUserStatus(input)
+		ok, err := userActionService.GetUserStatusShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

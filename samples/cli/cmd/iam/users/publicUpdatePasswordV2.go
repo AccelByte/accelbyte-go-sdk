@@ -38,8 +38,7 @@ var PublicUpdatePasswordV2Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := usersService.PublicUpdatePasswordV2(input)
+		errInput := usersService.PublicUpdatePasswordV2Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

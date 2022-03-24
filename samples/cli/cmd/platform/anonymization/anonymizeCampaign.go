@@ -29,8 +29,7 @@ var AnonymizeCampaignCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := anonymizationService.AnonymizeCampaign(input)
+		errInput := anonymizationService.AnonymizeCampaignShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

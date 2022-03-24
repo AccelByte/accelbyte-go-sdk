@@ -38,8 +38,7 @@ var AdminUploadContentScreenshotCmd = &cobra.Command{
 			ContentID: contentId,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := adminContentService.AdminUploadContentScreenshot(input)
+		ok, err := adminContentService.AdminUploadContentScreenshotShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

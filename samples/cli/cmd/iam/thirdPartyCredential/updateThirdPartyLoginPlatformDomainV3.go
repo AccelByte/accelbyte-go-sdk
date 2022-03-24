@@ -38,8 +38,7 @@ var UpdateThirdPartyLoginPlatformDomainV3Cmd = &cobra.Command{
 			Namespace:  namespace,
 			PlatformID: platformId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := thirdPartyCredentialService.UpdateThirdPartyLoginPlatformDomainV3(input)
+		ok, err := thirdPartyCredentialService.UpdateThirdPartyLoginPlatformDomainV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

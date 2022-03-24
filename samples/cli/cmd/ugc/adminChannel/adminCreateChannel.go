@@ -36,8 +36,7 @@ var AdminCreateChannelCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := adminChannelService.AdminCreateChannel(input)
+		ok, err := adminChannelService.AdminCreateChannelShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

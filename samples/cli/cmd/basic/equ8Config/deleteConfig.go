@@ -27,8 +27,7 @@ var DeleteConfigCmd = &cobra.Command{
 		input := &e_q_u8_config.DeleteConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := equ8ConfigService.DeleteConfig(input)
+		errInput := equ8ConfigService.DeleteConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

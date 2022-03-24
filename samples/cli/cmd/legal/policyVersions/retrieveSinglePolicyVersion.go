@@ -29,8 +29,7 @@ var RetrieveSinglePolicyVersionCmd = &cobra.Command{
 			PolicyID:  policyId,
 			VersionID: &versionId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := policyVersionsService.RetrieveSinglePolicyVersion(input)
+		ok, err := policyVersionsService.RetrieveSinglePolicyVersionShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

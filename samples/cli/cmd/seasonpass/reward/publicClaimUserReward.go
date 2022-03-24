@@ -38,8 +38,7 @@ var PublicClaimUserRewardCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := rewardService.PublicClaimUserReward(input)
+		ok, err := rewardService.PublicClaimUserRewardShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

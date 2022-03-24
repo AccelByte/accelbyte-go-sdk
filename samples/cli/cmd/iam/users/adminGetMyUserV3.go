@@ -24,8 +24,7 @@ var AdminGetMyUserV3Cmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &users.AdminGetMyUserV3Params{}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := usersService.AdminGetMyUserV3(input)
+		ok, err := usersService.AdminGetMyUserV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

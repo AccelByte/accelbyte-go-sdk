@@ -27,8 +27,7 @@ var GetPublishedStoreCmd = &cobra.Command{
 		input := &store.GetPublishedStoreParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := storeService.GetPublishedStore(input)
+		ok, err := storeService.GetPublishedStoreShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

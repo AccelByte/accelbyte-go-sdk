@@ -34,8 +34,7 @@ var CreatePaymentProviderConfigCmd = &cobra.Command{
 		input := &payment_config.CreatePaymentProviderConfigParams{
 			Body: body,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentConfigService.CreatePaymentProviderConfig(input)
+		ok, err := paymentConfigService.CreatePaymentProviderConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

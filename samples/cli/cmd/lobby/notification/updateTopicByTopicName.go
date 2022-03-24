@@ -38,8 +38,7 @@ var UpdateTopicByTopicNameCmd = &cobra.Command{
 			Namespace: namespace,
 			Topic:     topic,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := notificationService.UpdateTopicByTopicName(input)
+		errInput := notificationService.UpdateTopicByTopicNameShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

@@ -33,8 +33,7 @@ var GetUserActivitiesHandlerCmd = &cobra.Command{
 			Offset:    &offset,
 			PageSize:  pageSize,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := userInformationService.GetUserActivitiesHandler(input)
+		ok, err := userInformationService.GetUserActivitiesHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -29,8 +29,7 @@ var PublicGetUserAccountDeletionStatusCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := dataDeletionService.PublicGetUserAccountDeletionStatus(input)
+		ok, err := dataDeletionService.PublicGetUserAccountDeletionStatusShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

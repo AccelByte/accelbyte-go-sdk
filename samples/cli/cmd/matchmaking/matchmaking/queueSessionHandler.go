@@ -36,8 +36,7 @@ var QueueSessionHandlerCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := matchmakingService.QueueSessionHandler(input)
+		errInput := matchmakingService.QueueSessionHandlerShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

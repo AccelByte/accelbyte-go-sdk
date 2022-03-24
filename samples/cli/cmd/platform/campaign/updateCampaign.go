@@ -38,8 +38,7 @@ var UpdateCampaignCmd = &cobra.Command{
 			CampaignID: campaignId,
 			Namespace:  namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := campaignService.UpdateCampaign(input)
+		ok, err := campaignService.UpdateCampaignShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

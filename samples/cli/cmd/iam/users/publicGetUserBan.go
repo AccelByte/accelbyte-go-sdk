@@ -31,8 +31,7 @@ var PublicGetUserBanCmd = &cobra.Command{
 			UserID:     userId,
 			ActiveOnly: &activeOnly,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := usersService.PublicGetUserBan(input)
+		ok, err := usersService.PublicGetUserBanShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

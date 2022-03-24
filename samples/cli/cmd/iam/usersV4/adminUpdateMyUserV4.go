@@ -34,8 +34,7 @@ var AdminUpdateMyUserV4Cmd = &cobra.Command{
 		input := &users_v4.AdminUpdateMyUserV4Params{
 			Body: body,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := usersV4Service.AdminUpdateMyUserV4(input)
+		ok, err := usersV4Service.AdminUpdateMyUserV4Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

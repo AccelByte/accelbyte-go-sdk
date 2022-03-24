@@ -38,8 +38,7 @@ var DisableUserCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := usersService.DisableUser(input)
+		errInput := usersService.DisableUserShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

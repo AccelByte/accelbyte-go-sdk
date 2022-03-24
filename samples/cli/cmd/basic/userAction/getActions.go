@@ -27,8 +27,7 @@ var GetActionsCmd = &cobra.Command{
 		input := &user_action.GetActionsParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := userActionService.GetActions(input)
+		ok, err := userActionService.GetActionsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

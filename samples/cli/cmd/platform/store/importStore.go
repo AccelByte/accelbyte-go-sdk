@@ -44,8 +44,7 @@ var ImportStoreCmd = &cobra.Command{
 			StoreID:    &storeId,
 			HTTPClient: httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := storeService.ImportStore(input)
+		ok, err := storeService.ImportStoreShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

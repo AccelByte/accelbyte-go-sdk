@@ -33,8 +33,7 @@ var AdminListAssignedUsersV4Cmd = &cobra.Command{
 			Before: &before,
 			Limit:  &limit,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := rolesService.AdminListAssignedUsersV4(input)
+		ok, err := rolesService.AdminListAssignedUsersV4Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

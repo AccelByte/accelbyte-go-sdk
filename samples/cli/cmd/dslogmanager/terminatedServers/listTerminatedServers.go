@@ -53,8 +53,7 @@ var ListTerminatedServersCmd = &cobra.Command{
 			StartDate:  &startDate,
 			UserID:     &userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := terminatedServersService.ListTerminatedServers(input)
+		ok, err := terminatedServersService.ListTerminatedServersShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

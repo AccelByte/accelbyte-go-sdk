@@ -38,8 +38,7 @@ var AdminUpdateAchievementListOrderCmd = &cobra.Command{
 			AchievementCode: achievementCode,
 			Namespace:       namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := achievementsService.AdminUpdateAchievementListOrder(input)
+		errInput := achievementsService.AdminUpdateAchievementListOrderShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

@@ -31,8 +31,7 @@ var AdminCreateJusticeUserCmd = &cobra.Command{
 			TargetNamespace: targetNamespace,
 			UserID:          userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := usersService.AdminCreateJusticeUser(input)
+		ok, err := usersService.AdminCreateJusticeUserShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

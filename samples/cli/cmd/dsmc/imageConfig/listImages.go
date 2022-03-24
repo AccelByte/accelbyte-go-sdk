@@ -37,8 +37,7 @@ var ListImagesCmd = &cobra.Command{
 			SortBy:        &sortBy,
 			SortDirection: &sortDirection,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := imageConfigService.ListImages(input)
+		ok, err := imageConfigService.ListImagesShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

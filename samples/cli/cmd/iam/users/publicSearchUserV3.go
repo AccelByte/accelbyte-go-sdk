@@ -31,8 +31,7 @@ var PublicSearchUserV3Cmd = &cobra.Command{
 			By:        &by,
 			Query:     &query,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := usersService.PublicSearchUserV3(input)
+		ok, err := usersService.PublicSearchUserV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -37,8 +37,7 @@ var GetUserSubscriptionActivitiesCmd = &cobra.Command{
 			Offset:         &offset,
 			SubscriptionID: &subscriptionId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := subscriptionService.GetUserSubscriptionActivities(input)
+		ok, err := subscriptionService.GetUserSubscriptionActivitiesShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

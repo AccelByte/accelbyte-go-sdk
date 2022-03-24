@@ -38,8 +38,7 @@ var AdminSaveUserRoleV3Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := usersService.AdminSaveUserRoleV3(input)
+		errInput := usersService.AdminSaveUserRoleV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

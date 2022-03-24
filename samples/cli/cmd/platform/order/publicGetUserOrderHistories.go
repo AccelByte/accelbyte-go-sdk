@@ -31,8 +31,7 @@ var PublicGetUserOrderHistoriesCmd = &cobra.Command{
 			OrderNo:   orderNo,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := orderService.PublicGetUserOrderHistories(input)
+		ok, err := orderService.PublicGetUserOrderHistoriesShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

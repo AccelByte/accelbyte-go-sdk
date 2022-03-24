@@ -36,8 +36,7 @@ var AdminRevokeUserFromRoleV4Cmd = &cobra.Command{
 			Body:   body,
 			RoleID: roleId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := rolesService.AdminRevokeUserFromRoleV4(input)
+		errInput := rolesService.AdminRevokeUserFromRoleV4Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

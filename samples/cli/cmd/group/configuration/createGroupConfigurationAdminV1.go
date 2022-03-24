@@ -36,8 +36,7 @@ var CreateGroupConfigurationAdminV1Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := configurationService.CreateGroupConfigurationAdminV1(input)
+		ok, err := configurationService.CreateGroupConfigurationAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

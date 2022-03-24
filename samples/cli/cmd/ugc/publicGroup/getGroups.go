@@ -33,8 +33,7 @@ var GetGroupsCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := publicGroupService.GetGroups(input)
+		ok, err := publicGroupService.GetGroupsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

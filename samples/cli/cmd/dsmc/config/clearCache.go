@@ -27,8 +27,7 @@ var ClearCacheCmd = &cobra.Command{
 		input := &config.ClearCacheParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := configService.ClearCache(input)
+		errInput := configService.ClearCacheShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

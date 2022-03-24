@@ -31,8 +31,7 @@ var AdminDeleteUserRoleV3Cmd = &cobra.Command{
 			RoleID:    roleId,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := usersService.AdminDeleteUserRoleV3(input)
+		errInput := usersService.AdminDeleteUserRoleV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

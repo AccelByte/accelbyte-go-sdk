@@ -40,8 +40,7 @@ var PublicPlatformLinkV3Cmd = &cobra.Command{
 			PlatformID:  platformId,
 			HTTPClient:  httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := usersService.PublicPlatformLinkV3(input)
+		errInput := usersService.PublicPlatformLinkV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

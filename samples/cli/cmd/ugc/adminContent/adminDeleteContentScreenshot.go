@@ -31,8 +31,7 @@ var AdminDeleteContentScreenshotCmd = &cobra.Command{
 			Namespace:    namespace,
 			ScreenshotID: screenshotId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := adminContentService.AdminDeleteContentScreenshot(input)
+		errInput := adminContentService.AdminDeleteContentScreenshotShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

@@ -38,8 +38,7 @@ var UpdateCountryAgeRestrictionCmd = &cobra.Command{
 			CountryCode: countryCode,
 			Namespace:   namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := usersService.UpdateCountryAgeRestriction(input)
+		ok, err := usersService.UpdateCountryAgeRestrictionShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

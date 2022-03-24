@@ -29,8 +29,7 @@ var TestCheckoutConfigByIdCmd = &cobra.Command{
 			ID:      id_,
 			Sandbox: &sandbox,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentConfigService.TestCheckoutConfigByID(input)
+		ok, err := paymentConfigService.TestCheckoutConfigByIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -27,8 +27,7 @@ var DeleteAppleIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.DeleteAppleIAPConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := iapService.DeleteAppleIAPConfig(input)
+		errInput := iapService.DeleteAppleIAPConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

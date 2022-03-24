@@ -27,8 +27,7 @@ var GetLanguagesCmd = &cobra.Command{
 		input := &misc.GetLanguagesParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := miscService.GetLanguages(input)
+		ok, err := miscService.GetLanguagesShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

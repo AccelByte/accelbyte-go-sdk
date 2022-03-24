@@ -27,8 +27,7 @@ var AdminResetInputValidationsCmd = &cobra.Command{
 		input := &input_validations.AdminResetInputValidationsParams{
 			Field: field,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := inputValidationsService.AdminResetInputValidations(input)
+		errInput := inputValidationsService.AdminResetInputValidationsShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

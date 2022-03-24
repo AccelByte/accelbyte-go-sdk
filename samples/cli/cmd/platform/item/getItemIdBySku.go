@@ -33,8 +33,7 @@ var GetItemIdBySkuCmd = &cobra.Command{
 			StoreID:    &storeId,
 			Sku:        sku,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := itemService.GetItemIDBySku(input)
+		ok, err := itemService.GetItemIDBySkuShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

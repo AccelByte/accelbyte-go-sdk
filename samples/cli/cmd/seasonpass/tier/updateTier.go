@@ -40,8 +40,7 @@ var UpdateTierCmd = &cobra.Command{
 			Namespace: namespace,
 			SeasonID:  seasonId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := tierService.UpdateTier(input)
+		ok, err := tierService.UpdateTierShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -31,8 +31,7 @@ var PublicDeleteProfileCmd = &cobra.Command{
 			ProfileID: profileId,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := gameProfileService.PublicDeleteProfile(input)
+		errInput := gameProfileService.PublicDeleteProfileShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

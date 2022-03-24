@@ -35,8 +35,7 @@ var PublicGetItemBySkuCmd = &cobra.Command{
 			StoreID:   &storeId,
 			Sku:       sku,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := itemService.PublicGetItemBySku(input)
+		ok, err := itemService.PublicGetItemBySkuShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

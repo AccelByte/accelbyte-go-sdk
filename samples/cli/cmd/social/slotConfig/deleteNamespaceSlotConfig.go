@@ -27,8 +27,7 @@ var DeleteNamespaceSlotConfigCmd = &cobra.Command{
 		input := &slot_config.DeleteNamespaceSlotConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := slotConfigService.DeleteNamespaceSlotConfig(input)
+		errInput := slotConfigService.DeleteNamespaceSlotConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

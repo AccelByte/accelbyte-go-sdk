@@ -34,8 +34,7 @@ var RevokeTokenCmd = &cobra.Command{
 			Token:      token,
 			HTTPClient: httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := oAuthService.RevokeToken(input)
+		errInput := oAuthService.RevokeTokenShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

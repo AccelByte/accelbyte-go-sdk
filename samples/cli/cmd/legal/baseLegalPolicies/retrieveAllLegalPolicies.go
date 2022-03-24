@@ -24,8 +24,7 @@ var RetrieveAllLegalPoliciesCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &base_legal_policies.RetrieveAllLegalPoliciesParams{}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := baseLegalPoliciesService.RetrieveAllLegalPolicies(input)
+		ok, err := baseLegalPoliciesService.RetrieveAllLegalPoliciesShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

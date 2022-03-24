@@ -29,8 +29,7 @@ var GetEntitlementCmd = &cobra.Command{
 			EntitlementID: entitlementId,
 			Namespace:     namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := entitlementService.GetEntitlement(input)
+		ok, err := entitlementService.GetEntitlementShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

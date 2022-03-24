@@ -45,8 +45,7 @@ var QueryPaymentNotificationsCmd = &cobra.Command{
 			StartDate:          &startDate,
 			Status:             &status,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentService.QueryPaymentNotifications(input)
+		ok, err := paymentService.QueryPaymentNotificationsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

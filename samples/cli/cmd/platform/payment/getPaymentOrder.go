@@ -29,8 +29,7 @@ var GetPaymentOrderCmd = &cobra.Command{
 			Namespace:      namespace,
 			PaymentOrderNo: paymentOrderNo,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentService.GetPaymentOrder(input)
+		ok, err := paymentService.GetPaymentOrderShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

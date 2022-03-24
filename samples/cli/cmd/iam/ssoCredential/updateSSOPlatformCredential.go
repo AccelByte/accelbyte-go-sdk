@@ -38,8 +38,7 @@ var UpdateSSOPlatformCredentialCmd = &cobra.Command{
 			Namespace:  namespace,
 			PlatformID: platformId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := ssoCredentialService.UpdateSSOPlatformCredential(input)
+		ok, err := ssoCredentialService.UpdateSSOPlatformCredentialShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

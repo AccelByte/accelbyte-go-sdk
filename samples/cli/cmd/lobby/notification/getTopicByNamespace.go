@@ -33,8 +33,7 @@ var GetTopicByNamespaceCmd = &cobra.Command{
 			Before:    &before,
 			Limit:     &limit,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := notificationService.GetTopicByNamespace(input)
+		ok, err := notificationService.GetTopicByNamespaceShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

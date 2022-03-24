@@ -29,8 +29,7 @@ var GetStoreCmd = &cobra.Command{
 			Namespace: namespace,
 			StoreID:   storeId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := storeService.GetStore(input)
+		ok, err := storeService.GetStoreShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

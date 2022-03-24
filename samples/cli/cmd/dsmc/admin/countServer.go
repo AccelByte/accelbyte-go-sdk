@@ -27,8 +27,7 @@ var CountServerCmd = &cobra.Command{
 		input := &admin.CountServerParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := adminService.CountServer(input)
+		ok, err := adminService.CountServerShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

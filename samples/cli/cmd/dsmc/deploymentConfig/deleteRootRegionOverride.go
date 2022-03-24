@@ -31,8 +31,7 @@ var DeleteRootRegionOverrideCmd = &cobra.Command{
 			Namespace:  namespace,
 			Region:     region,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := deploymentConfigService.DeleteRootRegionOverride(input)
+		ok, err := deploymentConfigService.DeleteRootRegionOverrideShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

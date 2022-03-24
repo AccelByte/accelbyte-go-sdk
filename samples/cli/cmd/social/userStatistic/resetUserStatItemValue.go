@@ -42,8 +42,7 @@ var ResetUserStatItemValueCmd = &cobra.Command{
 			UserID:        userId,
 			AdditionalKey: &additionalKey,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := userStatisticService.ResetUserStatItemValue(input)
+		ok, err := userStatisticService.ResetUserStatItemValueShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

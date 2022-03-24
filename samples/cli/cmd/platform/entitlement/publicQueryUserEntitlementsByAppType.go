@@ -35,8 +35,7 @@ var PublicQueryUserEntitlementsByAppTypeCmd = &cobra.Command{
 			Offset:    &offset,
 			AppType:   appType,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := entitlementService.PublicQueryUserEntitlementsByAppType(input)
+		ok, err := entitlementService.PublicQueryUserEntitlementsByAppTypeShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

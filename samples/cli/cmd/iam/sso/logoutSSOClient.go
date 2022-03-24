@@ -27,8 +27,7 @@ var LogoutSSOClientCmd = &cobra.Command{
 		input := &s_s_o.LogoutSSOClientParams{
 			PlatformID: platformId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := ssoService.LogoutSSOClient(input)
+		errInput := ssoService.LogoutSSOClientShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

@@ -58,8 +58,7 @@ var PublicCreateUserNamespaceSlotCmd = &cobra.Command{
 			Tags:            tags,
 			HTTPClient:      httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := slotService.PublicCreateUserNamespaceSlot(input)
+		errInput := slotService.PublicCreateUserNamespaceSlotShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

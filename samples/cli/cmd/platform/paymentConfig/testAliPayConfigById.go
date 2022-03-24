@@ -29,8 +29,7 @@ var TestAliPayConfigByIdCmd = &cobra.Command{
 			ID:      id_,
 			Sandbox: &sandbox,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentConfigService.TestAliPayConfigByID(input)
+		ok, err := paymentConfigService.TestAliPayConfigByIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

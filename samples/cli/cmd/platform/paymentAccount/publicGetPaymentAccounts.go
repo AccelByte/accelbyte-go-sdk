@@ -29,8 +29,7 @@ var PublicGetPaymentAccountsCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentAccountService.PublicGetPaymentAccounts(input)
+		ok, err := paymentAccountService.PublicGetPaymentAccountsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

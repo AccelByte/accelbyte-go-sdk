@@ -36,8 +36,7 @@ var RemoveRoleMembersCmd = &cobra.Command{
 			Body:   body,
 			RoleID: roleId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := rolesService.RemoveRoleMembers(input)
+		errInput := rolesService.RemoveRoleMembersShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

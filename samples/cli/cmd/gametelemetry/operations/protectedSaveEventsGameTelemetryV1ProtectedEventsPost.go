@@ -34,8 +34,7 @@ var ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd = &cobra.Command{
 		input := &operations.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams{
 			Body: body,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := operationsService.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(input)
+		errInput := operationsService.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

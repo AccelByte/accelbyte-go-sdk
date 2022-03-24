@@ -31,8 +31,7 @@ var RetireSeasonCmd = &cobra.Command{
 			SeasonID:  seasonId,
 			Force:     &force,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := seasonService.RetireSeason(input)
+		ok, err := seasonService.RetireSeasonShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

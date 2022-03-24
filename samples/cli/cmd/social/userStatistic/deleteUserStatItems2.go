@@ -33,8 +33,7 @@ var DeleteUserStatItems2Cmd = &cobra.Command{
 			UserID:        userId,
 			AdditionalKey: &additionalKey,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := userStatisticService.DeleteUserStatItems2(input)
+		errInput := userStatisticService.DeleteUserStatItems2Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

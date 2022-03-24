@@ -27,8 +27,7 @@ var DeleteGoogleIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.DeleteGoogleIAPConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := iapService.DeleteGoogleIAPConfig(input)
+		errInput := iapService.DeleteGoogleIAPConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

@@ -24,8 +24,7 @@ var RetrieveAgreementsPublicCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &agreement.RetrieveAgreementsPublicParams{}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := agreementService.RetrieveAgreementsPublic(input)
+		ok, err := agreementService.RetrieveAgreementsPublicShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

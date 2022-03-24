@@ -33,8 +33,7 @@ var GetActiveMatchmakingGameSessionsCmd = &cobra.Command{
 			ServerRegion: &serverRegion,
 			SessionID:    &sessionId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := sessionService.GetActiveMatchmakingGameSessions(input)
+		ok, err := sessionService.GetActiveMatchmakingGameSessionsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

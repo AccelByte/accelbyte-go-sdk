@@ -27,8 +27,7 @@ var GetAllPartyInAllChannelCmd = &cobra.Command{
 		input := &matchmaking_.GetAllPartyInAllChannelParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := matchmakingService.GetAllPartyInAllChannel(input)
+		ok, err := matchmakingService.GetAllPartyInAllChannelShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

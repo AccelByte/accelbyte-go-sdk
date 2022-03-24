@@ -49,8 +49,7 @@ var QueryOrdersCmd = &cobra.Command{
 			Status:    &status,
 			WithTotal: &withTotal,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := orderService.QueryOrders(input)
+		ok, err := orderService.QueryOrdersShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

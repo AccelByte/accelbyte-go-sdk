@@ -36,8 +36,7 @@ var AdminUpdateAgeRestrictionConfigV2Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := usersService.AdminUpdateAgeRestrictionConfigV2(input)
+		ok, err := usersService.AdminUpdateAgeRestrictionConfigV2Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

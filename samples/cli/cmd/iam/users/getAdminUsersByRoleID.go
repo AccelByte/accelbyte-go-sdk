@@ -35,8 +35,7 @@ var GetAdminUsersByRoleIDCmd = &cobra.Command{
 			Limit:     &limit,
 			RoleID:    &roleId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := usersService.GetAdminUsersByRoleID(input)
+		ok, err := usersService.GetAdminUsersByRoleIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

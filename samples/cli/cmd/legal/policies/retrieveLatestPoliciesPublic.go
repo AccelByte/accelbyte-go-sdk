@@ -35,8 +35,7 @@ var RetrieveLatestPoliciesPublicCmd = &cobra.Command{
 			PolicyType:           &policyType,
 			Tags:                 &tags,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := policiesService.RetrieveLatestPoliciesPublic(input)
+		ok, err := policiesService.RetrieveLatestPoliciesPublicShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

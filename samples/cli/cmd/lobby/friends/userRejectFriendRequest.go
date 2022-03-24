@@ -36,8 +36,7 @@ var UserRejectFriendRequestCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := friendsService.UserRejectFriendRequest(input)
+		errInput := friendsService.UserRejectFriendRequestShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

@@ -33,8 +33,7 @@ var PublicGetRolesV3Cmd = &cobra.Command{
 			IsWildcard: &isWildcard,
 			Limit:      &limit,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := rolesService.PublicGetRolesV3(input)
+		ok, err := rolesService.PublicGetRolesV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

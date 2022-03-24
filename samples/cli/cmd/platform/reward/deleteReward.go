@@ -29,8 +29,7 @@ var DeleteRewardCmd = &cobra.Command{
 			Namespace: namespace,
 			RewardID:  rewardId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := rewardService.DeleteReward(input)
+		ok, err := rewardService.DeleteRewardShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

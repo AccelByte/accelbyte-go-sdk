@@ -29,8 +29,7 @@ var QueryAllUserIAPOrdersCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := iapService.QueryAllUserIAPOrders(input)
+		ok, err := iapService.QueryAllUserIAPOrdersShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

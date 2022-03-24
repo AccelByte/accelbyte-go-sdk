@@ -40,8 +40,7 @@ var ProcessUserSubscriptionNotificationCmd = &cobra.Command{
 			SubscriptionID: subscriptionId,
 			UserID:         userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := subscriptionService.ProcessUserSubscriptionNotification(input)
+		errInput := subscriptionService.ProcessUserSubscriptionNotificationShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

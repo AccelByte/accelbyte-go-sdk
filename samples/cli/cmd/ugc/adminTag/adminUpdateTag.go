@@ -38,8 +38,7 @@ var AdminUpdateTagCmd = &cobra.Command{
 			Namespace: namespace,
 			TagID:     tagId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := adminTagService.AdminUpdateTag(input)
+		ok, err := adminTagService.AdminUpdateTagShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

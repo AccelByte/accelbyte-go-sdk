@@ -27,8 +27,7 @@ var RetrieveSinglePolicyCmd = &cobra.Command{
 		input := &base_legal_policies.RetrieveSinglePolicyParams{
 			BasePolicyID: basePolicyId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := baseLegalPoliciesService.RetrieveSinglePolicy(input)
+		ok, err := baseLegalPoliciesService.RetrieveSinglePolicyShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

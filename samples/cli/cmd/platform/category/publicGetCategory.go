@@ -33,8 +33,7 @@ var PublicGetCategoryCmd = &cobra.Command{
 			Language:     &language,
 			StoreID:      &storeId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := categoryService.PublicGetCategory(input)
+		ok, err := categoryService.PublicGetCategoryShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -36,8 +36,7 @@ var AdminEnableUserV2Cmd = &cobra.Command{
 			UserID:     userId,
 			HTTPClient: httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := usersService.AdminEnableUserV2(input)
+		errInput := usersService.AdminEnableUserV2Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

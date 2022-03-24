@@ -33,8 +33,7 @@ var GetItemByAppIdCmd = &cobra.Command{
 			StoreID:    &storeId,
 			AppID:      appId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := itemService.GetItemByAppID(input)
+		ok, err := itemService.GetItemByAppIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

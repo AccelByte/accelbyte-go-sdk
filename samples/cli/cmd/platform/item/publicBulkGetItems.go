@@ -35,8 +35,7 @@ var PublicBulkGetItemsCmd = &cobra.Command{
 			StoreID:   &storeId,
 			ItemIds:   itemIds,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := itemService.PublicBulkGetItems(input)
+		ok, err := itemService.PublicBulkGetItemsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

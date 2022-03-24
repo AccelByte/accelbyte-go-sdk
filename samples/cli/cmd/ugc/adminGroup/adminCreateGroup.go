@@ -36,8 +36,7 @@ var AdminCreateGroupCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := adminGroupService.AdminCreateGroup(input)
+		ok, err := adminGroupService.AdminCreateGroupShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

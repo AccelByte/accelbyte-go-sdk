@@ -34,8 +34,7 @@ var AdminInviteUserV4Cmd = &cobra.Command{
 		input := &users_v4.AdminInviteUserV4Params{
 			Body: body,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := usersV4Service.AdminInviteUserV4(input)
+		ok, err := usersV4Service.AdminInviteUserV4Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

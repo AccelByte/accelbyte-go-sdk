@@ -24,8 +24,7 @@ var PublicGetTimeCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &misc.PublicGetTimeParams{}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := miscService.PublicGetTime(input)
+		ok, err := miscService.PublicGetTimeShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

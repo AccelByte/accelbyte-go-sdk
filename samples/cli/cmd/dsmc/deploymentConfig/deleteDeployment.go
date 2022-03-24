@@ -29,8 +29,7 @@ var DeleteDeploymentCmd = &cobra.Command{
 			Deployment: deployment,
 			Namespace:  namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := deploymentConfigService.DeleteDeployment(input)
+		errInput := deploymentConfigService.DeleteDeploymentShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

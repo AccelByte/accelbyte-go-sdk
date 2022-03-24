@@ -42,8 +42,7 @@ var UpdateWxPayConfigCertCmd = &cobra.Command{
 			ID:         id_,
 			HTTPClient: httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentConfigService.UpdateWxPayConfigCert(input)
+		ok, err := paymentConfigService.UpdateWxPayConfigCertShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

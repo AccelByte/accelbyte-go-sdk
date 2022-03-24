@@ -29,8 +29,7 @@ var PublicGetInputValidationsCmd = &cobra.Command{
 			DefaultOnEmpty: &defaultOnEmpty,
 			LanguageCode:   &languageCode,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := inputValidationsService.PublicGetInputValidations(input)
+		ok, err := inputValidationsService.PublicGetInputValidationsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

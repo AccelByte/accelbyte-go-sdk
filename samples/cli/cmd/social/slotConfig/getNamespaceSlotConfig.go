@@ -27,8 +27,7 @@ var GetNamespaceSlotConfigCmd = &cobra.Command{
 		input := &slot_config.GetNamespaceSlotConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := slotConfigService.GetNamespaceSlotConfig(input)
+		ok, err := slotConfigService.GetNamespaceSlotConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

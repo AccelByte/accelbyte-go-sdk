@@ -35,8 +35,7 @@ var ListSessionCmd = &cobra.Command{
 			Region:     &region,
 			WithServer: &withServer,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := adminService.ListSession(input)
+		ok, err := adminService.ListSessionShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

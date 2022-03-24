@@ -35,8 +35,7 @@ var QueryRewards1Cmd = &cobra.Command{
 			Offset:     &offset,
 			SortBy:     &sortBy,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := rewardService.QueryRewards1(input)
+		ok, err := rewardService.QueryRewards1Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

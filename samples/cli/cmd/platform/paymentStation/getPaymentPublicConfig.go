@@ -33,8 +33,7 @@ var GetPaymentPublicConfigCmd = &cobra.Command{
 			PaymentProvider: paymentProvider,
 			Region:          region,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentStationService.GetPaymentPublicConfig(input)
+		ok, err := paymentStationService.GetPaymentPublicConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

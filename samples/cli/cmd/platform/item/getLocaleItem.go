@@ -39,8 +39,7 @@ var GetLocaleItemCmd = &cobra.Command{
 			Region:         &region,
 			StoreID:        &storeId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := itemService.GetLocaleItem(input)
+		ok, err := itemService.GetLocaleItemShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

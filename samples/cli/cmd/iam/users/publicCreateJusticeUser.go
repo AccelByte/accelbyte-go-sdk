@@ -29,8 +29,7 @@ var PublicCreateJusticeUserCmd = &cobra.Command{
 			Namespace:       namespace,
 			TargetNamespace: targetNamespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := usersService.PublicCreateJusticeUser(input)
+		ok, err := usersService.PublicCreateJusticeUserShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

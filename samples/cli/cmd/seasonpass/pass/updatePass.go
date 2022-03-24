@@ -40,8 +40,7 @@ var UpdatePassCmd = &cobra.Command{
 			Namespace: namespace,
 			SeasonID:  seasonId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := passService.UpdatePass(input)
+		ok, err := passService.UpdatePassShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

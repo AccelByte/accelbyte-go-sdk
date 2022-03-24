@@ -29,8 +29,7 @@ var QueryPassesCmd = &cobra.Command{
 			Namespace: namespace,
 			SeasonID:  seasonId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := passService.QueryPasses(input)
+		ok, err := passService.QueryPassesShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

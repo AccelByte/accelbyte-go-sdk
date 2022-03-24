@@ -36,8 +36,7 @@ var CreateArchivedLeaderboardRankingDataV1HandlerCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := leaderboardDataService.CreateArchivedLeaderboardRankingDataV1Handler(input)
+		errInput := leaderboardDataService.CreateArchivedLeaderboardRankingDataV1HandlerShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

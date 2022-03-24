@@ -33,8 +33,7 @@ var GetItemCmd = &cobra.Command{
 			ActiveOnly: &activeOnly,
 			StoreID:    &storeId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := itemService.GetItem(input)
+		ok, err := itemService.GetItemShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

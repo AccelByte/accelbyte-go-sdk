@@ -34,8 +34,7 @@ var AdminUpdateInputValidationsCmd = &cobra.Command{
 		input := &input_validations.AdminUpdateInputValidationsParams{
 			Body: body,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := inputValidationsService.AdminUpdateInputValidations(input)
+		errInput := inputValidationsService.AdminUpdateInputValidationsShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

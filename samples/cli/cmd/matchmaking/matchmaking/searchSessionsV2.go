@@ -5,13 +5,12 @@
 package matchmaking
 
 import (
-	"github.com/sirupsen/logrus"
-	"github.com/spf13/cobra"
-
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
 	"github.com/AccelByte/sample-apps/pkg/repository"
+	"github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
 )
 
 // SearchSessionsV2Cmd represents the SearchSessionsV2 command
@@ -42,8 +41,7 @@ var SearchSessionsV2Cmd = &cobra.Command{
 			Limit:     limit,
 			Offset:    offset,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := matchmakingService.SearchSessionsV2(input)
+		ok, err := matchmakingService.SearchSessionsV2Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

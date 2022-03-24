@@ -31,8 +31,7 @@ var AdminGetUserByPlatformUserIDV3Cmd = &cobra.Command{
 			PlatformID:     platformId,
 			PlatformUserID: platformUserId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := usersService.AdminGetUserByPlatformUserIDV3(input)
+		ok, err := usersService.AdminGetUserByPlatformUserIDV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -27,8 +27,7 @@ var GetMyProfileInfoCmd = &cobra.Command{
 		input := &user_profile.GetMyProfileInfoParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := userProfileService.GetMyProfileInfo(input)
+		ok, err := userProfileService.GetMyProfileInfoShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

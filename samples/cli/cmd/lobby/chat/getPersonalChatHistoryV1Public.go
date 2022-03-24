@@ -29,8 +29,7 @@ var GetPersonalChatHistoryV1PublicCmd = &cobra.Command{
 			FriendID:  friendId,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := chatService.GetPersonalChatHistoryV1Public(input)
+		ok, err := chatService.GetPersonalChatHistoryV1PublicShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

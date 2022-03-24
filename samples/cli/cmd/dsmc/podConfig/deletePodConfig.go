@@ -29,8 +29,7 @@ var DeletePodConfigCmd = &cobra.Command{
 			Name:      name,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := podConfigService.DeletePodConfig(input)
+		errInput := podConfigService.DeletePodConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

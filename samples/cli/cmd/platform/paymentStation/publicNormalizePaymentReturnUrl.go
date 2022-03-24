@@ -57,8 +57,7 @@ var PublicNormalizePaymentReturnUrlCmd = &cobra.Command{
 			PaymentProvider: paymentProvider,
 			ReturnURL:       returnUrl,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := paymentStationService.PublicNormalizePaymentReturnURL(input)
+		errInput := paymentStationService.PublicNormalizePaymentReturnURLShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

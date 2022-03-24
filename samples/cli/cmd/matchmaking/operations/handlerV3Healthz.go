@@ -24,8 +24,7 @@ var HandlerV3HealthzCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &operations.HandlerV3HealthzParams{}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := operationsService.HandlerV3Healthz(input)
+		errInput := operationsService.HandlerV3HealthzShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

@@ -33,8 +33,7 @@ var GetUserAppEntitlementByAppIdCmd = &cobra.Command{
 			ActiveOnly: &activeOnly,
 			AppID:      appId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := entitlementService.GetUserAppEntitlementByAppID(input)
+		ok, err := entitlementService.GetUserAppEntitlementByAppIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

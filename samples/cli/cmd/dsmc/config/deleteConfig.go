@@ -27,8 +27,7 @@ var DeleteConfigCmd = &cobra.Command{
 		input := &config.DeleteConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := configService.DeleteConfig(input)
+		errInput := configService.DeleteConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

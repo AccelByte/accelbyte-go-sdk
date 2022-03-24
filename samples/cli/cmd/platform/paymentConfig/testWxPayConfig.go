@@ -34,8 +34,7 @@ var TestWxPayConfigCmd = &cobra.Command{
 		input := &payment_config.TestWxPayConfigParams{
 			Body: body,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentConfigService.TestWxPayConfig(input)
+		ok, err := paymentConfigService.TestWxPayConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

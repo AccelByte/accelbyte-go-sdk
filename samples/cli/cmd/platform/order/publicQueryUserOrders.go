@@ -37,8 +37,7 @@ var PublicQueryUserOrdersCmd = &cobra.Command{
 			Offset:    &offset,
 			Status:    &status,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := orderService.PublicQueryUserOrders(input)
+		ok, err := orderService.PublicQueryUserOrdersShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

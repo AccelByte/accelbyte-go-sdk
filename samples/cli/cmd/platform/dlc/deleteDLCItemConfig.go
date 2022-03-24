@@ -27,8 +27,7 @@ var DeleteDLCItemConfigCmd = &cobra.Command{
 		input := &d_l_c.DeleteDLCItemConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := dlcService.DeleteDLCItemConfig(input)
+		errInput := dlcService.DeleteDLCItemConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

@@ -31,8 +31,7 @@ var PublicGetUserSubscriptionCmd = &cobra.Command{
 			SubscriptionID: subscriptionId,
 			UserID:         userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := subscriptionService.PublicGetUserSubscription(input)
+		ok, err := subscriptionService.PublicGetUserSubscriptionShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

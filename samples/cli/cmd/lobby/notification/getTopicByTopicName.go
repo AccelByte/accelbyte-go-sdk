@@ -29,8 +29,7 @@ var GetTopicByTopicNameCmd = &cobra.Command{
 			Namespace: namespace,
 			Topic:     topic,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := notificationService.GetTopicByTopicName(input)
+		ok, err := notificationService.GetTopicByTopicNameShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

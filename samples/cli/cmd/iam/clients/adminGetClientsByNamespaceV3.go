@@ -31,8 +31,7 @@ var AdminGetClientsByNamespaceV3Cmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := clientsService.AdminGetClientsByNamespaceV3(input)
+		ok, err := clientsService.AdminGetClientsByNamespaceV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

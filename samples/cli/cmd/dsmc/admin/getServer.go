@@ -29,8 +29,7 @@ var GetServerCmd = &cobra.Command{
 			Namespace: namespace,
 			PodName:   podName,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := adminService.GetServer(input)
+		ok, err := adminService.GetServerShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -50,8 +50,7 @@ var TokenGrantCmd = &cobra.Command{
 			GrantType:    grantType,
 			HTTPClient:   httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := oAuthService.TokenGrant(input)
+		ok, err := oAuthService.TokenGrantShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

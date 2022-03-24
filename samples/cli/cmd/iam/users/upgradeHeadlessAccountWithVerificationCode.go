@@ -38,8 +38,7 @@ var UpgradeHeadlessAccountWithVerificationCodeCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := usersService.UpgradeHeadlessAccountWithVerificationCode(input)
+		ok, err := usersService.UpgradeHeadlessAccountWithVerificationCodeShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

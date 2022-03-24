@@ -35,8 +35,7 @@ var GetUserEntitlementByItemIdCmd = &cobra.Command{
 			EntitlementClazz: &entitlementClazz,
 			ItemID:           itemId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := entitlementService.GetUserEntitlementByItemID(input)
+		ok, err := entitlementService.GetUserEntitlementByItemIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

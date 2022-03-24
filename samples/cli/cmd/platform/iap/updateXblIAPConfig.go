@@ -36,8 +36,7 @@ var UpdateXblIAPConfigCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := iapService.UpdateXblIAPConfig(input)
+		ok, err := iapService.UpdateXblIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

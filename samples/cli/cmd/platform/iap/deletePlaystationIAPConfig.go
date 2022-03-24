@@ -27,8 +27,7 @@ var DeletePlaystationIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.DeletePlaystationIAPConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := iapService.DeletePlaystationIAPConfig(input)
+		errInput := iapService.DeletePlaystationIAPConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

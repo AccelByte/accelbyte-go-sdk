@@ -29,8 +29,7 @@ var DeleteCountryGroupCmd = &cobra.Command{
 			CountryGroupCode: countryGroupCode,
 			Namespace:        namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := miscService.DeleteCountryGroup(input)
+		errInput := miscService.DeleteCountryGroupShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

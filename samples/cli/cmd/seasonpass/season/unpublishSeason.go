@@ -31,8 +31,7 @@ var UnpublishSeasonCmd = &cobra.Command{
 			SeasonID:  seasonId,
 			Force:     &force,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := seasonService.UnpublishSeason(input)
+		ok, err := seasonService.UnpublishSeasonShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -31,8 +31,7 @@ var PublicGetUserAppEntitlementOwnershipByAppIdCmd = &cobra.Command{
 			UserID:    userId,
 			AppID:     appId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := entitlementService.PublicGetUserAppEntitlementOwnershipByAppID(input)
+		ok, err := entitlementService.PublicGetUserAppEntitlementOwnershipByAppIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

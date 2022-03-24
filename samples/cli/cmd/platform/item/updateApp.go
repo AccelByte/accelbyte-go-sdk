@@ -40,8 +40,7 @@ var UpdateAppCmd = &cobra.Command{
 			Namespace: namespace,
 			StoreID:   storeId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := itemService.UpdateApp(input)
+		ok, err := itemService.UpdateAppShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

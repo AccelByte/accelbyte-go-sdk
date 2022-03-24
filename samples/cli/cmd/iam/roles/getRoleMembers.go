@@ -27,8 +27,7 @@ var GetRoleMembersCmd = &cobra.Command{
 		input := &roles.GetRoleMembersParams{
 			RoleID: roleId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := rolesService.GetRoleMembers(input)
+		ok, err := rolesService.GetRoleMembersShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

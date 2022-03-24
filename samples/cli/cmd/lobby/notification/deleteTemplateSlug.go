@@ -29,8 +29,7 @@ var DeleteTemplateSlugCmd = &cobra.Command{
 			Namespace:    namespace,
 			TemplateSlug: templateSlug,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := notificationService.DeleteTemplateSlug(input)
+		errInput := notificationService.DeleteTemplateSlugShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

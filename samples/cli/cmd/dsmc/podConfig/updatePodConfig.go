@@ -38,8 +38,7 @@ var UpdatePodConfigCmd = &cobra.Command{
 			Name:      name,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := podConfigService.UpdatePodConfig(input)
+		ok, err := podConfigService.UpdatePodConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

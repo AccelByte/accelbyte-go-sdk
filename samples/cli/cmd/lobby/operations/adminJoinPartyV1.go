@@ -31,8 +31,7 @@ var AdminJoinPartyV1Cmd = &cobra.Command{
 			PartyID:   partyId,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := operationsService.AdminJoinPartyV1(input)
+		errInput := operationsService.AdminJoinPartyV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

@@ -38,8 +38,7 @@ var DisableUserBanCmd = &cobra.Command{
 			UserID:     userId,
 			HTTPClient: httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := usersService.DisableUserBan(input)
+		ok, err := usersService.DisableUserBanShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

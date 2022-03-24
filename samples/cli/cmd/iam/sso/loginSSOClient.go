@@ -29,8 +29,7 @@ var LoginSSOClientCmd = &cobra.Command{
 			PlatformID: platformId,
 			Payload:    &payload,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := ssoService.LoginSSOClient(input)
+		errInput := ssoService.LoginSSOClientShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

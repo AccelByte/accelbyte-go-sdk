@@ -36,8 +36,7 @@ var PublicForgotPasswordV2Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := usersService.PublicForgotPasswordV2(input)
+		errInput := usersService.PublicForgotPasswordV2Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

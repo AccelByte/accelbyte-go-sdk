@@ -29,8 +29,7 @@ var RecurringChargeSubscriptionCmd = &cobra.Command{
 			Namespace:      namespace,
 			SubscriptionID: subscriptionId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := subscriptionService.RecurringChargeSubscription(input)
+		ok, err := subscriptionService.RecurringChargeSubscriptionShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

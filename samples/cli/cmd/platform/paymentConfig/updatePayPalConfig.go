@@ -40,8 +40,7 @@ var UpdatePayPalConfigCmd = &cobra.Command{
 			Sandbox:  &sandbox,
 			Validate: &validate,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentConfigService.UpdatePayPalConfig(input)
+		ok, err := paymentConfigService.UpdatePayPalConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

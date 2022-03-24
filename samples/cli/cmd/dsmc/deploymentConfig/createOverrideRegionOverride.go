@@ -42,8 +42,7 @@ var CreateOverrideRegionOverrideCmd = &cobra.Command{
 			Region:     region,
 			Version:    version,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := deploymentConfigService.CreateOverrideRegionOverride(input)
+		ok, err := deploymentConfigService.CreateOverrideRegionOverrideShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

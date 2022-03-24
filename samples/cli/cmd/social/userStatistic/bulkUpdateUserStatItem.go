@@ -40,8 +40,7 @@ var BulkUpdateUserStatItemCmd = &cobra.Command{
 			UserID:        userId,
 			AdditionalKey: &additionalKey,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := userStatisticService.BulkUpdateUserStatItem(input)
+		ok, err := userStatisticService.BulkUpdateUserStatItemShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

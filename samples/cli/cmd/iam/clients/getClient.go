@@ -27,8 +27,7 @@ var GetClientCmd = &cobra.Command{
 		input := &clients.GetClientParams{
 			ClientID: clientId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := clientsService.GetClient(input)
+		ok, err := clientsService.GetClientShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

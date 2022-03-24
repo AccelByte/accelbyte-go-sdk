@@ -35,8 +35,7 @@ var DeleteAdminEmailConfigurationCmd = &cobra.Command{
 			Namespace: namespace,
 			Emails:    emails,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := dataRetrievalService.DeleteAdminEmailConfiguration(input)
+		errInput := dataRetrievalService.DeleteAdminEmailConfigurationShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

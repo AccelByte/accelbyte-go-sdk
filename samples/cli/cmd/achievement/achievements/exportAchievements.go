@@ -27,8 +27,7 @@ var ExportAchievementsCmd = &cobra.Command{
 		input := &achievements.ExportAchievementsParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := achievementsService.ExportAchievements(input)
+		ok, err := achievementsService.ExportAchievementsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

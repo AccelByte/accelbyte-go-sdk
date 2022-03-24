@@ -29,8 +29,7 @@ var AnonymizeIntegrationCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := anonymizationService.AnonymizeIntegration(input)
+		errInput := anonymizationService.AnonymizeIntegrationShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

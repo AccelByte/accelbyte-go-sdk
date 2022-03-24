@@ -37,8 +37,7 @@ var QueryUserEntitlementsByAppTypeCmd = &cobra.Command{
 			Offset:     &offset,
 			AppType:    appType,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := entitlementService.QueryUserEntitlementsByAppType(input)
+		ok, err := entitlementService.QueryUserEntitlementsByAppTypeShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

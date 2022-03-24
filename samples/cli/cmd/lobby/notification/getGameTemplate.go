@@ -27,8 +27,7 @@ var GetGameTemplateCmd = &cobra.Command{
 		input := &notification.GetGameTemplateParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := notificationService.GetGameTemplate(input)
+		ok, err := notificationService.GetGameTemplateShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

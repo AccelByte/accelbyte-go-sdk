@@ -31,8 +31,7 @@ var GetGroupCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := publicGroupService.GetGroup(input)
+		ok, err := publicGroupService.GetGroupShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

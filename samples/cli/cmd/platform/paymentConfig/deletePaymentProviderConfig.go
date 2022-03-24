@@ -27,8 +27,7 @@ var DeletePaymentProviderConfigCmd = &cobra.Command{
 		input := &payment_config.DeletePaymentProviderConfigParams{
 			ID: id_,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := paymentConfigService.DeletePaymentProviderConfig(input)
+		errInput := paymentConfigService.DeletePaymentProviderConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

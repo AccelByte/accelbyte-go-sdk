@@ -51,8 +51,7 @@ var AdminSearchChannelSpecificContentCmd = &cobra.Command{
 			Type:       &type_,
 			UserID:     &userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := adminContentService.AdminSearchChannelSpecificContent(input)
+		ok, err := adminContentService.AdminSearchChannelSpecificContentShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -36,8 +36,7 @@ var IndirectBulkAcceptVersionedPolicy1Cmd = &cobra.Command{
 			Body:   body,
 			UserID: userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := agreementService.IndirectBulkAcceptVersionedPolicy1(input)
+		ok, err := agreementService.IndirectBulkAcceptVersionedPolicy1Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

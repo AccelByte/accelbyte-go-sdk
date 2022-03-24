@@ -27,8 +27,7 @@ var GetNamespacePublisherCmd = &cobra.Command{
 		input := &namespace_.GetNamespacePublisherParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := namespaceService.GetNamespacePublisher(input)
+		ok, err := namespaceService.GetNamespacePublisherShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

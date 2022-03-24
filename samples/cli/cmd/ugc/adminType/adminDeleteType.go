@@ -29,8 +29,7 @@ var AdminDeleteTypeCmd = &cobra.Command{
 			Namespace: namespace,
 			TypeID:    typeId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := adminTypeService.AdminDeleteType(input)
+		errInput := adminTypeService.AdminDeleteTypeShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

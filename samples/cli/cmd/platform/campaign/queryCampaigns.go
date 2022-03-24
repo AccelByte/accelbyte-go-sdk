@@ -35,8 +35,7 @@ var QueryCampaignsCmd = &cobra.Command{
 			Offset:    &offset,
 			Tag:       &tag,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := campaignService.QueryCampaigns(input)
+		ok, err := campaignService.QueryCampaignsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

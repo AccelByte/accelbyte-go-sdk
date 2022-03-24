@@ -37,8 +37,7 @@ var PublicQueryUserStatItemsCmd = &cobra.Command{
 			StatCodes: &statCodes,
 			Tags:      &tags,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := userStatisticService.PublicQueryUserStatItems(input)
+		ok, err := userStatisticService.PublicQueryUserStatItemsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

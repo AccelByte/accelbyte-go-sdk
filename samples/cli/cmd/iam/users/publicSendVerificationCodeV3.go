@@ -36,8 +36,7 @@ var PublicSendVerificationCodeV3Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := usersService.PublicSendVerificationCodeV3(input)
+		errInput := usersService.PublicSendVerificationCodeV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

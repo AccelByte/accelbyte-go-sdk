@@ -38,8 +38,7 @@ var DeleteMemberRolePublicV1Cmd = &cobra.Command{
 			MemberRoleID: memberRoleId,
 			Namespace:    namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := groupRolesService.DeleteMemberRolePublicV1(input)
+		ok, err := groupRolesService.DeleteMemberRolePublicV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -29,8 +29,7 @@ var GetKeyGroupDynamicCmd = &cobra.Command{
 			KeyGroupID: keyGroupId,
 			Namespace:  namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := keyGroupService.GetKeyGroupDynamic(input)
+		ok, err := keyGroupService.GetKeyGroupDynamicShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

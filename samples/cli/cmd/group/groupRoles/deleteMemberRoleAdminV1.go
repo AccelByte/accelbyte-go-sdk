@@ -29,8 +29,7 @@ var DeleteMemberRoleAdminV1Cmd = &cobra.Command{
 			MemberRoleID: memberRoleId,
 			Namespace:    namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := groupRolesService.DeleteMemberRoleAdminV1(input)
+		errInput := groupRolesService.DeleteMemberRoleAdminV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

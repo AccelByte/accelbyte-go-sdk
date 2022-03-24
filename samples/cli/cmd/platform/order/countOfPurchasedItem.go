@@ -31,8 +31,7 @@ var CountOfPurchasedItemCmd = &cobra.Command{
 			UserID:    userId,
 			ItemID:    itemId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := orderService.CountOfPurchasedItem(input)
+		ok, err := orderService.CountOfPurchasedItemShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -37,8 +37,7 @@ var DeleteUserRankingsAdminV1Cmd = &cobra.Command{
 			UserID:          userId,
 			LeaderboardCode: leaderboardCode,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := leaderboardDataService.DeleteUserRankingsAdminV1(input)
+		errInput := leaderboardDataService.DeleteUserRankingsAdminV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

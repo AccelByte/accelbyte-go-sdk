@@ -40,8 +40,7 @@ var UpdateAliPayConfigCmd = &cobra.Command{
 			Sandbox:  &sandbox,
 			Validate: &validate,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentConfigService.UpdateAliPayConfig(input)
+		ok, err := paymentConfigService.UpdateAliPayConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

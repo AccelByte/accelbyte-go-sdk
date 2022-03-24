@@ -38,8 +38,7 @@ var AdminUpdateUserRoleV4Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := usersV4Service.AdminUpdateUserRoleV4(input)
+		ok, err := usersV4Service.AdminUpdateUserRoleV4Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

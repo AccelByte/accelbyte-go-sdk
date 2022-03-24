@@ -31,8 +31,7 @@ var DeleteItemCmd = &cobra.Command{
 			Namespace: namespace,
 			StoreID:   &storeId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := itemService.DeleteItem(input)
+		errInput := itemService.DeleteItemShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

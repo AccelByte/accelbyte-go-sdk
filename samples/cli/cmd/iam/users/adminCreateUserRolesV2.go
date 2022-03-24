@@ -37,8 +37,7 @@ var AdminCreateUserRolesV2Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := usersService.AdminCreateUserRolesV2(input)
+		errInput := usersService.AdminCreateUserRolesV2Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

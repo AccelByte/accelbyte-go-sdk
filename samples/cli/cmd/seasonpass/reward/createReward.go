@@ -38,8 +38,7 @@ var CreateRewardCmd = &cobra.Command{
 			Namespace: namespace,
 			SeasonID:  seasonId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := rewardService.CreateReward(input)
+		ok, err := rewardService.CreateRewardShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

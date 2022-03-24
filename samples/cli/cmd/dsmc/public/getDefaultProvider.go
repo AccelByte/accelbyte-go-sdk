@@ -24,8 +24,7 @@ var GetDefaultProviderCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &public.GetDefaultProviderParams{}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := publicService.GetDefaultProvider(input)
+		ok, err := publicService.GetDefaultProviderShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

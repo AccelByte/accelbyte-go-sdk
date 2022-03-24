@@ -31,8 +31,7 @@ var RevokeUserEntitlementsCmd = &cobra.Command{
 			UserID:         userId,
 			EntitlementIds: entitlementIds,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := entitlementService.RevokeUserEntitlements(input)
+		ok, err := entitlementService.RevokeUserEntitlementsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

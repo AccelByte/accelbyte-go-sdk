@@ -29,8 +29,7 @@ var GetCampaignCmd = &cobra.Command{
 			CampaignID: campaignId,
 			Namespace:  namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := campaignService.GetCampaign(input)
+		ok, err := campaignService.GetCampaignShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

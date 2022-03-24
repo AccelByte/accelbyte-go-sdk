@@ -29,8 +29,7 @@ var TestAdyenConfigByIdCmd = &cobra.Command{
 			ID:      id_,
 			Sandbox: &sandbox,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentConfigService.TestAdyenConfigByID(input)
+		ok, err := paymentConfigService.TestAdyenConfigByIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -29,8 +29,7 @@ var PublicCancelUserAccountDeletionRequestCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := dataDeletionService.PublicCancelUserAccountDeletionRequest(input)
+		errInput := dataDeletionService.PublicCancelUserAccountDeletionRequestShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

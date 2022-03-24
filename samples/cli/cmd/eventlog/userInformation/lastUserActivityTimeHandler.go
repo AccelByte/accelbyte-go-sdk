@@ -29,8 +29,7 @@ var LastUserActivityTimeHandlerCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := userInformationService.LastUserActivityTimeHandler(input)
+		ok, err := userInformationService.LastUserActivityTimeHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

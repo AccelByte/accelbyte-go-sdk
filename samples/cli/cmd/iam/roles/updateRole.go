@@ -36,8 +36,7 @@ var UpdateRoleCmd = &cobra.Command{
 			Body:   body,
 			RoleID: roleId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := rolesService.UpdateRole(input)
+		ok, err := rolesService.UpdateRoleShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

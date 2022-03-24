@@ -33,8 +33,7 @@ var PublicWebLinkPlatformCmd = &cobra.Command{
 			ClientID:    &clientId,
 			RedirectURI: &redirectUri,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := usersService.PublicWebLinkPlatform(input)
+		ok, err := usersService.PublicWebLinkPlatformShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

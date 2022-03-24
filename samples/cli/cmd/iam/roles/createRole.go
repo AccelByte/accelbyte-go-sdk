@@ -34,8 +34,7 @@ var CreateRoleCmd = &cobra.Command{
 		input := &roles.CreateRoleParams{
 			Body: body,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := rolesService.CreateRole(input)
+		ok, err := rolesService.CreateRoleShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

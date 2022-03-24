@@ -24,8 +24,7 @@ var GetSpecialPaymentProvidersCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &payment_config.GetSpecialPaymentProvidersParams{}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentConfigService.GetSpecialPaymentProviders(input)
+		ok, err := paymentConfigService.GetSpecialPaymentProvidersShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -39,8 +39,7 @@ var GetPublicEditHistoryCmd = &cobra.Command{
 			StartDate: &startDate,
 			Type:      &type_,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := eventV2Service.GetPublicEditHistory(input)
+		ok, err := eventV2Service.GetPublicEditHistoryShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

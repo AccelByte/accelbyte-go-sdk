@@ -33,8 +33,7 @@ var GetTodayLeaderboardRankingPublicV1Cmd = &cobra.Command{
 			Limit:           &limit,
 			Offset:          &offset,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := leaderboardDataService.GetTodayLeaderboardRankingPublicV1(input)
+		ok, err := leaderboardDataService.GetTodayLeaderboardRankingPublicV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

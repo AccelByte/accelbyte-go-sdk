@@ -27,8 +27,7 @@ var DeleteTwitchIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.DeleteTwitchIAPConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := iapService.DeleteTwitchIAPConfig(input)
+		errInput := iapService.DeleteTwitchIAPConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

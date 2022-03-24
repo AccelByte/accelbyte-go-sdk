@@ -29,8 +29,7 @@ var AnonymizeSubscriptionCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := anonymizationService.AnonymizeSubscription(input)
+		errInput := anonymizationService.AnonymizeSubscriptionShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

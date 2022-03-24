@@ -29,8 +29,7 @@ var GetDeploymentCmd = &cobra.Command{
 			Deployment: deployment,
 			Namespace:  namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := deploymentConfigService.GetDeployment(input)
+		ok, err := deploymentConfigService.GetDeploymentShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

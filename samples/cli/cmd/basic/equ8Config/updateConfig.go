@@ -36,8 +36,7 @@ var UpdateConfigCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := equ8ConfigService.UpdateConfig(input)
+		ok, err := equ8ConfigService.UpdateConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

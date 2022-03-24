@@ -33,8 +33,7 @@ var AdminDeleteUserPermissionV3Cmd = &cobra.Command{
 			Resource:  resource,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := usersService.AdminDeleteUserPermissionV3(input)
+		errInput := usersService.AdminDeleteUserPermissionV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

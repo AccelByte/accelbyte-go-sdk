@@ -31,8 +31,7 @@ var GetCodeCmd = &cobra.Command{
 			Namespace:  namespace,
 			Redeemable: &redeemable,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := campaignService.GetCode(input)
+		ok, err := campaignService.GetCodeShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

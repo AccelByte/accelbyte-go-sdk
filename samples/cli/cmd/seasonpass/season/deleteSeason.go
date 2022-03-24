@@ -29,8 +29,7 @@ var DeleteSeasonCmd = &cobra.Command{
 			Namespace: namespace,
 			SeasonID:  seasonId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := seasonService.DeleteSeason(input)
+		errInput := seasonService.DeleteSeasonShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

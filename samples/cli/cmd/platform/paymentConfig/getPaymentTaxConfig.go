@@ -24,8 +24,7 @@ var GetPaymentTaxConfigCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &payment_config.GetPaymentTaxConfigParams{}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentConfigService.GetPaymentTaxConfig(input)
+		ok, err := paymentConfigService.GetPaymentTaxConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

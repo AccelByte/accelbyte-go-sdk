@@ -33,8 +33,7 @@ var AdminGetRoleMembersV3Cmd = &cobra.Command{
 			Before: &before,
 			Limit:  &limit,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := rolesService.AdminGetRoleMembersV3(input)
+		ok, err := rolesService.AdminGetRoleMembersV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

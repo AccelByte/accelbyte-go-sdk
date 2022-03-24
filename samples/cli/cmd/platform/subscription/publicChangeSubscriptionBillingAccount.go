@@ -31,8 +31,7 @@ var PublicChangeSubscriptionBillingAccountCmd = &cobra.Command{
 			SubscriptionID: subscriptionId,
 			UserID:         userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := subscriptionService.PublicChangeSubscriptionBillingAccount(input)
+		ok, err := subscriptionService.PublicChangeSubscriptionBillingAccountShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

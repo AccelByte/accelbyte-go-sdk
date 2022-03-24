@@ -31,8 +31,7 @@ var DeleteRolePermissionCmd = &cobra.Command{
 			Resource: resource,
 			RoleID:   roleId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := rolesService.DeleteRolePermission(input)
+		errInput := rolesService.DeleteRolePermissionShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

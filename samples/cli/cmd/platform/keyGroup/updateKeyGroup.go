@@ -38,8 +38,7 @@ var UpdateKeyGroupCmd = &cobra.Command{
 			KeyGroupID: keyGroupId,
 			Namespace:  namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := keyGroupService.UpdateKeyGroup(input)
+		ok, err := keyGroupService.UpdateKeyGroupShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

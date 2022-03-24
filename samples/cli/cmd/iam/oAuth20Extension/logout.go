@@ -32,8 +32,7 @@ var LogoutCmd = &cobra.Command{
 		input := &o_auth2_0_extension.LogoutParams{
 			HTTPClient: httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := oAuth20ExtensionService.Logout(input)
+		errInput := oAuth20ExtensionService.LogoutShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

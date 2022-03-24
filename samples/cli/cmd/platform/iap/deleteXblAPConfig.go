@@ -27,8 +27,7 @@ var DeleteXblAPConfigCmd = &cobra.Command{
 		input := &i_a_p.DeleteXblAPConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := iapService.DeleteXblAPConfig(input)
+		errInput := iapService.DeleteXblAPConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

@@ -29,8 +29,7 @@ var DeleteNotificationTopicV1AdminCmd = &cobra.Command{
 			Namespace: namespace,
 			TopicName: topicName,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := notificationService.DeleteNotificationTopicV1Admin(input)
+		errInput := notificationService.DeleteNotificationTopicV1AdminShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

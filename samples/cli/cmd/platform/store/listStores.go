@@ -27,8 +27,7 @@ var ListStoresCmd = &cobra.Command{
 		input := &store.ListStoresParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := storeService.ListStores(input)
+		ok, err := storeService.ListStoresShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

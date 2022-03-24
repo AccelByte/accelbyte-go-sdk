@@ -31,8 +31,7 @@ var PublicCreateUserStatItemCmd = &cobra.Command{
 			StatCode:  statCode,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := userStatisticService.PublicCreateUserStatItem(input)
+		errInput := userStatisticService.PublicCreateUserStatItemShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

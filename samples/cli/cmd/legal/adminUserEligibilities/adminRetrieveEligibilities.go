@@ -35,8 +35,7 @@ var AdminRetrieveEligibilitiesCmd = &cobra.Command{
 			ClientID:        clientId,
 			CountryCode:     countryCode,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := adminUserEligibilitiesService.AdminRetrieveEligibilities(input)
+		ok, err := adminUserEligibilitiesService.AdminRetrieveEligibilitiesShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

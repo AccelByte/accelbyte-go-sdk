@@ -38,8 +38,7 @@ var AddPortCmd = &cobra.Command{
 			Name:      name,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := configService.AddPort(input)
+		ok, err := configService.AddPortShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

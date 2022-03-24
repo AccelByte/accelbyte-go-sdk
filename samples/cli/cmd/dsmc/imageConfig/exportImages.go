@@ -27,8 +27,7 @@ var ExportImagesCmd = &cobra.Command{
 		input := &image_config.ExportImagesParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := imageConfigService.ExportImages(input)
+		ok, err := imageConfigService.ExportImagesShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

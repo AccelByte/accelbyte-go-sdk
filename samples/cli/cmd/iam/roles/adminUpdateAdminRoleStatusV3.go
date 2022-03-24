@@ -27,8 +27,7 @@ var AdminUpdateAdminRoleStatusV3Cmd = &cobra.Command{
 		input := &roles.AdminUpdateAdminRoleStatusV3Params{
 			RoleID: roleId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := rolesService.AdminUpdateAdminRoleStatusV3(input)
+		errInput := rolesService.AdminUpdateAdminRoleStatusV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

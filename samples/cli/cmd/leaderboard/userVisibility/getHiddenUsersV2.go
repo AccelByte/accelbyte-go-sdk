@@ -33,8 +33,7 @@ var GetHiddenUsersV2Cmd = &cobra.Command{
 			Limit:           &limit,
 			Offset:          &offset,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := userVisibilityService.GetHiddenUsersV2(input)
+		ok, err := userVisibilityService.GetHiddenUsersV2Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

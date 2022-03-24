@@ -29,8 +29,7 @@ var GetUsersByLoginIdsCmd = &cobra.Command{
 			Namespace: namespace,
 			LoginIds:  &loginIds,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := usersService.GetUsersByLoginIds(input)
+		ok, err := usersService.GetUsersByLoginIdsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

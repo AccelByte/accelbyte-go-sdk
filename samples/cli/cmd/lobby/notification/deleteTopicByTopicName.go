@@ -29,8 +29,7 @@ var DeleteTopicByTopicNameCmd = &cobra.Command{
 			Namespace: namespace,
 			Topic:     topic,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := notificationService.DeleteTopicByTopicName(input)
+		errInput := notificationService.DeleteTopicByTopicNameShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

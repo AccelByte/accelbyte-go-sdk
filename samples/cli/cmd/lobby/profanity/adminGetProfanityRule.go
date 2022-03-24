@@ -27,8 +27,7 @@ var AdminGetProfanityRuleCmd = &cobra.Command{
 		input := &profanity.AdminGetProfanityRuleParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := profanityService.AdminGetProfanityRule(input)
+		ok, err := profanityService.AdminGetProfanityRuleShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

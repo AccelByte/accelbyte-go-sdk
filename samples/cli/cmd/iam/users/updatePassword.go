@@ -38,8 +38,7 @@ var UpdatePasswordCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := usersService.UpdatePassword(input)
+		errInput := usersService.UpdatePasswordShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

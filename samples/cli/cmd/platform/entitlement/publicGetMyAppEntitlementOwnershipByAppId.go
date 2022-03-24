@@ -29,8 +29,7 @@ var PublicGetMyAppEntitlementOwnershipByAppIdCmd = &cobra.Command{
 			Namespace: namespace,
 			AppID:     appId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := entitlementService.PublicGetMyAppEntitlementOwnershipByAppID(input)
+		ok, err := entitlementService.PublicGetMyAppEntitlementOwnershipByAppIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

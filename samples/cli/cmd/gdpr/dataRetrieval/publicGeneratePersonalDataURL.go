@@ -40,8 +40,7 @@ var PublicGeneratePersonalDataURLCmd = &cobra.Command{
 			UserID:      userId,
 			HTTPClient:  httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := dataRetrievalService.PublicGeneratePersonalDataURL(input)
+		ok, err := dataRetrievalService.PublicGeneratePersonalDataURLShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -38,8 +38,7 @@ var AdminRetrieveUserThirdPartyPlatformTokenV3Cmd = &cobra.Command{
 			UserID:     userId,
 			HTTPClient: httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := oAuth20Service.AdminRetrieveUserThirdPartyPlatformTokenV3(input)
+		ok, err := oAuth20Service.AdminRetrieveUserThirdPartyPlatformTokenV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

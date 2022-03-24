@@ -38,8 +38,7 @@ var ApplyUserRedemptionCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := campaignService.ApplyUserRedemption(input)
+		ok, err := campaignService.ApplyUserRedemptionShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

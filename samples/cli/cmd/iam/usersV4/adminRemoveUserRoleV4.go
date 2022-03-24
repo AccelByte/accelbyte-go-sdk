@@ -38,8 +38,7 @@ var AdminRemoveUserRoleV4Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := usersV4Service.AdminRemoveUserRoleV4(input)
+		errInput := usersV4Service.AdminRemoveUserRoleV4Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

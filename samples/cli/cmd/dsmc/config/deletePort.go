@@ -29,8 +29,7 @@ var DeletePortCmd = &cobra.Command{
 			Name:      name,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := configService.DeletePort(input)
+		ok, err := configService.DeletePortShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -33,8 +33,7 @@ var AdminGetUserPersonalDataRequestsCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := dataRetrievalService.AdminGetUserPersonalDataRequests(input)
+		ok, err := dataRetrievalService.AdminGetUserPersonalDataRequestsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

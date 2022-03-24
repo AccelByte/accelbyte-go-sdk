@@ -36,8 +36,7 @@ var UpdateMyZipCodeCmd = &cobra.Command{
 			UserZipCodeUpdate: userZipCodeUpdate,
 			Namespace:         namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := userProfileService.UpdateMyZipCode(input)
+		ok, err := userProfileService.UpdateMyZipCodeShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

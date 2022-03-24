@@ -29,8 +29,7 @@ var AdminVerifyUserWithoutVerificationCodeV3Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := usersService.AdminVerifyUserWithoutVerificationCodeV3(input)
+		errInput := usersService.AdminVerifyUserWithoutVerificationCodeV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

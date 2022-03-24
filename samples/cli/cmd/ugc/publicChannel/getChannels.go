@@ -33,8 +33,7 @@ var GetChannelsCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := publicChannelService.GetChannels(input)
+		ok, err := publicChannelService.GetChannelsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

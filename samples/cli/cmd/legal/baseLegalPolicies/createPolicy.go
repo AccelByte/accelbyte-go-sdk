@@ -34,8 +34,7 @@ var CreatePolicyCmd = &cobra.Command{
 		input := &base_legal_policies.CreatePolicyParams{
 			Body: body,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := baseLegalPoliciesService.CreatePolicy(input)
+		ok, err := baseLegalPoliciesService.CreatePolicyShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

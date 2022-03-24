@@ -35,8 +35,7 @@ var GetGroupMembersListAdminV1Cmd = &cobra.Command{
 			Offset:    &offset,
 			Order:     &order,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := groupMemberService.GetGroupMembersListAdminV1(input)
+		ok, err := groupMemberService.GetGroupMembersListAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

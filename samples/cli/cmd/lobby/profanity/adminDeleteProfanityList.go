@@ -29,8 +29,7 @@ var AdminDeleteProfanityListCmd = &cobra.Command{
 			List:      list_,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := profanityService.AdminDeleteProfanityList(input)
+		errInput := profanityService.AdminDeleteProfanityListShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

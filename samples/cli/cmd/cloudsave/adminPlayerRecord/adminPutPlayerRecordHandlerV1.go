@@ -40,8 +40,7 @@ var AdminPutPlayerRecordHandlerV1Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := adminPlayerRecordService.AdminPutPlayerRecordHandlerV1(input)
+		errInput := adminPlayerRecordService.AdminPutPlayerRecordHandlerV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

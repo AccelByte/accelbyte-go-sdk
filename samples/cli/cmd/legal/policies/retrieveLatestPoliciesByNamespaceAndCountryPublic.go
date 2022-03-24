@@ -37,8 +37,7 @@ var RetrieveLatestPoliciesByNamespaceAndCountryPublicCmd = &cobra.Command{
 			PolicyType:           &policyType,
 			Tags:                 &tags,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := policiesService.RetrieveLatestPoliciesByNamespaceAndCountryPublic(input)
+		ok, err := policiesService.RetrieveLatestPoliciesByNamespaceAndCountryPublicShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

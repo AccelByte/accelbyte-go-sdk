@@ -38,8 +38,7 @@ var AdminUpdateTypeCmd = &cobra.Command{
 			Namespace: namespace,
 			TypeID:    typeId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := adminTypeService.AdminUpdateType(input)
+		ok, err := adminTypeService.AdminUpdateTypeShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

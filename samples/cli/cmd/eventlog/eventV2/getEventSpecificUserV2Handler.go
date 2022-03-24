@@ -39,8 +39,7 @@ var GetEventSpecificUserV2HandlerCmd = &cobra.Command{
 			PageSize:  &pageSize,
 			StartDate: &startDate,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := eventV2Service.GetEventSpecificUserV2Handler(input)
+		ok, err := eventV2Service.GetEventSpecificUserV2HandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

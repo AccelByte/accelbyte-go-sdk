@@ -33,8 +33,7 @@ var GetPaymentCustomizationCmd = &cobra.Command{
 			PaymentProvider: paymentProvider,
 			Region:          region,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentStationService.GetPaymentCustomization(input)
+		ok, err := paymentStationService.GetPaymentCustomizationShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

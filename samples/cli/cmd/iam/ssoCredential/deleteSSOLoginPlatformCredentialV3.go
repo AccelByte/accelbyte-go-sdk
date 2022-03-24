@@ -29,8 +29,7 @@ var DeleteSSOLoginPlatformCredentialV3Cmd = &cobra.Command{
 			Namespace:  namespace,
 			PlatformID: platformId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := ssoCredentialService.DeleteSSOLoginPlatformCredentialV3(input)
+		errInput := ssoCredentialService.DeleteSSOLoginPlatformCredentialV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

@@ -34,8 +34,7 @@ var CreateNamespaceCmd = &cobra.Command{
 		input := &namespace_.CreateNamespaceParams{
 			Body: body,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := namespaceService.CreateNamespace(input)
+		ok, err := namespaceService.CreateNamespaceShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

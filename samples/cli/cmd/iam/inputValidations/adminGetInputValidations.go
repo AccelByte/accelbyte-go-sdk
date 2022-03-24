@@ -24,8 +24,7 @@ var AdminGetInputValidationsCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &input_validations.AdminGetInputValidationsParams{}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := inputValidationsService.AdminGetInputValidations(input)
+		ok, err := inputValidationsService.AdminGetInputValidationsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

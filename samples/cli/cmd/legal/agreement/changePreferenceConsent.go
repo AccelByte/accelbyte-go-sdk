@@ -34,8 +34,7 @@ var ChangePreferenceConsentCmd = &cobra.Command{
 		input := &agreement.ChangePreferenceConsentParams{
 			Body: body,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := agreementService.ChangePreferenceConsent(input)
+		errInput := agreementService.ChangePreferenceConsentShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

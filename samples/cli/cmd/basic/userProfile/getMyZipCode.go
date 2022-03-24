@@ -27,8 +27,7 @@ var GetMyZipCodeCmd = &cobra.Command{
 		input := &user_profile.GetMyZipCodeParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := userProfileService.GetMyZipCode(input)
+		ok, err := userProfileService.GetMyZipCodeShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

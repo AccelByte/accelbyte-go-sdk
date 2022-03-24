@@ -27,8 +27,7 @@ var PublicGetRoleV3Cmd = &cobra.Command{
 		input := &roles.PublicGetRoleV3Params{
 			RoleID: roleId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := rolesService.PublicGetRoleV3(input)
+		ok, err := rolesService.PublicGetRoleV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

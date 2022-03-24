@@ -29,8 +29,7 @@ var GetItemDynamicDataCmd = &cobra.Command{
 			ItemID:    itemId,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := itemService.GetItemDynamicData(input)
+		ok, err := itemService.GetItemDynamicDataShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

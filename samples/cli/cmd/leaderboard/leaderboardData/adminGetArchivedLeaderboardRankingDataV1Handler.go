@@ -31,8 +31,7 @@ var AdminGetArchivedLeaderboardRankingDataV1HandlerCmd = &cobra.Command{
 			Slug:             &slug,
 			LeaderboardCodes: leaderboardCodes,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := leaderboardDataService.AdminGetArchivedLeaderboardRankingDataV1Handler(input)
+		ok, err := leaderboardDataService.AdminGetArchivedLeaderboardRankingDataV1HandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -29,8 +29,7 @@ var AdminGetClientsbyNamespacebyIDV3Cmd = &cobra.Command{
 			ClientID:  clientId,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := clientsService.AdminGetClientsbyNamespacebyIDV3(input)
+		ok, err := clientsService.AdminGetClientsbyNamespacebyIDV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

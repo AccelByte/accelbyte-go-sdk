@@ -35,8 +35,7 @@ var GetUserEntitlementBySkuCmd = &cobra.Command{
 			EntitlementClazz: &entitlementClazz,
 			Sku:              sku,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := entitlementService.GetUserEntitlementBySku(input)
+		ok, err := entitlementService.GetUserEntitlementBySkuShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

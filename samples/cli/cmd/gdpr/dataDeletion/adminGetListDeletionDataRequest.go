@@ -37,8 +37,7 @@ var AdminGetListDeletionDataRequestCmd = &cobra.Command{
 			Offset:      &offset,
 			RequestDate: &requestDate,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := dataDeletionService.AdminGetListDeletionDataRequest(input)
+		ok, err := dataDeletionService.AdminGetListDeletionDataRequestShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

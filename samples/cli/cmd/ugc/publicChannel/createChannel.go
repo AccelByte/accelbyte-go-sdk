@@ -38,8 +38,7 @@ var CreateChannelCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := publicChannelService.CreateChannel(input)
+		ok, err := publicChannelService.CreateChannelShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

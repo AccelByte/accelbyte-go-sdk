@@ -27,8 +27,7 @@ var GetImageLimitCmd = &cobra.Command{
 		input := &image_config.GetImageLimitParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := imageConfigService.GetImageLimit(input)
+		ok, err := imageConfigService.GetImageLimitShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

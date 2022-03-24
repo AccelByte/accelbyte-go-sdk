@@ -51,8 +51,7 @@ var PublicExistsAnyUserActiveEntitlementCmd = &cobra.Command{
 			ItemIds:   itemIds,
 			Skus:      skus,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := entitlementService.PublicExistsAnyUserActiveEntitlement(input)
+		ok, err := entitlementService.PublicExistsAnyUserActiveEntitlementShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

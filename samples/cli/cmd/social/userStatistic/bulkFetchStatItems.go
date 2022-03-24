@@ -31,8 +31,7 @@ var BulkFetchStatItemsCmd = &cobra.Command{
 			StatCode:  statCode,
 			UserIds:   userIds,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := userStatisticService.BulkFetchStatItems(input)
+		ok, err := userStatisticService.BulkFetchStatItemsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

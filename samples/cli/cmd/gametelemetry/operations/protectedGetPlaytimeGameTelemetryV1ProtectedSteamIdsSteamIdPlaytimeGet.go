@@ -27,8 +27,7 @@ var ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGetCmd = 
 		input := &operations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams{
 			SteamID: steamId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := operationsService.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGet(input)
+		ok, err := operationsService.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

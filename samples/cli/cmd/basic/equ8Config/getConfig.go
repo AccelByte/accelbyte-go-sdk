@@ -27,8 +27,7 @@ var GetConfigCmd = &cobra.Command{
 		input := &e_q_u8_config.GetConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := equ8ConfigService.GetConfig(input)
+		ok, err := equ8ConfigService.GetConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

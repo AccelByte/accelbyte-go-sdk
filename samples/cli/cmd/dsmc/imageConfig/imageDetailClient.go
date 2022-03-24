@@ -29,8 +29,7 @@ var ImageDetailClientCmd = &cobra.Command{
 			Namespace: namespace,
 			Version:   version,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := imageConfigService.ImageDetailClient(input)
+		ok, err := imageConfigService.ImageDetailClientShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

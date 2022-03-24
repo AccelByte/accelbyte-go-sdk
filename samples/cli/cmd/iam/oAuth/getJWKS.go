@@ -32,8 +32,7 @@ var GetJWKSCmd = &cobra.Command{
 		input := &o_auth.GetJWKSParams{
 			HTTPClient: httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := oAuthService.GetJWKS(input)
+		ok, err := oAuthService.GetJWKSShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

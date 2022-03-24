@@ -33,8 +33,7 @@ var ListServerCmd = &cobra.Command{
 			Offset:    &offset,
 			Region:    &region,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := adminService.ListServer(input)
+		ok, err := adminService.ListServerShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

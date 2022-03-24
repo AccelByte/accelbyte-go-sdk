@@ -40,8 +40,7 @@ var UpdateTemplateLocalizationV1AdminCmd = &cobra.Command{
 			TemplateLanguage: templateLanguage,
 			TemplateSlug:     templateSlug,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := notificationService.UpdateTemplateLocalizationV1Admin(input)
+		errInput := notificationService.UpdateTemplateLocalizationV1AdminShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

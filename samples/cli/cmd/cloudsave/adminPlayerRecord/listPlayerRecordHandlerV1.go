@@ -33,8 +33,7 @@ var ListPlayerRecordHandlerV1Cmd = &cobra.Command{
 			Offset:    &offset,
 			Query:     &query,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := adminPlayerRecordService.ListPlayerRecordHandlerV1(input)
+		ok, err := adminPlayerRecordService.ListPlayerRecordHandlerV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -31,8 +31,7 @@ var GetLocalizationTemplateCmd = &cobra.Command{
 			TemplateLanguage: templateLanguage,
 			TemplateSlug:     templateSlug,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := notificationService.GetLocalizationTemplate(input)
+		ok, err := notificationService.GetLocalizationTemplateShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

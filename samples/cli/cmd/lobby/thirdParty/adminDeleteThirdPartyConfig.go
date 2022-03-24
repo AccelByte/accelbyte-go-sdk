@@ -27,8 +27,7 @@ var AdminDeleteThirdPartyConfigCmd = &cobra.Command{
 		input := &third_party.AdminDeleteThirdPartyConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := thirdPartyService.AdminDeleteThirdPartyConfig(input)
+		ok, err := thirdPartyService.AdminDeleteThirdPartyConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

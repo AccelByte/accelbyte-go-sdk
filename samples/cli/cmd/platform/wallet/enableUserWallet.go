@@ -31,8 +31,7 @@ var EnableUserWalletCmd = &cobra.Command{
 			UserID:    userId,
 			WalletID:  walletId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := walletService.EnableUserWallet(input)
+		errInput := walletService.EnableUserWalletShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

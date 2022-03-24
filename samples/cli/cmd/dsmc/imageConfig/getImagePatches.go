@@ -29,8 +29,7 @@ var GetImagePatchesCmd = &cobra.Command{
 			Namespace: namespace,
 			Version:   version,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := imageConfigService.GetImagePatches(input)
+		ok, err := imageConfigService.GetImagePatchesShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

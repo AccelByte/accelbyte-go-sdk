@@ -29,8 +29,7 @@ var PublicCheckPaymentOrderPaidStatusCmd = &cobra.Command{
 			Namespace:      namespace,
 			PaymentOrderNo: paymentOrderNo,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentStationService.PublicCheckPaymentOrderPaidStatus(input)
+		ok, err := paymentStationService.PublicCheckPaymentOrderPaidStatusShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

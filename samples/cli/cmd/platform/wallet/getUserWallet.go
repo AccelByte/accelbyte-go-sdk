@@ -31,8 +31,7 @@ var GetUserWalletCmd = &cobra.Command{
 			UserID:    userId,
 			WalletID:  walletId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := walletService.GetUserWallet(input)
+		ok, err := walletService.GetUserWalletShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -27,8 +27,7 @@ var GetUserIncomingFriendsCmd = &cobra.Command{
 		input := &friends.GetUserIncomingFriendsParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := friendsService.GetUserIncomingFriends(input)
+		ok, err := friendsService.GetUserIncomingFriendsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -38,8 +38,7 @@ var CheckEventConditionCmd = &cobra.Command{
 			Namespace: namespace,
 			RewardID:  rewardId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := rewardService.CheckEventCondition(input)
+		ok, err := rewardService.CheckEventConditionShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -5,15 +5,13 @@
 package oAuth20
 
 import (
-	"net/http"
-
-	"github.com/sirupsen/logrus"
-	"github.com/spf13/cobra"
-
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
+	"github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
+	"net/http"
 )
 
 // AuthorizeV3Cmd represents the AuthorizeV3 command
@@ -51,8 +49,7 @@ var AuthorizeV3Cmd = &cobra.Command{
 			ResponseType:        responseType,
 			HTTPClient:          httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		_, errInput := oAuth20Service.AuthorizeV3(input)
+		_, errInput := oAuth20Service.AuthorizeV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

@@ -38,8 +38,7 @@ var PublicFulfillAppleIAPItemCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := iapService.PublicFulfillAppleIAPItem(input)
+		errInput := iapService.PublicFulfillAppleIAPItemShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

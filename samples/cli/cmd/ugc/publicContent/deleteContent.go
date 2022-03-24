@@ -33,8 +33,7 @@ var DeleteContentCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := publicContentService.DeleteContent(input)
+		errInput := publicContentService.DeleteContentShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

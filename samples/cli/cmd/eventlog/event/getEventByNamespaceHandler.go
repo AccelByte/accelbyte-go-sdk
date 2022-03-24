@@ -35,8 +35,7 @@ var GetEventByNamespaceHandlerCmd = &cobra.Command{
 			PageSize:  pageSize,
 			StartDate: startDate,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := eventService.GetEventByNamespaceHandler(input)
+		ok, err := eventService.GetEventByNamespaceHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

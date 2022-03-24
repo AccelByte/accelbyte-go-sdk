@@ -36,8 +36,7 @@ var UpdateSteamIAPConfigCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := iapService.UpdateSteamIAPConfig(input)
+		ok, err := iapService.UpdateSteamIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

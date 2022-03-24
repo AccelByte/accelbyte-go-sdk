@@ -27,8 +27,7 @@ var SetDefaultPolicy1Cmd = &cobra.Command{
 		input := &policies.SetDefaultPolicy1Params{
 			PolicyID: policyId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := policiesService.SetDefaultPolicy1(input)
+		errInput := policiesService.SetDefaultPolicy1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

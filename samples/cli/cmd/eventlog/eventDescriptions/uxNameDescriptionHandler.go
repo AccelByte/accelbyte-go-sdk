@@ -24,8 +24,7 @@ var UXNameDescriptionHandlerCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &event_descriptions.UXNameDescriptionHandlerParams{}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := eventDescriptionsService.UXNameDescriptionHandler(input)
+		ok, err := eventDescriptionsService.UXNameDescriptionHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

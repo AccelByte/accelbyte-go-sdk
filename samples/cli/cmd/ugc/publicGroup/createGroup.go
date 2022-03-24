@@ -38,8 +38,7 @@ var CreateGroupCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := publicGroupService.CreateGroup(input)
+		ok, err := publicGroupService.CreateGroupShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

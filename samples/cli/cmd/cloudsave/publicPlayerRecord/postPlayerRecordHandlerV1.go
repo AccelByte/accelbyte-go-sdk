@@ -40,8 +40,7 @@ var PostPlayerRecordHandlerV1Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := publicPlayerRecordService.PostPlayerRecordHandlerV1(input)
+		errInput := publicPlayerRecordService.PostPlayerRecordHandlerV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

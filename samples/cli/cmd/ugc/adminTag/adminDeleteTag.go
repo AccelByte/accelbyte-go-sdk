@@ -29,8 +29,7 @@ var AdminDeleteTagCmd = &cobra.Command{
 			Namespace: namespace,
 			TagID:     tagId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := adminTagService.AdminDeleteTag(input)
+		errInput := adminTagService.AdminDeleteTagShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

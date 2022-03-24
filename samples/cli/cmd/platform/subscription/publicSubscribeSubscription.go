@@ -38,8 +38,7 @@ var PublicSubscribeSubscriptionCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := subscriptionService.PublicSubscribeSubscription(input)
+		errInput := subscriptionService.PublicSubscribeSubscriptionShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

@@ -31,8 +31,7 @@ var PublishTemplateCmd = &cobra.Command{
 			TemplateLanguage: templateLanguage,
 			TemplateSlug:     templateSlug,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := notificationService.PublishTemplate(input)
+		errInput := notificationService.PublishTemplateShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

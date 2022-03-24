@@ -36,8 +36,7 @@ var BulkResetUserStatItem2Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := userStatisticService.BulkResetUserStatItem2(input)
+		ok, err := userStatisticService.BulkResetUserStatItem2Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

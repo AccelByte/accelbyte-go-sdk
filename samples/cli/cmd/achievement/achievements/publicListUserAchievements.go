@@ -35,8 +35,7 @@ var PublicListUserAchievementsCmd = &cobra.Command{
 			Offset:         &offset,
 			PreferUnlocked: &preferUnlocked,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := achievementsService.PublicListUserAchievements(input)
+		ok, err := achievementsService.PublicListUserAchievementsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -35,8 +35,7 @@ var AdminGetBannedUsersV3Cmd = &cobra.Command{
 			Limit:      &limit,
 			Offset:     &offset,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := bansService.AdminGetBannedUsersV3(input)
+		ok, err := bansService.AdminGetBannedUsersV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

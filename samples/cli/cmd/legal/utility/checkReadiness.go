@@ -24,8 +24,7 @@ var CheckReadinessCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &utility.CheckReadinessParams{}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := utilityService.CheckReadiness(input)
+		ok, err := utilityService.CheckReadinessShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

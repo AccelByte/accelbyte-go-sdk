@@ -27,8 +27,7 @@ var AdminGetLobbyCCUCmd = &cobra.Command{
 		input := &player.AdminGetLobbyCCUParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := playerService.AdminGetLobbyCCU(input)
+		ok, err := playerService.AdminGetLobbyCCUShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

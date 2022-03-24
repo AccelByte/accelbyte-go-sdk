@@ -38,8 +38,7 @@ var SyncStadiaEntitlementCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := iapService.SyncStadiaEntitlement(input)
+		errInput := iapService.SyncStadiaEntitlementShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

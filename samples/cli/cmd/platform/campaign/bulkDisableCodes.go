@@ -31,8 +31,7 @@ var BulkDisableCodesCmd = &cobra.Command{
 			Namespace:  namespace,
 			BatchNo:    &batchNo,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := campaignService.BulkDisableCodes(input)
+		ok, err := campaignService.BulkDisableCodesShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

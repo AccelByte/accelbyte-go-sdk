@@ -27,8 +27,7 @@ var RetrieveEligibilitiesPublicCmd = &cobra.Command{
 		input := &eligibilities.RetrieveEligibilitiesPublicParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := eligibilitiesService.RetrieveEligibilitiesPublic(input)
+		ok, err := eligibilitiesService.RetrieveEligibilitiesPublicShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

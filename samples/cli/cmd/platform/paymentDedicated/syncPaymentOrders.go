@@ -31,8 +31,7 @@ var SyncPaymentOrdersCmd = &cobra.Command{
 			End:              end,
 			Start:            start,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentDedicatedService.SyncPaymentOrders(input)
+		ok, err := paymentDedicatedService.SyncPaymentOrdersShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -29,8 +29,7 @@ var DownloadServerLogsCmd = &cobra.Command{
 			Namespace: namespace,
 			PodName:   podName,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := terminatedServersService.DownloadServerLogs(input)
+		errInput := terminatedServersService.DownloadServerLogsShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

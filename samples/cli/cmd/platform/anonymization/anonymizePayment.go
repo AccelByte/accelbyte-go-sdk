@@ -29,8 +29,7 @@ var AnonymizePaymentCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := anonymizationService.AnonymizePayment(input)
+		errInput := anonymizationService.AnonymizePaymentShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

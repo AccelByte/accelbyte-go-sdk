@@ -42,8 +42,7 @@ var AddUserPermissionCmd = &cobra.Command{
 			Resource:  resource,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := usersService.AddUserPermission(input)
+		errInput := usersService.AddUserPermissionShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

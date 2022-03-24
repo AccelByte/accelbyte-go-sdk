@@ -34,8 +34,7 @@ var AdminCreateRoleV4Cmd = &cobra.Command{
 		input := &roles.AdminCreateRoleV4Params{
 			Body: body,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := rolesService.AdminCreateRoleV4(input)
+		ok, err := rolesService.AdminCreateRoleV4Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

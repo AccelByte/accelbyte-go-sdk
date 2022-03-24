@@ -29,8 +29,7 @@ var AdminGetGameRecordHandlerV1Cmd = &cobra.Command{
 			Key:       key,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := adminGameRecordService.AdminGetGameRecordHandlerV1(input)
+		ok, err := adminGameRecordService.AdminGetGameRecordHandlerV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

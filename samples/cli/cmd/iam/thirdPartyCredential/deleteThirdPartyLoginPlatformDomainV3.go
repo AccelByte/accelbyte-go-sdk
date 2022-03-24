@@ -38,8 +38,7 @@ var DeleteThirdPartyLoginPlatformDomainV3Cmd = &cobra.Command{
 			Namespace:  namespace,
 			PlatformID: platformId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := thirdPartyCredentialService.DeleteThirdPartyLoginPlatformDomainV3(input)
+		errInput := thirdPartyCredentialService.DeleteThirdPartyLoginPlatformDomainV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

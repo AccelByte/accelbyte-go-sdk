@@ -44,8 +44,7 @@ var QueryEventStreamHandlerCmd = &cobra.Command{
 			PageSize:  &pageSize,
 			StartDate: &startDate,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := eventV2Service.QueryEventStreamHandler(input)
+		ok, err := eventV2Service.QueryEventStreamHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

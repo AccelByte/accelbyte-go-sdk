@@ -38,8 +38,7 @@ var PublicListUserIDByPlatformUserIDsV3Cmd = &cobra.Command{
 			Namespace:  namespace,
 			PlatformID: platformId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := usersService.PublicListUserIDByPlatformUserIDsV3(input)
+		ok, err := usersService.PublicListUserIDByPlatformUserIDsV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

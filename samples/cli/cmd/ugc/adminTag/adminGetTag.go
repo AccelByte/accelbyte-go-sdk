@@ -31,8 +31,7 @@ var AdminGetTagCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := adminTagService.AdminGetTag(input)
+		ok, err := adminTagService.AdminGetTagShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -27,8 +27,7 @@ var GetAllNotificationTemplatesV1AdminCmd = &cobra.Command{
 		input := &notification.GetAllNotificationTemplatesV1AdminParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := notificationService.GetAllNotificationTemplatesV1Admin(input)
+		ok, err := notificationService.GetAllNotificationTemplatesV1AdminShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

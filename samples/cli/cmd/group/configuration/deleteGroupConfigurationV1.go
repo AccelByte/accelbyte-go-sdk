@@ -29,8 +29,7 @@ var DeleteGroupConfigurationV1Cmd = &cobra.Command{
 			ConfigurationCode: configurationCode,
 			Namespace:         namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := configurationService.DeleteGroupConfigurationV1(input)
+		errInput := configurationService.DeleteGroupConfigurationV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

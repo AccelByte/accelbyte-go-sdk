@@ -35,8 +35,7 @@ var QueryFulfillmentHistoriesCmd = &cobra.Command{
 			Status:    &status,
 			UserID:    &userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := fulfillmentService.QueryFulfillmentHistories(input)
+		ok, err := fulfillmentService.QueryFulfillmentHistoriesShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

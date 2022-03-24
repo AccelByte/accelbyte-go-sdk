@@ -29,8 +29,7 @@ var PublicGetCurrentSeasonCmd = &cobra.Command{
 			Namespace: namespace,
 			Language:  &language,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := seasonService.PublicGetCurrentSeason(input)
+		ok, err := seasonService.PublicGetCurrentSeasonShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

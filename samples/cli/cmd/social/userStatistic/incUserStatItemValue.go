@@ -40,8 +40,7 @@ var IncUserStatItemValueCmd = &cobra.Command{
 			StatCode:  statCode,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := userStatisticService.IncUserStatItemValue(input)
+		ok, err := userStatisticService.IncUserStatItemValueShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

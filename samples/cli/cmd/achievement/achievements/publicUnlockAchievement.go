@@ -31,8 +31,7 @@ var PublicUnlockAchievementCmd = &cobra.Command{
 			Namespace:       namespace,
 			UserID:          userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := achievementsService.PublicUnlockAchievement(input)
+		errInput := achievementsService.PublicUnlockAchievementShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

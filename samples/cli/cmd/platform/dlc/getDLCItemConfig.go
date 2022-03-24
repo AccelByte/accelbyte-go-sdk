@@ -27,8 +27,7 @@ var GetDLCItemConfigCmd = &cobra.Command{
 		input := &d_l_c.GetDLCItemConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := dlcService.GetDLCItemConfig(input)
+		ok, err := dlcService.GetDLCItemConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

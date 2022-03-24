@@ -42,8 +42,7 @@ var UpdateContentDirectCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := publicContentService.UpdateContentDirect(input)
+		ok, err := publicContentService.UpdateContentDirectShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

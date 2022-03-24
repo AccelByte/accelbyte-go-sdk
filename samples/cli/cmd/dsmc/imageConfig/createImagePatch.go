@@ -34,8 +34,7 @@ var CreateImagePatchCmd = &cobra.Command{
 		input := &image_config.CreateImagePatchParams{
 			Body: body,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := imageConfigService.CreateImagePatch(input)
+		errInput := imageConfigService.CreateImagePatchShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

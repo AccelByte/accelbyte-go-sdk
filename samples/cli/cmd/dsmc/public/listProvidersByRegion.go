@@ -27,8 +27,7 @@ var ListProvidersByRegionCmd = &cobra.Command{
 		input := &public.ListProvidersByRegionParams{
 			Region: region,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := publicService.ListProvidersByRegion(input)
+		ok, err := publicService.ListProvidersByRegionShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

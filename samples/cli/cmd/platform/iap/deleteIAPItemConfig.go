@@ -27,8 +27,7 @@ var DeleteIAPItemConfigCmd = &cobra.Command{
 		input := &i_a_p.DeleteIAPItemConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := iapService.DeleteIAPItemConfig(input)
+		errInput := iapService.DeleteIAPItemConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

@@ -27,8 +27,7 @@ var PublicListStoresCmd = &cobra.Command{
 		input := &store.PublicListStoresParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := storeService.PublicListStores(input)
+		ok, err := storeService.PublicListStoresShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

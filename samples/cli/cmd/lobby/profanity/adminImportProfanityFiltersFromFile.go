@@ -37,8 +37,7 @@ var AdminImportProfanityFiltersFromFileCmd = &cobra.Command{
 			List:      list_,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := profanityService.AdminImportProfanityFiltersFromFile(input)
+		errInput := profanityService.AdminImportProfanityFiltersFromFileShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

@@ -31,8 +31,7 @@ var RetrievePolicyVersionsCmd = &cobra.Command{
 			LocaleID:     &localeId,
 			Namespace:    &namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := policyVersionsService.RetrievePolicyVersions(input)
+		ok, err := policyVersionsService.RetrievePolicyVersionsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

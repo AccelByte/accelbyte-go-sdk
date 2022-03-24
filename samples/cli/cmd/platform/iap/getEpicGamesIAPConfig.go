@@ -27,8 +27,7 @@ var GetEpicGamesIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.GetEpicGamesIAPConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := iapService.GetEpicGamesIAPConfig(input)
+		ok, err := iapService.GetEpicGamesIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

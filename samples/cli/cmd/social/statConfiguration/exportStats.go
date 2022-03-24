@@ -27,8 +27,7 @@ var ExportStatsCmd = &cobra.Command{
 		input := &stat_configuration.ExportStatsParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := statConfigurationService.ExportStats(input)
+		errInput := statConfigurationService.ExportStatsShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

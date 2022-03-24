@@ -33,8 +33,7 @@ var GetCurrentWeekLeaderboardRankingAdminV1Cmd = &cobra.Command{
 			Limit:           &limit,
 			Offset:          &offset,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := leaderboardDataService.GetCurrentWeekLeaderboardRankingAdminV1(input)
+		ok, err := leaderboardDataService.GetCurrentWeekLeaderboardRankingAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

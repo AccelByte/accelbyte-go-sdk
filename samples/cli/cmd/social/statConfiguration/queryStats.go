@@ -33,8 +33,7 @@ var QueryStatsCmd = &cobra.Command{
 			Offset:    &offset,
 			Keyword:   keyword,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := statConfigurationService.QueryStats(input)
+		ok, err := statConfigurationService.QueryStatsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -27,8 +27,7 @@ var SetRoleAsAdminCmd = &cobra.Command{
 		input := &roles.SetRoleAsAdminParams{
 			RoleID: roleId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := rolesService.SetRoleAsAdmin(input)
+		errInput := rolesService.SetRoleAsAdminShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

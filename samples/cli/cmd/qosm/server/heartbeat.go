@@ -34,8 +34,7 @@ var HeartbeatCmd = &cobra.Command{
 		input := &server.HeartbeatParams{
 			Body: body,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := serverService.Heartbeat(input)
+		errInput := serverService.HeartbeatShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

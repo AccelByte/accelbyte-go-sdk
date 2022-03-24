@@ -31,8 +31,7 @@ var DeleteDeploymentOverrideCmd = &cobra.Command{
 			Namespace:  namespace,
 			Version:    version,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := deploymentConfigService.DeleteDeploymentOverride(input)
+		ok, err := deploymentConfigService.DeleteDeploymentOverrideShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

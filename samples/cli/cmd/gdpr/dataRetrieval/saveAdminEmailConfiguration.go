@@ -35,8 +35,7 @@ var SaveAdminEmailConfigurationCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := dataRetrievalService.SaveAdminEmailConfiguration(input)
+		errInput := dataRetrievalService.SaveAdminEmailConfigurationShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

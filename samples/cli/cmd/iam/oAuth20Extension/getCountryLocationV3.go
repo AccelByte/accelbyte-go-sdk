@@ -32,8 +32,7 @@ var GetCountryLocationV3Cmd = &cobra.Command{
 		input := &o_auth2_0_extension.GetCountryLocationV3Params{
 			HTTPClient: httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := oAuth20ExtensionService.GetCountryLocationV3(input)
+		ok, err := oAuth20ExtensionService.GetCountryLocationV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -35,8 +35,7 @@ var QueryKeyGroupsCmd = &cobra.Command{
 			Offset:    &offset,
 			Tag:       &tag,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := keyGroupService.QueryKeyGroups(input)
+		ok, err := keyGroupService.QueryKeyGroupsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

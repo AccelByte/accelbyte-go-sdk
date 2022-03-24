@@ -27,8 +27,7 @@ var ExportRewardsCmd = &cobra.Command{
 		input := &reward.ExportRewardsParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := rewardService.ExportRewards(input)
+		errInput := rewardService.ExportRewardsShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

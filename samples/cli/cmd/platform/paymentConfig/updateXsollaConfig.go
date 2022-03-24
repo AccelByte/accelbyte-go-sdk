@@ -38,8 +38,7 @@ var UpdateXsollaConfigCmd = &cobra.Command{
 			ID:       id_,
 			Validate: &validate,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentConfigService.UpdateXsollaConfig(input)
+		ok, err := paymentConfigService.UpdateXsollaConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

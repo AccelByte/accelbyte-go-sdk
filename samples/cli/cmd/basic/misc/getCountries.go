@@ -29,8 +29,7 @@ var GetCountriesCmd = &cobra.Command{
 			Namespace: namespace,
 			Lang:      &lang,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := miscService.GetCountries(input)
+		ok, err := miscService.GetCountriesShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

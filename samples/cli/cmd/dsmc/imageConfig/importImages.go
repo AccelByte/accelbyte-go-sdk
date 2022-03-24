@@ -40,8 +40,7 @@ var ImportImagesCmd = &cobra.Command{
 			File:       file,
 			HTTPClient: httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := imageConfigService.ImportImages(input)
+		ok, err := imageConfigService.ImportImagesShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

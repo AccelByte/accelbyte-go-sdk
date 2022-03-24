@@ -29,8 +29,7 @@ var GetAllPartyInChannelCmd = &cobra.Command{
 			ChannelName: channelName,
 			Namespace:   namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := matchmakingService.GetAllPartyInChannel(input)
+		ok, err := matchmakingService.GetAllPartyInChannelShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

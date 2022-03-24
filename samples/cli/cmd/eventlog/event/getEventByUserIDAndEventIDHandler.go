@@ -39,8 +39,7 @@ var GetEventByUserIDAndEventIDHandlerCmd = &cobra.Command{
 			PageSize:  pageSize,
 			StartDate: startDate,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := eventService.GetEventByUserIDAndEventIDHandler(input)
+		ok, err := eventService.GetEventByUserIDAndEventIDHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

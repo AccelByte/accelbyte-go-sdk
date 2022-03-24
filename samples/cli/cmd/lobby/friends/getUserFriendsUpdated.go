@@ -31,8 +31,7 @@ var GetUserFriendsUpdatedCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := friendsService.GetUserFriendsUpdated(input)
+		ok, err := friendsService.GetUserFriendsUpdatedShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -27,8 +27,7 @@ var GetTimeZonesCmd = &cobra.Command{
 		input := &misc.GetTimeZonesParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := miscService.GetTimeZones(input)
+		ok, err := miscService.GetTimeZonesShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

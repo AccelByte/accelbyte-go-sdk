@@ -31,8 +31,7 @@ var GetUserRankingPublicV1Cmd = &cobra.Command{
 			Namespace:       namespace,
 			UserID:          userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := leaderboardDataService.GetUserRankingPublicV1(input)
+		ok, err := leaderboardDataService.GetUserRankingPublicV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

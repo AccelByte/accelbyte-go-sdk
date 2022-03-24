@@ -29,8 +29,7 @@ var DebugMatchedPaymentMerchantConfigCmd = &cobra.Command{
 			Namespace: &namespace,
 			Region:    &region,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentConfigService.DebugMatchedPaymentMerchantConfig(input)
+		ok, err := paymentConfigService.DebugMatchedPaymentMerchantConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

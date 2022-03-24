@@ -31,8 +31,7 @@ var PersonalChatHistoryCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := chatService.PersonalChatHistory(input)
+		ok, err := chatService.PersonalChatHistoryShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

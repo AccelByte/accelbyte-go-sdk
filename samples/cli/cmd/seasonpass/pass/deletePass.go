@@ -31,8 +31,7 @@ var DeletePassCmd = &cobra.Command{
 			Namespace: namespace,
 			SeasonID:  seasonId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := passService.DeletePass(input)
+		errInput := passService.DeletePassShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

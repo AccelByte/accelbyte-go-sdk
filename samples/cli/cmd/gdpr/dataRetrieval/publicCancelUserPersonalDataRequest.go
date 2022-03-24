@@ -31,8 +31,7 @@ var PublicCancelUserPersonalDataRequestCmd = &cobra.Command{
 			RequestDate: requestDate,
 			UserID:      userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := dataRetrievalService.PublicCancelUserPersonalDataRequest(input)
+		ok, err := dataRetrievalService.PublicCancelUserPersonalDataRequestShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

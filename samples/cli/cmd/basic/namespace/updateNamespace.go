@@ -36,8 +36,7 @@ var UpdateNamespaceCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := namespaceService.UpdateNamespace(input)
+		ok, err := namespaceService.UpdateNamespaceShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

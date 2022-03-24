@@ -34,8 +34,7 @@ var TestFulfillmentScriptEvalCmd = &cobra.Command{
 		input := &fulfillment_script.TestFulfillmentScriptEvalParams{
 			Body: body,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := fulfillmentScriptService.TestFulfillmentScriptEval(input)
+		ok, err := fulfillmentScriptService.TestFulfillmentScriptEvalShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -27,8 +27,7 @@ var GetTwitchIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.GetTwitchIAPConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := iapService.GetTwitchIAPConfig(input)
+		ok, err := iapService.GetTwitchIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

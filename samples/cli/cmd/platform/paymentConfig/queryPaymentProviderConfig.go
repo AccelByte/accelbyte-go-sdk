@@ -33,8 +33,7 @@ var QueryPaymentProviderConfigCmd = &cobra.Command{
 			Offset:    &offset,
 			Region:    &region,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentConfigService.QueryPaymentProviderConfig(input)
+		ok, err := paymentConfigService.QueryPaymentProviderConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

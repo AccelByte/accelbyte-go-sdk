@@ -38,8 +38,7 @@ var PostGameRecordHandlerV1Cmd = &cobra.Command{
 			Key:       key,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := publicGameRecordService.PostGameRecordHandlerV1(input)
+		errInput := publicGameRecordService.PostGameRecordHandlerV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

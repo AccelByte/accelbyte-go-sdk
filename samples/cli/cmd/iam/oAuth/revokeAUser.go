@@ -34,8 +34,7 @@ var RevokeAUserCmd = &cobra.Command{
 			UserID:     userID,
 			HTTPClient: httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := oAuthService.RevokeAUser(input)
+		errInput := oAuthService.RevokeAUserShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

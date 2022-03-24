@@ -27,8 +27,7 @@ var GetUserOutgoingFriendsCmd = &cobra.Command{
 		input := &friends.GetUserOutgoingFriendsParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := friendsService.GetUserOutgoingFriends(input)
+		ok, err := friendsService.GetUserOutgoingFriendsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

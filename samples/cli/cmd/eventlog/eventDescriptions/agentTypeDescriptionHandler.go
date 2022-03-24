@@ -24,8 +24,7 @@ var AgentTypeDescriptionHandlerCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &event_descriptions.AgentTypeDescriptionHandlerParams{}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := eventDescriptionsService.AgentTypeDescriptionHandler(input)
+		ok, err := eventDescriptionsService.AgentTypeDescriptionHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

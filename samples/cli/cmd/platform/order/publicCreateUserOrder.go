@@ -38,8 +38,7 @@ var PublicCreateUserOrderCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := orderService.PublicCreateUserOrder(input)
+		ok, err := orderService.PublicCreateUserOrderShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

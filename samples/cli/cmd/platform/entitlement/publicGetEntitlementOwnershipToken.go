@@ -49,8 +49,7 @@ var PublicGetEntitlementOwnershipTokenCmd = &cobra.Command{
 			ItemIds:   itemIds,
 			Skus:      skus,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := entitlementService.PublicGetEntitlementOwnershipToken(input)
+		ok, err := entitlementService.PublicGetEntitlementOwnershipTokenShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

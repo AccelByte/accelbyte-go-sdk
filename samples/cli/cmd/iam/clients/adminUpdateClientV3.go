@@ -38,8 +38,7 @@ var AdminUpdateClientV3Cmd = &cobra.Command{
 			ClientID:  clientId,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := clientsService.AdminUpdateClientV3(input)
+		ok, err := clientsService.AdminUpdateClientV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

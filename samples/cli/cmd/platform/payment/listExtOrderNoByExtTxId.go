@@ -29,8 +29,7 @@ var ListExtOrderNoByExtTxIdCmd = &cobra.Command{
 			Namespace: namespace,
 			ExtTxID:   extTxId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentService.ListExtOrderNoByExtTxID(input)
+		ok, err := paymentService.ListExtOrderNoByExtTxIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

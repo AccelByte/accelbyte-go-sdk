@@ -31,8 +31,7 @@ var DownloadUserOrderReceiptCmd = &cobra.Command{
 			OrderNo:   orderNo,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := orderService.DownloadUserOrderReceipt(input)
+		errInput := orderService.DownloadUserOrderReceiptShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

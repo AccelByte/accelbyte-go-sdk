@@ -44,8 +44,7 @@ var ImportRewardsCmd = &cobra.Command{
 			ReplaceExisting: replaceExisting,
 			HTTPClient:      httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := rewardService.ImportRewards(input)
+		errInput := rewardService.ImportRewardsShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

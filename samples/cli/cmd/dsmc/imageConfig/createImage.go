@@ -34,8 +34,7 @@ var CreateImageCmd = &cobra.Command{
 		input := &image_config.CreateImageParams{
 			Body: body,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := imageConfigService.CreateImage(input)
+		errInput := imageConfigService.CreateImageShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

@@ -27,8 +27,7 @@ var GetPlatformDLCConfigCmd = &cobra.Command{
 		input := &d_l_c.GetPlatformDLCConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := dlcService.GetPlatformDLCConfig(input)
+		ok, err := dlcService.GetPlatformDLCConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

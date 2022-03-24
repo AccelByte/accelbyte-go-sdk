@@ -36,8 +36,7 @@ var TestCheckoutConfigCmd = &cobra.Command{
 			Body:    body,
 			Sandbox: &sandbox,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentConfigService.TestCheckoutConfig(input)
+		ok, err := paymentConfigService.TestCheckoutConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

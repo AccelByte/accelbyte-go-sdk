@@ -31,8 +31,7 @@ var GetAllPodConfigCmd = &cobra.Command{
 			Count:     &count,
 			Offset:    &offset,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := podConfigService.GetAllPodConfig(input)
+		ok, err := podConfigService.GetAllPodConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

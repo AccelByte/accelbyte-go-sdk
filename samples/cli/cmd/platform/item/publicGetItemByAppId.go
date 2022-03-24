@@ -35,8 +35,7 @@ var PublicGetItemByAppIdCmd = &cobra.Command{
 			StoreID:   &storeId,
 			AppID:     appId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := itemService.PublicGetItemByAppID(input)
+		ok, err := itemService.PublicGetItemByAppIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

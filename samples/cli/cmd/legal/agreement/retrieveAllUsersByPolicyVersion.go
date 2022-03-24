@@ -33,8 +33,7 @@ var RetrieveAllUsersByPolicyVersionCmd = &cobra.Command{
 			Offset:          &offset,
 			PolicyVersionID: policyVersionId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := agreementService.RetrieveAllUsersByPolicyVersion(input)
+		ok, err := agreementService.RetrieveAllUsersByPolicyVersionShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

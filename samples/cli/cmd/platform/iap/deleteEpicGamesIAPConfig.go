@@ -27,8 +27,7 @@ var DeleteEpicGamesIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.DeleteEpicGamesIAPConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := iapService.DeleteEpicGamesIAPConfig(input)
+		errInput := iapService.DeleteEpicGamesIAPConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

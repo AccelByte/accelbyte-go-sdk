@@ -35,8 +35,7 @@ var ListUserWalletTransactionsCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := walletService.ListUserWalletTransactions(input)
+		ok, err := walletService.ListUserWalletTransactionsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

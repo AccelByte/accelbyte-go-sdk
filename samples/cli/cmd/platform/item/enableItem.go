@@ -31,8 +31,7 @@ var EnableItemCmd = &cobra.Command{
 			Namespace: namespace,
 			StoreID:   storeId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := itemService.EnableItem(input)
+		ok, err := itemService.EnableItemShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

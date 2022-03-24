@@ -31,8 +31,7 @@ var DeleteGroupConfigurationGlobalRuleAdminV1Cmd = &cobra.Command{
 			ConfigurationCode: configurationCode,
 			Namespace:         namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := configurationService.DeleteGroupConfigurationGlobalRuleAdminV1(input)
+		ok, err := configurationService.DeleteGroupConfigurationGlobalRuleAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

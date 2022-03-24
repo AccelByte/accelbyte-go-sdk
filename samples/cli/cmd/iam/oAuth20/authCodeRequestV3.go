@@ -40,8 +40,7 @@ var AuthCodeRequestV3Cmd = &cobra.Command{
 			RequestID:   requestId,
 			HTTPClient:  httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := oAuth20Service.AuthCodeRequestV3(input)
+		errInput := oAuth20Service.AuthCodeRequestV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

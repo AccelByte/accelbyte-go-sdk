@@ -40,8 +40,7 @@ var GrantDaysToSubscriptionCmd = &cobra.Command{
 			SubscriptionID: subscriptionId,
 			UserID:         userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := subscriptionService.GrantDaysToSubscription(input)
+		ok, err := subscriptionService.GrantDaysToSubscriptionShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

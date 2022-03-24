@@ -27,8 +27,7 @@ var AdminGetAgeRestrictionStatusV2Cmd = &cobra.Command{
 		input := &users.AdminGetAgeRestrictionStatusV2Params{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := usersService.AdminGetAgeRestrictionStatusV2(input)
+		ok, err := usersService.AdminGetAgeRestrictionStatusV2Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

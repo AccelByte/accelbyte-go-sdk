@@ -24,8 +24,7 @@ var EventTypeDescriptionHandlerCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &event_descriptions.EventTypeDescriptionHandlerParams{}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := eventDescriptionsService.EventTypeDescriptionHandler(input)
+		ok, err := eventDescriptionsService.EventTypeDescriptionHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -36,8 +36,7 @@ var AdminCreateClientV3Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := clientsService.AdminCreateClientV3(input)
+		ok, err := clientsService.AdminCreateClientV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

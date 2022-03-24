@@ -38,8 +38,7 @@ var CreateUserFromInvitationV3Cmd = &cobra.Command{
 			InvitationID: invitationId,
 			Namespace:    namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := usersService.CreateUserFromInvitationV3(input)
+		ok, err := usersService.CreateUserFromInvitationV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

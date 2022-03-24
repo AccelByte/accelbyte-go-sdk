@@ -40,8 +40,7 @@ var PublicDeletePlatformLinkV2Cmd = &cobra.Command{
 			UserID:            userId,
 			HTTPClient:        httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := usersService.PublicDeletePlatformLinkV2(input)
+		errInput := usersService.PublicDeletePlatformLinkV2Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

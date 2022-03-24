@@ -29,8 +29,7 @@ var PublicGetMyWalletCmd = &cobra.Command{
 			CurrencyCode: currencyCode,
 			Namespace:    namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := walletService.PublicGetMyWallet(input)
+		ok, err := walletService.PublicGetMyWalletShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

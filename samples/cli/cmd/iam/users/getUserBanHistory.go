@@ -29,8 +29,7 @@ var GetUserBanHistoryCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := usersService.GetUserBanHistory(input)
+		ok, err := usersService.GetUserBanHistoryShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

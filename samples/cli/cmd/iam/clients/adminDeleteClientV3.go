@@ -29,8 +29,7 @@ var AdminDeleteClientV3Cmd = &cobra.Command{
 			ClientID:  clientId,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := clientsService.AdminDeleteClientV3(input)
+		errInput := clientsService.AdminDeleteClientV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

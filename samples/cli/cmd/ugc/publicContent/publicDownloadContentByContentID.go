@@ -29,8 +29,7 @@ var PublicDownloadContentByContentIDCmd = &cobra.Command{
 			ContentID: contentId,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := publicContentService.PublicDownloadContentByContentID(input)
+		ok, err := publicContentService.PublicDownloadContentByContentIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

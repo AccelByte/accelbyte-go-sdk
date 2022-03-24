@@ -27,8 +27,7 @@ var TestXsollaConfigByIdCmd = &cobra.Command{
 		input := &payment_config.TestXsollaConfigByIDParams{
 			ID: id_,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentConfigService.TestXsollaConfigByID(input)
+		ok, err := paymentConfigService.TestXsollaConfigByIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

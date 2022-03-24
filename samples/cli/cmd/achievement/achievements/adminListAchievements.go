@@ -33,8 +33,7 @@ var AdminListAchievementsCmd = &cobra.Command{
 			Offset:    &offset,
 			SortBy:    &sortBy,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := achievementsService.AdminListAchievements(input)
+		ok, err := achievementsService.AdminListAchievementsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

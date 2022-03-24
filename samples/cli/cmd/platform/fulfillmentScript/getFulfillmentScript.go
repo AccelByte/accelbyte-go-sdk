@@ -27,8 +27,7 @@ var GetFulfillmentScriptCmd = &cobra.Command{
 		input := &fulfillment_script.GetFulfillmentScriptParams{
 			ID: id_,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := fulfillmentScriptService.GetFulfillmentScript(input)
+		ok, err := fulfillmentScriptService.GetFulfillmentScriptShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

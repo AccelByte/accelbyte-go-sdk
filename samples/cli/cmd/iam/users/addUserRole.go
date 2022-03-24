@@ -31,8 +31,7 @@ var AddUserRoleCmd = &cobra.Command{
 			RoleID:    roleId,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := usersService.AddUserRole(input)
+		errInput := usersService.AddUserRoleShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

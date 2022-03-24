@@ -29,8 +29,7 @@ var CheckServerLogsCmd = &cobra.Command{
 			Namespace: namespace,
 			PodName:   podName,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := terminatedServersService.CheckServerLogs(input)
+		ok, err := terminatedServersService.CheckServerLogsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

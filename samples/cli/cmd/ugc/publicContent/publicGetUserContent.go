@@ -33,8 +33,7 @@ var PublicGetUserContentCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := publicContentService.PublicGetUserContent(input)
+		ok, err := publicContentService.PublicGetUserContentShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

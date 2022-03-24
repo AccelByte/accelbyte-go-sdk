@@ -27,8 +27,7 @@ var PublicGetPlayerBlockedPlayersV1Cmd = &cobra.Command{
 		input := &player.PublicGetPlayerBlockedPlayersV1Params{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := playerService.PublicGetPlayerBlockedPlayersV1(input)
+		ok, err := playerService.PublicGetPlayerBlockedPlayersV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

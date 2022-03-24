@@ -42,8 +42,7 @@ var PayCmd = &cobra.Command{
 			PaymentProvider: &paymentProvider,
 			ZipCode:         &zipCode,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentStationService.Pay(input)
+		ok, err := paymentStationService.PayShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

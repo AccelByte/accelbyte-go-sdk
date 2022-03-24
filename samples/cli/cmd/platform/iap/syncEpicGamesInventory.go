@@ -38,8 +38,7 @@ var SyncEpicGamesInventoryCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := iapService.SyncEpicGamesInventory(input)
+		ok, err := iapService.SyncEpicGamesInventoryShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

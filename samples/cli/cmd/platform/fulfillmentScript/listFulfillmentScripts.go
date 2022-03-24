@@ -24,8 +24,7 @@ var ListFulfillmentScriptsCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &fulfillment_script.ListFulfillmentScriptsParams{}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := fulfillmentScriptService.ListFulfillmentScripts(input)
+		ok, err := fulfillmentScriptService.ListFulfillmentScriptsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

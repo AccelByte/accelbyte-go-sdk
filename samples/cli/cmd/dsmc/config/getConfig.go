@@ -27,8 +27,7 @@ var GetConfigCmd = &cobra.Command{
 		input := &config.GetConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := configService.GetConfig(input)
+		ok, err := configService.GetConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -27,8 +27,7 @@ var DeletePlatformDLCConfigCmd = &cobra.Command{
 		input := &d_l_c.DeletePlatformDLCConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := dlcService.DeletePlatformDLCConfig(input)
+		errInput := dlcService.DeletePlatformDLCConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

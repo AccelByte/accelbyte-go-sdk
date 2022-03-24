@@ -29,8 +29,7 @@ var DownloadContentByShareCodeCmd = &cobra.Command{
 			Namespace: namespace,
 			ShareCode: shareCode,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := publicContentService.DownloadContentByShareCode(input)
+		ok, err := publicContentService.DownloadContentByShareCodeShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

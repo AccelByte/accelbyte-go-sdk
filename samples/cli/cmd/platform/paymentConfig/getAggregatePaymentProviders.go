@@ -24,8 +24,7 @@ var GetAggregatePaymentProvidersCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &payment_config.GetAggregatePaymentProvidersParams{}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentConfigService.GetAggregatePaymentProviders(input)
+		ok, err := paymentConfigService.GetAggregatePaymentProvidersShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

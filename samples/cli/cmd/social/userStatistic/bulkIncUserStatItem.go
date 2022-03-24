@@ -36,8 +36,7 @@ var BulkIncUserStatItemCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := userStatisticService.BulkIncUserStatItem(input)
+		ok, err := userStatisticService.BulkIncUserStatItemShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

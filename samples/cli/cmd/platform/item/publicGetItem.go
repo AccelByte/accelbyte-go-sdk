@@ -37,8 +37,7 @@ var PublicGetItemCmd = &cobra.Command{
 			Region:         &region,
 			StoreID:        &storeId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := itemService.PublicGetItem(input)
+		ok, err := itemService.PublicGetItemShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -29,8 +29,7 @@ var PublicGetUserNamespaceSlotsCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := slotService.PublicGetUserNamespaceSlots(input)
+		ok, err := slotService.PublicGetUserNamespaceSlotsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

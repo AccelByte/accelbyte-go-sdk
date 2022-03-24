@@ -42,8 +42,7 @@ var UpdateGoogleP12FileCmd = &cobra.Command{
 			Namespace:  namespace,
 			HTTPClient: httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := iapService.UpdateGoogleP12File(input)
+		ok, err := iapService.UpdateGoogleP12FileShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

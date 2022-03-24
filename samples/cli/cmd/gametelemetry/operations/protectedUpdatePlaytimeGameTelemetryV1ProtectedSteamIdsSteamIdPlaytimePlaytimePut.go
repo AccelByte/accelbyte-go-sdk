@@ -29,8 +29,7 @@ var ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlayti
 			Playtime: playtime,
 			SteamID:  steamId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := operationsService.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePut(input)
+		errInput := operationsService.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

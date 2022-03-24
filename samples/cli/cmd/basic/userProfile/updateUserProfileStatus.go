@@ -38,8 +38,7 @@ var UpdateUserProfileStatusCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := userProfileService.UpdateUserProfileStatus(input)
+		ok, err := userProfileService.UpdateUserProfileStatusShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

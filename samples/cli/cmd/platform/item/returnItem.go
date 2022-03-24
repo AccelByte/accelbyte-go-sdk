@@ -38,8 +38,7 @@ var ReturnItemCmd = &cobra.Command{
 			ItemID:    itemId,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := itemService.ReturnItem(input)
+		errInput := itemService.ReturnItemShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

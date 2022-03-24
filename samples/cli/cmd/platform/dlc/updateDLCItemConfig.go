@@ -36,8 +36,7 @@ var UpdateDLCItemConfigCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := dlcService.UpdateDLCItemConfig(input)
+		ok, err := dlcService.UpdateDLCItemConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

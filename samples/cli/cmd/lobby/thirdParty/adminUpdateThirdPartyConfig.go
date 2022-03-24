@@ -36,8 +36,7 @@ var AdminUpdateThirdPartyConfigCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := thirdPartyService.AdminUpdateThirdPartyConfig(input)
+		ok, err := thirdPartyService.AdminUpdateThirdPartyConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

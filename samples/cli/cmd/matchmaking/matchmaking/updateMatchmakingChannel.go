@@ -38,8 +38,7 @@ var UpdateMatchmakingChannelCmd = &cobra.Command{
 			ChannelName: channelName,
 			Namespace:   namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := matchmakingService.UpdateMatchmakingChannel(input)
+		errInput := matchmakingService.UpdateMatchmakingChannelShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

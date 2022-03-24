@@ -40,8 +40,7 @@ var PublicUpdateUserNamespaceSlotMetadataCmd = &cobra.Command{
 			SlotID:    slotId,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := slotService.PublicUpdateUserNamespaceSlotMetadata(input)
+		ok, err := slotService.PublicUpdateUserNamespaceSlotMetadataShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

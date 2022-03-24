@@ -31,8 +31,7 @@ var PublicGetMyEntitlementOwnershipBySkuCmd = &cobra.Command{
 			EntitlementClazz: &entitlementClazz,
 			Sku:              sku,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := entitlementService.PublicGetMyEntitlementOwnershipBySku(input)
+		ok, err := entitlementService.PublicGetMyEntitlementOwnershipBySkuShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

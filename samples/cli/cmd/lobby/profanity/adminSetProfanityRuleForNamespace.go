@@ -36,8 +36,7 @@ var AdminSetProfanityRuleForNamespaceCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := profanityService.AdminSetProfanityRuleForNamespace(input)
+		errInput := profanityService.AdminSetProfanityRuleForNamespaceShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

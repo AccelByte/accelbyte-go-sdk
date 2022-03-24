@@ -37,8 +37,7 @@ var QueryUncategorizedItemsCmd = &cobra.Command{
 			SortBy:     &sortBy,
 			StoreID:    &storeId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := itemService.QueryUncategorizedItems(input)
+		ok, err := itemService.QueryUncategorizedItemsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

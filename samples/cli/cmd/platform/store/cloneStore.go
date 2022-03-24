@@ -31,8 +31,7 @@ var CloneStoreCmd = &cobra.Command{
 			StoreID:       storeId,
 			TargetStoreID: &targetStoreId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := storeService.CloneStore(input)
+		ok, err := storeService.CloneStoreShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

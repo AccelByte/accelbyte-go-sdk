@@ -31,8 +31,7 @@ var DeleteGroupPredefinedRulePublicV1Cmd = &cobra.Command{
 			GroupID:       groupId,
 			Namespace:     namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := groupService.DeleteGroupPredefinedRulePublicV1(input)
+		errInput := groupService.DeleteGroupPredefinedRulePublicV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

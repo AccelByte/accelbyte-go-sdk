@@ -29,8 +29,7 @@ var SingleAdminDeleteChannelCmd = &cobra.Command{
 			ChannelID: channelId,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := adminChannelService.SingleAdminDeleteChannel(input)
+		errInput := adminChannelService.SingleAdminDeleteChannelShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

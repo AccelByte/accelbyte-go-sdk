@@ -24,8 +24,7 @@ var EventLevelDescriptionHandlerCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &event_descriptions.EventLevelDescriptionHandlerParams{}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := eventDescriptionsService.EventLevelDescriptionHandler(input)
+		ok, err := eventDescriptionsService.EventLevelDescriptionHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

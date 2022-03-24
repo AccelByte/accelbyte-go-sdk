@@ -29,8 +29,7 @@ var DeleteNotificationTemplateSlugV1AdminCmd = &cobra.Command{
 			Namespace:    namespace,
 			TemplateSlug: templateSlug,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := notificationService.DeleteNotificationTemplateSlugV1Admin(input)
+		errInput := notificationService.DeleteNotificationTemplateSlugV1AdminShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

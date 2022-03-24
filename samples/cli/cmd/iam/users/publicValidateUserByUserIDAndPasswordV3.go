@@ -38,8 +38,7 @@ var PublicValidateUserByUserIDAndPasswordV3Cmd = &cobra.Command{
 			UserID:     userId,
 			HTTPClient: httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := usersService.PublicValidateUserByUserIDAndPasswordV3(input)
+		errInput := usersService.PublicValidateUserByUserIDAndPasswordV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

@@ -33,8 +33,7 @@ var PublicGetDescendantCategoriesCmd = &cobra.Command{
 			Language:     &language,
 			StoreID:      &storeId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := categoryService.PublicGetDescendantCategories(input)
+		ok, err := categoryService.PublicGetDescendantCategoriesShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

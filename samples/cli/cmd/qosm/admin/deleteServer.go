@@ -27,8 +27,7 @@ var DeleteServerCmd = &cobra.Command{
 		input := &admin.DeleteServerParams{
 			Region: region,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := adminService.DeleteServer(input)
+		errInput := adminService.DeleteServerShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

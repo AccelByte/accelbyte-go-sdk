@@ -27,8 +27,7 @@ var GetRegisteredEventIDHandlerCmd = &cobra.Command{
 		input := &event_registry.GetRegisteredEventIDHandlerParams{
 			EventID: eventId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := eventRegistryService.GetRegisteredEventIDHandler(input)
+		ok, err := eventRegistryService.GetRegisteredEventIDHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

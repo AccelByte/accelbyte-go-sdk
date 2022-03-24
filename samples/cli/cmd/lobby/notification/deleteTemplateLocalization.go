@@ -31,8 +31,7 @@ var DeleteTemplateLocalizationCmd = &cobra.Command{
 			TemplateLanguage: templateLanguage,
 			TemplateSlug:     templateSlug,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := notificationService.DeleteTemplateLocalization(input)
+		errInput := notificationService.DeleteTemplateLocalizationShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

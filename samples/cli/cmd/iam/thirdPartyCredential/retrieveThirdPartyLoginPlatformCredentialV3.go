@@ -29,8 +29,7 @@ var RetrieveThirdPartyLoginPlatformCredentialV3Cmd = &cobra.Command{
 			Namespace:  namespace,
 			PlatformID: platformId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := thirdPartyCredentialService.RetrieveThirdPartyLoginPlatformCredentialV3(input)
+		ok, err := thirdPartyCredentialService.RetrieveThirdPartyLoginPlatformCredentialV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

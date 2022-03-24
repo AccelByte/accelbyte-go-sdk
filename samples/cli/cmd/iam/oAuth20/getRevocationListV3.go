@@ -32,8 +32,7 @@ var GetRevocationListV3Cmd = &cobra.Command{
 		input := &o_auth2_0.GetRevocationListV3Params{
 			HTTPClient: httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := oAuth20Service.GetRevocationListV3(input)
+		ok, err := oAuth20Service.GetRevocationListV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -38,8 +38,7 @@ var JoinSessionCmd = &cobra.Command{
 			Namespace: namespace,
 			SessionID: sessionID,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := sessionService.JoinSession(input)
+		ok, err := sessionService.JoinSessionShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

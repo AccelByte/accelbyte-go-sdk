@@ -34,8 +34,7 @@ var UpdatePaymentTaxConfigCmd = &cobra.Command{
 		input := &payment_config.UpdatePaymentTaxConfigParams{
 			Body: body,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentConfigService.UpdatePaymentTaxConfig(input)
+		ok, err := paymentConfigService.UpdatePaymentTaxConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

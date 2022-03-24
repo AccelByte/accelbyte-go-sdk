@@ -37,8 +37,7 @@ var QueryPaymentOrdersCmd = &cobra.Command{
 			Offset:    &offset,
 			Status:    &status,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentService.QueryPaymentOrders(input)
+		ok, err := paymentService.QueryPaymentOrdersShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -37,8 +37,7 @@ var BulkGetLocaleItemsCmd = &cobra.Command{
 			StoreID:    &storeId,
 			ItemIds:    itemIds,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := itemService.BulkGetLocaleItems(input)
+		ok, err := itemService.BulkGetLocaleItemsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

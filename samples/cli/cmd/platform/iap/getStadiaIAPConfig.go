@@ -27,8 +27,7 @@ var GetStadiaIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.GetStadiaIAPConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := iapService.GetStadiaIAPConfig(input)
+		ok, err := iapService.GetStadiaIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

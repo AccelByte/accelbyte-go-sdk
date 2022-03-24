@@ -36,8 +36,7 @@ var AdminUpdateRolePermissionsV3Cmd = &cobra.Command{
 			Body:   body,
 			RoleID: roleId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := rolesService.AdminUpdateRolePermissionsV3(input)
+		errInput := rolesService.AdminUpdateRolePermissionsV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

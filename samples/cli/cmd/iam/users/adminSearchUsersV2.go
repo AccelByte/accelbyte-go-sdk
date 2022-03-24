@@ -45,8 +45,7 @@ var AdminSearchUsersV2Cmd = &cobra.Command{
 			UserID:         &userId,
 			PlatformID:     platformId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := usersService.AdminSearchUsersV2(input)
+		ok, err := usersService.AdminSearchUsersV2Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

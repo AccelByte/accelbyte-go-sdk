@@ -27,8 +27,7 @@ var GetNamespacesCmd = &cobra.Command{
 		input := &namespace_.GetNamespacesParams{
 			ActiveOnly: &activeOnly,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := namespaceService.GetNamespaces(input)
+		ok, err := namespaceService.GetNamespacesShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

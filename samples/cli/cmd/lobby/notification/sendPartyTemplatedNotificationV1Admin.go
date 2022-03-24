@@ -38,8 +38,7 @@ var SendPartyTemplatedNotificationV1AdminCmd = &cobra.Command{
 			Namespace: namespace,
 			PartyID:   partyId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := notificationService.SendPartyTemplatedNotificationV1Admin(input)
+		errInput := notificationService.SendPartyTemplatedNotificationV1AdminShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

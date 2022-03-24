@@ -38,8 +38,7 @@ var AcquireItemCmd = &cobra.Command{
 			ItemID:    itemId,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := itemService.AcquireItem(input)
+		ok, err := itemService.AcquireItemShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

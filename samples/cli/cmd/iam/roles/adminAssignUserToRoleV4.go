@@ -36,8 +36,7 @@ var AdminAssignUserToRoleV4Cmd = &cobra.Command{
 			Body:   body,
 			RoleID: roleId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := rolesService.AdminAssignUserToRoleV4(input)
+		ok, err := rolesService.AdminAssignUserToRoleV4Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

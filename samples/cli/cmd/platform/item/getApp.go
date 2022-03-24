@@ -33,8 +33,7 @@ var GetAppCmd = &cobra.Command{
 			ActiveOnly: &activeOnly,
 			StoreID:    &storeId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := itemService.GetApp(input)
+		ok, err := itemService.GetAppShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

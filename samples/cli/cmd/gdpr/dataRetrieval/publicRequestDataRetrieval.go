@@ -38,8 +38,7 @@ var PublicRequestDataRetrievalCmd = &cobra.Command{
 			UserID:     userId,
 			HTTPClient: httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := dataRetrievalService.PublicRequestDataRetrieval(input)
+		ok, err := dataRetrievalService.PublicRequestDataRetrievalShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

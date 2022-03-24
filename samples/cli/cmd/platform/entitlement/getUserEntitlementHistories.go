@@ -31,8 +31,7 @@ var GetUserEntitlementHistoriesCmd = &cobra.Command{
 			Namespace:     namespace,
 			UserID:        userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := entitlementService.GetUserEntitlementHistories(input)
+		ok, err := entitlementService.GetUserEntitlementHistoriesShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

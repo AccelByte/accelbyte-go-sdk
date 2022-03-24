@@ -29,8 +29,7 @@ var ListCategoriesBasicCmd = &cobra.Command{
 			Namespace: namespace,
 			StoreID:   &storeId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := categoryService.ListCategoriesBasic(input)
+		ok, err := categoryService.ListCategoriesBasicShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -40,8 +40,7 @@ var UpdateStripeConfigCmd = &cobra.Command{
 			Sandbox:  &sandbox,
 			Validate: &validate,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentConfigService.UpdateStripeConfig(input)
+		ok, err := paymentConfigService.UpdateStripeConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

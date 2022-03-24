@@ -43,8 +43,7 @@ var QueryUserSubscriptionsCmd = &cobra.Command{
 			Status:       &status,
 			SubscribedBy: &subscribedBy,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := subscriptionService.QueryUserSubscriptions(input)
+		ok, err := subscriptionService.QueryUserSubscriptionsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

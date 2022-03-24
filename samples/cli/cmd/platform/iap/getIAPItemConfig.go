@@ -27,8 +27,7 @@ var GetIAPItemConfigCmd = &cobra.Command{
 		input := &i_a_p.GetIAPItemConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := iapService.GetIAPItemConfig(input)
+		ok, err := iapService.GetIAPItemConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

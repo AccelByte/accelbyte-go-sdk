@@ -29,8 +29,7 @@ var AdminDeleteUserInformationV3Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := usersService.AdminDeleteUserInformationV3(input)
+		errInput := usersService.AdminDeleteUserInformationV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

@@ -27,8 +27,7 @@ var LeaveGroupPublicV1Cmd = &cobra.Command{
 		input := &group_member.LeaveGroupPublicV1Params{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := groupMemberService.LeaveGroupPublicV1(input)
+		ok, err := groupMemberService.LeaveGroupPublicV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

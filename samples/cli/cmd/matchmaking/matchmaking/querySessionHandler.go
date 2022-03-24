@@ -29,8 +29,7 @@ var QuerySessionHandlerCmd = &cobra.Command{
 			MatchID:   matchID,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := matchmakingService.QuerySessionHandler(input)
+		ok, err := matchmakingService.QuerySessionHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

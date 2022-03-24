@@ -60,8 +60,7 @@ var PublicUpdateUserNamespaceSlotCmd = &cobra.Command{
 			Tags:            tags,
 			HTTPClient:      httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := slotService.PublicUpdateUserNamespaceSlot(input)
+		ok, err := slotService.PublicUpdateUserNamespaceSlotShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

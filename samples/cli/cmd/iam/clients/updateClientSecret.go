@@ -36,8 +36,7 @@ var UpdateClientSecretCmd = &cobra.Command{
 			Body:     body,
 			ClientID: clientId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := clientsService.UpdateClientSecret(input)
+		errInput := clientsService.UpdateClientSecretShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

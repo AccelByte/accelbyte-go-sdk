@@ -31,8 +31,7 @@ var CheckUserAvailabilityCmd = &cobra.Command{
 			Field:     field,
 			Query:     query,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := usersService.CheckUserAvailability(input)
+		errInput := usersService.CheckUserAvailabilityShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

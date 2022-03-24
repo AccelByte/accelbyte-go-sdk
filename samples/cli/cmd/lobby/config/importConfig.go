@@ -34,8 +34,7 @@ var ImportConfigCmd = &cobra.Command{
 			Namespace:  namespace,
 			HTTPClient: httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := configService.ImportConfig(input)
+		ok, err := configService.ImportConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

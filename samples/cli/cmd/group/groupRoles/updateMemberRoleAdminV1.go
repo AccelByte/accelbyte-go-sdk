@@ -38,8 +38,7 @@ var UpdateMemberRoleAdminV1Cmd = &cobra.Command{
 			MemberRoleID: memberRoleId,
 			Namespace:    namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := groupRolesService.UpdateMemberRoleAdminV1(input)
+		ok, err := groupRolesService.UpdateMemberRoleAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

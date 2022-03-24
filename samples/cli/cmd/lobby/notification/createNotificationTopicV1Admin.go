@@ -36,8 +36,7 @@ var CreateNotificationTopicV1AdminCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := notificationService.CreateNotificationTopicV1Admin(input)
+		errInput := notificationService.CreateNotificationTopicV1AdminShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

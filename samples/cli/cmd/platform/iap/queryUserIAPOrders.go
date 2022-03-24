@@ -43,8 +43,7 @@ var QueryUserIAPOrdersCmd = &cobra.Command{
 			Status:    &status,
 			Type:      &type_,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := iapService.QueryUserIAPOrders(input)
+		ok, err := iapService.QueryUserIAPOrdersShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

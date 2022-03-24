@@ -29,8 +29,7 @@ var DeleteUserProfileCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := userProfileService.DeleteUserProfile(input)
+		ok, err := userProfileService.DeleteUserProfileShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

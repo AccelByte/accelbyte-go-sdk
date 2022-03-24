@@ -36,8 +36,7 @@ var PublicGetPaymentUrlCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentStationService.PublicGetPaymentURL(input)
+		ok, err := paymentStationService.PublicGetPaymentURLShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

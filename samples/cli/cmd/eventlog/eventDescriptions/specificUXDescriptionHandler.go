@@ -27,8 +27,7 @@ var SpecificUXDescriptionHandlerCmd = &cobra.Command{
 		input := &event_descriptions.SpecificUXDescriptionHandlerParams{
 			Ux: &ux,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := eventDescriptionsService.SpecificUXDescriptionHandler(input)
+		ok, err := eventDescriptionsService.SpecificUXDescriptionHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

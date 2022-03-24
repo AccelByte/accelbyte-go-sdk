@@ -29,8 +29,7 @@ var GetReward1Cmd = &cobra.Command{
 			Namespace: namespace,
 			RewardID:  rewardId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := rewardService.GetReward1(input)
+		ok, err := rewardService.GetReward1Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

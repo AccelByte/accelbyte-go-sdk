@@ -29,8 +29,7 @@ var BulkGetSessionsCmd = &cobra.Command{
 			Namespace: namespace,
 			MatchIDs:  &matchIDs,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := matchmakingService.BulkGetSessions(input)
+		ok, err := matchmakingService.BulkGetSessionsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

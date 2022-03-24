@@ -36,8 +36,7 @@ var EnableUserCmd = &cobra.Command{
 			UserID:     userId,
 			HTTPClient: httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := usersService.EnableUser(input)
+		errInput := usersService.EnableUserShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

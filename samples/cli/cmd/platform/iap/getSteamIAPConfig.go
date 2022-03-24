@@ -27,8 +27,7 @@ var GetSteamIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.GetSteamIAPConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := iapService.GetSteamIAPConfig(input)
+		ok, err := iapService.GetSteamIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

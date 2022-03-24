@@ -38,8 +38,7 @@ var DecreaseTicketSaleCmd = &cobra.Command{
 			BoothName: boothName,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := ticketService.DecreaseTicketSale(input)
+		errInput := ticketService.DecreaseTicketSaleShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

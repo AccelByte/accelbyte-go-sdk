@@ -36,8 +36,7 @@ var RequestPresignedURLCmd = &cobra.Command{
 			Body:                     body,
 			LocalizedPolicyVersionID: localizedPolicyVersionId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := localizedPolicyVersionsService.RequestPresignedURL(input)
+		ok, err := localizedPolicyVersionsService.RequestPresignedURLShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

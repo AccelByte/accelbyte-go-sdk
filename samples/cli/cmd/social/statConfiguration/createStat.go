@@ -36,8 +36,7 @@ var CreateStatCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := statConfigurationService.CreateStat(input)
+		ok, err := statConfigurationService.CreateStatShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

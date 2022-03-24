@@ -29,8 +29,7 @@ var GetStatCmd = &cobra.Command{
 			Namespace: namespace,
 			StatCode:  statCode,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := statConfigurationService.GetStat(input)
+		ok, err := statConfigurationService.GetStatShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -40,8 +40,7 @@ var AdminPlatformUnlinkV3Cmd = &cobra.Command{
 			PlatformID: platformId,
 			UserID:     userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := usersService.AdminPlatformUnlinkV3(input)
+		errInput := usersService.AdminPlatformUnlinkV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

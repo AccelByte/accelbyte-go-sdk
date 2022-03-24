@@ -34,8 +34,7 @@ var UpdateImageCmd = &cobra.Command{
 		input := &image_config.UpdateImageParams{
 			Body: body,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := imageConfigService.UpdateImage(input)
+		errInput := imageConfigService.UpdateImageShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

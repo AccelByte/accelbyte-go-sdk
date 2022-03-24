@@ -39,8 +39,7 @@ var GetUserEventsV2PublicCmd = &cobra.Command{
 			PageSize:  &pageSize,
 			StartDate: &startDate,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := eventV2Service.GetUserEventsV2Public(input)
+		ok, err := eventV2Service.GetUserEventsV2PublicShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

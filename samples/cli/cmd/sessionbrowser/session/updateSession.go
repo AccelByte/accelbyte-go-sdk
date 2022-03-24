@@ -38,8 +38,7 @@ var UpdateSessionCmd = &cobra.Command{
 			Namespace: namespace,
 			SessionID: sessionID,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := sessionService.UpdateSession(input)
+		ok, err := sessionService.UpdateSessionShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

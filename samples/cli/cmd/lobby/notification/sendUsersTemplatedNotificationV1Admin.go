@@ -36,8 +36,7 @@ var SendUsersTemplatedNotificationV1AdminCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := notificationService.SendUsersTemplatedNotificationV1Admin(input)
+		errInput := notificationService.SendUsersTemplatedNotificationV1AdminShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

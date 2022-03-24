@@ -27,8 +27,7 @@ var GetPlayStationIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.GetPlayStationIAPConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := iapService.GetPlayStationIAPConfig(input)
+		ok, err := iapService.GetPlayStationIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

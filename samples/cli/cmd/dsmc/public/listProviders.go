@@ -24,8 +24,7 @@ var ListProvidersCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &public.ListProvidersParams{}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := publicService.ListProviders(input)
+		ok, err := publicService.ListProvidersShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

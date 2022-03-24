@@ -40,8 +40,7 @@ var PlatformTokenRequestHandlerCmd = &cobra.Command{
 			PlatformID:    platformId,
 			HTTPClient:    httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := oAuthService.PlatformTokenRequestHandler(input)
+		ok, err := oAuthService.PlatformTokenRequestHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

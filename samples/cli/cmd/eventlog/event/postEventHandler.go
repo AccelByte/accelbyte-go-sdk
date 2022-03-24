@@ -36,8 +36,7 @@ var PostEventHandlerCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := eventService.PostEventHandler(input)
+		errInput := eventService.PostEventHandlerShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

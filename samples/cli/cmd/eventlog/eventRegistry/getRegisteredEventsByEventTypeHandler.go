@@ -27,8 +27,7 @@ var GetRegisteredEventsByEventTypeHandlerCmd = &cobra.Command{
 		input := &event_registry.GetRegisteredEventsByEventTypeHandlerParams{
 			EventType: eventType,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := eventRegistryService.GetRegisteredEventsByEventTypeHandler(input)
+		ok, err := eventRegistryService.GetRegisteredEventsByEventTypeHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -29,8 +29,7 @@ var DeleteGroupPublicV1Cmd = &cobra.Command{
 			GroupID:   groupId,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := groupService.DeleteGroupPublicV1(input)
+		errInput := groupService.DeleteGroupPublicV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

@@ -33,8 +33,7 @@ var PublicDeletePaymentAccountCmd = &cobra.Command{
 			Type:      type_,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := paymentAccountService.PublicDeletePaymentAccount(input)
+		errInput := paymentAccountService.PublicDeletePaymentAccountShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

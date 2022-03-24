@@ -29,8 +29,7 @@ var PublicGetAsyncStatusCmd = &cobra.Command{
 			Namespace: namespace,
 			RequestID: requestId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := usersService.PublicGetAsyncStatus(input)
+		ok, err := usersService.PublicGetAsyncStatusShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

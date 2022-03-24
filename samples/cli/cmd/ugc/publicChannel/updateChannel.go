@@ -40,8 +40,7 @@ var UpdateChannelCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := publicChannelService.UpdateChannel(input)
+		ok, err := publicChannelService.UpdateChannelShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -29,8 +29,7 @@ var GetUserVerificationCodeCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := usersService.GetUserVerificationCode(input)
+		ok, err := usersService.GetUserVerificationCodeShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

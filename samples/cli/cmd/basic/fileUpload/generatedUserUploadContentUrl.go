@@ -31,8 +31,7 @@ var GeneratedUserUploadContentUrlCmd = &cobra.Command{
 			UserID:    userId,
 			FileType:  fileType,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := fileUploadService.GeneratedUserUploadContentURL(input)
+		ok, err := fileUploadService.GeneratedUserUploadContentURLShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

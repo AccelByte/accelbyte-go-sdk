@@ -27,8 +27,7 @@ var UnregisterEventIDHandlerCmd = &cobra.Command{
 		input := &event_registry.UnregisterEventIDHandlerParams{
 			EventID: eventId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := eventRegistryService.UnregisterEventIDHandler(input)
+		errInput := eventRegistryService.UnregisterEventIDHandlerShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

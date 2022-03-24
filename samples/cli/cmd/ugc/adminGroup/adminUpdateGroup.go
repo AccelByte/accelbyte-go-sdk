@@ -40,8 +40,7 @@ var AdminUpdateGroupCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := adminGroupService.AdminUpdateGroup(input)
+		ok, err := adminGroupService.AdminUpdateGroupShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

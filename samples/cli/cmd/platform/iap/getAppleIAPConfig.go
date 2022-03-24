@@ -27,8 +27,7 @@ var GetAppleIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.GetAppleIAPConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := iapService.GetAppleIAPConfig(input)
+		ok, err := iapService.GetAppleIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -27,8 +27,7 @@ var RetrievePoliciesCmd = &cobra.Command{
 		input := &policies.RetrievePoliciesParams{
 			CountryCode: countryCode,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := policiesService.RetrievePolicies(input)
+		ok, err := policiesService.RetrievePoliciesShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

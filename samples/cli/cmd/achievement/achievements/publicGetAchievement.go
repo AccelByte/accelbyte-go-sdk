@@ -31,8 +31,7 @@ var PublicGetAchievementCmd = &cobra.Command{
 			Namespace:       namespace,
 			Language:        language,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := achievementsService.PublicGetAchievement(input)
+		ok, err := achievementsService.PublicGetAchievementShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

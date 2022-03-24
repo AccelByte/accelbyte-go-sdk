@@ -38,8 +38,7 @@ var AdminUpdateProfanityListCmd = &cobra.Command{
 			List:      list_,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := profanityService.AdminUpdateProfanityList(input)
+		errInput := profanityService.AdminUpdateProfanityListShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

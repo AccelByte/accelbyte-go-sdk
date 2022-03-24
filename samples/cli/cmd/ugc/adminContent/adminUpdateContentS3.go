@@ -42,8 +42,7 @@ var AdminUpdateContentS3Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := adminContentService.AdminUpdateContentS3(input)
+		ok, err := adminContentService.AdminUpdateContentS3Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

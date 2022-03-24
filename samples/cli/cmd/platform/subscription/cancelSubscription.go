@@ -42,8 +42,7 @@ var CancelSubscriptionCmd = &cobra.Command{
 			UserID:         userId,
 			Force:          &force,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := subscriptionService.CancelSubscription(input)
+		ok, err := subscriptionService.CancelSubscriptionShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

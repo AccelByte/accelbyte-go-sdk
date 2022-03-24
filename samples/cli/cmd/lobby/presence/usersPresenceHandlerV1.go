@@ -31,8 +31,7 @@ var UsersPresenceHandlerV1Cmd = &cobra.Command{
 			CountOnly: &countOnly,
 			UserIds:   userIds,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := presenceService.UsersPresenceHandlerV1(input)
+		ok, err := presenceService.UsersPresenceHandlerV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

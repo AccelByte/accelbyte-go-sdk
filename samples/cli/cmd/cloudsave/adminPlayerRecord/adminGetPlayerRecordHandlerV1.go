@@ -31,8 +31,7 @@ var AdminGetPlayerRecordHandlerV1Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := adminPlayerRecordService.AdminGetPlayerRecordHandlerV1(input)
+		ok, err := adminPlayerRecordService.AdminGetPlayerRecordHandlerV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

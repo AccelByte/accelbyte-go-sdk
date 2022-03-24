@@ -36,8 +36,7 @@ var UpdatePolicyVersionCmd = &cobra.Command{
 			Body:            body,
 			PolicyVersionID: policyVersionId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := policyVersionsService.UpdatePolicyVersion(input)
+		ok, err := policyVersionsService.UpdatePolicyVersionShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

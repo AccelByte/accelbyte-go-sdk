@@ -45,8 +45,7 @@ var UserAuthenticationV3Cmd = &cobra.Command{
 			UserName:    userName,
 			HTTPClient:  httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		_, errInput := oAuth20ExtensionService.UserAuthenticationV3(input)
+		_, errInput := oAuth20ExtensionService.UserAuthenticationV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

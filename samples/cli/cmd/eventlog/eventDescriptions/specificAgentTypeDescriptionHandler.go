@@ -27,8 +27,7 @@ var SpecificAgentTypeDescriptionHandlerCmd = &cobra.Command{
 		input := &event_descriptions.SpecificAgentTypeDescriptionHandlerParams{
 			AgentTypes: &agentTypes,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := eventDescriptionsService.SpecificAgentTypeDescriptionHandler(input)
+		ok, err := eventDescriptionsService.SpecificAgentTypeDescriptionHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

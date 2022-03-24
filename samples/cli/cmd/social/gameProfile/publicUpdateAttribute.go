@@ -42,8 +42,7 @@ var PublicUpdateAttributeCmd = &cobra.Command{
 			ProfileID:     profileId,
 			UserID:        userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := gameProfileService.PublicUpdateAttribute(input)
+		ok, err := gameProfileService.PublicUpdateAttributeShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

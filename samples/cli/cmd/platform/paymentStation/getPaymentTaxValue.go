@@ -33,8 +33,7 @@ var GetPaymentTaxValueCmd = &cobra.Command{
 			PaymentOrderNo:  paymentOrderNo,
 			PaymentProvider: paymentProvider,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentStationService.GetPaymentTaxValue(input)
+		ok, err := paymentStationService.GetPaymentTaxValueShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

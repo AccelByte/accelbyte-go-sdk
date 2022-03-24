@@ -42,8 +42,7 @@ var UpdateStadiaJsonConfigFileCmd = &cobra.Command{
 			Namespace:  namespace,
 			HTTPClient: httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := iapService.UpdateStadiaJSONConfigFile(input)
+		ok, err := iapService.UpdateStadiaJSONConfigFileShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

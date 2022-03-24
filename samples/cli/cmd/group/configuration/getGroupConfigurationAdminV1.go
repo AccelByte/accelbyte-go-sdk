@@ -29,8 +29,7 @@ var GetGroupConfigurationAdminV1Cmd = &cobra.Command{
 			ConfigurationCode: configurationCode,
 			Namespace:         namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := configurationService.GetGroupConfigurationAdminV1(input)
+		ok, err := configurationService.GetGroupConfigurationAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

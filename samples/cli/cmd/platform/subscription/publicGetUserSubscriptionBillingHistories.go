@@ -37,8 +37,7 @@ var PublicGetUserSubscriptionBillingHistoriesCmd = &cobra.Command{
 			Limit:          &limit,
 			Offset:         &offset,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := subscriptionService.PublicGetUserSubscriptionBillingHistories(input)
+		ok, err := subscriptionService.PublicGetUserSubscriptionBillingHistoriesShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

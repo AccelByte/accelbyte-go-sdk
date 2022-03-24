@@ -27,8 +27,7 @@ var SetDefaultPolicyCmd = &cobra.Command{
 		input := &localized_policy_versions.SetDefaultPolicyParams{
 			LocalizedPolicyVersionID: localizedPolicyVersionId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := localizedPolicyVersionsService.SetDefaultPolicy(input)
+		errInput := localizedPolicyVersionsService.SetDefaultPolicyShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

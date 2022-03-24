@@ -24,8 +24,7 @@ var GetRegisteredEventsHandlerCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &event_registry.GetRegisteredEventsHandlerParams{}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := eventRegistryService.GetRegisteredEventsHandler(input)
+		ok, err := eventRegistryService.GetRegisteredEventsHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

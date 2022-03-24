@@ -29,8 +29,7 @@ var GetRootCategoriesCmd = &cobra.Command{
 			Namespace: namespace,
 			StoreID:   &storeId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := categoryService.GetRootCategories(input)
+		ok, err := categoryService.GetRootCategoriesShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

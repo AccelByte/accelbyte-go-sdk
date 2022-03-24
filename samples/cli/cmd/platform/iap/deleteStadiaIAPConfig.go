@@ -27,8 +27,7 @@ var DeleteStadiaIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.DeleteStadiaIAPConfigParams{
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := iapService.DeleteStadiaIAPConfig(input)
+		errInput := iapService.DeleteStadiaIAPConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

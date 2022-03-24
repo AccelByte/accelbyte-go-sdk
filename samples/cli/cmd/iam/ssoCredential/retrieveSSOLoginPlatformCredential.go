@@ -29,8 +29,7 @@ var RetrieveSSOLoginPlatformCredentialCmd = &cobra.Command{
 			Namespace:  namespace,
 			PlatformID: platformId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := ssoCredentialService.RetrieveSSOLoginPlatformCredential(input)
+		ok, err := ssoCredentialService.RetrieveSSOLoginPlatformCredentialShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

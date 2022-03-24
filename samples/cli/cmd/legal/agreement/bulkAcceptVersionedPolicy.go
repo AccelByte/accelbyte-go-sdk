@@ -34,8 +34,7 @@ var BulkAcceptVersionedPolicyCmd = &cobra.Command{
 		input := &agreement.BulkAcceptVersionedPolicyParams{
 			Body: body,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := agreementService.BulkAcceptVersionedPolicy(input)
+		ok, err := agreementService.BulkAcceptVersionedPolicyShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -29,8 +29,7 @@ var PublicDeletePlayerPublicRecordHandlerV1Cmd = &cobra.Command{
 			Key:       key,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := publicPlayerRecordService.PublicDeletePlayerPublicRecordHandlerV1(input)
+		errInput := publicPlayerRecordService.PublicDeletePlayerPublicRecordHandlerV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

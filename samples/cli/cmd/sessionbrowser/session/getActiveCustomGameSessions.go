@@ -31,8 +31,7 @@ var GetActiveCustomGameSessionsCmd = &cobra.Command{
 			ServerRegion: &serverRegion,
 			SessionID:    &sessionId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := sessionService.GetActiveCustomGameSessions(input)
+		ok, err := sessionService.GetActiveCustomGameSessionsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

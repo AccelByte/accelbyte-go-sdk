@@ -31,8 +31,7 @@ var DownloadCategoriesCmd = &cobra.Command{
 			Language:  &language,
 			StoreID:   &storeId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := categoryService.DownloadCategories(input)
+		ok, err := categoryService.DownloadCategoriesShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

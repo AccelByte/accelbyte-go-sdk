@@ -31,8 +31,7 @@ var GetUserJusticePlatformAccountCmd = &cobra.Command{
 			TargetNamespace: targetNamespace,
 			UserID:          userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := usersService.GetUserJusticePlatformAccount(input)
+		ok, err := usersService.GetUserJusticePlatformAccountShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

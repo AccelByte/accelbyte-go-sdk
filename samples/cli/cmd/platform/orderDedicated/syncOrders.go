@@ -31,8 +31,7 @@ var SyncOrdersCmd = &cobra.Command{
 			End:              end,
 			Start:            start,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := orderDedicatedService.SyncOrders(input)
+		ok, err := orderDedicatedService.SyncOrdersShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -24,8 +24,7 @@ var GetHealthcheckInfoCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &operations.GetHealthcheckInfoParams{}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := operationsService.GetHealthcheckInfo(input)
+		errInput := operationsService.GetHealthcheckInfoShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

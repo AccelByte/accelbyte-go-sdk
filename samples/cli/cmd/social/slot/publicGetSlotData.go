@@ -40,8 +40,7 @@ var PublicGetSlotDataCmd = &cobra.Command{
 			SlotID:    slotId,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := slotService.PublicGetSlotData(input, writer)
+		ok, err := slotService.PublicGetSlotDataShort(input, writer)
 		if err != nil {
 			logrus.Error(err)
 			return err

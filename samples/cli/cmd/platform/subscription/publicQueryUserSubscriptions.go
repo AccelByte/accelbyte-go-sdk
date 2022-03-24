@@ -43,8 +43,7 @@ var PublicQueryUserSubscriptionsCmd = &cobra.Command{
 			Status:       &status,
 			SubscribedBy: &subscribedBy,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := subscriptionService.PublicQueryUserSubscriptions(input)
+		ok, err := subscriptionService.PublicQueryUserSubscriptionsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

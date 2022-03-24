@@ -31,8 +31,7 @@ var SingleAdminDeleteContentCmd = &cobra.Command{
 			ContentID: contentId,
 			Namespace: namespace,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := adminContentService.SingleAdminDeleteContent(input)
+		errInput := adminContentService.SingleAdminDeleteContentShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

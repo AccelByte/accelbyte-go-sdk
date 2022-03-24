@@ -36,8 +36,7 @@ var TestStripeConfigCmd = &cobra.Command{
 			Body:    body,
 			Sandbox: &sandbox,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := paymentConfigService.TestStripeConfig(input)
+		ok, err := paymentConfigService.TestStripeConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

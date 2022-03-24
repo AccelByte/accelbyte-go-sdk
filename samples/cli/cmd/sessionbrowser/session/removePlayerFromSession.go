@@ -31,8 +31,7 @@ var RemovePlayerFromSessionCmd = &cobra.Command{
 			SessionID: sessionID,
 			UserID:    userID,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := sessionService.RemovePlayerFromSession(input)
+		ok, err := sessionService.RemovePlayerFromSessionShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

@@ -24,8 +24,7 @@ var ListConfigCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &config.ListConfigParams{}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := configService.ListConfig(input)
+		ok, err := configService.ListConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

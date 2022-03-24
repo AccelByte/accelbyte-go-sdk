@@ -38,8 +38,7 @@ var PublicBulkCreateUserStatItemsCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		ok, err := userStatisticService.PublicBulkCreateUserStatItems(input)
+		ok, err := userStatisticService.PublicBulkCreateUserStatItemsShort(input)
 		if err != nil {
 			logrus.Error(err)
 			return err

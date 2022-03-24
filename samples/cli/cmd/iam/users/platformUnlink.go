@@ -40,8 +40,7 @@ var PlatformUnlinkCmd = &cobra.Command{
 			UserID:            userId,
 			HTTPClient:        httpClient,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		errInput := usersService.PlatformUnlink(input)
+		errInput := usersService.PlatformUnlinkShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput

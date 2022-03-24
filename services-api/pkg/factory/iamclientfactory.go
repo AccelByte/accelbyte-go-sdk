@@ -6,8 +6,6 @@ package factory
 import (
 	"strings"
 
-	"github.com/sirupsen/logrus"
-
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
@@ -21,7 +19,6 @@ func NewIamClient(configRepository repository.ConfigRepository) *iamclient.Justi
 		xAmazonTraceId := utils.AmazonTraceIdGen()
 		userAgent := utils.UserAgentGen()
 		if len(baseUrl) > 0 {
-			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
 			httpClientConfig := &iamclient.TransportConfig{
 				Host:     baseUrlSplit[1],

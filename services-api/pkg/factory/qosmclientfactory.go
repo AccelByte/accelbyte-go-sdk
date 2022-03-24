@@ -6,8 +6,6 @@ package factory
 import (
 	"strings"
 
-	"github.com/sirupsen/logrus"
-
 	"github.com/AccelByte/accelbyte-go-sdk/qosm-sdk/pkg/qosmclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
@@ -21,7 +19,6 @@ func NewQosmClient(configRepository repository.ConfigRepository) *qosmclient.Jus
 		xAmazonTraceId := utils.AmazonTraceIdGen()
 		userAgent := utils.UserAgentGen()
 		if len(baseUrl) > 0 {
-			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
 			httpClientConfig := &qosmclient.TransportConfig{
 				Host:     baseUrlSplit[1],

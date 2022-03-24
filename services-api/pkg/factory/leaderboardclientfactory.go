@@ -6,8 +6,6 @@ package factory
 import (
 	"strings"
 
-	"github.com/sirupsen/logrus"
-
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
@@ -21,7 +19,6 @@ func NewLeaderboardClient(configRepository repository.ConfigRepository) *leaderb
 		xAmazonTraceId := utils.AmazonTraceIdGen()
 		userAgent := utils.UserAgentGen()
 		if len(baseUrl) > 0 {
-			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
 			httpClientConfig := &leaderboardclient.TransportConfig{
 				Host:     baseUrlSplit[1],

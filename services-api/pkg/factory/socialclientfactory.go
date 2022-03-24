@@ -6,8 +6,6 @@ package factory
 import (
 	"strings"
 
-	"github.com/sirupsen/logrus"
-
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient"
@@ -21,7 +19,6 @@ func NewSocialClient(configRepository repository.ConfigRepository) *socialclient
 		xAmazonTraceId := utils.AmazonTraceIdGen()
 		userAgent := utils.UserAgentGen()
 		if len(baseUrl) > 0 {
-			logrus.Infof("Base URL : %v", baseUrl)
 			baseUrlSplit := strings.Split(baseUrl, "://")
 			httpClientConfig := &socialclient.TransportConfig{
 				Host:     baseUrlSplit[1],

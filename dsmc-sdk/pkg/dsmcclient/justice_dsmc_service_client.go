@@ -64,6 +64,7 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
 	transport.Consumers["text/x-log"] = runtime.JSONConsumer()
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
+	transport.Consumers["text/plain"] = runtime.JSONConsumer()
 
 	// optional custom request header
 	transport.Transport = utils.SetHeader(transport.Transport, userAgent, XAmazonTraceId)

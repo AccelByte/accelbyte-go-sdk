@@ -9,11 +9,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/AccelByte/accelbyte-go-sdk/gametelemetry-sdk/pkg/gametelemetryclient/operations"
 	"github.com/go-openapi/runtime"
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
+	"github.com/AccelByte/accelbyte-go-sdk/gametelemetry-sdk/pkg/gametelemetryclient/operations"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
 
@@ -56,6 +56,7 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig, user
 	transport.Consumers["application/pdf"] = runtime.JSONConsumer()
 	transport.Consumers["text/x-log"] = runtime.JSONConsumer()
 	transport.Consumers["image/png"] = runtime.ByteStreamConsumer()
+	transport.Consumers["text/plain"] = runtime.JSONConsumer()
 
 	// optional custom request header
 	transport.Transport = utils.SetHeader(transport.Transport, userAgent, XAmazonTraceId)

@@ -5,14 +5,12 @@
 package iam
 
 import (
-	"net/url"
-
-	"github.com/go-openapi/runtime/client"
-
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/go-openapi/runtime/client"
+	"net/url"
 )
 
 type OAuth20Service struct {
@@ -220,10 +218,6 @@ func (o *OAuth20Service) TokenGrantV3(input *o_auth2_0.TokenGrantV3Params) (*iam
 	}
 	if err != nil {
 		return nil, err
-	}
-	errStore := o.TokenRepository.Store(*ok.GetPayload())
-	if errStore != nil {
-		return nil, errStore
 	}
 	return ok.GetPayload(), nil
 }

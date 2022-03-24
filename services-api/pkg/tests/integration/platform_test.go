@@ -4,8 +4,6 @@
 
 package integration_test
 
-//lint:ignore SA1019 Ignore the deprecation warnings
-
 import (
 	"testing"
 
@@ -48,7 +46,7 @@ func TestIntegrationStore(t *testing.T) {
 		Body:      bodyStore,
 		Namespace: integration.NamespaceTest,
 	}
-	created, errCreate := storeService.CreateStore(inputCreate)
+	created, errCreate := storeService.CreateStoreShort(inputCreate)
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
 	}
@@ -60,7 +58,7 @@ func TestIntegrationStore(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		StoreID:   storeId,
 	}
-	get, errGet := storeService.GetStore(inputGet)
+	get, errGet := storeService.GetStoreShort(inputGet)
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
 	}
@@ -72,7 +70,7 @@ func TestIntegrationStore(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		StoreID:   storeId,
 	}
-	updated, errUpdate := storeService.UpdateStore(inputUpdate)
+	updated, errUpdate := storeService.UpdateStoreShort(inputUpdate)
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
 	}
@@ -83,7 +81,7 @@ func TestIntegrationStore(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		StoreID:   storeId,
 	}
-	deleted, errDelete := storeService.DeleteStore(inputDelete)
+	deleted, errDelete := storeService.DeleteStoreShort(inputDelete)
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())
 	}

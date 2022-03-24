@@ -4,8 +4,6 @@
 
 package integration_test
 
-//lint:ignore SA1019 Ignore the deprecation warnings
-
 import (
 	"testing"
 
@@ -74,7 +72,7 @@ func TestIntegrationAchievement(t *testing.T) {
 		Body:      bodyAchievement,
 		Namespace: integration.NamespaceTest,
 	}
-	created, errCreate := achievementsService.AdminCreateNewAchievement(inputCreate)
+	created, errCreate := achievementsService.AdminCreateNewAchievementShort(inputCreate)
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
 	}
@@ -85,7 +83,7 @@ func TestIntegrationAchievement(t *testing.T) {
 		AchievementCode: achievementCode,
 		Namespace:       integration.NamespaceTest,
 	}
-	get, errGet := achievementsService.AdminGetAchievement(inputGet)
+	get, errGet := achievementsService.AdminGetAchievementShort(inputGet)
 
 	// Updating an achievement
 	inputUpdate := &achievements.AdminUpdateAchievementParams{
@@ -93,7 +91,7 @@ func TestIntegrationAchievement(t *testing.T) {
 		Body:            bodyAchievementUpdate,
 		Namespace:       integration.NamespaceTest,
 	}
-	updated, errUpdate := achievementsService.AdminUpdateAchievement(inputUpdate)
+	updated, errUpdate := achievementsService.AdminUpdateAchievementShort(inputUpdate)
 	t.Logf("AchievementCode: %v updated", created.AchievementCode)
 
 	// Getting all achievements
@@ -103,14 +101,14 @@ func TestIntegrationAchievement(t *testing.T) {
 		Offset:    nil,
 		SortBy:    nil,
 	}
-	getAll, errGetAll := achievementsService.AdminListAchievements(inputGetAll)
+	getAll, errGetAll := achievementsService.AdminListAchievementsShort(inputGetAll)
 
 	// Deleting an achievement
 	inputDelete := &achievements.AdminDeleteAchievementParams{
 		AchievementCode: achievementCode,
 		Namespace:       integration.NamespaceTest,
 	}
-	errDelete := achievementsService.AdminDeleteAchievement(inputDelete)
+	errDelete := achievementsService.AdminDeleteAchievementShort(inputDelete)
 	t.Logf("AchievementCode: %v deleted", created.AchievementCode)
 
 	assert.Nil(t, errCreate, "err should be nil")

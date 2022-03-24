@@ -4,8 +4,6 @@
 
 package integration_test
 
-//lint:ignore SA1019 Ignore the deprecation warnings
-
 import (
 	"testing"
 
@@ -58,7 +56,7 @@ func TestIntegrationUserProfile(t *testing.T) {
 		Body:      bodyBasic,
 		Namespace: integration.NamespaceTest,
 	}
-	created, errCreate := userProfileService.CreateMyProfile(inputCreate)
+	created, errCreate := userProfileService.CreateMyProfileShort(inputCreate)
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
 	}
@@ -69,7 +67,7 @@ func TestIntegrationUserProfile(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		UserID:    created.UserID,
 	}
-	get, errGet := userProfileService.PublicGetUserProfileInfo(inputGet)
+	get, errGet := userProfileService.PublicGetUserProfileInfoShort(inputGet)
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
 	}
@@ -81,7 +79,7 @@ func TestIntegrationUserProfile(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		UserID:    created.UserID,
 	}
-	updated, errUpdate := userProfileService.PublicUpdateUserProfile(inputUpdate)
+	updated, errUpdate := userProfileService.PublicUpdateUserProfileShort(inputUpdate)
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
 	}
@@ -92,7 +90,7 @@ func TestIntegrationUserProfile(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		UserID:    created.UserID,
 	}
-	deleted, errDelete := userProfileService.DeleteUserProfile(inputDelete)
+	deleted, errDelete := userProfileService.DeleteUserProfileShort(inputDelete)
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())
 	}

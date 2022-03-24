@@ -4,8 +4,6 @@
 
 package integration_test
 
-//lint:ignore SA1019 Ignore the deprecation warnings
-
 import (
 	"testing"
 
@@ -33,7 +31,7 @@ var (
 func TestIntegrationListTerminatedServers(t *testing.T) {
 	t.Parallel()
 	Init()
-	ok, err := terminatedServersService.ListTerminatedServers(inputTerminatedServer)
+	ok, err := terminatedServersService.ListTerminatedServersShort(inputTerminatedServer)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}

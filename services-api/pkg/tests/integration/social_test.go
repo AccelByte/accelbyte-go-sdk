@@ -4,8 +4,6 @@
 
 package integration_test
 
-//lint:ignore SA1019 Ignore the deprecation warnings
-
 import (
 	"testing"
 
@@ -48,7 +46,7 @@ func TestIntegrationDeleteStat(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		StatCode:  statCodeSocial,
 	}
-	err := statConfigurationService.DeleteStat(inputStat)
+	err := statConfigurationService.DeleteStatShort(inputStat)
 
 	assert.Nil(t, err, "err should be nil")
 }
@@ -61,7 +59,7 @@ func TestIntegrationCreateStat(t *testing.T) {
 		Body:      bodyStatSocial,
 		Namespace: integration.NamespaceTest,
 	}
-	ok, err := statConfigurationService.CreateStat(inputStat)
+	ok, err := statConfigurationService.CreateStatShort(inputStat)
 
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
@@ -76,7 +74,7 @@ func TestIntegrationGetStat(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		StatCode:  statCodeSocial,
 	}
-	ok, errOk := statConfigurationService.GetStat(inputStat)
+	ok, errOk := statConfigurationService.GetStatShort(inputStat)
 
 	assert.Nil(t, errOk, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
@@ -90,7 +88,7 @@ func TestIntegrationGetStats(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		Offset:    nil,
 	}
-	ok, err := statConfigurationService.GetStats(inputStat)
+	ok, err := statConfigurationService.GetStatsShort(inputStat)
 
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
@@ -105,7 +103,7 @@ func TestIntegrationQueryStats(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		Offset:    nil,
 	}
-	ok, err := statConfigurationService.QueryStats(inputStat)
+	ok, err := statConfigurationService.QueryStatsShort(inputStat)
 
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
@@ -124,7 +122,7 @@ func TestIntegrationUpdateStat(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		StatCode:  statCodeSocial,
 	}
-	ok, err := statConfigurationService.UpdateStat(inputStat)
+	ok, err := statConfigurationService.UpdateStatShort(inputStat)
 
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")

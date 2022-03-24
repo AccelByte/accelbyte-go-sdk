@@ -4,8 +4,6 @@
 
 package integration_test
 
-//lint:ignore SA1019 Ignore the deprecation warnings
-
 import (
 	"testing"
 
@@ -112,7 +110,7 @@ func TestIntegrationDeleteChannelHandler(t *testing.T) {
 		Channel:   defaultGameMode,
 		Namespace: integration.NamespaceTest,
 	}
-	err := matchmakingService.DeleteChannelHandler(inputMatchmaking)
+	err := matchmakingService.DeleteChannelHandlerShort(inputMatchmaking)
 
 	assert.Nil(t, err, "err should be nil")
 }
@@ -127,7 +125,7 @@ func TestIntegrationCreateChannelHandler(t *testing.T) {
 		Body:      bodyMatchmaking,
 		Namespace: integration.NamespaceTest,
 	}
-	ok, err := matchmakingService.CreateChannelHandler(inputMatchmaking)
+	ok, err := matchmakingService.CreateChannelHandlerShort(inputMatchmaking)
 
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
@@ -140,7 +138,7 @@ func TestIntegrationGetSingleMatchmakingChannel(t *testing.T) {
 		ChannelName: defaultGameMode,
 		Namespace:   integration.NamespaceTest,
 	}
-	ok, err := matchmakingService.GetSingleMatchmakingChannel(inputMatchmaking)
+	ok, err := matchmakingService.GetSingleMatchmakingChannelShort(inputMatchmaking)
 
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
@@ -154,7 +152,7 @@ func TestIntegrationUpdatePatchSinglematchmakingPublicV1(t *testing.T) {
 		ChannelName: defaultGameMode,
 		Namespace:   integration.NamespaceTest,
 	}
-	err := matchmakingService.UpdateMatchmakingChannel(inputMatchmaking)
+	err := matchmakingService.UpdateMatchmakingChannelShort(inputMatchmaking)
 
 	assert.Nil(t, err, "err should be nil")
 }

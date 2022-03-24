@@ -4,8 +4,6 @@
 
 package integration_test
 
-//lint:ignore SA1019 Ignore the deprecation warnings
-
 import (
 	"testing"
 
@@ -35,7 +33,7 @@ func TestIntegrationSaveAdminEmailConfiguration(t *testing.T) {
 		Body:      body,
 		Namespace: integration.NamespaceTest,
 	}
-	err := dataRetrievalService.SaveAdminEmailConfiguration(input)
+	err := dataRetrievalService.SaveAdminEmailConfigurationShort(input)
 
 	assert.Nil(t, err, "err should be nil")
 }
@@ -46,7 +44,7 @@ func TestIntegrationAdminListDataRetrieval(t *testing.T) {
 	input := &data_retrieval.GetAdminEmailConfigurationParams{
 		Namespace: integration.NamespaceTest,
 	}
-	ok, err := dataRetrievalService.GetAdminEmailConfiguration(input)
+	ok, err := dataRetrievalService.GetAdminEmailConfigurationShort(input)
 
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
@@ -60,7 +58,7 @@ func TestIntegrationUpdateAdminEmailConfiguration(t *testing.T) {
 		Body:      body,
 		Namespace: integration.NamespaceTest,
 	}
-	err := dataRetrievalService.UpdateAdminEmailConfiguration(input)
+	err := dataRetrievalService.UpdateAdminEmailConfigurationShort(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
@@ -76,6 +74,6 @@ func TestIntegrationDeleteAdminEmailConfiguration(t *testing.T) {
 		Emails:    emails,
 		Namespace: integration.NamespaceTest,
 	}
-	err := dataRetrievalService.DeleteAdminEmailConfiguration(input)
+	err := dataRetrievalService.DeleteAdminEmailConfigurationShort(input)
 	assert.Nil(t, err, "response should not be nil")
 }

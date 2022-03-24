@@ -4,7 +4,6 @@
 
 package integration_test
 
-//lint:ignore SA1019 Ignore the deprecation warnings
 //lint:ignore SA5011 possible nil pointer dereference
 
 import (
@@ -53,7 +52,7 @@ func Init() {
 		Username:  &username,
 		GrantType: "password",
 	}
-	accessToken, err := oAuth20Service.TokenGrantV3(input)
+	accessToken, err := oAuth20Service.TokenGrantV3Short(input)
 	if err != nil {
 		logrus.Error("failed login")
 	} else if accessToken == nil { //lint:ignore SA5011 possible nil pointer dereference
@@ -81,7 +80,7 @@ func TestIntegrationAuthorizeV3(t *testing.T) {
 		ResponseType:        "code",
 		HTTPClient:          httpClient,
 	}
-	expected, err := oAuth20Service.AuthorizeV3(input)
+	expected, err := oAuth20Service.AuthorizeV3Short(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
@@ -104,7 +103,7 @@ func TestIntegrationAuthenticate(t *testing.T) {
 		ResponseType:        "code",
 		HTTPClient:          httpClient,
 	}
-	requestID, err := oAuth20Service.AuthorizeV3(input)
+	requestID, err := oAuth20Service.AuthorizeV3Short(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
@@ -116,7 +115,7 @@ func TestIntegrationAuthenticate(t *testing.T) {
 		UserName:   username,
 		HTTPClient: httpClient,
 	}
-	expected, errExpected := oAuth20ExtensionService.UserAuthenticationV3(inputAuth)
+	expected, errExpected := oAuth20ExtensionService.UserAuthenticationV3Short(inputAuth)
 	if errExpected != nil {
 		assert.FailNow(t, errExpected.Error())
 	}
@@ -139,7 +138,7 @@ func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 		ResponseType:        "code",
 		HTTPClient:          httpClient,
 	}
-	requestID, err := oAuth20Service.AuthorizeV3(input)
+	requestID, err := oAuth20Service.AuthorizeV3Short(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
@@ -151,7 +150,7 @@ func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 		UserName:   username,
 		HTTPClient: httpClient,
 	}
-	code, errCode := oAuth20ExtensionService.UserAuthenticationV3(inputAuth)
+	code, errCode := oAuth20ExtensionService.UserAuthenticationV3Short(inputAuth)
 	if errCode != nil {
 		assert.FailNow(t, errCode.Error())
 	}
@@ -162,7 +161,7 @@ func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 		CodeVerifier: &codeVerifier,
 		GrantType:    "authorization_code",
 	}
-	expected, errExpected := oAuth20Service.TokenGrantV3(inputTokenGrant)
+	expected, errExpected := oAuth20Service.TokenGrantV3Short(inputTokenGrant)
 	if errExpected != nil {
 		assert.FailNow(t, errExpected.Error())
 	}
@@ -178,7 +177,7 @@ func TestIntegrationLogin(t *testing.T) {
 		Username:  &username,
 		GrantType: "password",
 	}
-	ok, err := oAuth20Service.TokenGrantV3(input)
+	ok, err := oAuth20Service.TokenGrantV3Short(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}

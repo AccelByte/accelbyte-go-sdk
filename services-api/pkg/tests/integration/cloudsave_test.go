@@ -4,8 +4,6 @@
 
 package integration_test
 
-//lint:ignore SA1019 Ignore the deprecation warnings
-
 import (
 	"testing"
 
@@ -35,7 +33,7 @@ func TestIntegrationPostGameRecordHandlerV1(t *testing.T) {
 		Key:       key,
 		Namespace: integration.NamespaceTest,
 	}
-	err := publicGameRecordService.PostGameRecordHandlerV1(input)
+	err := publicGameRecordService.PostGameRecordHandlerV1Short(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
@@ -50,7 +48,7 @@ func TestIntegrationDeleteGameRecordHandlerV1(t *testing.T) {
 		Key:       key,
 		Namespace: integration.NamespaceTest,
 	}
-	err := publicGameRecordService.DeleteGameRecordHandlerV1(input)
+	err := publicGameRecordService.DeleteGameRecordHandlerV1Short(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
@@ -66,7 +64,7 @@ func TestIntegrationGetGameRecordHandlerV1(t *testing.T) {
 		Key:       key,
 		Namespace: integration.NamespaceTest,
 	}
-	err := publicGameRecordService.PostGameRecordHandlerV1(input)
+	err := publicGameRecordService.PostGameRecordHandlerV1Short(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
@@ -75,7 +73,7 @@ func TestIntegrationGetGameRecordHandlerV1(t *testing.T) {
 		Key:       key,
 		Namespace: integration.NamespaceTest,
 	}
-	ok, errOk := publicGameRecordService.GetGameRecordHandlerV1(inputRecord)
+	ok, errOk := publicGameRecordService.GetGameRecordHandlerV1Short(inputRecord)
 	if errOk != nil {
 		assert.FailNow(t, errOk.Error())
 	}
@@ -92,7 +90,7 @@ func TestIntegrationPutGameRecordHandlerV1(t *testing.T) {
 		Key:       key,
 		Namespace: integration.NamespaceTest,
 	}
-	err := publicGameRecordService.PutGameRecordHandlerV1(input)
+	err := publicGameRecordService.PutGameRecordHandlerV1Short(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}

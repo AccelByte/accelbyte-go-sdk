@@ -4,8 +4,6 @@
 
 package integration_test
 
-//lint:ignore SA1019 Ignore the deprecation warnings
-
 import (
 	"testing"
 
@@ -37,7 +35,7 @@ func TestIntegrationTag(t *testing.T) {
 		Body:      bodyTag,
 		Namespace: integration.NamespaceTest,
 	}
-	created, errCreate := adminTagService.AdminCreateTag(inputCreate)
+	created, errCreate := adminTagService.AdminCreateTagShort(inputCreate)
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
 	}
@@ -50,7 +48,7 @@ func TestIntegrationTag(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		Offset:    nil,
 	}
-	get, errGet := adminTagService.AdminGetTag(inputGet)
+	get, errGet := adminTagService.AdminGetTagShort(inputGet)
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
 	}
@@ -62,7 +60,7 @@ func TestIntegrationTag(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		TagID:     tagId,
 	}
-	updated, errUpdate := adminTagService.AdminUpdateTag(inputUpdate)
+	updated, errUpdate := adminTagService.AdminUpdateTagShort(inputUpdate)
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
 	}
@@ -73,7 +71,7 @@ func TestIntegrationTag(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		TagID:     tagId,
 	}
-	errDelete := adminTagService.AdminDeleteTag(inputDelete)
+	errDelete := adminTagService.AdminDeleteTagShort(inputDelete)
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())
 	}

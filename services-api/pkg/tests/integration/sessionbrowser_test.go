@@ -4,8 +4,6 @@
 
 package integration_test
 
-//lint:ignore SA1019 Ignore the deprecation warnings
-
 import (
 	"testing"
 
@@ -64,7 +62,7 @@ func TestIntegrationSession(t *testing.T) {
 		Body:      bodySession,
 		Namespace: integration.NamespaceTest,
 	}
-	created, errCreate := sessionService.CreateSession(inputCreate)
+	created, errCreate := sessionService.CreateSessionShort(inputCreate)
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
 	}
@@ -76,7 +74,7 @@ func TestIntegrationSession(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		SessionID: sessionBrowserId,
 	}
-	get, errGet := sessionService.GetSession(inputGet)
+	get, errGet := sessionService.GetSessionShort(inputGet)
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
 	}
@@ -88,7 +86,7 @@ func TestIntegrationSession(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		SessionID: sessionBrowserId,
 	}
-	updated, errUpdate := sessionService.UpdateSession(inputUpdate)
+	updated, errUpdate := sessionService.UpdateSessionShort(inputUpdate)
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
 	}
@@ -99,7 +97,7 @@ func TestIntegrationSession(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		SessionID: sessionBrowserId,
 	}
-	deleted, errDelete := sessionService.DeleteSession(inputDelete)
+	deleted, errDelete := sessionService.DeleteSessionShort(inputDelete)
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())
 	}

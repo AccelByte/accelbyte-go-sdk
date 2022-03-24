@@ -72,7 +72,3 @@ issues:
   exclude:
     - ^G104
     - ^G501
-  exclude-rules:
-    - linters:
-        - staticcheck
-      text: "SA1019:"

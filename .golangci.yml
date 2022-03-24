@@ -73,5 +73,4 @@ issues:
   exclude:
     - ^G104
     - ^G501
-    - SA1019
     - SA5011

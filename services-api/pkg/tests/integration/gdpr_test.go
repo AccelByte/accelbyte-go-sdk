@@ -27,18 +27,6 @@ var (
 	emails []string
 )
 
-// Deleting admin email configuration
-func TestIntegrationDeleteAdminEmailConfiguration(t *testing.T) {
-	Init()
-	emails = append(emails, email)
-	input := &data_retrieval.DeleteAdminEmailConfigurationParams{
-		Emails:    emails,
-		Namespace: integration.NamespaceTest,
-	}
-	err := dataRetrievalService.DeleteAdminEmailConfiguration(input)
-	assert.Nil(t, err, "response should not be nil")
-}
-
 // Creating admin email configuration
 func TestIntegrationSaveAdminEmailConfiguration(t *testing.T) {
 	Init()
@@ -78,4 +66,16 @@ func TestIntegrationUpdateAdminEmailConfiguration(t *testing.T) {
 	}
 
 	assert.Nil(t, err, "err should be nil")
+}
+
+// Deleting admin email configuration
+func TestIntegrationDeleteAdminEmailConfiguration(t *testing.T) {
+	Init()
+	emails = append(emails, email)
+	input := &data_retrieval.DeleteAdminEmailConfigurationParams{
+		Emails:    emails,
+		Namespace: integration.NamespaceTest,
+	}
+	err := dataRetrievalService.DeleteAdminEmailConfiguration(input)
+	assert.Nil(t, err, "response should not be nil")
 }

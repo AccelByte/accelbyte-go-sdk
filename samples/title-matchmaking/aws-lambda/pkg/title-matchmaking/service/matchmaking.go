@@ -5,23 +5,25 @@
 package service
 
 import (
-	"aws-lambda/pkg/constants"
-	"aws-lambda/pkg/repository"
-	"aws-lambda/pkg/repositoryGame"
-	"aws-lambda/pkg/title-matchmaking/models"
-	"aws-lambda/pkg/utils"
 	"context"
 	"encoding/json"
 	"fmt"
-	dsmcSession "github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/session"
-	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
-	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient/session"
 	"log"
 	"net/http"
 	"os"
 	"strconv"
 	"strings"
 	"time"
+
+	dsmcSession "github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/session"
+	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
+	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient/session"
+
+	"aws-lambda/pkg/constants"
+	"aws-lambda/pkg/repository"
+	"aws-lambda/pkg/repositoryGame"
+	"aws-lambda/pkg/title-matchmaking/models"
+	"aws-lambda/pkg/utils"
 
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 
@@ -550,8 +552,7 @@ func sendNotificationSearching(namespace, userId string) error {
 		Client:          factory.NewLobbyClient(&configImpl),
 		TokenRepository: &tokenRepositoryImpl,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	sendNotificationSearchingErr := gameNotificationService.FreeFormNotificationByUserID(input)
+	sendNotificationSearchingErr := gameNotificationService.FreeFormNotificationByUserIDShort(input)
 	if sendNotificationSearchingErr != nil {
 		log.Printf("Unable to send notification match searching to lobby. userId : %+v", userId)
 		log.Print(sendNotificationSearchingErr.Error())
@@ -604,8 +605,7 @@ func createSession(namespaceGame string) (*sessionbrowserclientmodels.ModelsSess
 		Body:      &body,
 		Namespace: namespaceGame,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	createSessionResp, err := sessionBrowserService.CreateSession(input)
+	createSessionResp, err := sessionBrowserService.CreateSessionShort(input)
 	if err != nil {
 		log.Printf("Unable to create session. namespace : %s. Error: %v", namespaceGame, err)
 		return createSessionResp, err
@@ -680,8 +680,7 @@ func registerSessionDSMC(sessionId, gameMode, namespaceGame, partyId string,
 		Body:      &body,
 		Namespace: namespaceGame,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	registerSession, registerSessionErr := dsmcService.CreateSession(input)
+	registerSession, registerSessionErr := dsmcService.CreateSessionShort(input)
 	if registerSessionErr != nil {
 		log.Print(registerSessionErr)
 	}
@@ -699,8 +698,7 @@ func claimServer(namespaceGame string, sessionID *string) error {
 		Body:      &body,
 		Namespace: namespaceGame,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	claimServerErr := dsmcService.ClaimServer(input)
+	claimServerErr := dsmcService.ClaimServerShort(input)
 	if claimServerErr != nil {
 		log.Print(claimServerErr)
 	}
@@ -718,8 +716,7 @@ func getServer(namespaceGame, sessionID string) (*dsmcclientmodels.ModelsSession
 		Namespace: namespaceGame,
 		SessionID: sessionID,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	getSession, getSessionErr := dsmcService.GetSession(input)
+	getSession, getSessionErr := dsmcService.GetSessionShort(input)
 	if getSessionErr != nil {
 		log.Print(getSessionErr)
 	}
@@ -746,8 +743,7 @@ func addPlayer(namespaceGame, userId, sessionId string) (*sessionbrowserclientmo
 		Client:          factory.NewSessionbrowserClient(&configImpl),
 		TokenRepository: &tokenRepositoryImpl,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	addPlayerResp, addPlayerErr := sessionBrowserService.AddPlayerToSession(input)
+	addPlayerResp, addPlayerErr := sessionBrowserService.AddPlayerToSessionShort(input)
 	if addPlayerErr != nil {
 		log.Printf("Unable to add player to session id %v. namespace : %s. Error: %v", sessionId, namespaceGame, addPlayerErr)
 		return addPlayerResp, addPlayerErr
@@ -771,8 +767,7 @@ func getSessionUpdate(namespaceGame, sessionId string) (*sessionbrowserclientmod
 		Namespace: namespaceGame,
 		SessionID: sessionId,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	getSession, getSessionErr := sessionBrowserService.GetSession(input)
+	getSession, getSessionErr := sessionBrowserService.GetSessionShort(input)
 	if getSessionErr != nil {
 		log.Print(getSessionErr)
 		return getSession, getSessionErr
@@ -822,8 +817,7 @@ func sendNotificationFound(
 			Namespace: namespace,
 			UserID:    userIdToSend,
 		}
-		//lint:ignore SA1019 Ignore the deprecation warnings
-		sendNotificationMatchFoundErr := gameNotificationService.FreeFormNotificationByUserID(input)
+		sendNotificationMatchFoundErr := gameNotificationService.FreeFormNotificationByUserIDShort(input)
 		if sendNotificationMatchFoundErr != nil {
 			log.Print(sendNotificationMatchFoundErr)
 			return false, sendNotificationMatchFoundErr

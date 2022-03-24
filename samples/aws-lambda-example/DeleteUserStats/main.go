@@ -74,8 +74,7 @@ func deleteUserStatItems(params RequestParams, tokenRepositoryImpl *TokenReposit
 		StatCode:  params.StatCode,
 		UserID:    params.UserID,
 	}
-	//lint:ignore SA1019 Ignore the deprecation warnings
-	err := statisticService.DeleteUserStatItems(input)
+	err := statisticService.DeleteUserStatItemsShort(input)
 	if err != nil {
 		return nil, err
 	}

@@ -34,14 +34,14 @@ func (c *customTransport) RoundTrip(r *http.Request) (*http.Response, error) {
 	// enabling log
 	if os.Getenv("ENABLE_LOG") == "true" {
 		// logger request
-		logrus.Infof("Request: %s", logger.LogRequest(r))
+		logrus.Infof("Request: %v", logger.LogRequest(r))
 
 		// logger response
 		res, err := c.inner.RoundTrip(r)
 		if err != nil {
 			logrus.Error("failed to use the RoundTrip method")
 		}
-		logrus.Infof("Response: %s", logger.LogResponse(res))
+		logrus.Infof("Response: %v", logger.LogResponse(res))
 		return res, nil
 	}
 	return c.inner.RoundTrip(r)

@@ -63,7 +63,6 @@ func Init() {
 		if errStore != nil {
 			logrus.Error("failed stored the token")
 		}
-		logrus.Infof("token : %v", *accessToken.AccessToken)
 	}
 }
 
@@ -183,6 +182,8 @@ func TestIntegrationLogin(t *testing.T) {
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
+	logrus.Infof("Bearer %v; UserId %v", *ok.AccessToken, *ok.UserID)
+
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
 }

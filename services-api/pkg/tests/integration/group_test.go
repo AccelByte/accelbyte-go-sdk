@@ -7,8 +7,10 @@ package integration_test
 import (
 	"testing"
 
+	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 
+	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/configuration"
 	group_ "github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group"
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -17,6 +19,18 @@ import (
 )
 
 var (
+	configurationService = &group.ConfigurationService{
+		Client:          factory.NewGroupClient(&integration.ConfigRepositoryImpl{}),
+		TokenRepository: &integration.TokenRepositoryImpl{},
+	}
+	bodyConfigGroup *groupclientmodels.ModelsCreateGroupConfigurationRequestV1
+	nameConfig      = "Go Server SDK Configuration Code"
+	allowedAction   = "createGroup"
+	globalRules     []*groupclientmodels.ModelsRule
+	globalRule      = &groupclientmodels.ModelsRule{
+		AllowedAction: &allowedAction,
+		RuleDetail:    ruleDetails,
+	}
 	groupService = &group.GroupService{
 		Client:          factory.NewGroupClient(&integration.ConfigRepositoryImpl{}),
 		TokenRepository: &integration.TokenRepositoryImpl{},
@@ -70,6 +84,8 @@ func TestIntegrationGroup(t *testing.T) {
 	Init()
 	ruleDetails = append(ruleDetails, ruleDetail)
 	groupPredefinedRules = append(groupPredefinedRules, groupPredefinedRule)
+
+	checkGlobalConfig()
 
 	// Creating a group
 	// needs to use a token user who are not already joined a group
@@ -125,4 +141,40 @@ func TestIntegrationGroup(t *testing.T) {
 	assert.Nil(t, errUpdate, "err should be nil")
 	assert.NotNil(t, updated, "response should not be nil")
 	assert.Nil(t, errDelete, "err should be nil")
+}
+
+func checkGlobalConfig() {
+	inputGet := &configuration.GetGroupConfigurationAdminV1Params{
+		ConfigurationCode: configurationCode,
+		Namespace:         integration.NamespaceTest,
+	}
+
+	get, errGet := configurationService.GetGroupConfigurationAdminV1Short(inputGet)
+	if errGet != nil {
+		logrus.Error(errGet)
+	}
+	if get != nil {
+		return
+	} else {
+		groupAdminRoleId := "623295c3000e792bf1e902b7"
+		groupMemberRoleId := "623295c3000e792bf1e902b8"
+		globalRules = append(globalRules, globalRule)
+		bodyConfigGroup = &groupclientmodels.ModelsCreateGroupConfigurationRequestV1{
+			ConfigurationCode: &configurationCode,
+			Description:       &emptyString,
+			GlobalRules:       globalRules,
+			GroupAdminRoleID:  &groupAdminRoleId,
+			GroupMaxMember:    &maxNumber,
+			GroupMemberRoleID: &groupMemberRoleId,
+			Name:              &nameConfig,
+		}
+		inputCreate := &configuration.CreateGroupConfigurationAdminV1Params{
+			Body:      bodyConfigGroup,
+			Namespace: integration.NamespaceTest,
+		}
+		_, errCreate := configurationService.CreateGroupConfigurationAdminV1Short(inputCreate)
+		if errCreate != nil {
+			logrus.Error(errCreate)
+		}
+	}
 }

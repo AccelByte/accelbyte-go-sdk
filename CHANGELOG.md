@@ -1,3 +1,42 @@
+<a name="v0.15.0"></a>
+## [v0.15.0] - 2022-03-29
+
+### Chore
+- **api:** regenerate all services
+- **api:** delete info baseUrl from factory
+- **cli:** regenerate all cli
+- **cli:** use the short wrapper
+- **lint:** delete rules SA1019 linter staticcheck
+- **sh-unit-tests:** regenerate sh unit tests
+- **samples:** use the short wrapper
+- **spec:** update spec files
+- **test:** lint SA1019 for each file
+- **test:** migrate to a new namespace
+- **test:** move delete email test
+- **test:** remove the login log from init function
+- **test:** rename and delete double login
+- **test:** rename function name
+- **test:** use the short wrapper
+
+### Docs
+- update CHANGELOG.md for v0.15.0 release
+- update README.md
+
+### Feat
+- **test:** add more integration tests for how to samples
+- **test:** run the test in parallel
+
+### Fix
+- **api:** add text/plain consumer for all services
+- **api:** change the value of body response log
+- **test:** add init login for all tests
+- **test:** event log by adding text/plain body response support
+- **test:** integrating with jenkins
+- **test:** set body value for 503 connection termination error
+- **tests:** conflicted unique value
+- **tests:** request values
+
+
 <a name="v0.14.0"></a>
 ## [v0.14.0] - 2022-03-15
 
@@ -437,6 +476,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.15.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.14.0...v0.15.0
 [v0.14.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.13.0...v0.14.0
 [v0.13.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.12.0...v0.13.0
 [v0.12.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.11.0...v0.12.0

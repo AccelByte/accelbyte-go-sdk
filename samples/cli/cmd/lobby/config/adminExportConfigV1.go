@@ -13,21 +13,21 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// ExportConfigCmd represents the ExportConfig command
-var ExportConfigCmd = &cobra.Command{
-	Use:   "exportConfig",
-	Short: "Export config",
-	Long:  `Export config`,
+// AdminExportConfigV1Cmd represents the AdminExportConfigV1 command
+var AdminExportConfigV1Cmd = &cobra.Command{
+	Use:   "adminExportConfigV1",
+	Short: "Admin export config V1",
+	Long:  `Admin export config V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		configService := &lobby.ConfigService{
 			Client:          factory.NewLobbyClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		input := &config.ExportConfigParams{
+		input := &config.AdminExportConfigV1Params{
 			Namespace: namespace,
 		}
-		ok, err := configService.ExportConfigShort(input)
+		ok, err := configService.AdminExportConfigV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 			return err
@@ -39,6 +39,6 @@ var ExportConfigCmd = &cobra.Command{
 }
 
 func init() {
-	ExportConfigCmd.Flags().StringP("namespace", "", "", "Namespace")
-	_ = ExportConfigCmd.MarkFlagRequired("namespace")
+	AdminExportConfigV1Cmd.Flags().StringP("namespace", "", "", "Namespace")
+	_ = AdminExportConfigV1Cmd.MarkFlagRequired("namespace")
 }

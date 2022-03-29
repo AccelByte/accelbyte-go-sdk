@@ -24,8 +24,8 @@ var SingleAdminGetChannelCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		limit, _ := cmd.Flags().GetString("limit")
-		offset, _ := cmd.Flags().GetString("offset")
+		limit, _ := cmd.Flags().GetInt64("limit")
+		offset, _ := cmd.Flags().GetInt64("offset")
 		input := &admin_channel.SingleAdminGetChannelParams{
 			Namespace: namespace,
 			Limit:     &limit,
@@ -45,6 +45,6 @@ var SingleAdminGetChannelCmd = &cobra.Command{
 func init() {
 	SingleAdminGetChannelCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = SingleAdminGetChannelCmd.MarkFlagRequired("namespace")
-	SingleAdminGetChannelCmd.Flags().StringP("limit", "", "20", "Limit")
-	SingleAdminGetChannelCmd.Flags().StringP("offset", "", "0", "Offset")
+	SingleAdminGetChannelCmd.Flags().Int64P("limit", "", 20, "Limit")
+	SingleAdminGetChannelCmd.Flags().Int64P("offset", "", 0, "Offset")
 }

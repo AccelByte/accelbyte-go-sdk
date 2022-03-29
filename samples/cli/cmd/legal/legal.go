@@ -26,6 +26,7 @@ var LegalCmd = &cobra.Command{
 }
 
 func init() {
+	LegalCmd.AddCommand(agreement.ChangePreferenceConsentCmd)
 	LegalCmd.AddCommand(agreement.RetrieveAcceptedAgreementsCmd)
 	LegalCmd.AddCommand(agreement.RetrieveAllUsersByPolicyVersionCmd)
 	LegalCmd.AddCommand(baseLegalPolicies.RetrieveAllLegalPoliciesCmd)
@@ -53,7 +54,7 @@ func init() {
 	LegalCmd.AddCommand(userInfo.SyncUserInfoCmd)
 	LegalCmd.AddCommand(userInfo.InvalidateUserInfoCacheCmd)
 	LegalCmd.AddCommand(anonymization.AnonymizeUserAgreementCmd)
-	LegalCmd.AddCommand(agreement.ChangePreferenceConsentCmd)
+	LegalCmd.AddCommand(agreement.ChangePreferenceConsent1Cmd)
 	LegalCmd.AddCommand(agreement.AcceptVersionedPolicyCmd)
 	LegalCmd.AddCommand(agreement.RetrieveAgreementsPublicCmd)
 	LegalCmd.AddCommand(agreement.BulkAcceptVersionedPolicyCmd)

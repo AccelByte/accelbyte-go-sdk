@@ -24,8 +24,8 @@ var SingleAdminGetAllGroupsCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		limit, _ := cmd.Flags().GetString("limit")
-		offset, _ := cmd.Flags().GetString("offset")
+		limit, _ := cmd.Flags().GetInt64("limit")
+		offset, _ := cmd.Flags().GetInt64("offset")
 		input := &admin_group.SingleAdminGetAllGroupsParams{
 			Namespace: namespace,
 			Limit:     &limit,
@@ -45,6 +45,6 @@ var SingleAdminGetAllGroupsCmd = &cobra.Command{
 func init() {
 	SingleAdminGetAllGroupsCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = SingleAdminGetAllGroupsCmd.MarkFlagRequired("namespace")
-	SingleAdminGetAllGroupsCmd.Flags().StringP("limit", "", "20", "Limit")
-	SingleAdminGetAllGroupsCmd.Flags().StringP("offset", "", "0", "Offset")
+	SingleAdminGetAllGroupsCmd.Flags().Int64P("limit", "", 20, "Limit")
+	SingleAdminGetAllGroupsCmd.Flags().Int64P("offset", "", 0, "Offset")
 }

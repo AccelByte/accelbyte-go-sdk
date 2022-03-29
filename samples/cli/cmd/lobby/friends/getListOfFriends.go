@@ -25,8 +25,8 @@ var GetListOfFriendsCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
-		limit, _ := cmd.Flags().GetString("limit")
-		offset, _ := cmd.Flags().GetString("offset")
+		limit, _ := cmd.Flags().GetInt64("limit")
+		offset, _ := cmd.Flags().GetInt64("offset")
 		input := &friends.GetListOfFriendsParams{
 			Namespace: namespace,
 			UserID:    userId,
@@ -49,6 +49,6 @@ func init() {
 	_ = GetListOfFriendsCmd.MarkFlagRequired("namespace")
 	GetListOfFriendsCmd.Flags().StringP("userId", "", "", "User id")
 	_ = GetListOfFriendsCmd.MarkFlagRequired("userId")
-	GetListOfFriendsCmd.Flags().StringP("limit", "", "20", "Limit")
-	GetListOfFriendsCmd.Flags().StringP("offset", "", "0", "Offset")
+	GetListOfFriendsCmd.Flags().Int64P("limit", "", 20, "Limit")
+	GetListOfFriendsCmd.Flags().Int64P("offset", "", 0, "Offset")
 }

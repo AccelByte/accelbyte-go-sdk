@@ -15,30 +15,26 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// ChangePreferenceConsentCmd represents the ChangePreferenceConsent command
-var ChangePreferenceConsentCmd = &cobra.Command{
-	Use:   "changePreferenceConsent",
-	Short: "Change preference consent",
-	Long:  `Change preference consent`,
+// ChangePreferenceConsent1Cmd represents the ChangePreferenceConsent1 command
+var ChangePreferenceConsent1Cmd = &cobra.Command{
+	Use:   "changePreferenceConsent1",
+	Short: "Change preference consent 1",
+	Long:  `Change preference consent 1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		agreementService := &legal.AgreementService{
 			Client:          factory.NewLegalClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
-		userId, _ := cmd.Flags().GetString("userId")
 		bodyString := cmd.Flag("body").Value.String()
 		var body []*legalclientmodels.AcceptAgreementRequest
 		errBody := json.Unmarshal([]byte(bodyString), &body)
 		if errBody != nil {
 			return errBody
 		}
-		input := &agreement.ChangePreferenceConsentParams{
-			Body:      body,
-			Namespace: namespace,
-			UserID:    userId,
+		input := &agreement.ChangePreferenceConsent1Params{
+			Body: body,
 		}
-		errInput := agreementService.ChangePreferenceConsentShort(input)
+		errInput := agreementService.ChangePreferenceConsent1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 			return errInput
@@ -48,9 +44,5 @@ var ChangePreferenceConsentCmd = &cobra.Command{
 }
 
 func init() {
-	ChangePreferenceConsentCmd.Flags().StringP("body", "", "", "Body")
-	ChangePreferenceConsentCmd.Flags().StringP("namespace", "", "", "Namespace")
-	_ = ChangePreferenceConsentCmd.MarkFlagRequired("namespace")
-	ChangePreferenceConsentCmd.Flags().StringP("userId", "", "", "User id")
-	_ = ChangePreferenceConsentCmd.MarkFlagRequired("userId")
+	ChangePreferenceConsent1Cmd.Flags().StringP("body", "", "", "Body")
 }

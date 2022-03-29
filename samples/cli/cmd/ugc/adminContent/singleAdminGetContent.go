@@ -24,8 +24,8 @@ var SingleAdminGetContentCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		limit, _ := cmd.Flags().GetString("limit")
-		offset, _ := cmd.Flags().GetString("offset")
+		limit, _ := cmd.Flags().GetInt64("limit")
+		offset, _ := cmd.Flags().GetInt64("offset")
 		input := &admin_content.SingleAdminGetContentParams{
 			Namespace: namespace,
 			Limit:     &limit,
@@ -45,6 +45,6 @@ var SingleAdminGetContentCmd = &cobra.Command{
 func init() {
 	SingleAdminGetContentCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = SingleAdminGetContentCmd.MarkFlagRequired("namespace")
-	SingleAdminGetContentCmd.Flags().StringP("limit", "", "20", "Limit")
-	SingleAdminGetContentCmd.Flags().StringP("offset", "", "0", "Offset")
+	SingleAdminGetContentCmd.Flags().Int64P("limit", "", 20, "Limit")
+	SingleAdminGetContentCmd.Flags().Int64P("offset", "", 0, "Offset")
 }

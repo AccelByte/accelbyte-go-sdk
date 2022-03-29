@@ -25,7 +25,7 @@ var RetrieveAllSSOLoginPlatformCredentialV3Cmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		limit, _ := cmd.Flags().GetInt64("limit")
-		offset, _ := cmd.Flags().GetString("offset")
+		offset, _ := cmd.Flags().GetInt64("offset")
 		input := &s_s_o_credential.RetrieveAllSSOLoginPlatformCredentialV3Params{
 			Namespace: namespace,
 			Limit:     &limit,
@@ -46,5 +46,5 @@ func init() {
 	RetrieveAllSSOLoginPlatformCredentialV3Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = RetrieveAllSSOLoginPlatformCredentialV3Cmd.MarkFlagRequired("namespace")
 	RetrieveAllSSOLoginPlatformCredentialV3Cmd.Flags().Int64P("limit", "", 20, "Limit")
-	RetrieveAllSSOLoginPlatformCredentialV3Cmd.Flags().StringP("offset", "", "0", "Offset")
+	RetrieveAllSSOLoginPlatformCredentialV3Cmd.Flags().Int64P("offset", "", 0, "Offset")
 }

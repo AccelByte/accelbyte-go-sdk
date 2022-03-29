@@ -25,8 +25,8 @@ var AdminGetAllGroupsCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
-		limit, _ := cmd.Flags().GetString("limit")
-		offset, _ := cmd.Flags().GetString("offset")
+		limit, _ := cmd.Flags().GetInt64("limit")
+		offset, _ := cmd.Flags().GetInt64("offset")
 		input := &admin_group.AdminGetAllGroupsParams{
 			Namespace: namespace,
 			UserID:    userId,
@@ -49,6 +49,6 @@ func init() {
 	_ = AdminGetAllGroupsCmd.MarkFlagRequired("namespace")
 	AdminGetAllGroupsCmd.Flags().StringP("userId", "", "", "User id")
 	_ = AdminGetAllGroupsCmd.MarkFlagRequired("userId")
-	AdminGetAllGroupsCmd.Flags().StringP("limit", "", "20", "Limit")
-	AdminGetAllGroupsCmd.Flags().StringP("offset", "", "0", "Offset")
+	AdminGetAllGroupsCmd.Flags().Int64P("limit", "", 20, "Limit")
+	AdminGetAllGroupsCmd.Flags().Int64P("offset", "", 0, "Offset")
 }

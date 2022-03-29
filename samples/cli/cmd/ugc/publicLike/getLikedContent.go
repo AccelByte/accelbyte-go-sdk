@@ -24,8 +24,8 @@ var GetLikedContentCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		limit, _ := cmd.Flags().GetString("limit")
-		offset, _ := cmd.Flags().GetString("offset")
+		limit, _ := cmd.Flags().GetInt64("limit")
+		offset, _ := cmd.Flags().GetInt64("offset")
 		input := &public_like.GetLikedContentParams{
 			Namespace: namespace,
 			Limit:     &limit,
@@ -45,6 +45,6 @@ var GetLikedContentCmd = &cobra.Command{
 func init() {
 	GetLikedContentCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetLikedContentCmd.MarkFlagRequired("namespace")
-	GetLikedContentCmd.Flags().StringP("limit", "", "20", "Limit")
-	GetLikedContentCmd.Flags().StringP("offset", "", "0", "Offset")
+	GetLikedContentCmd.Flags().Int64P("limit", "", 20, "Limit")
+	GetLikedContentCmd.Flags().Int64P("offset", "", 0, "Offset")
 }

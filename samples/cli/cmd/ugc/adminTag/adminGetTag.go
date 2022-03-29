@@ -24,8 +24,8 @@ var AdminGetTagCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		limit, _ := cmd.Flags().GetString("limit")
-		offset, _ := cmd.Flags().GetString("offset")
+		limit, _ := cmd.Flags().GetInt64("limit")
+		offset, _ := cmd.Flags().GetInt64("offset")
 		input := &admin_tag.AdminGetTagParams{
 			Namespace: namespace,
 			Limit:     &limit,
@@ -45,6 +45,6 @@ var AdminGetTagCmd = &cobra.Command{
 func init() {
 	AdminGetTagCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = AdminGetTagCmd.MarkFlagRequired("namespace")
-	AdminGetTagCmd.Flags().StringP("limit", "", "20", "Limit")
-	AdminGetTagCmd.Flags().StringP("offset", "", "0", "Offset")
+	AdminGetTagCmd.Flags().Int64P("limit", "", 20, "Limit")
+	AdminGetTagCmd.Flags().Int64P("offset", "", 0, "Offset")
 }

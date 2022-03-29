@@ -25,8 +25,8 @@ var AdminGetContentCmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
-		limit, _ := cmd.Flags().GetString("limit")
-		offset, _ := cmd.Flags().GetString("offset")
+		limit, _ := cmd.Flags().GetInt64("limit")
+		offset, _ := cmd.Flags().GetInt64("offset")
 		input := &admin_content.AdminGetContentParams{
 			Namespace: namespace,
 			UserID:    userId,
@@ -49,6 +49,6 @@ func init() {
 	_ = AdminGetContentCmd.MarkFlagRequired("namespace")
 	AdminGetContentCmd.Flags().StringP("userId", "", "", "User id")
 	_ = AdminGetContentCmd.MarkFlagRequired("userId")
-	AdminGetContentCmd.Flags().StringP("limit", "", "20", "Limit")
-	AdminGetContentCmd.Flags().StringP("offset", "", "0", "Offset")
+	AdminGetContentCmd.Flags().Int64P("limit", "", 20, "Limit")
+	AdminGetContentCmd.Flags().Int64P("offset", "", 0, "Offset")
 }

@@ -24,8 +24,8 @@ var GetTypeCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		limit, _ := cmd.Flags().GetString("limit")
-		offset, _ := cmd.Flags().GetString("offset")
+		limit, _ := cmd.Flags().GetInt64("limit")
+		offset, _ := cmd.Flags().GetInt64("offset")
 		input := &public_type.GetTypeParams{
 			Namespace: namespace,
 			Limit:     &limit,
@@ -45,6 +45,6 @@ var GetTypeCmd = &cobra.Command{
 func init() {
 	GetTypeCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = GetTypeCmd.MarkFlagRequired("namespace")
-	GetTypeCmd.Flags().StringP("limit", "", "20", "Limit")
-	GetTypeCmd.Flags().StringP("offset", "", "0", "Offset")
+	GetTypeCmd.Flags().Int64P("limit", "", 20, "Limit")
+	GetTypeCmd.Flags().Int64P("offset", "", 0, "Offset")
 }

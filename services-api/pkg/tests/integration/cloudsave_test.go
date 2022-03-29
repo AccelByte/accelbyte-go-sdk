@@ -10,7 +10,6 @@ import (
 	"github.com/stretchr/testify/assert"
 
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_game_record"
-	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/cloudsave"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
@@ -21,15 +20,14 @@ var (
 		Client:          factory.NewCloudsaveClient(&integration.ConfigRepositoryImpl{}),
 		TokenRepository: &integration.TokenRepositoryImpl{},
 	}
-	key        = "sample-player-record"
-	bodyRecord *cloudsaveclientmodels.ModelsGameRecordRequest
+	key = "sample-player-record"
 )
 
 // Creating a game record
 func TestIntegrationPostGameRecordHandlerV1(t *testing.T) {
 	Init()
 	input := &public_game_record.PostGameRecordHandlerV1Params{
-		Body:      bodyRecord,
+		Body:      map[string]interface{}{"foo": "bar"},
 		Key:       key,
 		Namespace: integration.NamespaceTest,
 	}
@@ -60,7 +58,7 @@ func TestIntegrationDeleteGameRecordHandlerV1(t *testing.T) {
 func TestIntegrationGetGameRecordHandlerV1(t *testing.T) {
 	Init()
 	input := &public_game_record.PostGameRecordHandlerV1Params{
-		Body:      bodyRecord,
+		Body:      map[string]interface{}{"foo": "bar"},
 		Key:       key,
 		Namespace: integration.NamespaceTest,
 	}
@@ -86,7 +84,7 @@ func TestIntegrationGetGameRecordHandlerV1(t *testing.T) {
 func TestIntegrationPutGameRecordHandlerV1(t *testing.T) {
 	Init()
 	input := &public_game_record.PutGameRecordHandlerV1Params{
-		Body:      bodyRecord,
+		Body:      map[string]interface{}{"foo": "bar"},
 		Key:       key,
 		Namespace: integration.NamespaceTest,
 	}
@@ -95,5 +93,15 @@ func TestIntegrationPutGameRecordHandlerV1(t *testing.T) {
 		assert.FailNow(t, err.Error())
 	}
 
+	inputDelete := &public_game_record.DeleteGameRecordHandlerV1Params{
+		Key:       key,
+		Namespace: integration.NamespaceTest,
+	}
+	errDelete := publicGameRecordService.DeleteGameRecordHandlerV1Short(inputDelete)
+	if err != nil {
+		assert.FailNow(t, err.Error())
+	}
+
 	assert.Nil(t, err, "err should be nil")
+	assert.Nil(t, errDelete, "err should be nil")
 }

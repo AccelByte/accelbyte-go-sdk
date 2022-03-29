@@ -8,7 +8,7 @@
     },
     "description": "Justice Social Service",
     "title": "justice-social-service",
-    "version": "1.26.0"
+    "version": "1.27.1"
   },
   "schemes": [
     "https"
@@ -5486,10 +5486,12 @@
           "x-omitempty": false
         },
         "maximum": {
+          "description": "default value is 1.7976931348623157e+308",
           "format": "double",
           "type": "number"
         },
         "minimum": {
+          "description": "default value is 0.0",
           "format": "double",
           "type": "number"
         },

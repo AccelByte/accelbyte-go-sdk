@@ -360,13 +360,13 @@
             "description": "skip some item(s), offset=3, will skip 3 first items",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           },
           {
             "description": "max item to be returned",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           }
         ],
         "produces": [

@@ -8,7 +8,7 @@
     },
     "description": "Justice DS Log Manager Service",
     "title": "justice-ds-log-manager-service",
-    "version": "2.1.0"
+    "version": "2.2.1"
   },
   "schemes": [
     "https"
@@ -757,10 +757,17 @@
         "ip": {
           "type": "string"
         },
+        "is_override_game_version": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "last_update": {
           "format": "date-time",
           "type": "string",
           "x-nullable": false
+        },
+        "match_id": {
+          "type": "string"
         },
         "mem_limit": {
           "format": "int32",
@@ -784,6 +791,9 @@
             "type": "integer"
           },
           "type": "object"
+        },
+        "protocol": {
+          "type": "string"
         },
         "provider": {
           "type": "string"
@@ -812,13 +822,16 @@
         "game_version",
         "image_version",
         "ip",
+        "is_override_game_version",
         "last_update",
+        "match_id",
         "mem_limit",
         "namespace",
         "params",
         "pod_name",
         "port",
         "ports",
+        "protocol",
         "provider",
         "region",
         "session_id",

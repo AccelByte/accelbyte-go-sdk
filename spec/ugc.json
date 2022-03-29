@@ -8,7 +8,7 @@
     },
     "description": "Justice UGC Service",
     "title": "justice-ugc-service",
-    "version": "1.15.0"
+    "version": "1.15.1"
   },
   "schemes": [
     "https"
@@ -85,18 +85,18 @@
             "type": "string"
           },
           {
-            "default": "1000",
+            "default": 1000,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
-            "default": "0",
+            "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -655,18 +655,18 @@
             "type": "string"
           },
           {
-            "default": "1000",
+            "default": 1000,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
-            "default": "0",
+            "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           },
           {
             "description": "user ID",
@@ -890,18 +890,18 @@
             "type": "string"
           },
           {
-            "default": "1000",
+            "default": 1000,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
-            "default": "0",
+            "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -1011,18 +1011,18 @@
             "type": "string"
           },
           {
-            "default": "1000",
+            "default": 1000,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
-            "default": "0",
+            "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           },
           {
             "description": "user ID",
@@ -1456,18 +1456,18 @@
             "type": "string"
           },
           {
-            "default": "1000",
+            "default": 1000,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
-            "default": "0",
+            "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -1806,18 +1806,18 @@
             "type": "string"
           },
           {
-            "default": "1000",
+            "default": 1000,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
-            "default": "0",
+            "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -1879,18 +1879,18 @@
             "type": "string"
           },
           {
-            "default": "1000",
+            "default": 1000,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
-            "default": "0",
+            "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -2170,18 +2170,18 @@
             "type": "string"
           },
           {
-            "default": "1000",
+            "default": 1000,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
-            "default": "0",
+            "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -2529,18 +2529,18 @@
             "type": "string"
           },
           {
-            "default": "1000",
+            "default": 1000,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
-            "default": "0",
+            "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -3089,18 +3089,18 @@
             "type": "string"
           },
           {
-            "default": "1000",
+            "default": 1000,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
-            "default": "0",
+            "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -3311,18 +3311,18 @@
             "type": "string"
           },
           {
-            "default": "1000",
+            "default": 1000,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
-            "default": "0",
+            "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -3624,18 +3624,18 @@
             "type": "string"
           },
           {
-            "default": "1000",
+            "default": 1000,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
-            "default": "0",
+            "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -3816,18 +3816,18 @@
             "type": "string"
           },
           {
-            "default": "1000",
+            "default": 1000,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
-            "default": "0",
+            "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           },
           {
             "description": "user ID",
@@ -3941,18 +3941,18 @@
             "type": "string"
           },
           {
-            "default": "1000",
+            "default": 1000,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
-            "default": "0",
+            "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           },
           {
             "description": "user ID",
@@ -4018,18 +4018,18 @@
             "type": "string"
           },
           {
-            "default": "1000",
+            "default": 1000,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
-            "default": "0",
+            "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -4089,18 +4089,18 @@
             "type": "string"
           },
           {
-            "default": "1000",
+            "default": 1000,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
-            "default": "0",
+            "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -4494,18 +4494,18 @@
             "type": "string"
           },
           {
-            "default": "1000",
+            "default": 1000,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
-            "default": "0",
+            "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -4565,18 +4565,18 @@
             "type": "string"
           },
           {
-            "default": "1000",
+            "default": 1000,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
-            "default": "0",
+            "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -4636,18 +4636,18 @@
             "type": "string"
           },
           {
-            "default": "1000",
+            "default": 1000,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
-            "default": "0",
+            "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -4776,18 +4776,18 @@
             "type": "string"
           },
           {
-            "default": "1000",
+            "default": 1000,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
-            "default": "0",
+            "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -5581,18 +5581,18 @@
             "type": "string"
           },
           {
-            "default": "1000",
+            "default": 1000,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
-            "default": "0",
+            "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -6047,18 +6047,18 @@
             "type": "string"
           },
           {
-            "default": "1000",
+            "default": 1000,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
-            "default": "0",
+            "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           },
           {
             "description": "user ID",
@@ -6444,18 +6444,18 @@
             "type": "string"
           },
           {
-            "default": "1000",
+            "default": 1000,
             "description": "number of content per page",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
-            "default": "0",
+            "default": 0,
             "description": "the offset number to retrieve",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           }
         ],
         "produces": [

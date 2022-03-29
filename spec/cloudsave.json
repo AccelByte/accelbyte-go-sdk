@@ -8,7 +8,7 @@
     },
     "description": "Justice Cloudsave Service",
     "title": "justice-cloudsave-service",
-    "version": "2.3.0"
+    "version": "2.4.0"
   },
   "schemes": [
     "https"
@@ -18,10 +18,10 @@
       "authorizationUrl": "https://dummy.oauth.net/auth",
       "flow": "accessCode",
       "scopes": {
+        "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]": "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]": "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]": "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]",
         "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]": "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [WRITE]": "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [WRITE]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]",
@@ -31,15 +31,16 @@
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:RECORD [READ]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:RECORD [READ]",
+        "CLIENT []": "CLIENT []",
         "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]": "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]",
         "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]": "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]",
         "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]": "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]",
         "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]": "NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]",
         "NAMESPACE:{namespace}:PUBLIC:CLOUDSAVE:RECORD [READ]": "NAMESPACE:{namespace}:PUBLIC:CLOUDSAVE:RECORD [READ]",
+        "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]": "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]",
         "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]": "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]",
         "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]": "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]",
         "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]": "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]",
-        "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [WRITE]": "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [WRITE]",
         "NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]": "NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]",
         "NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]": "NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]",
         "NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [WRITE]": "NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [WRITE]"
@@ -69,7 +70,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]\n\nRequired scope: social\n\nRetrieve list of records key by namespace",
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\n\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nRetrieve list of records key by namespace",
         "operationId": "listGameRecordsHandlerV1",
         "parameters": [
           {
@@ -107,7 +108,7 @@
           "200": {
             "description": "Retrieve list of records key by namespace",
             "schema": {
-              "$ref": "#/definitions/models.ListGameRecordKeys"
+              "$ref": "#/definitions/models.ListGameRecordKeysResponse"
             }
           },
           "401": {
@@ -134,7 +135,7 @@
             "authorization": []
           }
         ],
-        "summary": "Retrieve list of records key by namespace",
+        "summary": "Query game records",
         "tags": [
           "AdminGameRecord"
         ]
@@ -145,7 +146,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]\n\nRequired scope: social\n\nThis endpoints delete game record in namespace-level",
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]\u0026lt;/code\u0026gt;\n\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nThis endpoints delete game record in namespace-level",
         "operationId": "adminDeleteGameRecordHandlerV1",
         "parameters": [
           {
@@ -194,7 +195,7 @@
             "authorization": []
           }
         ],
-        "summary": "Purge all records under the given key",
+        "summary": "Delete game record",
         "tags": [
           "AdminGameRecord"
         ]
@@ -203,7 +204,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]\n\nRequired scope: social\n\nGet a record by its key in namespace-level.",
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\n\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nGet a record by its key in namespace-level.",
         "operationId": "adminGetGameRecordHandlerV1",
         "parameters": [
           {
@@ -228,7 +229,7 @@
           "200": {
             "description": "Record in namespace-level retrieved",
             "schema": {
-              "$ref": "#/definitions/models.GameRecord"
+              "$ref": "#/definitions/models.GameRecordResponse"
             }
           },
           "401": {
@@ -261,7 +262,7 @@
             "authorization": []
           }
         ],
-        "summary": "Retrieve a record value by its key",
+        "summary": "Get game record",
         "tags": [
           "AdminGameRecord"
         ]
@@ -270,7 +271,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [WRITE]\n\nRequired scope: social\n\nThis endpoints is to create new game record in namespace-level.",
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will create new game record or append the existing game record.\n\n\u0026lt;b\u0026gt;Append example:\u0026lt;/b\u0026gt;\n\nExample 1\n- \tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n- \tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\nExample 2\n-\tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: { \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\n\n\u0026lt;h2\u0026gt;Record Metadata\u0026lt;/h2\u0026gt;\n\nMetadata allows user to define the behaviour of the record.\nMetadata can be defined in request body with field name \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt;.\nWhen creating record, if \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt; field is not defined, the metadata value will use the default value.\nWhen updating record, if \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt; field is not defined, the existing metadata value will stay as is.\n\n\u0026lt;b\u0026gt;Metadata List:\u0026lt;/b\u0026gt;\n1.\tset_by (default: CLIENT, type: string)\n\tIndicate which party that could modify the game record.\n\tSERVER: record can be modified by server only.\n\tCLIENT: record can be modified by client and server.\n\n\u0026lt;b\u0026gt;Request Body Example:\u0026lt;/b\u0026gt;\n\u0026lt;pre\u0026gt;\n\t{\n\t\t\u0026#34;META\u0026#34;: {\n\t\t\t\u0026#34;set_by\u0026#34;: \u0026#34;SERVER\u0026#34;\n\t\t}\n\t\t...\n\t}\n\u0026lt;/pre\u0026gt;\n",
         "operationId": "adminPostGameRecordHandlerV1",
         "parameters": [
           {
@@ -319,7 +320,8 @@
         "security": [
           {
             "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [WRITE]"
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]",
+              "CLIENT []"
             ],
             "HasScope": [
               "social"
@@ -327,7 +329,7 @@
             "authorization": []
           }
         ],
-        "summary": "Save namespace level record",
+        "summary": "Create or append game record",
         "tags": [
           "AdminGameRecord"
         ]
@@ -336,7 +338,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]\n\nRequired scope: social\n\nThis endpoints is to replace game record data if exists or insert new data in namespace-level",
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will create new game record or replace the existing game record.\n\n\u0026lt;b\u0026gt;Replace behaviour:\u0026lt;/b\u0026gt;\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n- \tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\n\n\u0026lt;h2\u0026gt;Record Metadata\u0026lt;/h2\u0026gt;\n\nMetadata allows user to define the behaviour of the record.\nMetadata can be defined in request body with field name \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt;.\nWhen creating record, if \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt; field is not defined, the metadata value will use the default value.\nWhen updating record, if \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt; field is not defined, the existing metadata value will stay as is.\n\n\u0026lt;b\u0026gt;Metadata List:\u0026lt;/b\u0026gt;\n1.\tset_by (default: CLIENT, type: string)\n\tIndicate which party that could modify the game record.\n\tSERVER: record can be modified by server only.\n\tCLIENT: record can be modified by client and server.\n\n\u0026lt;b\u0026gt;Request Body Example:\u0026lt;/b\u0026gt;\n\u0026lt;pre\u0026gt;\n\t{\n\t\t\u0026#34;META\u0026#34;: {\n\t\t\t\u0026#34;set_by\u0026#34;: \u0026#34;SERVER\u0026#34;\n\t\t}\n\t\t...\n\t}\n\u0026lt;/pre\u0026gt;\n",
         "operationId": "adminPutGameRecordHandlerV1",
         "parameters": [
           {
@@ -385,7 +387,8 @@
         "security": [
           {
             "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]"
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]",
+              "CLIENT []"
             ],
             "HasScope": [
               "social"
@@ -393,7 +396,7 @@
             "authorization": []
           }
         ],
-        "summary": "Save or replace game record",
+        "summary": "Create or replace game record",
         "tags": [
           "AdminGameRecord"
         ]
@@ -405,7 +408,7 @@
           "application/json"
         ],
         "deprecated": true,
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]\n\nRequired scope: social\n\nRetrieve list of player records key and userID under given namespace.",
+        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]\n\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nRetrieve list of player records key and userID under given namespace.",
         "operationId": "listPlayerRecordHandlerV1",
         "parameters": [
           {
@@ -441,7 +444,7 @@
           "200": {
             "description": "Successful operation",
             "schema": {
-              "$ref": "#/definitions/models.ListPlayerRecordKeys"
+              "$ref": "#/definitions/models.ListPlayerRecordKeysResponse"
             }
           },
           "400": {
@@ -485,7 +488,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:RECORD [READ]\n\nRequired scope: social\n\nRetrieve list of player records key and userID under given namespace.",
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:RECORD [READ]\u0026lt;/code\u0026gt;\n\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nRetrieve list of player records key and userID under given namespace.",
         "operationId": "AdminRetrievePlayerRecords",
         "parameters": [
           {
@@ -522,7 +525,7 @@
           "200": {
             "description": "Successful operation",
             "schema": {
-              "$ref": "#/definitions/models.ListPlayerRecordKeys"
+              "$ref": "#/definitions/models.ListPlayerRecordKeysResponse"
             }
           },
           "400": {
@@ -555,7 +558,7 @@
             "authorization": []
           }
         ],
-        "summary": "Retrieve list of player records",
+        "summary": "Query player records",
         "tags": [
           "AdminPlayerRecord"
         ]
@@ -566,7 +569,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]\n\nRequired scope: social\n\nDelete a record (arbitrary JSON data) in user-level with given key. It will delete the record whether it\u0026#39;s private or public record.",
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]\u0026lt;/code\u0026gt;\n\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nDelete a record (arbitrary JSON data) in user-level with given key.",
         "operationId": "adminDeletePlayerRecordHandlerV1",
         "parameters": [
           {
@@ -622,7 +625,7 @@
             "authorization": []
           }
         ],
-        "summary": "Purge player record based on its key",
+        "summary": "Delete player record",
         "tags": [
           "AdminPlayerRecord"
         ]
@@ -631,7 +634,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]\n\nRequired scope: social\n\nGet a record in user-level (arbitrary JSON data) by its key.",
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\n\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nGet a record in user-level (arbitrary JSON data) by its key.",
         "operationId": "adminGetPlayerRecordHandlerV1",
         "parameters": [
           {
@@ -663,7 +666,7 @@
           "200": {
             "description": "Record in user-level retrieved",
             "schema": {
-              "$ref": "#/definitions/models.PlayerRecord"
+              "$ref": "#/definitions/models.PlayerRecordResponse"
             }
           },
           "401": {
@@ -696,7 +699,7 @@
             "authorization": []
           }
         ],
-        "summary": "Retrieve a record value by its key",
+        "summary": "Get player record",
         "tags": [
           "AdminPlayerRecord"
         ]
@@ -705,7 +708,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]\n\nRequired scope: social\n\nSave a record (arbitrary JSON data) in user-level.\nIf a record already exist with given record key, this endpoint will try to merge.\nSame top level key inside body will be replaced, different top level key will be appended.\nRecord saved will be a private record.",
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will create new player record or append the existing player record.\n\n\u0026lt;b\u0026gt;Append example:\u0026lt;/b\u0026gt;\n\nExample 1\n- \tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n- \tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\nExample 2\n-\tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: { \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\n\n\u0026lt;h2\u0026gt;Record Metadata\u0026lt;/h2\u0026gt;\n\nMetadata allows user to define the behaviour of the record.\nMetadata can be defined in request body with field name \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt;.\nWhen creating record, if \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt; field is not defined, the metadata value will use the default value.\nWhen updating record, if \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt; field is not defined, the existing metadata value will stay as is.\n\n\u0026lt;b\u0026gt;Metadata List:\u0026lt;/b\u0026gt;\n1.\tset_by (default: CLIENT, type: string)\n\tIndicate which party that could modify the game record.\n\tSERVER: record can be modified by server only.\n\tCLIENT: record can be modified by client and server.\n2.\tis_public (default: false, type: bool)\n\tIndicate whether the player record is a public record or not.\n\n\u0026lt;b\u0026gt;Request Body Example:\u0026lt;/b\u0026gt;\n\u0026lt;pre\u0026gt;\n\t{\n\t\t\u0026#34;META\u0026#34;: {\n\t\t\t\u0026#34;set_by\u0026#34;: \u0026#34;SERVER\u0026#34;,\n\t\t\t\u0026#34;is_public\u0026#34;: true\n\t\t}\n\t\t...\n\t}\n\u0026lt;/pre\u0026gt;\n",
         "operationId": "adminPostPlayerRecordHandlerV1",
         "parameters": [
           {
@@ -761,7 +764,8 @@
         "security": [
           {
             "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]"
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]",
+              "CLIENT []"
             ],
             "HasScope": [
               "social"
@@ -769,7 +773,7 @@
             "authorization": []
           }
         ],
-        "summary": "Save user level record",
+        "summary": "Create or append player record",
         "tags": [
           "AdminPlayerRecord"
         ]
@@ -778,7 +782,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]\n\nRequired scope: social\n\nSave a record (arbitrary JSON data) in user-level.\nIf a record already exist with given key, this endpoint will replace the record, else will create new Record.\nRecord saved will be a private record.",
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will create new player record or replace the existing player record.\n\n\u0026lt;b\u0026gt;Replace behaviour:\u0026lt;/b\u0026gt;\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n- \tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\n\n\u0026lt;h2\u0026gt;Record Metadata\u0026lt;/h2\u0026gt;\n\nMetadata allows user to define the behaviour of the record.\nMetadata can be defined in request body with field name \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt;.\nWhen creating record, if \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt; field is not defined, the metadata value will use the default value.\nWhen updating record, if \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt; field is not defined, the existing metadata value will stay as is.\n\n\u0026lt;b\u0026gt;Metadata List:\u0026lt;/b\u0026gt;\n1.\tset_by (default: CLIENT, type: string)\n\tIndicate which party that could modify the game record.\n\tSERVER: record can be modified by server only.\n\tCLIENT: record can be modified by client and server.\n2.\tis_public (default: false, type: bool)\n\tIndicate whether the player record is a public record or not.\n\n\u0026lt;b\u0026gt;Request Body Example:\u0026lt;/b\u0026gt;\n\u0026lt;pre\u0026gt;\n\t{\n\t\t\u0026#34;META\u0026#34;: {\n\t\t\t\u0026#34;set_by\u0026#34;: \u0026#34;SERVER\u0026#34;,\n\t\t\t\u0026#34;is_public\u0026#34;: true\n\t\t}\n\t\t...\n\t}\n\u0026lt;/pre\u0026gt;\n\n\u0026lt;h2\u0026gt;Warning: Current Behaviour when Updating Public Record\u0026lt;/h2\u0026gt;\n\nWhen updating existing \u0026#34;Public Record\u0026#34; and metadata \u0026lt;b\u0026gt;is_public\u0026lt;/b\u0026gt; is not defined in the request body, \nthis endpoint will always \u0026lt;b\u0026gt;convert the \u0026#34;Public Record\u0026#34; into \u0026#34;Private Record\u0026#34;\u0026lt;/b\u0026gt;.\nThis behaviour might be deprecated sooner, \u0026lt;b\u0026gt;please don\u0026#39;t rely with that behaviour\u0026lt;/b\u0026gt;.",
         "operationId": "adminPutPlayerRecordHandlerV1",
         "parameters": [
           {
@@ -834,7 +838,8 @@
         "security": [
           {
             "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]"
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]",
+              "CLIENT []"
             ],
             "HasScope": [
               "social"
@@ -853,7 +858,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [DELETE]\n\nRequired scope: social\n\nDelete a public record (arbitrary JSON data) in user-level with given key.",
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [DELETE]\u0026lt;/code\u0026gt;\n\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nDelete a public record (arbitrary JSON data) in user-level with given key.",
         "operationId": "adminDeletePlayerPublicRecordHandlerV1",
         "parameters": [
           {
@@ -915,7 +920,7 @@
             "authorization": []
           }
         ],
-        "summary": "Delete player public record based on its key",
+        "summary": "Delete player public record",
         "tags": [
           "AdminPlayerRecord"
         ]
@@ -924,7 +929,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]\n\nRequired scope: social\n\nGet a record in user-level (arbitrary JSON data) by its key.",
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\n\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nGet a record in user-level (arbitrary JSON data) by its key.",
         "operationId": "adminGetPlayerPublicRecordHandlerV1",
         "parameters": [
           {
@@ -956,7 +961,7 @@
           "200": {
             "description": "Successful operation",
             "schema": {
-              "$ref": "#/definitions/models.PlayerRecord"
+              "$ref": "#/definitions/models.PlayerRecordResponse"
             }
           },
           "401": {
@@ -989,7 +994,7 @@
             "authorization": []
           }
         ],
-        "summary": "Retrieve a player public record value by its key",
+        "summary": "Get player public record",
         "tags": [
           "AdminPlayerRecord"
         ]
@@ -998,7 +1003,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [CREATE]\n\nRequired scope: social\n\nSave a record (arbitrary JSON data) in user-level.\nIf a record already exist with given record key, this endpoint will try to merge.\nSame top level key inside body will be replaced, different top level key will be appended.\nRecord saved will be a public record.\nIf existing record is not public (is_public false) then this endpoint won\u0026#39;t make it public.",
+        "description": "Required permission: \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [CREATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will create new player public record or append the existing player public record.\n\n\u0026lt;b\u0026gt;Append example:\u0026lt;/b\u0026gt;\n\nExample 1\n- \tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n- \tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\nExample 2\n-\tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: { \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n",
         "operationId": "adminPostPlayerPublicRecordHandlerV1",
         "parameters": [
           {
@@ -1068,7 +1073,7 @@
             "authorization": []
           }
         ],
-        "summary": "Save user level record",
+        "summary": "Create or append player public record",
         "tags": [
           "AdminPlayerRecord"
         ]
@@ -1077,7 +1082,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]\n\nRequired scope: social\n\nSave a record (arbitrary JSON data) in user-level.\nIf a record already exist with given key, this endpoint will replace the record, else it will create new Record.\nRecord saved will be a public record.",
+        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will create new player public record or replace the existing player public record.\n\n\u0026lt;b\u0026gt;Replace behaviour:\u0026lt;/b\u0026gt;\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n- \tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\n\n\u0026lt;h2\u0026gt;Warning: Current Behaviour when Updating Private Record\u0026lt;/h2\u0026gt;\n\nWhen updating existing \u0026#34;Private Record\u0026#34;, this endpoint will always \u0026lt;b\u0026gt;convert the \u0026#34;Private Record\u0026#34; into \u0026#34;Public Record\u0026#34;\u0026lt;/b\u0026gt;.\nThis behaviour might be deprecated sooner, \u0026lt;b\u0026gt;please don\u0026#39;t rely with that behaviour\u0026lt;/b\u0026gt;.\n",
         "operationId": "adminPutPlayerPublicRecordHandlerV1",
         "parameters": [
           {
@@ -1147,7 +1152,7 @@
             "authorization": []
           }
         ],
-        "summary": "Create or replace player record",
+        "summary": "Create or replace player public record",
         "tags": [
           "AdminPlayerRecord"
         ]
@@ -1158,7 +1163,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\n\nIf record already exists, it will be replaced with the one from request body (all fields will be\ndeleted). If record is not exists, it will create a new one with value from request body.\n\nExample:\n\nReplace all records\n\u0026lt;pre\u0026gt;\n\t// existed record\n\t{\n\t\t\u0026#34;foo\u0026#34;: \u0026#34;bar\u0026#34;\n\t}\n\n\t// new update (request body)\n\t{\n\t\t\u0026#34;foo_new\u0026#34;: \u0026#34;bar_new\u0026#34;\n\t}\n\n\t// result\n\t{\n\t\t\u0026#34;foo_new\u0026#34;: \u0026#34;bar_new\u0026#34;\n\t}\n\u0026lt;/pre\u0026gt;\n\n\u0026lt;b\u0026gt;Optimistic Concurrency Control\u0026lt;/b\u0026gt;\u0026lt;br\u0026gt;\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed) \nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
+        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\n\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will create new game record or replace the existing game record.\n\n\u0026lt;b\u0026gt;Replace behaviour:\u0026lt;/b\u0026gt;\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n- \tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\n\n\n\u0026lt;h2\u0026gt;Reserved Word\u0026lt;/h2\u0026gt;\n\nReserved Word List: \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt;\n\nThe reserved word cannot be used as a field in record value, \nIf still defining the field when creating or updating the record, it will be ignored.\n\n\n\u0026lt;h2\u0026gt;Optimistic Concurrency Control\u0026lt;/h2\u0026gt;\n\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed) \nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
         "operationId": "putGameRecordConcurrentHandlerV1",
         "parameters": [
           {
@@ -1192,7 +1197,7 @@
             "description": "Record saved"
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18201\u003c/td\u003e\u003ctd\u003einvalid record operator, expect [%s] but actual [%s]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/models.ResponseError"
             }
@@ -1263,6 +1268,12 @@
           "204": {
             "description": "Record deleted"
           },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18201\u003c/td\u003e\u003ctd\u003einvalid record operator, expect [%s] but actual [%s]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
           "401": {
             "description": "Unauthorized",
             "schema": {
@@ -1321,7 +1332,7 @@
           "200": {
             "description": "Record retrieved",
             "schema": {
-              "$ref": "#/definitions/models.GameRecord"
+              "$ref": "#/definitions/models.GameRecordResponse"
             }
           },
           "401": {
@@ -1363,7 +1374,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\n\nIf there\u0026#39;s already record, the record will be merged with conditions:\n- If field name is already exist, the value will be replaced\n- If field name is not exists it will append the field and its value\n\nExample:\n\nReplace value in a specific JSON key\n\u0026lt;pre\u0026gt;\n// existed record\n{\n\t\u0026#34;foo\u0026#34;: \u0026#34;bar\u0026#34;\n}\n\n// new update (request body)\n{\n\t\u0026#34;foo\u0026#34;: \u0026#34;barUpdated\u0026#34;\n}\n\n// result\n{\n\t\u0026#34;foo\u0026#34;: \u0026#34;barUpdated\u0026#34;\n}\n\u0026lt;/pre\u0026gt;\n\nAppend new json item\n\u0026lt;pre\u0026gt;\n// existed record\n{\n\t\u0026#34;foo\u0026#34;: \u0026#34;bar\u0026#34;\n}\n\n// new update (request body)\n{\n\t\u0026#34;foo_new\u0026#34;: \u0026#34;bar_new\u0026#34;\n}\n\n// result\n{\n\t\u0026#34;foo\u0026#34;: \u0026#34;bar\u0026#34;,\n\t\u0026#34;foo_new\u0026#34;: \u0026#34;bar_new\u0026#34;\n}\n\u0026lt;/pre\u0026gt;\n",
+        "description": "Required permission: \u0026lt;code\u0026gt;NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will create new game record or append the existing game record.\n\n\u0026lt;b\u0026gt;Append example:\u0026lt;/b\u0026gt;\n\nExample 1\n- \tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n- \tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\nExample 2\n-\tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: { \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\n\n\n\u0026lt;h2\u0026gt;Reserved Word\u0026lt;/h2\u0026gt;\n\nReserved Word List: \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt;\n\nThe reserved word cannot be used as a field in record value, \nIf still defining the field when creating or updating the record, it will be ignored.\n",
         "operationId": "postGameRecordHandlerV1",
         "parameters": [
           {
@@ -1397,7 +1408,7 @@
             "description": "Record saved"
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18201\u003c/td\u003e\u003ctd\u003einvalid record operator, expect [%s] but actual [%s]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/models.ResponseError"
             }
@@ -1429,7 +1440,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\n\nIf record already exists, it will be replaced with the one from request body (all fields will be\ndeleted). If record is not exists, it will create a new one with value from request body.\n\nExample:\n\nReplace all records\n\u0026lt;pre\u0026gt;\n\t// existed record\n\t{\n\t\t\u0026#34;foo\u0026#34;: \u0026#34;bar\u0026#34;\n\t}\n\n\t// new update (request body)\n\t{\n\t\t\u0026#34;foo_new\u0026#34;: \u0026#34;bar_new\u0026#34;\n\t}\n\n\t// result\n\t{\n\t\t\u0026#34;foo_new\u0026#34;: \u0026#34;bar_new\u0026#34;\n\t}\n\u0026lt;/pre\u0026gt;\n",
+        "description": "Required permission: \u0026lt;code\u0026gt;NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will create new game record or replace the existing game record.\n\n\u0026lt;b\u0026gt;Replace behaviour:\u0026lt;/b\u0026gt;\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n- \tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\n\n\n\u0026lt;h2\u0026gt;Reserved Word\u0026lt;/h2\u0026gt;\n\nReserved Word List: \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt;\n\nThe reserved word cannot be used as a field in record value, \nIf still defining the field when creating or updating the record, it will be ignored.\n",
         "operationId": "putGameRecordHandlerV1",
         "parameters": [
           {
@@ -1463,7 +1474,7 @@
             "description": "Record saved"
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18201\u003c/td\u003e\u003ctd\u003einvalid record operator, expect [%s] but actual [%s]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/models.ResponseError"
             }
@@ -1569,7 +1580,7 @@
             "authorization": []
           }
         ],
-        "summary": "Bulk get other player's public record",
+        "summary": "Bulk get player public records",
         "tags": [
           "PublicPlayerRecord"
         ]
@@ -1580,7 +1591,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required scope: social\n\nRequired valid user authorization\n\nDelete player public record (arbitrary JSON data) in user-level with given key.",
+        "description": "Required scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\nRequired valid user authorization\n\nDelete player public record (arbitrary JSON data) in user-level with given key.",
         "operationId": "publicDeletePlayerPublicRecordHandlerV1",
         "parameters": [
           {
@@ -1604,6 +1615,12 @@
         "responses": {
           "204": {
             "description": "Record deleted"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18201\u003c/td\u003e\u003ctd\u003einvalid record operator, expect [%s] but actual [%s]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
           },
           "401": {
             "description": "Unauthorized",
@@ -1633,7 +1650,7 @@
             "authorization": []
           }
         ],
-        "summary": "Delete player public record based on its key",
+        "summary": "Delete player public record",
         "tags": [
           "PublicPlayerRecord"
         ]
@@ -1644,7 +1661,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\n\nIf the record is not exist, it will create. If the record already exist, it will replace the record\ninstead. And this operation can only be applied to record with \u0026lt;code\u0026gt;isPublic=true\u0026lt;/code\u0026gt;.\n\nExample\n\nReplace record\n\u0026lt;pre\u0026gt;\n// existed record\n{\n\t\u0026#34;foo\u0026#34;: \u0026#34;bar\u0026#34;\n}\n\n// new record (request body)\n{\n\t\u0026#34;foo_new\u0026#34;: \u0026#34;bar_new\u0026#34;\n}\n\n// result\n{\n\t\u0026#34;foo_new\u0026#34;: \u0026#34;bar_new\u0026#34;\n}\n\u0026lt;/pre\u0026gt;\n\t\n\u0026lt;b\u0026gt;Optimistic Concurrency Control\u0026lt;/b\u0026gt;\u0026lt;br\u0026gt;\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)\nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
+        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\n\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will create new player public record or replace the existing player public record.\n\n\u0026lt;b\u0026gt;Replace behaviour:\u0026lt;/b\u0026gt;\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n- \tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\n\n\n\u0026lt;h2\u0026gt;Reserved Word\u0026lt;/h2\u0026gt;\n\nReserved Word List: \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt;\n\nThe reserved word cannot be used as a field in record value, \nIf still defining the field when creating or updating the record, it will be ignored.\n\n\n\u0026lt;h2\u0026gt;Warning: Current Behaviour when Updating Private Record\u0026lt;/h2\u0026gt;\n\nWhen updating existing \u0026#34;Private Record\u0026#34;, this endpoint will always \u0026lt;b\u0026gt;convert the \u0026#34;Private Record\u0026#34; into \u0026#34;Public Record\u0026#34;\u0026lt;/b\u0026gt;.\nThis behaviour might be deprecated sooner, \u0026lt;b\u0026gt;please don\u0026#39;t rely with that behaviour\u0026lt;/b\u0026gt;.\n\n\u0026lt;h2\u0026gt;Optimistic Concurrency Control\u0026lt;/h2\u0026gt;\n\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)\nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
         "operationId": "putPlayerPublicRecordConcurrentHandlerV1",
         "parameters": [
           {
@@ -1685,7 +1702,7 @@
             "description": "Record saved"
           },
           "400": {
-            "description": "Bad Request",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18201\u003c/td\u003e\u003ctd\u003einvalid record operator, expect [%s] but actual [%s]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/models.ResponseError"
             }
@@ -1720,7 +1737,7 @@
             "authorization": []
           }
         ],
-        "summary": "Create or replace player record",
+        "summary": "Create or replace player public record",
         "tags": [
           "ConcurrentRecord"
         ]
@@ -1731,7 +1748,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\n\nDelete player record by its key",
+        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\n\nDelete player record by its key.\nOnly user that own the player record could delete it.\n",
         "operationId": "deletePlayerRecordHandlerV1",
         "parameters": [
           {
@@ -1763,8 +1780,20 @@
           "204": {
             "description": "Record deleted"
           },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18201\u003c/td\u003e\u003ctd\u003einvalid record operator, expect [%s] but actual [%s]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
           "401": {
             "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18072\u003c/td\u003e\u003ctd\u003edelete action is forbidden on other user's record\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/models.ResponseError"
             }
@@ -1796,7 +1825,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\n\nGet player record by its key",
+        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\n\nGet player record by its key.\n\u0026lt;b\u0026gt;Private Record:\u0026lt;/b\u0026gt; Only user that own the player record could retrieve it.",
         "operationId": "getPlayerRecordHandlerV1",
         "parameters": [
           {
@@ -1828,11 +1857,17 @@
           "200": {
             "description": "Record retrieved",
             "schema": {
-              "$ref": "#/definitions/models.PlayerRecord"
+              "$ref": "#/definitions/models.PlayerRecordResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18023\u003c/td\u003e\u003ctd\u003eget action is forbidden on other user's record\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/models.ResponseError"
             }
@@ -1870,7 +1905,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [WRITE]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\n\nCreate player record if it is not exists otherwise merge with these criteria:\n- If field name is already exists, replace the value\n- If field name is not exists, append it\n\nExample\n\nReplace value:\n\u0026lt;pre\u0026gt;\n\t// existed record\n\t{\n\t\t\u0026#34;foo\u0026#34;: \u0026#34;bar\u0026#34;\n\t}\n\n\t// new record (request body)\n\t{\n\t\t\u0026#34;foo\u0026#34;: \u0026#34;bar_updated\u0026#34;\n\t}\n\n\t// result\n\t{\n\t\t\u0026#34;foo\u0026#34;: \u0026#34;bar_updated\u0026#34;\n\t}\n\u0026lt;/pre\u0026gt;\n\nAppend value:\n\u0026lt;pre\u0026gt;\n\t// existed record\n\t{\n\t\t\u0026#34;foo\u0026#34;: \u0026#34;bar\u0026#34;\n\t}\n\n\t// new record (request body)\n\t{\n\t\t\u0026#34;foo_new\u0026#34;: \u0026#34;bar_new\u0026#34;\n\t}\n\n\t// result\n\t{\n\t\t\u0026#34;foo\u0026#34;: \u0026#34;bar\u0026#34;,\n\t\t\u0026#34;foo_new\u0026#34;: \u0026#34;bar_new\u0026#34;\n\t}\n\u0026lt;/pre\u0026gt;\n",
+        "description": "Required permission: \u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will create new player record or append the existing player record.\nOnly user that own the existing player record could modify.\n\n\u0026lt;b\u0026gt;Append example:\u0026lt;/b\u0026gt;\n\nExample 1\n- \tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n- \tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\nExample 2\n-\tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: { \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\n\n\n\u0026lt;h2\u0026gt;Record Metadata\u0026lt;/h2\u0026gt;\n\nMetadata allows user to define the behaviour of the record.\nMetadata can be defined in request body with field name \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt;.\nWhen creating record, if \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt; field is not defined, the metadata value will use the default value.\nWhen updating record, if \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt; field is not defined, the existing metadata value will stay as is.\n\n\u0026lt;b\u0026gt;Metadata List:\u0026lt;/b\u0026gt;\n1.\tis_public (default: false, type: bool)\n\tIndicate whether the player record is a public record or not.\n\n\u0026lt;b\u0026gt;Request Body Example:\u0026lt;/b\u0026gt;\n\u0026lt;pre\u0026gt;\n\t{\n\t\t\u0026#34;META\u0026#34;: {\n\t\t\t\u0026#34;is_public\u0026#34;: true\n\t\t}\n\t\t...\n\t}\n\u0026lt;/pre\u0026gt;\n",
         "operationId": "postPlayerRecordHandlerV1",
         "parameters": [
           {
@@ -1910,8 +1945,20 @@
           "201": {
             "description": "Record saved"
           },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18201\u003c/td\u003e\u003ctd\u003einvalid record operator, expect [%s] but actual [%s]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
           "401": {
             "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18035\u003c/td\u003e\u003ctd\u003epost action is forbidden on other user's record\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/models.ResponseError"
             }
@@ -1926,7 +1973,7 @@
         "security": [
           {
             "HasPermission": [
-              "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [WRITE]"
+              "NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]"
             ],
             "HasScope": [
               "social"
@@ -1943,7 +1990,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\n\nThis endpoint will create new record if it is not exists and it will replace if already exists.\n\nExample\n\nReplace record\n\u0026lt;pre\u0026gt;\n// existed record\n{\n\t\u0026#34;foo\u0026#34;: \u0026#34;bar\u0026#34;\n}\n\n// new record (request body)\n{\n\t\u0026#34;foo_new\u0026#34;: \u0026#34;bar_new\u0026#34;\n}\n\n// result\n{\n\t\u0026#34;foo_new\u0026#34;: \u0026#34;bar_new\u0026#34;\n}\n\u0026lt;/pre\u0026gt;\n",
+        "description": "Required permission: \u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\nRequired scope: \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will create new player record or replace the existing player record.\nOnly user that own the existing player record could modify it.\n\n\u0026lt;b\u0026gt;Replace behaviour:\u0026lt;/b\u0026gt;\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n- \tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\n\n\n\u0026lt;h2\u0026gt;Record Metadata\u0026lt;/h2\u0026gt;\n\nMetadata allows user to define the behaviour of the record.\nMetadata can be defined in request body with field name \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt;.\nWhen creating record, if \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt; field is not defined, the metadata value will use the default value.\nWhen updating record, if \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt; field is not defined, the existing metadata value will stay as is.\n\n\u0026lt;b\u0026gt;Metadata List:\u0026lt;/b\u0026gt;\n1.\tis_public (default: false, type: bool)\n\tIndicate whether the player record is a public record or not.\n\n\u0026lt;b\u0026gt;Request Body Example:\u0026lt;/b\u0026gt;\n\u0026lt;pre\u0026gt;\n\t{\n\t\t\u0026#34;META\u0026#34;: {\n\t\t\t\u0026#34;is_public\u0026#34;: true\n\t\t}\n\t\t...\n\t}\n\u0026lt;/pre\u0026gt;\n\n\n\u0026lt;h2\u0026gt;Warning: Current Behaviour when Updating Public Record\u0026lt;/h2\u0026gt;\n\nWhen updating existing \u0026#34;Public Record\u0026#34; and metadata \u0026lt;b\u0026gt;is_public\u0026lt;/b\u0026gt; is not defined in the request body, \nthis endpoint will always \u0026lt;b\u0026gt;convert the \u0026#34;Public Record\u0026#34; into \u0026#34;Private Record\u0026#34;\u0026lt;/b\u0026gt;.\nThis behaviour might be deprecated sooner, \u0026lt;b\u0026gt;please don\u0026#39;t rely with that behaviour\u0026lt;/b\u0026gt;.",
         "operationId": "putPlayerRecordHandlerV1",
         "parameters": [
           {
@@ -1983,8 +2030,20 @@
           "200": {
             "description": "Record saved"
           },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18201\u003c/td\u003e\u003ctd\u003einvalid record operator, expect [%s] but actual [%s]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
           "401": {
             "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18063\u003c/td\u003e\u003ctd\u003eput action is forbidden on other user's record\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/models.ResponseError"
             }
@@ -2050,7 +2109,7 @@
           "200": {
             "description": "Record retrieved",
             "schema": {
-              "$ref": "#/definitions/models.PlayerRecord"
+              "$ref": "#/definitions/models.PlayerRecordResponse"
             }
           },
           "401": {
@@ -2083,7 +2142,7 @@
             "authorization": []
           }
         ],
-        "summary": "Get other player's public record",
+        "summary": "Get player public record",
         "tags": [
           "PublicPlayerRecord"
         ]
@@ -2092,7 +2151,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [WRITE]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\n\nThis endpoint will create or update player record with \u0026lt;code\u0026gt;isPublic=true\u0026lt;/code\u0026gt; meaning that the\nrecord will be available for other player to be retrieved. Other player can only retrieve the record\nand not create, update or even delete.\n\nThis endpoint will create public player record if it is not exists otherwise merge with these criteria:\n- If field name is already exists, replace the value\n- If field name is not exists, append it\n\nExample\n\nReplace value:\n\u0026lt;pre\u0026gt;\n\t// existed record\n\t{\n\t\t\u0026#34;foo\u0026#34;: \u0026#34;bar\u0026#34;\n\t}\n\n\t// new record (request body)\n\t{\n\t\t\u0026#34;foo\u0026#34;: \u0026#34;bar_updated\u0026#34;\n\t}\n\n\t// result\n\t{\n\t\t\u0026#34;foo\u0026#34;: \u0026#34;bar_updated\u0026#34;\n\t}\n\u0026lt;/pre\u0026gt;\n\nAppend value:\n\u0026lt;pre\u0026gt;\n\t// existed record\n\t{\n\t\t\u0026#34;foo\u0026#34;: \u0026#34;bar\u0026#34;\n\t}\n\n\t// new record (request body)\n\t{\n\t\t\u0026#34;foo_new\u0026#34;: \u0026#34;bar_new\u0026#34;\n\t}\n\n\t// result\n\t{\n\t\t\u0026#34;foo\u0026#34;: \u0026#34;bar\u0026#34;,\n\t\t\u0026#34;foo_new\u0026#34;: \u0026#34;bar_new\u0026#34;\n\t}\n\u0026lt;/pre\u0026gt;\n",
+        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [WRITE]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will create new player public record or append the existing player public record.\n\n\u0026lt;b\u0026gt;Append example:\u0026lt;/b\u0026gt;\n\nExample 1\n- \tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n- \tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\nExample 2\n-\tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: { \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: { \u0026#34;data2\u0026#34;: \u0026#34;value\u0026#34;, \u0026#34;data3\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\n\n\n\u0026lt;h2\u0026gt;Reserved Word\u0026lt;/h2\u0026gt;\n\nReserved Word List: \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt;\n\nThe reserved word cannot be used as a field in record value, \nIf still defining the field when creating or updating the record, it will be ignored.\n",
         "operationId": "postPlayerPublicRecordHandlerV1",
         "parameters": [
           {
@@ -2132,6 +2191,12 @@
           "201": {
             "description": "Record saved"
           },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18201\u003c/td\u003e\u003ctd\u003einvalid record operator, expect [%s] but actual [%s]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
           "401": {
             "description": "Unauthorized",
             "schema": {
@@ -2156,7 +2221,7 @@
             "authorization": []
           }
         ],
-        "summary": "Create public player record",
+        "summary": "Create or append player public record",
         "tags": [
           "PublicPlayerRecord"
         ]
@@ -2165,7 +2230,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\n\nIf the record is not exist, it will create. If the record already exist, it will replace the record\ninstead. And this operation can only be applied to record with \u0026lt;code\u0026gt;isPublic=true\u0026lt;/code\u0026gt;.\n\nExample\n\nReplace record\n\u0026lt;pre\u0026gt;\n// existed record\n{\n\t\u0026#34;foo\u0026#34;: \u0026#34;bar\u0026#34;\n}\n\n// new record (request body)\n{\n\t\u0026#34;foo_new\u0026#34;: \u0026#34;bar_new\u0026#34;\n}\n\n// result\n{\n\t\u0026#34;foo_new\u0026#34;: \u0026#34;bar_new\u0026#34;\n}\n\u0026lt;/pre\u0026gt;\n",
+        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will create new player public record or replace the existing player public record.\n\n\u0026lt;b\u0026gt;Replace behaviour:\u0026lt;/b\u0026gt;\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n- \tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\n\n\n\u0026lt;h2\u0026gt;Reserved Word\u0026lt;/h2\u0026gt;\n\nReserved Word List: \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt;\n\nThe reserved word cannot be used as a field in record value, \nIf still defining the field when creating or updating the record, it will be ignored.\n\n\n\u0026lt;h2\u0026gt;Warning: Current Behaviour when Updating Private Record\u0026lt;/h2\u0026gt;\n\nWhen updating existing \u0026#34;Private Record\u0026#34;, this endpoint will always \u0026lt;b\u0026gt;convert the \u0026#34;Private Record\u0026#34; into \u0026#34;Public Record\u0026#34;\u0026lt;/b\u0026gt;.\nThis behaviour might be deprecated sooner, \u0026lt;b\u0026gt;please don\u0026#39;t rely with that behaviour\u0026lt;/b\u0026gt;.\n",
         "operationId": "putPlayerPublicRecordHandlerV1",
         "parameters": [
           {
@@ -2205,6 +2270,12 @@
           "200": {
             "description": "Record saved"
           },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18201\u003c/td\u003e\u003ctd\u003einvalid record operator, expect [%s] but actual [%s]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
           "401": {
             "description": "Unauthorized",
             "schema": {
@@ -2229,7 +2300,7 @@
             "authorization": []
           }
         ],
-        "summary": "Create or replace player record",
+        "summary": "Create or replace player public record",
         "tags": [
           "PublicPlayerRecord"
         ]
@@ -2241,7 +2312,7 @@
       "properties": {
         "data": {
           "items": {
-            "$ref": "#/definitions/models.PlayerRecord"
+            "$ref": "#/definitions/models.PlayerRecordResponse"
           },
           "type": "array"
         }
@@ -2277,7 +2348,10 @@
         "value"
       ]
     },
-    "models.GameRecord": {
+    "models.GameRecordRequest": {
+      "type": "object"
+    },
+    "models.GameRecordResponse": {
       "properties": {
         "created_at": {
           "format": "date-time",
@@ -2288,6 +2362,11 @@
           "type": "string"
         },
         "namespace": {
+          "type": "string"
+        },
+        "set_by": {
+          "default": "CLIENT",
+          "description": "Indicate which party that could modify the record",
           "type": "string"
         },
         "updated_at": {
@@ -2307,10 +2386,7 @@
         "value"
       ]
     },
-    "models.GameRecordRequest": {
-      "type": "object"
-    },
-    "models.ListGameRecordKeys": {
+    "models.ListGameRecordKeysResponse": {
       "properties": {
         "data": {
           "items": {
@@ -2327,11 +2403,11 @@
         "paging"
       ]
     },
-    "models.ListPlayerRecordKeys": {
+    "models.ListPlayerRecordKeysResponse": {
       "properties": {
         "data": {
           "items": {
-            "$ref": "#/definitions/models.PlayerRecordKey"
+            "$ref": "#/definitions/models.PlayerRecordKeyInfo"
           },
           "type": "array"
         },
@@ -2366,7 +2442,24 @@
         "previous"
       ]
     },
-    "models.PlayerRecord": {
+    "models.PlayerRecordKeyInfo": {
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "user_id"
+      ]
+    },
+    "models.PlayerRecordRequest": {
+      "type": "object"
+    },
+    "models.PlayerRecordResponse": {
       "properties": {
         "created_at": {
           "format": "date-time",
@@ -2374,6 +2467,8 @@
           "x-nullable": false
         },
         "is_public": {
+          "default": false,
+          "description": "Indicate whether the player record is a public record or not",
           "type": "boolean",
           "x-omitempty": false
         },
@@ -2381,6 +2476,11 @@
           "type": "string"
         },
         "namespace": {
+          "type": "string"
+        },
+        "set_by": {
+          "default": "CLIENT",
+          "description": "Indicate which party that could modify the record",
           "type": "string"
         },
         "updated_at": {
@@ -2404,23 +2504,6 @@
         "user_id",
         "value"
       ]
-    },
-    "models.PlayerRecordKey": {
-      "properties": {
-        "key": {
-          "type": "string"
-        },
-        "user_id": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "key",
-        "user_id"
-      ]
-    },
-    "models.PlayerRecordRequest": {
-      "type": "object"
     },
     "models.ResponseError": {
       "properties": {

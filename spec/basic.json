@@ -8,7 +8,7 @@
     },
     "description": "Justice Basic Service",
     "title": "justice-basic-service",
-    "version": "1.34.0"
+    "version": "1.35.0"
   },
   "schemes": [
     "https"
@@ -1258,6 +1258,9 @@
         }
       },
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Add a country groups\u0026lt;br\u0026gt;Country code must follow ISO3166-1 alpha-2.\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource = \u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:MISC\u0026#34;\u0026lt;/b\u0026gt;, action=1 \u0026lt;b\u0026gt;(CREATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11201\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: newly created country group\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "addCountryGroup",
         "parameters": [
@@ -1404,6 +1407,9 @@
         }
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Update a country groups. The countryGroupCode must be exist beforehand.\u0026lt;br\u0026gt;Valid update behaviour :\u0026lt;br/\u0026gt;- To update \u0026lt;i\u0026gt;countryGroupName\u0026lt;/i\u0026gt; only, do not include \u0026lt;i\u0026gt;countries\u0026lt;/i\u0026gt; key or just specify it with empty array.\u0026lt;br/\u0026gt;- To update \u0026lt;i\u0026gt;countries\u0026lt;/i\u0026gt; only, do not include \u0026lt;i\u0026gt;countryGroupName\u0026lt;/i\u0026gt; key or just specify it with blank value.\u0026lt;br/\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource = \u0026lt;b\u0026gt;\u0026#34;ADMIN:NAMESPACE:{namespace}:MISC\u0026#34;\u0026lt;/b\u0026gt;, action=4 \u0026lt;b\u0026gt;(UPDATE)\u0026lt;/b\u0026gt;\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Action code\u0026lt;/i\u0026gt;: 11202\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: updated country group\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updateCountryGroup",
         "parameters": [

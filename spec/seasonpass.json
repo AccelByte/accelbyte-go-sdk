@@ -8,7 +8,7 @@
     },
     "description": "Justice SeasonPass Service",
     "title": "justice-seasonpass-service",
-    "version": "1.10.0"
+    "version": "1.11.1"
   },
   "schemes": [
     "https"
@@ -2040,6 +2040,9 @@
     },
     "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/exp": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "This API is used to grant exp to user, it will auto enroll if there\u0026#39;s no user season but active published season exist, season only located in non-publisher namespace, otherwise ignore.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "grantUserExp",
         "parameters": [
@@ -2105,6 +2108,9 @@
     },
     "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/passes": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "This API is used to grant pass to user, it will auto enroll if there\u0026#39;s no user season but active published season exist, season only located in non-publisher namespace, otherwise ignore.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "grantUserPass",
         "parameters": [
@@ -2300,6 +2306,9 @@
     },
     "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/purchasable": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "This API is used to check pass or tier purchasable, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "checkSeasonPurchasable",
         "parameters": [
@@ -2428,6 +2437,9 @@
     },
     "/seasonpass/admin/namespaces/{namespace}/users/{userId}/seasons/current/tiers": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "This API is used to grant tier to user, it will auto enroll if there\u0026#39;s no user season but active published season exist, season only located in non-publisher namespace, otherwise ignore.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "grantUserTier",
         "parameters": [
@@ -2679,6 +2691,9 @@
     },
     "/seasonpass/public/namespaces/{namespace}/users/{userId}/seasons/current/rewards": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "This API is used to claim reward, season only located in non-publisher namespace.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:SEASONPASS\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: user season data\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicClaimUserReward",
         "parameters": [

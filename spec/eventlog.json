@@ -454,6 +454,9 @@
         ]
       },
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "deprecated": true,
         "description": "Required permission \u0026lt;code\u0026gt;NAMESPACE:{namespace}:EVENT [CREATE]\u0026lt;/code\u0026gt;and scope \u0026lt;code\u0026gt;analytics\u0026lt;/code\u0026gt;",
         "operationId": "PostEventHandler",
@@ -1419,6 +1422,9 @@
         ]
       },
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "deprecated": true,
         "description": "Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EVENT [CREATE]\u0026lt;/code\u0026gt;and scope \u0026lt;code\u0026gt;analytics\u0026lt;/code\u0026gt;",
         "operationId": "RegisterEventHandler",
@@ -1578,6 +1584,9 @@
         ]
       },
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "deprecated": true,
         "description": "Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EVENT [UPDATE]\u0026lt;/code\u0026gt;and scope \u0026lt;code\u0026gt;analytics\u0026lt;/code\u0026gt;",
         "operationId": "UpdateEventRegistryHandler",
@@ -1697,6 +1706,9 @@
     },
     "/event/v2/admin/namespaces/{namespace}/query": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "\u0026lt;p\u0026gt;This endpoint is using POST which is somewhat unfamiliar, \n\t\t\tbut it\u0026#39;s logical that we have to send/post a filter (search term) in order to get the data.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint will not return anything if you give it an empty filters in the request body. \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required permission \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:EVENT [READ]\u0026lt;/code\u0026gt; and scope \u0026lt;code\u0026gt;\u0026#34;+scope+\u0026#34;\u0026lt;/code\u0026gt;\u0026lt;/p\u0026gt;",
         "operationId": "QueryEventStreamHandler",
         "parameters": [

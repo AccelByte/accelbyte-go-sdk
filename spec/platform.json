@@ -8,7 +8,7 @@
     },
     "description": "Justice Platform Service",
     "title": "justice-platform-service",
-    "version": "4.4.2"
+    "version": "4.5.1"
   },
   "schemes": [
     "https"
@@ -243,6 +243,9 @@
     },
     "/platform/admin/fulfillment/scripts/tests/eval": {
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "\u0026lt;b\u0026gt;[TEST FACILITY ONLY]\u0026lt;/b\u0026gt;Test eval fulfillment script.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:FULFILLMENT\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "testFulfillmentScriptEval",
         "parameters": [
@@ -370,6 +373,9 @@
         }
       },
       "patch": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Update fulfillment script.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:FULFILLMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updateFulfillmentScript",
         "parameters": [
@@ -423,6 +429,9 @@
         }
       },
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Create fulfillment script.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:FULFILLMENT\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;Fulfillment scripts are used for adding custom fulfillment logic based on \u0026lt;b\u0026gt;ITEM_TYPE\u0026lt;/b\u0026gt;: [MEDIA,INGAMEITEM] for now, and the custom scripts only cover grantDays.\u0026lt;br\u0026gt;Example for grantDays: \u0026lt;br\u0026gt;\u0026lt;code\u0026gt;order \u0026amp;\u0026amp; ((order.currency \u0026amp;\u0026amp; order.currency.currencyCode) == \u0026#39;LP\u0026#39; || order.isFree) ? 30 : -1\u0026lt;/code\u0026gt;\u0026lt;br\u0026gt;",
         "operationId": "createFulfillmentScript",
         "parameters": [
@@ -5428,6 +5437,9 @@
     },
     "/platform/admin/namespaces/{namespace}/items/{itemId}/acquire": {
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "\u0026lt;b\u0026gt;[SERVICE COMMUNICATION ONLY]\u0026lt;/b\u0026gt; This api is used for acquiring a published item while the item is maxCount limited, it will decrease the sale available count.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: acquire result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "acquireItem",
         "parameters": [
@@ -6084,6 +6096,9 @@
     },
     "/platform/admin/namespaces/{namespace}/items/{itemId}/return": {
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "\u0026lt;b\u0026gt;[SERVICE COMMUNICATION ONLY]\u0026lt;/b\u0026gt; This api is used for returning a published item while the item is maxCount limited, it will increase the sale available count if orderNo already acquired.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:ITEM\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "returnItem",
         "parameters": [
@@ -7438,6 +7453,9 @@
         }
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "\u0026lt;b\u0026gt;[TEST FACILITY ONLY] Forbidden in live environment. \u0026lt;/b\u0026gt; Charge payment order without payment flow for unpaid payment order, usually for test usage to simulate real currency payment process.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:PAYMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: payment order instance\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "chargePaymentOrder",
         "parameters": [
@@ -7596,6 +7614,9 @@
     },
     "/platform/admin/namespaces/{namespace}/payment/orders/{paymentOrderNo}/simulate-notification": {
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "\u0026lt;b\u0026gt;[TEST FACILITY ONLY] Forbidden in live environment. \u0026lt;/b\u0026gt; Simulate payment notification on sandbox payment order, usually for test usage to simulate real currency payment notification.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:PAYMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: notification process result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "simulatePaymentOrderNotification",
         "parameters": [
@@ -8093,6 +8114,9 @@
         }
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "This API is used to update a reward.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:REWARD\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: reward instance\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "updateReward",
         "parameters": [
@@ -8163,6 +8187,9 @@
     },
     "/platform/admin/namespaces/{namespace}/rewards/{rewardId}/match": {
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "\u0026lt;b\u0026gt;[TEST FACILITY ONLY] Forbidden in live environment. \u0026lt;/b\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:REWARD\u0026#34;, action=2 (READ)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: match result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "checkEventCondition",
         "parameters": [
@@ -9162,6 +9189,9 @@
     },
     "/platform/admin/namespaces/{namespace}/tickets/{boothName}/decrement": {
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "\u0026lt;b\u0026gt;[SERVICE COMMUNICATION ONLY]\u0026lt;/b\u0026gt; Decrease ticket(code/key) sale if requested orderNo is already increased.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:TICKET\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "decreaseTicketSale",
         "parameters": [
@@ -9285,6 +9315,9 @@
     },
     "/platform/admin/namespaces/{namespace}/tickets/{boothName}/increment": {
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "\u0026lt;b\u0026gt;[SERVICE COMMUNICATION ONLY]\u0026lt;/b\u0026gt; increase ticket(code/key) sale.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:TICKET\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: Ticket sale increment result\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "increaseTicketSale",
         "parameters": [
@@ -10805,6 +10838,9 @@
     },
     "/platform/admin/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement": {
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Consume user entitlement. If the entitlement useCount is 0, the status will be CONSUMED.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: consumed entitlement\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "consumeUserEntitlement",
         "parameters": [
@@ -11535,6 +11571,9 @@
     },
     "/platform/admin/namespaces/{namespace}/users/{userId}/iap/mock/receipt": {
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "\u0026lt;b\u0026gt;[TEST FACILITY ONLY] Forbidden in live environment. \u0026lt;/b\u0026gt; Mock fulfill iap item without validate receipt.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "mockFulfillIAPItem",
         "parameters": [
@@ -13457,12 +13496,6 @@
               "$ref": "#/definitions/ErrorEntity"
             }
           },
-          "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          },
           "422": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
@@ -13540,12 +13573,6 @@
           },
           "400": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e35123\u003c/td\u003e\u003ctd\u003eWallet [{walletId}] is inactive\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e35124\u003c/td\u003e\u003ctd\u003eWallet [{currencyCode}] has insufficient balance\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
-            "schema": {
-              "$ref": "#/definitions/ErrorEntity"
-            }
-          },
-          "409": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20006\u003c/td\u003e\u003ctd\u003eoptimistic lock\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/ErrorEntity"
             }
@@ -18422,6 +18449,9 @@
     },
     "/platform/public/namespaces/{namespace}/users/{userId}/dlc/psn/sync": {
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Synchronize with dlc entitlements in PSN Store.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: result of synchronization\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicSyncPsnDlcInventory",
         "parameters": [
@@ -18477,6 +18507,9 @@
     },
     "/platform/public/namespaces/{namespace}/users/{userId}/dlc/steam/sync": {
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Sync steam dlc.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "syncSteamDLC",
         "parameters": [
@@ -18526,6 +18559,9 @@
     },
     "/platform/public/namespaces/{namespace}/users/{userId}/dlc/xbl/sync": {
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Sync Xbox inventory\u0026#39;s dlc items.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=NAMESPACE:{namespace}:USER:{userId}:DLC, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "syncXboxDLC",
         "parameters": [
@@ -19308,6 +19344,9 @@
     },
     "/platform/public/namespaces/{namespace}/users/{userId}/entitlements/{entitlementId}/decrement": {
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Consume user entitlement. If the entitlement useCount is 0, the status will be CONSUMED.\u0026lt;br\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: consumed entitlement\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicConsumeUserEntitlement",
         "parameters": [
@@ -19463,6 +19502,9 @@
     },
     "/platform/public/namespaces/{namespace}/users/{userId}/iap/apple/receipt": {
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Verify apple iap receipt and fulfill item.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicFulfillAppleIAPItem",
         "parameters": [
@@ -19536,6 +19578,9 @@
     },
     "/platform/public/namespaces/{namespace}/users/{userId}/iap/epicgames/sync": {
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Sync epic games inventory\u0026#39;s items.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "syncEpicGamesInventory",
         "parameters": [
@@ -19597,6 +19642,9 @@
     },
     "/platform/public/namespaces/{namespace}/users/{userId}/iap/google/receipt": {
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Verify google iap receipt and fulfill item.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "publicFulfillGoogleIAPItem",
         "parameters": [
@@ -19743,6 +19791,9 @@
     },
     "/platform/public/namespaces/{namespace}/users/{userId}/iap/stadia/sync": {
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Sync stadia entitlements.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "syncStadiaEntitlement",
         "parameters": [
@@ -19798,6 +19849,9 @@
     },
     "/platform/public/namespaces/{namespace}/users/{userId}/iap/steam/sync": {
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Sync steam inventory\u0026#39;s items.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "syncSteamInventory",
         "parameters": [
@@ -19853,6 +19907,9 @@
     },
     "/platform/public/namespaces/{namespace}/users/{userId}/iap/twitch/sync": {
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Sync twitch drops entitlements.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "syncTwitchDropsEntitlement",
         "parameters": [
@@ -19908,6 +19965,9 @@
     },
     "/platform/public/namespaces/{namespace}/users/{userId}/iap/xbl/sync": {
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Sync Xbox inventory\u0026#39;s items.\u0026lt;p\u0026gt;Other detail info: \u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:USER:{userId}:IAP\u0026#34;, action=4 (UPDATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: \u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "syncXboxInventory",
         "parameters": [
@@ -25027,7 +25087,15 @@
     "IAPItemEntry": {
       "properties": {
         "itemIdentity": {
-          "description": "item sku",
+          "description": "item id or sku",
+          "type": "string"
+        },
+        "itemIdentityType": {
+          "description": "item identity type",
+          "enum": [
+            "ITEM_ID",
+            "ITEM_SKU"
+          ],
           "type": "string"
         },
         "platformProductIdMap": {
@@ -26487,6 +26555,14 @@
     },
     "MockIAPReceipt": {
       "properties": {
+        "itemIdentityType": {
+          "description": "The item identity type",
+          "enum": [
+            "ITEM_ID",
+            "ITEM_SKU"
+          ],
+          "type": "string"
+        },
         "language": {
           "description": "language value from language tag, allowed format: en, en-US",
           "pattern": "^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$",

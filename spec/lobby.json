@@ -84,13 +84,13 @@
             "description": "maximum number of data",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
             "description": "numbers of row to skip within the result",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -1210,7 +1210,7 @@
     "/lobby/v1/admin/config/namespaces/{namespace}/export": {
       "get": {
         "description": "\n\t\t\t\tRequired permission ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]\n\n\t\t\t\tRequired Scope: social\n\n\t\t\t\tExport lobby configuration to a json file. The file can then be imported from the /import endpoint. \n\t\t\t",
-        "operationId": "ExportConfig",
+        "operationId": "adminExportConfigV1",
         "parameters": [
           {
             "description": "namespace",
@@ -1220,14 +1220,14 @@
             "type": "string"
           }
         ],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "items": {
-                "$ref": "#/definitions/models.ConfigExport"
-              },
-              "type": "array"
+              "$ref": "#/definitions/models.ConfigExport"
             }
           },
           "401": {
@@ -1272,7 +1272,7 @@
           "multipart/form-data"
         ],
         "description": "\n\t\t\t\tRequired permission ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [UPDATE]\n\n\t\t\t\tRequired Scope: social\n\n\t\t\t\tImport config configuration from file. The existing configuration will be replaced.\n\t\t\t\tThe json file to import can be obtained from the /export endpoint. \n\t\t\t",
-        "operationId": "ImportConfig",
+        "operationId": "adminImportConfigV1",
         "parameters": [
           {
             "description": "namespace",
@@ -1354,13 +1354,13 @@
             "description": "maximum number of data",
             "in": "query",
             "name": "limit",
-            "type": "string"
+            "type": "integer"
           },
           {
             "description": "numbers of row to skip within the result",
             "in": "query",
             "name": "offset",
-            "type": "string"
+            "type": "integer"
           }
         ],
         "produces": [
@@ -5101,6 +5101,9 @@
         ]
       },
       "post": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [CREATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;create third party config in a namespace.",
         "operationId": "adminCreateThirdPartyConfig",
         "parameters": [
@@ -5173,6 +5176,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "Required permission : \u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [UPDATE]\u0026lt;/code\u0026gt; with scope \u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;Update third party config in a namespace.",
         "operationId": "adminUpdateThirdPartyConfig",
         "parameters": [
@@ -8007,6 +8013,10 @@
           "format": "integer",
           "type": "integer"
         },
+        "keepPresenceActivityOnDisconnect": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "maxPartyMember": {
           "format": "int32",
           "type": "integer"
@@ -8077,6 +8087,10 @@
           "format": "integer",
           "type": "integer"
         },
+        "keepPresenceActivityOnDisconnect": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "maxPartyMember": {
           "format": "int32",
           "type": "integer"
@@ -8094,6 +8108,7 @@
         }
       },
       "required": [
+        "allowInviteNonConnectedUser",
         "autoKickOnDisconnect",
         "autoKickOnDisconnectDelay",
         "cancelTicketOnDisconnect",
@@ -8106,6 +8121,7 @@
         "entitlementItemID",
         "generalRateLimitBurst",
         "generalRateLimitDuration",
+        "keepPresenceActivityOnDisconnect",
         "maxPartyMember",
         "namespace",
         "profanityFilter",
@@ -8177,6 +8193,10 @@
         "generalRateLimitDuration": {
           "format": "integer",
           "type": "integer"
+        },
+        "keepPresenceActivityOnDisconnect": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "maxPartyMember": {
           "format": "int32",

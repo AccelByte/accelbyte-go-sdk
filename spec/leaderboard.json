@@ -8,7 +8,7 @@
     },
     "description": "Justice Leaderboard Service",
     "title": "justice-leaderboard-service",
-    "version": "2.15.0"
+    "version": "2.15.1"
   },
   "schemes": [
     "https"
@@ -582,6 +582,9 @@
         ]
       },
       "put": {
+        "consumes": [
+          "application/json"
+        ],
         "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:LEADERBOARD [UPDATE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\u0026lt;b\u0026gt;Fields :\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Maximum length for leaderboard name is 128 characters.\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Start time must be follow RFC3339 standard. e.g. 2020-10-02T15:00:00.05Z\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Season period must be greater than 31 days.\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;If seasonPeriod is filled, the LeaderboardConfig would have seasonal leaderboard.\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Reset Date must be a number 1 - 31. Default is \u0026#39;1\u0026#39;.\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Reset Day must be a number 0 - 6. 0 = Sunday, 1 = Monday, 2 = Tuesday, 3 = Wednesday, 4 = Thursday, 5 = Friday, 6 = Saturday (day of week). Default is \u0026#39;0\u0026#39;.\u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;Reset time must be \u0026lt;b\u0026gt;hours:minutes\u0026lt;/b\u0026gt; in 24 hours format e.g. 01:30, 10:30, 15:30, 23:15.\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t",
         "operationId": "updateLeaderboardConfigurationAdminV1",
         "parameters": [

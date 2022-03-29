@@ -63,10 +63,12 @@ func TestIntegrationRetrieveAgreementsPublic(t *testing.T) {
 // Updating marketing preference consent
 func TestIntegrationChangePreferenceConsent(t *testing.T) {
 	t.Parallel()
-	Init()
+
 	bodyLegals = append(bodyLegals, bodyLegal)
 	inputLegal := &agreement.ChangePreferenceConsentParams{
-		Body: bodyLegals,
+		Body:      bodyLegals,
+		Namespace: integration.NamespaceTest,
+		UserID:    GetUserId(),
 	}
 	err := agreementService.ChangePreferenceConsentShort(inputLegal)
 

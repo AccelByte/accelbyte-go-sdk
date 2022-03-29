@@ -21,7 +21,7 @@ var (
 		Client:          factory.NewGroupClient(&integration.ConfigRepositoryImpl{}),
 		TokenRepository: &integration.TokenRepositoryImpl{},
 	}
-	configurationCode = "group-test1"
+	configurationCode = "go-group-test"
 	groupDescription  = "DESCRIPTION"
 	groupMaxMember    = int32(1)
 	groupName         = "Go SDK Group"
@@ -65,7 +65,6 @@ var (
 	}
 )
 
-// TODO: migrate to test namespace, forbidden
 func TestIntegrationGroup(t *testing.T) {
 	t.Parallel()
 	Init()

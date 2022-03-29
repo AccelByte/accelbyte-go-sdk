@@ -52,30 +52,34 @@ type ClientService interface {
 &lt;/table&gt;
 &lt;br/&gt;
 
-If record already exists, it will be replaced with the one from request body (all fields will be
-deleted). If record is not exists, it will create a new one with value from request body.
 
-Example:
+&lt;h2&gt;Description&lt;/h2&gt;
 
-Replace all records
-&lt;pre&gt;
-	// existed record
-	{
-		&#34;foo&#34;: &#34;bar&#34;
-	}
+This endpoints will create new game record or replace the existing game record.
 
-	// new update (request body)
-	{
-		&#34;foo_new&#34;: &#34;bar_new&#34;
-	}
+&lt;b&gt;Replace behaviour:&lt;/b&gt;
+The existing value will be replaced completely with the new value.
 
-	// result
-	{
-		&#34;foo_new&#34;: &#34;bar_new&#34;
-	}
-&lt;/pre&gt;
+Example
+- 	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34; }&lt;/pre&gt;
+- 	New JSON:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
-&lt;b&gt;Optimistic Concurrency Control&lt;/b&gt;&lt;br&gt;
+
+
+&lt;h2&gt;Reserved Word&lt;/h2&gt;
+
+Reserved Word List: &lt;b&gt;META&lt;/b&gt;
+
+The reserved word cannot be used as a field in record value,
+If still defining the field when creating or updating the record, it will be ignored.
+
+
+&lt;h2&gt;Optimistic Concurrency Control&lt;/h2&gt;
+
 This endpoint implement optimistic concurrency control to avoid race condition.
 If the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)
 and client need to redo the operation (fetch data and do update).
@@ -177,7 +181,7 @@ func (a *Client) PutGameRecordConcurrentHandlerV1Short(params *PutGameRecordConc
 }
 
 /*
-  PutPlayerPublicRecordConcurrentHandlerV1 creates or replace player record
+  PutPlayerPublicRecordConcurrentHandlerV1 creates or replace player public record
 
   &lt;table&gt;
 	&lt;tr&gt;
@@ -191,30 +195,39 @@ func (a *Client) PutGameRecordConcurrentHandlerV1Short(params *PutGameRecordConc
 &lt;/table&gt;
 &lt;br/&gt;
 
-If the record is not exist, it will create. If the record already exist, it will replace the record
-instead. And this operation can only be applied to record with &lt;code&gt;isPublic=true&lt;/code&gt;.
+
+&lt;h2&gt;Description&lt;/h2&gt;
+
+This endpoints will create new player public record or replace the existing player public record.
+
+&lt;b&gt;Replace behaviour:&lt;/b&gt;
+The existing value will be replaced completely with the new value.
 
 Example
+- 	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34; }&lt;/pre&gt;
+- 	New JSON:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
-Replace record
-&lt;pre&gt;
-// existed record
-{
-	&#34;foo&#34;: &#34;bar&#34;
-}
 
-// new record (request body)
-{
-	&#34;foo_new&#34;: &#34;bar_new&#34;
-}
 
-// result
-{
-	&#34;foo_new&#34;: &#34;bar_new&#34;
-}
-&lt;/pre&gt;
+&lt;h2&gt;Reserved Word&lt;/h2&gt;
 
-&lt;b&gt;Optimistic Concurrency Control&lt;/b&gt;&lt;br&gt;
+Reserved Word List: &lt;b&gt;META&lt;/b&gt;
+
+The reserved word cannot be used as a field in record value,
+If still defining the field when creating or updating the record, it will be ignored.
+
+
+&lt;h2&gt;Warning: Current Behaviour when Updating Private Record&lt;/h2&gt;
+
+When updating existing &#34;Private Record&#34;, this endpoint will always &lt;b&gt;convert the &#34;Private Record&#34; into &#34;Public Record&#34;&lt;/b&gt;.
+This behaviour might be deprecated sooner, &lt;b&gt;please don&#39;t rely with that behaviour&lt;/b&gt;.
+
+&lt;h2&gt;Optimistic Concurrency Control&lt;/h2&gt;
+
 This endpoint implement optimistic concurrency control to avoid race condition.
 If the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)
 and client need to redo the operation (fetch data and do update).

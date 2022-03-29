@@ -30,6 +30,12 @@ func (o *DeleteGameRecordHandlerV1Reader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewDeleteGameRecordHandlerV1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewDeleteGameRecordHandlerV1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,6 +76,39 @@ func (o *DeleteGameRecordHandlerV1NoContent) Error() string {
 }
 
 func (o *DeleteGameRecordHandlerV1NoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewDeleteGameRecordHandlerV1BadRequest creates a DeleteGameRecordHandlerV1BadRequest with default headers values
+func NewDeleteGameRecordHandlerV1BadRequest() *DeleteGameRecordHandlerV1BadRequest {
+	return &DeleteGameRecordHandlerV1BadRequest{}
+}
+
+/*DeleteGameRecordHandlerV1BadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18201</td><td>invalid record operator, expect [%s] but actual [%s]</td></tr></table>
+*/
+type DeleteGameRecordHandlerV1BadRequest struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *DeleteGameRecordHandlerV1BadRequest) Error() string {
+	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/records/{key}][%d] deleteGameRecordHandlerV1BadRequest  %+v", 400, o.Payload)
+}
+
+func (o *DeleteGameRecordHandlerV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *DeleteGameRecordHandlerV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

@@ -104,13 +104,13 @@ func (c *ConfigService) AdminUpdateConfigV1(input *config.AdminUpdateConfigV1Par
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ExportConfigShort instead
-func (c *ConfigService) ExportConfig(input *config.ExportConfigParams) ([]*lobbyclientmodels.ModelsConfigExport, error) {
+// Deprecated: Use AdminExportConfigV1Short instead
+func (c *ConfigService) AdminExportConfigV1(input *config.AdminExportConfigV1Params) (*lobbyclientmodels.ModelsConfigExport, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, internalServerError, err := c.Client.Config.ExportConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := c.Client.Config.AdminExportConfigV1(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -126,13 +126,13 @@ func (c *ConfigService) ExportConfig(input *config.ExportConfigParams) ([]*lobby
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ImportConfigShort instead
-func (c *ConfigService) ImportConfig(input *config.ImportConfigParams) (*lobbyclientmodels.ModelsImportConfigResponse, error) {
+// Deprecated: Use AdminImportConfigV1Short instead
+func (c *ConfigService) AdminImportConfigV1(input *config.AdminImportConfigV1Params) (*lobbyclientmodels.ModelsImportConfigResponse, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, internalServerError, err := c.Client.Config.ImportConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := c.Client.Config.AdminImportConfigV1(input, client.BearerToken(*accessToken.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -184,24 +184,24 @@ func (c *ConfigService) AdminUpdateConfigV1Short(input *config.AdminUpdateConfig
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) ExportConfigShort(input *config.ExportConfigParams) ([]*lobbyclientmodels.ModelsConfigExport, error) {
+func (c *ConfigService) AdminExportConfigV1Short(input *config.AdminExportConfigV1Params) (*lobbyclientmodels.ModelsConfigExport, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := c.Client.Config.ExportConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Config.AdminExportConfigV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) ImportConfigShort(input *config.ImportConfigParams) (*lobbyclientmodels.ModelsImportConfigResponse, error) {
+func (c *ConfigService) AdminImportConfigV1Short(input *config.AdminImportConfigV1Params) (*lobbyclientmodels.ModelsImportConfigResponse, error) {
 	accessToken, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := c.Client.Config.ImportConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Config.AdminImportConfigV1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

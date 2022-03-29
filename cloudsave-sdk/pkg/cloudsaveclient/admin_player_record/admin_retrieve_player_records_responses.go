@@ -69,20 +69,20 @@ func NewAdminRetrievePlayerRecordsOK() *AdminRetrievePlayerRecordsOK {
   Successful operation
 */
 type AdminRetrievePlayerRecordsOK struct {
-	Payload *cloudsaveclientmodels.ModelsListPlayerRecordKeys
+	Payload *cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse
 }
 
 func (o *AdminRetrievePlayerRecordsOK) Error() string {
 	return fmt.Sprintf("[GET /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records][%d] adminRetrievePlayerRecordsOK  %+v", 200, o.Payload)
 }
 
-func (o *AdminRetrievePlayerRecordsOK) GetPayload() *cloudsaveclientmodels.ModelsListPlayerRecordKeys {
+func (o *AdminRetrievePlayerRecordsOK) GetPayload() *cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse {
 	return o.Payload
 }
 
 func (o *AdminRetrievePlayerRecordsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(cloudsaveclientmodels.ModelsListPlayerRecordKeys)
+	o.Payload = new(cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -14,14 +14,15 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewSingleAdminGetGroupContentsParams creates a new SingleAdminGetGroupContentsParams object
 // with the default values initialized.
 func NewSingleAdminGetGroupContentsParams() *SingleAdminGetGroupContentsParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &SingleAdminGetGroupContentsParams{
 		Limit:  &limitDefault,
@@ -35,8 +36,8 @@ func NewSingleAdminGetGroupContentsParams() *SingleAdminGetGroupContentsParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewSingleAdminGetGroupContentsParamsWithTimeout(timeout time.Duration) *SingleAdminGetGroupContentsParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &SingleAdminGetGroupContentsParams{
 		Limit:  &limitDefault,
@@ -50,8 +51,8 @@ func NewSingleAdminGetGroupContentsParamsWithTimeout(timeout time.Duration) *Sin
 // with the default values initialized, and the ability to set a context for a request
 func NewSingleAdminGetGroupContentsParamsWithContext(ctx context.Context) *SingleAdminGetGroupContentsParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &SingleAdminGetGroupContentsParams{
 		Limit:  &limitDefault,
@@ -65,8 +66,8 @@ func NewSingleAdminGetGroupContentsParamsWithContext(ctx context.Context) *Singl
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewSingleAdminGetGroupContentsParamsWithHTTPClient(client *http.Client) *SingleAdminGetGroupContentsParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &SingleAdminGetGroupContentsParams{
 		Limit:      &limitDefault,
@@ -89,7 +90,7 @@ type SingleAdminGetGroupContentsParams struct {
 	  number of content per page
 
 	*/
-	Limit *string
+	Limit *int64
 	/*Namespace
 	  namespace of the game
 
@@ -99,7 +100,7 @@ type SingleAdminGetGroupContentsParams struct {
 	  the offset number to retrieve
 
 	*/
-	Offset *string
+	Offset *int64
 
 	timeout    time.Duration
 	Context    context.Context
@@ -151,13 +152,13 @@ func (o *SingleAdminGetGroupContentsParams) SetGroupID(groupID string) {
 }
 
 // WithLimit adds the limit to the single admin get group contents params
-func (o *SingleAdminGetGroupContentsParams) WithLimit(limit *string) *SingleAdminGetGroupContentsParams {
+func (o *SingleAdminGetGroupContentsParams) WithLimit(limit *int64) *SingleAdminGetGroupContentsParams {
 	o.SetLimit(limit)
 	return o
 }
 
 // SetLimit adds the limit to the single admin get group contents params
-func (o *SingleAdminGetGroupContentsParams) SetLimit(limit *string) {
+func (o *SingleAdminGetGroupContentsParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
@@ -173,13 +174,13 @@ func (o *SingleAdminGetGroupContentsParams) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the single admin get group contents params
-func (o *SingleAdminGetGroupContentsParams) WithOffset(offset *string) *SingleAdminGetGroupContentsParams {
+func (o *SingleAdminGetGroupContentsParams) WithOffset(offset *int64) *SingleAdminGetGroupContentsParams {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the single admin get group contents params
-func (o *SingleAdminGetGroupContentsParams) SetOffset(offset *string) {
+func (o *SingleAdminGetGroupContentsParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
@@ -199,11 +200,11 @@ func (o *SingleAdminGetGroupContentsParams) WriteToRequest(r runtime.ClientReque
 	if o.Limit != nil {
 
 		// query param limit
-		var qrLimit string
+		var qrLimit int64
 		if o.Limit != nil {
 			qrLimit = *o.Limit
 		}
-		qLimit := qrLimit
+		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
 				return err
@@ -220,11 +221,11 @@ func (o *SingleAdminGetGroupContentsParams) WriteToRequest(r runtime.ClientReque
 	if o.Offset != nil {
 
 		// query param offset
-		var qrOffset string
+		var qrOffset int64
 		if o.Offset != nil {
 			qrOffset = *o.Offset
 		}
-		qOffset := qrOffset
+		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
 				return err

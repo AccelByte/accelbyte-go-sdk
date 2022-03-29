@@ -36,6 +36,12 @@ func (o *GetPlayerRecordHandlerV1Reader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return result, nil
+	case 403:
+		result := NewGetPlayerRecordHandlerV1Forbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 404:
 		result := NewGetPlayerRecordHandlerV1NotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -69,20 +75,20 @@ func NewGetPlayerRecordHandlerV1OK() *GetPlayerRecordHandlerV1OK {
   Record retrieved
 */
 type GetPlayerRecordHandlerV1OK struct {
-	Payload *cloudsaveclientmodels.ModelsPlayerRecord
+	Payload *cloudsaveclientmodels.ModelsPlayerRecordResponse
 }
 
 func (o *GetPlayerRecordHandlerV1OK) Error() string {
 	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] getPlayerRecordHandlerV1OK  %+v", 200, o.Payload)
 }
 
-func (o *GetPlayerRecordHandlerV1OK) GetPayload() *cloudsaveclientmodels.ModelsPlayerRecord {
+func (o *GetPlayerRecordHandlerV1OK) GetPayload() *cloudsaveclientmodels.ModelsPlayerRecordResponse {
 	return o.Payload
 }
 
 func (o *GetPlayerRecordHandlerV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(cloudsaveclientmodels.ModelsPlayerRecord)
+	o.Payload = new(cloudsaveclientmodels.ModelsPlayerRecordResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -114,6 +120,39 @@ func (o *GetPlayerRecordHandlerV1Unauthorized) GetPayload() *cloudsaveclientmode
 }
 
 func (o *GetPlayerRecordHandlerV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetPlayerRecordHandlerV1Forbidden creates a GetPlayerRecordHandlerV1Forbidden with default headers values
+func NewGetPlayerRecordHandlerV1Forbidden() *GetPlayerRecordHandlerV1Forbidden {
+	return &GetPlayerRecordHandlerV1Forbidden{}
+}
+
+/*GetPlayerRecordHandlerV1Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18023</td><td>get action is forbidden on other user's record</td></tr></table>
+*/
+type GetPlayerRecordHandlerV1Forbidden struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *GetPlayerRecordHandlerV1Forbidden) Error() string {
+	return fmt.Sprintf("[GET /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] getPlayerRecordHandlerV1Forbidden  %+v", 403, o.Payload)
+}
+
+func (o *GetPlayerRecordHandlerV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *GetPlayerRecordHandlerV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 

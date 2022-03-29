@@ -12,10 +12,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// ModelsPlayerRecordKey models player record key
+// ModelsPlayerRecordKeyInfo models player record key info
 //
-// swagger:model models.PlayerRecordKey
-type ModelsPlayerRecordKey struct {
+// swagger:model models.PlayerRecordKeyInfo
+type ModelsPlayerRecordKeyInfo struct {
 
 	// key
 	// Required: true
@@ -26,8 +26,8 @@ type ModelsPlayerRecordKey struct {
 	UserID *string `json:"user_id"`
 }
 
-// Validate validates this models player record key
-func (m *ModelsPlayerRecordKey) Validate(formats strfmt.Registry) error {
+// Validate validates this models player record key info
+func (m *ModelsPlayerRecordKeyInfo) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateKey(formats); err != nil {
@@ -44,7 +44,7 @@ func (m *ModelsPlayerRecordKey) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsPlayerRecordKey) validateKey(formats strfmt.Registry) error {
+func (m *ModelsPlayerRecordKeyInfo) validateKey(formats strfmt.Registry) error {
 
 	if err := validate.Required("key", "body", m.Key); err != nil {
 		return err
@@ -53,7 +53,7 @@ func (m *ModelsPlayerRecordKey) validateKey(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsPlayerRecordKey) validateUserID(formats strfmt.Registry) error {
+func (m *ModelsPlayerRecordKeyInfo) validateUserID(formats strfmt.Registry) error {
 
 	if err := validate.Required("user_id", "body", m.UserID); err != nil {
 		return err
@@ -63,7 +63,7 @@ func (m *ModelsPlayerRecordKey) validateUserID(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *ModelsPlayerRecordKey) MarshalBinary() ([]byte, error) {
+func (m *ModelsPlayerRecordKeyInfo) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -71,8 +71,8 @@ func (m *ModelsPlayerRecordKey) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *ModelsPlayerRecordKey) UnmarshalBinary(b []byte) error {
-	var res ModelsPlayerRecordKey
+func (m *ModelsPlayerRecordKeyInfo) UnmarshalBinary(b []byte) error {
+	var res ModelsPlayerRecordKeyInfo
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

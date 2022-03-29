@@ -54,6 +54,9 @@ type ModelsConfig struct {
 	// general rate limit duration
 	GeneralRateLimitDuration int64 `json:"generalRateLimitDuration,omitempty"`
 
+	// keep presence activity on disconnect
+	KeepPresenceActivityOnDisconnect bool `json:"keepPresenceActivityOnDisconnect"`
+
 	// max party member
 	MaxPartyMember int32 `json:"maxPartyMember,omitempty"`
 

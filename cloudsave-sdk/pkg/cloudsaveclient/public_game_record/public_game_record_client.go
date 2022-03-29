@@ -29,7 +29,7 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	DeleteGameRecordHandlerV1(params *DeleteGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameRecordHandlerV1NoContent, *DeleteGameRecordHandlerV1Unauthorized, *DeleteGameRecordHandlerV1InternalServerError, error)
+	DeleteGameRecordHandlerV1(params *DeleteGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameRecordHandlerV1NoContent, *DeleteGameRecordHandlerV1BadRequest, *DeleteGameRecordHandlerV1Unauthorized, *DeleteGameRecordHandlerV1InternalServerError, error)
 	DeleteGameRecordHandlerV1Short(params *DeleteGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameRecordHandlerV1NoContent, error)
 	GetGameRecordHandlerV1(params *GetGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordHandlerV1OK, *GetGameRecordHandlerV1Unauthorized, *GetGameRecordHandlerV1NotFound, *GetGameRecordHandlerV1InternalServerError, error)
 	GetGameRecordHandlerV1Short(params *GetGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetGameRecordHandlerV1OK, error)
@@ -59,7 +59,7 @@ type ClientService interface {
 Delete records by its key
 
 */
-func (a *Client) DeleteGameRecordHandlerV1(params *DeleteGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameRecordHandlerV1NoContent, *DeleteGameRecordHandlerV1Unauthorized, *DeleteGameRecordHandlerV1InternalServerError, error) {
+func (a *Client) DeleteGameRecordHandlerV1(params *DeleteGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeleteGameRecordHandlerV1NoContent, *DeleteGameRecordHandlerV1BadRequest, *DeleteGameRecordHandlerV1Unauthorized, *DeleteGameRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteGameRecordHandlerV1Params()
@@ -83,22 +83,25 @@ func (a *Client) DeleteGameRecordHandlerV1(params *DeleteGameRecordHandlerV1Para
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *DeleteGameRecordHandlerV1NoContent:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
+
+	case *DeleteGameRecordHandlerV1BadRequest:
+		return nil, v, nil, nil, nil
 
 	case *DeleteGameRecordHandlerV1Unauthorized:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *DeleteGameRecordHandlerV1InternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -133,6 +136,8 @@ func (a *Client) DeleteGameRecordHandlerV1Short(params *DeleteGameRecordHandlerV
 
 	case *DeleteGameRecordHandlerV1NoContent:
 		return v, nil
+	case *DeleteGameRecordHandlerV1BadRequest:
+		return nil, v
 	case *DeleteGameRecordHandlerV1Unauthorized:
 		return nil, v
 	case *DeleteGameRecordHandlerV1InternalServerError:
@@ -252,60 +257,39 @@ func (a *Client) GetGameRecordHandlerV1Short(params *GetGameRecordHandlerV1Param
 /*
   PostGameRecordHandlerV1 creates or append game record
 
-  &lt;table&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Required Permission&lt;/td&gt;
-		&lt;td&gt;&lt;code&gt;NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]&lt;/code&gt;&lt;/td&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Required Scope&lt;/td&gt;
-		&lt;td&gt;&lt;code&gt;social&lt;/code&gt;&lt;/td&gt;
-	&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br/&gt;
+  Required permission: &lt;code&gt;NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]&lt;/code&gt;
+Required scope: &lt;code&gt;social&lt;/code&gt;
 
-If there&#39;s already record, the record will be merged with conditions:
-- If field name is already exist, the value will be replaced
-- If field name is not exists it will append the field and its value
+&lt;h2&gt;Description&lt;/h2&gt;
 
-Example:
+This endpoints will create new game record or append the existing game record.
 
-Replace value in a specific JSON key
-&lt;pre&gt;
-// existed record
-{
-	&#34;foo&#34;: &#34;bar&#34;
-}
+&lt;b&gt;Append example:&lt;/b&gt;
 
-// new update (request body)
-{
-	&#34;foo&#34;: &#34;barUpdated&#34;
-}
+Example 1
+- 	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34; }&lt;/pre&gt;
+- 	New JSON:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34;, &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
-// result
-{
-	&#34;foo&#34;: &#34;barUpdated&#34;
-}
-&lt;/pre&gt;
+Example 2
+-	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data2&#34;: &#34;value&#34; }&lt;/pre&gt;
+-	New JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data3&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data2&#34;: &#34;value&#34;, &#34;data3&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
-Append new json item
-&lt;pre&gt;
-// existed record
-{
-	&#34;foo&#34;: &#34;bar&#34;
-}
 
-// new update (request body)
-{
-	&#34;foo_new&#34;: &#34;bar_new&#34;
-}
 
-// result
-{
-	&#34;foo&#34;: &#34;bar&#34;,
-	&#34;foo_new&#34;: &#34;bar_new&#34;
-}
-&lt;/pre&gt;
+&lt;h2&gt;Reserved Word&lt;/h2&gt;
+
+Reserved Word List: &lt;b&gt;META&lt;/b&gt;
+
+The reserved word cannot be used as a field in record value,
+If still defining the field when creating or updating the record, it will be ignored.
 
 */
 func (a *Client) PostGameRecordHandlerV1(params *PostGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostGameRecordHandlerV1Created, *PostGameRecordHandlerV1BadRequest, *PostGameRecordHandlerV1InternalServerError, error) {
@@ -395,40 +379,32 @@ func (a *Client) PostGameRecordHandlerV1Short(params *PostGameRecordHandlerV1Par
 /*
   PutGameRecordHandlerV1 creates or replace game record
 
-  &lt;table&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Required Permission&lt;/td&gt;
-		&lt;td&gt;&lt;code&gt;NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]&lt;/code&gt;&lt;/td&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Required Scope&lt;/td&gt;
-		&lt;td&gt;&lt;code&gt;social&lt;/code&gt;&lt;/td&gt;
-	&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br/&gt;
+  Required permission: &lt;code&gt;NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]&lt;/code&gt;
+Required scope: &lt;code&gt;social&lt;/code&gt;
 
-If record already exists, it will be replaced with the one from request body (all fields will be
-deleted). If record is not exists, it will create a new one with value from request body.
+&lt;h2&gt;Description&lt;/h2&gt;
 
-Example:
+This endpoints will create new game record or replace the existing game record.
 
-Replace all records
-&lt;pre&gt;
-	// existed record
-	{
-		&#34;foo&#34;: &#34;bar&#34;
-	}
+&lt;b&gt;Replace behaviour:&lt;/b&gt;
+The existing value will be replaced completely with the new value.
 
-	// new update (request body)
-	{
-		&#34;foo_new&#34;: &#34;bar_new&#34;
-	}
+Example
+- 	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34; }&lt;/pre&gt;
+- 	New JSON:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
-	// result
-	{
-		&#34;foo_new&#34;: &#34;bar_new&#34;
-	}
-&lt;/pre&gt;
+
+
+&lt;h2&gt;Reserved Word&lt;/h2&gt;
+
+Reserved Word List: &lt;b&gt;META&lt;/b&gt;
+
+The reserved word cannot be used as a field in record value,
+If still defining the field when creating or updating the record, it will be ignored.
 
 */
 func (a *Client) PutGameRecordHandlerV1(params *PutGameRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutGameRecordHandlerV1OK, *PutGameRecordHandlerV1BadRequest, *PutGameRecordHandlerV1InternalServerError, error) {

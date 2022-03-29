@@ -30,8 +30,20 @@ func (o *DeletePlayerRecordHandlerV1Reader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewDeletePlayerRecordHandlerV1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewDeletePlayerRecordHandlerV1Unauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 403:
+		result := NewDeletePlayerRecordHandlerV1Forbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -74,6 +86,39 @@ func (o *DeletePlayerRecordHandlerV1NoContent) readResponse(response runtime.Cli
 	return nil
 }
 
+// NewDeletePlayerRecordHandlerV1BadRequest creates a DeletePlayerRecordHandlerV1BadRequest with default headers values
+func NewDeletePlayerRecordHandlerV1BadRequest() *DeletePlayerRecordHandlerV1BadRequest {
+	return &DeletePlayerRecordHandlerV1BadRequest{}
+}
+
+/*DeletePlayerRecordHandlerV1BadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18201</td><td>invalid record operator, expect [%s] but actual [%s]</td></tr></table>
+*/
+type DeletePlayerRecordHandlerV1BadRequest struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *DeletePlayerRecordHandlerV1BadRequest) Error() string {
+	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] deletePlayerRecordHandlerV1BadRequest  %+v", 400, o.Payload)
+}
+
+func (o *DeletePlayerRecordHandlerV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *DeletePlayerRecordHandlerV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewDeletePlayerRecordHandlerV1Unauthorized creates a DeletePlayerRecordHandlerV1Unauthorized with default headers values
 func NewDeletePlayerRecordHandlerV1Unauthorized() *DeletePlayerRecordHandlerV1Unauthorized {
 	return &DeletePlayerRecordHandlerV1Unauthorized{}
@@ -96,6 +141,39 @@ func (o *DeletePlayerRecordHandlerV1Unauthorized) GetPayload() *cloudsaveclientm
 }
 
 func (o *DeletePlayerRecordHandlerV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewDeletePlayerRecordHandlerV1Forbidden creates a DeletePlayerRecordHandlerV1Forbidden with default headers values
+func NewDeletePlayerRecordHandlerV1Forbidden() *DeletePlayerRecordHandlerV1Forbidden {
+	return &DeletePlayerRecordHandlerV1Forbidden{}
+}
+
+/*DeletePlayerRecordHandlerV1Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18072</td><td>delete action is forbidden on other user's record</td></tr></table>
+*/
+type DeletePlayerRecordHandlerV1Forbidden struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *DeletePlayerRecordHandlerV1Forbidden) Error() string {
+	return fmt.Sprintf("[DELETE /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] deletePlayerRecordHandlerV1Forbidden  %+v", 403, o.Payload)
+}
+
+func (o *DeletePlayerRecordHandlerV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *DeletePlayerRecordHandlerV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 

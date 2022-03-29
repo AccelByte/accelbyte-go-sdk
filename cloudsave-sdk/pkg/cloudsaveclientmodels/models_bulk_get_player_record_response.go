@@ -21,7 +21,7 @@ type ModelsBulkGetPlayerRecordResponse struct {
 
 	// data
 	// Required: true
-	Data []*ModelsPlayerRecord `json:"data"`
+	Data []*ModelsPlayerRecordResponse `json:"data"`
 }
 
 // Validate validates this models bulk get player record response

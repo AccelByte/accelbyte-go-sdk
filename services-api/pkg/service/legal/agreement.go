@@ -17,6 +17,19 @@ type AgreementService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use ChangePreferenceConsentShort instead
+func (a *AgreementService) ChangePreferenceConsent(input *agreement.ChangePreferenceConsentParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Agreement.ChangePreferenceConsent(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 // Deprecated: Use RetrieveAcceptedAgreementsShort instead
 func (a *AgreementService) RetrieveAcceptedAgreements(input *agreement.RetrieveAcceptedAgreementsParams) ([]*legalclientmodels.RetrieveAcceptedAgreementResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
@@ -46,13 +59,13 @@ func (a *AgreementService) RetrieveAllUsersByPolicyVersion(input *agreement.Retr
 	return ok.GetPayload(), nil
 }
 
-// Deprecated: Use ChangePreferenceConsentShort instead
-func (a *AgreementService) ChangePreferenceConsent(input *agreement.ChangePreferenceConsentParams) error {
+// Deprecated: Use ChangePreferenceConsent1Short instead
+func (a *AgreementService) ChangePreferenceConsent1(input *agreement.ChangePreferenceConsent1Params) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := a.Client.Agreement.ChangePreferenceConsent(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, err := a.Client.Agreement.ChangePreferenceConsent1(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -127,6 +140,18 @@ func (a *AgreementService) IndirectBulkAcceptVersionedPolicy1(input *agreement.I
 	return created.GetPayload(), nil
 }
 
+func (a *AgreementService) ChangePreferenceConsentShort(input *agreement.ChangePreferenceConsentParams) error {
+	accessToken, err := a.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = a.Client.Agreement.ChangePreferenceConsentShort(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func (a *AgreementService) RetrieveAcceptedAgreementsShort(input *agreement.RetrieveAcceptedAgreementsParams) ([]*legalclientmodels.RetrieveAcceptedAgreementResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
@@ -151,12 +176,12 @@ func (a *AgreementService) RetrieveAllUsersByPolicyVersionShort(input *agreement
 	return ok.GetPayload(), nil
 }
 
-func (a *AgreementService) ChangePreferenceConsentShort(input *agreement.ChangePreferenceConsentParams) error {
+func (a *AgreementService) ChangePreferenceConsent1Short(input *agreement.ChangePreferenceConsent1Params) error {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = a.Client.Agreement.ChangePreferenceConsentShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err = a.Client.Agreement.ChangePreferenceConsent1Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}

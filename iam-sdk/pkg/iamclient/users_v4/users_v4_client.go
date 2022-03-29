@@ -31,10 +31,32 @@ type Client struct {
 type ClientService interface {
 	AdminAddUserRoleV4(params *AdminAddUserRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserRoleV4OK, *AdminAddUserRoleV4BadRequest, *AdminAddUserRoleV4Forbidden, *AdminAddUserRoleV4NotFound, *AdminAddUserRoleV4UnprocessableEntity, *AdminAddUserRoleV4InternalServerError, error)
 	AdminAddUserRoleV4Short(params *AdminAddUserRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminAddUserRoleV4OK, error)
+	AdminBulkCheckValidUserIDV4(params *AdminBulkCheckValidUserIDV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkCheckValidUserIDV4OK, *AdminBulkCheckValidUserIDV4BadRequest, *AdminBulkCheckValidUserIDV4Unauthorized, *AdminBulkCheckValidUserIDV4Forbidden, *AdminBulkCheckValidUserIDV4InternalServerError, error)
+	AdminBulkCheckValidUserIDV4Short(params *AdminBulkCheckValidUserIDV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkCheckValidUserIDV4OK, error)
+	AdminDisableMyAuthenticatorV4(params *AdminDisableMyAuthenticatorV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableMyAuthenticatorV4NoContent, *AdminDisableMyAuthenticatorV4BadRequest, *AdminDisableMyAuthenticatorV4Unauthorized, *AdminDisableMyAuthenticatorV4Forbidden, *AdminDisableMyAuthenticatorV4NotFound, *AdminDisableMyAuthenticatorV4InternalServerError, error)
+	AdminDisableMyAuthenticatorV4Short(params *AdminDisableMyAuthenticatorV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableMyAuthenticatorV4NoContent, error)
+	AdminDisableMyBackupCodesV4(params *AdminDisableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableMyBackupCodesV4NoContent, *AdminDisableMyBackupCodesV4BadRequest, *AdminDisableMyBackupCodesV4Unauthorized, *AdminDisableMyBackupCodesV4Forbidden, *AdminDisableMyBackupCodesV4NotFound, *AdminDisableMyBackupCodesV4InternalServerError, error)
+	AdminDisableMyBackupCodesV4Short(params *AdminDisableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableMyBackupCodesV4NoContent, error)
+	AdminDownloadMyBackupCodesV4(params *AdminDownloadMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDownloadMyBackupCodesV4OK, *AdminDownloadMyBackupCodesV4BadRequest, *AdminDownloadMyBackupCodesV4Unauthorized, *AdminDownloadMyBackupCodesV4Forbidden, *AdminDownloadMyBackupCodesV4NotFound, *AdminDownloadMyBackupCodesV4InternalServerError, error)
+	AdminDownloadMyBackupCodesV4Short(params *AdminDownloadMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDownloadMyBackupCodesV4OK, error)
+	AdminEnableMyAuthenticatorV4(params *AdminEnableMyAuthenticatorV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminEnableMyAuthenticatorV4NoContent, *AdminEnableMyAuthenticatorV4BadRequest, *AdminEnableMyAuthenticatorV4Unauthorized, *AdminEnableMyAuthenticatorV4Forbidden, *AdminEnableMyAuthenticatorV4NotFound, *AdminEnableMyAuthenticatorV4Conflict, *AdminEnableMyAuthenticatorV4InternalServerError, error)
+	AdminEnableMyAuthenticatorV4Short(params *AdminEnableMyAuthenticatorV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminEnableMyAuthenticatorV4NoContent, error)
+	AdminEnableMyBackupCodesV4(params *AdminEnableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminEnableMyBackupCodesV4OK, *AdminEnableMyBackupCodesV4BadRequest, *AdminEnableMyBackupCodesV4Unauthorized, *AdminEnableMyBackupCodesV4Forbidden, *AdminEnableMyBackupCodesV4NotFound, *AdminEnableMyBackupCodesV4Conflict, *AdminEnableMyBackupCodesV4InternalServerError, error)
+	AdminEnableMyBackupCodesV4Short(params *AdminEnableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminEnableMyBackupCodesV4OK, error)
+	AdminGenerateMyAuthenticatorKeyV4(params *AdminGenerateMyAuthenticatorKeyV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGenerateMyAuthenticatorKeyV4OK, *AdminGenerateMyAuthenticatorKeyV4BadRequest, *AdminGenerateMyAuthenticatorKeyV4Unauthorized, *AdminGenerateMyAuthenticatorKeyV4Forbidden, *AdminGenerateMyAuthenticatorKeyV4NotFound, *AdminGenerateMyAuthenticatorKeyV4InternalServerError, error)
+	AdminGenerateMyAuthenticatorKeyV4Short(params *AdminGenerateMyAuthenticatorKeyV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGenerateMyAuthenticatorKeyV4OK, error)
+	AdminGenerateMyBackupCodesV4(params *AdminGenerateMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGenerateMyBackupCodesV4OK, *AdminGenerateMyBackupCodesV4BadRequest, *AdminGenerateMyBackupCodesV4Unauthorized, *AdminGenerateMyBackupCodesV4Forbidden, *AdminGenerateMyBackupCodesV4NotFound, *AdminGenerateMyBackupCodesV4InternalServerError, error)
+	AdminGenerateMyBackupCodesV4Short(params *AdminGenerateMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGenerateMyBackupCodesV4OK, error)
+	AdminGetMyBackupCodesV4(params *AdminGetMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMyBackupCodesV4OK, *AdminGetMyBackupCodesV4BadRequest, *AdminGetMyBackupCodesV4Unauthorized, *AdminGetMyBackupCodesV4Forbidden, *AdminGetMyBackupCodesV4NotFound, *AdminGetMyBackupCodesV4InternalServerError, error)
+	AdminGetMyBackupCodesV4Short(params *AdminGetMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMyBackupCodesV4OK, error)
+	AdminGetMyEnabledFactorsV4(params *AdminGetMyEnabledFactorsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMyEnabledFactorsV4OK, *AdminGetMyEnabledFactorsV4BadRequest, *AdminGetMyEnabledFactorsV4Unauthorized, *AdminGetMyEnabledFactorsV4Forbidden, *AdminGetMyEnabledFactorsV4NotFound, *AdminGetMyEnabledFactorsV4InternalServerError, error)
+	AdminGetMyEnabledFactorsV4Short(params *AdminGetMyEnabledFactorsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMyEnabledFactorsV4OK, error)
 	AdminInviteUserV4(params *AdminInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV4Created, *AdminInviteUserV4BadRequest, *AdminInviteUserV4NotFound, *AdminInviteUserV4Conflict, *AdminInviteUserV4UnprocessableEntity, *AdminInviteUserV4InternalServerError, error)
 	AdminInviteUserV4Short(params *AdminInviteUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminInviteUserV4Created, error)
 	AdminListUserRolesV4(params *AdminListUserRolesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserRolesV4OK, *AdminListUserRolesV4Forbidden, *AdminListUserRolesV4NotFound, *AdminListUserRolesV4InternalServerError, error)
 	AdminListUserRolesV4Short(params *AdminListUserRolesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminListUserRolesV4OK, error)
+	AdminMakeFactorMyDefaultV4(params *AdminMakeFactorMyDefaultV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminMakeFactorMyDefaultV4NoContent, *AdminMakeFactorMyDefaultV4BadRequest, *AdminMakeFactorMyDefaultV4Unauthorized, *AdminMakeFactorMyDefaultV4Forbidden, *AdminMakeFactorMyDefaultV4NotFound, *AdminMakeFactorMyDefaultV4InternalServerError, error)
+	AdminMakeFactorMyDefaultV4Short(params *AdminMakeFactorMyDefaultV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminMakeFactorMyDefaultV4NoContent, error)
 	AdminRemoveUserRoleV4(params *AdminRemoveUserRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveUserRoleV4NoContent, *AdminRemoveUserRoleV4BadRequest, *AdminRemoveUserRoleV4Forbidden, *AdminRemoveUserRoleV4NotFound, *AdminRemoveUserRoleV4UnprocessableEntity, *AdminRemoveUserRoleV4InternalServerError, error)
 	AdminRemoveUserRoleV4Short(params *AdminRemoveUserRoleV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminRemoveUserRoleV4NoContent, error)
 	AdminUpdateMyUserV4(params *AdminUpdateMyUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateMyUserV4OK, *AdminUpdateMyUserV4BadRequest, *AdminUpdateMyUserV4Unauthorized, *AdminUpdateMyUserV4Conflict, *AdminUpdateMyUserV4InternalServerError, error)
@@ -51,6 +73,26 @@ type ClientService interface {
 	PublicCreateTestUserV4Short(params *PublicCreateTestUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateTestUserV4Created, error)
 	PublicCreateUserV4(params *PublicCreateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV4Created, *PublicCreateUserV4BadRequest, *PublicCreateUserV4NotFound, *PublicCreateUserV4Conflict, *PublicCreateUserV4InternalServerError, error)
 	PublicCreateUserV4Short(params *PublicCreateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicCreateUserV4Created, error)
+	PublicDisableMyAuthenticatorV4(params *PublicDisableMyAuthenticatorV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDisableMyAuthenticatorV4NoContent, *PublicDisableMyAuthenticatorV4BadRequest, *PublicDisableMyAuthenticatorV4Unauthorized, *PublicDisableMyAuthenticatorV4Forbidden, *PublicDisableMyAuthenticatorV4NotFound, *PublicDisableMyAuthenticatorV4InternalServerError, error)
+	PublicDisableMyAuthenticatorV4Short(params *PublicDisableMyAuthenticatorV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDisableMyAuthenticatorV4NoContent, error)
+	PublicDisableMyBackupCodesV4(params *PublicDisableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDisableMyBackupCodesV4NoContent, *PublicDisableMyBackupCodesV4BadRequest, *PublicDisableMyBackupCodesV4Unauthorized, *PublicDisableMyBackupCodesV4Forbidden, *PublicDisableMyBackupCodesV4NotFound, *PublicDisableMyBackupCodesV4InternalServerError, error)
+	PublicDisableMyBackupCodesV4Short(params *PublicDisableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDisableMyBackupCodesV4NoContent, error)
+	PublicDownloadMyBackupCodesV4(params *PublicDownloadMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadMyBackupCodesV4OK, *PublicDownloadMyBackupCodesV4BadRequest, *PublicDownloadMyBackupCodesV4Unauthorized, *PublicDownloadMyBackupCodesV4Forbidden, *PublicDownloadMyBackupCodesV4NotFound, *PublicDownloadMyBackupCodesV4InternalServerError, error)
+	PublicDownloadMyBackupCodesV4Short(params *PublicDownloadMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadMyBackupCodesV4OK, error)
+	PublicEnableMyAuthenticatorV4(params *PublicEnableMyAuthenticatorV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicEnableMyAuthenticatorV4NoContent, *PublicEnableMyAuthenticatorV4BadRequest, *PublicEnableMyAuthenticatorV4Unauthorized, *PublicEnableMyAuthenticatorV4Forbidden, *PublicEnableMyAuthenticatorV4NotFound, *PublicEnableMyAuthenticatorV4Conflict, *PublicEnableMyAuthenticatorV4InternalServerError, error)
+	PublicEnableMyAuthenticatorV4Short(params *PublicEnableMyAuthenticatorV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicEnableMyAuthenticatorV4NoContent, error)
+	PublicEnableMyBackupCodesV4(params *PublicEnableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicEnableMyBackupCodesV4OK, *PublicEnableMyBackupCodesV4BadRequest, *PublicEnableMyBackupCodesV4Unauthorized, *PublicEnableMyBackupCodesV4Forbidden, *PublicEnableMyBackupCodesV4NotFound, *PublicEnableMyBackupCodesV4Conflict, *PublicEnableMyBackupCodesV4InternalServerError, error)
+	PublicEnableMyBackupCodesV4Short(params *PublicEnableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicEnableMyBackupCodesV4OK, error)
+	PublicGenerateMyAuthenticatorKeyV4(params *PublicGenerateMyAuthenticatorKeyV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGenerateMyAuthenticatorKeyV4OK, *PublicGenerateMyAuthenticatorKeyV4BadRequest, *PublicGenerateMyAuthenticatorKeyV4Unauthorized, *PublicGenerateMyAuthenticatorKeyV4Forbidden, *PublicGenerateMyAuthenticatorKeyV4NotFound, *PublicGenerateMyAuthenticatorKeyV4InternalServerError, error)
+	PublicGenerateMyAuthenticatorKeyV4Short(params *PublicGenerateMyAuthenticatorKeyV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGenerateMyAuthenticatorKeyV4OK, error)
+	PublicGenerateMyBackupCodesV4(params *PublicGenerateMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGenerateMyBackupCodesV4OK, *PublicGenerateMyBackupCodesV4BadRequest, *PublicGenerateMyBackupCodesV4Unauthorized, *PublicGenerateMyBackupCodesV4Forbidden, *PublicGenerateMyBackupCodesV4NotFound, *PublicGenerateMyBackupCodesV4InternalServerError, error)
+	PublicGenerateMyBackupCodesV4Short(params *PublicGenerateMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGenerateMyBackupCodesV4OK, error)
+	PublicGetMyBackupCodesV4(params *PublicGetMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyBackupCodesV4OK, *PublicGetMyBackupCodesV4BadRequest, *PublicGetMyBackupCodesV4Unauthorized, *PublicGetMyBackupCodesV4Forbidden, *PublicGetMyBackupCodesV4NotFound, *PublicGetMyBackupCodesV4InternalServerError, error)
+	PublicGetMyBackupCodesV4Short(params *PublicGetMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyBackupCodesV4OK, error)
+	PublicGetMyEnabledFactorsV4(params *PublicGetMyEnabledFactorsV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyEnabledFactorsV4OK, *PublicGetMyEnabledFactorsV4BadRequest, *PublicGetMyEnabledFactorsV4Unauthorized, *PublicGetMyEnabledFactorsV4Forbidden, *PublicGetMyEnabledFactorsV4NotFound, *PublicGetMyEnabledFactorsV4InternalServerError, error)
+	PublicGetMyEnabledFactorsV4Short(params *PublicGetMyEnabledFactorsV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyEnabledFactorsV4OK, error)
+	PublicMakeFactorMyDefaultV4(params *PublicMakeFactorMyDefaultV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicMakeFactorMyDefaultV4NoContent, *PublicMakeFactorMyDefaultV4BadRequest, *PublicMakeFactorMyDefaultV4Unauthorized, *PublicMakeFactorMyDefaultV4Forbidden, *PublicMakeFactorMyDefaultV4NotFound, *PublicMakeFactorMyDefaultV4InternalServerError, error)
+	PublicMakeFactorMyDefaultV4Short(params *PublicMakeFactorMyDefaultV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicMakeFactorMyDefaultV4NoContent, error)
 	PublicUpdateUserEmailAddressV4(params *PublicUpdateUserEmailAddressV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserEmailAddressV4NoContent, *PublicUpdateUserEmailAddressV4BadRequest, *PublicUpdateUserEmailAddressV4Unauthorized, *PublicUpdateUserEmailAddressV4NotFound, *PublicUpdateUserEmailAddressV4Conflict, *PublicUpdateUserEmailAddressV4InternalServerError, error)
 	PublicUpdateUserEmailAddressV4Short(params *PublicUpdateUserEmailAddressV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserEmailAddressV4NoContent, error)
 	PublicUpdateUserV4(params *PublicUpdateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserV4OK, *PublicUpdateUserV4BadRequest, *PublicUpdateUserV4Unauthorized, *PublicUpdateUserV4Conflict, *PublicUpdateUserV4InternalServerError, error)
@@ -164,6 +206,1074 @@ func (a *Client) AdminAddUserRoleV4Short(params *AdminAddUserRoleV4Params, authI
 	case *AdminAddUserRoleV4UnprocessableEntity:
 		return nil, v
 	case *AdminAddUserRoleV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminBulkCheckValidUserIDV4 admins check valid user ID
+
+  Use this endpoint to check if userID exists or not
+			&lt;br&gt;Required permission &#39; ADMIN:NAMESPACE:{namespace}:USER [READ]&#39;
+			&lt;br&gt;Maximum number of userID to be checked is 50
+*/
+func (a *Client) AdminBulkCheckValidUserIDV4(params *AdminBulkCheckValidUserIDV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkCheckValidUserIDV4OK, *AdminBulkCheckValidUserIDV4BadRequest, *AdminBulkCheckValidUserIDV4Unauthorized, *AdminBulkCheckValidUserIDV4Forbidden, *AdminBulkCheckValidUserIDV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminBulkCheckValidUserIDV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminBulkCheckValidUserIDV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/namespaces/{namespace}/users/bulk/validate",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminBulkCheckValidUserIDV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminBulkCheckValidUserIDV4OK:
+		return v, nil, nil, nil, nil, nil
+
+	case *AdminBulkCheckValidUserIDV4BadRequest:
+		return nil, v, nil, nil, nil, nil
+
+	case *AdminBulkCheckValidUserIDV4Unauthorized:
+		return nil, nil, v, nil, nil, nil
+
+	case *AdminBulkCheckValidUserIDV4Forbidden:
+		return nil, nil, nil, v, nil, nil
+
+	case *AdminBulkCheckValidUserIDV4InternalServerError:
+		return nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminBulkCheckValidUserIDV4Short(params *AdminBulkCheckValidUserIDV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkCheckValidUserIDV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminBulkCheckValidUserIDV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminBulkCheckValidUserIDV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/namespaces/{namespace}/users/bulk/validate",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminBulkCheckValidUserIDV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminBulkCheckValidUserIDV4OK:
+		return v, nil
+	case *AdminBulkCheckValidUserIDV4BadRequest:
+		return nil, v
+	case *AdminBulkCheckValidUserIDV4Unauthorized:
+		return nil, v
+	case *AdminBulkCheckValidUserIDV4Forbidden:
+		return nil, v
+	case *AdminBulkCheckValidUserIDV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminDisableMyAuthenticatorV4 disables 2 f a authenticator
+
+  &lt;p&gt;(In Development)This endpoint is used to disable 2FA authenticator.&lt;/p&gt;
+&lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
+
+*/
+func (a *Client) AdminDisableMyAuthenticatorV4(params *AdminDisableMyAuthenticatorV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableMyAuthenticatorV4NoContent, *AdminDisableMyAuthenticatorV4BadRequest, *AdminDisableMyAuthenticatorV4Unauthorized, *AdminDisableMyAuthenticatorV4Forbidden, *AdminDisableMyAuthenticatorV4NotFound, *AdminDisableMyAuthenticatorV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDisableMyAuthenticatorV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDisableMyAuthenticatorV4",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/authenticator/disable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDisableMyAuthenticatorV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDisableMyAuthenticatorV4NoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminDisableMyAuthenticatorV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminDisableMyAuthenticatorV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminDisableMyAuthenticatorV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminDisableMyAuthenticatorV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminDisableMyAuthenticatorV4InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminDisableMyAuthenticatorV4Short(params *AdminDisableMyAuthenticatorV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableMyAuthenticatorV4NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDisableMyAuthenticatorV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDisableMyAuthenticatorV4",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/authenticator/disable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDisableMyAuthenticatorV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDisableMyAuthenticatorV4NoContent:
+		return v, nil
+	case *AdminDisableMyAuthenticatorV4BadRequest:
+		return nil, v
+	case *AdminDisableMyAuthenticatorV4Unauthorized:
+		return nil, v
+	case *AdminDisableMyAuthenticatorV4Forbidden:
+		return nil, v
+	case *AdminDisableMyAuthenticatorV4NotFound:
+		return nil, v
+	case *AdminDisableMyAuthenticatorV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminDisableMyBackupCodesV4 disables 2 f a backup codes
+
+  &lt;p&gt;(In Development)This endpoint is used to enable 2FA backup codes.&lt;/p&gt;
+&lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
+
+*/
+func (a *Client) AdminDisableMyBackupCodesV4(params *AdminDisableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableMyBackupCodesV4NoContent, *AdminDisableMyBackupCodesV4BadRequest, *AdminDisableMyBackupCodesV4Unauthorized, *AdminDisableMyBackupCodesV4Forbidden, *AdminDisableMyBackupCodesV4NotFound, *AdminDisableMyBackupCodesV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDisableMyBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDisableMyBackupCodesV4",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/backupCode/disable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDisableMyBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDisableMyBackupCodesV4NoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminDisableMyBackupCodesV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminDisableMyBackupCodesV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminDisableMyBackupCodesV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminDisableMyBackupCodesV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminDisableMyBackupCodesV4InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminDisableMyBackupCodesV4Short(params *AdminDisableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableMyBackupCodesV4NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDisableMyBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDisableMyBackupCodesV4",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/backupCode/disable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDisableMyBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDisableMyBackupCodesV4NoContent:
+		return v, nil
+	case *AdminDisableMyBackupCodesV4BadRequest:
+		return nil, v
+	case *AdminDisableMyBackupCodesV4Unauthorized:
+		return nil, v
+	case *AdminDisableMyBackupCodesV4Forbidden:
+		return nil, v
+	case *AdminDisableMyBackupCodesV4NotFound:
+		return nil, v
+	case *AdminDisableMyBackupCodesV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminDownloadMyBackupCodesV4 downloads user backup codes
+
+  &lt;p&gt;(In Development)This endpoint is used to download backup codes.&lt;/p&gt;
+&lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
+
+*/
+func (a *Client) AdminDownloadMyBackupCodesV4(params *AdminDownloadMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDownloadMyBackupCodesV4OK, *AdminDownloadMyBackupCodesV4BadRequest, *AdminDownloadMyBackupCodesV4Unauthorized, *AdminDownloadMyBackupCodesV4Forbidden, *AdminDownloadMyBackupCodesV4NotFound, *AdminDownloadMyBackupCodesV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDownloadMyBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDownloadMyBackupCodesV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/backupCode/download",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDownloadMyBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDownloadMyBackupCodesV4OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminDownloadMyBackupCodesV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminDownloadMyBackupCodesV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminDownloadMyBackupCodesV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminDownloadMyBackupCodesV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminDownloadMyBackupCodesV4InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminDownloadMyBackupCodesV4Short(params *AdminDownloadMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDownloadMyBackupCodesV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDownloadMyBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDownloadMyBackupCodesV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/backupCode/download",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDownloadMyBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDownloadMyBackupCodesV4OK:
+		return v, nil
+	case *AdminDownloadMyBackupCodesV4BadRequest:
+		return nil, v
+	case *AdminDownloadMyBackupCodesV4Unauthorized:
+		return nil, v
+	case *AdminDownloadMyBackupCodesV4Forbidden:
+		return nil, v
+	case *AdminDownloadMyBackupCodesV4NotFound:
+		return nil, v
+	case *AdminDownloadMyBackupCodesV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminEnableMyAuthenticatorV4 enables 2 f a authenticator
+
+  &lt;p&gt;(In Development)This endpoint is used to enable 2FA authenticator.&lt;/p&gt;
+&lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
+
+*/
+func (a *Client) AdminEnableMyAuthenticatorV4(params *AdminEnableMyAuthenticatorV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminEnableMyAuthenticatorV4NoContent, *AdminEnableMyAuthenticatorV4BadRequest, *AdminEnableMyAuthenticatorV4Unauthorized, *AdminEnableMyAuthenticatorV4Forbidden, *AdminEnableMyAuthenticatorV4NotFound, *AdminEnableMyAuthenticatorV4Conflict, *AdminEnableMyAuthenticatorV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminEnableMyAuthenticatorV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminEnableMyAuthenticatorV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/authenticator/enable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminEnableMyAuthenticatorV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminEnableMyAuthenticatorV4NoContent:
+		return v, nil, nil, nil, nil, nil, nil, nil
+
+	case *AdminEnableMyAuthenticatorV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *AdminEnableMyAuthenticatorV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *AdminEnableMyAuthenticatorV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
+
+	case *AdminEnableMyAuthenticatorV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *AdminEnableMyAuthenticatorV4Conflict:
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *AdminEnableMyAuthenticatorV4InternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminEnableMyAuthenticatorV4Short(params *AdminEnableMyAuthenticatorV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminEnableMyAuthenticatorV4NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminEnableMyAuthenticatorV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminEnableMyAuthenticatorV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/authenticator/enable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminEnableMyAuthenticatorV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminEnableMyAuthenticatorV4NoContent:
+		return v, nil
+	case *AdminEnableMyAuthenticatorV4BadRequest:
+		return nil, v
+	case *AdminEnableMyAuthenticatorV4Unauthorized:
+		return nil, v
+	case *AdminEnableMyAuthenticatorV4Forbidden:
+		return nil, v
+	case *AdminEnableMyAuthenticatorV4NotFound:
+		return nil, v
+	case *AdminEnableMyAuthenticatorV4Conflict:
+		return nil, v
+	case *AdminEnableMyAuthenticatorV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminEnableMyBackupCodesV4 enables 2 f a backup codes
+
+  &lt;p&gt;(In Development)This endpoint is used to enable 2FA backup codes.&lt;/p&gt;
+&lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
+
+*/
+func (a *Client) AdminEnableMyBackupCodesV4(params *AdminEnableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminEnableMyBackupCodesV4OK, *AdminEnableMyBackupCodesV4BadRequest, *AdminEnableMyBackupCodesV4Unauthorized, *AdminEnableMyBackupCodesV4Forbidden, *AdminEnableMyBackupCodesV4NotFound, *AdminEnableMyBackupCodesV4Conflict, *AdminEnableMyBackupCodesV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminEnableMyBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminEnableMyBackupCodesV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/backupCode/enable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminEnableMyBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminEnableMyBackupCodesV4OK:
+		return v, nil, nil, nil, nil, nil, nil, nil
+
+	case *AdminEnableMyBackupCodesV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *AdminEnableMyBackupCodesV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *AdminEnableMyBackupCodesV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
+
+	case *AdminEnableMyBackupCodesV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *AdminEnableMyBackupCodesV4Conflict:
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *AdminEnableMyBackupCodesV4InternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminEnableMyBackupCodesV4Short(params *AdminEnableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminEnableMyBackupCodesV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminEnableMyBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminEnableMyBackupCodesV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/backupCode/enable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminEnableMyBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminEnableMyBackupCodesV4OK:
+		return v, nil
+	case *AdminEnableMyBackupCodesV4BadRequest:
+		return nil, v
+	case *AdminEnableMyBackupCodesV4Unauthorized:
+		return nil, v
+	case *AdminEnableMyBackupCodesV4Forbidden:
+		return nil, v
+	case *AdminEnableMyBackupCodesV4NotFound:
+		return nil, v
+	case *AdminEnableMyBackupCodesV4Conflict:
+		return nil, v
+	case *AdminEnableMyBackupCodesV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminGenerateMyAuthenticatorKeyV4 generates secret key for 3rd party authenticate app
+
+  &lt;p&gt;(In Development)This endpoint is used to generate a secret key for 3rd-party authenticator app.
+A QR code URI is also returned so that frontend can generate QR code image.&lt;/p&gt;
+&lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
+
+*/
+func (a *Client) AdminGenerateMyAuthenticatorKeyV4(params *AdminGenerateMyAuthenticatorKeyV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGenerateMyAuthenticatorKeyV4OK, *AdminGenerateMyAuthenticatorKeyV4BadRequest, *AdminGenerateMyAuthenticatorKeyV4Unauthorized, *AdminGenerateMyAuthenticatorKeyV4Forbidden, *AdminGenerateMyAuthenticatorKeyV4NotFound, *AdminGenerateMyAuthenticatorKeyV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGenerateMyAuthenticatorKeyV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGenerateMyAuthenticatorKeyV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/authenticator/key",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGenerateMyAuthenticatorKeyV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGenerateMyAuthenticatorKeyV4OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminGenerateMyAuthenticatorKeyV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminGenerateMyAuthenticatorKeyV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminGenerateMyAuthenticatorKeyV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminGenerateMyAuthenticatorKeyV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminGenerateMyAuthenticatorKeyV4InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGenerateMyAuthenticatorKeyV4Short(params *AdminGenerateMyAuthenticatorKeyV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGenerateMyAuthenticatorKeyV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGenerateMyAuthenticatorKeyV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGenerateMyAuthenticatorKeyV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/authenticator/key",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGenerateMyAuthenticatorKeyV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGenerateMyAuthenticatorKeyV4OK:
+		return v, nil
+	case *AdminGenerateMyAuthenticatorKeyV4BadRequest:
+		return nil, v
+	case *AdminGenerateMyAuthenticatorKeyV4Unauthorized:
+		return nil, v
+	case *AdminGenerateMyAuthenticatorKeyV4Forbidden:
+		return nil, v
+	case *AdminGenerateMyAuthenticatorKeyV4NotFound:
+		return nil, v
+	case *AdminGenerateMyAuthenticatorKeyV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminGenerateMyBackupCodesV4 generates backup codes
+
+  &lt;p&gt;(In Development)This endpoint is used to generate 8-digits backup codes.
+Each code is a one-time code and will be deleted once used.&lt;/p&gt;
+&lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
+
+*/
+func (a *Client) AdminGenerateMyBackupCodesV4(params *AdminGenerateMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGenerateMyBackupCodesV4OK, *AdminGenerateMyBackupCodesV4BadRequest, *AdminGenerateMyBackupCodesV4Unauthorized, *AdminGenerateMyBackupCodesV4Forbidden, *AdminGenerateMyBackupCodesV4NotFound, *AdminGenerateMyBackupCodesV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGenerateMyBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGenerateMyBackupCodesV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/backupCode",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGenerateMyBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGenerateMyBackupCodesV4OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminGenerateMyBackupCodesV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminGenerateMyBackupCodesV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminGenerateMyBackupCodesV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminGenerateMyBackupCodesV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminGenerateMyBackupCodesV4InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGenerateMyBackupCodesV4Short(params *AdminGenerateMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGenerateMyBackupCodesV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGenerateMyBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGenerateMyBackupCodesV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/backupCode",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGenerateMyBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGenerateMyBackupCodesV4OK:
+		return v, nil
+	case *AdminGenerateMyBackupCodesV4BadRequest:
+		return nil, v
+	case *AdminGenerateMyBackupCodesV4Unauthorized:
+		return nil, v
+	case *AdminGenerateMyBackupCodesV4Forbidden:
+		return nil, v
+	case *AdminGenerateMyBackupCodesV4NotFound:
+		return nil, v
+	case *AdminGenerateMyBackupCodesV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminGetMyBackupCodesV4 gets backup codes
+
+  &lt;p&gt;(In Development)This endpoint is used to get 8-digits backup codes.
+Each code is a one-time code and will be deleted once used.&lt;/p&gt;
+&lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
+
+*/
+func (a *Client) AdminGetMyBackupCodesV4(params *AdminGetMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMyBackupCodesV4OK, *AdminGetMyBackupCodesV4BadRequest, *AdminGetMyBackupCodesV4Unauthorized, *AdminGetMyBackupCodesV4Forbidden, *AdminGetMyBackupCodesV4NotFound, *AdminGetMyBackupCodesV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetMyBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetMyBackupCodesV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/backupCode",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetMyBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetMyBackupCodesV4OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminGetMyBackupCodesV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminGetMyBackupCodesV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminGetMyBackupCodesV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminGetMyBackupCodesV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminGetMyBackupCodesV4InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetMyBackupCodesV4Short(params *AdminGetMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMyBackupCodesV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetMyBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetMyBackupCodesV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/backupCode",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetMyBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetMyBackupCodesV4OK:
+		return v, nil
+	case *AdminGetMyBackupCodesV4BadRequest:
+		return nil, v
+	case *AdminGetMyBackupCodesV4Unauthorized:
+		return nil, v
+	case *AdminGetMyBackupCodesV4Forbidden:
+		return nil, v
+	case *AdminGetMyBackupCodesV4NotFound:
+		return nil, v
+	case *AdminGetMyBackupCodesV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminGetMyEnabledFactorsV4 gets user enabled factors
+
+  &lt;p&gt;(In Development)This endpoint is used to get user enabled factors.&lt;/p&gt;
+&lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
+
+*/
+func (a *Client) AdminGetMyEnabledFactorsV4(params *AdminGetMyEnabledFactorsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMyEnabledFactorsV4OK, *AdminGetMyEnabledFactorsV4BadRequest, *AdminGetMyEnabledFactorsV4Unauthorized, *AdminGetMyEnabledFactorsV4Forbidden, *AdminGetMyEnabledFactorsV4NotFound, *AdminGetMyEnabledFactorsV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetMyEnabledFactorsV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetMyEnabledFactorsV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/factor",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetMyEnabledFactorsV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetMyEnabledFactorsV4OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminGetMyEnabledFactorsV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminGetMyEnabledFactorsV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminGetMyEnabledFactorsV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminGetMyEnabledFactorsV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminGetMyEnabledFactorsV4InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminGetMyEnabledFactorsV4Short(params *AdminGetMyEnabledFactorsV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetMyEnabledFactorsV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminGetMyEnabledFactorsV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminGetMyEnabledFactorsV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/factor",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminGetMyEnabledFactorsV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminGetMyEnabledFactorsV4OK:
+		return v, nil
+	case *AdminGetMyEnabledFactorsV4BadRequest:
+		return nil, v
+	case *AdminGetMyEnabledFactorsV4Unauthorized:
+		return nil, v
+	case *AdminGetMyEnabledFactorsV4Forbidden:
+		return nil, v
+	case *AdminGetMyEnabledFactorsV4NotFound:
+		return nil, v
+	case *AdminGetMyEnabledFactorsV4InternalServerError:
 		return nil, v
 
 	default:
@@ -372,6 +1482,112 @@ func (a *Client) AdminListUserRolesV4Short(params *AdminListUserRolesV4Params, a
 	case *AdminListUserRolesV4NotFound:
 		return nil, v
 	case *AdminListUserRolesV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminMakeFactorMyDefaultV4 makes 2 f a factor default
+
+  &lt;p&gt;(In Development)This endpoint is used to make 2FA factor default.&lt;/p&gt;
+&lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
+
+*/
+func (a *Client) AdminMakeFactorMyDefaultV4(params *AdminMakeFactorMyDefaultV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminMakeFactorMyDefaultV4NoContent, *AdminMakeFactorMyDefaultV4BadRequest, *AdminMakeFactorMyDefaultV4Unauthorized, *AdminMakeFactorMyDefaultV4Forbidden, *AdminMakeFactorMyDefaultV4NotFound, *AdminMakeFactorMyDefaultV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminMakeFactorMyDefaultV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminMakeFactorMyDefaultV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/factor",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminMakeFactorMyDefaultV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminMakeFactorMyDefaultV4NoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminMakeFactorMyDefaultV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminMakeFactorMyDefaultV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminMakeFactorMyDefaultV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminMakeFactorMyDefaultV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminMakeFactorMyDefaultV4InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminMakeFactorMyDefaultV4Short(params *AdminMakeFactorMyDefaultV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminMakeFactorMyDefaultV4NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminMakeFactorMyDefaultV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminMakeFactorMyDefaultV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/admin/users/me/mfa/factor",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminMakeFactorMyDefaultV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminMakeFactorMyDefaultV4NoContent:
+		return v, nil
+	case *AdminMakeFactorMyDefaultV4BadRequest:
+		return nil, v
+	case *AdminMakeFactorMyDefaultV4Unauthorized:
+		return nil, v
+	case *AdminMakeFactorMyDefaultV4Forbidden:
+		return nil, v
+	case *AdminMakeFactorMyDefaultV4NotFound:
+		return nil, v
+	case *AdminMakeFactorMyDefaultV4InternalServerError:
 		return nil, v
 
 	default:
@@ -1251,6 +2467,1079 @@ func (a *Client) PublicCreateUserV4Short(params *PublicCreateUserV4Params, authI
 	case *PublicCreateUserV4Conflict:
 		return nil, v
 	case *PublicCreateUserV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicDisableMyAuthenticatorV4 disables 2 f a authenticator
+
+  &lt;p&gt;(In Development)This endpoint is used to disable 2FA authenticator.&lt;/p&gt;
+&lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
+
+*/
+func (a *Client) PublicDisableMyAuthenticatorV4(params *PublicDisableMyAuthenticatorV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDisableMyAuthenticatorV4NoContent, *PublicDisableMyAuthenticatorV4BadRequest, *PublicDisableMyAuthenticatorV4Unauthorized, *PublicDisableMyAuthenticatorV4Forbidden, *PublicDisableMyAuthenticatorV4NotFound, *PublicDisableMyAuthenticatorV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicDisableMyAuthenticatorV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicDisableMyAuthenticatorV4",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/disable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicDisableMyAuthenticatorV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicDisableMyAuthenticatorV4NoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicDisableMyAuthenticatorV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicDisableMyAuthenticatorV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicDisableMyAuthenticatorV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicDisableMyAuthenticatorV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicDisableMyAuthenticatorV4InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicDisableMyAuthenticatorV4Short(params *PublicDisableMyAuthenticatorV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDisableMyAuthenticatorV4NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicDisableMyAuthenticatorV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicDisableMyAuthenticatorV4",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/disable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicDisableMyAuthenticatorV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicDisableMyAuthenticatorV4NoContent:
+		return v, nil
+	case *PublicDisableMyAuthenticatorV4BadRequest:
+		return nil, v
+	case *PublicDisableMyAuthenticatorV4Unauthorized:
+		return nil, v
+	case *PublicDisableMyAuthenticatorV4Forbidden:
+		return nil, v
+	case *PublicDisableMyAuthenticatorV4NotFound:
+		return nil, v
+	case *PublicDisableMyAuthenticatorV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicDisableMyBackupCodesV4 disables 2 f a backup codes
+
+  &lt;p&gt;(In Development)This endpoint is used to enable 2FA backup codes.&lt;/p&gt;
+&lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
+
+*/
+func (a *Client) PublicDisableMyBackupCodesV4(params *PublicDisableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDisableMyBackupCodesV4NoContent, *PublicDisableMyBackupCodesV4BadRequest, *PublicDisableMyBackupCodesV4Unauthorized, *PublicDisableMyBackupCodesV4Forbidden, *PublicDisableMyBackupCodesV4NotFound, *PublicDisableMyBackupCodesV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicDisableMyBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicDisableMyBackupCodesV4",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/disable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicDisableMyBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicDisableMyBackupCodesV4NoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicDisableMyBackupCodesV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicDisableMyBackupCodesV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicDisableMyBackupCodesV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicDisableMyBackupCodesV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicDisableMyBackupCodesV4InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicDisableMyBackupCodesV4Short(params *PublicDisableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDisableMyBackupCodesV4NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicDisableMyBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicDisableMyBackupCodesV4",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/disable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicDisableMyBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicDisableMyBackupCodesV4NoContent:
+		return v, nil
+	case *PublicDisableMyBackupCodesV4BadRequest:
+		return nil, v
+	case *PublicDisableMyBackupCodesV4Unauthorized:
+		return nil, v
+	case *PublicDisableMyBackupCodesV4Forbidden:
+		return nil, v
+	case *PublicDisableMyBackupCodesV4NotFound:
+		return nil, v
+	case *PublicDisableMyBackupCodesV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicDownloadMyBackupCodesV4 downloads user backup codes
+
+  &lt;p&gt;(In Development)This endpoint is used to download backup codes.&lt;/p&gt;
+&lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
+
+*/
+func (a *Client) PublicDownloadMyBackupCodesV4(params *PublicDownloadMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadMyBackupCodesV4OK, *PublicDownloadMyBackupCodesV4BadRequest, *PublicDownloadMyBackupCodesV4Unauthorized, *PublicDownloadMyBackupCodesV4Forbidden, *PublicDownloadMyBackupCodesV4NotFound, *PublicDownloadMyBackupCodesV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicDownloadMyBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicDownloadMyBackupCodesV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/download",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicDownloadMyBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicDownloadMyBackupCodesV4OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicDownloadMyBackupCodesV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicDownloadMyBackupCodesV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicDownloadMyBackupCodesV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicDownloadMyBackupCodesV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicDownloadMyBackupCodesV4InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicDownloadMyBackupCodesV4Short(params *PublicDownloadMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadMyBackupCodesV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicDownloadMyBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicDownloadMyBackupCodesV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/download",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicDownloadMyBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicDownloadMyBackupCodesV4OK:
+		return v, nil
+	case *PublicDownloadMyBackupCodesV4BadRequest:
+		return nil, v
+	case *PublicDownloadMyBackupCodesV4Unauthorized:
+		return nil, v
+	case *PublicDownloadMyBackupCodesV4Forbidden:
+		return nil, v
+	case *PublicDownloadMyBackupCodesV4NotFound:
+		return nil, v
+	case *PublicDownloadMyBackupCodesV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicEnableMyAuthenticatorV4 enables 2 f a authenticator
+
+  &lt;p&gt;(In Development)This endpoint is used to enable 2FA authenticator.&lt;/p&gt;
+&lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
+
+*/
+func (a *Client) PublicEnableMyAuthenticatorV4(params *PublicEnableMyAuthenticatorV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicEnableMyAuthenticatorV4NoContent, *PublicEnableMyAuthenticatorV4BadRequest, *PublicEnableMyAuthenticatorV4Unauthorized, *PublicEnableMyAuthenticatorV4Forbidden, *PublicEnableMyAuthenticatorV4NotFound, *PublicEnableMyAuthenticatorV4Conflict, *PublicEnableMyAuthenticatorV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicEnableMyAuthenticatorV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicEnableMyAuthenticatorV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/enable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicEnableMyAuthenticatorV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicEnableMyAuthenticatorV4NoContent:
+		return v, nil, nil, nil, nil, nil, nil, nil
+
+	case *PublicEnableMyAuthenticatorV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *PublicEnableMyAuthenticatorV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *PublicEnableMyAuthenticatorV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
+
+	case *PublicEnableMyAuthenticatorV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *PublicEnableMyAuthenticatorV4Conflict:
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *PublicEnableMyAuthenticatorV4InternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicEnableMyAuthenticatorV4Short(params *PublicEnableMyAuthenticatorV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicEnableMyAuthenticatorV4NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicEnableMyAuthenticatorV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicEnableMyAuthenticatorV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/enable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicEnableMyAuthenticatorV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicEnableMyAuthenticatorV4NoContent:
+		return v, nil
+	case *PublicEnableMyAuthenticatorV4BadRequest:
+		return nil, v
+	case *PublicEnableMyAuthenticatorV4Unauthorized:
+		return nil, v
+	case *PublicEnableMyAuthenticatorV4Forbidden:
+		return nil, v
+	case *PublicEnableMyAuthenticatorV4NotFound:
+		return nil, v
+	case *PublicEnableMyAuthenticatorV4Conflict:
+		return nil, v
+	case *PublicEnableMyAuthenticatorV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicEnableMyBackupCodesV4 enables 2 f a backup codes
+
+  &lt;p&gt;(In Development)This endpoint is used to enable 2FA backup codes.&lt;/p&gt;
+&lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
+
+*/
+func (a *Client) PublicEnableMyBackupCodesV4(params *PublicEnableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicEnableMyBackupCodesV4OK, *PublicEnableMyBackupCodesV4BadRequest, *PublicEnableMyBackupCodesV4Unauthorized, *PublicEnableMyBackupCodesV4Forbidden, *PublicEnableMyBackupCodesV4NotFound, *PublicEnableMyBackupCodesV4Conflict, *PublicEnableMyBackupCodesV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicEnableMyBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicEnableMyBackupCodesV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/enable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicEnableMyBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicEnableMyBackupCodesV4OK:
+		return v, nil, nil, nil, nil, nil, nil, nil
+
+	case *PublicEnableMyBackupCodesV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil, nil
+
+	case *PublicEnableMyBackupCodesV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil, nil
+
+	case *PublicEnableMyBackupCodesV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil, nil
+
+	case *PublicEnableMyBackupCodesV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil, nil
+
+	case *PublicEnableMyBackupCodesV4Conflict:
+		return nil, nil, nil, nil, nil, v, nil, nil
+
+	case *PublicEnableMyBackupCodesV4InternalServerError:
+		return nil, nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicEnableMyBackupCodesV4Short(params *PublicEnableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicEnableMyBackupCodesV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicEnableMyBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicEnableMyBackupCodesV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/enable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicEnableMyBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicEnableMyBackupCodesV4OK:
+		return v, nil
+	case *PublicEnableMyBackupCodesV4BadRequest:
+		return nil, v
+	case *PublicEnableMyBackupCodesV4Unauthorized:
+		return nil, v
+	case *PublicEnableMyBackupCodesV4Forbidden:
+		return nil, v
+	case *PublicEnableMyBackupCodesV4NotFound:
+		return nil, v
+	case *PublicEnableMyBackupCodesV4Conflict:
+		return nil, v
+	case *PublicEnableMyBackupCodesV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicGenerateMyAuthenticatorKeyV4 generates secret key for 3rd party authenticate app
+
+  &lt;p&gt;(In Development)This endpoint is used to generate a secret key for 3rd-party authenticator app.
+A QR code URI is also returned so that frontend can generate QR code image.&lt;/p&gt;
+&lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
+
+*/
+func (a *Client) PublicGenerateMyAuthenticatorKeyV4(params *PublicGenerateMyAuthenticatorKeyV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGenerateMyAuthenticatorKeyV4OK, *PublicGenerateMyAuthenticatorKeyV4BadRequest, *PublicGenerateMyAuthenticatorKeyV4Unauthorized, *PublicGenerateMyAuthenticatorKeyV4Forbidden, *PublicGenerateMyAuthenticatorKeyV4NotFound, *PublicGenerateMyAuthenticatorKeyV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGenerateMyAuthenticatorKeyV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGenerateMyAuthenticatorKeyV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/key",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGenerateMyAuthenticatorKeyV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGenerateMyAuthenticatorKeyV4OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicGenerateMyAuthenticatorKeyV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicGenerateMyAuthenticatorKeyV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicGenerateMyAuthenticatorKeyV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicGenerateMyAuthenticatorKeyV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicGenerateMyAuthenticatorKeyV4InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGenerateMyAuthenticatorKeyV4Short(params *PublicGenerateMyAuthenticatorKeyV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGenerateMyAuthenticatorKeyV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGenerateMyAuthenticatorKeyV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGenerateMyAuthenticatorKeyV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/key",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGenerateMyAuthenticatorKeyV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGenerateMyAuthenticatorKeyV4OK:
+		return v, nil
+	case *PublicGenerateMyAuthenticatorKeyV4BadRequest:
+		return nil, v
+	case *PublicGenerateMyAuthenticatorKeyV4Unauthorized:
+		return nil, v
+	case *PublicGenerateMyAuthenticatorKeyV4Forbidden:
+		return nil, v
+	case *PublicGenerateMyAuthenticatorKeyV4NotFound:
+		return nil, v
+	case *PublicGenerateMyAuthenticatorKeyV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicGenerateMyBackupCodesV4 generates backup codes
+
+  &lt;p&gt;(In Development)This endpoint is used to generate 8-digits backup codes.
+Each code is a one-time code and will be deleted once used.&lt;/p&gt;
+&lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
+
+*/
+func (a *Client) PublicGenerateMyBackupCodesV4(params *PublicGenerateMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGenerateMyBackupCodesV4OK, *PublicGenerateMyBackupCodesV4BadRequest, *PublicGenerateMyBackupCodesV4Unauthorized, *PublicGenerateMyBackupCodesV4Forbidden, *PublicGenerateMyBackupCodesV4NotFound, *PublicGenerateMyBackupCodesV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGenerateMyBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGenerateMyBackupCodesV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGenerateMyBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGenerateMyBackupCodesV4OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicGenerateMyBackupCodesV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicGenerateMyBackupCodesV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicGenerateMyBackupCodesV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicGenerateMyBackupCodesV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicGenerateMyBackupCodesV4InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGenerateMyBackupCodesV4Short(params *PublicGenerateMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGenerateMyBackupCodesV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGenerateMyBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGenerateMyBackupCodesV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGenerateMyBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGenerateMyBackupCodesV4OK:
+		return v, nil
+	case *PublicGenerateMyBackupCodesV4BadRequest:
+		return nil, v
+	case *PublicGenerateMyBackupCodesV4Unauthorized:
+		return nil, v
+	case *PublicGenerateMyBackupCodesV4Forbidden:
+		return nil, v
+	case *PublicGenerateMyBackupCodesV4NotFound:
+		return nil, v
+	case *PublicGenerateMyBackupCodesV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicGetMyBackupCodesV4 gets backup codes
+
+  &lt;p&gt;(In Development)This endpoint is used to get 8-digits backup codes.
+Each code is a one-time code and will be deleted once used.&lt;/p&gt;
+&lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
+
+*/
+func (a *Client) PublicGetMyBackupCodesV4(params *PublicGetMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyBackupCodesV4OK, *PublicGetMyBackupCodesV4BadRequest, *PublicGetMyBackupCodesV4Unauthorized, *PublicGetMyBackupCodesV4Forbidden, *PublicGetMyBackupCodesV4NotFound, *PublicGetMyBackupCodesV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetMyBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetMyBackupCodesV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetMyBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetMyBackupCodesV4OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicGetMyBackupCodesV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicGetMyBackupCodesV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicGetMyBackupCodesV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicGetMyBackupCodesV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicGetMyBackupCodesV4InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetMyBackupCodesV4Short(params *PublicGetMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyBackupCodesV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetMyBackupCodesV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetMyBackupCodesV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetMyBackupCodesV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetMyBackupCodesV4OK:
+		return v, nil
+	case *PublicGetMyBackupCodesV4BadRequest:
+		return nil, v
+	case *PublicGetMyBackupCodesV4Unauthorized:
+		return nil, v
+	case *PublicGetMyBackupCodesV4Forbidden:
+		return nil, v
+	case *PublicGetMyBackupCodesV4NotFound:
+		return nil, v
+	case *PublicGetMyBackupCodesV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicGetMyEnabledFactorsV4 gets user enabled factors
+
+  &lt;p&gt;(In Development)This endpoint is used to get user enabled factors.&lt;/p&gt;
+&lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
+
+*/
+func (a *Client) PublicGetMyEnabledFactorsV4(params *PublicGetMyEnabledFactorsV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyEnabledFactorsV4OK, *PublicGetMyEnabledFactorsV4BadRequest, *PublicGetMyEnabledFactorsV4Unauthorized, *PublicGetMyEnabledFactorsV4Forbidden, *PublicGetMyEnabledFactorsV4NotFound, *PublicGetMyEnabledFactorsV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetMyEnabledFactorsV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetMyEnabledFactorsV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/factor",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetMyEnabledFactorsV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetMyEnabledFactorsV4OK:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicGetMyEnabledFactorsV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicGetMyEnabledFactorsV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicGetMyEnabledFactorsV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicGetMyEnabledFactorsV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicGetMyEnabledFactorsV4InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetMyEnabledFactorsV4Short(params *PublicGetMyEnabledFactorsV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyEnabledFactorsV4OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetMyEnabledFactorsV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetMyEnabledFactorsV4",
+		Method:             "GET",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/factor",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetMyEnabledFactorsV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetMyEnabledFactorsV4OK:
+		return v, nil
+	case *PublicGetMyEnabledFactorsV4BadRequest:
+		return nil, v
+	case *PublicGetMyEnabledFactorsV4Unauthorized:
+		return nil, v
+	case *PublicGetMyEnabledFactorsV4Forbidden:
+		return nil, v
+	case *PublicGetMyEnabledFactorsV4NotFound:
+		return nil, v
+	case *PublicGetMyEnabledFactorsV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicMakeFactorMyDefaultV4 makes 2 f a factor default
+
+  &lt;p&gt;(In Development)This endpoint is used to make 2FA factor default.&lt;/p&gt;
+&lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
+
+*/
+func (a *Client) PublicMakeFactorMyDefaultV4(params *PublicMakeFactorMyDefaultV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicMakeFactorMyDefaultV4NoContent, *PublicMakeFactorMyDefaultV4BadRequest, *PublicMakeFactorMyDefaultV4Unauthorized, *PublicMakeFactorMyDefaultV4Forbidden, *PublicMakeFactorMyDefaultV4NotFound, *PublicMakeFactorMyDefaultV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicMakeFactorMyDefaultV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicMakeFactorMyDefaultV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/factor",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicMakeFactorMyDefaultV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicMakeFactorMyDefaultV4NoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicMakeFactorMyDefaultV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicMakeFactorMyDefaultV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicMakeFactorMyDefaultV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicMakeFactorMyDefaultV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicMakeFactorMyDefaultV4InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicMakeFactorMyDefaultV4Short(params *PublicMakeFactorMyDefaultV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicMakeFactorMyDefaultV4NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicMakeFactorMyDefaultV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicMakeFactorMyDefaultV4",
+		Method:             "POST",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/factor",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicMakeFactorMyDefaultV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicMakeFactorMyDefaultV4NoContent:
+		return v, nil
+	case *PublicMakeFactorMyDefaultV4BadRequest:
+		return nil, v
+	case *PublicMakeFactorMyDefaultV4Unauthorized:
+		return nil, v
+	case *PublicMakeFactorMyDefaultV4Forbidden:
+		return nil, v
+	case *PublicMakeFactorMyDefaultV4NotFound:
+		return nil, v
+	case *PublicMakeFactorMyDefaultV4InternalServerError:
 		return nil, v
 
 	default:

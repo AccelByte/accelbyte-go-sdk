@@ -18,7 +18,7 @@ type AdminPlayerRecordService struct {
 }
 
 // Deprecated: Use ListPlayerRecordHandlerV1Short instead
-func (a *AdminPlayerRecordService) ListPlayerRecordHandlerV1(input *admin_player_record.ListPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsListPlayerRecordKeys, error) {
+func (a *AdminPlayerRecordService) ListPlayerRecordHandlerV1(input *admin_player_record.ListPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -40,7 +40,7 @@ func (a *AdminPlayerRecordService) ListPlayerRecordHandlerV1(input *admin_player
 }
 
 // Deprecated: Use AdminRetrievePlayerRecordsShort instead
-func (a *AdminPlayerRecordService) AdminRetrievePlayerRecords(input *admin_player_record.AdminRetrievePlayerRecordsParams) (*cloudsaveclientmodels.ModelsListPlayerRecordKeys, error) {
+func (a *AdminPlayerRecordService) AdminRetrievePlayerRecords(input *admin_player_record.AdminRetrievePlayerRecordsParams) (*cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -62,7 +62,7 @@ func (a *AdminPlayerRecordService) AdminRetrievePlayerRecords(input *admin_playe
 }
 
 // Deprecated: Use AdminGetPlayerRecordHandlerV1Short instead
-func (a *AdminPlayerRecordService) AdminGetPlayerRecordHandlerV1(input *admin_player_record.AdminGetPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecord, error) {
+func (a *AdminPlayerRecordService) AdminGetPlayerRecordHandlerV1(input *admin_player_record.AdminGetPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -141,7 +141,7 @@ func (a *AdminPlayerRecordService) AdminDeletePlayerRecordHandlerV1(input *admin
 }
 
 // Deprecated: Use AdminGetPlayerPublicRecordHandlerV1Short instead
-func (a *AdminPlayerRecordService) AdminGetPlayerPublicRecordHandlerV1(input *admin_player_record.AdminGetPlayerPublicRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecord, error) {
+func (a *AdminPlayerRecordService) AdminGetPlayerPublicRecordHandlerV1(input *admin_player_record.AdminGetPlayerPublicRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -228,7 +228,7 @@ func (a *AdminPlayerRecordService) AdminDeletePlayerPublicRecordHandlerV1(input 
 	return nil
 }
 
-func (a *AdminPlayerRecordService) ListPlayerRecordHandlerV1Short(input *admin_player_record.ListPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsListPlayerRecordKeys, error) {
+func (a *AdminPlayerRecordService) ListPlayerRecordHandlerV1Short(input *admin_player_record.ListPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -240,7 +240,7 @@ func (a *AdminPlayerRecordService) ListPlayerRecordHandlerV1Short(input *admin_p
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminPlayerRecordService) AdminRetrievePlayerRecordsShort(input *admin_player_record.AdminRetrievePlayerRecordsParams) (*cloudsaveclientmodels.ModelsListPlayerRecordKeys, error) {
+func (a *AdminPlayerRecordService) AdminRetrievePlayerRecordsShort(input *admin_player_record.AdminRetrievePlayerRecordsParams) (*cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -252,7 +252,7 @@ func (a *AdminPlayerRecordService) AdminRetrievePlayerRecordsShort(input *admin_
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminPlayerRecordService) AdminGetPlayerRecordHandlerV1Short(input *admin_player_record.AdminGetPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecord, error) {
+func (a *AdminPlayerRecordService) AdminGetPlayerRecordHandlerV1Short(input *admin_player_record.AdminGetPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -300,7 +300,7 @@ func (a *AdminPlayerRecordService) AdminDeletePlayerRecordHandlerV1Short(input *
 	return nil
 }
 
-func (a *AdminPlayerRecordService) AdminGetPlayerPublicRecordHandlerV1Short(input *admin_player_record.AdminGetPlayerPublicRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecord, error) {
+func (a *AdminPlayerRecordService) AdminGetPlayerPublicRecordHandlerV1Short(input *admin_player_record.AdminGetPlayerPublicRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err

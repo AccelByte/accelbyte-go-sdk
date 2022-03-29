@@ -30,8 +30,20 @@ func (o *PutPlayerRecordHandlerV1Reader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewPutPlayerRecordHandlerV1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewPutPlayerRecordHandlerV1Unauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 403:
+		result := NewPutPlayerRecordHandlerV1Forbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -74,6 +86,39 @@ func (o *PutPlayerRecordHandlerV1OK) readResponse(response runtime.ClientRespons
 	return nil
 }
 
+// NewPutPlayerRecordHandlerV1BadRequest creates a PutPlayerRecordHandlerV1BadRequest with default headers values
+func NewPutPlayerRecordHandlerV1BadRequest() *PutPlayerRecordHandlerV1BadRequest {
+	return &PutPlayerRecordHandlerV1BadRequest{}
+}
+
+/*PutPlayerRecordHandlerV1BadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18201</td><td>invalid record operator, expect [%s] but actual [%s]</td></tr></table>
+*/
+type PutPlayerRecordHandlerV1BadRequest struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *PutPlayerRecordHandlerV1BadRequest) Error() string {
+	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] putPlayerRecordHandlerV1BadRequest  %+v", 400, o.Payload)
+}
+
+func (o *PutPlayerRecordHandlerV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *PutPlayerRecordHandlerV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewPutPlayerRecordHandlerV1Unauthorized creates a PutPlayerRecordHandlerV1Unauthorized with default headers values
 func NewPutPlayerRecordHandlerV1Unauthorized() *PutPlayerRecordHandlerV1Unauthorized {
 	return &PutPlayerRecordHandlerV1Unauthorized{}
@@ -96,6 +141,39 @@ func (o *PutPlayerRecordHandlerV1Unauthorized) GetPayload() *cloudsaveclientmode
 }
 
 func (o *PutPlayerRecordHandlerV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPutPlayerRecordHandlerV1Forbidden creates a PutPlayerRecordHandlerV1Forbidden with default headers values
+func NewPutPlayerRecordHandlerV1Forbidden() *PutPlayerRecordHandlerV1Forbidden {
+	return &PutPlayerRecordHandlerV1Forbidden{}
+}
+
+/*PutPlayerRecordHandlerV1Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18063</td><td>put action is forbidden on other user's record</td></tr></table>
+*/
+type PutPlayerRecordHandlerV1Forbidden struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *PutPlayerRecordHandlerV1Forbidden) Error() string {
+	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] putPlayerRecordHandlerV1Forbidden  %+v", 403, o.Payload)
+}
+
+func (o *PutPlayerRecordHandlerV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *PutPlayerRecordHandlerV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 

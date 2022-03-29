@@ -14,14 +14,15 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewAdminSearchChannelSpecificContentParams creates a new AdminSearchChannelSpecificContentParams object
 // with the default values initialized.
 func NewAdminSearchChannelSpecificContentParams() *AdminSearchChannelSpecificContentParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &AdminSearchChannelSpecificContentParams{
 		Limit:  &limitDefault,
@@ -35,8 +36,8 @@ func NewAdminSearchChannelSpecificContentParams() *AdminSearchChannelSpecificCon
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAdminSearchChannelSpecificContentParamsWithTimeout(timeout time.Duration) *AdminSearchChannelSpecificContentParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &AdminSearchChannelSpecificContentParams{
 		Limit:  &limitDefault,
@@ -50,8 +51,8 @@ func NewAdminSearchChannelSpecificContentParamsWithTimeout(timeout time.Duration
 // with the default values initialized, and the ability to set a context for a request
 func NewAdminSearchChannelSpecificContentParamsWithContext(ctx context.Context) *AdminSearchChannelSpecificContentParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &AdminSearchChannelSpecificContentParams{
 		Limit:  &limitDefault,
@@ -65,8 +66,8 @@ func NewAdminSearchChannelSpecificContentParamsWithContext(ctx context.Context) 
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAdminSearchChannelSpecificContentParamsWithHTTPClient(client *http.Client) *AdminSearchChannelSpecificContentParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &AdminSearchChannelSpecificContentParams{
 		Limit:      &limitDefault,
@@ -99,7 +100,7 @@ type AdminSearchChannelSpecificContentParams struct {
 	  number of content per page
 
 	*/
-	Limit *string
+	Limit *int64
 	/*Name
 	  content name
 
@@ -114,7 +115,7 @@ type AdminSearchChannelSpecificContentParams struct {
 	  the offset number to retrieve
 
 	*/
-	Offset *string
+	Offset *int64
 	/*Orderby
 	  sorting order: asc, desc. default=desc
 
@@ -218,13 +219,13 @@ func (o *AdminSearchChannelSpecificContentParams) SetIsofficial(isofficial *stri
 }
 
 // WithLimit adds the limit to the admin search channel specific content params
-func (o *AdminSearchChannelSpecificContentParams) WithLimit(limit *string) *AdminSearchChannelSpecificContentParams {
+func (o *AdminSearchChannelSpecificContentParams) WithLimit(limit *int64) *AdminSearchChannelSpecificContentParams {
 	o.SetLimit(limit)
 	return o
 }
 
 // SetLimit adds the limit to the admin search channel specific content params
-func (o *AdminSearchChannelSpecificContentParams) SetLimit(limit *string) {
+func (o *AdminSearchChannelSpecificContentParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
@@ -251,13 +252,13 @@ func (o *AdminSearchChannelSpecificContentParams) SetNamespace(namespace string)
 }
 
 // WithOffset adds the offset to the admin search channel specific content params
-func (o *AdminSearchChannelSpecificContentParams) WithOffset(offset *string) *AdminSearchChannelSpecificContentParams {
+func (o *AdminSearchChannelSpecificContentParams) WithOffset(offset *int64) *AdminSearchChannelSpecificContentParams {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the admin search channel specific content params
-func (o *AdminSearchChannelSpecificContentParams) SetOffset(offset *string) {
+func (o *AdminSearchChannelSpecificContentParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
@@ -375,11 +376,11 @@ func (o *AdminSearchChannelSpecificContentParams) WriteToRequest(r runtime.Clien
 	if o.Limit != nil {
 
 		// query param limit
-		var qrLimit string
+		var qrLimit int64
 		if o.Limit != nil {
 			qrLimit = *o.Limit
 		}
-		qLimit := qrLimit
+		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
 				return err
@@ -412,11 +413,11 @@ func (o *AdminSearchChannelSpecificContentParams) WriteToRequest(r runtime.Clien
 	if o.Offset != nil {
 
 		// query param offset
-		var qrOffset string
+		var qrOffset int64
 		if o.Offset != nil {
 			qrOffset = *o.Offset
 		}
-		qOffset := qrOffset
+		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
 				return err

@@ -18,7 +18,7 @@ type AdminGameRecordService struct {
 }
 
 // Deprecated: Use ListGameRecordsHandlerV1Short instead
-func (a *AdminGameRecordService) ListGameRecordsHandlerV1(input *admin_game_record.ListGameRecordsHandlerV1Params) (*cloudsaveclientmodels.ModelsListGameRecordKeys, error) {
+func (a *AdminGameRecordService) ListGameRecordsHandlerV1(input *admin_game_record.ListGameRecordsHandlerV1Params) (*cloudsaveclientmodels.ModelsListGameRecordKeysResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -37,7 +37,7 @@ func (a *AdminGameRecordService) ListGameRecordsHandlerV1(input *admin_game_reco
 }
 
 // Deprecated: Use AdminGetGameRecordHandlerV1Short instead
-func (a *AdminGameRecordService) AdminGetGameRecordHandlerV1(input *admin_game_record.AdminGetGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecord, error) {
+func (a *AdminGameRecordService) AdminGetGameRecordHandlerV1(input *admin_game_record.AdminGetGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecordResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -115,7 +115,7 @@ func (a *AdminGameRecordService) AdminDeleteGameRecordHandlerV1(input *admin_gam
 	return nil
 }
 
-func (a *AdminGameRecordService) ListGameRecordsHandlerV1Short(input *admin_game_record.ListGameRecordsHandlerV1Params) (*cloudsaveclientmodels.ModelsListGameRecordKeys, error) {
+func (a *AdminGameRecordService) ListGameRecordsHandlerV1Short(input *admin_game_record.ListGameRecordsHandlerV1Params) (*cloudsaveclientmodels.ModelsListGameRecordKeysResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -127,7 +127,7 @@ func (a *AdminGameRecordService) ListGameRecordsHandlerV1Short(input *admin_game
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminGameRecordService) AdminGetGameRecordHandlerV1Short(input *admin_game_record.AdminGetGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecord, error) {
+func (a *AdminGameRecordService) AdminGetGameRecordHandlerV1Short(input *admin_game_record.AdminGetGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecordResponse, error) {
 	accessToken, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err

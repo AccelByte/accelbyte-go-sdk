@@ -31,28 +31,28 @@ type Client struct {
 type ClientService interface {
 	BulkGetPlayerPublicRecordHandlerV1(params *BulkGetPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetPlayerPublicRecordHandlerV1OK, *BulkGetPlayerPublicRecordHandlerV1BadRequest, *BulkGetPlayerPublicRecordHandlerV1Unauthorized, *BulkGetPlayerPublicRecordHandlerV1Forbidden, *BulkGetPlayerPublicRecordHandlerV1InternalServerError, error)
 	BulkGetPlayerPublicRecordHandlerV1Short(params *BulkGetPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*BulkGetPlayerPublicRecordHandlerV1OK, error)
-	DeletePlayerRecordHandlerV1(params *DeletePlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeletePlayerRecordHandlerV1NoContent, *DeletePlayerRecordHandlerV1Unauthorized, *DeletePlayerRecordHandlerV1InternalServerError, error)
+	DeletePlayerRecordHandlerV1(params *DeletePlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeletePlayerRecordHandlerV1NoContent, *DeletePlayerRecordHandlerV1BadRequest, *DeletePlayerRecordHandlerV1Unauthorized, *DeletePlayerRecordHandlerV1Forbidden, *DeletePlayerRecordHandlerV1InternalServerError, error)
 	DeletePlayerRecordHandlerV1Short(params *DeletePlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeletePlayerRecordHandlerV1NoContent, error)
 	GetPlayerPublicRecordHandlerV1(params *GetPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerPublicRecordHandlerV1OK, *GetPlayerPublicRecordHandlerV1Unauthorized, *GetPlayerPublicRecordHandlerV1NotFound, *GetPlayerPublicRecordHandlerV1InternalServerError, error)
 	GetPlayerPublicRecordHandlerV1Short(params *GetPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerPublicRecordHandlerV1OK, error)
-	GetPlayerRecordHandlerV1(params *GetPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerRecordHandlerV1OK, *GetPlayerRecordHandlerV1Unauthorized, *GetPlayerRecordHandlerV1NotFound, *GetPlayerRecordHandlerV1InternalServerError, error)
+	GetPlayerRecordHandlerV1(params *GetPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerRecordHandlerV1OK, *GetPlayerRecordHandlerV1Unauthorized, *GetPlayerRecordHandlerV1Forbidden, *GetPlayerRecordHandlerV1NotFound, *GetPlayerRecordHandlerV1InternalServerError, error)
 	GetPlayerRecordHandlerV1Short(params *GetPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerRecordHandlerV1OK, error)
-	PostPlayerPublicRecordHandlerV1(params *PostPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostPlayerPublicRecordHandlerV1Created, *PostPlayerPublicRecordHandlerV1Unauthorized, *PostPlayerPublicRecordHandlerV1InternalServerError, error)
+	PostPlayerPublicRecordHandlerV1(params *PostPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostPlayerPublicRecordHandlerV1Created, *PostPlayerPublicRecordHandlerV1BadRequest, *PostPlayerPublicRecordHandlerV1Unauthorized, *PostPlayerPublicRecordHandlerV1InternalServerError, error)
 	PostPlayerPublicRecordHandlerV1Short(params *PostPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostPlayerPublicRecordHandlerV1Created, error)
-	PostPlayerRecordHandlerV1(params *PostPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostPlayerRecordHandlerV1Created, *PostPlayerRecordHandlerV1Unauthorized, *PostPlayerRecordHandlerV1InternalServerError, error)
+	PostPlayerRecordHandlerV1(params *PostPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostPlayerRecordHandlerV1Created, *PostPlayerRecordHandlerV1BadRequest, *PostPlayerRecordHandlerV1Unauthorized, *PostPlayerRecordHandlerV1Forbidden, *PostPlayerRecordHandlerV1InternalServerError, error)
 	PostPlayerRecordHandlerV1Short(params *PostPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostPlayerRecordHandlerV1Created, error)
-	PublicDeletePlayerPublicRecordHandlerV1(params *PublicDeletePlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeletePlayerPublicRecordHandlerV1NoContent, *PublicDeletePlayerPublicRecordHandlerV1Unauthorized, *PublicDeletePlayerPublicRecordHandlerV1NotFound, *PublicDeletePlayerPublicRecordHandlerV1InternalServerError, error)
+	PublicDeletePlayerPublicRecordHandlerV1(params *PublicDeletePlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeletePlayerPublicRecordHandlerV1NoContent, *PublicDeletePlayerPublicRecordHandlerV1BadRequest, *PublicDeletePlayerPublicRecordHandlerV1Unauthorized, *PublicDeletePlayerPublicRecordHandlerV1NotFound, *PublicDeletePlayerPublicRecordHandlerV1InternalServerError, error)
 	PublicDeletePlayerPublicRecordHandlerV1Short(params *PublicDeletePlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeletePlayerPublicRecordHandlerV1NoContent, error)
-	PutPlayerPublicRecordHandlerV1(params *PutPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerPublicRecordHandlerV1OK, *PutPlayerPublicRecordHandlerV1Unauthorized, *PutPlayerPublicRecordHandlerV1InternalServerError, error)
+	PutPlayerPublicRecordHandlerV1(params *PutPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerPublicRecordHandlerV1OK, *PutPlayerPublicRecordHandlerV1BadRequest, *PutPlayerPublicRecordHandlerV1Unauthorized, *PutPlayerPublicRecordHandlerV1InternalServerError, error)
 	PutPlayerPublicRecordHandlerV1Short(params *PutPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerPublicRecordHandlerV1OK, error)
-	PutPlayerRecordHandlerV1(params *PutPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerRecordHandlerV1OK, *PutPlayerRecordHandlerV1Unauthorized, *PutPlayerRecordHandlerV1InternalServerError, error)
+	PutPlayerRecordHandlerV1(params *PutPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerRecordHandlerV1OK, *PutPlayerRecordHandlerV1BadRequest, *PutPlayerRecordHandlerV1Unauthorized, *PutPlayerRecordHandlerV1Forbidden, *PutPlayerRecordHandlerV1InternalServerError, error)
 	PutPlayerRecordHandlerV1Short(params *PutPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerRecordHandlerV1OK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-  BulkGetPlayerPublicRecordHandlerV1 bulks get other player s public record
+  BulkGetPlayerPublicRecordHandlerV1 bulks get player public records
 
   &lt;table&gt;
 	&lt;tr&gt;
@@ -179,9 +179,11 @@ func (a *Client) BulkGetPlayerPublicRecordHandlerV1Short(params *BulkGetPlayerPu
 &lt;/table&gt;
 &lt;br/&gt;
 
-Delete player record by its key
+Delete player record by its key.
+Only user that own the player record could delete it.
+
 */
-func (a *Client) DeletePlayerRecordHandlerV1(params *DeletePlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeletePlayerRecordHandlerV1NoContent, *DeletePlayerRecordHandlerV1Unauthorized, *DeletePlayerRecordHandlerV1InternalServerError, error) {
+func (a *Client) DeletePlayerRecordHandlerV1(params *DeletePlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*DeletePlayerRecordHandlerV1NoContent, *DeletePlayerRecordHandlerV1BadRequest, *DeletePlayerRecordHandlerV1Unauthorized, *DeletePlayerRecordHandlerV1Forbidden, *DeletePlayerRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeletePlayerRecordHandlerV1Params()
@@ -205,22 +207,28 @@ func (a *Client) DeletePlayerRecordHandlerV1(params *DeletePlayerRecordHandlerV1
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *DeletePlayerRecordHandlerV1NoContent:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *DeletePlayerRecordHandlerV1BadRequest:
+		return nil, v, nil, nil, nil, nil
 
 	case *DeletePlayerRecordHandlerV1Unauthorized:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *DeletePlayerRecordHandlerV1Forbidden:
+		return nil, nil, nil, v, nil, nil
 
 	case *DeletePlayerRecordHandlerV1InternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -255,7 +263,11 @@ func (a *Client) DeletePlayerRecordHandlerV1Short(params *DeletePlayerRecordHand
 
 	case *DeletePlayerRecordHandlerV1NoContent:
 		return v, nil
+	case *DeletePlayerRecordHandlerV1BadRequest:
+		return nil, v
 	case *DeletePlayerRecordHandlerV1Unauthorized:
+		return nil, v
+	case *DeletePlayerRecordHandlerV1Forbidden:
 		return nil, v
 	case *DeletePlayerRecordHandlerV1InternalServerError:
 		return nil, v
@@ -266,7 +278,7 @@ func (a *Client) DeletePlayerRecordHandlerV1Short(params *DeletePlayerRecordHand
 }
 
 /*
-  GetPlayerPublicRecordHandlerV1 gets other player s public record
+  GetPlayerPublicRecordHandlerV1 gets player public record
 
   &lt;table&gt;
 	&lt;tr&gt;
@@ -388,9 +400,10 @@ func (a *Client) GetPlayerPublicRecordHandlerV1Short(params *GetPlayerPublicReco
 &lt;/table&gt;
 &lt;br/&gt;
 
-Get player record by its key
+Get player record by its key.
+&lt;b&gt;Private Record:&lt;/b&gt; Only user that own the player record could retrieve it.
 */
-func (a *Client) GetPlayerRecordHandlerV1(params *GetPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerRecordHandlerV1OK, *GetPlayerRecordHandlerV1Unauthorized, *GetPlayerRecordHandlerV1NotFound, *GetPlayerRecordHandlerV1InternalServerError, error) {
+func (a *Client) GetPlayerRecordHandlerV1(params *GetPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*GetPlayerRecordHandlerV1OK, *GetPlayerRecordHandlerV1Unauthorized, *GetPlayerRecordHandlerV1Forbidden, *GetPlayerRecordHandlerV1NotFound, *GetPlayerRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetPlayerRecordHandlerV1Params()
@@ -414,25 +427,28 @@ func (a *Client) GetPlayerRecordHandlerV1(params *GetPlayerRecordHandlerV1Params
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *GetPlayerRecordHandlerV1OK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
 
 	case *GetPlayerRecordHandlerV1Unauthorized:
-		return nil, v, nil, nil, nil
+		return nil, v, nil, nil, nil, nil
+
+	case *GetPlayerRecordHandlerV1Forbidden:
+		return nil, nil, v, nil, nil, nil
 
 	case *GetPlayerRecordHandlerV1NotFound:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *GetPlayerRecordHandlerV1InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -469,6 +485,8 @@ func (a *Client) GetPlayerRecordHandlerV1Short(params *GetPlayerRecordHandlerV1P
 		return v, nil
 	case *GetPlayerRecordHandlerV1Unauthorized:
 		return nil, v
+	case *GetPlayerRecordHandlerV1Forbidden:
+		return nil, v
 	case *GetPlayerRecordHandlerV1NotFound:
 		return nil, v
 	case *GetPlayerRecordHandlerV1InternalServerError:
@@ -480,7 +498,7 @@ func (a *Client) GetPlayerRecordHandlerV1Short(params *GetPlayerRecordHandlerV1P
 }
 
 /*
-  PostPlayerPublicRecordHandlerV1 creates public player record
+  PostPlayerPublicRecordHandlerV1 creates or append player public record
 
   &lt;table&gt;
 	&lt;tr&gt;
@@ -494,55 +512,39 @@ func (a *Client) GetPlayerRecordHandlerV1Short(params *GetPlayerRecordHandlerV1P
 &lt;/table&gt;
 &lt;br/&gt;
 
-This endpoint will create or update player record with &lt;code&gt;isPublic=true&lt;/code&gt; meaning that the
-record will be available for other player to be retrieved. Other player can only retrieve the record
-and not create, update or even delete.
+&lt;h2&gt;Description&lt;/h2&gt;
 
-This endpoint will create public player record if it is not exists otherwise merge with these criteria:
-- If field name is already exists, replace the value
-- If field name is not exists, append it
+This endpoints will create new player public record or append the existing player public record.
 
-Example
+&lt;b&gt;Append example:&lt;/b&gt;
 
-Replace value:
-&lt;pre&gt;
-	// existed record
-	{
-		&#34;foo&#34;: &#34;bar&#34;
-	}
+Example 1
+- 	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34; }&lt;/pre&gt;
+- 	New JSON:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34;, &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
-	// new record (request body)
-	{
-		&#34;foo&#34;: &#34;bar_updated&#34;
-	}
+Example 2
+-	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data2&#34;: &#34;value&#34; }&lt;/pre&gt;
+-	New JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data3&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data2&#34;: &#34;value&#34;, &#34;data3&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
-	// result
-	{
-		&#34;foo&#34;: &#34;bar_updated&#34;
-	}
-&lt;/pre&gt;
 
-Append value:
-&lt;pre&gt;
-	// existed record
-	{
-		&#34;foo&#34;: &#34;bar&#34;
-	}
 
-	// new record (request body)
-	{
-		&#34;foo_new&#34;: &#34;bar_new&#34;
-	}
+&lt;h2&gt;Reserved Word&lt;/h2&gt;
 
-	// result
-	{
-		&#34;foo&#34;: &#34;bar&#34;,
-		&#34;foo_new&#34;: &#34;bar_new&#34;
-	}
-&lt;/pre&gt;
+Reserved Word List: &lt;b&gt;META&lt;/b&gt;
+
+The reserved word cannot be used as a field in record value,
+If still defining the field when creating or updating the record, it will be ignored.
 
 */
-func (a *Client) PostPlayerPublicRecordHandlerV1(params *PostPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostPlayerPublicRecordHandlerV1Created, *PostPlayerPublicRecordHandlerV1Unauthorized, *PostPlayerPublicRecordHandlerV1InternalServerError, error) {
+func (a *Client) PostPlayerPublicRecordHandlerV1(params *PostPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostPlayerPublicRecordHandlerV1Created, *PostPlayerPublicRecordHandlerV1BadRequest, *PostPlayerPublicRecordHandlerV1Unauthorized, *PostPlayerPublicRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostPlayerPublicRecordHandlerV1Params()
@@ -566,22 +568,25 @@ func (a *Client) PostPlayerPublicRecordHandlerV1(params *PostPlayerPublicRecordH
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PostPlayerPublicRecordHandlerV1Created:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
+
+	case *PostPlayerPublicRecordHandlerV1BadRequest:
+		return nil, v, nil, nil, nil
 
 	case *PostPlayerPublicRecordHandlerV1Unauthorized:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *PostPlayerPublicRecordHandlerV1InternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -616,6 +621,8 @@ func (a *Client) PostPlayerPublicRecordHandlerV1Short(params *PostPlayerPublicRe
 
 	case *PostPlayerPublicRecordHandlerV1Created:
 		return v, nil
+	case *PostPlayerPublicRecordHandlerV1BadRequest:
+		return nil, v
 	case *PostPlayerPublicRecordHandlerV1Unauthorized:
 		return nil, v
 	case *PostPlayerPublicRecordHandlerV1InternalServerError:
@@ -629,63 +636,57 @@ func (a *Client) PostPlayerPublicRecordHandlerV1Short(params *PostPlayerPublicRe
 /*
   PostPlayerRecordHandlerV1 creates or append player record
 
-  &lt;table&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Required Permission&lt;/td&gt;
-		&lt;td&gt;&lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [WRITE]&lt;/code&gt;&lt;/td&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Required Scope&lt;/td&gt;
-		&lt;td&gt;&lt;code&gt;social&lt;/code&gt;&lt;/td&gt;
-	&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br/&gt;
+  Required permission: &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]&lt;/code&gt;
+Required scope: &lt;code&gt;social&lt;/code&gt;
 
-Create player record if it is not exists otherwise merge with these criteria:
-- If field name is already exists, replace the value
-- If field name is not exists, append it
+&lt;h2&gt;Description&lt;/h2&gt;
 
-Example
+This endpoints will create new player record or append the existing player record.
+Only user that own the existing player record could modify.
 
-Replace value:
+&lt;b&gt;Append example:&lt;/b&gt;
+
+Example 1
+- 	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34; }&lt;/pre&gt;
+- 	New JSON:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34;, &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+
+Example 2
+-	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data2&#34;: &#34;value&#34; }&lt;/pre&gt;
+-	New JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data3&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data2&#34;: &#34;value&#34;, &#34;data3&#34;: &#34;new value&#34; }&lt;/pre&gt;
+
+
+
+&lt;h2&gt;Record Metadata&lt;/h2&gt;
+
+Metadata allows user to define the behaviour of the record.
+Metadata can be defined in request body with field name &lt;b&gt;META&lt;/b&gt;.
+When creating record, if &lt;b&gt;META&lt;/b&gt; field is not defined, the metadata value will use the default value.
+When updating record, if &lt;b&gt;META&lt;/b&gt; field is not defined, the existing metadata value will stay as is.
+
+&lt;b&gt;Metadata List:&lt;/b&gt;
+1.	is_public (default: false, type: bool)
+	Indicate whether the player record is a public record or not.
+
+&lt;b&gt;Request Body Example:&lt;/b&gt;
 &lt;pre&gt;
-	// existed record
 	{
-		&#34;foo&#34;: &#34;bar&#34;
-	}
-
-	// new record (request body)
-	{
-		&#34;foo&#34;: &#34;bar_updated&#34;
-	}
-
-	// result
-	{
-		&#34;foo&#34;: &#34;bar_updated&#34;
-	}
-&lt;/pre&gt;
-
-Append value:
-&lt;pre&gt;
-	// existed record
-	{
-		&#34;foo&#34;: &#34;bar&#34;
-	}
-
-	// new record (request body)
-	{
-		&#34;foo_new&#34;: &#34;bar_new&#34;
-	}
-
-	// result
-	{
-		&#34;foo&#34;: &#34;bar&#34;,
-		&#34;foo_new&#34;: &#34;bar_new&#34;
+		&#34;META&#34;: {
+			&#34;is_public&#34;: true
+		}
+		...
 	}
 &lt;/pre&gt;
 
 */
-func (a *Client) PostPlayerRecordHandlerV1(params *PostPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostPlayerRecordHandlerV1Created, *PostPlayerRecordHandlerV1Unauthorized, *PostPlayerRecordHandlerV1InternalServerError, error) {
+func (a *Client) PostPlayerRecordHandlerV1(params *PostPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PostPlayerRecordHandlerV1Created, *PostPlayerRecordHandlerV1BadRequest, *PostPlayerRecordHandlerV1Unauthorized, *PostPlayerRecordHandlerV1Forbidden, *PostPlayerRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostPlayerRecordHandlerV1Params()
@@ -709,22 +710,28 @@ func (a *Client) PostPlayerRecordHandlerV1(params *PostPlayerRecordHandlerV1Para
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PostPlayerRecordHandlerV1Created:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *PostPlayerRecordHandlerV1BadRequest:
+		return nil, v, nil, nil, nil, nil
 
 	case *PostPlayerRecordHandlerV1Unauthorized:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *PostPlayerRecordHandlerV1Forbidden:
+		return nil, nil, nil, v, nil, nil
 
 	case *PostPlayerRecordHandlerV1InternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -759,7 +766,11 @@ func (a *Client) PostPlayerRecordHandlerV1Short(params *PostPlayerRecordHandlerV
 
 	case *PostPlayerRecordHandlerV1Created:
 		return v, nil
+	case *PostPlayerRecordHandlerV1BadRequest:
+		return nil, v
 	case *PostPlayerRecordHandlerV1Unauthorized:
+		return nil, v
+	case *PostPlayerRecordHandlerV1Forbidden:
 		return nil, v
 	case *PostPlayerRecordHandlerV1InternalServerError:
 		return nil, v
@@ -770,15 +781,15 @@ func (a *Client) PostPlayerRecordHandlerV1Short(params *PostPlayerRecordHandlerV
 }
 
 /*
-  PublicDeletePlayerPublicRecordHandlerV1 deletes player public record based on its key
+  PublicDeletePlayerPublicRecordHandlerV1 deletes player public record
 
-  Required scope: social
+  Required scope: &lt;code&gt;social&lt;/code&gt;
 
 Required valid user authorization
 
 Delete player public record (arbitrary JSON data) in user-level with given key.
 */
-func (a *Client) PublicDeletePlayerPublicRecordHandlerV1(params *PublicDeletePlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeletePlayerPublicRecordHandlerV1NoContent, *PublicDeletePlayerPublicRecordHandlerV1Unauthorized, *PublicDeletePlayerPublicRecordHandlerV1NotFound, *PublicDeletePlayerPublicRecordHandlerV1InternalServerError, error) {
+func (a *Client) PublicDeletePlayerPublicRecordHandlerV1(params *PublicDeletePlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PublicDeletePlayerPublicRecordHandlerV1NoContent, *PublicDeletePlayerPublicRecordHandlerV1BadRequest, *PublicDeletePlayerPublicRecordHandlerV1Unauthorized, *PublicDeletePlayerPublicRecordHandlerV1NotFound, *PublicDeletePlayerPublicRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPublicDeletePlayerPublicRecordHandlerV1Params()
@@ -802,25 +813,28 @@ func (a *Client) PublicDeletePlayerPublicRecordHandlerV1(params *PublicDeletePla
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PublicDeletePlayerPublicRecordHandlerV1NoContent:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *PublicDeletePlayerPublicRecordHandlerV1BadRequest:
+		return nil, v, nil, nil, nil, nil
 
 	case *PublicDeletePlayerPublicRecordHandlerV1Unauthorized:
-		return nil, v, nil, nil, nil
+		return nil, nil, v, nil, nil, nil
 
 	case *PublicDeletePlayerPublicRecordHandlerV1NotFound:
-		return nil, nil, v, nil, nil
+		return nil, nil, nil, v, nil, nil
 
 	case *PublicDeletePlayerPublicRecordHandlerV1InternalServerError:
-		return nil, nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -855,6 +869,8 @@ func (a *Client) PublicDeletePlayerPublicRecordHandlerV1Short(params *PublicDele
 
 	case *PublicDeletePlayerPublicRecordHandlerV1NoContent:
 		return v, nil
+	case *PublicDeletePlayerPublicRecordHandlerV1BadRequest:
+		return nil, v
 	case *PublicDeletePlayerPublicRecordHandlerV1Unauthorized:
 		return nil, v
 	case *PublicDeletePlayerPublicRecordHandlerV1NotFound:
@@ -868,7 +884,7 @@ func (a *Client) PublicDeletePlayerPublicRecordHandlerV1Short(params *PublicDele
 }
 
 /*
-  PutPlayerPublicRecordHandlerV1 creates or replace player record
+  PutPlayerPublicRecordHandlerV1 creates or replace player public record
 
   &lt;table&gt;
 	&lt;tr&gt;
@@ -882,31 +898,38 @@ func (a *Client) PublicDeletePlayerPublicRecordHandlerV1Short(params *PublicDele
 &lt;/table&gt;
 &lt;br/&gt;
 
-If the record is not exist, it will create. If the record already exist, it will replace the record
-instead. And this operation can only be applied to record with &lt;code&gt;isPublic=true&lt;/code&gt;.
+&lt;h2&gt;Description&lt;/h2&gt;
+
+This endpoints will create new player public record or replace the existing player public record.
+
+&lt;b&gt;Replace behaviour:&lt;/b&gt;
+The existing value will be replaced completely with the new value.
 
 Example
+- 	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34; }&lt;/pre&gt;
+- 	New JSON:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
-Replace record
-&lt;pre&gt;
-// existed record
-{
-	&#34;foo&#34;: &#34;bar&#34;
-}
 
-// new record (request body)
-{
-	&#34;foo_new&#34;: &#34;bar_new&#34;
-}
 
-// result
-{
-	&#34;foo_new&#34;: &#34;bar_new&#34;
-}
-&lt;/pre&gt;
+&lt;h2&gt;Reserved Word&lt;/h2&gt;
+
+Reserved Word List: &lt;b&gt;META&lt;/b&gt;
+
+The reserved word cannot be used as a field in record value,
+If still defining the field when creating or updating the record, it will be ignored.
+
+
+&lt;h2&gt;Warning: Current Behaviour when Updating Private Record&lt;/h2&gt;
+
+When updating existing &#34;Private Record&#34;, this endpoint will always &lt;b&gt;convert the &#34;Private Record&#34; into &#34;Public Record&#34;&lt;/b&gt;.
+This behaviour might be deprecated sooner, &lt;b&gt;please don&#39;t rely with that behaviour&lt;/b&gt;.
 
 */
-func (a *Client) PutPlayerPublicRecordHandlerV1(params *PutPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerPublicRecordHandlerV1OK, *PutPlayerPublicRecordHandlerV1Unauthorized, *PutPlayerPublicRecordHandlerV1InternalServerError, error) {
+func (a *Client) PutPlayerPublicRecordHandlerV1(params *PutPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerPublicRecordHandlerV1OK, *PutPlayerPublicRecordHandlerV1BadRequest, *PutPlayerPublicRecordHandlerV1Unauthorized, *PutPlayerPublicRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPutPlayerPublicRecordHandlerV1Params()
@@ -930,22 +953,25 @@ func (a *Client) PutPlayerPublicRecordHandlerV1(params *PutPlayerPublicRecordHan
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PutPlayerPublicRecordHandlerV1OK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil
+
+	case *PutPlayerPublicRecordHandlerV1BadRequest:
+		return nil, v, nil, nil, nil
 
 	case *PutPlayerPublicRecordHandlerV1Unauthorized:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *PutPlayerPublicRecordHandlerV1InternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -980,6 +1006,8 @@ func (a *Client) PutPlayerPublicRecordHandlerV1Short(params *PutPlayerPublicReco
 
 	case *PutPlayerPublicRecordHandlerV1OK:
 		return v, nil
+	case *PutPlayerPublicRecordHandlerV1BadRequest:
+		return nil, v
 	case *PutPlayerPublicRecordHandlerV1Unauthorized:
 		return nil, v
 	case *PutPlayerPublicRecordHandlerV1InternalServerError:
@@ -993,42 +1021,56 @@ func (a *Client) PutPlayerPublicRecordHandlerV1Short(params *PutPlayerPublicReco
 /*
   PutPlayerRecordHandlerV1 creates or replace player record
 
-  &lt;table&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Required Permission&lt;/td&gt;
-		&lt;td&gt;&lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]&lt;/code&gt;&lt;/td&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td&gt;Required Scope&lt;/td&gt;
-		&lt;td&gt;&lt;code&gt;social&lt;/code&gt;&lt;/td&gt;
-	&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br/&gt;
+  Required permission: &lt;code&gt;NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]&lt;/code&gt;
+Required scope: &lt;code&gt;social&lt;/code&gt;
 
-This endpoint will create new record if it is not exists and it will replace if already exists.
+&lt;h2&gt;Description&lt;/h2&gt;
+
+This endpoints will create new player record or replace the existing player record.
+Only user that own the existing player record could modify it.
+
+&lt;b&gt;Replace behaviour:&lt;/b&gt;
+The existing value will be replaced completely with the new value.
 
 Example
+- 	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34; }&lt;/pre&gt;
+- 	New JSON:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
-Replace record
+
+
+&lt;h2&gt;Record Metadata&lt;/h2&gt;
+
+Metadata allows user to define the behaviour of the record.
+Metadata can be defined in request body with field name &lt;b&gt;META&lt;/b&gt;.
+When creating record, if &lt;b&gt;META&lt;/b&gt; field is not defined, the metadata value will use the default value.
+When updating record, if &lt;b&gt;META&lt;/b&gt; field is not defined, the existing metadata value will stay as is.
+
+&lt;b&gt;Metadata List:&lt;/b&gt;
+1.	is_public (default: false, type: bool)
+	Indicate whether the player record is a public record or not.
+
+&lt;b&gt;Request Body Example:&lt;/b&gt;
 &lt;pre&gt;
-// existed record
-{
-	&#34;foo&#34;: &#34;bar&#34;
-}
-
-// new record (request body)
-{
-	&#34;foo_new&#34;: &#34;bar_new&#34;
-}
-
-// result
-{
-	&#34;foo_new&#34;: &#34;bar_new&#34;
-}
+	{
+		&#34;META&#34;: {
+			&#34;is_public&#34;: true
+		}
+		...
+	}
 &lt;/pre&gt;
 
+
+&lt;h2&gt;Warning: Current Behaviour when Updating Public Record&lt;/h2&gt;
+
+When updating existing &#34;Public Record&#34; and metadata &lt;b&gt;is_public&lt;/b&gt; is not defined in the request body,
+this endpoint will always &lt;b&gt;convert the &#34;Public Record&#34; into &#34;Private Record&#34;&lt;/b&gt;.
+This behaviour might be deprecated sooner, &lt;b&gt;please don&#39;t rely with that behaviour&lt;/b&gt;.
 */
-func (a *Client) PutPlayerRecordHandlerV1(params *PutPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerRecordHandlerV1OK, *PutPlayerRecordHandlerV1Unauthorized, *PutPlayerRecordHandlerV1InternalServerError, error) {
+func (a *Client) PutPlayerRecordHandlerV1(params *PutPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*PutPlayerRecordHandlerV1OK, *PutPlayerRecordHandlerV1BadRequest, *PutPlayerRecordHandlerV1Unauthorized, *PutPlayerRecordHandlerV1Forbidden, *PutPlayerRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPutPlayerRecordHandlerV1Params()
@@ -1052,22 +1094,28 @@ func (a *Client) PutPlayerRecordHandlerV1(params *PutPlayerRecordHandlerV1Params
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, err
+		return nil, nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PutPlayerRecordHandlerV1OK:
-		return v, nil, nil, nil
+		return v, nil, nil, nil, nil, nil
+
+	case *PutPlayerRecordHandlerV1BadRequest:
+		return nil, v, nil, nil, nil, nil
 
 	case *PutPlayerRecordHandlerV1Unauthorized:
-		return nil, v, nil, nil
+		return nil, nil, v, nil, nil, nil
+
+	case *PutPlayerRecordHandlerV1Forbidden:
+		return nil, nil, nil, v, nil, nil
 
 	case *PutPlayerRecordHandlerV1InternalServerError:
-		return nil, nil, v, nil
+		return nil, nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -1102,7 +1150,11 @@ func (a *Client) PutPlayerRecordHandlerV1Short(params *PutPlayerRecordHandlerV1P
 
 	case *PutPlayerRecordHandlerV1OK:
 		return v, nil
+	case *PutPlayerRecordHandlerV1BadRequest:
+		return nil, v
 	case *PutPlayerRecordHandlerV1Unauthorized:
+		return nil, v
+	case *PutPlayerRecordHandlerV1Forbidden:
 		return nil, v
 	case *PutPlayerRecordHandlerV1InternalServerError:
 		return nil, v

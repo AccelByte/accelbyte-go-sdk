@@ -45,12 +45,9 @@ func (w *WalletService) CreditUserWallet(input *wallet.CreditUserWalletParams) (
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, conflict, unprocessableEntity, err := w.Client.Wallet.CreditUserWallet(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unprocessableEntity, err := w.Client.Wallet.CreditUserWallet(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
-	}
-	if conflict != nil {
-		return nil, conflict
 	}
 	if unprocessableEntity != nil {
 		return nil, unprocessableEntity
@@ -67,12 +64,9 @@ func (w *WalletService) PayWithUserWallet(input *wallet.PayWithUserWalletParams)
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, conflict, unprocessableEntity, err := w.Client.Wallet.PayWithUserWallet(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unprocessableEntity, err := w.Client.Wallet.PayWithUserWallet(input, client.BearerToken(*accessToken.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
-	}
-	if conflict != nil {
-		return nil, conflict
 	}
 	if unprocessableEntity != nil {
 		return nil, unprocessableEntity

@@ -14,14 +14,15 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewSingleAdminGetChannelParams creates a new SingleAdminGetChannelParams object
 // with the default values initialized.
 func NewSingleAdminGetChannelParams() *SingleAdminGetChannelParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &SingleAdminGetChannelParams{
 		Limit:  &limitDefault,
@@ -35,8 +36,8 @@ func NewSingleAdminGetChannelParams() *SingleAdminGetChannelParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewSingleAdminGetChannelParamsWithTimeout(timeout time.Duration) *SingleAdminGetChannelParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &SingleAdminGetChannelParams{
 		Limit:  &limitDefault,
@@ -50,8 +51,8 @@ func NewSingleAdminGetChannelParamsWithTimeout(timeout time.Duration) *SingleAdm
 // with the default values initialized, and the ability to set a context for a request
 func NewSingleAdminGetChannelParamsWithContext(ctx context.Context) *SingleAdminGetChannelParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &SingleAdminGetChannelParams{
 		Limit:  &limitDefault,
@@ -65,8 +66,8 @@ func NewSingleAdminGetChannelParamsWithContext(ctx context.Context) *SingleAdmin
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewSingleAdminGetChannelParamsWithHTTPClient(client *http.Client) *SingleAdminGetChannelParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &SingleAdminGetChannelParams{
 		Limit:      &limitDefault,
@@ -84,7 +85,7 @@ type SingleAdminGetChannelParams struct {
 	  number of content per page
 
 	*/
-	Limit *string
+	Limit *int64
 	/*Namespace
 	  namespace of the game
 
@@ -94,7 +95,7 @@ type SingleAdminGetChannelParams struct {
 	  the offset number to retrieve
 
 	*/
-	Offset *string
+	Offset *int64
 
 	timeout    time.Duration
 	Context    context.Context
@@ -135,13 +136,13 @@ func (o *SingleAdminGetChannelParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithLimit adds the limit to the single admin get channel params
-func (o *SingleAdminGetChannelParams) WithLimit(limit *string) *SingleAdminGetChannelParams {
+func (o *SingleAdminGetChannelParams) WithLimit(limit *int64) *SingleAdminGetChannelParams {
 	o.SetLimit(limit)
 	return o
 }
 
 // SetLimit adds the limit to the single admin get channel params
-func (o *SingleAdminGetChannelParams) SetLimit(limit *string) {
+func (o *SingleAdminGetChannelParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
@@ -157,13 +158,13 @@ func (o *SingleAdminGetChannelParams) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the single admin get channel params
-func (o *SingleAdminGetChannelParams) WithOffset(offset *string) *SingleAdminGetChannelParams {
+func (o *SingleAdminGetChannelParams) WithOffset(offset *int64) *SingleAdminGetChannelParams {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the single admin get channel params
-func (o *SingleAdminGetChannelParams) SetOffset(offset *string) {
+func (o *SingleAdminGetChannelParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
@@ -178,11 +179,11 @@ func (o *SingleAdminGetChannelParams) WriteToRequest(r runtime.ClientRequest, re
 	if o.Limit != nil {
 
 		// query param limit
-		var qrLimit string
+		var qrLimit int64
 		if o.Limit != nil {
 			qrLimit = *o.Limit
 		}
-		qLimit := qrLimit
+		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
 				return err
@@ -199,11 +200,11 @@ func (o *SingleAdminGetChannelParams) WriteToRequest(r runtime.ClientRequest, re
 	if o.Offset != nil {
 
 		// query param offset
-		var qrOffset string
+		var qrOffset int64
 		if o.Offset != nil {
 			qrOffset = *o.Offset
 		}
-		qOffset := qrOffset
+		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
 				return err

@@ -30,6 +30,12 @@ func (o *PostPlayerPublicRecordHandlerV1Reader) ReadResponse(response runtime.Cl
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewPostPlayerPublicRecordHandlerV1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewPostPlayerPublicRecordHandlerV1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,6 +76,39 @@ func (o *PostPlayerPublicRecordHandlerV1Created) Error() string {
 }
 
 func (o *PostPlayerPublicRecordHandlerV1Created) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewPostPlayerPublicRecordHandlerV1BadRequest creates a PostPlayerPublicRecordHandlerV1BadRequest with default headers values
+func NewPostPlayerPublicRecordHandlerV1BadRequest() *PostPlayerPublicRecordHandlerV1BadRequest {
+	return &PostPlayerPublicRecordHandlerV1BadRequest{}
+}
+
+/*PostPlayerPublicRecordHandlerV1BadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18201</td><td>invalid record operator, expect [%s] but actual [%s]</td></tr></table>
+*/
+type PostPlayerPublicRecordHandlerV1BadRequest struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *PostPlayerPublicRecordHandlerV1BadRequest) Error() string {
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] postPlayerPublicRecordHandlerV1BadRequest  %+v", 400, o.Payload)
+}
+
+func (o *PostPlayerPublicRecordHandlerV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *PostPlayerPublicRecordHandlerV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

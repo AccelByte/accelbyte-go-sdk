@@ -35,6 +35,8 @@ type ClientService interface {
 	AuthCodeRequestV3Short(params *AuthCodeRequestV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthCodeRequestV3Found, error)
 	AuthorizeV3(params *AuthorizeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthorizeV3Found, error)
 	AuthorizeV3Short(params *AuthorizeV3Params, authInfo runtime.ClientAuthInfoWriter) (*AuthorizeV3Found, error)
+	Change2FAMethod(params *Change2FAMethodParams, authInfo runtime.ClientAuthInfoWriter) (*Change2FAMethodNoContent, *Change2FAMethodBadRequest, error)
+	Change2FAMethodShort(params *Change2FAMethodParams, authInfo runtime.ClientAuthInfoWriter) (*Change2FAMethodNoContent, error)
 	GetJWKSV3(params *GetJWKSV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetJWKSV3OK, error)
 	GetJWKSV3Short(params *GetJWKSV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetJWKSV3OK, error)
 	GetRevocationListV3(params *GetRevocationListV3Params, authInfo runtime.ClientAuthInfoWriter) (*GetRevocationListV3OK, *GetRevocationListV3Unauthorized, error)
@@ -51,6 +53,8 @@ type ClientService interface {
 	TokenIntrospectionV3Short(params *TokenIntrospectionV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenIntrospectionV3OK, error)
 	TokenRevocationV3(params *TokenRevocationV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenRevocationV3OK, *TokenRevocationV3BadRequest, *TokenRevocationV3Unauthorized, error)
 	TokenRevocationV3Short(params *TokenRevocationV3Params, authInfo runtime.ClientAuthInfoWriter) (*TokenRevocationV3OK, error)
+	Verify2FACode(params *Verify2FACodeParams, authInfo runtime.ClientAuthInfoWriter) (*Verify2FACodeOK, *Verify2FACodeUnauthorized, error)
+	Verify2FACodeShort(params *Verify2FACodeParams, authInfo runtime.ClientAuthInfoWriter) (*Verify2FACodeOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -369,6 +373,97 @@ func (a *Client) AuthorizeV3Short(params *AuthorizeV3Params, authInfo runtime.Cl
 
 	case *AuthorizeV3Found:
 		return v, nil
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  Change2FAMethod changes 2 f a method
+
+  Change 2FA method(In Development)&lt;br/&gt;
+&lt;p&gt;This endpoint is used for change 2FA method. Only enabled methods are accepted.&lt;/p&gt;
+&lt;p&gt;Supported methods:&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;authenticator&lt;/li&gt;
+	&lt;li&gt;backupCodes&lt;/li&gt;
+&lt;/ul&gt;
+
+*/
+func (a *Client) Change2FAMethod(params *Change2FAMethodParams, authInfo runtime.ClientAuthInfoWriter) (*Change2FAMethodNoContent, *Change2FAMethodBadRequest, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewChange2FAMethodParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "Change2FAMethod",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/oauth/mfa/factor/change",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &Change2FAMethodReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *Change2FAMethodNoContent:
+		return v, nil, nil
+
+	case *Change2FAMethodBadRequest:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) Change2FAMethodShort(params *Change2FAMethodParams, authInfo runtime.ClientAuthInfoWriter) (*Change2FAMethodNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewChange2FAMethodParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "Change2FAMethod",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/oauth/mfa/factor/change",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &Change2FAMethodReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *Change2FAMethodNoContent:
+		return v, nil
+	case *Change2FAMethodBadRequest:
+		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
@@ -1259,6 +1354,92 @@ func (a *Client) TokenRevocationV3Short(params *TokenRevocationV3Params, authInf
 	case *TokenRevocationV3BadRequest:
 		return nil, v
 	case *TokenRevocationV3Unauthorized:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  Verify2FACode verifies 2 f a code
+
+  Verify 2FA code(In Development)&lt;br/&gt;
+&lt;p&gt;This endpoint is used for verifying 2FA code.&lt;/p&gt;
+
+*/
+func (a *Client) Verify2FACode(params *Verify2FACodeParams, authInfo runtime.ClientAuthInfoWriter) (*Verify2FACodeOK, *Verify2FACodeUnauthorized, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewVerify2FACodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "Verify2FACode",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/oauth/mfa/verify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &Verify2FACodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *Verify2FACodeOK:
+		return v, nil, nil
+
+	case *Verify2FACodeUnauthorized:
+		return nil, v, nil
+
+	default:
+		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) Verify2FACodeShort(params *Verify2FACodeParams, authInfo runtime.ClientAuthInfoWriter) (*Verify2FACodeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewVerify2FACodeParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "Verify2FACode",
+		Method:             "POST",
+		PathPattern:        "/iam/v3/oauth/mfa/verify",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &Verify2FACodeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *Verify2FACodeOK:
+		return v, nil
+	case *Verify2FACodeUnauthorized:
 		return nil, v
 
 	default:

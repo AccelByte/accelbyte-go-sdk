@@ -14,14 +14,15 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewSearchChannelSpecificContentParams creates a new SearchChannelSpecificContentParams object
 // with the default values initialized.
 func NewSearchChannelSpecificContentParams() *SearchChannelSpecificContentParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &SearchChannelSpecificContentParams{
 		Limit:  &limitDefault,
@@ -35,8 +36,8 @@ func NewSearchChannelSpecificContentParams() *SearchChannelSpecificContentParams
 // with the default values initialized, and the ability to set a timeout on a request
 func NewSearchChannelSpecificContentParamsWithTimeout(timeout time.Duration) *SearchChannelSpecificContentParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &SearchChannelSpecificContentParams{
 		Limit:  &limitDefault,
@@ -50,8 +51,8 @@ func NewSearchChannelSpecificContentParamsWithTimeout(timeout time.Duration) *Se
 // with the default values initialized, and the ability to set a context for a request
 func NewSearchChannelSpecificContentParamsWithContext(ctx context.Context) *SearchChannelSpecificContentParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &SearchChannelSpecificContentParams{
 		Limit:  &limitDefault,
@@ -65,8 +66,8 @@ func NewSearchChannelSpecificContentParamsWithContext(ctx context.Context) *Sear
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewSearchChannelSpecificContentParamsWithHTTPClient(client *http.Client) *SearchChannelSpecificContentParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &SearchChannelSpecificContentParams{
 		Limit:      &limitDefault,
@@ -99,7 +100,7 @@ type SearchChannelSpecificContentParams struct {
 	  number of content per page
 
 	*/
-	Limit *string
+	Limit *int64
 	/*Name
 	  content name
 
@@ -114,7 +115,7 @@ type SearchChannelSpecificContentParams struct {
 	  the offset number to retrieve
 
 	*/
-	Offset *string
+	Offset *int64
 	/*Orderby
 	  sorting order: asc, desc. default=desc
 
@@ -218,13 +219,13 @@ func (o *SearchChannelSpecificContentParams) SetIsofficial(isofficial *string) {
 }
 
 // WithLimit adds the limit to the search channel specific content params
-func (o *SearchChannelSpecificContentParams) WithLimit(limit *string) *SearchChannelSpecificContentParams {
+func (o *SearchChannelSpecificContentParams) WithLimit(limit *int64) *SearchChannelSpecificContentParams {
 	o.SetLimit(limit)
 	return o
 }
 
 // SetLimit adds the limit to the search channel specific content params
-func (o *SearchChannelSpecificContentParams) SetLimit(limit *string) {
+func (o *SearchChannelSpecificContentParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
@@ -251,13 +252,13 @@ func (o *SearchChannelSpecificContentParams) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the search channel specific content params
-func (o *SearchChannelSpecificContentParams) WithOffset(offset *string) *SearchChannelSpecificContentParams {
+func (o *SearchChannelSpecificContentParams) WithOffset(offset *int64) *SearchChannelSpecificContentParams {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the search channel specific content params
-func (o *SearchChannelSpecificContentParams) SetOffset(offset *string) {
+func (o *SearchChannelSpecificContentParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
@@ -375,11 +376,11 @@ func (o *SearchChannelSpecificContentParams) WriteToRequest(r runtime.ClientRequ
 	if o.Limit != nil {
 
 		// query param limit
-		var qrLimit string
+		var qrLimit int64
 		if o.Limit != nil {
 			qrLimit = *o.Limit
 		}
-		qLimit := qrLimit
+		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
 				return err
@@ -412,11 +413,11 @@ func (o *SearchChannelSpecificContentParams) WriteToRequest(r runtime.ClientRequ
 	if o.Offset != nil {
 
 		// query param offset
-		var qrOffset string
+		var qrOffset int64
 		if o.Offset != nil {
 			qrOffset = *o.Offset
 		}
-		qOffset := qrOffset
+		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
 				return err

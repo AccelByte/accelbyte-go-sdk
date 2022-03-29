@@ -29,10 +29,10 @@ type StatCreate struct {
 	// increment only
 	IncrementOnly bool `json:"incrementOnly"`
 
-	// maximum
+	// default value is 1.7976931348623157e+308
 	Maximum float64 `json:"maximum,omitempty"`
 
-	// minimum
+	// default value is 0.0
 	Minimum float64 `json:"minimum,omitempty"`
 
 	// name

@@ -6,28 +6,30 @@ package cloudsaveclientmodels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"strconv"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
-// ModelsListGameRecordKeys models list game record keys
+// ModelsListPlayerRecordKeysResponse models list player record keys response
 //
-// swagger:model models.ListGameRecordKeys
-type ModelsListGameRecordKeys struct {
+// swagger:model models.ListPlayerRecordKeysResponse
+type ModelsListPlayerRecordKeysResponse struct {
 
 	// data
 	// Required: true
-	Data []string `json:"data"`
+	Data []*ModelsPlayerRecordKeyInfo `json:"data"`
 
 	// paging
 	// Required: true
 	Paging *ModelsPagination `json:"paging"`
 }
 
-// Validate validates this models list game record keys
-func (m *ModelsListGameRecordKeys) Validate(formats strfmt.Registry) error {
+// Validate validates this models list player record keys response
+func (m *ModelsListPlayerRecordKeysResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateData(formats); err != nil {
@@ -44,16 +46,32 @@ func (m *ModelsListGameRecordKeys) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ModelsListGameRecordKeys) validateData(formats strfmt.Registry) error {
+func (m *ModelsListPlayerRecordKeysResponse) validateData(formats strfmt.Registry) error {
 
 	if err := validate.Required("data", "body", m.Data); err != nil {
 		return err
 	}
 
+	for i := 0; i < len(m.Data); i++ {
+		if swag.IsZero(m.Data[i]) { // not required
+			continue
+		}
+
+		if m.Data[i] != nil {
+			if err := m.Data[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
-func (m *ModelsListGameRecordKeys) validatePaging(formats strfmt.Registry) error {
+func (m *ModelsListPlayerRecordKeysResponse) validatePaging(formats strfmt.Registry) error {
 
 	if err := validate.Required("paging", "body", m.Paging); err != nil {
 		return err
@@ -72,7 +90,7 @@ func (m *ModelsListGameRecordKeys) validatePaging(formats strfmt.Registry) error
 }
 
 // MarshalBinary interface implementation
-func (m *ModelsListGameRecordKeys) MarshalBinary() ([]byte, error) {
+func (m *ModelsListPlayerRecordKeysResponse) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -80,8 +98,8 @@ func (m *ModelsListGameRecordKeys) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *ModelsListGameRecordKeys) UnmarshalBinary(b []byte) error {
-	var res ModelsListGameRecordKeys
+func (m *ModelsListPlayerRecordKeysResponse) UnmarshalBinary(b []byte) error {
+	var res ModelsListPlayerRecordKeysResponse
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -36,12 +36,6 @@ func (o *PayWithUserWalletReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return result, nil
-	case 409:
-		result := NewPayWithUserWalletConflict()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 	case 422:
 		result := NewPayWithUserWalletUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -114,39 +108,6 @@ func (o *PayWithUserWalletBadRequest) GetPayload() *platformclientmodels.ErrorEn
 }
 
 func (o *PayWithUserWalletBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(platformclientmodels.ErrorEntity)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
-// NewPayWithUserWalletConflict creates a PayWithUserWalletConflict with default headers values
-func NewPayWithUserWalletConflict() *PayWithUserWalletConflict {
-	return &PayWithUserWalletConflict{}
-}
-
-/*PayWithUserWalletConflict handles this case with default header values.
-
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>20006</td><td>optimistic lock</td></tr></table>
-*/
-type PayWithUserWalletConflict struct {
-	Payload *platformclientmodels.ErrorEntity
-}
-
-func (o *PayWithUserWalletConflict) Error() string {
-	return fmt.Sprintf("[PUT /platform/admin/namespaces/{namespace}/users/{userId}/wallets/{currencyCode}/payment][%d] payWithUserWalletConflict  %+v", 409, o.Payload)
-}
-
-func (o *PayWithUserWalletConflict) GetPayload() *platformclientmodels.ErrorEntity {
-	return o.Payload
-}
-
-func (o *PayWithUserWalletConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(platformclientmodels.ErrorEntity)
 

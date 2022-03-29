@@ -19,6 +19,10 @@ import (
 // swagger:model MockIAPReceipt
 type MockIAPReceipt struct {
 
+	// The item identity type
+	// Enum: [ITEM_ID ITEM_SKU]
+	ItemIdentityType string `json:"itemIdentityType,omitempty"`
+
 	// language value from language tag, allowed format: en, en-US
 	// Pattern: ^[A-Za-z]{2,4}([_-][A-Za-z]{4})?([_-]([A-Za-z]{2}|[0-9]{3}))?$
 	Language string `json:"language,omitempty"`
@@ -40,6 +44,10 @@ type MockIAPReceipt struct {
 func (m *MockIAPReceipt) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateItemIdentityType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateLanguage(formats); err != nil {
 		res = append(res, err)
 	}
@@ -55,6 +63,49 @@ func (m *MockIAPReceipt) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+var mockIAPReceiptTypeItemIdentityTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["ITEM_ID","ITEM_SKU"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		mockIAPReceiptTypeItemIdentityTypePropEnum = append(mockIAPReceiptTypeItemIdentityTypePropEnum, v)
+	}
+}
+
+const (
+
+	// MockIAPReceiptItemIdentityTypeITEMID captures enum value "ITEM_ID"
+	MockIAPReceiptItemIdentityTypeITEMID string = "ITEM_ID"
+
+	// MockIAPReceiptItemIdentityTypeITEMSKU captures enum value "ITEM_SKU"
+	MockIAPReceiptItemIdentityTypeITEMSKU string = "ITEM_SKU"
+)
+
+// prop value enum
+func (m *MockIAPReceipt) validateItemIdentityTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, mockIAPReceiptTypeItemIdentityTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *MockIAPReceipt) validateItemIdentityType(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ItemIdentityType) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateItemIdentityTypeEnum("itemIdentityType", "body", m.ItemIdentityType); err != nil {
+		return err
+	}
+
 	return nil
 }
 

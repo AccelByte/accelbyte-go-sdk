@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewGetUserFriendsUpdatedParams creates a new GetUserFriendsUpdatedParams object
@@ -64,7 +65,7 @@ type GetUserFriendsUpdatedParams struct {
 	  maximum number of data
 
 	*/
-	Limit *string
+	Limit *int64
 	/*Namespace
 	  namespace
 
@@ -74,7 +75,7 @@ type GetUserFriendsUpdatedParams struct {
 	  numbers of row to skip within the result
 
 	*/
-	Offset *string
+	Offset *int64
 
 	timeout    time.Duration
 	Context    context.Context
@@ -115,13 +116,13 @@ func (o *GetUserFriendsUpdatedParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithLimit adds the limit to the get user friends updated params
-func (o *GetUserFriendsUpdatedParams) WithLimit(limit *string) *GetUserFriendsUpdatedParams {
+func (o *GetUserFriendsUpdatedParams) WithLimit(limit *int64) *GetUserFriendsUpdatedParams {
 	o.SetLimit(limit)
 	return o
 }
 
 // SetLimit adds the limit to the get user friends updated params
-func (o *GetUserFriendsUpdatedParams) SetLimit(limit *string) {
+func (o *GetUserFriendsUpdatedParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
@@ -137,13 +138,13 @@ func (o *GetUserFriendsUpdatedParams) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the get user friends updated params
-func (o *GetUserFriendsUpdatedParams) WithOffset(offset *string) *GetUserFriendsUpdatedParams {
+func (o *GetUserFriendsUpdatedParams) WithOffset(offset *int64) *GetUserFriendsUpdatedParams {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the get user friends updated params
-func (o *GetUserFriendsUpdatedParams) SetOffset(offset *string) {
+func (o *GetUserFriendsUpdatedParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
@@ -158,11 +159,11 @@ func (o *GetUserFriendsUpdatedParams) WriteToRequest(r runtime.ClientRequest, re
 	if o.Limit != nil {
 
 		// query param limit
-		var qrLimit string
+		var qrLimit int64
 		if o.Limit != nil {
 			qrLimit = *o.Limit
 		}
-		qLimit := qrLimit
+		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
 				return err
@@ -179,11 +180,11 @@ func (o *GetUserFriendsUpdatedParams) WriteToRequest(r runtime.ClientRequest, re
 	if o.Offset != nil {
 
 		// query param offset
-		var qrOffset string
+		var qrOffset int64
 		if o.Offset != nil {
 			qrOffset = *o.Offset
 		}
-		qOffset := qrOffset
+		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
 				return err

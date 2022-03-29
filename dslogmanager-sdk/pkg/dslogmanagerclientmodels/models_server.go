@@ -47,10 +47,18 @@ type ModelsServer struct {
 	// Required: true
 	IP *string `json:"ip"`
 
+	// is override game version
+	// Required: true
+	IsOverrideGameVersion *bool `json:"is_override_game_version"`
+
 	// last update
 	// Required: true
 	// Format: date-time
 	LastUpdate strfmt.DateTime `json:"last_update"`
+
+	// match id
+	// Required: true
+	MatchID *string `json:"match_id"`
 
 	// mem limit
 	// Required: true
@@ -75,6 +83,10 @@ type ModelsServer struct {
 	// ports
 	// Required: true
 	Ports map[string]int64 `json:"ports"`
+
+	// protocol
+	// Required: true
+	Protocol *string `json:"protocol"`
 
 	// provider
 	// Required: true
@@ -129,7 +141,15 @@ func (m *ModelsServer) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateIsOverrideGameVersion(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateLastUpdate(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMatchID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -154,6 +174,10 @@ func (m *ModelsServer) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePorts(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateProtocol(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -246,6 +270,15 @@ func (m *ModelsServer) validateIP(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *ModelsServer) validateIsOverrideGameVersion(formats strfmt.Registry) error {
+
+	if err := validate.Required("is_override_game_version", "body", m.IsOverrideGameVersion); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ModelsServer) validateLastUpdate(formats strfmt.Registry) error {
 
 	if err := validate.Required("last_update", "body", strfmt.DateTime(m.LastUpdate)); err != nil {
@@ -253,6 +286,15 @@ func (m *ModelsServer) validateLastUpdate(formats strfmt.Registry) error {
 	}
 
 	if err := validate.FormatOf("last_update", "body", "date-time", m.LastUpdate.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsServer) validateMatchID(formats strfmt.Registry) error {
+
+	if err := validate.Required("match_id", "body", m.MatchID); err != nil {
 		return err
 	}
 
@@ -305,6 +347,15 @@ func (m *ModelsServer) validatePort(formats strfmt.Registry) error {
 }
 
 func (m *ModelsServer) validatePorts(formats strfmt.Registry) error {
+
+	return nil
+}
+
+func (m *ModelsServer) validateProtocol(formats strfmt.Registry) error {
+
+	if err := validate.Required("protocol", "body", m.Protocol); err != nil {
+		return err
+	}
 
 	return nil
 }

@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewQuerySessionParams creates a new QuerySessionParams object
@@ -79,7 +80,7 @@ type QuerySessionParams struct {
 	  max item to be returned
 
 	*/
-	Limit *string
+	Limit *int64
 	/*MatchExist
 	  filter session by match existence, accept 'true' or 'false'
 
@@ -99,7 +100,7 @@ type QuerySessionParams struct {
 	  skip some item(s), offset=3, will skip 3 first items
 
 	*/
-	Offset *string
+	Offset *int64
 	/*ServerStatus
 	  filter session by server status, accept CREATING,READY,BUSY,REMOVING,UNREACHABLE
 
@@ -188,13 +189,13 @@ func (o *QuerySessionParams) SetJoinable(joinable *string) {
 }
 
 // WithLimit adds the limit to the query session params
-func (o *QuerySessionParams) WithLimit(limit *string) *QuerySessionParams {
+func (o *QuerySessionParams) WithLimit(limit *int64) *QuerySessionParams {
 	o.SetLimit(limit)
 	return o
 }
 
 // SetLimit adds the limit to the query session params
-func (o *QuerySessionParams) SetLimit(limit *string) {
+func (o *QuerySessionParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
@@ -232,13 +233,13 @@ func (o *QuerySessionParams) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the query session params
-func (o *QuerySessionParams) WithOffset(offset *string) *QuerySessionParams {
+func (o *QuerySessionParams) WithOffset(offset *int64) *QuerySessionParams {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the query session params
-func (o *QuerySessionParams) SetOffset(offset *string) {
+func (o *QuerySessionParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
@@ -334,11 +335,11 @@ func (o *QuerySessionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	if o.Limit != nil {
 
 		// query param limit
-		var qrLimit string
+		var qrLimit int64
 		if o.Limit != nil {
 			qrLimit = *o.Limit
 		}
-		qLimit := qrLimit
+		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
 				return err
@@ -387,11 +388,11 @@ func (o *QuerySessionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	if o.Offset != nil {
 
 		// query param offset
-		var qrOffset string
+		var qrOffset int64
 		if o.Offset != nil {
 			qrOffset = *o.Offset
 		}
-		qOffset := qrOffset
+		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
 				return err

@@ -18,7 +18,7 @@ type PublicGameRecordService struct {
 }
 
 // Deprecated: Use GetGameRecordHandlerV1Short instead
-func (p *PublicGameRecordService) GetGameRecordHandlerV1(input *public_game_record.GetGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecord, error) {
+func (p *PublicGameRecordService) GetGameRecordHandlerV1(input *public_game_record.GetGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecordResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
@@ -83,7 +83,10 @@ func (p *PublicGameRecordService) DeleteGameRecordHandlerV1(input *public_game_r
 	if err != nil {
 		return err
 	}
-	_, unauthorized, internalServerError, err := p.Client.PublicGameRecord.DeleteGameRecordHandlerV1(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, internalServerError, err := p.Client.PublicGameRecord.DeleteGameRecordHandlerV1(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -96,7 +99,7 @@ func (p *PublicGameRecordService) DeleteGameRecordHandlerV1(input *public_game_r
 	return nil
 }
 
-func (p *PublicGameRecordService) GetGameRecordHandlerV1Short(input *public_game_record.GetGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecord, error) {
+func (p *PublicGameRecordService) GetGameRecordHandlerV1Short(input *public_game_record.GetGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecordResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err

@@ -31,7 +31,7 @@ type Client struct {
 type ClientService interface {
 	CheckWallet(params *CheckWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CheckWalletNoContent, *CheckWalletBadRequest, *CheckWalletConflict, *CheckWalletUnprocessableEntity, error)
 	CheckWalletShort(params *CheckWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CheckWalletNoContent, error)
-	CreditUserWallet(params *CreditUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CreditUserWalletOK, *CreditUserWalletBadRequest, *CreditUserWalletConflict, *CreditUserWalletUnprocessableEntity, error)
+	CreditUserWallet(params *CreditUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CreditUserWalletOK, *CreditUserWalletBadRequest, *CreditUserWalletUnprocessableEntity, error)
 	CreditUserWalletShort(params *CreditUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CreditUserWalletOK, error)
 	DebitUserWallet(params *DebitUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*DebitUserWalletOK, *DebitUserWalletBadRequest, *DebitUserWalletNotFound, *DebitUserWalletConflict, *DebitUserWalletUnprocessableEntity, error)
 	DebitUserWalletShort(params *DebitUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*DebitUserWalletOK, error)
@@ -45,7 +45,7 @@ type ClientService interface {
 	GetWalletShort(params *GetWalletParams, authInfo runtime.ClientAuthInfoWriter) (*GetWalletOK, error)
 	ListUserWalletTransactions(params *ListUserWalletTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserWalletTransactionsOK, *ListUserWalletTransactionsNotFound, error)
 	ListUserWalletTransactionsShort(params *ListUserWalletTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserWalletTransactionsOK, error)
-	PayWithUserWallet(params *PayWithUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PayWithUserWalletOK, *PayWithUserWalletBadRequest, *PayWithUserWalletConflict, *PayWithUserWalletUnprocessableEntity, error)
+	PayWithUserWallet(params *PayWithUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PayWithUserWalletOK, *PayWithUserWalletBadRequest, *PayWithUserWalletUnprocessableEntity, error)
 	PayWithUserWalletShort(params *PayWithUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PayWithUserWalletOK, error)
 	PublicGetMyWallet(params *PublicGetMyWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyWalletOK, error)
 	PublicGetMyWalletShort(params *PublicGetMyWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyWalletOK, error)
@@ -158,7 +158,7 @@ func (a *Client) CheckWalletShort(params *CheckWalletParams, authInfo runtime.Cl
 
   Credit a user wallet by currency code, if wallet not exists, it will create a new wallet.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) CreditUserWallet(params *CreditUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CreditUserWalletOK, *CreditUserWalletBadRequest, *CreditUserWalletConflict, *CreditUserWalletUnprocessableEntity, error) {
+func (a *Client) CreditUserWallet(params *CreditUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*CreditUserWalletOK, *CreditUserWalletBadRequest, *CreditUserWalletUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreditUserWalletParams()
@@ -182,25 +182,22 @@ func (a *Client) CreditUserWallet(params *CreditUserWalletParams, authInfo runti
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *CreditUserWalletOK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil
 
 	case *CreditUserWalletBadRequest:
-		return nil, v, nil, nil, nil
-
-	case *CreditUserWalletConflict:
-		return nil, nil, v, nil, nil
+		return nil, v, nil, nil
 
 	case *CreditUserWalletUnprocessableEntity:
-		return nil, nil, nil, v, nil
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -236,8 +233,6 @@ func (a *Client) CreditUserWalletShort(params *CreditUserWalletParams, authInfo 
 	case *CreditUserWalletOK:
 		return v, nil
 	case *CreditUserWalletBadRequest:
-		return nil, v
-	case *CreditUserWalletConflict:
 		return nil, v
 	case *CreditUserWalletUnprocessableEntity:
 		return nil, v
@@ -781,7 +776,7 @@ func (a *Client) ListUserWalletTransactionsShort(params *ListUserWalletTransacti
 
   Pay with user wallet by currency code.&lt;br&gt;Other detail info: &lt;ul&gt;&lt;li&gt;&lt;i&gt;Required permission&lt;/i&gt;: resource=&#34;ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET&#34;, action=4 (UPDATE)&lt;/li&gt;&lt;/ul&gt;
 */
-func (a *Client) PayWithUserWallet(params *PayWithUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PayWithUserWalletOK, *PayWithUserWalletBadRequest, *PayWithUserWalletConflict, *PayWithUserWalletUnprocessableEntity, error) {
+func (a *Client) PayWithUserWallet(params *PayWithUserWalletParams, authInfo runtime.ClientAuthInfoWriter) (*PayWithUserWalletOK, *PayWithUserWalletBadRequest, *PayWithUserWalletUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPayWithUserWalletParams()
@@ -805,25 +800,22 @@ func (a *Client) PayWithUserWallet(params *PayWithUserWalletParams, authInfo run
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *PayWithUserWalletOK:
-		return v, nil, nil, nil, nil
+		return v, nil, nil, nil
 
 	case *PayWithUserWalletBadRequest:
-		return nil, v, nil, nil, nil
-
-	case *PayWithUserWalletConflict:
-		return nil, nil, v, nil, nil
+		return nil, v, nil, nil
 
 	case *PayWithUserWalletUnprocessableEntity:
-		return nil, nil, nil, v, nil
+		return nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -859,8 +851,6 @@ func (a *Client) PayWithUserWalletShort(params *PayWithUserWalletParams, authInf
 	case *PayWithUserWalletOK:
 		return v, nil
 	case *PayWithUserWalletBadRequest:
-		return nil, v
-	case *PayWithUserWalletConflict:
 		return nil, v
 	case *PayWithUserWalletUnprocessableEntity:
 		return nil, v

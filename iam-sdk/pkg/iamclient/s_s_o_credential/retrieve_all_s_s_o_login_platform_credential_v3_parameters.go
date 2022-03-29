@@ -75,7 +75,7 @@ type RetrieveAllSSOLoginPlatformCredentialV3Params struct {
 	  Offset, default 0
 
 	*/
-	Offset *string
+	Offset *int64
 
 	timeout    time.Duration
 	Context    context.Context
@@ -138,13 +138,13 @@ func (o *RetrieveAllSSOLoginPlatformCredentialV3Params) SetNamespace(namespace s
 }
 
 // WithOffset adds the offset to the retrieve all s s o login platform credential v3 params
-func (o *RetrieveAllSSOLoginPlatformCredentialV3Params) WithOffset(offset *string) *RetrieveAllSSOLoginPlatformCredentialV3Params {
+func (o *RetrieveAllSSOLoginPlatformCredentialV3Params) WithOffset(offset *int64) *RetrieveAllSSOLoginPlatformCredentialV3Params {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the retrieve all s s o login platform credential v3 params
-func (o *RetrieveAllSSOLoginPlatformCredentialV3Params) SetOffset(offset *string) {
+func (o *RetrieveAllSSOLoginPlatformCredentialV3Params) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
@@ -180,11 +180,11 @@ func (o *RetrieveAllSSOLoginPlatformCredentialV3Params) WriteToRequest(r runtime
 	if o.Offset != nil {
 
 		// query param offset
-		var qrOffset string
+		var qrOffset int64
 		if o.Offset != nil {
 			qrOffset = *o.Offset
 		}
-		qOffset := qrOffset
+		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
 				return err

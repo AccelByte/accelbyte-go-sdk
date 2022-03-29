@@ -14,14 +14,15 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewGetGroupContentParams creates a new GetGroupContentParams object
 // with the default values initialized.
 func NewGetGroupContentParams() *GetGroupContentParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetGroupContentParams{
 		Limit:  &limitDefault,
@@ -35,8 +36,8 @@ func NewGetGroupContentParams() *GetGroupContentParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetGroupContentParamsWithTimeout(timeout time.Duration) *GetGroupContentParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetGroupContentParams{
 		Limit:  &limitDefault,
@@ -50,8 +51,8 @@ func NewGetGroupContentParamsWithTimeout(timeout time.Duration) *GetGroupContent
 // with the default values initialized, and the ability to set a context for a request
 func NewGetGroupContentParamsWithContext(ctx context.Context) *GetGroupContentParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetGroupContentParams{
 		Limit:  &limitDefault,
@@ -65,8 +66,8 @@ func NewGetGroupContentParamsWithContext(ctx context.Context) *GetGroupContentPa
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetGroupContentParamsWithHTTPClient(client *http.Client) *GetGroupContentParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetGroupContentParams{
 		Limit:      &limitDefault,
@@ -89,7 +90,7 @@ type GetGroupContentParams struct {
 	  number of content per page
 
 	*/
-	Limit *string
+	Limit *int64
 	/*Namespace
 	  namespace of the game
 
@@ -99,7 +100,7 @@ type GetGroupContentParams struct {
 	  the offset number to retrieve
 
 	*/
-	Offset *string
+	Offset *int64
 	/*UserID
 	  user ID
 
@@ -156,13 +157,13 @@ func (o *GetGroupContentParams) SetGroupID(groupID string) {
 }
 
 // WithLimit adds the limit to the get group content params
-func (o *GetGroupContentParams) WithLimit(limit *string) *GetGroupContentParams {
+func (o *GetGroupContentParams) WithLimit(limit *int64) *GetGroupContentParams {
 	o.SetLimit(limit)
 	return o
 }
 
 // SetLimit adds the limit to the get group content params
-func (o *GetGroupContentParams) SetLimit(limit *string) {
+func (o *GetGroupContentParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
@@ -178,13 +179,13 @@ func (o *GetGroupContentParams) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the get group content params
-func (o *GetGroupContentParams) WithOffset(offset *string) *GetGroupContentParams {
+func (o *GetGroupContentParams) WithOffset(offset *int64) *GetGroupContentParams {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the get group content params
-func (o *GetGroupContentParams) SetOffset(offset *string) {
+func (o *GetGroupContentParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
@@ -215,11 +216,11 @@ func (o *GetGroupContentParams) WriteToRequest(r runtime.ClientRequest, reg strf
 	if o.Limit != nil {
 
 		// query param limit
-		var qrLimit string
+		var qrLimit int64
 		if o.Limit != nil {
 			qrLimit = *o.Limit
 		}
-		qLimit := qrLimit
+		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
 				return err
@@ -236,11 +237,11 @@ func (o *GetGroupContentParams) WriteToRequest(r runtime.ClientRequest, reg strf
 	if o.Offset != nil {
 
 		// query param offset
-		var qrOffset string
+		var qrOffset int64
 		if o.Offset != nil {
 			qrOffset = *o.Offset
 		}
-		qOffset := qrOffset
+		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
 				return err

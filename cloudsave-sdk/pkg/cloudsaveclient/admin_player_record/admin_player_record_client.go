@@ -54,11 +54,11 @@ type ClientService interface {
 }
 
 /*
-  AdminRetrievePlayerRecords retrieves list of player records
+  AdminRetrievePlayerRecords queries player records
 
-  Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:RECORD [READ]
+  Required permission: &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:RECORD [READ]&lt;/code&gt;
 
-Required scope: social
+Required scope: &lt;code&gt;social&lt;/code&gt;
 
 Retrieve list of player records key and userID under given namespace.
 */
@@ -152,11 +152,11 @@ func (a *Client) AdminRetrievePlayerRecordsShort(params *AdminRetrievePlayerReco
 }
 
 /*
-  AdminDeletePlayerPublicRecordHandlerV1 deletes player public record based on its key
+  AdminDeletePlayerPublicRecordHandlerV1 deletes player public record
 
-  Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [DELETE]
+  Required permission: &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [DELETE]&lt;/code&gt;
 
-Required scope: social
+Required scope: &lt;code&gt;social&lt;/code&gt;
 
 Delete a public record (arbitrary JSON data) in user-level with given key.
 */
@@ -250,13 +250,13 @@ func (a *Client) AdminDeletePlayerPublicRecordHandlerV1Short(params *AdminDelete
 }
 
 /*
-  AdminDeletePlayerRecordHandlerV1 purges player record based on its key
+  AdminDeletePlayerRecordHandlerV1 deletes player record
 
-  Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]
+  Required permission: &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]&lt;/code&gt;
 
-Required scope: social
+Required scope: &lt;code&gt;social&lt;/code&gt;
 
-Delete a record (arbitrary JSON data) in user-level with given key. It will delete the record whether it&#39;s private or public record.
+Delete a record (arbitrary JSON data) in user-level with given key.
 */
 func (a *Client) AdminDeletePlayerRecordHandlerV1(params *AdminDeletePlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlayerRecordHandlerV1NoContent, *AdminDeletePlayerRecordHandlerV1Unauthorized, *AdminDeletePlayerRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -343,11 +343,11 @@ func (a *Client) AdminDeletePlayerRecordHandlerV1Short(params *AdminDeletePlayer
 }
 
 /*
-  AdminGetPlayerPublicRecordHandlerV1 retrieves a player public record value by its key
+  AdminGetPlayerPublicRecordHandlerV1 gets player public record
 
-  Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]
+  Required permission: &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]&lt;/code&gt;
 
-Required scope: social
+Required scope: &lt;code&gt;social&lt;/code&gt;
 
 Get a record in user-level (arbitrary JSON data) by its key.
 */
@@ -441,11 +441,11 @@ func (a *Client) AdminGetPlayerPublicRecordHandlerV1Short(params *AdminGetPlayer
 }
 
 /*
-  AdminGetPlayerRecordHandlerV1 retrieves a record value by its key
+  AdminGetPlayerRecordHandlerV1 gets player record
 
-  Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]
+  Required permission: &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]&lt;/code&gt;
 
-Required scope: social
+Required scope: &lt;code&gt;social&lt;/code&gt;
 
 Get a record in user-level (arbitrary JSON data) by its key.
 */
@@ -539,17 +539,33 @@ func (a *Client) AdminGetPlayerRecordHandlerV1Short(params *AdminGetPlayerRecord
 }
 
 /*
-  AdminPostPlayerPublicRecordHandlerV1 saves user level record
+  AdminPostPlayerPublicRecordHandlerV1 creates or append player public record
 
-  Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [CREATE]
+  Required permission: &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [CREATE]&lt;/code&gt;
+Required scope: &lt;code&gt;social&lt;/code&gt;
 
-Required scope: social
+&lt;h2&gt;Description&lt;/h2&gt;
 
-Save a record (arbitrary JSON data) in user-level.
-If a record already exist with given record key, this endpoint will try to merge.
-Same top level key inside body will be replaced, different top level key will be appended.
-Record saved will be a public record.
-If existing record is not public (is_public false) then this endpoint won&#39;t make it public.
+This endpoints will create new player public record or append the existing player public record.
+
+&lt;b&gt;Append example:&lt;/b&gt;
+
+Example 1
+- 	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34; }&lt;/pre&gt;
+- 	New JSON:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34;, &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+
+Example 2
+-	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data2&#34;: &#34;value&#34; }&lt;/pre&gt;
+-	New JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data3&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data2&#34;: &#34;value&#34;, &#34;data3&#34;: &#34;new value&#34; }&lt;/pre&gt;
+
 */
 func (a *Client) AdminPostPlayerPublicRecordHandlerV1(params *AdminPostPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostPlayerPublicRecordHandlerV1Created, *AdminPostPlayerPublicRecordHandlerV1BadRequest, *AdminPostPlayerPublicRecordHandlerV1Unauthorized, *AdminPostPlayerPublicRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -641,16 +657,60 @@ func (a *Client) AdminPostPlayerPublicRecordHandlerV1Short(params *AdminPostPlay
 }
 
 /*
-  AdminPostPlayerRecordHandlerV1 saves user level record
+  AdminPostPlayerRecordHandlerV1 creates or append player record
 
-  Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]
+  Required permission: &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]&lt;/code&gt;
+Required scope: &lt;code&gt;social&lt;/code&gt;
 
-Required scope: social
+&lt;h2&gt;Description&lt;/h2&gt;
 
-Save a record (arbitrary JSON data) in user-level.
-If a record already exist with given record key, this endpoint will try to merge.
-Same top level key inside body will be replaced, different top level key will be appended.
-Record saved will be a private record.
+This endpoints will create new player record or append the existing player record.
+
+&lt;b&gt;Append example:&lt;/b&gt;
+
+Example 1
+- 	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34; }&lt;/pre&gt;
+- 	New JSON:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34;, &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+
+Example 2
+-	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data2&#34;: &#34;value&#34; }&lt;/pre&gt;
+-	New JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data3&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data2&#34;: &#34;value&#34;, &#34;data3&#34;: &#34;new value&#34; }&lt;/pre&gt;
+
+
+&lt;h2&gt;Record Metadata&lt;/h2&gt;
+
+Metadata allows user to define the behaviour of the record.
+Metadata can be defined in request body with field name &lt;b&gt;META&lt;/b&gt;.
+When creating record, if &lt;b&gt;META&lt;/b&gt; field is not defined, the metadata value will use the default value.
+When updating record, if &lt;b&gt;META&lt;/b&gt; field is not defined, the existing metadata value will stay as is.
+
+&lt;b&gt;Metadata List:&lt;/b&gt;
+1.	set_by (default: CLIENT, type: string)
+	Indicate which party that could modify the game record.
+	SERVER: record can be modified by server only.
+	CLIENT: record can be modified by client and server.
+2.	is_public (default: false, type: bool)
+	Indicate whether the player record is a public record or not.
+
+&lt;b&gt;Request Body Example:&lt;/b&gt;
+&lt;pre&gt;
+	{
+		&#34;META&#34;: {
+			&#34;set_by&#34;: &#34;SERVER&#34;,
+			&#34;is_public&#34;: true
+		}
+		...
+	}
+&lt;/pre&gt;
+
 */
 func (a *Client) AdminPostPlayerRecordHandlerV1(params *AdminPostPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostPlayerRecordHandlerV1Created, *AdminPostPlayerRecordHandlerV1Unauthorized, *AdminPostPlayerRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -737,15 +797,41 @@ func (a *Client) AdminPostPlayerRecordHandlerV1Short(params *AdminPostPlayerReco
 }
 
 /*
-  AdminPutPlayerPublicRecordHandlerV1 creates or replace player record
+  AdminPutPlayerPublicRecordHandlerV1 creates or replace player public record
 
-  Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]
+  &lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Permission&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Scope&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;social&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;
 
-Required scope: social
+&lt;h2&gt;Description&lt;/h2&gt;
 
-Save a record (arbitrary JSON data) in user-level.
-If a record already exist with given key, this endpoint will replace the record, else it will create new Record.
-Record saved will be a public record.
+This endpoints will create new player public record or replace the existing player public record.
+
+&lt;b&gt;Replace behaviour:&lt;/b&gt;
+The existing value will be replaced completely with the new value.
+
+Example
+- 	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34; }&lt;/pre&gt;
+- 	New JSON:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+
+
+&lt;h2&gt;Warning: Current Behaviour when Updating Private Record&lt;/h2&gt;
+
+When updating existing &#34;Private Record&#34;, this endpoint will always &lt;b&gt;convert the &#34;Private Record&#34; into &#34;Public Record&#34;&lt;/b&gt;.
+This behaviour might be deprecated sooner, &lt;b&gt;please don&#39;t rely with that behaviour&lt;/b&gt;.
+
 */
 func (a *Client) AdminPutPlayerPublicRecordHandlerV1(params *AdminPutPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerPublicRecordHandlerV1OK, *AdminPutPlayerPublicRecordHandlerV1BadRequest, *AdminPutPlayerPublicRecordHandlerV1Unauthorized, *AdminPutPlayerPublicRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -839,13 +925,56 @@ func (a *Client) AdminPutPlayerPublicRecordHandlerV1Short(params *AdminPutPlayer
 /*
   AdminPutPlayerRecordHandlerV1 creates or replace player record
 
-  Required permission: ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]
+  Required permission: &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]&lt;/code&gt;
+Required scope: &lt;code&gt;social&lt;/code&gt;
 
-Required scope: social
+&lt;h2&gt;Description&lt;/h2&gt;
 
-Save a record (arbitrary JSON data) in user-level.
-If a record already exist with given key, this endpoint will replace the record, else will create new Record.
-Record saved will be a private record.
+This endpoints will create new player record or replace the existing player record.
+
+&lt;b&gt;Replace behaviour:&lt;/b&gt;
+The existing value will be replaced completely with the new value.
+
+Example
+- 	Existing JSON:
+	&lt;pre&gt;{ &#34;data1&#34;: &#34;value&#34; }&lt;/pre&gt;
+- 	New JSON:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+-	Result:
+	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
+
+
+&lt;h2&gt;Record Metadata&lt;/h2&gt;
+
+Metadata allows user to define the behaviour of the record.
+Metadata can be defined in request body with field name &lt;b&gt;META&lt;/b&gt;.
+When creating record, if &lt;b&gt;META&lt;/b&gt; field is not defined, the metadata value will use the default value.
+When updating record, if &lt;b&gt;META&lt;/b&gt; field is not defined, the existing metadata value will stay as is.
+
+&lt;b&gt;Metadata List:&lt;/b&gt;
+1.	set_by (default: CLIENT, type: string)
+	Indicate which party that could modify the game record.
+	SERVER: record can be modified by server only.
+	CLIENT: record can be modified by client and server.
+2.	is_public (default: false, type: bool)
+	Indicate whether the player record is a public record or not.
+
+&lt;b&gt;Request Body Example:&lt;/b&gt;
+&lt;pre&gt;
+	{
+		&#34;META&#34;: {
+			&#34;set_by&#34;: &#34;SERVER&#34;,
+			&#34;is_public&#34;: true
+		}
+		...
+	}
+&lt;/pre&gt;
+
+&lt;h2&gt;Warning: Current Behaviour when Updating Public Record&lt;/h2&gt;
+
+When updating existing &#34;Public Record&#34; and metadata &lt;b&gt;is_public&lt;/b&gt; is not defined in the request body,
+this endpoint will always &lt;b&gt;convert the &#34;Public Record&#34; into &#34;Private Record&#34;&lt;/b&gt;.
+This behaviour might be deprecated sooner, &lt;b&gt;please don&#39;t rely with that behaviour&lt;/b&gt;.
 */
 func (a *Client) AdminPutPlayerRecordHandlerV1(params *AdminPutPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerRecordHandlerV1OK, *AdminPutPlayerRecordHandlerV1Unauthorized, *AdminPutPlayerRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -936,7 +1065,7 @@ func (a *Client) AdminPutPlayerRecordHandlerV1Short(params *AdminPutPlayerRecord
 
   Required permission: ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]
 
-Required scope: social
+Required scope: &lt;code&gt;social&lt;/code&gt;
 
 Retrieve list of player records key and userID under given namespace.
 */

@@ -14,14 +14,15 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewPublicSearchContentParams creates a new PublicSearchContentParams object
 // with the default values initialized.
 func NewPublicSearchContentParams() *PublicSearchContentParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &PublicSearchContentParams{
 		Limit:  &limitDefault,
@@ -35,8 +36,8 @@ func NewPublicSearchContentParams() *PublicSearchContentParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewPublicSearchContentParamsWithTimeout(timeout time.Duration) *PublicSearchContentParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &PublicSearchContentParams{
 		Limit:  &limitDefault,
@@ -50,8 +51,8 @@ func NewPublicSearchContentParamsWithTimeout(timeout time.Duration) *PublicSearc
 // with the default values initialized, and the ability to set a context for a request
 func NewPublicSearchContentParamsWithContext(ctx context.Context) *PublicSearchContentParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &PublicSearchContentParams{
 		Limit:  &limitDefault,
@@ -65,8 +66,8 @@ func NewPublicSearchContentParamsWithContext(ctx context.Context) *PublicSearchC
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewPublicSearchContentParamsWithHTTPClient(client *http.Client) *PublicSearchContentParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &PublicSearchContentParams{
 		Limit:      &limitDefault,
@@ -94,7 +95,7 @@ type PublicSearchContentParams struct {
 	  number of content per page
 
 	*/
-	Limit *string
+	Limit *int64
 	/*Name
 	  content name
 
@@ -109,7 +110,7 @@ type PublicSearchContentParams struct {
 	  the offset number to retrieve
 
 	*/
-	Offset *string
+	Offset *int64
 	/*Orderby
 	  sorting order: asc, desc. default=desc
 
@@ -202,13 +203,13 @@ func (o *PublicSearchContentParams) SetIsofficial(isofficial *string) {
 }
 
 // WithLimit adds the limit to the public search content params
-func (o *PublicSearchContentParams) WithLimit(limit *string) *PublicSearchContentParams {
+func (o *PublicSearchContentParams) WithLimit(limit *int64) *PublicSearchContentParams {
 	o.SetLimit(limit)
 	return o
 }
 
 // SetLimit adds the limit to the public search content params
-func (o *PublicSearchContentParams) SetLimit(limit *string) {
+func (o *PublicSearchContentParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
@@ -235,13 +236,13 @@ func (o *PublicSearchContentParams) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the public search content params
-func (o *PublicSearchContentParams) WithOffset(offset *string) *PublicSearchContentParams {
+func (o *PublicSearchContentParams) WithOffset(offset *int64) *PublicSearchContentParams {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the public search content params
-func (o *PublicSearchContentParams) SetOffset(offset *string) {
+func (o *PublicSearchContentParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
@@ -354,11 +355,11 @@ func (o *PublicSearchContentParams) WriteToRequest(r runtime.ClientRequest, reg 
 	if o.Limit != nil {
 
 		// query param limit
-		var qrLimit string
+		var qrLimit int64
 		if o.Limit != nil {
 			qrLimit = *o.Limit
 		}
-		qLimit := qrLimit
+		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
 				return err
@@ -391,11 +392,11 @@ func (o *PublicSearchContentParams) WriteToRequest(r runtime.ClientRequest, reg 
 	if o.Offset != nil {
 
 		// query param offset
-		var qrOffset string
+		var qrOffset int64
 		if o.Offset != nil {
 			qrOffset = *o.Offset
 		}
-		qOffset := qrOffset
+		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
 				return err

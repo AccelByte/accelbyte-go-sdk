@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewAdminSearchUsersV2Params creates a new AdminSearchUsersV2Params object
@@ -79,7 +80,7 @@ type AdminSearchUsersV2Params struct {
 	  the number of data retieved in a page
 
 	*/
-	Limit *string
+	Limit *int64
 	/*LoginID
 	  login ID
 
@@ -183,13 +184,13 @@ func (o *AdminSearchUsersV2Params) SetDisplayName(displayName *string) {
 }
 
 // WithLimit adds the limit to the admin search users v2 params
-func (o *AdminSearchUsersV2Params) WithLimit(limit *string) *AdminSearchUsersV2Params {
+func (o *AdminSearchUsersV2Params) WithLimit(limit *int64) *AdminSearchUsersV2Params {
 	o.SetLimit(limit)
 	return o
 }
 
 // SetLimit adds the limit to the admin search users v2 params
-func (o *AdminSearchUsersV2Params) SetLimit(limit *string) {
+func (o *AdminSearchUsersV2Params) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
@@ -318,11 +319,11 @@ func (o *AdminSearchUsersV2Params) WriteToRequest(r runtime.ClientRequest, reg s
 	if o.Limit != nil {
 
 		// query param limit
-		var qrLimit string
+		var qrLimit int64
 		if o.Limit != nil {
 			qrLimit = *o.Limit
 		}
-		qLimit := qrLimit
+		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
 				return err

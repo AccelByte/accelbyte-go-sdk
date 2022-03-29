@@ -29,14 +29,14 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	ExportConfig(params *ExportConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ExportConfigOK, *ExportConfigUnauthorized, *ExportConfigForbidden, *ExportConfigInternalServerError, error)
-	ExportConfigShort(params *ExportConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ExportConfigOK, error)
-	ImportConfig(params *ImportConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ImportConfigOK, *ImportConfigUnauthorized, *ImportConfigForbidden, *ImportConfigInternalServerError, error)
-	ImportConfigShort(params *ImportConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ImportConfigOK, error)
+	AdminExportConfigV1(params *AdminExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminExportConfigV1OK, *AdminExportConfigV1Unauthorized, *AdminExportConfigV1Forbidden, *AdminExportConfigV1InternalServerError, error)
+	AdminExportConfigV1Short(params *AdminExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminExportConfigV1OK, error)
 	AdminGetAllConfigV1(params *AdminGetAllConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllConfigV1OK, *AdminGetAllConfigV1BadRequest, *AdminGetAllConfigV1Unauthorized, *AdminGetAllConfigV1Forbidden, *AdminGetAllConfigV1NotFound, *AdminGetAllConfigV1InternalServerError, error)
 	AdminGetAllConfigV1Short(params *AdminGetAllConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllConfigV1OK, error)
 	AdminGetConfigV1(params *AdminGetConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetConfigV1OK, *AdminGetConfigV1BadRequest, *AdminGetConfigV1Unauthorized, *AdminGetConfigV1Forbidden, *AdminGetConfigV1NotFound, *AdminGetConfigV1InternalServerError, error)
 	AdminGetConfigV1Short(params *AdminGetConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminGetConfigV1OK, error)
+	AdminImportConfigV1(params *AdminImportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminImportConfigV1OK, *AdminImportConfigV1Unauthorized, *AdminImportConfigV1Forbidden, *AdminImportConfigV1InternalServerError, error)
+	AdminImportConfigV1Short(params *AdminImportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminImportConfigV1OK, error)
 	AdminUpdateConfigV1(params *AdminUpdateConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateConfigV1OK, *AdminUpdateConfigV1BadRequest, *AdminUpdateConfigV1Unauthorized, *AdminUpdateConfigV1Forbidden, *AdminUpdateConfigV1NotFound, *AdminUpdateConfigV1PreconditionFailed, *AdminUpdateConfigV1InternalServerError, error)
 	AdminUpdateConfigV1Short(params *AdminUpdateConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminUpdateConfigV1OK, error)
 
@@ -44,7 +44,7 @@ type ClientService interface {
 }
 
 /*
-  ExportConfig exports lobby config to a json file
+  AdminExportConfigV1 exports lobby config to a json file
 
 
 				Required permission ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]
@@ -54,10 +54,10 @@ type ClientService interface {
 				Export lobby configuration to a json file. The file can then be imported from the /import endpoint.
 
 */
-func (a *Client) ExportConfig(params *ExportConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ExportConfigOK, *ExportConfigUnauthorized, *ExportConfigForbidden, *ExportConfigInternalServerError, error) {
+func (a *Client) AdminExportConfigV1(params *AdminExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminExportConfigV1OK, *AdminExportConfigV1Unauthorized, *AdminExportConfigV1Forbidden, *AdminExportConfigV1InternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewExportConfigParams()
+		params = NewAdminExportConfigV1Params()
 	}
 
 	if params.Context == nil {
@@ -65,14 +65,14 @@ func (a *Client) ExportConfig(params *ExportConfigParams, authInfo runtime.Clien
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "ExportConfig",
+		ID:                 "adminExportConfigV1",
 		Method:             "GET",
 		PathPattern:        "/lobby/v1/admin/config/namespaces/{namespace}/export",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &ExportConfigReader{formats: a.formats},
+		Reader:             &AdminExportConfigV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -83,16 +83,16 @@ func (a *Client) ExportConfig(params *ExportConfigParams, authInfo runtime.Clien
 
 	switch v := result.(type) {
 
-	case *ExportConfigOK:
+	case *AdminExportConfigV1OK:
 		return v, nil, nil, nil, nil
 
-	case *ExportConfigUnauthorized:
+	case *AdminExportConfigV1Unauthorized:
 		return nil, v, nil, nil, nil
 
-	case *ExportConfigForbidden:
+	case *AdminExportConfigV1Forbidden:
 		return nil, nil, v, nil, nil
 
-	case *ExportConfigInternalServerError:
+	case *AdminExportConfigV1InternalServerError:
 		return nil, nil, nil, v, nil
 
 	default:
@@ -100,10 +100,10 @@ func (a *Client) ExportConfig(params *ExportConfigParams, authInfo runtime.Clien
 	}
 }
 
-func (a *Client) ExportConfigShort(params *ExportConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ExportConfigOK, error) {
+func (a *Client) AdminExportConfigV1Short(params *AdminExportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminExportConfigV1OK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewExportConfigParams()
+		params = NewAdminExportConfigV1Params()
 	}
 
 	if params.Context == nil {
@@ -111,14 +111,14 @@ func (a *Client) ExportConfigShort(params *ExportConfigParams, authInfo runtime.
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "ExportConfig",
+		ID:                 "adminExportConfigV1",
 		Method:             "GET",
 		PathPattern:        "/lobby/v1/admin/config/namespaces/{namespace}/export",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &ExportConfigReader{formats: a.formats},
+		Reader:             &AdminExportConfigV1Reader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -129,114 +129,13 @@ func (a *Client) ExportConfigShort(params *ExportConfigParams, authInfo runtime.
 
 	switch v := result.(type) {
 
-	case *ExportConfigOK:
+	case *AdminExportConfigV1OK:
 		return v, nil
-	case *ExportConfigUnauthorized:
+	case *AdminExportConfigV1Unauthorized:
 		return nil, v
-	case *ExportConfigForbidden:
+	case *AdminExportConfigV1Forbidden:
 		return nil, v
-	case *ExportConfigInternalServerError:
-		return nil, v
-
-	default:
-		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-/*
-  ImportConfig imports lobby config from a json file
-
-
-				Required permission ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [UPDATE]
-
-				Required Scope: social
-
-				Import config configuration from file. The existing configuration will be replaced.
-				The json file to import can be obtained from the /export endpoint.
-
-*/
-func (a *Client) ImportConfig(params *ImportConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ImportConfigOK, *ImportConfigUnauthorized, *ImportConfigForbidden, *ImportConfigInternalServerError, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewImportConfigParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "ImportConfig",
-		Method:             "POST",
-		PathPattern:        "/lobby/v1/admin/config/namespaces/{namespace}/import",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"multipart/form-data"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &ImportConfigReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *ImportConfigOK:
-		return v, nil, nil, nil, nil
-
-	case *ImportConfigUnauthorized:
-		return nil, v, nil, nil, nil
-
-	case *ImportConfigForbidden:
-		return nil, nil, v, nil, nil
-
-	case *ImportConfigInternalServerError:
-		return nil, nil, nil, v, nil
-
-	default:
-		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-func (a *Client) ImportConfigShort(params *ImportConfigParams, authInfo runtime.ClientAuthInfoWriter) (*ImportConfigOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewImportConfigParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "ImportConfig",
-		Method:             "POST",
-		PathPattern:        "/lobby/v1/admin/config/namespaces/{namespace}/import",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"multipart/form-data"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &ImportConfigReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *ImportConfigOK:
-		return v, nil
-	case *ImportConfigUnauthorized:
-		return nil, v
-	case *ImportConfigForbidden:
-		return nil, v
-	case *ImportConfigInternalServerError:
+	case *AdminExportConfigV1InternalServerError:
 		return nil, v
 
 	default:
@@ -447,6 +346,107 @@ func (a *Client) AdminGetConfigV1Short(params *AdminGetConfigV1Params, authInfo 
 	case *AdminGetConfigV1NotFound:
 		return nil, v
 	case *AdminGetConfigV1InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  AdminImportConfigV1 imports lobby config from a json file
+
+
+				Required permission ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [UPDATE]
+
+				Required Scope: social
+
+				Import config configuration from file. The existing configuration will be replaced.
+				The json file to import can be obtained from the /export endpoint.
+
+*/
+func (a *Client) AdminImportConfigV1(params *AdminImportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminImportConfigV1OK, *AdminImportConfigV1Unauthorized, *AdminImportConfigV1Forbidden, *AdminImportConfigV1InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminImportConfigV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminImportConfigV1",
+		Method:             "POST",
+		PathPattern:        "/lobby/v1/admin/config/namespaces/{namespace}/import",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminImportConfigV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminImportConfigV1OK:
+		return v, nil, nil, nil, nil
+
+	case *AdminImportConfigV1Unauthorized:
+		return nil, v, nil, nil, nil
+
+	case *AdminImportConfigV1Forbidden:
+		return nil, nil, v, nil, nil
+
+	case *AdminImportConfigV1InternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminImportConfigV1Short(params *AdminImportConfigV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminImportConfigV1OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminImportConfigV1Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "adminImportConfigV1",
+		Method:             "POST",
+		PathPattern:        "/lobby/v1/admin/config/namespaces/{namespace}/import",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminImportConfigV1Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminImportConfigV1OK:
+		return v, nil
+	case *AdminImportConfigV1Unauthorized:
+		return nil, v
+	case *AdminImportConfigV1Forbidden:
+		return nil, v
+	case *AdminImportConfigV1InternalServerError:
 		return nil, v
 
 	default:

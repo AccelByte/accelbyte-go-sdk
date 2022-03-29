@@ -14,14 +14,15 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewGetFollowedContentParams creates a new GetFollowedContentParams object
 // with the default values initialized.
 func NewGetFollowedContentParams() *GetFollowedContentParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetFollowedContentParams{
 		Limit:  &limitDefault,
@@ -35,8 +36,8 @@ func NewGetFollowedContentParams() *GetFollowedContentParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetFollowedContentParamsWithTimeout(timeout time.Duration) *GetFollowedContentParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetFollowedContentParams{
 		Limit:  &limitDefault,
@@ -50,8 +51,8 @@ func NewGetFollowedContentParamsWithTimeout(timeout time.Duration) *GetFollowedC
 // with the default values initialized, and the ability to set a context for a request
 func NewGetFollowedContentParamsWithContext(ctx context.Context) *GetFollowedContentParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetFollowedContentParams{
 		Limit:  &limitDefault,
@@ -65,8 +66,8 @@ func NewGetFollowedContentParamsWithContext(ctx context.Context) *GetFollowedCon
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetFollowedContentParamsWithHTTPClient(client *http.Client) *GetFollowedContentParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetFollowedContentParams{
 		Limit:      &limitDefault,
@@ -84,7 +85,7 @@ type GetFollowedContentParams struct {
 	  number of content per page
 
 	*/
-	Limit *string
+	Limit *int64
 	/*Namespace
 	  namespace of the game
 
@@ -94,7 +95,7 @@ type GetFollowedContentParams struct {
 	  the offset number to retrieve
 
 	*/
-	Offset *string
+	Offset *int64
 
 	timeout    time.Duration
 	Context    context.Context
@@ -135,13 +136,13 @@ func (o *GetFollowedContentParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithLimit adds the limit to the get followed content params
-func (o *GetFollowedContentParams) WithLimit(limit *string) *GetFollowedContentParams {
+func (o *GetFollowedContentParams) WithLimit(limit *int64) *GetFollowedContentParams {
 	o.SetLimit(limit)
 	return o
 }
 
 // SetLimit adds the limit to the get followed content params
-func (o *GetFollowedContentParams) SetLimit(limit *string) {
+func (o *GetFollowedContentParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
@@ -157,13 +158,13 @@ func (o *GetFollowedContentParams) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the get followed content params
-func (o *GetFollowedContentParams) WithOffset(offset *string) *GetFollowedContentParams {
+func (o *GetFollowedContentParams) WithOffset(offset *int64) *GetFollowedContentParams {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the get followed content params
-func (o *GetFollowedContentParams) SetOffset(offset *string) {
+func (o *GetFollowedContentParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
@@ -178,11 +179,11 @@ func (o *GetFollowedContentParams) WriteToRequest(r runtime.ClientRequest, reg s
 	if o.Limit != nil {
 
 		// query param limit
-		var qrLimit string
+		var qrLimit int64
 		if o.Limit != nil {
 			qrLimit = *o.Limit
 		}
-		qLimit := qrLimit
+		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
 				return err
@@ -199,11 +200,11 @@ func (o *GetFollowedContentParams) WriteToRequest(r runtime.ClientRequest, reg s
 	if o.Offset != nil {
 
 		// query param offset
-		var qrOffset string
+		var qrOffset int64
 		if o.Offset != nil {
 			qrOffset = *o.Offset
 		}
-		qOffset := qrOffset
+		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
 				return err

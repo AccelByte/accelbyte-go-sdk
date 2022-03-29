@@ -14,14 +14,15 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewGetGroupsParams creates a new GetGroupsParams object
 // with the default values initialized.
 func NewGetGroupsParams() *GetGroupsParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetGroupsParams{
 		Limit:  &limitDefault,
@@ -35,8 +36,8 @@ func NewGetGroupsParams() *GetGroupsParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetGroupsParamsWithTimeout(timeout time.Duration) *GetGroupsParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetGroupsParams{
 		Limit:  &limitDefault,
@@ -50,8 +51,8 @@ func NewGetGroupsParamsWithTimeout(timeout time.Duration) *GetGroupsParams {
 // with the default values initialized, and the ability to set a context for a request
 func NewGetGroupsParamsWithContext(ctx context.Context) *GetGroupsParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetGroupsParams{
 		Limit:  &limitDefault,
@@ -65,8 +66,8 @@ func NewGetGroupsParamsWithContext(ctx context.Context) *GetGroupsParams {
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetGroupsParamsWithHTTPClient(client *http.Client) *GetGroupsParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetGroupsParams{
 		Limit:      &limitDefault,
@@ -84,7 +85,7 @@ type GetGroupsParams struct {
 	  number of content per page
 
 	*/
-	Limit *string
+	Limit *int64
 	/*Namespace
 	  namespace of the game
 
@@ -94,7 +95,7 @@ type GetGroupsParams struct {
 	  the offset number to retrieve
 
 	*/
-	Offset *string
+	Offset *int64
 	/*UserID
 	  user ID
 
@@ -140,13 +141,13 @@ func (o *GetGroupsParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithLimit adds the limit to the get groups params
-func (o *GetGroupsParams) WithLimit(limit *string) *GetGroupsParams {
+func (o *GetGroupsParams) WithLimit(limit *int64) *GetGroupsParams {
 	o.SetLimit(limit)
 	return o
 }
 
 // SetLimit adds the limit to the get groups params
-func (o *GetGroupsParams) SetLimit(limit *string) {
+func (o *GetGroupsParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
@@ -162,13 +163,13 @@ func (o *GetGroupsParams) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the get groups params
-func (o *GetGroupsParams) WithOffset(offset *string) *GetGroupsParams {
+func (o *GetGroupsParams) WithOffset(offset *int64) *GetGroupsParams {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the get groups params
-func (o *GetGroupsParams) SetOffset(offset *string) {
+func (o *GetGroupsParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
@@ -194,11 +195,11 @@ func (o *GetGroupsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 	if o.Limit != nil {
 
 		// query param limit
-		var qrLimit string
+		var qrLimit int64
 		if o.Limit != nil {
 			qrLimit = *o.Limit
 		}
-		qLimit := qrLimit
+		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
 				return err
@@ -215,11 +216,11 @@ func (o *GetGroupsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 	if o.Offset != nil {
 
 		// query param offset
-		var qrOffset string
+		var qrOffset int64
 		if o.Offset != nil {
 			qrOffset = *o.Offset
 		}
-		qOffset := qrOffset
+		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
 				return err

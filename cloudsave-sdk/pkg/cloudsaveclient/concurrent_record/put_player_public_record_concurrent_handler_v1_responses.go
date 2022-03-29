@@ -93,7 +93,7 @@ func NewPutPlayerPublicRecordConcurrentHandlerV1BadRequest() *PutPlayerPublicRec
 
 /*PutPlayerPublicRecordConcurrentHandlerV1BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18201</td><td>invalid record operator, expect [%s] but actual [%s]</td></tr></table>
 */
 type PutPlayerPublicRecordConcurrentHandlerV1BadRequest struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

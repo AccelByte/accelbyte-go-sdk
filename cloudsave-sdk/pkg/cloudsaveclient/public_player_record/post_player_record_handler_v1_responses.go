@@ -30,8 +30,20 @@ func (o *PostPlayerRecordHandlerV1Reader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewPostPlayerRecordHandlerV1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewPostPlayerRecordHandlerV1Unauthorized()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
+	case 403:
+		result := NewPostPlayerRecordHandlerV1Forbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -74,6 +86,39 @@ func (o *PostPlayerRecordHandlerV1Created) readResponse(response runtime.ClientR
 	return nil
 }
 
+// NewPostPlayerRecordHandlerV1BadRequest creates a PostPlayerRecordHandlerV1BadRequest with default headers values
+func NewPostPlayerRecordHandlerV1BadRequest() *PostPlayerRecordHandlerV1BadRequest {
+	return &PostPlayerRecordHandlerV1BadRequest{}
+}
+
+/*PostPlayerRecordHandlerV1BadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18201</td><td>invalid record operator, expect [%s] but actual [%s]</td></tr></table>
+*/
+type PostPlayerRecordHandlerV1BadRequest struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *PostPlayerRecordHandlerV1BadRequest) Error() string {
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] postPlayerRecordHandlerV1BadRequest  %+v", 400, o.Payload)
+}
+
+func (o *PostPlayerRecordHandlerV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *PostPlayerRecordHandlerV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewPostPlayerRecordHandlerV1Unauthorized creates a PostPlayerRecordHandlerV1Unauthorized with default headers values
 func NewPostPlayerRecordHandlerV1Unauthorized() *PostPlayerRecordHandlerV1Unauthorized {
 	return &PostPlayerRecordHandlerV1Unauthorized{}
@@ -96,6 +141,39 @@ func (o *PostPlayerRecordHandlerV1Unauthorized) GetPayload() *cloudsaveclientmod
 }
 
 func (o *PostPlayerRecordHandlerV1Unauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewPostPlayerRecordHandlerV1Forbidden creates a PostPlayerRecordHandlerV1Forbidden with default headers values
+func NewPostPlayerRecordHandlerV1Forbidden() *PostPlayerRecordHandlerV1Forbidden {
+	return &PostPlayerRecordHandlerV1Forbidden{}
+}
+
+/*PostPlayerRecordHandlerV1Forbidden handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18035</td><td>post action is forbidden on other user's record</td></tr></table>
+*/
+type PostPlayerRecordHandlerV1Forbidden struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *PostPlayerRecordHandlerV1Forbidden) Error() string {
+	return fmt.Sprintf("[POST /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}][%d] postPlayerRecordHandlerV1Forbidden  %+v", 403, o.Payload)
+}
+
+func (o *PostPlayerRecordHandlerV1Forbidden) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *PostPlayerRecordHandlerV1Forbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
 

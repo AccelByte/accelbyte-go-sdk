@@ -75,7 +75,7 @@ type AdminGetClientsByNamespaceV3Params struct {
 	  the count to skip
 
 	*/
-	Offset *string
+	Offset *int64
 
 	timeout    time.Duration
 	Context    context.Context
@@ -138,13 +138,13 @@ func (o *AdminGetClientsByNamespaceV3Params) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the admin get clients by namespace v3 params
-func (o *AdminGetClientsByNamespaceV3Params) WithOffset(offset *string) *AdminGetClientsByNamespaceV3Params {
+func (o *AdminGetClientsByNamespaceV3Params) WithOffset(offset *int64) *AdminGetClientsByNamespaceV3Params {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the admin get clients by namespace v3 params
-func (o *AdminGetClientsByNamespaceV3Params) SetOffset(offset *string) {
+func (o *AdminGetClientsByNamespaceV3Params) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
@@ -180,11 +180,11 @@ func (o *AdminGetClientsByNamespaceV3Params) WriteToRequest(r runtime.ClientRequ
 	if o.Offset != nil {
 
 		// query param offset
-		var qrOffset string
+		var qrOffset int64
 		if o.Offset != nil {
 			qrOffset = *o.Offset
 		}
-		qOffset := qrOffset
+		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
 				return err

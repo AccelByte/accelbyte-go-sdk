@@ -14,14 +14,15 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewAdminGetGroupContentsParams creates a new AdminGetGroupContentsParams object
 // with the default values initialized.
 func NewAdminGetGroupContentsParams() *AdminGetGroupContentsParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &AdminGetGroupContentsParams{
 		Limit:  &limitDefault,
@@ -35,8 +36,8 @@ func NewAdminGetGroupContentsParams() *AdminGetGroupContentsParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAdminGetGroupContentsParamsWithTimeout(timeout time.Duration) *AdminGetGroupContentsParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &AdminGetGroupContentsParams{
 		Limit:  &limitDefault,
@@ -50,8 +51,8 @@ func NewAdminGetGroupContentsParamsWithTimeout(timeout time.Duration) *AdminGetG
 // with the default values initialized, and the ability to set a context for a request
 func NewAdminGetGroupContentsParamsWithContext(ctx context.Context) *AdminGetGroupContentsParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &AdminGetGroupContentsParams{
 		Limit:  &limitDefault,
@@ -65,8 +66,8 @@ func NewAdminGetGroupContentsParamsWithContext(ctx context.Context) *AdminGetGro
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAdminGetGroupContentsParamsWithHTTPClient(client *http.Client) *AdminGetGroupContentsParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &AdminGetGroupContentsParams{
 		Limit:      &limitDefault,
@@ -89,7 +90,7 @@ type AdminGetGroupContentsParams struct {
 	  number of content per page
 
 	*/
-	Limit *string
+	Limit *int64
 	/*Namespace
 	  namespace of the game
 
@@ -99,7 +100,7 @@ type AdminGetGroupContentsParams struct {
 	  the offset number to retrieve
 
 	*/
-	Offset *string
+	Offset *int64
 	/*UserID
 	  user ID
 
@@ -156,13 +157,13 @@ func (o *AdminGetGroupContentsParams) SetGroupID(groupID string) {
 }
 
 // WithLimit adds the limit to the admin get group contents params
-func (o *AdminGetGroupContentsParams) WithLimit(limit *string) *AdminGetGroupContentsParams {
+func (o *AdminGetGroupContentsParams) WithLimit(limit *int64) *AdminGetGroupContentsParams {
 	o.SetLimit(limit)
 	return o
 }
 
 // SetLimit adds the limit to the admin get group contents params
-func (o *AdminGetGroupContentsParams) SetLimit(limit *string) {
+func (o *AdminGetGroupContentsParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
@@ -178,13 +179,13 @@ func (o *AdminGetGroupContentsParams) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the admin get group contents params
-func (o *AdminGetGroupContentsParams) WithOffset(offset *string) *AdminGetGroupContentsParams {
+func (o *AdminGetGroupContentsParams) WithOffset(offset *int64) *AdminGetGroupContentsParams {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the admin get group contents params
-func (o *AdminGetGroupContentsParams) SetOffset(offset *string) {
+func (o *AdminGetGroupContentsParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
@@ -215,11 +216,11 @@ func (o *AdminGetGroupContentsParams) WriteToRequest(r runtime.ClientRequest, re
 	if o.Limit != nil {
 
 		// query param limit
-		var qrLimit string
+		var qrLimit int64
 		if o.Limit != nil {
 			qrLimit = *o.Limit
 		}
-		qLimit := qrLimit
+		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
 				return err
@@ -236,11 +237,11 @@ func (o *AdminGetGroupContentsParams) WriteToRequest(r runtime.ClientRequest, re
 	if o.Offset != nil {
 
 		// query param offset
-		var qrOffset string
+		var qrOffset int64
 		if o.Offset != nil {
 			qrOffset = *o.Offset
 		}
-		qOffset := qrOffset
+		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
 				return err

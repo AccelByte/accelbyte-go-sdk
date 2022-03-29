@@ -14,14 +14,15 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewGetChannelsParams creates a new GetChannelsParams object
 // with the default values initialized.
 func NewGetChannelsParams() *GetChannelsParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetChannelsParams{
 		Limit:  &limitDefault,
@@ -35,8 +36,8 @@ func NewGetChannelsParams() *GetChannelsParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetChannelsParamsWithTimeout(timeout time.Duration) *GetChannelsParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetChannelsParams{
 		Limit:  &limitDefault,
@@ -50,8 +51,8 @@ func NewGetChannelsParamsWithTimeout(timeout time.Duration) *GetChannelsParams {
 // with the default values initialized, and the ability to set a context for a request
 func NewGetChannelsParamsWithContext(ctx context.Context) *GetChannelsParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetChannelsParams{
 		Limit:  &limitDefault,
@@ -65,8 +66,8 @@ func NewGetChannelsParamsWithContext(ctx context.Context) *GetChannelsParams {
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetChannelsParamsWithHTTPClient(client *http.Client) *GetChannelsParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetChannelsParams{
 		Limit:      &limitDefault,
@@ -84,7 +85,7 @@ type GetChannelsParams struct {
 	  number of content per page
 
 	*/
-	Limit *string
+	Limit *int64
 	/*Namespace
 	  namespace of the game
 
@@ -94,7 +95,7 @@ type GetChannelsParams struct {
 	  the offset number to retrieve
 
 	*/
-	Offset *string
+	Offset *int64
 	/*UserID
 	  userID
 
@@ -140,13 +141,13 @@ func (o *GetChannelsParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithLimit adds the limit to the get channels params
-func (o *GetChannelsParams) WithLimit(limit *string) *GetChannelsParams {
+func (o *GetChannelsParams) WithLimit(limit *int64) *GetChannelsParams {
 	o.SetLimit(limit)
 	return o
 }
 
 // SetLimit adds the limit to the get channels params
-func (o *GetChannelsParams) SetLimit(limit *string) {
+func (o *GetChannelsParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
@@ -162,13 +163,13 @@ func (o *GetChannelsParams) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the get channels params
-func (o *GetChannelsParams) WithOffset(offset *string) *GetChannelsParams {
+func (o *GetChannelsParams) WithOffset(offset *int64) *GetChannelsParams {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the get channels params
-func (o *GetChannelsParams) SetOffset(offset *string) {
+func (o *GetChannelsParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
@@ -194,11 +195,11 @@ func (o *GetChannelsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	if o.Limit != nil {
 
 		// query param limit
-		var qrLimit string
+		var qrLimit int64
 		if o.Limit != nil {
 			qrLimit = *o.Limit
 		}
-		qLimit := qrLimit
+		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
 				return err
@@ -215,11 +216,11 @@ func (o *GetChannelsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	if o.Offset != nil {
 
 		// query param offset
-		var qrOffset string
+		var qrOffset int64
 		if o.Offset != nil {
 			qrOffset = *o.Offset
 		}
-		qOffset := qrOffset
+		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
 				return err

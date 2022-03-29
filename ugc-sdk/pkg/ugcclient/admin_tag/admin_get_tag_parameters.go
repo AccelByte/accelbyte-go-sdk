@@ -14,14 +14,15 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewAdminGetTagParams creates a new AdminGetTagParams object
 // with the default values initialized.
 func NewAdminGetTagParams() *AdminGetTagParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &AdminGetTagParams{
 		Limit:  &limitDefault,
@@ -35,8 +36,8 @@ func NewAdminGetTagParams() *AdminGetTagParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAdminGetTagParamsWithTimeout(timeout time.Duration) *AdminGetTagParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &AdminGetTagParams{
 		Limit:  &limitDefault,
@@ -50,8 +51,8 @@ func NewAdminGetTagParamsWithTimeout(timeout time.Duration) *AdminGetTagParams {
 // with the default values initialized, and the ability to set a context for a request
 func NewAdminGetTagParamsWithContext(ctx context.Context) *AdminGetTagParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &AdminGetTagParams{
 		Limit:  &limitDefault,
@@ -65,8 +66,8 @@ func NewAdminGetTagParamsWithContext(ctx context.Context) *AdminGetTagParams {
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAdminGetTagParamsWithHTTPClient(client *http.Client) *AdminGetTagParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &AdminGetTagParams{
 		Limit:      &limitDefault,
@@ -84,7 +85,7 @@ type AdminGetTagParams struct {
 	  number of content per page
 
 	*/
-	Limit *string
+	Limit *int64
 	/*Namespace
 	  namespace of the game
 
@@ -94,7 +95,7 @@ type AdminGetTagParams struct {
 	  the offset number to retrieve
 
 	*/
-	Offset *string
+	Offset *int64
 
 	timeout    time.Duration
 	Context    context.Context
@@ -135,13 +136,13 @@ func (o *AdminGetTagParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithLimit adds the limit to the admin get tag params
-func (o *AdminGetTagParams) WithLimit(limit *string) *AdminGetTagParams {
+func (o *AdminGetTagParams) WithLimit(limit *int64) *AdminGetTagParams {
 	o.SetLimit(limit)
 	return o
 }
 
 // SetLimit adds the limit to the admin get tag params
-func (o *AdminGetTagParams) SetLimit(limit *string) {
+func (o *AdminGetTagParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
@@ -157,13 +158,13 @@ func (o *AdminGetTagParams) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the admin get tag params
-func (o *AdminGetTagParams) WithOffset(offset *string) *AdminGetTagParams {
+func (o *AdminGetTagParams) WithOffset(offset *int64) *AdminGetTagParams {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the admin get tag params
-func (o *AdminGetTagParams) SetOffset(offset *string) {
+func (o *AdminGetTagParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
@@ -178,11 +179,11 @@ func (o *AdminGetTagParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	if o.Limit != nil {
 
 		// query param limit
-		var qrLimit string
+		var qrLimit int64
 		if o.Limit != nil {
 			qrLimit = *o.Limit
 		}
-		qLimit := qrLimit
+		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
 				return err
@@ -199,11 +200,11 @@ func (o *AdminGetTagParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	if o.Offset != nil {
 
 		// query param offset
-		var qrOffset string
+		var qrOffset int64
 		if o.Offset != nil {
 			qrOffset = *o.Offset
 		}
-		qOffset := qrOffset
+		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
 				return err

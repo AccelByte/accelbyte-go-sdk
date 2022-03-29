@@ -81,7 +81,7 @@ func NewPostGameRecordHandlerV1BadRequest() *PostGameRecordHandlerV1BadRequest {
 
 /*PostGameRecordHandlerV1BadRequest handles this case with default header values.
 
-  Bad Request
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18201</td><td>invalid record operator, expect [%s] but actual [%s]</td></tr></table>
 */
 type PostGameRecordHandlerV1BadRequest struct {
 	Payload *cloudsaveclientmodels.ModelsResponseError

@@ -85,7 +85,7 @@ type AdminSearchUserV3Params struct {
 	  Offset, default 0
 
 	*/
-	Offset *string
+	Offset *int64
 	/*PlatformBy
 	  Search platformBy given attribute, possible values are platformDisplayName
 
@@ -190,13 +190,13 @@ func (o *AdminSearchUserV3Params) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the admin search user v3 params
-func (o *AdminSearchUserV3Params) WithOffset(offset *string) *AdminSearchUserV3Params {
+func (o *AdminSearchUserV3Params) WithOffset(offset *int64) *AdminSearchUserV3Params {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the admin search user v3 params
-func (o *AdminSearchUserV3Params) SetOffset(offset *string) {
+func (o *AdminSearchUserV3Params) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
@@ -308,11 +308,11 @@ func (o *AdminSearchUserV3Params) WriteToRequest(r runtime.ClientRequest, reg st
 	if o.Offset != nil {
 
 		// query param offset
-		var qrOffset string
+		var qrOffset int64
 		if o.Offset != nil {
 			qrOffset = *o.Offset
 		}
-		qOffset := qrOffset
+		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
 				return err

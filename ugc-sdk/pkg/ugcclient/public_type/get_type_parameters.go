@@ -14,14 +14,15 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewGetTypeParams creates a new GetTypeParams object
 // with the default values initialized.
 func NewGetTypeParams() *GetTypeParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetTypeParams{
 		Limit:  &limitDefault,
@@ -35,8 +36,8 @@ func NewGetTypeParams() *GetTypeParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetTypeParamsWithTimeout(timeout time.Duration) *GetTypeParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetTypeParams{
 		Limit:  &limitDefault,
@@ -50,8 +51,8 @@ func NewGetTypeParamsWithTimeout(timeout time.Duration) *GetTypeParams {
 // with the default values initialized, and the ability to set a context for a request
 func NewGetTypeParamsWithContext(ctx context.Context) *GetTypeParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetTypeParams{
 		Limit:  &limitDefault,
@@ -65,8 +66,8 @@ func NewGetTypeParamsWithContext(ctx context.Context) *GetTypeParams {
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetTypeParamsWithHTTPClient(client *http.Client) *GetTypeParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetTypeParams{
 		Limit:      &limitDefault,
@@ -84,7 +85,7 @@ type GetTypeParams struct {
 	  number of content per page
 
 	*/
-	Limit *string
+	Limit *int64
 	/*Namespace
 	  namespace of the game
 
@@ -94,7 +95,7 @@ type GetTypeParams struct {
 	  the offset number to retrieve
 
 	*/
-	Offset *string
+	Offset *int64
 
 	timeout    time.Duration
 	Context    context.Context
@@ -135,13 +136,13 @@ func (o *GetTypeParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithLimit adds the limit to the get type params
-func (o *GetTypeParams) WithLimit(limit *string) *GetTypeParams {
+func (o *GetTypeParams) WithLimit(limit *int64) *GetTypeParams {
 	o.SetLimit(limit)
 	return o
 }
 
 // SetLimit adds the limit to the get type params
-func (o *GetTypeParams) SetLimit(limit *string) {
+func (o *GetTypeParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
@@ -157,13 +158,13 @@ func (o *GetTypeParams) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the get type params
-func (o *GetTypeParams) WithOffset(offset *string) *GetTypeParams {
+func (o *GetTypeParams) WithOffset(offset *int64) *GetTypeParams {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the get type params
-func (o *GetTypeParams) SetOffset(offset *string) {
+func (o *GetTypeParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
@@ -178,11 +179,11 @@ func (o *GetTypeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regis
 	if o.Limit != nil {
 
 		// query param limit
-		var qrLimit string
+		var qrLimit int64
 		if o.Limit != nil {
 			qrLimit = *o.Limit
 		}
-		qLimit := qrLimit
+		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
 				return err
@@ -199,11 +200,11 @@ func (o *GetTypeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regis
 	if o.Offset != nil {
 
 		// query param offset
-		var qrOffset string
+		var qrOffset int64
 		if o.Offset != nil {
 			qrOffset = *o.Offset
 		}
-		qOffset := qrOffset
+		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
 				return err

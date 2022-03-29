@@ -14,14 +14,15 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewGetLikedContentParams creates a new GetLikedContentParams object
 // with the default values initialized.
 func NewGetLikedContentParams() *GetLikedContentParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetLikedContentParams{
 		Limit:  &limitDefault,
@@ -35,8 +36,8 @@ func NewGetLikedContentParams() *GetLikedContentParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetLikedContentParamsWithTimeout(timeout time.Duration) *GetLikedContentParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetLikedContentParams{
 		Limit:  &limitDefault,
@@ -50,8 +51,8 @@ func NewGetLikedContentParamsWithTimeout(timeout time.Duration) *GetLikedContent
 // with the default values initialized, and the ability to set a context for a request
 func NewGetLikedContentParamsWithContext(ctx context.Context) *GetLikedContentParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetLikedContentParams{
 		Limit:  &limitDefault,
@@ -65,8 +66,8 @@ func NewGetLikedContentParamsWithContext(ctx context.Context) *GetLikedContentPa
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetLikedContentParamsWithHTTPClient(client *http.Client) *GetLikedContentParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &GetLikedContentParams{
 		Limit:      &limitDefault,
@@ -84,7 +85,7 @@ type GetLikedContentParams struct {
 	  number of content per page
 
 	*/
-	Limit *string
+	Limit *int64
 	/*Namespace
 	  namespace of the game
 
@@ -94,7 +95,7 @@ type GetLikedContentParams struct {
 	  the offset number to retrieve
 
 	*/
-	Offset *string
+	Offset *int64
 
 	timeout    time.Duration
 	Context    context.Context
@@ -135,13 +136,13 @@ func (o *GetLikedContentParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithLimit adds the limit to the get liked content params
-func (o *GetLikedContentParams) WithLimit(limit *string) *GetLikedContentParams {
+func (o *GetLikedContentParams) WithLimit(limit *int64) *GetLikedContentParams {
 	o.SetLimit(limit)
 	return o
 }
 
 // SetLimit adds the limit to the get liked content params
-func (o *GetLikedContentParams) SetLimit(limit *string) {
+func (o *GetLikedContentParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
@@ -157,13 +158,13 @@ func (o *GetLikedContentParams) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the get liked content params
-func (o *GetLikedContentParams) WithOffset(offset *string) *GetLikedContentParams {
+func (o *GetLikedContentParams) WithOffset(offset *int64) *GetLikedContentParams {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the get liked content params
-func (o *GetLikedContentParams) SetOffset(offset *string) {
+func (o *GetLikedContentParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
@@ -178,11 +179,11 @@ func (o *GetLikedContentParams) WriteToRequest(r runtime.ClientRequest, reg strf
 	if o.Limit != nil {
 
 		// query param limit
-		var qrLimit string
+		var qrLimit int64
 		if o.Limit != nil {
 			qrLimit = *o.Limit
 		}
-		qLimit := qrLimit
+		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
 				return err
@@ -199,11 +200,11 @@ func (o *GetLikedContentParams) WriteToRequest(r runtime.ClientRequest, reg strf
 	if o.Offset != nil {
 
 		// query param offset
-		var qrOffset string
+		var qrOffset int64
 		if o.Offset != nil {
 			qrOffset = *o.Offset
 		}
-		qOffset := qrOffset
+		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
 				return err

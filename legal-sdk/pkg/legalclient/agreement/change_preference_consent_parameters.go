@@ -64,6 +64,16 @@ type ChangePreferenceConsentParams struct {
 
 	/*Body*/
 	Body []*legalclientmodels.AcceptAgreementRequest
+	/*Namespace
+	  namespace
+
+	*/
+	Namespace string
+	/*UserID
+	  User Id
+
+	*/
+	UserID string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -114,6 +124,28 @@ func (o *ChangePreferenceConsentParams) SetBody(body []*legalclientmodels.Accept
 	o.Body = body
 }
 
+// WithNamespace adds the namespace to the change preference consent params
+func (o *ChangePreferenceConsentParams) WithNamespace(namespace string) *ChangePreferenceConsentParams {
+	o.SetNamespace(namespace)
+	return o
+}
+
+// SetNamespace adds the namespace to the change preference consent params
+func (o *ChangePreferenceConsentParams) SetNamespace(namespace string) {
+	o.Namespace = namespace
+}
+
+// WithUserID adds the userID to the change preference consent params
+func (o *ChangePreferenceConsentParams) WithUserID(userID string) *ChangePreferenceConsentParams {
+	o.SetUserID(userID)
+	return o
+}
+
+// SetUserID adds the userId to the change preference consent params
+func (o *ChangePreferenceConsentParams) SetUserID(userID string) {
+	o.UserID = userID
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *ChangePreferenceConsentParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -126,6 +158,16 @@ func (o *ChangePreferenceConsentParams) WriteToRequest(r runtime.ClientRequest, 
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err
 		}
+	}
+
+	// path param namespace
+	if err := r.SetPathParam("namespace", o.Namespace); err != nil {
+		return err
+	}
+
+	// path param userId
+	if err := r.SetPathParam("userId", o.UserID); err != nil {
+		return err
 	}
 
 	if len(res) > 0 {

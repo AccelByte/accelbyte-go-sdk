@@ -30,6 +30,12 @@ func (o *PutPlayerPublicRecordHandlerV1Reader) ReadResponse(response runtime.Cli
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewPutPlayerPublicRecordHandlerV1BadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 401:
 		result := NewPutPlayerPublicRecordHandlerV1Unauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,6 +76,39 @@ func (o *PutPlayerPublicRecordHandlerV1OK) Error() string {
 }
 
 func (o *PutPlayerPublicRecordHandlerV1OK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewPutPlayerPublicRecordHandlerV1BadRequest creates a PutPlayerPublicRecordHandlerV1BadRequest with default headers values
+func NewPutPlayerPublicRecordHandlerV1BadRequest() *PutPlayerPublicRecordHandlerV1BadRequest {
+	return &PutPlayerPublicRecordHandlerV1BadRequest{}
+}
+
+/*PutPlayerPublicRecordHandlerV1BadRequest handles this case with default header values.
+
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>18201</td><td>invalid record operator, expect [%s] but actual [%s]</td></tr></table>
+*/
+type PutPlayerPublicRecordHandlerV1BadRequest struct {
+	Payload *cloudsaveclientmodels.ModelsResponseError
+}
+
+func (o *PutPlayerPublicRecordHandlerV1BadRequest) Error() string {
+	return fmt.Sprintf("[PUT /cloudsave/v1/namespaces/{namespace}/users/{userId}/records/{key}/public][%d] putPlayerPublicRecordHandlerV1BadRequest  %+v", 400, o.Payload)
+}
+
+func (o *PutPlayerPublicRecordHandlerV1BadRequest) GetPayload() *cloudsaveclientmodels.ModelsResponseError {
+	return o.Payload
+}
+
+func (o *PutPlayerPublicRecordHandlerV1BadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(cloudsaveclientmodels.ModelsResponseError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

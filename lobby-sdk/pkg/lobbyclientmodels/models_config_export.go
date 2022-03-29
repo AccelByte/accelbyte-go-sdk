@@ -18,7 +18,8 @@ import (
 type ModelsConfigExport struct {
 
 	// allow invite non connected user
-	AllowInviteNonConnectedUser bool `json:"allowInviteNonConnectedUser"`
+	// Required: true
+	AllowInviteNonConnectedUser *bool `json:"allowInviteNonConnectedUser"`
 
 	// auto kick on disconnect
 	// Required: true
@@ -68,6 +69,10 @@ type ModelsConfigExport struct {
 	// Required: true
 	GeneralRateLimitDuration *int64 `json:"generalRateLimitDuration"`
 
+	// keep presence activity on disconnect
+	// Required: true
+	KeepPresenceActivityOnDisconnect *bool `json:"keepPresenceActivityOnDisconnect"`
+
 	// max party member
 	// Required: true
 	MaxPartyMember *int32 `json:"maxPartyMember"`
@@ -88,6 +93,10 @@ type ModelsConfigExport struct {
 // Validate validates this models config export
 func (m *ModelsConfigExport) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateAllowInviteNonConnectedUser(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateAutoKickOnDisconnect(formats); err != nil {
 		res = append(res, err)
@@ -137,6 +146,10 @@ func (m *ModelsConfigExport) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateKeepPresenceActivityOnDisconnect(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateMaxPartyMember(formats); err != nil {
 		res = append(res, err)
 	}
@@ -156,6 +169,15 @@ func (m *ModelsConfigExport) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ModelsConfigExport) validateAllowInviteNonConnectedUser(formats strfmt.Registry) error {
+
+	if err := validate.Required("allowInviteNonConnectedUser", "body", m.AllowInviteNonConnectedUser); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -261,6 +283,15 @@ func (m *ModelsConfigExport) validateGeneralRateLimitBurst(formats strfmt.Regist
 func (m *ModelsConfigExport) validateGeneralRateLimitDuration(formats strfmt.Registry) error {
 
 	if err := validate.Required("generalRateLimitDuration", "body", m.GeneralRateLimitDuration); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsConfigExport) validateKeepPresenceActivityOnDisconnect(formats strfmt.Registry) error {
+
+	if err := validate.Required("keepPresenceActivityOnDisconnect", "body", m.KeepPresenceActivityOnDisconnect); err != nil {
 		return err
 	}
 

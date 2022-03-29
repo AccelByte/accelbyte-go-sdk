@@ -14,14 +14,15 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewAdminGetTypeParams creates a new AdminGetTypeParams object
 // with the default values initialized.
 func NewAdminGetTypeParams() *AdminGetTypeParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &AdminGetTypeParams{
 		Limit:  &limitDefault,
@@ -35,8 +36,8 @@ func NewAdminGetTypeParams() *AdminGetTypeParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewAdminGetTypeParamsWithTimeout(timeout time.Duration) *AdminGetTypeParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &AdminGetTypeParams{
 		Limit:  &limitDefault,
@@ -50,8 +51,8 @@ func NewAdminGetTypeParamsWithTimeout(timeout time.Duration) *AdminGetTypeParams
 // with the default values initialized, and the ability to set a context for a request
 func NewAdminGetTypeParamsWithContext(ctx context.Context) *AdminGetTypeParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &AdminGetTypeParams{
 		Limit:  &limitDefault,
@@ -65,8 +66,8 @@ func NewAdminGetTypeParamsWithContext(ctx context.Context) *AdminGetTypeParams {
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewAdminGetTypeParamsWithHTTPClient(client *http.Client) *AdminGetTypeParams {
 	var (
-		limitDefault  = string("1000")
-		offsetDefault = string("0")
+		limitDefault  = int64(1000)
+		offsetDefault = int64(0)
 	)
 	return &AdminGetTypeParams{
 		Limit:      &limitDefault,
@@ -84,7 +85,7 @@ type AdminGetTypeParams struct {
 	  number of content per page
 
 	*/
-	Limit *string
+	Limit *int64
 	/*Namespace
 	  namespace of the game
 
@@ -94,7 +95,7 @@ type AdminGetTypeParams struct {
 	  the offset number to retrieve
 
 	*/
-	Offset *string
+	Offset *int64
 
 	timeout    time.Duration
 	Context    context.Context
@@ -135,13 +136,13 @@ func (o *AdminGetTypeParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithLimit adds the limit to the admin get type params
-func (o *AdminGetTypeParams) WithLimit(limit *string) *AdminGetTypeParams {
+func (o *AdminGetTypeParams) WithLimit(limit *int64) *AdminGetTypeParams {
 	o.SetLimit(limit)
 	return o
 }
 
 // SetLimit adds the limit to the admin get type params
-func (o *AdminGetTypeParams) SetLimit(limit *string) {
+func (o *AdminGetTypeParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
@@ -157,13 +158,13 @@ func (o *AdminGetTypeParams) SetNamespace(namespace string) {
 }
 
 // WithOffset adds the offset to the admin get type params
-func (o *AdminGetTypeParams) WithOffset(offset *string) *AdminGetTypeParams {
+func (o *AdminGetTypeParams) WithOffset(offset *int64) *AdminGetTypeParams {
 	o.SetOffset(offset)
 	return o
 }
 
 // SetOffset adds the offset to the admin get type params
-func (o *AdminGetTypeParams) SetOffset(offset *string) {
+func (o *AdminGetTypeParams) SetOffset(offset *int64) {
 	o.Offset = offset
 }
 
@@ -178,11 +179,11 @@ func (o *AdminGetTypeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	if o.Limit != nil {
 
 		// query param limit
-		var qrLimit string
+		var qrLimit int64
 		if o.Limit != nil {
 			qrLimit = *o.Limit
 		}
-		qLimit := qrLimit
+		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
 				return err
@@ -199,11 +200,11 @@ func (o *AdminGetTypeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	if o.Offset != nil {
 
 		// query param offset
-		var qrOffset string
+		var qrOffset int64
 		if o.Offset != nil {
 			qrOffset = *o.Offset
 		}
-		qOffset := qrOffset
+		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
 				return err

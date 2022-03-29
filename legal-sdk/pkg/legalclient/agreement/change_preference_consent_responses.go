@@ -7,13 +7,10 @@ package agreement
 
 import (
 	"fmt"
-	"io"
 	"io/ioutil"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
-
-	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 )
 
 // ChangePreferenceConsentReader is a Reader for the ChangePreferenceConsent structure.
@@ -30,12 +27,6 @@ func (o *ChangePreferenceConsentReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 		return result, nil
-	case 400:
-		result := NewChangePreferenceConsentBadRequest()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 
 	default:
 		data, err := ioutil.ReadAll(response.Body())
@@ -43,7 +34,7 @@ func (o *ChangePreferenceConsentReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 
-		return nil, fmt.Errorf("Requested PATCH /agreement/public/agreements/localized-policy-versions/preferences returns an error %d: %s", response.Code(), string(data))
+		return nil, fmt.Errorf("Requested PATCH /agreement/admin/agreements/localized-policy-versions/preferences/namespaces/{namespace}/userId/{userId} returns an error %d: %s", response.Code(), string(data))
 	}
 }
 
@@ -60,43 +51,10 @@ type ChangePreferenceConsentOK struct {
 }
 
 func (o *ChangePreferenceConsentOK) Error() string {
-	return fmt.Sprintf("[PATCH /agreement/public/agreements/localized-policy-versions/preferences][%d] changePreferenceConsentOK ", 200)
+	return fmt.Sprintf("[PATCH /agreement/admin/agreements/localized-policy-versions/preferences/namespaces/{namespace}/userId/{userId}][%d] changePreferenceConsentOK ", 200)
 }
 
 func (o *ChangePreferenceConsentOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	return nil
-}
-
-// NewChangePreferenceConsentBadRequest creates a ChangePreferenceConsentBadRequest with default headers values
-func NewChangePreferenceConsentBadRequest() *ChangePreferenceConsentBadRequest {
-	return &ChangePreferenceConsentBadRequest{}
-}
-
-/*ChangePreferenceConsentBadRequest handles this case with default header values.
-
-  <table><tr><td>ErrorCode</td><td>ErrorMessage</td></tr><tr><td>40017</td><td>Policy with id : [{policyId}] is not marketing preference</td></tr></table>
-*/
-type ChangePreferenceConsentBadRequest struct {
-	Payload *legalclientmodels.ErrorEntity
-}
-
-func (o *ChangePreferenceConsentBadRequest) Error() string {
-	return fmt.Sprintf("[PATCH /agreement/public/agreements/localized-policy-versions/preferences][%d] changePreferenceConsentBadRequest  %+v", 400, o.Payload)
-}
-
-func (o *ChangePreferenceConsentBadRequest) GetPayload() *legalclientmodels.ErrorEntity {
-	return o.Payload
-}
-
-func (o *ChangePreferenceConsentBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(legalclientmodels.ErrorEntity)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
 
 	return nil
 }

@@ -512,51 +512,51 @@ delete_file $TEMP_FILE
 
 #- 55 updateIAPItemConfig
 samples/cli/sample-apps Platform updateIAPItemConfig \
-    --body '{"data": [{"itemIdentity": "L5sWS2qw", "platformProductIdMap": {"O763iEkl": "kzLm88Lp"}}]}' \
-    --namespace 'LuYRO3C5' \
+    --body '{"data": [{"itemIdentity": "L5sWS2qw", "itemIdentityType": "ITEM_ID", "platformProductIdMap": {"EklkzLm8": "8LpLuYRO"}}]}' \
+    --namespace '3C55yHpw' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateIAPItemConfig'
 delete_file $TEMP_FILE
 
 #- 56 deleteIAPItemConfig
 samples/cli/sample-apps Platform deleteIAPItemConfig \
-    --namespace '5yHpwK2J' \
+    --namespace 'K2JaqenD' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteIAPItemConfig'
 delete_file $TEMP_FILE
 
 #- 57 getPlayStationIAPConfig
 samples/cli/sample-apps Platform getPlayStationIAPConfig \
-    --namespace 'aqenDGn7' \
+    --namespace 'Gn7a2NUp' \
     >$TEMP_FILE 2>&1
 update_status $? 'getPlayStationIAPConfig'
 delete_file $TEMP_FILE
 
 #- 58 updatePlaystationIAPConfig
 samples/cli/sample-apps Platform updatePlaystationIAPConfig \
-    --body '{"environment": "a2NUplWi"}' \
-    --namespace 'Ljq06n6a' \
+    --body '{"environment": "lWiLjq06"}' \
+    --namespace 'n6a0rW8E' \
     >$TEMP_FILE 2>&1
 update_status $? 'updatePlaystationIAPConfig'
 delete_file $TEMP_FILE
 
 #- 59 deletePlaystationIAPConfig
 samples/cli/sample-apps Platform deletePlaystationIAPConfig \
-    --namespace '0rW8Efkp' \
+    --namespace 'fkpaXtwY' \
     >$TEMP_FILE 2>&1
 update_status $? 'deletePlaystationIAPConfig'
 delete_file $TEMP_FILE
 
 #- 60 getStadiaIAPConfig
 samples/cli/sample-apps Platform getStadiaIAPConfig \
-    --namespace 'aXtwYZJa' \
+    --namespace 'ZJaQ4Wbw' \
     >$TEMP_FILE 2>&1
 update_status $? 'getStadiaIAPConfig'
 delete_file $TEMP_FILE
 
 #- 61 deleteStadiaIAPConfig
 samples/cli/sample-apps Platform deleteStadiaIAPConfig \
-    --namespace 'Q4WbwNms' \
+    --namespace 'NmsFYetj' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteStadiaIAPConfig'
 delete_file $TEMP_FILE
@@ -564,73 +564,73 @@ delete_file $TEMP_FILE
 #- 62 updateStadiaJsonConfigFile
 samples/cli/sample-apps Platform updateStadiaJsonConfigFile \
     --file 'tmp.dat' \
-    --namespace 'FYetjEur' \
+    --namespace 'EurH8elo' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateStadiaJsonConfigFile'
 delete_file $TEMP_FILE
 
 #- 63 getSteamIAPConfig
 samples/cli/sample-apps Platform getSteamIAPConfig \
-    --namespace 'H8eloJzN' \
+    --namespace 'JzNKtRUa' \
     >$TEMP_FILE 2>&1
 update_status $? 'getSteamIAPConfig'
 delete_file $TEMP_FILE
 
 #- 64 updateSteamIAPConfig
 samples/cli/sample-apps Platform updateSteamIAPConfig \
-    --body '{"publisherAuthenticationKey": "KtRUaTz1"}' \
-    --namespace 'ETdsmwzj' \
+    --body '{"publisherAuthenticationKey": "Tz1ETdsm"}' \
+    --namespace 'wzjkkn9o' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateSteamIAPConfig'
 delete_file $TEMP_FILE
 
 #- 65 deleteSteamIAPConfig
 samples/cli/sample-apps Platform deleteSteamIAPConfig \
-    --namespace 'kkn9oiQl' \
+    --namespace 'iQl05g7c' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteSteamIAPConfig'
 delete_file $TEMP_FILE
 
 #- 66 getTwitchIAPConfig
 samples/cli/sample-apps Platform getTwitchIAPConfig \
-    --namespace '05g7cO3Z' \
+    --namespace 'O3ZMb6Oj' \
     >$TEMP_FILE 2>&1
 update_status $? 'getTwitchIAPConfig'
 delete_file $TEMP_FILE
 
 #- 67 updateTwitchIAPConfig
 samples/cli/sample-apps Platform updateTwitchIAPConfig \
-    --body '{"clientId": "Mb6Ojlo6", "clientSecret": "DMNpP2qM", "organizationId": "rTQ1Upjf"}' \
-    --namespace 'U6wJhy1j' \
+    --body '{"clientId": "lo6DMNpP", "clientSecret": "2qMrTQ1U", "organizationId": "pjfU6wJh"}' \
+    --namespace 'y1jOVkkU' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateTwitchIAPConfig'
 delete_file $TEMP_FILE
 
 #- 68 deleteTwitchIAPConfig
 samples/cli/sample-apps Platform deleteTwitchIAPConfig \
-    --namespace 'OVkkUlS7' \
+    --namespace 'lS79527E' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteTwitchIAPConfig'
 delete_file $TEMP_FILE
 
 #- 69 getXblIAPConfig
 samples/cli/sample-apps Platform getXblIAPConfig \
-    --namespace '9527EZ25' \
+    --namespace 'Z25Ia8uC' \
     >$TEMP_FILE 2>&1
 update_status $? 'getXblIAPConfig'
 delete_file $TEMP_FILE
 
 #- 70 updateXblIAPConfig
 samples/cli/sample-apps Platform updateXblIAPConfig \
-    --body '{"relyingPartyCert": "Ia8uCeZF"}' \
-    --namespace 'lLtEVpDA' \
+    --body '{"relyingPartyCert": "eZFlLtEV"}' \
+    --namespace 'pDAEbA82' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateXblIAPConfig'
 delete_file $TEMP_FILE
 
 #- 71 deleteXblAPConfig
 samples/cli/sample-apps Platform deleteXblAPConfig \
-    --namespace 'EbA82jy7' \
+    --namespace 'jy74lq0p' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteXblAPConfig'
 delete_file $TEMP_FILE
@@ -638,24 +638,24 @@ delete_file $TEMP_FILE
 #- 72 updateXblBPCertFile
 samples/cli/sample-apps Platform updateXblBPCertFile \
     --file 'tmp.dat' \
-    --password '4lq0pDE5' \
-    --namespace 'xRwh5b45' \
+    --password 'DE5xRwh5' \
+    --namespace 'b45ebpcM' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateXblBPCertFile'
 delete_file $TEMP_FILE
 
 #- 73 syncInGameItem
 samples/cli/sample-apps Platform syncInGameItem \
-    --body '{"categoryPath": "ebpcM7Sc", "targetItemId": "Ss3UOpAw", "targetNamespace": "Ip9rRtn1"}' \
-    --namespace 'PcCxdbum' \
-    --storeId 'eYgOdEBW' \
+    --body '{"categoryPath": "7ScSs3UO", "targetItemId": "pAwIp9rR", "targetNamespace": "tn1PcCxd"}' \
+    --namespace 'bumeYgOd' \
+    --storeId 'EBWRQiW3' \
     >$TEMP_FILE 2>&1
 update_status $? 'syncInGameItem'
 delete_file $TEMP_FILE
 
 #- 74 createItem
 samples/cli/sample-apps Platform createItem \
-    --body '{"appId": "RQiW3KFf", "appType": "SOFTWARE", "baseAppId": "cH4081gR", "boothName": "B1GyLfLg", "categoryPath": "4RYuEbgU", "clazz": "DEcJyIvs", "displayOrder": 83, "entitlementType": "CONSUMABLE", "ext": {"Or0BmV5i": {}}, "features": ["FvfwFjTS"], "images": [{"as": "mIEqoLyL", "caption": "eUGmomGX", "height": 36, "imageUrl": "XTZ0v8pq", "smallImageUrl": "Lfc5SwGn", "width": 87}], "itemIds": ["eUULDX4Q"], "itemQty": {"UIbb5nh6": 26}, "itemType": "SEASON", "listable": true, "localizations": {"RvW9hNBS": {"description": "FTtFrOmj", "localExt": {"kFrFVA8t": {}}, "longDescription": "0xF34Xpt", "title": "6ZlTTic0"}}, "maxCount": 21, "maxCountPerUser": 34, "name": "2a0nI2oo", "purchasable": true, "recurring": {"cycle": "QUARTERLY", "fixedFreeDays": 30, "fixedTrialCycles": 0, "graceDays": 57}, "regionData": {"vIq3aHVY": [{"currencyCode": "IlewLRuH", "currencyNamespace": "Y83bGj0H", "currencyType": "REAL", "discountAmount": 9, "discountExpireAt": "1995-03-30T00:00:00Z", "discountPercentage": 69, "discountPurchaseAt": "1972-12-17T00:00:00Z", "discountedPrice": 16, "expireAt": "1972-05-12T00:00:00Z", "price": 5, "purchaseAt": "1980-08-26T00:00:00Z", "trialPrice": 30}]}, "seasonType": "TIER", "sku": "gY0ax476", "stackable": true, "status": "INACTIVE", "tags": ["4MMO9Tw2"], "targetCurrencyCode": "JH0qhWIw", "targetNamespace": "HWTgzJFR", "thumbnailUrl": "Yw6t1IKZ", "useCount": 74}' \
+    --body '{"appId": "KFfU8icH", "appType": "GAME", "baseAppId": "RB1GyLfL", "boothName": "g4RYuEbg", "categoryPath": "UDEcJyIv", "clazz": "sPwOr0Bm", "displayOrder": 94, "entitlementType": "DURABLE", "ext": {"FvfwFjTS": {}}, "features": ["mIEqoLyL"], "images": [{"as": "eUGmomGX", "caption": "9sXTZ0v8", "height": 30, "imageUrl": "qLfc5SwG", "smallImageUrl": "nReUULDX", "width": 85}], "itemIds": ["UIbb5nh6"], "itemQty": {"8ZnyUtRv": 96}, "itemType": "COINS", "listable": true, "localizations": {"SFTtFrOm": {"description": "jkFrFVA8", "localExt": {"t0xF34Xp": {}}, "longDescription": "t6ZlTTic", "title": "0kr2a0nI"}}, "maxCount": 28, "maxCountPerUser": 28, "name": "7UHCJK5s", "purchasable": false, "recurring": {"cycle": "WEEKLY", "fixedFreeDays": 57, "fixedTrialCycles": 43, "graceDays": 69}, "regionData": {"q3aHVYIl": [{"currencyCode": "ewLRuHY8", "currencyNamespace": "3bGj0HTe", "currencyType": "REAL", "discountAmount": 96, "discountExpireAt": "1995-03-30T00:00:00Z", "discountPercentage": 69, "discountPurchaseAt": "1972-12-17T00:00:00Z", "discountedPrice": 16, "expireAt": "1972-05-12T00:00:00Z", "price": 5, "purchaseAt": "1980-08-26T00:00:00Z", "trialPrice": 30}]}, "seasonType": "TIER", "sku": "gY0ax476", "stackable": true, "status": "INACTIVE", "tags": ["4MMO9Tw2"], "targetCurrencyCode": "JH0qhWIw", "targetNamespace": "HWTgzJFR", "thumbnailUrl": "Yw6t1IKZ", "useCount": 74}' \
     --namespace 'O6V4Ode4' \
     --storeId '6QmCidgd' \
     >$TEMP_FILE 2>&1
@@ -1630,7 +1630,7 @@ delete_file $TEMP_FILE
 
 #- 177 mockFulfillIAPItem
 samples/cli/sample-apps Platform mockFulfillIAPItem \
-    --body '{"language": "fSuj", "productId": "aJp1rt7O", "region": "BgBCe6N0", "type": "GOOGLE"}' \
+    --body '{"itemIdentityType": "ITEM_SKU", "language": "ujp", "productId": "aJp1rt7O", "region": "BgBCe6N0", "type": "GOOGLE"}' \
     --namespace 'I65Mn5tn' \
     --userId 'gEYXgPVT' \
     >$TEMP_FILE 2>&1

@@ -12,7 +12,7 @@ MODULE_PATH='../samples/cli'
 TEMP_TOKEN="/tmp/justice-sample-apps/userData"
 TEMP_FILE='file.tmp'
 
-OPERATIONS_COUNT=273
+OPERATIONS_COUNT=296
 
 FINISHED_COUNT=0
 SUCCESS_COUNT=0
@@ -686,46 +686,46 @@ samples/cli/sample-apps Iam adminSearchUsersV2 \
     --after 'xRwh5b45' \
     --before 'ebpcM7Sc' \
     --displayName 'Ss3UOpAw' \
-    --limit 'Ip9rRtn1' \
-    --loginId 'PcCxdbum' \
-    --platformUserId 'eYgOdEBW' \
-    --roleId 'RQiW3KFf' \
-    --userId 'U8icH408' \
-    --platformId '1gRB1GyL' \
+    --limit '68' \
+    --loginId 'p9rRtn1P' \
+    --platformUserId 'cCxdbume' \
+    --roleId 'YgOdEBWR' \
+    --userId 'QiW3KFfU' \
+    --platformId '8icH4081' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminSearchUsersV2'
 delete_file $TEMP_FILE
 
 #- 84 adminGetUserByUserIdV2
 samples/cli/sample-apps Iam adminGetUserByUserIdV2 \
-    --namespace 'fLg4RYuE' \
-    --userId 'bgUDEcJy' \
+    --namespace 'gRB1GyLf' \
+    --userId 'Lg4RYuEb' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminGetUserByUserIdV2'
 delete_file $TEMP_FILE
 
 #- 85 adminUpdateUserV2
 samples/cli/sample-apps Iam adminUpdateUserV2 \
-    --body '{"Country": "IvsPwOr0", "DateOfBirth": "BmV5iFvf", "DisplayName": "wFjTSmIE", "LanguageTag": "qoLyLeUG"}' \
-    --namespace 'momGX9sX' \
-    --userId 'TZ0v8pqL' \
+    --body '{"Country": "gUDEcJyI", "DateOfBirth": "vsPwOr0B", "DisplayName": "mV5iFvfw", "LanguageTag": "FjTSmIEq"}' \
+    --namespace 'oLyLeUGm' \
+    --userId 'omGX9sXT' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminUpdateUserV2'
 delete_file $TEMP_FILE
 
 #- 86 adminBanUserV2
 samples/cli/sample-apps Iam adminBanUserV2 \
-    --body '{"ban": "fc5SwGnR", "comment": "eUULDX4Q", "endDate": "UIbb5nh6", "reason": "8ZnyUtRv", "skipNotif": false}' \
-    --namespace 'NBSFTtFr' \
-    --userId 'OmjkFrFV' \
+    --body '{"ban": "Z0v8pqLf", "comment": "c5SwGnRe", "endDate": "UULDX4QU", "reason": "Ibb5nh68", "skipNotif": false}' \
+    --namespace 'yUtRvW9h' \
+    --userId 'NBSFTtFr' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminBanUserV2'
 delete_file $TEMP_FILE
 
 #- 87 adminGetUserBanV2
 samples/cli/sample-apps Iam adminGetUserBanV2 \
-    --namespace 'A8t0xF34' \
-    --userId 'Xpt6ZlTT' \
+    --namespace 'OmjkFrFV' \
+    --userId 'A8t0xF34' \
     --activeOnly 'False' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminGetUserBanV2'
@@ -733,111 +733,111 @@ delete_file $TEMP_FILE
 
 #- 88 adminDisableUserV2
 samples/cli/sample-apps Iam adminDisableUserV2 \
-    --body '{"Reason": "c0kr2a0n"}' \
-    --namespace 'I2oo7UHC' \
-    --userId 'JK5sp0aC' \
+    --body '{"Reason": "t6ZlTTic"}' \
+    --namespace '0kr2a0nI' \
+    --userId '2oo7UHCJ' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminDisableUserV2'
 delete_file $TEMP_FILE
 
 #- 89 adminEnableUserV2
 samples/cli/sample-apps Iam adminEnableUserV2 \
-    --namespace 'vIq3aHVY' \
-    --userId 'IlewLRuH' \
+    --namespace 'K5sp0aCv' \
+    --userId 'Iq3aHVYI' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminEnableUserV2'
 delete_file $TEMP_FILE
 
 #- 90 adminResetPasswordV2
 samples/cli/sample-apps Iam adminResetPasswordV2 \
-    --body '{"LanguageTag": "Y83bGj0H", "NewPassword": "TeeWXlIc", "OldPassword": "RidqctDp"}' \
-    --namespace 'ygY0ax47' \
-    --userId '6ED4MMO9' \
+    --body '{"LanguageTag": "lewLRuHY", "NewPassword": "83bGj0HT", "OldPassword": "eeWXlIcR"}' \
+    --namespace 'idqctDpy' \
+    --userId 'gY0ax476' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminResetPasswordV2'
 delete_file $TEMP_FILE
 
 #- 91 adminDeletePlatformLinkV2
 samples/cli/sample-apps Iam adminDeletePlatformLinkV2 \
-    --platformNamespace 'Tw2JH0qh' \
-    --namespace 'WIwHWTgz' \
-    --platformId 'JFRYw6t1' \
-    --userId 'IKZLO6V4' \
+    --platformNamespace 'ED4MMO9T' \
+    --namespace 'w2JH0qhW' \
+    --platformId 'IwHWTgzJ' \
+    --userId 'FRYw6t1I' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminDeletePlatformLinkV2'
 delete_file $TEMP_FILE
 
 #- 92 adminPutUserRolesV2
 samples/cli/sample-apps Iam adminPutUserRolesV2 \
-    --body '["Ode46QmC"]' \
-    --namespace 'idgdpP7R' \
-    --userId 'TC587lmU' \
+    --body '["KZLO6V4O"]' \
+    --namespace 'de46QmCi' \
+    --userId 'dgdpP7RT' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminPutUserRolesV2'
 delete_file $TEMP_FILE
 
 #- 93 adminCreateUserRolesV2
 samples/cli/sample-apps Iam adminCreateUserRolesV2 \
-    --body '["mBziPZBn"]' \
-    --namespace 'pOfkllxf' \
-    --userId 'q0NsrSjw' \
+    --body '["C587lmUm"]' \
+    --namespace 'BziPZBnp' \
+    --userId 'Ofkllxfq' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminCreateUserRolesV2'
 delete_file $TEMP_FILE
 
 #- 94 publicGetCountryAgeRestriction
 samples/cli/sample-apps Iam publicGetCountryAgeRestriction \
-    --countryCode '5Hog0blM' \
-    --namespace '1d5MStYG' \
+    --countryCode '0NsrSjw5' \
+    --namespace 'Hog0blM1' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetCountryAgeRestriction'
 delete_file $TEMP_FILE
 
 #- 95 publicCreateUserV2
 samples/cli/sample-apps Iam publicCreateUserV2 \
-    --body '{"AuthType": "czLINlEC", "Country": "0OEsE3yz", "DisplayName": "IsUP0Njl", "LoginId": "uOrGZTzs", "Password": "LW7Fjfs9", "PasswordMD5Sum": "nIkcZ38f"}' \
-    --namespace 'UEanjKHb' \
+    --body '{"AuthType": "d5MStYGc", "Country": "zLINlEC0", "DisplayName": "OEsE3yzI", "LoginId": "sUP0Njlu", "Password": "OrGZTzsL", "PasswordMD5Sum": "W7Fjfs9n"}' \
+    --namespace 'IkcZ38fU' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicCreateUserV2'
 delete_file $TEMP_FILE
 
 #- 96 publicForgotPasswordV2
 samples/cli/sample-apps Iam publicForgotPasswordV2 \
-    --body '{"Context": "Xfk1zxdz", "LanguageTag": "xg0UXcRy", "LoginID": "Hi3u8BzV"}' \
-    --namespace 'Wu1tOmhU' \
+    --body '{"Context": "EanjKHbX", "LanguageTag": "fk1zxdzx", "LoginID": "g0UXcRyH"}' \
+    --namespace 'i3u8BzVW' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicForgotPasswordV2'
 delete_file $TEMP_FILE
 
 #- 97 publicResetPasswordV2
 samples/cli/sample-apps Iam publicResetPasswordV2 \
-    --body '{"Code": "tCgcpvGr", "LoginID": "EbcZUDEx", "NewPassword": "H1tayOGX"}' \
-    --namespace 'IHzMRjMC' \
+    --body '{"Code": "u1tOmhUt", "LoginID": "CgcpvGrE", "NewPassword": "bcZUDExH"}' \
+    --namespace '1tayOGXI' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicResetPasswordV2'
 delete_file $TEMP_FILE
 
 #- 98 publicGetUserByUserIDV2
 samples/cli/sample-apps Iam publicGetUserByUserIDV2 \
-    --namespace 'tOJsEijl' \
-    --userId 'rbpyyEcQ' \
+    --namespace 'HzMRjMCt' \
+    --userId 'OJsEijlr' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetUserByUserIDV2'
 delete_file $TEMP_FILE
 
 #- 99 publicUpdateUserV2
 samples/cli/sample-apps Iam publicUpdateUserV2 \
-    --body '{"Country": "xVgJIjMZ", "DateOfBirth": "qcWfMl6d", "DisplayName": "qrpD4tnc", "LanguageTag": "3ZRB3Ikd"}' \
-    --namespace 'tPfAJEom' \
-    --userId 'wenJvQ8g' \
+    --body '{"Country": "bpyyEcQx", "DateOfBirth": "VgJIjMZq", "DisplayName": "cWfMl6dq", "LanguageTag": "rpD4tnc3"}' \
+    --namespace 'ZRB3Ikdt' \
+    --userId 'PfAJEomw' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicUpdateUserV2'
 delete_file $TEMP_FILE
 
 #- 100 publicGetUserBan
 samples/cli/sample-apps Iam publicGetUserBan \
-    --namespace 'rtQSv6Ec' \
-    --userId 'ALcMIPms' \
+    --namespace 'enJvQ8gr' \
+    --userId 'tQSv6EcA' \
     --activeOnly 'False' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetUserBan'
@@ -845,37 +845,37 @@ delete_file $TEMP_FILE
 
 #- 101 publicUpdatePasswordV2
 samples/cli/sample-apps Iam publicUpdatePasswordV2 \
-    --body '{"LanguageTag": "T51M4yko", "NewPassword": "8S0EnGLv", "OldPassword": "GvfuSyCT"}' \
-    --namespace 'yjj4mCai' \
-    --userId 'uMGKOF5G' \
+    --body '{"LanguageTag": "MIPms5bT", "NewPassword": "51M4yko8", "OldPassword": "S0EnGLvG"}' \
+    --namespace 'vfuSyCTy' \
+    --userId 'jj4mCaiu' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicUpdatePasswordV2'
 delete_file $TEMP_FILE
 
 #- 102 getListJusticePlatformAccounts
 samples/cli/sample-apps Iam getListJusticePlatformAccounts \
-    --namespace 'JJooSXUl' \
-    --userId '3YU35QHG' \
+    --namespace 'MGKOF5GJ' \
+    --userId 'JooSXUl3' \
     >$TEMP_FILE 2>&1
 update_status $? 'getListJusticePlatformAccounts'
 delete_file $TEMP_FILE
 
 #- 103 publicPlatformLinkV2
 samples/cli/sample-apps Iam publicPlatformLinkV2 \
-    --ticket 'pBABnOlx' \
-    --namespace 'DznICQVy' \
-    --platformId 'qBg34WTt' \
-    --userId 'Dkn0rtn6' \
+    --ticket 'YU35QHGp' \
+    --namespace 'BABnOlxD' \
+    --platformId 'znICQVyq' \
+    --userId 'Bg34WTtD' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicPlatformLinkV2'
 delete_file $TEMP_FILE
 
 #- 104 publicDeletePlatformLinkV2
 samples/cli/sample-apps Iam publicDeletePlatformLinkV2 \
-    --platformNamespace 't0Yx4z12' \
-    --namespace 'EaQ1rUQY' \
-    --platformId 'CNTiDX4j' \
-    --userId 'E3M2IsTH' \
+    --platformNamespace 'kn0rtn6t' \
+    --namespace '0Yx4z12E' \
+    --platformId 'aQ1rUQYC' \
+    --userId 'NTiDX4jE' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicDeletePlatformLinkV2'
 delete_file $TEMP_FILE
@@ -900,410 +900,410 @@ delete_file $TEMP_FILE
 
 #- 108 adminUpdateInputValidations
 samples/cli/sample-apps Iam adminUpdateInputValidations \
-    --body '[{"field": "u8QwNyOl", "validation": {"allowDigit": false, "allowLetter": false, "allowSpace": false, "allowUnicode": false, "description": [{"language": "q5T4SUc7", "message": ["cWfCKK6D"]}], "isCustomRegex": false, "letterCase": "j1gFcenE", "maxLength": 77, "maxRepeatingAlphaNum": 48, "maxRepeatingSpecialCharacter": 89, "minCharType": 83, "minLength": 11, "regex": "hxBenDiT", "specialCharacterLocation": "iAqFYmFK", "specialCharacters": ["jaELmmll"]}}]' \
+    --body '[{"field": "3M2IsTHu", "validation": {"allowDigit": true, "allowLetter": true, "allowSpace": false, "allowUnicode": false, "description": [{"language": "IWd0mcq5", "message": ["T4SUc7cW"]}], "isCustomRegex": false, "letterCase": "CKK6Dij1", "maxLength": 12, "maxRepeatingAlphaNum": 63, "maxRepeatingSpecialCharacter": 5, "minCharType": 9, "minLength": 27, "regex": "EMySPfhx", "specialCharacterLocation": "BenDiTiA", "specialCharacters": ["qFYmFKja"]}}]' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminUpdateInputValidations'
 delete_file $TEMP_FILE
 
 #- 109 adminResetInputValidations
 samples/cli/sample-apps Iam adminResetInputValidations \
-    --field '6oexId1O' \
+    --field 'ELmmll6o' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminResetInputValidations'
 delete_file $TEMP_FILE
 
 #- 110 listAdminsV3
 samples/cli/sample-apps Iam listAdminsV3 \
-    --namespace 'KGUN2Uzn' \
-    --after 'd7uVa7t1' \
-    --before '4yvSYSV5' \
-    --limit '3' \
+    --namespace 'exId1OKG' \
+    --after 'UN2Uznd7' \
+    --before 'uVa7t14y' \
+    --limit '43' \
     >$TEMP_FILE 2>&1
 update_status $? 'listAdminsV3'
 delete_file $TEMP_FILE
 
 #- 111 adminGetAgeRestrictionStatusV3
 samples/cli/sample-apps Iam adminGetAgeRestrictionStatusV3 \
-    --namespace 'HifCIf4t' \
+    --namespace 'SYSV52bH' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminGetAgeRestrictionStatusV3'
 delete_file $TEMP_FILE
 
 #- 112 adminUpdateAgeRestrictionConfigV3
 samples/cli/sample-apps Iam adminUpdateAgeRestrictionConfigV3 \
-    --body '{"ageRestriction": 36, "enable": true}' \
-    --namespace 'u6Pkam6t' \
+    --body '{"ageRestriction": 16, "enable": false}' \
+    --namespace 'CIf4tsuu' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminUpdateAgeRestrictionConfigV3'
 delete_file $TEMP_FILE
 
 #- 113 adminGetListCountryAgeRestrictionV3
 samples/cli/sample-apps Iam adminGetListCountryAgeRestrictionV3 \
-    --namespace 'FSYFt4Zx' \
+    --namespace '6Pkam6tF' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminGetListCountryAgeRestrictionV3'
 delete_file $TEMP_FILE
 
 #- 114 adminUpdateCountryAgeRestrictionV3
 samples/cli/sample-apps Iam adminUpdateCountryAgeRestrictionV3 \
-    --body '{"ageRestriction": 53}' \
-    --countryCode '2PzZFRkB' \
-    --namespace 'Nlg6hn5q' \
+    --body '{"ageRestriction": 89}' \
+    --countryCode 'YFt4ZxA2' \
+    --namespace 'PzZFRkBN' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminUpdateCountryAgeRestrictionV3'
 delete_file $TEMP_FILE
 
 #- 115 adminGetBannedUsersV3
 samples/cli/sample-apps Iam adminGetBannedUsersV3 \
-    --namespace 'usKyZAuV' \
+    --namespace 'lg6hn5qu' \
     --activeOnly 'True' \
-    --banType 'UvqM0lV6' \
-    --limit '93' \
-    --offset '77' \
+    --banType 'KyZAuV6u' \
+    --limit '92' \
+    --offset '42' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminGetBannedUsersV3'
 delete_file $TEMP_FILE
 
 #- 116 adminGetBansTypeWithNamespaceV3
 samples/cli/sample-apps Iam adminGetBansTypeWithNamespaceV3 \
-    --namespace 'lEbxHNgJ' \
+    --namespace 'qM0lV6UZ' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminGetBansTypeWithNamespaceV3'
 delete_file $TEMP_FILE
 
 #- 117 adminGetClientsByNamespaceV3
 samples/cli/sample-apps Iam adminGetClientsByNamespaceV3 \
-    --namespace 'RiQExaun' \
-    --limit '19' \
-    --offset 'dAqnHUz4' \
+    --namespace 'MlEbxHNg' \
+    --limit '70' \
+    --offset '87' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminGetClientsByNamespaceV3'
 delete_file $TEMP_FILE
 
 #- 118 adminCreateClientV3
 samples/cli/sample-apps Iam adminCreateClientV3 \
-    --body '{"audiences": ["4tx4O6ha"], "baseUri": "mPwNoi07", "clientId": "1ezDK56J", "clientName": "FIGe1IMU", "clientPermissions": [{"action": 56, "resource": "LcN0DsaD", "schedAction": 62, "schedCron": "yBsFe9OY", "schedRange": ["EJVsYffm"]}], "deletable": false, "namespace": "yx6J25Pr", "oauthClientType": "M4S3cB8m", "redirectUri": "17hEeLLg", "secret": "oaYth6zc"}' \
-    --namespace 'f8eA45OM' \
+    --body '{"audiences": ["iQExaunj"], "baseUri": "dAqnHUz4", "clientId": "4tx4O6ha", "clientName": "mPwNoi07", "clientPermissions": [{"action": 8, "resource": "zDK56JFI", "schedAction": 65, "schedCron": "e1IMUCLc", "schedRange": ["N0DsaD5F"]}], "deletable": true, "namespace": "BsFe9OYE", "oauthClientType": "JVsYffmh", "redirectUri": "yx6J25Pr", "secret": "M4S3cB8m"}' \
+    --namespace '17hEeLLg' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminCreateClientV3'
 delete_file $TEMP_FILE
 
 #- 119 adminGetClientsbyNamespacebyIDV3
 samples/cli/sample-apps Iam adminGetClientsbyNamespacebyIDV3 \
-    --clientId 'vObWejo9' \
-    --namespace 'LfGeegJM' \
+    --clientId 'oaYth6zc' \
+    --namespace 'f8eA45OM' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminGetClientsbyNamespacebyIDV3'
 delete_file $TEMP_FILE
 
 #- 120 adminDeleteClientV3
 samples/cli/sample-apps Iam adminDeleteClientV3 \
-    --clientId 'aBGR6D1Z' \
-    --namespace 'oZEZQkJ8' \
+    --clientId 'vObWejo9' \
+    --namespace 'LfGeegJM' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminDeleteClientV3'
 delete_file $TEMP_FILE
 
 #- 121 adminUpdateClientV3
 samples/cli/sample-apps Iam adminUpdateClientV3 \
-    --body '{"audiences": ["DSqFnhdK"], "baseUri": "vjFCFbSF", "clientName": "lEWoMPdg", "clientPermissions": [{"action": 73, "resource": "5zn62mhn", "schedAction": 62, "schedCron": "SpCTlDNB", "schedRange": ["Ocygvv2L"]}], "deletable": true, "namespace": "gfBGVzan", "redirectUri": "bKYsB0gq"}' \
-    --clientId 'J8VhYSik' \
-    --namespace 'Jl2p9rBx' \
+    --body '{"audiences": ["aBGR6D1Z"], "baseUri": "oZEZQkJ8", "clientName": "DSqFnhdK", "clientPermissions": [{"action": 43, "resource": "jFCFbSFl", "schedAction": 60, "schedCron": "WoMPdgK5", "schedRange": ["zn62mhnF"]}], "deletable": false, "namespace": "CTlDNBOc", "redirectUri": "ygvv2LAg"}' \
+    --clientId 'fBGVzanb' \
+    --namespace 'KYsB0gqJ' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminUpdateClientV3'
 delete_file $TEMP_FILE
 
 #- 122 adminUpdateClientPermissionV3
 samples/cli/sample-apps Iam adminUpdateClientPermissionV3 \
-    --body '{"permissions": [{"action": 79, "resource": "5egapqxD"}]}' \
-    --clientId 'y4cLfNjz' \
-    --namespace 'zEZYA8jI' \
+    --body '{"permissions": [{"action": 95, "resource": "hYSikJl2"}]}' \
+    --clientId 'p9rBx8N5' \
+    --namespace 'egapqxDy' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminUpdateClientPermissionV3'
 delete_file $TEMP_FILE
 
 #- 123 adminAddClientPermissionsV3
 samples/cli/sample-apps Iam adminAddClientPermissionsV3 \
-    --body '{"permissions": [{"action": 20, "resource": "MJb7cZ2b"}]}' \
-    --clientId 'PsaLLpEB' \
-    --namespace 'VEMk5AsK' \
+    --body '{"permissions": [{"action": 4, "resource": "LfNjzzEZ"}]}' \
+    --clientId 'YA8jIkMJ' \
+    --namespace 'b7cZ2bPs' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminAddClientPermissionsV3'
 delete_file $TEMP_FILE
 
 #- 124 adminDeleteClientPermissionV3
 samples/cli/sample-apps Iam adminDeleteClientPermissionV3 \
-    --action '0' \
-    --clientId 'F2P44lXk' \
-    --namespace 'I3zdiRiC' \
-    --resource '5IbPit71' \
+    --action '1' \
+    --clientId 'LLpEBVEM' \
+    --namespace 'k5AsKaF2' \
+    --resource 'P44lXkI3' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminDeleteClientPermissionV3'
 delete_file $TEMP_FILE
 
 #- 125 retrieveAllThirdPartyLoginPlatformCredentialV3
 samples/cli/sample-apps Iam retrieveAllThirdPartyLoginPlatformCredentialV3 \
-    --namespace 'JWlYCoi4' \
+    --namespace 'zdiRiC5I' \
     >$TEMP_FILE 2>&1
 update_status $? 'retrieveAllThirdPartyLoginPlatformCredentialV3'
 delete_file $TEMP_FILE
 
 #- 126 retrieveAllActiveThirdPartyLoginPlatformCredentialV3
 samples/cli/sample-apps Iam retrieveAllActiveThirdPartyLoginPlatformCredentialV3 \
-    --namespace 'nDfPu5V6' \
+    --namespace 'bPit71JW' \
     >$TEMP_FILE 2>&1
 update_status $? 'retrieveAllActiveThirdPartyLoginPlatformCredentialV3'
 delete_file $TEMP_FILE
 
 #- 127 retrieveAllSSOLoginPlatformCredentialV3
 samples/cli/sample-apps Iam retrieveAllSSOLoginPlatformCredentialV3 \
-    --namespace 'QSYxEVOr' \
-    --limit '48' \
-    --offset 'VuZYmgUe' \
+    --namespace 'lYCoi4nD' \
+    --limit '10' \
+    --offset '83' \
     >$TEMP_FILE 2>&1
 update_status $? 'retrieveAllSSOLoginPlatformCredentialV3'
 delete_file $TEMP_FILE
 
 #- 128 retrieveThirdPartyLoginPlatformCredentialV3
 samples/cli/sample-apps Iam retrieveThirdPartyLoginPlatformCredentialV3 \
-    --namespace 'EPB5AGPg' \
-    --platformId 'vk0Zthaj' \
+    --namespace 'u5V6QSYx' \
+    --platformId 'EVOryVuZ' \
     >$TEMP_FILE 2>&1
 update_status $? 'retrieveThirdPartyLoginPlatformCredentialV3'
 delete_file $TEMP_FILE
 
 #- 129 addThirdPartyLoginPlatformCredentialV3
 samples/cli/sample-apps Iam addThirdPartyLoginPlatformCredentialV3 \
-    --body '{"ACSURL": "0EBA4azR", "AWSCognitoRegion": "z0d56smo", "AWSCognitoUserPool": "bor4p1Pl", "AppId": "gQB9EcNG", "ClientId": "OeBRY6G5", "Environment": "ae07deDL", "FederationMetadataURL": "aZ8JCvbe", "IsActive": false, "KeyID": "W0hgzrab", "OrganizationId": "LJxEwJrE", "RedirectUri": "BmQ64haN", "Secret": "OzlGu68U", "TeamID": "YyupjdDe"}' \
-    --namespace 'tnoT0rfW' \
-    --platformId 'tVPwQfq6' \
+    --body '{"ACSURL": "YmgUeEPB", "AWSCognitoRegion": "5AGPgvk0", "AWSCognitoUserPool": "Zthaj0EB", "AppId": "A4azRz0d", "ClientId": "56smobor", "Environment": "4p1PlgQB", "FederationMetadataURL": "9EcNGOeB", "IsActive": false, "KeyID": "e07deDLa", "OrganizationId": "Z8JCvbeT", "RedirectUri": "fW0hgzra", "Secret": "bLJxEwJr", "TeamID": "EBmQ64ha"}' \
+    --namespace 'NOzlGu68' \
+    --platformId 'UYyupjdD' \
     >$TEMP_FILE 2>&1
 update_status $? 'addThirdPartyLoginPlatformCredentialV3'
 delete_file $TEMP_FILE
 
 #- 130 deleteThirdPartyLoginPlatformCredentialV3
 samples/cli/sample-apps Iam deleteThirdPartyLoginPlatformCredentialV3 \
-    --namespace 'V92gbfPo' \
-    --platformId 'uNdmP7fc' \
+    --namespace 'etnoT0rf' \
+    --platformId 'WtVPwQfq' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteThirdPartyLoginPlatformCredentialV3'
 delete_file $TEMP_FILE
 
 #- 131 updateThirdPartyLoginPlatformCredentialV3
 samples/cli/sample-apps Iam updateThirdPartyLoginPlatformCredentialV3 \
-    --body '{"ACSURL": "kVnuDGvY", "AWSCognitoRegion": "Ib1p5tcR", "AWSCognitoUserPool": "5z8ZJLjS", "AppId": "HcaR3X4t", "ClientId": "Zmwr0QmO", "Environment": "nsEg49eX", "FederationMetadataURL": "p0xQkZ2J", "IsActive": false, "KeyID": "uwWWy0tU", "OrganizationId": "11PCeSrv", "RedirectUri": "ejUKwVfF", "Secret": "37Vr7mkD", "TeamID": "zFBI1Vwh"}' \
-    --namespace 'kVSKDlNF' \
-    --platformId 'OUHBJsvT' \
+    --body '{"ACSURL": "6V92gbfP", "AWSCognitoRegion": "ouNdmP7f", "AWSCognitoUserPool": "ckVnuDGv", "AppId": "YIb1p5tc", "ClientId": "R5z8ZJLj", "Environment": "SHcaR3X4", "FederationMetadataURL": "tZmwr0Qm", "IsActive": false, "KeyID": "sEg49eXp", "OrganizationId": "0xQkZ2Jj", "RedirectUri": "uwWWy0tU", "Secret": "11PCeSrv", "TeamID": "ejUKwVfF"}' \
+    --namespace '37Vr7mkD' \
+    --platformId 'zFBI1Vwh' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateThirdPartyLoginPlatformCredentialV3'
 delete_file $TEMP_FILE
 
 #- 132 updateThirdPartyLoginPlatformDomainV3
 samples/cli/sample-apps Iam updateThirdPartyLoginPlatformDomainV3 \
-    --body '{"affectedClientIDs": ["sqk9hg4h"], "assignedNamespaces": ["j6nUdebW"], "domain": "6UskbPkk", "roleId": "ZAk01f1K"}' \
-    --namespace 'xCtWADU2' \
-    --platformId 'guN6U9w1' \
+    --body '{"affectedClientIDs": ["kVSKDlNF"], "assignedNamespaces": ["OUHBJsvT"], "domain": "sqk9hg4h", "roleId": "j6nUdebW"}' \
+    --namespace '6UskbPkk' \
+    --platformId 'ZAk01f1K' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateThirdPartyLoginPlatformDomainV3'
 delete_file $TEMP_FILE
 
 #- 133 deleteThirdPartyLoginPlatformDomainV3
 samples/cli/sample-apps Iam deleteThirdPartyLoginPlatformDomainV3 \
-    --body '{"domain": "3W1K9TZQ"}' \
-    --namespace '4qRLEi5w' \
-    --platformId 'owE36rfm' \
+    --body '{"domain": "xCtWADU2"}' \
+    --namespace 'guN6U9w1' \
+    --platformId '3W1K9TZQ' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteThirdPartyLoginPlatformDomainV3'
 delete_file $TEMP_FILE
 
 #- 134 retrieveSSOLoginPlatformCredential
 samples/cli/sample-apps Iam retrieveSSOLoginPlatformCredential \
-    --namespace 'M0CCs35T' \
-    --platformId 'PUPLmsY8' \
+    --namespace '4qRLEi5w' \
+    --platformId 'owE36rfm' \
     >$TEMP_FILE 2>&1
 update_status $? 'retrieveSSOLoginPlatformCredential'
 delete_file $TEMP_FILE
 
 #- 135 addSSOLoginPlatformCredential
 samples/cli/sample-apps Iam addSSOLoginPlatformCredential \
-    --body '{"acsUrl": "WgwSx1DI", "apiKey": "5GH9bv9Z", "appId": "To2HpA6p", "federationMetadataUrl": "zjHpZO0E", "isActive": false, "redirectUri": "LgRPJK3n", "secret": "Bae3GOgb", "ssoUrl": "Qrqra0Pt"}' \
-    --namespace 'kfvOpY2r' \
-    --platformId 'amp5lnBn' \
+    --body '{"acsUrl": "M0CCs35T", "apiKey": "PUPLmsY8", "appId": "WgwSx1DI", "federationMetadataUrl": "5GH9bv9Z", "isActive": false, "redirectUri": "2HpA6pzj", "secret": "HpZO0E9i", "ssoUrl": "LgRPJK3n"}' \
+    --namespace 'Bae3GOgb' \
+    --platformId 'Qrqra0Pt' \
     >$TEMP_FILE 2>&1
 update_status $? 'addSSOLoginPlatformCredential'
 delete_file $TEMP_FILE
 
 #- 136 deleteSSOLoginPlatformCredentialV3
 samples/cli/sample-apps Iam deleteSSOLoginPlatformCredentialV3 \
-    --namespace '6xmBkfMt' \
-    --platformId 'C66hFq0k' \
+    --namespace 'kfvOpY2r' \
+    --platformId 'amp5lnBn' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteSSOLoginPlatformCredentialV3'
 delete_file $TEMP_FILE
 
 #- 137 updateSSOPlatformCredential
 samples/cli/sample-apps Iam updateSSOPlatformCredential \
-    --body '{"acsUrl": "POkORm2X", "apiKey": "jlNEE5ec", "appId": "PzAmi0yS", "federationMetadataUrl": "JHfPloP1", "isActive": false, "redirectUri": "YK4MgIsD", "secret": "SFMPyMhy", "ssoUrl": "w1OLZPVw"}' \
-    --namespace 'wxH4BIDJ' \
-    --platformId 'uDoShMMf' \
+    --body '{"acsUrl": "6xmBkfMt", "apiKey": "C66hFq0k", "appId": "POkORm2X", "federationMetadataUrl": "jlNEE5ec", "isActive": true, "redirectUri": "Ami0ySJH", "secret": "fPloP1Xk", "ssoUrl": "YK4MgIsD"}' \
+    --namespace 'SFMPyMhy' \
+    --platformId 'w1OLZPVw' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateSSOPlatformCredential'
 delete_file $TEMP_FILE
 
 #- 138 adminGetUserByPlatformUserIDV3
 samples/cli/sample-apps Iam adminGetUserByPlatformUserIDV3 \
-    --namespace 'tll8N0Vv' \
-    --platformId 'ChHz9urm' \
-    --platformUserId 't7QWvE8s' \
+    --namespace 'wxH4BIDJ' \
+    --platformId 'uDoShMMf' \
+    --platformUserId 'tll8N0Vv' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminGetUserByPlatformUserIDV3'
 delete_file $TEMP_FILE
 
 #- 139 getAdminUsersByRoleIdV3
 samples/cli/sample-apps Iam getAdminUsersByRoleIdV3 \
-    --namespace '6Uz8BRuY' \
-    --roleId 'WDTtL6MT' \
-    --after '90' \
-    --before '86' \
-    --limit '21' \
+    --namespace 'ChHz9urm' \
+    --roleId 't7QWvE8s' \
+    --after '92' \
+    --before '51' \
+    --limit '54' \
     >$TEMP_FILE 2>&1
 update_status $? 'getAdminUsersByRoleIdV3'
 delete_file $TEMP_FILE
 
 #- 140 adminGetUserByEmailAddressV3
 samples/cli/sample-apps Iam adminGetUserByEmailAddressV3 \
-    --namespace 'Cbb9S5Q1' \
-    --emailAddress 'IVHGT88p' \
+    --namespace 'RuYWDTtL' \
+    --emailAddress '6MTTRkCb' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminGetUserByEmailAddressV3'
 delete_file $TEMP_FILE
 
 #- 141 adminListUserIDByUserIDsV3
 samples/cli/sample-apps Iam adminListUserIDByUserIDsV3 \
-    --body '{"userIds": ["rREBgYOW"]}' \
-    --namespace 'dHJ9Jumo' \
+    --body '{"userIds": ["b9S5Q1IV"]}' \
+    --namespace 'HGT88prR' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminListUserIDByUserIDsV3'
 delete_file $TEMP_FILE
 
 #- 142 adminInviteUserV3
 samples/cli/sample-apps Iam adminInviteUserV3 \
-    --body '{"emailAddresses": ["htU13gf7"], "isAdmin": false, "roles": ["gNZj5w5y"]}' \
-    --namespace '3HmK8QVO' \
+    --body '{"emailAddresses": ["EBgYOWdH"], "isAdmin": true, "roles": ["mohtU13g"]}' \
+    --namespace 'f7TRigNZ' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminInviteUserV3'
 delete_file $TEMP_FILE
 
 #- 143 adminListUsersV3
 samples/cli/sample-apps Iam adminListUsersV3 \
-    --namespace 'a62eQZtb' \
-    --limit '74' \
-    --offset '74' \
+    --namespace 'j5w5y3Hm' \
+    --limit '73' \
+    --offset '85' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminListUsersV3'
 delete_file $TEMP_FILE
 
 #- 144 adminSearchUserV3
 samples/cli/sample-apps Iam adminSearchUserV3 \
-    --namespace 'cF671WLt' \
-    --by 'v38Heccz' \
-    --endDate 'opFmeRwp' \
-    --limit '5' \
-    --offset 'JBZyi3mL' \
-    --platformBy 'C4KzekiS' \
-    --platformId 'zeyolnOQ' \
-    --query 't0joVHgC' \
-    --startDate 'ytC6lRG9' \
+    --namespace 'VOa62eQZ' \
+    --by 'tbLLcF67' \
+    --endDate '1WLtv38H' \
+    --limit '8' \
+    --offset '4' \
+    --platformBy 'czopFmeR' \
+    --platformId 'wpcJBZyi' \
+    --query '3mLC4Kze' \
+    --startDate 'kiSzeyol' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminSearchUserV3'
 delete_file $TEMP_FILE
 
 #- 145 adminGetBulkUserByEmailAddressV3
 samples/cli/sample-apps Iam adminGetBulkUserByEmailAddressV3 \
-    --body '{"listEmailAddressRequest": ["8YxnHbRd"]}' \
-    --namespace 'oTKKeuSj' \
+    --body '{"listEmailAddressRequest": ["nOQt0joV"]}' \
+    --namespace 'HgCytC6l' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminGetBulkUserByEmailAddressV3'
 delete_file $TEMP_FILE
 
 #- 146 adminGetUserByUserIdV3
 samples/cli/sample-apps Iam adminGetUserByUserIdV3 \
-    --namespace 'fZe9i1os' \
-    --userId 'ghF1hzi1' \
+    --namespace 'RG98YxnH' \
+    --userId 'bRdoTKKe' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminGetUserByUserIdV3'
 delete_file $TEMP_FILE
 
 #- 147 adminUpdateUserV3
 samples/cli/sample-apps Iam adminUpdateUserV3 \
-    --body '{"country": "Nl47syJ5", "dateOfBirth": "ibzSHZeC", "displayName": "LIvWPVRs", "languageTag": "dEqA61yT", "userName": "rMgsycTg"}' \
-    --namespace 'mPzc20Eu' \
-    --userId 'O5dMqGDl' \
+    --body '{"country": "uSjfZe9i", "dateOfBirth": "1osghF1h", "displayName": "zi1Nl47s", "languageTag": "yJ5ibzSH", "userName": "ZeCLIvWP"}' \
+    --namespace 'VRsdEqA6' \
+    --userId '1yTrMgsy' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminUpdateUserV3'
 delete_file $TEMP_FILE
 
 #- 148 adminGetUserBanV3
 samples/cli/sample-apps Iam adminGetUserBanV3 \
-    --namespace 'SZPY07rE' \
-    --userId 'VSjzHjL6' \
-    --activeOnly 'False' \
-    --after 'XjG6DSmp' \
-    --before 'p3op8hta' \
-    --limit '86' \
+    --namespace 'cTgmPzc2' \
+    --userId '0EuO5dMq' \
+    --activeOnly 'True' \
+    --after 'lSZPY07r' \
+    --before 'EVSjzHjL' \
+    --limit '2' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminGetUserBanV3'
 delete_file $TEMP_FILE
 
 #- 149 adminBanUserV3
 samples/cli/sample-apps Iam adminBanUserV3 \
-    --body '{"ban": "LxtW4PvF", "comment": "kESTULat", "endDate": "5F1Le7cR", "reason": "7q6PWhZm", "skipNotif": false}' \
-    --namespace 'Kz41i1Tp' \
-    --userId '78FipJHa' \
+    --body '{"ban": "XjG6DSmp", "comment": "p3op8hta", "endDate": "RLxtW4Pv", "reason": "FkESTULa", "skipNotif": true}' \
+    --namespace '5F1Le7cR' \
+    --userId '7q6PWhZm' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminBanUserV3'
 delete_file $TEMP_FILE
 
 #- 150 adminUpdateUserBanV3
 samples/cli/sample-apps Iam adminUpdateUserBanV3 \
-    --body '{"enabled": false, "skipNotif": false}' \
-    --banId 'JvLYW0kd' \
-    --namespace 'mlk2luqS' \
-    --userId 'OOA2VOZB' \
+    --body '{"enabled": false, "skipNotif": true}' \
+    --banId '41i1Tp78' \
+    --namespace 'FipJHahV' \
+    --userId 'iJvLYW0k' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminUpdateUserBanV3'
 delete_file $TEMP_FILE
 
 #- 151 adminSendVerificationCodeV3
 samples/cli/sample-apps Iam adminSendVerificationCodeV3 \
-    --body '{"context": "oNbB98Pu", "emailAddress": "SGykqFzP", "languageTag": "wSMXT53b"}' \
-    --namespace 'BuL38beO' \
-    --userId 'YDVuHZQ9' \
+    --body '{"context": "dmlk2luq", "emailAddress": "SOOA2VOZ", "languageTag": "BoNbB98P"}' \
+    --namespace 'uSGykqFz' \
+    --userId 'PwSMXT53' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminSendVerificationCodeV3'
 delete_file $TEMP_FILE
 
 #- 152 adminVerifyAccountV3
 samples/cli/sample-apps Iam adminVerifyAccountV3 \
-    --body '{"Code": "LYt6w23W", "ContactType": "f8iEQo72", "LanguageTag": "sH0aRdcD", "validateOnly": false}' \
-    --namespace 'DyGcsfIu' \
-    --userId 'I4Dv5lEJ' \
+    --body '{"Code": "bBuL38be", "ContactType": "OYDVuHZQ", "LanguageTag": "9LYt6w23", "validateOnly": false}' \
+    --namespace '8iEQo72s' \
+    --userId 'H0aRdcDl' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminVerifyAccountV3'
 delete_file $TEMP_FILE
 
 #- 153 getUserVerificationCode
 samples/cli/sample-apps Iam getUserVerificationCode \
-    --namespace 'pK1AyRlz' \
-    --userId 'srRXEFZi' \
+    --namespace 'DyGcsfIu' \
+    --userId 'I4Dv5lEJ' \
     >$TEMP_FILE 2>&1
 update_status $? 'getUserVerificationCode'
 delete_file $TEMP_FILE
 
 #- 154 adminGetUserDeletionStatusV3
 samples/cli/sample-apps Iam adminGetUserDeletionStatusV3 \
-    --namespace 'vQOHG6wV' \
-    --userId 'icNratsv' \
+    --namespace 'pK1AyRlz' \
+    --userId 'srRXEFZi' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminGetUserDeletionStatusV3'
 delete_file $TEMP_FILE
@@ -1311,328 +1311,328 @@ delete_file $TEMP_FILE
 #- 155 adminUpdateUserDeletionStatusV3
 samples/cli/sample-apps Iam adminUpdateUserDeletionStatusV3 \
     --body '{"enabled": true}' \
-    --namespace 'HLmIohfN' \
-    --userId 'ISLXMDWD' \
+    --namespace 'QOHG6wVi' \
+    --userId 'cNratsvv' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminUpdateUserDeletionStatusV3'
 delete_file $TEMP_FILE
 
 #- 156 adminUpgradeHeadlessAccountV3
 samples/cli/sample-apps Iam adminUpgradeHeadlessAccountV3 \
-    --body '{"code": "dm5FE4ll", "country": "iQMnutJb", "dateOfBirth": "pEo4mUNH", "displayName": "Ftdml2xN", "emailAddress": "viWacJc3", "password": "Fm7Z548u", "validateOnly": true}' \
-    --namespace 'KgoCBqS5' \
-    --userId 'uIdCbwCe' \
+    --body '{"code": "HLmIohfN", "country": "ISLXMDWD", "dateOfBirth": "dm5FE4ll", "displayName": "iQMnutJb", "emailAddress": "pEo4mUNH", "password": "Ftdml2xN", "validateOnly": true}' \
+    --namespace 'iWacJc3F' \
+    --userId 'm7Z548uu' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminUpgradeHeadlessAccountV3'
 delete_file $TEMP_FILE
 
 #- 157 adminDeleteUserInformationV3
 samples/cli/sample-apps Iam adminDeleteUserInformationV3 \
-    --namespace 'eq9ouEdD' \
-    --userId 'tjOgsypL' \
+    --namespace 'KgoCBqS5' \
+    --userId 'uIdCbwCe' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminDeleteUserInformationV3'
 delete_file $TEMP_FILE
 
 #- 158 adminGetUserLoginHistoriesV3
 samples/cli/sample-apps Iam adminGetUserLoginHistoriesV3 \
-    --namespace 'km2ZYew5' \
-    --userId 'H7Zm0gnY' \
-    --after '0.3817896258195451' \
-    --before '0.9154243811841436' \
-    --limit '99' \
+    --namespace 'eq9ouEdD' \
+    --userId 'tjOgsypL' \
+    --after '0.16767893127443723' \
+    --before '0.8500888035061814' \
+    --limit '100' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminGetUserLoginHistoriesV3'
 delete_file $TEMP_FILE
 
 #- 159 adminUpdateUserPermissionV3
 samples/cli/sample-apps Iam adminUpdateUserPermissionV3 \
-    --body '{"Permissions": [{"Action": 11, "Resource": "9G1ntyeb", "SchedAction": 42, "SchedCron": "oeHenAAL", "SchedRange": ["Kt7EfxIH"]}]}' \
-    --namespace '446oUnP2' \
-    --userId 'S74unXwg' \
+    --body '{"Permissions": [{"Action": 8, "Resource": "w5H7Zm0g", "SchedAction": 27, "SchedCron": "Yyj6MXf9", "SchedRange": ["G1ntyebv"]}]}' \
+    --namespace 'oeHenAAL' \
+    --userId 'Kt7EfxIH' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminUpdateUserPermissionV3'
 delete_file $TEMP_FILE
 
 #- 160 adminAddUserPermissionsV3
 samples/cli/sample-apps Iam adminAddUserPermissionsV3 \
-    --body '{"Permissions": [{"Action": 70, "Resource": "KqVWW1rj", "SchedAction": 72, "SchedCron": "1epwkAvc", "SchedRange": ["sYvbgfBV"]}]}' \
-    --namespace 'PpTa8Yuq' \
-    --userId '7TKiNXmz' \
+    --body '{"Permissions": [{"Action": 29, "Resource": "UnP2S74u", "SchedAction": 26, "SchedCron": "Xwg0JKqV", "SchedRange": ["WW1rjK1e"]}]}' \
+    --namespace 'pwkAvcsY' \
+    --userId 'vbgfBVPp' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminAddUserPermissionsV3'
 delete_file $TEMP_FILE
 
 #- 161 adminDeleteUserPermissionBulkV3
 samples/cli/sample-apps Iam adminDeleteUserPermissionBulkV3 \
-    --body '[{"Action": 8, "Resource": "MrMD5Tba"}]' \
-    --namespace 'UxTCTng0' \
-    --userId 'xjtdBrjs' \
+    --body '[{"Action": 91, "Resource": "a8Yuq7TK"}]' \
+    --namespace 'iNXmz7eM' \
+    --userId 'rMD5TbaU' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminDeleteUserPermissionBulkV3'
 delete_file $TEMP_FILE
 
 #- 162 adminDeleteUserPermissionV3
 samples/cli/sample-apps Iam adminDeleteUserPermissionV3 \
-    --action '72' \
-    --namespace 'iykt2Ck2' \
-    --resource 'gOlSatEC' \
-    --userId 'Z2UgwQLq' \
+    --action '47' \
+    --namespace 'TCTng0xj' \
+    --resource 'tdBrjs3K' \
+    --userId 'iykt2Ck2' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminDeleteUserPermissionV3'
 delete_file $TEMP_FILE
 
 #- 163 adminGetUserPlatformAccountsV3
 samples/cli/sample-apps Iam adminGetUserPlatformAccountsV3 \
-    --namespace 'DqYSxTPu' \
-    --userId 'VlBqirdp' \
-    --after '3yxnsETl' \
-    --before '1SvhQuds' \
-    --limit '19' \
+    --namespace 'gOlSatEC' \
+    --userId 'Z2UgwQLq' \
+    --after 'DqYSxTPu' \
+    --before 'VlBqirdp' \
+    --limit '49' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminGetUserPlatformAccountsV3'
 delete_file $TEMP_FILE
 
 #- 164 adminGetListJusticePlatformAccounts
 samples/cli/sample-apps Iam adminGetListJusticePlatformAccounts \
-    --namespace 'IhXdxiSo' \
-    --userId 'WpnnxgX7' \
+    --namespace 'xnsETl1S' \
+    --userId 'vhQudsjI' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminGetListJusticePlatformAccounts'
 delete_file $TEMP_FILE
 
 #- 165 adminCreateJusticeUser
 samples/cli/sample-apps Iam adminCreateJusticeUser \
-    --namespace 'BCPMqzQI' \
-    --targetNamespace 'xibhpNYs' \
-    --userId 'HtdB3Ikj' \
+    --namespace 'hXdxiSoW' \
+    --targetNamespace 'pnnxgX7B' \
+    --userId 'CPMqzQIx' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminCreateJusticeUser'
 delete_file $TEMP_FILE
 
 #- 166 adminLinkPlatformAccount
 samples/cli/sample-apps Iam adminLinkPlatformAccount \
-    --body '{"platformId": "uaZqhJil", "platformUserId": "rZkSSKgP"}' \
-    --namespace '5rxCR77G' \
-    --userId '9d5CA1GO' \
+    --body '{"platformId": "ibhpNYsH", "platformUserId": "tdB3Ikju"}' \
+    --namespace 'aZqhJilr' \
+    --userId 'ZkSSKgP5' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminLinkPlatformAccount'
 delete_file $TEMP_FILE
 
 #- 167 adminPlatformUnlinkV3
 samples/cli/sample-apps Iam adminPlatformUnlinkV3 \
-    --body '{"platformNamespace": "RSbL9n0d"}' \
-    --namespace 'bWDEupmd' \
-    --platformId 'LQzPnNfB' \
-    --userId 'AcWArbkC' \
+    --body '{"platformNamespace": "rxCR77G9"}' \
+    --namespace 'd5CA1GOR' \
+    --platformId 'SbL9n0db' \
+    --userId 'WDEupmdL' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminPlatformUnlinkV3'
 delete_file $TEMP_FILE
 
 #- 168 adminPlatformLinkV3
 samples/cli/sample-apps Iam adminPlatformLinkV3 \
-    --ticket 'fdHIZb03' \
-    --namespace 'otqmBuS9' \
-    --platformId 'V2pCZ23U' \
-    --userId 'Hmk0lpJ4' \
+    --ticket 'QzPnNfBA' \
+    --namespace 'cWArbkCf' \
+    --platformId 'dHIZb03o' \
+    --userId 'tqmBuS9V' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminPlatformLinkV3'
 delete_file $TEMP_FILE
 
 #- 169 adminDeleteUserRolesV3
 samples/cli/sample-apps Iam adminDeleteUserRolesV3 \
-    --body '["JLl01qi7"]' \
-    --namespace 'L2oDUoVR' \
-    --userId 'Ub39j22P' \
+    --body '["2pCZ23UH"]' \
+    --namespace 'mk0lpJ4J' \
+    --userId 'Ll01qi7L' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminDeleteUserRolesV3'
 delete_file $TEMP_FILE
 
 #- 170 adminSaveUserRoleV3
 samples/cli/sample-apps Iam adminSaveUserRoleV3 \
-    --body '[{"namespace": "4Sp09cKm", "roleId": "jRUbZVBV"}]' \
-    --namespace 'S7OK2Zrd' \
-    --userId 'csckMekR' \
+    --body '[{"namespace": "2oDUoVRU", "roleId": "b39j22P4"}]' \
+    --namespace 'Sp09cKmj' \
+    --userId 'RUbZVBVS' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminSaveUserRoleV3'
 delete_file $TEMP_FILE
 
 #- 171 adminAddUserRoleV3
 samples/cli/sample-apps Iam adminAddUserRoleV3 \
-    --namespace 'OWZ2KUTq' \
-    --roleId 'kK2eFaGL' \
-    --userId 'oSmEEPbL' \
+    --namespace '7OK2Zrdc' \
+    --roleId 'sckMekRO' \
+    --userId 'WZ2KUTqk' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminAddUserRoleV3'
 delete_file $TEMP_FILE
 
 #- 172 adminDeleteUserRoleV3
 samples/cli/sample-apps Iam adminDeleteUserRoleV3 \
-    --namespace 'ywJsyUie' \
-    --roleId '6fZgLllU' \
-    --userId 'PsO8lg46' \
+    --namespace 'K2eFaGLo' \
+    --roleId 'SmEEPbLy' \
+    --userId 'wJsyUie6' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminDeleteUserRoleV3'
 delete_file $TEMP_FILE
 
 #- 173 adminUpdateUserStatusV3
 samples/cli/sample-apps Iam adminUpdateUserStatusV3 \
-    --body '{"enabled": false, "reason": "7006vL2w"}' \
-    --namespace '4aajDAOx' \
-    --userId '0iJjYlea' \
+    --body '{"enabled": false, "reason": "ZgLllUPs"}' \
+    --namespace 'O8lg46Si' \
+    --userId '7006vL2w' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminUpdateUserStatusV3'
 delete_file $TEMP_FILE
 
 #- 174 adminVerifyUserWithoutVerificationCodeV3
 samples/cli/sample-apps Iam adminVerifyUserWithoutVerificationCodeV3 \
-    --namespace 'ktqv2Wkl' \
-    --userId 'jQuD5mnJ' \
+    --namespace '4aajDAOx' \
+    --userId '0iJjYlea' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminVerifyUserWithoutVerificationCodeV3'
 delete_file $TEMP_FILE
 
 #- 175 adminGetRolesV3
 samples/cli/sample-apps Iam adminGetRolesV3 \
-    --after 'ONqHGq8m' \
-    --before 'B7mF2lMF' \
-    --isWildcard 'False' \
-    --limit '1' \
+    --after 'ktqv2Wkl' \
+    --before 'jQuD5mnJ' \
+    --isWildcard 'True' \
+    --limit '66' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminGetRolesV3'
 delete_file $TEMP_FILE
 
 #- 176 adminCreateRoleV3
 samples/cli/sample-apps Iam adminCreateRoleV3 \
-    --body '{"adminRole": false, "deletable": false, "isWildcard": true, "managers": [{"displayName": "XJIJflRH", "namespace": "FcsIqCy4", "userId": "xDifSSQ5"}], "members": [{"displayName": "On2ccEcl", "namespace": "3xeiO4bw", "userId": "F5JOjGoG"}], "permissions": [{"action": 47, "resource": "KM3qMce5", "schedAction": 38, "schedCron": "fLcpjFZM", "schedRange": ["KCbp0pEb"]}], "roleName": "LCLFpHxM"}' \
+    --body '{"adminRole": true, "deletable": false, "isWildcard": true, "managers": [{"displayName": "7mF2lMFc", "namespace": "aghFXJIJ", "userId": "flRHFcsI"}], "members": [{"displayName": "qCy4xDif", "namespace": "SSQ5On2c", "userId": "cEcl3xei"}], "permissions": [{"action": 80, "resource": "4bwF5JOj", "schedAction": 65, "schedCron": "oGxKM3qM", "schedRange": ["ce5tfLcp"]}], "roleName": "jFZMKCbp"}' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminCreateRoleV3'
 delete_file $TEMP_FILE
 
 #- 177 adminGetRoleV3
 samples/cli/sample-apps Iam adminGetRoleV3 \
-    --roleId 'YF836075' \
+    --roleId '0pEbLCLF' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminGetRoleV3'
 delete_file $TEMP_FILE
 
 #- 178 adminDeleteRoleV3
 samples/cli/sample-apps Iam adminDeleteRoleV3 \
-    --roleId 'xEpzdnYt' \
+    --roleId 'pHxMYF83' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminDeleteRoleV3'
 delete_file $TEMP_FILE
 
 #- 179 adminUpdateRoleV3
 samples/cli/sample-apps Iam adminUpdateRoleV3 \
-    --body '{"deletable": false, "isWildcard": false, "roleName": "a5ig2isQ"}' \
-    --roleId 'Zga6Vy76' \
+    --body '{"deletable": true, "isWildcard": true, "roleName": "pzdnYtpj"}' \
+    --roleId 'a5ig2isQ' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminUpdateRoleV3'
 delete_file $TEMP_FILE
 
 #- 180 adminGetRoleAdminStatusV3
 samples/cli/sample-apps Iam adminGetRoleAdminStatusV3 \
-    --roleId 'izPiQRjY' \
+    --roleId 'Zga6Vy76' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminGetRoleAdminStatusV3'
 delete_file $TEMP_FILE
 
 #- 181 adminUpdateAdminRoleStatusV3
 samples/cli/sample-apps Iam adminUpdateAdminRoleStatusV3 \
-    --roleId 'a8fv5fIt' \
+    --roleId 'izPiQRjY' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminUpdateAdminRoleStatusV3'
 delete_file $TEMP_FILE
 
 #- 182 adminRemoveRoleAdminV3
 samples/cli/sample-apps Iam adminRemoveRoleAdminV3 \
-    --roleId '22tIZhjh' \
+    --roleId 'a8fv5fIt' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminRemoveRoleAdminV3'
 delete_file $TEMP_FILE
 
 #- 183 adminGetRoleManagersV3
 samples/cli/sample-apps Iam adminGetRoleManagersV3 \
-    --roleId 'gkigW22z' \
-    --after 'XMWXfbcM' \
-    --before '0GIALIbF' \
-    --limit '56' \
+    --roleId '22tIZhjh' \
+    --after 'gkigW22z' \
+    --before 'XMWXfbcM' \
+    --limit '64' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminGetRoleManagersV3'
 delete_file $TEMP_FILE
 
 #- 184 adminAddRoleManagersV3
 samples/cli/sample-apps Iam adminAddRoleManagersV3 \
-    --body '{"managers": [{"displayName": "QgBcLNT6", "namespace": "iOQVYx5r", "userId": "W2gMsI1a"}]}' \
-    --roleId 'YBitSn3U' \
+    --body '{"managers": [{"displayName": "IALIbFCQ", "namespace": "gBcLNT6i", "userId": "OQVYx5rW"}]}' \
+    --roleId '2gMsI1aY' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminAddRoleManagersV3'
 delete_file $TEMP_FILE
 
 #- 185 adminRemoveRoleManagersV3
 samples/cli/sample-apps Iam adminRemoveRoleManagersV3 \
-    --body '{"managers": [{"displayName": "DeKj97I4", "namespace": "WYXLqjN7", "userId": "ktOBTraB"}]}' \
-    --roleId 'xWRTVuYE' \
+    --body '{"managers": [{"displayName": "BitSn3UD", "namespace": "eKj97I4W", "userId": "YXLqjN7k"}]}' \
+    --roleId 'tOBTraBx' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminRemoveRoleManagersV3'
 delete_file $TEMP_FILE
 
 #- 186 adminGetRoleMembersV3
 samples/cli/sample-apps Iam adminGetRoleMembersV3 \
-    --roleId 'qGlKDwTK' \
-    --after 'XBrXiQcd' \
-    --before '9IW8kiCK' \
-    --limit '9' \
+    --roleId 'WRTVuYEq' \
+    --after 'GlKDwTKX' \
+    --before 'BrXiQcd9' \
+    --limit '69' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminGetRoleMembersV3'
 delete_file $TEMP_FILE
 
 #- 187 adminAddRoleMembersV3
 samples/cli/sample-apps Iam adminAddRoleMembersV3 \
-    --body '{"members": [{"displayName": "QJWZBvcq", "namespace": "1ETvWBxY", "userId": "ZJh7B8gb"}]}' \
-    --roleId 'nSu9M2Ox' \
+    --body '{"members": [{"displayName": "W8kiCKeQ", "namespace": "JWZBvcq1", "userId": "ETvWBxYZ"}]}' \
+    --roleId 'Jh7B8gbn' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminAddRoleMembersV3'
 delete_file $TEMP_FILE
 
 #- 188 adminRemoveRoleMembersV3
 samples/cli/sample-apps Iam adminRemoveRoleMembersV3 \
-    --body '{"members": [{"displayName": "D2udaeYp", "namespace": "CXYSMiy8", "userId": "7CTqEQBg"}]}' \
-    --roleId '36my3sY2' \
+    --body '{"members": [{"displayName": "Su9M2OxD", "namespace": "2udaeYpC", "userId": "XYSMiy87"}]}' \
+    --roleId 'CTqEQBg3' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminRemoveRoleMembersV3'
 delete_file $TEMP_FILE
 
 #- 189 adminUpdateRolePermissionsV3
 samples/cli/sample-apps Iam adminUpdateRolePermissionsV3 \
-    --body '{"permissions": [{"action": 4, "resource": "lrDcain0", "schedAction": 5, "schedCron": "OVF1zHwD", "schedRange": ["TI0sJ1Q0"]}]}' \
-    --roleId 'kphMTggS' \
+    --body '{"permissions": [{"action": 24, "resource": "y3sY2clr", "schedAction": 58, "schedCron": "cain0cOV", "schedRange": ["F1zHwDTI"]}]}' \
+    --roleId '0sJ1Q0kp' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminUpdateRolePermissionsV3'
 delete_file $TEMP_FILE
 
 #- 190 adminAddRolePermissionsV3
 samples/cli/sample-apps Iam adminAddRolePermissionsV3 \
-    --body '{"permissions": [{"action": 82, "resource": "2SLcuAP7", "schedAction": 43, "schedCron": "U971Czw2", "schedRange": ["nbg8C7Mv"]}]}' \
-    --roleId 'ywhu6MjO' \
+    --body '{"permissions": [{"action": 15, "resource": "MTggSP2S", "schedAction": 75, "schedCron": "cuAP7vU9", "schedRange": ["71Czw2nb"]}]}' \
+    --roleId 'g8C7Mvyw' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminAddRolePermissionsV3'
 delete_file $TEMP_FILE
 
 #- 191 adminDeleteRolePermissionsV3
 samples/cli/sample-apps Iam adminDeleteRolePermissionsV3 \
-    --body '["juGzo1Fz"]' \
-    --roleId '4tU0aSn9' \
+    --body '["hu6MjOju"]' \
+    --roleId 'Gzo1Fz4t' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminDeleteRolePermissionsV3'
 delete_file $TEMP_FILE
 
 #- 192 adminDeleteRolePermissionV3
 samples/cli/sample-apps Iam adminDeleteRolePermissionV3 \
-    --action '79' \
-    --resource '8qOUA0z9' \
-    --roleId '2RaDe8ng' \
+    --action '93' \
+    --resource '0aSn98N8' \
+    --roleId 'qOUA0z92' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminDeleteRolePermissionV3'
 delete_file $TEMP_FILE
@@ -1645,12 +1645,12 @@ delete_file $TEMP_FILE
 
 #- 194 userAuthenticationV3
 samples/cli/sample-apps Iam userAuthenticationV3 \
-    --clientId 'T8LRQkMn' \
-    --extendExp 'True' \
-    --redirectUri 'F2mdYY6Z' \
-    --password 'MfuTYTKs' \
-    --requestId 'ue48qBEB' \
-    --userName 'NAV5BTe6' \
+    --clientId 'RaDe8ngT' \
+    --extendExp 'False' \
+    --redirectUri 'MnG1LZyF' \
+    --password '2mdYY6ZM' \
+    --requestId 'fuTYTKsu' \
+    --userName 'e48qBEBN' \
     >$TEMP_FILE 2>&1
 update_status $? 'userAuthenticationV3'
 delete_file $TEMP_FILE
@@ -1669,30 +1669,30 @@ delete_file $TEMP_FILE
 
 #- 197 adminRetrieveUserThirdPartyPlatformTokenV3
 samples/cli/sample-apps Iam adminRetrieveUserThirdPartyPlatformTokenV3 \
-    --namespace 'ec1zA92U' \
-    --platformId 'RCLSGPmR' \
-    --userId 'BZWunHW7' \
+    --namespace 'AV5BTe6e' \
+    --platformId 'c1zA92UR' \
+    --userId 'CLSGPmRB' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminRetrieveUserThirdPartyPlatformTokenV3'
 delete_file $TEMP_FILE
 
 #- 198 revokeUserV3
 samples/cli/sample-apps Iam revokeUserV3 \
-    --namespace 'MYvr6QA7' \
-    --userId 'Ppepc92H' \
+    --namespace 'ZWunHW7M' \
+    --userId 'Yvr6QA7P' \
     >$TEMP_FILE 2>&1
 update_status $? 'revokeUserV3'
 delete_file $TEMP_FILE
 
 #- 199 authorizeV3
 samples/cli/sample-apps Iam authorizeV3 \
-    --codeChallenge 'A94eACde' \
-    --codeChallengeMethod 'plain' \
-    --redirectUri 'fUpgiPpf' \
-    --scope '8nxKJ3dn' \
-    --state 'mtPwa64Y' \
-    --targetAuthPage '4gPEKMhh' \
-    --clientId 'u9a6f3xJ' \
+    --codeChallenge 'pepc92HA' \
+    --codeChallengeMethod 'S256' \
+    --redirectUri 'ACdeyfUp' \
+    --scope 'giPpf8nx' \
+    --state 'KJ3dnmtP' \
+    --targetAuthPage 'wa64Y4gP' \
+    --clientId 'EKMhhu9a' \
     --responseType 'code' \
     >$TEMP_FILE 2>&1
 update_status $? 'authorizeV3'
@@ -1700,7 +1700,7 @@ delete_file $TEMP_FILE
 
 #- 200 tokenIntrospectionV3
 samples/cli/sample-apps Iam tokenIntrospectionV3 \
-    --token 'UlKLlIIA' \
+    --token '3xJNtUlK' \
     >$TEMP_FILE 2>&1
 update_status $? 'tokenIntrospectionV3'
 delete_file $TEMP_FILE
@@ -1711,629 +1711,789 @@ samples/cli/sample-apps Iam getJWKSV3 \
 update_status $? 'getJWKSV3'
 delete_file $TEMP_FILE
 
-#- 202 retrieveUserThirdPartyPlatformTokenV3
+#- 202 change2faMethod
+samples/cli/sample-apps Iam change2faMethod \
+    --factor 'LlIIAeHb' \
+    --mfaToken 'm5M6LsY1' \
+    >$TEMP_FILE 2>&1
+update_status $? 'change2faMethod'
+delete_file $TEMP_FILE
+
+#- 203 verify2faCode
+samples/cli/sample-apps Iam verify2faCode \
+    --code 'VMuIEcRl' \
+    --factor 's68M3MPM' \
+    --mfaToken 'RPBepyyM' \
+    --rememberDevice 'True' \
+    >$TEMP_FILE 2>&1
+update_status $? 'verify2faCode'
+delete_file $TEMP_FILE
+
+#- 204 retrieveUserThirdPartyPlatformTokenV3
 samples/cli/sample-apps Iam retrieveUserThirdPartyPlatformTokenV3 \
-    --namespace 'eHbm5M6L' \
-    --platformId 'sY1VMuIE' \
-    --userId 'cRls68M3' \
+    --namespace '6zfR1pvT' \
+    --platformId 'YYtDOiEi' \
+    --userId '4RuEcHCS' \
     >$TEMP_FILE 2>&1
 update_status $? 'retrieveUserThirdPartyPlatformTokenV3'
 delete_file $TEMP_FILE
 
-#- 203 authCodeRequestV3
+#- 205 authCodeRequestV3
 samples/cli/sample-apps Iam authCodeRequestV3 \
-    --platformId 'MPMRPBep' \
-    --clientId 'yyMz6zfR' \
-    --redirectUri '1pvTYYtD' \
-    --requestId 'OiEi4RuE' \
+    --platformId 'GhpOZQFl' \
+    --clientId 'wOiuKGDF' \
+    --redirectUri 'gK49YuKn' \
+    --requestId 'Xks0m8AN' \
     >$TEMP_FILE 2>&1
 update_status $? 'authCodeRequestV3'
 delete_file $TEMP_FILE
 
-#- 204 platformTokenGrantV3
+#- 206 platformTokenGrantV3
 samples/cli/sample-apps Iam platformTokenGrantV3 \
-    --clientId 'cHCSGhpO' \
-    --deviceId 'ZQFlwOiu' \
-    --platformToken 'KGDFgK49' \
-    --platformId 'YuKnXks0' \
+    --clientId 'rcRal7ta' \
+    --deviceId '3fojA3h4' \
+    --platformToken 'MMW3AJ5z' \
+    --platformId 'lsFBwjvL' \
     >$TEMP_FILE 2>&1
 update_status $? 'platformTokenGrantV3'
 delete_file $TEMP_FILE
 
-#- 205 getRevocationListV3
+#- 207 getRevocationListV3
 samples/cli/sample-apps Iam getRevocationListV3 \
     >$TEMP_FILE 2>&1
 update_status $? 'getRevocationListV3'
 delete_file $TEMP_FILE
 
-#- 206 tokenRevocationV3
+#- 208 tokenRevocationV3
 samples/cli/sample-apps Iam tokenRevocationV3 \
-    --token 'm8ANrcRa' \
+    --token 'Yvmg6avu' \
     >$TEMP_FILE 2>&1
 update_status $? 'tokenRevocationV3'
 delete_file $TEMP_FILE
 
-#- 207 tokenGrantV3
+#- 209 tokenGrantV3
 samples/cli/sample-apps Iam tokenGrantV3 \
-    --deviceId 'l7ta3foj' \
-    --clientId 'A3h4MMW3' \
-    --code 'AJ5zlsFB' \
-    --codeVerifier 'wjvLYvmg' \
-    --extendExp 'False' \
-    --password 'vudQFF1C' \
-    --redirectUri 'PNY9u2dV' \
-    --refreshToken 'YdglOOoC' \
-    --username 'eK0kPKmB' \
-    --grantType 'password' \
+    --deviceId 'dQFF1CPN' \
+    --clientId 'Y9u2dVYd' \
+    --code 'glOOoCeK' \
+    --codeVerifier '0kPKmBqV' \
+    --extendExp 'True' \
+    --password 'x3lXcD8a' \
+    --redirectUri 'ertAVCqs' \
+    --refreshToken '8XT8xy3n' \
+    --username 'J06KkseA' \
+    --grantType 'refresh_token' \
     >$TEMP_FILE 2>&1
 update_status $? 'tokenGrantV3'
 delete_file $TEMP_FILE
 
-#- 208 platformAuthenticationV3
+#- 210 platformAuthenticationV3
 samples/cli/sample-apps Iam platformAuthenticationV3 \
-    --platformId 'Vux3lXcD' \
-    --code '8aertAVC' \
-    --error 'qs8XT8xy' \
-    --openidAssocHandle '3nJ06Kks' \
-    --openidClaimedId 'eA0ARj9r' \
-    --openidIdentity 'icfayvnh' \
-    --openidMode 'i8MDdY4W' \
-    --openidNs 'LHoaUkYn' \
-    --openidOpEndpoint 'Qp5egdmV' \
-    --openidResponseNonce 'E8ImivNt' \
-    --openidReturnTo 'QxqWRKHo' \
-    --openidSig 'hODoWOr9' \
-    --openidSigned '8kjBUas9' \
-    --state 'jjz2Frgi' \
+    --platformId 'Rj9ricfa' \
+    --code 'yvnhi8MD' \
+    --error 'dY4WLHoa' \
+    --openidAssocHandle 'UkYnQp5e' \
+    --openidClaimedId 'gdmVE8Im' \
+    --openidIdentity 'ivNtQxqW' \
+    --openidMode 'RKHohODo' \
+    --openidNs 'WOr98kjB' \
+    --openidOpEndpoint 'Uas9jjz2' \
+    --openidResponseNonce 'FrgiaGrc' \
+    --openidReturnTo 'B7dIOVKI' \
+    --openidSig 'PSJJHo5W' \
+    --openidSigned '8tKH8ou9' \
+    --state 'SdbxSXcr' \
     >$TEMP_FILE 2>&1
 update_status $? 'platformAuthenticationV3'
 delete_file $TEMP_FILE
 
-#- 209 publicGetInputValidations
+#- 211 publicGetInputValidations
 samples/cli/sample-apps Iam publicGetInputValidations \
-    --defaultOnEmpty 'False' \
-    --languageCode 'GrcB7dIO' \
+    --defaultOnEmpty 'True' \
+    --languageCode 'FCwqeGNL' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetInputValidations'
 delete_file $TEMP_FILE
 
-#- 210 retrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3
+#- 212 retrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3
 samples/cli/sample-apps Iam retrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3 \
-    --namespace 'VKIPSJJH' \
+    --namespace 'dIBRdliF' \
     >$TEMP_FILE 2>&1
 update_status $? 'retrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3'
 delete_file $TEMP_FILE
 
-#- 211 publicListUserIDByPlatformUserIDsV3
+#- 213 publicListUserIDByPlatformUserIDsV3
 samples/cli/sample-apps Iam publicListUserIDByPlatformUserIDsV3 \
-    --body '{"platformUserIds": ["o5W8tKH8"]}' \
-    --namespace 'ou9SdbxS' \
-    --platformId 'XcrEFCwq' \
+    --body '{"platformUserIds": ["QVMKEzVU"]}' \
+    --namespace 'WlUWDs2x' \
+    --platformId '1EQU0oep' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicListUserIDByPlatformUserIDsV3'
 delete_file $TEMP_FILE
 
-#- 212 publicGetUserByPlatformUserIDV3
+#- 214 publicGetUserByPlatformUserIDV3
 samples/cli/sample-apps Iam publicGetUserByPlatformUserIDV3 \
-    --namespace 'eGNLdIBR' \
-    --platformId 'dliFQVMK' \
-    --platformUserId 'EzVUWlUW' \
+    --namespace 'EvcjaSgE' \
+    --platformId 'h6jJnFxi' \
+    --platformUserId 'nIHJ1o7a' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetUserByPlatformUserIDV3'
 delete_file $TEMP_FILE
 
-#- 213 publicGetAsyncStatus
+#- 215 publicGetAsyncStatus
 samples/cli/sample-apps Iam publicGetAsyncStatus \
-    --namespace 'Ds2x1EQU' \
-    --requestId '0oepEvcj' \
+    --namespace 'q5Zznd5e' \
+    --requestId 'acobTsuR' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetAsyncStatus'
 delete_file $TEMP_FILE
 
-#- 214 publicSearchUserV3
+#- 216 publicSearchUserV3
 samples/cli/sample-apps Iam publicSearchUserV3 \
-    --namespace 'aSgEh6jJ' \
-    --by 'nFxinIHJ' \
-    --query '1o7aq5Zz' \
+    --namespace 'lhreQVFI' \
+    --by 'D3o8hJWV' \
+    --query 'jKIOAw70' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicSearchUserV3'
 delete_file $TEMP_FILE
 
-#- 215 publicCreateUserV3
+#- 217 publicCreateUserV3
 samples/cli/sample-apps Iam publicCreateUserV3 \
-    --body '{"PasswordMD5Sum": "nd5eacob", "acceptedPolicies": [{"isAccepted": true, "localizedPolicyVersionId": "uRlhreQV", "policyId": "FID3o8hJ", "policyVersionId": "WVjKIOAw"}], "authType": "70DvAHhS", "code": "GWUvzq1Z", "country": "a3IBC4vQ", "dateOfBirth": "FsUJPfia", "displayName": "Jp1rt7OB", "emailAddress": "gBCe6N0e", "password": "I65Mn5tn", "reachMinimumAge": false}' \
-    --namespace 'EYXgPVT5' \
+    --body '{"PasswordMD5Sum": "DvAHhSGW", "acceptedPolicies": [{"isAccepted": true, "localizedPolicyVersionId": "zq1Za3IB", "policyId": "C4vQFsUJ", "policyVersionId": "PfiaJp1r"}], "authType": "t7OBgBCe", "code": "6N0eI65M", "country": "n5tngEYX", "dateOfBirth": "gPVT5CqX", "displayName": "DZBVMJyJ", "emailAddress": "eKFO92YD", "password": "taZvJoKS", "reachMinimumAge": true}' \
+    --namespace 'yipZuO4N' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicCreateUserV3'
 delete_file $TEMP_FILE
 
-#- 216 checkUserAvailability
+#- 218 checkUserAvailability
 samples/cli/sample-apps Iam checkUserAvailability \
-    --namespace 'CqXDZBVM' \
-    --field 'JyJeKFO9' \
-    --query '2YDtaZvJ' \
+    --namespace '9S2YCgHa' \
+    --field '6XBcvGRY' \
+    --query 'k5rUtWHC' \
     >$TEMP_FILE 2>&1
 update_status $? 'checkUserAvailability'
 delete_file $TEMP_FILE
 
-#- 217 publicBulkGetUsers
+#- 219 publicBulkGetUsers
 samples/cli/sample-apps Iam publicBulkGetUsers \
-    --body '{"userIds": ["oKS0Oxyi"]}' \
-    --namespace 'pZuO4N9S' \
+    --body '{"userIds": ["nhmzzppV"]}' \
+    --namespace '7tKNKYUQ' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicBulkGetUsers'
 delete_file $TEMP_FILE
 
-#- 218 publicSendRegistrationCode
+#- 220 publicSendRegistrationCode
 samples/cli/sample-apps Iam publicSendRegistrationCode \
-    --body '{"emailAddress": "2YCgHa6X", "languageTag": "BcvGRYk5"}' \
-    --namespace 'rUtWHCnh' \
+    --body '{"emailAddress": "VBXymWcN", "languageTag": "lHaFxYaG"}' \
+    --namespace 'HUpmBFyO' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicSendRegistrationCode'
 delete_file $TEMP_FILE
 
-#- 219 publicVerifyRegistrationCode
+#- 221 publicVerifyRegistrationCode
 samples/cli/sample-apps Iam publicVerifyRegistrationCode \
-    --body '{"code": "mzzppV7t", "emailAddress": "KNKYUQVB"}' \
-    --namespace 'XymWcNlH' \
+    --body '{"code": "rFKtxGNA", "emailAddress": "i0fq4xCh"}' \
+    --namespace 'PLd2lOop' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicVerifyRegistrationCode'
 delete_file $TEMP_FILE
 
-#- 220 publicForgotPasswordV3
+#- 222 publicForgotPasswordV3
 samples/cli/sample-apps Iam publicForgotPasswordV3 \
-    --body '{"emailAddress": "aFxYaGHU", "languageTag": "pmBFyOrF"}' \
-    --namespace 'KtxGNAi0' \
+    --body '{"emailAddress": "c7XoVpdd", "languageTag": "6rCpyMrn"}' \
+    --namespace 'H9YHXh7K' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicForgotPasswordV3'
 delete_file $TEMP_FILE
 
-#- 221 getAdminInvitationV3
+#- 223 getAdminInvitationV3
 samples/cli/sample-apps Iam getAdminInvitationV3 \
-    --invitationId 'fq4xChPL' \
-    --namespace 'd2lOopc7' \
+    --invitationId 'nCVOKY2z' \
+    --namespace 'sBRGtd8Q' \
     >$TEMP_FILE 2>&1
 update_status $? 'getAdminInvitationV3'
 delete_file $TEMP_FILE
 
-#- 222 createUserFromInvitationV3
+#- 224 createUserFromInvitationV3
 samples/cli/sample-apps Iam createUserFromInvitationV3 \
-    --body '{"acceptedPolicies": [{"isAccepted": false, "localizedPolicyVersionId": "Vpdd6rCp", "policyId": "yMrnH9YH", "policyVersionId": "Xh7KnCVO"}], "authType": "KY2zsBRG", "country": "td8QY2OL", "dateOfBirth": "bijrvfr8", "displayName": "hknjWUWd", "password": "MUXHvw4p", "reachMinimumAge": false}' \
-    --invitationId 'GLjdBxLM' \
-    --namespace '079pDAbT' \
+    --body '{"acceptedPolicies": [{"isAccepted": false, "localizedPolicyVersionId": "ijrvfr8h", "policyId": "knjWUWdM", "policyVersionId": "UXHvw4pN"}], "authType": "lGLjdBxL", "country": "M079pDAb", "dateOfBirth": "TgmsEYEq", "displayName": "2GkYK1vY", "password": "m9flXQ7C", "reachMinimumAge": false}' \
+    --invitationId 'emnQG0dH' \
+    --namespace '0NVM9VEH' \
     >$TEMP_FILE 2>&1
 update_status $? 'createUserFromInvitationV3'
 delete_file $TEMP_FILE
 
-#- 223 updateUserV3
+#- 225 updateUserV3
 samples/cli/sample-apps Iam updateUserV3 \
-    --body '{"country": "gmsEYEq2", "dateOfBirth": "GkYK1vYm", "displayName": "9flXQ7CQ", "languageTag": "oemnQG0d", "userName": "H0NVM9VE"}' \
-    --namespace 'HTPqDhkc' \
+    --body '{"country": "TPqDhkcu", "dateOfBirth": "5vnz6GiN", "displayName": "MboBJHml", "languageTag": "0LJmpPi4", "userName": "mqhruiCZ"}' \
+    --namespace 'LGGP5UXk' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateUserV3'
 delete_file $TEMP_FILE
 
-#- 224 publicUpdateUserV3
+#- 226 publicUpdateUserV3
 samples/cli/sample-apps Iam publicUpdateUserV3 \
-    --body '{"country": "u5vnz6Gi", "dateOfBirth": "NMboBJHm", "displayName": "l0LJmpPi", "languageTag": "4mqhruiC", "userName": "ZLGGP5UX"}' \
-    --namespace 'kHNTMapp' \
+    --body '{"country": "HNTMapp5", "dateOfBirth": "SbonsUJK", "displayName": "ADr60Ekd", "languageTag": "FrpLsGt9", "userName": "yTXWUSCQ"}' \
+    --namespace 'cMsHN7re' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicUpdateUserV3'
 delete_file $TEMP_FILE
 
-#- 225 publicSendVerificationCodeV3
+#- 227 publicSendVerificationCodeV3
 samples/cli/sample-apps Iam publicSendVerificationCodeV3 \
-    --body '{"context": "5SbonsUJ", "emailAddress": "KADr60Ek", "languageTag": "dFrpLsGt"}' \
-    --namespace '9yTXWUSC' \
+    --body '{"context": "I22ks7I1", "emailAddress": "2tAZc8sx", "languageTag": "xLx9XQeq"}' \
+    --namespace 'NWLm8cNJ' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicSendVerificationCodeV3'
 delete_file $TEMP_FILE
 
-#- 226 publicUserVerificationV3
+#- 228 publicUserVerificationV3
 samples/cli/sample-apps Iam publicUserVerificationV3 \
-    --body '{"code": "QcMsHN7r", "contactType": "eI22ks7I", "languageTag": "12tAZc8s", "validateOnly": true}' \
-    --namespace 'xLx9XQeq' \
+    --body '{"code": "bYH5J4Wi", "contactType": "JLv9NvHw", "languageTag": "tw2Mjcy9", "validateOnly": true}' \
+    --namespace '5Bu2XYop' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicUserVerificationV3'
 delete_file $TEMP_FILE
 
-#- 227 publicUpgradeHeadlessAccountV3
+#- 229 publicUpgradeHeadlessAccountV3
 samples/cli/sample-apps Iam publicUpgradeHeadlessAccountV3 \
-    --body '{"code": "NWLm8cNJ", "country": "bYH5J4Wi", "dateOfBirth": "JLv9NvHw", "displayName": "tw2Mjcy9", "emailAddress": "ZL6Zs5Bu", "password": "2XYopLWZ", "validateOnly": false}' \
-    --namespace 'UKJJNftR' \
+    --body '{"code": "LWZeUKJJ", "country": "NftRpGgk", "dateOfBirth": "1iseREzz", "displayName": "RG6z9wmu", "emailAddress": "HddyOdib", "password": "I1LVyqbd", "validateOnly": true}' \
+    --namespace 'GZKAuoIK' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicUpgradeHeadlessAccountV3'
 delete_file $TEMP_FILE
 
-#- 228 publicVerifyHeadlessAccountV3
+#- 230 publicVerifyHeadlessAccountV3
 samples/cli/sample-apps Iam publicVerifyHeadlessAccountV3 \
-    --body '{"emailAddress": "pGgk1ise", "password": "REzzRG6z"}' \
-    --namespace '9wmuHddy' \
+    --body '{"emailAddress": "z3Pp3zLW", "password": "UxMzMtSm"}' \
+    --namespace 'MmZP8nG0' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicVerifyHeadlessAccountV3'
 delete_file $TEMP_FILE
 
-#- 229 publicUpdatePasswordV3
+#- 231 publicUpdatePasswordV3
 samples/cli/sample-apps Iam publicUpdatePasswordV3 \
-    --body '{"languageTag": "OdibI1LV", "newPassword": "yqbdY8DG", "oldPassword": "ZKAuoIKz"}' \
-    --namespace '3Pp3zLWU' \
+    --body '{"languageTag": "FoQP8q7a", "newPassword": "Ssb85gAh", "oldPassword": "9RD3ZzN6"}' \
+    --namespace 'N1iJ8ltt' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicUpdatePasswordV3'
 delete_file $TEMP_FILE
 
-#- 230 publicCreateJusticeUser
+#- 232 publicCreateJusticeUser
 samples/cli/sample-apps Iam publicCreateJusticeUser \
-    --namespace 'xMzMtSmM' \
-    --targetNamespace 'mZP8nG0F' \
+    --namespace '9IRqCflg' \
+    --targetNamespace 'ln6r5f0s' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicCreateJusticeUser'
 delete_file $TEMP_FILE
 
-#- 231 publicPlatformLinkV3
+#- 233 publicPlatformLinkV3
 samples/cli/sample-apps Iam publicPlatformLinkV3 \
-    --redirectUri 'oQP8q7aS' \
-    --ticket 'sb85gAh9' \
-    --namespace 'RD3ZzN6N' \
-    --platformId '1iJ8ltt9' \
+    --redirectUri '5H6lCf3Q' \
+    --ticket 'Ha11hLLC' \
+    --namespace 'gw5av4LE' \
+    --platformId 'xdabD8g2' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicPlatformLinkV3'
 delete_file $TEMP_FILE
 
-#- 232 publicPlatformUnlinkV3
+#- 234 publicPlatformUnlinkV3
 samples/cli/sample-apps Iam publicPlatformUnlinkV3 \
-    --body '{"platformNamespace": "IRqCflgl"}' \
-    --namespace 'n6r5f0s5' \
-    --platformId 'H6lCf3QH' \
+    --body '{"platformNamespace": "cvHfMRup"}' \
+    --namespace 'DA5xbjs3' \
+    --platformId 'XRdHUJ0G' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicPlatformUnlinkV3'
 delete_file $TEMP_FILE
 
-#- 233 publicWebLinkPlatform
+#- 235 publicWebLinkPlatform
 samples/cli/sample-apps Iam publicWebLinkPlatform \
-    --namespace 'a11hLLCg' \
-    --platformId 'w5av4LEx' \
-    --clientId 'dabD8g2c' \
-    --redirectUri 'vHfMRupD' \
+    --namespace 'CmflIXkg' \
+    --platformId 'J6zkTwoa' \
+    --clientId 'kq7sEejF' \
+    --redirectUri 'Z1NtONXb' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicWebLinkPlatform'
 delete_file $TEMP_FILE
 
-#- 234 publicWebLinkPlatformEstablish
+#- 236 publicWebLinkPlatformEstablish
 samples/cli/sample-apps Iam publicWebLinkPlatformEstablish \
-    --namespace 'A5xbjs3X' \
-    --platformId 'RdHUJ0GC' \
-    --state 'mflIXkgJ' \
+    --namespace '9w9hsQHs' \
+    --platformId 'zIsfrlzK' \
+    --state 'pQdd58dZ' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicWebLinkPlatformEstablish'
 delete_file $TEMP_FILE
 
-#- 235 resetPasswordV3
+#- 237 resetPasswordV3
 samples/cli/sample-apps Iam resetPasswordV3 \
-    --body '{"code": "6zkTwoak", "emailAddress": "q7sEejFZ", "newPassword": "1NtONXb9"}' \
-    --namespace 'w9hsQHsz' \
+    --body '{"code": "P5RvrinN", "emailAddress": "tvBtqFSk", "newPassword": "A68mIVYJ"}' \
+    --namespace '5pSVxBsL' \
     >$TEMP_FILE 2>&1
 update_status $? 'resetPasswordV3'
 delete_file $TEMP_FILE
 
-#- 236 publicGetUserByUserIdV3
+#- 238 publicGetUserByUserIdV3
 samples/cli/sample-apps Iam publicGetUserByUserIdV3 \
-    --namespace 'IsfrlzKp' \
-    --userId 'Qdd58dZP' \
+    --namespace 'hty3pecT' \
+    --userId 'oXA4M1oU' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetUserByUserIdV3'
 delete_file $TEMP_FILE
 
-#- 237 publicGetUserBanHistoryV3
+#- 239 publicGetUserBanHistoryV3
 samples/cli/sample-apps Iam publicGetUserBanHistoryV3 \
-    --namespace '5RvrinNt' \
-    --userId 'vBtqFSkA' \
+    --namespace 'FPhgo7Z6' \
+    --userId 'mwNC4FY6' \
     --activeOnly 'False' \
-    --after 'IVYJ5pSV' \
-    --before 'xBsLhty3' \
-    --limit '30' \
+    --after 'M87joJNO' \
+    --before 'GB83Ns6H' \
+    --limit '22' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetUserBanHistoryV3'
 delete_file $TEMP_FILE
 
-#- 238 publicGetUserLoginHistoriesV3
+#- 240 publicGetUserLoginHistoriesV3
 samples/cli/sample-apps Iam publicGetUserLoginHistoriesV3 \
-    --namespace 'ecToXA4M' \
-    --userId '1oUFPhgo' \
-    --after '0.9271120861021633' \
-    --before '0.9136647447693423' \
-    --limit '44' \
+    --namespace '5Poab6lK' \
+    --userId 'oVqNBUzI' \
+    --after '0.361953047138558' \
+    --before '0.08027775664301928' \
+    --limit '23' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetUserLoginHistoriesV3'
 delete_file $TEMP_FILE
 
-#- 239 publicGetUserPlatformAccountsV3
+#- 241 publicGetUserPlatformAccountsV3
 samples/cli/sample-apps Iam publicGetUserPlatformAccountsV3 \
-    --namespace 'NC4FY69m' \
-    --userId 'M87joJNO' \
-    --after 'GB83Ns6H' \
-    --before 'l5Poab6l' \
-    --limit '73' \
+    --namespace 'quS2q2Do' \
+    --userId 'Wr9zvFtK' \
+    --after 'a2mOAqOo' \
+    --before 'kV1plxQ2' \
+    --limit '34' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetUserPlatformAccountsV3'
 delete_file $TEMP_FILE
 
-#- 240 publicLinkPlatformAccount
+#- 242 publicLinkPlatformAccount
 samples/cli/sample-apps Iam publicLinkPlatformAccount \
-    --body '{"platformId": "oVqNBUzI", "platformUserId": "xOfglquS"}' \
-    --namespace '2q2DoWr9' \
-    --userId 'zvFtKa2m' \
+    --body '{"platformId": "iTPfipD6", "platformUserId": "7jI2hiZk"}' \
+    --namespace 'rtLnh2U1' \
+    --userId 'RQlMxkfN' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicLinkPlatformAccount'
 delete_file $TEMP_FILE
 
-#- 241 publicValidateUserByUserIDAndPasswordV3
+#- 243 publicValidateUserByUserIDAndPasswordV3
 samples/cli/sample-apps Iam publicValidateUserByUserIDAndPasswordV3 \
-    --password 'OAqOokV1' \
-    --namespace 'plxQ2Yri' \
-    --userId 'TPfipD67' \
+    --password 'MPNtqv2T' \
+    --namespace 'Mz1b7Snz' \
+    --userId 'kXOek83I' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicValidateUserByUserIDAndPasswordV3'
 delete_file $TEMP_FILE
 
-#- 242 publicGetRolesV3
+#- 244 publicGetRolesV3
 samples/cli/sample-apps Iam publicGetRolesV3 \
-    --after 'jI2hiZkr' \
-    --before 'tLnh2U1R' \
+    --after 'gm1wkSWs' \
+    --before 'YvAsu18o' \
     --isWildcard 'False' \
-    --limit '77' \
+    --limit '92' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetRolesV3'
 delete_file $TEMP_FILE
 
-#- 243 publicGetRoleV3
+#- 245 publicGetRoleV3
 samples/cli/sample-apps Iam publicGetRoleV3 \
-    --roleId 'xkfNMPNt' \
+    --roleId 'dc8mbvXc' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetRoleV3'
 delete_file $TEMP_FILE
 
-#- 244 publicGetMyUserV3
+#- 246 publicGetMyUserV3
 samples/cli/sample-apps Iam publicGetMyUserV3 \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetMyUserV3'
 delete_file $TEMP_FILE
 
-#- 245 platformAuthenticateSAMLV3Handler
+#- 247 platformAuthenticateSAMLV3Handler
 samples/cli/sample-apps Iam platformAuthenticateSAMLV3Handler \
-    --platformId 'qv2TMz1b' \
-    --code '7SnzkXOe' \
-    --error 'k83Igm1w' \
-    --state 'kSWsYvAs' \
+    --platformId 'wcgMqOXM' \
+    --code 'ziXrVdsE' \
+    --error 'c3ClFP3m' \
+    --state 'JwusCBTe' \
     >$TEMP_FILE 2>&1
 update_status $? 'platformAuthenticateSAMLV3Handler'
 delete_file $TEMP_FILE
 
-#- 246 loginSSOClient
+#- 248 loginSSOClient
 samples/cli/sample-apps Iam loginSSOClient \
-    --platformId 'u18obUdc' \
-    --payload '8mbvXcwc' \
+    --platformId '4kLcuqL4' \
+    --payload '0NYgekRa' \
     >$TEMP_FILE 2>&1
 update_status $? 'loginSSOClient'
 delete_file $TEMP_FILE
 
-#- 247 logoutSSOClient
+#- 249 logoutSSOClient
 samples/cli/sample-apps Iam logoutSSOClient \
-    --platformId 'gMqOXMzi' \
+    --platformId 'vpaGTA9B' \
     >$TEMP_FILE 2>&1
 update_status $? 'logoutSSOClient'
 delete_file $TEMP_FILE
 
-#- 248 adminUpdateUserV4
+#- 250 adminBulkCheckValidUserIDV4
+samples/cli/sample-apps Iam adminBulkCheckValidUserIDV4 \
+    --body '{"userIds": ["TyCCyN4F"]}' \
+    --namespace 'w9i6mI2W' \
+    >$TEMP_FILE 2>&1
+update_status $? 'adminBulkCheckValidUserIDV4'
+delete_file $TEMP_FILE
+
+#- 251 adminUpdateUserV4
 samples/cli/sample-apps Iam adminUpdateUserV4 \
-    --body '{"country": "XrVdsEc3", "dateOfBirth": "ClFP3mJw", "displayName": "usCBTe4k", "languageTag": "LcuqL40N", "userName": "YgekRavp"}' \
-    --namespace 'aGTA9BTy' \
-    --userId 'CCyN4Fw9' \
+    --body '{"country": "3tjjCqPV", "dateOfBirth": "yYs01hEY", "displayName": "zWw3qrcx", "languageTag": "M0DPAXQB", "userName": "NMP7j3xf"}' \
+    --namespace 'PaoZaWFs' \
+    --userId 'pkU5kn6P' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminUpdateUserV4'
 delete_file $TEMP_FILE
 
-#- 249 adminUpdateUserEmailAddressV4
+#- 252 adminUpdateUserEmailAddressV4
 samples/cli/sample-apps Iam adminUpdateUserEmailAddressV4 \
-    --body '{"code": "i6mI2W3t", "emailAddress": "jjCqPVyY"}' \
-    --namespace 's01hEYzW' \
-    --userId 'w3qrcxM0' \
+    --body '{"code": "lPqD4Agf", "emailAddress": "asBfclBh"}' \
+    --namespace 'ZjZbLnmg' \
+    --userId 'hKwPyVIn' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminUpdateUserEmailAddressV4'
 delete_file $TEMP_FILE
 
-#- 250 adminListUserRolesV4
+#- 253 adminListUserRolesV4
 samples/cli/sample-apps Iam adminListUserRolesV4 \
-    --namespace 'DPAXQBNM' \
-    --userId 'P7j3xfPa' \
+    --namespace '3qaHP7KN' \
+    --userId 'ulyfrENV' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminListUserRolesV4'
 delete_file $TEMP_FILE
 
-#- 251 adminUpdateUserRoleV4
+#- 254 adminUpdateUserRoleV4
 samples/cli/sample-apps Iam adminUpdateUserRoleV4 \
-    --body '{"assignedNamespaces": ["oZaWFspk"], "roleId": "U5kn6PlP"}' \
-    --namespace 'qD4Agfas' \
-    --userId 'BfclBhZj' \
+    --body '{"assignedNamespaces": ["QkpcaWHf"], "roleId": "6T2xOOlj"}' \
+    --namespace 'n7c6c9ef' \
+    --userId 'JI02TZxr' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminUpdateUserRoleV4'
 delete_file $TEMP_FILE
 
-#- 252 adminAddUserRoleV4
+#- 255 adminAddUserRoleV4
 samples/cli/sample-apps Iam adminAddUserRoleV4 \
-    --body '{"assignedNamespaces": ["ZbLnmghK"], "roleId": "wPyVIn3q"}' \
-    --namespace 'aHP7KNul' \
-    --userId 'yfrENVQk' \
+    --body '{"assignedNamespaces": ["gLBFJEkp"], "roleId": "hFz0h6Wp"}' \
+    --namespace 'oVpVc2HB' \
+    --userId 'Bmj6cEi0' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminAddUserRoleV4'
 delete_file $TEMP_FILE
 
-#- 253 adminRemoveUserRoleV4
+#- 256 adminRemoveUserRoleV4
 samples/cli/sample-apps Iam adminRemoveUserRoleV4 \
-    --body '{"assignedNamespaces": ["pcaWHf6T"], "roleId": "2xOOljn7"}' \
-    --namespace 'c6c9efJI' \
-    --userId '02TZxrgL' \
+    --body '{"assignedNamespaces": ["2hXl42ub"], "roleId": "CRfy4GjK"}' \
+    --namespace 'n5ItHXLD' \
+    --userId 'ZqpRhqnR' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminRemoveUserRoleV4'
 delete_file $TEMP_FILE
 
-#- 254 adminGetRolesV4
+#- 257 adminGetRolesV4
 samples/cli/sample-apps Iam adminGetRolesV4 \
-    --adminRole 'True' \
-    --isWildcard 'True' \
-    --limit '70' \
-    --offset '61' \
+    --adminRole 'False' \
+    --isWildcard 'False' \
+    --limit '74' \
+    --offset '40' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminGetRolesV4'
 delete_file $TEMP_FILE
 
-#- 255 adminCreateRoleV4
+#- 258 adminCreateRoleV4
 samples/cli/sample-apps Iam adminCreateRoleV4 \
-    --body '{"adminRole": false, "deletable": false, "isWildcard": false, "roleName": "Fz0h6Wpo"}' \
+    --body '{"adminRole": true, "deletable": true, "isWildcard": false, "roleName": "djNhT0S4"}' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminCreateRoleV4'
 delete_file $TEMP_FILE
 
-#- 256 adminGetRoleV4
+#- 259 adminGetRoleV4
 samples/cli/sample-apps Iam adminGetRoleV4 \
-    --roleId 'VpVc2HBB' \
+    --roleId '6kqyfMBS' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminGetRoleV4'
 delete_file $TEMP_FILE
 
-#- 257 adminDeleteRoleV4
+#- 260 adminDeleteRoleV4
 samples/cli/sample-apps Iam adminDeleteRoleV4 \
-    --roleId 'mj6cEi02' \
+    --roleId 'aZc4SA16' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminDeleteRoleV4'
 delete_file $TEMP_FILE
 
-#- 258 adminUpdateRoleV4
+#- 261 adminUpdateRoleV4
 samples/cli/sample-apps Iam adminUpdateRoleV4 \
-    --body '{"adminRole": false, "deletable": false, "isWildcard": true, "roleName": "bCRfy4Gj"}' \
-    --roleId 'Kn5ItHXL' \
+    --body '{"adminRole": false, "deletable": true, "isWildcard": true, "roleName": "7aBHWCYe"}' \
+    --roleId 'vNkfcQvl' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminUpdateRoleV4'
 delete_file $TEMP_FILE
 
-#- 259 adminUpdateRolePermissionsV4
+#- 262 adminUpdateRolePermissionsV4
 samples/cli/sample-apps Iam adminUpdateRolePermissionsV4 \
-    --body '{"permissions": [{"action": 58, "resource": "ZqpRhqnR", "schedAction": 64, "schedCron": "cbLuQOGM", "schedRange": ["OEzmdjNh"]}]}' \
-    --roleId 'T0S46kqy' \
+    --body '{"permissions": [{"action": 80, "resource": "so7tx65z", "schedAction": 98, "schedCron": "CiTfjorL", "schedRange": ["FqTmIUFU"]}]}' \
+    --roleId 'oonHBI13' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminUpdateRolePermissionsV4'
 delete_file $TEMP_FILE
 
-#- 260 adminAddRolePermissionsV4
+#- 263 adminAddRolePermissionsV4
 samples/cli/sample-apps Iam adminAddRolePermissionsV4 \
-    --body '{"permissions": [{"action": 11, "resource": "MBSaZc4S", "schedAction": 52, "schedCron": "16M8gQCD", "schedRange": ["7aBHWCYe"]}]}' \
-    --roleId 'vNkfcQvl' \
+    --body '{"permissions": [{"action": 89, "resource": "ZFHfm0F8", "schedAction": 42, "schedCron": "S2BrZ3nq", "schedRange": ["88YSSD7z"]}]}' \
+    --roleId 'V0C8FvVU' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminAddRolePermissionsV4'
 delete_file $TEMP_FILE
 
-#- 261 adminDeleteRolePermissionsV4
+#- 264 adminDeleteRolePermissionsV4
 samples/cli/sample-apps Iam adminDeleteRolePermissionsV4 \
-    --body '["4Oso7tx6"]' \
-    --roleId '5zXCiTfj' \
+    --body '["3kRXBGPX"]' \
+    --roleId 'Idft1biZ' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminDeleteRolePermissionsV4'
 delete_file $TEMP_FILE
 
-#- 262 adminListAssignedUsersV4
+#- 265 adminListAssignedUsersV4
 samples/cli/sample-apps Iam adminListAssignedUsersV4 \
-    --roleId 'orLFqTmI' \
-    --after 'UFUoonHB' \
-    --before 'I13SZFHf' \
-    --limit '25' \
+    --roleId 'HuhWyFPH' \
+    --after 'dXcyvZEh' \
+    --before 'YeUSy5Uk' \
+    --limit '5' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminListAssignedUsersV4'
 delete_file $TEMP_FILE
 
-#- 263 adminAssignUserToRoleV4
+#- 266 adminAssignUserToRoleV4
 samples/cli/sample-apps Iam adminAssignUserToRoleV4 \
-    --body '{"assignedNamespaces": ["0F8vS2Br"], "namespace": "Z3nq88YS", "userId": "SD7zV0C8"}' \
-    --roleId 'FvVU3kRX' \
+    --body '{"assignedNamespaces": ["65naP11R"], "namespace": "8Xww9vq9", "userId": "nMa2Btgw"}' \
+    --roleId 'yuf2fjV3' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminAssignUserToRoleV4'
 delete_file $TEMP_FILE
 
-#- 264 adminRevokeUserFromRoleV4
+#- 267 adminRevokeUserFromRoleV4
 samples/cli/sample-apps Iam adminRevokeUserFromRoleV4 \
-    --body '{"namespace": "BGPXIdft", "userId": "1biZHuhW"}' \
-    --roleId 'yFPHdXcy' \
+    --body '{"namespace": "0SLxi7uy", "userId": "haeFtcO9"}' \
+    --roleId 'XNy63QO9' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminRevokeUserFromRoleV4'
 delete_file $TEMP_FILE
 
-#- 265 adminUpdateMyUserV4
+#- 268 adminUpdateMyUserV4
 samples/cli/sample-apps Iam adminUpdateMyUserV4 \
-    --body '{"country": "vZEhYeUS", "dateOfBirth": "y5Ukc65n", "displayName": "aP11R8Xw", "languageTag": "w9vq9nMa", "userName": "2Btgwyuf"}' \
+    --body '{"country": "vW0ck7TE", "dateOfBirth": "DE8LeEQB", "displayName": "eGPLiE6t", "languageTag": "HCr0GPFv", "userName": "T0SAK91y"}' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminUpdateMyUserV4'
 delete_file $TEMP_FILE
 
-#- 266 adminInviteUserV4
+#- 269 adminDisableMyAuthenticatorV4
+samples/cli/sample-apps Iam adminDisableMyAuthenticatorV4 \
+    >$TEMP_FILE 2>&1
+update_status $? 'adminDisableMyAuthenticatorV4'
+delete_file $TEMP_FILE
+
+#- 270 adminEnableMyAuthenticatorV4
+samples/cli/sample-apps Iam adminEnableMyAuthenticatorV4 \
+    --code '5vCeBIJq' \
+    >$TEMP_FILE 2>&1
+update_status $? 'adminEnableMyAuthenticatorV4'
+delete_file $TEMP_FILE
+
+#- 271 adminGenerateMyAuthenticatorKeyV4
+samples/cli/sample-apps Iam adminGenerateMyAuthenticatorKeyV4 \
+    >$TEMP_FILE 2>&1
+update_status $? 'adminGenerateMyAuthenticatorKeyV4'
+delete_file $TEMP_FILE
+
+#- 272 adminGetMyBackupCodesV4
+samples/cli/sample-apps Iam adminGetMyBackupCodesV4 \
+    >$TEMP_FILE 2>&1
+update_status $? 'adminGetMyBackupCodesV4'
+delete_file $TEMP_FILE
+
+#- 273 adminGenerateMyBackupCodesV4
+samples/cli/sample-apps Iam adminGenerateMyBackupCodesV4 \
+    >$TEMP_FILE 2>&1
+update_status $? 'adminGenerateMyBackupCodesV4'
+delete_file $TEMP_FILE
+
+#- 274 adminDisableMyBackupCodesV4
+samples/cli/sample-apps Iam adminDisableMyBackupCodesV4 \
+    >$TEMP_FILE 2>&1
+update_status $? 'adminDisableMyBackupCodesV4'
+delete_file $TEMP_FILE
+
+#- 275 adminDownloadMyBackupCodesV4
+samples/cli/sample-apps Iam adminDownloadMyBackupCodesV4 \
+    >$TEMP_FILE 2>&1
+update_status $? 'adminDownloadMyBackupCodesV4'
+delete_file $TEMP_FILE
+
+#- 276 adminEnableMyBackupCodesV4
+samples/cli/sample-apps Iam adminEnableMyBackupCodesV4 \
+    >$TEMP_FILE 2>&1
+update_status $? 'adminEnableMyBackupCodesV4'
+delete_file $TEMP_FILE
+
+#- 277 adminGetMyEnabledFactorsV4
+samples/cli/sample-apps Iam adminGetMyEnabledFactorsV4 \
+    >$TEMP_FILE 2>&1
+update_status $? 'adminGetMyEnabledFactorsV4'
+delete_file $TEMP_FILE
+
+#- 278 adminMakeFactorMyDefaultV4
+samples/cli/sample-apps Iam adminMakeFactorMyDefaultV4 \
+    --factor '0B9UcI6c' \
+    >$TEMP_FILE 2>&1
+update_status $? 'adminMakeFactorMyDefaultV4'
+delete_file $TEMP_FILE
+
+#- 279 adminInviteUserV4
 samples/cli/sample-apps Iam adminInviteUserV4 \
-    --body '{"assignedNamespaces": ["2fjV30SL"], "emailAddresses": ["xi7uyhae"], "isAdmin": true, "roleId": "tcO9XNy6"}' \
+    --body '{"assignedNamespaces": ["5cre9eal"], "emailAddresses": ["HOZphcLn"], "isAdmin": false, "roleId": "njnmyU8F"}' \
     >$TEMP_FILE 2>&1
 update_status $? 'adminInviteUserV4'
 delete_file $TEMP_FILE
 
-#- 267 publicCreateTestUserV4
+#- 280 publicCreateTestUserV4
 samples/cli/sample-apps Iam publicCreateTestUserV4 \
-    --body '{"acceptedPolicies": [{"isAccepted": true, "localizedPolicyVersionId": "W0ck7TED", "policyId": "E8LeEQBe", "policyVersionId": "GPLiE6tH"}], "authType": "Cr0GPFvT", "country": "0SAK91y5", "dateOfBirth": "vCeBIJq0", "displayName": "B9UcI6c5", "emailAddress": "cre9ealH", "password": "OZphcLnc", "passwordMD5Sum": "njnmyU8F", "username": "SxXdCrsk", "verified": false}' \
-    --namespace 'Fqnowq9L' \
+    --body '{"acceptedPolicies": [{"isAccepted": true, "localizedPolicyVersionId": "XdCrskoF", "policyId": "qnowq9La", "policyVersionId": "z1GLt5Mh"}], "authType": "f8Z7ahmb", "country": "VPm2g7xA", "dateOfBirth": "FfRRLUjf", "displayName": "WS9sftIf", "emailAddress": "HGe5bUTS", "password": "XOv12PMc", "passwordMD5Sum": "RO6E2Mkr", "username": "e5q7FvaA", "verified": true}' \
+    --namespace 'p6he0fzj' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicCreateTestUserV4'
 delete_file $TEMP_FILE
 
-#- 268 publicCreateUserV4
+#- 281 publicCreateUserV4
 samples/cli/sample-apps Iam publicCreateUserV4 \
-    --body '{"acceptedPolicies": [{"isAccepted": false, "localizedPolicyVersionId": "z1GLt5Mh", "policyId": "f8Z7ahmb", "policyVersionId": "VPm2g7xA"}], "authType": "FfRRLUjf", "code": "WS9sftIf", "country": "HGe5bUTS", "dateOfBirth": "XOv12PMc", "displayName": "RO6E2Mkr", "emailAddress": "e5q7FvaA", "password": "Cp6he0fz", "passwordMD5Sum": "jkPNNS0B", "reachMinimumAge": false, "username": "gF6inIRs"}' \
-    --namespace 'Z5hrqNzV' \
+    --body '{"acceptedPolicies": [{"isAccepted": false, "localizedPolicyVersionId": "PNNS0Bfg", "policyId": "F6inIRsZ", "policyVersionId": "5hrqNzVs"}], "authType": "zGVP5P1i", "code": "whcf30C1", "country": "KHRZHMGy", "dateOfBirth": "5vbfZvYI", "displayName": "FFctEKOL", "emailAddress": "xSRxe0wm", "password": "WBMcNiWo", "passwordMD5Sum": "obB6o6al", "reachMinimumAge": false, "username": "P0EpE9wG"}' \
+    --namespace 'NVwkgfJJ' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicCreateUserV4'
 delete_file $TEMP_FILE
 
-#- 269 createUserFromInvitationV4
+#- 282 createUserFromInvitationV4
 samples/cli/sample-apps Iam createUserFromInvitationV4 \
-    --body '{"acceptedPolicies": [{"isAccepted": true, "localizedPolicyVersionId": "zGVP5P1i", "policyId": "whcf30C1", "policyVersionId": "KHRZHMGy"}], "authType": "5vbfZvYI", "country": "FFctEKOL", "dateOfBirth": "xSRxe0wm", "displayName": "WBMcNiWo", "password": "obB6o6al", "reachMinimumAge": false, "username": "P0EpE9wG"}' \
-    --invitationId 'NVwkgfJJ' \
-    --namespace '2HIalfzg' \
+    --body '{"acceptedPolicies": [{"isAccepted": false, "localizedPolicyVersionId": "lfzgRpTf", "policyId": "9lxF1JPB", "policyVersionId": "izXZtrGe"}], "authType": "8LyOH24n", "country": "neZHFeRl", "dateOfBirth": "d0bGA7Jx", "displayName": "WYzaEaim", "password": "vokcWX59", "reachMinimumAge": false, "username": "wiYHgHT6"}' \
+    --invitationId 'Ivd0fGpU' \
+    --namespace '209nVRcl' \
     >$TEMP_FILE 2>&1
 update_status $? 'createUserFromInvitationV4'
 delete_file $TEMP_FILE
 
-#- 270 publicUpdateUserV4
+#- 283 publicUpdateUserV4
 samples/cli/sample-apps Iam publicUpdateUserV4 \
-    --body '{"country": "RpTf9lxF", "dateOfBirth": "1JPBizXZ", "displayName": "trGe8LyO", "languageTag": "H24nneZH", "userName": "FeRld0bG"}' \
-    --namespace 'A7JxWYza' \
+    --body '{"country": "umQTFvr5", "dateOfBirth": "rRyYzaNm", "displayName": "z3PjMx2T", "languageTag": "89NTrFRU", "userName": "CXFkruxe"}' \
+    --namespace 'gpkcXCfz' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicUpdateUserV4'
 delete_file $TEMP_FILE
 
-#- 271 publicUpdateUserEmailAddressV4
+#- 284 publicUpdateUserEmailAddressV4
 samples/cli/sample-apps Iam publicUpdateUserEmailAddressV4 \
-    --body '{"code": "Eaimvokc", "emailAddress": "WX59kwiY"}' \
-    --namespace 'HgHT6Ivd' \
+    --body '{"code": "gcvv0WE5", "emailAddress": "EQhcomPS"}' \
+    --namespace '1E7cpsLg' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicUpdateUserEmailAddressV4'
 delete_file $TEMP_FILE
 
-#- 272 publicUpgradeHeadlessAccountWithVerificationCodeV4
+#- 285 publicUpgradeHeadlessAccountWithVerificationCodeV4
 samples/cli/sample-apps Iam publicUpgradeHeadlessAccountWithVerificationCodeV4 \
-    --body '{"code": "0fGpU209", "country": "nVRclumQ", "dateOfBirth": "TFvr5rRy", "displayName": "YzaNmz3P", "emailAddress": "jMx2T89N", "password": "TrFRUCXF", "reachMinimumAge": false, "username": "ruxegpkc", "validateOnly": true}' \
-    --namespace 'fzgcvv0W' \
+    --body '{"code": "r2zEnjyR", "country": "NjEC3FMD", "dateOfBirth": "cZvwwf8a", "displayName": "U98In31m", "emailAddress": "F4jlwKyG", "password": "xTF1l5q1", "reachMinimumAge": false, "username": "0sT1X8J2", "validateOnly": false}' \
+    --namespace 'AWOzjmh9' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicUpgradeHeadlessAccountWithVerificationCodeV4'
 delete_file $TEMP_FILE
 
-#- 273 publicUpgradeHeadlessAccountV4
+#- 286 publicUpgradeHeadlessAccountV4
 samples/cli/sample-apps Iam publicUpgradeHeadlessAccountV4 \
-    --body '{"emailAddress": "E5EQhcom", "password": "PS1E7cps", "username": "Lgr2zEnj"}' \
-    --namespace 'yRNjEC3F' \
+    --body '{"emailAddress": "UzIfnhoo", "password": "6xUmTleU", "username": "nJFM7Xho"}' \
+    --namespace 'DxGik2JS' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicUpgradeHeadlessAccountV4'
+delete_file $TEMP_FILE
+
+#- 287 publicDisableMyAuthenticatorV4
+samples/cli/sample-apps Iam publicDisableMyAuthenticatorV4 \
+    --namespace 'fZ64wWeP' \
+    >$TEMP_FILE 2>&1
+update_status $? 'publicDisableMyAuthenticatorV4'
+delete_file $TEMP_FILE
+
+#- 288 publicEnableMyAuthenticatorV4
+samples/cli/sample-apps Iam publicEnableMyAuthenticatorV4 \
+    --code 'q6103PON' \
+    --namespace 'KIS7F9em' \
+    >$TEMP_FILE 2>&1
+update_status $? 'publicEnableMyAuthenticatorV4'
+delete_file $TEMP_FILE
+
+#- 289 publicGenerateMyAuthenticatorKeyV4
+samples/cli/sample-apps Iam publicGenerateMyAuthenticatorKeyV4 \
+    --namespace 'W4R15tAs' \
+    >$TEMP_FILE 2>&1
+update_status $? 'publicGenerateMyAuthenticatorKeyV4'
+delete_file $TEMP_FILE
+
+#- 290 publicGetMyBackupCodesV4
+samples/cli/sample-apps Iam publicGetMyBackupCodesV4 \
+    --namespace 'iG31CEyU' \
+    >$TEMP_FILE 2>&1
+update_status $? 'publicGetMyBackupCodesV4'
+delete_file $TEMP_FILE
+
+#- 291 publicGenerateMyBackupCodesV4
+samples/cli/sample-apps Iam publicGenerateMyBackupCodesV4 \
+    --namespace 'OuOZhmnH' \
+    >$TEMP_FILE 2>&1
+update_status $? 'publicGenerateMyBackupCodesV4'
+delete_file $TEMP_FILE
+
+#- 292 publicDisableMyBackupCodesV4
+samples/cli/sample-apps Iam publicDisableMyBackupCodesV4 \
+    --namespace 'kvek6Aa5' \
+    >$TEMP_FILE 2>&1
+update_status $? 'publicDisableMyBackupCodesV4'
+delete_file $TEMP_FILE
+
+#- 293 publicDownloadMyBackupCodesV4
+samples/cli/sample-apps Iam publicDownloadMyBackupCodesV4 \
+    --namespace 'kNnoclxs' \
+    >$TEMP_FILE 2>&1
+update_status $? 'publicDownloadMyBackupCodesV4'
+delete_file $TEMP_FILE
+
+#- 294 publicEnableMyBackupCodesV4
+samples/cli/sample-apps Iam publicEnableMyBackupCodesV4 \
+    --namespace '9kxcvIpV' \
+    >$TEMP_FILE 2>&1
+update_status $? 'publicEnableMyBackupCodesV4'
+delete_file $TEMP_FILE
+
+#- 295 publicGetMyEnabledFactorsV4
+samples/cli/sample-apps Iam publicGetMyEnabledFactorsV4 \
+    --namespace '7mCYfWKj' \
+    >$TEMP_FILE 2>&1
+update_status $? 'publicGetMyEnabledFactorsV4'
+delete_file $TEMP_FILE
+
+#- 296 publicMakeFactorMyDefaultV4
+samples/cli/sample-apps Iam publicMakeFactorMyDefaultV4 \
+    --factor 'Y9CsQYsG' \
+    --namespace 'yhEOntEk' \
+    >$TEMP_FILE 2>&1
+update_status $? 'publicMakeFactorMyDefaultV4'
 delete_file $TEMP_FILE
 
 delete_file 'tmp.dat'

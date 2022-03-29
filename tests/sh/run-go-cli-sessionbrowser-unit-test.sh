@@ -100,97 +100,97 @@ samples/cli/sample-apps Sessionbrowser querySession \
     --gameMode '3Ynozp1C' \
     --gameVersion '2KmIQTuB' \
     --joinable 'dNEUsxFb' \
-    --limit '8CJ17M7D' \
-    --matchExist 'JZaMSxEC' \
-    --matchId 'bZbygyoa' \
-    --offset 'rORoeNHS' \
-    --serverStatus 'b8Rh3kgs' \
-    --userId '9qqJbnQs' \
-    --sessionType 'oBgiVpP8' \
+    --limit '56' \
+    --matchExist 'J17M7DJZ' \
+    --matchId 'aMSxECbZ' \
+    --offset '2' \
+    --serverStatus 'ygyoarOR' \
+    --userId 'oeNHSb8R' \
+    --sessionType 'h3kgs9qq' \
     >$TEMP_FILE 2>&1
 update_status $? 'querySession'
 delete_file $TEMP_FILE
 
 #- 6 createSession
 samples/cli/sample-apps Sessionbrowser createSession \
-    --body '{"game_session_setting": {"allow_join_in_progress": true, "current_internal_player": 24, "current_player": 49, "map_name": "vASUoxdx", "max_internal_player": 46, "max_player": 63, "mode": "qmAGTJ8I", "num_bot": 60, "password": "dagEtp4w", "settings": {"29KOu9c1": {}}}, "game_version": "9R6XDqWH", "namespace": "kkP8npLE", "session_type": "KMfjiX7j", "username": "pkVZk3Ia"}' \
-    --namespace 'QYEmqGod' \
+    --body '{"game_session_setting": {"allow_join_in_progress": false, "current_internal_player": 27, "current_player": 85, "map_name": "soBgiVpP", "max_internal_player": 56, "max_player": 24, "mode": "3yvASUox", "num_bot": 7, "password": "xxFqmAGT", "settings": {"J8IEdagE": {}}}, "game_version": "tp4w29KO", "namespace": "u9c19R6X", "session_type": "DqWHkkP8", "username": "npLEKMfj"}' \
+    --namespace 'iX7jpkVZ' \
     >$TEMP_FILE 2>&1
 update_status $? 'createSession'
 delete_file $TEMP_FILE
 
 #- 7 getSessionByUserIDs
 samples/cli/sample-apps Sessionbrowser getSessionByUserIDs \
-    --namespace 'OEGt9gPO' \
-    --userIds 'j0c6i0Jk' \
+    --namespace 'k3IaQYEm' \
+    --userIds 'qGodOEGt' \
     >$TEMP_FILE 2>&1
 update_status $? 'getSessionByUserIDs'
 delete_file $TEMP_FILE
 
 #- 8 getSession
 samples/cli/sample-apps Sessionbrowser getSession \
-    --namespace 'vIas73uc' \
-    --sessionID 'YnFAJ3DK' \
+    --namespace '9gPOj0c6' \
+    --sessionID 'i0JkvIas' \
     >$TEMP_FILE 2>&1
 update_status $? 'getSession'
 delete_file $TEMP_FILE
 
 #- 9 updateSession
 samples/cli/sample-apps Sessionbrowser updateSession \
-    --body '{"game_current_player": 91, "game_max_player": 61}' \
-    --namespace 'ogg0Y39U' \
-    --sessionID 'oYlpv5bV' \
+    --body '{"game_current_player": 40, "game_max_player": 4}' \
+    --namespace 'YnFAJ3DK' \
+    --sessionID '5T4Eogg0' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateSession'
 delete_file $TEMP_FILE
 
 #- 10 deleteSession
 samples/cli/sample-apps Sessionbrowser deleteSession \
-    --namespace 'AgtsDhUT' \
-    --sessionID 'DUscbQDj' \
+    --namespace 'Y39UoYlp' \
+    --sessionID 'v5bVAgts' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteSession'
 delete_file $TEMP_FILE
 
 #- 11 joinSession
 samples/cli/sample-apps Sessionbrowser joinSession \
-    --body '{"password": "bTQuPMz2"}' \
-    --namespace 'PTRlkyU8' \
-    --sessionID '9ZPOw6zP' \
+    --body '{"password": "DhUTDUsc"}' \
+    --namespace 'bQDjbTQu' \
+    --sessionID 'PMz2PTRl' \
     >$TEMP_FILE 2>&1
 update_status $? 'joinSession'
 delete_file $TEMP_FILE
 
 #- 12 deleteSessionLocalDS
 samples/cli/sample-apps Sessionbrowser deleteSessionLocalDS \
-    --namespace 'FJ42cwmz' \
-    --sessionID 'BBSMNcoA' \
+    --namespace 'kyU89ZPO' \
+    --sessionID 'w6zPFJ42' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteSessionLocalDS'
 delete_file $TEMP_FILE
 
 #- 13 addPlayerToSession
 samples/cli/sample-apps Sessionbrowser addPlayerToSession \
-    --body '{"as_spectator": true, "user_id": "OjKNjfcY"}' \
-    --namespace 'Hm093aYg' \
-    --sessionID 'BU1sqjyK' \
+    --body '{"as_spectator": false, "user_id": "wmzBBSMN"}' \
+    --namespace 'coAAOjKN' \
+    --sessionID 'jfcYHm09' \
     >$TEMP_FILE 2>&1
 update_status $? 'addPlayerToSession'
 delete_file $TEMP_FILE
 
 #- 14 removePlayerFromSession
 samples/cli/sample-apps Sessionbrowser removePlayerFromSession \
-    --namespace '0XH45PaR' \
-    --sessionID 'SOFQBtu2' \
-    --userID '3REZ8hRV' \
+    --namespace '3aYgBU1s' \
+    --sessionID 'qjyK0XH4' \
+    --userID '5PaRSOFQ' \
     >$TEMP_FILE 2>&1
 update_status $? 'removePlayerFromSession'
 delete_file $TEMP_FILE
 
 #- 15 getRecentPlayer
 samples/cli/sample-apps Sessionbrowser getRecentPlayer \
-    --namespace 'X7LGOvDd' \
-    --userID 'YiQS9i7m' \
+    --namespace 'Btu23REZ' \
+    --userID '8hRVX7LG' \
     >$TEMP_FILE 2>&1
 update_status $? 'getRecentPlayer'
 delete_file $TEMP_FILE

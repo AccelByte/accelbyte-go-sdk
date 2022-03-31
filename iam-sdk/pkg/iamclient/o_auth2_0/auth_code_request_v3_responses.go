@@ -48,6 +48,9 @@ func NewAuthCodeRequestV3Found() *AuthCodeRequestV3Found {
   Found. Redirect to client’s redirect URI with either code or error on the query parameter
 */
 type AuthCodeRequestV3Found struct {
+	/*The Location header
+	 */
+	Location string
 }
 
 func (o *AuthCodeRequestV3Found) Error() string {
@@ -55,6 +58,9 @@ func (o *AuthCodeRequestV3Found) Error() string {
 }
 
 func (o *AuthCodeRequestV3Found) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response header Location
+	o.Location = response.GetHeader("Location")
 
 	return nil
 }

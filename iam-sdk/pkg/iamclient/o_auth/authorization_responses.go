@@ -48,6 +48,9 @@ func NewAuthorizationFound() *AuthorizationFound {
   Found
 */
 type AuthorizationFound struct {
+	/*The Location header
+	 */
+	Location string
 }
 
 func (o *AuthorizationFound) Error() string {
@@ -55,6 +58,9 @@ func (o *AuthorizationFound) Error() string {
 }
 
 func (o *AuthorizationFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response header Location
+	o.Location = response.GetHeader("Location")
 
 	return nil
 }

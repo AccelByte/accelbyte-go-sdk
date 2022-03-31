@@ -172,16 +172,17 @@ func (o *OAuth20Service) RetrieveUserThirdPartyPlatformTokenV3(input *o_auth2_0.
 }
 
 // Deprecated: Use AuthCodeRequestV3Short instead
-func (o *OAuth20Service) AuthCodeRequestV3(input *o_auth2_0.AuthCodeRequestV3Params) error {
+func (o *OAuth20Service) AuthCodeRequestV3(input *o_auth2_0.AuthCodeRequestV3Params) (string, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return "", err
 	}
-	_, err = o.Client.OAuth20.AuthCodeRequestV3(input, client.BearerToken(*accessToken.AccessToken))
+	found, err := o.Client.OAuth20.AuthCodeRequestV3(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
-		return err
+		return "", err
 	}
-	return nil
+	location := found.Location
+	return location, nil
 }
 
 // Deprecated: Use PlatformTokenGrantV3Short instead
@@ -359,16 +360,17 @@ func (o *OAuth20Service) RetrieveUserThirdPartyPlatformTokenV3Short(input *o_aut
 	return ok.GetPayload(), nil
 }
 
-func (o *OAuth20Service) AuthCodeRequestV3Short(input *o_auth2_0.AuthCodeRequestV3Params) error {
+func (o *OAuth20Service) AuthCodeRequestV3Short(input *o_auth2_0.AuthCodeRequestV3Params) (string, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return "", err
 	}
-	_, err = o.Client.OAuth20.AuthCodeRequestV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	found, err := o.Client.OAuth20.AuthCodeRequestV3Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
-		return err
+		return "", err
 	}
-	return nil
+	location := found.Location
+	return location, nil
 }
 
 func (o *OAuth20Service) PlatformTokenGrantV3Short(input *o_auth2_0.PlatformTokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponse, error) {

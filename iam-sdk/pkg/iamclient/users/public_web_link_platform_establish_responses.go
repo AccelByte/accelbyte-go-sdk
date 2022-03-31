@@ -48,6 +48,9 @@ func NewPublicWebLinkPlatformEstablishFound() *PublicWebLinkPlatformEstablishFou
   Handle Redirect from third party
 */
 type PublicWebLinkPlatformEstablishFound struct {
+	/*The Location header
+	 */
+	Location string
 }
 
 func (o *PublicWebLinkPlatformEstablishFound) Error() string {
@@ -55,6 +58,9 @@ func (o *PublicWebLinkPlatformEstablishFound) Error() string {
 }
 
 func (o *PublicWebLinkPlatformEstablishFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// response header Location
+	o.Location = response.GetHeader("Location")
 
 	return nil
 }

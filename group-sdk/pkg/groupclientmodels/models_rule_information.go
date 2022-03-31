@@ -6,6 +6,8 @@ package groupclientmodels
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -23,6 +25,7 @@ type ModelsRuleInformation struct {
 
 	// rule criteria
 	// Required: true
+	// Enum: [EQUAL MINIMUM MAXIMUM]
 	RuleCriteria *string `json:"ruleCriteria"`
 
 	// rule value
@@ -61,9 +64,46 @@ func (m *ModelsRuleInformation) validateRuleAttribute(formats strfmt.Registry) e
 	return nil
 }
 
+var modelsRuleInformationTypeRuleCriteriaPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["EQUAL","MINIMUM","MAXIMUM"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		modelsRuleInformationTypeRuleCriteriaPropEnum = append(modelsRuleInformationTypeRuleCriteriaPropEnum, v)
+	}
+}
+
+const (
+
+	// ModelsRuleInformationRuleCriteriaEQUAL captures enum value "EQUAL"
+	ModelsRuleInformationRuleCriteriaEQUAL string = "EQUAL"
+
+	// ModelsRuleInformationRuleCriteriaMINIMUM captures enum value "MINIMUM"
+	ModelsRuleInformationRuleCriteriaMINIMUM string = "MINIMUM"
+
+	// ModelsRuleInformationRuleCriteriaMAXIMUM captures enum value "MAXIMUM"
+	ModelsRuleInformationRuleCriteriaMAXIMUM string = "MAXIMUM"
+)
+
+// prop value enum
+func (m *ModelsRuleInformation) validateRuleCriteriaEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, modelsRuleInformationTypeRuleCriteriaPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *ModelsRuleInformation) validateRuleCriteria(formats strfmt.Registry) error {
 
 	if err := validate.Required("ruleCriteria", "body", m.RuleCriteria); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateRuleCriteriaEnum("ruleCriteria", "body", *m.RuleCriteria); err != nil {
 		return err
 	}
 

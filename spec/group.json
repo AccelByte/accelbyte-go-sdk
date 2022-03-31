@@ -4072,6 +4072,11 @@
           "type": "string"
         },
         "ruleCriteria": {
+          "enum": [
+            "EQUAL",
+            "MINIMUM",
+            "MAXIMUM"
+          ],
           "type": "string"
         },
         "ruleValue": {

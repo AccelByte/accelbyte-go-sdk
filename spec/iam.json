@@ -3396,7 +3396,13 @@
         ],
         "responses": {
           "302": {
-            "description": "Found"
+            "description": "Found",
+            "headers": {
+              "Location": {
+                "description": "The Location header",
+                "type": "string"
+              }
+            }
           }
         },
         "security": [
@@ -13355,7 +13361,13 @@
         ],
         "responses": {
           "302": {
-            "description": "Found. Redirect to client’s redirect URI with either code or error on the query parameter"
+            "description": "Found. Redirect to client’s redirect URI with either code or error on the query parameter",
+            "headers": {
+              "Location": {
+                "description": "The Location header",
+                "type": "string"
+              }
+            }
           }
         },
         "security": [
@@ -15431,7 +15443,13 @@
         ],
         "responses": {
           "302": {
-            "description": "Handle Redirect from third party"
+            "description": "Handle Redirect from third party",
+            "headers": {
+              "Location": {
+                "description": "The Location header",
+                "type": "string"
+              }
+            }
           }
         },
         "security": [

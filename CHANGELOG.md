@@ -1,3 +1,23 @@
+<a name="v0.15.1"></a>
+## [v0.15.0] - 2022-04-01
+
+### Chore
+- **api:** regenerate all services
+- **api:** add the codegen.txt file
+- **cli:** regenerate all cli
+- **sh-unit-tests:** regenerate sh unit tests
+- **spec:** update spec files
+
+### Docs
+- update CHANGELOG.md for v0.15.1 release
+
+### Feat
+- **test:** add game telemetry
+
+### Fix
+- **test:** add function to check availability for global configuration
+
+
 <a name="v0.15.0"></a>
 ## [v0.15.0] - 2022-03-29
 
@@ -476,6 +496,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.15.1]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.15.0...v0.15.1
 [v0.15.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.14.0...v0.15.0
 [v0.14.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.13.0...v0.14.0
 [v0.13.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.12.0...v0.13.0

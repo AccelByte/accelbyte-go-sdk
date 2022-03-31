@@ -70,375 +70,375 @@ delete_file $TEMP_FILE
 
 #- 2 createGroupConfigurationAdminV1
 samples/cli/sample-apps Group createGroupConfigurationAdminV1 \
-    --body '{"configurationCode": "pGlsQuJu", "description": "8vMf0IsJ", "globalRules": [{"allowedAction": "kTrd8IDc", "ruleDetail": [{"ruleAttribute": "V2zXnTKj", "ruleCriteria": "XY1bPqam", "ruleValue": 0.13454254286494316}]}], "groupAdminRoleId": "xx9Cs18E", "groupMaxMember": 100, "groupMemberRoleId": "84ekItqR", "name": "zHU1oh57"}' \
-    --namespace '0KQBVaew' \
+    --body '{"configurationCode": "pGlsQuJu", "description": "8vMf0IsJ", "globalRules": [{"allowedAction": "kTrd8IDc", "ruleDetail": [{"ruleAttribute": "V2zXnTKj", "ruleCriteria": "EQUAL", "ruleValue": 0.6555286739869362}]}], "groupAdminRoleId": "amiBxx9C", "groupMaxMember": 36, "groupMemberRoleId": "18EY84ek", "name": "ItqRzHU1"}' \
+    --namespace 'oh570KQB' \
     >$TEMP_FILE 2>&1
 update_status $? 'createGroupConfigurationAdminV1'
 delete_file $TEMP_FILE
 
 #- 3 initiateGroupConfigurationAdminV1
 samples/cli/sample-apps Group initiateGroupConfigurationAdminV1 \
-    --namespace 'c72krSha' \
+    --namespace 'Vaewc72k' \
     >$TEMP_FILE 2>&1
 update_status $? 'initiateGroupConfigurationAdminV1'
 delete_file $TEMP_FILE
 
 #- 4 getGroupConfigurationAdminV1
 samples/cli/sample-apps Group getGroupConfigurationAdminV1 \
-    --configurationCode '68n3Ynoz' \
-    --namespace 'p1C2KmIQ' \
+    --configurationCode 'rSha68n3' \
+    --namespace 'Ynozp1C2' \
     >$TEMP_FILE 2>&1
 update_status $? 'getGroupConfigurationAdminV1'
 delete_file $TEMP_FILE
 
 #- 5 deleteGroupConfigurationV1
 samples/cli/sample-apps Group deleteGroupConfigurationV1 \
-    --configurationCode 'TuBdNEUs' \
-    --namespace 'xFb8CJ17' \
+    --configurationCode 'KmIQTuBd' \
+    --namespace 'NEUsxFb8' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteGroupConfigurationV1'
 delete_file $TEMP_FILE
 
 #- 6 updateGroupConfigurationAdminV1
 samples/cli/sample-apps Group updateGroupConfigurationAdminV1 \
-    --body '{"description": "M7DJZaMS", "groupMaxMember": 47, "name": "ECbZbygy"}' \
-    --configurationCode 'oarORoeN' \
-    --namespace 'HSb8Rh3k' \
+    --body '{"description": "CJ17M7DJ", "groupMaxMember": 0, "name": "MSxECbZb"}' \
+    --configurationCode 'ygyoarOR' \
+    --namespace 'oeNHSb8R' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateGroupConfigurationAdminV1'
 delete_file $TEMP_FILE
 
 #- 7 updateGroupConfigurationGlobalRuleAdminV1
 samples/cli/sample-apps Group updateGroupConfigurationGlobalRuleAdminV1 \
-    --body '{"ruleDetail": [{"ruleAttribute": "gs9qqJbn", "ruleCriteria": "QsoBgiVp", "ruleValue": 0.6437922712244237}]}' \
-    --allowedAction 'Cm3yvASU' \
-    --configurationCode 'oxdxxFqm' \
-    --namespace 'AGTJ8IEd' \
+    --body '{"ruleDetail": [{"ruleAttribute": "h3kgs9qq", "ruleCriteria": "MAXIMUM", "ruleValue": 0.016507493074878643}]}' \
+    --allowedAction 'QsoBgiVp' \
+    --configurationCode 'P8Cm3yvA' \
+    --namespace 'SUoxdxxF' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateGroupConfigurationGlobalRuleAdminV1'
 delete_file $TEMP_FILE
 
 #- 8 deleteGroupConfigurationGlobalRuleAdminV1
 samples/cli/sample-apps Group deleteGroupConfigurationGlobalRuleAdminV1 \
-    --allowedAction 'agEtp4w2' \
-    --configurationCode '9KOu9c19' \
-    --namespace 'R6XDqWHk' \
+    --allowedAction 'qmAGTJ8I' \
+    --configurationCode 'EdagEtp4' \
+    --namespace 'w29KOu9c' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteGroupConfigurationGlobalRuleAdminV1'
 delete_file $TEMP_FILE
 
 #- 9 getGroupListAdminV1
 samples/cli/sample-apps Group getGroupListAdminV1 \
-    --namespace 'kP8npLEK' \
-    --configurationCode 'MfjiX7jp' \
-    --groupName 'kVZk3IaQ' \
-    --groupRegion 'YEmqGodO' \
-    --limit '60' \
-    --offset '64' \
+    --namespace '19R6XDqW' \
+    --configurationCode 'HkkP8npL' \
+    --groupName 'EKMfjiX7' \
+    --groupRegion 'jpkVZk3I' \
+    --limit '1' \
+    --offset '84' \
     >$TEMP_FILE 2>&1
 update_status $? 'getGroupListAdminV1'
 delete_file $TEMP_FILE
 
 #- 10 getSingleGroupAdminV1
 samples/cli/sample-apps Group getSingleGroupAdminV1 \
-    --groupId 't9gPOj0c' \
-    --namespace '6i0JkvIa' \
+    --groupId 'YEmqGodO' \
+    --namespace 'EGt9gPOj' \
     >$TEMP_FILE 2>&1
 update_status $? 'getSingleGroupAdminV1'
 delete_file $TEMP_FILE
 
 #- 11 deleteGroupAdminV1
 samples/cli/sample-apps Group deleteGroupAdminV1 \
-    --groupId 's73ucYnF' \
-    --namespace 'AJ3DK5T4' \
+    --groupId '0c6i0Jkv' \
+    --namespace 'Ias73ucY' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteGroupAdminV1'
 delete_file $TEMP_FILE
 
 #- 12 getGroupMembersListAdminV1
 samples/cli/sample-apps Group getGroupMembersListAdminV1 \
-    --groupId 'Eogg0Y39' \
-    --namespace 'UoYlpv5b' \
-    --limit '94' \
-    --offset '53' \
-    --order 'gtsDhUTD' \
+    --groupId 'nFAJ3DK5' \
+    --namespace 'T4Eogg0Y' \
+    --limit '93' \
+    --offset '29' \
+    --order 'Ylpv5bVA' \
     >$TEMP_FILE 2>&1
 update_status $? 'getGroupMembersListAdminV1'
 delete_file $TEMP_FILE
 
 #- 13 getMemberRolesListAdminV1
 samples/cli/sample-apps Group getMemberRolesListAdminV1 \
-    --namespace 'UscbQDjb' \
-    --limit '91' \
-    --offset '85' \
+    --namespace 'gtsDhUTD' \
+    --limit '93' \
+    --offset '36' \
     >$TEMP_FILE 2>&1
 update_status $? 'getMemberRolesListAdminV1'
 delete_file $TEMP_FILE
 
 #- 14 createMemberRoleAdminV1
 samples/cli/sample-apps Group createMemberRoleAdminV1 \
-    --body '{"memberRoleName": "uPMz2PTR", "memberRolePermissions": [{"action": 23, "resourceName": "kyU89ZPO"}]}' \
-    --namespace 'w6zPFJ42' \
+    --body '{"memberRoleName": "cbQDjbTQ", "memberRolePermissions": [{"action": 41, "resourceName": "PMz2PTRl"}]}' \
+    --namespace 'kyU89ZPO' \
     >$TEMP_FILE 2>&1
 update_status $? 'createMemberRoleAdminV1'
 delete_file $TEMP_FILE
 
 #- 15 getSingleMemberRoleAdminV1
 samples/cli/sample-apps Group getSingleMemberRoleAdminV1 \
-    --memberRoleId 'cwmzBBSM' \
-    --namespace 'NcoAAOjK' \
+    --memberRoleId 'w6zPFJ42' \
+    --namespace 'cwmzBBSM' \
     >$TEMP_FILE 2>&1
 update_status $? 'getSingleMemberRoleAdminV1'
 delete_file $TEMP_FILE
 
 #- 16 deleteMemberRoleAdminV1
 samples/cli/sample-apps Group deleteMemberRoleAdminV1 \
-    --memberRoleId 'NjfcYHm0' \
-    --namespace '93aYgBU1' \
+    --memberRoleId 'NcoAAOjK' \
+    --namespace 'NjfcYHm0' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteMemberRoleAdminV1'
 delete_file $TEMP_FILE
 
 #- 17 updateMemberRoleAdminV1
 samples/cli/sample-apps Group updateMemberRoleAdminV1 \
-    --body '{"memberRoleName": "sqjyK0XH"}' \
-    --memberRoleId '45PaRSOF' \
-    --namespace 'QBtu23RE' \
+    --body '{"memberRoleName": "93aYgBU1"}' \
+    --memberRoleId 'sqjyK0XH' \
+    --namespace '45PaRSOF' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateMemberRoleAdminV1'
 delete_file $TEMP_FILE
 
 #- 18 updateMemberRolePermissionAdminV1
 samples/cli/sample-apps Group updateMemberRolePermissionAdminV1 \
-    --body '{"memberRolePermissions": [{"action": 15, "resourceName": "RVX7LGOv"}]}' \
-    --memberRoleId 'DdYiQS9i' \
-    --namespace '7mV1C91p' \
+    --body '{"memberRolePermissions": [{"action": 84, "resourceName": "Btu23REZ"}]}' \
+    --memberRoleId '8hRVX7LG' \
+    --namespace 'OvDdYiQS' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateMemberRolePermissionAdminV1'
 delete_file $TEMP_FILE
 
 #- 19 getGroupListPublicV1
 samples/cli/sample-apps Group getGroupListPublicV1 \
-    --namespace 'jG9gpxL6' \
-    --groupName 'ycTQdvln' \
-    --groupRegion '2LAuSQWE' \
-    --limit '99' \
-    --offset '74' \
+    --namespace '9i7mV1C9' \
+    --groupName '1pjG9gpx' \
+    --groupRegion 'L6ycTQdv' \
+    --limit '22' \
+    --offset '26' \
     >$TEMP_FILE 2>&1
 update_status $? 'getGroupListPublicV1'
 delete_file $TEMP_FILE
 
 #- 20 createNewGroupPublicV1
 samples/cli/sample-apps Group createNewGroupPublicV1 \
-    --body '{"configurationCode": "6LFE1YHo", "customAttributes": {"9m126ZWc": {}}, "groupDescription": "8hHtWvbN", "groupIcon": "YqgUqslA", "groupMaxMember": 34, "groupName": "FPiHUIva", "groupRegion": "Cv8kU9dB", "groupRules": {"groupCustomRule": {}, "groupPredefinedRules": [{"allowedAction": "BpdsJLhs", "ruleDetail": [{"ruleAttribute": "VyExrkxo", "ruleCriteria": "ot0B7WOf", "ruleValue": 0.06938643216836282}]}]}, "groupType": "cZdpMci3"}' \
-    --namespace '7Ds7YSfE' \
+    --body '{"configurationCode": "2LAuSQWE", "customAttributes": {"XL6LFE1Y": {}}, "groupDescription": "Ho9m126Z", "groupIcon": "Wc8hHtWv", "groupMaxMember": 3, "groupName": "NYqgUqsl", "groupRegion": "ArFPiHUI", "groupRules": {"groupCustomRule": {}, "groupPredefinedRules": [{"allowedAction": "vaCv8kU9", "ruleDetail": [{"ruleAttribute": "dBBpdsJL", "ruleCriteria": "EQUAL", "ruleValue": 0.29350275357432876}]}]}, "groupType": "yExrkxoo"}' \
+    --namespace 't0B7WOfe' \
     >$TEMP_FILE 2>&1
 update_status $? 'createNewGroupPublicV1'
 delete_file $TEMP_FILE
 
 #- 21 getSingleGroupPublicV1
 samples/cli/sample-apps Group getSingleGroupPublicV1 \
-    --groupId 'xaI3uzLt' \
-    --namespace 'eMbFAlt4' \
+    --groupId 'rcZdpMci' \
+    --namespace '37Ds7YSf' \
     >$TEMP_FILE 2>&1
 update_status $? 'getSingleGroupPublicV1'
 delete_file $TEMP_FILE
 
 #- 22 updateSingleGroupV1
 samples/cli/sample-apps Group updateSingleGroupV1 \
-    --body '{"customAttributes": {}, "groupDescription": "hr7HmOYi", "groupIcon": "BA5ltAOX", "groupName": "mlG6eh1d", "groupRegion": "TdoTFpBI", "groupType": "cuC1dQY9"}' \
-    --groupId '3OJnJ6Te' \
-    --namespace '9vD8ldz7' \
+    --body '{"customAttributes": {}, "groupDescription": "ExaI3uzL", "groupIcon": "teMbFAlt", "groupName": "4hr7HmOY", "groupRegion": "iBA5ltAO", "groupType": "XmlG6eh1"}' \
+    --groupId 'dTdoTFpB' \
+    --namespace 'IcuC1dQY' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateSingleGroupV1'
 delete_file $TEMP_FILE
 
 #- 23 deleteGroupPublicV1
 samples/cli/sample-apps Group deleteGroupPublicV1 \
-    --groupId 'Hu8AD79k' \
-    --namespace 'dWunvizU' \
+    --groupId '93OJnJ6T' \
+    --namespace 'e9vD8ldz' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteGroupPublicV1'
 delete_file $TEMP_FILE
 
 #- 24 updatePatchSingleGroupPublicV1
 samples/cli/sample-apps Group updatePatchSingleGroupPublicV1 \
-    --body '{"customAttributes": {}, "groupDescription": "0q1pHyhh", "groupIcon": "ERoGgdry", "groupName": "sMizBGSR", "groupRegion": "dP2l7DNS", "groupType": "Z8Aq0XiP"}' \
-    --groupId 'LQXSe07Z' \
-    --namespace 'ddOGTMlJ' \
+    --body '{"customAttributes": {}, "groupDescription": "7Hu8AD79", "groupIcon": "kdWunviz", "groupName": "U0q1pHyh", "groupRegion": "hERoGgdr", "groupType": "ysMizBGS"}' \
+    --groupId 'RdP2l7DN' \
+    --namespace 'SZ8Aq0Xi' \
     >$TEMP_FILE 2>&1
 update_status $? 'updatePatchSingleGroupPublicV1'
 delete_file $TEMP_FILE
 
 #- 25 updateGroupCustomAttributesPublicV1
 samples/cli/sample-apps Group updateGroupCustomAttributesPublicV1 \
-    --body '{"customAttributes": {"jBwj9HJH": {}}}' \
-    --groupId 'QKseEdSX' \
-    --namespace 'RDSvguau' \
+    --body '{"customAttributes": {"PLQXSe07": {}}}' \
+    --groupId 'ZddOGTMl' \
+    --namespace 'JjBwj9HJ' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateGroupCustomAttributesPublicV1'
 delete_file $TEMP_FILE
 
 #- 26 acceptGroupInvitationPublicV1
 samples/cli/sample-apps Group acceptGroupInvitationPublicV1 \
-    --groupId 'w1xT7eMw' \
-    --namespace 'Sl9MLH0N' \
+    --groupId 'HQKseEdS' \
+    --namespace 'XRDSvgua' \
     >$TEMP_FILE 2>&1
 update_status $? 'acceptGroupInvitationPublicV1'
 delete_file $TEMP_FILE
 
 #- 27 rejectGroupInvitationPublicV1
 samples/cli/sample-apps Group rejectGroupInvitationPublicV1 \
-    --groupId 'nTJ2ulNz' \
-    --namespace 'BvwJaQa5' \
+    --groupId 'uw1xT7eM' \
+    --namespace 'wSl9MLH0' \
     >$TEMP_FILE 2>&1
 update_status $? 'rejectGroupInvitationPublicV1'
 delete_file $TEMP_FILE
 
 #- 28 joinGroupV1
 samples/cli/sample-apps Group joinGroupV1 \
-    --groupId '47JllvA8' \
-    --namespace 'RWSpabUt' \
+    --groupId 'NnTJ2ulN' \
+    --namespace 'zBvwJaQa' \
     >$TEMP_FILE 2>&1
 update_status $? 'joinGroupV1'
 delete_file $TEMP_FILE
 
 #- 29 cancelGroupJoinRequestV1
 samples/cli/sample-apps Group cancelGroupJoinRequestV1 \
-    --groupId '7xk6QxyW' \
-    --namespace 'hfqoWfJw' \
+    --groupId '547JllvA' \
+    --namespace '8RWSpabU' \
     >$TEMP_FILE 2>&1
 update_status $? 'cancelGroupJoinRequestV1'
 delete_file $TEMP_FILE
 
 #- 30 getGroupJoinRequestPublicV1
 samples/cli/sample-apps Group getGroupJoinRequestPublicV1 \
-    --groupId '2o8oWUqv' \
-    --namespace 'PCZ2HzT7' \
-    --limit '78' \
-    --offset '99' \
+    --groupId 't7xk6Qxy' \
+    --namespace 'WhfqoWfJ' \
+    --limit '45' \
+    --offset '28' \
     >$TEMP_FILE 2>&1
 update_status $? 'getGroupJoinRequestPublicV1'
 delete_file $TEMP_FILE
 
 #- 31 getGroupMembersListPublicV1
 samples/cli/sample-apps Group getGroupMembersListPublicV1 \
-    --groupId 'mWDlXsuN' \
-    --namespace 'IdQJR5ls' \
-    --limit '78' \
-    --offset '81' \
-    --order 'lvkfwaSb' \
+    --groupId '8oWUqvPC' \
+    --namespace 'Z2HzT7NX' \
+    --limit '25' \
+    --offset '96' \
+    --order 'DlXsuNId' \
     >$TEMP_FILE 2>&1
 update_status $? 'getGroupMembersListPublicV1'
 delete_file $TEMP_FILE
 
 #- 32 updateGroupCustomRulePublicV1
 samples/cli/sample-apps Group updateGroupCustomRulePublicV1 \
-    --body '{"groupCustomRule": {"nsuLCgTo": {}}}' \
-    --groupId 'xuVTekJg' \
-    --namespace 'vg6h5HIp' \
+    --body '{"groupCustomRule": {"QJR5lsNO": {}}}' \
+    --groupId 'lvkfwaSb' \
+    --namespace 'nsuLCgTo' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateGroupCustomRulePublicV1'
 delete_file $TEMP_FILE
 
 #- 33 updateGroupPredefinedRulePublicV1
 samples/cli/sample-apps Group updateGroupPredefinedRulePublicV1 \
-    --body '{"ruleDetail": [{"ruleAttribute": "H0DviplE", "ruleCriteria": "k4vj3LDp", "ruleValue": 0.8807918011238242}]}' \
-    --allowedAction 'qDt8QUZD' \
-    --groupId 'pxlHasin' \
-    --namespace 'GcjrkmRM' \
+    --body '{"ruleDetail": [{"ruleAttribute": "xuVTekJg", "ruleCriteria": "MINIMUM", "ruleValue": 0.10679770946547151}]}' \
+    --allowedAction 'h5HIpH0D' \
+    --groupId 'viplEk4v' \
+    --namespace 'j3LDp4yq' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateGroupPredefinedRulePublicV1'
 delete_file $TEMP_FILE
 
 #- 34 deleteGroupPredefinedRulePublicV1
 samples/cli/sample-apps Group deleteGroupPredefinedRulePublicV1 \
-    --allowedAction 'ttgjDSaI' \
-    --groupId 'VBmft3Ud' \
-    --namespace 'g7p9PGmY' \
+    --allowedAction 'Dt8QUZDp' \
+    --groupId 'xlHasinG' \
+    --namespace 'cjrkmRMt' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteGroupPredefinedRulePublicV1'
 delete_file $TEMP_FILE
 
 #- 35 leaveGroupPublicV1
 samples/cli/sample-apps Group leaveGroupPublicV1 \
-    --namespace '2H5kX4Ms' \
+    --namespace 'tgjDSaIV' \
     >$TEMP_FILE 2>&1
 update_status $? 'leaveGroupPublicV1'
 delete_file $TEMP_FILE
 
 #- 36 getMemberRolesListPublicV1
 samples/cli/sample-apps Group getMemberRolesListPublicV1 \
-    --namespace 'isSX28nA' \
-    --limit '86' \
-    --offset '46' \
+    --namespace 'Bmft3Udg' \
+    --limit '30' \
+    --offset '82' \
     >$TEMP_FILE 2>&1
 update_status $? 'getMemberRolesListPublicV1'
 delete_file $TEMP_FILE
 
 #- 37 updateMemberRolePublicV1
 samples/cli/sample-apps Group updateMemberRolePublicV1 \
-    --body '{"userId": "WRpv5ou5"}' \
-    --memberRoleId 'xtvd28OU' \
-    --namespace 'fCt8UJC5' \
+    --body '{"userId": "GmY2H5kX"}' \
+    --memberRoleId '4MsisSX2' \
+    --namespace '8nARxWRp' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateMemberRolePublicV1'
 delete_file $TEMP_FILE
 
 #- 38 deleteMemberRolePublicV1
 samples/cli/sample-apps Group deleteMemberRolePublicV1 \
-    --body '{"userId": "flNyj6Hs"}' \
-    --memberRoleId 'TtX8P3ll' \
-    --namespace 'naaS9lqy' \
+    --body '{"userId": "v5ou5xtv"}' \
+    --memberRoleId 'd28OUfCt' \
+    --namespace '8UJC5flN' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteMemberRolePublicV1'
 delete_file $TEMP_FILE
 
 #- 39 getGroupInvitationRequestPublicV1
 samples/cli/sample-apps Group getGroupInvitationRequestPublicV1 \
-    --namespace 'ygPcfkJI' \
-    --limit '47' \
-    --offset '11' \
+    --namespace 'yj6HsTtX' \
+    --limit '82' \
+    --offset '23' \
     >$TEMP_FILE 2>&1
 update_status $? 'getGroupInvitationRequestPublicV1'
 delete_file $TEMP_FILE
 
 #- 40 getUserGroupInformationPublicV1
 samples/cli/sample-apps Group getUserGroupInformationPublicV1 \
-    --namespace 'QZza8kNV' \
-    --userId 'bDxVMq7H' \
+    --namespace 'lnaaS9lq' \
+    --userId 'yygPcfkJ' \
     >$TEMP_FILE 2>&1
 update_status $? 'getUserGroupInformationPublicV1'
 delete_file $TEMP_FILE
 
 #- 41 inviteGroupPublicV1
 samples/cli/sample-apps Group inviteGroupPublicV1 \
-    --namespace 'Jk0F89xA' \
-    --userId 'c3YVfaEN' \
+    --namespace 'IxfQZza8' \
+    --userId 'kNVbDxVM' \
     >$TEMP_FILE 2>&1
 update_status $? 'inviteGroupPublicV1'
 delete_file $TEMP_FILE
 
 #- 42 acceptGroupJoinRequestPublicV1
 samples/cli/sample-apps Group acceptGroupJoinRequestPublicV1 \
-    --namespace 'trl0pTKZ' \
-    --userId 'TXqzHuBM' \
+    --namespace 'q7HJk0F8' \
+    --userId '9xAc3YVf' \
     >$TEMP_FILE 2>&1
 update_status $? 'acceptGroupJoinRequestPublicV1'
 delete_file $TEMP_FILE
 
 #- 43 rejectGroupJoinRequestPublicV1
 samples/cli/sample-apps Group rejectGroupJoinRequestPublicV1 \
-    --namespace 'YQSA2jz1' \
-    --userId 'ZOpdOjSy' \
+    --namespace 'aENtrl0p' \
+    --userId 'TKZTXqzH' \
     >$TEMP_FILE 2>&1
 update_status $? 'rejectGroupJoinRequestPublicV1'
 delete_file $TEMP_FILE
 
 #- 44 kickGroupMemberPublicV1
 samples/cli/sample-apps Group kickGroupMemberPublicV1 \
-    --namespace 'MddB41Ju' \
-    --userId 'Mf7RUyBH' \
+    --namespace 'uBMYQSA2' \
+    --userId 'jz1ZOpdO' \
     >$TEMP_FILE 2>&1
 update_status $? 'kickGroupMemberPublicV1'
 delete_file $TEMP_FILE

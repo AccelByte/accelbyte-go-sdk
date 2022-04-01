@@ -51,3 +51,19 @@ func TestIntegrationProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(t *tes
 
 	assert.Nil(t, err, "err should be nil")
 }
+
+// Protected Update Playtime
+func TestIntegrationProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePut(t *testing.T) {
+	Init()
+
+	input := &operations.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams{
+		Playtime: "4",
+		SteamID:  "76561199259217491",
+	}
+	err := operationsService.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input)
+	if err != nil {
+		assert.FailNow(t, err.Error())
+	}
+
+	assert.Nil(t, err, "err should be nil")
+}

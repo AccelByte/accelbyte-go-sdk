@@ -66,7 +66,6 @@ func TestIntegrationGetEventSpecificUserV2Handler(t *testing.T) {
 	t.Parallel()
 	userId = GetUserId()
 	inputEventLog := &event_v2.GetEventSpecificUserV2HandlerParams{
-		EndDate:   &date,
 		EventName: &emptyString,
 		Namespace: integration.NamespaceTest,
 		Offset:    &offset,

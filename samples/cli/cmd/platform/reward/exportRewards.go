@@ -30,8 +30,10 @@ var ExportRewardsCmd = &cobra.Command{
 		errInput := rewardService.ExportRewardsShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

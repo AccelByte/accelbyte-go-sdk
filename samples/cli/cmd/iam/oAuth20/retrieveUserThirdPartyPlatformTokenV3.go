@@ -5,13 +5,14 @@
 package oAuth20
 
 import (
+	"net/http"
+
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-	"net/http"
 )
 
 // RetrieveUserThirdPartyPlatformTokenV3Cmd represents the RetrieveUserThirdPartyPlatformTokenV3 command
@@ -41,10 +42,12 @@ var RetrieveUserThirdPartyPlatformTokenV3Cmd = &cobra.Command{
 		ok, err := oAuth20Service.RetrieveUserThirdPartyPlatformTokenV3Short(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

@@ -5,12 +5,13 @@
 package social
 
 import (
+	"io"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
 	"github.com/go-openapi/runtime/client"
-	"io"
 )
 
 type SlotService struct {
@@ -28,6 +29,7 @@ func (s *SlotService) GetUserNamespaceSlots(input *slot.GetUserNamespaceSlotsPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -44,6 +46,7 @@ func (s *SlotService) GetSlotData(input *slot.GetSlotDataParams, writer io.Write
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -57,6 +60,7 @@ func (s *SlotService) PublicGetUserNamespaceSlots(input *slot.PublicGetUserNames
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -76,6 +80,7 @@ func (s *SlotService) PublicCreateUserNamespaceSlot(input *slot.PublicCreateUser
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -92,6 +97,7 @@ func (s *SlotService) PublicGetSlotData(input *slot.PublicGetSlotDataParams, wri
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -111,6 +117,7 @@ func (s *SlotService) PublicUpdateUserNamespaceSlot(input *slot.PublicUpdateUser
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -127,6 +134,7 @@ func (s *SlotService) PublicDeleteUserNamespaceSlot(input *slot.PublicDeleteUser
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -143,6 +151,7 @@ func (s *SlotService) PublicUpdateUserNamespaceSlotMetadata(input *slot.PublicUp
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -155,6 +164,7 @@ func (s *SlotService) GetUserNamespaceSlotsShort(input *slot.GetUserNamespaceSlo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -167,6 +177,7 @@ func (s *SlotService) GetSlotDataShort(input *slot.GetSlotDataParams, writer io.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -179,6 +190,7 @@ func (s *SlotService) PublicGetUserNamespaceSlotsShort(input *slot.PublicGetUser
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -191,6 +203,7 @@ func (s *SlotService) PublicCreateUserNamespaceSlotShort(input *slot.PublicCreat
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -203,6 +216,7 @@ func (s *SlotService) PublicGetSlotDataShort(input *slot.PublicGetSlotDataParams
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -215,6 +229,7 @@ func (s *SlotService) PublicUpdateUserNamespaceSlotShort(input *slot.PublicUpdat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -227,6 +242,7 @@ func (s *SlotService) PublicDeleteUserNamespaceSlotShort(input *slot.PublicDelet
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -239,5 +255,6 @@ func (s *SlotService) PublicUpdateUserNamespaceSlotMetadataShort(input *slot.Pub
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

@@ -32,8 +32,10 @@ var LoginSSOClientCmd = &cobra.Command{
 		errInput := ssoService.LoginSSOClientShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

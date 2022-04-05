@@ -18,6 +18,7 @@ var clientTokenV3 models.OauthmodelTokenResponseV3
 
 func (tokenRepository *TokenRepositoryImpl) Store(accessToken models.OauthmodelTokenResponseV3) error {
 	clientTokenV3 = accessToken
+
 	return nil
 }
 
@@ -36,16 +37,18 @@ func ConvertTokenToTokenResponseV3(accessToken string) (*models.OauthmodelTokenR
 		return accessToken, nil
 	})
 	if parsedToken != nil {
-		jsonPayload, errJson := json.Marshal(parsedToken.Claims)
-		if errJson != nil {
-			return nil, errJson
+		jsonPayload, errJSON := json.Marshal(parsedToken.Claims)
+		if errJSON != nil {
+			return nil, errJSON
 		}
 		err = json.Unmarshal(jsonPayload, tokenResponseV3)
 		if err != nil {
 			return nil, err
 		}
 		tokenResponseV3.AccessToken = &accessToken
+
 		return tokenResponseV3, nil
 	}
+
 	return nil, err
 }

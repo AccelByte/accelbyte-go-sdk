@@ -6,6 +6,7 @@ package ssoCredential
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o_credential"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -41,10 +42,12 @@ var AddSSOLoginPlatformCredentialCmd = &cobra.Command{
 		ok, err := ssoCredentialService.AddSSOLoginPlatformCredentialShort(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

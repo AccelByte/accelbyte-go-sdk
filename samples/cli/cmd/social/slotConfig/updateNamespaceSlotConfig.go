@@ -6,6 +6,7 @@ package slotConfig
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot_config"
@@ -39,10 +40,12 @@ var UpdateNamespaceSlotConfigCmd = &cobra.Command{
 		ok, err := slotConfigService.UpdateNamespaceSlotConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

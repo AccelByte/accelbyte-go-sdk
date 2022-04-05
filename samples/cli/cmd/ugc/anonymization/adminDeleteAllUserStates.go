@@ -32,8 +32,10 @@ var AdminDeleteAllUserStatesCmd = &cobra.Command{
 		errInput := anonymizationService.AdminDeleteAllUserStatesShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

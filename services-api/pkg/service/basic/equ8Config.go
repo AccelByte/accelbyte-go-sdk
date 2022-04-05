@@ -33,6 +33,7 @@ func (e *EQU8ConfigService) GetConfig(input *e_q_u8_config.GetConfigParams) (*ba
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -46,6 +47,7 @@ func (e *EQU8ConfigService) DeleteConfig(input *e_q_u8_config.DeleteConfigParams
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -65,6 +67,7 @@ func (e *EQU8ConfigService) UpdateConfig(input *e_q_u8_config.UpdateConfigParams
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -77,6 +80,7 @@ func (e *EQU8ConfigService) GetConfigShort(input *e_q_u8_config.GetConfigParams)
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -89,6 +93,7 @@ func (e *EQU8ConfigService) DeleteConfigShort(input *e_q_u8_config.DeleteConfigP
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -101,5 +106,6 @@ func (e *EQU8ConfigService) UpdateConfigShort(input *e_q_u8_config.UpdateConfigP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

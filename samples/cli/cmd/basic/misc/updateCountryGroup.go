@@ -6,6 +6,7 @@ package misc
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/misc"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -41,10 +42,12 @@ var UpdateCountryGroupCmd = &cobra.Command{
 		ok, err := miscService.UpdateCountryGroupShort(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

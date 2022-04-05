@@ -32,8 +32,10 @@ var AdminDeleteTypeCmd = &cobra.Command{
 		errInput := adminTypeService.AdminDeleteTypeShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

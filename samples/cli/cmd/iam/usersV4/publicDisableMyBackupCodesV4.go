@@ -30,8 +30,10 @@ var PublicDisableMyBackupCodesV4Cmd = &cobra.Command{
 		errInput := usersV4Service.PublicDisableMyBackupCodesV4Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

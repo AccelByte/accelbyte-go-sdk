@@ -42,6 +42,7 @@ func (c *ConfigService) AdminGetAllConfigV1(input *config.AdminGetAllConfigV1Par
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -70,6 +71,7 @@ func (c *ConfigService) AdminGetConfigV1(input *config.AdminGetConfigV1Params) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -101,6 +103,7 @@ func (c *ConfigService) AdminUpdateConfigV1(input *config.AdminUpdateConfigV1Par
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -123,6 +126,7 @@ func (c *ConfigService) AdminExportConfigV1(input *config.AdminExportConfigV1Par
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -145,6 +149,7 @@ func (c *ConfigService) AdminImportConfigV1(input *config.AdminImportConfigV1Par
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -157,6 +162,7 @@ func (c *ConfigService) AdminGetAllConfigV1Short(input *config.AdminGetAllConfig
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -169,6 +175,7 @@ func (c *ConfigService) AdminGetConfigV1Short(input *config.AdminGetConfigV1Para
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -181,6 +188,7 @@ func (c *ConfigService) AdminUpdateConfigV1Short(input *config.AdminUpdateConfig
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -193,6 +201,7 @@ func (c *ConfigService) AdminExportConfigV1Short(input *config.AdminExportConfig
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -205,5 +214,6 @@ func (c *ConfigService) AdminImportConfigV1Short(input *config.AdminImportConfig
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

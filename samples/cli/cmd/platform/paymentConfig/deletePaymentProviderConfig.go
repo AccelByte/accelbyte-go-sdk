@@ -30,8 +30,10 @@ var DeletePaymentProviderConfigCmd = &cobra.Command{
 		errInput := paymentConfigService.DeletePaymentProviderConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

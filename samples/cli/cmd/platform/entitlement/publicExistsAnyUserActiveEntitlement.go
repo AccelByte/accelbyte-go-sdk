@@ -6,6 +6,7 @@ package entitlement
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/entitlement"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
@@ -54,10 +55,12 @@ var PublicExistsAnyUserActiveEntitlementCmd = &cobra.Command{
 		ok, err := entitlementService.PublicExistsAnyUserActiveEntitlementShort(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

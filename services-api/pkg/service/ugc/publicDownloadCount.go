@@ -39,6 +39,7 @@ func (p *PublicDownloadCountService) AddDownloadCount(input *public_download_cou
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -51,5 +52,6 @@ func (p *PublicDownloadCountService) AddDownloadCountShort(input *public_downloa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

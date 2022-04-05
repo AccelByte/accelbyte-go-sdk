@@ -33,6 +33,7 @@ func (a *AdminService) ListServer(input *admin.ListServerParams) (*dsmcclientmod
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -52,6 +53,7 @@ func (a *AdminService) CountServer(input *admin.CountServerParams) (*dsmcclientm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -71,6 +73,7 @@ func (a *AdminService) CountServerDetailed(input *admin.CountServerDetailedParam
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -90,6 +93,7 @@ func (a *AdminService) ListLocalServer(input *admin.ListLocalServerParams) (*dsm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -109,6 +113,7 @@ func (a *AdminService) DeleteLocalServer(input *admin.DeleteLocalServerParams) e
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -131,6 +136,7 @@ func (a *AdminService) GetServer(input *admin.GetServerParams) (*dsmcclientmodel
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -153,6 +159,7 @@ func (a *AdminService) DeleteServer(input *admin.DeleteServerParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -178,6 +185,7 @@ func (a *AdminService) GetServerLogs(input *admin.GetServerLogsParams) (*dsmccli
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -197,6 +205,7 @@ func (a *AdminService) ListSession(input *admin.ListSessionParams) (*dsmcclientm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -216,6 +225,7 @@ func (a *AdminService) CountSession(input *admin.CountSessionParams) (*dsmcclien
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -235,6 +245,7 @@ func (a *AdminService) DeleteSession(input *admin.DeleteSessionParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -247,6 +258,7 @@ func (a *AdminService) ListServerShort(input *admin.ListServerParams) (*dsmcclie
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -259,6 +271,7 @@ func (a *AdminService) CountServerShort(input *admin.CountServerParams) (*dsmccl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -271,6 +284,7 @@ func (a *AdminService) CountServerDetailedShort(input *admin.CountServerDetailed
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -283,6 +297,7 @@ func (a *AdminService) ListLocalServerShort(input *admin.ListLocalServerParams) 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -295,6 +310,7 @@ func (a *AdminService) DeleteLocalServerShort(input *admin.DeleteLocalServerPara
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -307,6 +323,7 @@ func (a *AdminService) GetServerShort(input *admin.GetServerParams) (*dsmcclient
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -319,6 +336,7 @@ func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams) error 
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -331,6 +349,7 @@ func (a *AdminService) GetServerLogsShort(input *admin.GetServerLogsParams) (*ds
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -343,6 +362,7 @@ func (a *AdminService) ListSessionShort(input *admin.ListSessionParams) (*dsmccl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -355,6 +375,7 @@ func (a *AdminService) CountSessionShort(input *admin.CountSessionParams) (*dsmc
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -367,5 +388,6 @@ func (a *AdminService) DeleteSessionShort(input *admin.DeleteSessionParams) erro
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

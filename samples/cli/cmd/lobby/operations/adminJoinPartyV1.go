@@ -34,8 +34,10 @@ var AdminJoinPartyV1Cmd = &cobra.Command{
 		errInput := operationsService.AdminJoinPartyV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

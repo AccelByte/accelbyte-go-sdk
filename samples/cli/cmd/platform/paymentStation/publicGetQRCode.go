@@ -6,14 +6,15 @@ package paymentStation
 
 import (
 	"bytes"
+	"io"
+	"os"
+
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_station"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-	"io"
-	"os"
 )
 
 // PublicGetQRCodeCmd represents the PublicGetQRCode command
@@ -41,6 +42,7 @@ var PublicGetQRCodeCmd = &cobra.Command{
 		ok, err := paymentStationService.PublicGetQRCodeShort(input, writer)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
@@ -49,6 +51,7 @@ var PublicGetQRCodeCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
+
 		return nil
 	},
 }

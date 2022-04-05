@@ -24,13 +24,13 @@ var (
 	}
 	telemetryBodyArray []*gametelemetryclientmodels.TelemetryBody
 	telemetryBody      = &gametelemetryclientmodels.TelemetryBody{
-		EventID:        eventId,
+		EventID:        eventID,
 		EventName:      &eventName,
 		EventNamespace: &eventNamespace,
 		EventTimestamp: &eventTimestamp,
 		Payload:        map[string]interface{}{"foo": "bar"},
 	}
-	eventId        = "gosdk"
+	eventID        = "gosdk"
 	eventName      = "gosdkevent"
 	eventNamespace = "test"
 	eventTimestamp = strfmt.DateTime{}

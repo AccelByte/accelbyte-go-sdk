@@ -6,6 +6,7 @@ package usersV4
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users_v4"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -41,8 +42,10 @@ var AdminRemoveUserRoleV4Cmd = &cobra.Command{
 		errInput := usersV4Service.AdminRemoveUserRoleV4Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

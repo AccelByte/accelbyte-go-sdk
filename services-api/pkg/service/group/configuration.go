@@ -42,6 +42,7 @@ func (c *ConfigurationService) ListGroupConfigurationAdminV1(input *configuratio
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -70,6 +71,7 @@ func (c *ConfigurationService) CreateGroupConfigurationAdminV1(input *configurat
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -95,6 +97,7 @@ func (c *ConfigurationService) InitiateGroupConfigurationAdminV1(input *configur
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -123,6 +126,7 @@ func (c *ConfigurationService) GetGroupConfigurationAdminV1(input *configuration
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -151,6 +155,7 @@ func (c *ConfigurationService) DeleteGroupConfigurationV1(input *configuration.D
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -179,6 +184,7 @@ func (c *ConfigurationService) UpdateGroupConfigurationAdminV1(input *configurat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -207,6 +213,7 @@ func (c *ConfigurationService) UpdateGroupConfigurationGlobalRuleAdminV1(input *
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -235,6 +242,7 @@ func (c *ConfigurationService) DeleteGroupConfigurationGlobalRuleAdminV1(input *
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -247,6 +255,7 @@ func (c *ConfigurationService) ListGroupConfigurationAdminV1Short(input *configu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -259,6 +268,7 @@ func (c *ConfigurationService) CreateGroupConfigurationAdminV1Short(input *confi
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -271,6 +281,7 @@ func (c *ConfigurationService) InitiateGroupConfigurationAdminV1Short(input *con
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -283,6 +294,7 @@ func (c *ConfigurationService) GetGroupConfigurationAdminV1Short(input *configur
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -295,6 +307,7 @@ func (c *ConfigurationService) DeleteGroupConfigurationV1Short(input *configurat
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -307,6 +320,7 @@ func (c *ConfigurationService) UpdateGroupConfigurationAdminV1Short(input *confi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -319,6 +333,7 @@ func (c *ConfigurationService) UpdateGroupConfigurationGlobalRuleAdminV1Short(in
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -331,5 +346,6 @@ func (c *ConfigurationService) DeleteGroupConfigurationGlobalRuleAdminV1Short(in
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

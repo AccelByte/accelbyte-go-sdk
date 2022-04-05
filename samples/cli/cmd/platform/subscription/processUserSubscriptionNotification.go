@@ -6,6 +6,7 @@ package subscription
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/subscription"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -43,8 +44,10 @@ var ProcessUserSubscriptionNotificationCmd = &cobra.Command{
 		errInput := subscriptionService.ProcessUserSubscriptionNotificationShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

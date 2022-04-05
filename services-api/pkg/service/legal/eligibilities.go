@@ -27,6 +27,7 @@ func (e *EligibilitiesService) RetrieveEligibilitiesPublic(input *eligibilities.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -40,6 +41,7 @@ func (e *EligibilitiesService) RetrieveEligibilitiesPublicIndirect(input *eligib
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -52,6 +54,7 @@ func (e *EligibilitiesService) RetrieveEligibilitiesPublicShort(input *eligibili
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -64,5 +67,6 @@ func (e *EligibilitiesService) RetrieveEligibilitiesPublicIndirectShort(input *e
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

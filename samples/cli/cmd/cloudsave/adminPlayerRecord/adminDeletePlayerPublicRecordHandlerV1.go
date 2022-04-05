@@ -34,8 +34,10 @@ var AdminDeletePlayerPublicRecordHandlerV1Cmd = &cobra.Command{
 		errInput := adminPlayerRecordService.AdminDeletePlayerPublicRecordHandlerV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

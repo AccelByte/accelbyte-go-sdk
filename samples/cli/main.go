@@ -1,12 +1,20 @@
 // Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
+
 package main
 
 import (
 	"bufio"
 	"encoding/json"
 	"fmt"
+	"os"
+	"strconv"
+	"strings"
+
+	"github.com/gorilla/websocket"
+	"github.com/sirupsen/logrus"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/model"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/connectionutils"
@@ -14,11 +22,6 @@ import (
 	"github.com/AccelByte/sample-apps/cmd"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/AccelByte/sample-apps/pkg/utils"
-	"github.com/gorilla/websocket"
-	"github.com/sirupsen/logrus"
-	"os"
-	"strconv"
-	"strings"
 )
 
 var (
@@ -63,8 +66,7 @@ const (
 
 func main() {
 	args := os.Args
-	standbyModeFlag := args[1]
-	if standbyModeFlag == "--wsMode" {
+	if standbyModeFlag := args[1]; standbyModeFlag == "--wsMode" {
 		reader = bufio.NewReader(os.Stdin)
 		logrus.Info("Enter websocket mode")
 		connMgr = &utils.ConnectionManagerImpl{}
@@ -109,6 +111,7 @@ var messageHandler = func(dataByte []byte) {
 	message, err := parser.UnmarshalResponse(dataByte)
 	if err != nil {
 		logrus.Error(err)
+
 		return
 	}
 	// print all incoming message type
@@ -209,24 +212,26 @@ func serve() {
 		printHelp()
 		command := getInput()
 		switch command {
-
 		// as long as ws connection in connMgr not closed,
 		case infoCmd:
 			err := partyService.GetPartyInfo()
 			if err != nil {
 				logrus.Error(err)
+
 				return
 			}
 		case createCmd:
 			err := partyService.CreateParty()
 			if err != nil {
 				logrus.Error(err)
+
 				return
 			}
 		case leaveCmd:
 			err := partyService.LeaveParty()
 			if err != nil {
 				logrus.Error(err)
+
 				return
 			}
 		case inviteCmd:
@@ -236,6 +241,7 @@ func serve() {
 			err := partyService.InviteParty(friendID)
 			if err != nil {
 				logrus.Error(err)
+
 				return
 			}
 		case joinCmd:
@@ -247,6 +253,7 @@ func serve() {
 			err := partyService.JoinParty(partyID, token)
 			if err != nil {
 				logrus.Error(err)
+
 				return
 			}
 		case kickCmd:
@@ -256,6 +263,7 @@ func serve() {
 			err := partyService.KickPartyMember(id)
 			if err != nil {
 				logrus.Error(err)
+
 				return
 			}
 		case rejectCmd:
@@ -267,6 +275,7 @@ func serve() {
 			err := partyService.RejectPartyInvitation(partyID, token)
 			if err != nil {
 				logrus.Error(err)
+
 				return
 			}
 		case promoteLeaderCmd:
@@ -276,6 +285,7 @@ func serve() {
 			err := partyService.PromotePartyLeader(leaderUserID)
 			if err != nil {
 				logrus.Error(err)
+
 				return
 			}
 		case chatCmd:
@@ -317,6 +327,7 @@ func serve() {
 			i, err := strconv.Atoi(availability)
 			if err != nil {
 				logrus.Error(err)
+
 				return
 			}
 			err = friendService.SetUserStatus(i, activity)
@@ -423,6 +434,7 @@ func serve() {
 			msg := getInput()
 			_ = connMgr.Get().Conn.WriteMessage(websocket.CloseMessage,
 				websocket.FormatCloseMessage(websocket.CloseNormalClosure, msg))
+
 			return
 		}
 	}
@@ -436,5 +448,6 @@ func getInput() string {
 	// convert CRLF to LF
 	text = strings.Replace(text, "\n", "", -1)
 	text = strings.Replace(text, "\r", "", -1)
+
 	return text
 }

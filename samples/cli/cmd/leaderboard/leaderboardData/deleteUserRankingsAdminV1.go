@@ -6,6 +6,7 @@ package leaderboardData
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_data"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/leaderboard"
@@ -40,8 +41,10 @@ var DeleteUserRankingsAdminV1Cmd = &cobra.Command{
 		errInput := leaderboardDataService.DeleteUserRankingsAdminV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

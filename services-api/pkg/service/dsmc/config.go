@@ -33,6 +33,7 @@ func (c *ConfigService) ListConfig(input *config.ListConfigParams) (*dsmcclientm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -55,6 +56,7 @@ func (c *ConfigService) SaveConfig(input *config.SaveConfigParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -77,6 +79,7 @@ func (c *ConfigService) GetConfig(input *config.GetConfigParams) (*dsmcclientmod
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -102,6 +105,7 @@ func (c *ConfigService) CreateConfig(input *config.CreateConfigParams) (*dsmccli
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -127,6 +131,7 @@ func (c *ConfigService) DeleteConfig(input *config.DeleteConfigParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -152,6 +157,7 @@ func (c *ConfigService) UpdateConfig(input *config.UpdateConfigParams) (*dsmccli
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -171,6 +177,7 @@ func (c *ConfigService) ClearCache(input *config.ClearCacheParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -199,6 +206,7 @@ func (c *ConfigService) AddPort(input *config.AddPortParams) (*dsmcclientmodels.
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -224,6 +232,7 @@ func (c *ConfigService) DeletePort(input *config.DeletePortParams) (*dsmcclientm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -249,6 +258,7 @@ func (c *ConfigService) UpdatePort(input *config.UpdatePortParams) (*dsmcclientm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -274,6 +284,7 @@ func (c *ConfigService) ExportConfigV1(input *config.ExportConfigV1Params) (*dsm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -302,6 +313,7 @@ func (c *ConfigService) ImportConfigV1(input *config.ImportConfigV1Params) (*dsm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -314,6 +326,7 @@ func (c *ConfigService) ListConfigShort(input *config.ListConfigParams) (*dsmccl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -326,6 +339,7 @@ func (c *ConfigService) SaveConfigShort(input *config.SaveConfigParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -338,6 +352,7 @@ func (c *ConfigService) GetConfigShort(input *config.GetConfigParams) (*dsmcclie
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -350,6 +365,7 @@ func (c *ConfigService) CreateConfigShort(input *config.CreateConfigParams) (*ds
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -362,6 +378,7 @@ func (c *ConfigService) DeleteConfigShort(input *config.DeleteConfigParams) erro
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -374,6 +391,7 @@ func (c *ConfigService) UpdateConfigShort(input *config.UpdateConfigParams) (*ds
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -386,6 +404,7 @@ func (c *ConfigService) ClearCacheShort(input *config.ClearCacheParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -398,6 +417,7 @@ func (c *ConfigService) AddPortShort(input *config.AddPortParams) (*dsmcclientmo
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -410,6 +430,7 @@ func (c *ConfigService) DeletePortShort(input *config.DeletePortParams) (*dsmccl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -422,6 +443,7 @@ func (c *ConfigService) UpdatePortShort(input *config.UpdatePortParams) (*dsmccl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -434,6 +456,7 @@ func (c *ConfigService) ExportConfigV1Short(input *config.ExportConfigV1Params) 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -446,5 +469,6 @@ func (c *ConfigService) ImportConfigV1Short(input *config.ImportConfigV1Params) 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

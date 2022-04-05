@@ -5,7 +5,7 @@
 package models
 
 type MoveRequest struct {
-	Index     int    `json:"index"`
+	Index     int `json:"index"`
 	PlayerNum int `json:"playerNum"`
 }
 

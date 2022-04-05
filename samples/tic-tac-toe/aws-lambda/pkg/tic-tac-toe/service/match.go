@@ -13,11 +13,12 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+	"time"
+
 	"tic-tac-toe/pkg/constants"
 	"tic-tac-toe/pkg/repository"
 	"tic-tac-toe/pkg/tic-tac-toe/dao/redis/constant"
 	"tic-tac-toe/pkg/tic-tac-toe/models"
-	"time"
 
 	"github.com/aws/aws-lambda-go/events"
 
@@ -48,6 +49,7 @@ func (ticTacToeService *TicTacToeService) Service(req *events.APIGatewayProxyReq
 		log.Print("Token split \"Bearer\" and token authorization")
 		message := "Invalid token."
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusUnauthorized, Body: message}
+
 		return response, nil
 	}
 	reqToken = splitToken[1]
@@ -55,6 +57,7 @@ func (ticTacToeService *TicTacToeService) Service(req *events.APIGatewayProxyReq
 	if tokenConvert == nil {
 		log.Print("Unable to convert token to response model :", err.Error())
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusUnauthorized, Body: fmt.Sprint(err.Error())}
+
 		return response, nil
 	}
 	// validate token
@@ -62,33 +65,37 @@ func (ticTacToeService *TicTacToeService) Service(req *events.APIGatewayProxyReq
 	if err != nil {
 		log.Print("Validate access token error. Token expired.", err.Error())
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusBadRequest, Body: fmt.Sprint(err.Error())}
+
 		return response, nil
 	}
 	if !validateAccessToken {
 		log.Print("Validate access token return false. ", err)
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusUnauthorized, Body: fmt.Sprint(err.Error())}
+
 		return response, nil
 	} else {
 		log.Print("Access token is a valid one.")
 	}
 
-	// validate token and get userId
+	// validate token and get userID
 	claims, err := ticTacToeService.IamClient.ValidateAndParseClaims(reqToken)
 	if claims == nil {
 		log.Print("Claim is empty. Error : ", err.Error())
 		message := "Claim is empty"
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusUnauthorized, Body: fmt.Sprint(message)}
+
 		return response, nil
 	}
 	if err != nil {
 		log.Print("Unable to validate and parse token. Error : ", err.Error())
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusUnauthorized, Body: fmt.Sprint(err.Error())}
+
 		return response, nil
 	}
-	userId := claims.Subject
+	userID := claims.Subject
 	namespace := claims.Namespace
 
-	log.Printf("this is userID request: %s", userId)
+	log.Printf("this is userID request: %s", userID)
 	log.Printf("this is namespace request: %s", namespace)
 
 	// store the valid token
@@ -97,6 +104,7 @@ func (ticTacToeService *TicTacToeService) Service(req *events.APIGatewayProxyReq
 		log.Print("Unable to store token :", errToken.Error())
 		message := "Unable to store token"
 		response := events.APIGatewayProxyResponse{StatusCode: http.StatusInternalServerError, Body: message}
+
 		return response, nil
 	}
 
@@ -107,27 +115,31 @@ func (ticTacToeService *TicTacToeService) Service(req *events.APIGatewayProxyReq
 	switch pathVariable {
 	case "match":
 		if req.HTTPMethod == http.MethodPost {
-			response := ticTacToeService.createMatchHandler(userId, namespace)
+			response := ticTacToeService.createMatchHandler(userID, namespace)
+
 			return response, nil
 		}
 	case "stat":
 		if req.HTTPMethod == http.MethodGet {
-			response := ticTacToeService.getStatHandler(userId)
+			response := ticTacToeService.getStatHandler(userID)
+
 			return response, nil
 		}
 	case "move":
 		if req.HTTPMethod == http.MethodPost {
-			response := ticTacToeService.makeMoveHandler(req.Body, namespace, userId)
+			response := ticTacToeService.makeMoveHandler(req.Body, namespace, userID)
+
 			return response, nil
 		}
 	}
+
 	return events.APIGatewayProxyResponse{
 		StatusCode: http.StatusInternalServerError, Body: "cannot save to redis",
 	}, nil
 }
 
 // GO-SDK lobby service
-func sendFreeformNotification(namespace, userId, message string) error {
+func sendFreeformNotification(namespace, userID, message string) error {
 	async := false
 	topic := constants.NotificationTopic
 	content := lobbyclientmodels.ModelFreeFormNotificationRequest{
@@ -138,17 +150,19 @@ func sendFreeformNotification(namespace, userId, message string) error {
 		LobbyClient:     factory.NewLobbyClient(&configImpl),
 		TokenRepository: &tokenRepositoryImpl,
 	}
-	sendNotificationSearchingErr := gameNotificationService.FreeFormNotificationByUserID(namespace, userId, &async, &content)
+	sendNotificationSearchingErr := gameNotificationService.FreeFormNotificationByUserID(namespace, userID, &async, &content)
 	if sendNotificationSearchingErr != nil {
-		log.Printf("Unable to send notification match searching to lobby. userId : %+v", userId)
+		log.Printf("Unable to send notification match searching to lobby. userID : %+v", userID)
 		log.Print(sendNotificationSearchingErr.Error())
+
 		return sendNotificationSearchingErr
 	}
+
 	return nil
 }
 
 func (ticTacToeService *TicTacToeService) createMatchHandler(userID, namespace string) events.APIGatewayProxyResponse {
-	keyPrefix := "match:"
+	keyPrefix := constants.Match
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	keys, err := ticTacToeService.ticTacToeDAORedis.Redis.Keys(ctx, "*match*").Result()
@@ -217,16 +231,19 @@ func (ticTacToeService *TicTacToeService) createMatchHandler(userID, namespace s
 		log.Print("There is already 2 player")
 		ticTacToeService.ticTacToeDAORedis.Redis.FlushAll(ctx)
 		ticTacToeService.saveInitDB(ctx, userID)
+
 		return events.APIGatewayProxyResponse{
 			StatusCode: http.StatusOK,
 		}
 	} else if len(keys) == 0 {
 		log.Print("0 player")
 		ticTacToeService.saveInitDB(ctx, userID)
+
 		return events.APIGatewayProxyResponse{
 			StatusCode: http.StatusOK,
 		}
 	}
+
 	return events.APIGatewayProxyResponse{
 		StatusCode: http.StatusInternalServerError, Body: "cannot save to redis",
 	}
@@ -235,7 +252,7 @@ func (ticTacToeService *TicTacToeService) createMatchHandler(userID, namespace s
 func (ticTacToeService *TicTacToeService) makeMoveHandler(requestBody, namespace, userID string) events.APIGatewayProxyResponse {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
-	keyPrefix := "match:"
+	keyPrefix := constants.Match
 	moveRequest := models.MoveRequest{}
 	err := json.Unmarshal([]byte(requestBody), &moveRequest)
 	if err != nil {
@@ -359,6 +376,7 @@ func (ticTacToeService *TicTacToeService) makeMoveHandler(requestBody, namespace
 				log.Printf("Cannot send free form notif to userID %s, error : %s", opponentData.UserID, err.Error())
 			}
 		}
+
 		return events.APIGatewayProxyResponse{
 			StatusCode: http.StatusOK, Body: string(marshal),
 		}
@@ -395,6 +413,7 @@ func (ticTacToeService *TicTacToeService) makeMoveHandler(requestBody, namespace
 		if err != nil {
 			return events.APIGatewayProxyResponse{}
 		}
+
 		return events.APIGatewayProxyResponse{
 			StatusCode: http.StatusOK, Body: string(marshal),
 		}
@@ -431,6 +450,7 @@ func (ticTacToeService *TicTacToeService) makeMoveHandler(requestBody, namespace
 		if err != nil {
 			return events.APIGatewayProxyResponse{}
 		}
+
 		return events.APIGatewayProxyResponse{
 			StatusCode: http.StatusOK, Body: string(marshal),
 		}
@@ -440,19 +460,20 @@ func (ticTacToeService *TicTacToeService) makeMoveHandler(requestBody, namespace
 func (ticTacToeService *TicTacToeService) getStatHandler(userID string) events.APIGatewayProxyResponse {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
-	keyPrefix := "match:"
+	keyPrefix := constants.Match
 	keyUserID := keyPrefix + userID
 	playerData, err := ticTacToeService.ticTacToeDAORedis.Redis.Get(ctx, keyUserID).Result()
 	if err != nil {
 		return events.APIGatewayProxyResponse{}
 	}
+
 	return events.APIGatewayProxyResponse{
 		StatusCode: 200, Body: playerData,
 	}
 }
 
 func (ticTacToeService *TicTacToeService) saveInitDB(ctx context.Context, userID string) events.APIGatewayProxyResponse {
-	keyPrefix := "match:"
+	keyPrefix := constants.Match
 	pRequesterData := models.MatchTable{
 		UserID:      userID,
 		MatchStatus: NotStarted,
@@ -468,6 +489,7 @@ func (ticTacToeService *TicTacToeService) saveInitDB(ctx context.Context, userID
 		}
 	}
 	ticTacToeService.ticTacToeDAORedis.Redis.Set(ctx, keyPrefix+pRequesterData.UserID, string(pRequesterMarshall), constant.RedisExpTime)
+
 	return events.APIGatewayProxyResponse{
 		StatusCode: http.StatusOK, Body: string(pRequesterMarshall),
 	}
@@ -500,6 +522,7 @@ func checkWinner(boardState string) int {
 				if err != nil {
 					log.Printf("Error convert string to int %s: ", err)
 				}
+
 				return number
 			}
 		}
@@ -511,6 +534,7 @@ func checkWinner(boardState string) int {
 	if !isMatchDraw {
 		return 3
 	}
+
 	return 0
 }
 
@@ -518,6 +542,7 @@ func replaceAtIndex(in string, newChar string, i int) string {
 	r := []rune(newChar)
 	out := []rune(in)
 	out[i] = r[0]
+
 	return string(out)
 }
 

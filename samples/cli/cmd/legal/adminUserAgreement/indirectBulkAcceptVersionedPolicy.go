@@ -6,6 +6,7 @@ package adminUserAgreement
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/admin_user_agreement"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -47,10 +48,12 @@ var IndirectBulkAcceptVersionedPolicyCmd = &cobra.Command{
 		ok, err := adminUserAgreementService.IndirectBulkAcceptVersionedPolicyShort(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

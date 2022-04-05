@@ -29,6 +29,7 @@ func (a *AdminService) DeleteServer(input *admin.DeleteServerParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -51,6 +52,7 @@ func (a *AdminService) SetServerAlias(input *admin.SetServerAliasParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -63,6 +65,7 @@ func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams) error 
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -75,5 +78,6 @@ func (a *AdminService) SetServerAliasShort(input *admin.SetServerAliasParams) er
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

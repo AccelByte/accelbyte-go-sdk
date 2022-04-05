@@ -39,6 +39,7 @@ func (s *SSOCredentialService) RetrieveAllSSOLoginPlatformCredentialV3(input *s_
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -64,6 +65,7 @@ func (s *SSOCredentialService) RetrieveSSOLoginPlatformCredential(input *s_s_o_c
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -89,6 +91,7 @@ func (s *SSOCredentialService) AddSSOLoginPlatformCredential(input *s_s_o_creden
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -114,6 +117,7 @@ func (s *SSOCredentialService) DeleteSSOLoginPlatformCredentialV3(input *s_s_o_c
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -142,6 +146,7 @@ func (s *SSOCredentialService) UpdateSSOPlatformCredential(input *s_s_o_credenti
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -154,6 +159,7 @@ func (s *SSOCredentialService) RetrieveAllSSOLoginPlatformCredentialV3Short(inpu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -166,6 +172,7 @@ func (s *SSOCredentialService) RetrieveSSOLoginPlatformCredentialShort(input *s_
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -178,6 +185,7 @@ func (s *SSOCredentialService) AddSSOLoginPlatformCredentialShort(input *s_s_o_c
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -190,6 +198,7 @@ func (s *SSOCredentialService) DeleteSSOLoginPlatformCredentialV3Short(input *s_
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -202,5 +211,6 @@ func (s *SSOCredentialService) UpdateSSOPlatformCredentialShort(input *s_s_o_cre
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

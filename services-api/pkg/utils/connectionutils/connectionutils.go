@@ -27,6 +27,7 @@ func NewWebsocketConnection(configRepo repository.ConfigRepository, tokenRepo re
 	token, err := tokenRepo.GetToken()
 	if err != nil {
 		logrus.Infof("Unable to connect get token: %v", err)
+
 		return nil, fmt.Errorf("unable to connect get token: %v", err)
 	}
 
@@ -36,6 +37,7 @@ func NewWebsocketConnection(configRepo repository.ConfigRepository, tokenRepo re
 		conn, err := Connect(baseURLSplit[1], *token.AccessToken)
 		if err != nil {
 			logrus.Errorf("unable to connect into lobby: %v", err)
+
 			return nil, fmt.Errorf("unable to connect into lobby: %v", err)
 		}
 		wsConnection := &WSConnection{
@@ -46,10 +48,11 @@ func NewWebsocketConnection(configRepo repository.ConfigRepository, tokenRepo re
 		done := make(chan struct{})
 		go ReadWSMessage(done, wsConnection, messageHandler)
 		go WSHeartbeat(done, wsConnection)
+
 		return wsConnection, nil
-	} else {
-		return nil, fmt.Errorf("invalid base URL")
 	}
+
+	return nil, fmt.Errorf("invalid base URL")
 }
 
 func Connect(host, token string) (*websocket.Conn, error) {
@@ -70,6 +73,7 @@ func Connect(host, token string) (*websocket.Conn, error) {
 		b, e := ioutil.ReadAll(res.Body)
 		if e == nil {
 			logrus.Error("bad handshake", res.Status, string(b))
+
 			return nil, fmt.Errorf("bad handshake %s %s", res.Status, string(b))
 		}
 	}
@@ -86,6 +90,7 @@ func Connect(host, token string) (*websocket.Conn, error) {
 		if err != nil {
 			logrus.Error("error writing control message: ", err)
 		}
+
 		return nil
 	})
 	connection.SetPongHandler(func(text string) error {
@@ -93,8 +98,10 @@ func Connect(host, token string) (*websocket.Conn, error) {
 		if err != nil {
 			logrus.Error("error setting read deadline: ", err)
 		}
+
 		return nil
 	})
+
 	return connection, nil
 }
 
@@ -104,6 +111,7 @@ func ReadWSMessage(done chan struct{}, connection *WSConnection, messageHandler 
 		if subErr != nil {
 			logrus.Info("read message failed: ", subErr)
 			close(done)
+
 			return
 		}
 		if len(msg) > 0 {
@@ -125,6 +133,7 @@ func WSHeartbeat(done chan struct{}, wsConnection *WSConnection) {
 			}
 		case <-done:
 			logrus.Info("done signal received, stop heartbeat.")
+
 			return
 		}
 	}

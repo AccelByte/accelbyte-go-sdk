@@ -6,6 +6,7 @@ package roles
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -39,10 +40,12 @@ var AdminUpdateRolePermissionsV4Cmd = &cobra.Command{
 		ok, err := rolesService.AdminUpdateRolePermissionsV4Short(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

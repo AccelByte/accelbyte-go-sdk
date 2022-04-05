@@ -7,14 +7,16 @@ package iam
 import (
 	"encoding/json"
 	"errors"
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"net/http"
 	"net/url"
 
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
+
 	"github.com/go-openapi/runtime/client"
 	"github.com/sirupsen/logrus"
+
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 )
 
 func (o *OAuth20Service) GetToken() (string, error) {
@@ -22,13 +24,14 @@ func (o *OAuth20Service) GetToken() (string, error) {
 	if err != nil {
 		return "", err
 	}
+
 	return *token.AccessToken, nil
 }
 
 func (o *OAuth20Service) GrantTokenCredentials(code, codeVerifier string) error {
-	clientId := o.ConfigRepository.GetClientId()
+	clientID := o.ConfigRepository.GetClientId()
 	clientSecret := o.ConfigRepository.GetClientSecret()
-	if len(clientId) == 0 {
+	if len(clientID) == 0 {
 		return errors.New("client not registered")
 	}
 	param := &o_auth2_0.TokenGrantV3Params{
@@ -37,7 +40,7 @@ func (o *OAuth20Service) GrantTokenCredentials(code, codeVerifier string) error 
 		GrantType:    "client_credentials",
 	}
 	accessToken, badRequest, unauthorized, forbidden, err :=
-		o.Client.OAuth20.TokenGrantV3(param, client.BasicAuth(clientId, clientSecret))
+		o.Client.OAuth20.TokenGrantV3(param, client.BasicAuth(clientID, clientSecret))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -57,12 +60,13 @@ func (o *OAuth20Service) GrantTokenCredentials(code, codeVerifier string) error 
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
 func (o *OAuth20Service) GrantTokenRefreshToken(code, codeVerifier, refreshToken string) error {
-	clientId := o.ConfigRepository.GetClientId()
-	if len(clientId) == 0 {
+	clientID := o.ConfigRepository.GetClientId()
+	if len(clientID) == 0 {
 		return errors.New("client not registered")
 	}
 	param := &o_auth2_0.TokenGrantV3Params{
@@ -71,7 +75,7 @@ func (o *OAuth20Service) GrantTokenRefreshToken(code, codeVerifier, refreshToken
 		GrantType:    "refresh_token",
 		RefreshToken: &refreshToken,
 	}
-	accessToken, badRequest, unauthorized, forbidden, err := o.Client.OAuth20.TokenGrantV3(param, client.BasicAuth(clientId, ""))
+	accessToken, badRequest, unauthorized, forbidden, err := o.Client.OAuth20.TokenGrantV3(param, client.BasicAuth(clientID, ""))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -91,20 +95,21 @@ func (o *OAuth20Service) GrantTokenRefreshToken(code, codeVerifier, refreshToken
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
-func (o *OAuth20Service) GrantTokenAuthorizationCode(code, codeVerifier, redirectUri string) error {
-	clientId := o.ConfigRepository.GetClientId()
-	if len(clientId) == 0 {
+func (o *OAuth20Service) GrantTokenAuthorizationCode(code, codeVerifier, redirectURI string) error {
+	clientID := o.ConfigRepository.GetClientId()
+	if len(clientID) == 0 {
 		return errors.New("client not registered")
 	}
 	param := &o_auth2_0.TokenGrantV3Params{
 		Code:         &code,
 		CodeVerifier: &codeVerifier,
 		GrantType:    "authorization_code",
-		ClientID:     &clientId,
-		RedirectURI:  &redirectUri,
+		ClientID:     &clientID,
+		RedirectURI:  &redirectURI,
 	}
 	accessToken, badRequest, unauthorized, forbidden, err := o.Client.OAuth20.TokenGrantV3(param, nil)
 	if badRequest != nil {
@@ -126,13 +131,14 @@ func (o *OAuth20Service) GrantTokenAuthorizationCode(code, codeVerifier, redirec
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
-func (o *OAuth20Service) Authenticate(requestId, username, password string) (string, error) {
-	logrus.Infof("Invoke authenticate: %s %s %s", requestId, username, password)
-	clientId := o.ConfigRepository.GetClientId()
-	if len(clientId) == 0 {
+func (o *OAuth20Service) Authenticate(requestID, username, password string) (string, error) {
+	logrus.Infof("Invoke authenticate: %s %s %s", requestID, username, password)
+	clientID := o.ConfigRepository.GetClientId()
+	if len(clientID) == 0 {
 		return "", errors.New("client not registered")
 	}
 	httpClient := &http.Client{
@@ -141,9 +147,9 @@ func (o *OAuth20Service) Authenticate(requestId, username, password string) (str
 		},
 	}
 	param := &o_auth2_0_extension.UserAuthenticationV3Params{
-		ClientID:   &clientId,
+		ClientID:   &clientID,
 		Password:   password,
-		RequestID:  requestId,
+		RequestID:  requestID,
 		UserName:   username,
 		HTTPClient: httpClient,
 	}
@@ -152,11 +158,11 @@ func (o *OAuth20Service) Authenticate(requestId, username, password string) (str
 	if err != nil {
 		return "", err
 	}
-	parsedUrl, err := url.Parse(authenticated.Location)
+	parsedURL, err := url.Parse(authenticated.Location)
 	if err != nil {
 		return "", err
 	}
-	query, err := url.ParseQuery(parsedUrl.RawQuery)
+	query, err := url.ParseQuery(parsedURL.RawQuery)
 	if err != nil {
 		return "", err
 	}
@@ -165,12 +171,13 @@ func (o *OAuth20Service) Authenticate(requestId, username, password string) (str
 		return "", errors.New(errorDescParam[0])
 	}
 	code := query["code"][0]
+
 	return code, nil
 }
 
 func (o *OAuth20Service) Authorize(scope, challenge, challengeMethod string) (string, error) {
-	clientId := o.ConfigRepository.GetClientId()
-	if len(clientId) == 0 {
+	clientID := o.ConfigRepository.GetClientId()
+	if len(clientID) == 0 {
 		return "", errors.New("client not registered")
 	}
 
@@ -181,7 +188,7 @@ func (o *OAuth20Service) Authorize(scope, challenge, challengeMethod string) (st
 	}
 
 	param := &o_auth2_0.AuthorizeV3Params{
-		ClientID:            clientId,
+		ClientID:            clientID,
 		CodeChallenge:       &challenge,
 		CodeChallengeMethod: &challengeMethod,
 		ResponseType:        "code",
@@ -192,16 +199,17 @@ func (o *OAuth20Service) Authorize(scope, challenge, challengeMethod string) (st
 	if err != nil {
 		return "", err
 	}
-	parsedUrl, err := url.Parse(found.Location)
+	parsedURL, err := url.Parse(found.Location)
 	if err != nil {
 		return "", err
 	}
-	query, err := url.ParseQuery(parsedUrl.RawQuery)
+	query, err := url.ParseQuery(parsedURL.RawQuery)
 	if err != nil {
 		return "", err
 	}
-	requestId := query["request_id"][0]
-	return requestId, nil
+	requestID := query["request_id"][0]
+
+	return requestID, nil
 }
 
 // Login is a custom wrapper used to login with username and password
@@ -214,11 +222,11 @@ func (o *OAuth20Service) Login(username, password string) error {
 	codeVerifier := codeVerifierGenerator.String()
 	challenge := codeVerifierGenerator.CodeChallengeS256()
 	challengeMethod := "S256"
-	requestId, err := o.Authorize(scope, challenge, challengeMethod)
+	requestID, err := o.Authorize(scope, challenge, challengeMethod)
 	if err != nil {
 		return err
 	}
-	code, err := o.Authenticate(requestId, username, password)
+	code, err := o.Authenticate(requestID, username, password)
 	if err != nil {
 		return err
 	}
@@ -226,6 +234,7 @@ func (o *OAuth20Service) Login(username, password string) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -238,27 +247,32 @@ func (o *OAuth20Service) Logout() error {
 	param := &o_auth2_0.TokenRevocationV3Params{
 		Token: *accessToken.AccessToken,
 	}
-	clientId := o.ConfigRepository.GetClientId()
+	clientID := o.ConfigRepository.GetClientId()
 	clientSecret := o.ConfigRepository.GetClientSecret()
-	_, badRequest, unauthorized, err := o.Client.OAuth20.TokenRevocationV3(param, client.BasicAuth(clientId, clientSecret))
+	_, badRequest, unauthorized, err := o.Client.OAuth20.TokenRevocationV3(param, client.BasicAuth(clientID, clientSecret))
 	if badRequest != nil {
 		errorMsg, _ := json.Marshal(*badRequest.GetPayload())
 		logrus.Error(string(errorMsg))
+
 		return badRequest
 	}
 	if unauthorized != nil {
 		errorMsg, _ := json.Marshal(*unauthorized.GetPayload())
 		logrus.Error(string(errorMsg))
+
 		return unauthorized
 	}
 	if err != nil {
 		logrus.Error(err)
+
 		return err
 	}
 	err = o.TokenRepository.RemoveToken()
 	if err != nil {
 		logrus.Error(err)
+
 		return err
 	}
+
 	return nil
 }

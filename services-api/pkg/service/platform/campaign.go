@@ -27,6 +27,7 @@ func (c *CampaignService) QueryCampaigns(input *campaign.QueryCampaignsParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -46,6 +47,7 @@ func (c *CampaignService) CreateCampaign(input *campaign.CreateCampaignParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -62,6 +64,7 @@ func (c *CampaignService) GetCampaign(input *campaign.GetCampaignParams) (*platf
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -84,6 +87,7 @@ func (c *CampaignService) UpdateCampaign(input *campaign.UpdateCampaignParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -100,6 +104,7 @@ func (c *CampaignService) GetCampaignDynamic(input *campaign.GetCampaignDynamicP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -113,6 +118,7 @@ func (c *CampaignService) QueryCodes(input *campaign.QueryCodesParams) (*platfor
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -132,6 +138,7 @@ func (c *CampaignService) CreateCodes(input *campaign.CreateCodesParams) (*platf
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -145,6 +152,7 @@ func (c *CampaignService) Download(input *campaign.DownloadParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -158,6 +166,7 @@ func (c *CampaignService) BulkDisableCodes(input *campaign.BulkDisableCodesParam
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -171,6 +180,7 @@ func (c *CampaignService) BulkEnableCodes(input *campaign.BulkEnableCodesParams)
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -184,6 +194,7 @@ func (c *CampaignService) QueryRedeemHistory(input *campaign.QueryRedeemHistoryP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -203,6 +214,7 @@ func (c *CampaignService) GetCode(input *campaign.GetCodeParams) (*platformclien
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -219,6 +231,7 @@ func (c *CampaignService) DisableCode(input *campaign.DisableCodeParams) (*platf
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -235,6 +248,7 @@ func (c *CampaignService) EnableCode(input *campaign.EnableCodeParams) (*platfor
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -257,6 +271,7 @@ func (c *CampaignService) ApplyUserRedemption(input *campaign.ApplyUserRedemptio
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -269,6 +284,7 @@ func (c *CampaignService) QueryCampaignsShort(input *campaign.QueryCampaignsPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -281,6 +297,7 @@ func (c *CampaignService) CreateCampaignShort(input *campaign.CreateCampaignPara
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -293,6 +310,7 @@ func (c *CampaignService) GetCampaignShort(input *campaign.GetCampaignParams) (*
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -305,6 +323,7 @@ func (c *CampaignService) UpdateCampaignShort(input *campaign.UpdateCampaignPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -317,6 +336,7 @@ func (c *CampaignService) GetCampaignDynamicShort(input *campaign.GetCampaignDyn
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -329,6 +349,7 @@ func (c *CampaignService) QueryCodesShort(input *campaign.QueryCodesParams) (*pl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -341,6 +362,7 @@ func (c *CampaignService) CreateCodesShort(input *campaign.CreateCodesParams) (*
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -353,6 +375,7 @@ func (c *CampaignService) DownloadShort(input *campaign.DownloadParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -365,6 +388,7 @@ func (c *CampaignService) BulkDisableCodesShort(input *campaign.BulkDisableCodes
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -377,6 +401,7 @@ func (c *CampaignService) BulkEnableCodesShort(input *campaign.BulkEnableCodesPa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -389,6 +414,7 @@ func (c *CampaignService) QueryRedeemHistoryShort(input *campaign.QueryRedeemHis
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -401,6 +427,7 @@ func (c *CampaignService) GetCodeShort(input *campaign.GetCodeParams) (*platform
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -413,6 +440,7 @@ func (c *CampaignService) DisableCodeShort(input *campaign.DisableCodeParams) (*
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -425,6 +453,7 @@ func (c *CampaignService) EnableCodeShort(input *campaign.EnableCodeParams) (*pl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -437,5 +466,6 @@ func (c *CampaignService) ApplyUserRedemptionShort(input *campaign.ApplyUserRede
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

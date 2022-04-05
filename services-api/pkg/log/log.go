@@ -9,7 +9,7 @@ import (
 	"net/http"
 )
 
-func LogRequest(r *http.Request) interface{} {
+func Request(r *http.Request) interface{} {
 	logString := fmt.Sprintf(
 		"`url`: `%v`, "+
 			"`method`: `%v`, "+
@@ -18,7 +18,7 @@ func LogRequest(r *http.Request) interface{} {
 	return logString
 }
 
-func LogResponse(r *http.Response) interface{} {
+func Response(r *http.Response) interface{} {
 	logString := fmt.Sprintf(
 		"`url`: `%v`, "+
 			"`status_code`: `%v`, "+

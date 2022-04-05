@@ -27,6 +27,7 @@ func (s *StoreService) ListStores(input *store.ListStoresParams) ([]*platformcli
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -46,6 +47,7 @@ func (s *StoreService) CreateStore(input *store.CreateStoreParams) (*platformcli
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -65,6 +67,7 @@ func (s *StoreService) ImportStore(input *store.ImportStoreParams) (*platformcli
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -81,6 +84,7 @@ func (s *StoreService) GetPublishedStore(input *store.GetPublishedStoreParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -97,6 +101,7 @@ func (s *StoreService) DeletePublishedStore(input *store.DeletePublishedStorePar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -113,6 +118,7 @@ func (s *StoreService) GetPublishedStoreBackup(input *store.GetPublishedStoreBac
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -129,6 +135,7 @@ func (s *StoreService) RollbackPublishedStore(input *store.RollbackPublishedStor
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -145,6 +152,7 @@ func (s *StoreService) GetStore(input *store.GetStoreParams) (*platformclientmod
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -167,6 +175,7 @@ func (s *StoreService) UpdateStore(input *store.UpdateStoreParams) (*platformcli
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -186,6 +195,7 @@ func (s *StoreService) DeleteStore(input *store.DeleteStoreParams) (*platformcli
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -205,6 +215,7 @@ func (s *StoreService) CloneStore(input *store.CloneStoreParams) (*platformclien
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -221,6 +232,7 @@ func (s *StoreService) ExportStore(input *store.ExportStoreParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -230,6 +242,7 @@ func (s *StoreService) PublicListStores(input *store.PublicListStoresParams) ([]
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -242,6 +255,7 @@ func (s *StoreService) ListStoresShort(input *store.ListStoresParams) ([]*platfo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -254,6 +268,7 @@ func (s *StoreService) CreateStoreShort(input *store.CreateStoreParams) (*platfo
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -266,6 +281,7 @@ func (s *StoreService) ImportStoreShort(input *store.ImportStoreParams) (*platfo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -278,6 +294,7 @@ func (s *StoreService) GetPublishedStoreShort(input *store.GetPublishedStorePara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -290,6 +307,7 @@ func (s *StoreService) DeletePublishedStoreShort(input *store.DeletePublishedSto
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -302,6 +320,7 @@ func (s *StoreService) GetPublishedStoreBackupShort(input *store.GetPublishedSto
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -314,6 +333,7 @@ func (s *StoreService) RollbackPublishedStoreShort(input *store.RollbackPublishe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -326,6 +346,7 @@ func (s *StoreService) GetStoreShort(input *store.GetStoreParams) (*platformclie
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -338,6 +359,7 @@ func (s *StoreService) UpdateStoreShort(input *store.UpdateStoreParams) (*platfo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -350,6 +372,7 @@ func (s *StoreService) DeleteStoreShort(input *store.DeleteStoreParams) (*platfo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -362,6 +385,7 @@ func (s *StoreService) CloneStoreShort(input *store.CloneStoreParams) (*platform
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -374,6 +398,7 @@ func (s *StoreService) ExportStoreShort(input *store.ExportStoreParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -382,5 +407,6 @@ func (s *StoreService) PublicListStoresShort(input *store.PublicListStoresParams
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

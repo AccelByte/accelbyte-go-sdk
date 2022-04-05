@@ -6,6 +6,7 @@ package server
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/server"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -39,8 +40,10 @@ var ShutdownServerCmd = &cobra.Command{
 		errInput := serverService.ShutdownServerShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

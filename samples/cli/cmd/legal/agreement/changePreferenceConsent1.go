@@ -6,6 +6,7 @@ package agreement
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/agreement"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -37,8 +38,10 @@ var ChangePreferenceConsent1Cmd = &cobra.Command{
 		errInput := agreementService.ChangePreferenceConsent1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

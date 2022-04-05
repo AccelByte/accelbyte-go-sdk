@@ -42,6 +42,7 @@ func (p *PlayerService) AdminGetLobbyCCU(input *player.AdminGetLobbyCCUParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -70,6 +71,7 @@ func (p *PlayerService) AdminGetAllPlayerSessionAttribute(input *player.AdminGet
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -98,6 +100,7 @@ func (p *PlayerService) AdminSetPlayerSessionAttribute(input *player.AdminSetPla
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -126,6 +129,7 @@ func (p *PlayerService) AdminGetPlayerSessionAttribute(input *player.AdminGetPla
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -154,6 +158,7 @@ func (p *PlayerService) AdminGetPlayerBlockedPlayersV1(input *player.AdminGetPla
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -182,6 +187,7 @@ func (p *PlayerService) AdminGetPlayerBlockedByPlayersV1(input *player.AdminGetP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -207,6 +213,7 @@ func (p *PlayerService) AdminBulkBlockPlayersV1(input *player.AdminBulkBlockPlay
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -235,6 +242,7 @@ func (p *PlayerService) PublicGetPlayerBlockedPlayersV1(input *player.PublicGetP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -263,6 +271,7 @@ func (p *PlayerService) PublicGetPlayerBlockedByPlayersV1(input *player.PublicGe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -275,6 +284,7 @@ func (p *PlayerService) AdminGetLobbyCCUShort(input *player.AdminGetLobbyCCUPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -287,6 +297,7 @@ func (p *PlayerService) AdminGetAllPlayerSessionAttributeShort(input *player.Adm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -299,6 +310,7 @@ func (p *PlayerService) AdminSetPlayerSessionAttributeShort(input *player.AdminS
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -311,6 +323,7 @@ func (p *PlayerService) AdminGetPlayerSessionAttributeShort(input *player.AdminG
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -323,6 +336,7 @@ func (p *PlayerService) AdminGetPlayerBlockedPlayersV1Short(input *player.AdminG
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -335,6 +349,7 @@ func (p *PlayerService) AdminGetPlayerBlockedByPlayersV1Short(input *player.Admi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -347,6 +362,7 @@ func (p *PlayerService) AdminBulkBlockPlayersV1Short(input *player.AdminBulkBloc
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -359,6 +375,7 @@ func (p *PlayerService) PublicGetPlayerBlockedPlayersV1Short(input *player.Publi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -371,5 +388,6 @@ func (p *PlayerService) PublicGetPlayerBlockedByPlayersV1Short(input *player.Pub
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

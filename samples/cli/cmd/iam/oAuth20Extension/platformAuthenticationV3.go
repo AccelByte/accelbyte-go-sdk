@@ -5,13 +5,14 @@
 package oAuth20Extension
 
 import (
+	"net/http"
+
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-	"net/http"
 )
 
 // PlatformAuthenticationV3Cmd represents the PlatformAuthenticationV3 command
@@ -63,8 +64,10 @@ var PlatformAuthenticationV3Cmd = &cobra.Command{
 		errInput := oAuth20ExtensionService.PlatformAuthenticationV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

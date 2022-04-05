@@ -6,6 +6,7 @@ package userStatistic
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
@@ -45,10 +46,12 @@ var UpdateUserStatItemValueCmd = &cobra.Command{
 		ok, err := userStatisticService.UpdateUserStatItemValueShort(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

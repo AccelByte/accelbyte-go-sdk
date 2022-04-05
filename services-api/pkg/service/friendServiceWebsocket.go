@@ -7,12 +7,13 @@ package service
 import (
 	"fmt"
 
+	"github.com/gorilla/websocket"
+	"github.com/sirupsen/logrus"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/model"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/connectionutils"
-	"github.com/gorilla/websocket"
-	"github.com/sirupsen/logrus"
 )
 
 type FriendServiceWebsocket struct {
@@ -28,6 +29,7 @@ func (friendService *FriendServiceWebsocket) GetFriends() error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -38,6 +40,7 @@ func (friendService *FriendServiceWebsocket) RequestFriend(friendID string) erro
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -48,6 +51,7 @@ func (friendService *FriendServiceWebsocket) GetIncomingFriendRequest() error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -58,6 +62,7 @@ func (friendService *FriendServiceWebsocket) GetOutgoingFriendRequest() error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -68,6 +73,7 @@ func (friendService *FriendServiceWebsocket) AcceptFriendRequest(friendID string
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -78,6 +84,7 @@ func (friendService *FriendServiceWebsocket) RejectFriendRequest(friendID string
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -88,6 +95,7 @@ func (friendService *FriendServiceWebsocket) Unfriend(friendID string) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -98,6 +106,7 @@ func (friendService *FriendServiceWebsocket) CancelFriendRequest(friendID string
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -108,6 +117,7 @@ func (friendService *FriendServiceWebsocket) GetFriendshipStatus(friendID string
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -118,6 +128,7 @@ func (friendService *FriendServiceWebsocket) GetFriendPresenceStatus() error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -128,6 +139,7 @@ func (friendService *FriendServiceWebsocket) Block(namespace, userID, blockedUse
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -138,6 +150,7 @@ func (friendService *FriendServiceWebsocket) Unblock(namespace, userID, unblocke
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -148,5 +161,6 @@ func (friendService *FriendServiceWebsocket) SetUserStatus(availability int, act
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

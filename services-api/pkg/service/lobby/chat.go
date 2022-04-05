@@ -42,6 +42,7 @@ func (c *ChatService) PersonalChatHistory(input *chat.PersonalChatHistoryParams)
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -70,6 +71,7 @@ func (c *ChatService) AdminChatHistory(input *chat.AdminChatHistoryParams) ([]*l
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -98,6 +100,7 @@ func (c *ChatService) GetPersonalChatHistoryV1Public(input *chat.GetPersonalChat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -110,6 +113,7 @@ func (c *ChatService) PersonalChatHistoryShort(input *chat.PersonalChatHistoryPa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -122,6 +126,7 @@ func (c *ChatService) AdminChatHistoryShort(input *chat.AdminChatHistoryParams) 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -134,5 +139,6 @@ func (c *ChatService) GetPersonalChatHistoryV1PublicShort(input *chat.GetPersona
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

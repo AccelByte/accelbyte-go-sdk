@@ -6,6 +6,7 @@ package deploymentConfig
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/deployment_config"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -41,10 +42,12 @@ var CreateDeploymentCmd = &cobra.Command{
 		ok, err := deploymentConfigService.CreateDeploymentShort(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

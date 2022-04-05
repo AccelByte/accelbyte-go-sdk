@@ -34,8 +34,10 @@ var DeleteUserSubscriptionCmd = &cobra.Command{
 		errInput := subscriptionService.DeleteUserSubscriptionShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

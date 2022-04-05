@@ -33,6 +33,7 @@ func (r *RewardService) QueryRewards(input *reward.QueryRewardsParams) ([]*seaso
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -58,6 +59,7 @@ func (r *RewardService) CreateReward(input *reward.CreateRewardParams) (*seasonp
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -77,6 +79,7 @@ func (r *RewardService) GetReward(input *reward.GetRewardParams) (*seasonpasscli
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -99,6 +102,7 @@ func (r *RewardService) DeleteReward(input *reward.DeleteRewardParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -124,6 +128,7 @@ func (r *RewardService) UpdateReward(input *reward.UpdateRewardParams) (*seasonp
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -146,6 +151,7 @@ func (r *RewardService) PublicClaimUserReward(input *reward.PublicClaimUserRewar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -165,6 +171,7 @@ func (r *RewardService) PublicBulkClaimUserRewards(input *reward.PublicBulkClaim
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -177,6 +184,7 @@ func (r *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams) ([]*
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -189,6 +197,7 @@ func (r *RewardService) CreateRewardShort(input *reward.CreateRewardParams) (*se
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -201,6 +210,7 @@ func (r *RewardService) GetRewardShort(input *reward.GetRewardParams) (*seasonpa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -213,6 +223,7 @@ func (r *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams) erro
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -225,6 +236,7 @@ func (r *RewardService) UpdateRewardShort(input *reward.UpdateRewardParams) (*se
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -237,6 +249,7 @@ func (r *RewardService) PublicClaimUserRewardShort(input *reward.PublicClaimUser
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -249,5 +262,6 @@ func (r *RewardService) PublicBulkClaimUserRewardsShort(input *reward.PublicBulk
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

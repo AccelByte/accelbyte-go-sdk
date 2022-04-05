@@ -36,6 +36,7 @@ func (t *TerminatedServersService) ListTerminatedServers(input *terminated_serve
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -55,6 +56,7 @@ func (t *TerminatedServersService) DownloadServerLogs(input *terminated_servers.
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -74,6 +76,7 @@ func (t *TerminatedServersService) CheckServerLogs(input *terminated_servers.Che
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -86,6 +89,7 @@ func (t *TerminatedServersService) ListTerminatedServersShort(input *terminated_
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -98,6 +102,7 @@ func (t *TerminatedServersService) DownloadServerLogsShort(input *terminated_ser
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -110,5 +115,6 @@ func (t *TerminatedServersService) CheckServerLogsShort(input *terminated_server
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

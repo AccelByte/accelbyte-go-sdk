@@ -42,6 +42,7 @@ func (g *GroupMemberService) GetGroupMembersListAdminV1(input *group_member.GetG
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -73,6 +74,7 @@ func (g *GroupMemberService) AcceptGroupInvitationPublicV1(input *group_member.A
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -104,6 +106,7 @@ func (g *GroupMemberService) RejectGroupInvitationPublicV1(input *group_member.R
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -132,6 +135,7 @@ func (g *GroupMemberService) JoinGroupV1(input *group_member.JoinGroupV1Params) 
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -160,6 +164,7 @@ func (g *GroupMemberService) CancelGroupJoinRequestV1(input *group_member.Cancel
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -188,6 +193,7 @@ func (g *GroupMemberService) GetGroupMembersListPublicV1(input *group_member.Get
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -216,6 +222,7 @@ func (g *GroupMemberService) LeaveGroupPublicV1(input *group_member.LeaveGroupPu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -244,6 +251,7 @@ func (g *GroupMemberService) GetUserGroupInformationPublicV1(input *group_member
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -275,6 +283,7 @@ func (g *GroupMemberService) InviteGroupPublicV1(input *group_member.InviteGroup
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -306,6 +315,7 @@ func (g *GroupMemberService) AcceptGroupJoinRequestPublicV1(input *group_member.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -337,6 +347,7 @@ func (g *GroupMemberService) RejectGroupJoinRequestPublicV1(input *group_member.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -365,6 +376,7 @@ func (g *GroupMemberService) KickGroupMemberPublicV1(input *group_member.KickGro
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -377,6 +389,7 @@ func (g *GroupMemberService) GetGroupMembersListAdminV1Short(input *group_member
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -389,6 +402,7 @@ func (g *GroupMemberService) AcceptGroupInvitationPublicV1Short(input *group_mem
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -401,6 +415,7 @@ func (g *GroupMemberService) RejectGroupInvitationPublicV1Short(input *group_mem
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -413,6 +428,7 @@ func (g *GroupMemberService) JoinGroupV1Short(input *group_member.JoinGroupV1Par
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -425,6 +441,7 @@ func (g *GroupMemberService) CancelGroupJoinRequestV1Short(input *group_member.C
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -437,6 +454,7 @@ func (g *GroupMemberService) GetGroupMembersListPublicV1Short(input *group_membe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -449,6 +467,7 @@ func (g *GroupMemberService) LeaveGroupPublicV1Short(input *group_member.LeaveGr
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -461,6 +480,7 @@ func (g *GroupMemberService) GetUserGroupInformationPublicV1Short(input *group_m
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -473,6 +493,7 @@ func (g *GroupMemberService) InviteGroupPublicV1Short(input *group_member.Invite
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -485,6 +506,7 @@ func (g *GroupMemberService) AcceptGroupJoinRequestPublicV1Short(input *group_me
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -497,6 +519,7 @@ func (g *GroupMemberService) RejectGroupJoinRequestPublicV1Short(input *group_me
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -509,5 +532,6 @@ func (g *GroupMemberService) KickGroupMemberPublicV1Short(input *group_member.Ki
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

@@ -32,8 +32,10 @@ var DeleteSSOLoginPlatformCredentialV3Cmd = &cobra.Command{
 		errInput := ssoCredentialService.DeleteSSOLoginPlatformCredentialV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

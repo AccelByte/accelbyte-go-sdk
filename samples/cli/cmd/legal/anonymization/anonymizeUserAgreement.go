@@ -30,8 +30,10 @@ var AnonymizeUserAgreementCmd = &cobra.Command{
 		errInput := anonymizationService.AnonymizeUserAgreementShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

@@ -32,10 +32,12 @@ var AdminGetSpecificContentCmd = &cobra.Command{
 		ok, err := adminContentService.AdminGetSpecificContentShort(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

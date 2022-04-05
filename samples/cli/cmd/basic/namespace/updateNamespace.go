@@ -6,6 +6,7 @@ package namespace
 
 import (
 	"encoding/json"
+
 	namespace_ "github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/namespace"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -39,10 +40,12 @@ var UpdateNamespaceCmd = &cobra.Command{
 		ok, err := namespaceService.UpdateNamespaceShort(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

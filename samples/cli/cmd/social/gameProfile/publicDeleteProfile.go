@@ -34,8 +34,10 @@ var PublicDeleteProfileCmd = &cobra.Command{
 		errInput := gameProfileService.PublicDeleteProfileShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

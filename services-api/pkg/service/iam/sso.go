@@ -26,6 +26,7 @@ func (s *SSOService) LoginSSOClient(input *s_s_o.LoginSSOClientParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -48,6 +49,7 @@ func (s *SSOService) LogoutSSOClient(input *s_s_o.LogoutSSOClientParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -60,6 +62,7 @@ func (s *SSOService) LoginSSOClientShort(input *s_s_o.LoginSSOClientParams) erro
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -72,5 +75,6 @@ func (s *SSOService) LogoutSSOClientShort(input *s_s_o.LogoutSSOClientParams) er
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

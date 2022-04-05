@@ -36,6 +36,7 @@ func (e *EventRegistryService) GetRegisteredEventsHandler(input *event_registry.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -64,6 +65,7 @@ func (e *EventRegistryService) RegisterEventHandler(input *event_registry.Regist
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -92,6 +94,7 @@ func (e *EventRegistryService) GetRegisteredEventIDHandler(input *event_registry
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -120,6 +123,7 @@ func (e *EventRegistryService) UpdateEventRegistryHandler(input *event_registry.
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -145,6 +149,7 @@ func (e *EventRegistryService) UnregisterEventIDHandler(input *event_registry.Un
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -173,6 +178,7 @@ func (e *EventRegistryService) GetRegisteredEventsByEventTypeHandler(input *even
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -185,6 +191,7 @@ func (e *EventRegistryService) GetRegisteredEventsHandlerShort(input *event_regi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -197,6 +204,7 @@ func (e *EventRegistryService) RegisterEventHandlerShort(input *event_registry.R
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -209,6 +217,7 @@ func (e *EventRegistryService) GetRegisteredEventIDHandlerShort(input *event_reg
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -221,6 +230,7 @@ func (e *EventRegistryService) UpdateEventRegistryHandlerShort(input *event_regi
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -233,6 +243,7 @@ func (e *EventRegistryService) UnregisterEventIDHandlerShort(input *event_regist
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -245,5 +256,6 @@ func (e *EventRegistryService) GetRegisteredEventsByEventTypeHandlerShort(input 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

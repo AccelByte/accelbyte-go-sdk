@@ -6,6 +6,4 @@ package constant
 
 import "time"
 
-const (
-	DefaultRoleCacheExpirationTime = 60 * time.Second
-)
+const DefaultRoleCacheExpirationTime = 60 * time.Second

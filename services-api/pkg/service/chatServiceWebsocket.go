@@ -1,14 +1,20 @@
+// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
 package service
 
 import (
 	"fmt"
+
 	"github.com/sirupsen/logrus"
+
+	"github.com/gorilla/websocket"
 
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/model"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/connectionutils"
-	"github.com/gorilla/websocket"
 )
 
 type ChatServiceWebsocket struct {
@@ -24,6 +30,7 @@ func (s *ChatServiceWebsocket) JoinDefaultChannel() error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -41,6 +48,7 @@ func (s *ChatServiceWebsocket) SendChannelChat(channelSlug, payload string) erro
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -51,6 +59,7 @@ func (s *ChatServiceWebsocket) SendPersonalChat(friendID, content string) error 
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -61,6 +70,7 @@ func (s *ChatServiceWebsocket) SendPartyChat(content string) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -71,5 +81,6 @@ func (s *ChatServiceWebsocket) GetPersonalChatHistory(friendID string) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

@@ -36,6 +36,7 @@ func (n *NotificationService) SendMultipleUsersFreeformNotificationV1Admin(input
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -61,6 +62,7 @@ func (n *NotificationService) SendUsersFreeformNotificationV1Admin(input *notifi
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -86,6 +88,7 @@ func (n *NotificationService) SendPartyFreeformNotificationV1Admin(input *notifi
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -111,6 +114,7 @@ func (n *NotificationService) SendPartyTemplatedNotificationV1Admin(input *notif
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -139,6 +143,7 @@ func (n *NotificationService) GetAllNotificationTemplatesV1Admin(input *notifica
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -167,6 +172,7 @@ func (n *NotificationService) CreateNotificationTemplateV1Admin(input *notificat
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -192,6 +198,7 @@ func (n *NotificationService) SendUsersTemplatedNotificationV1Admin(input *notif
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -217,6 +224,7 @@ func (n *NotificationService) GetTemplateSlugLocalizationsTemplateV1Admin(input 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -242,6 +250,7 @@ func (n *NotificationService) DeleteNotificationTemplateSlugV1Admin(input *notif
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -267,6 +276,7 @@ func (n *NotificationService) GetSingleTemplateLocalizationV1Admin(input *notifi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -295,6 +305,7 @@ func (n *NotificationService) UpdateTemplateLocalizationV1Admin(input *notificat
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -320,6 +331,7 @@ func (n *NotificationService) DeleteTemplateLocalizationV1Admin(input *notificat
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -345,6 +357,7 @@ func (n *NotificationService) PublishTemplateLocalizationV1Admin(input *notifica
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -370,6 +383,7 @@ func (n *NotificationService) GetAllNotificationTopicsV1Admin(input *notificatio
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -392,6 +406,7 @@ func (n *NotificationService) CreateNotificationTopicV1Admin(input *notification
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -417,6 +432,7 @@ func (n *NotificationService) GetNotificationTopicV1Admin(input *notification.Ge
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -445,6 +461,7 @@ func (n *NotificationService) UpdateNotificationTopicV1Admin(input *notification
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -470,6 +487,7 @@ func (n *NotificationService) DeleteNotificationTopicV1Admin(input *notification
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -495,6 +513,7 @@ func (n *NotificationService) SendSpecificUserFreeformNotificationV1Admin(input 
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -520,6 +539,7 @@ func (n *NotificationService) SendSpecificUserTemplatedNotificationV1Admin(input
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -545,6 +565,7 @@ func (n *NotificationService) FreeFormNotification(input *notification.FreeFormN
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -570,6 +591,7 @@ func (n *NotificationService) NotificationWithTemplate(input *notification.Notif
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -595,6 +617,7 @@ func (n *NotificationService) GetGameTemplate(input *notification.GetGameTemplat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -620,6 +643,7 @@ func (n *NotificationService) CreateTemplate(input *notification.CreateTemplateP
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -645,6 +669,7 @@ func (n *NotificationService) GetSlugTemplate(input *notification.GetSlugTemplat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -670,6 +695,7 @@ func (n *NotificationService) DeleteTemplateSlug(input *notification.DeleteTempl
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -695,6 +721,7 @@ func (n *NotificationService) GetLocalizationTemplate(input *notification.GetLoc
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -720,6 +747,7 @@ func (n *NotificationService) UpdateLocalizationTemplate(input *notification.Upd
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -745,6 +773,7 @@ func (n *NotificationService) DeleteTemplateLocalization(input *notification.Del
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -770,6 +799,7 @@ func (n *NotificationService) PublishTemplate(input *notification.PublishTemplat
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -795,6 +825,7 @@ func (n *NotificationService) GetTopicByNamespace(input *notification.GetTopicBy
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -820,6 +851,7 @@ func (n *NotificationService) CreateTopic(input *notification.CreateTopicParams)
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -845,6 +877,7 @@ func (n *NotificationService) GetTopicByTopicName(input *notification.GetTopicBy
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -870,6 +903,7 @@ func (n *NotificationService) UpdateTopicByTopicName(input *notification.UpdateT
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -895,6 +929,7 @@ func (n *NotificationService) DeleteTopicByTopicName(input *notification.DeleteT
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -920,6 +955,7 @@ func (n *NotificationService) FreeFormNotificationByUserID(input *notification.F
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -945,6 +981,7 @@ func (n *NotificationService) NotificationWithTemplateByUserID(input *notificati
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -957,6 +994,7 @@ func (n *NotificationService) SendMultipleUsersFreeformNotificationV1AdminShort(
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -969,6 +1007,7 @@ func (n *NotificationService) SendUsersFreeformNotificationV1AdminShort(input *n
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -981,6 +1020,7 @@ func (n *NotificationService) SendPartyFreeformNotificationV1AdminShort(input *n
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -993,6 +1033,7 @@ func (n *NotificationService) SendPartyTemplatedNotificationV1AdminShort(input *
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1005,6 +1046,7 @@ func (n *NotificationService) GetAllNotificationTemplatesV1AdminShort(input *not
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1017,6 +1059,7 @@ func (n *NotificationService) CreateNotificationTemplateV1AdminShort(input *noti
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1029,6 +1072,7 @@ func (n *NotificationService) SendUsersTemplatedNotificationV1AdminShort(input *
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1041,6 +1085,7 @@ func (n *NotificationService) GetTemplateSlugLocalizationsTemplateV1AdminShort(i
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1053,6 +1098,7 @@ func (n *NotificationService) DeleteNotificationTemplateSlugV1AdminShort(input *
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1065,6 +1111,7 @@ func (n *NotificationService) GetSingleTemplateLocalizationV1AdminShort(input *n
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1077,6 +1124,7 @@ func (n *NotificationService) UpdateTemplateLocalizationV1AdminShort(input *noti
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1089,6 +1137,7 @@ func (n *NotificationService) DeleteTemplateLocalizationV1AdminShort(input *noti
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1101,6 +1150,7 @@ func (n *NotificationService) PublishTemplateLocalizationV1AdminShort(input *not
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1113,6 +1163,7 @@ func (n *NotificationService) GetAllNotificationTopicsV1AdminShort(input *notifi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1125,6 +1176,7 @@ func (n *NotificationService) CreateNotificationTopicV1AdminShort(input *notific
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1137,6 +1189,7 @@ func (n *NotificationService) GetNotificationTopicV1AdminShort(input *notificati
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1149,6 +1202,7 @@ func (n *NotificationService) UpdateNotificationTopicV1AdminShort(input *notific
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1161,6 +1215,7 @@ func (n *NotificationService) DeleteNotificationTopicV1AdminShort(input *notific
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1173,6 +1228,7 @@ func (n *NotificationService) SendSpecificUserFreeformNotificationV1AdminShort(i
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1185,6 +1241,7 @@ func (n *NotificationService) SendSpecificUserTemplatedNotificationV1AdminShort(
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1197,6 +1254,7 @@ func (n *NotificationService) FreeFormNotificationShort(input *notification.Free
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1209,6 +1267,7 @@ func (n *NotificationService) NotificationWithTemplateShort(input *notification.
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1221,6 +1280,7 @@ func (n *NotificationService) GetGameTemplateShort(input *notification.GetGameTe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1233,6 +1293,7 @@ func (n *NotificationService) CreateTemplateShort(input *notification.CreateTemp
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1245,6 +1306,7 @@ func (n *NotificationService) GetSlugTemplateShort(input *notification.GetSlugTe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1257,6 +1319,7 @@ func (n *NotificationService) DeleteTemplateSlugShort(input *notification.Delete
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1269,6 +1332,7 @@ func (n *NotificationService) GetLocalizationTemplateShort(input *notification.G
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1281,6 +1345,7 @@ func (n *NotificationService) UpdateLocalizationTemplateShort(input *notificatio
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1293,6 +1358,7 @@ func (n *NotificationService) DeleteTemplateLocalizationShort(input *notificatio
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1305,6 +1371,7 @@ func (n *NotificationService) PublishTemplateShort(input *notification.PublishTe
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1317,6 +1384,7 @@ func (n *NotificationService) GetTopicByNamespaceShort(input *notification.GetTo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1329,6 +1397,7 @@ func (n *NotificationService) CreateTopicShort(input *notification.CreateTopicPa
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1341,6 +1410,7 @@ func (n *NotificationService) GetTopicByTopicNameShort(input *notification.GetTo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1353,6 +1423,7 @@ func (n *NotificationService) UpdateTopicByTopicNameShort(input *notification.Up
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1365,6 +1436,7 @@ func (n *NotificationService) DeleteTopicByTopicNameShort(input *notification.De
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1377,6 +1449,7 @@ func (n *NotificationService) FreeFormNotificationByUserIDShort(input *notificat
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1389,5 +1462,6 @@ func (n *NotificationService) NotificationWithTemplateByUserIDShort(input *notif
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

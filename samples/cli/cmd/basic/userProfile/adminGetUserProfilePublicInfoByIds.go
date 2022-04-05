@@ -6,6 +6,7 @@ package userProfile
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_profile"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -39,10 +40,12 @@ var AdminGetUserProfilePublicInfoByIdsCmd = &cobra.Command{
 		ok, err := userProfileService.AdminGetUserProfilePublicInfoByIdsShort(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

@@ -45,6 +45,7 @@ func (o *OperationsService) AdminUpdatePartyAttributesV1(input *operations.Admin
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -76,6 +77,7 @@ func (o *OperationsService) AdminJoinPartyV1(input *operations.AdminJoinPartyV1P
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -92,6 +94,7 @@ func (o *OperationsService) PublicGetMessages(input *operations.PublicGetMessage
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -104,6 +107,7 @@ func (o *OperationsService) AdminUpdatePartyAttributesV1Short(input *operations.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -116,6 +120,7 @@ func (o *OperationsService) AdminJoinPartyV1Short(input *operations.AdminJoinPar
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -128,5 +133,6 @@ func (o *OperationsService) PublicGetMessagesShort(input *operations.PublicGetMe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

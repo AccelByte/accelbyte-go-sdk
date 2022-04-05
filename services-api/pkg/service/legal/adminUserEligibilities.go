@@ -27,6 +27,7 @@ func (a *AdminUserEligibilitiesService) AdminRetrieveEligibilities(input *admin_
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -39,5 +40,6 @@ func (a *AdminUserEligibilitiesService) AdminRetrieveEligibilitiesShort(input *a
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

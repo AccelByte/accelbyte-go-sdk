@@ -6,6 +6,7 @@ package thirdPartyCredential
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/third_party_credential"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -41,8 +42,10 @@ var DeleteThirdPartyLoginPlatformDomainV3Cmd = &cobra.Command{
 		errInput := thirdPartyCredentialService.DeleteThirdPartyLoginPlatformDomainV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

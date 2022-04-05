@@ -6,6 +6,7 @@ package dlc
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/d_l_c"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -41,8 +42,10 @@ var PublicSyncPsnDlcInventoryCmd = &cobra.Command{
 		errInput := dlcService.PublicSyncPsnDlcInventoryShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

@@ -29,6 +29,7 @@ func (o *OperationsService) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPos
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -45,6 +46,7 @@ func (o *OperationsService) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIds
 	if err != nil {
 		return 0, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -61,6 +63,7 @@ func (o *OperationsService) ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteam
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -73,6 +76,7 @@ func (o *OperationsService) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPos
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -85,6 +89,7 @@ func (o *OperationsService) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIds
 	if err != nil {
 		return 0, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -97,5 +102,6 @@ func (o *OperationsService) ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteam
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

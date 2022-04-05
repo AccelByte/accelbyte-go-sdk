@@ -6,6 +6,7 @@ package dataRetrieval
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gdpr"
@@ -38,8 +39,10 @@ var DeleteAdminEmailConfigurationCmd = &cobra.Command{
 		errInput := dataRetrievalService.DeleteAdminEmailConfigurationShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

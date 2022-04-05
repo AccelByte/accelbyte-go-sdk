@@ -27,6 +27,7 @@ func (g *GameProfileService) GetUserProfiles(input *game_profile.GetUserProfiles
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -43,6 +44,7 @@ func (g *GameProfileService) GetProfile(input *game_profile.GetProfileParams) (*
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -59,6 +61,7 @@ func (g *GameProfileService) PublicGetUserGameProfiles(input *game_profile.Publi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -72,6 +75,7 @@ func (g *GameProfileService) PublicGetUserProfiles(input *game_profile.PublicGet
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -88,6 +92,7 @@ func (g *GameProfileService) PublicCreateProfile(input *game_profile.PublicCreat
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -104,6 +109,7 @@ func (g *GameProfileService) PublicGetProfile(input *game_profile.PublicGetProfi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -123,6 +129,7 @@ func (g *GameProfileService) PublicUpdateProfile(input *game_profile.PublicUpdat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -139,6 +146,7 @@ func (g *GameProfileService) PublicDeleteProfile(input *game_profile.PublicDelet
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -155,6 +163,7 @@ func (g *GameProfileService) PublicGetProfileAttribute(input *game_profile.Publi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -174,6 +183,7 @@ func (g *GameProfileService) PublicUpdateAttribute(input *game_profile.PublicUpd
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -186,6 +196,7 @@ func (g *GameProfileService) GetUserProfilesShort(input *game_profile.GetUserPro
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -198,6 +209,7 @@ func (g *GameProfileService) GetProfileShort(input *game_profile.GetProfileParam
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -210,6 +222,7 @@ func (g *GameProfileService) PublicGetUserGameProfilesShort(input *game_profile.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -222,6 +235,7 @@ func (g *GameProfileService) PublicGetUserProfilesShort(input *game_profile.Publ
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -234,6 +248,7 @@ func (g *GameProfileService) PublicCreateProfileShort(input *game_profile.Public
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -246,6 +261,7 @@ func (g *GameProfileService) PublicGetProfileShort(input *game_profile.PublicGet
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -258,6 +274,7 @@ func (g *GameProfileService) PublicUpdateProfileShort(input *game_profile.Public
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -270,6 +287,7 @@ func (g *GameProfileService) PublicDeleteProfileShort(input *game_profile.Public
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -282,6 +300,7 @@ func (g *GameProfileService) PublicGetProfileAttributeShort(input *game_profile.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -294,5 +313,6 @@ func (g *GameProfileService) PublicUpdateAttributeShort(input *game_profile.Publ
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

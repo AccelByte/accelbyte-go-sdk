@@ -27,6 +27,7 @@ func (o *OrderDedicatedService) SyncOrders(input *order_dedicated.SyncOrdersPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -39,5 +40,6 @@ func (o *OrderDedicatedService) SyncOrdersShort(input *order_dedicated.SyncOrder
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

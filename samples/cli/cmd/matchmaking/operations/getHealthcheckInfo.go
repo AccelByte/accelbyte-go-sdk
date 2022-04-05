@@ -27,8 +27,10 @@ var GetHealthcheckInfoCmd = &cobra.Command{
 		errInput := operationsService.GetHealthcheckInfoShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

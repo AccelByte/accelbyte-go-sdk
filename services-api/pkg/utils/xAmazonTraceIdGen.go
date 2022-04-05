@@ -12,7 +12,7 @@ import (
 	"go.opentelemetry.io/contrib/propagators/aws/xray"
 )
 
-func AmazonTraceIdGen() string {
+func AmazonTraceIDGen() string {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 

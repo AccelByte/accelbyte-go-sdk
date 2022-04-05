@@ -6,6 +6,7 @@ package adminPlayerRecord
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_player_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -43,8 +44,10 @@ var AdminPutPlayerPublicRecordHandlerV1Cmd = &cobra.Command{
 		errInput := adminPlayerRecordService.AdminPutPlayerPublicRecordHandlerV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

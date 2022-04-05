@@ -27,6 +27,7 @@ func (o *OperationsService) GetHealthcheckInfo(input *operations.GetHealthcheckI
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -40,6 +41,7 @@ func (o *OperationsService) HandlerV3Healthz(input *operations.HandlerV3HealthzP
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -56,6 +58,7 @@ func (o *OperationsService) PublicGetMessages(input *operations.PublicGetMessage
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -69,6 +72,7 @@ func (o *OperationsService) VersionCheckHandler(input *operations.VersionCheckHa
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -81,6 +85,7 @@ func (o *OperationsService) GetHealthcheckInfoShort(input *operations.GetHealthc
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -93,6 +98,7 @@ func (o *OperationsService) HandlerV3HealthzShort(input *operations.HandlerV3Hea
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -105,6 +111,7 @@ func (o *OperationsService) PublicGetMessagesShort(input *operations.PublicGetMe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -117,5 +124,6 @@ func (o *OperationsService) VersionCheckHandlerShort(input *operations.VersionCh
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

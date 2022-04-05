@@ -42,6 +42,7 @@ func (p *PaymentDedicatedService) CreatePaymentOrderByDedicated(input *payment_d
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -67,6 +68,7 @@ func (p *PaymentDedicatedService) RefundPaymentOrderByDedicated(input *payment_d
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -80,6 +82,7 @@ func (p *PaymentDedicatedService) SyncPaymentOrders(input *payment_dedicated.Syn
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -92,6 +95,7 @@ func (p *PaymentDedicatedService) CreatePaymentOrderByDedicatedShort(input *paym
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -104,6 +108,7 @@ func (p *PaymentDedicatedService) RefundPaymentOrderByDedicatedShort(input *paym
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -116,5 +121,6 @@ func (p *PaymentDedicatedService) SyncPaymentOrdersShort(input *payment_dedicate
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

@@ -42,10 +42,12 @@ var PublicSearchItemsCmd = &cobra.Command{
 		ok, err := itemService.PublicSearchItemsShort(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

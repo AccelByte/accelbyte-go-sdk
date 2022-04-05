@@ -6,6 +6,7 @@ package adminGroup
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_group"
@@ -43,10 +44,12 @@ var AdminUpdateGroupCmd = &cobra.Command{
 		ok, err := adminGroupService.AdminUpdateGroupShort(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

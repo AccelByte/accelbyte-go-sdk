@@ -45,6 +45,7 @@ func (e *EventV2Service) QueryEventStreamHandler(input *event_v2.QueryEventStrea
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -76,6 +77,7 @@ func (e *EventV2Service) GetEventSpecificUserV2Handler(input *event_v2.GetEventS
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -107,6 +109,7 @@ func (e *EventV2Service) GetPublicEditHistory(input *event_v2.GetPublicEditHisto
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -138,6 +141,7 @@ func (e *EventV2Service) GetUserEventsV2Public(input *event_v2.GetUserEventsV2Pu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -150,6 +154,7 @@ func (e *EventV2Service) QueryEventStreamHandlerShort(input *event_v2.QueryEvent
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -162,6 +167,7 @@ func (e *EventV2Service) GetEventSpecificUserV2HandlerShort(input *event_v2.GetE
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -174,6 +180,7 @@ func (e *EventV2Service) GetPublicEditHistoryShort(input *event_v2.GetPublicEdit
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -186,5 +193,6 @@ func (e *EventV2Service) GetUserEventsV2PublicShort(input *event_v2.GetUserEvent
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

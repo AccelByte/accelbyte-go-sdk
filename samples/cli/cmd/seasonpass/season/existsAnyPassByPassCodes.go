@@ -6,6 +6,7 @@ package season
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient/season"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/seasonpass"
@@ -40,10 +41,12 @@ var ExistsAnyPassByPassCodesCmd = &cobra.Command{
 		ok, err := seasonService.ExistsAnyPassByPassCodesShort(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

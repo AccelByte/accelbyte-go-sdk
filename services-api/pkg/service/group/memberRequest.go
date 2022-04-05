@@ -39,6 +39,7 @@ func (m *MemberRequestService) GetGroupJoinRequestPublicV1(input *member_request
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -64,6 +65,7 @@ func (m *MemberRequestService) GetGroupInvitationRequestPublicV1(input *member_r
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -76,6 +78,7 @@ func (m *MemberRequestService) GetGroupJoinRequestPublicV1Short(input *member_re
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -88,5 +91,6 @@ func (m *MemberRequestService) GetGroupInvitationRequestPublicV1Short(input *mem
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

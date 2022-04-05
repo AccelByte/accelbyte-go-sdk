@@ -32,8 +32,10 @@ var DeleteTopicByTopicNameCmd = &cobra.Command{
 		errInput := notificationService.DeleteTopicByTopicNameShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

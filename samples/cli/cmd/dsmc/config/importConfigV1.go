@@ -5,14 +5,15 @@
 package config
 
 import (
+	"net/http"
+	"os"
+
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-	"net/http"
-	"os"
 )
 
 // ImportConfigV1Cmd represents the ImportConfigV1 command
@@ -45,10 +46,12 @@ var ImportConfigV1Cmd = &cobra.Command{
 		ok, err := configService.ImportConfigV1Short(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

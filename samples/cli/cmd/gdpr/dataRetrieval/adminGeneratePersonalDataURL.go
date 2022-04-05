@@ -5,13 +5,14 @@
 package dataRetrieval
 
 import (
+	"net/http"
+
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gdpr"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-	"net/http"
 )
 
 // AdminGeneratePersonalDataURLCmd represents the AdminGeneratePersonalDataURL command
@@ -43,10 +44,12 @@ var AdminGeneratePersonalDataURLCmd = &cobra.Command{
 		ok, err := dataRetrievalService.AdminGeneratePersonalDataURLShort(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

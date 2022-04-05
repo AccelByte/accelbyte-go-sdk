@@ -30,8 +30,10 @@ var AdminResetInputValidationsCmd = &cobra.Command{
 		errInput := inputValidationsService.AdminResetInputValidationsShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

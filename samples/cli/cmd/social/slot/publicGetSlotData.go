@@ -6,14 +6,15 @@ package slot
 
 import (
 	"bytes"
+	"io"
+	"os"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/social"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-	"io"
-	"os"
 )
 
 // PublicGetSlotDataCmd represents the PublicGetSlotData command
@@ -43,6 +44,7 @@ var PublicGetSlotDataCmd = &cobra.Command{
 		ok, err := slotService.PublicGetSlotDataShort(input, writer)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
@@ -51,6 +53,7 @@ var PublicGetSlotDataCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
+
 		return nil
 	},
 }

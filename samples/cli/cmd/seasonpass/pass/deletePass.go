@@ -34,8 +34,10 @@ var DeletePassCmd = &cobra.Command{
 		errInput := passService.DeletePassShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

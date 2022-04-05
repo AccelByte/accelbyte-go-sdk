@@ -27,6 +27,7 @@ func (k *KeyGroupService) QueryKeyGroups(input *key_group.QueryKeyGroupsParams) 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -46,6 +47,7 @@ func (k *KeyGroupService) CreateKeyGroup(input *key_group.CreateKeyGroupParams) 
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -62,6 +64,7 @@ func (k *KeyGroupService) GetKeyGroup(input *key_group.GetKeyGroupParams) (*plat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -84,6 +87,7 @@ func (k *KeyGroupService) UpdateKeyGroup(input *key_group.UpdateKeyGroupParams) 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -100,6 +104,7 @@ func (k *KeyGroupService) GetKeyGroupDynamic(input *key_group.GetKeyGroupDynamic
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -113,6 +118,7 @@ func (k *KeyGroupService) ListKeys(input *key_group.ListKeysParams) (*platformcl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -132,6 +138,7 @@ func (k *KeyGroupService) UploadKeys(input *key_group.UploadKeysParams) (*platfo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -144,6 +151,7 @@ func (k *KeyGroupService) QueryKeyGroupsShort(input *key_group.QueryKeyGroupsPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -156,6 +164,7 @@ func (k *KeyGroupService) CreateKeyGroupShort(input *key_group.CreateKeyGroupPar
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -168,6 +177,7 @@ func (k *KeyGroupService) GetKeyGroupShort(input *key_group.GetKeyGroupParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -180,6 +190,7 @@ func (k *KeyGroupService) UpdateKeyGroupShort(input *key_group.UpdateKeyGroupPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -192,6 +203,7 @@ func (k *KeyGroupService) GetKeyGroupDynamicShort(input *key_group.GetKeyGroupDy
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -204,6 +216,7 @@ func (k *KeyGroupService) ListKeysShort(input *key_group.ListKeysParams) (*platf
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -216,5 +229,6 @@ func (k *KeyGroupService) UploadKeysShort(input *key_group.UploadKeysParams) (*p
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

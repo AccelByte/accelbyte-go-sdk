@@ -32,8 +32,10 @@ var ResetUserSeasonCmd = &cobra.Command{
 		errInput := seasonService.ResetUserSeasonShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

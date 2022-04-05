@@ -36,6 +36,7 @@ func (a *AdminTypeService) AdminGetType(input *admin_type.AdminGetTypeParams) (*
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -61,6 +62,7 @@ func (a *AdminTypeService) AdminCreateType(input *admin_type.AdminCreateTypePara
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -89,6 +91,7 @@ func (a *AdminTypeService) AdminUpdateType(input *admin_type.AdminUpdateTypePara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -111,6 +114,7 @@ func (a *AdminTypeService) AdminDeleteType(input *admin_type.AdminDeleteTypePara
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -123,6 +127,7 @@ func (a *AdminTypeService) AdminGetTypeShort(input *admin_type.AdminGetTypeParam
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -135,6 +140,7 @@ func (a *AdminTypeService) AdminCreateTypeShort(input *admin_type.AdminCreateTyp
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -147,6 +153,7 @@ func (a *AdminTypeService) AdminUpdateTypeShort(input *admin_type.AdminUpdateTyp
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -159,5 +166,6 @@ func (a *AdminTypeService) AdminDeleteTypeShort(input *admin_type.AdminDeleteTyp
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

@@ -32,8 +32,10 @@ var DeleteNotificationTemplateSlugV1AdminCmd = &cobra.Command{
 		errInput := notificationService.DeleteNotificationTemplateSlugV1AdminShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

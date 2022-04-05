@@ -39,6 +39,7 @@ func (u *UserDataService) GetUserLeaderboardRankingsAdminV1(input *user_data.Get
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -51,5 +52,6 @@ func (u *UserDataService) GetUserLeaderboardRankingsAdminV1Short(input *user_dat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

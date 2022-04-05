@@ -36,6 +36,7 @@ func (i *ImageConfigService) UpdateImage(input *image_config.UpdateImageParams) 
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -61,6 +62,7 @@ func (i *ImageConfigService) CreateImage(input *image_config.CreateImageParams) 
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -86,6 +88,7 @@ func (i *ImageConfigService) ImportImages(input *image_config.ImportImagesParams
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -111,6 +114,7 @@ func (i *ImageConfigService) CreateImagePatch(input *image_config.CreateImagePat
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -133,6 +137,7 @@ func (i *ImageConfigService) ListImages(input *image_config.ListImagesParams) (*
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -161,6 +166,7 @@ func (i *ImageConfigService) DeleteImage(input *image_config.DeleteImageParams) 
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -186,6 +192,7 @@ func (i *ImageConfigService) ExportImages(input *image_config.ExportImagesParams
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -208,6 +215,7 @@ func (i *ImageConfigService) GetImageLimit(input *image_config.GetImageLimitPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -236,6 +244,7 @@ func (i *ImageConfigService) DeleteImagePatch(input *image_config.DeleteImagePat
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -258,6 +267,7 @@ func (i *ImageConfigService) GetImageDetail(input *image_config.GetImageDetailPa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -277,6 +287,7 @@ func (i *ImageConfigService) GetImagePatches(input *image_config.GetImagePatches
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -299,6 +310,7 @@ func (i *ImageConfigService) GetImagePatchDetail(input *image_config.GetImagePat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -321,6 +333,7 @@ func (i *ImageConfigService) ImageDetailClient(input *image_config.ImageDetailCl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -333,6 +346,7 @@ func (i *ImageConfigService) UpdateImageShort(input *image_config.UpdateImagePar
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -345,6 +359,7 @@ func (i *ImageConfigService) CreateImageShort(input *image_config.CreateImagePar
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -357,6 +372,7 @@ func (i *ImageConfigService) ImportImagesShort(input *image_config.ImportImagesP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -369,6 +385,7 @@ func (i *ImageConfigService) CreateImagePatchShort(input *image_config.CreateIma
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -381,6 +398,7 @@ func (i *ImageConfigService) ListImagesShort(input *image_config.ListImagesParam
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -393,6 +411,7 @@ func (i *ImageConfigService) DeleteImageShort(input *image_config.DeleteImagePar
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -405,6 +424,7 @@ func (i *ImageConfigService) ExportImagesShort(input *image_config.ExportImagesP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -417,6 +437,7 @@ func (i *ImageConfigService) GetImageLimitShort(input *image_config.GetImageLimi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -429,6 +450,7 @@ func (i *ImageConfigService) DeleteImagePatchShort(input *image_config.DeleteIma
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -441,6 +463,7 @@ func (i *ImageConfigService) GetImageDetailShort(input *image_config.GetImageDet
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -453,6 +476,7 @@ func (i *ImageConfigService) GetImagePatchesShort(input *image_config.GetImagePa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -465,6 +489,7 @@ func (i *ImageConfigService) GetImagePatchDetailShort(input *image_config.GetIma
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -477,5 +502,6 @@ func (i *ImageConfigService) ImageDetailClientShort(input *image_config.ImageDet
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

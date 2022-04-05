@@ -32,6 +32,7 @@ func (s *ServerService) Heartbeat(input *server.HeartbeatParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -44,5 +45,6 @@ func (s *ServerService) HeartbeatShort(input *server.HeartbeatParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

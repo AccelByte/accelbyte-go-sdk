@@ -6,6 +6,7 @@ package leaderboardData
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_data"
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -43,10 +44,12 @@ var UpdateUserPointAdminV1Cmd = &cobra.Command{
 		ok, err := leaderboardDataService.UpdateUserPointAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

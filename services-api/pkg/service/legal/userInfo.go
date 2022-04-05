@@ -27,6 +27,7 @@ func (u *UserInfoService) GetUserInfoStatus(input *user_info.GetUserInfoStatusPa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -40,6 +41,7 @@ func (u *UserInfoService) SyncUserInfo(input *user_info.SyncUserInfoParams) erro
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -53,6 +55,7 @@ func (u *UserInfoService) InvalidateUserInfoCache(input *user_info.InvalidateUse
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -65,6 +68,7 @@ func (u *UserInfoService) GetUserInfoStatusShort(input *user_info.GetUserInfoSta
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -77,6 +81,7 @@ func (u *UserInfoService) SyncUserInfoShort(input *user_info.SyncUserInfoParams)
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -89,5 +94,6 @@ func (u *UserInfoService) InvalidateUserInfoCacheShort(input *user_info.Invalida
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

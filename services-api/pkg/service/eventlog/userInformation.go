@@ -42,6 +42,7 @@ func (u *UserInformationService) GetUserActivitiesHandler(input *user_informatio
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -67,6 +68,7 @@ func (u *UserInformationService) DeleteUserActivitiesHandler(input *user_informa
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -92,6 +94,7 @@ func (u *UserInformationService) LastUserActivityTimeHandler(input *user_informa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -104,6 +107,7 @@ func (u *UserInformationService) GetUserActivitiesHandlerShort(input *user_infor
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -116,6 +120,7 @@ func (u *UserInformationService) DeleteUserActivitiesHandlerShort(input *user_in
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -128,5 +133,6 @@ func (u *UserInformationService) LastUserActivityTimeHandlerShort(input *user_in
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

@@ -5,12 +5,14 @@
 package utils
 
 import (
-	"github.com/google/uuid"
 	"strings"
+
+	"github.com/google/uuid"
 )
 
 // GenerateUUID generates uuid without hyphens
 func GenerateUUID() string {
 	id, _ := uuid.NewRandom()
+
 	return strings.ReplaceAll(id.String(), "-", "")
 }

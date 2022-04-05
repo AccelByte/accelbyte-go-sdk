@@ -30,10 +30,12 @@ var GetUserInfoStatusCmd = &cobra.Command{
 		ok, err := userInfoService.GetUserInfoStatusShort(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

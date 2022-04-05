@@ -6,6 +6,7 @@ package eventRegistry
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event_registry"
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -37,8 +38,10 @@ var RegisterEventHandlerCmd = &cobra.Command{
 		errInput := eventRegistryService.RegisterEventHandlerShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

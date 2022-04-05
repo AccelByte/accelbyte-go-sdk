@@ -6,6 +6,7 @@ package imageConfig
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/image_config"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -37,8 +38,10 @@ var CreateImageCmd = &cobra.Command{
 		errInput := imageConfigService.CreateImageShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

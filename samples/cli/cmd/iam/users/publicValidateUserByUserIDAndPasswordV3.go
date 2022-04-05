@@ -5,13 +5,14 @@
 package users
 
 import (
+	"net/http"
+
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-	"net/http"
 )
 
 // PublicValidateUserByUserIDAndPasswordV3Cmd represents the PublicValidateUserByUserIDAndPasswordV3 command
@@ -41,8 +42,10 @@ var PublicValidateUserByUserIDAndPasswordV3Cmd = &cobra.Command{
 		errInput := usersService.PublicValidateUserByUserIDAndPasswordV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

@@ -26,6 +26,7 @@ func (s *SSOSAML20Service) PlatformAuthenticateSAMLV3Handler(input *s_s_o_s_a_m_
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -38,5 +39,6 @@ func (s *SSOSAML20Service) PlatformAuthenticateSAMLV3HandlerShort(input *s_s_o_s
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

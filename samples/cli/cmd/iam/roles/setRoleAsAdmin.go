@@ -30,8 +30,10 @@ var SetRoleAsAdminCmd = &cobra.Command{
 		errInput := rolesService.SetRoleAsAdminShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

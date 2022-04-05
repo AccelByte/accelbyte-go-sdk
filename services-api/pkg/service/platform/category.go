@@ -27,6 +27,7 @@ func (c *CategoryService) GetRootCategories(input *category.GetRootCategoriesPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -52,6 +53,7 @@ func (c *CategoryService) CreateCategory(input *category.CreateCategoryParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -65,6 +67,7 @@ func (c *CategoryService) ListCategoriesBasic(input *category.ListCategoriesBasi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -81,6 +84,7 @@ func (c *CategoryService) GetCategory(input *category.GetCategoryParams) (*platf
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -106,6 +110,7 @@ func (c *CategoryService) UpdateCategory(input *category.UpdateCategoryParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -125,6 +130,7 @@ func (c *CategoryService) DeleteCategory(input *category.DeleteCategoryParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -138,6 +144,7 @@ func (c *CategoryService) GetChildCategories(input *category.GetChildCategoriesP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -151,6 +158,7 @@ func (c *CategoryService) GetDescendantCategories(input *category.GetDescendantC
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -160,6 +168,7 @@ func (c *CategoryService) PublicGetRootCategories(input *category.PublicGetRootC
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -172,6 +181,7 @@ func (c *CategoryService) DownloadCategories(input *category.DownloadCategoriesP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -184,6 +194,7 @@ func (c *CategoryService) PublicGetCategory(input *category.PublicGetCategoryPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -193,6 +204,7 @@ func (c *CategoryService) PublicGetChildCategories(input *category.PublicGetChil
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -202,6 +214,7 @@ func (c *CategoryService) PublicGetDescendantCategories(input *category.PublicGe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -214,6 +227,7 @@ func (c *CategoryService) GetRootCategoriesShort(input *category.GetRootCategori
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -226,6 +240,7 @@ func (c *CategoryService) CreateCategoryShort(input *category.CreateCategoryPara
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -238,6 +253,7 @@ func (c *CategoryService) ListCategoriesBasicShort(input *category.ListCategorie
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -250,6 +266,7 @@ func (c *CategoryService) GetCategoryShort(input *category.GetCategoryParams) (*
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -262,6 +279,7 @@ func (c *CategoryService) UpdateCategoryShort(input *category.UpdateCategoryPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -274,6 +292,7 @@ func (c *CategoryService) DeleteCategoryShort(input *category.DeleteCategoryPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -286,6 +305,7 @@ func (c *CategoryService) GetChildCategoriesShort(input *category.GetChildCatego
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -298,6 +318,7 @@ func (c *CategoryService) GetDescendantCategoriesShort(input *category.GetDescen
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -306,6 +327,7 @@ func (c *CategoryService) PublicGetRootCategoriesShort(input *category.PublicGet
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -314,6 +336,7 @@ func (c *CategoryService) DownloadCategoriesShort(input *category.DownloadCatego
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -322,6 +345,7 @@ func (c *CategoryService) PublicGetCategoryShort(input *category.PublicGetCatego
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -330,6 +354,7 @@ func (c *CategoryService) PublicGetChildCategoriesShort(input *category.PublicGe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -338,5 +363,6 @@ func (c *CategoryService) PublicGetDescendantCategoriesShort(input *category.Pub
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

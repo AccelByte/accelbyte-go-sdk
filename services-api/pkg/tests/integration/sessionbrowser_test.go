@@ -66,42 +66,42 @@ func TestIntegrationSession(t *testing.T) {
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
 	}
-	sessionBrowserId := *created.SessionID
-	t.Logf("SessionId: %v created", sessionBrowserId)
+	sessionBrowserID := *created.SessionID
+	t.Logf("SessionID: %v created", sessionBrowserID)
 
 	// Getting a session
 	inputGet := &session.GetSessionParams{
 		Namespace: integration.NamespaceTest,
-		SessionID: sessionBrowserId,
+		SessionID: sessionBrowserID,
 	}
 	get, errGet := sessionService.GetSessionShort(inputGet)
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
 	}
-	t.Logf("SessionId: %v get from namespace: %v", *get.SessionID, *get.Namespace)
+	t.Logf("SessionID: %v get from namespace: %v", *get.SessionID, *get.Namespace)
 
 	// Updating a session
 	inputUpdate := &session.UpdateSessionParams{
 		Body:      bodySessionUpdate,
 		Namespace: integration.NamespaceTest,
-		SessionID: sessionBrowserId,
+		SessionID: sessionBrowserID,
 	}
 	updated, errUpdate := sessionService.UpdateSessionShort(inputUpdate)
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
 	}
-	t.Logf("SessionId: %v updated", *updated.SessionID)
+	t.Logf("SessionID: %v updated", *updated.SessionID)
 
 	// Deleting a session
 	inputDelete := &session.DeleteSessionParams{
 		Namespace: integration.NamespaceTest,
-		SessionID: sessionBrowserId,
+		SessionID: sessionBrowserID,
 	}
 	deleted, errDelete := sessionService.DeleteSessionShort(inputDelete)
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())
 	}
-	t.Logf("SessionId: %v deleted", *deleted.SessionID)
+	t.Logf("SessionID: %v deleted", *deleted.SessionID)
 
 	assert.Nil(t, errCreate, "err should be nil")
 	assert.NotNil(t, created, "response should not be nil")

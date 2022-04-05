@@ -50,42 +50,42 @@ func TestIntegrationStore(t *testing.T) {
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
 	}
-	storeId := *created.StoreID
-	t.Logf("Store: %v created", storeId)
+	storeID := *created.StoreID
+	t.Logf("Store: %v created", storeID)
 
 	// Getting a single store
 	inputGet := &store.GetStoreParams{
 		Namespace: integration.NamespaceTest,
-		StoreID:   storeId,
+		StoreID:   storeID,
 	}
 	get, errGet := storeService.GetStoreShort(inputGet)
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
 	}
-	t.Logf("Store: %v get", storeId)
+	t.Logf("Store: %v get", storeID)
 
 	// Updating a store
 	inputUpdate := &store.UpdateStoreParams{
 		Body:      bodyStoreUpdate,
 		Namespace: integration.NamespaceTest,
-		StoreID:   storeId,
+		StoreID:   storeID,
 	}
 	updated, errUpdate := storeService.UpdateStoreShort(inputUpdate)
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
 	}
-	t.Logf("Store: %v updated", storeId)
+	t.Logf("Store: %v updated", storeID)
 
 	// Deleting a store
 	inputDelete := &store.DeleteStoreParams{
 		Namespace: integration.NamespaceTest,
-		StoreID:   storeId,
+		StoreID:   storeID,
 	}
 	deleted, errDelete := storeService.DeleteStoreShort(inputDelete)
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())
 	}
-	t.Logf("Store: %v deleted", storeId)
+	t.Logf("Store: %v deleted", storeID)
 
 	assert.Nil(t, errCreate, "err should be nil")
 	assert.NotNil(t, created, "response should not be nil")

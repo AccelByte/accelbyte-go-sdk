@@ -30,8 +30,10 @@ var SetDefaultPolicyCmd = &cobra.Command{
 		errInput := localizedPolicyVersionsService.SetDefaultPolicyShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

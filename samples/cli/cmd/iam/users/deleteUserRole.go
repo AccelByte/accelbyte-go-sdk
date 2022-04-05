@@ -34,8 +34,10 @@ var DeleteUserRoleCmd = &cobra.Command{
 		errInput := usersService.DeleteUserRoleShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

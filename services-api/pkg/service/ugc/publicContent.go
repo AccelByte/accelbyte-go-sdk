@@ -36,6 +36,7 @@ func (p *PublicContentService) SearchChannelSpecificContent(input *public_conten
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -58,6 +59,7 @@ func (p *PublicContentService) PublicSearchContent(input *public_content.PublicS
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -80,6 +82,7 @@ func (p *PublicContentService) DownloadContentByShareCode(input *public_content.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -102,6 +105,7 @@ func (p *PublicContentService) PublicDownloadContentByContentID(input *public_co
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -124,6 +128,7 @@ func (p *PublicContentService) PublicDownloadContentPreview(input *public_conten
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -146,6 +151,7 @@ func (p *PublicContentService) CreateContentDirect(input *public_content.CreateC
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -168,6 +174,7 @@ func (p *PublicContentService) CreateContentS3(input *public_content.CreateConte
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -193,6 +200,7 @@ func (p *PublicContentService) UpdateContentS3(input *public_content.UpdateConte
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -218,6 +226,7 @@ func (p *PublicContentService) UpdateContentDirect(input *public_content.UpdateC
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -240,6 +249,7 @@ func (p *PublicContentService) DeleteContent(input *public_content.DeleteContent
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -262,6 +272,7 @@ func (p *PublicContentService) PublicGetUserContent(input *public_content.Public
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -287,6 +298,7 @@ func (p *PublicContentService) UpdateScreenshots(input *public_content.UpdateScr
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -309,6 +321,7 @@ func (p *PublicContentService) UploadContentScreenshot(input *public_content.Upl
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -334,6 +347,7 @@ func (p *PublicContentService) DeleteContentScreenshot(input *public_content.Del
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -346,6 +360,7 @@ func (p *PublicContentService) SearchChannelSpecificContentShort(input *public_c
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -358,6 +373,7 @@ func (p *PublicContentService) PublicSearchContentShort(input *public_content.Pu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -370,6 +386,7 @@ func (p *PublicContentService) DownloadContentByShareCodeShort(input *public_con
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -382,6 +399,7 @@ func (p *PublicContentService) PublicDownloadContentByContentIDShort(input *publ
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -394,6 +412,7 @@ func (p *PublicContentService) PublicDownloadContentPreviewShort(input *public_c
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -406,6 +425,7 @@ func (p *PublicContentService) CreateContentDirectShort(input *public_content.Cr
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -418,6 +438,7 @@ func (p *PublicContentService) CreateContentS3Short(input *public_content.Create
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -430,6 +451,7 @@ func (p *PublicContentService) UpdateContentS3Short(input *public_content.Update
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -442,6 +464,7 @@ func (p *PublicContentService) UpdateContentDirectShort(input *public_content.Up
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -454,6 +477,7 @@ func (p *PublicContentService) DeleteContentShort(input *public_content.DeleteCo
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -466,6 +490,7 @@ func (p *PublicContentService) PublicGetUserContentShort(input *public_content.P
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -478,6 +503,7 @@ func (p *PublicContentService) UpdateScreenshotsShort(input *public_content.Upda
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -490,6 +516,7 @@ func (p *PublicContentService) UploadContentScreenshotShort(input *public_conten
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -502,5 +529,6 @@ func (p *PublicContentService) DeleteContentScreenshotShort(input *public_conten
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

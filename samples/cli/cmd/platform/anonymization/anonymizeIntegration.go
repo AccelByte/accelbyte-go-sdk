@@ -32,8 +32,10 @@ var AnonymizeIntegrationCmd = &cobra.Command{
 		errInput := anonymizationService.AnonymizeIntegrationShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

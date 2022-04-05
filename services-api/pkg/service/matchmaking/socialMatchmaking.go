@@ -42,6 +42,7 @@ func (s *SocialMatchmakingService) UpdatePlayTimeWeight(input *social_matchmakin
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -54,5 +55,6 @@ func (s *SocialMatchmakingService) UpdatePlayTimeWeightShort(input *social_match
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

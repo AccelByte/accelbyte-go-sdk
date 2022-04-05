@@ -34,8 +34,10 @@ var AdminDeleteContentScreenshotCmd = &cobra.Command{
 		errInput := adminContentService.AdminDeleteContentScreenshotShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

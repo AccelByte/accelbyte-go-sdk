@@ -27,6 +27,7 @@ func (g *GlobalStatisticService) GetGlobalStatItems(input *global_statistic.GetG
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -39,5 +40,6 @@ func (g *GlobalStatisticService) GetGlobalStatItemsShort(input *global_statistic
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

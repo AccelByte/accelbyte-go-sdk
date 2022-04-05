@@ -32,8 +32,10 @@ var AnonymizeOrderCmd = &cobra.Command{
 		errInput := anonymizationService.AnonymizeOrderShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

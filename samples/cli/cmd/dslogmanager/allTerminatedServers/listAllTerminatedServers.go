@@ -56,10 +56,12 @@ var ListAllTerminatedServersCmd = &cobra.Command{
 		ok, err := allTerminatedServersService.ListAllTerminatedServersShort(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

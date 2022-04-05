@@ -32,8 +32,10 @@ var AdminCancelUserAccountDeletionRequestCmd = &cobra.Command{
 		errInput := dataDeletionService.AdminCancelUserAccountDeletionRequestShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

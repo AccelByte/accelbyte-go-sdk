@@ -1,15 +1,18 @@
 // Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
+
 package repository
 
 import (
 	"encoding/json"
 	"errors"
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
-	"github.com/sirupsen/logrus"
 	"io/ioutil"
 	"os"
+
+	"github.com/sirupsen/logrus"
+
+	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 )
 
 type TokenRepositoryImpl struct {
@@ -31,25 +34,30 @@ func (tokenRepository *TokenRepositoryImpl) Store(accessToken iamclientmodels.Oa
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
 func (tokenRepository *TokenRepositoryImpl) GetToken() (*iamclientmodels.OauthmodelTokenResponseV3, error) {
 	if _, err := os.Stat(os.TempDir() + "/justice-sample-apps/userData"); os.IsNotExist(err) {
 		logrus.Error(err)
+
 		return nil, errors.New("please do login")
 	}
 	content, err := ioutil.ReadFile(os.TempDir() + "/justice-sample-apps/userData")
 	if err != nil {
 		logrus.Error(err)
+
 		return nil, errors.New("please do login")
 	}
 	var token iamclientmodels.OauthmodelTokenResponseV3
 	err = json.Unmarshal(content, &token)
 	if err != nil {
 		logrus.Error(err)
+
 		return nil, errors.New("please do login")
 	}
+
 	return &token, nil
 }
 
@@ -57,7 +65,9 @@ func (tokenRepository *TokenRepositoryImpl) RemoveToken() error {
 	err := os.Remove(os.TempDir() + "/justice-sample-apps/userData")
 	if err != nil {
 		logrus.Error("Cannot delete user data")
+
 		return err
 	}
+
 	return nil
 }

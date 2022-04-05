@@ -32,8 +32,10 @@ var AdminVerifyUserWithoutVerificationCodeV3Cmd = &cobra.Command{
 		errInput := usersService.AdminVerifyUserWithoutVerificationCodeV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

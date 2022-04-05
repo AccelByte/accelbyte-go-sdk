@@ -5,13 +5,15 @@
 package channelList
 
 import (
-	"aws-lambda/pkg/constants"
-	"aws-lambda/pkg/title-matchmaking/models"
 	"context"
 	"fmt"
-	"github.com/go-redis/redis/v8"
 	"log"
 	"time"
+
+	"github.com/go-redis/redis/v8"
+
+	"aws-lambda/pkg/constants"
+	"aws-lambda/pkg/title-matchmaking/models"
 )
 
 // Channel implements ChannelList DAO interface
@@ -48,6 +50,7 @@ func (dao *Channel) saveChannelListToRedis(channel models.Channel) error {
 	res := dao.redisClient.SAdd(ctx, constants.ChannelListKey, channel.Slug)
 	if res.Err() != nil && res.Err() != redis.Nil {
 		log.Printf("failed to save to session. Error: %s", res.Err().Error())
+
 		return res.Err()
 	}
 

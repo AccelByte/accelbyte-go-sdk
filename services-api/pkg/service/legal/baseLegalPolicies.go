@@ -27,6 +27,7 @@ func (b *BaseLegalPoliciesService) RetrieveAllLegalPolicies(input *base_legal_po
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -46,6 +47,7 @@ func (b *BaseLegalPoliciesService) CreatePolicy(input *base_legal_policies.Creat
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -62,6 +64,7 @@ func (b *BaseLegalPoliciesService) RetrieveSinglePolicy(input *base_legal_polici
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -78,6 +81,7 @@ func (b *BaseLegalPoliciesService) PartialUpdatePolicy(input *base_legal_policie
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -94,6 +98,7 @@ func (b *BaseLegalPoliciesService) RetrievePolicyCountry(input *base_legal_polic
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -107,6 +112,7 @@ func (b *BaseLegalPoliciesService) RetrieveAllPolicyTypes(input *base_legal_poli
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -119,6 +125,7 @@ func (b *BaseLegalPoliciesService) RetrieveAllLegalPoliciesShort(input *base_leg
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -131,6 +138,7 @@ func (b *BaseLegalPoliciesService) CreatePolicyShort(input *base_legal_policies.
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -143,6 +151,7 @@ func (b *BaseLegalPoliciesService) RetrieveSinglePolicyShort(input *base_legal_p
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -155,6 +164,7 @@ func (b *BaseLegalPoliciesService) PartialUpdatePolicyShort(input *base_legal_po
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -167,6 +177,7 @@ func (b *BaseLegalPoliciesService) RetrievePolicyCountryShort(input *base_legal_
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -179,5 +190,6 @@ func (b *BaseLegalPoliciesService) RetrieveAllPolicyTypesShort(input *base_legal
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

@@ -36,6 +36,7 @@ func (a *AdminTagService) AdminGetTag(input *admin_tag.AdminGetTagParams) (*ugcc
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -61,6 +62,7 @@ func (a *AdminTagService) AdminCreateTag(input *admin_tag.AdminCreateTagParams) 
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -89,6 +91,7 @@ func (a *AdminTagService) AdminUpdateTag(input *admin_tag.AdminUpdateTagParams) 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -111,6 +114,7 @@ func (a *AdminTagService) AdminDeleteTag(input *admin_tag.AdminDeleteTagParams) 
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -123,6 +127,7 @@ func (a *AdminTagService) AdminGetTagShort(input *admin_tag.AdminGetTagParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -135,6 +140,7 @@ func (a *AdminTagService) AdminCreateTagShort(input *admin_tag.AdminCreateTagPar
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -147,6 +153,7 @@ func (a *AdminTagService) AdminUpdateTagShort(input *admin_tag.AdminUpdateTagPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -159,5 +166,6 @@ func (a *AdminTagService) AdminDeleteTagShort(input *admin_tag.AdminDeleteTagPar
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

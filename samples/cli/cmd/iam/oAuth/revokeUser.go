@@ -32,8 +32,10 @@ var RevokeUserCmd = &cobra.Command{
 		errInput := oAuthService.RevokeUserShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

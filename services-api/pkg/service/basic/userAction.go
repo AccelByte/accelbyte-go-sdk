@@ -36,6 +36,7 @@ func (u *UserActionService) GetActions(input *user_action.GetActionsParams) ([]*
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -58,6 +59,7 @@ func (u *UserActionService) BanUsers(input *user_action.BanUsersParams) (*basicc
 	if err != nil {
 		return nil, err
 	}
+
 	return badRequest.GetPayload(), nil
 }
 
@@ -83,6 +85,7 @@ func (u *UserActionService) GetBannedUsers(input *user_action.GetBannedUsersPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -96,6 +99,7 @@ func (u *UserActionService) ReportUser(input *user_action.ReportUserParams) (*ba
 	if err != nil {
 		return nil, err
 	}
+
 	return unprocessableEntity.GetPayload(), nil
 }
 
@@ -121,6 +125,7 @@ func (u *UserActionService) GetUserStatus(input *user_action.GetUserStatusParams
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -143,6 +148,7 @@ func (u *UserActionService) UnBanUsers(input *user_action.UnBanUsersParams) (*ba
 	if err != nil {
 		return nil, err
 	}
+
 	return badRequest.GetPayload(), nil
 }
 
@@ -159,6 +165,7 @@ func (u *UserActionService) PublicReportUser(input *user_action.PublicReportUser
 	if err != nil {
 		return nil, err
 	}
+
 	return badRequest.GetPayload(), nil
 }
 
@@ -171,6 +178,7 @@ func (u *UserActionService) GetActionsShort(input *user_action.GetActionsParams)
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -183,6 +191,7 @@ func (u *UserActionService) BanUsersShort(input *user_action.BanUsersParams) (*b
 	if err != nil {
 		return nil, err
 	}
+
 	return badRequest.GetPayload(), nil
 }
 
@@ -195,6 +204,7 @@ func (u *UserActionService) GetBannedUsersShort(input *user_action.GetBannedUser
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -207,6 +217,7 @@ func (u *UserActionService) ReportUserShort(input *user_action.ReportUserParams)
 	if err != nil {
 		return nil, err
 	}
+
 	return unprocessableEntity.GetPayload(), nil
 }
 
@@ -219,6 +230,7 @@ func (u *UserActionService) GetUserStatusShort(input *user_action.GetUserStatusP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -231,6 +243,7 @@ func (u *UserActionService) UnBanUsersShort(input *user_action.UnBanUsersParams)
 	if err != nil {
 		return nil, err
 	}
+
 	return badRequest.GetPayload(), nil
 }
 
@@ -243,5 +256,6 @@ func (u *UserActionService) PublicReportUserShort(input *user_action.PublicRepor
 	if err != nil {
 		return nil, err
 	}
+
 	return badRequest.GetPayload(), nil
 }

@@ -5,14 +5,15 @@
 package imageConfig
 
 import (
+	"net/http"
+	"os"
+
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/image_config"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-	"net/http"
-	"os"
 )
 
 // ImportImagesCmd represents the ImportImages command
@@ -43,10 +44,12 @@ var ImportImagesCmd = &cobra.Command{
 		ok, err := imageConfigService.ImportImagesShort(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

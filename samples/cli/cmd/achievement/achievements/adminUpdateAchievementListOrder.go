@@ -6,6 +6,7 @@ package achievements
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclient/achievements"
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -41,8 +42,10 @@ var AdminUpdateAchievementListOrderCmd = &cobra.Command{
 		errInput := achievementsService.AdminUpdateAchievementListOrderShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

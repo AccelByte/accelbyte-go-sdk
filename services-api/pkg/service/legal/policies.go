@@ -27,6 +27,7 @@ func (p *PoliciesService) RetrievePolicies(input *policies.RetrievePoliciesParam
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -40,6 +41,7 @@ func (p *PoliciesService) UpdatePolicy(input *policies.UpdatePolicyParams) error
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -53,6 +55,7 @@ func (p *PoliciesService) SetDefaultPolicy1(input *policies.SetDefaultPolicy1Par
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -62,6 +65,7 @@ func (p *PoliciesService) RetrieveLatestPolicies(input *policies.RetrieveLatestP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -78,6 +82,7 @@ func (p *PoliciesService) RetrieveLatestPoliciesPublic(input *policies.RetrieveL
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -87,6 +92,7 @@ func (p *PoliciesService) RetrieveLatestPoliciesByNamespaceAndCountryPublic(inpu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -99,6 +105,7 @@ func (p *PoliciesService) RetrievePoliciesShort(input *policies.RetrievePolicies
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -111,6 +118,7 @@ func (p *PoliciesService) UpdatePolicyShort(input *policies.UpdatePolicyParams) 
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -123,6 +131,7 @@ func (p *PoliciesService) SetDefaultPolicy1Short(input *policies.SetDefaultPolic
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -131,6 +140,7 @@ func (p *PoliciesService) RetrieveLatestPoliciesShort(input *policies.RetrieveLa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -143,6 +153,7 @@ func (p *PoliciesService) RetrieveLatestPoliciesPublicShort(input *policies.Retr
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -151,5 +162,6 @@ func (p *PoliciesService) RetrieveLatestPoliciesByNamespaceAndCountryPublicShort
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

@@ -42,6 +42,7 @@ func (p *ProfanityService) AdminDebugProfanityFilters(input *profanity.AdminDebu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -70,6 +71,7 @@ func (p *ProfanityService) AdminGetProfanityListFiltersV1(input *profanity.Admin
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -98,6 +100,7 @@ func (p *ProfanityService) AdminAddProfanityFilterIntoList(input *profanity.Admi
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -126,6 +129,7 @@ func (p *ProfanityService) AdminAddProfanityFilters(input *profanity.AdminAddPro
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -154,6 +158,7 @@ func (p *ProfanityService) AdminImportProfanityFiltersFromFile(input *profanity.
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -182,6 +187,7 @@ func (p *ProfanityService) AdminDeleteProfanityFilter(input *profanity.AdminDele
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -210,6 +216,7 @@ func (p *ProfanityService) AdminGetProfanityLists(input *profanity.AdminGetProfa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -238,6 +245,7 @@ func (p *ProfanityService) AdminCreateProfanityList(input *profanity.AdminCreate
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -266,6 +274,7 @@ func (p *ProfanityService) AdminUpdateProfanityList(input *profanity.AdminUpdate
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -294,6 +303,7 @@ func (p *ProfanityService) AdminDeleteProfanityList(input *profanity.AdminDelete
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -322,6 +332,7 @@ func (p *ProfanityService) AdminGetProfanityRule(input *profanity.AdminGetProfan
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -350,6 +361,7 @@ func (p *ProfanityService) AdminSetProfanityRuleForNamespace(input *profanity.Ad
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -378,6 +390,7 @@ func (p *ProfanityService) AdminVerifyMessageProfanityResponse(input *profanity.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -390,6 +403,7 @@ func (p *ProfanityService) AdminDebugProfanityFiltersShort(input *profanity.Admi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -402,6 +416,7 @@ func (p *ProfanityService) AdminGetProfanityListFiltersV1Short(input *profanity.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -414,6 +429,7 @@ func (p *ProfanityService) AdminAddProfanityFilterIntoListShort(input *profanity
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -426,6 +442,7 @@ func (p *ProfanityService) AdminAddProfanityFiltersShort(input *profanity.AdminA
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -438,6 +455,7 @@ func (p *ProfanityService) AdminImportProfanityFiltersFromFileShort(input *profa
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -450,6 +468,7 @@ func (p *ProfanityService) AdminDeleteProfanityFilterShort(input *profanity.Admi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -462,6 +481,7 @@ func (p *ProfanityService) AdminGetProfanityListsShort(input *profanity.AdminGet
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -474,6 +494,7 @@ func (p *ProfanityService) AdminCreateProfanityListShort(input *profanity.AdminC
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -486,6 +507,7 @@ func (p *ProfanityService) AdminUpdateProfanityListShort(input *profanity.AdminU
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -498,6 +520,7 @@ func (p *ProfanityService) AdminDeleteProfanityListShort(input *profanity.AdminD
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -510,6 +533,7 @@ func (p *ProfanityService) AdminGetProfanityRuleShort(input *profanity.AdminGetP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -522,6 +546,7 @@ func (p *ProfanityService) AdminSetProfanityRuleForNamespaceShort(input *profani
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -534,5 +559,6 @@ func (p *ProfanityService) AdminVerifyMessageProfanityResponseShort(input *profa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

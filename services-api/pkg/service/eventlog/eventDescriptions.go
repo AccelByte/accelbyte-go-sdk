@@ -27,6 +27,7 @@ func (e *EventDescriptionsService) AgentTypeDescriptionHandler(input *event_desc
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -46,6 +47,7 @@ func (e *EventDescriptionsService) SpecificAgentTypeDescriptionHandler(input *ev
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -59,6 +61,7 @@ func (e *EventDescriptionsService) EventIDDescriptionHandler(input *event_descri
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -78,6 +81,7 @@ func (e *EventDescriptionsService) SpecificEventIDDescriptionHandler(input *even
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -91,6 +95,7 @@ func (e *EventDescriptionsService) EventLevelDescriptionHandler(input *event_des
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -110,6 +115,7 @@ func (e *EventDescriptionsService) SpecificEventLevelDescriptionHandler(input *e
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -123,6 +129,7 @@ func (e *EventDescriptionsService) EventTypeDescriptionHandler(input *event_desc
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -142,6 +149,7 @@ func (e *EventDescriptionsService) SpecificEventTypeDescriptionHandler(input *ev
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -155,6 +163,7 @@ func (e *EventDescriptionsService) UXNameDescriptionHandler(input *event_descrip
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -174,6 +183,7 @@ func (e *EventDescriptionsService) SpecificUXDescriptionHandler(input *event_des
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -186,6 +196,7 @@ func (e *EventDescriptionsService) AgentTypeDescriptionHandlerShort(input *event
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -198,6 +209,7 @@ func (e *EventDescriptionsService) SpecificAgentTypeDescriptionHandlerShort(inpu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -210,6 +222,7 @@ func (e *EventDescriptionsService) EventIDDescriptionHandlerShort(input *event_d
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -222,6 +235,7 @@ func (e *EventDescriptionsService) SpecificEventIDDescriptionHandlerShort(input 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -234,6 +248,7 @@ func (e *EventDescriptionsService) EventLevelDescriptionHandlerShort(input *even
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -246,6 +261,7 @@ func (e *EventDescriptionsService) SpecificEventLevelDescriptionHandlerShort(inp
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -258,6 +274,7 @@ func (e *EventDescriptionsService) EventTypeDescriptionHandlerShort(input *event
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -270,6 +287,7 @@ func (e *EventDescriptionsService) SpecificEventTypeDescriptionHandlerShort(inpu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -282,6 +300,7 @@ func (e *EventDescriptionsService) UXNameDescriptionHandlerShort(input *event_de
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -294,5 +313,6 @@ func (e *EventDescriptionsService) SpecificUXDescriptionHandlerShort(input *even
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

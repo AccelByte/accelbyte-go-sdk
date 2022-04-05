@@ -13,9 +13,9 @@ import "fmt"
 // - latencies: string of JSON map of {"region name string": latency int} containing pairs of region name and latency in ms
 type MatchmakingTicket struct {
 	Channel         string                 `json:"channel,omitempty"`
-	PartyID         string        `json:"party_id"`
-	PartyMembers    []PartyMember `json:"party_members"`
-	Priority        int           `json:"priority"`
+	PartyID         string                 `json:"party_id"`
+	PartyMembers    []PartyMember          `json:"party_members"`
+	Priority        int                    `json:"priority"`
 	PartyAttributes map[string]interface{} `json:"party_attributes"`
 }
 

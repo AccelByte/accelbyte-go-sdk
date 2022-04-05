@@ -33,6 +33,7 @@ func (r *RolesService) GetRoles(input *roles.GetRolesParams) ([]*iamclientmodels
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -55,6 +56,7 @@ func (r *RolesService) CreateRole(input *roles.CreateRoleParams) (*iamclientmode
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -77,6 +79,7 @@ func (r *RolesService) GetRole(input *roles.GetRoleParams) (*iamclientmodels.Mod
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -102,6 +105,7 @@ func (r *RolesService) UpdateRole(input *roles.UpdateRoleParams) (*iamclientmode
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -124,6 +128,7 @@ func (r *RolesService) DeleteRole(input *roles.DeleteRoleParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -149,6 +154,7 @@ func (r *RolesService) GetRoleAdminStatus(input *roles.GetRoleAdminStatusParams)
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -174,6 +180,7 @@ func (r *RolesService) SetRoleAsAdmin(input *roles.SetRoleAsAdminParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -199,6 +206,7 @@ func (r *RolesService) RemoveRoleAdmin(input *roles.RemoveRoleAdminParams) error
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -224,6 +232,7 @@ func (r *RolesService) GetRoleManagers(input *roles.GetRoleManagersParams) (*iam
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -249,6 +258,7 @@ func (r *RolesService) AddRoleManagers(input *roles.AddRoleManagersParams) error
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -274,6 +284,7 @@ func (r *RolesService) RemoveRoleManagers(input *roles.RemoveRoleManagersParams)
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -299,6 +310,7 @@ func (r *RolesService) GetRoleMembers(input *roles.GetRoleMembersParams) (*iamcl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -324,6 +336,7 @@ func (r *RolesService) AddRoleMembers(input *roles.AddRoleMembersParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -349,6 +362,7 @@ func (r *RolesService) RemoveRoleMembers(input *roles.RemoveRoleMembersParams) e
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -374,6 +388,7 @@ func (r *RolesService) UpdateRolePermissions(input *roles.UpdateRolePermissionsP
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -399,6 +414,7 @@ func (r *RolesService) AddRolePermission(input *roles.AddRolePermissionParams) e
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -424,6 +440,7 @@ func (r *RolesService) DeleteRolePermission(input *roles.DeleteRolePermissionPar
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -446,6 +463,7 @@ func (r *RolesService) AdminGetRolesV3(input *roles.AdminGetRolesV3Params) (*iam
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -468,6 +486,7 @@ func (r *RolesService) AdminCreateRoleV3(input *roles.AdminCreateRoleV3Params) (
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -493,6 +512,7 @@ func (r *RolesService) AdminGetRoleV3(input *roles.AdminGetRoleV3Params) (*iamcl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -524,6 +544,7 @@ func (r *RolesService) AdminDeleteRoleV3(input *roles.AdminDeleteRoleV3Params) e
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -549,6 +570,7 @@ func (r *RolesService) AdminUpdateRoleV3(input *roles.AdminUpdateRoleV3Params) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -574,6 +596,7 @@ func (r *RolesService) AdminGetRoleAdminStatusV3(input *roles.AdminGetRoleAdminS
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -602,6 +625,7 @@ func (r *RolesService) AdminUpdateAdminRoleStatusV3(input *roles.AdminUpdateAdmi
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -630,6 +654,7 @@ func (r *RolesService) AdminRemoveRoleAdminV3(input *roles.AdminRemoveRoleAdminV
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -655,6 +680,7 @@ func (r *RolesService) AdminGetRoleManagersV3(input *roles.AdminGetRoleManagersV
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -683,6 +709,7 @@ func (r *RolesService) AdminAddRoleManagersV3(input *roles.AdminAddRoleManagersV
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -708,6 +735,7 @@ func (r *RolesService) AdminRemoveRoleManagersV3(input *roles.AdminRemoveRoleMan
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -733,6 +761,7 @@ func (r *RolesService) AdminGetRoleMembersV3(input *roles.AdminGetRoleMembersV3P
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -761,6 +790,7 @@ func (r *RolesService) AdminAddRoleMembersV3(input *roles.AdminAddRoleMembersV3P
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -786,6 +816,7 @@ func (r *RolesService) AdminRemoveRoleMembersV3(input *roles.AdminRemoveRoleMemb
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -811,6 +842,7 @@ func (r *RolesService) AdminUpdateRolePermissionsV3(input *roles.AdminUpdateRole
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -836,6 +868,7 @@ func (r *RolesService) AdminAddRolePermissionsV3(input *roles.AdminAddRolePermis
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -858,6 +891,7 @@ func (r *RolesService) AdminDeleteRolePermissionsV3(input *roles.AdminDeleteRole
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -886,6 +920,7 @@ func (r *RolesService) AdminDeleteRolePermissionV3(input *roles.AdminDeleteRoleP
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -902,6 +937,7 @@ func (r *RolesService) PublicGetRolesV3(input *roles.PublicGetRolesV3Params) (*i
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -921,6 +957,7 @@ func (r *RolesService) PublicGetRoleV3(input *roles.PublicGetRoleV3Params) (*iam
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -943,6 +980,7 @@ func (r *RolesService) AdminGetRolesV4(input *roles.AdminGetRolesV4Params) (*iam
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -965,6 +1003,7 @@ func (r *RolesService) AdminCreateRoleV4(input *roles.AdminCreateRoleV4Params) (
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -990,6 +1029,7 @@ func (r *RolesService) AdminGetRoleV4(input *roles.AdminGetRoleV4Params) (*iamcl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1018,6 +1058,7 @@ func (r *RolesService) AdminDeleteRoleV4(input *roles.AdminDeleteRoleV4Params) e
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1043,6 +1084,7 @@ func (r *RolesService) AdminUpdateRoleV4(input *roles.AdminUpdateRoleV4Params) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1068,6 +1110,7 @@ func (r *RolesService) AdminUpdateRolePermissionsV4(input *roles.AdminUpdateRole
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1093,6 +1136,7 @@ func (r *RolesService) AdminAddRolePermissionsV4(input *roles.AdminAddRolePermis
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1115,6 +1159,7 @@ func (r *RolesService) AdminDeleteRolePermissionsV4(input *roles.AdminDeleteRole
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1140,6 +1185,7 @@ func (r *RolesService) AdminListAssignedUsersV4(input *roles.AdminListAssignedUs
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1171,6 +1217,7 @@ func (r *RolesService) AdminAssignUserToRoleV4(input *roles.AdminAssignUserToRol
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -1196,6 +1243,7 @@ func (r *RolesService) AdminRevokeUserFromRoleV4(input *roles.AdminRevokeUserFro
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1208,6 +1256,7 @@ func (r *RolesService) GetRolesShort(input *roles.GetRolesParams) ([]*iamclientm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1220,6 +1269,7 @@ func (r *RolesService) CreateRoleShort(input *roles.CreateRoleParams) (*iamclien
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -1232,6 +1282,7 @@ func (r *RolesService) GetRoleShort(input *roles.GetRoleParams) (*iamclientmodel
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1244,6 +1295,7 @@ func (r *RolesService) UpdateRoleShort(input *roles.UpdateRoleParams) (*iamclien
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1256,6 +1308,7 @@ func (r *RolesService) DeleteRoleShort(input *roles.DeleteRoleParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1268,6 +1321,7 @@ func (r *RolesService) GetRoleAdminStatusShort(input *roles.GetRoleAdminStatusPa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1280,6 +1334,7 @@ func (r *RolesService) SetRoleAsAdminShort(input *roles.SetRoleAsAdminParams) er
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1292,6 +1347,7 @@ func (r *RolesService) RemoveRoleAdminShort(input *roles.RemoveRoleAdminParams) 
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1304,6 +1360,7 @@ func (r *RolesService) GetRoleManagersShort(input *roles.GetRoleManagersParams) 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1316,6 +1373,7 @@ func (r *RolesService) AddRoleManagersShort(input *roles.AddRoleManagersParams) 
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1328,6 +1386,7 @@ func (r *RolesService) RemoveRoleManagersShort(input *roles.RemoveRoleManagersPa
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1340,6 +1399,7 @@ func (r *RolesService) GetRoleMembersShort(input *roles.GetRoleMembersParams) (*
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1352,6 +1412,7 @@ func (r *RolesService) AddRoleMembersShort(input *roles.AddRoleMembersParams) er
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1364,6 +1425,7 @@ func (r *RolesService) RemoveRoleMembersShort(input *roles.RemoveRoleMembersPara
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1376,6 +1438,7 @@ func (r *RolesService) UpdateRolePermissionsShort(input *roles.UpdateRolePermiss
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1388,6 +1451,7 @@ func (r *RolesService) AddRolePermissionShort(input *roles.AddRolePermissionPara
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1400,6 +1464,7 @@ func (r *RolesService) DeleteRolePermissionShort(input *roles.DeleteRolePermissi
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1412,6 +1477,7 @@ func (r *RolesService) AdminGetRolesV3Short(input *roles.AdminGetRolesV3Params) 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1424,6 +1490,7 @@ func (r *RolesService) AdminCreateRoleV3Short(input *roles.AdminCreateRoleV3Para
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -1436,6 +1503,7 @@ func (r *RolesService) AdminGetRoleV3Short(input *roles.AdminGetRoleV3Params) (*
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1448,6 +1516,7 @@ func (r *RolesService) AdminDeleteRoleV3Short(input *roles.AdminDeleteRoleV3Para
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1460,6 +1529,7 @@ func (r *RolesService) AdminUpdateRoleV3Short(input *roles.AdminUpdateRoleV3Para
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1472,6 +1542,7 @@ func (r *RolesService) AdminGetRoleAdminStatusV3Short(input *roles.AdminGetRoleA
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1484,6 +1555,7 @@ func (r *RolesService) AdminUpdateAdminRoleStatusV3Short(input *roles.AdminUpdat
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1496,6 +1568,7 @@ func (r *RolesService) AdminRemoveRoleAdminV3Short(input *roles.AdminRemoveRoleA
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1508,6 +1581,7 @@ func (r *RolesService) AdminGetRoleManagersV3Short(input *roles.AdminGetRoleMana
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1520,6 +1594,7 @@ func (r *RolesService) AdminAddRoleManagersV3Short(input *roles.AdminAddRoleMana
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1532,6 +1607,7 @@ func (r *RolesService) AdminRemoveRoleManagersV3Short(input *roles.AdminRemoveRo
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1544,6 +1620,7 @@ func (r *RolesService) AdminGetRoleMembersV3Short(input *roles.AdminGetRoleMembe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1556,6 +1633,7 @@ func (r *RolesService) AdminAddRoleMembersV3Short(input *roles.AdminAddRoleMembe
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1568,6 +1646,7 @@ func (r *RolesService) AdminRemoveRoleMembersV3Short(input *roles.AdminRemoveRol
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1580,6 +1659,7 @@ func (r *RolesService) AdminUpdateRolePermissionsV3Short(input *roles.AdminUpdat
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1592,6 +1672,7 @@ func (r *RolesService) AdminAddRolePermissionsV3Short(input *roles.AdminAddRoleP
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1604,6 +1685,7 @@ func (r *RolesService) AdminDeleteRolePermissionsV3Short(input *roles.AdminDelet
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1616,6 +1698,7 @@ func (r *RolesService) AdminDeleteRolePermissionV3Short(input *roles.AdminDelete
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1628,6 +1711,7 @@ func (r *RolesService) PublicGetRolesV3Short(input *roles.PublicGetRolesV3Params
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1640,6 +1724,7 @@ func (r *RolesService) PublicGetRoleV3Short(input *roles.PublicGetRoleV3Params) 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1652,6 +1737,7 @@ func (r *RolesService) AdminGetRolesV4Short(input *roles.AdminGetRolesV4Params) 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1664,6 +1750,7 @@ func (r *RolesService) AdminCreateRoleV4Short(input *roles.AdminCreateRoleV4Para
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -1676,6 +1763,7 @@ func (r *RolesService) AdminGetRoleV4Short(input *roles.AdminGetRoleV4Params) (*
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1688,6 +1776,7 @@ func (r *RolesService) AdminDeleteRoleV4Short(input *roles.AdminDeleteRoleV4Para
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1700,6 +1789,7 @@ func (r *RolesService) AdminUpdateRoleV4Short(input *roles.AdminUpdateRoleV4Para
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1712,6 +1802,7 @@ func (r *RolesService) AdminUpdateRolePermissionsV4Short(input *roles.AdminUpdat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1724,6 +1815,7 @@ func (r *RolesService) AdminAddRolePermissionsV4Short(input *roles.AdminAddRoleP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1736,6 +1828,7 @@ func (r *RolesService) AdminDeleteRolePermissionsV4Short(input *roles.AdminDelet
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1748,6 +1841,7 @@ func (r *RolesService) AdminListAssignedUsersV4Short(input *roles.AdminListAssig
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1760,6 +1854,7 @@ func (r *RolesService) AdminAssignUserToRoleV4Short(input *roles.AdminAssignUser
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -1772,5 +1867,6 @@ func (r *RolesService) AdminRevokeUserFromRoleV4Short(input *roles.AdminRevokeUs
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

@@ -32,8 +32,10 @@ var AnonymizeFulfillmentCmd = &cobra.Command{
 		errInput := anonymizationService.AnonymizeFulfillmentShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

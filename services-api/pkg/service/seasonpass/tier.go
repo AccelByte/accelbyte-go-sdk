@@ -33,6 +33,7 @@ func (t *TierService) QueryTiers(input *tier.QueryTiersParams) (*seasonpassclien
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -58,6 +59,7 @@ func (t *TierService) CreateTier(input *tier.CreateTierParams) ([]*seasonpasscli
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -83,6 +85,7 @@ func (t *TierService) UpdateTier(input *tier.UpdateTierParams) (*seasonpassclien
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -105,6 +108,7 @@ func (t *TierService) DeleteTier(input *tier.DeleteTierParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -130,6 +134,7 @@ func (t *TierService) ReorderTier(input *tier.ReorderTierParams) (*seasonpasscli
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -146,6 +151,7 @@ func (t *TierService) GrantUserExp(input *tier.GrantUserExpParams) (*seasonpassc
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -165,6 +171,7 @@ func (t *TierService) GrantUserTier(input *tier.GrantUserTierParams) (*seasonpas
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -177,6 +184,7 @@ func (t *TierService) QueryTiersShort(input *tier.QueryTiersParams) (*seasonpass
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -189,6 +197,7 @@ func (t *TierService) CreateTierShort(input *tier.CreateTierParams) ([]*seasonpa
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -201,6 +210,7 @@ func (t *TierService) UpdateTierShort(input *tier.UpdateTierParams) (*seasonpass
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -213,6 +223,7 @@ func (t *TierService) DeleteTierShort(input *tier.DeleteTierParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -225,6 +236,7 @@ func (t *TierService) ReorderTierShort(input *tier.ReorderTierParams) (*seasonpa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -237,6 +249,7 @@ func (t *TierService) GrantUserExpShort(input *tier.GrantUserExpParams) (*season
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -249,5 +262,6 @@ func (t *TierService) GrantUserTierShort(input *tier.GrantUserTierParams) (*seas
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

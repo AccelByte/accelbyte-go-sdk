@@ -33,6 +33,7 @@ func (a *AllTerminatedServersService) BatchDownloadServerLogs(input *all_termina
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -55,6 +56,7 @@ func (a *AllTerminatedServersService) ListAllTerminatedServers(input *all_termin
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -67,6 +69,7 @@ func (a *AllTerminatedServersService) BatchDownloadServerLogsShort(input *all_te
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -79,5 +82,6 @@ func (a *AllTerminatedServersService) ListAllTerminatedServersShort(input *all_t
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

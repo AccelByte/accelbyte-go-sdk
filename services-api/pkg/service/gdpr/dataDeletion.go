@@ -42,6 +42,7 @@ func (d *DataDeletionService) AdminGetListDeletionDataRequest(input *data_deleti
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -67,6 +68,7 @@ func (d *DataDeletionService) AdminGetUserAccountDeletionRequest(input *data_del
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -95,6 +97,7 @@ func (d *DataDeletionService) AdminSubmitUserAccountDeletionRequest(input *data_
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -123,6 +126,7 @@ func (d *DataDeletionService) AdminCancelUserAccountDeletionRequest(input *data_
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -151,6 +155,7 @@ func (d *DataDeletionService) PublicSubmitUserAccountDeletionRequest(input *data
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -176,6 +181,7 @@ func (d *DataDeletionService) PublicCancelUserAccountDeletionRequest(input *data
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -198,6 +204,7 @@ func (d *DataDeletionService) PublicGetUserAccountDeletionStatus(input *data_del
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -210,6 +217,7 @@ func (d *DataDeletionService) AdminGetListDeletionDataRequestShort(input *data_d
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -222,6 +230,7 @@ func (d *DataDeletionService) AdminGetUserAccountDeletionRequestShort(input *dat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -234,6 +243,7 @@ func (d *DataDeletionService) AdminSubmitUserAccountDeletionRequestShort(input *
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -246,6 +256,7 @@ func (d *DataDeletionService) AdminCancelUserAccountDeletionRequestShort(input *
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -258,6 +269,7 @@ func (d *DataDeletionService) PublicSubmitUserAccountDeletionRequestShort(input 
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -270,6 +282,7 @@ func (d *DataDeletionService) PublicCancelUserAccountDeletionRequestShort(input 
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -282,5 +295,6 @@ func (d *DataDeletionService) PublicGetUserAccountDeletionStatusShort(input *dat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

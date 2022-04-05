@@ -27,6 +27,7 @@ func (p *PaymentConfigService) TestAdyenConfig(input *payment_config.TestAdyenCo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -40,6 +41,7 @@ func (p *PaymentConfigService) TestAliPayConfig(input *payment_config.TestAliPay
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -53,6 +55,7 @@ func (p *PaymentConfigService) TestCheckoutConfig(input *payment_config.TestChec
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -69,6 +72,7 @@ func (p *PaymentConfigService) DebugMatchedPaymentMerchantConfig(input *payment_
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -82,6 +86,7 @@ func (p *PaymentConfigService) TestPayPalConfig(input *payment_config.TestPayPal
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -95,6 +100,7 @@ func (p *PaymentConfigService) TestStripeConfig(input *payment_config.TestStripe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -108,6 +114,7 @@ func (p *PaymentConfigService) TestWxPayConfig(input *payment_config.TestWxPayCo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -121,6 +128,7 @@ func (p *PaymentConfigService) TestXsollaConfig(input *payment_config.TestXsolla
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -137,6 +145,7 @@ func (p *PaymentConfigService) GetPaymentMerchantConfig(input *payment_config.Ge
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -153,6 +162,7 @@ func (p *PaymentConfigService) UpdateAdyenConfig(input *payment_config.UpdateAdy
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -169,6 +179,7 @@ func (p *PaymentConfigService) TestAdyenConfigByID(input *payment_config.TestAdy
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -185,6 +196,7 @@ func (p *PaymentConfigService) UpdateAliPayConfig(input *payment_config.UpdateAl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -201,6 +213,7 @@ func (p *PaymentConfigService) TestAliPayConfigByID(input *payment_config.TestAl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -217,6 +230,7 @@ func (p *PaymentConfigService) UpdateCheckoutConfig(input *payment_config.Update
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -233,6 +247,7 @@ func (p *PaymentConfigService) TestCheckoutConfigByID(input *payment_config.Test
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -249,6 +264,7 @@ func (p *PaymentConfigService) UpdatePayPalConfig(input *payment_config.UpdatePa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -265,6 +281,7 @@ func (p *PaymentConfigService) TestPayPalConfigByID(input *payment_config.TestPa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -281,6 +298,7 @@ func (p *PaymentConfigService) UpdateStripeConfig(input *payment_config.UpdateSt
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -297,6 +315,7 @@ func (p *PaymentConfigService) TestStripeConfigByID(input *payment_config.TestSt
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -313,6 +332,7 @@ func (p *PaymentConfigService) UpdateWxPayConfig(input *payment_config.UpdateWxP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -329,6 +349,7 @@ func (p *PaymentConfigService) UpdateWxPayConfigCert(input *payment_config.Updat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -345,6 +366,7 @@ func (p *PaymentConfigService) TestWxPayConfigByID(input *payment_config.TestWxP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -361,6 +383,7 @@ func (p *PaymentConfigService) UpdateXsollaConfig(input *payment_config.UpdateXs
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -377,6 +400,7 @@ func (p *PaymentConfigService) TestXsollaConfigByID(input *payment_config.TestXs
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -393,6 +417,7 @@ func (p *PaymentConfigService) UpdateXsollaUIConfig(input *payment_config.Update
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -406,6 +431,7 @@ func (p *PaymentConfigService) QueryPaymentProviderConfig(input *payment_config.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -428,6 +454,7 @@ func (p *PaymentConfigService) CreatePaymentProviderConfig(input *payment_config
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -441,6 +468,7 @@ func (p *PaymentConfigService) GetAggregatePaymentProviders(input *payment_confi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -457,6 +485,7 @@ func (p *PaymentConfigService) DebugMatchedPaymentProviderConfig(input *payment_
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -470,6 +499,7 @@ func (p *PaymentConfigService) GetSpecialPaymentProviders(input *payment_config.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -495,6 +525,7 @@ func (p *PaymentConfigService) UpdatePaymentProviderConfig(input *payment_config
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -511,6 +542,7 @@ func (p *PaymentConfigService) DeletePaymentProviderConfig(input *payment_config
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -524,6 +556,7 @@ func (p *PaymentConfigService) GetPaymentTaxConfig(input *payment_config.GetPaym
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -543,6 +576,7 @@ func (p *PaymentConfigService) UpdatePaymentTaxConfig(input *payment_config.Upda
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -555,6 +589,7 @@ func (p *PaymentConfigService) TestAdyenConfigShort(input *payment_config.TestAd
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -567,6 +602,7 @@ func (p *PaymentConfigService) TestAliPayConfigShort(input *payment_config.TestA
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -579,6 +615,7 @@ func (p *PaymentConfigService) TestCheckoutConfigShort(input *payment_config.Tes
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -591,6 +628,7 @@ func (p *PaymentConfigService) DebugMatchedPaymentMerchantConfigShort(input *pay
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -603,6 +641,7 @@ func (p *PaymentConfigService) TestPayPalConfigShort(input *payment_config.TestP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -615,6 +654,7 @@ func (p *PaymentConfigService) TestStripeConfigShort(input *payment_config.TestS
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -627,6 +667,7 @@ func (p *PaymentConfigService) TestWxPayConfigShort(input *payment_config.TestWx
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -639,6 +680,7 @@ func (p *PaymentConfigService) TestXsollaConfigShort(input *payment_config.TestX
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -651,6 +693,7 @@ func (p *PaymentConfigService) GetPaymentMerchantConfigShort(input *payment_conf
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -663,6 +706,7 @@ func (p *PaymentConfigService) UpdateAdyenConfigShort(input *payment_config.Upda
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -675,6 +719,7 @@ func (p *PaymentConfigService) TestAdyenConfigByIDShort(input *payment_config.Te
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -687,6 +732,7 @@ func (p *PaymentConfigService) UpdateAliPayConfigShort(input *payment_config.Upd
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -699,6 +745,7 @@ func (p *PaymentConfigService) TestAliPayConfigByIDShort(input *payment_config.T
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -711,6 +758,7 @@ func (p *PaymentConfigService) UpdateCheckoutConfigShort(input *payment_config.U
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -723,6 +771,7 @@ func (p *PaymentConfigService) TestCheckoutConfigByIDShort(input *payment_config
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -735,6 +784,7 @@ func (p *PaymentConfigService) UpdatePayPalConfigShort(input *payment_config.Upd
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -747,6 +797,7 @@ func (p *PaymentConfigService) TestPayPalConfigByIDShort(input *payment_config.T
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -759,6 +810,7 @@ func (p *PaymentConfigService) UpdateStripeConfigShort(input *payment_config.Upd
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -771,6 +823,7 @@ func (p *PaymentConfigService) TestStripeConfigByIDShort(input *payment_config.T
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -783,6 +836,7 @@ func (p *PaymentConfigService) UpdateWxPayConfigShort(input *payment_config.Upda
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -795,6 +849,7 @@ func (p *PaymentConfigService) UpdateWxPayConfigCertShort(input *payment_config.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -807,6 +862,7 @@ func (p *PaymentConfigService) TestWxPayConfigByIDShort(input *payment_config.Te
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -819,6 +875,7 @@ func (p *PaymentConfigService) UpdateXsollaConfigShort(input *payment_config.Upd
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -831,6 +888,7 @@ func (p *PaymentConfigService) TestXsollaConfigByIDShort(input *payment_config.T
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -843,6 +901,7 @@ func (p *PaymentConfigService) UpdateXsollaUIConfigShort(input *payment_config.U
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -855,6 +914,7 @@ func (p *PaymentConfigService) QueryPaymentProviderConfigShort(input *payment_co
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -867,6 +927,7 @@ func (p *PaymentConfigService) CreatePaymentProviderConfigShort(input *payment_c
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -879,6 +940,7 @@ func (p *PaymentConfigService) GetAggregatePaymentProvidersShort(input *payment_
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -891,6 +953,7 @@ func (p *PaymentConfigService) DebugMatchedPaymentProviderConfigShort(input *pay
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -903,6 +966,7 @@ func (p *PaymentConfigService) GetSpecialPaymentProvidersShort(input *payment_co
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -915,6 +979,7 @@ func (p *PaymentConfigService) UpdatePaymentProviderConfigShort(input *payment_c
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -927,6 +992,7 @@ func (p *PaymentConfigService) DeletePaymentProviderConfigShort(input *payment_c
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -939,6 +1005,7 @@ func (p *PaymentConfigService) GetPaymentTaxConfigShort(input *payment_config.Ge
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -951,5 +1018,6 @@ func (p *PaymentConfigService) UpdatePaymentTaxConfigShort(input *payment_config
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

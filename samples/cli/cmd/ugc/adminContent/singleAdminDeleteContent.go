@@ -34,8 +34,10 @@ var SingleAdminDeleteContentCmd = &cobra.Command{
 		errInput := adminContentService.SingleAdminDeleteContentShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

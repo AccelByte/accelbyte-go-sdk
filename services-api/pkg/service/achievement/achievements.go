@@ -39,6 +39,7 @@ func (a *AchievementsService) AdminListAchievements(input *achievements.AdminLis
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -61,6 +62,7 @@ func (a *AchievementsService) AdminCreateNewAchievement(input *achievements.Admi
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -83,6 +85,7 @@ func (a *AchievementsService) ExportAchievements(input *achievements.ExportAchie
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -105,6 +108,7 @@ func (a *AchievementsService) ImportAchievements(input *achievements.ImportAchie
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -130,6 +134,7 @@ func (a *AchievementsService) AdminGetAchievement(input *achievements.AdminGetAc
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -155,6 +160,7 @@ func (a *AchievementsService) AdminUpdateAchievement(input *achievements.AdminUp
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -180,6 +186,7 @@ func (a *AchievementsService) AdminDeleteAchievement(input *achievements.AdminDe
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -205,6 +212,7 @@ func (a *AchievementsService) AdminUpdateAchievementListOrder(input *achievement
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -230,6 +238,7 @@ func (a *AchievementsService) AdminListUserAchievements(input *achievements.Admi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -252,6 +261,7 @@ func (a *AchievementsService) AdminUnlockAchievement(input *achievements.AdminUn
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -277,6 +287,7 @@ func (a *AchievementsService) PublicListAchievements(input *achievements.PublicL
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -302,6 +313,7 @@ func (a *AchievementsService) PublicGetAchievement(input *achievements.PublicGet
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -327,6 +339,7 @@ func (a *AchievementsService) PublicListUserAchievements(input *achievements.Pub
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -349,6 +362,7 @@ func (a *AchievementsService) PublicUnlockAchievement(input *achievements.Public
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -361,6 +375,7 @@ func (a *AchievementsService) AdminListAchievementsShort(input *achievements.Adm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -373,6 +388,7 @@ func (a *AchievementsService) AdminCreateNewAchievementShort(input *achievements
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -385,6 +401,7 @@ func (a *AchievementsService) ExportAchievementsShort(input *achievements.Export
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -397,6 +414,7 @@ func (a *AchievementsService) ImportAchievementsShort(input *achievements.Import
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -409,6 +427,7 @@ func (a *AchievementsService) AdminGetAchievementShort(input *achievements.Admin
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -421,6 +440,7 @@ func (a *AchievementsService) AdminUpdateAchievementShort(input *achievements.Ad
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -433,6 +453,7 @@ func (a *AchievementsService) AdminDeleteAchievementShort(input *achievements.Ad
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -445,6 +466,7 @@ func (a *AchievementsService) AdminUpdateAchievementListOrderShort(input *achiev
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -457,6 +479,7 @@ func (a *AchievementsService) AdminListUserAchievementsShort(input *achievements
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -469,6 +492,7 @@ func (a *AchievementsService) AdminUnlockAchievementShort(input *achievements.Ad
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -481,6 +505,7 @@ func (a *AchievementsService) PublicListAchievementsShort(input *achievements.Pu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -493,6 +518,7 @@ func (a *AchievementsService) PublicGetAchievementShort(input *achievements.Publ
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -505,6 +531,7 @@ func (a *AchievementsService) PublicListUserAchievementsShort(input *achievement
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -517,5 +544,6 @@ func (a *AchievementsService) PublicUnlockAchievementShort(input *achievements.P
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

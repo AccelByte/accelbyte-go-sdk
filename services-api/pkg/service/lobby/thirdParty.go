@@ -39,6 +39,7 @@ func (t *ThirdPartyService) AdminGetThirdPartyConfig(input *third_party.AdminGet
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -64,6 +65,7 @@ func (t *ThirdPartyService) AdminUpdateThirdPartyConfig(input *third_party.Admin
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -89,6 +91,7 @@ func (t *ThirdPartyService) AdminCreateThirdPartyConfig(input *third_party.Admin
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -114,6 +117,7 @@ func (t *ThirdPartyService) AdminDeleteThirdPartyConfig(input *third_party.Admin
 	if err != nil {
 		return "", err
 	}
+
 	return noContent.GetPayload(), nil
 }
 
@@ -126,6 +130,7 @@ func (t *ThirdPartyService) AdminGetThirdPartyConfigShort(input *third_party.Adm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -138,6 +143,7 @@ func (t *ThirdPartyService) AdminUpdateThirdPartyConfigShort(input *third_party.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -150,6 +156,7 @@ func (t *ThirdPartyService) AdminCreateThirdPartyConfigShort(input *third_party.
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -162,5 +169,6 @@ func (t *ThirdPartyService) AdminDeleteThirdPartyConfigShort(input *third_party.
 	if err != nil {
 		return "", err
 	}
+
 	return noContent.GetPayload(), nil
 }

@@ -30,8 +30,10 @@ var AdminUpdateAdminRoleStatusV3Cmd = &cobra.Command{
 		errInput := rolesService.AdminUpdateAdminRoleStatusV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

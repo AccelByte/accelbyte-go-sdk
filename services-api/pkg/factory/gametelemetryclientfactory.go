@@ -1,6 +1,7 @@
 // Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
+
 package factory
 
 import (
@@ -15,17 +16,17 @@ var gametelemetryClientInstance *gametelemetryclient.JusticeGametelemetryService
 
 func NewGametelemetryClient(configRepository repository.ConfigRepository) *gametelemetryclient.JusticeGametelemetryService {
 	if gametelemetryClientInstance == nil {
-		baseUrl := configRepository.GetJusticeBaseUrl()
-		xAmazonTraceId := utils.AmazonTraceIdGen()
+		baseURL := configRepository.GetJusticeBaseUrl()
+		xAmazonTraceID := utils.AmazonTraceIDGen()
 		userAgent := utils.UserAgentGen()
-		if len(baseUrl) > 0 {
-			baseUrlSplit := strings.Split(baseUrl, "://")
+		if len(baseURL) > 0 {
+			baseURLSplit := strings.Split(baseURL, "://")
 			httpClientConfig := &gametelemetryclient.TransportConfig{
-				Host:     baseUrlSplit[1],
+				Host:     baseURLSplit[1],
 				BasePath: "",
-				Schemes:  []string{baseUrlSplit[0]},
+				Schemes:  []string{baseURLSplit[0]},
 			}
-			gametelemetryClientInstance = gametelemetryclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
+			gametelemetryClientInstance = gametelemetryclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceID)
 		} else {
 			gametelemetryClientInstance = gametelemetryclient.NewHTTPClient(nil)
 		}

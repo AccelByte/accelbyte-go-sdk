@@ -35,6 +35,7 @@ func (a *AnonymizationService) AdminDeleteAllUserChannels(input *anonymization.A
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -57,6 +58,7 @@ func (a *AnonymizationService) AdminDeleteAllUserContents(input *anonymization.A
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -79,6 +81,7 @@ func (a *AnonymizationService) AdminDeleteAllUserGroup(input *anonymization.Admi
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -101,6 +104,7 @@ func (a *AnonymizationService) AdminDeleteAllUserStates(input *anonymization.Adm
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -123,6 +127,7 @@ func (a *AnonymizationService) DeleteAllUserChannel(input *anonymization.DeleteA
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -145,6 +150,7 @@ func (a *AnonymizationService) DeleteAllUserContents(input *anonymization.Delete
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -167,6 +173,7 @@ func (a *AnonymizationService) DeleteAllUserGroup(input *anonymization.DeleteAll
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -189,6 +196,7 @@ func (a *AnonymizationService) DeleteAllUserStates(input *anonymization.DeleteAl
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -201,6 +209,7 @@ func (a *AnonymizationService) AdminDeleteAllUserChannelsShort(input *anonymizat
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -213,6 +222,7 @@ func (a *AnonymizationService) AdminDeleteAllUserContentsShort(input *anonymizat
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -225,6 +235,7 @@ func (a *AnonymizationService) AdminDeleteAllUserGroupShort(input *anonymization
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -237,6 +248,7 @@ func (a *AnonymizationService) AdminDeleteAllUserStatesShort(input *anonymizatio
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -249,6 +261,7 @@ func (a *AnonymizationService) DeleteAllUserChannelShort(input *anonymization.De
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -261,6 +274,7 @@ func (a *AnonymizationService) DeleteAllUserContentsShort(input *anonymization.D
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -273,6 +287,7 @@ func (a *AnonymizationService) DeleteAllUserGroupShort(input *anonymization.Dele
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -285,5 +300,6 @@ func (a *AnonymizationService) DeleteAllUserStatesShort(input *anonymization.Del
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

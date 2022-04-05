@@ -27,6 +27,7 @@ func (f *FulfillmentScriptService) ListFulfillmentScripts(input *fulfillment_scr
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -40,6 +41,7 @@ func (f *FulfillmentScriptService) TestFulfillmentScriptEval(input *fulfillment_
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -56,6 +58,7 @@ func (f *FulfillmentScriptService) GetFulfillmentScript(input *fulfillment_scrip
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -72,6 +75,7 @@ func (f *FulfillmentScriptService) CreateFulfillmentScript(input *fulfillment_sc
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -85,6 +89,7 @@ func (f *FulfillmentScriptService) DeleteFulfillmentScript(input *fulfillment_sc
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -101,6 +106,7 @@ func (f *FulfillmentScriptService) UpdateFulfillmentScript(input *fulfillment_sc
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -113,6 +119,7 @@ func (f *FulfillmentScriptService) ListFulfillmentScriptsShort(input *fulfillmen
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -125,6 +132,7 @@ func (f *FulfillmentScriptService) TestFulfillmentScriptEvalShort(input *fulfill
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -137,6 +145,7 @@ func (f *FulfillmentScriptService) GetFulfillmentScriptShort(input *fulfillment_
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -149,6 +158,7 @@ func (f *FulfillmentScriptService) CreateFulfillmentScriptShort(input *fulfillme
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -161,6 +171,7 @@ func (f *FulfillmentScriptService) DeleteFulfillmentScriptShort(input *fulfillme
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -173,5 +184,6 @@ func (f *FulfillmentScriptService) UpdateFulfillmentScriptShort(input *fulfillme
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

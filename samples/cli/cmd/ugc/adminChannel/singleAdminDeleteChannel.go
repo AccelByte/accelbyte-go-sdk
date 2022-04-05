@@ -32,8 +32,10 @@ var SingleAdminDeleteChannelCmd = &cobra.Command{
 		errInput := adminChannelService.SingleAdminDeleteChannelShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

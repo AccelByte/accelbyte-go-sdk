@@ -27,6 +27,7 @@ func (c *CurrencyService) ListCurrencies(input *currency.ListCurrenciesParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -46,6 +47,7 @@ func (c *CurrencyService) CreateCurrency(input *currency.CreateCurrencyParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -65,6 +67,7 @@ func (c *CurrencyService) UpdateCurrency(input *currency.UpdateCurrencyParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -81,6 +84,7 @@ func (c *CurrencyService) DeleteCurrency(input *currency.DeleteCurrencyParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -97,6 +101,7 @@ func (c *CurrencyService) GetCurrencyConfig(input *currency.GetCurrencyConfigPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -113,6 +118,7 @@ func (c *CurrencyService) GetCurrencySummary(input *currency.GetCurrencySummaryP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -122,6 +128,7 @@ func (c *CurrencyService) PublicListCurrencies(input *currency.PublicListCurrenc
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -134,6 +141,7 @@ func (c *CurrencyService) ListCurrenciesShort(input *currency.ListCurrenciesPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -146,6 +154,7 @@ func (c *CurrencyService) CreateCurrencyShort(input *currency.CreateCurrencyPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -158,6 +167,7 @@ func (c *CurrencyService) UpdateCurrencyShort(input *currency.UpdateCurrencyPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -170,6 +180,7 @@ func (c *CurrencyService) DeleteCurrencyShort(input *currency.DeleteCurrencyPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -182,6 +193,7 @@ func (c *CurrencyService) GetCurrencyConfigShort(input *currency.GetCurrencyConf
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -194,6 +206,7 @@ func (c *CurrencyService) GetCurrencySummaryShort(input *currency.GetCurrencySum
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -202,5 +215,6 @@ func (c *CurrencyService) PublicListCurrenciesShort(input *currency.PublicListCu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

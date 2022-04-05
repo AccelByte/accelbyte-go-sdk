@@ -29,6 +29,7 @@ func (a *AnonymizationService) AnonymizeUserAgreement(input *anonymization.Anony
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -41,5 +42,6 @@ func (a *AnonymizationService) AnonymizeUserAgreementShort(input *anonymization.
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

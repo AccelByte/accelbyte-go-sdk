@@ -45,6 +45,7 @@ func (s *SessionService) CreateSession(input *session.CreateSessionParams) (*dsm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -76,6 +77,7 @@ func (s *SessionService) ClaimServer(input *session.ClaimServerParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -98,6 +100,7 @@ func (s *SessionService) GetSession(input *session.GetSessionParams) (*dsmcclien
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -110,6 +113,7 @@ func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams) 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -122,6 +126,7 @@ func (s *SessionService) ClaimServerShort(input *session.ClaimServerParams) erro
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -134,5 +139,6 @@ func (s *SessionService) GetSessionShort(input *session.GetSessionParams) (*dsmc
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

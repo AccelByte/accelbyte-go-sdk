@@ -36,6 +36,7 @@ func (s *ServerService) DeregisterLocalServer(input *server.DeregisterLocalServe
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -61,6 +62,7 @@ func (s *ServerService) RegisterLocalServer(input *server.RegisterLocalServerPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -86,6 +88,7 @@ func (s *ServerService) RegisterServer(input *server.RegisterServerParams) (*dsm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -111,6 +114,7 @@ func (s *ServerService) ShutdownServer(input *server.ShutdownServerParams) error
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -136,6 +140,7 @@ func (s *ServerService) GetServerSession(input *server.GetServerSessionParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -148,6 +153,7 @@ func (s *ServerService) DeregisterLocalServerShort(input *server.DeregisterLocal
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -160,6 +166,7 @@ func (s *ServerService) RegisterLocalServerShort(input *server.RegisterLocalServ
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -172,6 +179,7 @@ func (s *ServerService) RegisterServerShort(input *server.RegisterServerParams) 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -184,6 +192,7 @@ func (s *ServerService) ShutdownServerShort(input *server.ShutdownServerParams) 
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -196,5 +205,6 @@ func (s *ServerService) GetServerSessionShort(input *server.GetServerSessionPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

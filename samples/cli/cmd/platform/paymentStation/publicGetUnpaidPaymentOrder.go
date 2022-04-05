@@ -32,10 +32,12 @@ var PublicGetUnpaidPaymentOrderCmd = &cobra.Command{
 		ok, err := paymentStationService.PublicGetUnpaidPaymentOrderShort(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

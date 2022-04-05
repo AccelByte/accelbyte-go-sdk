@@ -6,6 +6,7 @@ package leaderboardData
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_data"
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -39,8 +40,10 @@ var CreateArchivedLeaderboardRankingDataV1HandlerCmd = &cobra.Command{
 		errInput := leaderboardDataService.CreateArchivedLeaderboardRankingDataV1HandlerShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

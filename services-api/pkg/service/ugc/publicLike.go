@@ -36,6 +36,7 @@ func (p *PublicLikeService) GetLikedContent(input *public_like.GetLikedContentPa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -58,6 +59,7 @@ func (p *PublicLikeService) UpdateContentLikeStatus(input *public_like.UpdateCon
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -70,6 +72,7 @@ func (p *PublicLikeService) GetLikedContentShort(input *public_like.GetLikedCont
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -82,5 +85,6 @@ func (p *PublicLikeService) UpdateContentLikeStatusShort(input *public_like.Upda
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

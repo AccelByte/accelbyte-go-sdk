@@ -32,8 +32,10 @@ var DeleteLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
 		errInput := leaderboardConfigurationService.DeleteLeaderboardConfigurationAdminV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

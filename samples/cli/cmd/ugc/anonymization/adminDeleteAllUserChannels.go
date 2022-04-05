@@ -32,8 +32,10 @@ var AdminDeleteAllUserChannelsCmd = &cobra.Command{
 		errInput := anonymizationService.AdminDeleteAllUserChannelsShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

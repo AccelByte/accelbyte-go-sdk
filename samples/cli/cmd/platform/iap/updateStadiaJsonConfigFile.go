@@ -5,14 +5,15 @@
 package iap
 
 import (
+	"net/http"
+	"os"
+
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-	"net/http"
-	"os"
 )
 
 // UpdateStadiaJsonConfigFileCmd represents the UpdateStadiaJsonConfigFile command
@@ -45,10 +46,12 @@ var UpdateStadiaJsonConfigFileCmd = &cobra.Command{
 		ok, err := iapService.UpdateStadiaJSONConfigFileShort(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

@@ -39,6 +39,7 @@ func (u *UsersV4Service) AdminBulkCheckValidUserIDV4(input *users_v4.AdminBulkCh
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -70,6 +71,7 @@ func (u *UsersV4Service) AdminUpdateUserV4(input *users_v4.AdminUpdateUserV4Para
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -98,6 +100,7 @@ func (u *UsersV4Service) AdminUpdateUserEmailAddressV4(input *users_v4.AdminUpda
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -120,6 +123,7 @@ func (u *UsersV4Service) AdminListUserRolesV4(input *users_v4.AdminListUserRoles
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -148,6 +152,7 @@ func (u *UsersV4Service) AdminUpdateUserRoleV4(input *users_v4.AdminUpdateUserRo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -176,6 +181,7 @@ func (u *UsersV4Service) AdminAddUserRoleV4(input *users_v4.AdminAddUserRoleV4Pa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -204,6 +210,7 @@ func (u *UsersV4Service) AdminRemoveUserRoleV4(input *users_v4.AdminRemoveUserRo
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -229,6 +236,7 @@ func (u *UsersV4Service) AdminUpdateMyUserV4(input *users_v4.AdminUpdateMyUserV4
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -257,6 +265,7 @@ func (u *UsersV4Service) AdminDisableMyAuthenticatorV4(input *users_v4.AdminDisa
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -288,6 +297,7 @@ func (u *UsersV4Service) AdminEnableMyAuthenticatorV4(input *users_v4.AdminEnabl
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -316,6 +326,7 @@ func (u *UsersV4Service) AdminGenerateMyAuthenticatorKeyV4(input *users_v4.Admin
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -344,6 +355,7 @@ func (u *UsersV4Service) AdminGetMyBackupCodesV4(input *users_v4.AdminGetMyBacku
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -372,6 +384,7 @@ func (u *UsersV4Service) AdminGenerateMyBackupCodesV4(input *users_v4.AdminGener
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -400,6 +413,7 @@ func (u *UsersV4Service) AdminDisableMyBackupCodesV4(input *users_v4.AdminDisabl
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -428,6 +442,7 @@ func (u *UsersV4Service) AdminDownloadMyBackupCodesV4(input *users_v4.AdminDownl
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -459,6 +474,7 @@ func (u *UsersV4Service) AdminEnableMyBackupCodesV4(input *users_v4.AdminEnableM
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -487,6 +503,7 @@ func (u *UsersV4Service) AdminGetMyEnabledFactorsV4(input *users_v4.AdminGetMyEn
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -515,6 +532,7 @@ func (u *UsersV4Service) AdminMakeFactorMyDefaultV4(input *users_v4.AdminMakeFac
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -543,6 +561,7 @@ func (u *UsersV4Service) AdminInviteUserV4(input *users_v4.AdminInviteUserV4Para
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -568,6 +587,7 @@ func (u *UsersV4Service) PublicCreateTestUserV4(input *users_v4.PublicCreateTest
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -593,6 +613,7 @@ func (u *UsersV4Service) PublicCreateUserV4(input *users_v4.PublicCreateUserV4Pa
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -615,6 +636,7 @@ func (u *UsersV4Service) CreateUserFromInvitationV4(input *users_v4.CreateUserFr
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -640,6 +662,7 @@ func (u *UsersV4Service) PublicUpdateUserV4(input *users_v4.PublicUpdateUserV4Pa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -668,6 +691,7 @@ func (u *UsersV4Service) PublicUpdateUserEmailAddressV4(input *users_v4.PublicUp
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -699,6 +723,7 @@ func (u *UsersV4Service) PublicUpgradeHeadlessAccountWithVerificationCodeV4(inpu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -727,6 +752,7 @@ func (u *UsersV4Service) PublicUpgradeHeadlessAccountV4(input *users_v4.PublicUp
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -755,6 +781,7 @@ func (u *UsersV4Service) PublicDisableMyAuthenticatorV4(input *users_v4.PublicDi
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -786,6 +813,7 @@ func (u *UsersV4Service) PublicEnableMyAuthenticatorV4(input *users_v4.PublicEna
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -814,6 +842,7 @@ func (u *UsersV4Service) PublicGenerateMyAuthenticatorKeyV4(input *users_v4.Publ
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -842,6 +871,7 @@ func (u *UsersV4Service) PublicGetMyBackupCodesV4(input *users_v4.PublicGetMyBac
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -870,6 +900,7 @@ func (u *UsersV4Service) PublicGenerateMyBackupCodesV4(input *users_v4.PublicGen
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -898,6 +929,7 @@ func (u *UsersV4Service) PublicDisableMyBackupCodesV4(input *users_v4.PublicDisa
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -926,6 +958,7 @@ func (u *UsersV4Service) PublicDownloadMyBackupCodesV4(input *users_v4.PublicDow
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -957,6 +990,7 @@ func (u *UsersV4Service) PublicEnableMyBackupCodesV4(input *users_v4.PublicEnabl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -985,6 +1019,7 @@ func (u *UsersV4Service) PublicGetMyEnabledFactorsV4(input *users_v4.PublicGetMy
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1013,6 +1048,7 @@ func (u *UsersV4Service) PublicMakeFactorMyDefaultV4(input *users_v4.PublicMakeF
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1025,6 +1061,7 @@ func (u *UsersV4Service) AdminBulkCheckValidUserIDV4Short(input *users_v4.AdminB
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1037,6 +1074,7 @@ func (u *UsersV4Service) AdminUpdateUserV4Short(input *users_v4.AdminUpdateUserV
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1049,6 +1087,7 @@ func (u *UsersV4Service) AdminUpdateUserEmailAddressV4Short(input *users_v4.Admi
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1061,6 +1100,7 @@ func (u *UsersV4Service) AdminListUserRolesV4Short(input *users_v4.AdminListUser
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1073,6 +1113,7 @@ func (u *UsersV4Service) AdminUpdateUserRoleV4Short(input *users_v4.AdminUpdateU
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1085,6 +1126,7 @@ func (u *UsersV4Service) AdminAddUserRoleV4Short(input *users_v4.AdminAddUserRol
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1097,6 +1139,7 @@ func (u *UsersV4Service) AdminRemoveUserRoleV4Short(input *users_v4.AdminRemoveU
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1109,6 +1152,7 @@ func (u *UsersV4Service) AdminUpdateMyUserV4Short(input *users_v4.AdminUpdateMyU
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1121,6 +1165,7 @@ func (u *UsersV4Service) AdminDisableMyAuthenticatorV4Short(input *users_v4.Admi
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1133,6 +1178,7 @@ func (u *UsersV4Service) AdminEnableMyAuthenticatorV4Short(input *users_v4.Admin
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1145,6 +1191,7 @@ func (u *UsersV4Service) AdminGenerateMyAuthenticatorKeyV4Short(input *users_v4.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1157,6 +1204,7 @@ func (u *UsersV4Service) AdminGetMyBackupCodesV4Short(input *users_v4.AdminGetMy
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1169,6 +1217,7 @@ func (u *UsersV4Service) AdminGenerateMyBackupCodesV4Short(input *users_v4.Admin
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1181,6 +1230,7 @@ func (u *UsersV4Service) AdminDisableMyBackupCodesV4Short(input *users_v4.AdminD
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1193,6 +1243,7 @@ func (u *UsersV4Service) AdminDownloadMyBackupCodesV4Short(input *users_v4.Admin
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1205,6 +1256,7 @@ func (u *UsersV4Service) AdminEnableMyBackupCodesV4Short(input *users_v4.AdminEn
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1217,6 +1269,7 @@ func (u *UsersV4Service) AdminGetMyEnabledFactorsV4Short(input *users_v4.AdminGe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1229,6 +1282,7 @@ func (u *UsersV4Service) AdminMakeFactorMyDefaultV4Short(input *users_v4.AdminMa
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1241,6 +1295,7 @@ func (u *UsersV4Service) AdminInviteUserV4Short(input *users_v4.AdminInviteUserV
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -1253,6 +1308,7 @@ func (u *UsersV4Service) PublicCreateTestUserV4Short(input *users_v4.PublicCreat
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -1265,6 +1321,7 @@ func (u *UsersV4Service) PublicCreateUserV4Short(input *users_v4.PublicCreateUse
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -1277,6 +1334,7 @@ func (u *UsersV4Service) CreateUserFromInvitationV4Short(input *users_v4.CreateU
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -1289,6 +1347,7 @@ func (u *UsersV4Service) PublicUpdateUserV4Short(input *users_v4.PublicUpdateUse
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1301,6 +1360,7 @@ func (u *UsersV4Service) PublicUpdateUserEmailAddressV4Short(input *users_v4.Pub
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1313,6 +1373,7 @@ func (u *UsersV4Service) PublicUpgradeHeadlessAccountWithVerificationCodeV4Short
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1325,6 +1386,7 @@ func (u *UsersV4Service) PublicUpgradeHeadlessAccountV4Short(input *users_v4.Pub
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1337,6 +1399,7 @@ func (u *UsersV4Service) PublicDisableMyAuthenticatorV4Short(input *users_v4.Pub
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1349,6 +1412,7 @@ func (u *UsersV4Service) PublicEnableMyAuthenticatorV4Short(input *users_v4.Publ
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1361,6 +1425,7 @@ func (u *UsersV4Service) PublicGenerateMyAuthenticatorKeyV4Short(input *users_v4
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1373,6 +1438,7 @@ func (u *UsersV4Service) PublicGetMyBackupCodesV4Short(input *users_v4.PublicGet
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1385,6 +1451,7 @@ func (u *UsersV4Service) PublicGenerateMyBackupCodesV4Short(input *users_v4.Publ
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1397,6 +1464,7 @@ func (u *UsersV4Service) PublicDisableMyBackupCodesV4Short(input *users_v4.Publi
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1409,6 +1477,7 @@ func (u *UsersV4Service) PublicDownloadMyBackupCodesV4Short(input *users_v4.Publ
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1421,6 +1490,7 @@ func (u *UsersV4Service) PublicEnableMyBackupCodesV4Short(input *users_v4.Public
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1433,6 +1503,7 @@ func (u *UsersV4Service) PublicGetMyEnabledFactorsV4Short(input *users_v4.Public
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1445,5 +1516,6 @@ func (u *UsersV4Service) PublicMakeFactorMyDefaultV4Short(input *users_v4.Public
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

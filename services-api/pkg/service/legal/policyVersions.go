@@ -30,6 +30,7 @@ func (p *PolicyVersionsService) UpdatePolicyVersion(input *policy_versions.Updat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -46,6 +47,7 @@ func (p *PolicyVersionsService) PublishPolicyVersion(input *policy_versions.Publ
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -62,6 +64,7 @@ func (p *PolicyVersionsService) RetrieveSinglePolicyVersion(input *policy_versio
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -78,6 +81,7 @@ func (p *PolicyVersionsService) CreatePolicyVersion(input *policy_versions.Creat
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -94,6 +98,7 @@ func (p *PolicyVersionsService) RetrievePolicyVersions(input *policy_versions.Re
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -106,6 +111,7 @@ func (p *PolicyVersionsService) UpdatePolicyVersionShort(input *policy_versions.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -118,6 +124,7 @@ func (p *PolicyVersionsService) PublishPolicyVersionShort(input *policy_versions
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -130,6 +137,7 @@ func (p *PolicyVersionsService) RetrieveSinglePolicyVersionShort(input *policy_v
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -142,6 +150,7 @@ func (p *PolicyVersionsService) CreatePolicyVersionShort(input *policy_versions.
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -154,5 +163,6 @@ func (p *PolicyVersionsService) RetrievePolicyVersionsShort(input *policy_versio
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

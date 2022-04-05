@@ -36,6 +36,7 @@ func (w *WalletService) CheckWallet(input *wallet.CheckWalletParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -55,6 +56,7 @@ func (w *WalletService) CreditUserWallet(input *wallet.CreditUserWalletParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -74,6 +76,7 @@ func (w *WalletService) PayWithUserWallet(input *wallet.PayWithUserWalletParams)
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -90,6 +93,7 @@ func (w *WalletService) GetUserWallet(input *wallet.GetUserWalletParams) (*platf
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -115,6 +119,7 @@ func (w *WalletService) DebitUserWallet(input *wallet.DebitUserWalletParams) (*p
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -134,6 +139,7 @@ func (w *WalletService) DisableUserWallet(input *wallet.DisableUserWalletParams)
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -153,6 +159,7 @@ func (w *WalletService) EnableUserWallet(input *wallet.EnableUserWalletParams) e
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -169,6 +176,7 @@ func (w *WalletService) ListUserWalletTransactions(input *wallet.ListUserWalletT
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -182,6 +190,7 @@ func (w *WalletService) QueryWallets(input *wallet.QueryWalletsParams) (*platfor
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -198,6 +207,7 @@ func (w *WalletService) GetWallet(input *wallet.GetWalletParams) (*platformclien
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -211,6 +221,7 @@ func (w *WalletService) PublicGetMyWallet(input *wallet.PublicGetMyWalletParams)
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -224,6 +235,7 @@ func (w *WalletService) PublicGetWallet(input *wallet.PublicGetWalletParams) (*p
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -237,6 +249,7 @@ func (w *WalletService) PublicListUserWalletTransactions(input *wallet.PublicLis
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -249,6 +262,7 @@ func (w *WalletService) CheckWalletShort(input *wallet.CheckWalletParams) error 
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -261,6 +275,7 @@ func (w *WalletService) CreditUserWalletShort(input *wallet.CreditUserWalletPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -273,6 +288,7 @@ func (w *WalletService) PayWithUserWalletShort(input *wallet.PayWithUserWalletPa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -285,6 +301,7 @@ func (w *WalletService) GetUserWalletShort(input *wallet.GetUserWalletParams) (*
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -297,6 +314,7 @@ func (w *WalletService) DebitUserWalletShort(input *wallet.DebitUserWalletParams
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -309,6 +327,7 @@ func (w *WalletService) DisableUserWalletShort(input *wallet.DisableUserWalletPa
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -321,6 +340,7 @@ func (w *WalletService) EnableUserWalletShort(input *wallet.EnableUserWalletPara
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -333,6 +353,7 @@ func (w *WalletService) ListUserWalletTransactionsShort(input *wallet.ListUserWa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -345,6 +366,7 @@ func (w *WalletService) QueryWalletsShort(input *wallet.QueryWalletsParams) (*pl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -357,6 +379,7 @@ func (w *WalletService) GetWalletShort(input *wallet.GetWalletParams) (*platform
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -369,6 +392,7 @@ func (w *WalletService) PublicGetMyWalletShort(input *wallet.PublicGetMyWalletPa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -381,6 +405,7 @@ func (w *WalletService) PublicGetWalletShort(input *wallet.PublicGetWalletParams
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -393,5 +418,6 @@ func (w *WalletService) PublicListUserWalletTransactionsShort(input *wallet.Publ
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

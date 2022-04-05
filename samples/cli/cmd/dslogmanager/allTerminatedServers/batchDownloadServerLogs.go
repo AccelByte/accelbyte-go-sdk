@@ -6,6 +6,7 @@ package allTerminatedServers
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclient/all_terminated_servers"
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -37,8 +38,10 @@ var BatchDownloadServerLogsCmd = &cobra.Command{
 		errInput := allTerminatedServersService.BatchDownloadServerLogsShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

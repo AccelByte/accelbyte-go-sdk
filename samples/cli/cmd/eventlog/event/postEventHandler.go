@@ -6,6 +6,7 @@ package event
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event"
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -39,8 +40,10 @@ var PostEventHandlerCmd = &cobra.Command{
 		errInput := eventService.PostEventHandlerShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

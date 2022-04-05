@@ -32,8 +32,10 @@ var DeleteGroupPublicV1Cmd = &cobra.Command{
 		errInput := groupService.DeleteGroupPublicV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

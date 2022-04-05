@@ -27,6 +27,7 @@ func (u *UtilityService) CheckReadiness(input *utility.CheckReadinessParams) (*l
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -39,5 +40,6 @@ func (u *UtilityService) CheckReadinessShort(input *utility.CheckReadinessParams
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

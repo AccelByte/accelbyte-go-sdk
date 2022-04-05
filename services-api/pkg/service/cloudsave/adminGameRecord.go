@@ -33,6 +33,7 @@ func (a *AdminGameRecordService) ListGameRecordsHandlerV1(input *admin_game_reco
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -55,6 +56,7 @@ func (a *AdminGameRecordService) AdminGetGameRecordHandlerV1(input *admin_game_r
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -74,6 +76,7 @@ func (a *AdminGameRecordService) AdminPutGameRecordHandlerV1(input *admin_game_r
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -93,6 +96,7 @@ func (a *AdminGameRecordService) AdminPostGameRecordHandlerV1(input *admin_game_
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -112,6 +116,7 @@ func (a *AdminGameRecordService) AdminDeleteGameRecordHandlerV1(input *admin_gam
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -124,6 +129,7 @@ func (a *AdminGameRecordService) ListGameRecordsHandlerV1Short(input *admin_game
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -136,6 +142,7 @@ func (a *AdminGameRecordService) AdminGetGameRecordHandlerV1Short(input *admin_g
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -148,6 +155,7 @@ func (a *AdminGameRecordService) AdminPutGameRecordHandlerV1Short(input *admin_g
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -160,6 +168,7 @@ func (a *AdminGameRecordService) AdminPostGameRecordHandlerV1Short(input *admin_
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -172,5 +181,6 @@ func (a *AdminGameRecordService) AdminDeleteGameRecordHandlerV1Short(input *admi
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

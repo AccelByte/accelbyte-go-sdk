@@ -6,6 +6,7 @@ package agreement
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/agreement"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -45,10 +46,12 @@ var IndirectBulkAcceptVersionedPolicyV2Cmd = &cobra.Command{
 		ok, err := agreementService.IndirectBulkAcceptVersionedPolicyV2Short(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

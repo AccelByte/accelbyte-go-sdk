@@ -30,6 +30,7 @@ func (t *TicketService) GetTicketDynamic(input *ticket.GetTicketDynamicParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -49,6 +50,7 @@ func (t *TicketService) DecreaseTicketSale(input *ticket.DecreaseTicketSaleParam
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -65,6 +67,7 @@ func (t *TicketService) GetTicketBoothID(input *ticket.GetTicketBoothIDParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -84,6 +87,7 @@ func (t *TicketService) IncreaseTicketSale(input *ticket.IncreaseTicketSaleParam
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -106,6 +110,7 @@ func (t *TicketService) AcquireUserTicket(input *ticket.AcquireUserTicketParams)
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -118,6 +123,7 @@ func (t *TicketService) GetTicketDynamicShort(input *ticket.GetTicketDynamicPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -130,6 +136,7 @@ func (t *TicketService) DecreaseTicketSaleShort(input *ticket.DecreaseTicketSale
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -142,6 +149,7 @@ func (t *TicketService) GetTicketBoothIDShort(input *ticket.GetTicketBoothIDPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -154,6 +162,7 @@ func (t *TicketService) IncreaseTicketSaleShort(input *ticket.IncreaseTicketSale
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -166,5 +175,6 @@ func (t *TicketService) AcquireUserTicketShort(input *ticket.AcquireUserTicketPa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

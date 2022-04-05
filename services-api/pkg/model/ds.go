@@ -60,6 +60,7 @@ func (req *CreateSessionRequest) Validate() error {
 			return err
 		}
 	}
+
 	return nil
 }
 
@@ -78,6 +79,7 @@ func (req *RequestMatchingAlly) Validate() error {
 			return err
 		}
 	}
+
 	return nil
 }
 
@@ -101,6 +103,7 @@ func (req *RequestMatchParty) Validate() error {
 			return err
 		}
 	}
+
 	return nil
 }
 
@@ -110,6 +113,7 @@ func (req *RequestMatchParty) Members() []string {
 	for _, member := range req.PartyMembers {
 		ids = append(ids, member.UserID)
 	}
+
 	return ids
 }
 
@@ -123,6 +127,7 @@ func (req *RequestMatchMember) Validate() error {
 	if req.UserID == "" {
 		return errors.New("party member user ID cannot be empty")
 	}
+
 	return nil
 }
 

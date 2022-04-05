@@ -27,6 +27,7 @@ func (o *OAuthService) Authorization(input *o_auth.AuthorizationParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -40,6 +41,7 @@ func (o *OAuthService) GetJWKS(input *o_auth.GetJWKSParams) (*iamclientmodels.Oa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -59,6 +61,7 @@ func (o *OAuthService) PlatformTokenRequestHandler(input *o_auth.PlatformTokenRe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -75,6 +78,7 @@ func (o *OAuthService) RevokeUser(input *o_auth.RevokeUserParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -91,6 +95,7 @@ func (o *OAuthService) GetRevocationList(input *o_auth.GetRevocationListParams) 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -110,6 +115,7 @@ func (o *OAuthService) RevokeToken(input *o_auth.RevokeTokenParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -129,6 +135,7 @@ func (o *OAuthService) RevokeAUser(input *o_auth.RevokeAUserParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -148,6 +155,7 @@ func (o *OAuthService) TokenGrant(input *o_auth.TokenGrantParams) (*iamclientmod
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -164,6 +172,7 @@ func (o *OAuthService) VerifyToken(input *o_auth.VerifyTokenParams) (*iamclientm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -176,6 +185,7 @@ func (o *OAuthService) AuthorizationShort(input *o_auth.AuthorizationParams) err
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -188,6 +198,7 @@ func (o *OAuthService) GetJWKSShort(input *o_auth.GetJWKSParams) (*iamclientmode
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -200,6 +211,7 @@ func (o *OAuthService) PlatformTokenRequestHandlerShort(input *o_auth.PlatformTo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -212,6 +224,7 @@ func (o *OAuthService) RevokeUserShort(input *o_auth.RevokeUserParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -224,6 +237,7 @@ func (o *OAuthService) GetRevocationListShort(input *o_auth.GetRevocationListPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -236,6 +250,7 @@ func (o *OAuthService) RevokeTokenShort(input *o_auth.RevokeTokenParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -248,6 +263,7 @@ func (o *OAuthService) RevokeAUserShort(input *o_auth.RevokeAUserParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -260,6 +276,7 @@ func (o *OAuthService) TokenGrantShort(input *o_auth.TokenGrantParams) (*iamclie
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -272,5 +289,6 @@ func (o *OAuthService) VerifyTokenShort(input *o_auth.VerifyTokenParams) (*iamcl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

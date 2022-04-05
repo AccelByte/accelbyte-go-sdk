@@ -36,6 +36,7 @@ func (p *PublicGroupService) GetGroups(input *public_group.GetGroupsParams) (*ug
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -58,6 +59,7 @@ func (p *PublicGroupService) CreateGroup(input *public_group.CreateGroupParams) 
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -80,6 +82,7 @@ func (p *PublicGroupService) GetGroup(input *public_group.GetGroupParams) (*ugcc
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -105,6 +108,7 @@ func (p *PublicGroupService) UpdateGroup(input *public_group.UpdateGroupParams) 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -127,6 +131,7 @@ func (p *PublicGroupService) DeleteGroup(input *public_group.DeleteGroupParams) 
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -149,6 +154,7 @@ func (p *PublicGroupService) GetGroupContent(input *public_group.GetGroupContent
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -161,6 +167,7 @@ func (p *PublicGroupService) GetGroupsShort(input *public_group.GetGroupsParams)
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -173,6 +180,7 @@ func (p *PublicGroupService) CreateGroupShort(input *public_group.CreateGroupPar
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -185,6 +193,7 @@ func (p *PublicGroupService) GetGroupShort(input *public_group.GetGroupParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -197,6 +206,7 @@ func (p *PublicGroupService) UpdateGroupShort(input *public_group.UpdateGroupPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -209,6 +219,7 @@ func (p *PublicGroupService) DeleteGroupShort(input *public_group.DeleteGroupPar
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -221,5 +232,6 @@ func (p *PublicGroupService) GetGroupContentShort(input *public_group.GetGroupCo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

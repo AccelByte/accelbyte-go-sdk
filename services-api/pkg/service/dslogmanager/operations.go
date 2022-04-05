@@ -30,6 +30,7 @@ func (o *OperationsService) PublicGetMessages(input *operations.PublicGetMessage
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -42,5 +43,6 @@ func (o *OperationsService) PublicGetMessagesShort(input *operations.PublicGetMe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

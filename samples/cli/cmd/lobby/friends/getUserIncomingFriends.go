@@ -30,10 +30,12 @@ var GetUserIncomingFriendsCmd = &cobra.Command{
 		ok, err := friendsService.GetUserIncomingFriendsShort(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

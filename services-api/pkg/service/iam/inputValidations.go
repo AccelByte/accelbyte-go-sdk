@@ -33,6 +33,7 @@ func (i *InputValidationsService) AdminGetInputValidations(input *input_validati
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -55,6 +56,7 @@ func (i *InputValidationsService) AdminUpdateInputValidations(input *input_valid
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -77,6 +79,7 @@ func (i *InputValidationsService) AdminResetInputValidations(input *input_valida
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -96,6 +99,7 @@ func (i *InputValidationsService) PublicGetInputValidations(input *input_validat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -108,6 +112,7 @@ func (i *InputValidationsService) AdminGetInputValidationsShort(input *input_val
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -120,6 +125,7 @@ func (i *InputValidationsService) AdminUpdateInputValidationsShort(input *input_
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -132,6 +138,7 @@ func (i *InputValidationsService) AdminResetInputValidationsShort(input *input_v
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -144,5 +151,6 @@ func (i *InputValidationsService) PublicGetInputValidationsShort(input *input_va
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

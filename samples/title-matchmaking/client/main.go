@@ -1,3 +1,7 @@
+// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
 package main
 
 import (
@@ -61,6 +65,7 @@ func getInput() string {
 	// convert CRLF to LF
 	text = strings.Replace(text, "\n", "", -1)
 	text = strings.Replace(text, "\r", "", -1)
+
 	return text
 }
 
@@ -101,6 +106,7 @@ func userInfo() {
 	token, err := oauthService.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Info("You are not log in")
+
 		return
 	}
 	logrus.Infof(
@@ -127,15 +133,16 @@ func login() {
 	err := userService.Login(username, password)
 	if err != nil {
 		logrus.Error("Login Failed")
+
 		return
 	}
 	logrus.Info("Login Successful")
 }
 
 func logout() {
-	err := userService.Logout()
-	if err != nil {
+	if err := userService.Logout(); err != nil {
 		logrus.Error("Logout failed")
+
 		return
 	}
 	logrus.Info("Logout successful")
@@ -159,6 +166,7 @@ func createMatchmaking() {
 	err = notificationService.GetNotificationMessage()
 	if err != nil {
 		logrus.Error(err)
+
 		return
 	}
 	logrus.Info("Listening to lobby via websocket...")
@@ -172,6 +180,7 @@ func createMatchmaking() {
 	req, err := http.NewRequest("POST", matchmakingServiceURL, nil)
 	if err != nil {
 		logrus.Error("invalid request")
+
 		return
 	}
 	req.Header.Set("Content-Type", "application/json")
@@ -229,6 +238,7 @@ var lobbyMessageHandler = func(dataByte []byte) {
 			logrus.Error(err)
 		}
 		logrus.Infof("Response content %v", string(marshal))
+
 		return
 	}
 }
@@ -255,6 +265,7 @@ func decodeWSMessage(msg string) map[string]string {
 func isIPValid(ip string) bool {
 	if net.ParseIP(ip) == nil {
 		logrus.Errorf("Invalid IP Address : %s", ip)
+
 		return false
 	} else {
 		return true
@@ -266,5 +277,6 @@ func isInteger(s string) bool {
 		return true
 	}
 	logrus.Errorf("Invalid port : %s", s)
+
 	return false
 }

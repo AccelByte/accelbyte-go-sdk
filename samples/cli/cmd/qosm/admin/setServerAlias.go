@@ -6,6 +6,7 @@ package admin
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/qosm-sdk/pkg/qosmclient/admin"
 	"github.com/AccelByte/accelbyte-go-sdk/qosm-sdk/pkg/qosmclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -39,8 +40,10 @@ var SetServerAliasCmd = &cobra.Command{
 		errInput := adminService.SetServerAliasShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

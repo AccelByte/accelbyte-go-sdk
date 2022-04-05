@@ -39,13 +39,14 @@ func createSessionBrowser() string {
 	if err != nil {
 		return ""
 	}
+
 	return *ok.SessionID
 }
 
 func TestIntegrationSessionDSMC(t *testing.T) {
 	t.Parallel()
 	Init()
-	SessionBrowserId := createSessionBrowser()
+	SessionBrowserID := createSessionBrowser()
 	var partyMembers []*dsmcclientmodels.ModelsRequestMatchMember
 	partyMember := &dsmcclientmodels.ModelsRequestMatchMember{
 		UserID: &emptyString,
@@ -74,7 +75,7 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 		NotificationPayload: &emptyString,
 		PodName:             &emptyString,
 		Region:              &emptyString,
-		SessionID:           &SessionBrowserId,
+		SessionID:           &SessionBrowserID,
 	}
 
 	// Creating a session
@@ -86,13 +87,13 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
 	}
-	createdSessionId := *created.Session.ID
-	t.Logf("Session DSMC: %v created", createdSessionId)
+	createdSessionID := *created.Session.ID
+	t.Logf("Session DSMC: %v created", createdSessionID)
 
 	// Getting a session
 	inputGet := &session.GetSessionParams{
 		Namespace: integration.NamespaceDsmc,
-		SessionID: createdSessionId,
+		SessionID: createdSessionID,
 	}
 	get, errGet := sessionDSMCService.GetSessionShort(inputGet)
 	if errGet != nil {
@@ -103,7 +104,7 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 	// Claiming a DS (Dedicated Server)
 	time.Sleep(5 * time.Second)
 
-	bodyClaim := &dsmcclientmodels.ModelsClaimSessionRequest{SessionID: &createdSessionId}
+	bodyClaim := &dsmcclientmodels.ModelsClaimSessionRequest{SessionID: &createdSessionID}
 	inputClaim := &session.ClaimServerParams{
 		Body:      bodyClaim,
 		Namespace: integration.NamespaceDsmc,
@@ -112,7 +113,7 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 	if errClaim != nil {
 		assert.FailNow(t, errClaim.Error())
 	}
-	t.Logf("Id Session DSMC: %v claimed a server", createdSessionId)
+	t.Logf("Id Session DSMC: %v claimed a server", createdSessionID)
 
 	assert.Nil(t, errCreate, "err should be nil")
 	assert.NotNil(t, created, "response should not be nil")

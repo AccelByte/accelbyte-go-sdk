@@ -27,6 +27,7 @@ func (s *SlotConfigService) GetNamespaceSlotConfig(input *slot_config.GetNamespa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -40,6 +41,7 @@ func (s *SlotConfigService) UpdateNamespaceSlotConfig(input *slot_config.UpdateN
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -53,6 +55,7 @@ func (s *SlotConfigService) DeleteNamespaceSlotConfig(input *slot_config.DeleteN
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -66,6 +69,7 @@ func (s *SlotConfigService) GetUserSlotConfig(input *slot_config.GetUserSlotConf
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -79,6 +83,7 @@ func (s *SlotConfigService) UpdateUserSlotConfig(input *slot_config.UpdateUserSl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -92,6 +97,7 @@ func (s *SlotConfigService) DeleteUserSlotConfig(input *slot_config.DeleteUserSl
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -104,6 +110,7 @@ func (s *SlotConfigService) GetNamespaceSlotConfigShort(input *slot_config.GetNa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -116,6 +123,7 @@ func (s *SlotConfigService) UpdateNamespaceSlotConfigShort(input *slot_config.Up
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -128,6 +136,7 @@ func (s *SlotConfigService) DeleteNamespaceSlotConfigShort(input *slot_config.De
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -140,6 +149,7 @@ func (s *SlotConfigService) GetUserSlotConfigShort(input *slot_config.GetUserSlo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -152,6 +162,7 @@ func (s *SlotConfigService) UpdateUserSlotConfigShort(input *slot_config.UpdateU
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -164,5 +175,6 @@ func (s *SlotConfigService) DeleteUserSlotConfigShort(input *slot_config.DeleteU
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

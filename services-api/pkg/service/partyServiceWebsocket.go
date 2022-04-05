@@ -1,14 +1,19 @@
+// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
 package service
 
 import (
 	"fmt"
 
+	"github.com/gorilla/websocket"
+	"github.com/sirupsen/logrus"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/model"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/connectionutils"
-	"github.com/gorilla/websocket"
-	"github.com/sirupsen/logrus"
 )
 
 type PartyServiceWebsocket struct {
@@ -24,6 +29,7 @@ func (s *PartyServiceWebsocket) CreateParty() error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -34,6 +40,7 @@ func (s *PartyServiceWebsocket) GetPartyInfo() error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -44,16 +51,18 @@ func (s *PartyServiceWebsocket) LeaveParty() error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
-func (s *PartyServiceWebsocket) InviteParty(friendId string) error {
+func (s *PartyServiceWebsocket) InviteParty(friendID string) error {
 	logrus.Info("InviteParty")
-	text := fmt.Sprintf("type: %s\n%s\nfriendID: %s", model.TypeInviteRequest, utils.GenerateMessageID(), friendId)
+	text := fmt.Sprintf("type: %s\n%s\nfriendID: %s", model.TypeInviteRequest, utils.GenerateMessageID(), friendID)
 	err := s.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -64,6 +73,7 @@ func (s *PartyServiceWebsocket) JoinParty(partyID, token string) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -74,6 +84,7 @@ func (s *PartyServiceWebsocket) RejectPartyInvitation(partyID, token string) err
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -84,16 +95,18 @@ func (s *PartyServiceWebsocket) KickPartyMember(id string) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
-func (s *PartyServiceWebsocket) PromotePartyLeader(leaderUserId string) error {
+func (s *PartyServiceWebsocket) PromotePartyLeader(leaderUserID string) error {
 	logrus.Info("PromotePartyLeader")
-	text := fmt.Sprintf("type: %s\n%s\nnewLeaderUserId: %s", model.TypePromoteLeaderRequest, utils.GenerateMessageID(), leaderUserId)
+	text := fmt.Sprintf("type: %s\n%s\nnewLeaderUserId: %s", model.TypePromoteLeaderRequest, utils.GenerateMessageID(), leaderUserID)
 	err := s.ConnectionManager.Get().Conn.WriteMessage(websocket.TextMessage, []byte(text))
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 func (s *PartyServiceWebsocket) GetPartyCode() error {
@@ -103,6 +116,7 @@ func (s *PartyServiceWebsocket) GetPartyCode() error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -113,6 +127,7 @@ func (s *PartyServiceWebsocket) GeneratePartyCode() error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -123,6 +138,7 @@ func (s *PartyServiceWebsocket) DeletePartyCode() error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -133,6 +149,7 @@ func (s *PartyServiceWebsocket) JoinViaPartyCode(partyCode string) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -143,6 +160,7 @@ func (s *PartyServiceWebsocket) SetSessionAttribute(key, value string) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -153,6 +171,7 @@ func (s *PartyServiceWebsocket) GetSessionAttribute(key string) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -163,6 +182,7 @@ func (s *PartyServiceWebsocket) GetAllSessionAttribute() error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -173,6 +193,7 @@ func (s *PartyServiceWebsocket) UserMetric() error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -183,5 +204,6 @@ func (s *PartyServiceWebsocket) SendPartyNotif(topic, payload string) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

@@ -97,42 +97,42 @@ func TestIntegrationGroup(t *testing.T) {
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
 	}
-	groupId := *created.GroupID
-	t.Logf("GroupID: %v created", groupId)
+	groupID := *created.GroupID
+	t.Logf("GroupID: %v created", groupID)
 
 	// Getting a single group
 	inputGet := &group_.GetSingleGroupPublicV1Params{
-		GroupID:   groupId,
+		GroupID:   groupID,
 		Namespace: integration.NamespaceTest,
 	}
 	get, errGet := groupService.GetSingleGroupPublicV1Short(inputGet)
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
 	}
-	t.Logf("GroupID: %v get with name: %v", groupId, *created.GroupName)
+	t.Logf("GroupID: %v get with name: %v", groupID, *created.GroupName)
 
 	// Updating a group
 	inputUpdate := &group_.UpdatePatchSingleGroupPublicV1Params{
 		Body:      bodyGroupUpdate,
-		GroupID:   groupId,
+		GroupID:   groupID,
 		Namespace: integration.NamespaceTest,
 	}
 	updated, errUpdate := groupService.UpdatePatchSingleGroupPublicV1Short(inputUpdate)
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
 	}
-	t.Logf("GroupID: %v updated", groupId)
+	t.Logf("GroupID: %v updated", groupID)
 
 	// Deleting a group
 	inputDelete := &group_.DeleteGroupPublicV1Params{
-		GroupID:   groupId,
+		GroupID:   groupID,
 		Namespace: integration.NamespaceTest,
 	}
 	errDelete := groupService.DeleteGroupPublicV1Short(inputDelete)
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())
 	}
-	t.Logf("GroupID: %v deleted", groupId)
+	t.Logf("GroupID: %v deleted", groupID)
 
 	assert.Nil(t, errGet, "err should be nil")
 	assert.NotNil(t, get, "response should not be nil")
@@ -155,26 +155,26 @@ func checkGlobalConfig() {
 	}
 	if get != nil {
 		return
-	} else {
-		groupAdminRoleId := "623295c3000e792bf1e902b7"
-		groupMemberRoleId := "623295c3000e792bf1e902b8"
-		globalRules = append(globalRules, globalRule)
-		bodyConfigGroup = &groupclientmodels.ModelsCreateGroupConfigurationRequestV1{
-			ConfigurationCode: &configurationCode,
-			Description:       &emptyString,
-			GlobalRules:       globalRules,
-			GroupAdminRoleID:  &groupAdminRoleId,
-			GroupMaxMember:    &maxNumber,
-			GroupMemberRoleID: &groupMemberRoleId,
-			Name:              &nameConfig,
-		}
-		inputCreate := &configuration.CreateGroupConfigurationAdminV1Params{
-			Body:      bodyConfigGroup,
-			Namespace: integration.NamespaceTest,
-		}
-		_, errCreate := configurationService.CreateGroupConfigurationAdminV1Short(inputCreate)
-		if errCreate != nil {
-			logrus.Error(errCreate)
-		}
+	}
+
+	groupAdminRoleID := "623295c3000e792bf1e902b7"
+	groupMemberRoleID := "623295c3000e792bf1e902b8"
+	globalRules = append(globalRules, globalRule)
+	bodyConfigGroup = &groupclientmodels.ModelsCreateGroupConfigurationRequestV1{
+		ConfigurationCode: &configurationCode,
+		Description:       &emptyString,
+		GlobalRules:       globalRules,
+		GroupAdminRoleID:  &groupAdminRoleID,
+		GroupMaxMember:    &maxNumber,
+		GroupMemberRoleID: &groupMemberRoleID,
+		Name:              &nameConfig,
+	}
+	inputCreate := &configuration.CreateGroupConfigurationAdminV1Params{
+		Body:      bodyConfigGroup,
+		Namespace: integration.NamespaceTest,
+	}
+	_, errCreate := configurationService.CreateGroupConfigurationAdminV1Short(inputCreate)
+	if errCreate != nil {
+		logrus.Error(errCreate)
 	}
 }

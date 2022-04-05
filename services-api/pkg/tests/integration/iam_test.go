@@ -39,11 +39,11 @@ var (
 		TokenRepository:  &integration.TokenRepositoryImpl{},
 	}
 	codeChallengeMethod = "S256"
-	redirectUri         string
+	redirectURI         string
 	scope               = "commerce account social publishing analytics"
 	username            = os.Getenv("AB_USERNAME")
 	password            = os.Getenv("AB_PASSWORD")
-	clientId            = oAuth20Service.ConfigRepository.GetClientId()
+	clientID            = oAuth20Service.ConfigRepository.GetClientId()
 )
 
 func Init() {
@@ -74,9 +74,9 @@ func TestIntegrationAuthorizeV3(t *testing.T) {
 	input := &o_auth2_0.AuthorizeV3Params{
 		CodeChallenge:       &codeChallenge,
 		CodeChallengeMethod: &codeChallengeMethod,
-		RedirectURI:         &redirectUri,
+		RedirectURI:         &redirectURI,
 		Scope:               &scope,
-		ClientID:            clientId,
+		ClientID:            clientID,
 		ResponseType:        "code",
 		HTTPClient:          httpClient,
 	}
@@ -97,7 +97,7 @@ func TestIntegrationAuthenticate(t *testing.T) {
 	input := &o_auth2_0.AuthorizeV3Params{
 		CodeChallenge:       &codeChallenge,
 		CodeChallengeMethod: &codeChallengeMethod,
-		RedirectURI:         &redirectUri,
+		RedirectURI:         &redirectURI,
 		Scope:               &scope,
 		ClientID:            oAuth20Service.ConfigRepository.GetClientId(),
 		ResponseType:        "code",
@@ -109,7 +109,7 @@ func TestIntegrationAuthenticate(t *testing.T) {
 	}
 
 	inputAuth := &o_auth2_0_extension.UserAuthenticationV3Params{
-		ClientID:   &clientId,
+		ClientID:   &clientID,
 		Password:   password,
 		RequestID:  requestID,
 		UserName:   username,
@@ -132,9 +132,9 @@ func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 	input := &o_auth2_0.AuthorizeV3Params{
 		CodeChallenge:       &codeChallenge,
 		CodeChallengeMethod: &codeChallengeMethod,
-		RedirectURI:         &redirectUri,
+		RedirectURI:         &redirectURI,
 		Scope:               &scope,
-		ClientID:            clientId,
+		ClientID:            clientID,
 		ResponseType:        "code",
 		HTTPClient:          httpClient,
 	}
@@ -144,7 +144,7 @@ func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 	}
 
 	inputAuth := &o_auth2_0_extension.UserAuthenticationV3Params{
-		ClientID:   &clientId,
+		ClientID:   &clientID,
 		Password:   password,
 		RequestID:  requestID,
 		UserName:   username,

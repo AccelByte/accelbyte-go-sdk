@@ -27,8 +27,10 @@ var VersionCheckHandlerCmd = &cobra.Command{
 		errInput := operationsService.VersionCheckHandlerShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

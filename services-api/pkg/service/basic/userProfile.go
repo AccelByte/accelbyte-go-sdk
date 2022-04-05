@@ -30,6 +30,7 @@ func (u *UserProfileService) AdminGetUserProfilePublicInfoByIds(input *user_prof
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -55,6 +56,7 @@ func (u *UserProfileService) GetUserProfileInfo(input *user_profile.GetUserProfi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -80,6 +82,7 @@ func (u *UserProfileService) UpdateUserProfile(input *user_profile.UpdateUserPro
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -105,6 +108,7 @@ func (u *UserProfileService) DeleteUserProfile(input *user_profile.DeleteUserPro
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -127,6 +131,7 @@ func (u *UserProfileService) GetCustomAttributesInfo(input *user_profile.GetCust
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -152,6 +157,7 @@ func (u *UserProfileService) UpdateCustomAttributesPartially(input *user_profile
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -174,6 +180,7 @@ func (u *UserProfileService) GetPrivateCustomAttributesInfo(input *user_profile.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -199,6 +206,7 @@ func (u *UserProfileService) UpdatePrivateCustomAttributesPartially(input *user_
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -224,6 +232,7 @@ func (u *UserProfileService) UpdateUserProfileStatus(input *user_profile.UpdateU
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -236,6 +245,7 @@ func (u *UserProfileService) PublicGetUserProfilePublicInfoByIds(input *user_pro
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -261,6 +271,7 @@ func (u *UserProfileService) GetMyProfileInfo(input *user_profile.GetMyProfileIn
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -286,6 +297,7 @@ func (u *UserProfileService) UpdateMyProfile(input *user_profile.UpdateMyProfile
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -314,6 +326,7 @@ func (u *UserProfileService) CreateMyProfile(input *user_profile.CreateMyProfile
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -333,6 +346,7 @@ func (u *UserProfileService) GetMyZipCode(input *user_profile.GetMyZipCodeParams
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -355,6 +369,7 @@ func (u *UserProfileService) UpdateMyZipCode(input *user_profile.UpdateMyZipCode
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -380,6 +395,7 @@ func (u *UserProfileService) PublicGetUserProfileInfo(input *user_profile.Public
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -405,6 +421,7 @@ func (u *UserProfileService) PublicUpdateUserProfile(input *user_profile.PublicU
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -430,6 +447,7 @@ func (u *UserProfileService) PublicCreateUserProfile(input *user_profile.PublicC
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -449,6 +467,7 @@ func (u *UserProfileService) PublicGetCustomAttributesInfo(input *user_profile.P
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -474,6 +493,7 @@ func (u *UserProfileService) PublicUpdateCustomAttributesPartially(input *user_p
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -489,6 +509,7 @@ func (u *UserProfileService) PublicGetUserProfilePublicInfo(input *user_profile.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -514,6 +535,7 @@ func (u *UserProfileService) PublicUpdateUserProfileStatus(input *user_profile.P
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -526,6 +548,7 @@ func (u *UserProfileService) AdminGetUserProfilePublicInfoByIdsShort(input *user
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -538,6 +561,7 @@ func (u *UserProfileService) GetUserProfileInfoShort(input *user_profile.GetUser
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -550,6 +574,7 @@ func (u *UserProfileService) UpdateUserProfileShort(input *user_profile.UpdateUs
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -562,6 +587,7 @@ func (u *UserProfileService) DeleteUserProfileShort(input *user_profile.DeleteUs
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -574,6 +600,7 @@ func (u *UserProfileService) GetCustomAttributesInfoShort(input *user_profile.Ge
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -586,6 +613,7 @@ func (u *UserProfileService) UpdateCustomAttributesPartiallyShort(input *user_pr
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -598,6 +626,7 @@ func (u *UserProfileService) GetPrivateCustomAttributesInfoShort(input *user_pro
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -610,6 +639,7 @@ func (u *UserProfileService) UpdatePrivateCustomAttributesPartiallyShort(input *
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -622,6 +652,7 @@ func (u *UserProfileService) UpdateUserProfileStatusShort(input *user_profile.Up
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -630,6 +661,7 @@ func (u *UserProfileService) PublicGetUserProfilePublicInfoByIdsShort(input *use
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -642,6 +674,7 @@ func (u *UserProfileService) GetMyProfileInfoShort(input *user_profile.GetMyProf
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -654,6 +687,7 @@ func (u *UserProfileService) UpdateMyProfileShort(input *user_profile.UpdateMyPr
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -666,6 +700,7 @@ func (u *UserProfileService) CreateMyProfileShort(input *user_profile.CreateMyPr
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -678,6 +713,7 @@ func (u *UserProfileService) GetMyZipCodeShort(input *user_profile.GetMyZipCodeP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -690,6 +726,7 @@ func (u *UserProfileService) UpdateMyZipCodeShort(input *user_profile.UpdateMyZi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -702,6 +739,7 @@ func (u *UserProfileService) PublicGetUserProfileInfoShort(input *user_profile.P
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -714,6 +752,7 @@ func (u *UserProfileService) PublicUpdateUserProfileShort(input *user_profile.Pu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -726,6 +765,7 @@ func (u *UserProfileService) PublicCreateUserProfileShort(input *user_profile.Pu
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -738,6 +778,7 @@ func (u *UserProfileService) PublicGetCustomAttributesInfoShort(input *user_prof
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -750,6 +791,7 @@ func (u *UserProfileService) PublicUpdateCustomAttributesPartiallyShort(input *u
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -758,6 +800,7 @@ func (u *UserProfileService) PublicGetUserProfilePublicInfoShort(input *user_pro
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -770,5 +813,6 @@ func (u *UserProfileService) PublicUpdateUserProfileStatusShort(input *user_prof
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

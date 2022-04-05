@@ -34,10 +34,12 @@ var GetUserRankingAdminV1Cmd = &cobra.Command{
 		ok, err := leaderboardDataService.GetUserRankingAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

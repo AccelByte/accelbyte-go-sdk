@@ -1,10 +1,15 @@
 // Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
+
 package cmd
 
 import (
 	"fmt"
+	"os"
+
+	"github.com/spf13/cobra"
+
 	"github.com/AccelByte/sample-apps/cmd/achievement"
 	"github.com/AccelByte/sample-apps/cmd/basic"
 	"github.com/AccelByte/sample-apps/cmd/cloudsave"
@@ -25,10 +30,8 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/sessionbrowser"
 	"github.com/AccelByte/sample-apps/cmd/social"
 	"github.com/AccelByte/sample-apps/cmd/ugc"
-	"github.com/spf13/cobra"
-	"os"
 
-	homedir "github.com/mitchellh/go-homedir"
+	"github.com/mitchellh/go-homedir"
 	"github.com/spf13/viper"
 )
 

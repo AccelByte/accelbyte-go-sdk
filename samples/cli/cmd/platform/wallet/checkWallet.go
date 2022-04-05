@@ -34,8 +34,10 @@ var CheckWalletCmd = &cobra.Command{
 		errInput := walletService.CheckWalletShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

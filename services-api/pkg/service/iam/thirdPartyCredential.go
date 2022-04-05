@@ -39,6 +39,7 @@ func (t *ThirdPartyCredentialService) RetrieveAllThirdPartyLoginPlatformCredenti
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -64,6 +65,7 @@ func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCr
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -89,6 +91,7 @@ func (t *ThirdPartyCredentialService) RetrieveThirdPartyLoginPlatformCredentialV
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -114,6 +117,7 @@ func (t *ThirdPartyCredentialService) AddThirdPartyLoginPlatformCredentialV3(inp
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -139,6 +143,7 @@ func (t *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformCredentialV3(
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -167,6 +172,7 @@ func (t *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformCredentialV3(
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -195,6 +201,7 @@ func (t *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformDomainV3(inpu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -223,6 +230,7 @@ func (t *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformDomainV3(inpu
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -248,6 +256,7 @@ func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCr
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -260,6 +269,7 @@ func (t *ThirdPartyCredentialService) RetrieveAllThirdPartyLoginPlatformCredenti
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -272,6 +282,7 @@ func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCr
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -284,6 +295,7 @@ func (t *ThirdPartyCredentialService) RetrieveThirdPartyLoginPlatformCredentialV
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -296,6 +308,7 @@ func (t *ThirdPartyCredentialService) AddThirdPartyLoginPlatformCredentialV3Shor
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -308,6 +321,7 @@ func (t *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformCredentialV3S
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -320,6 +334,7 @@ func (t *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformCredentialV3S
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -332,6 +347,7 @@ func (t *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformDomainV3Short
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -344,6 +360,7 @@ func (t *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformDomainV3Short
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -356,5 +373,6 @@ func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCr
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

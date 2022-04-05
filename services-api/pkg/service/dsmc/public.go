@@ -27,6 +27,7 @@ func (p *PublicService) GetDefaultProvider(input *public.GetDefaultProviderParam
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -40,6 +41,7 @@ func (p *PublicService) ListProviders(input *public.ListProvidersParams) ([]stri
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -53,6 +55,7 @@ func (p *PublicService) ListProvidersByRegion(input *public.ListProvidersByRegio
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -65,6 +68,7 @@ func (p *PublicService) GetDefaultProviderShort(input *public.GetDefaultProvider
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -77,6 +81,7 @@ func (p *PublicService) ListProvidersShort(input *public.ListProvidersParams) ([
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -89,5 +94,6 @@ func (p *PublicService) ListProvidersByRegionShort(input *public.ListProvidersBy
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

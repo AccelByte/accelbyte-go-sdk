@@ -32,8 +32,10 @@ var DeleteSessionCmd = &cobra.Command{
 		errInput := adminService.DeleteSessionShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

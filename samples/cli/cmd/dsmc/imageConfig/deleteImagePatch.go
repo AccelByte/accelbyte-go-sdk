@@ -36,8 +36,10 @@ var DeleteImagePatchCmd = &cobra.Command{
 		errInput := imageConfigService.DeleteImagePatchShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

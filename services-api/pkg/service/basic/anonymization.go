@@ -35,6 +35,7 @@ func (a *AnonymizationService) AnonymizeUserProfile(input *anonymization.Anonymi
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -47,5 +48,6 @@ func (a *AnonymizationService) AnonymizeUserProfileShort(input *anonymization.An
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

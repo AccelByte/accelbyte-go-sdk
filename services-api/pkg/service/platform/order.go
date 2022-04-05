@@ -30,6 +30,7 @@ func (o *OrderService) QueryOrders(input *order.QueryOrdersParams) (*platformcli
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -43,6 +44,7 @@ func (o *OrderService) GetOrderStatistics(input *order.GetOrderStatisticsParams)
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -59,6 +61,7 @@ func (o *OrderService) GetOrder(input *order.GetOrderParams) (*platformclientmod
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -81,6 +84,7 @@ func (o *OrderService) RefundOrder(input *order.RefundOrderParams) (*platformcli
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -94,6 +98,7 @@ func (o *OrderService) QueryUserOrders(input *order.QueryUserOrdersParams) (*pla
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -107,6 +112,7 @@ func (o *OrderService) CountOfPurchasedItem(input *order.CountOfPurchasedItemPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -123,6 +129,7 @@ func (o *OrderService) GetUserOrder(input *order.GetUserOrderParams) (*platformc
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -145,6 +152,7 @@ func (o *OrderService) UpdateUserOrderStatus(input *order.UpdateUserOrderStatusP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -167,6 +175,7 @@ func (o *OrderService) FulfillUserOrder(input *order.FulfillUserOrderParams) (*p
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -180,6 +189,7 @@ func (o *OrderService) GetUserOrderGrant(input *order.GetUserOrderGrantParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -193,6 +203,7 @@ func (o *OrderService) GetUserOrderHistories(input *order.GetUserOrderHistoriesP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -209,6 +220,7 @@ func (o *OrderService) ProcessUserOrderNotification(input *order.ProcessUserOrde
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -228,6 +240,7 @@ func (o *OrderService) DownloadUserOrderReceipt(input *order.DownloadUserOrderRe
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -241,6 +254,7 @@ func (o *OrderService) PublicQueryUserOrders(input *order.PublicQueryUserOrdersP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -269,6 +283,7 @@ func (o *OrderService) PublicCreateUserOrder(input *order.PublicCreateUserOrderP
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -285,6 +300,7 @@ func (o *OrderService) PublicGetUserOrder(input *order.PublicGetUserOrderParams)
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -304,6 +320,7 @@ func (o *OrderService) PublicCancelUserOrder(input *order.PublicCancelUserOrderP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -317,6 +334,7 @@ func (o *OrderService) PublicGetUserOrderHistories(input *order.PublicGetUserOrd
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -336,6 +354,7 @@ func (o *OrderService) PublicDownloadUserOrderReceipt(input *order.PublicDownloa
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -348,6 +367,7 @@ func (o *OrderService) QueryOrdersShort(input *order.QueryOrdersParams) (*platfo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -360,6 +380,7 @@ func (o *OrderService) GetOrderStatisticsShort(input *order.GetOrderStatisticsPa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -372,6 +393,7 @@ func (o *OrderService) GetOrderShort(input *order.GetOrderParams) (*platformclie
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -384,6 +406,7 @@ func (o *OrderService) RefundOrderShort(input *order.RefundOrderParams) (*platfo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -396,6 +419,7 @@ func (o *OrderService) QueryUserOrdersShort(input *order.QueryUserOrdersParams) 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -408,6 +432,7 @@ func (o *OrderService) CountOfPurchasedItemShort(input *order.CountOfPurchasedIt
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -420,6 +445,7 @@ func (o *OrderService) GetUserOrderShort(input *order.GetUserOrderParams) (*plat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -432,6 +458,7 @@ func (o *OrderService) UpdateUserOrderStatusShort(input *order.UpdateUserOrderSt
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -444,6 +471,7 @@ func (o *OrderService) FulfillUserOrderShort(input *order.FulfillUserOrderParams
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -456,6 +484,7 @@ func (o *OrderService) GetUserOrderGrantShort(input *order.GetUserOrderGrantPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -468,6 +497,7 @@ func (o *OrderService) GetUserOrderHistoriesShort(input *order.GetUserOrderHisto
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -480,6 +510,7 @@ func (o *OrderService) ProcessUserOrderNotificationShort(input *order.ProcessUse
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -492,6 +523,7 @@ func (o *OrderService) DownloadUserOrderReceiptShort(input *order.DownloadUserOr
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -504,6 +536,7 @@ func (o *OrderService) PublicQueryUserOrdersShort(input *order.PublicQueryUserOr
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -516,6 +549,7 @@ func (o *OrderService) PublicCreateUserOrderShort(input *order.PublicCreateUserO
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -528,6 +562,7 @@ func (o *OrderService) PublicGetUserOrderShort(input *order.PublicGetUserOrderPa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -540,6 +575,7 @@ func (o *OrderService) PublicCancelUserOrderShort(input *order.PublicCancelUserO
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -552,6 +588,7 @@ func (o *OrderService) PublicGetUserOrderHistoriesShort(input *order.PublicGetUs
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -564,5 +601,6 @@ func (o *OrderService) PublicDownloadUserOrderReceiptShort(input *order.PublicDo
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

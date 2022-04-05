@@ -27,8 +27,10 @@ var AdminDisableMyAuthenticatorV4Cmd = &cobra.Command{
 		errInput := usersV4Service.AdminDisableMyAuthenticatorV4Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

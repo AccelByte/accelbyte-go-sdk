@@ -5,13 +5,14 @@
 package usersV4
 
 import (
+	"net/http"
+
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users_v4"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-	"net/http"
 )
 
 // AdminEnableMyAuthenticatorV4Cmd represents the AdminEnableMyAuthenticatorV4 command
@@ -37,8 +38,10 @@ var AdminEnableMyAuthenticatorV4Cmd = &cobra.Command{
 		errInput := usersV4Service.AdminEnableMyAuthenticatorV4Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

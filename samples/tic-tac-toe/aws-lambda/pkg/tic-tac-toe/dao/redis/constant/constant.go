@@ -6,6 +6,4 @@ package constant
 
 import "time"
 
-const (
-	RedisExpTime        = 600 * time.Second
-)
+const RedisExpTime = 600 * time.Second

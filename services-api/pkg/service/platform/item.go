@@ -39,6 +39,7 @@ func (i *ItemService) SyncInGameItem(input *item.SyncInGameItemParams) (*platfor
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -64,6 +65,7 @@ func (i *ItemService) CreateItem(input *item.CreateItemParams) (*platformclientm
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -80,6 +82,7 @@ func (i *ItemService) GetItemByAppID(input *item.GetItemByAppIDParams) (*platfor
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -99,6 +102,7 @@ func (i *ItemService) QueryItems(input *item.QueryItemsParams) (*platformclientm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -112,6 +116,7 @@ func (i *ItemService) ListBasicItemsByFeatures(input *item.ListBasicItemsByFeatu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -128,6 +133,7 @@ func (i *ItemService) GetItemBySku(input *item.GetItemBySkuParams) (*platformcli
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -144,6 +150,7 @@ func (i *ItemService) GetLocaleItemBySku(input *item.GetLocaleItemBySkuParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -160,6 +167,7 @@ func (i *ItemService) GetItemIDBySku(input *item.GetItemIDBySkuParams) (*platfor
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -176,6 +184,7 @@ func (i *ItemService) BulkGetLocaleItems(input *item.BulkGetLocaleItemsParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -192,6 +201,7 @@ func (i *ItemService) SearchItems(input *item.SearchItemsParams) (*platformclien
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -211,6 +221,7 @@ func (i *ItemService) QueryUncategorizedItems(input *item.QueryUncategorizedItem
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -227,6 +238,7 @@ func (i *ItemService) GetItem(input *item.GetItemParams) (*platformclientmodels.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -252,6 +264,7 @@ func (i *ItemService) UpdateItem(input *item.UpdateItemParams) (*platformclientm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -268,6 +281,7 @@ func (i *ItemService) DeleteItem(input *item.DeleteItemParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -284,6 +298,7 @@ func (i *ItemService) AcquireItem(input *item.AcquireItemParams) (*platformclien
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -297,6 +312,7 @@ func (i *ItemService) GetApp(input *item.GetAppParams) (*platformclientmodels.Fu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -319,6 +335,7 @@ func (i *ItemService) UpdateApp(input *item.UpdateAppParams) (*platformclientmod
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -338,6 +355,7 @@ func (i *ItemService) DisableItem(input *item.DisableItemParams) (*platformclien
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -354,6 +372,7 @@ func (i *ItemService) GetItemDynamicData(input *item.GetItemDynamicDataParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -373,6 +392,7 @@ func (i *ItemService) EnableItem(input *item.EnableItemParams) (*platformclientm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -392,6 +412,7 @@ func (i *ItemService) FeatureItem(input *item.FeatureItemParams) (*platformclien
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -411,6 +432,7 @@ func (i *ItemService) DefeatureItem(input *item.DefeatureItemParams) (*platformc
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -427,6 +449,7 @@ func (i *ItemService) GetLocaleItem(input *item.GetLocaleItemParams) (*platformc
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -446,6 +469,7 @@ func (i *ItemService) ReturnItem(input *item.ReturnItemParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -458,6 +482,7 @@ func (i *ItemService) PublicGetItemByAppID(input *item.PublicGetItemByAppIDParam
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -473,6 +498,7 @@ func (i *ItemService) PublicQueryItems(input *item.PublicQueryItemsParams) (*pla
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -485,6 +511,7 @@ func (i *ItemService) PublicGetItemBySku(input *item.PublicGetItemBySkuParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -497,6 +524,7 @@ func (i *ItemService) PublicBulkGetItems(input *item.PublicBulkGetItemsParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -509,6 +537,7 @@ func (i *ItemService) PublicSearchItems(input *item.PublicSearchItemsParams) (*p
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -521,6 +550,7 @@ func (i *ItemService) PublicGetApp(input *item.PublicGetAppParams) (*platformcli
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -533,6 +563,7 @@ func (i *ItemService) PublicGetItemDynamicData(input *item.PublicGetItemDynamicD
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -545,6 +576,7 @@ func (i *ItemService) PublicGetItem(input *item.PublicGetItemParams) (*platformc
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -557,6 +589,7 @@ func (i *ItemService) SyncInGameItemShort(input *item.SyncInGameItemParams) (*pl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -569,6 +602,7 @@ func (i *ItemService) CreateItemShort(input *item.CreateItemParams) (*platformcl
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -581,6 +615,7 @@ func (i *ItemService) GetItemByAppIDShort(input *item.GetItemByAppIDParams) (*pl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -593,6 +628,7 @@ func (i *ItemService) QueryItemsShort(input *item.QueryItemsParams) (*platformcl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -605,6 +641,7 @@ func (i *ItemService) ListBasicItemsByFeaturesShort(input *item.ListBasicItemsBy
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -617,6 +654,7 @@ func (i *ItemService) GetItemBySkuShort(input *item.GetItemBySkuParams) (*platfo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -629,6 +667,7 @@ func (i *ItemService) GetLocaleItemBySkuShort(input *item.GetLocaleItemBySkuPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -641,6 +680,7 @@ func (i *ItemService) GetItemIDBySkuShort(input *item.GetItemIDBySkuParams) (*pl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -653,6 +693,7 @@ func (i *ItemService) BulkGetLocaleItemsShort(input *item.BulkGetLocaleItemsPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -665,6 +706,7 @@ func (i *ItemService) SearchItemsShort(input *item.SearchItemsParams) (*platform
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -677,6 +719,7 @@ func (i *ItemService) QueryUncategorizedItemsShort(input *item.QueryUncategorize
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -689,6 +732,7 @@ func (i *ItemService) GetItemShort(input *item.GetItemParams) (*platformclientmo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -701,6 +745,7 @@ func (i *ItemService) UpdateItemShort(input *item.UpdateItemParams) (*platformcl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -713,6 +758,7 @@ func (i *ItemService) DeleteItemShort(input *item.DeleteItemParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -725,6 +771,7 @@ func (i *ItemService) AcquireItemShort(input *item.AcquireItemParams) (*platform
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -737,6 +784,7 @@ func (i *ItemService) GetAppShort(input *item.GetAppParams) (*platformclientmode
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -749,6 +797,7 @@ func (i *ItemService) UpdateAppShort(input *item.UpdateAppParams) (*platformclie
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -761,6 +810,7 @@ func (i *ItemService) DisableItemShort(input *item.DisableItemParams) (*platform
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -773,6 +823,7 @@ func (i *ItemService) GetItemDynamicDataShort(input *item.GetItemDynamicDataPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -785,6 +836,7 @@ func (i *ItemService) EnableItemShort(input *item.EnableItemParams) (*platformcl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -797,6 +849,7 @@ func (i *ItemService) FeatureItemShort(input *item.FeatureItemParams) (*platform
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -809,6 +862,7 @@ func (i *ItemService) DefeatureItemShort(input *item.DefeatureItemParams) (*plat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -821,6 +875,7 @@ func (i *ItemService) GetLocaleItemShort(input *item.GetLocaleItemParams) (*plat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -833,6 +888,7 @@ func (i *ItemService) ReturnItemShort(input *item.ReturnItemParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -841,6 +897,7 @@ func (i *ItemService) PublicGetItemByAppIDShort(input *item.PublicGetItemByAppID
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -849,6 +906,7 @@ func (i *ItemService) PublicQueryItemsShort(input *item.PublicQueryItemsParams) 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -857,6 +915,7 @@ func (i *ItemService) PublicGetItemBySkuShort(input *item.PublicGetItemBySkuPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -865,6 +924,7 @@ func (i *ItemService) PublicBulkGetItemsShort(input *item.PublicBulkGetItemsPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -873,6 +933,7 @@ func (i *ItemService) PublicSearchItemsShort(input *item.PublicSearchItemsParams
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -881,6 +942,7 @@ func (i *ItemService) PublicGetAppShort(input *item.PublicGetAppParams) (*platfo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -889,6 +951,7 @@ func (i *ItemService) PublicGetItemDynamicDataShort(input *item.PublicGetItemDyn
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -897,5 +960,6 @@ func (i *ItemService) PublicGetItemShort(input *item.PublicGetItemParams) (*plat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

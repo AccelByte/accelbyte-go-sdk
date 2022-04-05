@@ -27,6 +27,7 @@ func (a *AdminUserAgreementService) IndirectBulkAcceptVersionedPolicy(input *adm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -39,5 +40,6 @@ func (a *AdminUserAgreementService) IndirectBulkAcceptVersionedPolicyShort(input
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

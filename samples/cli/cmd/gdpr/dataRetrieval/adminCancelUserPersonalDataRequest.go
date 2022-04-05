@@ -34,8 +34,10 @@ var AdminCancelUserPersonalDataRequestCmd = &cobra.Command{
 		errInput := dataRetrievalService.AdminCancelUserPersonalDataRequestShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

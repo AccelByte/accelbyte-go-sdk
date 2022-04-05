@@ -42,10 +42,12 @@ var GetUserEventsV2PublicCmd = &cobra.Command{
 		ok, err := eventV2Service.GetUserEventsV2PublicShort(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

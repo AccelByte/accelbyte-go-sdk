@@ -1,23 +1,29 @@
+// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
 package main
 
 import (
 	"bufio"
-	"client/pkg/models"
-	"client/pkg/repository"
-	"client/pkg/utils"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"net/http"
+	"os"
+	"strconv"
+	"strings"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/model"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/connectionutils"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/parser"
 	"github.com/sirupsen/logrus"
-	"io/ioutil"
-	"net/http"
-	"os"
-	"strconv"
-	"strings"
+
+	"client/pkg/models"
+	"client/pkg/repository"
+	"client/pkg/utils"
 )
 
 const (
@@ -92,6 +98,7 @@ var websocketMessageHandler = func(dataByte []byte) {
 				playNumStr, err := strconv.Atoi(message[1])
 				if err != nil {
 					logrus.Errorf("Error while convert str to int. Error msg : %s", err.Error())
+
 					return
 				}
 				playerNum = playNumStr
@@ -119,6 +126,7 @@ var websocketMessageHandler = func(dataByte []byte) {
 				}
 			}
 		}
+
 		return
 	}
 }
@@ -131,6 +139,7 @@ func getInput() string {
 	// convert CRLF to LF
 	text = strings.Replace(text, "\n", "", -1)
 	text = strings.Replace(text, "\r", "", -1)
+
 	return text
 }
 
@@ -188,6 +197,7 @@ func userInfo() {
 	token, err := oauthService.TokenRepository.GetToken()
 	if err != nil {
 		logrus.Info("You are not log in")
+
 		return
 	}
 	logrus.Infof(
@@ -217,6 +227,7 @@ func login() {
 	err := userService.Login(username, password)
 	if err != nil {
 		logrus.Error("Login Failed")
+
 		return
 	}
 	logrus.Info("Login Successful")
@@ -232,9 +243,9 @@ func login() {
 }
 
 func logout() {
-	err := userService.Logout()
-	if err != nil {
+	if err := userService.Logout(); err != nil {
 		logrus.Error("Logout failed")
+
 		return
 	}
 	logrus.Info("Logout successful")
@@ -250,6 +261,7 @@ func createMatchmaking() error {
 		return err
 	}
 	logrus.Info("Successful create matchmaking for tic-tac-toe!")
+
 	return nil
 }
 
@@ -276,15 +288,17 @@ func makeMove(request models.MoveRequest) (*models.MoveResponse, error) {
 		if err != nil {
 			return nil, err
 		}
+
 		return moveResponse, nil
 	} else if response.StatusCode == http.StatusForbidden {
 		logrus.Info(string(responseBody))
-		return nil, fmt.Errorf("Forbidden move, try again: ")
+
+		return nil, fmt.Errorf("forbidden move, try again: ")
 	} else {
 		logrus.Info(string(responseBody))
+
 		return nil, err
 	}
-
 }
 
 func getStat() (*models.MatchTable, error) {
@@ -306,6 +320,7 @@ func getStat() (*models.MatchTable, error) {
 	if err != nil {
 		return nil, err
 	}
+
 	return &matchTable, nil
 }
 
@@ -333,6 +348,7 @@ func playingGame(input string) {
 	intIndex, err := strconv.Atoi(input)
 	if err != nil {
 		logrus.Error("error convert")
+
 		return
 	}
 	move := &models.MoveRequest{
@@ -342,6 +358,7 @@ func playingGame(input string) {
 	resp, err := makeMove(*move)
 	if err != nil {
 		logrus.Errorf("Error while make move: %s", err.Error())
+
 		return
 	}
 	renderBoard(resp.BoardStatus)
@@ -365,5 +382,6 @@ func getSymbol(playerNum int) string {
 	if playerNum == 1 {
 		return "O"
 	}
+
 	return "X"
 }

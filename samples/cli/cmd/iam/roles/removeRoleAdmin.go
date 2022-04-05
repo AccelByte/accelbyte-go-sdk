@@ -30,8 +30,10 @@ var RemoveRoleAdminCmd = &cobra.Command{
 		errInput := rolesService.RemoveRoleAdminShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

@@ -32,8 +32,10 @@ var DeleteStatCmd = &cobra.Command{
 		errInput := statConfigurationService.DeleteStatShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

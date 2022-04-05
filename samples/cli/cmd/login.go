@@ -1,14 +1,16 @@
 // Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
+
 package cmd
 
 import (
+	"github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
-	"github.com/sirupsen/logrus"
-	"github.com/spf13/cobra"
 )
 
 // loginCmd represents the login command
@@ -29,6 +31,7 @@ var loginCmd = &cobra.Command{
 			return err
 		}
 		logrus.Infof("User successfully logged in")
+
 		return nil
 	},
 }

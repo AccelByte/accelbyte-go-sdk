@@ -27,6 +27,7 @@ func (s *SubscriptionService) QuerySubscriptions(input *subscription.QuerySubscr
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -40,6 +41,7 @@ func (s *SubscriptionService) RecurringChargeSubscription(input *subscription.Re
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -53,6 +55,7 @@ func (s *SubscriptionService) QueryUserSubscriptions(input *subscription.QueryUs
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -66,6 +69,7 @@ func (s *SubscriptionService) GetUserSubscriptionActivities(input *subscription.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -91,6 +95,7 @@ func (s *SubscriptionService) PlatformSubscribeSubscription(input *subscription.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -104,6 +109,7 @@ func (s *SubscriptionService) CheckUserSubscriptionSubscribableByItemID(input *s
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -120,6 +126,7 @@ func (s *SubscriptionService) GetUserSubscription(input *subscription.GetUserSub
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -133,6 +140,7 @@ func (s *SubscriptionService) DeleteUserSubscription(input *subscription.DeleteU
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -152,6 +160,7 @@ func (s *SubscriptionService) CancelSubscription(input *subscription.CancelSubsc
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -168,6 +177,7 @@ func (s *SubscriptionService) GrantDaysToSubscription(input *subscription.GrantD
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -181,6 +191,7 @@ func (s *SubscriptionService) GetUserSubscriptionBillingHistories(input *subscri
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -197,6 +208,7 @@ func (s *SubscriptionService) ProcessUserSubscriptionNotification(input *subscri
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -210,6 +222,7 @@ func (s *SubscriptionService) PublicQueryUserSubscriptions(input *subscription.P
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -238,6 +251,7 @@ func (s *SubscriptionService) PublicSubscribeSubscription(input *subscription.Pu
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -251,6 +265,7 @@ func (s *SubscriptionService) PublicCheckUserSubscriptionSubscribableByItemID(in
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -267,6 +282,7 @@ func (s *SubscriptionService) PublicGetUserSubscription(input *subscription.Publ
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -289,6 +305,7 @@ func (s *SubscriptionService) PublicChangeSubscriptionBillingAccount(input *subs
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -308,6 +325,7 @@ func (s *SubscriptionService) PublicCancelSubscription(input *subscription.Publi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -321,6 +339,7 @@ func (s *SubscriptionService) PublicGetUserSubscriptionBillingHistories(input *s
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -333,6 +352,7 @@ func (s *SubscriptionService) QuerySubscriptionsShort(input *subscription.QueryS
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -345,6 +365,7 @@ func (s *SubscriptionService) RecurringChargeSubscriptionShort(input *subscripti
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -357,6 +378,7 @@ func (s *SubscriptionService) QueryUserSubscriptionsShort(input *subscription.Qu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -369,6 +391,7 @@ func (s *SubscriptionService) GetUserSubscriptionActivitiesShort(input *subscrip
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -381,6 +404,7 @@ func (s *SubscriptionService) PlatformSubscribeSubscriptionShort(input *subscrip
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -393,6 +417,7 @@ func (s *SubscriptionService) CheckUserSubscriptionSubscribableByItemIDShort(inp
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -405,6 +430,7 @@ func (s *SubscriptionService) GetUserSubscriptionShort(input *subscription.GetUs
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -417,6 +443,7 @@ func (s *SubscriptionService) DeleteUserSubscriptionShort(input *subscription.De
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -429,6 +456,7 @@ func (s *SubscriptionService) CancelSubscriptionShort(input *subscription.Cancel
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -441,6 +469,7 @@ func (s *SubscriptionService) GrantDaysToSubscriptionShort(input *subscription.G
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -453,6 +482,7 @@ func (s *SubscriptionService) GetUserSubscriptionBillingHistoriesShort(input *su
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -465,6 +495,7 @@ func (s *SubscriptionService) ProcessUserSubscriptionNotificationShort(input *su
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -477,6 +508,7 @@ func (s *SubscriptionService) PublicQueryUserSubscriptionsShort(input *subscript
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -489,6 +521,7 @@ func (s *SubscriptionService) PublicSubscribeSubscriptionShort(input *subscripti
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -501,6 +534,7 @@ func (s *SubscriptionService) PublicCheckUserSubscriptionSubscribableByItemIDSho
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -513,6 +547,7 @@ func (s *SubscriptionService) PublicGetUserSubscriptionShort(input *subscription
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -525,6 +560,7 @@ func (s *SubscriptionService) PublicChangeSubscriptionBillingAccountShort(input 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -537,6 +573,7 @@ func (s *SubscriptionService) PublicCancelSubscriptionShort(input *subscription.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -549,5 +586,6 @@ func (s *SubscriptionService) PublicGetUserSubscriptionBillingHistoriesShort(inp
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

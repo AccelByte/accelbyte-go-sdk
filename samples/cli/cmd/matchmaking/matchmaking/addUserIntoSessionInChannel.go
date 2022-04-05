@@ -6,6 +6,7 @@ package matchmaking
 
 import (
 	"encoding/json"
+
 	matchmaking_ "github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -43,8 +44,10 @@ var AddUserIntoSessionInChannelCmd = &cobra.Command{
 		errInput := matchmakingService.AddUserIntoSessionInChannelShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

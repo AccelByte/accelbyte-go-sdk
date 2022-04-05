@@ -32,8 +32,10 @@ var DeleteTemplateSlugCmd = &cobra.Command{
 		errInput := notificationService.DeleteTemplateSlugShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

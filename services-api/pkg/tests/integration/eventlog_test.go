@@ -27,14 +27,14 @@ var (
 	date         = "2022-03-23T10:06:40Z"
 	version      = int32(0)
 	size         = int64(10)
-	userId       string
+	userID       string
 	bodyEventLog = &eventlogclientmodels.ModelsGenericQueryPayload{
-		ClientID:     &clientId,
+		ClientID:     &clientID,
 		EventName:    &emptyString,
 		PayloadQuery: &emptyInterface,
 		SessionID:    &emptyString,
 		TraceID:      &emptyString,
-		UserID:       &userId,
+		UserID:       &userID,
 		Version:      &version,
 	}
 )
@@ -42,7 +42,7 @@ var (
 // Getting a set of events
 func TestIntegrationQueryEventStreamHandler(t *testing.T) {
 	t.Parallel()
-	userId = GetUserId()
+	userID = GetUserID()
 
 	inputEventLog := &event_v2.QueryEventStreamHandlerParams{
 		Body:      bodyEventLog,
@@ -64,14 +64,14 @@ func TestIntegrationQueryEventStreamHandler(t *testing.T) {
 // Getting a set of events
 func TestIntegrationGetEventSpecificUserV2Handler(t *testing.T) {
 	t.Parallel()
-	userId = GetUserId()
+	userID = GetUserID()
 	inputEventLog := &event_v2.GetEventSpecificUserV2HandlerParams{
 		EventName: &emptyString,
 		Namespace: integration.NamespaceTest,
 		Offset:    &offset,
 		PageSize:  &size,
 		StartDate: &date,
-		UserID:    userId,
+		UserID:    userID,
 	}
 	_, err := eventV2Service.GetEventSpecificUserV2HandlerShort(inputEventLog)
 	if err != nil {
@@ -81,7 +81,7 @@ func TestIntegrationGetEventSpecificUserV2Handler(t *testing.T) {
 	assert.Nil(t, err, "err should be nil")
 }
 
-func GetUserId() string {
+func GetUserID() string {
 	input := &o_auth2_0.TokenGrantV3Params{
 		Password:  &password,
 		Username:  &username,
@@ -98,5 +98,6 @@ func GetUserId() string {
 			logrus.Error("failed stored the token")
 		}
 	}
+
 	return *accessToken.UserID
 }

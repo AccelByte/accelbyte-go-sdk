@@ -42,6 +42,7 @@ func (e *EventService) GetEventByNamespaceHandler(input *event.GetEventByNamespa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -67,6 +68,7 @@ func (e *EventService) PostEventHandler(input *event.PostEventHandlerParams) err
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -95,6 +97,7 @@ func (e *EventService) GetEventByEventIDHandler(input *event.GetEventByEventIDHa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -123,6 +126,7 @@ func (e *EventService) GetEventByEventTypeHandler(input *event.GetEventByEventTy
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -151,6 +155,7 @@ func (e *EventService) GetEventByEventTypeAndEventIDHandler(input *event.GetEven
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -179,6 +184,7 @@ func (e *EventService) GetEventByUserIDHandler(input *event.GetEventByUserIDHand
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -207,6 +213,7 @@ func (e *EventService) GetEventByUserIDAndEventIDHandler(input *event.GetEventBy
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -235,6 +242,7 @@ func (e *EventService) GetEventByUserIDAndEventTypeHandler(input *event.GetEvent
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -263,6 +271,7 @@ func (e *EventService) GetEventByUserEventIDAndEventTypeHandler(input *event.Get
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -275,6 +284,7 @@ func (e *EventService) GetEventByNamespaceHandlerShort(input *event.GetEventByNa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -287,6 +297,7 @@ func (e *EventService) PostEventHandlerShort(input *event.PostEventHandlerParams
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -299,6 +310,7 @@ func (e *EventService) GetEventByEventIDHandlerShort(input *event.GetEventByEven
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -311,6 +323,7 @@ func (e *EventService) GetEventByEventTypeHandlerShort(input *event.GetEventByEv
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -323,6 +336,7 @@ func (e *EventService) GetEventByEventTypeAndEventIDHandlerShort(input *event.Ge
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -335,6 +349,7 @@ func (e *EventService) GetEventByUserIDHandlerShort(input *event.GetEventByUserI
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -347,6 +362,7 @@ func (e *EventService) GetEventByUserIDAndEventIDHandlerShort(input *event.GetEv
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -359,6 +375,7 @@ func (e *EventService) GetEventByUserIDAndEventTypeHandlerShort(input *event.Get
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -371,5 +388,6 @@ func (e *EventService) GetEventByUserEventIDAndEventTypeHandlerShort(input *even
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

@@ -42,6 +42,7 @@ func (f *FriendsService) GetUserFriendsUpdated(input *friends.GetUserFriendsUpda
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -70,6 +71,7 @@ func (f *FriendsService) GetUserIncomingFriends(input *friends.GetUserIncomingFr
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -98,6 +100,7 @@ func (f *FriendsService) GetUserOutgoingFriends(input *friends.GetUserOutgoingFr
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -129,6 +132,7 @@ func (f *FriendsService) UserRequestFriend(input *friends.UserRequestFriendParam
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -157,6 +161,7 @@ func (f *FriendsService) UserAcceptFriendRequest(input *friends.UserAcceptFriend
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -185,6 +190,7 @@ func (f *FriendsService) UserCancelFriendRequest(input *friends.UserCancelFriend
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -213,6 +219,7 @@ func (f *FriendsService) UserRejectFriendRequest(input *friends.UserRejectFriend
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -238,6 +245,7 @@ func (f *FriendsService) UserGetFriendshipStatus(input *friends.UserGetFriendshi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -266,6 +274,7 @@ func (f *FriendsService) UserUnfriendRequest(input *friends.UserUnfriendRequestP
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -291,6 +300,7 @@ func (f *FriendsService) AddFriendsWithoutConfirmation(input *friends.AddFriends
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -316,6 +326,7 @@ func (f *FriendsService) GetListOfFriends(input *friends.GetListOfFriendsParams)
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -328,6 +339,7 @@ func (f *FriendsService) GetUserFriendsUpdatedShort(input *friends.GetUserFriend
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -340,6 +352,7 @@ func (f *FriendsService) GetUserIncomingFriendsShort(input *friends.GetUserIncom
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -352,6 +365,7 @@ func (f *FriendsService) GetUserOutgoingFriendsShort(input *friends.GetUserOutgo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -364,6 +378,7 @@ func (f *FriendsService) UserRequestFriendShort(input *friends.UserRequestFriend
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -376,6 +391,7 @@ func (f *FriendsService) UserAcceptFriendRequestShort(input *friends.UserAcceptF
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -388,6 +404,7 @@ func (f *FriendsService) UserCancelFriendRequestShort(input *friends.UserCancelF
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -400,6 +417,7 @@ func (f *FriendsService) UserRejectFriendRequestShort(input *friends.UserRejectF
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -412,6 +430,7 @@ func (f *FriendsService) UserGetFriendshipStatusShort(input *friends.UserGetFrie
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -424,6 +443,7 @@ func (f *FriendsService) UserUnfriendRequestShort(input *friends.UserUnfriendReq
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -436,6 +456,7 @@ func (f *FriendsService) AddFriendsWithoutConfirmationShort(input *friends.AddFr
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -448,5 +469,6 @@ func (f *FriendsService) GetListOfFriendsShort(input *friends.GetListOfFriendsPa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

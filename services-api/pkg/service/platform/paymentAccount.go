@@ -27,6 +27,7 @@ func (p *PaymentAccountService) PublicGetPaymentAccounts(input *payment_account.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -40,6 +41,7 @@ func (p *PaymentAccountService) PublicDeletePaymentAccount(input *payment_accoun
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -52,6 +54,7 @@ func (p *PaymentAccountService) PublicGetPaymentAccountsShort(input *payment_acc
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -64,5 +67,6 @@ func (p *PaymentAccountService) PublicDeletePaymentAccountShort(input *payment_a
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

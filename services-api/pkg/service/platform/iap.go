@@ -27,6 +27,7 @@ func (i *IAPService) GetAppleIAPConfig(input *i_a_p.GetAppleIAPConfigParams) (*p
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -40,6 +41,7 @@ func (i *IAPService) UpdateAppleIAPConfig(input *i_a_p.UpdateAppleIAPConfigParam
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -53,6 +55,7 @@ func (i *IAPService) DeleteAppleIAPConfig(input *i_a_p.DeleteAppleIAPConfigParam
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -69,6 +72,7 @@ func (i *IAPService) GetEpicGamesIAPConfig(input *i_a_p.GetEpicGamesIAPConfigPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -82,6 +86,7 @@ func (i *IAPService) UpdateEpicGamesIAPConfig(input *i_a_p.UpdateEpicGamesIAPCon
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -95,6 +100,7 @@ func (i *IAPService) DeleteEpicGamesIAPConfig(input *i_a_p.DeleteEpicGamesIAPCon
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -108,6 +114,7 @@ func (i *IAPService) GetGoogleIAPConfig(input *i_a_p.GetGoogleIAPConfigParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -121,6 +128,7 @@ func (i *IAPService) UpdateGoogleIAPConfig(input *i_a_p.UpdateGoogleIAPConfigPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -134,6 +142,7 @@ func (i *IAPService) DeleteGoogleIAPConfig(input *i_a_p.DeleteGoogleIAPConfigPar
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -147,6 +156,7 @@ func (i *IAPService) UpdateGoogleP12File(input *i_a_p.UpdateGoogleP12FileParams)
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -163,6 +173,7 @@ func (i *IAPService) GetIAPItemConfig(input *i_a_p.GetIAPItemConfigParams) (*pla
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -179,6 +190,7 @@ func (i *IAPService) UpdateIAPItemConfig(input *i_a_p.UpdateIAPItemConfigParams)
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -192,6 +204,7 @@ func (i *IAPService) DeleteIAPItemConfig(input *i_a_p.DeleteIAPItemConfigParams)
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -205,6 +218,7 @@ func (i *IAPService) GetPlayStationIAPConfig(input *i_a_p.GetPlayStationIAPConfi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -218,6 +232,7 @@ func (i *IAPService) UpdatePlaystationIAPConfig(input *i_a_p.UpdatePlaystationIA
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -231,6 +246,7 @@ func (i *IAPService) DeletePlaystationIAPConfig(input *i_a_p.DeletePlaystationIA
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -244,6 +260,7 @@ func (i *IAPService) GetStadiaIAPConfig(input *i_a_p.GetStadiaIAPConfigParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -257,6 +274,7 @@ func (i *IAPService) DeleteStadiaIAPConfig(input *i_a_p.DeleteStadiaIAPConfigPar
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -270,6 +288,7 @@ func (i *IAPService) UpdateStadiaJSONConfigFile(input *i_a_p.UpdateStadiaJSONCon
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -283,6 +302,7 @@ func (i *IAPService) GetSteamIAPConfig(input *i_a_p.GetSteamIAPConfigParams) (*p
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -296,6 +316,7 @@ func (i *IAPService) UpdateSteamIAPConfig(input *i_a_p.UpdateSteamIAPConfigParam
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -309,6 +330,7 @@ func (i *IAPService) DeleteSteamIAPConfig(input *i_a_p.DeleteSteamIAPConfigParam
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -322,6 +344,7 @@ func (i *IAPService) GetTwitchIAPConfig(input *i_a_p.GetTwitchIAPConfigParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -335,6 +358,7 @@ func (i *IAPService) UpdateTwitchIAPConfig(input *i_a_p.UpdateTwitchIAPConfigPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -348,6 +372,7 @@ func (i *IAPService) DeleteTwitchIAPConfig(input *i_a_p.DeleteTwitchIAPConfigPar
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -364,6 +389,7 @@ func (i *IAPService) GetXblIAPConfig(input *i_a_p.GetXblIAPConfigParams) (*platf
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -377,6 +403,7 @@ func (i *IAPService) UpdateXblIAPConfig(input *i_a_p.UpdateXblIAPConfigParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -390,6 +417,7 @@ func (i *IAPService) DeleteXblAPConfig(input *i_a_p.DeleteXblAPConfigParams) err
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -403,6 +431,7 @@ func (i *IAPService) UpdateXblBPCertFile(input *i_a_p.UpdateXblBPCertFileParams)
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -416,6 +445,7 @@ func (i *IAPService) QueryUserIAPOrders(input *i_a_p.QueryUserIAPOrdersParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -429,6 +459,7 @@ func (i *IAPService) QueryAllUserIAPOrders(input *i_a_p.QueryAllUserIAPOrdersPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -451,6 +482,7 @@ func (i *IAPService) MockFulfillIAPItem(input *i_a_p.MockFulfillIAPItemParams) e
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -473,6 +505,7 @@ func (i *IAPService) PublicFulfillAppleIAPItem(input *i_a_p.PublicFulfillAppleIA
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -486,6 +519,7 @@ func (i *IAPService) SyncEpicGamesInventory(input *i_a_p.SyncEpicGamesInventoryP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -508,6 +542,7 @@ func (i *IAPService) PublicFulfillGoogleIAPItem(input *i_a_p.PublicFulfillGoogle
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -524,6 +559,7 @@ func (i *IAPService) PublicReconcilePlayStationStore(input *i_a_p.PublicReconcil
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -537,6 +573,7 @@ func (i *IAPService) SyncStadiaEntitlement(input *i_a_p.SyncStadiaEntitlementPar
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -550,6 +587,7 @@ func (i *IAPService) SyncSteamInventory(input *i_a_p.SyncSteamInventoryParams) e
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -563,6 +601,7 @@ func (i *IAPService) SyncTwitchDropsEntitlement(input *i_a_p.SyncTwitchDropsEnti
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -576,6 +615,7 @@ func (i *IAPService) SyncXboxInventory(input *i_a_p.SyncXboxInventoryParams) ([]
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -588,6 +628,7 @@ func (i *IAPService) GetAppleIAPConfigShort(input *i_a_p.GetAppleIAPConfigParams
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -600,6 +641,7 @@ func (i *IAPService) UpdateAppleIAPConfigShort(input *i_a_p.UpdateAppleIAPConfig
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -612,6 +654,7 @@ func (i *IAPService) DeleteAppleIAPConfigShort(input *i_a_p.DeleteAppleIAPConfig
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -624,6 +667,7 @@ func (i *IAPService) GetEpicGamesIAPConfigShort(input *i_a_p.GetEpicGamesIAPConf
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -636,6 +680,7 @@ func (i *IAPService) UpdateEpicGamesIAPConfigShort(input *i_a_p.UpdateEpicGamesI
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -648,6 +693,7 @@ func (i *IAPService) DeleteEpicGamesIAPConfigShort(input *i_a_p.DeleteEpicGamesI
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -660,6 +706,7 @@ func (i *IAPService) GetGoogleIAPConfigShort(input *i_a_p.GetGoogleIAPConfigPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -672,6 +719,7 @@ func (i *IAPService) UpdateGoogleIAPConfigShort(input *i_a_p.UpdateGoogleIAPConf
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -684,6 +732,7 @@ func (i *IAPService) DeleteGoogleIAPConfigShort(input *i_a_p.DeleteGoogleIAPConf
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -696,6 +745,7 @@ func (i *IAPService) UpdateGoogleP12FileShort(input *i_a_p.UpdateGoogleP12FilePa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -708,6 +758,7 @@ func (i *IAPService) GetIAPItemConfigShort(input *i_a_p.GetIAPItemConfigParams) 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -720,6 +771,7 @@ func (i *IAPService) UpdateIAPItemConfigShort(input *i_a_p.UpdateIAPItemConfigPa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -732,6 +784,7 @@ func (i *IAPService) DeleteIAPItemConfigShort(input *i_a_p.DeleteIAPItemConfigPa
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -744,6 +797,7 @@ func (i *IAPService) GetPlayStationIAPConfigShort(input *i_a_p.GetPlayStationIAP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -756,6 +810,7 @@ func (i *IAPService) UpdatePlaystationIAPConfigShort(input *i_a_p.UpdatePlaystat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -768,6 +823,7 @@ func (i *IAPService) DeletePlaystationIAPConfigShort(input *i_a_p.DeletePlaystat
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -780,6 +836,7 @@ func (i *IAPService) GetStadiaIAPConfigShort(input *i_a_p.GetStadiaIAPConfigPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -792,6 +849,7 @@ func (i *IAPService) DeleteStadiaIAPConfigShort(input *i_a_p.DeleteStadiaIAPConf
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -804,6 +862,7 @@ func (i *IAPService) UpdateStadiaJSONConfigFileShort(input *i_a_p.UpdateStadiaJS
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -816,6 +875,7 @@ func (i *IAPService) GetSteamIAPConfigShort(input *i_a_p.GetSteamIAPConfigParams
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -828,6 +888,7 @@ func (i *IAPService) UpdateSteamIAPConfigShort(input *i_a_p.UpdateSteamIAPConfig
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -840,6 +901,7 @@ func (i *IAPService) DeleteSteamIAPConfigShort(input *i_a_p.DeleteSteamIAPConfig
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -852,6 +914,7 @@ func (i *IAPService) GetTwitchIAPConfigShort(input *i_a_p.GetTwitchIAPConfigPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -864,6 +927,7 @@ func (i *IAPService) UpdateTwitchIAPConfigShort(input *i_a_p.UpdateTwitchIAPConf
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -876,6 +940,7 @@ func (i *IAPService) DeleteTwitchIAPConfigShort(input *i_a_p.DeleteTwitchIAPConf
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -888,6 +953,7 @@ func (i *IAPService) GetXblIAPConfigShort(input *i_a_p.GetXblIAPConfigParams) (*
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -900,6 +966,7 @@ func (i *IAPService) UpdateXblIAPConfigShort(input *i_a_p.UpdateXblIAPConfigPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -912,6 +979,7 @@ func (i *IAPService) DeleteXblAPConfigShort(input *i_a_p.DeleteXblAPConfigParams
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -924,6 +992,7 @@ func (i *IAPService) UpdateXblBPCertFileShort(input *i_a_p.UpdateXblBPCertFilePa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -936,6 +1005,7 @@ func (i *IAPService) QueryUserIAPOrdersShort(input *i_a_p.QueryUserIAPOrdersPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -948,6 +1018,7 @@ func (i *IAPService) QueryAllUserIAPOrdersShort(input *i_a_p.QueryAllUserIAPOrde
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -960,6 +1031,7 @@ func (i *IAPService) MockFulfillIAPItemShort(input *i_a_p.MockFulfillIAPItemPara
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -972,6 +1044,7 @@ func (i *IAPService) PublicFulfillAppleIAPItemShort(input *i_a_p.PublicFulfillAp
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -984,6 +1057,7 @@ func (i *IAPService) SyncEpicGamesInventoryShort(input *i_a_p.SyncEpicGamesInven
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -996,6 +1070,7 @@ func (i *IAPService) PublicFulfillGoogleIAPItemShort(input *i_a_p.PublicFulfillG
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1008,6 +1083,7 @@ func (i *IAPService) PublicReconcilePlayStationStoreShort(input *i_a_p.PublicRec
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1020,6 +1096,7 @@ func (i *IAPService) SyncStadiaEntitlementShort(input *i_a_p.SyncStadiaEntitleme
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1032,6 +1109,7 @@ func (i *IAPService) SyncSteamInventoryShort(input *i_a_p.SyncSteamInventoryPara
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1044,6 +1122,7 @@ func (i *IAPService) SyncTwitchDropsEntitlementShort(input *i_a_p.SyncTwitchDrop
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1056,5 +1135,6 @@ func (i *IAPService) SyncXboxInventoryShort(input *i_a_p.SyncXboxInventoryParams
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

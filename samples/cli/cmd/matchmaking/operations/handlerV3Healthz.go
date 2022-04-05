@@ -27,8 +27,10 @@ var HandlerV3HealthzCmd = &cobra.Command{
 		errInput := operationsService.HandlerV3HealthzShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

@@ -42,6 +42,7 @@ func (l *LeaderboardDataService) AdminGetArchivedLeaderboardRankingDataV1Handler
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -70,6 +71,7 @@ func (l *LeaderboardDataService) CreateArchivedLeaderboardRankingDataV1Handler(i
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -98,6 +100,7 @@ func (l *LeaderboardDataService) GetAllTimeLeaderboardRankingAdminV1(input *lead
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -126,6 +129,7 @@ func (l *LeaderboardDataService) GetCurrentMonthLeaderboardRankingAdminV1(input 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -154,6 +158,7 @@ func (l *LeaderboardDataService) GetCurrentSeasonLeaderboardRankingAdminV1(input
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -182,6 +187,7 @@ func (l *LeaderboardDataService) GetTodayLeaderboardRankingAdminV1(input *leader
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -207,6 +213,7 @@ func (l *LeaderboardDataService) GetUserRankingAdminV1(input *leaderboard_data.G
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -235,6 +242,7 @@ func (l *LeaderboardDataService) UpdateUserPointAdminV1(input *leaderboard_data.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -260,6 +268,7 @@ func (l *LeaderboardDataService) DeleteUserRankingAdminV1(input *leaderboard_dat
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -288,6 +297,7 @@ func (l *LeaderboardDataService) GetCurrentWeekLeaderboardRankingAdminV1(input *
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -313,6 +323,7 @@ func (l *LeaderboardDataService) DeleteUserRankingsAdminV1(input *leaderboard_da
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -335,6 +346,7 @@ func (l *LeaderboardDataService) GetAllTimeLeaderboardRankingPublicV1(input *lea
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -363,6 +375,7 @@ func (l *LeaderboardDataService) GetArchivedLeaderboardRankingDataV1Handler(inpu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -385,6 +398,7 @@ func (l *LeaderboardDataService) GetCurrentMonthLeaderboardRankingPublicV1(input
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -407,6 +421,7 @@ func (l *LeaderboardDataService) GetCurrentSeasonLeaderboardRankingPublicV1(inpu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -429,6 +444,7 @@ func (l *LeaderboardDataService) GetTodayLeaderboardRankingPublicV1(input *leade
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -454,6 +470,7 @@ func (l *LeaderboardDataService) GetUserRankingPublicV1(input *leaderboard_data.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -479,6 +496,7 @@ func (l *LeaderboardDataService) DeleteUserRankingPublicV1(input *leaderboard_da
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -501,6 +519,7 @@ func (l *LeaderboardDataService) GetCurrentWeekLeaderboardRankingPublicV1(input 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -529,6 +548,7 @@ func (l *LeaderboardDataService) GetAllTimeLeaderboardRankingPublicV2(input *lea
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -541,6 +561,7 @@ func (l *LeaderboardDataService) AdminGetArchivedLeaderboardRankingDataV1Handler
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -553,6 +574,7 @@ func (l *LeaderboardDataService) CreateArchivedLeaderboardRankingDataV1HandlerSh
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -565,6 +587,7 @@ func (l *LeaderboardDataService) GetAllTimeLeaderboardRankingAdminV1Short(input 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -577,6 +600,7 @@ func (l *LeaderboardDataService) GetCurrentMonthLeaderboardRankingAdminV1Short(i
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -589,6 +613,7 @@ func (l *LeaderboardDataService) GetCurrentSeasonLeaderboardRankingAdminV1Short(
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -601,6 +626,7 @@ func (l *LeaderboardDataService) GetTodayLeaderboardRankingAdminV1Short(input *l
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -613,6 +639,7 @@ func (l *LeaderboardDataService) GetUserRankingAdminV1Short(input *leaderboard_d
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -625,6 +652,7 @@ func (l *LeaderboardDataService) UpdateUserPointAdminV1Short(input *leaderboard_
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -637,6 +665,7 @@ func (l *LeaderboardDataService) DeleteUserRankingAdminV1Short(input *leaderboar
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -649,6 +678,7 @@ func (l *LeaderboardDataService) GetCurrentWeekLeaderboardRankingAdminV1Short(in
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -661,6 +691,7 @@ func (l *LeaderboardDataService) DeleteUserRankingsAdminV1Short(input *leaderboa
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -673,6 +704,7 @@ func (l *LeaderboardDataService) GetAllTimeLeaderboardRankingPublicV1Short(input
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -685,6 +717,7 @@ func (l *LeaderboardDataService) GetArchivedLeaderboardRankingDataV1HandlerShort
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -697,6 +730,7 @@ func (l *LeaderboardDataService) GetCurrentMonthLeaderboardRankingPublicV1Short(
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -709,6 +743,7 @@ func (l *LeaderboardDataService) GetCurrentSeasonLeaderboardRankingPublicV1Short
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -721,6 +756,7 @@ func (l *LeaderboardDataService) GetTodayLeaderboardRankingPublicV1Short(input *
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -733,6 +769,7 @@ func (l *LeaderboardDataService) GetUserRankingPublicV1Short(input *leaderboard_
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -745,6 +782,7 @@ func (l *LeaderboardDataService) DeleteUserRankingPublicV1Short(input *leaderboa
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -757,6 +795,7 @@ func (l *LeaderboardDataService) GetCurrentWeekLeaderboardRankingPublicV1Short(i
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -769,5 +808,6 @@ func (l *LeaderboardDataService) GetAllTimeLeaderboardRankingPublicV2Short(input
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

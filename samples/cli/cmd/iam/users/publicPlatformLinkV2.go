@@ -5,13 +5,14 @@
 package users
 
 import (
+	"net/http"
+
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-	"net/http"
 )
 
 // PublicPlatformLinkV2Cmd represents the PublicPlatformLinkV2 command
@@ -43,8 +44,10 @@ var PublicPlatformLinkV2Cmd = &cobra.Command{
 		errInput := usersService.PublicPlatformLinkV2Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

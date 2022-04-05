@@ -36,8 +36,10 @@ var DeleteUserFromSessionInChannelCmd = &cobra.Command{
 		errInput := matchmakingService.DeleteUserFromSessionInChannelShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

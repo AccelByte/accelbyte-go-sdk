@@ -36,6 +36,7 @@ func (a *AdminGroupService) SingleAdminGetAllGroups(input *admin_group.SingleAdm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -58,6 +59,7 @@ func (a *AdminGroupService) AdminCreateGroup(input *admin_group.AdminCreateGroup
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -80,6 +82,7 @@ func (a *AdminGroupService) SingleAdminGetGroup(input *admin_group.SingleAdminGe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -105,6 +108,7 @@ func (a *AdminGroupService) SingleAdminUpdateGroup(input *admin_group.SingleAdmi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -127,6 +131,7 @@ func (a *AdminGroupService) SingleAdminDeleteGroup(input *admin_group.SingleAdmi
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -149,6 +154,7 @@ func (a *AdminGroupService) SingleAdminGetGroupContents(input *admin_group.Singl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -171,6 +177,7 @@ func (a *AdminGroupService) AdminGetAllGroups(input *admin_group.AdminGetAllGrou
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -193,6 +200,7 @@ func (a *AdminGroupService) AdminGetGroup(input *admin_group.AdminGetGroupParams
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -218,6 +226,7 @@ func (a *AdminGroupService) AdminUpdateGroup(input *admin_group.AdminUpdateGroup
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -240,6 +249,7 @@ func (a *AdminGroupService) AdminDeleteGroup(input *admin_group.AdminDeleteGroup
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -262,6 +272,7 @@ func (a *AdminGroupService) AdminGetGroupContents(input *admin_group.AdminGetGro
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -274,6 +285,7 @@ func (a *AdminGroupService) SingleAdminGetAllGroupsShort(input *admin_group.Sing
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -286,6 +298,7 @@ func (a *AdminGroupService) AdminCreateGroupShort(input *admin_group.AdminCreate
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -298,6 +311,7 @@ func (a *AdminGroupService) SingleAdminGetGroupShort(input *admin_group.SingleAd
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -310,6 +324,7 @@ func (a *AdminGroupService) SingleAdminUpdateGroupShort(input *admin_group.Singl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -322,6 +337,7 @@ func (a *AdminGroupService) SingleAdminDeleteGroupShort(input *admin_group.Singl
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -334,6 +350,7 @@ func (a *AdminGroupService) SingleAdminGetGroupContentsShort(input *admin_group.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -346,6 +363,7 @@ func (a *AdminGroupService) AdminGetAllGroupsShort(input *admin_group.AdminGetAl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -358,6 +376,7 @@ func (a *AdminGroupService) AdminGetGroupShort(input *admin_group.AdminGetGroupP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -370,6 +389,7 @@ func (a *AdminGroupService) AdminUpdateGroupShort(input *admin_group.AdminUpdate
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -382,6 +402,7 @@ func (a *AdminGroupService) AdminDeleteGroupShort(input *admin_group.AdminDelete
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -394,5 +415,6 @@ func (a *AdminGroupService) AdminGetGroupContentsShort(input *admin_group.AdminG
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

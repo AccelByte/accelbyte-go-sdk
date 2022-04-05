@@ -6,6 +6,7 @@ package configuration
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -43,10 +44,12 @@ var UpdateGroupConfigurationGlobalRuleAdminV1Cmd = &cobra.Command{
 		ok, err := configurationService.UpdateGroupConfigurationGlobalRuleAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

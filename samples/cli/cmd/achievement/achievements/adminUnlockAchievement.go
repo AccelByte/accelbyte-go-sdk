@@ -34,8 +34,10 @@ var AdminUnlockAchievementCmd = &cobra.Command{
 		errInput := achievementsService.AdminUnlockAchievementShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

@@ -36,6 +36,7 @@ func (p *PresenceService) UsersPresenceHandlerV1(input *presence.UsersPresenceHa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -48,5 +49,6 @@ func (p *PresenceService) UsersPresenceHandlerV1Short(input *presence.UsersPrese
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

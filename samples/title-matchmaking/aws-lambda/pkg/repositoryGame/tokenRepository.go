@@ -4,9 +4,7 @@
 
 package repositoryGame
 
-import (
-	models "github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
-)
+import models "github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 
 type TokenRepositoryGameImpl struct {
 }
@@ -15,6 +13,7 @@ var clientTokenV3 models.OauthmodelTokenResponseV3
 
 func (tokenRepositoryGame *TokenRepositoryGameImpl) Store(accessToken models.OauthmodelTokenResponseV3) error {
 	clientTokenV3 = accessToken
+
 	return nil
 }
 

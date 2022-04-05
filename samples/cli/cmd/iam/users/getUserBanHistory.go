@@ -32,10 +32,12 @@ var GetUserBanHistoryCmd = &cobra.Command{
 		ok, err := usersService.GetUserBanHistoryShort(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

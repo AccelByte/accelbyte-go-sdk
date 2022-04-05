@@ -39,6 +39,7 @@ func (f *FileUploadService) GeneratedUploadURL(input *file_upload.GeneratedUploa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -67,6 +68,7 @@ func (f *FileUploadService) GeneratedUserUploadContentURL(input *file_upload.Gen
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -92,6 +94,7 @@ func (f *FileUploadService) PublicGeneratedUploadURL(input *file_upload.PublicGe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -120,6 +123,7 @@ func (f *FileUploadService) PublicGeneratedUserUploadContentURL(input *file_uplo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -132,6 +136,7 @@ func (f *FileUploadService) GeneratedUploadURLShort(input *file_upload.Generated
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -144,6 +149,7 @@ func (f *FileUploadService) GeneratedUserUploadContentURLShort(input *file_uploa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -156,6 +162,7 @@ func (f *FileUploadService) PublicGeneratedUploadURLShort(input *file_upload.Pub
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -168,5 +175,6 @@ func (f *FileUploadService) PublicGeneratedUserUploadContentURLShort(input *file
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

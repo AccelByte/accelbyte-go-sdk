@@ -6,6 +6,7 @@ package roles
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/roles"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/iam"
@@ -38,8 +39,10 @@ var AdminDeleteRolePermissionsV4Cmd = &cobra.Command{
 		errInput := rolesService.AdminDeleteRolePermissionsV4Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

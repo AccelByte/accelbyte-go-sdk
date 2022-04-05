@@ -33,6 +33,7 @@ func (b *BansService) GetBansType(input *bans.GetBansTypeParams) (*iamclientmode
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -52,6 +53,7 @@ func (b *BansService) GetListBanReason(input *bans.GetListBanReasonParams) (*iam
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -71,6 +73,7 @@ func (b *BansService) AdminGetBansTypeV3(input *bans.AdminGetBansTypeV3Params) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -90,6 +93,7 @@ func (b *BansService) AdminGetListBanReasonV3(input *bans.AdminGetListBanReasonV
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -109,6 +113,7 @@ func (b *BansService) AdminGetBannedUsersV3(input *bans.AdminGetBannedUsersV3Par
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -128,6 +133,7 @@ func (b *BansService) AdminGetBansTypeWithNamespaceV3(input *bans.AdminGetBansTy
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -140,6 +146,7 @@ func (b *BansService) GetBansTypeShort(input *bans.GetBansTypeParams) (*iamclien
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -152,6 +159,7 @@ func (b *BansService) GetListBanReasonShort(input *bans.GetListBanReasonParams) 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -164,6 +172,7 @@ func (b *BansService) AdminGetBansTypeV3Short(input *bans.AdminGetBansTypeV3Para
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -176,6 +185,7 @@ func (b *BansService) AdminGetListBanReasonV3Short(input *bans.AdminGetListBanRe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -188,6 +198,7 @@ func (b *BansService) AdminGetBannedUsersV3Short(input *bans.AdminGetBannedUsers
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -200,5 +211,6 @@ func (b *BansService) AdminGetBansTypeWithNamespaceV3Short(input *bans.AdminGetB
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

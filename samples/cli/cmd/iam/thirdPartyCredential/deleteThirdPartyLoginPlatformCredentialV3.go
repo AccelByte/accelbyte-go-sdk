@@ -32,8 +32,10 @@ var DeleteThirdPartyLoginPlatformCredentialV3Cmd = &cobra.Command{
 		errInput := thirdPartyCredentialService.DeleteThirdPartyLoginPlatformCredentialV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

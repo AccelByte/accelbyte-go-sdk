@@ -4,18 +4,16 @@
 
 package repository
 
-import (
-	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
-)
+import "github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 
 var token iamclientmodels.OauthmodelTokenResponseV3
 
 type TokenRepositoryImpl struct {
-
 }
 
 func (tokenRepository *TokenRepositoryImpl) Store(accessToken iamclientmodels.OauthmodelTokenResponseV3) error {
 	token = accessToken
+
 	return nil
 }
 
@@ -25,5 +23,6 @@ func (tokenRepository *TokenRepositoryImpl) GetToken() (*iamclientmodels.Oauthmo
 
 func (tokenRepository *TokenRepositoryImpl) RemoveToken() error {
 	token = iamclientmodels.OauthmodelTokenResponseV3{}
+
 	return nil
 }

@@ -42,6 +42,7 @@ func (m *MatchmakingService) GetAllChannelsHandler(input *matchmaking.GetAllChan
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -70,6 +71,7 @@ func (m *MatchmakingService) CreateChannelHandler(input *matchmaking.CreateChann
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -92,6 +94,7 @@ func (m *MatchmakingService) DeleteChannelHandler(input *matchmaking.DeleteChann
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -117,6 +120,7 @@ func (m *MatchmakingService) StoreMatchResults(input *matchmaking.StoreMatchResu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -142,6 +146,7 @@ func (m *MatchmakingService) QueueSessionHandler(input *matchmaking.QueueSession
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -170,6 +175,7 @@ func (m *MatchmakingService) DequeueSessionHandler(input *matchmaking.DequeueSes
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -198,6 +204,7 @@ func (m *MatchmakingService) QuerySessionHandler(input *matchmaking.QuerySession
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -226,6 +233,7 @@ func (m *MatchmakingService) GetAllPartyInAllChannel(input *matchmaking.GetAllPa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -254,6 +262,7 @@ func (m *MatchmakingService) BulkGetSessions(input *matchmaking.BulkGetSessionsP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -276,6 +285,7 @@ func (m *MatchmakingService) ExportChannels(input *matchmaking.ExportChannelsPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -301,6 +311,7 @@ func (m *MatchmakingService) ImportChannels(input *matchmaking.ImportChannelsPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -329,6 +340,7 @@ func (m *MatchmakingService) GetSingleMatchmakingChannel(input *matchmaking.GetS
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -357,6 +369,7 @@ func (m *MatchmakingService) UpdateMatchmakingChannel(input *matchmaking.UpdateM
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -385,6 +398,7 @@ func (m *MatchmakingService) GetAllPartyInChannel(input *matchmaking.GetAllParty
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -413,6 +427,7 @@ func (m *MatchmakingService) GetAllSessionsInChannel(input *matchmaking.GetAllSe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -441,6 +456,7 @@ func (m *MatchmakingService) AddUserIntoSessionInChannel(input *matchmaking.AddU
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -469,6 +485,7 @@ func (m *MatchmakingService) DeleteSessionInChannel(input *matchmaking.DeleteSes
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -500,6 +517,7 @@ func (m *MatchmakingService) DeleteUserFromSessionInChannel(input *matchmaking.D
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -528,6 +546,7 @@ func (m *MatchmakingService) SearchSessions(input *matchmaking.SearchSessionsPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -556,6 +575,7 @@ func (m *MatchmakingService) GetSessionHistoryDetailed(input *matchmaking.GetSes
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -584,6 +604,7 @@ func (m *MatchmakingService) PublicGetAllMatchmakingChannel(input *matchmaking.P
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -612,6 +633,7 @@ func (m *MatchmakingService) PublicGetSingleMatchmakingChannel(input *matchmakin
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -640,6 +662,7 @@ func (m *MatchmakingService) SearchSessionsV2(input *matchmaking.SearchSessionsV
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -652,6 +675,7 @@ func (m *MatchmakingService) GetAllChannelsHandlerShort(input *matchmaking.GetAl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -664,6 +688,7 @@ func (m *MatchmakingService) CreateChannelHandlerShort(input *matchmaking.Create
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -676,6 +701,7 @@ func (m *MatchmakingService) DeleteChannelHandlerShort(input *matchmaking.Delete
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -688,6 +714,7 @@ func (m *MatchmakingService) StoreMatchResultsShort(input *matchmaking.StoreMatc
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -700,6 +727,7 @@ func (m *MatchmakingService) QueueSessionHandlerShort(input *matchmaking.QueueSe
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -712,6 +740,7 @@ func (m *MatchmakingService) DequeueSessionHandlerShort(input *matchmaking.Deque
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -724,6 +753,7 @@ func (m *MatchmakingService) QuerySessionHandlerShort(input *matchmaking.QuerySe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -736,6 +766,7 @@ func (m *MatchmakingService) GetAllPartyInAllChannelShort(input *matchmaking.Get
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -748,6 +779,7 @@ func (m *MatchmakingService) BulkGetSessionsShort(input *matchmaking.BulkGetSess
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -760,6 +792,7 @@ func (m *MatchmakingService) ExportChannelsShort(input *matchmaking.ExportChanne
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -772,6 +805,7 @@ func (m *MatchmakingService) ImportChannelsShort(input *matchmaking.ImportChanne
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -784,6 +818,7 @@ func (m *MatchmakingService) GetSingleMatchmakingChannelShort(input *matchmaking
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -796,6 +831,7 @@ func (m *MatchmakingService) UpdateMatchmakingChannelShort(input *matchmaking.Up
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -808,6 +844,7 @@ func (m *MatchmakingService) GetAllPartyInChannelShort(input *matchmaking.GetAll
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -820,6 +857,7 @@ func (m *MatchmakingService) GetAllSessionsInChannelShort(input *matchmaking.Get
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -832,6 +870,7 @@ func (m *MatchmakingService) AddUserIntoSessionInChannelShort(input *matchmaking
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -844,6 +883,7 @@ func (m *MatchmakingService) DeleteSessionInChannelShort(input *matchmaking.Dele
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -856,6 +896,7 @@ func (m *MatchmakingService) DeleteUserFromSessionInChannelShort(input *matchmak
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -868,6 +909,7 @@ func (m *MatchmakingService) SearchSessionsShort(input *matchmaking.SearchSessio
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -880,6 +922,7 @@ func (m *MatchmakingService) GetSessionHistoryDetailedShort(input *matchmaking.G
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -892,6 +935,7 @@ func (m *MatchmakingService) PublicGetAllMatchmakingChannelShort(input *matchmak
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -904,6 +948,7 @@ func (m *MatchmakingService) PublicGetSingleMatchmakingChannelShort(input *match
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -916,5 +961,6 @@ func (m *MatchmakingService) SearchSessionsV2Short(input *matchmaking.SearchSess
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

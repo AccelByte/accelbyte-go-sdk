@@ -39,6 +39,7 @@ func (u *UsersService) CreateUser(input *users.CreateUserParams) (*iamclientmode
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -67,6 +68,7 @@ func (u *UsersService) GetAdminUsersByRoleID(input *users.GetAdminUsersByRoleIDP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -89,6 +91,7 @@ func (u *UsersService) GetUserByLoginID(input *users.GetUserByLoginIDParams) (*i
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -114,6 +117,7 @@ func (u *UsersService) GetUserByPlatformUserID(input *users.GetUserByPlatformUse
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -139,6 +143,7 @@ func (u *UsersService) ForgotPassword(input *users.ForgotPasswordParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -161,6 +166,7 @@ func (u *UsersService) GetUsersByLoginIds(input *users.GetUsersByLoginIdsParams)
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -186,6 +192,7 @@ func (u *UsersService) ResetPassword(input *users.ResetPasswordParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -208,6 +215,7 @@ func (u *UsersService) SearchUser(input *users.SearchUserParams) (*iamclientmode
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -227,6 +235,7 @@ func (u *UsersService) GetUserByUserID(input *users.GetUserByUserIDParams) (*iam
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -255,6 +264,7 @@ func (u *UsersService) UpdateUser(input *users.UpdateUserParams) (*iamclientmode
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -277,6 +287,7 @@ func (u *UsersService) DeleteUser(input *users.DeleteUserParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -305,6 +316,7 @@ func (u *UsersService) BanUser(input *users.BanUserParams) (*iamclientmodels.Mod
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -327,6 +339,7 @@ func (u *UsersService) GetUserBanHistory(input *users.GetUserBanHistoryParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -352,6 +365,7 @@ func (u *UsersService) DisableUserBan(input *users.DisableUserBanParams) (*iamcl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -377,6 +391,7 @@ func (u *UsersService) EnableUserBan(input *users.EnableUserBanParams) (*iamclie
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -402,6 +417,7 @@ func (u *UsersService) ListCrossNamespaceAccountLink(input *users.ListCrossNames
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -430,6 +446,7 @@ func (u *UsersService) DisableUser(input *users.DisableUserParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -455,6 +472,7 @@ func (u *UsersService) EnableUser(input *users.EnableUserParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -477,6 +495,7 @@ func (u *UsersService) GetUserInformation(input *users.GetUserInformationParams)
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -499,6 +518,7 @@ func (u *UsersService) DeleteUserInformation(input *users.DeleteUserInformationP
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -521,6 +541,7 @@ func (u *UsersService) GetUserLoginHistories(input *users.GetUserLoginHistoriesP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -549,6 +570,7 @@ func (u *UsersService) UpdatePassword(input *users.UpdatePasswordParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -574,6 +596,7 @@ func (u *UsersService) SaveUserPermission(input *users.SaveUserPermissionParams)
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -599,6 +622,7 @@ func (u *UsersService) AddUserPermission(input *users.AddUserPermissionParams) e
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -624,6 +648,7 @@ func (u *UsersService) DeleteUserPermission(input *users.DeleteUserPermissionPar
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -646,6 +671,7 @@ func (u *UsersService) GetUserPlatformAccounts(input *users.GetUserPlatformAccou
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -671,6 +697,7 @@ func (u *UsersService) GetUserMapping(input *users.GetUserMappingParams) (*iamcl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -693,6 +720,7 @@ func (u *UsersService) GetUserJusticePlatformAccount(input *users.GetUserJustice
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -724,6 +752,7 @@ func (u *UsersService) PlatformLink(input *users.PlatformLinkParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -752,6 +781,7 @@ func (u *UsersService) PlatformUnlink(input *users.PlatformUnlinkParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -777,6 +807,7 @@ func (u *UsersService) GetPublisherUser(input *users.GetPublisherUserParams) (*i
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -805,6 +836,7 @@ func (u *UsersService) SaveUserRoles(input *users.SaveUserRolesParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -833,6 +865,7 @@ func (u *UsersService) AddUserRole(input *users.AddUserRoleParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -858,6 +891,7 @@ func (u *UsersService) DeleteUserRole(input *users.DeleteUserRoleParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -880,6 +914,7 @@ func (u *UsersService) UpgradeHeadlessAccount(input *users.UpgradeHeadlessAccoun
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -905,6 +940,7 @@ func (u *UsersService) UpgradeHeadlessAccountWithVerificationCode(input *users.U
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -933,6 +969,7 @@ func (u *UsersService) UserVerification(input *users.UserVerificationParams) err
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -967,6 +1004,7 @@ func (u *UsersService) SendVerificationCode(input *users.SendVerificationCodePar
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -989,6 +1027,7 @@ func (u *UsersService) AdminGetAgeRestrictionStatusV2(input *users.AdminGetAgeRe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1014,6 +1053,7 @@ func (u *UsersService) AdminUpdateAgeRestrictionConfigV2(input *users.AdminUpdat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1036,6 +1076,7 @@ func (u *UsersService) GetListCountryAgeRestriction(input *users.GetListCountryA
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1061,6 +1102,7 @@ func (u *UsersService) UpdateCountryAgeRestriction(input *users.UpdateCountryAge
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1083,6 +1125,7 @@ func (u *UsersService) AdminSearchUsersV2(input *users.AdminSearchUsersV2Params)
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1102,6 +1145,7 @@ func (u *UsersService) AdminGetUserByUserIDV2(input *users.AdminGetUserByUserIDV
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1130,6 +1174,7 @@ func (u *UsersService) AdminUpdateUserV2(input *users.AdminUpdateUserV2Params) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1158,6 +1203,7 @@ func (u *UsersService) AdminBanUserV2(input *users.AdminBanUserV2Params) (*iamcl
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -1180,6 +1226,7 @@ func (u *UsersService) AdminGetUserBanV2(input *users.AdminGetUserBanV2Params) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1208,6 +1255,7 @@ func (u *UsersService) AdminDisableUserV2(input *users.AdminDisableUserV2Params)
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1233,6 +1281,7 @@ func (u *UsersService) AdminEnableUserV2(input *users.AdminEnableUserV2Params) e
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1261,6 +1310,7 @@ func (u *UsersService) AdminResetPasswordV2(input *users.AdminResetPasswordV2Par
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1289,6 +1339,7 @@ func (u *UsersService) AdminDeletePlatformLinkV2(input *users.AdminDeletePlatfor
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1314,6 +1365,7 @@ func (u *UsersService) AdminPutUserRolesV2(input *users.AdminPutUserRolesV2Param
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1342,6 +1394,7 @@ func (u *UsersService) AdminCreateUserRolesV2(input *users.AdminCreateUserRolesV
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1361,6 +1414,7 @@ func (u *UsersService) PublicGetCountryAgeRestriction(input *users.PublicGetCoun
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1386,6 +1440,7 @@ func (u *UsersService) PublicCreateUserV2(input *users.PublicCreateUserV2Params)
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -1411,6 +1466,7 @@ func (u *UsersService) PublicForgotPasswordV2(input *users.PublicForgotPasswordV
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1436,6 +1492,7 @@ func (u *UsersService) PublicResetPasswordV2(input *users.PublicResetPasswordV2P
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1455,6 +1512,7 @@ func (u *UsersService) PublicGetUserByUserIDV2(input *users.PublicGetUserByUserI
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1483,6 +1541,7 @@ func (u *UsersService) PublicUpdateUserV2(input *users.PublicUpdateUserV2Params)
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1505,6 +1564,7 @@ func (u *UsersService) PublicGetUserBan(input *users.PublicGetUserBanParams) ([]
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1533,6 +1593,7 @@ func (u *UsersService) PublicUpdatePasswordV2(input *users.PublicUpdatePasswordV
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1552,6 +1613,7 @@ func (u *UsersService) GetListJusticePlatformAccounts(input *users.GetListJustic
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1583,6 +1645,7 @@ func (u *UsersService) PublicPlatformLinkV2(input *users.PublicPlatformLinkV2Par
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1611,6 +1674,7 @@ func (u *UsersService) PublicDeletePlatformLinkV2(input *users.PublicDeletePlatf
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1633,6 +1697,7 @@ func (u *UsersService) ListAdminsV3(input *users.ListAdminsV3Params) (*iamclient
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1661,6 +1726,7 @@ func (u *UsersService) AdminGetAgeRestrictionStatusV3(input *users.AdminGetAgeRe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1686,6 +1752,7 @@ func (u *UsersService) AdminUpdateAgeRestrictionConfigV3(input *users.AdminUpdat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1711,6 +1778,7 @@ func (u *UsersService) AdminGetListCountryAgeRestrictionV3(input *users.AdminGet
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1739,6 +1807,7 @@ func (u *UsersService) AdminUpdateCountryAgeRestrictionV3(input *users.AdminUpda
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1764,6 +1833,7 @@ func (u *UsersService) AdminGetUserByPlatformUserIDV3(input *users.AdminGetUserB
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1792,6 +1862,7 @@ func (u *UsersService) GetAdminUsersByRoleIDV3(input *users.GetAdminUsersByRoleI
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1820,6 +1891,7 @@ func (u *UsersService) AdminGetUserByEmailAddressV3(input *users.AdminGetUserByE
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1845,6 +1917,7 @@ func (u *UsersService) AdminListUserIDByUserIDsV3(input *users.AdminListUserIDBy
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1873,6 +1946,7 @@ func (u *UsersService) AdminInviteUserV3(input *users.AdminInviteUserV3Params) (
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -1898,6 +1972,7 @@ func (u *UsersService) AdminListUsersV3(input *users.AdminListUsersV3Params) (*i
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1923,6 +1998,7 @@ func (u *UsersService) AdminSearchUserV3(input *users.AdminSearchUserV3Params) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1951,6 +2027,7 @@ func (u *UsersService) AdminGetBulkUserByEmailAddressV3(input *users.AdminGetBul
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1979,6 +2056,7 @@ func (u *UsersService) AdminGetUserByUserIDV3(input *users.AdminGetUserByUserIDV
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -2010,6 +2088,7 @@ func (u *UsersService) AdminUpdateUserV3(input *users.AdminUpdateUserV3Params) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -2035,6 +2114,7 @@ func (u *UsersService) AdminGetUserBanV3(input *users.AdminGetUserBanV3Params) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -2060,6 +2140,7 @@ func (u *UsersService) AdminBanUserV3(input *users.AdminBanUserV3Params) (*iamcl
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -2088,6 +2169,7 @@ func (u *UsersService) AdminUpdateUserBanV3(input *users.AdminUpdateUserBanV3Par
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -2119,6 +2201,7 @@ func (u *UsersService) AdminSendVerificationCodeV3(input *users.AdminSendVerific
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -2147,6 +2230,7 @@ func (u *UsersService) AdminVerifyAccountV3(input *users.AdminVerifyAccountV3Par
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -2172,6 +2256,7 @@ func (u *UsersService) GetUserVerificationCode(input *users.GetUserVerificationC
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -2197,6 +2282,7 @@ func (u *UsersService) AdminGetUserDeletionStatusV3(input *users.AdminGetUserDel
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -2225,6 +2311,7 @@ func (u *UsersService) AdminUpdateUserDeletionStatusV3(input *users.AdminUpdateU
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -2256,6 +2343,7 @@ func (u *UsersService) AdminUpgradeHeadlessAccountV3(input *users.AdminUpgradeHe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -2278,6 +2366,7 @@ func (u *UsersService) AdminDeleteUserInformationV3(input *users.AdminDeleteUser
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -2300,6 +2389,7 @@ func (u *UsersService) AdminGetUserLoginHistoriesV3(input *users.AdminGetUserLog
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -2325,6 +2415,7 @@ func (u *UsersService) AdminUpdateUserPermissionV3(input *users.AdminUpdateUserP
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -2350,6 +2441,7 @@ func (u *UsersService) AdminAddUserPermissionsV3(input *users.AdminAddUserPermis
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -2375,6 +2467,7 @@ func (u *UsersService) AdminDeleteUserPermissionBulkV3(input *users.AdminDeleteU
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -2400,6 +2493,7 @@ func (u *UsersService) AdminDeleteUserPermissionV3(input *users.AdminDeleteUserP
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -2425,6 +2519,7 @@ func (u *UsersService) AdminGetUserPlatformAccountsV3(input *users.AdminGetUserP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -2453,6 +2548,7 @@ func (u *UsersService) AdminGetListJusticePlatformAccounts(input *users.AdminGet
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -2481,6 +2577,7 @@ func (u *UsersService) AdminCreateJusticeUser(input *users.AdminCreateJusticeUse
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -2506,6 +2603,7 @@ func (u *UsersService) AdminLinkPlatformAccount(input *users.AdminLinkPlatformAc
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -2534,6 +2632,7 @@ func (u *UsersService) AdminPlatformUnlinkV3(input *users.AdminPlatformUnlinkV3P
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -2565,6 +2664,7 @@ func (u *UsersService) AdminPlatformLinkV3(input *users.AdminPlatformLinkV3Param
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -2590,6 +2690,7 @@ func (u *UsersService) AdminDeleteUserRolesV3(input *users.AdminDeleteUserRolesV
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -2618,6 +2719,7 @@ func (u *UsersService) AdminSaveUserRoleV3(input *users.AdminSaveUserRoleV3Param
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -2646,6 +2748,7 @@ func (u *UsersService) AdminAddUserRoleV3(input *users.AdminAddUserRoleV3Params)
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -2671,6 +2774,7 @@ func (u *UsersService) AdminDeleteUserRoleV3(input *users.AdminDeleteUserRoleV3P
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -2696,6 +2800,7 @@ func (u *UsersService) AdminUpdateUserStatusV3(input *users.AdminUpdateUserStatu
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -2724,6 +2829,7 @@ func (u *UsersService) AdminVerifyUserWithoutVerificationCodeV3(input *users.Adm
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -2743,6 +2849,7 @@ func (u *UsersService) AdminGetMyUserV3(input *users.AdminGetMyUserV3Params) (*i
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -2768,6 +2875,7 @@ func (u *UsersService) PublicListUserIDByPlatformUserIDsV3(input *users.PublicLi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -2793,6 +2901,7 @@ func (u *UsersService) PublicGetUserByPlatformUserIDV3(input *users.PublicGetUse
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -2815,6 +2924,7 @@ func (u *UsersService) PublicGetAsyncStatus(input *users.PublicGetAsyncStatusPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -2840,6 +2950,7 @@ func (u *UsersService) PublicSearchUserV3(input *users.PublicSearchUserV3Params)
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -2865,6 +2976,7 @@ func (u *UsersService) PublicCreateUserV3(input *users.PublicCreateUserV3Params)
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -2893,6 +3005,7 @@ func (u *UsersService) CheckUserAvailability(input *users.CheckUserAvailabilityP
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -2912,6 +3025,7 @@ func (u *UsersService) PublicBulkGetUsers(input *users.PublicBulkGetUsersParams)
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -2931,6 +3045,7 @@ func (u *UsersService) PublicSendRegistrationCode(input *users.PublicSendRegistr
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -2947,6 +3062,7 @@ func (u *UsersService) PublicVerifyRegistrationCode(input *users.PublicVerifyReg
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -2969,6 +3085,7 @@ func (u *UsersService) PublicForgotPasswordV3(input *users.PublicForgotPasswordV
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -2988,6 +3105,7 @@ func (u *UsersService) GetAdminInvitationV3(input *users.GetAdminInvitationV3Par
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3010,6 +3128,7 @@ func (u *UsersService) CreateUserFromInvitationV3(input *users.CreateUserFromInv
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -3035,6 +3154,7 @@ func (u *UsersService) UpdateUserV3(input *users.UpdateUserV3Params) ([]*iamclie
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3060,6 +3180,7 @@ func (u *UsersService) PublicUpdateUserV3(input *users.PublicUpdateUserV3Params)
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3088,6 +3209,7 @@ func (u *UsersService) PublicSendVerificationCodeV3(input *users.PublicSendVerif
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3113,6 +3235,7 @@ func (u *UsersService) PublicUserVerificationV3(input *users.PublicUserVerificat
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3144,6 +3267,7 @@ func (u *UsersService) PublicUpgradeHeadlessAccountV3(input *users.PublicUpgrade
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3172,6 +3296,7 @@ func (u *UsersService) PublicVerifyHeadlessAccountV3(input *users.PublicVerifyHe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3194,6 +3319,7 @@ func (u *UsersService) PublicUpdatePasswordV3(input *users.PublicUpdatePasswordV
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3222,6 +3348,7 @@ func (u *UsersService) PublicCreateJusticeUser(input *users.PublicCreateJusticeU
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -3250,6 +3377,7 @@ func (u *UsersService) PublicPlatformLinkV3(input *users.PublicPlatformLinkV3Par
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3275,6 +3403,7 @@ func (u *UsersService) PublicPlatformUnlinkV3(input *users.PublicPlatformUnlinkV
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3297,6 +3426,7 @@ func (u *UsersService) PublicWebLinkPlatform(input *users.PublicWebLinkPlatformP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3310,6 +3440,7 @@ func (u *UsersService) PublicWebLinkPlatformEstablish(input *users.PublicWebLink
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3332,6 +3463,7 @@ func (u *UsersService) ResetPasswordV3(input *users.ResetPasswordV3Params) error
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3354,6 +3486,7 @@ func (u *UsersService) PublicGetUserByUserIDV3(input *users.PublicGetUserByUserI
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3382,6 +3515,7 @@ func (u *UsersService) PublicGetUserBanHistoryV3(input *users.PublicGetUserBanHi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3404,6 +3538,7 @@ func (u *UsersService) PublicGetUserLoginHistoriesV3(input *users.PublicGetUserL
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3429,6 +3564,7 @@ func (u *UsersService) PublicGetUserPlatformAccountsV3(input *users.PublicGetUse
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3454,6 +3590,7 @@ func (u *UsersService) PublicLinkPlatformAccount(input *users.PublicLinkPlatform
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3482,6 +3619,7 @@ func (u *UsersService) PublicValidateUserByUserIDAndPasswordV3(input *users.Publ
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3501,6 +3639,7 @@ func (u *UsersService) PublicGetMyUserV3(input *users.PublicGetMyUserV3Params) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3513,6 +3652,7 @@ func (u *UsersService) CreateUserShort(input *users.CreateUserParams) (*iamclien
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -3525,6 +3665,7 @@ func (u *UsersService) GetAdminUsersByRoleIDShort(input *users.GetAdminUsersByRo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3537,6 +3678,7 @@ func (u *UsersService) GetUserByLoginIDShort(input *users.GetUserByLoginIDParams
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3549,6 +3691,7 @@ func (u *UsersService) GetUserByPlatformUserIDShort(input *users.GetUserByPlatfo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3561,6 +3704,7 @@ func (u *UsersService) ForgotPasswordShort(input *users.ForgotPasswordParams) er
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3573,6 +3717,7 @@ func (u *UsersService) GetUsersByLoginIdsShort(input *users.GetUsersByLoginIdsPa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3585,6 +3730,7 @@ func (u *UsersService) ResetPasswordShort(input *users.ResetPasswordParams) erro
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3597,6 +3743,7 @@ func (u *UsersService) SearchUserShort(input *users.SearchUserParams) (*iamclien
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3609,6 +3756,7 @@ func (u *UsersService) GetUserByUserIDShort(input *users.GetUserByUserIDParams) 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3621,6 +3769,7 @@ func (u *UsersService) UpdateUserShort(input *users.UpdateUserParams) (*iamclien
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3633,6 +3782,7 @@ func (u *UsersService) DeleteUserShort(input *users.DeleteUserParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3645,6 +3795,7 @@ func (u *UsersService) BanUserShort(input *users.BanUserParams) (*iamclientmodel
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -3657,6 +3808,7 @@ func (u *UsersService) GetUserBanHistoryShort(input *users.GetUserBanHistoryPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3669,6 +3821,7 @@ func (u *UsersService) DisableUserBanShort(input *users.DisableUserBanParams) (*
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3681,6 +3834,7 @@ func (u *UsersService) EnableUserBanShort(input *users.EnableUserBanParams) (*ia
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3693,6 +3847,7 @@ func (u *UsersService) ListCrossNamespaceAccountLinkShort(input *users.ListCross
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3705,6 +3860,7 @@ func (u *UsersService) DisableUserShort(input *users.DisableUserParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3717,6 +3873,7 @@ func (u *UsersService) EnableUserShort(input *users.EnableUserParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3729,6 +3886,7 @@ func (u *UsersService) GetUserInformationShort(input *users.GetUserInformationPa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3741,6 +3899,7 @@ func (u *UsersService) DeleteUserInformationShort(input *users.DeleteUserInforma
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3753,6 +3912,7 @@ func (u *UsersService) GetUserLoginHistoriesShort(input *users.GetUserLoginHisto
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3765,6 +3925,7 @@ func (u *UsersService) UpdatePasswordShort(input *users.UpdatePasswordParams) er
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3777,6 +3938,7 @@ func (u *UsersService) SaveUserPermissionShort(input *users.SaveUserPermissionPa
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3789,6 +3951,7 @@ func (u *UsersService) AddUserPermissionShort(input *users.AddUserPermissionPara
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3801,6 +3964,7 @@ func (u *UsersService) DeleteUserPermissionShort(input *users.DeleteUserPermissi
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3813,6 +3977,7 @@ func (u *UsersService) GetUserPlatformAccountsShort(input *users.GetUserPlatform
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3825,6 +3990,7 @@ func (u *UsersService) GetUserMappingShort(input *users.GetUserMappingParams) (*
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3837,6 +4003,7 @@ func (u *UsersService) GetUserJusticePlatformAccountShort(input *users.GetUserJu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3849,6 +4016,7 @@ func (u *UsersService) PlatformLinkShort(input *users.PlatformLinkParams) error 
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3861,6 +4029,7 @@ func (u *UsersService) PlatformUnlinkShort(input *users.PlatformUnlinkParams) er
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3873,6 +4042,7 @@ func (u *UsersService) GetPublisherUserShort(input *users.GetPublisherUserParams
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3885,6 +4055,7 @@ func (u *UsersService) SaveUserRolesShort(input *users.SaveUserRolesParams) erro
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3897,6 +4068,7 @@ func (u *UsersService) AddUserRoleShort(input *users.AddUserRoleParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3909,6 +4081,7 @@ func (u *UsersService) DeleteUserRoleShort(input *users.DeleteUserRoleParams) er
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3921,6 +4094,7 @@ func (u *UsersService) UpgradeHeadlessAccountShort(input *users.UpgradeHeadlessA
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3933,6 +4107,7 @@ func (u *UsersService) UpgradeHeadlessAccountWithVerificationCodeShort(input *us
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3945,6 +4120,7 @@ func (u *UsersService) UserVerificationShort(input *users.UserVerificationParams
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3957,6 +4133,7 @@ func (u *UsersService) SendVerificationCodeShort(input *users.SendVerificationCo
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -3969,6 +4146,7 @@ func (u *UsersService) AdminGetAgeRestrictionStatusV2Short(input *users.AdminGet
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3981,6 +4159,7 @@ func (u *UsersService) AdminUpdateAgeRestrictionConfigV2Short(input *users.Admin
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -3993,6 +4172,7 @@ func (u *UsersService) GetListCountryAgeRestrictionShort(input *users.GetListCou
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4005,6 +4185,7 @@ func (u *UsersService) UpdateCountryAgeRestrictionShort(input *users.UpdateCount
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4017,6 +4198,7 @@ func (u *UsersService) AdminSearchUsersV2Short(input *users.AdminSearchUsersV2Pa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4029,6 +4211,7 @@ func (u *UsersService) AdminGetUserByUserIDV2Short(input *users.AdminGetUserByUs
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4041,6 +4224,7 @@ func (u *UsersService) AdminUpdateUserV2Short(input *users.AdminUpdateUserV2Para
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4053,6 +4237,7 @@ func (u *UsersService) AdminBanUserV2Short(input *users.AdminBanUserV2Params) (*
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -4065,6 +4250,7 @@ func (u *UsersService) AdminGetUserBanV2Short(input *users.AdminGetUserBanV2Para
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4077,6 +4263,7 @@ func (u *UsersService) AdminDisableUserV2Short(input *users.AdminDisableUserV2Pa
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4089,6 +4276,7 @@ func (u *UsersService) AdminEnableUserV2Short(input *users.AdminEnableUserV2Para
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4101,6 +4289,7 @@ func (u *UsersService) AdminResetPasswordV2Short(input *users.AdminResetPassword
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4113,6 +4302,7 @@ func (u *UsersService) AdminDeletePlatformLinkV2Short(input *users.AdminDeletePl
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4125,6 +4315,7 @@ func (u *UsersService) AdminPutUserRolesV2Short(input *users.AdminPutUserRolesV2
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4137,6 +4328,7 @@ func (u *UsersService) AdminCreateUserRolesV2Short(input *users.AdminCreateUserR
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4149,6 +4341,7 @@ func (u *UsersService) PublicGetCountryAgeRestrictionShort(input *users.PublicGe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4161,6 +4354,7 @@ func (u *UsersService) PublicCreateUserV2Short(input *users.PublicCreateUserV2Pa
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -4173,6 +4367,7 @@ func (u *UsersService) PublicForgotPasswordV2Short(input *users.PublicForgotPass
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4185,6 +4380,7 @@ func (u *UsersService) PublicResetPasswordV2Short(input *users.PublicResetPasswo
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4197,6 +4393,7 @@ func (u *UsersService) PublicGetUserByUserIDV2Short(input *users.PublicGetUserBy
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4209,6 +4406,7 @@ func (u *UsersService) PublicUpdateUserV2Short(input *users.PublicUpdateUserV2Pa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4221,6 +4419,7 @@ func (u *UsersService) PublicGetUserBanShort(input *users.PublicGetUserBanParams
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4233,6 +4432,7 @@ func (u *UsersService) PublicUpdatePasswordV2Short(input *users.PublicUpdatePass
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4245,6 +4445,7 @@ func (u *UsersService) GetListJusticePlatformAccountsShort(input *users.GetListJ
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4257,6 +4458,7 @@ func (u *UsersService) PublicPlatformLinkV2Short(input *users.PublicPlatformLink
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4269,6 +4471,7 @@ func (u *UsersService) PublicDeletePlatformLinkV2Short(input *users.PublicDelete
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4281,6 +4484,7 @@ func (u *UsersService) ListAdminsV3Short(input *users.ListAdminsV3Params) (*iamc
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4293,6 +4497,7 @@ func (u *UsersService) AdminGetAgeRestrictionStatusV3Short(input *users.AdminGet
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4305,6 +4510,7 @@ func (u *UsersService) AdminUpdateAgeRestrictionConfigV3Short(input *users.Admin
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4317,6 +4523,7 @@ func (u *UsersService) AdminGetListCountryAgeRestrictionV3Short(input *users.Adm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4329,6 +4536,7 @@ func (u *UsersService) AdminUpdateCountryAgeRestrictionV3Short(input *users.Admi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4341,6 +4549,7 @@ func (u *UsersService) AdminGetUserByPlatformUserIDV3Short(input *users.AdminGet
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4353,6 +4562,7 @@ func (u *UsersService) GetAdminUsersByRoleIDV3Short(input *users.GetAdminUsersBy
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4365,6 +4575,7 @@ func (u *UsersService) AdminGetUserByEmailAddressV3Short(input *users.AdminGetUs
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4377,6 +4588,7 @@ func (u *UsersService) AdminListUserIDByUserIDsV3Short(input *users.AdminListUse
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4389,6 +4601,7 @@ func (u *UsersService) AdminInviteUserV3Short(input *users.AdminInviteUserV3Para
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -4401,6 +4614,7 @@ func (u *UsersService) AdminListUsersV3Short(input *users.AdminListUsersV3Params
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4413,6 +4627,7 @@ func (u *UsersService) AdminSearchUserV3Short(input *users.AdminSearchUserV3Para
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4425,6 +4640,7 @@ func (u *UsersService) AdminGetBulkUserByEmailAddressV3Short(input *users.AdminG
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4437,6 +4653,7 @@ func (u *UsersService) AdminGetUserByUserIDV3Short(input *users.AdminGetUserByUs
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4449,6 +4666,7 @@ func (u *UsersService) AdminUpdateUserV3Short(input *users.AdminUpdateUserV3Para
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4461,6 +4679,7 @@ func (u *UsersService) AdminGetUserBanV3Short(input *users.AdminGetUserBanV3Para
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4473,6 +4692,7 @@ func (u *UsersService) AdminBanUserV3Short(input *users.AdminBanUserV3Params) (*
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -4485,6 +4705,7 @@ func (u *UsersService) AdminUpdateUserBanV3Short(input *users.AdminUpdateUserBan
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4497,6 +4718,7 @@ func (u *UsersService) AdminSendVerificationCodeV3Short(input *users.AdminSendVe
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4509,6 +4731,7 @@ func (u *UsersService) AdminVerifyAccountV3Short(input *users.AdminVerifyAccount
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4521,6 +4744,7 @@ func (u *UsersService) GetUserVerificationCodeShort(input *users.GetUserVerifica
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4533,6 +4757,7 @@ func (u *UsersService) AdminGetUserDeletionStatusV3Short(input *users.AdminGetUs
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4545,6 +4770,7 @@ func (u *UsersService) AdminUpdateUserDeletionStatusV3Short(input *users.AdminUp
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4557,6 +4783,7 @@ func (u *UsersService) AdminUpgradeHeadlessAccountV3Short(input *users.AdminUpgr
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4569,6 +4796,7 @@ func (u *UsersService) AdminDeleteUserInformationV3Short(input *users.AdminDelet
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4581,6 +4809,7 @@ func (u *UsersService) AdminGetUserLoginHistoriesV3Short(input *users.AdminGetUs
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4593,6 +4822,7 @@ func (u *UsersService) AdminUpdateUserPermissionV3Short(input *users.AdminUpdate
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4605,6 +4835,7 @@ func (u *UsersService) AdminAddUserPermissionsV3Short(input *users.AdminAddUserP
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4617,6 +4848,7 @@ func (u *UsersService) AdminDeleteUserPermissionBulkV3Short(input *users.AdminDe
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4629,6 +4861,7 @@ func (u *UsersService) AdminDeleteUserPermissionV3Short(input *users.AdminDelete
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4641,6 +4874,7 @@ func (u *UsersService) AdminGetUserPlatformAccountsV3Short(input *users.AdminGet
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4653,6 +4887,7 @@ func (u *UsersService) AdminGetListJusticePlatformAccountsShort(input *users.Adm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4665,6 +4900,7 @@ func (u *UsersService) AdminCreateJusticeUserShort(input *users.AdminCreateJusti
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -4677,6 +4913,7 @@ func (u *UsersService) AdminLinkPlatformAccountShort(input *users.AdminLinkPlatf
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4689,6 +4926,7 @@ func (u *UsersService) AdminPlatformUnlinkV3Short(input *users.AdminPlatformUnli
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4701,6 +4939,7 @@ func (u *UsersService) AdminPlatformLinkV3Short(input *users.AdminPlatformLinkV3
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4713,6 +4952,7 @@ func (u *UsersService) AdminDeleteUserRolesV3Short(input *users.AdminDeleteUserR
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4725,6 +4965,7 @@ func (u *UsersService) AdminSaveUserRoleV3Short(input *users.AdminSaveUserRoleV3
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4737,6 +4978,7 @@ func (u *UsersService) AdminAddUserRoleV3Short(input *users.AdminAddUserRoleV3Pa
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4749,6 +4991,7 @@ func (u *UsersService) AdminDeleteUserRoleV3Short(input *users.AdminDeleteUserRo
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4761,6 +5004,7 @@ func (u *UsersService) AdminUpdateUserStatusV3Short(input *users.AdminUpdateUser
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4773,6 +5017,7 @@ func (u *UsersService) AdminVerifyUserWithoutVerificationCodeV3Short(input *user
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4785,6 +5030,7 @@ func (u *UsersService) AdminGetMyUserV3Short(input *users.AdminGetMyUserV3Params
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4797,6 +5043,7 @@ func (u *UsersService) PublicListUserIDByPlatformUserIDsV3Short(input *users.Pub
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4809,6 +5056,7 @@ func (u *UsersService) PublicGetUserByPlatformUserIDV3Short(input *users.PublicG
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4821,6 +5069,7 @@ func (u *UsersService) PublicGetAsyncStatusShort(input *users.PublicGetAsyncStat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4833,6 +5082,7 @@ func (u *UsersService) PublicSearchUserV3Short(input *users.PublicSearchUserV3Pa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4845,6 +5095,7 @@ func (u *UsersService) PublicCreateUserV3Short(input *users.PublicCreateUserV3Pa
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -4857,6 +5108,7 @@ func (u *UsersService) CheckUserAvailabilityShort(input *users.CheckUserAvailabi
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4869,6 +5121,7 @@ func (u *UsersService) PublicBulkGetUsersShort(input *users.PublicBulkGetUsersPa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4881,6 +5134,7 @@ func (u *UsersService) PublicSendRegistrationCodeShort(input *users.PublicSendRe
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4893,6 +5147,7 @@ func (u *UsersService) PublicVerifyRegistrationCodeShort(input *users.PublicVeri
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4905,6 +5160,7 @@ func (u *UsersService) PublicForgotPasswordV3Short(input *users.PublicForgotPass
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4917,6 +5173,7 @@ func (u *UsersService) GetAdminInvitationV3Short(input *users.GetAdminInvitation
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4929,6 +5186,7 @@ func (u *UsersService) CreateUserFromInvitationV3Short(input *users.CreateUserFr
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -4941,6 +5199,7 @@ func (u *UsersService) UpdateUserV3Short(input *users.UpdateUserV3Params) ([]*ia
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4953,6 +5212,7 @@ func (u *UsersService) PublicUpdateUserV3Short(input *users.PublicUpdateUserV3Pa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -4965,6 +5225,7 @@ func (u *UsersService) PublicSendVerificationCodeV3Short(input *users.PublicSend
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4977,6 +5238,7 @@ func (u *UsersService) PublicUserVerificationV3Short(input *users.PublicUserVeri
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -4989,6 +5251,7 @@ func (u *UsersService) PublicUpgradeHeadlessAccountV3Short(input *users.PublicUp
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -5001,6 +5264,7 @@ func (u *UsersService) PublicVerifyHeadlessAccountV3Short(input *users.PublicVer
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -5013,6 +5277,7 @@ func (u *UsersService) PublicUpdatePasswordV3Short(input *users.PublicUpdatePass
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -5025,6 +5290,7 @@ func (u *UsersService) PublicCreateJusticeUserShort(input *users.PublicCreateJus
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -5037,6 +5303,7 @@ func (u *UsersService) PublicPlatformLinkV3Short(input *users.PublicPlatformLink
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -5049,6 +5316,7 @@ func (u *UsersService) PublicPlatformUnlinkV3Short(input *users.PublicPlatformUn
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -5061,6 +5329,7 @@ func (u *UsersService) PublicWebLinkPlatformShort(input *users.PublicWebLinkPlat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -5073,6 +5342,7 @@ func (u *UsersService) PublicWebLinkPlatformEstablishShort(input *users.PublicWe
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -5085,6 +5355,7 @@ func (u *UsersService) ResetPasswordV3Short(input *users.ResetPasswordV3Params) 
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -5097,6 +5368,7 @@ func (u *UsersService) PublicGetUserByUserIDV3Short(input *users.PublicGetUserBy
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -5109,6 +5381,7 @@ func (u *UsersService) PublicGetUserBanHistoryV3Short(input *users.PublicGetUser
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -5121,6 +5394,7 @@ func (u *UsersService) PublicGetUserLoginHistoriesV3Short(input *users.PublicGet
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -5133,6 +5407,7 @@ func (u *UsersService) PublicGetUserPlatformAccountsV3Short(input *users.PublicG
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -5145,6 +5420,7 @@ func (u *UsersService) PublicLinkPlatformAccountShort(input *users.PublicLinkPla
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -5157,6 +5433,7 @@ func (u *UsersService) PublicValidateUserByUserIDAndPasswordV3Short(input *users
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -5169,5 +5446,6 @@ func (u *UsersService) PublicGetMyUserV3Short(input *users.PublicGetMyUserV3Para
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

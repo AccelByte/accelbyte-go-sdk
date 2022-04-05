@@ -6,12 +6,13 @@ package iam
 
 import (
 	"errors"
+	"net/url"
+
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0_extension"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/go-openapi/runtime/client"
-	"net/url"
 )
 
 type OAuth20ExtensionService struct {
@@ -22,17 +23,17 @@ type OAuth20ExtensionService struct {
 
 // Deprecated: Use UserAuthenticationV3Short instead
 func (o *OAuth20ExtensionService) UserAuthenticationV3(input *o_auth2_0_extension.UserAuthenticationV3Params) (string, error) {
-	clientId := o.ConfigRepository.GetClientId()
+	clientID := o.ConfigRepository.GetClientId()
 	clientSecret := o.ConfigRepository.GetClientSecret()
-	ok, err := o.Client.OAuth20Extension.UserAuthenticationV3(input, client.BasicAuth(clientId, clientSecret))
+	ok, err := o.Client.OAuth20Extension.UserAuthenticationV3(input, client.BasicAuth(clientID, clientSecret))
 	if err != nil {
 		return "", err
 	}
-	parsedUrl, err := url.Parse(ok.Location)
+	parsedURL, err := url.Parse(ok.Location)
 	if err != nil {
 		return "", err
 	}
-	query, err := url.ParseQuery(parsedUrl.RawQuery)
+	query, err := url.ParseQuery(parsedURL.RawQuery)
 	if err != nil {
 		return "", err
 	}
@@ -41,6 +42,7 @@ func (o *OAuth20ExtensionService) UserAuthenticationV3(input *o_auth2_0_extensio
 		return "", errors.New(errorDescParam[0])
 	}
 	code := query["code"][0]
+
 	return code, nil
 }
 
@@ -54,6 +56,7 @@ func (o *OAuth20ExtensionService) GetCountryLocationV3(input *o_auth2_0_extensio
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -67,6 +70,7 @@ func (o *OAuth20ExtensionService) Logout(input *o_auth2_0_extension.LogoutParams
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -80,21 +84,22 @@ func (o *OAuth20ExtensionService) PlatformAuthenticationV3(input *o_auth2_0_exte
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
 func (o *OAuth20ExtensionService) UserAuthenticationV3Short(input *o_auth2_0_extension.UserAuthenticationV3Params) (string, error) {
-	clientId := o.ConfigRepository.GetClientId()
+	clientID := o.ConfigRepository.GetClientId()
 	clientSecret := o.ConfigRepository.GetClientSecret()
-	ok, err := o.Client.OAuth20Extension.UserAuthenticationV3(input, client.BasicAuth(clientId, clientSecret))
+	ok, err := o.Client.OAuth20Extension.UserAuthenticationV3(input, client.BasicAuth(clientID, clientSecret))
 	if err != nil {
 		return "", err
 	}
-	parsedUrl, err := url.Parse(ok.Location)
+	parsedURL, err := url.Parse(ok.Location)
 	if err != nil {
 		return "", err
 	}
-	query, err := url.ParseQuery(parsedUrl.RawQuery)
+	query, err := url.ParseQuery(parsedURL.RawQuery)
 	if err != nil {
 		return "", err
 	}
@@ -103,6 +108,7 @@ func (o *OAuth20ExtensionService) UserAuthenticationV3Short(input *o_auth2_0_ext
 		return "", errors.New(errorDescParam[0])
 	}
 	code := query["code"][0]
+
 	return code, nil
 }
 
@@ -115,6 +121,7 @@ func (o *OAuth20ExtensionService) GetCountryLocationV3Short(input *o_auth2_0_ext
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -127,6 +134,7 @@ func (o *OAuth20ExtensionService) LogoutShort(input *o_auth2_0_extension.LogoutP
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -139,5 +147,6 @@ func (o *OAuth20ExtensionService) PlatformAuthenticationV3Short(input *o_auth2_0
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

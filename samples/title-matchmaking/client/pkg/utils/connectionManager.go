@@ -1,7 +1,12 @@
+// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
 package utils
 
 import (
 	"fmt"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/connectionutils"
 )
 
@@ -22,5 +27,6 @@ func (connManager *ConnectionManagerImpl) Close() error {
 	if wsConn == nil {
 		return fmt.Errorf("no websocket connection can be closed")
 	}
+
 	return wsConn.Conn.Close()
 }

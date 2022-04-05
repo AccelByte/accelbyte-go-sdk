@@ -36,6 +36,7 @@ func (a *AdminPlayerRecordService) ListPlayerRecordHandlerV1(input *admin_player
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -58,6 +59,7 @@ func (a *AdminPlayerRecordService) AdminRetrievePlayerRecords(input *admin_playe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -80,6 +82,7 @@ func (a *AdminPlayerRecordService) AdminGetPlayerRecordHandlerV1(input *admin_pl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -99,6 +102,7 @@ func (a *AdminPlayerRecordService) AdminPutPlayerRecordHandlerV1(input *admin_pl
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -118,6 +122,7 @@ func (a *AdminPlayerRecordService) AdminPostPlayerRecordHandlerV1(input *admin_p
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -137,6 +142,7 @@ func (a *AdminPlayerRecordService) AdminDeletePlayerRecordHandlerV1(input *admin
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -159,6 +165,7 @@ func (a *AdminPlayerRecordService) AdminGetPlayerPublicRecordHandlerV1(input *ad
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -181,6 +188,7 @@ func (a *AdminPlayerRecordService) AdminPutPlayerPublicRecordHandlerV1(input *ad
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -203,6 +211,7 @@ func (a *AdminPlayerRecordService) AdminPostPlayerPublicRecordHandlerV1(input *a
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -225,6 +234,7 @@ func (a *AdminPlayerRecordService) AdminDeletePlayerPublicRecordHandlerV1(input 
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -237,6 +247,7 @@ func (a *AdminPlayerRecordService) ListPlayerRecordHandlerV1Short(input *admin_p
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -249,6 +260,7 @@ func (a *AdminPlayerRecordService) AdminRetrievePlayerRecordsShort(input *admin_
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -261,6 +273,7 @@ func (a *AdminPlayerRecordService) AdminGetPlayerRecordHandlerV1Short(input *adm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -273,6 +286,7 @@ func (a *AdminPlayerRecordService) AdminPutPlayerRecordHandlerV1Short(input *adm
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -285,6 +299,7 @@ func (a *AdminPlayerRecordService) AdminPostPlayerRecordHandlerV1Short(input *ad
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -297,6 +312,7 @@ func (a *AdminPlayerRecordService) AdminDeletePlayerRecordHandlerV1Short(input *
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -309,6 +325,7 @@ func (a *AdminPlayerRecordService) AdminGetPlayerPublicRecordHandlerV1Short(inpu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -321,6 +338,7 @@ func (a *AdminPlayerRecordService) AdminPutPlayerPublicRecordHandlerV1Short(inpu
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -333,6 +351,7 @@ func (a *AdminPlayerRecordService) AdminPostPlayerPublicRecordHandlerV1Short(inp
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -345,5 +364,6 @@ func (a *AdminPlayerRecordService) AdminDeletePlayerPublicRecordHandlerV1Short(i
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

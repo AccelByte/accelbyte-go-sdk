@@ -27,6 +27,7 @@ func (f *FulfillmentService) QueryFulfillmentHistories(input *fulfillment.QueryF
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -49,6 +50,7 @@ func (f *FulfillmentService) FulfillItem(input *fulfillment.FulfillItemParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -71,6 +73,7 @@ func (f *FulfillmentService) RedeemCode(input *fulfillment.RedeemCodeParams) (*p
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -93,6 +96,7 @@ func (f *FulfillmentService) FulfillRewards(input *fulfillment.FulfillRewardsPar
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -115,6 +119,7 @@ func (f *FulfillmentService) PublicRedeemCode(input *fulfillment.PublicRedeemCod
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -127,6 +132,7 @@ func (f *FulfillmentService) QueryFulfillmentHistoriesShort(input *fulfillment.Q
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -139,6 +145,7 @@ func (f *FulfillmentService) FulfillItemShort(input *fulfillment.FulfillItemPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -151,6 +158,7 @@ func (f *FulfillmentService) RedeemCodeShort(input *fulfillment.RedeemCodeParams
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -163,6 +171,7 @@ func (f *FulfillmentService) FulfillRewardsShort(input *fulfillment.FulfillRewar
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -175,5 +184,6 @@ func (f *FulfillmentService) PublicRedeemCodeShort(input *fulfillment.PublicRede
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

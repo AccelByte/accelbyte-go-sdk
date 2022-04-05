@@ -39,6 +39,7 @@ func (g *GroupService) GetGroupListAdminV1(input *group.GetGroupListAdminV1Param
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -67,6 +68,7 @@ func (g *GroupService) GetSingleGroupAdminV1(input *group.GetSingleGroupAdminV1P
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -95,6 +97,7 @@ func (g *GroupService) DeleteGroupAdminV1(input *group.DeleteGroupAdminV1Params)
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -120,6 +123,7 @@ func (g *GroupService) GetGroupListPublicV1(input *group.GetGroupListPublicV1Par
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -148,6 +152,7 @@ func (g *GroupService) CreateNewGroupPublicV1(input *group.CreateNewGroupPublicV
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -176,6 +181,7 @@ func (g *GroupService) GetSingleGroupPublicV1(input *group.GetSingleGroupPublicV
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -204,6 +210,7 @@ func (g *GroupService) UpdateSingleGroupV1(input *group.UpdateSingleGroupV1Param
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -232,6 +239,7 @@ func (g *GroupService) DeleteGroupPublicV1(input *group.DeleteGroupPublicV1Param
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -260,6 +268,7 @@ func (g *GroupService) UpdatePatchSingleGroupPublicV1(input *group.UpdatePatchSi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -288,6 +297,7 @@ func (g *GroupService) UpdateGroupCustomAttributesPublicV1(input *group.UpdateGr
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -316,6 +326,7 @@ func (g *GroupService) UpdateGroupCustomRulePublicV1(input *group.UpdateGroupCus
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -344,6 +355,7 @@ func (g *GroupService) UpdateGroupPredefinedRulePublicV1(input *group.UpdateGrou
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -372,6 +384,7 @@ func (g *GroupService) DeleteGroupPredefinedRulePublicV1(input *group.DeleteGrou
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -384,6 +397,7 @@ func (g *GroupService) GetGroupListAdminV1Short(input *group.GetGroupListAdminV1
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -396,6 +410,7 @@ func (g *GroupService) GetSingleGroupAdminV1Short(input *group.GetSingleGroupAdm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -408,6 +423,7 @@ func (g *GroupService) DeleteGroupAdminV1Short(input *group.DeleteGroupAdminV1Pa
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -420,6 +436,7 @@ func (g *GroupService) GetGroupListPublicV1Short(input *group.GetGroupListPublic
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -432,6 +449,7 @@ func (g *GroupService) CreateNewGroupPublicV1Short(input *group.CreateNewGroupPu
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -444,6 +462,7 @@ func (g *GroupService) GetSingleGroupPublicV1Short(input *group.GetSingleGroupPu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -456,6 +475,7 @@ func (g *GroupService) UpdateSingleGroupV1Short(input *group.UpdateSingleGroupV1
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -468,6 +488,7 @@ func (g *GroupService) DeleteGroupPublicV1Short(input *group.DeleteGroupPublicV1
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -480,6 +501,7 @@ func (g *GroupService) UpdatePatchSingleGroupPublicV1Short(input *group.UpdatePa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -492,6 +514,7 @@ func (g *GroupService) UpdateGroupCustomAttributesPublicV1Short(input *group.Upd
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -504,6 +527,7 @@ func (g *GroupService) UpdateGroupCustomRulePublicV1Short(input *group.UpdateGro
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -516,6 +540,7 @@ func (g *GroupService) UpdateGroupPredefinedRulePublicV1Short(input *group.Updat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -528,5 +553,6 @@ func (g *GroupService) DeleteGroupPredefinedRulePublicV1Short(input *group.Delet
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

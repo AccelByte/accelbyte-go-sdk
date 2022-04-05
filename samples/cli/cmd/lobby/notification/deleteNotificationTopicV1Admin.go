@@ -32,8 +32,10 @@ var DeleteNotificationTopicV1AdminCmd = &cobra.Command{
 		errInput := notificationService.DeleteNotificationTopicV1AdminShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

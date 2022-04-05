@@ -6,6 +6,7 @@ package publicPlayerRecord
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_player_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -41,10 +42,12 @@ var BulkGetPlayerPublicRecordHandlerV1Cmd = &cobra.Command{
 		ok, err := publicPlayerRecordService.BulkGetPlayerPublicRecordHandlerV1Short(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

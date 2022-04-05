@@ -6,6 +6,7 @@ package notification
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -41,8 +42,10 @@ var SendPartyTemplatedNotificationV1AdminCmd = &cobra.Command{
 		errInput := notificationService.SendPartyTemplatedNotificationV1AdminShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

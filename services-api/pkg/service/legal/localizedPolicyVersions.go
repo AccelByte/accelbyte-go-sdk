@@ -27,6 +27,7 @@ func (l *LocalizedPolicyVersionsService) RetrieveLocalizedPolicyVersions(input *
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -46,6 +47,7 @@ func (l *LocalizedPolicyVersionsService) CreateLocalizedPolicyVersion(input *loc
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -62,6 +64,7 @@ func (l *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersion(in
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -78,6 +81,7 @@ func (l *LocalizedPolicyVersionsService) UpdateLocalizedPolicyVersion(input *loc
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -94,6 +98,7 @@ func (l *LocalizedPolicyVersionsService) RequestPresignedURL(input *localized_po
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -107,6 +112,7 @@ func (l *LocalizedPolicyVersionsService) SetDefaultPolicy(input *localized_polic
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -119,6 +125,7 @@ func (l *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersion1(i
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -131,6 +138,7 @@ func (l *LocalizedPolicyVersionsService) RetrieveLocalizedPolicyVersionsShort(in
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -143,6 +151,7 @@ func (l *LocalizedPolicyVersionsService) CreateLocalizedPolicyVersionShort(input
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -155,6 +164,7 @@ func (l *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersionSho
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -167,6 +177,7 @@ func (l *LocalizedPolicyVersionsService) UpdateLocalizedPolicyVersionShort(input
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -179,6 +190,7 @@ func (l *LocalizedPolicyVersionsService) RequestPresignedURLShort(input *localiz
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -191,6 +203,7 @@ func (l *LocalizedPolicyVersionsService) SetDefaultPolicyShort(input *localized_
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -199,5 +212,6 @@ func (l *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersion1Sh
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

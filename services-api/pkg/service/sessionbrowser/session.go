@@ -33,6 +33,7 @@ func (s *SessionService) GetTotalActiveSession(input *session.GetTotalActiveSess
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -52,6 +53,7 @@ func (s *SessionService) GetActiveCustomGameSessions(input *session.GetActiveCus
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -71,6 +73,7 @@ func (s *SessionService) GetActiveMatchmakingGameSessions(input *session.GetActi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -90,6 +93,7 @@ func (s *SessionService) AdminGetSession(input *session.AdminGetSessionParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -109,6 +113,7 @@ func (s *SessionService) QuerySession(input *session.QuerySessionParams) (*sessi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -134,6 +139,7 @@ func (s *SessionService) CreateSession(input *session.CreateSessionParams) (*ses
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -153,6 +159,7 @@ func (s *SessionService) GetSessionByUserIDs(input *session.GetSessionByUserIDsP
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -172,6 +179,7 @@ func (s *SessionService) GetSession(input *session.GetSessionParams) (*sessionbr
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -194,6 +202,7 @@ func (s *SessionService) UpdateSession(input *session.UpdateSessionParams) (*ses
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -216,6 +225,7 @@ func (s *SessionService) DeleteSession(input *session.DeleteSessionParams) (*ses
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -241,6 +251,7 @@ func (s *SessionService) JoinSession(input *session.JoinSessionParams) (*session
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -263,6 +274,7 @@ func (s *SessionService) DeleteSessionLocalDS(input *session.DeleteSessionLocalD
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -285,6 +297,7 @@ func (s *SessionService) AddPlayerToSession(input *session.AddPlayerToSessionPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -307,6 +320,7 @@ func (s *SessionService) RemovePlayerFromSession(input *session.RemovePlayerFrom
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -326,6 +340,7 @@ func (s *SessionService) GetRecentPlayer(input *session.GetRecentPlayerParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -338,6 +353,7 @@ func (s *SessionService) GetTotalActiveSessionShort(input *session.GetTotalActiv
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -350,6 +366,7 @@ func (s *SessionService) GetActiveCustomGameSessionsShort(input *session.GetActi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -362,6 +379,7 @@ func (s *SessionService) GetActiveMatchmakingGameSessionsShort(input *session.Ge
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -374,6 +392,7 @@ func (s *SessionService) AdminGetSessionShort(input *session.AdminGetSessionPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -386,6 +405,7 @@ func (s *SessionService) QuerySessionShort(input *session.QuerySessionParams) (*
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -398,6 +418,7 @@ func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams) 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -410,6 +431,7 @@ func (s *SessionService) GetSessionByUserIDsShort(input *session.GetSessionByUse
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -422,6 +444,7 @@ func (s *SessionService) GetSessionShort(input *session.GetSessionParams) (*sess
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -434,6 +457,7 @@ func (s *SessionService) UpdateSessionShort(input *session.UpdateSessionParams) 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -446,6 +470,7 @@ func (s *SessionService) DeleteSessionShort(input *session.DeleteSessionParams) 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -458,6 +483,7 @@ func (s *SessionService) JoinSessionShort(input *session.JoinSessionParams) (*se
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -470,6 +496,7 @@ func (s *SessionService) DeleteSessionLocalDSShort(input *session.DeleteSessionL
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -482,6 +509,7 @@ func (s *SessionService) AddPlayerToSessionShort(input *session.AddPlayerToSessi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -494,6 +522,7 @@ func (s *SessionService) RemovePlayerFromSessionShort(input *session.RemovePlaye
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -506,5 +535,6 @@ func (s *SessionService) GetRecentPlayerShort(input *session.GetRecentPlayerPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

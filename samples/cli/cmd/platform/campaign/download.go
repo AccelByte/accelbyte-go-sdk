@@ -34,8 +34,10 @@ var DownloadCmd = &cobra.Command{
 		errInput := campaignService.DownloadShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

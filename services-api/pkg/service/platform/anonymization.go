@@ -26,6 +26,7 @@ func (a *AnonymizationService) AnonymizeCampaign(input *anonymization.AnonymizeC
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -39,6 +40,7 @@ func (a *AnonymizationService) AnonymizeEntitlement(input *anonymization.Anonymi
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -52,6 +54,7 @@ func (a *AnonymizationService) AnonymizeFulfillment(input *anonymization.Anonymi
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -65,6 +68,7 @@ func (a *AnonymizationService) AnonymizeIntegration(input *anonymization.Anonymi
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -78,6 +82,7 @@ func (a *AnonymizationService) AnonymizeOrder(input *anonymization.AnonymizeOrde
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -91,6 +96,7 @@ func (a *AnonymizationService) AnonymizePayment(input *anonymization.AnonymizePa
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -104,6 +110,7 @@ func (a *AnonymizationService) AnonymizeSubscription(input *anonymization.Anonym
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -117,6 +124,7 @@ func (a *AnonymizationService) AnonymizeWallet(input *anonymization.AnonymizeWal
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -129,6 +137,7 @@ func (a *AnonymizationService) AnonymizeCampaignShort(input *anonymization.Anony
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -141,6 +150,7 @@ func (a *AnonymizationService) AnonymizeEntitlementShort(input *anonymization.An
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -153,6 +163,7 @@ func (a *AnonymizationService) AnonymizeFulfillmentShort(input *anonymization.An
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -165,6 +176,7 @@ func (a *AnonymizationService) AnonymizeIntegrationShort(input *anonymization.An
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -177,6 +189,7 @@ func (a *AnonymizationService) AnonymizeOrderShort(input *anonymization.Anonymiz
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -189,6 +202,7 @@ func (a *AnonymizationService) AnonymizePaymentShort(input *anonymization.Anonym
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -201,6 +215,7 @@ func (a *AnonymizationService) AnonymizeSubscriptionShort(input *anonymization.A
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -213,5 +228,6 @@ func (a *AnonymizationService) AnonymizeWalletShort(input *anonymization.Anonymi
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

@@ -42,6 +42,7 @@ func (u *UserVisibilityService) GetHiddenUsersV2(input *user_visibility.GetHidde
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -70,6 +71,7 @@ func (u *UserVisibilityService) GetUserVisibilityStatusV2(input *user_visibility
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -98,6 +100,7 @@ func (u *UserVisibilityService) SetUserLeaderboardVisibilityStatusV2(input *user
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -126,6 +129,7 @@ func (u *UserVisibilityService) SetUserVisibilityStatusV2(input *user_visibility
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -138,6 +142,7 @@ func (u *UserVisibilityService) GetHiddenUsersV2Short(input *user_visibility.Get
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -150,6 +155,7 @@ func (u *UserVisibilityService) GetUserVisibilityStatusV2Short(input *user_visib
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -162,6 +168,7 @@ func (u *UserVisibilityService) SetUserLeaderboardVisibilityStatusV2Short(input 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -174,5 +181,6 @@ func (u *UserVisibilityService) SetUserVisibilityStatusV2Short(input *user_visib
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

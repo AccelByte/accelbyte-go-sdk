@@ -33,6 +33,7 @@ func (m *MiscService) GetCountries(input *misc.GetCountriesParams) ([]*basicclie
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -58,6 +59,7 @@ func (m *MiscService) GetCountryGroups(input *misc.GetCountryGroupsParams) ([]*b
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -83,6 +85,7 @@ func (m *MiscService) AddCountryGroup(input *misc.AddCountryGroupParams) (*basic
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -108,6 +111,7 @@ func (m *MiscService) UpdateCountryGroup(input *misc.UpdateCountryGroupParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -133,6 +137,7 @@ func (m *MiscService) DeleteCountryGroup(input *misc.DeleteCountryGroupParams) e
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -152,6 +157,7 @@ func (m *MiscService) GetLanguages(input *misc.GetLanguagesParams) (map[string]i
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -171,6 +177,7 @@ func (m *MiscService) GetTimeZones(input *misc.GetTimeZonesParams) ([]string, er
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -180,6 +187,7 @@ func (m *MiscService) PublicGetTime(input *misc.PublicGetTimeParams) (*basicclie
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -192,6 +200,7 @@ func (m *MiscService) PublicGetCountries(input *misc.PublicGetCountriesParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -204,6 +213,7 @@ func (m *MiscService) PublicGetLanguages(input *misc.PublicGetLanguagesParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -216,6 +226,7 @@ func (m *MiscService) PublicGetTimeZones(input *misc.PublicGetTimeZonesParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -228,6 +239,7 @@ func (m *MiscService) GetCountriesShort(input *misc.GetCountriesParams) ([]*basi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -240,6 +252,7 @@ func (m *MiscService) GetCountryGroupsShort(input *misc.GetCountryGroupsParams) 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -252,6 +265,7 @@ func (m *MiscService) AddCountryGroupShort(input *misc.AddCountryGroupParams) (*
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -264,6 +278,7 @@ func (m *MiscService) UpdateCountryGroupShort(input *misc.UpdateCountryGroupPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -276,6 +291,7 @@ func (m *MiscService) DeleteCountryGroupShort(input *misc.DeleteCountryGroupPara
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -288,6 +304,7 @@ func (m *MiscService) GetLanguagesShort(input *misc.GetLanguagesParams) (map[str
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -300,6 +317,7 @@ func (m *MiscService) GetTimeZonesShort(input *misc.GetTimeZonesParams) ([]strin
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -308,6 +326,7 @@ func (m *MiscService) PublicGetTimeShort(input *misc.PublicGetTimeParams) (*basi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -316,6 +335,7 @@ func (m *MiscService) PublicGetCountriesShort(input *misc.PublicGetCountriesPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -324,6 +344,7 @@ func (m *MiscService) PublicGetLanguagesShort(input *misc.PublicGetLanguagesPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -332,5 +353,6 @@ func (m *MiscService) PublicGetTimeZonesShort(input *misc.PublicGetTimeZonesPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

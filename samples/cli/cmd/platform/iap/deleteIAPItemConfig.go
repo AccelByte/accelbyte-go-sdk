@@ -30,8 +30,10 @@ var DeleteIAPItemConfigCmd = &cobra.Command{
 		errInput := iapService.DeleteIAPItemConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

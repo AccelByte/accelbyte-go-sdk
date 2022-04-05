@@ -9,4 +9,6 @@ const (
 	MatchmakingRequestQueue = "matchmaking:requestQueue"
 
 	NotificationTopic = "NOTIF"
+
+	Match = "match:"
 )

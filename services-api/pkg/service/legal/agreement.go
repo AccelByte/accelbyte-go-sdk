@@ -27,6 +27,7 @@ func (a *AgreementService) ChangePreferenceConsent(input *agreement.ChangePrefer
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -40,6 +41,7 @@ func (a *AgreementService) RetrieveAcceptedAgreements(input *agreement.RetrieveA
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -56,6 +58,7 @@ func (a *AgreementService) RetrieveAllUsersByPolicyVersion(input *agreement.Retr
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -72,6 +75,7 @@ func (a *AgreementService) ChangePreferenceConsent1(input *agreement.ChangePrefe
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -85,6 +89,7 @@ func (a *AgreementService) AcceptVersionedPolicy(input *agreement.AcceptVersione
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -98,6 +103,7 @@ func (a *AgreementService) RetrieveAgreementsPublic(input *agreement.RetrieveAgr
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -111,6 +117,7 @@ func (a *AgreementService) BulkAcceptVersionedPolicy(input *agreement.BulkAccept
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -124,6 +131,7 @@ func (a *AgreementService) IndirectBulkAcceptVersionedPolicyV2(input *agreement.
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -137,6 +145,7 @@ func (a *AgreementService) IndirectBulkAcceptVersionedPolicy1(input *agreement.I
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -149,6 +158,7 @@ func (a *AgreementService) ChangePreferenceConsentShort(input *agreement.ChangeP
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -161,6 +171,7 @@ func (a *AgreementService) RetrieveAcceptedAgreementsShort(input *agreement.Retr
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -173,6 +184,7 @@ func (a *AgreementService) RetrieveAllUsersByPolicyVersionShort(input *agreement
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -185,6 +197,7 @@ func (a *AgreementService) ChangePreferenceConsent1Short(input *agreement.Change
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -197,6 +210,7 @@ func (a *AgreementService) AcceptVersionedPolicyShort(input *agreement.AcceptVer
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -209,6 +223,7 @@ func (a *AgreementService) RetrieveAgreementsPublicShort(input *agreement.Retrie
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -221,6 +236,7 @@ func (a *AgreementService) BulkAcceptVersionedPolicyShort(input *agreement.BulkA
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -233,6 +249,7 @@ func (a *AgreementService) IndirectBulkAcceptVersionedPolicyV2Short(input *agree
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -245,5 +262,6 @@ func (a *AgreementService) IndirectBulkAcceptVersionedPolicy1Short(input *agreem
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }

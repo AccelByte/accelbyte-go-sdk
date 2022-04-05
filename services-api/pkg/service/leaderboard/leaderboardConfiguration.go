@@ -39,6 +39,7 @@ func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsAdminV1(in
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -67,6 +68,7 @@ func (l *LeaderboardConfigurationService) CreateLeaderboardConfigurationAdminV1(
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -92,6 +94,7 @@ func (l *LeaderboardConfigurationService) DeleteBulkLeaderboardConfigurationAdmi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -120,6 +123,7 @@ func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationAdminV1(inp
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -148,6 +152,7 @@ func (l *LeaderboardConfigurationService) UpdateLeaderboardConfigurationAdminV1(
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -176,6 +181,7 @@ func (l *LeaderboardConfigurationService) DeleteLeaderboardConfigurationAdminV1(
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -201,6 +207,7 @@ func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV1(i
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -229,6 +236,7 @@ func (l *LeaderboardConfigurationService) CreateLeaderboardConfigurationPublicV1
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -254,6 +262,7 @@ func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV2(i
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -266,6 +275,7 @@ func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsAdminV1Sho
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -278,6 +288,7 @@ func (l *LeaderboardConfigurationService) CreateLeaderboardConfigurationAdminV1S
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -290,6 +301,7 @@ func (l *LeaderboardConfigurationService) DeleteBulkLeaderboardConfigurationAdmi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -302,6 +314,7 @@ func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationAdminV1Shor
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -314,6 +327,7 @@ func (l *LeaderboardConfigurationService) UpdateLeaderboardConfigurationAdminV1S
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -326,6 +340,7 @@ func (l *LeaderboardConfigurationService) DeleteLeaderboardConfigurationAdminV1S
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -338,6 +353,7 @@ func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV1Sh
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -350,6 +366,7 @@ func (l *LeaderboardConfigurationService) CreateLeaderboardConfigurationPublicV1
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -362,5 +379,6 @@ func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV2Sh
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

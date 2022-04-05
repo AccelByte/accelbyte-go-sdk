@@ -33,6 +33,7 @@ func (c *ClientsService) GetClients(input *clients.GetClientsParams) ([]*iamclie
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -58,6 +59,7 @@ func (c *ClientsService) CreateClient(input *clients.CreateClientParams) (*iamcl
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -80,6 +82,7 @@ func (c *ClientsService) GetClient(input *clients.GetClientParams) (*iamclientmo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -105,6 +108,7 @@ func (c *ClientsService) UpdateClient(input *clients.UpdateClientParams) (*iamcl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -127,6 +131,7 @@ func (c *ClientsService) DeleteClient(input *clients.DeleteClientParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -152,6 +157,7 @@ func (c *ClientsService) UpdateClientPermission(input *clients.UpdateClientPermi
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -177,6 +183,7 @@ func (c *ClientsService) AddClientPermission(input *clients.AddClientPermissionP
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -202,6 +209,7 @@ func (c *ClientsService) DeleteClientPermission(input *clients.DeleteClientPermi
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -227,6 +235,7 @@ func (c *ClientsService) UpdateClientSecret(input *clients.UpdateClientSecretPar
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -246,6 +255,7 @@ func (c *ClientsService) GetClientsbyNamespace(input *clients.GetClientsbyNamesp
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -271,6 +281,7 @@ func (c *ClientsService) CreateClientByNamespace(input *clients.CreateClientByNa
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -293,6 +304,7 @@ func (c *ClientsService) DeleteClientByNamespace(input *clients.DeleteClientByNa
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -315,6 +327,7 @@ func (c *ClientsService) AdminGetClientsByNamespaceV3(input *clients.AdminGetCli
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -340,6 +353,7 @@ func (c *ClientsService) AdminCreateClientV3(input *clients.AdminCreateClientV3P
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -365,6 +379,7 @@ func (c *ClientsService) AdminGetClientsbyNamespacebyIDV3(input *clients.AdminGe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -393,6 +408,7 @@ func (c *ClientsService) AdminDeleteClientV3(input *clients.AdminDeleteClientV3P
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -418,6 +434,7 @@ func (c *ClientsService) AdminUpdateClientV3(input *clients.AdminUpdateClientV3P
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -443,6 +460,7 @@ func (c *ClientsService) AdminUpdateClientPermissionV3(input *clients.AdminUpdat
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -468,6 +486,7 @@ func (c *ClientsService) AdminAddClientPermissionsV3(input *clients.AdminAddClie
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -493,6 +512,7 @@ func (c *ClientsService) AdminDeleteClientPermissionV3(input *clients.AdminDelet
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -505,6 +525,7 @@ func (c *ClientsService) GetClientsShort(input *clients.GetClientsParams) ([]*ia
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -517,6 +538,7 @@ func (c *ClientsService) CreateClientShort(input *clients.CreateClientParams) (*
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -529,6 +551,7 @@ func (c *ClientsService) GetClientShort(input *clients.GetClientParams) (*iamcli
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -541,6 +564,7 @@ func (c *ClientsService) UpdateClientShort(input *clients.UpdateClientParams) (*
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -553,6 +577,7 @@ func (c *ClientsService) DeleteClientShort(input *clients.DeleteClientParams) er
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -565,6 +590,7 @@ func (c *ClientsService) UpdateClientPermissionShort(input *clients.UpdateClient
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -577,6 +603,7 @@ func (c *ClientsService) AddClientPermissionShort(input *clients.AddClientPermis
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -589,6 +616,7 @@ func (c *ClientsService) DeleteClientPermissionShort(input *clients.DeleteClient
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -601,6 +629,7 @@ func (c *ClientsService) UpdateClientSecretShort(input *clients.UpdateClientSecr
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -613,6 +642,7 @@ func (c *ClientsService) GetClientsbyNamespaceShort(input *clients.GetClientsbyN
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -625,6 +655,7 @@ func (c *ClientsService) CreateClientByNamespaceShort(input *clients.CreateClien
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -637,6 +668,7 @@ func (c *ClientsService) DeleteClientByNamespaceShort(input *clients.DeleteClien
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -649,6 +681,7 @@ func (c *ClientsService) AdminGetClientsByNamespaceV3Short(input *clients.AdminG
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -661,6 +694,7 @@ func (c *ClientsService) AdminCreateClientV3Short(input *clients.AdminCreateClie
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -673,6 +707,7 @@ func (c *ClientsService) AdminGetClientsbyNamespacebyIDV3Short(input *clients.Ad
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -685,6 +720,7 @@ func (c *ClientsService) AdminDeleteClientV3Short(input *clients.AdminDeleteClie
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -697,6 +733,7 @@ func (c *ClientsService) AdminUpdateClientV3Short(input *clients.AdminUpdateClie
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -709,6 +746,7 @@ func (c *ClientsService) AdminUpdateClientPermissionV3Short(input *clients.Admin
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -721,6 +759,7 @@ func (c *ClientsService) AdminAddClientPermissionsV3Short(input *clients.AdminAd
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -733,5 +772,6 @@ func (c *ClientsService) AdminDeleteClientPermissionV3Short(input *clients.Admin
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

@@ -30,6 +30,7 @@ func (u *UserStatisticService) BulkFetchStatItems(input *user_statistic.BulkFetc
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -46,6 +47,7 @@ func (u *UserStatisticService) BulkIncUserStatItem(input *user_statistic.BulkInc
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -62,6 +64,7 @@ func (u *UserStatisticService) BulkIncUserStatItemValue(input *user_statistic.Bu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -78,6 +81,7 @@ func (u *UserStatisticService) BulkResetUserStatItem(input *user_statistic.BulkR
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -91,6 +95,7 @@ func (u *UserStatisticService) GetUserStatItems(input *user_statistic.GetUserSta
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -107,6 +112,7 @@ func (u *UserStatisticService) BulkCreateUserStatItems(input *user_statistic.Bul
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -123,6 +129,7 @@ func (u *UserStatisticService) BulkIncUserStatItem1(input *user_statistic.BulkIn
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -139,6 +146,7 @@ func (u *UserStatisticService) BulkIncUserStatItemValue1(input *user_statistic.B
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -155,6 +163,7 @@ func (u *UserStatisticService) BulkResetUserStatItem1(input *user_statistic.Bulk
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -174,6 +183,7 @@ func (u *UserStatisticService) CreateUserStatItem(input *user_statistic.CreateUs
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -196,6 +206,7 @@ func (u *UserStatisticService) DeleteUserStatItems(input *user_statistic.DeleteU
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -218,6 +229,7 @@ func (u *UserStatisticService) IncUserStatItemValue(input *user_statistic.IncUse
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -237,6 +249,7 @@ func (u *UserStatisticService) ResetUserStatItemValue(input *user_statistic.Rese
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -253,6 +266,7 @@ func (u *UserStatisticService) BulkFetchStatItems1(input *user_statistic.BulkFet
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -269,6 +283,7 @@ func (u *UserStatisticService) PublicBulkIncUserStatItem(input *user_statistic.P
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -285,6 +300,7 @@ func (u *UserStatisticService) PublicBulkIncUserStatItemValue(input *user_statis
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -301,6 +317,7 @@ func (u *UserStatisticService) BulkResetUserStatItem2(input *user_statistic.Bulk
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -314,6 +331,7 @@ func (u *UserStatisticService) PublicQueryUserStatItems(input *user_statistic.Pu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -330,6 +348,7 @@ func (u *UserStatisticService) PublicBulkCreateUserStatItems(input *user_statist
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -346,6 +365,7 @@ func (u *UserStatisticService) PublicBulkIncUserStatItem1(input *user_statistic.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -362,6 +382,7 @@ func (u *UserStatisticService) BulkIncUserStatItemValue2(input *user_statistic.B
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -378,6 +399,7 @@ func (u *UserStatisticService) BulkResetUserStatItem3(input *user_statistic.Bulk
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -397,6 +419,7 @@ func (u *UserStatisticService) PublicCreateUserStatItem(input *user_statistic.Pu
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -419,6 +442,7 @@ func (u *UserStatisticService) DeleteUserStatItems1(input *user_statistic.Delete
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -441,6 +465,7 @@ func (u *UserStatisticService) PublicIncUserStatItem(input *user_statistic.Publi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -463,6 +488,7 @@ func (u *UserStatisticService) PublicIncUserStatItemValue(input *user_statistic.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -482,6 +508,7 @@ func (u *UserStatisticService) ResetUserStatItemValue1(input *user_statistic.Res
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -498,6 +525,7 @@ func (u *UserStatisticService) BulkUpdateUserStatItemV2(input *user_statistic.Bu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -514,6 +542,7 @@ func (u *UserStatisticService) BulkUpdateUserStatItem(input *user_statistic.Bulk
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -530,6 +559,7 @@ func (u *UserStatisticService) BulkResetUserStatItemValues(input *user_statistic
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -552,6 +582,7 @@ func (u *UserStatisticService) DeleteUserStatItems2(input *user_statistic.Delete
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -577,6 +608,7 @@ func (u *UserStatisticService) UpdateUserStatItemValue(input *user_statistic.Upd
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -593,6 +625,7 @@ func (u *UserStatisticService) BulkUpdateUserStatItem1(input *user_statistic.Bul
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -609,6 +642,7 @@ func (u *UserStatisticService) BulkUpdateUserStatItem2(input *user_statistic.Bul
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -634,6 +668,7 @@ func (u *UserStatisticService) UpdateUserStatItemValue1(input *user_statistic.Up
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -646,6 +681,7 @@ func (u *UserStatisticService) BulkFetchStatItemsShort(input *user_statistic.Bul
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -658,6 +694,7 @@ func (u *UserStatisticService) BulkIncUserStatItemShort(input *user_statistic.Bu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -670,6 +707,7 @@ func (u *UserStatisticService) BulkIncUserStatItemValueShort(input *user_statist
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -682,6 +720,7 @@ func (u *UserStatisticService) BulkResetUserStatItemShort(input *user_statistic.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -694,6 +733,7 @@ func (u *UserStatisticService) GetUserStatItemsShort(input *user_statistic.GetUs
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -706,6 +746,7 @@ func (u *UserStatisticService) BulkCreateUserStatItemsShort(input *user_statisti
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -718,6 +759,7 @@ func (u *UserStatisticService) BulkIncUserStatItem1Short(input *user_statistic.B
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -730,6 +772,7 @@ func (u *UserStatisticService) BulkIncUserStatItemValue1Short(input *user_statis
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -742,6 +785,7 @@ func (u *UserStatisticService) BulkResetUserStatItem1Short(input *user_statistic
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -754,6 +798,7 @@ func (u *UserStatisticService) CreateUserStatItemShort(input *user_statistic.Cre
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -766,6 +811,7 @@ func (u *UserStatisticService) DeleteUserStatItemsShort(input *user_statistic.De
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -778,6 +824,7 @@ func (u *UserStatisticService) IncUserStatItemValueShort(input *user_statistic.I
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -790,6 +837,7 @@ func (u *UserStatisticService) ResetUserStatItemValueShort(input *user_statistic
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -802,6 +850,7 @@ func (u *UserStatisticService) BulkFetchStatItems1Short(input *user_statistic.Bu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -814,6 +863,7 @@ func (u *UserStatisticService) PublicBulkIncUserStatItemShort(input *user_statis
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -826,6 +876,7 @@ func (u *UserStatisticService) PublicBulkIncUserStatItemValueShort(input *user_s
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -838,6 +889,7 @@ func (u *UserStatisticService) BulkResetUserStatItem2Short(input *user_statistic
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -850,6 +902,7 @@ func (u *UserStatisticService) PublicQueryUserStatItemsShort(input *user_statist
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -862,6 +915,7 @@ func (u *UserStatisticService) PublicBulkCreateUserStatItemsShort(input *user_st
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -874,6 +928,7 @@ func (u *UserStatisticService) PublicBulkIncUserStatItem1Short(input *user_stati
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -886,6 +941,7 @@ func (u *UserStatisticService) BulkIncUserStatItemValue2Short(input *user_statis
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -898,6 +954,7 @@ func (u *UserStatisticService) BulkResetUserStatItem3Short(input *user_statistic
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -910,6 +967,7 @@ func (u *UserStatisticService) PublicCreateUserStatItemShort(input *user_statist
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -922,6 +980,7 @@ func (u *UserStatisticService) DeleteUserStatItems1Short(input *user_statistic.D
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -934,6 +993,7 @@ func (u *UserStatisticService) PublicIncUserStatItemShort(input *user_statistic.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -946,6 +1006,7 @@ func (u *UserStatisticService) PublicIncUserStatItemValueShort(input *user_stati
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -958,6 +1019,7 @@ func (u *UserStatisticService) ResetUserStatItemValue1Short(input *user_statisti
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -970,6 +1032,7 @@ func (u *UserStatisticService) BulkUpdateUserStatItemV2Short(input *user_statist
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -982,6 +1045,7 @@ func (u *UserStatisticService) BulkUpdateUserStatItemShort(input *user_statistic
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -994,6 +1058,7 @@ func (u *UserStatisticService) BulkResetUserStatItemValuesShort(input *user_stat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1006,6 +1071,7 @@ func (u *UserStatisticService) DeleteUserStatItems2Short(input *user_statistic.D
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -1018,6 +1084,7 @@ func (u *UserStatisticService) UpdateUserStatItemValueShort(input *user_statisti
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1030,6 +1097,7 @@ func (u *UserStatisticService) BulkUpdateUserStatItem1Short(input *user_statisti
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1042,6 +1110,7 @@ func (u *UserStatisticService) BulkUpdateUserStatItem2Short(input *user_statisti
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1054,5 +1123,6 @@ func (u *UserStatisticService) UpdateUserStatItemValue1Short(input *user_statist
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

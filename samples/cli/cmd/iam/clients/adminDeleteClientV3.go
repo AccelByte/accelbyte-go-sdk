@@ -32,8 +32,10 @@ var AdminDeleteClientV3Cmd = &cobra.Command{
 		errInput := clientsService.AdminDeleteClientV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

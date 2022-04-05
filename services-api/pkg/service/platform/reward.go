@@ -36,6 +36,7 @@ func (r *RewardService) CreateReward(input *reward.CreateRewardParams) (*platfor
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -52,6 +53,7 @@ func (r *RewardService) QueryRewards(input *reward.QueryRewardsParams) (*platfor
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -65,6 +67,7 @@ func (r *RewardService) ExportRewards(input *reward.ExportRewardsParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -81,6 +84,7 @@ func (r *RewardService) ImportRewards(input *reward.ImportRewardsParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -97,6 +101,7 @@ func (r *RewardService) GetReward(input *reward.GetRewardParams) (*platformclien
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -116,6 +121,7 @@ func (r *RewardService) UpdateReward(input *reward.UpdateRewardParams) (*platfor
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -132,6 +138,7 @@ func (r *RewardService) DeleteReward(input *reward.DeleteRewardParams) (*platfor
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -148,6 +155,7 @@ func (r *RewardService) CheckEventCondition(input *reward.CheckEventConditionPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -164,6 +172,7 @@ func (r *RewardService) GetRewardByCode(input *reward.GetRewardByCodeParams) (*p
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -180,6 +189,7 @@ func (r *RewardService) QueryRewards1(input *reward.QueryRewards1Params) (*platf
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -196,6 +206,7 @@ func (r *RewardService) GetReward1(input *reward.GetReward1Params) (*platformcli
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -208,6 +219,7 @@ func (r *RewardService) CreateRewardShort(input *reward.CreateRewardParams) (*pl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -220,6 +232,7 @@ func (r *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams) (*pl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -232,6 +245,7 @@ func (r *RewardService) ExportRewardsShort(input *reward.ExportRewardsParams) er
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -244,6 +258,7 @@ func (r *RewardService) ImportRewardsShort(input *reward.ImportRewardsParams) er
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -256,6 +271,7 @@ func (r *RewardService) GetRewardShort(input *reward.GetRewardParams) (*platform
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -268,6 +284,7 @@ func (r *RewardService) UpdateRewardShort(input *reward.UpdateRewardParams) (*pl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -280,6 +297,7 @@ func (r *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams) (*pl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -292,6 +310,7 @@ func (r *RewardService) CheckEventConditionShort(input *reward.CheckEventConditi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -304,6 +323,7 @@ func (r *RewardService) GetRewardByCodeShort(input *reward.GetRewardByCodeParams
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -316,6 +336,7 @@ func (r *RewardService) QueryRewards1Short(input *reward.QueryRewards1Params) (*
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -328,5 +349,6 @@ func (r *RewardService) GetReward1Short(input *reward.GetReward1Params) (*platfo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

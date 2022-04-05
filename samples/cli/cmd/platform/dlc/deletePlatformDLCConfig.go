@@ -30,8 +30,10 @@ var DeletePlatformDLCConfigCmd = &cobra.Command{
 		errInput := dlcService.DeletePlatformDLCConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

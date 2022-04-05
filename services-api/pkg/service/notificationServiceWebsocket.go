@@ -1,3 +1,7 @@
+// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
 package service
 
 import (
@@ -24,6 +28,7 @@ func (notificationService *NotificationServiceWebsocket) GetNotificationMessage(
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -34,5 +39,6 @@ func (notificationService *NotificationServiceWebsocket) GetOfflineNotification(
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

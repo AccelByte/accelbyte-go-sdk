@@ -36,6 +36,7 @@ func (p *PublicChannelService) GetChannels(input *public_channel.GetChannelsPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -58,6 +59,7 @@ func (p *PublicChannelService) CreateChannel(input *public_channel.CreateChannel
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -83,6 +85,7 @@ func (p *PublicChannelService) UpdateChannel(input *public_channel.UpdateChannel
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -105,6 +108,7 @@ func (p *PublicChannelService) DeleteChannel(input *public_channel.DeleteChannel
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -117,6 +121,7 @@ func (p *PublicChannelService) GetChannelsShort(input *public_channel.GetChannel
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -129,6 +134,7 @@ func (p *PublicChannelService) CreateChannelShort(input *public_channel.CreateCh
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -141,6 +147,7 @@ func (p *PublicChannelService) UpdateChannelShort(input *public_channel.UpdateCh
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -153,5 +160,6 @@ func (p *PublicChannelService) DeleteChannelShort(input *public_channel.DeleteCh
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

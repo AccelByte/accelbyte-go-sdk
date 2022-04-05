@@ -30,8 +30,10 @@ var DeleteAppleIAPConfigCmd = &cobra.Command{
 		errInput := iapService.DeleteAppleIAPConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

@@ -32,8 +32,10 @@ var DeletePodConfigCmd = &cobra.Command{
 		errInput := podConfigService.DeletePodConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

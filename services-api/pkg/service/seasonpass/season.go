@@ -30,6 +30,7 @@ func (s *SeasonService) QuerySeasons(input *season.QuerySeasonsParams) (*seasonp
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -52,6 +53,7 @@ func (s *SeasonService) CreateSeason(input *season.CreateSeasonParams) (*seasonp
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -71,6 +73,7 @@ func (s *SeasonService) GetCurrentSeason(input *season.GetCurrentSeasonParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -90,6 +93,7 @@ func (s *SeasonService) GetSeason(input *season.GetSeasonParams) (*seasonpasscli
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -112,6 +116,7 @@ func (s *SeasonService) DeleteSeason(input *season.DeleteSeasonParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -137,6 +142,7 @@ func (s *SeasonService) UpdateSeason(input *season.UpdateSeasonParams) (*seasonp
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -159,6 +165,7 @@ func (s *SeasonService) CloneSeason(input *season.CloneSeasonParams) (*seasonpas
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -181,6 +188,7 @@ func (s *SeasonService) PublishSeason(input *season.PublishSeasonParams) (*seaso
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -203,6 +211,7 @@ func (s *SeasonService) RetireSeason(input *season.RetireSeasonParams) (*seasonp
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -225,6 +234,7 @@ func (s *SeasonService) UnpublishSeason(input *season.UnpublishSeasonParams) (*s
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -241,6 +251,7 @@ func (s *SeasonService) GetUserParticipatedSeasons(input *season.GetUserParticip
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -257,6 +268,7 @@ func (s *SeasonService) ExistsAnyPassByPassCodes(input *season.ExistsAnyPassByPa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -276,6 +288,7 @@ func (s *SeasonService) GetCurrentUserSeasonProgression(input *season.GetCurrent
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -298,6 +311,7 @@ func (s *SeasonService) CheckSeasonPurchasable(input *season.CheckSeasonPurchasa
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -314,6 +328,7 @@ func (s *SeasonService) ResetUserSeason(input *season.ResetUserSeasonParams) err
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -333,6 +348,7 @@ func (s *SeasonService) GetUserSeason(input *season.GetUserSeasonParams) (*seaso
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -348,6 +364,7 @@ func (s *SeasonService) PublicGetCurrentSeason(input *season.PublicGetCurrentSea
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -367,6 +384,7 @@ func (s *SeasonService) PublicGetCurrentUserSeason(input *season.PublicGetCurren
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -386,6 +404,7 @@ func (s *SeasonService) PublicGetUserSeason(input *season.PublicGetUserSeasonPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -398,6 +417,7 @@ func (s *SeasonService) QuerySeasonsShort(input *season.QuerySeasonsParams) (*se
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -410,6 +430,7 @@ func (s *SeasonService) CreateSeasonShort(input *season.CreateSeasonParams) (*se
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -422,6 +443,7 @@ func (s *SeasonService) GetCurrentSeasonShort(input *season.GetCurrentSeasonPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -434,6 +456,7 @@ func (s *SeasonService) GetSeasonShort(input *season.GetSeasonParams) (*seasonpa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -446,6 +469,7 @@ func (s *SeasonService) DeleteSeasonShort(input *season.DeleteSeasonParams) erro
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -458,6 +482,7 @@ func (s *SeasonService) UpdateSeasonShort(input *season.UpdateSeasonParams) (*se
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -470,6 +495,7 @@ func (s *SeasonService) CloneSeasonShort(input *season.CloneSeasonParams) (*seas
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -482,6 +508,7 @@ func (s *SeasonService) PublishSeasonShort(input *season.PublishSeasonParams) (*
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -494,6 +521,7 @@ func (s *SeasonService) RetireSeasonShort(input *season.RetireSeasonParams) (*se
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -506,6 +534,7 @@ func (s *SeasonService) UnpublishSeasonShort(input *season.UnpublishSeasonParams
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -518,6 +547,7 @@ func (s *SeasonService) GetUserParticipatedSeasonsShort(input *season.GetUserPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -530,6 +560,7 @@ func (s *SeasonService) ExistsAnyPassByPassCodesShort(input *season.ExistsAnyPas
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -542,6 +573,7 @@ func (s *SeasonService) GetCurrentUserSeasonProgressionShort(input *season.GetCu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -554,6 +586,7 @@ func (s *SeasonService) CheckSeasonPurchasableShort(input *season.CheckSeasonPur
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -566,6 +599,7 @@ func (s *SeasonService) ResetUserSeasonShort(input *season.ResetUserSeasonParams
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -578,6 +612,7 @@ func (s *SeasonService) GetUserSeasonShort(input *season.GetUserSeasonParams) (*
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -586,6 +621,7 @@ func (s *SeasonService) PublicGetCurrentSeasonShort(input *season.PublicGetCurre
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -598,6 +634,7 @@ func (s *SeasonService) PublicGetCurrentUserSeasonShort(input *season.PublicGetC
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -610,5 +647,6 @@ func (s *SeasonService) PublicGetUserSeasonShort(input *season.PublicGetUserSeas
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

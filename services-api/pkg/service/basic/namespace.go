@@ -33,6 +33,7 @@ func (n *NamespaceService) GetNamespaces(input *namespace.GetNamespacesParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -58,6 +59,7 @@ func (n *NamespaceService) CreateNamespace(input *namespace.CreateNamespaceParam
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -83,6 +85,7 @@ func (n *NamespaceService) GetNamespace(input *namespace.GetNamespaceParams) (*b
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -111,6 +114,7 @@ func (n *NamespaceService) DeleteNamespace(input *namespace.DeleteNamespaceParam
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -139,6 +143,7 @@ func (n *NamespaceService) UpdateNamespace(input *namespace.UpdateNamespaceParam
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -164,6 +169,7 @@ func (n *NamespaceService) GetNamespacePublisher(input *namespace.GetNamespacePu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -192,6 +198,7 @@ func (n *NamespaceService) ChangeNamespaceStatus(input *namespace.ChangeNamespac
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -208,6 +215,7 @@ func (n *NamespaceService) PublicGetNamespaces(input *namespace.PublicGetNamespa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -233,6 +241,7 @@ func (n *NamespaceService) PublicGetNamespacePublisher(input *namespace.PublicGe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -245,6 +254,7 @@ func (n *NamespaceService) GetNamespacesShort(input *namespace.GetNamespacesPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -257,6 +267,7 @@ func (n *NamespaceService) CreateNamespaceShort(input *namespace.CreateNamespace
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -269,6 +280,7 @@ func (n *NamespaceService) GetNamespaceShort(input *namespace.GetNamespaceParams
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -281,6 +293,7 @@ func (n *NamespaceService) DeleteNamespaceShort(input *namespace.DeleteNamespace
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -293,6 +306,7 @@ func (n *NamespaceService) UpdateNamespaceShort(input *namespace.UpdateNamespace
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -305,6 +319,7 @@ func (n *NamespaceService) GetNamespacePublisherShort(input *namespace.GetNamesp
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -317,6 +332,7 @@ func (n *NamespaceService) ChangeNamespaceStatusShort(input *namespace.ChangeNam
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -329,6 +345,7 @@ func (n *NamespaceService) PublicGetNamespacesShort(input *namespace.PublicGetNa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -341,5 +358,6 @@ func (n *NamespaceService) PublicGetNamespacePublisherShort(input *namespace.Pub
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

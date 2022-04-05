@@ -6,6 +6,7 @@ package profanity
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/profanity"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
@@ -40,8 +41,10 @@ var AdminImportProfanityFiltersFromFileCmd = &cobra.Command{
 		errInput := profanityService.AdminImportProfanityFiltersFromFileShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

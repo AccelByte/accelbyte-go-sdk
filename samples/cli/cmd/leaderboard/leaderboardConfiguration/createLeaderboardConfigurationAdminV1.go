@@ -6,6 +6,7 @@ package leaderboardConfiguration
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/leaderboard_configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -39,10 +40,12 @@ var CreateLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
 		ok, err := leaderboardConfigurationService.CreateLeaderboardConfigurationAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

@@ -33,6 +33,7 @@ func (d *DataRetrievalService) GetAdminEmailConfiguration(input *data_retrieval.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -55,6 +56,7 @@ func (d *DataRetrievalService) UpdateAdminEmailConfiguration(input *data_retriev
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -77,6 +79,7 @@ func (d *DataRetrievalService) SaveAdminEmailConfiguration(input *data_retrieval
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -105,6 +108,7 @@ func (d *DataRetrievalService) DeleteAdminEmailConfiguration(input *data_retriev
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -133,6 +137,7 @@ func (d *DataRetrievalService) AdminGetListPersonalDataRequest(input *data_retri
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -155,6 +160,7 @@ func (d *DataRetrievalService) AdminGetUserPersonalDataRequests(input *data_retr
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -177,6 +183,7 @@ func (d *DataRetrievalService) AdminRequestDataRetrieval(input *data_retrieval.A
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -202,6 +209,7 @@ func (d *DataRetrievalService) AdminCancelUserPersonalDataRequest(input *data_re
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -227,6 +235,7 @@ func (d *DataRetrievalService) AdminGeneratePersonalDataURL(input *data_retrieva
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -249,6 +258,7 @@ func (d *DataRetrievalService) PublicGetUserPersonalDataRequests(input *data_ret
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -271,6 +281,7 @@ func (d *DataRetrievalService) PublicRequestDataRetrieval(input *data_retrieval.
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -296,6 +307,7 @@ func (d *DataRetrievalService) PublicCancelUserPersonalDataRequest(input *data_r
 	if err != nil {
 		return nil, err
 	}
+
 	return noContent.GetPayload(), nil
 }
 
@@ -321,6 +333,7 @@ func (d *DataRetrievalService) PublicGeneratePersonalDataURL(input *data_retriev
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -333,6 +346,7 @@ func (d *DataRetrievalService) GetAdminEmailConfigurationShort(input *data_retri
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -345,6 +359,7 @@ func (d *DataRetrievalService) UpdateAdminEmailConfigurationShort(input *data_re
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -357,6 +372,7 @@ func (d *DataRetrievalService) SaveAdminEmailConfigurationShort(input *data_retr
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -369,6 +385,7 @@ func (d *DataRetrievalService) DeleteAdminEmailConfigurationShort(input *data_re
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -381,6 +398,7 @@ func (d *DataRetrievalService) AdminGetListPersonalDataRequestShort(input *data_
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -393,6 +411,7 @@ func (d *DataRetrievalService) AdminGetUserPersonalDataRequestsShort(input *data
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -405,6 +424,7 @@ func (d *DataRetrievalService) AdminRequestDataRetrievalShort(input *data_retrie
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -417,6 +437,7 @@ func (d *DataRetrievalService) AdminCancelUserPersonalDataRequestShort(input *da
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -429,6 +450,7 @@ func (d *DataRetrievalService) AdminGeneratePersonalDataURLShort(input *data_ret
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -441,6 +463,7 @@ func (d *DataRetrievalService) PublicGetUserPersonalDataRequestsShort(input *dat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -453,6 +476,7 @@ func (d *DataRetrievalService) PublicRequestDataRetrievalShort(input *data_retri
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -465,6 +489,7 @@ func (d *DataRetrievalService) PublicCancelUserPersonalDataRequestShort(input *d
 	if err != nil {
 		return nil, err
 	}
+
 	return noContent.GetPayload(), nil
 }
 
@@ -477,5 +502,6 @@ func (d *DataRetrievalService) PublicGeneratePersonalDataURLShort(input *data_re
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

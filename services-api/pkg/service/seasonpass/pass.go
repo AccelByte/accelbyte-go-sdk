@@ -33,6 +33,7 @@ func (p *PassService) QueryPasses(input *pass.QueryPassesParams) ([]*seasonpassc
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -58,6 +59,7 @@ func (p *PassService) CreatePass(input *pass.CreatePassParams) (*seasonpassclien
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -77,6 +79,7 @@ func (p *PassService) GetPass(input *pass.GetPassParams) (*seasonpassclientmodel
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -99,6 +102,7 @@ func (p *PassService) DeletePass(input *pass.DeletePassParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -124,6 +128,7 @@ func (p *PassService) UpdatePass(input *pass.UpdatePassParams) (*seasonpassclien
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -140,6 +145,7 @@ func (p *PassService) GrantUserPass(input *pass.GrantUserPassParams) (*seasonpas
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -152,6 +158,7 @@ func (p *PassService) QueryPassesShort(input *pass.QueryPassesParams) ([]*season
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -164,6 +171,7 @@ func (p *PassService) CreatePassShort(input *pass.CreatePassParams) (*seasonpass
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -176,6 +184,7 @@ func (p *PassService) GetPassShort(input *pass.GetPassParams) (*seasonpassclient
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -188,6 +197,7 @@ func (p *PassService) DeletePassShort(input *pass.DeletePassParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -200,6 +210,7 @@ func (p *PassService) UpdatePassShort(input *pass.UpdatePassParams) (*seasonpass
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -212,5 +223,6 @@ func (p *PassService) GrantUserPassShort(input *pass.GrantUserPassParams) (*seas
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

@@ -30,8 +30,10 @@ var DeleteNamespaceSlotConfigCmd = &cobra.Command{
 		errInput := slotConfigService.DeleteNamespaceSlotConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

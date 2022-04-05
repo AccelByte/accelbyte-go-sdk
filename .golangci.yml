@@ -4,7 +4,7 @@
 # options for analysis running
 run:
   # timeout for analysis, e.g. 30s, 5m, default is 1m
-  deadline: 10m
+  deadline: 5m
 
   # exit code when at least one issue was found, default is 1
   issues-exit-code: 1
@@ -48,14 +48,47 @@ output:
 # be careful when disabling linters. it might affect the quality of the code
 # might be better to spend time on refactoring code to follow linting rules
 linters:
-  enable:
-    - misspell
-    - typecheck
-    - errcheck
-    - dogsled
-    - unconvert
-    - nakedret
-    - exportloopref
+  enable-all: true
+  disable:
+    - wsl
+    - gomnd
+    - goerr113
+    - wrapcheck
+    - exhaustivestruct
+    - errorlint
+    - lll
+    - testpackage
+    - dupl
+    - funlen
+    - gci
+    - godot
+    - gofumpt
+    - paralleltest
+    - tagliatelle
+    - revive
+    - unparam
+    - cyclop
+    - gomoddirectives
+    - gocritic # TODO: enable in wrapper
+    - golint # TODO: enable in wrapper
+    - gochecknoglobals # TODO: enable in tests
+    - gosec # TODO: enable for math/rand
+    - stylecheck # TODO: enable for configRepository
+    - forbidigo # TODO: enable in client matchmaking
+    - forcetypeassert # TODO: enable in client matchmaking
+    - nilerr # TODO: enable in client matchmaking
+    - wastedassign # TODO: enable in client matchmaking
+    - scopelint # TODO: enable in client matchmaking
+    - exportloopref # TODO: enable in client matchmaking
+    - bodyclose # TODO: enable in client matchmaking, tic tac toe
+    - noctx # TODO: enable in client matchmaking, tic tac toe
+    - gocognit # TODO: enable in tic-tac-toe
+    - gocyclo # TODO: enable in tic-tac-toe
+    - nestif # TODO: enable in tic-tac-toe
+    - interfacer # TODO: enable in aws-lambda
+    - gochecknoinits # TODO: enable in cli
+
+  fast: false
 
 linters-settings:
   govet:
@@ -73,4 +106,4 @@ issues:
   exclude:
     - ^G104
     - ^G501
-    - SA5011
+  max-same-issues: 20

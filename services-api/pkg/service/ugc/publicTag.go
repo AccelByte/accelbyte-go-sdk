@@ -36,6 +36,7 @@ func (p *PublicTagService) GetTag(input *public_tag.GetTagParams) (*ugcclientmod
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -48,5 +49,6 @@ func (p *PublicTagService) GetTagShort(input *public_tag.GetTagParams) (*ugcclie
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

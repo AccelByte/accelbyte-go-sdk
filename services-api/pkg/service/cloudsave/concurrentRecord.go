@@ -38,6 +38,7 @@ func (c *ConcurrentRecordService) PutGameRecordConcurrentHandlerV1(input *concur
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -63,6 +64,7 @@ func (c *ConcurrentRecordService) PutPlayerPublicRecordConcurrentHandlerV1(input
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -75,6 +77,7 @@ func (c *ConcurrentRecordService) PutGameRecordConcurrentHandlerV1Short(input *c
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -87,5 +90,6 @@ func (c *ConcurrentRecordService) PutPlayerPublicRecordConcurrentHandlerV1Short(
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

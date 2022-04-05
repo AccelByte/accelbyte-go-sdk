@@ -36,6 +36,7 @@ func (p *PublicTypeService) GetType(input *public_type.GetTypeParams) (*ugcclien
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -48,5 +49,6 @@ func (p *PublicTypeService) GetTypeShort(input *public_type.GetTypeParams) (*ugc
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

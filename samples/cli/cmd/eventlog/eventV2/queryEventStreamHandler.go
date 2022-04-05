@@ -6,6 +6,7 @@ package eventV2
 
 import (
 	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event_v2"
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
@@ -47,10 +48,12 @@ var QueryEventStreamHandlerCmd = &cobra.Command{
 		ok, err := eventV2Service.QueryEventStreamHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

@@ -7,9 +7,10 @@ package main
 import (
 	"log"
 	"os"
+	"time"
+
 	daoRedis "tic-tac-toe/pkg/tic-tac-toe/dao/redis"
 	"tic-tac-toe/pkg/utils"
-	"time"
 
 	"github.com/AccelByte/iam-go-sdk"
 	"github.com/go-redis/redis/v8"
@@ -19,9 +20,7 @@ import (
 	"tic-tac-toe/pkg/tic-tac-toe/service"
 )
 
-var (
-	iamClient       iam.Client
-)
+var iamClient iam.Client
 
 func main() {
 	// IAM Auth
@@ -36,12 +35,14 @@ func main() {
 	err := iamClient.StartLocalValidation()
 	if err != nil {
 		log.Printf("unable to start IAM client local validation: %+v", err)
+
 		return
 	}
 
 	err = iamClient.ClientTokenGrant()
 	if err != nil {
 		log.Printf("unable to start IAM client repository grant: %+v", err)
+
 		return
 	}
 

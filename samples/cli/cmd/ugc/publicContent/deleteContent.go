@@ -36,8 +36,10 @@ var DeleteContentCmd = &cobra.Command{
 		errInput := publicContentService.DeleteContentShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

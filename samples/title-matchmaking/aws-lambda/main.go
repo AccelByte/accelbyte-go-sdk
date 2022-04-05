@@ -5,16 +5,17 @@
 package main
 
 import (
-	"aws-lambda/pkg/config"
-	"aws-lambda/pkg/title-matchmaking/dao"
-	daoRedis "aws-lambda/pkg/title-matchmaking/dao/redis"
-	channelList2 "aws-lambda/pkg/title-matchmaking/dao/redis/channelList"
-	"aws-lambda/pkg/utils"
 	"flag"
 	"fmt"
 	"log"
 	"os"
 	"time"
+
+	"aws-lambda/pkg/config"
+	"aws-lambda/pkg/title-matchmaking/dao"
+	daoRedis "aws-lambda/pkg/title-matchmaking/dao/redis"
+	channelList2 "aws-lambda/pkg/title-matchmaking/dao/redis/channelList"
+	"aws-lambda/pkg/utils"
 
 	"github.com/AccelByte/iam-go-sdk"
 	"github.com/go-redis/redis/v8"
@@ -62,12 +63,14 @@ func main() {
 	err := iamClient.StartLocalValidation()
 	if err != nil {
 		log.Printf("unable to start IAM client local validation: %+v", err)
+
 		return
 	}
 
 	err = iamClient.ClientTokenGrant()
 	if err != nil {
 		log.Printf("unable to start IAM client repository grant: %+v", err)
+
 		return
 	}
 

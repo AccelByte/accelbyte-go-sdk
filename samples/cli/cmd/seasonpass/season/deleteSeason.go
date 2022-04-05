@@ -32,8 +32,10 @@ var DeleteSeasonCmd = &cobra.Command{
 		errInput := seasonService.DeleteSeasonShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

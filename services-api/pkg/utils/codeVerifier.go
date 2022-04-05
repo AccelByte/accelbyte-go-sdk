@@ -1,3 +1,7 @@
+// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
 package utils
 
 import (
@@ -32,6 +36,7 @@ func CreateCodeVerifierWithLength(length int) (*CodeVerifier, error) {
 	for i := 0; i < length; i++ {
 		b[i] = byte(r.Intn(255))
 	}
+
 	return CreateCodeVerifierFromBytes(b)
 }
 
@@ -52,6 +57,7 @@ func (v *CodeVerifier) CodeChallengePlain() string {
 func (v *CodeVerifier) CodeChallengeS256() string {
 	h := sha256.New()
 	h.Write([]byte(v.Value))
+
 	return encode(h.Sum(nil))
 }
 
@@ -60,5 +66,6 @@ func encode(msg []byte) string {
 	encoded = strings.Replace(encoded, "+", "-", -1)
 	encoded = strings.Replace(encoded, "/", "_", -1)
 	encoded = strings.Replace(encoded, "=", "", -1)
+
 	return encoded
 }

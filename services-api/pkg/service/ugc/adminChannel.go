@@ -36,6 +36,7 @@ func (a *AdminChannelService) SingleAdminGetChannel(input *admin_channel.SingleA
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -58,6 +59,7 @@ func (a *AdminChannelService) AdminCreateChannel(input *admin_channel.AdminCreat
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -83,6 +85,7 @@ func (a *AdminChannelService) SingleAdminUpdateChannel(input *admin_channel.Sing
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -105,6 +108,7 @@ func (a *AdminChannelService) SingleAdminDeleteChannel(input *admin_channel.Sing
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -127,6 +131,7 @@ func (a *AdminChannelService) AdminGetChannel(input *admin_channel.AdminGetChann
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -152,6 +157,7 @@ func (a *AdminChannelService) AdminUpdateChannel(input *admin_channel.AdminUpdat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -174,6 +180,7 @@ func (a *AdminChannelService) AdminDeleteChannel(input *admin_channel.AdminDelet
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -186,6 +193,7 @@ func (a *AdminChannelService) SingleAdminGetChannelShort(input *admin_channel.Si
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -198,6 +206,7 @@ func (a *AdminChannelService) AdminCreateChannelShort(input *admin_channel.Admin
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -210,6 +219,7 @@ func (a *AdminChannelService) SingleAdminUpdateChannelShort(input *admin_channel
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -222,6 +232,7 @@ func (a *AdminChannelService) SingleAdminDeleteChannelShort(input *admin_channel
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -234,6 +245,7 @@ func (a *AdminChannelService) AdminGetChannelShort(input *admin_channel.AdminGet
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -246,6 +258,7 @@ func (a *AdminChannelService) AdminUpdateChannelShort(input *admin_channel.Admin
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -258,5 +271,6 @@ func (a *AdminChannelService) AdminDeleteChannelShort(input *admin_channel.Admin
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

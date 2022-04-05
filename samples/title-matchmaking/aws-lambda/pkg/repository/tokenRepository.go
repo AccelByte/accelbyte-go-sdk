@@ -18,6 +18,7 @@ var clientTokenV3 models.OauthmodelTokenResponseV3
 
 func (tokenRepository *TokenRepositoryImpl) Store(accessToken models.OauthmodelTokenResponseV3) error {
 	clientTokenV3 = accessToken
+
 	return nil
 }
 
@@ -45,7 +46,9 @@ func ConvertTokenToTokenResponseV3(accessToken string) (*models.OauthmodelTokenR
 			return nil, err
 		}
 		tokenResponseV3.AccessToken = &accessToken
+
 		return tokenResponseV3, nil
 	}
+
 	return nil, err
 }

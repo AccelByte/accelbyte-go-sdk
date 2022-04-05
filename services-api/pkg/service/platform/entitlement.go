@@ -27,6 +27,7 @@ func (e *EntitlementService) QueryEntitlements(input *entitlement.QueryEntitleme
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -43,6 +44,7 @@ func (e *EntitlementService) GetEntitlement(input *entitlement.GetEntitlementPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -56,6 +58,7 @@ func (e *EntitlementService) QueryUserEntitlements(input *entitlement.QueryUserE
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -75,6 +78,7 @@ func (e *EntitlementService) GrantUserEntitlement(input *entitlement.GrantUserEn
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -91,6 +95,7 @@ func (e *EntitlementService) GetUserAppEntitlementByAppID(input *entitlement.Get
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -104,6 +109,7 @@ func (e *EntitlementService) QueryUserEntitlementsByAppType(input *entitlement.Q
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -120,6 +126,7 @@ func (e *EntitlementService) GetUserEntitlementByItemID(input *entitlement.GetUs
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -136,6 +143,7 @@ func (e *EntitlementService) GetUserEntitlementBySku(input *entitlement.GetUserE
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -149,6 +157,7 @@ func (e *EntitlementService) ExistsAnyUserActiveEntitlement(input *entitlement.E
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -162,6 +171,7 @@ func (e *EntitlementService) ExistsAnyUserActiveEntitlementByItemIds(input *enti
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -175,6 +185,7 @@ func (e *EntitlementService) GetUserAppEntitlementOwnershipByAppID(input *entitl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -188,6 +199,7 @@ func (e *EntitlementService) GetUserEntitlementOwnershipByItemID(input *entitlem
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -201,6 +213,7 @@ func (e *EntitlementService) GetUserEntitlementOwnershipBySku(input *entitlement
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -214,6 +227,7 @@ func (e *EntitlementService) RevokeUserEntitlements(input *entitlement.RevokeUse
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -230,6 +244,7 @@ func (e *EntitlementService) GetUserEntitlement(input *entitlement.GetUserEntitl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -252,6 +267,7 @@ func (e *EntitlementService) UpdateUserEntitlement(input *entitlement.UpdateUser
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -271,6 +287,7 @@ func (e *EntitlementService) ConsumeUserEntitlement(input *entitlement.ConsumeUs
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -290,6 +307,7 @@ func (e *EntitlementService) DisableUserEntitlement(input *entitlement.DisableUs
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -309,6 +327,7 @@ func (e *EntitlementService) EnableUserEntitlement(input *entitlement.EnableUser
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -322,6 +341,7 @@ func (e *EntitlementService) GetUserEntitlementHistories(input *entitlement.GetU
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -338,6 +358,7 @@ func (e *EntitlementService) RevokeUserEntitlement(input *entitlement.RevokeUser
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -351,6 +372,7 @@ func (e *EntitlementService) PublicExistsAnyMyActiveEntitlement(input *entitleme
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -364,6 +386,7 @@ func (e *EntitlementService) PublicGetMyAppEntitlementOwnershipByAppID(input *en
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -377,6 +400,7 @@ func (e *EntitlementService) PublicGetMyEntitlementOwnershipByItemID(input *enti
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -390,6 +414,7 @@ func (e *EntitlementService) PublicGetMyEntitlementOwnershipBySku(input *entitle
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -403,6 +428,7 @@ func (e *EntitlementService) PublicGetEntitlementOwnershipToken(input *entitleme
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -416,6 +442,7 @@ func (e *EntitlementService) PublicQueryUserEntitlements(input *entitlement.Publ
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -432,6 +459,7 @@ func (e *EntitlementService) PublicGetUserAppEntitlementByAppID(input *entitleme
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -445,6 +473,7 @@ func (e *EntitlementService) PublicQueryUserEntitlementsByAppType(input *entitle
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -461,6 +490,7 @@ func (e *EntitlementService) PublicGetUserEntitlementByItemID(input *entitlement
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -477,6 +507,7 @@ func (e *EntitlementService) PublicGetUserEntitlementBySku(input *entitlement.Pu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -490,6 +521,7 @@ func (e *EntitlementService) PublicExistsAnyUserActiveEntitlement(input *entitle
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -503,6 +535,7 @@ func (e *EntitlementService) PublicGetUserAppEntitlementOwnershipByAppID(input *
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -516,6 +549,7 @@ func (e *EntitlementService) PublicGetUserEntitlementOwnershipByItemID(input *en
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -529,6 +563,7 @@ func (e *EntitlementService) PublicGetUserEntitlementOwnershipBySku(input *entit
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -545,6 +580,7 @@ func (e *EntitlementService) PublicGetUserEntitlement(input *entitlement.PublicG
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -564,6 +600,7 @@ func (e *EntitlementService) PublicConsumeUserEntitlement(input *entitlement.Pub
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -576,6 +613,7 @@ func (e *EntitlementService) QueryEntitlementsShort(input *entitlement.QueryEnti
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -588,6 +626,7 @@ func (e *EntitlementService) GetEntitlementShort(input *entitlement.GetEntitleme
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -600,6 +639,7 @@ func (e *EntitlementService) QueryUserEntitlementsShort(input *entitlement.Query
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -612,6 +652,7 @@ func (e *EntitlementService) GrantUserEntitlementShort(input *entitlement.GrantU
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -624,6 +665,7 @@ func (e *EntitlementService) GetUserAppEntitlementByAppIDShort(input *entitlemen
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -636,6 +678,7 @@ func (e *EntitlementService) QueryUserEntitlementsByAppTypeShort(input *entitlem
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -648,6 +691,7 @@ func (e *EntitlementService) GetUserEntitlementByItemIDShort(input *entitlement.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -660,6 +704,7 @@ func (e *EntitlementService) GetUserEntitlementBySkuShort(input *entitlement.Get
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -672,6 +717,7 @@ func (e *EntitlementService) ExistsAnyUserActiveEntitlementShort(input *entitlem
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -684,6 +730,7 @@ func (e *EntitlementService) ExistsAnyUserActiveEntitlementByItemIdsShort(input 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -696,6 +743,7 @@ func (e *EntitlementService) GetUserAppEntitlementOwnershipByAppIDShort(input *e
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -708,6 +756,7 @@ func (e *EntitlementService) GetUserEntitlementOwnershipByItemIDShort(input *ent
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -720,6 +769,7 @@ func (e *EntitlementService) GetUserEntitlementOwnershipBySkuShort(input *entitl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -732,6 +782,7 @@ func (e *EntitlementService) RevokeUserEntitlementsShort(input *entitlement.Revo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -744,6 +795,7 @@ func (e *EntitlementService) GetUserEntitlementShort(input *entitlement.GetUserE
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -756,6 +808,7 @@ func (e *EntitlementService) UpdateUserEntitlementShort(input *entitlement.Updat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -768,6 +821,7 @@ func (e *EntitlementService) ConsumeUserEntitlementShort(input *entitlement.Cons
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -780,6 +834,7 @@ func (e *EntitlementService) DisableUserEntitlementShort(input *entitlement.Disa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -792,6 +847,7 @@ func (e *EntitlementService) EnableUserEntitlementShort(input *entitlement.Enabl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -804,6 +860,7 @@ func (e *EntitlementService) GetUserEntitlementHistoriesShort(input *entitlement
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -816,6 +873,7 @@ func (e *EntitlementService) RevokeUserEntitlementShort(input *entitlement.Revok
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -828,6 +886,7 @@ func (e *EntitlementService) PublicExistsAnyMyActiveEntitlementShort(input *enti
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -840,6 +899,7 @@ func (e *EntitlementService) PublicGetMyAppEntitlementOwnershipByAppIDShort(inpu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -852,6 +912,7 @@ func (e *EntitlementService) PublicGetMyEntitlementOwnershipByItemIDShort(input 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -864,6 +925,7 @@ func (e *EntitlementService) PublicGetMyEntitlementOwnershipBySkuShort(input *en
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -876,6 +938,7 @@ func (e *EntitlementService) PublicGetEntitlementOwnershipTokenShort(input *enti
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -888,6 +951,7 @@ func (e *EntitlementService) PublicQueryUserEntitlementsShort(input *entitlement
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -900,6 +964,7 @@ func (e *EntitlementService) PublicGetUserAppEntitlementByAppIDShort(input *enti
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -912,6 +977,7 @@ func (e *EntitlementService) PublicQueryUserEntitlementsByAppTypeShort(input *en
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -924,6 +990,7 @@ func (e *EntitlementService) PublicGetUserEntitlementByItemIDShort(input *entitl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -936,6 +1003,7 @@ func (e *EntitlementService) PublicGetUserEntitlementBySkuShort(input *entitleme
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -948,6 +1016,7 @@ func (e *EntitlementService) PublicExistsAnyUserActiveEntitlementShort(input *en
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -960,6 +1029,7 @@ func (e *EntitlementService) PublicGetUserAppEntitlementOwnershipByAppIDShort(in
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -972,6 +1042,7 @@ func (e *EntitlementService) PublicGetUserEntitlementOwnershipByItemIDShort(inpu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -984,6 +1055,7 @@ func (e *EntitlementService) PublicGetUserEntitlementOwnershipBySkuShort(input *
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -996,6 +1068,7 @@ func (e *EntitlementService) PublicGetUserEntitlementShort(input *entitlement.Pu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -1008,5 +1081,6 @@ func (e *EntitlementService) PublicConsumeUserEntitlementShort(input *entitlemen
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

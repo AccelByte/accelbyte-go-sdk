@@ -1,3 +1,7 @@
+// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
 package main
 
 import (
@@ -57,6 +61,7 @@ func Handler(evt events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse,
 	if err != nil {
 		return events.APIGatewayProxyResponse{}, err
 	}
+
 	return events.APIGatewayProxyResponse{
 		StatusCode: 200,
 	}, nil
@@ -71,6 +76,7 @@ func createUserStatItem(params RequestParams, tokenRepositoryImpl *TokenReposito
 	if err != nil {
 		return nil, err
 	}
+
 	return nil, nil
 }
 
@@ -80,22 +86,25 @@ func convertTokenToTokenResponseV3(accessToken string) (*iamclientmodels.Oauthmo
 		return accessToken, nil
 	})
 	if parsedToken != nil {
-		jsonPayload, errJson := json.Marshal(parsedToken.Claims)
-		if errJson != nil {
-			return nil, errJson
+		jsonPayload, errJSON := json.Marshal(parsedToken.Claims)
+		if errJSON != nil {
+			return nil, errJSON
 		}
 		err = json.Unmarshal(jsonPayload, tokenResponseV3)
 		if err != nil {
 			return nil, err
 		}
 		tokenResponseV3.AccessToken = &accessToken
+
 		return tokenResponseV3, nil
 	}
+
 	return nil, err
 }
 
 func (tokenRepository *TokenRepositoryImpl) Store(accessToken iamclientmodels.OauthmodelTokenResponseV3) error {
 	clientTokenV3 = accessToken
+
 	return nil
 }
 

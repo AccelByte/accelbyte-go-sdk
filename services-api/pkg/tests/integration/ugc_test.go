@@ -39,8 +39,8 @@ func TestIntegrationTag(t *testing.T) {
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
 	}
-	tagId := *created.ID
-	t.Logf("TagId: %v created", tagId)
+	tagID := *created.ID
+	t.Logf("TagId: %v created", tagID)
 
 	// Getting tags
 	inputGet := &admin_tag.AdminGetTagParams{
@@ -58,7 +58,7 @@ func TestIntegrationTag(t *testing.T) {
 	inputUpdate := &admin_tag.AdminUpdateTagParams{
 		Body:      bodyTagUpdate,
 		Namespace: integration.NamespaceTest,
-		TagID:     tagId,
+		TagID:     tagID,
 	}
 	updated, errUpdate := adminTagService.AdminUpdateTagShort(inputUpdate)
 	if errUpdate != nil {
@@ -69,7 +69,7 @@ func TestIntegrationTag(t *testing.T) {
 	// Deleting a tag
 	inputDelete := &admin_tag.AdminDeleteTagParams{
 		Namespace: integration.NamespaceTest,
-		TagID:     tagId,
+		TagID:     tagID,
 	}
 	errDelete := adminTagService.AdminDeleteTagShort(inputDelete)
 	if errDelete != nil {

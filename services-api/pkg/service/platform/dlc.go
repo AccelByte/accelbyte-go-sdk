@@ -30,6 +30,7 @@ func (d *DLCService) GetDLCItemConfig(input *d_l_c.GetDLCItemConfigParams) (*pla
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -46,6 +47,7 @@ func (d *DLCService) UpdateDLCItemConfig(input *d_l_c.UpdateDLCItemConfigParams)
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -59,6 +61,7 @@ func (d *DLCService) DeleteDLCItemConfig(input *d_l_c.DeleteDLCItemConfigParams)
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -75,6 +78,7 @@ func (d *DLCService) GetPlatformDLCConfig(input *d_l_c.GetPlatformDLCConfigParam
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -91,6 +95,7 @@ func (d *DLCService) UpdatePlatformDLCConfig(input *d_l_c.UpdatePlatformDLCConfi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -104,6 +109,7 @@ func (d *DLCService) DeletePlatformDLCConfig(input *d_l_c.DeletePlatformDLCConfi
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -120,6 +126,7 @@ func (d *DLCService) PublicSyncPsnDlcInventory(input *d_l_c.PublicSyncPsnDlcInve
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -133,6 +140,7 @@ func (d *DLCService) SyncSteamDLC(input *d_l_c.SyncSteamDLCParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -146,6 +154,7 @@ func (d *DLCService) SyncXboxDLC(input *d_l_c.SyncXboxDLCParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -158,6 +167,7 @@ func (d *DLCService) GetDLCItemConfigShort(input *d_l_c.GetDLCItemConfigParams) 
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -170,6 +180,7 @@ func (d *DLCService) UpdateDLCItemConfigShort(input *d_l_c.UpdateDLCItemConfigPa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -182,6 +193,7 @@ func (d *DLCService) DeleteDLCItemConfigShort(input *d_l_c.DeleteDLCItemConfigPa
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -194,6 +206,7 @@ func (d *DLCService) GetPlatformDLCConfigShort(input *d_l_c.GetPlatformDLCConfig
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -206,6 +219,7 @@ func (d *DLCService) UpdatePlatformDLCConfigShort(input *d_l_c.UpdatePlatformDLC
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -218,6 +232,7 @@ func (d *DLCService) DeletePlatformDLCConfigShort(input *d_l_c.DeletePlatformDLC
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -230,6 +245,7 @@ func (d *DLCService) PublicSyncPsnDlcInventoryShort(input *d_l_c.PublicSyncPsnDl
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -242,6 +258,7 @@ func (d *DLCService) SyncSteamDLCShort(input *d_l_c.SyncSteamDLCParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -254,5 +271,6 @@ func (d *DLCService) SyncXboxDLCShort(input *d_l_c.SyncXboxDLCParams) error {
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

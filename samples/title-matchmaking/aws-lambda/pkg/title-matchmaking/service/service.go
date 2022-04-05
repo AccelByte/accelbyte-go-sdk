@@ -5,14 +5,15 @@
 package service
 
 import (
-	"aws-lambda/pkg/config"
-	"aws-lambda/pkg/title-matchmaking/dao"
-	daoRedis "aws-lambda/pkg/title-matchmaking/dao/redis"
-	"aws-lambda/pkg/title-matchmaking/dao/redis/constant"
 	auth "github.com/AccelByte/go-restful-plugins/v4/pkg/auth/iam"
 	"github.com/AccelByte/iam-go-sdk"
 	"github.com/emicklei/go-restful/v3"
 	"github.com/patrickmn/go-cache"
+
+	"aws-lambda/pkg/config"
+	"aws-lambda/pkg/title-matchmaking/dao"
+	daoRedis "aws-lambda/pkg/title-matchmaking/dao/redis"
+	"aws-lambda/pkg/title-matchmaking/dao/redis/constant"
 )
 
 // TitleMatchmakingService service for matchmaking
@@ -55,5 +56,6 @@ func New(
 		Config:          config,
 		TitleMMDAORedis: titleMMDAORedis,
 	}
+
 	return service
 }

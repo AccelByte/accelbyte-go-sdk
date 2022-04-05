@@ -34,8 +34,10 @@ var DeleteUserRankingAdminV1Cmd = &cobra.Command{
 		errInput := leaderboardDataService.DeleteUserRankingAdminV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

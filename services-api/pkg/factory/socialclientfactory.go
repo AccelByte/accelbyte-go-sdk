@@ -1,6 +1,7 @@
 // Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
+
 package factory
 
 import (
@@ -15,17 +16,17 @@ var socialClientInstance *socialclient.JusticeSocialService
 
 func NewSocialClient(configRepository repository.ConfigRepository) *socialclient.JusticeSocialService {
 	if socialClientInstance == nil {
-		baseUrl := configRepository.GetJusticeBaseUrl()
-		xAmazonTraceId := utils.AmazonTraceIdGen()
+		baseURL := configRepository.GetJusticeBaseUrl()
+		xAmazonTraceID := utils.AmazonTraceIDGen()
 		userAgent := utils.UserAgentGen()
-		if len(baseUrl) > 0 {
-			baseUrlSplit := strings.Split(baseUrl, "://")
+		if len(baseURL) > 0 {
+			baseURLSplit := strings.Split(baseURL, "://")
 			httpClientConfig := &socialclient.TransportConfig{
-				Host:     baseUrlSplit[1],
+				Host:     baseURLSplit[1],
 				BasePath: "",
-				Schemes:  []string{baseUrlSplit[0]},
+				Schemes:  []string{baseURLSplit[0]},
 			}
-			socialClientInstance = socialclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceId)
+			socialClientInstance = socialclient.NewHTTPClientWithConfig(nil, httpClientConfig, userAgent, xAmazonTraceID)
 		} else {
 			socialClientInstance = socialclient.NewHTTPClient(nil)
 		}

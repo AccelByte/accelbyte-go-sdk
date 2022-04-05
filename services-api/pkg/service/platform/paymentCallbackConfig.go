@@ -30,6 +30,7 @@ func (p *PaymentCallbackConfigService) GetPaymentCallbackConfig(input *payment_c
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -43,6 +44,7 @@ func (p *PaymentCallbackConfigService) UpdatePaymentCallbackConfig(input *paymen
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -55,6 +57,7 @@ func (p *PaymentCallbackConfigService) GetPaymentCallbackConfigShort(input *paym
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -67,5 +70,6 @@ func (p *PaymentCallbackConfigService) UpdatePaymentCallbackConfigShort(input *p
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

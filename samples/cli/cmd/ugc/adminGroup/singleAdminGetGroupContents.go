@@ -36,10 +36,12 @@ var SingleAdminGetGroupContentsCmd = &cobra.Command{
 		ok, err := adminGroupService.SingleAdminGetGroupContentsShort(input)
 		if err != nil {
 			logrus.Error(err)
+
 			return err
 		} else {
 			logrus.Infof("Response CLI success: %+v", ok)
 		}
+
 		return nil
 	},
 }

@@ -36,6 +36,7 @@ func (p *PublicFollowService) GetFollowedContent(input *public_follow.GetFollowe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -58,6 +59,7 @@ func (p *PublicFollowService) GetFollowedUsers(input *public_follow.GetFollowedU
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -83,6 +85,7 @@ func (p *PublicFollowService) UpdateUserFollowStatus(input *public_follow.Update
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -95,6 +98,7 @@ func (p *PublicFollowService) GetFollowedContentShort(input *public_follow.GetFo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -107,6 +111,7 @@ func (p *PublicFollowService) GetFollowedUsersShort(input *public_follow.GetFoll
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -119,5 +124,6 @@ func (p *PublicFollowService) UpdateUserFollowStatusShort(input *public_follow.U
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

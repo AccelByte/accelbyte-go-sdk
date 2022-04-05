@@ -30,6 +30,7 @@ func (p *PublicService) ListServer(input *public.ListServerParams) (*qosmclientm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -42,5 +43,6 @@ func (p *PublicService) ListServerShort(input *public.ListServerParams) (*qosmcl
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

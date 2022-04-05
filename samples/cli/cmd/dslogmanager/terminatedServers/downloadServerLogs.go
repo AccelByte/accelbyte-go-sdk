@@ -32,8 +32,10 @@ var DownloadServerLogsCmd = &cobra.Command{
 		errInput := terminatedServersService.DownloadServerLogsShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

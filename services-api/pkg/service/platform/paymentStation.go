@@ -5,11 +5,12 @@
 package platform
 
 import (
+	"io"
+
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_station"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
-	"io"
 )
 
 type PaymentStationService struct {
@@ -23,6 +24,7 @@ func (p *PaymentStationService) GetPaymentCustomization(input *payment_station.G
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -41,6 +43,7 @@ func (p *PaymentStationService) PublicGetPaymentURL(input *payment_station.Publi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -53,6 +56,7 @@ func (p *PaymentStationService) PublicGetPaymentMethods(input *payment_station.P
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -68,6 +72,7 @@ func (p *PaymentStationService) PublicGetUnpaidPaymentOrder(input *payment_stati
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -86,6 +91,7 @@ func (p *PaymentStationService) Pay(input *payment_station.PayParams) (*platform
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -98,6 +104,7 @@ func (p *PaymentStationService) PublicCheckPaymentOrderPaidStatus(input *payment
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -107,6 +114,7 @@ func (p *PaymentStationService) GetPaymentPublicConfig(input *payment_station.Ge
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -116,6 +124,7 @@ func (p *PaymentStationService) PublicGetQRCode(input *payment_station.PublicGet
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -128,6 +137,7 @@ func (p *PaymentStationService) PublicNormalizePaymentReturnURL(input *payment_s
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -143,6 +153,7 @@ func (p *PaymentStationService) GetPaymentTaxValue(input *payment_station.GetPay
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -151,6 +162,7 @@ func (p *PaymentStationService) GetPaymentCustomizationShort(input *payment_stat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -159,6 +171,7 @@ func (p *PaymentStationService) PublicGetPaymentURLShort(input *payment_station.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -167,6 +180,7 @@ func (p *PaymentStationService) PublicGetPaymentMethodsShort(input *payment_stat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -175,6 +189,7 @@ func (p *PaymentStationService) PublicGetUnpaidPaymentOrderShort(input *payment_
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -183,6 +198,7 @@ func (p *PaymentStationService) PayShort(input *payment_station.PayParams) (*pla
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -191,6 +207,7 @@ func (p *PaymentStationService) PublicCheckPaymentOrderPaidStatusShort(input *pa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -199,6 +216,7 @@ func (p *PaymentStationService) GetPaymentPublicConfigShort(input *payment_stati
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -207,6 +225,7 @@ func (p *PaymentStationService) PublicGetQRCodeShort(input *payment_station.Publ
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -215,6 +234,7 @@ func (p *PaymentStationService) PublicNormalizePaymentReturnURLShort(input *paym
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -223,5 +243,6 @@ func (p *PaymentStationService) GetPaymentTaxValueShort(input *payment_station.G
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

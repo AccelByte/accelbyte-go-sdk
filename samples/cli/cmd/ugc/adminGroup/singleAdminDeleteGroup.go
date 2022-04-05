@@ -32,8 +32,10 @@ var SingleAdminDeleteGroupCmd = &cobra.Command{
 		errInput := adminGroupService.SingleAdminDeleteGroupShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

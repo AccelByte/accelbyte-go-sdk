@@ -27,6 +27,7 @@ func (p *PaymentService) QueryPaymentNotifications(input *payment.QueryPaymentNo
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -40,6 +41,7 @@ func (p *PaymentService) QueryPaymentOrders(input *payment.QueryPaymentOrdersPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -53,6 +55,7 @@ func (p *PaymentService) ListExtOrderNoByExtTxID(input *payment.ListExtOrderNoBy
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -69,6 +72,7 @@ func (p *PaymentService) GetPaymentOrder(input *payment.GetPaymentOrderParams) (
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -91,6 +95,7 @@ func (p *PaymentService) ChargePaymentOrder(input *payment.ChargePaymentOrderPar
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -110,6 +115,7 @@ func (p *PaymentService) SimulatePaymentOrderNotification(input *payment.Simulat
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -126,6 +132,7 @@ func (p *PaymentService) GetPaymentOrderChargeStatus(input *payment.GetPaymentOr
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -154,6 +161,7 @@ func (p *PaymentService) CreateUserPaymentOrder(input *payment.CreateUserPayment
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -176,6 +184,7 @@ func (p *PaymentService) RefundUserPaymentOrder(input *payment.RefundUserPayment
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -188,6 +197,7 @@ func (p *PaymentService) QueryPaymentNotificationsShort(input *payment.QueryPaym
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -200,6 +210,7 @@ func (p *PaymentService) QueryPaymentOrdersShort(input *payment.QueryPaymentOrde
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -212,6 +223,7 @@ func (p *PaymentService) ListExtOrderNoByExtTxIDShort(input *payment.ListExtOrde
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -224,6 +236,7 @@ func (p *PaymentService) GetPaymentOrderShort(input *payment.GetPaymentOrderPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -236,6 +249,7 @@ func (p *PaymentService) ChargePaymentOrderShort(input *payment.ChargePaymentOrd
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -248,6 +262,7 @@ func (p *PaymentService) SimulatePaymentOrderNotificationShort(input *payment.Si
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -260,6 +275,7 @@ func (p *PaymentService) GetPaymentOrderChargeStatusShort(input *payment.GetPaym
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -272,6 +288,7 @@ func (p *PaymentService) CreateUserPaymentOrderShort(input *payment.CreateUserPa
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -284,5 +301,6 @@ func (p *PaymentService) RefundUserPaymentOrderShort(input *payment.RefundUserPa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

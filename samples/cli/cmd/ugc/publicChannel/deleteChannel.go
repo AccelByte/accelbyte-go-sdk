@@ -34,8 +34,10 @@ var DeleteChannelCmd = &cobra.Command{
 		errInput := publicChannelService.DeleteChannelShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

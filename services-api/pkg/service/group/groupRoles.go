@@ -39,6 +39,7 @@ func (g *GroupRolesService) GetMemberRolesListAdminV1(input *group_roles.GetMemb
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -64,6 +65,7 @@ func (g *GroupRolesService) CreateMemberRoleAdminV1(input *group_roles.CreateMem
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -92,6 +94,7 @@ func (g *GroupRolesService) GetSingleMemberRoleAdminV1(input *group_roles.GetSin
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -120,6 +123,7 @@ func (g *GroupRolesService) DeleteMemberRoleAdminV1(input *group_roles.DeleteMem
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -148,6 +152,7 @@ func (g *GroupRolesService) UpdateMemberRoleAdminV1(input *group_roles.UpdateMem
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -176,6 +181,7 @@ func (g *GroupRolesService) UpdateMemberRolePermissionAdminV1(input *group_roles
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -201,6 +207,7 @@ func (g *GroupRolesService) GetMemberRolesListPublicV1(input *group_roles.GetMem
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -229,6 +236,7 @@ func (g *GroupRolesService) UpdateMemberRolePublicV1(input *group_roles.UpdateMe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -260,6 +268,7 @@ func (g *GroupRolesService) DeleteMemberRolePublicV1(input *group_roles.DeleteMe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -272,6 +281,7 @@ func (g *GroupRolesService) GetMemberRolesListAdminV1Short(input *group_roles.Ge
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -284,6 +294,7 @@ func (g *GroupRolesService) CreateMemberRoleAdminV1Short(input *group_roles.Crea
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -296,6 +307,7 @@ func (g *GroupRolesService) GetSingleMemberRoleAdminV1Short(input *group_roles.G
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -308,6 +320,7 @@ func (g *GroupRolesService) DeleteMemberRoleAdminV1Short(input *group_roles.Dele
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -320,6 +333,7 @@ func (g *GroupRolesService) UpdateMemberRoleAdminV1Short(input *group_roles.Upda
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -332,6 +346,7 @@ func (g *GroupRolesService) UpdateMemberRolePermissionAdminV1Short(input *group_
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -344,6 +359,7 @@ func (g *GroupRolesService) GetMemberRolesListPublicV1Short(input *group_roles.G
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -356,6 +372,7 @@ func (g *GroupRolesService) UpdateMemberRolePublicV1Short(input *group_roles.Upd
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -368,5 +385,6 @@ func (g *GroupRolesService) DeleteMemberRolePublicV1Short(input *group_roles.Del
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

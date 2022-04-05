@@ -39,6 +39,7 @@ func (p *PublicPlayerRecordService) BulkGetPlayerPublicRecordHandlerV1(input *pu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -64,6 +65,7 @@ func (p *PublicPlayerRecordService) PublicDeletePlayerPublicRecordHandlerV1(inpu
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -89,6 +91,7 @@ func (p *PublicPlayerRecordService) GetPlayerRecordHandlerV1(input *public_playe
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -114,6 +117,7 @@ func (p *PublicPlayerRecordService) PutPlayerRecordHandlerV1(input *public_playe
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -139,6 +143,7 @@ func (p *PublicPlayerRecordService) PostPlayerRecordHandlerV1(input *public_play
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -164,6 +169,7 @@ func (p *PublicPlayerRecordService) DeletePlayerRecordHandlerV1(input *public_pl
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -186,6 +192,7 @@ func (p *PublicPlayerRecordService) GetPlayerPublicRecordHandlerV1(input *public
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -208,6 +215,7 @@ func (p *PublicPlayerRecordService) PutPlayerPublicRecordHandlerV1(input *public
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -230,6 +238,7 @@ func (p *PublicPlayerRecordService) PostPlayerPublicRecordHandlerV1(input *publi
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -242,6 +251,7 @@ func (p *PublicPlayerRecordService) BulkGetPlayerPublicRecordHandlerV1Short(inpu
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -254,6 +264,7 @@ func (p *PublicPlayerRecordService) PublicDeletePlayerPublicRecordHandlerV1Short
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -266,6 +277,7 @@ func (p *PublicPlayerRecordService) GetPlayerRecordHandlerV1Short(input *public_
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -278,6 +290,7 @@ func (p *PublicPlayerRecordService) PutPlayerRecordHandlerV1Short(input *public_
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -290,6 +303,7 @@ func (p *PublicPlayerRecordService) PostPlayerRecordHandlerV1Short(input *public
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -302,6 +316,7 @@ func (p *PublicPlayerRecordService) DeletePlayerRecordHandlerV1Short(input *publ
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -314,6 +329,7 @@ func (p *PublicPlayerRecordService) GetPlayerPublicRecordHandlerV1Short(input *p
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -326,6 +342,7 @@ func (p *PublicPlayerRecordService) PutPlayerPublicRecordHandlerV1Short(input *p
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -338,5 +355,6 @@ func (p *PublicPlayerRecordService) PostPlayerPublicRecordHandlerV1Short(input *
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

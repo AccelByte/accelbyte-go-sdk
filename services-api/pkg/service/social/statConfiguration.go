@@ -27,6 +27,7 @@ func (s *StatConfigurationService) GetStats(input *stat_configuration.GetStatsPa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -43,6 +44,7 @@ func (s *StatConfigurationService) CreateStat(input *stat_configuration.CreateSt
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -56,6 +58,7 @@ func (s *StatConfigurationService) ExportStats(input *stat_configuration.ExportS
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -72,6 +75,7 @@ func (s *StatConfigurationService) ImportStats(input *stat_configuration.ImportS
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -85,6 +89,7 @@ func (s *StatConfigurationService) QueryStats(input *stat_configuration.QuerySta
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -101,6 +106,7 @@ func (s *StatConfigurationService) GetStat(input *stat_configuration.GetStatPara
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -117,6 +123,7 @@ func (s *StatConfigurationService) DeleteStat(input *stat_configuration.DeleteSt
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -133,6 +140,7 @@ func (s *StatConfigurationService) UpdateStat(input *stat_configuration.UpdateSt
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -149,6 +157,7 @@ func (s *StatConfigurationService) CreateStat1(input *stat_configuration.CreateS
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -161,6 +170,7 @@ func (s *StatConfigurationService) GetStatsShort(input *stat_configuration.GetSt
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -173,6 +183,7 @@ func (s *StatConfigurationService) CreateStatShort(input *stat_configuration.Cre
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -185,6 +196,7 @@ func (s *StatConfigurationService) ExportStatsShort(input *stat_configuration.Ex
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -197,6 +209,7 @@ func (s *StatConfigurationService) ImportStatsShort(input *stat_configuration.Im
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -209,6 +222,7 @@ func (s *StatConfigurationService) QueryStatsShort(input *stat_configuration.Que
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -221,6 +235,7 @@ func (s *StatConfigurationService) GetStatShort(input *stat_configuration.GetSta
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -233,6 +248,7 @@ func (s *StatConfigurationService) DeleteStatShort(input *stat_configuration.Del
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -245,6 +261,7 @@ func (s *StatConfigurationService) UpdateStatShort(input *stat_configuration.Upd
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -257,5 +274,6 @@ func (s *StatConfigurationService) CreateStat1Short(input *stat_configuration.Cr
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }

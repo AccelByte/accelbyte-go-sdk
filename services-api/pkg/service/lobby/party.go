@@ -42,6 +42,7 @@ func (p *PartyService) AdminGetPartyDataV1(input *party.AdminGetPartyDataV1Param
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -70,6 +71,7 @@ func (p *PartyService) AdminGetUserPartyV1(input *party.AdminGetUserPartyV1Param
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -98,6 +100,7 @@ func (p *PartyService) PublicGetPartyDataV1(input *party.PublicGetPartyDataV1Par
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -129,6 +132,7 @@ func (p *PartyService) PublicUpdatePartyAttributesV1(input *party.PublicUpdatePa
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -141,6 +145,7 @@ func (p *PartyService) AdminGetPartyDataV1Short(input *party.AdminGetPartyDataV1
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -153,6 +158,7 @@ func (p *PartyService) AdminGetUserPartyV1Short(input *party.AdminGetUserPartyV1
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -165,6 +171,7 @@ func (p *PartyService) PublicGetPartyDataV1Short(input *party.PublicGetPartyData
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -177,5 +184,6 @@ func (p *PartyService) PublicUpdatePartyAttributesV1Short(input *party.PublicUpd
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

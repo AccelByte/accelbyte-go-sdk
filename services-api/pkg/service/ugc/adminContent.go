@@ -36,6 +36,7 @@ func (a *AdminContentService) AdminUploadContentDirect(input *admin_content.Admi
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -58,6 +59,7 @@ func (a *AdminContentService) AdminUploadContentS3(input *admin_content.AdminUpl
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -83,6 +85,7 @@ func (a *AdminContentService) SingleAdminUpdateContentS3(input *admin_content.Si
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -105,6 +108,7 @@ func (a *AdminContentService) AdminSearchChannelSpecificContent(input *admin_con
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -130,6 +134,7 @@ func (a *AdminContentService) SingleAdminUpdateContentDirect(input *admin_conten
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -152,6 +157,7 @@ func (a *AdminContentService) SingleAdminDeleteContent(input *admin_content.Sing
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -174,6 +180,7 @@ func (a *AdminContentService) SingleAdminGetContent(input *admin_content.SingleA
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -196,6 +203,7 @@ func (a *AdminContentService) AdminSearchContent(input *admin_content.AdminSearc
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -218,6 +226,7 @@ func (a *AdminContentService) AdminGetSpecificContent(input *admin_content.Admin
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -240,6 +249,7 @@ func (a *AdminContentService) AdminDownloadContentPreview(input *admin_content.A
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -265,6 +275,7 @@ func (a *AdminContentService) AdminUpdateScreenshots(input *admin_content.AdminU
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -290,6 +301,7 @@ func (a *AdminContentService) AdminUploadContentScreenshot(input *admin_content.
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -315,6 +327,7 @@ func (a *AdminContentService) AdminDeleteContentScreenshot(input *admin_content.
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -340,6 +353,7 @@ func (a *AdminContentService) AdminUpdateContentS3(input *admin_content.AdminUpd
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -365,6 +379,7 @@ func (a *AdminContentService) AdminUpdateContentDirect(input *admin_content.Admi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -387,6 +402,7 @@ func (a *AdminContentService) AdminDeleteContent(input *admin_content.AdminDelet
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -409,6 +425,7 @@ func (a *AdminContentService) AdminGetContent(input *admin_content.AdminGetConte
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -431,6 +448,7 @@ func (a *AdminContentService) AdminHideUserContent(input *admin_content.AdminHid
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -443,6 +461,7 @@ func (a *AdminContentService) AdminUploadContentDirectShort(input *admin_content
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -455,6 +474,7 @@ func (a *AdminContentService) AdminUploadContentS3Short(input *admin_content.Adm
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -467,6 +487,7 @@ func (a *AdminContentService) SingleAdminUpdateContentS3Short(input *admin_conte
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -479,6 +500,7 @@ func (a *AdminContentService) AdminSearchChannelSpecificContentShort(input *admi
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -491,6 +513,7 @@ func (a *AdminContentService) SingleAdminUpdateContentDirectShort(input *admin_c
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -503,6 +526,7 @@ func (a *AdminContentService) SingleAdminDeleteContentShort(input *admin_content
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -515,6 +539,7 @@ func (a *AdminContentService) SingleAdminGetContentShort(input *admin_content.Si
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -527,6 +552,7 @@ func (a *AdminContentService) AdminSearchContentShort(input *admin_content.Admin
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -539,6 +565,7 @@ func (a *AdminContentService) AdminGetSpecificContentShort(input *admin_content.
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -551,6 +578,7 @@ func (a *AdminContentService) AdminDownloadContentPreviewShort(input *admin_cont
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -563,6 +591,7 @@ func (a *AdminContentService) AdminUpdateScreenshotsShort(input *admin_content.A
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -575,6 +604,7 @@ func (a *AdminContentService) AdminUploadContentScreenshotShort(input *admin_con
 	if err != nil {
 		return nil, err
 	}
+
 	return created.GetPayload(), nil
 }
 
@@ -587,6 +617,7 @@ func (a *AdminContentService) AdminDeleteContentScreenshotShort(input *admin_con
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -599,6 +630,7 @@ func (a *AdminContentService) AdminUpdateContentS3Short(input *admin_content.Adm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -611,6 +643,7 @@ func (a *AdminContentService) AdminUpdateContentDirectShort(input *admin_content
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -623,6 +656,7 @@ func (a *AdminContentService) AdminDeleteContentShort(input *admin_content.Admin
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -635,6 +669,7 @@ func (a *AdminContentService) AdminGetContentShort(input *admin_content.AdminGet
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -647,5 +682,6 @@ func (a *AdminContentService) AdminHideUserContentShort(input *admin_content.Adm
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }

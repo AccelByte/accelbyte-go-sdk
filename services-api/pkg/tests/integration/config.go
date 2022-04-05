@@ -43,6 +43,7 @@ func (configRepository *ConfigRepositoryImpl) GetJusticeBaseUrl() string {
 
 func (tokenRepository *TokenRepositoryImpl) Store(accessToken iamclientmodels.OauthmodelTokenResponseV3) error {
 	token = accessToken
+
 	return nil
 }
 
@@ -52,6 +53,7 @@ func (tokenRepository *TokenRepositoryImpl) GetToken() (*iamclientmodels.Oauthmo
 
 func (tokenRepository *TokenRepositoryImpl) RemoveToken() error {
 	token = iamclientmodels.OauthmodelTokenResponseV3{}
+
 	return nil
 }
 
@@ -72,5 +74,6 @@ func (connManager *ConnectionManagerImpl) Close() error {
 	if wsConn == nil {
 		return fmt.Errorf("no websocket connection can be closed")
 	}
+
 	return wsConn.Conn.Close()
 }

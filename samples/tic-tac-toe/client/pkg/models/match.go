@@ -1,7 +1,11 @@
+// Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+// This is licensed software from AccelByte Inc, for limitations
+// and restrictions contact your company contract manager.
+
 package models
 
 type MoveRequest struct {
-	Index     int    `json:"index"`
+	Index     int `json:"index"`
 	PlayerNum int `json:"playerNum"`
 }
 

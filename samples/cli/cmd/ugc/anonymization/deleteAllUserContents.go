@@ -32,8 +32,10 @@ var DeleteAllUserContentsCmd = &cobra.Command{
 		errInput := anonymizationService.DeleteAllUserContentsShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
+
 			return errInput
 		}
+
 		return nil
 	},
 }

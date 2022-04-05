@@ -36,6 +36,7 @@ func (p *PublicGameRecordService) GetGameRecordHandlerV1(input *public_game_reco
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -55,6 +56,7 @@ func (p *PublicGameRecordService) PutGameRecordHandlerV1(input *public_game_reco
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -74,6 +76,7 @@ func (p *PublicGameRecordService) PostGameRecordHandlerV1(input *public_game_rec
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -96,6 +99,7 @@ func (p *PublicGameRecordService) DeleteGameRecordHandlerV1(input *public_game_r
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -108,6 +112,7 @@ func (p *PublicGameRecordService) GetGameRecordHandlerV1Short(input *public_game
 	if err != nil {
 		return nil, err
 	}
+
 	return ok.GetPayload(), nil
 }
 
@@ -120,6 +125,7 @@ func (p *PublicGameRecordService) PutGameRecordHandlerV1Short(input *public_game
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -132,6 +138,7 @@ func (p *PublicGameRecordService) PostGameRecordHandlerV1Short(input *public_gam
 	if err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -144,5 +151,6 @@ func (p *PublicGameRecordService) DeleteGameRecordHandlerV1Short(input *public_g
 	if err != nil {
 		return err
 	}
+
 	return nil
 }

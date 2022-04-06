@@ -7,10 +7,10 @@ package integration_test
 import (
 	"testing"
 
+	"github.com/AccelByte/accelbyte-go-sdk/gametelemetry-sdk/pkg/gametelemetryclient/gametelemetry_operations"
 	"github.com/go-openapi/strfmt"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/AccelByte/accelbyte-go-sdk/gametelemetry-sdk/pkg/gametelemetryclient/operations"
 	"github.com/AccelByte/accelbyte-go-sdk/gametelemetry-sdk/pkg/gametelemetryclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gametelemetry"
@@ -18,7 +18,7 @@ import (
 )
 
 var (
-	operationsService = &gametelemetry.OperationsService{
+	gameTelemetryOperationsService = &gametelemetry.GametelemetryOperationsService{
 		Client:          factory.NewGametelemetryClient(&integration.ConfigRepositoryImpl{}),
 		TokenRepository: &integration.TokenRepositoryImpl{},
 	}
@@ -41,10 +41,10 @@ func TestIntegrationProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(t *tes
 	Init()
 
 	telemetryBodyArray = append(telemetryBodyArray, telemetryBody)
-	input := &operations.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams{
+	input := &gametelemetry_operations.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams{
 		Body: telemetryBodyArray,
 	}
-	err := operationsService.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(input)
+	err := gameTelemetryOperationsService.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
@@ -52,15 +52,31 @@ func TestIntegrationProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(t *tes
 	assert.Nil(t, err, "err should be nil")
 }
 
+// Protected Get Playtime
+func TestIntegrationProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGet(t *testing.T) {
+	Init()
+
+	input := &gametelemetry_operations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams{
+		SteamID: "76561199259217491",
+	}
+	ok, err := gameTelemetryOperationsService.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input)
+	if err != nil {
+		assert.FailNow(t, err.Error())
+	}
+
+	assert.Nil(t, err, "err should be nil")
+	assert.NotNil(t, ok, "response should not be nil")
+}
+
 // Protected Update Playtime
 func TestIntegrationProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePut(t *testing.T) {
 	Init()
 
-	input := &operations.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams{
+	input := &gametelemetry_operations.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams{
 		Playtime: "4",
 		SteamID:  "76561199259217491",
 	}
-	err := operationsService.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input)
+	err := gameTelemetryOperationsService.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}

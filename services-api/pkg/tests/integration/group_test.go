@@ -157,8 +157,8 @@ func checkGlobalConfig() {
 		return
 	}
 
-	groupAdminRoleID := "623295c3000e792bf1e902b7"
-	groupMemberRoleID := "623295c3000e792bf1e902b8"
+	groupAdminRoleID := "62450994303abd130836e2b4"
+	groupMemberRoleID := "62450994303abd130836e2b5"
 	globalRules = append(globalRules, globalRule)
 	bodyConfigGroup = &groupclientmodels.ModelsCreateGroupConfigurationRequestV1{
 		ConfigurationCode: &configurationCode,

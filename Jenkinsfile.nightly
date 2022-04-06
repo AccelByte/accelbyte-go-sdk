@@ -41,7 +41,7 @@ pipeline {
         }
         stage('Integration Tests') {
           options {
-            lock("justice-backend-demo")
+            lock("justice-demo-serversdktest")
           }
           steps {
             withCredentials([file(credentialsId: 'justice-codegen-sdk-integration-test-env', variable: 'INTEGRATION_TEST_ENV_FILE_PATH')]) {

@@ -9,7 +9,7 @@
     "https"
   ],
   "securityDefinitions": {
-    "EncodedBearer": {
+    "HTTPBearer": {
       "in": "header",
       "name": "Authorization",
       "type": "apiKey"
@@ -31,12 +31,69 @@
   },
   "swagger": "2.0",
   "paths": {
+    "/game-telemetry/v1/admin/events": {
+      "get": {
+        "description": "This endpoint requires valid JWT token and permission **ADMIN:ANALYTICS:TELEMETRY:{EventNamespace}** **READ**.\n\nThis endpoint retrieve the latest event from each event name on specific namespace.\n\n\u0026lt;p\u0026gt; Parameter:\n\n- **Namespace (required) (case-sensitive)**: telemetry namespace.\n            \u0026lt;p\u0026gt; Only accept input with valid characters. Allowed characters: \u0026lt;b\u0026gt;Aa-Zz0-9_.-\u0026lt;/b\u0026gt; \u0026lt;p\u0026gt;\n            \u0026lt;p\u0026gt; Example: accelbyte or accelbyte.game2 \u0026lt;/p\u0026gt;",
+        "operationId": "admin_get_events_game_telemetry_v1_admin_events_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "schema": {}
+          },
+          "422": {
+            "description": "Validation Error",
+            "schema": {
+              "$ref": "#/definitions/HTTPValidationError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Admin Get Events"
+      }
+    },
+    "/game-telemetry/v1/admin/telemetrynamespace": {
+      "get": {
+        "description": "This endpoint requires valid JWT token and permission **ADMIN:ANALYTICS:TELEMETRY:{EventNamespace}** **READ**.\n\nThis endpoint retrieve namespace from kafka topic.",
+        "operationId": "admin_get_namespace_game_telemetry_v1_admin_telemetrynamespace_get",
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "schema": {}
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Admin Get Namespace"
+      }
+    },
     "/game-telemetry/v1/protected/events": {
       "post": {
         "consumes": [
           "application/json"
         ],
-        "description": "This endpoint requires valid JWT token.\nThis endpoint does not require permission.\n\nThis endpoint send events into designated streaming pipeline and each request can contain single or multiple events.\n\u0026lt;p\u0026gt; Format of the event:\n\n- **EventNamespace (required)**: namespace of the relevant game with domain name format.\n                \u0026lt;p\u0026gt; Only accept input with valid characters. Allowed characters: \u0026lt;b\u0026gt;Aa-Zz0-9_.-\u0026lt;/b\u0026gt; \u0026lt;p\u0026gt;\n                \u0026lt;p\u0026gt; Example: io.accelbyte.justice.dev.samplegame \u0026lt;/p\u0026gt;\n\n- **EventName (required)**: name of the event.\n                \u0026lt;p\u0026gt; Only accept input with valid characters. Allowed characters: \u0026lt;b\u0026gt;Aa-Zz0-9_.-\u0026lt;/b\u0026gt; \u0026lt;p\u0026gt;\n                \u0026lt;p\u0026gt; Example: player_killed, mission_accomplished \u0026lt;/p\u0026gt;\n\n- **Payload (required)**: an arbitrary json with the payload of the said event",
+        "description": "This endpoint requires valid JWT token.\nThis endpoint does not require permission.\n\nThis endpoint send events into designated streaming pipeline and each request can contain single or multiple events.\n\u0026lt;p\u0026gt; Format of the event:\n\n- **EventNamespace (required)**: namespace of the relevant game with domain name format.\n                \u0026lt;p\u0026gt; Only accept input with valid characters. Allowed characters: \u0026lt;b\u0026gt;Aa-Zz0-9_.-\u0026lt;/b\u0026gt; \u0026lt;p\u0026gt;\n                \u0026lt;p\u0026gt; It is encouraged to use alphanumeric only characters. \u0026lt;b\u0026gt;_.-\u0026lt;/b\u0026gt; will be deprecated soon \u0026lt;p\u0026gt;\n                \u0026lt;p\u0026gt; Example: io.accelbyte.justice.dev.samplegame \u0026lt;/p\u0026gt;\n\n- **EventName (required)**: name of the event.\n                \u0026lt;p\u0026gt; Only accept input with valid characters. Allowed characters: \u0026lt;b\u0026gt;Aa-Zz0-9_.-\u0026lt;/b\u0026gt; \u0026lt;p\u0026gt;\n                \u0026lt;p\u0026gt; It is encouraged to use alphanumeric only characters. \u0026lt;b\u0026gt;_.-\u0026lt;/b\u0026gt; will be deprecated soon \u0026lt;p\u0026gt;\n                \u0026lt;p\u0026gt; Example: player_killed, mission_accomplished \u0026lt;/p\u0026gt;\n\n- **Payload (required)**: an arbitrary json with the payload of the said event",
         "operationId": "protected_save_events_game_telemetry_v1_protected_events_post",
         "parameters": [
           {
@@ -67,10 +124,13 @@
         },
         "security": [
           {
-            "EncodedBearer": []
+            "HTTPBearer": []
           }
         ],
-        "summary": "Protected Save Events"
+        "summary": "Protected Save Events",
+        "tags": [
+          "Gametelemetry Operations"
+        ]
       }
     },
     "/game-telemetry/v1/protected/steamIds/{steamId}/playtime": {
@@ -93,7 +153,7 @@
             "description": "Successful Response",
             "schema": {
               "title": "Response Protected Get Playtime Game Telemetry V1 Protected Steamids  Steamid  Playtime Get",
-              "type": "integer"
+              "type": "object"
             }
           },
           "422": {
@@ -105,10 +165,13 @@
         },
         "security": [
           {
-            "EncodedBearer": []
+            "HTTPBearer": []
           }
         ],
-        "summary": "Protected Get Playtime"
+        "summary": "Protected Get Playtime",
+        "tags": [
+          "Gametelemetry Operations"
+        ]
       }
     },
     "/game-telemetry/v1/protected/steamIds/{steamId}/playtime/{playtime}": {
@@ -146,10 +209,13 @@
         },
         "security": [
           {
-            "EncodedBearer": []
+            "HTTPBearer": []
           }
         ],
-        "summary": "Protected Update Playtime"
+        "summary": "Protected Update Playtime",
+        "tags": [
+          "Gametelemetry Operations"
+        ]
       }
     }
   },

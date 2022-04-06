@@ -2,12 +2,12 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package operations
+package gametelemetryOperations
 
 import (
 	"encoding/json"
 
-	"github.com/AccelByte/accelbyte-go-sdk/gametelemetry-sdk/pkg/gametelemetryclient/operations"
+	"github.com/AccelByte/accelbyte-go-sdk/gametelemetry-sdk/pkg/gametelemetryclient/gametelemetry_operations"
 	"github.com/AccelByte/accelbyte-go-sdk/gametelemetry-sdk/pkg/gametelemetryclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gametelemetry"
@@ -22,7 +22,7 @@ var ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd = &cobra.Command{
 	Short: "Protected save events game telemetry v1 protected events post",
 	Long:  `Protected save events game telemetry v1 protected events post`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		operationsService := &gametelemetry.OperationsService{
+		gametelemetryOperationsService := &gametelemetry.GametelemetryOperationsService{
 			Client:          factory.NewGametelemetryClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
@@ -32,10 +32,10 @@ var ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd = &cobra.Command{
 		if errBody != nil {
 			return errBody
 		}
-		input := &operations.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams{
+		input := &gametelemetry_operations.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams{
 			Body: body,
 		}
-		errInput := operationsService.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(input)
+		errInput := gametelemetryOperationsService.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

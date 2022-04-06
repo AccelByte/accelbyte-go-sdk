@@ -13,6 +13,7 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
+	"github.com/AccelByte/accelbyte-go-sdk/gametelemetry-sdk/pkg/gametelemetryclient/gametelemetry_operations"
 	"github.com/AccelByte/accelbyte-go-sdk/gametelemetry-sdk/pkg/gametelemetryclient/operations"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
@@ -73,6 +74,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeGam
 
 	cli := new(JusticeGametelemetryService)
 	cli.Transport = transport
+	cli.GametelemetryOperations = gametelemetry_operations.New(transport, formats)
 	cli.Operations = operations.New(transport, formats)
 	return cli
 }
@@ -132,6 +134,8 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // JusticeGametelemetryService is a client for justice gametelemetry service
 type JusticeGametelemetryService struct {
+	GametelemetryOperations gametelemetry_operations.ClientService
+
 	Operations operations.ClientService
 
 	Transport runtime.ClientTransport
@@ -140,5 +144,6 @@ type JusticeGametelemetryService struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *JusticeGametelemetryService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
+	c.GametelemetryOperations.SetTransport(transport)
 	c.Operations.SetTransport(transport)
 }

@@ -29,30 +29,31 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGet(params *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams, authInfo runtime.ClientAuthInfoWriter) (*ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetOK, *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetUnprocessableEntity, error)
-	ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(params *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams, authInfo runtime.ClientAuthInfoWriter) (*ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetOK, error)
-	ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(params *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams, authInfo runtime.ClientAuthInfoWriter) (*ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostNoContent, *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity, error)
-	ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(params *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams, authInfo runtime.ClientAuthInfoWriter) (*ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostNoContent, error)
-	ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePut(params *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams, authInfo runtime.ClientAuthInfoWriter) (*ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutOK, *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutUnprocessableEntity, error)
-	ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(params *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams, authInfo runtime.ClientAuthInfoWriter) (*ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutOK, error)
+	AdminGetEventsGameTelemetryV1AdminEventsGet(params *AdminGetEventsGameTelemetryV1AdminEventsGetParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetEventsGameTelemetryV1AdminEventsGetOK, *AdminGetEventsGameTelemetryV1AdminEventsGetUnprocessableEntity, error)
+	AdminGetEventsGameTelemetryV1AdminEventsGetShort(params *AdminGetEventsGameTelemetryV1AdminEventsGetParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetEventsGameTelemetryV1AdminEventsGetOK, error)
+	AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGet(params *AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetOK, error)
+	AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetShort(params *AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-  ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGet protecteds get playtime
+  AdminGetEventsGameTelemetryV1AdminEventsGet admins get events
 
-  This endpoint requires valid JWT token.
-This endpoint does not require permission.
+  This endpoint requires valid JWT token and permission **ADMIN:ANALYTICS:TELEMETRY:{EventNamespace}** **READ**.
 
-This endpoint retrieves player&#39;s total playtime in Steam for a specific game (AppId) and store them in service&#39;s cache.
+This endpoint retrieve the latest event from each event name on specific namespace.
 
-Players&#39; Steam account must be set into public to enable the service fetch their total playtime data.
+&lt;p&gt; Parameter:
+
+- **Namespace (required) (case-sensitive)**: telemetry namespace.
+            &lt;p&gt; Only accept input with valid characters. Allowed characters: &lt;b&gt;Aa-Zz0-9_.-&lt;/b&gt; &lt;p&gt;
+            &lt;p&gt; Example: accelbyte or accelbyte.game2 &lt;/p&gt;
 */
-func (a *Client) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGet(params *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams, authInfo runtime.ClientAuthInfoWriter) (*ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetOK, *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetUnprocessableEntity, error) {
+func (a *Client) AdminGetEventsGameTelemetryV1AdminEventsGet(params *AdminGetEventsGameTelemetryV1AdminEventsGetParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetEventsGameTelemetryV1AdminEventsGetOK, *AdminGetEventsGameTelemetryV1AdminEventsGetUnprocessableEntity, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams()
+		params = NewAdminGetEventsGameTelemetryV1AdminEventsGetParams()
 	}
 
 	if params.Context == nil {
@@ -60,14 +61,14 @@ func (a *Client) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlay
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "protected_get_playtime_game_telemetry_v1_protected_steamIds__steamId__playtime_get",
+		ID:                 "admin_get_events_game_telemetry_v1_admin_events_get",
 		Method:             "GET",
-		PathPattern:        "/game-telemetry/v1/protected/steamIds/{steamId}/playtime",
+		PathPattern:        "/game-telemetry/v1/admin/events",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetReader{formats: a.formats},
+		Reader:             &AdminGetEventsGameTelemetryV1AdminEventsGetReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -78,10 +79,10 @@ func (a *Client) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlay
 
 	switch v := result.(type) {
 
-	case *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetOK:
+	case *AdminGetEventsGameTelemetryV1AdminEventsGetOK:
 		return v, nil, nil
 
-	case *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetUnprocessableEntity:
+	case *AdminGetEventsGameTelemetryV1AdminEventsGetUnprocessableEntity:
 		return nil, v, nil
 
 	default:
@@ -89,10 +90,10 @@ func (a *Client) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlay
 	}
 }
 
-func (a *Client) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(params *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams, authInfo runtime.ClientAuthInfoWriter) (*ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetOK, error) {
+func (a *Client) AdminGetEventsGameTelemetryV1AdminEventsGetShort(params *AdminGetEventsGameTelemetryV1AdminEventsGetParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetEventsGameTelemetryV1AdminEventsGetOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams()
+		params = NewAdminGetEventsGameTelemetryV1AdminEventsGetParams()
 	}
 
 	if params.Context == nil {
@@ -100,14 +101,14 @@ func (a *Client) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlay
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "protected_get_playtime_game_telemetry_v1_protected_steamIds__steamId__playtime_get",
+		ID:                 "admin_get_events_game_telemetry_v1_admin_events_get",
 		Method:             "GET",
-		PathPattern:        "/game-telemetry/v1/protected/steamIds/{steamId}/playtime",
+		PathPattern:        "/game-telemetry/v1/admin/events",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetReader{formats: a.formats},
+		Reader:             &AdminGetEventsGameTelemetryV1AdminEventsGetReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -118,9 +119,9 @@ func (a *Client) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlay
 
 	switch v := result.(type) {
 
-	case *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetOK:
+	case *AdminGetEventsGameTelemetryV1AdminEventsGetOK:
 		return v, nil
-	case *ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetUnprocessableEntity:
+	case *AdminGetEventsGameTelemetryV1AdminEventsGetUnprocessableEntity:
 		return nil, v
 
 	default:
@@ -129,28 +130,16 @@ func (a *Client) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlay
 }
 
 /*
-  ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost protecteds save events
+  AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGet admins get namespace
 
-  This endpoint requires valid JWT token.
-This endpoint does not require permission.
+  This endpoint requires valid JWT token and permission **ADMIN:ANALYTICS:TELEMETRY:{EventNamespace}** **READ**.
 
-This endpoint send events into designated streaming pipeline and each request can contain single or multiple events.
-&lt;p&gt; Format of the event:
-
-- **EventNamespace (required)**: namespace of the relevant game with domain name format.
-                &lt;p&gt; Only accept input with valid characters. Allowed characters: &lt;b&gt;Aa-Zz0-9_.-&lt;/b&gt; &lt;p&gt;
-                &lt;p&gt; Example: io.accelbyte.justice.dev.samplegame &lt;/p&gt;
-
-- **EventName (required)**: name of the event.
-                &lt;p&gt; Only accept input with valid characters. Allowed characters: &lt;b&gt;Aa-Zz0-9_.-&lt;/b&gt; &lt;p&gt;
-                &lt;p&gt; Example: player_killed, mission_accomplished &lt;/p&gt;
-
-- **Payload (required)**: an arbitrary json with the payload of the said event
+This endpoint retrieve namespace from kafka topic.
 */
-func (a *Client) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(params *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams, authInfo runtime.ClientAuthInfoWriter) (*ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostNoContent, *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity, error) {
+func (a *Client) AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGet(params *AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams()
+		params = NewAdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams()
 	}
 
 	if params.Context == nil {
@@ -158,54 +147,14 @@ func (a *Client) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(params *P
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "protected_save_events_game_telemetry_v1_protected_events_post",
-		Method:             "POST",
-		PathPattern:        "/game-telemetry/v1/protected/events",
+		ID:                 "admin_get_namespace_game_telemetry_v1_admin_telemetrynamespace_get",
+		Method:             "GET",
+		PathPattern:        "/game-telemetry/v1/admin/telemetrynamespace",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostNoContent:
-		return v, nil, nil
-
-	case *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity:
-		return nil, v, nil
-
-	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-func (a *Client) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(params *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams, authInfo runtime.ClientAuthInfoWriter) (*ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostNoContent, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "protected_save_events_game_telemetry_v1_protected_events_post",
-		Method:             "POST",
-		PathPattern:        "/game-telemetry/v1/protected/events",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostReader{formats: a.formats},
+		Reader:             &AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -216,28 +165,18 @@ func (a *Client) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(para
 
 	switch v := result.(type) {
 
-	case *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostNoContent:
+	case *AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetOK:
 		return v, nil
-	case *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostUnprocessableEntity:
-		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
-/*
-  ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePut protecteds update playtime
-
-  This endpoint requires valid JWT token.
-This endpoint does not require permission.
-
-This endpoint update player&#39;s total playtime in a specific game (AppId) from service&#39;s cache.
-*/
-func (a *Client) ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePut(params *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams, authInfo runtime.ClientAuthInfoWriter) (*ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutOK, *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutUnprocessableEntity, error) {
+func (a *Client) AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetShort(params *AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams()
+		params = NewAdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams()
 	}
 
 	if params.Context == nil {
@@ -245,54 +184,14 @@ func (a *Client) ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDP
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "protected_update_playtime_game_telemetry_v1_protected_steamIds__steamId__playtime__playtime__put",
-		Method:             "PUT",
-		PathPattern:        "/game-telemetry/v1/protected/steamIds/{steamId}/playtime/{playtime}",
+		ID:                 "admin_get_namespace_game_telemetry_v1_admin_telemetrynamespace_get",
+		Method:             "GET",
+		PathPattern:        "/game-telemetry/v1/admin/telemetrynamespace",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, nil, err
-	}
-
-	switch v := result.(type) {
-
-	case *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutOK:
-		return v, nil, nil
-
-	case *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutUnprocessableEntity:
-		return nil, v, nil
-
-	default:
-		return nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
-	}
-}
-
-func (a *Client) ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(params *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams, authInfo runtime.ClientAuthInfoWriter) (*ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams()
-	}
-
-	if params.Context == nil {
-		params.Context = context.Background()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "protected_update_playtime_game_telemetry_v1_protected_steamIds__steamId__playtime__playtime__put",
-		Method:             "PUT",
-		PathPattern:        "/game-telemetry/v1/protected/steamIds/{steamId}/playtime/{playtime}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutReader{formats: a.formats},
+		Reader:             &AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -303,10 +202,8 @@ func (a *Client) ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDP
 
 	switch v := result.(type) {
 
-	case *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutOK:
+	case *AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetOK:
 		return v, nil
-	case *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutUnprocessableEntity:
-		return nil, v
 
 	default:
 		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))

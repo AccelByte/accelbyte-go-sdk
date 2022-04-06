@@ -2,10 +2,10 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package operations
+package gametelemetryOperations
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/gametelemetry-sdk/pkg/gametelemetryclient/operations"
+	"github.com/AccelByte/accelbyte-go-sdk/gametelemetry-sdk/pkg/gametelemetryclient/gametelemetry_operations"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gametelemetry"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -19,15 +19,15 @@ var ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGetCmd = 
 	Short: "Protected get playtime game telemetry v1 protected steam ids steam id playtime get",
 	Long:  `Protected get playtime game telemetry v1 protected steam ids steam id playtime get`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		operationsService := &gametelemetry.OperationsService{
+		gametelemetryOperationsService := &gametelemetry.GametelemetryOperationsService{
 			Client:          factory.NewGametelemetryClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		steamId, _ := cmd.Flags().GetString("steamId")
-		input := &operations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams{
+		input := &gametelemetry_operations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams{
 			SteamID: steamId,
 		}
-		ok, err := operationsService.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input)
+		ok, err := gametelemetryOperationsService.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input)
 		if err != nil {
 			logrus.Error(err)
 

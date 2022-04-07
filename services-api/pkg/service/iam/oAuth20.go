@@ -5,6 +5,7 @@
 package iam
 
 import (
+	"errors"
 	"net/url"
 
 	"github.com/go-openapi/runtime/client"
@@ -434,6 +435,13 @@ func (o *OAuth20Service) TokenGrantV3Short(input *o_auth2_0.TokenGrantV3Params) 
 	clientID := o.ConfigRepository.GetClientId()
 	clientSecret := o.ConfigRepository.GetClientSecret()
 	ok, err := o.Client.OAuth20.TokenGrantV3Short(input, client.BasicAuth(clientID, clientSecret))
+	if err != nil {
+		return nil, err
+	}
+	if ok == nil {
+		return nil, errors.New("empty access token")
+	}
+	err = o.TokenRepository.Store(*ok.GetPayload())
 	if err != nil {
 		return nil, err
 	}

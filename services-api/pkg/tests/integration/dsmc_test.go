@@ -24,8 +24,8 @@ var (
 		TokenRepository: &integration.TokenRepositoryImpl{},
 	}
 
-	deployment     = "deployruli"
-	gameMode       = "soloyogs"
+	deployment     = "default"
+	gameMode       = "GAME_MODE"
 	emptyString    = ""
 	emptyInterface interface{}
 )
@@ -64,7 +64,7 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 		MatchingParties: matchingParties,
 	}
 	matchingAllies = append(matchingAllies, matchingAlly)
-	namespace := integration.NamespaceDsmc
+	namespace := integration.NamespaceTest
 	bodySessionDsmc := &dsmcclientmodels.ModelsCreateSessionRequest{
 		ClientVersion:       &emptyString,
 		Configuration:       &emptyString,
@@ -81,7 +81,7 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 	// Creating a session
 	inputCreate := &session.CreateSessionParams{
 		Body:      bodySessionDsmc,
-		Namespace: integration.NamespaceDsmc,
+		Namespace: integration.NamespaceTest,
 	}
 	created, errCreate := sessionDSMCService.CreateSessionShort(inputCreate)
 	if errCreate != nil {
@@ -92,7 +92,7 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 
 	// Getting a session
 	inputGet := &session.GetSessionParams{
-		Namespace: integration.NamespaceDsmc,
+		Namespace: integration.NamespaceTest,
 		SessionID: createdSessionID,
 	}
 	get, errGet := sessionDSMCService.GetSessionShort(inputGet)
@@ -107,7 +107,7 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 	bodyClaim := &dsmcclientmodels.ModelsClaimSessionRequest{SessionID: &createdSessionID}
 	inputClaim := &session.ClaimServerParams{
 		Body:      bodyClaim,
-		Namespace: integration.NamespaceDsmc,
+		Namespace: integration.NamespaceTest,
 	}
 	errClaim := sessionDSMCService.ClaimServerShort(inputClaim)
 	if errClaim != nil {

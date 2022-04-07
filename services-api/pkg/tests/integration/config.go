@@ -16,8 +16,6 @@ import (
 	Please set your client_id and client_secret in to the env before run the test
 */
 
-const NamespaceDsmc = "armadademotestqa"
-
 var (
 	NamespaceTest = os.Getenv("AB_NAMESPACE")
 	token         iamclientmodels.OauthmodelTokenResponseV3

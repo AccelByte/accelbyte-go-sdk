@@ -23,19 +23,11 @@ var (
 		Client:          factory.NewGroupClient(&integration.ConfigRepositoryImpl{}),
 		TokenRepository: &integration.TokenRepositoryImpl{},
 	}
-	bodyConfigGroup *groupclientmodels.ModelsCreateGroupConfigurationRequestV1
-	nameConfig      = "Go Server SDK Configuration Code"
-	allowedAction   = "createGroup"
-	globalRules     []*groupclientmodels.ModelsRule
-	globalRule      = &groupclientmodels.ModelsRule{
-		AllowedAction: &allowedAction,
-		RuleDetail:    ruleDetails,
-	}
 	groupService = &group.GroupService{
 		Client:          factory.NewGroupClient(&integration.ConfigRepositoryImpl{}),
 		TokenRepository: &integration.TokenRepositoryImpl{},
 	}
-	configurationCode = "go-group-test"
+	configurationCode = "initialConfigurationCode"
 	groupDescription  = "DESCRIPTION"
 	groupMaxMember    = int32(1)
 	groupName         = "Go SDK Group"
@@ -85,7 +77,7 @@ func TestIntegrationGroup(t *testing.T) {
 	ruleDetails = append(ruleDetails, ruleDetail)
 	groupPredefinedRules = append(groupPredefinedRules, groupPredefinedRule)
 
-	checkGlobalConfig()
+	configurationCode = checkGlobalConfig()
 
 	// Creating a group
 	// needs to use a token user who are not already joined a group
@@ -143,38 +135,31 @@ func TestIntegrationGroup(t *testing.T) {
 	assert.Nil(t, errDelete, "err should be nil")
 }
 
-func checkGlobalConfig() {
+func checkGlobalConfig() string {
 	inputGet := &configuration.GetGroupConfigurationAdminV1Params{
 		ConfigurationCode: configurationCode,
 		Namespace:         integration.NamespaceTest,
 	}
 
+	// check if global config is existed
 	get, errGet := configurationService.GetGroupConfigurationAdminV1Short(inputGet)
 	if errGet != nil {
-		logrus.Error(errGet)
-	}
-	if get != nil {
-		return
-	}
+		logrus.Error(errGet.Error())
+		logrus.Infof("Initializing a new global configuration...")
 
-	groupAdminRoleID := "62450994303abd130836e2b4"
-	groupMemberRoleID := "62450994303abd130836e2b5"
-	globalRules = append(globalRules, globalRule)
-	bodyConfigGroup = &groupclientmodels.ModelsCreateGroupConfigurationRequestV1{
-		ConfigurationCode: &configurationCode,
-		Description:       &emptyString,
-		GlobalRules:       globalRules,
-		GroupAdminRoleID:  &groupAdminRoleID,
-		GroupMaxMember:    &maxNumber,
-		GroupMemberRoleID: &groupMemberRoleID,
-		Name:              &nameConfig,
+		// if global config not exist, we just have to initiate the default config
+		inputCreate := &configuration.InitiateGroupConfigurationAdminV1Params{
+			Namespace: integration.NamespaceTest,
+		}
+		create, errCreate := configurationService.InitiateGroupConfigurationAdminV1Short(inputCreate)
+		if errCreate != nil {
+			logrus.Error(errCreate)
+		}
+		logrus.Infof("Configuration has been initiated with Role Admin: %v, Role Member: %v", *create.GroupAdminRoleID, *create.GroupMemberRoleID)
+
+		return *create.ConfigurationCode
 	}
-	inputCreate := &configuration.CreateGroupConfigurationAdminV1Params{
-		Body:      bodyConfigGroup,
-		Namespace: integration.NamespaceTest,
-	}
-	_, errCreate := configurationService.CreateGroupConfigurationAdminV1Short(inputCreate)
-	if errCreate != nil {
-		logrus.Error(errCreate)
-	}
+	logrus.Infof("Configuration with Role Admin: %v, Role Member: %v", *get.GroupAdminRoleID, *get.GroupMemberRoleID)
+
+	return *get.ConfigurationCode
 }

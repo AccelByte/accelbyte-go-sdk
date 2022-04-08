@@ -101,7 +101,7 @@ Client must create a struct that implement following interface:
 - `ConfigRepository` is responsible to store configuration.
 - `TokenRepository` is responsible to store access token.
 
-For more details, see [samples/cli/pkg/repository](samples/cli/pkg/repository) for more details.
+For more details, see [repository](samples/cli/pkg/repository) for the interface and [cli samples](samples/cli/cmd) on how to use it.
 
 ### Interacting with Justice WebSocket Endpoints
 

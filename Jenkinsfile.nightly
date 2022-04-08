@@ -38,6 +38,14 @@ pipeline {
             }
             sh "make test_cli SDK_MOCK_SERVER_PATH=.justice-codegen-sdk-mock-server"
           }
+          post {
+            always {
+              script {
+                archiveArtifacts artifacts: 'tests/sh/*.tap'
+                step([$class: "TapPublisher", testResults: "tests/sh/*.tap"])
+              }
+            }
+          }
         }
         stage('Integration Tests') {
           options {

@@ -21,7 +21,7 @@ lint-mod-outdated:
 	rm -f lint-mod-outdated.err
 	find -type f -iname go.mod -exec dirname {} \; | while read DIRECTORY; do \
 		echo "$$DIRECTORY"; \
-		docker run -t --rm -u $$(id -u):$$(id -g) -v $$(pwd):/data/ -w /data/ -e GOCACHE=/tmp/.cache golang:1.16 \
+		docker run -t --rm -u $$(id -u):$$(id -g) -v $$(pwd):/data/ -w /data/ -e GOCACHE=/tmp/.cache golang:1.16-alpine3.15 \
 				sh -c "cd $$DIRECTORY && go list -u -m -json all 2>/dev/null -D gomodirectives" \
 				| docker run -i --rm psampaz/go-mod-outdated:v0.7.0 -update -direct \
 				| grep "github.com/AccelByte" && touch lint-mod-outdated.err || true; \
@@ -30,16 +30,19 @@ lint-mod-outdated:
 
 samples:
 	find -type f -name main.go -exec dirname {} \; | xargs -I{} \
-			sh -c 'echo "{}" && docker run -t --rm -v $$(pwd):/data/ -w /data/ golang:1.16 sh -c "cd {} && go build || exit 255"'
+			sh -c 'echo "{}" && docker run -t --rm -v $$(pwd):/data/ -w /data/ -e GOCACHE=/tmp/.cache golang:1.16-alpine3.15 \
+					sh -c "cd {} && CGO_ENABLED=0 GOOS=linux go build || exit 255"'
 
 test_integration:
 	@test -n "$(INTEGRATION_TEST_ENV_FILE_PATH)" || (echo "INTEGRATION_TEST_ENV_FILE_PATH is not set" ; exit 1)
-	docker run -t --rm --env-file $(INTEGRATION_TEST_ENV_FILE_PATH) -v $$(pwd):/data/ -w /data/ golang:1.16 sh -c "go test github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
+	docker run -t --rm --env-file $(INTEGRATION_TEST_ENV_FILE_PATH) -v $$(pwd):/data/ -w /data/ -e GOCACHE=/tmp/.cache golang:1.16-alpine3.15 \
+			sh -c "go test github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
 
 test_cli:
 	@test -n "$(SDK_MOCK_SERVER_PATH)" || (echo "SDK_MOCK_SERVER_PATH is not set" ; exit 1)
 	rm -f test.err
-	docker run -t --rm -v $$(pwd):/data/ -w /data/ golang:1.16 sh -c "cd samples/cli && go build"
+	docker run -t --rm -v $$(pwd):/data/ -w /data/ -e GOCACHE=/tmp/.cache golang:1.16-alpine3.15 \
+			sh -c "cd samples/cli && CGO_ENABLED=0 GOOS=linux go build"
 	sed -i "s/\r//" "$(SDK_MOCK_SERVER_PATH)/mock-server.sh" && \
 			trap "docker stop justice-codegen-sdk-mock-server" EXIT && \
 			(DOCKER_RUN_ARGS="-t --rm -u $$(id -u):$$(id -g) -v $$(pwd):/data -w /data --network host --name justice-codegen-sdk-mock-server" bash "$(SDK_MOCK_SERVER_PATH)/mock-server.sh" -s /data/spec &) && \
@@ -50,4 +53,3 @@ test_cli:
 					(set -o pipefail; PATH=samples/cli:$$PATH bash $${FILE} | tee "$${FILE}.tap") || touch test.err; \
 			done)
 	[ ! -f test.err ]
-

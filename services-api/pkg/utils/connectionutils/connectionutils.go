@@ -23,6 +23,8 @@ type WSConnection struct {
 	mu   sync.RWMutex
 }
 
+var lobbyURL string
+
 func NewWebsocketConnection(configRepo repository.ConfigRepository, tokenRepo repository.TokenRepository, messageHandler func(msg []byte)) (*WSConnection, error) {
 	token, err := tokenRepo.GetToken()
 	if err != nil {
@@ -58,7 +60,13 @@ func NewWebsocketConnection(configRepo repository.ConfigRepository, tokenRepo re
 func Connect(host, token string) (*websocket.Conn, error) {
 	authHeader := "Bearer " + token
 	logrus.Debug("Connecting user to lobby")
-	lobbyURL := "wss://" + host + "/lobby/"
+
+	if host == "0.0.0.0:8080" {
+		lobbyURL = "ws://" + host + "/lobby/"
+	} else {
+		lobbyURL = "wss://" + host + "/lobby/"
+	}
+
 	logrus.Infof("lobby URL: %s", lobbyURL)
 
 	req, err := http.NewRequest(http.MethodGet, lobbyURL, nil)

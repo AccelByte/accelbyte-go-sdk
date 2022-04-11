@@ -1,5 +1,5 @@
 <a name="v0.15.1"></a>
-## [v0.15.0] - 2022-04-01
+## [v0.15.1] - 2022-04-01
 
 ### Chore
 - **api:** regenerate all services

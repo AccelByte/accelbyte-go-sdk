@@ -57,6 +57,13 @@ type ClientService interface {
   &lt;p&gt;This is the API to Add 3rd Platform Credential.&lt;/p&gt;
 					 &lt;p&gt;It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [CREATE] resource.&lt;/p&gt;
 					 &lt;p&gt;The secret for &lt;strong&gt;apple&lt;/strong&gt; is base64 encoded private key.&lt;/p&gt;
+					 &lt;p&gt;If generic oauth flow is set to true: &lt;/p&gt;
+					 &lt;ul&gt;
+					 &lt;li&gt;Current supported value for TokenAuthenticationType is &lt;strong&gt;idToken&lt;/strong&gt;&lt;/li&gt;
+					 &lt;li&gt;&lt;code&gt;TokenClaimsMapping&lt;/code&gt; is used to extract user info from idToken claims.
+					 Its a JSON format with key should be &lt;code&gt;name&lt;/code&gt;, &lt;code&gt;email&lt;/code&gt; and &lt;code&gt;avatarURL&lt;/code&gt;
+					 since IAM will look up for these key when extracting user info.&lt;/li&gt;
+					 &lt;/ul&gt;
 
 */
 func (a *Client) AddThirdPartyLoginPlatformCredentialV3(params *AddThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*AddThirdPartyLoginPlatformCredentialV3Created, *AddThirdPartyLoginPlatformCredentialV3BadRequest, *AddThirdPartyLoginPlatformCredentialV3Unauthorized, *AddThirdPartyLoginPlatformCredentialV3Forbidden, *AddThirdPartyLoginPlatformCredentialV3InternalServerError, error) {
@@ -760,6 +767,13 @@ func (a *Client) RetrieveThirdPartyLoginPlatformCredentialV3Short(params *Retrie
   &lt;p&gt;This is the API to Add 3rd Platform Credential.&lt;/p&gt;
 					 &lt;p&gt;It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [CREATE] resource.&lt;/p&gt;
 					 &lt;p&gt;The secret for &lt;strong&gt;apple&lt;/strong&gt; is base64 encoded private key.&lt;/p&gt;
+					 &lt;p&gt;If generic oauth flow is set to true: &lt;/p&gt;
+					 &lt;ul&gt;
+					 &lt;li&gt;Current supported value for TokenAuthenticationType is &lt;strong&gt;idToken&lt;/strong&gt;&lt;/li&gt;
+					 &lt;li&gt;&lt;code&gt;TokenClaimsMapping&lt;/code&gt; is used to extract user info from idToken claims.
+					 Its a JSON format with key should be &lt;code&gt;name&lt;/code&gt;, &lt;code&gt;email&lt;/code&gt; and &lt;code&gt;avatarURL&lt;/code&gt;
+					 since IAM will look up for these key when extracting user info.&lt;/li&gt;
+					 &lt;/ul&gt;
 
 */
 func (a *Client) UpdateThirdPartyLoginPlatformCredentialV3(params *UpdateThirdPartyLoginPlatformCredentialV3Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateThirdPartyLoginPlatformCredentialV3OK, *UpdateThirdPartyLoginPlatformCredentialV3BadRequest, *UpdateThirdPartyLoginPlatformCredentialV3Unauthorized, *UpdateThirdPartyLoginPlatformCredentialV3Forbidden, *UpdateThirdPartyLoginPlatformCredentialV3NotFound, *UpdateThirdPartyLoginPlatformCredentialV3InternalServerError, error) {

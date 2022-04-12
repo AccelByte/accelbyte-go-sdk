@@ -382,7 +382,7 @@ func (a *Client) AuthorizeV3Short(params *AuthorizeV3Params, authInfo runtime.Cl
 /*
   Change2FAMethod changes 2 f a method
 
-  Change 2FA method(In Development)&lt;br/&gt;
+  Change 2FA method&lt;br/&gt;
 &lt;p&gt;This endpoint is used for change 2FA method. Only enabled methods are accepted.&lt;/p&gt;
 &lt;p&gt;Supported methods:&lt;/p&gt;
 &lt;ul&gt;
@@ -1364,7 +1364,7 @@ func (a *Client) TokenRevocationV3Short(params *TokenRevocationV3Params, authInf
 /*
   Verify2FACode verifies 2 f a code
 
-  Verify 2FA code(In Development)&lt;br/&gt;
+  Verify 2FA code&lt;br/&gt;
 &lt;p&gt;This endpoint is used for verifying 2FA code.&lt;/p&gt;
 
 */

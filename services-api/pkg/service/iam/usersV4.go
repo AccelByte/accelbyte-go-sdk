@@ -104,6 +104,35 @@ func (u *UsersV4Service) AdminUpdateUserEmailAddressV4(input *users_v4.AdminUpda
 	return nil
 }
 
+// Deprecated: Use AdminDisableUserMFAV4Short instead
+func (u *UsersV4Service) AdminDisableUserMFAV4(input *users_v4.AdminDisableUserMFAV4Params) error {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.UsersV4.AdminDisableUserMFAV4(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: Use AdminListUserRolesV4Short instead
 func (u *UsersV4Service) AdminListUserRolesV4(input *users_v4.AdminListUserRolesV4Params) (*iamclientmodels.ModelListUserRolesV4Response, error) {
 	accessToken, err := u.TokenRepository.GetToken()
@@ -994,6 +1023,35 @@ func (u *UsersV4Service) PublicEnableMyBackupCodesV4(input *users_v4.PublicEnabl
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicRemoveTrustedDeviceV4Short instead
+func (u *UsersV4Service) PublicRemoveTrustedDeviceV4(input *users_v4.PublicRemoveTrustedDeviceV4Params) error {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.UsersV4.PublicRemoveTrustedDeviceV4(input, client.BearerToken(*accessToken.AccessToken))
+	if badRequest != nil {
+		return badRequest
+	}
+	if unauthorized != nil {
+		return unauthorized
+	}
+	if forbidden != nil {
+		return forbidden
+	}
+	if notFound != nil {
+		return notFound
+	}
+	if internalServerError != nil {
+		return internalServerError
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: Use PublicGetMyEnabledFactorsV4Short instead
 func (u *UsersV4Service) PublicGetMyEnabledFactorsV4(input *users_v4.PublicGetMyEnabledFactorsV4Params) (*iamclientmodels.ModelEnabledFactorsResponseV4, error) {
 	accessToken, err := u.TokenRepository.GetToken()
@@ -1084,6 +1142,19 @@ func (u *UsersV4Service) AdminUpdateUserEmailAddressV4Short(input *users_v4.Admi
 		return err
 	}
 	_, err = u.Client.UsersV4.AdminUpdateUserEmailAddressV4Short(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (u *UsersV4Service) AdminDisableUserMFAV4Short(input *users_v4.AdminDisableUserMFAV4Params) error {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = u.Client.UsersV4.AdminDisableUserMFAV4Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -1492,6 +1563,19 @@ func (u *UsersV4Service) PublicEnableMyBackupCodesV4Short(input *users_v4.Public
 	}
 
 	return ok.GetPayload(), nil
+}
+
+func (u *UsersV4Service) PublicRemoveTrustedDeviceV4Short(input *users_v4.PublicRemoveTrustedDeviceV4Params) error {
+	accessToken, err := u.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = u.Client.UsersV4.PublicRemoveTrustedDeviceV4Short(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (u *UsersV4Service) PublicGetMyEnabledFactorsV4Short(input *users_v4.PublicGetMyEnabledFactorsV4Params) (*iamclientmodels.ModelEnabledFactorsResponseV4, error) {

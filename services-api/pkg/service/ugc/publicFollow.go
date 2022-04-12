@@ -89,6 +89,52 @@ func (p *PublicFollowService) UpdateUserFollowStatus(input *public_follow.Update
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use GetPublicFollowersShort instead
+func (p *PublicFollowService) GetPublicFollowers(input *public_follow.GetPublicFollowersParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicFollow.GetPublicFollowers(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// Deprecated: Use GetPublicFollowingShort instead
+func (p *PublicFollowService) GetPublicFollowing(input *public_follow.GetPublicFollowingParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicFollow.GetPublicFollowing(input, client.BearerToken(*accessToken.AccessToken))
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if notFound != nil {
+		return nil, notFound
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 func (p *PublicFollowService) GetFollowedContentShort(input *public_follow.GetFollowedContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	accessToken, err := p.TokenRepository.GetToken()
 	if err != nil {
@@ -121,6 +167,32 @@ func (p *PublicFollowService) UpdateUserFollowStatusShort(input *public_follow.U
 		return nil, err
 	}
 	ok, err := p.Client.PublicFollow.UpdateUserFollowStatusShort(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (p *PublicFollowService) GetPublicFollowersShort(input *public_follow.GetPublicFollowersParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PublicFollow.GetPublicFollowersShort(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (p *PublicFollowService) GetPublicFollowingShort(input *public_follow.GetPublicFollowingParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
+	accessToken, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, err := p.Client.PublicFollow.GetPublicFollowingShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return nil, err
 	}

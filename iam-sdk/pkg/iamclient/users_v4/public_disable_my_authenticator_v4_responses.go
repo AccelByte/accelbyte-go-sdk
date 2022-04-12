@@ -99,7 +99,7 @@ func NewPublicDisableMyAuthenticatorV4BadRequest() *PublicDisableMyAuthenticator
 
 /*PublicDisableMyAuthenticatorV4BadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10191</td><td>email address not verified</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10191</td><td>email address not verified</td></tr><tr><td>10171</td><td>email address not found</td></tr></table>
 */
 type PublicDisableMyAuthenticatorV4BadRequest struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -198,7 +198,7 @@ func NewPublicDisableMyAuthenticatorV4NotFound() *PublicDisableMyAuthenticatorV4
 
 /*PublicDisableMyAuthenticatorV4NotFound handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10139</td><td>platform account not found</td></tr><tr><td>10171</td><td>email address not found</td></tr><tr><td>20008</td><td>user not found</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10139</td><td>platform account not found</td></tr><tr><td>20008</td><td>user not found</td></tr></table>
 */
 type PublicDisableMyAuthenticatorV4NotFound struct {
 	Payload *iamclientmodels.RestErrorResponse

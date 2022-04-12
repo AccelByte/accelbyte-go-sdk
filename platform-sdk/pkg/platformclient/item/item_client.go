@@ -348,7 +348,7 @@ func (a *Client) BulkGetLocaleItemsShort(params *BulkGetLocaleItemsParams, authI
        &#34;graceDays&#34;:7(integer, recurring grace days, retry recurring charge within configured days if charge fail, default 7)
    \},
    &#34;tags&#34;: \[
-       &#34;tag&#34;
+       &#34;exampleTag24&#34;
    \],
    &#34;features&#34;: \[
        &#34;feature&#34;
@@ -2983,7 +2983,7 @@ func (a *Client) UpdateAppShort(params *UpdateAppParams, authInfo runtime.Client
        &#34;graceDays&#34;:7(integer, recurring grace days, retry recurring charge within configured days if charge fail, default 7)
    \},
    &#34;tags&#34;: \[
-       &#34;tag&#34;
+       &#34;exampleTag24&#34;
    \],
    &#34;features&#34;: \[
        &#34;feature&#34;

@@ -72,6 +72,10 @@ type ServiceGetSessionHistorySearchResponseItem struct {
 	// status
 	// Required: true
 	Status string `json:"status"`
+
+	// sub game mode
+	// Required: true
+	SubGameMode []string `json:"sub_game_mode"`
 }
 
 // Validate validates this service get session history search response item
@@ -127,6 +131,10 @@ func (m *ServiceGetSessionHistorySearchResponseItem) Validate(formats strfmt.Reg
 	}
 
 	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSubGameMode(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -251,6 +259,15 @@ func (m *ServiceGetSessionHistorySearchResponseItem) validateServerName(formats 
 func (m *ServiceGetSessionHistorySearchResponseItem) validateStatus(formats strfmt.Registry) error {
 
 	if err := validate.RequiredString("status", "body", string(m.Status)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ServiceGetSessionHistorySearchResponseItem) validateSubGameMode(formats strfmt.Registry) error {
+
+	if err := validate.Required("sub_game_mode", "body", m.SubGameMode); err != nil {
 		return err
 	}
 

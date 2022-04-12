@@ -16,8 +16,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/admin"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/deployment_config"
+	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/dsmc_operations"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/image_config"
-	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/operations"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/pod_config"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/public"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/server"
@@ -84,8 +84,8 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeDsm
 	cli.Admin = admin.New(transport, formats)
 	cli.Config = config.New(transport, formats)
 	cli.DeploymentConfig = deployment_config.New(transport, formats)
+	cli.DsmcOperations = dsmc_operations.New(transport, formats)
 	cli.ImageConfig = image_config.New(transport, formats)
-	cli.Operations = operations.New(transport, formats)
 	cli.PodConfig = pod_config.New(transport, formats)
 	cli.Public = public.New(transport, formats)
 	cli.Server = server.New(transport, formats)
@@ -154,9 +154,9 @@ type JusticeDsmcService struct {
 
 	DeploymentConfig deployment_config.ClientService
 
-	ImageConfig image_config.ClientService
+	DsmcOperations dsmc_operations.ClientService
 
-	Operations operations.ClientService
+	ImageConfig image_config.ClientService
 
 	PodConfig pod_config.ClientService
 
@@ -175,8 +175,8 @@ func (c *JusticeDsmcService) SetTransport(transport runtime.ClientTransport) {
 	c.Admin.SetTransport(transport)
 	c.Config.SetTransport(transport)
 	c.DeploymentConfig.SetTransport(transport)
+	c.DsmcOperations.SetTransport(transport)
 	c.ImageConfig.SetTransport(transport)
-	c.Operations.SetTransport(transport)
 	c.PodConfig.SetTransport(transport)
 	c.Public.SetTransport(transport)
 	c.Server.SetTransport(transport)

@@ -99,7 +99,7 @@ func NewPublicDownloadMyBackupCodesV4BadRequest() *PublicDownloadMyBackupCodesV4
 
 /*PublicDownloadMyBackupCodesV4BadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10192</td><td>factor not enabled</td></tr><tr><td>10191</td><td>email address not verified</td></tr><tr><td>10195</td><td>no valid backup code found</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10192</td><td>factor not enabled</td></tr><tr><td>10191</td><td>email address not verified</td></tr><tr><td>10195</td><td>no valid backup code found</td></tr><tr><td>10171</td><td>email address not found</td></tr></table>
 */
 type PublicDownloadMyBackupCodesV4BadRequest struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -198,7 +198,7 @@ func NewPublicDownloadMyBackupCodesV4NotFound() *PublicDownloadMyBackupCodesV4No
 
 /*PublicDownloadMyBackupCodesV4NotFound handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10139</td><td>platform account not found</td></tr><tr><td>10171</td><td>email address not found</td></tr><tr><td>20008</td><td>user not found</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10139</td><td>platform account not found</td></tr><tr><td>20008</td><td>user not found</td></tr></table>
 */
 type PublicDownloadMyBackupCodesV4NotFound struct {
 	Payload *iamclientmodels.RestErrorResponse

@@ -451,7 +451,7 @@ func (a *Client) DeleteContentScreenshotShort(params *DeleteContentScreenshotPar
 /*
   DownloadContentByShareCode gets content by sharecode
 
-  Requires valid user token
+  Public user can access without token or if token specified, requires valid user token
 */
 func (a *Client) DownloadContentByShareCode(params *DownloadContentByShareCodeParams, authInfo runtime.ClientAuthInfoWriter) (*DownloadContentByShareCodeOK, *DownloadContentByShareCodeUnauthorized, *DownloadContentByShareCodeNotFound, *DownloadContentByShareCodeInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -545,7 +545,7 @@ func (a *Client) DownloadContentByShareCodeShort(params *DownloadContentByShareC
 /*
   PublicDownloadContentByContentID gets user specific content
 
-  Requires valid user token
+  Public user can access without token or if token specified, requires valid user token
 */
 func (a *Client) PublicDownloadContentByContentID(params *PublicDownloadContentByContentIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadContentByContentIDOK, *PublicDownloadContentByContentIDUnauthorized, *PublicDownloadContentByContentIDNotFound, *PublicDownloadContentByContentIDInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -733,7 +733,7 @@ func (a *Client) PublicDownloadContentPreviewShort(params *PublicDownloadContent
 /*
   PublicGetUserContent gets user s generated contents
 
-  Required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]&lt;/b&gt;.
+  Public user can access without token or if token specified, required permission &lt;b&gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]&lt;/b&gt;.
 */
 func (a *Client) PublicGetUserContent(params *PublicGetUserContentParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserContentOK, *PublicGetUserContentUnauthorized, *PublicGetUserContentNotFound, *PublicGetUserContentInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -827,7 +827,7 @@ func (a *Client) PublicGetUserContentShort(params *PublicGetUserContentParams, a
 /*
   PublicSearchContent searches contents
 
-  Requires valid user token
+  Public user can access without token or if token specified, requires valid user token
 */
 func (a *Client) PublicSearchContent(params *PublicSearchContentParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSearchContentOK, *PublicSearchContentUnauthorized, *PublicSearchContentNotFound, *PublicSearchContentInternalServerError, error) {
 	// TODO: Validate the params before sending

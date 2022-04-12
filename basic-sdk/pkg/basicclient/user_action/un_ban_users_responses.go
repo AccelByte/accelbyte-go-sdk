@@ -24,6 +24,12 @@ type UnBanUsersReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UnBanUsersReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
+	case 204:
+		result := NewUnBanUsersNoContent()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 400:
 		result := NewUnBanUsersBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -57,6 +63,27 @@ func (o *UnBanUsersReader) ReadResponse(response runtime.ClientResponse, consume
 
 		return nil, fmt.Errorf("Requested POST /basic/v1/admin/namespaces/{namespace}/actions/unban returns an error %d: %s", response.Code(), string(data))
 	}
+}
+
+// NewUnBanUsersNoContent creates a UnBanUsersNoContent with default headers values
+func NewUnBanUsersNoContent() *UnBanUsersNoContent {
+	return &UnBanUsersNoContent{}
+}
+
+/*UnBanUsersNoContent handles this case with default header values.
+
+  no content
+*/
+type UnBanUsersNoContent struct {
+}
+
+func (o *UnBanUsersNoContent) Error() string {
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/unban][%d] unBanUsersNoContent ", 204)
+}
+
+func (o *UnBanUsersNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
 }
 
 // NewUnBanUsersBadRequest creates a UnBanUsersBadRequest with default headers values

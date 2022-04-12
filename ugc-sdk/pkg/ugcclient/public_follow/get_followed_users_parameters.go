@@ -82,7 +82,7 @@ for the get followed users operation typically these are written to a http.Reque
 type GetFollowedUsersParams struct {
 
 	/*Limit
-	  number of content per page
+	  number of user per page
 
 	*/
 	Limit *int64

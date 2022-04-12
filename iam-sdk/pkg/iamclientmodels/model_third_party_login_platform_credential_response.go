@@ -19,15 +19,15 @@ import (
 // swagger:model model.ThirdPartyLoginPlatformCredentialResponse
 type ModelThirdPartyLoginPlatformCredentialResponse struct {
 
-	// a c s URL
+	// ACSURL is an endpoint on the service provider where the identity provider will redirect to with its authentication response
 	// Required: true
 	ACSURL *string `json:"ACSURL"`
 
-	// a w s cognito region
+	// AWSCognitoRegion is aws region where user pool reside
 	// Required: true
 	AWSCognitoRegion *string `json:"AWSCognitoRegion"`
 
-	// a w s cognito user pool
+	// AWSCognitoUserPool is aws cognito user pool id
 	// Required: true
 	AWSCognitoUserPool *string `json:"AWSCognitoUserPool"`
 
@@ -43,13 +43,25 @@ type ModelThirdPartyLoginPlatformCredentialResponse struct {
 	// Required: true
 	Environment *string `json:"Environment"`
 
-	// federation metadata URL
+	// FederationMetadataURL is an endpoint on the Identity Provider(IdP) to get IdP federation metadata for service provider to build trust relationship
 	// Required: true
 	FederationMetadataURL *string `json:"FederationMetadataURL"`
+
+	// GenericOauthFlow is a flag that indicate this client is using generic oauth/open id flow or not
+	// Required: true
+	GenericOauthFlow bool `json:"GenericOauthFlow"`
 
 	// is active
 	// Required: true
 	IsActive *bool `json:"IsActive"`
+
+	// Issuer of 3rd party identity provider. Used for generic oauth flow.
+	// Required: true
+	Issuer *string `json:"Issuer"`
+
+	// JWKS endpoint to validate 3rd party user id token. Used for generic oauth flow.
+	// Required: true
+	JWKSEndpoint *string `json:"JWKSEndpoint"`
 
 	// key ID
 	// Required: true
@@ -67,6 +79,10 @@ type ModelThirdPartyLoginPlatformCredentialResponse struct {
 	// Required: true
 	PlatformID *string `json:"PlatformId"`
 
+	// platform name
+	// Required: true
+	PlatformName *string `json:"PlatformName"`
+
 	// redirect Uri
 	// Required: true
 	RedirectURI *string `json:"RedirectUri"`
@@ -78,6 +94,14 @@ type ModelThirdPartyLoginPlatformCredentialResponse struct {
 	// team ID
 	// Required: true
 	TeamID *string `json:"TeamID"`
+
+	// Token authentication type indicating what token will be used to authenticate 3rd party user. Currently support: idToken. Used for generic oauth flow.
+	// Required: true
+	TokenAuthenticationType *string `json:"TokenAuthenticationType"`
+
+	// A JSON containing how IAM service retrieve value from id token claims. Used for generic oauth flow.
+	// Required: true
+	TokenClaimsMapping map[string]string `json:"TokenClaimsMapping"`
 
 	// registered domains
 	// Required: true
@@ -116,7 +140,19 @@ func (m *ModelThirdPartyLoginPlatformCredentialResponse) Validate(formats strfmt
 		res = append(res, err)
 	}
 
+	if err := m.validateGenericOauthFlow(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateIsActive(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIssuer(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateJWKSEndpoint(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -136,6 +172,10 @@ func (m *ModelThirdPartyLoginPlatformCredentialResponse) Validate(formats strfmt
 		res = append(res, err)
 	}
 
+	if err := m.validatePlatformName(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateRedirectURI(formats); err != nil {
 		res = append(res, err)
 	}
@@ -145,6 +185,14 @@ func (m *ModelThirdPartyLoginPlatformCredentialResponse) Validate(formats strfmt
 	}
 
 	if err := m.validateTeamID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTokenAuthenticationType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTokenClaimsMapping(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -221,9 +269,36 @@ func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateFederationMetad
 	return nil
 }
 
+func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateGenericOauthFlow(formats strfmt.Registry) error {
+
+	if err := validate.Required("GenericOauthFlow", "body", bool(m.GenericOauthFlow)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateIsActive(formats strfmt.Registry) error {
 
 	if err := validate.Required("IsActive", "body", m.IsActive); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateIssuer(formats strfmt.Registry) error {
+
+	if err := validate.Required("Issuer", "body", m.Issuer); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateJWKSEndpoint(formats strfmt.Registry) error {
+
+	if err := validate.Required("JWKSEndpoint", "body", m.JWKSEndpoint); err != nil {
 		return err
 	}
 
@@ -266,6 +341,15 @@ func (m *ModelThirdPartyLoginPlatformCredentialResponse) validatePlatformID(form
 	return nil
 }
 
+func (m *ModelThirdPartyLoginPlatformCredentialResponse) validatePlatformName(formats strfmt.Registry) error {
+
+	if err := validate.Required("PlatformName", "body", m.PlatformName); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateRedirectURI(formats strfmt.Registry) error {
 
 	if err := validate.Required("RedirectUri", "body", m.RedirectURI); err != nil {
@@ -289,6 +373,20 @@ func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateTeamID(formats 
 	if err := validate.Required("TeamID", "body", m.TeamID); err != nil {
 		return err
 	}
+
+	return nil
+}
+
+func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateTokenAuthenticationType(formats strfmt.Registry) error {
+
+	if err := validate.Required("TokenAuthenticationType", "body", m.TokenAuthenticationType); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelThirdPartyLoginPlatformCredentialResponse) validateTokenClaimsMapping(formats strfmt.Registry) error {
 
 	return nil
 }

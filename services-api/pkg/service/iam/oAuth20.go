@@ -8,12 +8,11 @@ import (
 	"errors"
 	"net/url"
 
-	"github.com/go-openapi/runtime/client"
-
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/go-openapi/runtime/client"
 )
 
 type OAuth20Service struct {
@@ -84,9 +83,9 @@ func (o *OAuth20Service) AuthorizeV3(input *o_auth2_0.AuthorizeV3Params) (string
 	if err != nil {
 		return "", err
 	}
-	requestId := query["request_id"][0]
+	requestID := query["request_id"][0]
 
-	return requestId, nil
+	return requestID, nil
 }
 
 // Deprecated: Use TokenIntrospectionV3Short instead
@@ -186,12 +185,12 @@ func (o *OAuth20Service) AuthCodeRequestV3(input *o_auth2_0.AuthCodeRequestV3Par
 	if err != nil {
 		return "", err
 	}
-	found, err := o.Client.OAuth20.AuthCodeRequestV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := o.Client.OAuth20.AuthCodeRequestV3(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return "", err
 	}
 
-	return found.Location, nil
+	return ok.Location, nil
 }
 
 // Deprecated: Use PlatformTokenGrantV3Short instead
@@ -299,10 +298,11 @@ func (o *OAuth20Service) RevokeUserV3Short(input *o_auth2_0.RevokeUserV3Params) 
 func (o *OAuth20Service) AuthorizeV3Short(input *o_auth2_0.AuthorizeV3Params) (string, error) {
 	clientID := o.ConfigRepository.GetClientId()
 	clientSecret := o.ConfigRepository.GetClientSecret()
-	ok, err := o.Client.OAuth20.AuthorizeV3(input, client.BasicAuth(clientID, clientSecret))
+	ok, err := o.Client.OAuth20.AuthorizeV3Short(input, client.BasicAuth(clientID, clientSecret))
 	if err != nil {
 		return "", err
 	}
+
 	parsedURL, err := url.Parse(ok.Location)
 	if err != nil {
 		return "", err
@@ -311,9 +311,9 @@ func (o *OAuth20Service) AuthorizeV3Short(input *o_auth2_0.AuthorizeV3Params) (s
 	if err != nil {
 		return "", err
 	}
-	requestId := query["request_id"][0]
+	requestID := query["request_id"][0]
 
-	return requestId, nil
+	return requestID, nil
 }
 
 func (o *OAuth20Service) TokenIntrospectionV3Short(input *o_auth2_0.TokenIntrospectionV3Params) (*iamclientmodels.OauthmodelTokenIntrospectResponse, error) {
@@ -386,12 +386,12 @@ func (o *OAuth20Service) AuthCodeRequestV3Short(input *o_auth2_0.AuthCodeRequest
 	if err != nil {
 		return "", err
 	}
-	found, err := o.Client.OAuth20.AuthCodeRequestV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := o.Client.OAuth20.AuthCodeRequestV3Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return "", err
 	}
 
-	return found.Location, nil
+	return ok.Location, nil
 }
 
 func (o *OAuth20Service) PlatformTokenGrantV3Short(input *o_auth2_0.PlatformTokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponse, error) {

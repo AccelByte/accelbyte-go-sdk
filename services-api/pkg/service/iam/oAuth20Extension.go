@@ -75,23 +75,23 @@ func (o *OAuth20ExtensionService) Logout(input *o_auth2_0_extension.LogoutParams
 }
 
 // Deprecated: Use PlatformAuthenticationV3Short instead
-func (o *OAuth20ExtensionService) PlatformAuthenticationV3(input *o_auth2_0_extension.PlatformAuthenticationV3Params) error {
+func (o *OAuth20ExtensionService) PlatformAuthenticationV3(input *o_auth2_0_extension.PlatformAuthenticationV3Params) (string, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return "", err
 	}
-	_, err = o.Client.OAuth20Extension.PlatformAuthenticationV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := o.Client.OAuth20Extension.PlatformAuthenticationV3(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
-		return err
+		return "", err
 	}
 
-	return nil
+	return ok.Location, nil
 }
 
 func (o *OAuth20ExtensionService) UserAuthenticationV3Short(input *o_auth2_0_extension.UserAuthenticationV3Params) (string, error) {
 	clientID := o.ConfigRepository.GetClientId()
 	clientSecret := o.ConfigRepository.GetClientSecret()
-	ok, err := o.Client.OAuth20Extension.UserAuthenticationV3(input, client.BasicAuth(clientID, clientSecret))
+	ok, err := o.Client.OAuth20Extension.UserAuthenticationV3Short(input, client.BasicAuth(clientID, clientSecret))
 	if err != nil {
 		return "", err
 	}
@@ -138,15 +138,15 @@ func (o *OAuth20ExtensionService) LogoutShort(input *o_auth2_0_extension.LogoutP
 	return nil
 }
 
-func (o *OAuth20ExtensionService) PlatformAuthenticationV3Short(input *o_auth2_0_extension.PlatformAuthenticationV3Params) error {
+func (o *OAuth20ExtensionService) PlatformAuthenticationV3Short(input *o_auth2_0_extension.PlatformAuthenticationV3Params) (string, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return "", err
 	}
-	_, err = o.Client.OAuth20Extension.PlatformAuthenticationV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := o.Client.OAuth20Extension.PlatformAuthenticationV3Short(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
-		return err
+		return "", err
 	}
 
-	return nil
+	return ok.Location, nil
 }

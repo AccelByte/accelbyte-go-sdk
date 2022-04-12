@@ -33,6 +33,10 @@ type ClientService interface {
 	GetFollowedContentShort(params *GetFollowedContentParams, authInfo runtime.ClientAuthInfoWriter) (*GetFollowedContentOK, error)
 	GetFollowedUsers(params *GetFollowedUsersParams, authInfo runtime.ClientAuthInfoWriter) (*GetFollowedUsersOK, *GetFollowedUsersUnauthorized, *GetFollowedUsersNotFound, *GetFollowedUsersInternalServerError, error)
 	GetFollowedUsersShort(params *GetFollowedUsersParams, authInfo runtime.ClientAuthInfoWriter) (*GetFollowedUsersOK, error)
+	GetPublicFollowers(params *GetPublicFollowersParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicFollowersOK, *GetPublicFollowersUnauthorized, *GetPublicFollowersNotFound, *GetPublicFollowersInternalServerError, error)
+	GetPublicFollowersShort(params *GetPublicFollowersParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicFollowersOK, error)
+	GetPublicFollowing(params *GetPublicFollowingParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicFollowingOK, *GetPublicFollowingUnauthorized, *GetPublicFollowingNotFound, *GetPublicFollowingInternalServerError, error)
+	GetPublicFollowingShort(params *GetPublicFollowingParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicFollowingOK, error)
 	UpdateUserFollowStatus(params *UpdateUserFollowStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserFollowStatusOK, *UpdateUserFollowStatusBadRequest, *UpdateUserFollowStatusUnauthorized, *UpdateUserFollowStatusNotFound, *UpdateUserFollowStatusInternalServerError, error)
 	UpdateUserFollowStatusShort(params *UpdateUserFollowStatusParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserFollowStatusOK, error)
 
@@ -220,6 +224,190 @@ func (a *Client) GetFollowedUsersShort(params *GetFollowedUsersParams, authInfo 
 	case *GetFollowedUsersNotFound:
 		return nil, v
 	case *GetFollowedUsersInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetPublicFollowers gets list of followers
+*/
+func (a *Client) GetPublicFollowers(params *GetPublicFollowersParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicFollowersOK, *GetPublicFollowersUnauthorized, *GetPublicFollowersNotFound, *GetPublicFollowersInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPublicFollowersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetPublicFollowers",
+		Method:             "GET",
+		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/users/{userId}/followers",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPublicFollowersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetPublicFollowersOK:
+		return v, nil, nil, nil, nil
+
+	case *GetPublicFollowersUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *GetPublicFollowersNotFound:
+		return nil, nil, v, nil, nil
+
+	case *GetPublicFollowersInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetPublicFollowersShort(params *GetPublicFollowersParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicFollowersOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPublicFollowersParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetPublicFollowers",
+		Method:             "GET",
+		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/users/{userId}/followers",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPublicFollowersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetPublicFollowersOK:
+		return v, nil
+	case *GetPublicFollowersUnauthorized:
+		return nil, v
+	case *GetPublicFollowersNotFound:
+		return nil, v
+	case *GetPublicFollowersInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  GetPublicFollowing gets list of following
+*/
+func (a *Client) GetPublicFollowing(params *GetPublicFollowingParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicFollowingOK, *GetPublicFollowingUnauthorized, *GetPublicFollowingNotFound, *GetPublicFollowingInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPublicFollowingParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetPublicFollowing",
+		Method:             "GET",
+		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/users/{userId}/following",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPublicFollowingReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetPublicFollowingOK:
+		return v, nil, nil, nil, nil
+
+	case *GetPublicFollowingUnauthorized:
+		return nil, v, nil, nil, nil
+
+	case *GetPublicFollowingNotFound:
+		return nil, nil, v, nil, nil
+
+	case *GetPublicFollowingInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) GetPublicFollowingShort(params *GetPublicFollowingParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicFollowingOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPublicFollowingParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetPublicFollowing",
+		Method:             "GET",
+		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/users/{userId}/following",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPublicFollowingReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *GetPublicFollowingOK:
+		return v, nil
+	case *GetPublicFollowingUnauthorized:
+		return nil, v
+	case *GetPublicFollowingNotFound:
+		return nil, v
+	case *GetPublicFollowingInternalServerError:
 		return nil, v
 
 	default:

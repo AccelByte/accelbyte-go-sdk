@@ -17,6 +17,9 @@ import (
 // swagger:model oauthmodel.ErrorResponse
 type OauthmodelErrorResponse struct {
 
+	// default factor
+	DefaultFactor string `json:"default_factor,omitempty"`
+
 	// error
 	// Required: true
 	Error *string `json:"error"`
@@ -26,6 +29,12 @@ type OauthmodelErrorResponse struct {
 
 	// error uri
 	ErrorURI string `json:"error_uri,omitempty"`
+
+	// factors
+	Factors []string `json:"factors"`
+
+	// mfa token
+	MfaToken string `json:"mfa_token,omitempty"`
 }
 
 // Validate validates this oauthmodel error response

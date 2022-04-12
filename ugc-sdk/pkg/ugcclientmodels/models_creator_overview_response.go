@@ -17,9 +17,13 @@ import (
 // swagger:model models.CreatorOverviewResponse
 type ModelsCreatorOverviewResponse struct {
 
-	// follow count
+	// Number of followers
 	// Required: true
 	FollowCount *int32 `json:"followCount"`
+
+	// Number of following
+	// Required: true
+	FollowingCount *int32 `json:"followingCount"`
 
 	// id
 	// Required: true
@@ -28,6 +32,10 @@ type ModelsCreatorOverviewResponse struct {
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`
+
+	// Total all other user's like to creator content
+	// Required: true
+	TotalLikedContent *int64 `json:"totalLikedContent"`
 }
 
 // Validate validates this models creator overview response
@@ -38,11 +46,19 @@ func (m *ModelsCreatorOverviewResponse) Validate(formats strfmt.Registry) error 
 		res = append(res, err)
 	}
 
+	if err := m.validateFollowingCount(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateNamespace(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTotalLikedContent(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -61,6 +77,15 @@ func (m *ModelsCreatorOverviewResponse) validateFollowCount(formats strfmt.Regis
 	return nil
 }
 
+func (m *ModelsCreatorOverviewResponse) validateFollowingCount(formats strfmt.Registry) error {
+
+	if err := validate.Required("followingCount", "body", m.FollowingCount); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ModelsCreatorOverviewResponse) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
@@ -73,6 +98,15 @@ func (m *ModelsCreatorOverviewResponse) validateID(formats strfmt.Registry) erro
 func (m *ModelsCreatorOverviewResponse) validateNamespace(formats strfmt.Registry) error {
 
 	if err := validate.Required("namespace", "body", m.Namespace); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsCreatorOverviewResponse) validateTotalLikedContent(formats strfmt.Registry) error {
+
+	if err := validate.Required("totalLikedContent", "body", m.TotalLikedContent); err != nil {
 		return err
 	}
 

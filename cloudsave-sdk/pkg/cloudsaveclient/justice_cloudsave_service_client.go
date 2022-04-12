@@ -13,6 +13,7 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
+	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_concurrent_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_game_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_player_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/concurrent_record"
@@ -77,6 +78,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeClo
 
 	cli := new(JusticeCloudsaveService)
 	cli.Transport = transport
+	cli.AdminConcurrentRecord = admin_concurrent_record.New(transport, formats)
 	cli.AdminGameRecord = admin_game_record.New(transport, formats)
 	cli.AdminPlayerRecord = admin_player_record.New(transport, formats)
 	cli.ConcurrentRecord = concurrent_record.New(transport, formats)
@@ -140,6 +142,8 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // JusticeCloudsaveService is a client for justice cloudsave service
 type JusticeCloudsaveService struct {
+	AdminConcurrentRecord admin_concurrent_record.ClientService
+
 	AdminGameRecord admin_game_record.ClientService
 
 	AdminPlayerRecord admin_player_record.ClientService
@@ -156,6 +160,7 @@ type JusticeCloudsaveService struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *JusticeCloudsaveService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
+	c.AdminConcurrentRecord.SetTransport(transport)
 	c.AdminGameRecord.SetTransport(transport)
 	c.AdminPlayerRecord.SetTransport(transport)
 	c.ConcurrentRecord.SetTransport(transport)

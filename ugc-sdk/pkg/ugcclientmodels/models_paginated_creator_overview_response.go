@@ -22,6 +22,10 @@ type ModelsPaginatedCreatorOverviewResponse struct {
 	// data
 	// Required: true
 	Data []*ModelsCreatorOverviewResponse `json:"data"`
+
+	// paging
+	// Required: true
+	Paging *ModelsPagingCursor `json:"paging"`
 }
 
 // Validate validates this models paginated creator overview response
@@ -29,6 +33,10 @@ func (m *ModelsPaginatedCreatorOverviewResponse) Validate(formats strfmt.Registr
 	var res []error
 
 	if err := m.validateData(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePaging(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -58,6 +66,24 @@ func (m *ModelsPaginatedCreatorOverviewResponse) validateData(formats strfmt.Reg
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ModelsPaginatedCreatorOverviewResponse) validatePaging(formats strfmt.Registry) error {
+
+	if err := validate.Required("paging", "body", m.Paging); err != nil {
+		return err
+	}
+
+	if m.Paging != nil {
+		if err := m.Paging.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("paging")
+			}
+			return err
+		}
 	}
 
 	return nil

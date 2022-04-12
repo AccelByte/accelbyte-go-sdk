@@ -22,6 +22,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/anonymization"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_channel"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_content"
+	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_creator"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_download_count"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_follow"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_group"
@@ -94,6 +95,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeUgc
 	cli.Anonymization = anonymization.New(transport, formats)
 	cli.PublicChannel = public_channel.New(transport, formats)
 	cli.PublicContent = public_content.New(transport, formats)
+	cli.PublicCreator = public_creator.New(transport, formats)
 	cli.PublicDownloadCount = public_download_count.New(transport, formats)
 	cli.PublicFollow = public_follow.New(transport, formats)
 	cli.PublicGroup = public_group.New(transport, formats)
@@ -174,6 +176,8 @@ type JusticeUgcService struct {
 
 	PublicContent public_content.ClientService
 
+	PublicCreator public_creator.ClientService
+
 	PublicDownloadCount public_download_count.ClientService
 
 	PublicFollow public_follow.ClientService
@@ -200,6 +204,7 @@ func (c *JusticeUgcService) SetTransport(transport runtime.ClientTransport) {
 	c.Anonymization.SetTransport(transport)
 	c.PublicChannel.SetTransport(transport)
 	c.PublicContent.SetTransport(transport)
+	c.PublicCreator.SetTransport(transport)
 	c.PublicDownloadCount.SetTransport(transport)
 	c.PublicFollow.SetTransport(transport)
 	c.PublicGroup.SetTransport(transport)

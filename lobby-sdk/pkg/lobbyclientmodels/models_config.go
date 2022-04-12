@@ -18,6 +18,9 @@ type ModelsConfig struct {
 	// allow invite non connected user
 	AllowInviteNonConnectedUser bool `json:"allowInviteNonConnectedUser"`
 
+	// allow join party during matchmaking
+	AllowJoinPartyDuringMatchmaking bool `json:"allowJoinPartyDuringMatchmaking"`
+
 	// auto kick on disconnect
 	AutoKickOnDisconnect bool `json:"autoKickOnDisconnect"`
 
@@ -36,8 +39,8 @@ type ModelsConfig struct {
 	// concurrent users limit
 	ConcurrentUsersLimit int32 `json:"concurrentUsersLimit,omitempty"`
 
-	// disable party invitation token
-	DisablePartyInvitationToken bool `json:"disablePartyInvitationToken"`
+	// disable invitation on join party
+	DisableInvitationOnJoinParty bool `json:"disableInvitationOnJoinParty"`
 
 	// enable chat
 	EnableChat bool `json:"enableChat"`

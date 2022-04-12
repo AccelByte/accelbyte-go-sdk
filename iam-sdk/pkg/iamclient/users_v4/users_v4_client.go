@@ -37,6 +37,8 @@ type ClientService interface {
 	AdminDisableMyAuthenticatorV4Short(params *AdminDisableMyAuthenticatorV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableMyAuthenticatorV4NoContent, error)
 	AdminDisableMyBackupCodesV4(params *AdminDisableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableMyBackupCodesV4NoContent, *AdminDisableMyBackupCodesV4BadRequest, *AdminDisableMyBackupCodesV4Unauthorized, *AdminDisableMyBackupCodesV4Forbidden, *AdminDisableMyBackupCodesV4NotFound, *AdminDisableMyBackupCodesV4InternalServerError, error)
 	AdminDisableMyBackupCodesV4Short(params *AdminDisableMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableMyBackupCodesV4NoContent, error)
+	AdminDisableUserMFAV4(params *AdminDisableUserMFAV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableUserMFAV4NoContent, *AdminDisableUserMFAV4BadRequest, *AdminDisableUserMFAV4Unauthorized, *AdminDisableUserMFAV4Forbidden, *AdminDisableUserMFAV4NotFound, *AdminDisableUserMFAV4InternalServerError, error)
+	AdminDisableUserMFAV4Short(params *AdminDisableUserMFAV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableUserMFAV4NoContent, error)
 	AdminDownloadMyBackupCodesV4(params *AdminDownloadMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDownloadMyBackupCodesV4OK, *AdminDownloadMyBackupCodesV4BadRequest, *AdminDownloadMyBackupCodesV4Unauthorized, *AdminDownloadMyBackupCodesV4Forbidden, *AdminDownloadMyBackupCodesV4NotFound, *AdminDownloadMyBackupCodesV4InternalServerError, error)
 	AdminDownloadMyBackupCodesV4Short(params *AdminDownloadMyBackupCodesV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDownloadMyBackupCodesV4OK, error)
 	AdminEnableMyAuthenticatorV4(params *AdminEnableMyAuthenticatorV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminEnableMyAuthenticatorV4NoContent, *AdminEnableMyAuthenticatorV4BadRequest, *AdminEnableMyAuthenticatorV4Unauthorized, *AdminEnableMyAuthenticatorV4Forbidden, *AdminEnableMyAuthenticatorV4NotFound, *AdminEnableMyAuthenticatorV4Conflict, *AdminEnableMyAuthenticatorV4InternalServerError, error)
@@ -93,6 +95,8 @@ type ClientService interface {
 	PublicGetMyEnabledFactorsV4Short(params *PublicGetMyEnabledFactorsV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicGetMyEnabledFactorsV4OK, error)
 	PublicMakeFactorMyDefaultV4(params *PublicMakeFactorMyDefaultV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicMakeFactorMyDefaultV4NoContent, *PublicMakeFactorMyDefaultV4BadRequest, *PublicMakeFactorMyDefaultV4Unauthorized, *PublicMakeFactorMyDefaultV4Forbidden, *PublicMakeFactorMyDefaultV4NotFound, *PublicMakeFactorMyDefaultV4InternalServerError, error)
 	PublicMakeFactorMyDefaultV4Short(params *PublicMakeFactorMyDefaultV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicMakeFactorMyDefaultV4NoContent, error)
+	PublicRemoveTrustedDeviceV4(params *PublicRemoveTrustedDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicRemoveTrustedDeviceV4NoContent, *PublicRemoveTrustedDeviceV4BadRequest, *PublicRemoveTrustedDeviceV4Unauthorized, *PublicRemoveTrustedDeviceV4Forbidden, *PublicRemoveTrustedDeviceV4NotFound, *PublicRemoveTrustedDeviceV4InternalServerError, error)
+	PublicRemoveTrustedDeviceV4Short(params *PublicRemoveTrustedDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicRemoveTrustedDeviceV4NoContent, error)
 	PublicUpdateUserEmailAddressV4(params *PublicUpdateUserEmailAddressV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserEmailAddressV4NoContent, *PublicUpdateUserEmailAddressV4BadRequest, *PublicUpdateUserEmailAddressV4Unauthorized, *PublicUpdateUserEmailAddressV4NotFound, *PublicUpdateUserEmailAddressV4Conflict, *PublicUpdateUserEmailAddressV4InternalServerError, error)
 	PublicUpdateUserEmailAddressV4Short(params *PublicUpdateUserEmailAddressV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserEmailAddressV4NoContent, error)
 	PublicUpdateUserV4(params *PublicUpdateUserV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicUpdateUserV4OK, *PublicUpdateUserV4BadRequest, *PublicUpdateUserV4Unauthorized, *PublicUpdateUserV4Conflict, *PublicUpdateUserV4InternalServerError, error)
@@ -317,7 +321,7 @@ func (a *Client) AdminBulkCheckValidUserIDV4Short(params *AdminBulkCheckValidUse
 /*
   AdminDisableMyAuthenticatorV4 disables 2 f a authenticator
 
-  &lt;p&gt;(In Development)This endpoint is used to disable 2FA authenticator.&lt;/p&gt;
+  &lt;p&gt;This endpoint is used to disable 2FA authenticator.&lt;/p&gt;
 &lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
 
 */
@@ -423,7 +427,7 @@ func (a *Client) AdminDisableMyAuthenticatorV4Short(params *AdminDisableMyAuthen
 /*
   AdminDisableMyBackupCodesV4 disables 2 f a backup codes
 
-  &lt;p&gt;(In Development)This endpoint is used to enable 2FA backup codes.&lt;/p&gt;
+  &lt;p&gt;This endpoint is used to enable 2FA backup codes.&lt;/p&gt;
 &lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
 
 */
@@ -527,9 +531,114 @@ func (a *Client) AdminDisableMyBackupCodesV4Short(params *AdminDisableMyBackupCo
 }
 
 /*
+  AdminDisableUserMFAV4 disables user 2 f a
+
+  &lt;p&gt;This endpoint requires ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE] permission&lt;/p&gt;
+&lt;br&gt;&lt;p&gt;This endpoint is used to disable user 2FA.&lt;/b&gt;&lt;/p&gt;
+*/
+func (a *Client) AdminDisableUserMFAV4(params *AdminDisableUserMFAV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableUserMFAV4NoContent, *AdminDisableUserMFAV4BadRequest, *AdminDisableUserMFAV4Unauthorized, *AdminDisableUserMFAV4Forbidden, *AdminDisableUserMFAV4NotFound, *AdminDisableUserMFAV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDisableUserMFAV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDisableUserMFAV4",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v4/admin/namespaces/{namespace}/users/{userId}/mfa/disable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDisableUserMFAV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDisableUserMFAV4NoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *AdminDisableUserMFAV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *AdminDisableUserMFAV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *AdminDisableUserMFAV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *AdminDisableUserMFAV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *AdminDisableUserMFAV4InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) AdminDisableUserMFAV4Short(params *AdminDisableUserMFAV4Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDisableUserMFAV4NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAdminDisableUserMFAV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "AdminDisableUserMFAV4",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v4/admin/namespaces/{namespace}/users/{userId}/mfa/disable",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AdminDisableUserMFAV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *AdminDisableUserMFAV4NoContent:
+		return v, nil
+	case *AdminDisableUserMFAV4BadRequest:
+		return nil, v
+	case *AdminDisableUserMFAV4Unauthorized:
+		return nil, v
+	case *AdminDisableUserMFAV4Forbidden:
+		return nil, v
+	case *AdminDisableUserMFAV4NotFound:
+		return nil, v
+	case *AdminDisableUserMFAV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
   AdminDownloadMyBackupCodesV4 downloads user backup codes
 
-  &lt;p&gt;(In Development)This endpoint is used to download backup codes.&lt;/p&gt;
+  &lt;p&gt;This endpoint is used to download backup codes.&lt;/p&gt;
 &lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
 
 */
@@ -635,7 +744,7 @@ func (a *Client) AdminDownloadMyBackupCodesV4Short(params *AdminDownloadMyBackup
 /*
   AdminEnableMyAuthenticatorV4 enables 2 f a authenticator
 
-  &lt;p&gt;(In Development)This endpoint is used to enable 2FA authenticator.&lt;/p&gt;
+  &lt;p&gt;This endpoint is used to enable 2FA authenticator.&lt;/p&gt;
 &lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
 
 */
@@ -746,7 +855,7 @@ func (a *Client) AdminEnableMyAuthenticatorV4Short(params *AdminEnableMyAuthenti
 /*
   AdminEnableMyBackupCodesV4 enables 2 f a backup codes
 
-  &lt;p&gt;(In Development)This endpoint is used to enable 2FA backup codes.&lt;/p&gt;
+  &lt;p&gt;This endpoint is used to enable 2FA backup codes.&lt;/p&gt;
 &lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
 
 */
@@ -857,7 +966,7 @@ func (a *Client) AdminEnableMyBackupCodesV4Short(params *AdminEnableMyBackupCode
 /*
   AdminGenerateMyAuthenticatorKeyV4 generates secret key for 3rd party authenticate app
 
-  &lt;p&gt;(In Development)This endpoint is used to generate a secret key for 3rd-party authenticator app.
+  &lt;p&gt;This endpoint is used to generate a secret key for 3rd-party authenticator app.
 A QR code URI is also returned so that frontend can generate QR code image.&lt;/p&gt;
 &lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
 
@@ -964,7 +1073,7 @@ func (a *Client) AdminGenerateMyAuthenticatorKeyV4Short(params *AdminGenerateMyA
 /*
   AdminGenerateMyBackupCodesV4 generates backup codes
 
-  &lt;p&gt;(In Development)This endpoint is used to generate 8-digits backup codes.
+  &lt;p&gt;This endpoint is used to generate 8-digits backup codes.
 Each code is a one-time code and will be deleted once used.&lt;/p&gt;
 &lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
 
@@ -1071,7 +1180,7 @@ func (a *Client) AdminGenerateMyBackupCodesV4Short(params *AdminGenerateMyBackup
 /*
   AdminGetMyBackupCodesV4 gets backup codes
 
-  &lt;p&gt;(In Development)This endpoint is used to get 8-digits backup codes.
+  &lt;p&gt;This endpoint is used to get 8-digits backup codes.
 Each code is a one-time code and will be deleted once used.&lt;/p&gt;
 &lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
 
@@ -1178,7 +1287,7 @@ func (a *Client) AdminGetMyBackupCodesV4Short(params *AdminGetMyBackupCodesV4Par
 /*
   AdminGetMyEnabledFactorsV4 gets user enabled factors
 
-  &lt;p&gt;(In Development)This endpoint is used to get user enabled factors.&lt;/p&gt;
+  &lt;p&gt;This endpoint is used to get user enabled factors.&lt;/p&gt;
 &lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
 
 */
@@ -1492,7 +1601,7 @@ func (a *Client) AdminListUserRolesV4Short(params *AdminListUserRolesV4Params, a
 /*
   AdminMakeFactorMyDefaultV4 makes 2 f a factor default
 
-  &lt;p&gt;(In Development)This endpoint is used to make 2FA factor default.&lt;/p&gt;
+  &lt;p&gt;This endpoint is used to make 2FA factor default.&lt;/p&gt;
 &lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
 
 */
@@ -2477,7 +2586,7 @@ func (a *Client) PublicCreateUserV4Short(params *PublicCreateUserV4Params, authI
 /*
   PublicDisableMyAuthenticatorV4 disables 2 f a authenticator
 
-  &lt;p&gt;(In Development)This endpoint is used to disable 2FA authenticator.&lt;/p&gt;
+  &lt;p&gt;This endpoint is used to disable 2FA authenticator.&lt;/p&gt;
 &lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
 
 */
@@ -2583,7 +2692,7 @@ func (a *Client) PublicDisableMyAuthenticatorV4Short(params *PublicDisableMyAuth
 /*
   PublicDisableMyBackupCodesV4 disables 2 f a backup codes
 
-  &lt;p&gt;(In Development)This endpoint is used to enable 2FA backup codes.&lt;/p&gt;
+  &lt;p&gt;This endpoint is used to enable 2FA backup codes.&lt;/p&gt;
 &lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
 
 */
@@ -2689,7 +2798,7 @@ func (a *Client) PublicDisableMyBackupCodesV4Short(params *PublicDisableMyBackup
 /*
   PublicDownloadMyBackupCodesV4 downloads user backup codes
 
-  &lt;p&gt;(In Development)This endpoint is used to download backup codes.&lt;/p&gt;
+  &lt;p&gt;This endpoint is used to download backup codes.&lt;/p&gt;
 &lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
 
 */
@@ -2795,7 +2904,7 @@ func (a *Client) PublicDownloadMyBackupCodesV4Short(params *PublicDownloadMyBack
 /*
   PublicEnableMyAuthenticatorV4 enables 2 f a authenticator
 
-  &lt;p&gt;(In Development)This endpoint is used to enable 2FA authenticator.&lt;/p&gt;
+  &lt;p&gt;This endpoint is used to enable 2FA authenticator.&lt;/p&gt;
 &lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
 
 */
@@ -2906,7 +3015,7 @@ func (a *Client) PublicEnableMyAuthenticatorV4Short(params *PublicEnableMyAuthen
 /*
   PublicEnableMyBackupCodesV4 enables 2 f a backup codes
 
-  &lt;p&gt;(In Development)This endpoint is used to enable 2FA backup codes.&lt;/p&gt;
+  &lt;p&gt;This endpoint is used to enable 2FA backup codes.&lt;/p&gt;
 &lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
 
 */
@@ -3017,7 +3126,7 @@ func (a *Client) PublicEnableMyBackupCodesV4Short(params *PublicEnableMyBackupCo
 /*
   PublicGenerateMyAuthenticatorKeyV4 generates secret key for 3rd party authenticate app
 
-  &lt;p&gt;(In Development)This endpoint is used to generate a secret key for 3rd-party authenticator app.
+  &lt;p&gt;This endpoint is used to generate a secret key for 3rd-party authenticator app.
 A QR code URI is also returned so that frontend can generate QR code image.&lt;/p&gt;
 &lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
 
@@ -3124,7 +3233,7 @@ func (a *Client) PublicGenerateMyAuthenticatorKeyV4Short(params *PublicGenerateM
 /*
   PublicGenerateMyBackupCodesV4 generates backup codes
 
-  &lt;p&gt;(In Development)This endpoint is used to generate 8-digits backup codes.
+  &lt;p&gt;This endpoint is used to generate 8-digits backup codes.
 Each code is a one-time code and will be deleted once used.&lt;/p&gt;
 &lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
 
@@ -3231,7 +3340,7 @@ func (a *Client) PublicGenerateMyBackupCodesV4Short(params *PublicGenerateMyBack
 /*
   PublicGetMyBackupCodesV4 gets backup codes
 
-  &lt;p&gt;(In Development)This endpoint is used to get 8-digits backup codes.
+  &lt;p&gt;This endpoint is used to get 8-digits backup codes.
 Each code is a one-time code and will be deleted once used.&lt;/p&gt;
 &lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
 
@@ -3338,7 +3447,7 @@ func (a *Client) PublicGetMyBackupCodesV4Short(params *PublicGetMyBackupCodesV4P
 /*
   PublicGetMyEnabledFactorsV4 gets user enabled factors
 
-  &lt;p&gt;(In Development)This endpoint is used to get user enabled factors.&lt;/p&gt;
+  &lt;p&gt;This endpoint is used to get user enabled factors.&lt;/p&gt;
 &lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
 
 */
@@ -3444,7 +3553,7 @@ func (a *Client) PublicGetMyEnabledFactorsV4Short(params *PublicGetMyEnabledFact
 /*
   PublicMakeFactorMyDefaultV4 makes 2 f a factor default
 
-  &lt;p&gt;(In Development)This endpoint is used to make 2FA factor default.&lt;/p&gt;
+  &lt;p&gt;This endpoint is used to make 2FA factor default.&lt;/p&gt;
 &lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;
 
 */
@@ -3540,6 +3649,113 @@ func (a *Client) PublicMakeFactorMyDefaultV4Short(params *PublicMakeFactorMyDefa
 	case *PublicMakeFactorMyDefaultV4NotFound:
 		return nil, v
 	case *PublicMakeFactorMyDefaultV4InternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicRemoveTrustedDeviceV4 removes trusted device
+
+  &lt;p&gt;(Only for test)This endpoint is used to remove trusted device.&lt;/p&gt;
+&lt;p&gt;This endpoint Requires valid user access token&lt;/p&gt;&lt;br/&gt;
+&lt;p&gt;This endpoint Requires device_token in cookie&lt;/p&gt;
+
+*/
+func (a *Client) PublicRemoveTrustedDeviceV4(params *PublicRemoveTrustedDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicRemoveTrustedDeviceV4NoContent, *PublicRemoveTrustedDeviceV4BadRequest, *PublicRemoveTrustedDeviceV4Unauthorized, *PublicRemoveTrustedDeviceV4Forbidden, *PublicRemoveTrustedDeviceV4NotFound, *PublicRemoveTrustedDeviceV4InternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicRemoveTrustedDeviceV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicRemoveTrustedDeviceV4",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/device",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicRemoveTrustedDeviceV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicRemoveTrustedDeviceV4NoContent:
+		return v, nil, nil, nil, nil, nil, nil
+
+	case *PublicRemoveTrustedDeviceV4BadRequest:
+		return nil, v, nil, nil, nil, nil, nil
+
+	case *PublicRemoveTrustedDeviceV4Unauthorized:
+		return nil, nil, v, nil, nil, nil, nil
+
+	case *PublicRemoveTrustedDeviceV4Forbidden:
+		return nil, nil, nil, v, nil, nil, nil
+
+	case *PublicRemoveTrustedDeviceV4NotFound:
+		return nil, nil, nil, nil, v, nil, nil
+
+	case *PublicRemoveTrustedDeviceV4InternalServerError:
+		return nil, nil, nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicRemoveTrustedDeviceV4Short(params *PublicRemoveTrustedDeviceV4Params, authInfo runtime.ClientAuthInfoWriter) (*PublicRemoveTrustedDeviceV4NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicRemoveTrustedDeviceV4Params()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicRemoveTrustedDeviceV4",
+		Method:             "DELETE",
+		PathPattern:        "/iam/v4/public/namespaces/{namespace}/users/me/mfa/device",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicRemoveTrustedDeviceV4Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicRemoveTrustedDeviceV4NoContent:
+		return v, nil
+	case *PublicRemoveTrustedDeviceV4BadRequest:
+		return nil, v
+	case *PublicRemoveTrustedDeviceV4Unauthorized:
+		return nil, v
+	case *PublicRemoveTrustedDeviceV4Forbidden:
+		return nil, v
+	case *PublicRemoveTrustedDeviceV4NotFound:
+		return nil, v
+	case *PublicRemoveTrustedDeviceV4InternalServerError:
 		return nil, v
 
 	default:

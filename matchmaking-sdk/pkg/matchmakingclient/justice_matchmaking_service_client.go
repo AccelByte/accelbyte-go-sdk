@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/strfmt"
 
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking"
-	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/operations"
+	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking_operations"
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/social_matchmaking"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils"
 )
@@ -76,7 +76,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeMat
 	cli := new(JusticeMatchmakingService)
 	cli.Transport = transport
 	cli.Matchmaking = matchmaking.New(transport, formats)
-	cli.Operations = operations.New(transport, formats)
+	cli.MatchmakingOperations = matchmaking_operations.New(transport, formats)
 	cli.SocialMatchmaking = social_matchmaking.New(transport, formats)
 	return cli
 }
@@ -138,7 +138,7 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 type JusticeMatchmakingService struct {
 	Matchmaking matchmaking.ClientService
 
-	Operations operations.ClientService
+	MatchmakingOperations matchmaking_operations.ClientService
 
 	SocialMatchmaking social_matchmaking.ClientService
 
@@ -149,6 +149,6 @@ type JusticeMatchmakingService struct {
 func (c *JusticeMatchmakingService) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Matchmaking.SetTransport(transport)
-	c.Operations.SetTransport(transport)
+	c.MatchmakingOperations.SetTransport(transport)
 	c.SocialMatchmaking.SetTransport(transport)
 }

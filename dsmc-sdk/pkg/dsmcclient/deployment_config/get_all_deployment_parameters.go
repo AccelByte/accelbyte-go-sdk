@@ -66,6 +66,11 @@ type GetAllDeploymentParams struct {
 
 	*/
 	Count *int64
+	/*Name
+	  name of the deployment
+
+	*/
+	Name *string
 	/*Namespace
 	  namespace of the game
 
@@ -126,6 +131,17 @@ func (o *GetAllDeploymentParams) SetCount(count *int64) {
 	o.Count = count
 }
 
+// WithName adds the name to the get all deployment params
+func (o *GetAllDeploymentParams) WithName(name *string) *GetAllDeploymentParams {
+	o.SetName(name)
+	return o
+}
+
+// SetName adds the name to the get all deployment params
+func (o *GetAllDeploymentParams) SetName(name *string) {
+	o.Name = name
+}
+
 // WithNamespace adds the namespace to the get all deployment params
 func (o *GetAllDeploymentParams) WithNamespace(namespace string) *GetAllDeploymentParams {
 	o.SetNamespace(namespace)
@@ -166,6 +182,22 @@ func (o *GetAllDeploymentParams) WriteToRequest(r runtime.ClientRequest, reg str
 		qCount := swag.FormatInt64(qrCount)
 		if qCount != "" {
 			if err := r.SetQueryParam("count", qCount); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Name != nil {
+
+		// query param name
+		var qrName string
+		if o.Name != nil {
+			qrName = *o.Name
+		}
+		qName := qrName
+		if qName != "" {
+			if err := r.SetQueryParam("name", qName); err != nil {
 				return err
 			}
 		}

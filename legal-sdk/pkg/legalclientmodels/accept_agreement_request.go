@@ -21,6 +21,9 @@ type AcceptAgreementRequest struct {
 	// Required: true
 	IsAccepted *bool `json:"isAccepted"`
 
+	// is need to send event marketing
+	IsNeedToSendEventMarketing bool `json:"isNeedToSendEventMarketing"`
+
 	// localized policy version Id
 	// Required: true
 	LocalizedPolicyVersionID *string `json:"localizedPolicyVersionId"`

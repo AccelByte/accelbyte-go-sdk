@@ -18,17 +18,17 @@ type OAuthService struct {
 }
 
 // Deprecated: Use AuthorizationShort instead
-func (o *OAuthService) Authorization(input *o_auth.AuthorizationParams) error {
+func (o *OAuthService) Authorization(input *o_auth.AuthorizationParams) (string, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return "", err
 	}
-	_, err = o.Client.OAuth.Authorization(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := o.Client.OAuth.Authorization(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
-		return err
+		return "", err
 	}
 
-	return nil
+	return ok.Location, nil
 }
 
 // Deprecated: Use GetJWKSShort instead
@@ -176,17 +176,17 @@ func (o *OAuthService) VerifyToken(input *o_auth.VerifyTokenParams) (*iamclientm
 	return ok.GetPayload(), nil
 }
 
-func (o *OAuthService) AuthorizationShort(input *o_auth.AuthorizationParams) error {
+func (o *OAuthService) AuthorizationShort(input *o_auth.AuthorizationParams) (string, error) {
 	accessToken, err := o.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return "", err
 	}
-	_, err = o.Client.OAuth.AuthorizationShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := o.Client.OAuth.AuthorizationShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
-		return err
+		return "", err
 	}
 
-	return nil
+	return ok.Location, nil
 }
 
 func (o *OAuthService) GetJWKSShort(input *o_auth.GetJWKSParams) (*iamclientmodels.OauthcommonJWKSet, error) {

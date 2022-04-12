@@ -17,28 +17,28 @@ type SSOSAML20Service struct {
 }
 
 // Deprecated: Use PlatformAuthenticateSAMLV3HandlerShort instead
-func (s *SSOSAML20Service) PlatformAuthenticateSAMLV3Handler(input *s_s_o_s_a_m_l_2_0.PlatformAuthenticateSAMLV3HandlerParams) error {
+func (s *SSOSAML20Service) PlatformAuthenticateSAMLV3Handler(input *s_s_o_s_a_m_l_2_0.PlatformAuthenticateSAMLV3HandlerParams) (string, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return "", err
 	}
-	_, err = s.Client.Ssosaml20.PlatformAuthenticateSAMLV3Handler(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Ssosaml20.PlatformAuthenticateSAMLV3Handler(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
-		return err
+		return "", err
 	}
 
-	return nil
+	return ok.Location, nil
 }
 
-func (s *SSOSAML20Service) PlatformAuthenticateSAMLV3HandlerShort(input *s_s_o_s_a_m_l_2_0.PlatformAuthenticateSAMLV3HandlerParams) error {
+func (s *SSOSAML20Service) PlatformAuthenticateSAMLV3HandlerShort(input *s_s_o_s_a_m_l_2_0.PlatformAuthenticateSAMLV3HandlerParams) (string, error) {
 	accessToken, err := s.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return "", err
 	}
-	_, err = s.Client.Ssosaml20.PlatformAuthenticateSAMLV3HandlerShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Ssosaml20.PlatformAuthenticateSAMLV3HandlerShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
-		return err
+		return "", err
 	}
 
-	return nil
+	return ok.Location, nil
 }

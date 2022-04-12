@@ -3431,17 +3431,17 @@ func (u *UsersService) PublicWebLinkPlatform(input *users.PublicWebLinkPlatformP
 }
 
 // Deprecated: Use PublicWebLinkPlatformEstablishShort instead
-func (u *UsersService) PublicWebLinkPlatformEstablish(input *users.PublicWebLinkPlatformEstablishParams) error {
+func (u *UsersService) PublicWebLinkPlatformEstablish(input *users.PublicWebLinkPlatformEstablishParams) (string, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return "", err
 	}
-	_, err = u.Client.Users.PublicWebLinkPlatformEstablish(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := u.Client.Users.PublicWebLinkPlatformEstablish(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
-		return err
+		return "", err
 	}
 
-	return nil
+	return ok.Location, nil
 }
 
 // Deprecated: Use ResetPasswordV3Short instead
@@ -5333,17 +5333,17 @@ func (u *UsersService) PublicWebLinkPlatformShort(input *users.PublicWebLinkPlat
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicWebLinkPlatformEstablishShort(input *users.PublicWebLinkPlatformEstablishParams) error {
+func (u *UsersService) PublicWebLinkPlatformEstablishShort(input *users.PublicWebLinkPlatformEstablishParams) (string, error) {
 	accessToken, err := u.TokenRepository.GetToken()
 	if err != nil {
-		return err
+		return "", err
 	}
-	_, err = u.Client.Users.PublicWebLinkPlatformEstablishShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := u.Client.Users.PublicWebLinkPlatformEstablishShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
-		return err
+		return "", err
 	}
 
-	return nil
+	return ok.Location, nil
 }
 
 func (u *UsersService) ResetPasswordV3Short(input *users.ResetPasswordV3Params) error {

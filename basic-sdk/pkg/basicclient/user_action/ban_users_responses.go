@@ -24,6 +24,12 @@ type BanUsersReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *BanUsersReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
+	case 204:
+		result := NewBanUsersNoContent()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 400:
 		result := NewBanUsersBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -57,6 +63,27 @@ func (o *BanUsersReader) ReadResponse(response runtime.ClientResponse, consumer 
 
 		return nil, fmt.Errorf("Requested POST /basic/v1/admin/namespaces/{namespace}/actions/ban returns an error %d: %s", response.Code(), string(data))
 	}
+}
+
+// NewBanUsersNoContent creates a BanUsersNoContent with default headers values
+func NewBanUsersNoContent() *BanUsersNoContent {
+	return &BanUsersNoContent{}
+}
+
+/*BanUsersNoContent handles this case with default header values.
+
+  no content
+*/
+type BanUsersNoContent struct {
+}
+
+func (o *BanUsersNoContent) Error() string {
+	return fmt.Sprintf("[POST /basic/v1/admin/namespaces/{namespace}/actions/ban][%d] banUsersNoContent ", 204)
+}
+
+func (o *BanUsersNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
 }
 
 // NewBanUsersBadRequest creates a BanUsersBadRequest with default headers values

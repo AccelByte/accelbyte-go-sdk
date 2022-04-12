@@ -99,7 +99,7 @@ func NewAdminMakeFactorMyDefaultV4BadRequest() *AdminMakeFactorMyDefaultV4BadReq
 
 /*AdminMakeFactorMyDefaultV4BadRequest handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10191</td><td>email address not verified</td></tr><tr><td>10189</td><td>invalid factor</td></tr><tr><td>10192</td><td>factor not enabled</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10191</td><td>email address not verified</td></tr><tr><td>10189</td><td>invalid factor</td></tr><tr><td>10192</td><td>factor not enabled</td></tr><tr><td>10171</td><td>email address not found</td></tr></table>
 */
 type AdminMakeFactorMyDefaultV4BadRequest struct {
 	Payload *iamclientmodels.RestErrorResponse
@@ -198,7 +198,7 @@ func NewAdminMakeFactorMyDefaultV4NotFound() *AdminMakeFactorMyDefaultV4NotFound
 
 /*AdminMakeFactorMyDefaultV4NotFound handles this case with default header values.
 
-  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10139</td><td>platform account not found</td></tr><tr><td>10171</td><td>email address not found</td></tr><tr><td>20008</td><td>user not found</td></tr></table>
+  <table><tr><td>errorCode</td><td>errorMessage</td></tr><tr><td>10139</td><td>platform account not found</td></tr><tr><td>20008</td><td>user not found</td></tr></table>
 */
 type AdminMakeFactorMyDefaultV4NotFound struct {
 	Payload *iamclientmodels.RestErrorResponse

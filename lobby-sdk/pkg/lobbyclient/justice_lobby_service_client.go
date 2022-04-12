@@ -16,8 +16,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/chat"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/config"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/friends"
+	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/lobby_operations"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
-	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/operations"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/party"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/player"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/presence"
@@ -85,8 +85,8 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticeLob
 	cli.Chat = chat.New(transport, formats)
 	cli.Config = config.New(transport, formats)
 	cli.Friends = friends.New(transport, formats)
+	cli.LobbyOperations = lobby_operations.New(transport, formats)
 	cli.Notification = notification.New(transport, formats)
-	cli.Operations = operations.New(transport, formats)
 	cli.Party = party.New(transport, formats)
 	cli.Player = player.New(transport, formats)
 	cli.Presence = presence.New(transport, formats)
@@ -156,9 +156,9 @@ type JusticeLobbyService struct {
 
 	Friends friends.ClientService
 
-	Notification notification.ClientService
+	LobbyOperations lobby_operations.ClientService
 
-	Operations operations.ClientService
+	Notification notification.ClientService
 
 	Party party.ClientService
 
@@ -179,8 +179,8 @@ func (c *JusticeLobbyService) SetTransport(transport runtime.ClientTransport) {
 	c.Chat.SetTransport(transport)
 	c.Config.SetTransport(transport)
 	c.Friends.SetTransport(transport)
+	c.LobbyOperations.SetTransport(transport)
 	c.Notification.SetTransport(transport)
-	c.Operations.SetTransport(transport)
 	c.Party.SetTransport(transport)
 	c.Player.SetTransport(transport)
 	c.Presence.SetTransport(transport)

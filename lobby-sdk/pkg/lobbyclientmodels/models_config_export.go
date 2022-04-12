@@ -21,6 +21,10 @@ type ModelsConfigExport struct {
 	// Required: true
 	AllowInviteNonConnectedUser *bool `json:"allowInviteNonConnectedUser"`
 
+	// allow join party during matchmaking
+	// Required: true
+	AllowJoinPartyDuringMatchmaking *bool `json:"allowJoinPartyDuringMatchmaking"`
+
 	// auto kick on disconnect
 	// Required: true
 	AutoKickOnDisconnect *bool `json:"autoKickOnDisconnect"`
@@ -45,9 +49,9 @@ type ModelsConfigExport struct {
 	// Required: true
 	ConcurrentUsersLimit *int32 `json:"concurrentUsersLimit"`
 
-	// disable party invitation token
+	// disable invitation on join party
 	// Required: true
-	DisablePartyInvitationToken *bool `json:"disablePartyInvitationToken"`
+	DisableInvitationOnJoinParty *bool `json:"disableInvitationOnJoinParty"`
 
 	// enable chat
 	// Required: true
@@ -98,6 +102,10 @@ func (m *ModelsConfigExport) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateAllowJoinPartyDuringMatchmaking(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateAutoKickOnDisconnect(formats); err != nil {
 		res = append(res, err)
 	}
@@ -122,7 +130,7 @@ func (m *ModelsConfigExport) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateDisablePartyInvitationToken(formats); err != nil {
+	if err := m.validateDisableInvitationOnJoinParty(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -175,6 +183,15 @@ func (m *ModelsConfigExport) Validate(formats strfmt.Registry) error {
 func (m *ModelsConfigExport) validateAllowInviteNonConnectedUser(formats strfmt.Registry) error {
 
 	if err := validate.Required("allowInviteNonConnectedUser", "body", m.AllowInviteNonConnectedUser); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ModelsConfigExport) validateAllowJoinPartyDuringMatchmaking(formats strfmt.Registry) error {
+
+	if err := validate.Required("allowJoinPartyDuringMatchmaking", "body", m.AllowJoinPartyDuringMatchmaking); err != nil {
 		return err
 	}
 
@@ -235,9 +252,9 @@ func (m *ModelsConfigExport) validateConcurrentUsersLimit(formats strfmt.Registr
 	return nil
 }
 
-func (m *ModelsConfigExport) validateDisablePartyInvitationToken(formats strfmt.Registry) error {
+func (m *ModelsConfigExport) validateDisableInvitationOnJoinParty(formats strfmt.Registry) error {
 
-	if err := validate.Required("disablePartyInvitationToken", "body", m.DisablePartyInvitationToken); err != nil {
+	if err := validate.Required("disableInvitationOnJoinParty", "body", m.DisableInvitationOnJoinParty); err != nil {
 		return err
 	}
 

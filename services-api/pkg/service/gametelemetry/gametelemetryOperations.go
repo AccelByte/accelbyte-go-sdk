@@ -16,6 +16,37 @@ type GametelemetryOperationsService struct {
 	TokenRepository repository.TokenRepository
 }
 
+// Deprecated: Use AdminGetEventsGameTelemetryV1AdminEventsGetShort instead
+func (g *GametelemetryOperationsService) AdminGetEventsGameTelemetryV1AdminEventsGet(input *gametelemetry_operations.AdminGetEventsGameTelemetryV1AdminEventsGetParams) error {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, unprocessableEntity, err := g.Client.GametelemetryOperations.AdminGetEventsGameTelemetryV1AdminEventsGet(input, client.BearerToken(*accessToken.AccessToken))
+	if unprocessableEntity != nil {
+		return unprocessableEntity
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// Deprecated: Use AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetShort instead
+func (g *GametelemetryOperationsService) AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGet(input *gametelemetry_operations.AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams) error {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = g.Client.GametelemetryOperations.AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGet(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Deprecated: Use ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort instead
 func (g *GametelemetryOperationsService) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(input *gametelemetry_operations.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams) error {
 	accessToken, err := g.TokenRepository.GetToken()
@@ -60,6 +91,32 @@ func (g *GametelemetryOperationsService) ProtectedUpdatePlaytimeGameTelemetryV1P
 	if unprocessableEntity != nil {
 		return unprocessableEntity
 	}
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (g *GametelemetryOperationsService) AdminGetEventsGameTelemetryV1AdminEventsGetShort(input *gametelemetry_operations.AdminGetEventsGameTelemetryV1AdminEventsGetParams) error {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = g.Client.GametelemetryOperations.AdminGetEventsGameTelemetryV1AdminEventsGetShort(input, client.BearerToken(*accessToken.AccessToken))
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (g *GametelemetryOperationsService) AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetShort(input *gametelemetry_operations.AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams) error {
+	accessToken, err := g.TokenRepository.GetToken()
+	if err != nil {
+		return err
+	}
+	_, err = g.Client.GametelemetryOperations.AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetShort(input, client.BearerToken(*accessToken.AccessToken))
 	if err != nil {
 		return err
 	}

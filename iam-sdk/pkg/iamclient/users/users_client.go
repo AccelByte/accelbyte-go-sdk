@@ -9438,7 +9438,7 @@ func (a *Client) PlatformUnlinkShort(params *PlatformUnlinkParams, authInfo runt
 
   &lt;p&gt;Notes:&lt;/p&gt;
 		&lt;ul&gt;
-			&lt;li&gt;This endpoint bulk get users&#39; basic info by userId, max allowed 20 at a time&lt;/li&gt;
+			&lt;li&gt;This endpoint bulk get users&#39; basic info by userId, max allowed 100 at a time&lt;/li&gt;
 			&lt;li&gt;If namespace is game, will search by game user Id, other wise will search by publisher namespace&lt;/li&gt;
 			&lt;li&gt;&lt;strong&gt;Result will include displayName(if it exists)&lt;/strong&gt;&lt;/li&gt;
 		&lt;/ul&gt;

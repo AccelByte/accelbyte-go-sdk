@@ -36,7 +36,7 @@ samples:
 test_integration:
 	@test -n "$(INTEGRATION_TEST_ENV_FILE_PATH)" || (echo "INTEGRATION_TEST_ENV_FILE_PATH is not set" ; exit 1)
 	docker run -t --rm --env-file $(INTEGRATION_TEST_ENV_FILE_PATH) -v $$(pwd):/data/ -w /data/ -e GOCACHE=/tmp/.cache golang:1.16-alpine3.15 \
-			sh -c "go test github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
+			sh -c "CGO_ENABLED=0 GOOS=linux go test github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
 
 test_cli:
 	@test -n "$(SDK_MOCK_SERVER_PATH)" || (echo "SDK_MOCK_SERVER_PATH is not set" ; exit 1)

@@ -96,13 +96,12 @@ update_status $? 'getActions'
 delete_file $TEMP_FILE
 
 #- 6 banUsers
-# XXX: temporarily disabled
-#samples/cli/sample-apps Basic banUsers \
-#    --body '{"actionId": 3, "comment": "PqamiBxx", "userIds": ["9Cs18EY8"]}' \
-#    --namespace '4ekItqRz' \
-#    >$TEMP_FILE 2>&1
-#update_status $? 'banUsers'
-#delete_file $TEMP_FILE
+samples/cli/sample-apps Basic banUsers \
+    --body '{"actionId": 3, "comment": "PqamiBxx", "userIds": ["9Cs18EY8"]}' \
+    --namespace '4ekItqRz' \
+    >$TEMP_FILE 2>&1
+update_status $? 'banUsers'
+delete_file $TEMP_FILE
 
 #- 7 getBannedUsers
 samples/cli/sample-apps Basic getBannedUsers \
@@ -113,13 +112,12 @@ update_status $? 'getBannedUsers'
 delete_file $TEMP_FILE
 
 #- 8 reportUser
-# XXX: temporarily disabled
-#samples/cli/sample-apps Basic reportUser \
-#    --body '{"category": "72krSha6", "description": "8n3Ynozp", "gameSessionId": "1C2KmIQT", "subcategory": "uBdNEUsx", "userId": "Fb8CJ17M"}' \
-#    --namespace '7DJZaMSx' \
-#    >$TEMP_FILE 2>&1
-#update_status $? 'reportUser'
-#delete_file $TEMP_FILE
+samples/cli/sample-apps Basic reportUser \
+    --body '{"category": "72krSha6", "description": "8n3Ynozp", "gameSessionId": "1C2KmIQT", "subcategory": "uBdNEUsx", "userId": "Fb8CJ17M"}' \
+    --namespace '7DJZaMSx' \
+    >$TEMP_FILE 2>&1
+update_status $? 'reportUser'
+delete_file $TEMP_FILE
 
 #- 9 getUserStatus
 samples/cli/sample-apps Basic getUserStatus \
@@ -130,13 +128,12 @@ update_status $? 'getUserStatus'
 delete_file $TEMP_FILE
 
 #- 10 unBanUsers
-# XXX: temporarily disabled
-#samples/cli/sample-apps Basic unBanUsers \
-#    --body '{"comment": "HSb8Rh3k", "userIds": ["gs9qqJbn"]}' \
-#    --namespace 'QsoBgiVp' \
-#    >$TEMP_FILE 2>&1
-#update_status $? 'unBanUsers'
-#delete_file $TEMP_FILE
+samples/cli/sample-apps Basic unBanUsers \
+    --body '{"comment": "HSb8Rh3k", "userIds": ["gs9qqJbn"]}' \
+    --namespace 'QsoBgiVp' \
+    >$TEMP_FILE 2>&1
+update_status $? 'unBanUsers'
+delete_file $TEMP_FILE
 
 #- 11 updateNamespace
 samples/cli/sample-apps Basic updateNamespace \
@@ -438,14 +435,13 @@ update_status $? 'updateMyZipCode'
 delete_file $TEMP_FILE
 
 #- 49 publicReportUser
-# XXX: temporarily disabled
-#samples/cli/sample-apps Basic publicReportUser \
-#    --body '{"category": "S9lqyygP", "description": "cfkJIxfQ", "gameSessionId": "Zza8kNVb", "subcategory": "DxVMq7HJ", "userId": "k0F89xAc"}' \
-#    --namespace '3YVfaENt' \
-#    --userId 'rl0pTKZT' \
-#    >$TEMP_FILE 2>&1
-#update_status $? 'publicReportUser'
-#delete_file $TEMP_FILE
+samples/cli/sample-apps Basic publicReportUser \
+    --body '{"category": "TKZTXqzH", "description": "uBMYQSA2", "gameSessionId": "jz1ZOpdO", "subcategory": "jSyMddB4", "userId": "1JuMf7RU"}' \
+    --namespace 'yBHRj8Ii' \
+    --userId 'RimRllHT' \
+    >$TEMP_FILE 2>&1
+update_status $? 'publicReportUser'
+delete_file $TEMP_FILE
 
 #- 50 publicGeneratedUserUploadContentUrl
 samples/cli/sample-apps Basic publicGeneratedUserUploadContentUrl \

@@ -12,7 +12,7 @@ MODULE_PATH='../samples/cli'
 TEMP_TOKEN="/tmp/justice-sample-apps/userData"
 TEMP_FILE='file.tmp'
 
-OPERATIONS_COUNT=3
+OPERATIONS_COUNT=5
 
 FINISHED_COUNT=0
 SUCCESS_COUNT=0
@@ -59,24 +59,37 @@ mkdir -p $(dirname $TEMP_TOKEN)
 echo {"\"access_token"\":"\"foo"\"} >> $TEMP_TOKEN
 echo "1..$OPERATIONS_COUNT"
 
-#- 1 protectedSaveEventsGameTelemetryV1ProtectedEventsPost
+#- 1 adminGetEventsGameTelemetryV1AdminEventsGet
+samples/cli/sample-apps Gametelemetry adminGetEventsGameTelemetryV1AdminEventsGet \
+    --namespace 'FtBxyZcD' \
+    >$TEMP_FILE 2>&1
+update_status $? 'adminGetEventsGameTelemetryV1AdminEventsGet'
+delete_file $TEMP_FILE
+
+#- 2 adminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGet
+samples/cli/sample-apps Gametelemetry adminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGet \
+    >$TEMP_FILE 2>&1
+update_status $? 'adminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGet'
+delete_file $TEMP_FILE
+
+#- 3 protectedSaveEventsGameTelemetryV1ProtectedEventsPost
 samples/cli/sample-apps Gametelemetry protectedSaveEventsGameTelemetryV1ProtectedEventsPost \
-    --body '[{"EventId": "FtBxyZcD", "EventName": "XBpGlsQu", "EventNamespace": "Ju8vMf0I", "EventTimestamp": "1980-10-10T00:00:00Z", "Payload": {"kTrd8IDc": {}}}]' \
+    --body '[{"EventId": "XBpGlsQu", "EventName": "Ju8vMf0I", "EventNamespace": "sJkTrd8I", "EventTimestamp": "1985-01-15T00:00:00Z", "Payload": {"V2zXnTKj": {}}}]' \
     >$TEMP_FILE 2>&1
 update_status $? 'protectedSaveEventsGameTelemetryV1ProtectedEventsPost'
 delete_file $TEMP_FILE
 
-#- 2 protectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGet
+#- 4 protectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGet
 samples/cli/sample-apps Gametelemetry protectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGet \
-    --steamId 'V2zXnTKj' \
+    --steamId 'XY1bPqam' \
     >$TEMP_FILE 2>&1
 update_status $? 'protectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGet'
 delete_file $TEMP_FILE
 
-#- 3 protectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePut
+#- 5 protectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePut
 samples/cli/sample-apps Gametelemetry protectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePut \
-    --playtime 'XY1bPqam' \
-    --steamId 'iBxx9Cs1' \
+    --playtime 'iBxx9Cs1' \
+    --steamId '8EY84ekI' \
     >$TEMP_FILE 2>&1
 update_status $? 'protectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePut'
 delete_file $TEMP_FILE

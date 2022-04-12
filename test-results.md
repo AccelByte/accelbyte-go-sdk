@@ -96,7 +96,7 @@ ok 14 publicUnlockAchievement
 ```tap
 tests/sh/run-go-cli-iam-unit-test.sh
 
-1..296
+1..298
 ok 1 getBansType
 ok 2 getListBanReason
 ok 3 getClients (skipped deprecated)
@@ -349,50 +349,52 @@ ok 249 logoutSSOClient
 ok 250 adminBulkCheckValidUserIDV4
 ok 251 adminUpdateUserV4
 ok 252 adminUpdateUserEmailAddressV4
-ok 253 adminListUserRolesV4
-ok 254 adminUpdateUserRoleV4
-ok 255 adminAddUserRoleV4
-ok 256 adminRemoveUserRoleV4
-ok 257 adminGetRolesV4
-ok 258 adminCreateRoleV4
-ok 259 adminGetRoleV4
-ok 260 adminDeleteRoleV4
-ok 261 adminUpdateRoleV4
-ok 262 adminUpdateRolePermissionsV4
-ok 263 adminAddRolePermissionsV4
-ok 264 adminDeleteRolePermissionsV4
-ok 265 adminListAssignedUsersV4
-ok 266 adminAssignUserToRoleV4
-ok 267 adminRevokeUserFromRoleV4
-ok 268 adminUpdateMyUserV4
-ok 269 adminDisableMyAuthenticatorV4
-ok 270 adminEnableMyAuthenticatorV4
-ok 271 adminGenerateMyAuthenticatorKeyV4
-ok 272 adminGetMyBackupCodesV4
-ok 273 adminGenerateMyBackupCodesV4
-ok 274 adminDisableMyBackupCodesV4
-ok 275 adminDownloadMyBackupCodesV4
-ok 276 adminEnableMyBackupCodesV4
-ok 277 adminGetMyEnabledFactorsV4
-ok 278 adminMakeFactorMyDefaultV4
-ok 279 adminInviteUserV4
-ok 280 publicCreateTestUserV4
-ok 281 publicCreateUserV4
-ok 282 createUserFromInvitationV4
-ok 283 publicUpdateUserV4
-ok 284 publicUpdateUserEmailAddressV4
-ok 285 publicUpgradeHeadlessAccountWithVerificationCodeV4
-ok 286 publicUpgradeHeadlessAccountV4
-ok 287 publicDisableMyAuthenticatorV4
-ok 288 publicEnableMyAuthenticatorV4
-ok 289 publicGenerateMyAuthenticatorKeyV4
-ok 290 publicGetMyBackupCodesV4
-ok 291 publicGenerateMyBackupCodesV4
-ok 292 publicDisableMyBackupCodesV4
-ok 293 publicDownloadMyBackupCodesV4
-ok 294 publicEnableMyBackupCodesV4
-ok 295 publicGetMyEnabledFactorsV4
-ok 296 publicMakeFactorMyDefaultV4
+ok 253 adminDisableUserMFAV4
+ok 254 adminListUserRolesV4
+ok 255 adminUpdateUserRoleV4
+ok 256 adminAddUserRoleV4
+ok 257 adminRemoveUserRoleV4
+ok 258 adminGetRolesV4
+ok 259 adminCreateRoleV4
+ok 260 adminGetRoleV4
+ok 261 adminDeleteRoleV4
+ok 262 adminUpdateRoleV4
+ok 263 adminUpdateRolePermissionsV4
+ok 264 adminAddRolePermissionsV4
+ok 265 adminDeleteRolePermissionsV4
+ok 266 adminListAssignedUsersV4
+ok 267 adminAssignUserToRoleV4
+ok 268 adminRevokeUserFromRoleV4
+ok 269 adminUpdateMyUserV4
+ok 270 adminDisableMyAuthenticatorV4
+ok 271 adminEnableMyAuthenticatorV4
+ok 272 adminGenerateMyAuthenticatorKeyV4
+ok 273 adminGetMyBackupCodesV4
+ok 274 adminGenerateMyBackupCodesV4
+ok 275 adminDisableMyBackupCodesV4
+ok 276 adminDownloadMyBackupCodesV4
+ok 277 adminEnableMyBackupCodesV4
+ok 278 adminGetMyEnabledFactorsV4
+ok 279 adminMakeFactorMyDefaultV4
+ok 280 adminInviteUserV4
+ok 281 publicCreateTestUserV4
+ok 282 publicCreateUserV4
+ok 283 createUserFromInvitationV4
+ok 284 publicUpdateUserV4
+ok 285 publicUpdateUserEmailAddressV4
+ok 286 publicUpgradeHeadlessAccountWithVerificationCodeV4
+ok 287 publicUpgradeHeadlessAccountV4
+ok 288 publicDisableMyAuthenticatorV4
+ok 289 publicEnableMyAuthenticatorV4
+ok 290 publicGenerateMyAuthenticatorKeyV4
+ok 291 publicGetMyBackupCodesV4
+ok 292 publicGenerateMyBackupCodesV4
+ok 293 publicDisableMyBackupCodesV4
+ok 294 publicDownloadMyBackupCodesV4
+ok 295 publicEnableMyBackupCodesV4
+ok 296 publicRemoveTrustedDeviceV4
+ok 297 publicGetMyEnabledFactorsV4
+ok 298 publicMakeFactorMyDefaultV4
 ```
 
 ```tap
@@ -1065,7 +1067,7 @@ ok 32 getUserEventsV2Public
 ```tap
 tests/sh/run-go-cli-ugc-unit-test.sh
 
-1..84
+1..87
 ok 1 singleAdminGetChannel
 ok 2 adminCreateChannel
 ok 3 singleAdminUpdateChannel
@@ -1126,30 +1128,33 @@ ok 57 publicDownloadContentPreview
 ok 58 getTag
 ok 59 getType
 ok 60 getFollowedUsers
-ok 61 getChannels
-ok 62 createChannel
-ok 63 deleteAllUserChannel
-ok 64 updateChannel
-ok 65 deleteChannel
-ok 66 createContentDirect (skipped deprecated)
-ok 67 createContentS3
-ok 68 updateContentS3
-ok 69 updateContentDirect (skipped deprecated)
-ok 70 deleteContent
-ok 71 publicGetUserContent
-ok 72 deleteAllUserContents
-ok 73 updateScreenshots
-ok 74 uploadContentScreenshot
-ok 75 deleteContentScreenshot
-ok 76 updateUserFollowStatus
-ok 77 getGroups
-ok 78 createGroup
-ok 79 deleteAllUserGroup
-ok 80 getGroup
-ok 81 updateGroup
-ok 82 deleteGroup
-ok 83 getGroupContent
-ok 84 deleteAllUserStates
+ok 61 getCreator
+ok 62 getChannels
+ok 63 createChannel
+ok 64 deleteAllUserChannel
+ok 65 updateChannel
+ok 66 deleteChannel
+ok 67 createContentDirect (skipped deprecated)
+ok 68 createContentS3
+ok 69 updateContentS3
+ok 70 updateContentDirect (skipped deprecated)
+ok 71 deleteContent
+ok 72 publicGetUserContent
+ok 73 deleteAllUserContents
+ok 74 updateScreenshots
+ok 75 uploadContentScreenshot
+ok 76 deleteContentScreenshot
+ok 77 updateUserFollowStatus
+ok 78 getPublicFollowers
+ok 79 getPublicFollowing
+ok 80 getGroups
+ok 81 createGroup
+ok 82 deleteAllUserGroup
+ok 83 getGroup
+ok 84 updateGroup
+ok 85 deleteGroup
+ok 86 getGroupContent
+ok 87 deleteAllUserStates
 ```
 
 ```tap
@@ -1297,37 +1302,39 @@ ok 28 versionCheckHandler
 ```tap
 tests/sh/run-go-cli-cloudsave-unit-test.sh
 
-1..30
-ok 1 listGameRecordsHandlerV1
-ok 2 adminGetGameRecordHandlerV1
-ok 3 adminPutGameRecordHandlerV1
-ok 4 adminPostGameRecordHandlerV1
-ok 5 adminDeleteGameRecordHandlerV1
-ok 6 listPlayerRecordHandlerV1 (skipped deprecated)
-ok 7 adminRetrievePlayerRecords
-ok 8 adminGetPlayerRecordHandlerV1
-ok 9 adminPutPlayerRecordHandlerV1
-ok 10 adminPostPlayerRecordHandlerV1
-ok 11 adminDeletePlayerRecordHandlerV1
-ok 12 adminGetPlayerPublicRecordHandlerV1
-ok 13 adminPutPlayerPublicRecordHandlerV1
-ok 14 adminPostPlayerPublicRecordHandlerV1
-ok 15 adminDeletePlayerPublicRecordHandlerV1
-ok 16 putGameRecordConcurrentHandlerV1
-ok 17 getGameRecordHandlerV1
-ok 18 putGameRecordHandlerV1
-ok 19 postGameRecordHandlerV1
-ok 20 deleteGameRecordHandlerV1
-ok 21 bulkGetPlayerPublicRecordHandlerV1
-ok 22 publicDeletePlayerPublicRecordHandlerV1
-ok 23 putPlayerPublicRecordConcurrentHandlerV1
-ok 24 getPlayerRecordHandlerV1
-ok 25 putPlayerRecordHandlerV1
-ok 26 postPlayerRecordHandlerV1
-ok 27 deletePlayerRecordHandlerV1
-ok 28 getPlayerPublicRecordHandlerV1
-ok 29 putPlayerPublicRecordHandlerV1
-ok 30 postPlayerPublicRecordHandlerV1
+1..32
+ok 1 adminPutGameRecordConcurrentHandlerV1
+ok 2 listGameRecordsHandlerV1
+ok 3 adminGetGameRecordHandlerV1
+ok 4 adminPutGameRecordHandlerV1
+ok 5 adminPostGameRecordHandlerV1
+ok 6 adminDeleteGameRecordHandlerV1
+ok 7 listPlayerRecordHandlerV1 (skipped deprecated)
+ok 8 adminPutPlayerPublicRecordConcurrentHandlerV1
+ok 9 adminRetrievePlayerRecords
+ok 10 adminGetPlayerRecordHandlerV1
+ok 11 adminPutPlayerRecordHandlerV1
+ok 12 adminPostPlayerRecordHandlerV1
+ok 13 adminDeletePlayerRecordHandlerV1
+ok 14 adminGetPlayerPublicRecordHandlerV1
+ok 15 adminPutPlayerPublicRecordHandlerV1
+ok 16 adminPostPlayerPublicRecordHandlerV1
+ok 17 adminDeletePlayerPublicRecordHandlerV1
+ok 18 putGameRecordConcurrentHandlerV1
+ok 19 getGameRecordHandlerV1
+ok 20 putGameRecordHandlerV1
+ok 21 postGameRecordHandlerV1
+ok 22 deleteGameRecordHandlerV1
+ok 23 bulkGetPlayerPublicRecordHandlerV1
+ok 24 publicDeletePlayerPublicRecordHandlerV1
+ok 25 putPlayerPublicRecordConcurrentHandlerV1
+ok 26 getPlayerRecordHandlerV1
+ok 27 putPlayerRecordHandlerV1
+ok 28 postPlayerRecordHandlerV1
+ok 29 deletePlayerRecordHandlerV1
+ok 30 getPlayerPublicRecordHandlerV1
+ok 31 putPlayerPublicRecordHandlerV1
+ok 32 postPlayerPublicRecordHandlerV1
 ```
 
 ```tap
@@ -1351,62 +1358,68 @@ ok 2 createNamespace
 ok 3 getNamespace
 ok 4 deleteNamespace
 ok 5 getActions
-ok 6 getBannedUsers
-ok 7 getUserStatus
-ok 8 updateNamespace
-ok 9 getConfig
-ok 10 deleteConfig
-ok 11 updateConfig
-ok 12 generatedUploadUrl
-ok 13 getCountries
-ok 14 getCountryGroups
-ok 15 addCountryGroup
-ok 16 updateCountryGroup
-ok 17 deleteCountryGroup
-ok 18 getLanguages
-ok 19 getTimeZones
-ok 20 adminGetUserProfilePublicInfoByIds
-ok 21 getNamespacePublisher
-ok 22 changeNamespaceStatus
-ok 23 anonymizeUserProfile
-ok 24 generatedUserUploadContentUrl
-ok 25 getUserProfileInfo
-ok 26 updateUserProfile
-ok 27 deleteUserProfile
-ok 28 getCustomAttributesInfo
-ok 29 updateCustomAttributesPartially
-ok 30 getPrivateCustomAttributesInfo
-ok 31 updatePrivateCustomAttributesPartially
-ok 32 updateUserProfileStatus
-ok 33 publicGetTime
-ok 34 publicGetNamespaces
-ok 35 publicGeneratedUploadUrl
-ok 36 publicGetCountries
-ok 37 publicGetLanguages
-ok 38 publicGetTimeZones
-ok 39 publicGetUserProfilePublicInfoByIds
-ok 40 publicGetNamespacePublisher
-ok 41 getMyProfileInfo
-ok 42 updateMyProfile
-ok 43 createMyProfile
-ok 44 getMyZipCode
-ok 45 updateMyZipCode
-ok 46 publicGeneratedUserUploadContentUrl
-ok 47 publicGetUserProfileInfo
-ok 48 publicUpdateUserProfile
-ok 49 publicCreateUserProfile
-ok 50 publicGetCustomAttributesInfo
-ok 51 publicUpdateCustomAttributesPartially
-ok 52 publicGetUserProfilePublicInfo
-ok 53 publicUpdateUserProfileStatus
+ok 6 banUsers
+ok 7 getBannedUsers
+ok 8 reportUser
+ok 9 getUserStatus
+ok 10 unBanUsers
+ok 11 updateNamespace
+ok 12 getConfig
+ok 13 deleteConfig
+ok 14 updateConfig
+ok 15 generatedUploadUrl
+ok 16 getCountries
+ok 17 getCountryGroups
+ok 18 addCountryGroup
+ok 19 updateCountryGroup
+ok 20 deleteCountryGroup
+ok 21 getLanguages
+ok 22 getTimeZones
+ok 23 adminGetUserProfilePublicInfoByIds
+ok 24 getNamespacePublisher
+ok 25 changeNamespaceStatus
+ok 26 anonymizeUserProfile
+ok 27 generatedUserUploadContentUrl
+ok 28 getUserProfileInfo
+ok 29 updateUserProfile
+ok 30 deleteUserProfile
+ok 31 getCustomAttributesInfo
+ok 32 updateCustomAttributesPartially
+ok 33 getPrivateCustomAttributesInfo
+ok 34 updatePrivateCustomAttributesPartially
+ok 35 updateUserProfileStatus
+ok 36 publicGetTime
+ok 37 publicGetNamespaces
+ok 38 publicGeneratedUploadUrl
+ok 39 publicGetCountries
+ok 40 publicGetLanguages
+ok 41 publicGetTimeZones
+ok 42 publicGetUserProfilePublicInfoByIds
+ok 43 publicGetNamespacePublisher
+ok 44 getMyProfileInfo
+ok 45 updateMyProfile
+ok 46 createMyProfile
+ok 47 getMyZipCode
+ok 48 updateMyZipCode
+ok 49 publicReportUser
+ok 50 publicGeneratedUserUploadContentUrl
+ok 51 publicGetUserProfileInfo
+ok 52 publicUpdateUserProfile
+ok 53 publicCreateUserProfile
+ok 54 publicGetCustomAttributesInfo
+ok 55 publicUpdateCustomAttributesPartially
+ok 56 publicGetUserProfilePublicInfo
+ok 57 publicUpdateUserProfileStatus
 ```
 
 ```tap
 tests/sh/run-go-cli-gametelemetry-unit-test.sh
 
-1..3
-ok 1 protectedSaveEventsGameTelemetryV1ProtectedEventsPost
-ok 2 protectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGet
-ok 3 protectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePut
+1..5
+ok 1 adminGetEventsGameTelemetryV1AdminEventsGet
+ok 2 adminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGet
+ok 3 protectedSaveEventsGameTelemetryV1ProtectedEventsPost
+ok 4 protectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGet
+ok 5 protectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePut
 ```
 

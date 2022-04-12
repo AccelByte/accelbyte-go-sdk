@@ -12,7 +12,7 @@ MODULE_PATH='../samples/cli'
 TEMP_TOKEN="/tmp/justice-sample-apps/userData"
 TEMP_FILE='file.tmp'
 
-OPERATIONS_COUNT=84
+OPERATIONS_COUNT=87
 
 FINISHED_COUNT=0
 SUCCESS_COUNT=0
@@ -613,216 +613,244 @@ samples/cli/sample-apps Ugc getFollowedUsers \
 update_status $? 'getFollowedUsers'
 delete_file $TEMP_FILE
 
-#- 61 getChannels
-samples/cli/sample-apps Ugc getChannels \
+#- 61 getCreator
+samples/cli/sample-apps Ugc getCreator \
     --namespace 'KtRUaTz1' \
     --userId 'ETdsmwzj' \
-    --limit '21' \
-    --offset '20' \
+    >$TEMP_FILE 2>&1
+update_status $? 'getCreator'
+delete_file $TEMP_FILE
+
+#- 62 getChannels
+samples/cli/sample-apps Ugc getChannels \
+    --namespace 'kkn9oiQl' \
+    --userId '05g7cO3Z' \
+    --limit '76' \
+    --offset '2' \
     >$TEMP_FILE 2>&1
 update_status $? 'getChannels'
 delete_file $TEMP_FILE
 
-#- 62 createChannel
+#- 63 createChannel
 samples/cli/sample-apps Ugc createChannel \
-    --body '{"name": "n9oiQl05"}' \
-    --namespace 'g7cO3ZMb' \
-    --userId '6Ojlo6DM' \
+    --body '{"name": "6Ojlo6DM"}' \
+    --namespace 'NpP2qMrT' \
+    --userId 'Q1UpjfU6' \
     >$TEMP_FILE 2>&1
 update_status $? 'createChannel'
 delete_file $TEMP_FILE
 
-#- 63 deleteAllUserChannel
+#- 64 deleteAllUserChannel
 samples/cli/sample-apps Ugc deleteAllUserChannel \
-    --namespace 'NpP2qMrT' \
-    --userId 'Q1UpjfU6' \
+    --namespace 'wJhy1jOV' \
+    --userId 'kkUlS795' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteAllUserChannel'
 delete_file $TEMP_FILE
 
-#- 64 updateChannel
+#- 65 updateChannel
 samples/cli/sample-apps Ugc updateChannel \
-    --body '{"name": "wJhy1jOV"}' \
-    --channelId 'kkUlS795' \
-    --namespace '27EZ25Ia' \
-    --userId '8uCeZFlL' \
+    --body '{"name": "27EZ25Ia"}' \
+    --channelId '8uCeZFlL' \
+    --namespace 'tEVpDAEb' \
+    --userId 'A82jy74l' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateChannel'
 delete_file $TEMP_FILE
 
-#- 65 deleteChannel
+#- 66 deleteChannel
 samples/cli/sample-apps Ugc deleteChannel \
-    --channelId 'tEVpDAEb' \
-    --namespace 'A82jy74l' \
-    --userId 'q0pDE5xR' \
+    --channelId 'q0pDE5xR' \
+    --namespace 'wh5b45eb' \
+    --userId 'pcM7ScSs' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteChannel'
 delete_file $TEMP_FILE
 
-#- 66 createContentDirect
+#- 67 createContentDirect
 update_status 0 'createContentDirect (skipped deprecated)'
 
-#- 67 createContentS3
+#- 68 createContentS3
 samples/cli/sample-apps Ugc createContentS3 \
-    --body '{"contentType": "wh5b45eb", "fileExtension": "pcM7ScSs", "name": "3UOpAwIp", "preview": "9rRtn1Pc", "subType": "CxdbumeY", "tags": ["gOdEBWRQ"], "type": "iW3KFfU8"}' \
-    --channelId 'icH4081g' \
-    --namespace 'RB1GyLfL' \
-    --userId 'g4RYuEbg' \
+    --body '{"contentType": "3UOpAwIp", "fileExtension": "9rRtn1Pc", "name": "CxdbumeY", "preview": "gOdEBWRQ", "subType": "iW3KFfU8", "tags": ["icH4081g"], "type": "RB1GyLfL"}' \
+    --channelId 'g4RYuEbg' \
+    --namespace 'UDEcJyIv' \
+    --userId 'sPwOr0Bm' \
     >$TEMP_FILE 2>&1
 update_status $? 'createContentS3'
 delete_file $TEMP_FILE
 
-#- 68 updateContentS3
+#- 69 updateContentS3
 samples/cli/sample-apps Ugc updateContentS3 \
-    --body '{"contentType": "UDEcJyIv", "fileExtension": "sPwOr0Bm", "name": "V5iFvfwF", "preview": "jTSmIEqo", "subType": "LyLeUGmo", "tags": ["mGX9sXTZ"], "type": "0v8pqLfc"}' \
-    --channelId '5SwGnReU' \
-    --contentId 'ULDX4QUI' \
-    --namespace 'bb5nh68Z' \
-    --userId 'nyUtRvW9' \
+    --body '{"contentType": "V5iFvfwF", "fileExtension": "jTSmIEqo", "name": "LyLeUGmo", "preview": "mGX9sXTZ", "subType": "0v8pqLfc", "tags": ["5SwGnReU"], "type": "ULDX4QUI"}' \
+    --channelId 'bb5nh68Z' \
+    --contentId 'nyUtRvW9' \
+    --namespace 'hNBSFTtF' \
+    --userId 'rOmjkFrF' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateContentS3'
 delete_file $TEMP_FILE
 
-#- 69 updateContentDirect
+#- 70 updateContentDirect
 update_status 0 'updateContentDirect (skipped deprecated)'
 
-#- 70 deleteContent
+#- 71 deleteContent
 samples/cli/sample-apps Ugc deleteContent \
-    --channelId 'hNBSFTtF' \
-    --contentId 'rOmjkFrF' \
-    --namespace 'VA8t0xF3' \
-    --userId '4Xpt6ZlT' \
+    --channelId 'VA8t0xF3' \
+    --contentId '4Xpt6ZlT' \
+    --namespace 'Tic0kr2a' \
+    --userId '0nI2oo7U' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteContent'
 delete_file $TEMP_FILE
 
-#- 71 publicGetUserContent
+#- 72 publicGetUserContent
 samples/cli/sample-apps Ugc publicGetUserContent \
-    --namespace 'Tic0kr2a' \
-    --userId '0nI2oo7U' \
-    --limit '67' \
-    --offset '57' \
+    --namespace 'HCJK5sp0' \
+    --userId 'aCvIq3aH' \
+    --limit '94' \
+    --offset '68' \
     >$TEMP_FILE 2>&1
 update_status $? 'publicGetUserContent'
 delete_file $TEMP_FILE
 
-#- 72 deleteAllUserContents
+#- 73 deleteAllUserContents
 samples/cli/sample-apps Ugc deleteAllUserContents \
-    --namespace 'JK5sp0aC' \
-    --userId 'vIq3aHVY' \
+    --namespace 'lewLRuHY' \
+    --userId '83bGj0HT' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteAllUserContents'
 delete_file $TEMP_FILE
 
-#- 73 updateScreenshots
+#- 74 updateScreenshots
 samples/cli/sample-apps Ugc updateScreenshots \
-    --body '{"screenshots": [{"description": "IlewLRuH", "screenshotId": "Y83bGj0H"}]}' \
-    --contentId 'TeeWXlIc' \
-    --namespace 'RidqctDp' \
-    --userId 'ygY0ax47' \
+    --body '{"screenshots": [{"description": "eeWXlIcR", "screenshotId": "idqctDpy"}]}' \
+    --contentId 'gY0ax476' \
+    --namespace 'ED4MMO9T' \
+    --userId 'w2JH0qhW' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateScreenshots'
 delete_file $TEMP_FILE
 
-#- 74 uploadContentScreenshot
+#- 75 uploadContentScreenshot
 samples/cli/sample-apps Ugc uploadContentScreenshot \
-    --body '{"screenshots": [{"contentType": "6ED4MMO9", "description": "Tw2JH0qh", "fileExtension": "bmp"}]}' \
-    --contentId 'wHWTgzJF' \
-    --namespace 'RYw6t1IK' \
-    --userId 'ZLO6V4Od' \
+    --body '{"screenshots": [{"contentType": "IwHWTgzJ", "description": "FRYw6t1I", "fileExtension": "bmp"}]}' \
+    --contentId 'ZLO6V4Od' \
+    --namespace 'e46QmCid' \
+    --userId 'gdpP7RTC' \
     >$TEMP_FILE 2>&1
 update_status $? 'uploadContentScreenshot'
 delete_file $TEMP_FILE
 
-#- 75 deleteContentScreenshot
+#- 76 deleteContentScreenshot
 samples/cli/sample-apps Ugc deleteContentScreenshot \
-    --contentId 'e46QmCid' \
-    --namespace 'gdpP7RTC' \
-    --screenshotId '587lmUmB' \
-    --userId 'ziPZBnpO' \
+    --contentId '587lmUmB' \
+    --namespace 'ziPZBnpO' \
+    --screenshotId 'fkllxfq0' \
+    --userId 'NsrSjw5H' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteContentScreenshot'
 delete_file $TEMP_FILE
 
-#- 76 updateUserFollowStatus
+#- 77 updateUserFollowStatus
 samples/cli/sample-apps Ugc updateUserFollowStatus \
     --body '{"followStatus": false}' \
-    --namespace 'kllxfq0N' \
-    --userId 'srSjw5Ho' \
+    --namespace 'g0blM1d5' \
+    --userId 'MStYGczL' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateUserFollowStatus'
 delete_file $TEMP_FILE
 
-#- 77 getGroups
+#- 78 getPublicFollowers
+samples/cli/sample-apps Ugc getPublicFollowers \
+    --namespace 'INlEC0OE' \
+    --userId 'sE3yzIsU' \
+    --limit 'P0NjluOr' \
+    --offset 'GZTzsLW7' \
+    >$TEMP_FILE 2>&1
+update_status $? 'getPublicFollowers'
+delete_file $TEMP_FILE
+
+#- 79 getPublicFollowing
+samples/cli/sample-apps Ugc getPublicFollowing \
+    --namespace 'Fjfs9nIk' \
+    --userId 'cZ38fUEa' \
+    --limit 'njKHbXfk' \
+    --offset '1zxdzxg0' \
+    >$TEMP_FILE 2>&1
+update_status $? 'getPublicFollowing'
+delete_file $TEMP_FILE
+
+#- 80 getGroups
 samples/cli/sample-apps Ugc getGroups \
-    --namespace 'g0blM1d5' \
-    --userId 'MStYGczL' \
-    --limit '69' \
-    --offset '79' \
+    --namespace 'UXcRyHi3' \
+    --userId 'u8BzVWu1' \
+    --limit '39' \
+    --offset '81' \
     >$TEMP_FILE 2>&1
 update_status $? 'getGroups'
 delete_file $TEMP_FILE
 
-#- 78 createGroup
+#- 81 createGroup
 samples/cli/sample-apps Ugc createGroup \
-    --body '{"contents": ["lEC0OEsE"], "name": "3yzIsUP0"}' \
-    --namespace 'NjluOrGZ' \
-    --userId 'TzsLW7Fj' \
+    --body '{"contents": ["mhUtCgcp"], "name": "vGrEbcZU"}' \
+    --namespace 'DExH1tay' \
+    --userId 'OGXIHzMR' \
     >$TEMP_FILE 2>&1
 update_status $? 'createGroup'
 delete_file $TEMP_FILE
 
-#- 79 deleteAllUserGroup
+#- 82 deleteAllUserGroup
 samples/cli/sample-apps Ugc deleteAllUserGroup \
-    --namespace 'fs9nIkcZ' \
-    --userId '38fUEanj' \
+    --namespace 'jMCtOJsE' \
+    --userId 'ijlrbpyy' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteAllUserGroup'
 delete_file $TEMP_FILE
 
-#- 80 getGroup
+#- 83 getGroup
 samples/cli/sample-apps Ugc getGroup \
-    --groupId 'KHbXfk1z' \
-    --namespace 'xdzxg0UX' \
-    --userId 'cRyHi3u8' \
+    --groupId 'EcQxVgJI' \
+    --namespace 'jMZqcWfM' \
+    --userId 'l6dqrpD4' \
     >$TEMP_FILE 2>&1
 update_status $? 'getGroup'
 delete_file $TEMP_FILE
 
-#- 81 updateGroup
+#- 84 updateGroup
 samples/cli/sample-apps Ugc updateGroup \
-    --body '{"contents": ["BzVWu1tO"], "name": "mhUtCgcp"}' \
-    --groupId 'vGrEbcZU' \
-    --namespace 'DExH1tay' \
-    --userId 'OGXIHzMR' \
+    --body '{"contents": ["tnc3ZRB3"], "name": "IkdtPfAJ"}' \
+    --groupId 'EomwenJv' \
+    --namespace 'Q8grtQSv' \
+    --userId '6EcALcMI' \
     >$TEMP_FILE 2>&1
 update_status $? 'updateGroup'
 delete_file $TEMP_FILE
 
-#- 82 deleteGroup
+#- 85 deleteGroup
 samples/cli/sample-apps Ugc deleteGroup \
-    --groupId 'jMCtOJsE' \
-    --namespace 'ijlrbpyy' \
-    --userId 'EcQxVgJI' \
+    --groupId 'Pms5bT51' \
+    --namespace 'M4yko8S0' \
+    --userId 'EnGLvGvf' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteGroup'
 delete_file $TEMP_FILE
 
-#- 83 getGroupContent
+#- 86 getGroupContent
 samples/cli/sample-apps Ugc getGroupContent \
-    --groupId 'jMZqcWfM' \
-    --namespace 'l6dqrpD4' \
-    --userId 'tnc3ZRB3' \
-    --limit '68' \
-    --offset '21' \
+    --groupId 'uSyCTyjj' \
+    --namespace '4mCaiuMG' \
+    --userId 'KOF5GJJo' \
+    --limit '29' \
+    --offset '89' \
     >$TEMP_FILE 2>&1
 update_status $? 'getGroupContent'
 delete_file $TEMP_FILE
 
-#- 84 deleteAllUserStates
+#- 87 deleteAllUserStates
 samples/cli/sample-apps Ugc deleteAllUserStates \
-    --namespace 'dtPfAJEo' \
-    --userId 'mwenJvQ8' \
+    --namespace 'XUl3YU35' \
+    --userId 'QHGpBABn' \
     >$TEMP_FILE 2>&1
 update_status $? 'deleteAllUserStates'
 delete_file $TEMP_FILE

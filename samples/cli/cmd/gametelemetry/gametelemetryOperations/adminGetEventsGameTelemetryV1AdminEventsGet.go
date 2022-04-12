@@ -2,10 +2,10 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package operations
+package gametelemetryOperations
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/gametelemetry-sdk/pkg/gametelemetryclient/operations"
+	"github.com/AccelByte/accelbyte-go-sdk/gametelemetry-sdk/pkg/gametelemetryclient/gametelemetry_operations"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/gametelemetry"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -19,15 +19,15 @@ var AdminGetEventsGameTelemetryV1AdminEventsGetCmd = &cobra.Command{
 	Short: "Admin get events game telemetry v1 admin events get",
 	Long:  `Admin get events game telemetry v1 admin events get`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		operationsService := &gametelemetry.OperationsService{
+		gametelemetryOperationsService := &gametelemetry.GametelemetryOperationsService{
 			Client:          factory.NewGametelemetryClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		input := &operations.AdminGetEventsGameTelemetryV1AdminEventsGetParams{
+		input := &gametelemetry_operations.AdminGetEventsGameTelemetryV1AdminEventsGetParams{
 			Namespace: namespace,
 		}
-		errInput := operationsService.AdminGetEventsGameTelemetryV1AdminEventsGetShort(input)
+		errInput := gametelemetryOperationsService.AdminGetEventsGameTelemetryV1AdminEventsGetShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -13,6 +13,7 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/ugc/anonymization"
 	"github.com/AccelByte/sample-apps/cmd/ugc/publicChannel"
 	"github.com/AccelByte/sample-apps/cmd/ugc/publicContent"
+	"github.com/AccelByte/sample-apps/cmd/ugc/publicCreator"
 	"github.com/AccelByte/sample-apps/cmd/ugc/publicDownloadCount"
 	"github.com/AccelByte/sample-apps/cmd/ugc/publicFollow"
 	"github.com/AccelByte/sample-apps/cmd/ugc/publicGroup"
@@ -89,6 +90,7 @@ func init() {
 	UgcCmd.AddCommand(publicTag.GetTagCmd)
 	UgcCmd.AddCommand(publicType.GetTypeCmd)
 	UgcCmd.AddCommand(publicFollow.GetFollowedUsersCmd)
+	UgcCmd.AddCommand(publicCreator.GetCreatorCmd)
 	UgcCmd.AddCommand(publicChannel.GetChannelsCmd)
 	UgcCmd.AddCommand(publicChannel.CreateChannelCmd)
 	UgcCmd.AddCommand(anonymization.DeleteAllUserChannelCmd)
@@ -105,6 +107,8 @@ func init() {
 	UgcCmd.AddCommand(publicContent.UploadContentScreenshotCmd)
 	UgcCmd.AddCommand(publicContent.DeleteContentScreenshotCmd)
 	UgcCmd.AddCommand(publicFollow.UpdateUserFollowStatusCmd)
+	UgcCmd.AddCommand(publicFollow.GetPublicFollowersCmd)
+	UgcCmd.AddCommand(publicFollow.GetPublicFollowingCmd)
 	UgcCmd.AddCommand(publicGroup.GetGroupsCmd)
 	UgcCmd.AddCommand(publicGroup.CreateGroupCmd)
 	UgcCmd.AddCommand(anonymization.DeleteAllUserGroupCmd)

@@ -2,12 +2,12 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package operations
+package matchmakingOperations
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/operations"
+	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking_operations"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dsmc"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -19,12 +19,12 @@ var PublicGetMessagesCmd = &cobra.Command{
 	Short: "Public get messages",
 	Long:  `Public get messages`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		operationsService := &dsmc.OperationsService{
-			Client:          factory.NewDsmcClient(&repository.ConfigRepositoryImpl{}),
+		matchmakingOperationsService := &matchmaking.MatchmakingOperationsService{
+			Client:          factory.NewMatchmakingClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		input := &operations.PublicGetMessagesParams{}
-		ok, err := operationsService.PublicGetMessagesShort(input)
+		input := &matchmaking_operations.PublicGetMessagesParams{}
+		ok, err := matchmakingOperationsService.PublicGetMessagesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

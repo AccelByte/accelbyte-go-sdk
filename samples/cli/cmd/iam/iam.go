@@ -280,6 +280,7 @@ func init() {
 	IamCmd.AddCommand(usersV4.AdminBulkCheckValidUserIDV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminUpdateUserV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminUpdateUserEmailAddressV4Cmd)
+	IamCmd.AddCommand(usersV4.AdminDisableUserMFAV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminListUserRolesV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminUpdateUserRoleV4Cmd)
 	IamCmd.AddCommand(usersV4.AdminAddUserRoleV4Cmd)
@@ -322,6 +323,7 @@ func init() {
 	IamCmd.AddCommand(usersV4.PublicDisableMyBackupCodesV4Cmd)
 	IamCmd.AddCommand(usersV4.PublicDownloadMyBackupCodesV4Cmd)
 	IamCmd.AddCommand(usersV4.PublicEnableMyBackupCodesV4Cmd)
+	IamCmd.AddCommand(usersV4.PublicRemoveTrustedDeviceV4Cmd)
 	IamCmd.AddCommand(usersV4.PublicGetMyEnabledFactorsV4Cmd)
 	IamCmd.AddCommand(usersV4.PublicMakeFactorMyDefaultV4Cmd)
 }

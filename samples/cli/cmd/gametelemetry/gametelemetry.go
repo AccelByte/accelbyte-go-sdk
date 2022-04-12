@@ -6,7 +6,6 @@ package gametelemetry
 
 import (
 	"github.com/AccelByte/sample-apps/cmd/gametelemetry/gametelemetryOperations"
-	"github.com/AccelByte/sample-apps/cmd/gametelemetry/operations"
 	"github.com/spf13/cobra"
 )
 
@@ -17,8 +16,8 @@ var GametelemetryCmd = &cobra.Command{
 }
 
 func init() {
-	GametelemetryCmd.AddCommand(operations.AdminGetEventsGameTelemetryV1AdminEventsGetCmd)
-	GametelemetryCmd.AddCommand(operations.AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetCmd)
+	GametelemetryCmd.AddCommand(gametelemetryOperations.AdminGetEventsGameTelemetryV1AdminEventsGetCmd)
+	GametelemetryCmd.AddCommand(gametelemetryOperations.AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetCmd)
 	GametelemetryCmd.AddCommand(gametelemetryOperations.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd)
 	GametelemetryCmd.AddCommand(gametelemetryOperations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGetCmd)
 	GametelemetryCmd.AddCommand(gametelemetryOperations.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePutCmd)

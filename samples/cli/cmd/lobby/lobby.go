@@ -8,8 +8,8 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/lobby/chat"
 	"github.com/AccelByte/sample-apps/cmd/lobby/config"
 	"github.com/AccelByte/sample-apps/cmd/lobby/friends"
+	"github.com/AccelByte/sample-apps/cmd/lobby/lobbyOperations"
 	"github.com/AccelByte/sample-apps/cmd/lobby/notification"
-	"github.com/AccelByte/sample-apps/cmd/lobby/operations"
 	"github.com/AccelByte/sample-apps/cmd/lobby/party"
 	"github.com/AccelByte/sample-apps/cmd/lobby/player"
 	"github.com/AccelByte/sample-apps/cmd/lobby/presence"
@@ -64,8 +64,8 @@ func init() {
 	LobbyCmd.AddCommand(notification.SendSpecificUserFreeformNotificationV1AdminCmd)
 	LobbyCmd.AddCommand(notification.SendSpecificUserTemplatedNotificationV1AdminCmd)
 	LobbyCmd.AddCommand(party.AdminGetPartyDataV1Cmd)
-	LobbyCmd.AddCommand(operations.AdminUpdatePartyAttributesV1Cmd)
-	LobbyCmd.AddCommand(operations.AdminJoinPartyV1Cmd)
+	LobbyCmd.AddCommand(lobbyOperations.AdminUpdatePartyAttributesV1Cmd)
+	LobbyCmd.AddCommand(lobbyOperations.AdminJoinPartyV1Cmd)
 	LobbyCmd.AddCommand(party.AdminGetUserPartyV1Cmd)
 	LobbyCmd.AddCommand(player.AdminGetLobbyCCUCmd)
 	LobbyCmd.AddCommand(player.AdminGetAllPlayerSessionAttributeCmd)
@@ -91,7 +91,7 @@ func init() {
 	LobbyCmd.AddCommand(thirdParty.AdminUpdateThirdPartyConfigCmd)
 	LobbyCmd.AddCommand(thirdParty.AdminCreateThirdPartyConfigCmd)
 	LobbyCmd.AddCommand(thirdParty.AdminDeleteThirdPartyConfigCmd)
-	LobbyCmd.AddCommand(operations.PublicGetMessagesCmd)
+	LobbyCmd.AddCommand(lobbyOperations.PublicGetMessagesCmd)
 	LobbyCmd.AddCommand(chat.GetPersonalChatHistoryV1PublicCmd)
 	LobbyCmd.AddCommand(party.PublicGetPartyDataV1Cmd)
 	LobbyCmd.AddCommand(party.PublicUpdatePartyAttributesV1Cmd)

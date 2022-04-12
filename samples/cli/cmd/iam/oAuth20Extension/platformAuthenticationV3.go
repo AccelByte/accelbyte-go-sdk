@@ -61,7 +61,7 @@ var PlatformAuthenticationV3Cmd = &cobra.Command{
 			State:               state,
 			HTTPClient:          httpClient,
 		}
-		errInput := oAuth20ExtensionService.PlatformAuthenticationV3Short(input)
+		_, errInput := oAuth20ExtensionService.PlatformAuthenticationV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

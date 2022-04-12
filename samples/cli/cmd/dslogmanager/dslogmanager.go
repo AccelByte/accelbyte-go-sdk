@@ -6,7 +6,7 @@ package dslogmanager
 
 import (
 	"github.com/AccelByte/sample-apps/cmd/dslogmanager/allTerminatedServers"
-	"github.com/AccelByte/sample-apps/cmd/dslogmanager/operations"
+	"github.com/AccelByte/sample-apps/cmd/dslogmanager/dslogmanagerOperations"
 	"github.com/AccelByte/sample-apps/cmd/dslogmanager/terminatedServers"
 	"github.com/spf13/cobra"
 )
@@ -23,5 +23,5 @@ func init() {
 	DslogmanagerCmd.AddCommand(terminatedServers.CheckServerLogsCmd)
 	DslogmanagerCmd.AddCommand(allTerminatedServers.BatchDownloadServerLogsCmd)
 	DslogmanagerCmd.AddCommand(allTerminatedServers.ListAllTerminatedServersCmd)
-	DslogmanagerCmd.AddCommand(operations.PublicGetMessagesCmd)
+	DslogmanagerCmd.AddCommand(dslogmanagerOperations.PublicGetMessagesCmd)
 }

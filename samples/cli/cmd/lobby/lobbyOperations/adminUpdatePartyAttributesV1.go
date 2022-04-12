@@ -2,12 +2,12 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package operations
+package lobbyOperations
 
 import (
 	"encoding/json"
 
-	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/operations"
+	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/lobby_operations"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
@@ -22,7 +22,7 @@ var AdminUpdatePartyAttributesV1Cmd = &cobra.Command{
 	Short: "Admin update party attributes V1",
 	Long:  `Admin update party attributes V1`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		operationsService := &lobby.OperationsService{
+		lobbyOperationsService := &lobby.LobbyOperationsService{
 			Client:          factory.NewLobbyClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
@@ -34,12 +34,12 @@ var AdminUpdatePartyAttributesV1Cmd = &cobra.Command{
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
 		partyId, _ := cmd.Flags().GetString("partyId")
-		input := &operations.AdminUpdatePartyAttributesV1Params{
+		input := &lobby_operations.AdminUpdatePartyAttributesV1Params{
 			Body:      body,
 			Namespace: namespace,
 			PartyID:   partyId,
 		}
-		ok, err := operationsService.AdminUpdatePartyAttributesV1Short(input)
+		ok, err := lobbyOperationsService.AdminUpdatePartyAttributesV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

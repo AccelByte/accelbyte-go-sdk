@@ -2,12 +2,12 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package operations
+package dslogmanagerOperations
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/operations"
+	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclient/dslogmanager_operations"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
-	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/lobby"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/dslogmanager"
 	"github.com/AccelByte/sample-apps/pkg/repository"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -19,12 +19,12 @@ var PublicGetMessagesCmd = &cobra.Command{
 	Short: "Public get messages",
 	Long:  `Public get messages`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		operationsService := &lobby.OperationsService{
-			Client:          factory.NewLobbyClient(&repository.ConfigRepositoryImpl{}),
+		dslogmanagerOperationsService := &dslogmanager.DslogmanagerOperationsService{
+			Client:          factory.NewDslogmanagerClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		input := &operations.PublicGetMessagesParams{}
-		ok, err := operationsService.PublicGetMessagesShort(input)
+		input := &dslogmanager_operations.PublicGetMessagesParams{}
+		ok, err := dslogmanagerOperationsService.PublicGetMessagesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

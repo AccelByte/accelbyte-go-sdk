@@ -5,6 +5,7 @@
 package cloudsave
 
 import (
+	"github.com/AccelByte/sample-apps/cmd/cloudsave/adminConcurrentRecord"
 	"github.com/AccelByte/sample-apps/cmd/cloudsave/adminGameRecord"
 	"github.com/AccelByte/sample-apps/cmd/cloudsave/adminPlayerRecord"
 	"github.com/AccelByte/sample-apps/cmd/cloudsave/concurrentRecord"
@@ -20,12 +21,14 @@ var CloudsaveCmd = &cobra.Command{
 }
 
 func init() {
+	CloudsaveCmd.AddCommand(adminConcurrentRecord.AdminPutGameRecordConcurrentHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminGameRecord.ListGameRecordsHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminGameRecord.AdminGetGameRecordHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminGameRecord.AdminPutGameRecordHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminGameRecord.AdminPostGameRecordHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminGameRecord.AdminDeleteGameRecordHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminPlayerRecord.ListPlayerRecordHandlerV1Cmd)
+	CloudsaveCmd.AddCommand(adminConcurrentRecord.AdminPutPlayerPublicRecordConcurrentHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminPlayerRecord.AdminRetrievePlayerRecordsCmd)
 	CloudsaveCmd.AddCommand(adminPlayerRecord.AdminGetPlayerRecordHandlerV1Cmd)
 	CloudsaveCmd.AddCommand(adminPlayerRecord.AdminPutPlayerRecordHandlerV1Cmd)

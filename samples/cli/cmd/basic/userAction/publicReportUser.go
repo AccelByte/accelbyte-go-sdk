@@ -39,13 +39,11 @@ var PublicReportUserCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := userActionService.PublicReportUserShort(input)
-		if err != nil {
-			logrus.Error(err)
+		errInput := userActionService.PublicReportUserShort(input)
+		if errInput != nil {
+			logrus.Error(errInput)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errInput
 		}
 
 		return nil

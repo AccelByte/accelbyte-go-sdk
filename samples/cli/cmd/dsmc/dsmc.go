@@ -8,8 +8,8 @@ import (
 	"github.com/AccelByte/sample-apps/cmd/dsmc/admin"
 	"github.com/AccelByte/sample-apps/cmd/dsmc/config"
 	"github.com/AccelByte/sample-apps/cmd/dsmc/deploymentConfig"
+	"github.com/AccelByte/sample-apps/cmd/dsmc/dsmcOperations"
 	"github.com/AccelByte/sample-apps/cmd/dsmc/imageConfig"
-	"github.com/AccelByte/sample-apps/cmd/dsmc/operations"
 	"github.com/AccelByte/sample-apps/cmd/dsmc/podConfig"
 	"github.com/AccelByte/sample-apps/cmd/dsmc/public"
 	"github.com/AccelByte/sample-apps/cmd/dsmc/server"
@@ -90,5 +90,5 @@ func init() {
 	DsmcCmd.AddCommand(public.GetDefaultProviderCmd)
 	DsmcCmd.AddCommand(public.ListProvidersCmd)
 	DsmcCmd.AddCommand(public.ListProvidersByRegionCmd)
-	DsmcCmd.AddCommand(operations.PublicGetMessagesCmd)
+	DsmcCmd.AddCommand(dsmcOperations.PublicGetMessagesCmd)
 }

@@ -47,7 +47,7 @@ var AuthorizationCmd = &cobra.Command{
 			ResponseType: responseType,
 			HTTPClient:   httpClient,
 		}
-		errInput := oAuthService.AuthorizationShort(input)
+		_, errInput := oAuthService.AuthorizationShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

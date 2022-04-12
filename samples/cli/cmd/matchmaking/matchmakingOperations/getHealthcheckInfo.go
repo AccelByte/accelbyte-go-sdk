@@ -2,10 +2,10 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package operations
+package matchmakingOperations
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/operations"
+	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking_operations"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -13,18 +13,18 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// VersionCheckHandlerCmd represents the VersionCheckHandler command
-var VersionCheckHandlerCmd = &cobra.Command{
-	Use:   "versionCheckHandler",
-	Short: "Version check handler",
-	Long:  `Version check handler`,
+// GetHealthcheckInfoCmd represents the GetHealthcheckInfo command
+var GetHealthcheckInfoCmd = &cobra.Command{
+	Use:   "getHealthcheckInfo",
+	Short: "Get healthcheck info",
+	Long:  `Get healthcheck info`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		operationsService := &matchmaking.OperationsService{
+		matchmakingOperationsService := &matchmaking.MatchmakingOperationsService{
 			Client:          factory.NewMatchmakingClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		input := &operations.VersionCheckHandlerParams{}
-		errInput := operationsService.VersionCheckHandlerShort(input)
+		input := &matchmaking_operations.GetHealthcheckInfoParams{}
+		errInput := matchmakingOperationsService.GetHealthcheckInfoShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

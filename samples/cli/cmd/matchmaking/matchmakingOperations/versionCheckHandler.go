@@ -2,10 +2,10 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
-package operations
+package matchmakingOperations
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/operations"
+	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclient/matchmaking_operations"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/matchmaking"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -13,24 +13,22 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// PublicGetMessagesCmd represents the PublicGetMessages command
-var PublicGetMessagesCmd = &cobra.Command{
-	Use:   "publicGetMessages",
-	Short: "Public get messages",
-	Long:  `Public get messages`,
+// VersionCheckHandlerCmd represents the VersionCheckHandler command
+var VersionCheckHandlerCmd = &cobra.Command{
+	Use:   "versionCheckHandler",
+	Short: "Version check handler",
+	Long:  `Version check handler`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		operationsService := &matchmaking.OperationsService{
+		matchmakingOperationsService := &matchmaking.MatchmakingOperationsService{
 			Client:          factory.NewMatchmakingClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		input := &operations.PublicGetMessagesParams{}
-		ok, err := operationsService.PublicGetMessagesShort(input)
-		if err != nil {
-			logrus.Error(err)
+		input := &matchmaking_operations.VersionCheckHandlerParams{}
+		errInput := matchmakingOperationsService.VersionCheckHandlerShort(input)
+		if errInput != nil {
+			logrus.Error(errInput)
 
-			return err
-		} else {
-			logrus.Infof("Response CLI success: %+v", ok)
+			return errInput
 		}
 
 		return nil

@@ -467,6 +467,9 @@
           "application/json"
         ],
         "responses": {
+          "204": {
+            "description": "no content"
+          },
           "400": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11621\u003c/td\u003e\u003ctd\u003eInvalid EQU8 api key in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
@@ -624,6 +627,9 @@
           "application/json"
         ],
         "responses": {
+          "204": {
+            "description": "no content"
+          },
           "422": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
@@ -756,6 +762,9 @@
           "application/json"
         ],
         "responses": {
+          "204": {
+            "description": "no content"
+          },
           "400": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e11621\u003c/td\u003e\u003ctd\u003eInvalid EQU8 api key in namespace [{namespace}]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
@@ -3432,6 +3441,9 @@
           "application/json"
         ],
         "responses": {
+          "204": {
+            "description": "no content"
+          },
           "400": {
             "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eErrorCode\u003c/td\u003e\u003ctd\u003eErrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20026\u003c/td\u003e\u003ctd\u003epublisher namespace not allowed\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {

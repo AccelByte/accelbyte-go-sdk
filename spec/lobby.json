@@ -3155,7 +3155,10 @@
             "authorization": []
           }
         ],
-        "summary": "admin update party attributes"
+        "summary": "admin update party attributes",
+        "tags": [
+          "Lobby Operations"
+        ]
       }
     },
     "/lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}": {
@@ -3243,7 +3246,10 @@
             "authorization": []
           }
         ],
-        "summary": "admin join a player into a party"
+        "summary": "admin join a player into a party",
+        "tags": [
+          "Lobby Operations"
+        ]
       }
     },
     "/lobby/v1/admin/party/namespaces/{namespace}/users/{userId}/party": {
@@ -5283,7 +5289,10 @@
             "authorization": []
           }
         ],
-        "summary": "get service messages"
+        "summary": "get service messages",
+        "tags": [
+          "Lobby Operations"
+        ]
       }
     },
     "/lobby/v1/public/chat/namespaces/{namespace}/users/me/friends/{friendId}": {
@@ -7966,6 +7975,10 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "allowJoinPartyDuringMatchmaking": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "autoKickOnDisconnect": {
           "type": "boolean",
           "x-omitempty": false
@@ -7990,7 +8003,7 @@
           "format": "int32",
           "type": "integer"
         },
-        "disablePartyInvitationToken": {
+        "disableInvitationOnJoinParty": {
           "type": "boolean",
           "x-omitempty": false
         },
@@ -8040,6 +8053,10 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "allowJoinPartyDuringMatchmaking": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "autoKickOnDisconnect": {
           "type": "boolean",
           "x-omitempty": false
@@ -8064,7 +8081,7 @@
           "format": "int32",
           "type": "integer"
         },
-        "disablePartyInvitationToken": {
+        "disableInvitationOnJoinParty": {
           "type": "boolean",
           "x-omitempty": false
         },
@@ -8109,13 +8126,14 @@
       },
       "required": [
         "allowInviteNonConnectedUser",
+        "allowJoinPartyDuringMatchmaking",
         "autoKickOnDisconnect",
         "autoKickOnDisconnectDelay",
         "cancelTicketOnDisconnect",
         "chatRateLimitBurst",
         "chatRateLimitDuration",
         "concurrentUsersLimit",
-        "disablePartyInvitationToken",
+        "disableInvitationOnJoinParty",
         "enableChat",
         "entitlementCheck",
         "entitlementItemID",
@@ -8147,6 +8165,10 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "allowJoinPartyDuringMatchmaking": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "autoKickOnDisconnect": {
           "type": "boolean",
           "x-omitempty": false
@@ -8171,7 +8193,7 @@
           "format": "int32",
           "type": "integer"
         },
-        "disablePartyInvitationToken": {
+        "disableInvitationOnJoinParty": {
           "type": "boolean",
           "x-omitempty": false
         },

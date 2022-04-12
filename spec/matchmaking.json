@@ -59,6 +59,9 @@
           {
             "authorization": []
           }
+        ],
+        "tags": [
+          "Matchmaking Operations"
         ]
       }
     },
@@ -74,6 +77,9 @@
           {
             "authorization": []
           }
+        ],
+        "tags": [
+          "Matchmaking Operations"
         ]
       }
     },
@@ -1847,7 +1853,10 @@
             "authorization": []
           }
         ],
-        "summary": "get service messages"
+        "summary": "get service messages",
+        "tags": [
+          "Matchmaking Operations"
+        ]
       }
     },
     "/matchmaking/v1/public/namespaces/{namespace}/channels": {
@@ -2127,6 +2136,9 @@
           {
             "authorization": []
           }
+        ],
+        "tags": [
+          "Matchmaking Operations"
         ]
       }
     }
@@ -3381,6 +3393,12 @@
         "status": {
           "type": "string",
           "x-nullable": false
+        },
+        "sub_game_mode": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "required": [
@@ -3396,7 +3414,8 @@
         "namespace",
         "region",
         "server_name",
-        "status"
+        "status",
+        "sub_game_mode"
       ]
     },
     "service.GetSessionHistorySearchResponseItemV2": {
@@ -3430,6 +3449,12 @@
         "status": {
           "type": "string",
           "x-nullable": false
+        },
+        "sub_game_mode": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "required": [
@@ -3439,7 +3464,8 @@
         "joinable",
         "match_id",
         "namespace",
-        "status"
+        "status",
+        "sub_game_mode"
       ]
     },
     "service.GetSessionHistorySearchResponseV2": {

@@ -528,7 +528,10 @@
             "authorization": []
           }
         ],
-        "summary": "get service messages"
+        "summary": "get service messages",
+        "tags": [
+          "Dslogmanager Operations"
+        ]
       }
     }
   },

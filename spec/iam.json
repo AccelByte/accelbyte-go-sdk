@@ -8013,7 +8013,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;This is the API to Add 3rd Platform Credential.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [CREATE] resource.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;The secret for \u0026lt;strong\u0026gt;apple\u0026lt;/strong\u0026gt; is base64 encoded private key.\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "\u0026lt;p\u0026gt;This is the API to Add 3rd Platform Credential.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [CREATE] resource.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;The secret for \u0026lt;strong\u0026gt;apple\u0026lt;/strong\u0026gt; is base64 encoded private key.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;If generic oauth flow is set to true: \u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;ul\u0026gt;\n\t\t\t\t\t \u0026lt;li\u0026gt;Current supported value for TokenAuthenticationType is \u0026lt;strong\u0026gt;idToken\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\t \u0026lt;li\u0026gt;\u0026lt;code\u0026gt;TokenClaimsMapping\u0026lt;/code\u0026gt; is used to extract user info from idToken claims. \n\t\t\t\t\t Its a JSON format with key should be \u0026lt;code\u0026gt;name\u0026lt;/code\u0026gt;, \u0026lt;code\u0026gt;email\u0026lt;/code\u0026gt; and \u0026lt;code\u0026gt;avatarURL\u0026lt;/code\u0026gt; \n\t\t\t\t\t since IAM will look up for these key when extracting user info.\u0026lt;/li\u0026gt;\n\t\t\t\t\t \u0026lt;/ul\u0026gt;\n\t\t",
         "operationId": "UpdateThirdPartyLoginPlatformCredentialV3",
         "parameters": [
           {
@@ -8091,7 +8091,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;This is the API to Add 3rd Platform Credential.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [CREATE] resource.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;The secret for \u0026lt;strong\u0026gt;apple\u0026lt;/strong\u0026gt; is base64 encoded private key.\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "\u0026lt;p\u0026gt;This is the API to Add 3rd Platform Credential.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [CREATE] resource.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;The secret for \u0026lt;strong\u0026gt;apple\u0026lt;/strong\u0026gt; is base64 encoded private key.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;If generic oauth flow is set to true: \u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;ul\u0026gt;\n\t\t\t\t\t \u0026lt;li\u0026gt;Current supported value for TokenAuthenticationType is \u0026lt;strong\u0026gt;idToken\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\t \u0026lt;li\u0026gt;\u0026lt;code\u0026gt;TokenClaimsMapping\u0026lt;/code\u0026gt; is used to extract user info from idToken claims. \n\t\t\t\t\t Its a JSON format with key should be \u0026lt;code\u0026gt;name\u0026lt;/code\u0026gt;, \u0026lt;code\u0026gt;email\u0026lt;/code\u0026gt; and \u0026lt;code\u0026gt;avatarURL\u0026lt;/code\u0026gt; \n\t\t\t\t\t since IAM will look up for these key when extracting user info.\u0026lt;/li\u0026gt;\n\t\t\t\t\t \u0026lt;/ul\u0026gt;\n\t\t",
         "operationId": "AddThirdPartyLoginPlatformCredentialV3",
         "parameters": [
           {
@@ -13142,7 +13142,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "Change 2FA method(In Development)\u0026lt;br/\u0026gt;\n\u0026lt;p\u0026gt;This endpoint is used for change 2FA method. Only enabled methods are accepted.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;Supported methods:\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n\t\u0026lt;li\u0026gt;authenticator\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;backupCodes\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n",
+        "description": "Change 2FA method\u0026lt;br/\u0026gt;\n\u0026lt;p\u0026gt;This endpoint is used for change 2FA method. Only enabled methods are accepted.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;Supported methods:\u0026lt;/p\u0026gt;\n\u0026lt;ul\u0026gt;\n\t\u0026lt;li\u0026gt;authenticator\u0026lt;/li\u0026gt;\n\t\u0026lt;li\u0026gt;backupCodes\u0026lt;/li\u0026gt;\n\u0026lt;/ul\u0026gt;\n",
         "operationId": "Change2FAMethod",
         "parameters": [
           {
@@ -13190,7 +13190,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "Verify 2FA code(In Development)\u0026lt;br/\u0026gt;\n\u0026lt;p\u0026gt;This endpoint is used for verifying 2FA code.\u0026lt;/p\u0026gt;\n",
+        "description": "Verify 2FA code\u0026lt;br/\u0026gt;\n\u0026lt;p\u0026gt;This endpoint is used for verifying 2FA code.\u0026lt;/p\u0026gt;\n",
         "operationId": "Verify2FACode",
         "parameters": [
           {
@@ -14281,7 +14281,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Notes:\u0026lt;/p\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;This endpoint bulk get users\u0026#39; basic info by userId, max allowed 20 at a time\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;If namespace is game, will search by game user Id, other wise will search by publisher namespace\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Result will include displayName(if it exists)\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t",
+        "description": "\u0026lt;p\u0026gt;Notes:\u0026lt;/p\u0026gt;\n\t\t\u0026lt;ul\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;This endpoint bulk get users\u0026#39; basic info by userId, max allowed 100 at a time\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;If namespace is game, will search by game user Id, other wise will search by publisher namespace\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;li\u0026gt;\u0026lt;strong\u0026gt;Result will include displayName(if it exists)\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\u0026lt;/ul\u0026gt;\n\t\t",
         "operationId": "PublicBulkGetUsers",
         "parameters": [
           {
@@ -16497,6 +16497,75 @@
         ]
       }
     },
+    "/iam/v4/admin/namespaces/{namespace}/users/{userId}/mfa/disable": {
+      "delete": {
+        "description": "\u0026lt;p\u0026gt;This endpoint requires ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE] permission\u0026lt;/p\u0026gt;\n\u0026lt;br\u0026gt;\u0026lt;p\u0026gt;This endpoint is used to disable user 2FA.\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt;",
+        "operationId": "AdminDisableUserMFAV4",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "User ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20002\u003c/td\u003e\u003ctd\u003evalidation error\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10193\u003c/td\u003e\u003ctd\u003emfa not enabled\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20022\u003c/td\u003e\u003ctd\u003etoken is not user token\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20013\u003c/td\u003e\u003ctd\u003einsufficient permissions\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Disable User 2FA",
+        "tags": [
+          "Users V4"
+        ]
+      }
+    },
     "/iam/v4/admin/namespaces/{namespace}/users/{userId}/roles": {
       "delete": {
         "consumes": [
@@ -17631,7 +17700,7 @@
     },
     "/iam/v4/admin/users/me/mfa/authenticator/disable": {
       "delete": {
-        "description": "\u0026lt;p\u0026gt;(In Development)This endpoint is used to disable 2FA authenticator.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to disable 2FA authenticator.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
         "operationId": "AdminDisableMyAuthenticatorV4",
         "produces": [
           "application/json"
@@ -17641,7 +17710,7 @@
             "description": "Authenticator disabled"
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -17659,7 +17728,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -17687,7 +17756,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "\u0026lt;p\u0026gt;(In Development)This endpoint is used to enable 2FA authenticator.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to enable 2FA authenticator.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
         "operationId": "AdminEnableMyAuthenticatorV4",
         "parameters": [
           {
@@ -17705,7 +17774,7 @@
             "description": "Authenticator enabled"
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10138\u003c/td\u003e\u003ctd\u003ecode not match\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10190\u003c/td\u003e\u003ctd\u003eauth secret key expired\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10138\u003c/td\u003e\u003ctd\u003ecode not match\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10190\u003c/td\u003e\u003ctd\u003eauth secret key expired\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -17723,7 +17792,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -17754,7 +17823,7 @@
     },
     "/iam/v4/admin/users/me/mfa/authenticator/key": {
       "post": {
-        "description": "\u0026lt;p\u0026gt;(In Development)This endpoint is used to generate a secret key for 3rd-party authenticator app. \nA QR code URI is also returned so that frontend can generate QR code image.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to generate a secret key for 3rd-party authenticator app. \nA QR code URI is also returned so that frontend can generate QR code image.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
         "operationId": "AdminGenerateMyAuthenticatorKeyV4",
         "produces": [
           "application/json"
@@ -17767,7 +17836,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -17785,7 +17854,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -17810,7 +17879,7 @@
     },
     "/iam/v4/admin/users/me/mfa/backupCode": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;(In Development)This endpoint is used to get 8-digits backup codes. \nEach code is a one-time code and will be deleted once used.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to get 8-digits backup codes. \nEach code is a one-time code and will be deleted once used.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
         "operationId": "AdminGetMyBackupCodesV4",
         "produces": [
           "application/json"
@@ -17823,7 +17892,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10192\u003c/td\u003e\u003ctd\u003efactor not enabled\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10192\u003c/td\u003e\u003ctd\u003efactor not enabled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -17841,7 +17910,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -17864,7 +17933,7 @@
         ]
       },
       "post": {
-        "description": "\u0026lt;p\u0026gt;(In Development)This endpoint is used to generate 8-digits backup codes. \nEach code is a one-time code and will be deleted once used.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to generate 8-digits backup codes. \nEach code is a one-time code and will be deleted once used.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
         "operationId": "AdminGenerateMyBackupCodesV4",
         "produces": [
           "application/json"
@@ -17877,7 +17946,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10192\u003c/td\u003e\u003ctd\u003efactor not enabled\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10192\u003c/td\u003e\u003ctd\u003efactor not enabled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -17895,7 +17964,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -17920,7 +17989,7 @@
     },
     "/iam/v4/admin/users/me/mfa/backupCode/disable": {
       "delete": {
-        "description": "\u0026lt;p\u0026gt;(In Development)This endpoint is used to enable 2FA backup codes.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to enable 2FA backup codes.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
         "operationId": "AdminDisableMyBackupCodesV4",
         "produces": [
           "application/json"
@@ -17930,7 +17999,7 @@
             "description": "Backup codes disabled"
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -17948,7 +18017,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -17973,7 +18042,7 @@
     },
     "/iam/v4/admin/users/me/mfa/backupCode/download": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;(In Development)This endpoint is used to download backup codes.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to download backup codes.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
         "operationId": "AdminDownloadMyBackupCodesV4",
         "produces": [
           "application/json"
@@ -17983,7 +18052,7 @@
             "description": "Backup codes downloaded"
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10192\u003c/td\u003e\u003ctd\u003efactor not enabled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10195\u003c/td\u003e\u003ctd\u003eno valid backup code found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10192\u003c/td\u003e\u003ctd\u003efactor not enabled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10195\u003c/td\u003e\u003ctd\u003eno valid backup code found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -18001,7 +18070,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -18026,7 +18095,7 @@
     },
     "/iam/v4/admin/users/me/mfa/backupCode/enable": {
       "post": {
-        "description": "\u0026lt;p\u0026gt;(In Development)This endpoint is used to enable 2FA backup codes.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to enable 2FA backup codes.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
         "operationId": "AdminEnableMyBackupCodesV4",
         "produces": [
           "application/json"
@@ -18039,7 +18108,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10194\u003c/td\u003e\u003ctd\u003efactor already enabled\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10194\u003c/td\u003e\u003ctd\u003efactor already enabled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -18057,7 +18126,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -18088,7 +18157,7 @@
     },
     "/iam/v4/admin/users/me/mfa/factor": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;(In Development)This endpoint is used to get user enabled factors.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to get user enabled factors.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
         "operationId": "AdminGetMyEnabledFactorsV4",
         "produces": [
           "application/json"
@@ -18101,7 +18170,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10193\u003c/td\u003e\u003ctd\u003emfa not enabled\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10193\u003c/td\u003e\u003ctd\u003emfa not enabled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -18119,7 +18188,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -18145,7 +18214,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "\u0026lt;p\u0026gt;(In Development)This endpoint is used to make 2FA factor default.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to make 2FA factor default.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
         "operationId": "AdminMakeFactorMyDefaultV4",
         "parameters": [
           {
@@ -18164,7 +18233,7 @@
             "description": "Default method changed"
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10189\u003c/td\u003e\u003ctd\u003einvalid factor\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10192\u003c/td\u003e\u003ctd\u003efactor not enabled\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10189\u003c/td\u003e\u003ctd\u003einvalid factor\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10192\u003c/td\u003e\u003ctd\u003efactor not enabled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -18182,7 +18251,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -18782,7 +18851,7 @@
     },
     "/iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/disable": {
       "delete": {
-        "description": "\u0026lt;p\u0026gt;(In Development)This endpoint is used to disable 2FA authenticator.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to disable 2FA authenticator.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
         "operationId": "PublicDisableMyAuthenticatorV4",
         "parameters": [
           {
@@ -18801,7 +18870,7 @@
             "description": "Authenticator disabled"
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -18819,7 +18888,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -18847,7 +18916,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "\u0026lt;p\u0026gt;(In Development)This endpoint is used to enable 2FA authenticator.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to enable 2FA authenticator.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
         "operationId": "PublicEnableMyAuthenticatorV4",
         "parameters": [
           {
@@ -18872,7 +18941,7 @@
             "description": "Authenticator enabled"
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10138\u003c/td\u003e\u003ctd\u003ecode not match\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10190\u003c/td\u003e\u003ctd\u003eauth secret key expired\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10138\u003c/td\u003e\u003ctd\u003ecode not match\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10190\u003c/td\u003e\u003ctd\u003eauth secret key expired\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -18890,7 +18959,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -18921,7 +18990,7 @@
     },
     "/iam/v4/public/namespaces/{namespace}/users/me/mfa/authenticator/key": {
       "post": {
-        "description": "\u0026lt;p\u0026gt;(In Development)This endpoint is used to generate a secret key for 3rd-party authenticator app. \nA QR code URI is also returned so that frontend can generate QR code image.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to generate a secret key for 3rd-party authenticator app. \nA QR code URI is also returned so that frontend can generate QR code image.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
         "operationId": "PublicGenerateMyAuthenticatorKeyV4",
         "parameters": [
           {
@@ -18943,7 +19012,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -18961,7 +19030,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -18986,7 +19055,7 @@
     },
     "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;(In Development)This endpoint is used to get 8-digits backup codes. \nEach code is a one-time code and will be deleted once used.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to get 8-digits backup codes. \nEach code is a one-time code and will be deleted once used.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
         "operationId": "PublicGetMyBackupCodesV4",
         "parameters": [
           {
@@ -19008,7 +19077,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10192\u003c/td\u003e\u003ctd\u003efactor not enabled\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10192\u003c/td\u003e\u003ctd\u003efactor not enabled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -19026,7 +19095,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -19049,7 +19118,7 @@
         ]
       },
       "post": {
-        "description": "\u0026lt;p\u0026gt;(In Development)This endpoint is used to generate 8-digits backup codes. \nEach code is a one-time code and will be deleted once used.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to generate 8-digits backup codes. \nEach code is a one-time code and will be deleted once used.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
         "operationId": "PublicGenerateMyBackupCodesV4",
         "parameters": [
           {
@@ -19071,7 +19140,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10192\u003c/td\u003e\u003ctd\u003efactor not enabled\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10192\u003c/td\u003e\u003ctd\u003efactor not enabled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -19089,7 +19158,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -19114,7 +19183,7 @@
     },
     "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/disable": {
       "delete": {
-        "description": "\u0026lt;p\u0026gt;(In Development)This endpoint is used to enable 2FA backup codes.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to enable 2FA backup codes.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
         "operationId": "PublicDisableMyBackupCodesV4",
         "parameters": [
           {
@@ -19133,7 +19202,7 @@
             "description": "Backup codes disabled"
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -19151,7 +19220,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -19176,7 +19245,7 @@
     },
     "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/download": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;(In Development)This endpoint is used to download backup codes.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to download backup codes.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
         "operationId": "PublicDownloadMyBackupCodesV4",
         "parameters": [
           {
@@ -19195,7 +19264,7 @@
             "description": "Backup codes downloaded"
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10192\u003c/td\u003e\u003ctd\u003efactor not enabled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10195\u003c/td\u003e\u003ctd\u003eno valid backup code found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10192\u003c/td\u003e\u003ctd\u003efactor not enabled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10195\u003c/td\u003e\u003ctd\u003eno valid backup code found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -19213,7 +19282,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -19238,7 +19307,7 @@
     },
     "/iam/v4/public/namespaces/{namespace}/users/me/mfa/backupCode/enable": {
       "post": {
-        "description": "\u0026lt;p\u0026gt;(In Development)This endpoint is used to enable 2FA backup codes.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to enable 2FA backup codes.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
         "operationId": "PublicEnableMyBackupCodesV4",
         "parameters": [
           {
@@ -19260,7 +19329,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10194\u003c/td\u003e\u003ctd\u003efactor already enabled\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -19278,7 +19347,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -19307,9 +19376,71 @@
         ]
       }
     },
+    "/iam/v4/public/namespaces/{namespace}/users/me/mfa/device": {
+      "delete": {
+        "description": "\u0026lt;p\u0026gt;(Only for test)This endpoint is used to remove trusted device.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\u0026lt;br/\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires device_token in cookie\u0026lt;/p\u0026gt;\n",
+        "operationId": "PublicRemoveTrustedDeviceV4",
+        "parameters": [
+          {
+            "description": "Namespace, only accept alphabet and numeric",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Device removed"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20001\u003c/td\u003e\u003ctd\u003eunauthorized access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20003\u003c/td\u003e\u003ctd\u003eforbidden access\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20000\u003c/td\u003e\u003ctd\u003einternal server error\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/rest.ErrorResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Remove Trusted Device",
+        "tags": [
+          "Users V4"
+        ]
+      }
+    },
     "/iam/v4/public/namespaces/{namespace}/users/me/mfa/factor": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;(In Development)This endpoint is used to get user enabled factors.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to get user enabled factors.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
         "operationId": "PublicGetMyEnabledFactorsV4",
         "parameters": [
           {
@@ -19331,7 +19462,7 @@
             }
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10193\u003c/td\u003e\u003ctd\u003emfa not enabled\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10193\u003c/td\u003e\u003ctd\u003emfa not enabled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -19349,7 +19480,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -19375,7 +19506,7 @@
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "description": "\u0026lt;p\u0026gt;(In Development)This endpoint is used to make 2FA factor default.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
+        "description": "\u0026lt;p\u0026gt;This endpoint is used to make 2FA factor default.\u0026lt;/p\u0026gt;\n\u0026lt;p\u0026gt;This endpoint Requires valid user access token\u0026lt;/p\u0026gt;\n",
         "operationId": "PublicMakeFactorMyDefaultV4",
         "parameters": [
           {
@@ -19401,7 +19532,7 @@
             "description": "Default method changed"
           },
           "400": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10189\u003c/td\u003e\u003ctd\u003einvalid factor\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10192\u003c/td\u003e\u003ctd\u003efactor not enabled\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10191\u003c/td\u003e\u003ctd\u003eemail address not verified\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10189\u003c/td\u003e\u003ctd\u003einvalid factor\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10192\u003c/td\u003e\u003ctd\u003efactor not enabled\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -19419,7 +19550,7 @@
             }
           },
           "404": {
-            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10171\u003c/td\u003e\u003ctd\u003eemail address not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e10139\u003c/td\u003e\u003ctd\u003eplatform account not found\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e20008\u003c/td\u003e\u003ctd\u003euser not found\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
             "schema": {
               "$ref": "#/definitions/rest.ErrorResponse"
             }
@@ -23051,12 +23182,15 @@
     "model.ThirdPartyLoginPlatformCredentialRequest": {
       "properties": {
         "ACSURL": {
+          "description": "ACSURL is an endpoint on the service provider where the identity provider will redirect to with its authentication response",
           "type": "string"
         },
         "AWSCognitoRegion": {
+          "description": "AWSCognitoRegion is aws region where user pool reside",
           "type": "string"
         },
         "AWSCognitoUserPool": {
+          "description": "AWSCognitoUserPool is aws cognito user pool id",
           "type": "string"
         },
         "AppId": {
@@ -23069,16 +23203,33 @@
           "type": "string"
         },
         "FederationMetadataURL": {
+          "description": "FederationMetadataURL is an endpoint on the Identity Provider(IdP) to get IdP federation metadata for service provider to build trust relationship",
           "type": "string"
+        },
+        "GenericOauthFlow": {
+          "type": "boolean",
+          "x-omitempty": false
         },
         "IsActive": {
           "type": "boolean",
           "x-omitempty": false
         },
+        "Issuer": {
+          "description": "Issuer of 3rd party identity provider. Used for generic oauth flow.",
+          "type": "string"
+        },
+        "JWKSEndpoint": {
+          "description": "JWKS endpoint to validate 3rd party user id token. Used for generic oauth flow.",
+          "type": "string"
+        },
         "KeyID": {
+          "description": "apple key id",
           "type": "string"
         },
         "OrganizationId": {
+          "type": "string"
+        },
+        "PlatformName": {
           "type": "string"
         },
         "RedirectUri": {
@@ -23088,7 +23239,19 @@
           "type": "string"
         },
         "TeamID": {
+          "description": "apple team id",
           "type": "string"
+        },
+        "TokenAuthenticationType": {
+          "description": "Token authentication type indicating what token will be used to authenticate 3rd party user. Currently support: idToken. Used for generic oauth flow.",
+          "type": "string"
+        },
+        "TokenClaimsMapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "A JSON containing how IAM service retrieve value from id token claims. Used for generic oauth flow.",
+          "type": "object"
         }
       },
       "required": [
@@ -23099,23 +23262,32 @@
         "ClientId",
         "Environment",
         "FederationMetadataURL",
+        "GenericOauthFlow",
         "IsActive",
+        "Issuer",
+        "JWKSEndpoint",
         "KeyID",
         "OrganizationId",
+        "PlatformName",
         "RedirectUri",
         "Secret",
-        "TeamID"
+        "TeamID",
+        "TokenAuthenticationType",
+        "TokenClaimsMapping"
       ]
     },
     "model.ThirdPartyLoginPlatformCredentialResponse": {
       "properties": {
         "ACSURL": {
+          "description": "ACSURL is an endpoint on the service provider where the identity provider will redirect to with its authentication response",
           "type": "string"
         },
         "AWSCognitoRegion": {
+          "description": "AWSCognitoRegion is aws region where user pool reside",
           "type": "string"
         },
         "AWSCognitoUserPool": {
+          "description": "AWSCognitoUserPool is aws cognito user pool id",
           "type": "string"
         },
         "AppId": {
@@ -23128,11 +23300,26 @@
           "type": "string"
         },
         "FederationMetadataURL": {
+          "description": "FederationMetadataURL is an endpoint on the Identity Provider(IdP) to get IdP federation metadata for service provider to build trust relationship",
           "type": "string"
+        },
+        "GenericOauthFlow": {
+          "default": false,
+          "description": "GenericOauthFlow is a flag that indicate this client is using generic oauth/open id flow or not",
+          "type": "boolean",
+          "x-omitempty": false
         },
         "IsActive": {
           "type": "boolean",
           "x-omitempty": false
+        },
+        "Issuer": {
+          "description": "Issuer of 3rd party identity provider. Used for generic oauth flow.",
+          "type": "string"
+        },
+        "JWKSEndpoint": {
+          "description": "JWKS endpoint to validate 3rd party user id token. Used for generic oauth flow.",
+          "type": "string"
         },
         "KeyID": {
           "type": "string"
@@ -23146,6 +23333,9 @@
         "PlatformId": {
           "type": "string"
         },
+        "PlatformName": {
+          "type": "string"
+        },
         "RedirectUri": {
           "type": "string"
         },
@@ -23154,6 +23344,17 @@
         },
         "TeamID": {
           "type": "string"
+        },
+        "TokenAuthenticationType": {
+          "description": "Token authentication type indicating what token will be used to authenticate 3rd party user. Currently support: idToken. Used for generic oauth flow.",
+          "type": "string"
+        },
+        "TokenClaimsMapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "A JSON containing how IAM service retrieve value from id token claims. Used for generic oauth flow.",
+          "type": "object"
         },
         "registeredDomains": {
           "items": {
@@ -23170,14 +23371,20 @@
         "ClientId",
         "Environment",
         "FederationMetadataURL",
+        "GenericOauthFlow",
         "IsActive",
+        "Issuer",
+        "JWKSEndpoint",
         "KeyID",
         "Namespace",
         "OrganizationId",
         "PlatformId",
+        "PlatformName",
         "RedirectUri",
         "Secret",
         "TeamID",
+        "TokenAuthenticationType",
+        "TokenClaimsMapping",
         "registeredDomains"
       ]
     },
@@ -24596,6 +24803,9 @@
     },
     "oauthmodel.ErrorResponse": {
       "properties": {
+        "default_factor": {
+          "type": "string"
+        },
         "error": {
           "type": "string"
         },
@@ -24603,6 +24813,15 @@
           "type": "string"
         },
         "error_uri": {
+          "type": "string"
+        },
+        "factors": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "mfa_token": {
           "type": "string"
         }
       },

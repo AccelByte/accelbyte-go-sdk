@@ -3,7 +3,7 @@
   "info": {
     "description": "Justice DSM Controller Service",
     "title": "justice-dsm-controller-service",
-    "version": "2.16.0"
+    "version": "2.16.1"
   },
   "schemes": [
     "https"
@@ -750,6 +750,12 @@
             "in": "path",
             "name": "namespace",
             "required": true,
+            "type": "string"
+          },
+          {
+            "description": "name of the deployment",
+            "in": "query",
+            "name": "name",
             "type": "string"
           },
           {
@@ -4864,7 +4870,10 @@
             "authorization": []
           }
         ],
-        "summary": "get service messages"
+        "summary": "get service messages",
+        "tags": [
+          "Dsmc Operations"
+        ]
       }
     }
   },

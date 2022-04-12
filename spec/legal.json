@@ -2241,6 +2241,10 @@
           "type": "boolean",
           "x-omitempty": false
         },
+        "isNeedToSendEventMarketing": {
+          "type": "boolean",
+          "x-omitempty": false
+        },
         "localizedPolicyVersionId": {
           "type": "string"
         },

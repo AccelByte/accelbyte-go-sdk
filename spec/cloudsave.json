@@ -65,6 +65,87 @@
   },
   "swagger": "2.0",
   "paths": {
+    "/cloudsave/v1/admin/namespaces/{namespace}/concurrent/records/{key}": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\n\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will create new game record or replace the existing game record.\n\n\u0026lt;b\u0026gt;Replace behaviour:\u0026lt;/b\u0026gt;\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n- \tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\n\n\n\u0026lt;h2\u0026gt;Reserved Word\u0026lt;/h2\u0026gt;\n\nReserved Word List: \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt;\n\nThe reserved word cannot be used as a field in record value, \nIf still defining the field when creating or updating the record, it will be ignored.\n\n\n\u0026lt;h2\u0026gt;Parameters Notes \u0026lt;/h2\u0026gt;\n1. set_by (default: CLIENT, type: string)\n\tIndicate which party that could modify the game record.\n\tSERVER: record can be modified by server only.\n\tCLIENT: record can be modified by client and server.\n2. updatedAt (required: true)\n               Time format style: RFC3339\n3. value\n               Json\n\u0026lt;b\u0026gt;Request Body Example:\u0026lt;/b\u0026gt;\n\u0026lt;pre\u0026gt;\n\t{\n\t\t\u0026#34;set_by\u0026#34;: \u0026#34;SERVER\u0026#34;,\n\t\t\u0026#34;value\u0026#34;: {},\n\t\t\u0026#34;updatedAt\u0026#34;: \u0026#34;2022-03-17T10:42:15.444Z\u0026#34;\n\t}\n\u0026lt;/pre\u0026gt;\n\n\u0026lt;h2\u0026gt;Optimistic Concurrency Control\u0026lt;/h2\u0026gt;\n\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed) \nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
+        "operationId": "adminPutGameRecordConcurrentHandlerV1",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.AdminConcurrentRecordRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Record saved"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18201\u003c/td\u003e\u003ctd\u003einvalid record operator, expect [%s] but actual [%s]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "412": {
+            "description": "Precondition Failed",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]",
+              "CLIENT []"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create or replace game record",
+        "tags": [
+          "AdminConcurrentRecord"
+        ]
+      }
+    },
     "/cloudsave/v1/admin/namespaces/{namespace}/records": {
       "get": {
         "consumes": [
@@ -480,6 +561,94 @@
         "summary": "Retrieve list of public player records",
         "tags": [
           "AdminPlayerRecord"
+        ]
+      }
+    },
+    "/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/concurrent/records/{key}/public": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "\u0026lt;table\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Permission\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\t\u0026lt;tr\u0026gt;\n\t\t\u0026lt;td\u0026gt;Required Scope\u0026lt;/td\u0026gt;\n\t\t\u0026lt;td\u0026gt;\u0026lt;code\u0026gt;social\u0026lt;/code\u0026gt;\u0026lt;/td\u0026gt;\n\t\u0026lt;/tr\u0026gt;\n\u0026lt;/table\u0026gt;\n\u0026lt;br/\u0026gt;\n\n\n\u0026lt;h2\u0026gt;Description\u0026lt;/h2\u0026gt;\n\nThis endpoints will create new player public record or replace the existing player public record.\n\n\u0026lt;b\u0026gt;Replace behaviour:\u0026lt;/b\u0026gt;\nThe existing value will be replaced completely with the new value.\n\nExample\n- \tExisting JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data1\u0026#34;: \u0026#34;value\u0026#34; }\u0026lt;/pre\u0026gt;\n- \tNew JSON:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n-\tResult:\n\t\u0026lt;pre\u0026gt;{ \u0026#34;data2\u0026#34;: \u0026#34;new value\u0026#34; }\u0026lt;/pre\u0026gt;\n\n\n\n\u0026lt;h2\u0026gt;Reserved Word\u0026lt;/h2\u0026gt;\n\nReserved Word List: \u0026lt;b\u0026gt;META\u0026lt;/b\u0026gt;\n\nThe reserved word cannot be used as a field in record value, \nIf still defining the field when creating or updating the record, it will be ignored.\n\n\n\u0026lt;h2\u0026gt;Parameters Notes \u0026lt;/h2\u0026gt;\n1. set_by (default: CLIENT, type: string)\n\tIndicate which party that could modify the game record.\n\tSERVER: record can be modified by server only.\n\tCLIENT: record can be modified by client and server.\n2. updatedAt (required: true)\n               Time format style: RFC3339\n3. value\n               Json\n\u0026lt;b\u0026gt;Request Body Example:\u0026lt;/b\u0026gt;\n\u0026lt;pre\u0026gt;\n\t{\n\t\t\u0026#34;set_by\u0026#34;: \u0026#34;SERVER\u0026#34;,\n\t\t\u0026#34;value\u0026#34;: {},\n\t\t\u0026#34;updatedAt\u0026#34;: \u0026#34;2022-03-17T10:42:15.444Z\u0026#34;\n\t}\n\u0026lt;/pre\u0026gt;\n\n\n\u0026lt;h2\u0026gt;Warning: Current Behaviour when Updating Private Record\u0026lt;/h2\u0026gt;\n\nWhen updating existing \u0026#34;Private Record\u0026#34;, this endpoint will always \u0026lt;b\u0026gt;convert the \u0026#34;Private Record\u0026#34; into \u0026#34;Public Record\u0026#34;\u0026lt;/b\u0026gt;.\nThis behaviour might be deprecated sooner, \u0026lt;b\u0026gt;please don\u0026#39;t rely with that behaviour\u0026lt;/b\u0026gt;.\n\n\u0026lt;h2\u0026gt;Optimistic Concurrency Control\u0026lt;/h2\u0026gt;\n\nThis endpoint implement optimistic concurrency control to avoid race condition.\nIf the record has been updated since the client fetch it, the server will return HTTP status code 412 (precondition failed)\nand client need to redo the operation (fetch data and do update).\nOtherwise, the server will process the request.\n",
+        "operationId": "adminPutPlayerPublicRecordConcurrentHandlerV1",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID who own the record",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "key of record",
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.AdminConcurrentRecordRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Record saved"
+          },
+          "400": {
+            "description": "\u003ctable\u003e\u003ctr\u003e\u003ctd\u003eerrorCode\u003c/td\u003e\u003ctd\u003eerrorMessage\u003c/td\u003e\u003c/tr\u003e\u003ctr\u003e\u003ctd\u003e18201\u003c/td\u003e\u003ctd\u003einvalid record operator, expect [%s] but actual [%s]\u003c/td\u003e\u003c/tr\u003e\u003c/table\u003e",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "412": {
+            "description": "Precondition Failed",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/models.ResponseError"
+            }
+          }
+        },
+        "security": [
+          {
+            "HasPermission": [
+              "ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]",
+              "CLIENT []"
+            ],
+            "HasScope": [
+              "social"
+            ],
+            "authorization": []
+          }
+        ],
+        "summary": "Create or replace player public record",
+        "tags": [
+          "AdminConcurrentRecord"
         ]
       }
     },
@@ -2308,6 +2477,24 @@
     }
   },
   "definitions": {
+    "models.AdminConcurrentRecordRequest": {
+      "properties": {
+        "set_by": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "value": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "set_by",
+        "updatedAt",
+        "value"
+      ]
+    },
     "models.BulkGetPlayerRecordResponse": {
       "properties": {
         "data": {

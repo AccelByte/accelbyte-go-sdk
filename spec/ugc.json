@@ -3882,7 +3882,7 @@
           "application/json",
           "application/octet-stream"
         ],
-        "description": "Requires valid user token",
+        "description": "Public user can access without token or if token specified, requires valid user token",
         "operationId": "PublicSearchContent",
         "parameters": [
           {
@@ -4149,7 +4149,7 @@
           "application/json",
           "application/octet-stream"
         ],
-        "description": "Requires valid user token",
+        "description": "Public user can access without token or if token specified, requires valid user token",
         "operationId": "DownloadContentByShareCode",
         "parameters": [
           {
@@ -4213,7 +4213,7 @@
           "application/json",
           "application/octet-stream"
         ],
-        "description": "Requires valid user token",
+        "description": "Public user can access without token or if token specified, requires valid user token",
         "operationId": "PublicDownloadContentByContentID",
         "parameters": [
           {
@@ -4637,7 +4637,7 @@
           },
           {
             "default": 1000,
-            "description": "number of content per page",
+            "description": "number of user per page",
             "in": "query",
             "name": "limit",
             "type": "integer"
@@ -4687,6 +4687,69 @@
         "summary": "Get followed creators",
         "tags": [
           "Public Follow"
+        ]
+      }
+    },
+    "/ugc/v1/public/namespaces/{namespace}/users/{userId}": {
+      "get": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "operationId": "GetCreator",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.CreatorOverviewResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get creator stats: number of total like by other user, number of total following and follower user",
+        "tags": [
+          "Public Creator"
         ]
       }
     },
@@ -5563,7 +5626,7 @@
           "application/json",
           "application/octet-stream"
         ],
-        "description": "Required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]\u0026lt;/b\u0026gt;.",
+        "description": "Public user can access without token or if token specified, required permission \u0026lt;b\u0026gt;NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]\u0026lt;/b\u0026gt;.",
         "operationId": "PublicGetUserContent",
         "parameters": [
           {
@@ -5963,6 +6026,160 @@
           }
         ],
         "summary": "Update follow/unfollow status to a user",
+        "tags": [
+          "Public Follow"
+        ]
+      }
+    },
+    "/ugc/v1/public/namespaces/{namespace}/users/{userId}/followers": {
+      "get": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "operationId": "GetPublicFollowers",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "1000",
+            "description": "number of user per page",
+            "in": "query",
+            "name": "limit",
+            "type": "string"
+          },
+          {
+            "default": "0",
+            "description": "the offset number to retrieve",
+            "in": "query",
+            "name": "offset",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedCreatorOverviewResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get list of followers",
+        "tags": [
+          "Public Follow"
+        ]
+      }
+    },
+    "/ugc/v1/public/namespaces/{namespace}/users/{userId}/following": {
+      "get": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "operationId": "GetPublicFollowing",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "user ID",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "1000",
+            "description": "number of user per page",
+            "in": "query",
+            "name": "limit",
+            "type": "string"
+          },
+          {
+            "default": "0",
+            "description": "the offset number to retrieve",
+            "in": "query",
+            "name": "offset",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/models.PaginatedCreatorOverviewResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get list of following",
         "tags": [
           "Public Follow"
         ]
@@ -7054,6 +7271,12 @@
     "models.CreatorOverviewResponse": {
       "properties": {
         "followCount": {
+          "description": "Number of followers",
+          "format": "int32",
+          "type": "integer"
+        },
+        "followingCount": {
+          "description": "Number of following",
           "format": "int32",
           "type": "integer"
         },
@@ -7062,12 +7285,19 @@
         },
         "namespace": {
           "type": "string"
+        },
+        "totalLikedContent": {
+          "description": "Total all other user's like to creator content",
+          "format": "integer",
+          "type": "integer"
         }
       },
       "required": [
         "followCount",
+        "followingCount",
         "id",
-        "namespace"
+        "namespace",
+        "totalLikedContent"
       ]
     },
     "models.GetContentPreviewResponse": {
@@ -7130,10 +7360,14 @@
             "$ref": "#/definitions/models.CreatorOverviewResponse"
           },
           "type": "array"
+        },
+        "paging": {
+          "$ref": "#/definitions/models.PagingCursor"
         }
       },
       "required": [
-        "data"
+        "data",
+        "paging"
       ]
     },
     "models.PaginatedGetChannelResponse": {

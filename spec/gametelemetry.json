@@ -63,7 +63,10 @@
             "HTTPBearer": []
           }
         ],
-        "summary": "Admin Get Events"
+        "summary": "Admin Get Events",
+        "tags": [
+          "Gametelemetry Operations"
+        ]
       }
     },
     "/game-telemetry/v1/admin/telemetrynamespace": {
@@ -85,7 +88,10 @@
             "HTTPBearer": []
           }
         ],
-        "summary": "Admin Get Namespace"
+        "summary": "Admin Get Namespace",
+        "tags": [
+          "Gametelemetry Operations"
+        ]
       }
     },
     "/game-telemetry/v1/protected/events": {

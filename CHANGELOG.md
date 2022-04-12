@@ -1,3 +1,38 @@
+<a name="v0.16.0"></a>
+## [v0.16.0] - 2022-04-12
+
+### Chore
+- enable linters
+- **api:** regenerate all services for justice 3.20
+- **api:** regenerate game-telemetry
+- **cli:** regenerate all cli for justice 3.20
+- **docs:** add a sample path for README.md
+- **docs:** changelog from v0.15.0 to v0.15.1
+- **sh-unit-tests:** regenerate sh unit tests for justice 3.20
+- **spec:** update spec files for justice 3.20
+- **test:** change namespace for dsm controller service
+- **wrapper:** add store the token
+
+### CI
+- **nightly:** change integration test lock to justice-demo-serversdktest
+
+### Docs
+- standardize readme format
+- update CHANGELOG.md for v0.16.0 release
+- update doc index
+
+### Feat
+- **docs:** add operation indexes
+- **test:** add game telemetry for get endpoint
+- **test:** add game-telemetry update playtime
+
+### Fix
+- **cli:** add login for grant type password
+- **test:** changing the admin role in group service
+- **test:** delete specified end date from event log
+- **test:** delete the hardcode values for group configuration
+
+
 <a name="v0.15.1"></a>
 ## [v0.15.1] - 2022-04-01
 
@@ -496,6 +531,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.16.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.15.1...v0.16.0
 [v0.15.1]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.15.0...v0.15.1
 [v0.15.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.14.0...v0.15.0
 [v0.14.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.13.0...v0.14.0

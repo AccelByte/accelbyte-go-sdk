@@ -1,172 +1,152 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-#Meta:
-#- random seed: 256
-#- template file: go-cli-unit-test.j2
+# Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+# This is licensed software from AccelByte Inc, for limitations
+# and restrictions contact your company contract manager.
 
-#Instructions:
-#- Run the Justice SDK Mock Server first before running this script.
+# Meta:
+# - random seed: 256
+# - template file: go-cli-unit-test.j2
+
+# Instructions:
+# - Run the Justice SDK Mock Server first before running this script.
+
+export AB_BASE_URL="http://127.0.0.1:8080"
+export AB_CLIENT_ID="admin"
+export AB_CLIENT_SECRET="admin"
+export AB_NAMESPACE="test"
+
+export JUSTICE_BASE_URL="$AB_BASE_URL"
+export APP_CLIENT_ID="$AB_CLIENT_ID"
+export APP_CLIENT_SECRET="$AB_CLIENT_SECRET"
+
+EXIT_CODE=0
+
+eval_tap() {
+  if [ $1 -eq 0 ]; then
+    echo "ok $2 - $3"
+  else
+    EXIT_CODE=1
+    echo "not ok $2 - $3"
+    sed 's/^/# /g' $4
+  fi
+  rm -f $4
+}
 
 MODULE='cmd'
 MODULE_PATH='../samples/cli'
 TEMP_TOKEN="/tmp/justice-sample-apps/userData"
-TEMP_FILE='file.tmp'
 
-OPERATIONS_COUNT=42
+echo "TAP version 13"
+echo "1..43"
 
-FINISHED_COUNT=0
-SUCCESS_COUNT=0
-FAILED_COUNT=0
+#- 1 Login
+rm -f $TEMP_TOKEN \
+    && mkdir -p $(dirname $TEMP_TOKEN) \
+    && echo {"\"access_token"\":"\"foo"\"} >> $TEMP_TOKEN
+eval_tap 0 1 'Login # SKIP not tested' test.out
 
-export JUSTICE_BASE_URL="http://0.0.0.0:8080"
-export APP_CLIENT_ID="admin"
-export APP_CLIENT_SECRET="admin"
+if [ $EXIT_CODE -ne 0 ]; then
+  echo "Bail out! Login failed."
+  exit $EXIT_CODE
+fi
 
-create_file() {
-    touch $1
-}
+touch "tmp.dat"
 
-delete_file() {
-    [ ! -e $1 ] || rm $1
-}
-
-update_status() {
-    return_code=$1
-    operation_name=$2
-
-    FINISHED_COUNT=$(( $FINISHED_COUNT + 1 ))
-
-    if [ $return_code == 0 ]
-    then
-        SUCCESS_COUNT=$(( $SUCCESS_COUNT + 1 ))
-        echo "ok $FINISHED_COUNT $operation_name"
-    else
-        FAILED_COUNT=$(( $FAILED_COUNT + 1 ))
-        echo "not ok $FINISHED_COUNT - $operation_name"
-        echo '  ---'
-        echo '  error: |-'
-        while read line; do
-          echo "    $line" | tr '\n' ' '
-        echo $line
-        done < $TEMP_FILE
-    fi
-}
-
-create_file 'tmp.dat'
-
-rm -f $TEMP_TOKEN
-mkdir -p $(dirname $TEMP_TOKEN)
-echo {"\"access_token"\":"\"foo"\"} >> $TEMP_TOKEN
-echo "1..$OPERATIONS_COUNT"
-
-#- 1 changePreferenceConsent
+#- 2 ChangePreferenceConsent
 samples/cli/sample-apps Legal changePreferenceConsent \
     --body '[{"isAccepted": true, "isNeedToSendEventMarketing": true, "localizedPolicyVersionId": "BxyZcDXB", "policyId": "pGlsQuJu", "policyVersionId": "8vMf0IsJ"}]' \
     --namespace 'kTrd8IDc' \
     --userId 'V2zXnTKj' \
-    >$TEMP_FILE 2>&1
-update_status $? 'changePreferenceConsent'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 2 'ChangePreferenceConsent' test.out
 
-#- 2 retrieveAcceptedAgreements
+#- 3 RetrieveAcceptedAgreements
 samples/cli/sample-apps Legal retrieveAcceptedAgreements \
     --userId 'XY1bPqam' \
-    >$TEMP_FILE 2>&1
-update_status $? 'retrieveAcceptedAgreements'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 3 'RetrieveAcceptedAgreements' test.out
 
-#- 3 retrieveAllUsersByPolicyVersion
+#- 4 RetrieveAllUsersByPolicyVersion
 samples/cli/sample-apps Legal retrieveAllUsersByPolicyVersion \
     --keyword 'iBxx9Cs1' \
     --limit '61' \
     --offset '100' \
     --policyVersionId '84ekItqR' \
-    >$TEMP_FILE 2>&1
-update_status $? 'retrieveAllUsersByPolicyVersion'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 4 'RetrieveAllUsersByPolicyVersion' test.out
 
-#- 4 retrieveAllLegalPolicies
+#- 5 RetrieveAllLegalPolicies
 samples/cli/sample-apps Legal retrieveAllLegalPolicies \
-    >$TEMP_FILE 2>&1
-update_status $? 'retrieveAllLegalPolicies'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 5 'RetrieveAllLegalPolicies' test.out
 
-#- 5 createPolicy
+#- 6 CreatePolicy
 samples/cli/sample-apps Legal createPolicy \
     --body '{"affectedClientIds": ["zHU1oh57"], "affectedCountries": ["0KQBVaew"], "basePolicyName": "c72krSha", "description": "68n3Ynoz", "namespace": "p1C2KmIQ", "tags": ["TuBdNEUs"], "typeId": "xFb8CJ17"}' \
-    >$TEMP_FILE 2>&1
-update_status $? 'createPolicy'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 6 'CreatePolicy' test.out
 
-#- 6 retrieveSinglePolicy
+#- 7 RetrieveSinglePolicy
 samples/cli/sample-apps Legal retrieveSinglePolicy \
     --basePolicyId 'M7DJZaMS' \
-    >$TEMP_FILE 2>&1
-update_status $? 'retrieveSinglePolicy'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 7 'RetrieveSinglePolicy' test.out
 
-#- 7 partialUpdatePolicy
+#- 8 PartialUpdatePolicy
 samples/cli/sample-apps Legal partialUpdatePolicy \
     --body '{"affectedClientIds": ["xECbZbyg"], "affectedCountries": ["yoarORoe"], "basePolicyName": "NHSb8Rh3", "description": "kgs9qqJb", "namespace": "nQsoBgiV", "tags": ["pP8Cm3yv"]}' \
     --basePolicyId 'ASUoxdxx' \
-    >$TEMP_FILE 2>&1
-update_status $? 'partialUpdatePolicy'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 8 'PartialUpdatePolicy' test.out
 
-#- 8 retrievePolicyCountry
+#- 9 RetrievePolicyCountry
 samples/cli/sample-apps Legal retrievePolicyCountry \
     --basePolicyId 'FqmAGTJ8' \
     --countryCode 'IEdagEtp' \
-    >$TEMP_FILE 2>&1
-update_status $? 'retrievePolicyCountry'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 9 'RetrievePolicyCountry' test.out
 
-#- 9 retrieveLocalizedPolicyVersions
+#- 10 RetrieveLocalizedPolicyVersions
 samples/cli/sample-apps Legal retrieveLocalizedPolicyVersions \
     --policyVersionId '4w29KOu9' \
-    >$TEMP_FILE 2>&1
-update_status $? 'retrieveLocalizedPolicyVersions'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 10 'RetrieveLocalizedPolicyVersions' test.out
 
-#- 10 createLocalizedPolicyVersion
+#- 11 CreateLocalizedPolicyVersion
 samples/cli/sample-apps Legal createLocalizedPolicyVersion \
     --body '{"contentType": "c19R6XDq", "description": "WHkkP8np", "localeCode": "LEKMfjiX"}' \
     --policyVersionId '7jpkVZk3' \
-    >$TEMP_FILE 2>&1
-update_status $? 'createLocalizedPolicyVersion'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 11 'CreateLocalizedPolicyVersion' test.out
 
-#- 11 retrieveSingleLocalizedPolicyVersion
+#- 12 RetrieveSingleLocalizedPolicyVersion
 samples/cli/sample-apps Legal retrieveSingleLocalizedPolicyVersion \
     --localizedPolicyVersionId 'IaQYEmqG' \
-    >$TEMP_FILE 2>&1
-update_status $? 'retrieveSingleLocalizedPolicyVersion'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 12 'RetrieveSingleLocalizedPolicyVersion' test.out
 
-#- 12 updateLocalizedPolicyVersion
+#- 13 UpdateLocalizedPolicyVersion
 samples/cli/sample-apps Legal updateLocalizedPolicyVersion \
     --body '{"attachmentChecksum": "odOEGt9g", "attachmentLocation": "POj0c6i0", "attachmentVersionIdentifier": "JkvIas73", "contentType": "ucYnFAJ3", "description": "DK5T4Eog"}' \
     --localizedPolicyVersionId 'g0Y39UoY' \
-    >$TEMP_FILE 2>&1
-update_status $? 'updateLocalizedPolicyVersion'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 13 'UpdateLocalizedPolicyVersion' test.out
 
-#- 13 requestPresignedURL
+#- 14 RequestPresignedURL
 samples/cli/sample-apps Legal requestPresignedURL \
     --body '{"contentMD5": "lpv5bVAg", "contentType": "tsDhUTDU"}' \
     --localizedPolicyVersionId 'scbQDjbT' \
-    >$TEMP_FILE 2>&1
-update_status $? 'requestPresignedURL'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 14 'RequestPresignedURL' test.out
 
-#- 14 setDefaultPolicy
+#- 15 SetDefaultPolicy
 samples/cli/sample-apps Legal setDefaultPolicy \
     --localizedPolicyVersionId 'QuPMz2PT' \
-    >$TEMP_FILE 2>&1
-update_status $? 'setDefaultPolicy'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 15 'SetDefaultPolicy' test.out
 
-#- 15 indirectBulkAcceptVersionedPolicy
+#- 16 IndirectBulkAcceptVersionedPolicy
 samples/cli/sample-apps Legal indirectBulkAcceptVersionedPolicy \
     --body '[{"isAccepted": false, "isNeedToSendEventMarketing": false, "localizedPolicyVersionId": "yU89ZPOw", "policyId": "6zPFJ42c", "policyVersionId": "wmzBBSMN"}]' \
     --namespace 'coAAOjKN' \
@@ -174,212 +154,186 @@ samples/cli/sample-apps Legal indirectBulkAcceptVersionedPolicy \
     --publisherUserId '3aYgBU1s' \
     --clientId 'qjyK0XH4' \
     --countryCode '5PaRSOFQ' \
-    >$TEMP_FILE 2>&1
-update_status $? 'indirectBulkAcceptVersionedPolicy'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 16 'IndirectBulkAcceptVersionedPolicy' test.out
 
-#- 16 adminRetrieveEligibilities
+#- 17 AdminRetrieveEligibilities
 samples/cli/sample-apps Legal adminRetrieveEligibilities \
     --namespace 'Btu23REZ' \
     --userId '8hRVX7LG' \
     --publisherUserId 'OvDdYiQS' \
     --clientId '9i7mV1C9' \
     --countryCode '1pjG9gpx' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminRetrieveEligibilities'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 17 'AdminRetrieveEligibilities' test.out
 
-#- 17 retrievePolicies
+#- 18 RetrievePolicies
 samples/cli/sample-apps Legal retrievePolicies \
     --countryCode 'L6ycTQdv' \
-    >$TEMP_FILE 2>&1
-update_status $? 'retrievePolicies'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 18 'RetrievePolicies' test.out
 
-#- 18 updatePolicyVersion
+#- 19 UpdatePolicyVersion
 samples/cli/sample-apps Legal updatePolicyVersion \
     --body '{"description": "ln2LAuSQ", "displayVersion": "WEXL6LFE", "isCommitted": false}' \
     --policyVersionId '9m126ZWc' \
-    >$TEMP_FILE 2>&1
-update_status $? 'updatePolicyVersion'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 19 'UpdatePolicyVersion' test.out
 
-#- 19 publishPolicyVersion
+#- 20 PublishPolicyVersion
 samples/cli/sample-apps Legal publishPolicyVersion \
     --policyVersionId '8hHtWvbN' \
     --shouldNotify 'True' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publishPolicyVersion'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 20 'PublishPolicyVersion' test.out
 
-#- 20 updatePolicy
+#- 21 UpdatePolicy
 samples/cli/sample-apps Legal updatePolicy \
     --body '{"description": "gUqslArF", "isDefaultOpted": false, "isMandatory": true, "policyName": "aCv8kU9d", "readableId": "BBpdsJLh", "shouldNotifyOnUpdate": true}' \
     --policyId 'VyExrkxo' \
-    >$TEMP_FILE 2>&1
-update_status $? 'updatePolicy'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 21 'UpdatePolicy' test.out
 
-#- 21 setDefaultPolicy1
+#- 22 SetDefaultPolicy1
 samples/cli/sample-apps Legal setDefaultPolicy1 \
     --policyId 'ot0B7WOf' \
-    >$TEMP_FILE 2>&1
-update_status $? 'setDefaultPolicy1'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 22 'SetDefaultPolicy1' test.out
 
-#- 22 retrieveSinglePolicyVersion
+#- 23 RetrieveSinglePolicyVersion
 samples/cli/sample-apps Legal retrieveSinglePolicyVersion \
     --policyId 'ercZdpMc' \
     --versionId 'i37Ds7YS' \
-    >$TEMP_FILE 2>&1
-update_status $? 'retrieveSinglePolicyVersion'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 23 'RetrieveSinglePolicyVersion' test.out
 
-#- 23 createPolicyVersion
+#- 24 CreatePolicyVersion
 samples/cli/sample-apps Legal createPolicyVersion \
     --body '{"description": "fExaI3uz", "displayVersion": "LteMbFAl", "isCommitted": true}' \
     --policyId '4hr7HmOY' \
-    >$TEMP_FILE 2>&1
-update_status $? 'createPolicyVersion'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 24 'CreatePolicyVersion' test.out
 
-#- 24 retrieveAllPolicyTypes
+#- 25 RetrieveAllPolicyTypes
 samples/cli/sample-apps Legal retrieveAllPolicyTypes \
     --offset '16' \
     --limit '55' \
-    >$TEMP_FILE 2>&1
-update_status $? 'retrieveAllPolicyTypes'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 25 'RetrieveAllPolicyTypes' test.out
 
-#- 25 getUserInfoStatus
+#- 26 GetUserInfoStatus
 samples/cli/sample-apps Legal getUserInfoStatus \
     --namespaces 'A5ltAOXm' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getUserInfoStatus'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 26 'GetUserInfoStatus' test.out
 
-#- 26 syncUserInfo
+#- 27 SyncUserInfo
 samples/cli/sample-apps Legal syncUserInfo \
     --namespace 'lG6eh1dT' \
-    >$TEMP_FILE 2>&1
-update_status $? 'syncUserInfo'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 27 'SyncUserInfo' test.out
 
-#- 27 invalidateUserInfoCache
+#- 28 InvalidateUserInfoCache
 samples/cli/sample-apps Legal invalidateUserInfoCache \
     --namespace 'doTFpBIc' \
-    >$TEMP_FILE 2>&1
-update_status $? 'invalidateUserInfoCache'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 28 'InvalidateUserInfoCache' test.out
 
-#- 28 anonymizeUserAgreement
+#- 29 AnonymizeUserAgreement
 samples/cli/sample-apps Legal anonymizeUserAgreement \
     --userId 'uC1dQY93' \
-    >$TEMP_FILE 2>&1
-update_status $? 'anonymizeUserAgreement'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 29 'AnonymizeUserAgreement' test.out
 
-#- 29 changePreferenceConsent1
+#- 30 ChangePreferenceConsent1
 samples/cli/sample-apps Legal changePreferenceConsent1 \
     --body '[{"isAccepted": false, "isNeedToSendEventMarketing": false, "localizedPolicyVersionId": "9vD8ldz7", "policyId": "Hu8AD79k", "policyVersionId": "dWunvizU"}]' \
-    >$TEMP_FILE 2>&1
-update_status $? 'changePreferenceConsent1'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 30 'ChangePreferenceConsent1' test.out
 
-#- 30 acceptVersionedPolicy
+#- 31 AcceptVersionedPolicy
 samples/cli/sample-apps Legal acceptVersionedPolicy \
     --localizedPolicyVersionId '0q1pHyhh' \
-    >$TEMP_FILE 2>&1
-update_status $? 'acceptVersionedPolicy'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 31 'AcceptVersionedPolicy' test.out
 
-#- 31 retrieveAgreementsPublic
+#- 32 RetrieveAgreementsPublic
 samples/cli/sample-apps Legal retrieveAgreementsPublic \
-    >$TEMP_FILE 2>&1
-update_status $? 'retrieveAgreementsPublic'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 32 'RetrieveAgreementsPublic' test.out
 
-#- 32 bulkAcceptVersionedPolicy
+#- 33 BulkAcceptVersionedPolicy
 samples/cli/sample-apps Legal bulkAcceptVersionedPolicy \
     --body '[{"isAccepted": true, "isNeedToSendEventMarketing": false, "localizedPolicyVersionId": "GgdrysMi", "policyId": "zBGSRdP2", "policyVersionId": "l7DNSZ8A"}]' \
-    >$TEMP_FILE 2>&1
-update_status $? 'bulkAcceptVersionedPolicy'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 33 'BulkAcceptVersionedPolicy' test.out
 
-#- 33 indirectBulkAcceptVersionedPolicyV2
+#- 34 IndirectBulkAcceptVersionedPolicyV2
 samples/cli/sample-apps Legal indirectBulkAcceptVersionedPolicyV2 \
     --body '[{"isAccepted": true, "isNeedToSendEventMarketing": false, "localizedPolicyVersionId": "PLQXSe07", "policyId": "ZddOGTMl", "policyVersionId": "JjBwj9HJ"}]' \
     --clientId 'HQKseEdS' \
     --countryCode 'XRDSvgua' \
     --namespace 'uw1xT7eM' \
     --userId 'wSl9MLH0' \
-    >$TEMP_FILE 2>&1
-update_status $? 'indirectBulkAcceptVersionedPolicyV2'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 34 'IndirectBulkAcceptVersionedPolicyV2' test.out
 
-#- 34 indirectBulkAcceptVersionedPolicy1
+#- 35 IndirectBulkAcceptVersionedPolicy1
 samples/cli/sample-apps Legal indirectBulkAcceptVersionedPolicy1 \
     --body '[{"isAccepted": false, "isNeedToSendEventMarketing": true, "localizedPolicyVersionId": "lNzBvwJa", "policyId": "Qa547Jll", "policyVersionId": "vA8RWSpa"}]' \
     --userId 'bUt7xk6Q' \
-    >$TEMP_FILE 2>&1
-update_status $? 'indirectBulkAcceptVersionedPolicy1'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 35 'IndirectBulkAcceptVersionedPolicy1' test.out
 
-#- 35 retrieveEligibilitiesPublic
+#- 36 RetrieveEligibilitiesPublic
 samples/cli/sample-apps Legal retrieveEligibilitiesPublic \
     --namespace 'xyWhfqoW' \
-    >$TEMP_FILE 2>&1
-update_status $? 'retrieveEligibilitiesPublic'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 36 'RetrieveEligibilitiesPublic' test.out
 
-#- 36 retrieveEligibilitiesPublicIndirect
+#- 37 RetrieveEligibilitiesPublicIndirect
 samples/cli/sample-apps Legal retrieveEligibilitiesPublicIndirect \
     --clientId 'fJw2o8oW' \
     --countryCode 'UqvPCZ2H' \
     --namespace 'zT7NXmWD' \
     --userId 'lXsuNIdQ' \
-    >$TEMP_FILE 2>&1
-update_status $? 'retrieveEligibilitiesPublicIndirect'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 37 'RetrieveEligibilitiesPublicIndirect' test.out
 
-#- 37 retrieveSingleLocalizedPolicyVersion1
+#- 38 RetrieveSingleLocalizedPolicyVersion1
 samples/cli/sample-apps Legal retrieveSingleLocalizedPolicyVersion1 \
     --localizedPolicyVersionId 'JR5lsNOl' \
-    >$TEMP_FILE 2>&1
-update_status $? 'retrieveSingleLocalizedPolicyVersion1'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 38 'RetrieveSingleLocalizedPolicyVersion1' test.out
 
-#- 38 retrievePolicyVersions
+#- 39 RetrievePolicyVersions
 samples/cli/sample-apps Legal retrievePolicyVersions \
     --basePolicyId 'vkfwaSbn' \
     --localeId 'suLCgTox' \
     --namespace 'uVTekJgv' \
-    >$TEMP_FILE 2>&1
-update_status $? 'retrievePolicyVersions'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 39 'RetrievePolicyVersions' test.out
 
-#- 39 retrieveLatestPolicies
+#- 40 RetrieveLatestPolicies
 samples/cli/sample-apps Legal retrieveLatestPolicies \
     --countryCode 'g6h5HIpH' \
     --defaultOnEmpty 'True' \
     --policyType 'MARKETING_PREFERENCE_TYPE' \
     --tags 'iplEk4vj' \
-    >$TEMP_FILE 2>&1
-update_status $? 'retrieveLatestPolicies'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 40 'RetrieveLatestPolicies' test.out
 
-#- 40 retrieveLatestPoliciesPublic
+#- 41 RetrieveLatestPoliciesPublic
 samples/cli/sample-apps Legal retrieveLatestPoliciesPublic \
     --namespace '3LDp4yqD' \
     --alwaysIncludeDefault 'True' \
     --defaultOnEmpty 'True' \
     --policyType 'LEGAL_DOCUMENT_TYPE' \
     --tags 'xlHasinG' \
-    >$TEMP_FILE 2>&1
-update_status $? 'retrieveLatestPoliciesPublic'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 41 'RetrieveLatestPoliciesPublic' test.out
 
-#- 41 retrieveLatestPoliciesByNamespaceAndCountryPublic
+#- 42 RetrieveLatestPoliciesByNamespaceAndCountryPublic
 samples/cli/sample-apps Legal retrieveLatestPoliciesByNamespaceAndCountryPublic \
     --countryCode 'cjrkmRMt' \
     --namespace 'tgjDSaIV' \
@@ -387,16 +341,15 @@ samples/cli/sample-apps Legal retrieveLatestPoliciesByNamespaceAndCountryPublic 
     --defaultOnEmpty 'False' \
     --policyType 'LEGAL_DOCUMENT_TYPE' \
     --tags 't3Udg7p9' \
-    >$TEMP_FILE 2>&1
-update_status $? 'retrieveLatestPoliciesByNamespaceAndCountryPublic'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 42 'RetrieveLatestPoliciesByNamespaceAndCountryPublic' test.out
 
-#- 42 checkReadiness
+#- 43 CheckReadiness
 samples/cli/sample-apps Legal checkReadiness \
-    >$TEMP_FILE 2>&1
-update_status $? 'checkReadiness'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 43 'CheckReadiness' test.out
 
-delete_file 'tmp.dat'
 
-exit $FAILED_COUNT
+rm -f "tmp.dat"
+
+exit $EXIT_CODE

@@ -1,192 +1,173 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-#Meta:
-#- random seed: 256
-#- template file: go-cli-unit-test.j2
+# Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+# This is licensed software from AccelByte Inc, for limitations
+# and restrictions contact your company contract manager.
 
-#Instructions:
-#- Run the Justice SDK Mock Server first before running this script.
+# Meta:
+# - random seed: 256
+# - template file: go-cli-unit-test.j2
+
+# Instructions:
+# - Run the Justice SDK Mock Server first before running this script.
+
+export AB_BASE_URL="http://127.0.0.1:8080"
+export AB_CLIENT_ID="admin"
+export AB_CLIENT_SECRET="admin"
+export AB_NAMESPACE="test"
+
+export JUSTICE_BASE_URL="$AB_BASE_URL"
+export APP_CLIENT_ID="$AB_CLIENT_ID"
+export APP_CLIENT_SECRET="$AB_CLIENT_SECRET"
+
+EXIT_CODE=0
+
+eval_tap() {
+  if [ $1 -eq 0 ]; then
+    echo "ok $2 - $3"
+  else
+    EXIT_CODE=1
+    echo "not ok $2 - $3"
+    sed 's/^/# /g' $4
+  fi
+  rm -f $4
+}
 
 MODULE='cmd'
 MODULE_PATH='../samples/cli'
 TEMP_TOKEN="/tmp/justice-sample-apps/userData"
-TEMP_FILE='file.tmp'
 
-OPERATIONS_COUNT=14
+echo "TAP version 13"
+echo "1..15"
 
-FINISHED_COUNT=0
-SUCCESS_COUNT=0
-FAILED_COUNT=0
+#- 1 Login
+rm -f $TEMP_TOKEN \
+    && mkdir -p $(dirname $TEMP_TOKEN) \
+    && echo {"\"access_token"\":"\"foo"\"} >> $TEMP_TOKEN
+eval_tap 0 1 'Login # SKIP not tested' test.out
 
-export JUSTICE_BASE_URL="http://0.0.0.0:8080"
-export APP_CLIENT_ID="admin"
-export APP_CLIENT_SECRET="admin"
+if [ $EXIT_CODE -ne 0 ]; then
+  echo "Bail out! Login failed."
+  exit $EXIT_CODE
+fi
 
-create_file() {
-    touch $1
-}
+touch "tmp.dat"
 
-delete_file() {
-    [ ! -e $1 ] || rm $1
-}
-
-update_status() {
-    return_code=$1
-    operation_name=$2
-
-    FINISHED_COUNT=$(( $FINISHED_COUNT + 1 ))
-
-    if [ $return_code == 0 ]
-    then
-        SUCCESS_COUNT=$(( $SUCCESS_COUNT + 1 ))
-        echo "ok $FINISHED_COUNT $operation_name"
-    else
-        FAILED_COUNT=$(( $FAILED_COUNT + 1 ))
-        echo "not ok $FINISHED_COUNT - $operation_name"
-        echo '  ---'
-        echo '  error: |-'
-        while read line; do
-          echo "    $line" | tr '\n' ' '
-        echo $line
-        done < $TEMP_FILE
-    fi
-}
-
-create_file 'tmp.dat'
-
-rm -f $TEMP_TOKEN
-mkdir -p $(dirname $TEMP_TOKEN)
-echo {"\"access_token"\":"\"foo"\"} >> $TEMP_TOKEN
-echo "1..$OPERATIONS_COUNT"
-
-#- 1 adminListAchievements
+#- 2 AdminListAchievements
 samples/cli/sample-apps Achievement adminListAchievements \
     --namespace 'FtBxyZcD' \
     --limit '98' \
     --offset '55' \
     --sortBy 'pGlsQuJu' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminListAchievements'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 2 'AdminListAchievements' test.out
 
-#- 2 adminCreateNewAchievement
+#- 3 AdminCreateNewAchievement
 samples/cli/sample-apps Achievement adminCreateNewAchievement \
     --body '{"achievementCode": "8vMf0IsJ", "defaultLanguage": "kTrd8IDc", "description": {"V2zXnTKj": "XY1bPqam"}, "goalValue": 0.13454254286494316, "hidden": true, "incremental": true, "lockedIcons": [{"slug": "9Cs18EY8", "url": "4ekItqRz"}], "name": {"HU1oh570": "KQBVaewc"}, "statCode": "72krSha6", "tags": ["8n3Ynozp"], "unlockedIcons": [{"slug": "1C2KmIQT", "url": "uBdNEUsx"}]}' \
     --namespace 'Fb8CJ17M' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminCreateNewAchievement'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 3 'AdminCreateNewAchievement' test.out
 
-#- 3 exportAchievements
+#- 4 ExportAchievements
 samples/cli/sample-apps Achievement exportAchievements \
     --namespace '7DJZaMSx' \
-    >$TEMP_FILE 2>&1
-update_status $? 'exportAchievements'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 4 'ExportAchievements' test.out
 
-#- 4 importAchievements
+#- 5 ImportAchievements
 samples/cli/sample-apps Achievement importAchievements \
     --file 'tmp.dat' \
     --strategy 'ECbZbygy' \
     --namespace 'oarORoeN' \
-    >$TEMP_FILE 2>&1
-update_status $? 'importAchievements'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 5 'ImportAchievements' test.out
 
-#- 5 adminGetAchievement
+#- 6 AdminGetAchievement
 samples/cli/sample-apps Achievement adminGetAchievement \
     --achievementCode 'HSb8Rh3k' \
     --namespace 'gs9qqJbn' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetAchievement'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 6 'AdminGetAchievement' test.out
 
-#- 6 adminUpdateAchievement
+#- 7 AdminUpdateAchievement
 samples/cli/sample-apps Achievement adminUpdateAchievement \
     --body '{"defaultLanguage": "QsoBgiVp", "description": {"P8Cm3yvA": "SUoxdxxF"}, "goalValue": 0.25046182566340336, "hidden": true, "incremental": true, "lockedIcons": [{"slug": "dagEtp4w", "url": "29KOu9c1"}], "name": {"9R6XDqWH": "kkP8npLE"}, "statCode": "KMfjiX7j", "tags": ["pkVZk3Ia"], "unlockedIcons": [{"slug": "QYEmqGod", "url": "OEGt9gPO"}]}' \
     --achievementCode 'j0c6i0Jk' \
     --namespace 'vIas73uc' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminUpdateAchievement'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 7 'AdminUpdateAchievement' test.out
 
-#- 7 adminDeleteAchievement
+#- 8 AdminDeleteAchievement
 samples/cli/sample-apps Achievement adminDeleteAchievement \
     --achievementCode 'YnFAJ3DK' \
     --namespace '5T4Eogg0' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminDeleteAchievement'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 8 'AdminDeleteAchievement' test.out
 
-#- 8 adminUpdateAchievementListOrder
+#- 9 AdminUpdateAchievementListOrder
 samples/cli/sample-apps Achievement adminUpdateAchievementListOrder \
     --body '{"targetOrder": 100}' \
     --achievementCode '39UoYlpv' \
     --namespace '5bVAgtsD' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminUpdateAchievementListOrder'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 9 'AdminUpdateAchievementListOrder' test.out
 
-#- 9 adminListUserAchievements
+#- 10 AdminListUserAchievements
 samples/cli/sample-apps Achievement adminListUserAchievements \
     --namespace 'hUTDUscb' \
     --userId 'QDjbTQuP' \
     --limit '76' \
     --offset '51' \
     --preferUnlocked 'False' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminListUserAchievements'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 10 'AdminListUserAchievements' test.out
 
-#- 10 adminUnlockAchievement
+#- 11 AdminUnlockAchievement
 samples/cli/sample-apps Achievement adminUnlockAchievement \
     --achievementCode 'kyU89ZPO' \
     --namespace 'w6zPFJ42' \
     --userId 'cwmzBBSM' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminUnlockAchievement'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 11 'AdminUnlockAchievement' test.out
 
-#- 11 publicListAchievements
+#- 12 PublicListAchievements
 samples/cli/sample-apps Achievement publicListAchievements \
     --namespace 'NcoAAOjK' \
     --limit '78' \
     --offset '18' \
     --sortBy 'fcYHm093' \
     --language 'aYgBU1sq' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicListAchievements'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 12 'PublicListAchievements' test.out
 
-#- 12 publicGetAchievement
+#- 13 PublicGetAchievement
 samples/cli/sample-apps Achievement publicGetAchievement \
     --achievementCode 'jyK0XH45' \
     --namespace 'PaRSOFQB' \
     --language 'tu23REZ8' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicGetAchievement'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 13 'PublicGetAchievement' test.out
 
-#- 13 publicListUserAchievements
+#- 14 PublicListUserAchievements
 samples/cli/sample-apps Achievement publicListUserAchievements \
     --namespace 'hRVX7LGO' \
     --userId 'vDdYiQS9' \
     --limit '16' \
     --offset '24' \
     --preferUnlocked 'True' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicListUserAchievements'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 14 'PublicListUserAchievements' test.out
 
-#- 14 publicUnlockAchievement
+#- 15 PublicUnlockAchievement
 samples/cli/sample-apps Achievement publicUnlockAchievement \
     --achievementCode '91pjG9gp' \
     --namespace 'xL6ycTQd' \
     --userId 'vln2LAuS' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicUnlockAchievement'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 15 'PublicUnlockAchievement' test.out
 
-delete_file 'tmp.dat'
 
-exit $FAILED_COUNT
+rm -f "tmp.dat"
+
+exit $EXIT_CODE

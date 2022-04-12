@@ -1,342 +1,304 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-#Meta:
-#- random seed: 256
-#- template file: go-cli-unit-test.j2
+# Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+# This is licensed software from AccelByte Inc, for limitations
+# and restrictions contact your company contract manager.
 
-#Instructions:
-#- Run the Justice SDK Mock Server first before running this script.
+# Meta:
+# - random seed: 256
+# - template file: go-cli-unit-test.j2
+
+# Instructions:
+# - Run the Justice SDK Mock Server first before running this script.
+
+export AB_BASE_URL="http://127.0.0.1:8080"
+export AB_CLIENT_ID="admin"
+export AB_CLIENT_SECRET="admin"
+export AB_NAMESPACE="test"
+
+export JUSTICE_BASE_URL="$AB_BASE_URL"
+export APP_CLIENT_ID="$AB_CLIENT_ID"
+export APP_CLIENT_SECRET="$AB_CLIENT_SECRET"
+
+EXIT_CODE=0
+
+eval_tap() {
+  if [ $1 -eq 0 ]; then
+    echo "ok $2 - $3"
+  else
+    EXIT_CODE=1
+    echo "not ok $2 - $3"
+    sed 's/^/# /g' $4
+  fi
+  rm -f $4
+}
 
 MODULE='cmd'
 MODULE_PATH='../samples/cli'
 TEMP_TOKEN="/tmp/justice-sample-apps/userData"
-TEMP_FILE='file.tmp'
 
-OPERATIONS_COUNT=67
+echo "TAP version 13"
+echo "1..68"
 
-FINISHED_COUNT=0
-SUCCESS_COUNT=0
-FAILED_COUNT=0
+#- 1 Login
+rm -f $TEMP_TOKEN \
+    && mkdir -p $(dirname $TEMP_TOKEN) \
+    && echo {"\"access_token"\":"\"foo"\"} >> $TEMP_TOKEN
+eval_tap 0 1 'Login # SKIP not tested' test.out
 
-export JUSTICE_BASE_URL="http://0.0.0.0:8080"
-export APP_CLIENT_ID="admin"
-export APP_CLIENT_SECRET="admin"
+if [ $EXIT_CODE -ne 0 ]; then
+  echo "Bail out! Login failed."
+  exit $EXIT_CODE
+fi
 
-create_file() {
-    touch $1
-}
+touch "tmp.dat"
 
-delete_file() {
-    [ ! -e $1 ] || rm $1
-}
-
-update_status() {
-    return_code=$1
-    operation_name=$2
-
-    FINISHED_COUNT=$(( $FINISHED_COUNT + 1 ))
-
-    if [ $return_code == 0 ]
-    then
-        SUCCESS_COUNT=$(( $SUCCESS_COUNT + 1 ))
-        echo "ok $FINISHED_COUNT $operation_name"
-    else
-        FAILED_COUNT=$(( $FAILED_COUNT + 1 ))
-        echo "not ok $FINISHED_COUNT - $operation_name"
-        echo '  ---'
-        echo '  error: |-'
-        while read line; do
-          echo "    $line" | tr '\n' ' '
-        echo $line
-        done < $TEMP_FILE
-    fi
-}
-
-create_file 'tmp.dat'
-
-rm -f $TEMP_TOKEN
-mkdir -p $(dirname $TEMP_TOKEN)
-echo {"\"access_token"\":"\"foo"\"} >> $TEMP_TOKEN
-echo "1..$OPERATIONS_COUNT"
-
-#- 1 listConfig
+#- 2 ListConfig
 samples/cli/sample-apps Dsmc listConfig \
-    >$TEMP_FILE 2>&1
-update_status $? 'listConfig'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 2 'ListConfig' test.out
 
-#- 2 saveConfig
-update_status 0 'saveConfig (skipped deprecated)'
+#- 3 SaveConfig
+eval_tap 0 3 'SaveConfig # SKIP deprecated' test.out
 
-#- 3 updateImage
+#- 4 UpdateImage
 samples/cli/sample-apps Dsmc updateImage \
     --body '{"artifactPath": "FtBxyZcD", "image": "XBpGlsQu", "namespace": "Ju8vMf0I", "persistent": true, "version": "JkTrd8ID"}' \
-    >$TEMP_FILE 2>&1
-update_status $? 'updateImage'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 4 'UpdateImage' test.out
 
-#- 4 createImage
+#- 5 CreateImage
 samples/cli/sample-apps Dsmc createImage \
     --body '{"artifactPath": "cV2zXnTK", "dockerPath": "jXY1bPqa", "image": "miBxx9Cs", "namespace": "18EY84ek", "persistent": true, "version": "qRzHU1oh"}' \
-    >$TEMP_FILE 2>&1
-update_status $? 'createImage'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 5 'CreateImage' test.out
 
-#- 5 importImages
+#- 6 ImportImages
 samples/cli/sample-apps Dsmc importImages \
     --file 'tmp.dat' \
-    >$TEMP_FILE 2>&1
-update_status $? 'importImages'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 6 'ImportImages' test.out
 
-#- 6 createImagePatch
+#- 7 CreateImagePatch
 samples/cli/sample-apps Dsmc createImagePatch \
     --body '{"artifactPath": "570KQBVa", "dockerPath": "ewc72krS", "image": "ha68n3Yn", "namespace": "ozp1C2Km", "patchVersion": "IQTuBdNE", "persistent": true, "version": "xFb8CJ17"}' \
-    >$TEMP_FILE 2>&1
-update_status $? 'createImagePatch'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 7 'CreateImagePatch' test.out
 
-#- 7 getConfig
+#- 8 GetConfig
 samples/cli/sample-apps Dsmc getConfig \
     --namespace 'M7DJZaMS' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getConfig'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 8 'GetConfig' test.out
 
-#- 8 createConfig
+#- 9 CreateConfig
 samples/cli/sample-apps Dsmc createConfig \
     --body '{"claim_timeout": 47, "creation_timeout": 61, "default_version": "CbZbygyo", "port": 1, "ports": {"rORoeNHS": 2}, "protocol": "8Rh3kgs9", "providers": ["qqJbnQso"], "session_timeout": 54, "unreachable_timeout": 12}' \
     --namespace 'iVpP8Cm3' \
-    >$TEMP_FILE 2>&1
-update_status $? 'createConfig'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 9 'CreateConfig' test.out
 
-#- 9 deleteConfig
+#- 10 DeleteConfig
 samples/cli/sample-apps Dsmc deleteConfig \
     --namespace 'yvASUoxd' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deleteConfig'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 10 'DeleteConfig' test.out
 
-#- 10 updateConfig
+#- 11 UpdateConfig
 samples/cli/sample-apps Dsmc updateConfig \
     --body '{"claim_timeout": 46, "creation_timeout": 46, "default_version": "FqmAGTJ8", "port": 68, "protocol": "EdagEtp4", "providers": ["w29KOu9c"], "session_timeout": 87, "unreachable_timeout": 98}' \
     --namespace 'DqWHkkP8' \
-    >$TEMP_FILE 2>&1
-update_status $? 'updateConfig'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 11 'UpdateConfig' test.out
 
-#- 11 clearCache
+#- 12 ClearCache
 samples/cli/sample-apps Dsmc clearCache \
     --namespace 'npLEKMfj' \
-    >$TEMP_FILE 2>&1
-update_status $? 'clearCache'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 12 'ClearCache' test.out
 
-#- 12 getAllDeployment
+#- 13 GetAllDeployment
 samples/cli/sample-apps Dsmc getAllDeployment \
     --namespace 'iX7jpkVZ' \
     --count '21' \
     --name '3IaQYEmq' \
     --offset '64' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getAllDeployment'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 13 'GetAllDeployment' test.out
 
-#- 13 getDeployment
+#- 14 GetDeployment
 samples/cli/sample-apps Dsmc getDeployment \
     --deployment 'odOEGt9g' \
     --namespace 'POj0c6i0' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getDeployment'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 14 'GetDeployment' test.out
 
-#- 14 createDeployment
+#- 15 CreateDeployment
 samples/cli/sample-apps Dsmc createDeployment \
     --body '{"allow_version_override": false, "buffer_count": 42, "buffer_percent": 69, "configuration": "as73ucYn", "enable_region_overrides": true, "game_version": "AJ3DK5T4", "max_count": 61, "min_count": 28, "overrides": {"gg0Y39Uo": {"buffer_count": 23, "buffer_percent": 31, "configuration": "v5bVAgts", "enable_region_overrides": true, "game_version": "hUTDUscb", "max_count": 85, "min_count": 59, "name": "jbTQuPMz", "region_overrides": {"2PTRlkyU": {"buffer_count": 82, "buffer_percent": 80, "max_count": 44, "min_count": 50, "name": "PFJ42cwm", "use_buffer_percent": true}}, "regions": ["BBSMNcoA"], "use_buffer_percent": true}}, "region_overrides": {"OjKNjfcY": {"buffer_count": 67, "buffer_percent": 25, "max_count": 0, "min_count": 100, "name": "gBU1sqjy", "use_buffer_percent": false}}, "regions": ["RSOFQBtu"], "use_buffer_percent": true}' \
     --deployment 'Z8hRVX7L' \
     --namespace 'GOvDdYiQ' \
-    >$TEMP_FILE 2>&1
-update_status $? 'createDeployment'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 15 'CreateDeployment' test.out
 
-#- 15 deleteDeployment
+#- 16 DeleteDeployment
 samples/cli/sample-apps Dsmc deleteDeployment \
     --deployment 'S9i7mV1C' \
     --namespace '91pjG9gp' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deleteDeployment'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 16 'DeleteDeployment' test.out
 
-#- 16 updateDeployment
+#- 17 UpdateDeployment
 samples/cli/sample-apps Dsmc updateDeployment \
     --body '{"allow_version_override": true, "buffer_count": 75, "buffer_percent": 48, "configuration": "cTQdvln2", "enable_region_overrides": true, "game_version": "uSQWEXL6", "max_count": 74, "min_count": 62, "regions": ["E1YHo9m1"], "use_buffer_percent": false}' \
     --deployment '8hHtWvbN' \
     --namespace 'YqgUqslA' \
-    >$TEMP_FILE 2>&1
-update_status $? 'updateDeployment'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 17 'UpdateDeployment' test.out
 
-#- 17 createRootRegionOverride
+#- 18 CreateRootRegionOverride
 samples/cli/sample-apps Dsmc createRootRegionOverride \
     --body '{"buffer_count": 34, "buffer_percent": 63, "max_count": 82, "min_count": 17, "use_buffer_percent": true}' \
     --deployment 'aCv8kU9d' \
     --namespace 'BBpdsJLh' \
     --region 'sVyExrkx' \
-    >$TEMP_FILE 2>&1
-update_status $? 'createRootRegionOverride'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 18 'CreateRootRegionOverride' test.out
 
-#- 18 deleteRootRegionOverride
+#- 19 DeleteRootRegionOverride
 samples/cli/sample-apps Dsmc deleteRootRegionOverride \
     --deployment 'oot0B7WO' \
     --namespace 'fercZdpM' \
     --region 'ci37Ds7Y' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deleteRootRegionOverride'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 19 'DeleteRootRegionOverride' test.out
 
-#- 19 updateRootRegionOverride
+#- 20 UpdateRootRegionOverride
 samples/cli/sample-apps Dsmc updateRootRegionOverride \
     --body '{"buffer_count": 88, "buffer_percent": 10, "max_count": 61, "min_count": 46, "use_buffer_percent": false}' \
     --deployment 'I3uzLteM' \
     --namespace 'bFAlt4hr' \
     --region '7HmOYiBA' \
-    >$TEMP_FILE 2>&1
-update_status $? 'updateRootRegionOverride'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 20 'UpdateRootRegionOverride' test.out
 
-#- 20 createDeploymentOverride
+#- 21 CreateDeploymentOverride
 samples/cli/sample-apps Dsmc createDeploymentOverride \
     --body '{"buffer_count": 22, "buffer_percent": 38, "configuration": "AOXmlG6e", "enable_region_overrides": false, "game_version": "1dTdoTFp", "max_count": 55, "min_count": 69, "region_overrides": {"cuC1dQY9": {"buffer_count": 80, "buffer_percent": 70, "max_count": 26, "min_count": 70, "name": "6Te9vD8l", "use_buffer_percent": false}}, "regions": ["z7Hu8AD7"], "use_buffer_percent": false}' \
     --deployment 'dWunvizU' \
     --namespace '0q1pHyhh' \
     --version 'ERoGgdry' \
-    >$TEMP_FILE 2>&1
-update_status $? 'createDeploymentOverride'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 21 'CreateDeploymentOverride' test.out
 
-#- 21 deleteDeploymentOverride
+#- 22 DeleteDeploymentOverride
 samples/cli/sample-apps Dsmc deleteDeploymentOverride \
     --deployment 'sMizBGSR' \
     --namespace 'dP2l7DNS' \
     --version 'Z8Aq0XiP' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deleteDeploymentOverride'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 22 'DeleteDeploymentOverride' test.out
 
-#- 22 updateDeploymentOverride
+#- 23 UpdateDeploymentOverride
 samples/cli/sample-apps Dsmc updateDeploymentOverride \
     --body '{"buffer_count": 75, "buffer_percent": 85, "configuration": "XSe07Zdd", "enable_region_overrides": false, "game_version": "JjBwj9HJ", "max_count": 66, "min_count": 85, "regions": ["KseEdSXR"], "use_buffer_percent": true}' \
     --deployment 'Svguauw1' \
     --namespace 'xT7eMwSl' \
     --version '9MLH0NnT' \
-    >$TEMP_FILE 2>&1
-update_status $? 'updateDeploymentOverride'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 23 'UpdateDeploymentOverride' test.out
 
-#- 23 createOverrideRegionOverride
+#- 24 CreateOverrideRegionOverride
 samples/cli/sample-apps Dsmc createOverrideRegionOverride \
     --body '{"buffer_count": 70, "buffer_percent": 41, "max_count": 22, "min_count": 79, "use_buffer_percent": true}' \
     --deployment 'BvwJaQa5' \
     --namespace '47JllvA8' \
     --region 'RWSpabUt' \
     --version '7xk6QxyW' \
-    >$TEMP_FILE 2>&1
-update_status $? 'createOverrideRegionOverride'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 24 'CreateOverrideRegionOverride' test.out
 
-#- 24 deleteOverrideRegionOverride
+#- 25 DeleteOverrideRegionOverride
 samples/cli/sample-apps Dsmc deleteOverrideRegionOverride \
     --deployment 'hfqoWfJw' \
     --namespace '2o8oWUqv' \
     --region 'PCZ2HzT7' \
     --version 'NXmWDlXs' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deleteOverrideRegionOverride'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 25 'DeleteOverrideRegionOverride' test.out
 
-#- 25 updateOverrideRegionOverride
+#- 26 UpdateOverrideRegionOverride
 samples/cli/sample-apps Dsmc updateOverrideRegionOverride \
     --body '{"buffer_count": 41, "buffer_percent": 79, "max_count": 69, "min_count": 6, "use_buffer_percent": false}' \
     --deployment 'sNOlvkfw' \
     --namespace 'aSbnsuLC' \
     --region 'gToxuVTe' \
     --version 'kJgvg6h5' \
-    >$TEMP_FILE 2>&1
-update_status $? 'updateOverrideRegionOverride'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 26 'UpdateOverrideRegionOverride' test.out
 
-#- 26 getAllPodConfig
+#- 27 GetAllPodConfig
 samples/cli/sample-apps Dsmc getAllPodConfig \
     --namespace 'HIpH0Dvi' \
     --count '31' \
     --offset '23' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getAllPodConfig'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 27 'GetAllPodConfig' test.out
 
-#- 27 getPodConfig
+#- 28 GetPodConfig
 samples/cli/sample-apps Dsmc getPodConfig \
     --name 'Ek4vj3LD' \
     --namespace 'p4yqDt8Q' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getPodConfig'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 28 'GetPodConfig' test.out
 
-#- 28 createPodConfig
+#- 29 CreatePodConfig
 samples/cli/sample-apps Dsmc createPodConfig \
     --body '{"cpu_limit": 92, "mem_limit": 59, "params": "pxlHasin"}' \
     --name 'GcjrkmRM' \
     --namespace 'ttgjDSaI' \
-    >$TEMP_FILE 2>&1
-update_status $? 'createPodConfig'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 29 'CreatePodConfig' test.out
 
-#- 29 deletePodConfig
+#- 30 DeletePodConfig
 samples/cli/sample-apps Dsmc deletePodConfig \
     --name 'VBmft3Ud' \
     --namespace 'g7p9PGmY' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deletePodConfig'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 30 'DeletePodConfig' test.out
 
-#- 30 updatePodConfig
+#- 31 UpdatePodConfig
 samples/cli/sample-apps Dsmc updatePodConfig \
     --body '{"cpu_limit": 67, "mem_limit": 20, "name": "X4MsisSX", "params": "28nARxWR"}' \
     --name 'pv5ou5xt' \
     --namespace 'vd28OUfC' \
-    >$TEMP_FILE 2>&1
-update_status $? 'updatePodConfig'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 31 'UpdatePodConfig' test.out
 
-#- 31 addPort
+#- 32 AddPort
 samples/cli/sample-apps Dsmc addPort \
     --body '{"port": 38}' \
     --name '8UJC5flN' \
     --namespace 'yj6HsTtX' \
-    >$TEMP_FILE 2>&1
-update_status $? 'addPort'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 32 'AddPort' test.out
 
-#- 32 deletePort
+#- 33 DeletePort
 samples/cli/sample-apps Dsmc deletePort \
     --name '8P3llnaa' \
     --namespace 'S9lqyygP' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deletePort'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 33 'DeletePort' test.out
 
-#- 33 updatePort
+#- 34 UpdatePort
 samples/cli/sample-apps Dsmc updatePort \
     --body '{"name": "cfkJIxfQ", "port": 51}' \
     --name 'a8kNVbDx' \
     --namespace 'VMq7HJk0' \
-    >$TEMP_FILE 2>&1
-update_status $? 'updatePort'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 34 'UpdatePort' test.out
 
-#- 34 listImages
+#- 35 ListImages
 samples/cli/sample-apps Dsmc listImages \
     --namespace 'F89xAc3Y' \
     --count '95' \
@@ -344,271 +306,238 @@ samples/cli/sample-apps Dsmc listImages \
     --q 'aENtrl0p' \
     --sortBy 'version' \
     --sortDirection 'desc' \
-    >$TEMP_FILE 2>&1
-update_status $? 'listImages'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 35 'ListImages' test.out
 
-#- 35 deleteImage
+#- 36 DeleteImage
 samples/cli/sample-apps Dsmc deleteImage \
     --namespace 'zHuBMYQS' \
     --imageURI 'A2jz1ZOp' \
     --version 'dOjSyMdd' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deleteImage'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 36 'DeleteImage' test.out
 
-#- 36 exportImages
+#- 37 ExportImages
 samples/cli/sample-apps Dsmc exportImages \
     --namespace 'B41JuMf7' \
-    >$TEMP_FILE 2>&1
-update_status $? 'exportImages'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 37 'ExportImages' test.out
 
-#- 37 getImageLimit
+#- 38 GetImageLimit
 samples/cli/sample-apps Dsmc getImageLimit \
     --namespace 'RUyBHRj8' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getImageLimit'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 38 'GetImageLimit' test.out
 
-#- 38 deleteImagePatch
+#- 39 DeleteImagePatch
 samples/cli/sample-apps Dsmc deleteImagePatch \
     --namespace 'IiRimRll' \
     --imageURI 'HT6Dc40v' \
     --version 'FFA6gpU7' \
     --versionPatch 'EW3x1dCp' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deleteImagePatch'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 39 'DeleteImagePatch' test.out
 
-#- 39 getImageDetail
+#- 40 GetImageDetail
 samples/cli/sample-apps Dsmc getImageDetail \
     --namespace 'm55gOeqQ' \
     --version 'IqcJVKmB' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getImageDetail'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 40 'GetImageDetail' test.out
 
-#- 40 getImagePatches
+#- 41 GetImagePatches
 samples/cli/sample-apps Dsmc getImagePatches \
     --namespace 'M1J1IbuT' \
     --version 'rrkbmuT1' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getImagePatches'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 41 'GetImagePatches' test.out
 
-#- 41 getImagePatchDetail
+#- 42 GetImagePatchDetail
 samples/cli/sample-apps Dsmc getImagePatchDetail \
     --namespace 'whOqmEnD' \
     --version 'XIWrBPlS' \
     --versionPatch 'ay46mv71' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getImagePatchDetail'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 42 'GetImagePatchDetail' test.out
 
-#- 42 listServer
+#- 43 ListServer
 samples/cli/sample-apps Dsmc listServer \
     --namespace 'BAZAOjtF' \
     --count '70' \
     --offset '42' \
     --region 'mTj7tT7T' \
-    >$TEMP_FILE 2>&1
-update_status $? 'listServer'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 43 'ListServer' test.out
 
-#- 43 countServer
+#- 44 CountServer
 samples/cli/sample-apps Dsmc countServer \
     --namespace 'ZHWDdCkI' \
-    >$TEMP_FILE 2>&1
-update_status $? 'countServer'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 44 'CountServer' test.out
 
-#- 44 countServerDetailed
+#- 45 CountServerDetailed
 samples/cli/sample-apps Dsmc countServerDetailed \
     --namespace 'sZoArWwP' \
     --region 'HcyFAdAt' \
-    >$TEMP_FILE 2>&1
-update_status $? 'countServerDetailed'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 45 'CountServerDetailed' test.out
 
-#- 45 listLocalServer
+#- 46 ListLocalServer
 samples/cli/sample-apps Dsmc listLocalServer \
     --namespace 'YciLIgRw' \
-    >$TEMP_FILE 2>&1
-update_status $? 'listLocalServer'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 46 'ListLocalServer' test.out
 
-#- 46 deleteLocalServer
+#- 47 DeleteLocalServer
 samples/cli/sample-apps Dsmc deleteLocalServer \
     --name 'FRr0gwB9' \
     --namespace 'tz3vp99X' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deleteLocalServer'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 47 'DeleteLocalServer' test.out
 
-#- 47 getServer
+#- 48 GetServer
 samples/cli/sample-apps Dsmc getServer \
     --namespace 'VlV8rK3t' \
     --podName 'E6n0smip' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getServer'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 48 'GetServer' test.out
 
-#- 48 deleteServer
+#- 49 DeleteServer
 samples/cli/sample-apps Dsmc deleteServer \
     --namespace '1tw3L7cU' \
     --podName 'd9pqtv6J' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deleteServer'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 49 'DeleteServer' test.out
 
-#- 49 getServerLogs
+#- 50 GetServerLogs
 samples/cli/sample-apps Dsmc getServerLogs \
     --namespace 'fPZwcCVO' \
     --podName 'XcVa80Tm' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getServerLogs'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 50 'GetServerLogs' test.out
 
-#- 50 listSession
+#- 51 ListSession
 samples/cli/sample-apps Dsmc listSession \
     --namespace 'CwtD2lAH' \
     --count '29' \
     --offset '79' \
     --region 'dcBIgzrD' \
     --withServer 'True' \
-    >$TEMP_FILE 2>&1
-update_status $? 'listSession'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 51 'ListSession' test.out
 
-#- 51 countSession
+#- 52 CountSession
 samples/cli/sample-apps Dsmc countSession \
     --namespace 'WpFBYGmm' \
     --region 'BawMyoKy' \
-    >$TEMP_FILE 2>&1
-update_status $? 'countSession'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 52 'CountSession' test.out
 
-#- 52 deleteSession
+#- 53 DeleteSession
 samples/cli/sample-apps Dsmc deleteSession \
     --namespace 'NpdAasm8' \
     --sessionID 'xwUfzOlQ' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deleteSession'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 53 'DeleteSession' test.out
 
-#- 53 exportConfigV1
+#- 54 ExportConfigV1
 samples/cli/sample-apps Dsmc exportConfigV1 \
     --namespace 'iZY4NbOQ' \
-    >$TEMP_FILE 2>&1
-update_status $? 'exportConfigV1'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 54 'ExportConfigV1' test.out
 
-#- 54 importConfigV1
+#- 55 ImportConfigV1
 samples/cli/sample-apps Dsmc importConfigV1 \
     --file 'tmp.dat' \
     --namespace 'XJ7uOTzN' \
-    >$TEMP_FILE 2>&1
-update_status $? 'importConfigV1'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 55 'ImportConfigV1' test.out
 
-#- 55 imageDetailClient
+#- 56 ImageDetailClient
 samples/cli/sample-apps Dsmc imageDetailClient \
     --namespace 'Mvuq2tNl' \
     --version '4CX4IjiK' \
-    >$TEMP_FILE 2>&1
-update_status $? 'imageDetailClient'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 56 'ImageDetailClient' test.out
 
-#- 56 deregisterLocalServer
+#- 57 DeregisterLocalServer
 samples/cli/sample-apps Dsmc deregisterLocalServer \
     --body '{"name": "4DEUJRVK"}' \
     --namespace '3l9Eb0R1' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deregisterLocalServer'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 57 'DeregisterLocalServer' test.out
 
-#- 57 registerLocalServer
+#- 58 RegisterLocalServer
 samples/cli/sample-apps Dsmc registerLocalServer \
     --body '{"custom_attribute": "XRb0RH8v", "ip": "S1smeOln", "name": "grdTXCza", "port": 82}' \
     --namespace 'BtkZMio4' \
-    >$TEMP_FILE 2>&1
-update_status $? 'registerLocalServer'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 58 'RegisterLocalServer' test.out
 
-#- 58 registerServer
+#- 59 RegisterServer
 samples/cli/sample-apps Dsmc registerServer \
     --body '{"custom_attribute": "wcyhloVS", "pod_name": "3rYp8Qtc"}' \
     --namespace 'EmCEVc75' \
-    >$TEMP_FILE 2>&1
-update_status $? 'registerServer'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 59 'RegisterServer' test.out
 
-#- 59 shutdownServer
+#- 60 ShutdownServer
 samples/cli/sample-apps Dsmc shutdownServer \
     --body '{"kill_me": false, "pod_name": "eypWjDNh"}' \
     --namespace 'zCL5sWS2' \
-    >$TEMP_FILE 2>&1
-update_status $? 'shutdownServer'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 60 'ShutdownServer' test.out
 
-#- 60 getServerSession
+#- 61 GetServerSession
 samples/cli/sample-apps Dsmc getServerSession \
     --namespace 'qwO763iE' \
     --podName 'klkzLm88' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getServerSession'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 61 'GetServerSession' test.out
 
-#- 61 createSession
+#- 62 CreateSession
 samples/cli/sample-apps Dsmc createSession \
     --body '{"client_version": "LpLuYRO3", "configuration": "C55yHpwK", "deployment": "2JaqenDG", "game_mode": "n7a2NUpl", "matching_allies": [{"matching_parties": [{"party_attributes": {"WiLjq06n": {}}, "party_id": "6a0rW8Ef", "party_members": [{"user_id": "kpaXtwYZ"}]}]}], "namespace": "JaQ4WbwN", "notification_payload": {}, "pod_name": "msFYetjE", "region": "urH8eloJ", "session_id": "zNKtRUaT"}' \
     --namespace 'z1ETdsmw' \
-    >$TEMP_FILE 2>&1
-update_status $? 'createSession'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 62 'CreateSession' test.out
 
-#- 62 claimServer
+#- 63 ClaimServer
 samples/cli/sample-apps Dsmc claimServer \
     --body '{"session_id": "zjkkn9oi"}' \
     --namespace 'Ql05g7cO' \
-    >$TEMP_FILE 2>&1
-update_status $? 'claimServer'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 63 'ClaimServer' test.out
 
-#- 63 getSession
+#- 64 GetSession
 samples/cli/sample-apps Dsmc getSession \
     --namespace '3ZMb6Ojl' \
     --sessionID 'o6DMNpP2' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getSession'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 64 'GetSession' test.out
 
-#- 64 getDefaultProvider
+#- 65 GetDefaultProvider
 samples/cli/sample-apps Dsmc getDefaultProvider \
-    >$TEMP_FILE 2>&1
-update_status $? 'getDefaultProvider'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 65 'GetDefaultProvider' test.out
 
-#- 65 listProviders
+#- 66 ListProviders
 samples/cli/sample-apps Dsmc listProviders \
-    >$TEMP_FILE 2>&1
-update_status $? 'listProviders'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 66 'ListProviders' test.out
 
-#- 66 listProvidersByRegion
+#- 67 ListProvidersByRegion
 samples/cli/sample-apps Dsmc listProvidersByRegion \
     --region 'qMrTQ1Up' \
-    >$TEMP_FILE 2>&1
-update_status $? 'listProvidersByRegion'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 67 'ListProvidersByRegion' test.out
 
-#- 67 publicGetMessages
+#- 68 PublicGetMessages
 samples/cli/sample-apps Dsmc publicGetMessages \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicGetMessages'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 68 'PublicGetMessages' test.out
 
-delete_file 'tmp.dat'
 
-exit $FAILED_COUNT
+rm -f "tmp.dat"
+
+exit $EXIT_CODE

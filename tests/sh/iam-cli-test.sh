@@ -1,461 +1,412 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-#Meta:
-#- random seed: 256
-#- template file: go-cli-unit-test.j2
+# Copyright (c) 2021 AccelByte Inc. All Rights Reserved.
+# This is licensed software from AccelByte Inc, for limitations
+# and restrictions contact your company contract manager.
 
-#Instructions:
-#- Run the Justice SDK Mock Server first before running this script.
+# Meta:
+# - random seed: 256
+# - template file: go-cli-unit-test.j2
+
+# Instructions:
+# - Run the Justice SDK Mock Server first before running this script.
+
+export AB_BASE_URL="http://127.0.0.1:8080"
+export AB_CLIENT_ID="admin"
+export AB_CLIENT_SECRET="admin"
+export AB_NAMESPACE="test"
+
+export JUSTICE_BASE_URL="$AB_BASE_URL"
+export APP_CLIENT_ID="$AB_CLIENT_ID"
+export APP_CLIENT_SECRET="$AB_CLIENT_SECRET"
+
+EXIT_CODE=0
+
+eval_tap() {
+  if [ $1 -eq 0 ]; then
+    echo "ok $2 - $3"
+  else
+    EXIT_CODE=1
+    echo "not ok $2 - $3"
+    sed 's/^/# /g' $4
+  fi
+  rm -f $4
+}
 
 MODULE='cmd'
 MODULE_PATH='../samples/cli'
 TEMP_TOKEN="/tmp/justice-sample-apps/userData"
-TEMP_FILE='file.tmp'
 
-OPERATIONS_COUNT=298
+echo "TAP version 13"
+echo "1..299"
 
-FINISHED_COUNT=0
-SUCCESS_COUNT=0
-FAILED_COUNT=0
+#- 1 Login
+rm -f $TEMP_TOKEN \
+    && mkdir -p $(dirname $TEMP_TOKEN) \
+    && echo {"\"access_token"\":"\"foo"\"} >> $TEMP_TOKEN
+eval_tap 0 1 'Login # SKIP not tested' test.out
 
-export JUSTICE_BASE_URL="http://0.0.0.0:8080"
-export APP_CLIENT_ID="admin"
-export APP_CLIENT_SECRET="admin"
+if [ $EXIT_CODE -ne 0 ]; then
+  echo "Bail out! Login failed."
+  exit $EXIT_CODE
+fi
 
-create_file() {
-    touch $1
-}
+touch "tmp.dat"
 
-delete_file() {
-    [ ! -e $1 ] || rm $1
-}
-
-update_status() {
-    return_code=$1
-    operation_name=$2
-
-    FINISHED_COUNT=$(( $FINISHED_COUNT + 1 ))
-
-    if [ $return_code == 0 ]
-    then
-        SUCCESS_COUNT=$(( $SUCCESS_COUNT + 1 ))
-        echo "ok $FINISHED_COUNT $operation_name"
-    else
-        FAILED_COUNT=$(( $FAILED_COUNT + 1 ))
-        echo "not ok $FINISHED_COUNT - $operation_name"
-        echo '  ---'
-        echo '  error: |-'
-        while read line; do
-          echo "    $line" | tr '\n' ' '
-        echo $line
-        done < $TEMP_FILE
-    fi
-}
-
-create_file 'tmp.dat'
-
-rm -f $TEMP_TOKEN
-mkdir -p $(dirname $TEMP_TOKEN)
-echo {"\"access_token"\":"\"foo"\"} >> $TEMP_TOKEN
-echo "1..$OPERATIONS_COUNT"
-
-#- 1 getBansType
+#- 2 GetBansType
 samples/cli/sample-apps Iam getBansType \
-    >$TEMP_FILE 2>&1
-update_status $? 'getBansType'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 2 'GetBansType' test.out
 
-#- 2 getListBanReason
+#- 3 GetListBanReason
 samples/cli/sample-apps Iam getListBanReason \
-    >$TEMP_FILE 2>&1
-update_status $? 'getListBanReason'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 3 'GetListBanReason' test.out
 
-#- 3 getClients
-update_status 0 'getClients (skipped deprecated)'
+#- 4 GetClients
+eval_tap 0 4 'GetClients # SKIP deprecated' test.out
 
-#- 4 createClient
-update_status 0 'createClient (skipped deprecated)'
+#- 5 CreateClient
+eval_tap 0 5 'CreateClient # SKIP deprecated' test.out
 
-#- 5 getClient
+#- 6 GetClient
 samples/cli/sample-apps Iam getClient \
     --clientId 'FtBxyZcD' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getClient'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 6 'GetClient' test.out
 
-#- 6 updateClient
+#- 7 UpdateClient
 samples/cli/sample-apps Iam updateClient \
     --body '{"ClientName": "XBpGlsQu", "RedirectUri": "Ju8vMf0I"}' \
     --clientId 'sJkTrd8I' \
-    >$TEMP_FILE 2>&1
-update_status $? 'updateClient'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 7 'UpdateClient' test.out
 
-#- 7 deleteClient
-update_status 0 'deleteClient (skipped deprecated)'
+#- 8 DeleteClient
+eval_tap 0 8 'DeleteClient # SKIP deprecated' test.out
 
-#- 8 updateClientPermission
+#- 9 UpdateClientPermission
 samples/cli/sample-apps Iam updateClientPermission \
     --body '{"Permissions": [{"Action": 59, "Resource": "cV2zXnTK"}]}' \
     --clientId 'jXY1bPqa' \
-    >$TEMP_FILE 2>&1
-update_status $? 'updateClientPermission'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 9 'UpdateClientPermission' test.out
 
-#- 9 addClientPermission
+#- 10 AddClientPermission
 samples/cli/sample-apps Iam addClientPermission \
     --action '24' \
     --clientId 'iBxx9Cs1' \
     --resource '8EY84ekI' \
-    >$TEMP_FILE 2>&1
-update_status $? 'addClientPermission'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 10 'AddClientPermission' test.out
 
-#- 10 deleteClientPermission
+#- 11 DeleteClientPermission
 samples/cli/sample-apps Iam deleteClientPermission \
     --action '39' \
     --clientId 'qRzHU1oh' \
     --resource '570KQBVa' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deleteClientPermission'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 11 'DeleteClientPermission' test.out
 
-#- 11 updateClientSecret
+#- 12 UpdateClientSecret
 samples/cli/sample-apps Iam updateClientSecret \
     --body '{"NewSecret": "ewc72krS"}' \
     --clientId 'ha68n3Yn' \
-    >$TEMP_FILE 2>&1
-update_status $? 'updateClientSecret'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 12 'UpdateClientSecret' test.out
 
-#- 12 getClientsbyNamespace
+#- 13 GetClientsbyNamespace
 samples/cli/sample-apps Iam getClientsbyNamespace \
     --namespace 'ozp1C2Km' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getClientsbyNamespace'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 13 'GetClientsbyNamespace' test.out
 
-#- 13 createClientByNamespace
+#- 14 CreateClientByNamespace
 samples/cli/sample-apps Iam createClientByNamespace \
     --body '{"ClientId": "IQTuBdNE", "ClientName": "UsxFb8CJ", "ClientPermissions": [{"Action": 76, "Resource": "7DJZaMSx", "SchedAction": 61, "SchedCron": "CbZbygyo", "SchedRange": ["arORoeNH"]}], "Namespace": "Sb8Rh3kg", "RedirectUri": "s9qqJbnQ", "Secret": "soBgiVpP"}' \
     --namespace '8Cm3yvAS' \
-    >$TEMP_FILE 2>&1
-update_status $? 'createClientByNamespace'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 14 'CreateClientByNamespace' test.out
 
-#- 14 deleteClientByNamespace
+#- 15 DeleteClientByNamespace
 samples/cli/sample-apps Iam deleteClientByNamespace \
     --clientId 'UoxdxxFq' \
     --namespace 'mAGTJ8IE' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deleteClientByNamespace'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 15 'DeleteClientByNamespace' test.out
 
-#- 15 createUser
+#- 16 CreateUser
 samples/cli/sample-apps Iam createUser \
     --body '{"AuthType": "dagEtp4w", "Country": "29KOu9c1", "DisplayName": "9R6XDqWH", "LoginId": "kkP8npLE", "Password": "KMfjiX7j", "PasswordMD5Sum": "pkVZk3Ia"}' \
     --namespace 'QYEmqGod' \
-    >$TEMP_FILE 2>&1
-update_status $? 'createUser'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 16 'CreateUser' test.out
 
-#- 16 getAdminUsersByRoleID
+#- 17 GetAdminUsersByRoleID
 samples/cli/sample-apps Iam getAdminUsersByRoleID \
     --namespace 'OEGt9gPO' \
     --after '18' \
     --before '5' \
     --limit '16' \
     --roleId '0JkvIas7' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getAdminUsersByRoleID'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 17 'GetAdminUsersByRoleID' test.out
 
-#- 17 getUserByLoginID
+#- 18 GetUserByLoginID
 samples/cli/sample-apps Iam getUserByLoginID \
     --namespace '3ucYnFAJ' \
     --loginId '3DK5T4Eo' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getUserByLoginID'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 18 'GetUserByLoginID' test.out
 
-#- 18 getUserByPlatformUserID
+#- 19 GetUserByPlatformUserID
 samples/cli/sample-apps Iam getUserByPlatformUserID \
     --namespace 'gg0Y39Uo' \
     --platformID 'Ylpv5bVA' \
     --platformUserID 'gtsDhUTD' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getUserByPlatformUserID'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 19 'GetUserByPlatformUserID' test.out
 
-#- 19 forgotPassword
+#- 20 ForgotPassword
 samples/cli/sample-apps Iam forgotPassword \
     --body '{"Context": "UscbQDjb", "LanguageTag": "TQuPMz2P", "LoginID": "TRlkyU89"}' \
     --namespace 'ZPOw6zPF' \
-    >$TEMP_FILE 2>&1
-update_status $? 'forgotPassword'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 20 'ForgotPassword' test.out
 
-#- 20 getUsersByLoginIds
+#- 21 GetUsersByLoginIds
 samples/cli/sample-apps Iam getUsersByLoginIds \
     --namespace 'J42cwmzB' \
     --loginIds 'BSMNcoAA' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getUsersByLoginIds'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 21 'GetUsersByLoginIds' test.out
 
-#- 21 resetPassword
+#- 22 ResetPassword
 samples/cli/sample-apps Iam resetPassword \
     --body '{"Code": "OjKNjfcY", "LoginID": "Hm093aYg", "NewPassword": "BU1sqjyK"}' \
     --namespace '0XH45PaR' \
-    >$TEMP_FILE 2>&1
-update_status $? 'resetPassword'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 22 'ResetPassword' test.out
 
-#- 22 searchUser
-update_status 0 'searchUser (skipped deprecated)'
+#- 23 SearchUser
+eval_tap 0 23 'SearchUser # SKIP deprecated' test.out
 
-#- 23 getUserByUserID
+#- 24 GetUserByUserID
 samples/cli/sample-apps Iam getUserByUserID \
     --namespace 'SOFQBtu2' \
     --userId '3REZ8hRV' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getUserByUserID'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 24 'GetUserByUserID' test.out
 
-#- 24 updateUser
+#- 25 UpdateUser
 samples/cli/sample-apps Iam updateUser \
     --body '{"Country": "X7LGOvDd", "DateOfBirth": "YiQS9i7m", "DisplayName": "V1C91pjG", "LanguageTag": "9gpxL6yc"}' \
     --namespace 'TQdvln2L' \
     --userId 'AuSQWEXL' \
-    >$TEMP_FILE 2>&1
-update_status $? 'updateUser'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 25 'UpdateUser' test.out
 
-#- 25 deleteUser
+#- 26 DeleteUser
 samples/cli/sample-apps Iam deleteUser \
     --namespace '6LFE1YHo' \
     --userId '9m126ZWc' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deleteUser'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 26 'DeleteUser' test.out
 
-#- 26 banUser
+#- 27 BanUser
 samples/cli/sample-apps Iam banUser \
     --body '{"ban": "8hHtWvbN", "comment": "YqgUqslA", "endDate": "rFPiHUIv", "reason": "aCv8kU9d", "skipNotif": true}' \
     --namespace 'BpdsJLhs' \
     --userId 'VyExrkxo' \
-    >$TEMP_FILE 2>&1
-update_status $? 'banUser'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 27 'BanUser' test.out
 
-#- 27 getUserBanHistory
+#- 28 GetUserBanHistory
 samples/cli/sample-apps Iam getUserBanHistory \
     --namespace 'ot0B7WOf' \
     --userId 'ercZdpMc' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getUserBanHistory'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 28 'GetUserBanHistory' test.out
 
-#- 28 disableUserBan
+#- 29 DisableUserBan
 samples/cli/sample-apps Iam disableUserBan \
     --banId 'i37Ds7YS' \
     --namespace 'fExaI3uz' \
     --userId 'LteMbFAl' \
-    >$TEMP_FILE 2>&1
-update_status $? 'disableUserBan'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 29 'DisableUserBan' test.out
 
-#- 29 enableUserBan
+#- 30 EnableUserBan
 samples/cli/sample-apps Iam enableUserBan \
     --banId 't4hr7HmO' \
     --namespace 'YiBA5ltA' \
     --userId 'OXmlG6eh' \
-    >$TEMP_FILE 2>&1
-update_status $? 'enableUserBan'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 30 'EnableUserBan' test.out
 
-#- 30 listCrossNamespaceAccountLink
-update_status 0 'listCrossNamespaceAccountLink (skipped deprecated)'
+#- 31 ListCrossNamespaceAccountLink
+eval_tap 0 31 'ListCrossNamespaceAccountLink # SKIP deprecated' test.out
 
-#- 31 disableUser
-update_status 0 'disableUser (skipped deprecated)'
+#- 32 DisableUser
+eval_tap 0 32 'DisableUser # SKIP deprecated' test.out
 
-#- 32 enableUser
-update_status 0 'enableUser (skipped deprecated)'
+#- 33 EnableUser
+eval_tap 0 33 'EnableUser # SKIP deprecated' test.out
 
-#- 33 getUserInformation
+#- 34 GetUserInformation
 samples/cli/sample-apps Iam getUserInformation \
     --namespace '1dTdoTFp' \
     --userId 'BIcuC1dQ' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getUserInformation'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 34 'GetUserInformation' test.out
 
-#- 34 deleteUserInformation
+#- 35 DeleteUserInformation
 samples/cli/sample-apps Iam deleteUserInformation \
     --namespace 'Y93OJnJ6' \
     --userId 'Te9vD8ld' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deleteUserInformation'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 35 'DeleteUserInformation' test.out
 
-#- 35 getUserLoginHistories
+#- 36 GetUserLoginHistories
 samples/cli/sample-apps Iam getUserLoginHistories \
     --namespace 'z7Hu8AD7' \
     --userId '9kdWunvi' \
     --after '0.39802825247019424' \
     --before '0.82465128795751' \
     --limit '31' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getUserLoginHistories'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 36 'GetUserLoginHistories' test.out
 
-#- 36 updatePassword
-update_status 0 'updatePassword (skipped deprecated)'
+#- 37 UpdatePassword
+eval_tap 0 37 'UpdatePassword # SKIP deprecated' test.out
 
-#- 37 saveUserPermission
+#- 38 SaveUserPermission
 samples/cli/sample-apps Iam saveUserPermission \
     --body '{"Permissions": [{"Action": 66, "Resource": "yhhERoGg", "SchedAction": 7, "SchedCron": "rysMizBG", "SchedRange": ["SRdP2l7D"]}]}' \
     --namespace 'NSZ8Aq0X' \
     --userId 'iPLQXSe0' \
-    >$TEMP_FILE 2>&1
-update_status $? 'saveUserPermission'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 38 'SaveUserPermission' test.out
 
-#- 38 addUserPermission
+#- 39 AddUserPermission
 samples/cli/sample-apps Iam addUserPermission \
     --body '{"SchedAction": 7, "SchedCron": "dOGTMlJj", "SchedRange": ["Bwj9HJHQ"]}' \
     --action '72' \
     --namespace 'seEdSXRD' \
     --resource 'Svguauw1' \
     --userId 'xT7eMwSl' \
-    >$TEMP_FILE 2>&1
-update_status $? 'addUserPermission'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 39 'AddUserPermission' test.out
 
-#- 39 deleteUserPermission
+#- 40 DeleteUserPermission
 samples/cli/sample-apps Iam deleteUserPermission \
     --action '76' \
     --namespace 'LH0NnTJ2' \
     --resource 'ulNzBvwJ' \
     --userId 'aQa547Jl' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deleteUserPermission'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 40 'DeleteUserPermission' test.out
 
-#- 40 getUserPlatformAccounts
+#- 41 GetUserPlatformAccounts
 samples/cli/sample-apps Iam getUserPlatformAccounts \
     --namespace 'lvA8RWSp' \
     --userId 'abUt7xk6' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getUserPlatformAccounts'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 41 'GetUserPlatformAccounts' test.out
 
-#- 41 getUserMapping
+#- 42 GetUserMapping
 samples/cli/sample-apps Iam getUserMapping \
     --namespace 'QxyWhfqo' \
     --targetNamespace 'WfJw2o8o' \
     --userId 'WUqvPCZ2' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getUserMapping'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 42 'GetUserMapping' test.out
 
-#- 42 getUserJusticePlatformAccount
-update_status 0 'getUserJusticePlatformAccount (skipped deprecated)'
+#- 43 GetUserJusticePlatformAccount
+eval_tap 0 43 'GetUserJusticePlatformAccount # SKIP deprecated' test.out
 
-#- 43 platformLink
+#- 44 PlatformLink
 samples/cli/sample-apps Iam platformLink \
     --ticket 'HzT7NXmW' \
     --namespace 'DlXsuNId' \
     --platformId 'QJR5lsNO' \
     --userId 'lvkfwaSb' \
-    >$TEMP_FILE 2>&1
-update_status $? 'platformLink'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 44 'PlatformLink' test.out
 
-#- 44 platformUnlink
+#- 45 PlatformUnlink
 samples/cli/sample-apps Iam platformUnlink \
     --platformNamespace 'nsuLCgTo' \
     --namespace 'xuVTekJg' \
     --platformId 'vg6h5HIp' \
     --userId 'H0DviplE' \
-    >$TEMP_FILE 2>&1
-update_status $? 'platformUnlink'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 45 'PlatformUnlink' test.out
 
-#- 45 getPublisherUser
+#- 46 GetPublisherUser
 samples/cli/sample-apps Iam getPublisherUser \
     --namespace 'k4vj3LDp' \
     --userId '4yqDt8QU' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getPublisherUser'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 46 'GetPublisherUser' test.out
 
-#- 46 saveUserRoles
+#- 47 SaveUserRoles
 samples/cli/sample-apps Iam saveUserRoles \
     --body '["ZDpxlHas"]' \
     --namespace 'inGcjrkm' \
     --userId 'RMttgjDS' \
-    >$TEMP_FILE 2>&1
-update_status $? 'saveUserRoles'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 47 'SaveUserRoles' test.out
 
-#- 47 addUserRole
+#- 48 AddUserRole
 samples/cli/sample-apps Iam addUserRole \
     --namespace 'aIVBmft3' \
     --roleId 'Udg7p9PG' \
     --userId 'mY2H5kX4' \
-    >$TEMP_FILE 2>&1
-update_status $? 'addUserRole'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 48 'AddUserRole' test.out
 
-#- 48 deleteUserRole
+#- 49 DeleteUserRole
 samples/cli/sample-apps Iam deleteUserRole \
     --namespace 'MsisSX28' \
     --roleId 'nARxWRpv' \
     --userId '5ou5xtvd' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deleteUserRole'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 49 'DeleteUserRole' test.out
 
-#- 49 upgradeHeadlessAccount
+#- 50 UpgradeHeadlessAccount
 samples/cli/sample-apps Iam upgradeHeadlessAccount \
     --body '{"LoginID": "28OUfCt8", "Password": "UJC5flNy"}' \
     --namespace 'j6HsTtX8' \
     --userId 'P3llnaaS' \
-    >$TEMP_FILE 2>&1
-update_status $? 'upgradeHeadlessAccount'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 50 'UpgradeHeadlessAccount' test.out
 
-#- 50 upgradeHeadlessAccountWithVerificationCode
+#- 51 UpgradeHeadlessAccountWithVerificationCode
 samples/cli/sample-apps Iam upgradeHeadlessAccountWithVerificationCode \
     --body '{"Code": "9lqyygPc", "Password": "fkJIxfQZ", "loginId": "za8kNVbD"}' \
     --namespace 'xVMq7HJk' \
     --userId '0F89xAc3' \
-    >$TEMP_FILE 2>&1
-update_status $? 'upgradeHeadlessAccountWithVerificationCode'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 51 'UpgradeHeadlessAccountWithVerificationCode' test.out
 
-#- 51 userVerification
+#- 52 UserVerification
 samples/cli/sample-apps Iam userVerification \
     --body '{"Code": "YVfaENtr", "ContactType": "l0pTKZTX", "LanguageTag": "qzHuBMYQ", "validateOnly": true}' \
     --namespace '2jz1ZOpd' \
     --userId 'OjSyMddB' \
-    >$TEMP_FILE 2>&1
-update_status $? 'userVerification'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 52 'UserVerification' test.out
 
-#- 52 sendVerificationCode
+#- 53 SendVerificationCode
 samples/cli/sample-apps Iam sendVerificationCode \
     --body '{"Context": "41JuMf7R", "LanguageTag": "UyBHRj8I", "LoginID": "iRimRllH"}' \
     --namespace 'T6Dc40vF' \
     --userId 'FA6gpU7E' \
-    >$TEMP_FILE 2>&1
-update_status $? 'sendVerificationCode'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 53 'SendVerificationCode' test.out
 
-#- 53 authorization
+#- 54 Authorization
 samples/cli/sample-apps Iam authorization \
     --login 'W3x1dCpm' \
     --password '55gOeqQI' \
@@ -464,40 +415,36 @@ samples/cli/sample-apps Iam authorization \
     --clientId 'rkbmuT1w' \
     --redirectUri 'hOqmEnDX' \
     --responseType 'token' \
-    >$TEMP_FILE 2>&1
-update_status $? 'authorization'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 54 'Authorization' test.out
 
-#- 54 getJWKS
+#- 55 GetJWKS
 samples/cli/sample-apps Iam getJWKS \
-    >$TEMP_FILE 2>&1
-update_status $? 'getJWKS'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 55 'GetJWKS' test.out
 
-#- 55 platformTokenRequestHandler
-update_status 0 'platformTokenRequestHandler (skipped deprecated)'
+#- 56 PlatformTokenRequestHandler
+eval_tap 0 56 'PlatformTokenRequestHandler # SKIP deprecated' test.out
 
-#- 56 revokeUser
+#- 57 RevokeUser
 samples/cli/sample-apps Iam revokeUser \
     --namespace 'BPlSay46' \
     --userId 'mv71BAZA' \
-    >$TEMP_FILE 2>&1
-update_status $? 'revokeUser'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 57 'RevokeUser' test.out
 
-#- 57 getRevocationList
+#- 58 GetRevocationList
 samples/cli/sample-apps Iam getRevocationList \
-    >$TEMP_FILE 2>&1
-update_status $? 'getRevocationList'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 58 'GetRevocationList' test.out
 
-#- 58 revokeToken
-update_status 0 'revokeToken (skipped deprecated)'
+#- 59 RevokeToken
+eval_tap 0 59 'RevokeToken # SKIP deprecated' test.out
 
-#- 59 revokeAUser
-update_status 0 'revokeAUser (skipped deprecated)'
+#- 60 RevokeAUser
+eval_tap 0 60 'RevokeAUser # SKIP deprecated' test.out
 
-#- 60 tokenGrant
+#- 61 TokenGrant
 samples/cli/sample-apps Iam tokenGrant \
     --deviceId 'OjtFJ2vm' \
     --code 'Tj7tT7TZ' \
@@ -508,179 +455,156 @@ samples/cli/sample-apps Iam tokenGrant \
     --refreshToken 'IgRwFRr0' \
     --username 'gwB9tz3v' \
     --grantType 'client_credentials' \
-    >$TEMP_FILE 2>&1
-update_status $? 'tokenGrant'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 61 'TokenGrant' test.out
 
-#- 61 verifyToken
+#- 62 VerifyToken
 samples/cli/sample-apps Iam verifyToken \
     --token '99XVlV8r' \
-    >$TEMP_FILE 2>&1
-update_status $? 'verifyToken'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 62 'VerifyToken' test.out
 
-#- 62 getRoles
+#- 63 GetRoles
 samples/cli/sample-apps Iam getRoles \
     --isWildcard 'K3tE6n0s' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getRoles'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 63 'GetRoles' test.out
 
-#- 63 createRole
+#- 64 CreateRole
 samples/cli/sample-apps Iam createRole \
     --body '{"AdminRole": false, "Managers": [{"DisplayName": "ip1tw3L7", "Namespace": "cUd9pqtv", "UserId": "6JfPZwcC"}], "Members": [{"DisplayName": "VOXcVa80", "Namespace": "TmCwtD2l", "UserId": "AH01o6Nd"}], "Permissions": [{"Action": 4, "Resource": "BIgzrDyW", "SchedAction": 31, "SchedCron": "FBYGmmBa", "SchedRange": ["wMyoKyNp"]}], "RoleName": "dAasm8xw"}' \
-    >$TEMP_FILE 2>&1
-update_status $? 'createRole'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 64 'CreateRole' test.out
 
-#- 64 getRole
+#- 65 GetRole
 samples/cli/sample-apps Iam getRole \
     --roleId 'UfzOlQiZ' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getRole'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 65 'GetRole' test.out
 
-#- 65 updateRole
+#- 66 UpdateRole
 samples/cli/sample-apps Iam updateRole \
     --body '{"RoleName": "Y4NbOQXJ"}' \
     --roleId '7uOTzNMv' \
-    >$TEMP_FILE 2>&1
-update_status $? 'updateRole'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 66 'UpdateRole' test.out
 
-#- 66 deleteRole
+#- 67 DeleteRole
 samples/cli/sample-apps Iam deleteRole \
     --roleId 'uq2tNl4C' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deleteRole'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 67 'DeleteRole' test.out
 
-#- 67 getRoleAdminStatus
+#- 68 GetRoleAdminStatus
 samples/cli/sample-apps Iam getRoleAdminStatus \
     --roleId 'X4IjiK4D' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getRoleAdminStatus'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 68 'GetRoleAdminStatus' test.out
 
-#- 68 setRoleAsAdmin
+#- 69 SetRoleAsAdmin
 samples/cli/sample-apps Iam setRoleAsAdmin \
     --roleId 'EUJRVK3l' \
-    >$TEMP_FILE 2>&1
-update_status $? 'setRoleAsAdmin'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 69 'SetRoleAsAdmin' test.out
 
-#- 69 removeRoleAdmin
+#- 70 RemoveRoleAdmin
 samples/cli/sample-apps Iam removeRoleAdmin \
     --roleId '9Eb0R1XR' \
-    >$TEMP_FILE 2>&1
-update_status $? 'removeRoleAdmin'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 70 'RemoveRoleAdmin' test.out
 
-#- 70 getRoleManagers
+#- 71 GetRoleManagers
 samples/cli/sample-apps Iam getRoleManagers \
     --roleId 'b0RH8vS1' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getRoleManagers'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 71 'GetRoleManagers' test.out
 
-#- 71 addRoleManagers
+#- 72 AddRoleManagers
 samples/cli/sample-apps Iam addRoleManagers \
     --body '{"Managers": [{"DisplayName": "smeOlngr", "Namespace": "dTXCzaPB", "UserId": "tkZMio4w"}]}' \
     --roleId 'cyhloVS3' \
-    >$TEMP_FILE 2>&1
-update_status $? 'addRoleManagers'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 72 'AddRoleManagers' test.out
 
-#- 72 removeRoleManagers
+#- 73 RemoveRoleManagers
 samples/cli/sample-apps Iam removeRoleManagers \
     --body '{"Managers": [{"DisplayName": "rYp8QtcE", "Namespace": "mCEVc75U", "UserId": "feypWjDN"}]}' \
     --roleId 'hzCL5sWS' \
-    >$TEMP_FILE 2>&1
-update_status $? 'removeRoleManagers'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 73 'RemoveRoleManagers' test.out
 
-#- 73 getRoleMembers
+#- 74 GetRoleMembers
 samples/cli/sample-apps Iam getRoleMembers \
     --roleId '2qwO763i' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getRoleMembers'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 74 'GetRoleMembers' test.out
 
-#- 74 addRoleMembers
+#- 75 AddRoleMembers
 samples/cli/sample-apps Iam addRoleMembers \
     --body '{"Members": [{"DisplayName": "EklkzLm8", "Namespace": "8LpLuYRO", "UserId": "3C55yHpw"}]}' \
     --roleId 'K2JaqenD' \
-    >$TEMP_FILE 2>&1
-update_status $? 'addRoleMembers'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 75 'AddRoleMembers' test.out
 
-#- 75 removeRoleMembers
+#- 76 RemoveRoleMembers
 samples/cli/sample-apps Iam removeRoleMembers \
     --body '{"Members": [{"DisplayName": "Gn7a2NUp", "Namespace": "lWiLjq06", "UserId": "n6a0rW8E"}]}' \
     --roleId 'fkpaXtwY' \
-    >$TEMP_FILE 2>&1
-update_status $? 'removeRoleMembers'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 76 'RemoveRoleMembers' test.out
 
-#- 76 updateRolePermissions
+#- 77 UpdateRolePermissions
 samples/cli/sample-apps Iam updateRolePermissions \
     --body '{"Permissions": [{"Action": 70, "Resource": "aQ4WbwNm", "SchedAction": 37, "SchedCron": "FYetjEur", "SchedRange": ["H8eloJzN"]}]}' \
     --roleId 'KtRUaTz1' \
-    >$TEMP_FILE 2>&1
-update_status $? 'updateRolePermissions'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 77 'UpdateRolePermissions' test.out
 
-#- 77 addRolePermission
+#- 78 AddRolePermission
 samples/cli/sample-apps Iam addRolePermission \
     --body '{"SchedAction": 61, "SchedCron": "Tdsmwzjk", "SchedRange": ["kn9oiQl0"]}' \
     --action '13' \
     --resource '7cO3ZMb6' \
     --roleId 'Ojlo6DMN' \
-    >$TEMP_FILE 2>&1
-update_status $? 'addRolePermission'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 78 'AddRolePermission' test.out
 
-#- 78 deleteRolePermission
+#- 79 DeleteRolePermission
 samples/cli/sample-apps Iam deleteRolePermission \
     --action '30' \
     --resource 'P2qMrTQ1' \
     --roleId 'UpjfU6wJ' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deleteRolePermission'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 79 'DeleteRolePermission' test.out
 
-#- 79 adminGetAgeRestrictionStatusV2
+#- 80 AdminGetAgeRestrictionStatusV2
 samples/cli/sample-apps Iam adminGetAgeRestrictionStatusV2 \
     --namespace 'hy1jOVkk' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetAgeRestrictionStatusV2'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 80 'AdminGetAgeRestrictionStatusV2' test.out
 
-#- 80 adminUpdateAgeRestrictionConfigV2
+#- 81 AdminUpdateAgeRestrictionConfigV2
 samples/cli/sample-apps Iam adminUpdateAgeRestrictionConfigV2 \
     --body '{"AgeRestriction": 92, "Enable": false}' \
     --namespace 'S79527EZ' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminUpdateAgeRestrictionConfigV2'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 81 'AdminUpdateAgeRestrictionConfigV2' test.out
 
-#- 81 getListCountryAgeRestriction
+#- 82 GetListCountryAgeRestriction
 samples/cli/sample-apps Iam getListCountryAgeRestriction \
     --namespace '25Ia8uCe' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getListCountryAgeRestriction'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 82 'GetListCountryAgeRestriction' test.out
 
-#- 82 updateCountryAgeRestriction
+#- 83 UpdateCountryAgeRestriction
 samples/cli/sample-apps Iam updateCountryAgeRestriction \
     --body '{"AgeRestriction": 62}' \
     --countryCode 'lLtEVpDA' \
     --namespace 'EbA82jy7' \
-    >$TEMP_FILE 2>&1
-update_status $? 'updateCountryAgeRestriction'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 83 'UpdateCountryAgeRestriction' test.out
 
-#- 83 adminSearchUsersV2
+#- 84 AdminSearchUsersV2
 samples/cli/sample-apps Iam adminSearchUsersV2 \
     --namespace '4lq0pDE5' \
     --after 'xRwh5b45' \
@@ -692,518 +616,457 @@ samples/cli/sample-apps Iam adminSearchUsersV2 \
     --roleId 'YgOdEBWR' \
     --userId 'QiW3KFfU' \
     --platformId '8icH4081' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminSearchUsersV2'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 84 'AdminSearchUsersV2' test.out
 
-#- 84 adminGetUserByUserIdV2
+#- 85 AdminGetUserByUserIdV2
 samples/cli/sample-apps Iam adminGetUserByUserIdV2 \
     --namespace 'gRB1GyLf' \
     --userId 'Lg4RYuEb' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetUserByUserIdV2'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 85 'AdminGetUserByUserIdV2' test.out
 
-#- 85 adminUpdateUserV2
+#- 86 AdminUpdateUserV2
 samples/cli/sample-apps Iam adminUpdateUserV2 \
     --body '{"Country": "gUDEcJyI", "DateOfBirth": "vsPwOr0B", "DisplayName": "mV5iFvfw", "LanguageTag": "FjTSmIEq"}' \
     --namespace 'oLyLeUGm' \
     --userId 'omGX9sXT' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminUpdateUserV2'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 86 'AdminUpdateUserV2' test.out
 
-#- 86 adminBanUserV2
+#- 87 AdminBanUserV2
 samples/cli/sample-apps Iam adminBanUserV2 \
     --body '{"ban": "Z0v8pqLf", "comment": "c5SwGnRe", "endDate": "UULDX4QU", "reason": "Ibb5nh68", "skipNotif": false}' \
     --namespace 'yUtRvW9h' \
     --userId 'NBSFTtFr' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminBanUserV2'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 87 'AdminBanUserV2' test.out
 
-#- 87 adminGetUserBanV2
+#- 88 AdminGetUserBanV2
 samples/cli/sample-apps Iam adminGetUserBanV2 \
     --namespace 'OmjkFrFV' \
     --userId 'A8t0xF34' \
     --activeOnly 'False' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetUserBanV2'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 88 'AdminGetUserBanV2' test.out
 
-#- 88 adminDisableUserV2
+#- 89 AdminDisableUserV2
 samples/cli/sample-apps Iam adminDisableUserV2 \
     --body '{"Reason": "t6ZlTTic"}' \
     --namespace '0kr2a0nI' \
     --userId '2oo7UHCJ' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminDisableUserV2'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 89 'AdminDisableUserV2' test.out
 
-#- 89 adminEnableUserV2
+#- 90 AdminEnableUserV2
 samples/cli/sample-apps Iam adminEnableUserV2 \
     --namespace 'K5sp0aCv' \
     --userId 'Iq3aHVYI' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminEnableUserV2'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 90 'AdminEnableUserV2' test.out
 
-#- 90 adminResetPasswordV2
+#- 91 AdminResetPasswordV2
 samples/cli/sample-apps Iam adminResetPasswordV2 \
     --body '{"LanguageTag": "lewLRuHY", "NewPassword": "83bGj0HT", "OldPassword": "eeWXlIcR"}' \
     --namespace 'idqctDpy' \
     --userId 'gY0ax476' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminResetPasswordV2'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 91 'AdminResetPasswordV2' test.out
 
-#- 91 adminDeletePlatformLinkV2
+#- 92 AdminDeletePlatformLinkV2
 samples/cli/sample-apps Iam adminDeletePlatformLinkV2 \
     --platformNamespace 'ED4MMO9T' \
     --namespace 'w2JH0qhW' \
     --platformId 'IwHWTgzJ' \
     --userId 'FRYw6t1I' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminDeletePlatformLinkV2'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 92 'AdminDeletePlatformLinkV2' test.out
 
-#- 92 adminPutUserRolesV2
+#- 93 AdminPutUserRolesV2
 samples/cli/sample-apps Iam adminPutUserRolesV2 \
     --body '["KZLO6V4O"]' \
     --namespace 'de46QmCi' \
     --userId 'dgdpP7RT' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminPutUserRolesV2'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 93 'AdminPutUserRolesV2' test.out
 
-#- 93 adminCreateUserRolesV2
+#- 94 AdminCreateUserRolesV2
 samples/cli/sample-apps Iam adminCreateUserRolesV2 \
     --body '["C587lmUm"]' \
     --namespace 'BziPZBnp' \
     --userId 'Ofkllxfq' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminCreateUserRolesV2'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 94 'AdminCreateUserRolesV2' test.out
 
-#- 94 publicGetCountryAgeRestriction
+#- 95 PublicGetCountryAgeRestriction
 samples/cli/sample-apps Iam publicGetCountryAgeRestriction \
     --countryCode '0NsrSjw5' \
     --namespace 'Hog0blM1' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicGetCountryAgeRestriction'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 95 'PublicGetCountryAgeRestriction' test.out
 
-#- 95 publicCreateUserV2
+#- 96 PublicCreateUserV2
 samples/cli/sample-apps Iam publicCreateUserV2 \
     --body '{"AuthType": "d5MStYGc", "Country": "zLINlEC0", "DisplayName": "OEsE3yzI", "LoginId": "sUP0Njlu", "Password": "OrGZTzsL", "PasswordMD5Sum": "W7Fjfs9n"}' \
     --namespace 'IkcZ38fU' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicCreateUserV2'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 96 'PublicCreateUserV2' test.out
 
-#- 96 publicForgotPasswordV2
+#- 97 PublicForgotPasswordV2
 samples/cli/sample-apps Iam publicForgotPasswordV2 \
     --body '{"Context": "EanjKHbX", "LanguageTag": "fk1zxdzx", "LoginID": "g0UXcRyH"}' \
     --namespace 'i3u8BzVW' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicForgotPasswordV2'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 97 'PublicForgotPasswordV2' test.out
 
-#- 97 publicResetPasswordV2
+#- 98 PublicResetPasswordV2
 samples/cli/sample-apps Iam publicResetPasswordV2 \
     --body '{"Code": "u1tOmhUt", "LoginID": "CgcpvGrE", "NewPassword": "bcZUDExH"}' \
     --namespace '1tayOGXI' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicResetPasswordV2'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 98 'PublicResetPasswordV2' test.out
 
-#- 98 publicGetUserByUserIDV2
+#- 99 PublicGetUserByUserIDV2
 samples/cli/sample-apps Iam publicGetUserByUserIDV2 \
     --namespace 'HzMRjMCt' \
     --userId 'OJsEijlr' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicGetUserByUserIDV2'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 99 'PublicGetUserByUserIDV2' test.out
 
-#- 99 publicUpdateUserV2
+#- 100 PublicUpdateUserV2
 samples/cli/sample-apps Iam publicUpdateUserV2 \
     --body '{"Country": "bpyyEcQx", "DateOfBirth": "VgJIjMZq", "DisplayName": "cWfMl6dq", "LanguageTag": "rpD4tnc3"}' \
     --namespace 'ZRB3Ikdt' \
     --userId 'PfAJEomw' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicUpdateUserV2'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 100 'PublicUpdateUserV2' test.out
 
-#- 100 publicGetUserBan
+#- 101 PublicGetUserBan
 samples/cli/sample-apps Iam publicGetUserBan \
     --namespace 'enJvQ8gr' \
     --userId 'tQSv6EcA' \
     --activeOnly 'False' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicGetUserBan'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 101 'PublicGetUserBan' test.out
 
-#- 101 publicUpdatePasswordV2
+#- 102 PublicUpdatePasswordV2
 samples/cli/sample-apps Iam publicUpdatePasswordV2 \
     --body '{"LanguageTag": "MIPms5bT", "NewPassword": "51M4yko8", "OldPassword": "S0EnGLvG"}' \
     --namespace 'vfuSyCTy' \
     --userId 'jj4mCaiu' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicUpdatePasswordV2'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 102 'PublicUpdatePasswordV2' test.out
 
-#- 102 getListJusticePlatformAccounts
+#- 103 GetListJusticePlatformAccounts
 samples/cli/sample-apps Iam getListJusticePlatformAccounts \
     --namespace 'MGKOF5GJ' \
     --userId 'JooSXUl3' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getListJusticePlatformAccounts'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 103 'GetListJusticePlatformAccounts' test.out
 
-#- 103 publicPlatformLinkV2
+#- 104 PublicPlatformLinkV2
 samples/cli/sample-apps Iam publicPlatformLinkV2 \
     --ticket 'YU35QHGp' \
     --namespace 'BABnOlxD' \
     --platformId 'znICQVyq' \
     --userId 'Bg34WTtD' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicPlatformLinkV2'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 104 'PublicPlatformLinkV2' test.out
 
-#- 104 publicDeletePlatformLinkV2
+#- 105 PublicDeletePlatformLinkV2
 samples/cli/sample-apps Iam publicDeletePlatformLinkV2 \
     --platformNamespace 'kn0rtn6t' \
     --namespace '0Yx4z12E' \
     --platformId 'aQ1rUQYC' \
     --userId 'NTiDX4jE' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicDeletePlatformLinkV2'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 105 'PublicDeletePlatformLinkV2' test.out
 
-#- 105 adminGetBansTypeV3
+#- 106 AdminGetBansTypeV3
 samples/cli/sample-apps Iam adminGetBansTypeV3 \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetBansTypeV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 106 'AdminGetBansTypeV3' test.out
 
-#- 106 adminGetListBanReasonV3
+#- 107 AdminGetListBanReasonV3
 samples/cli/sample-apps Iam adminGetListBanReasonV3 \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetListBanReasonV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 107 'AdminGetListBanReasonV3' test.out
 
-#- 107 adminGetInputValidations
+#- 108 AdminGetInputValidations
 samples/cli/sample-apps Iam adminGetInputValidations \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetInputValidations'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 108 'AdminGetInputValidations' test.out
 
-#- 108 adminUpdateInputValidations
+#- 109 AdminUpdateInputValidations
 samples/cli/sample-apps Iam adminUpdateInputValidations \
     --body '[{"field": "3M2IsTHu", "validation": {"allowDigit": true, "allowLetter": true, "allowSpace": false, "allowUnicode": false, "description": [{"language": "IWd0mcq5", "message": ["T4SUc7cW"]}], "isCustomRegex": false, "letterCase": "CKK6Dij1", "maxLength": 12, "maxRepeatingAlphaNum": 63, "maxRepeatingSpecialCharacter": 5, "minCharType": 9, "minLength": 27, "regex": "EMySPfhx", "specialCharacterLocation": "BenDiTiA", "specialCharacters": ["qFYmFKja"]}}]' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminUpdateInputValidations'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 109 'AdminUpdateInputValidations' test.out
 
-#- 109 adminResetInputValidations
+#- 110 AdminResetInputValidations
 samples/cli/sample-apps Iam adminResetInputValidations \
     --field 'ELmmll6o' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminResetInputValidations'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 110 'AdminResetInputValidations' test.out
 
-#- 110 listAdminsV3
+#- 111 ListAdminsV3
 samples/cli/sample-apps Iam listAdminsV3 \
     --namespace 'exId1OKG' \
     --after 'UN2Uznd7' \
     --before 'uVa7t14y' \
     --limit '43' \
-    >$TEMP_FILE 2>&1
-update_status $? 'listAdminsV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 111 'ListAdminsV3' test.out
 
-#- 111 adminGetAgeRestrictionStatusV3
+#- 112 AdminGetAgeRestrictionStatusV3
 samples/cli/sample-apps Iam adminGetAgeRestrictionStatusV3 \
     --namespace 'SYSV52bH' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetAgeRestrictionStatusV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 112 'AdminGetAgeRestrictionStatusV3' test.out
 
-#- 112 adminUpdateAgeRestrictionConfigV3
+#- 113 AdminUpdateAgeRestrictionConfigV3
 samples/cli/sample-apps Iam adminUpdateAgeRestrictionConfigV3 \
     --body '{"ageRestriction": 16, "enable": false}' \
     --namespace 'CIf4tsuu' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminUpdateAgeRestrictionConfigV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 113 'AdminUpdateAgeRestrictionConfigV3' test.out
 
-#- 113 adminGetListCountryAgeRestrictionV3
+#- 114 AdminGetListCountryAgeRestrictionV3
 samples/cli/sample-apps Iam adminGetListCountryAgeRestrictionV3 \
     --namespace '6Pkam6tF' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetListCountryAgeRestrictionV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 114 'AdminGetListCountryAgeRestrictionV3' test.out
 
-#- 114 adminUpdateCountryAgeRestrictionV3
+#- 115 AdminUpdateCountryAgeRestrictionV3
 samples/cli/sample-apps Iam adminUpdateCountryAgeRestrictionV3 \
     --body '{"ageRestriction": 89}' \
     --countryCode 'YFt4ZxA2' \
     --namespace 'PzZFRkBN' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminUpdateCountryAgeRestrictionV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 115 'AdminUpdateCountryAgeRestrictionV3' test.out
 
-#- 115 adminGetBannedUsersV3
+#- 116 AdminGetBannedUsersV3
 samples/cli/sample-apps Iam adminGetBannedUsersV3 \
     --namespace 'lg6hn5qu' \
     --activeOnly 'True' \
     --banType 'KyZAuV6u' \
     --limit '92' \
     --offset '42' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetBannedUsersV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 116 'AdminGetBannedUsersV3' test.out
 
-#- 116 adminGetBansTypeWithNamespaceV3
+#- 117 AdminGetBansTypeWithNamespaceV3
 samples/cli/sample-apps Iam adminGetBansTypeWithNamespaceV3 \
     --namespace 'qM0lV6UZ' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetBansTypeWithNamespaceV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 117 'AdminGetBansTypeWithNamespaceV3' test.out
 
-#- 117 adminGetClientsByNamespaceV3
+#- 118 AdminGetClientsByNamespaceV3
 samples/cli/sample-apps Iam adminGetClientsByNamespaceV3 \
     --namespace 'MlEbxHNg' \
     --limit '70' \
     --offset '87' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetClientsByNamespaceV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 118 'AdminGetClientsByNamespaceV3' test.out
 
-#- 118 adminCreateClientV3
+#- 119 AdminCreateClientV3
 samples/cli/sample-apps Iam adminCreateClientV3 \
     --body '{"audiences": ["iQExaunj"], "baseUri": "dAqnHUz4", "clientId": "4tx4O6ha", "clientName": "mPwNoi07", "clientPermissions": [{"action": 8, "resource": "zDK56JFI", "schedAction": 65, "schedCron": "e1IMUCLc", "schedRange": ["N0DsaD5F"]}], "deletable": true, "namespace": "BsFe9OYE", "oauthClientType": "JVsYffmh", "redirectUri": "yx6J25Pr", "secret": "M4S3cB8m"}' \
     --namespace '17hEeLLg' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminCreateClientV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 119 'AdminCreateClientV3' test.out
 
-#- 119 adminGetClientsbyNamespacebyIDV3
+#- 120 AdminGetClientsbyNamespacebyIDV3
 samples/cli/sample-apps Iam adminGetClientsbyNamespacebyIDV3 \
     --clientId 'oaYth6zc' \
     --namespace 'f8eA45OM' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetClientsbyNamespacebyIDV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 120 'AdminGetClientsbyNamespacebyIDV3' test.out
 
-#- 120 adminDeleteClientV3
+#- 121 AdminDeleteClientV3
 samples/cli/sample-apps Iam adminDeleteClientV3 \
     --clientId 'vObWejo9' \
     --namespace 'LfGeegJM' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminDeleteClientV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 121 'AdminDeleteClientV3' test.out
 
-#- 121 adminUpdateClientV3
+#- 122 AdminUpdateClientV3
 samples/cli/sample-apps Iam adminUpdateClientV3 \
     --body '{"audiences": ["aBGR6D1Z"], "baseUri": "oZEZQkJ8", "clientName": "DSqFnhdK", "clientPermissions": [{"action": 43, "resource": "jFCFbSFl", "schedAction": 60, "schedCron": "WoMPdgK5", "schedRange": ["zn62mhnF"]}], "deletable": false, "namespace": "CTlDNBOc", "redirectUri": "ygvv2LAg"}' \
     --clientId 'fBGVzanb' \
     --namespace 'KYsB0gqJ' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminUpdateClientV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 122 'AdminUpdateClientV3' test.out
 
-#- 122 adminUpdateClientPermissionV3
+#- 123 AdminUpdateClientPermissionV3
 samples/cli/sample-apps Iam adminUpdateClientPermissionV3 \
     --body '{"permissions": [{"action": 95, "resource": "hYSikJl2"}]}' \
     --clientId 'p9rBx8N5' \
     --namespace 'egapqxDy' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminUpdateClientPermissionV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 123 'AdminUpdateClientPermissionV3' test.out
 
-#- 123 adminAddClientPermissionsV3
+#- 124 AdminAddClientPermissionsV3
 samples/cli/sample-apps Iam adminAddClientPermissionsV3 \
     --body '{"permissions": [{"action": 4, "resource": "LfNjzzEZ"}]}' \
     --clientId 'YA8jIkMJ' \
     --namespace 'b7cZ2bPs' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminAddClientPermissionsV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 124 'AdminAddClientPermissionsV3' test.out
 
-#- 124 adminDeleteClientPermissionV3
+#- 125 AdminDeleteClientPermissionV3
 samples/cli/sample-apps Iam adminDeleteClientPermissionV3 \
     --action '1' \
     --clientId 'LLpEBVEM' \
     --namespace 'k5AsKaF2' \
     --resource 'P44lXkI3' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminDeleteClientPermissionV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 125 'AdminDeleteClientPermissionV3' test.out
 
-#- 125 retrieveAllThirdPartyLoginPlatformCredentialV3
+#- 126 RetrieveAllThirdPartyLoginPlatformCredentialV3
 samples/cli/sample-apps Iam retrieveAllThirdPartyLoginPlatformCredentialV3 \
     --namespace 'zdiRiC5I' \
-    >$TEMP_FILE 2>&1
-update_status $? 'retrieveAllThirdPartyLoginPlatformCredentialV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 126 'RetrieveAllThirdPartyLoginPlatformCredentialV3' test.out
 
-#- 126 retrieveAllActiveThirdPartyLoginPlatformCredentialV3
+#- 127 RetrieveAllActiveThirdPartyLoginPlatformCredentialV3
 samples/cli/sample-apps Iam retrieveAllActiveThirdPartyLoginPlatformCredentialV3 \
     --namespace 'bPit71JW' \
-    >$TEMP_FILE 2>&1
-update_status $? 'retrieveAllActiveThirdPartyLoginPlatformCredentialV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 127 'RetrieveAllActiveThirdPartyLoginPlatformCredentialV3' test.out
 
-#- 127 retrieveAllSSOLoginPlatformCredentialV3
+#- 128 RetrieveAllSSOLoginPlatformCredentialV3
 samples/cli/sample-apps Iam retrieveAllSSOLoginPlatformCredentialV3 \
     --namespace 'lYCoi4nD' \
     --limit '10' \
     --offset '83' \
-    >$TEMP_FILE 2>&1
-update_status $? 'retrieveAllSSOLoginPlatformCredentialV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 128 'RetrieveAllSSOLoginPlatformCredentialV3' test.out
 
-#- 128 retrieveThirdPartyLoginPlatformCredentialV3
+#- 129 RetrieveThirdPartyLoginPlatformCredentialV3
 samples/cli/sample-apps Iam retrieveThirdPartyLoginPlatformCredentialV3 \
     --namespace 'u5V6QSYx' \
     --platformId 'EVOryVuZ' \
-    >$TEMP_FILE 2>&1
-update_status $? 'retrieveThirdPartyLoginPlatformCredentialV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 129 'RetrieveThirdPartyLoginPlatformCredentialV3' test.out
 
-#- 129 addThirdPartyLoginPlatformCredentialV3
+#- 130 AddThirdPartyLoginPlatformCredentialV3
 samples/cli/sample-apps Iam addThirdPartyLoginPlatformCredentialV3 \
     --body '{"ACSURL": "YmgUeEPB", "AWSCognitoRegion": "5AGPgvk0", "AWSCognitoUserPool": "Zthaj0EB", "AppId": "A4azRz0d", "ClientId": "56smobor", "Environment": "4p1PlgQB", "FederationMetadataURL": "9EcNGOeB", "GenericOauthFlow": false, "IsActive": false, "Issuer": "07deDLaZ", "JWKSEndpoint": "8JCvbeTf", "KeyID": "W0hgzrab", "OrganizationId": "LJxEwJrE", "PlatformName": "BmQ64haN", "RedirectUri": "OzlGu68U", "Secret": "YyupjdDe", "TeamID": "tnoT0rfW", "TokenAuthenticationType": "tVPwQfq6", "TokenClaimsMapping": {"V92gbfPo": "uNdmP7fc"}}' \
     --namespace 'kVnuDGvY' \
     --platformId 'Ib1p5tcR' \
-    >$TEMP_FILE 2>&1
-update_status $? 'addThirdPartyLoginPlatformCredentialV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 130 'AddThirdPartyLoginPlatformCredentialV3' test.out
 
-#- 130 deleteThirdPartyLoginPlatformCredentialV3
+#- 131 DeleteThirdPartyLoginPlatformCredentialV3
 samples/cli/sample-apps Iam deleteThirdPartyLoginPlatformCredentialV3 \
     --namespace '5z8ZJLjS' \
     --platformId 'HcaR3X4t' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deleteThirdPartyLoginPlatformCredentialV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 131 'DeleteThirdPartyLoginPlatformCredentialV3' test.out
 
-#- 131 updateThirdPartyLoginPlatformCredentialV3
+#- 132 UpdateThirdPartyLoginPlatformCredentialV3
 samples/cli/sample-apps Iam updateThirdPartyLoginPlatformCredentialV3 \
     --body '{"ACSURL": "Zmwr0QmO", "AWSCognitoRegion": "nsEg49eX", "AWSCognitoUserPool": "p0xQkZ2J", "AppId": "juwWWy0t", "ClientId": "U11PCeSr", "Environment": "vejUKwVf", "FederationMetadataURL": "F37Vr7mk", "GenericOauthFlow": true, "IsActive": true, "Issuer": "FBI1Vwhk", "JWKSEndpoint": "VSKDlNFO", "KeyID": "UHBJsvTs", "OrganizationId": "qk9hg4hj", "PlatformName": "6nUdebW6", "RedirectUri": "UskbPkkZ", "Secret": "Ak01f1Kx", "TeamID": "CtWADU2g", "TokenAuthenticationType": "uN6U9w13", "TokenClaimsMapping": {"W1K9TZQ4": "qRLEi5wo"}}' \
     --namespace 'wE36rfmM' \
     --platformId '0CCs35TP' \
-    >$TEMP_FILE 2>&1
-update_status $? 'updateThirdPartyLoginPlatformCredentialV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 132 'UpdateThirdPartyLoginPlatformCredentialV3' test.out
 
-#- 132 updateThirdPartyLoginPlatformDomainV3
+#- 133 UpdateThirdPartyLoginPlatformDomainV3
 samples/cli/sample-apps Iam updateThirdPartyLoginPlatformDomainV3 \
     --body '{"affectedClientIDs": ["UPLmsY8W"], "assignedNamespaces": ["gwSx1DI5"], "domain": "GH9bv9ZT", "roleId": "o2HpA6pz"}' \
     --namespace 'jHpZO0E9' \
     --platformId 'iLgRPJK3' \
-    >$TEMP_FILE 2>&1
-update_status $? 'updateThirdPartyLoginPlatformDomainV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 133 'UpdateThirdPartyLoginPlatformDomainV3' test.out
 
-#- 133 deleteThirdPartyLoginPlatformDomainV3
+#- 134 DeleteThirdPartyLoginPlatformDomainV3
 samples/cli/sample-apps Iam deleteThirdPartyLoginPlatformDomainV3 \
     --body '{"domain": "nBae3GOg"}' \
     --namespace 'bQrqra0P' \
     --platformId 'tkfvOpY2' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deleteThirdPartyLoginPlatformDomainV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 134 'DeleteThirdPartyLoginPlatformDomainV3' test.out
 
-#- 134 retrieveSSOLoginPlatformCredential
+#- 135 RetrieveSSOLoginPlatformCredential
 samples/cli/sample-apps Iam retrieveSSOLoginPlatformCredential \
     --namespace 'ramp5lnB' \
     --platformId 'n6xmBkfM' \
-    >$TEMP_FILE 2>&1
-update_status $? 'retrieveSSOLoginPlatformCredential'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 135 'RetrieveSSOLoginPlatformCredential' test.out
 
-#- 135 addSSOLoginPlatformCredential
+#- 136 AddSSOLoginPlatformCredential
 samples/cli/sample-apps Iam addSSOLoginPlatformCredential \
     --body '{"acsUrl": "tC66hFq0", "apiKey": "kPOkORm2", "appId": "XjlNEE5e", "federationMetadataUrl": "cPzAmi0y", "isActive": false, "redirectUri": "PloP1XkY", "secret": "K4MgIsDS", "ssoUrl": "FMPyMhyw"}' \
     --namespace '1OLZPVww' \
     --platformId 'xH4BIDJu' \
-    >$TEMP_FILE 2>&1
-update_status $? 'addSSOLoginPlatformCredential'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 136 'AddSSOLoginPlatformCredential' test.out
 
-#- 136 deleteSSOLoginPlatformCredentialV3
+#- 137 DeleteSSOLoginPlatformCredentialV3
 samples/cli/sample-apps Iam deleteSSOLoginPlatformCredentialV3 \
     --namespace 'DoShMMft' \
     --platformId 'll8N0VvC' \
-    >$TEMP_FILE 2>&1
-update_status $? 'deleteSSOLoginPlatformCredentialV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 137 'DeleteSSOLoginPlatformCredentialV3' test.out
 
-#- 137 updateSSOPlatformCredential
+#- 138 UpdateSSOPlatformCredential
 samples/cli/sample-apps Iam updateSSOPlatformCredential \
     --body '{"acsUrl": "hHz9urmt", "apiKey": "7QWvE8s6", "appId": "Uz8BRuYW", "federationMetadataUrl": "DTtL6MTT", "isActive": false, "redirectUri": "Cbb9S5Q1", "secret": "IVHGT88p", "ssoUrl": "rREBgYOW"}' \
     --namespace 'dHJ9Jumo' \
     --platformId 'htU13gf7' \
-    >$TEMP_FILE 2>&1
-update_status $? 'updateSSOPlatformCredential'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 138 'UpdateSSOPlatformCredential' test.out
 
-#- 138 adminGetUserByPlatformUserIDV3
+#- 139 AdminGetUserByPlatformUserIDV3
 samples/cli/sample-apps Iam adminGetUserByPlatformUserIDV3 \
     --namespace 'TRigNZj5' \
     --platformId 'w5y3HmK8' \
     --platformUserId 'QVOa62eQ' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetUserByPlatformUserIDV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 139 'AdminGetUserByPlatformUserIDV3' test.out
 
-#- 139 getAdminUsersByRoleIdV3
+#- 140 GetAdminUsersByRoleIdV3
 samples/cli/sample-apps Iam getAdminUsersByRoleIdV3 \
     --namespace 'ZtbLLcF6' \
     --roleId '71WLtv38' \
     --after '67' \
     --before '8' \
     --limit '4' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getAdminUsersByRoleIdV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 140 'GetAdminUsersByRoleIdV3' test.out
 
-#- 140 adminGetUserByEmailAddressV3
+#- 141 AdminGetUserByEmailAddressV3
 samples/cli/sample-apps Iam adminGetUserByEmailAddressV3 \
     --namespace 'czopFmeR' \
     --emailAddress 'wpcJBZyi' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetUserByEmailAddressV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 141 'AdminGetUserByEmailAddressV3' test.out
 
-#- 141 adminListUserIDByUserIDsV3
+#- 142 AdminListUserIDByUserIDsV3
 samples/cli/sample-apps Iam adminListUserIDByUserIDsV3 \
     --body '{"userIds": ["3mLC4Kze"]}' \
     --namespace 'kiSzeyol' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminListUserIDByUserIDsV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 142 'AdminListUserIDByUserIDsV3' test.out
 
-#- 142 adminInviteUserV3
+#- 143 AdminInviteUserV3
 samples/cli/sample-apps Iam adminInviteUserV3 \
     --body '{"emailAddresses": ["nOQt0joV"], "isAdmin": false, "roles": ["CytC6lRG"]}' \
     --namespace '98YxnHbR' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminInviteUserV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 143 'AdminInviteUserV3' test.out
 
-#- 143 adminListUsersV3
+#- 144 AdminListUsersV3
 samples/cli/sample-apps Iam adminListUsersV3 \
     --namespace 'doTKKeuS' \
     --limit '19' \
     --offset '10' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminListUsersV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 144 'AdminListUsersV3' test.out
 
-#- 144 adminSearchUserV3
+#- 145 AdminSearchUserV3
 samples/cli/sample-apps Iam adminSearchUserV3 \
     --namespace 'Ze9i1osg' \
     --by 'hF1hzi1N' \
@@ -1214,36 +1077,32 @@ samples/cli/sample-apps Iam adminSearchUserV3 \
     --platformId 'WPVRsdEq' \
     --query 'A61yTrMg' \
     --startDate 'sycTgmPz' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminSearchUserV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 145 'AdminSearchUserV3' test.out
 
-#- 145 adminGetBulkUserByEmailAddressV3
+#- 146 AdminGetBulkUserByEmailAddressV3
 samples/cli/sample-apps Iam adminGetBulkUserByEmailAddressV3 \
     --body '{"listEmailAddressRequest": ["c20EuO5d"]}' \
     --namespace 'MqGDlSZP' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetBulkUserByEmailAddressV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 146 'AdminGetBulkUserByEmailAddressV3' test.out
 
-#- 146 adminGetUserByUserIdV3
+#- 147 AdminGetUserByUserIdV3
 samples/cli/sample-apps Iam adminGetUserByUserIdV3 \
     --namespace 'Y07rEVSj' \
     --userId 'zHjL6ZbX' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetUserByUserIdV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 147 'AdminGetUserByUserIdV3' test.out
 
-#- 147 adminUpdateUserV3
+#- 148 AdminUpdateUserV3
 samples/cli/sample-apps Iam adminUpdateUserV3 \
     --body '{"country": "jG6DSmpp", "dateOfBirth": "3op8htaR", "displayName": "LxtW4PvF", "languageTag": "kESTULat", "userName": "5F1Le7cR"}' \
     --namespace '7q6PWhZm' \
     --userId 'mKz41i1T' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminUpdateUserV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 148 'AdminUpdateUserV3' test.out
 
-#- 148 adminGetUserBanV3
+#- 149 AdminGetUserBanV3
 samples/cli/sample-apps Iam adminGetUserBanV3 \
     --namespace 'p78FipJH' \
     --userId 'ahViJvLY' \
@@ -1251,399 +1110,353 @@ samples/cli/sample-apps Iam adminGetUserBanV3 \
     --after 'dmlk2luq' \
     --before 'SOOA2VOZ' \
     --limit '55' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetUserBanV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 149 'AdminGetUserBanV3' test.out
 
-#- 149 adminBanUserV3
+#- 150 AdminBanUserV3
 samples/cli/sample-apps Iam adminBanUserV3 \
     --body '{"ban": "oNbB98Pu", "comment": "SGykqFzP", "endDate": "wSMXT53b", "reason": "BuL38beO", "skipNotif": true}' \
     --namespace 'VuHZQ9LY' \
     --userId 't6w23Wf8' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminBanUserV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 150 'AdminBanUserV3' test.out
 
-#- 150 adminUpdateUserBanV3
+#- 151 AdminUpdateUserBanV3
 samples/cli/sample-apps Iam adminUpdateUserBanV3 \
     --body '{"enabled": false, "skipNotif": true}' \
     --banId 'Qo72sH0a' \
     --namespace 'RdcDlDyG' \
     --userId 'csfIuI4D' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminUpdateUserBanV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 151 'AdminUpdateUserBanV3' test.out
 
-#- 151 adminSendVerificationCodeV3
+#- 152 AdminSendVerificationCodeV3
 samples/cli/sample-apps Iam adminSendVerificationCodeV3 \
     --body '{"context": "v5lEJpK1", "emailAddress": "AyRlzsrR", "languageTag": "XEFZivQO"}' \
     --namespace 'HG6wVicN' \
     --userId 'ratsvvHL' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminSendVerificationCodeV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 152 'AdminSendVerificationCodeV3' test.out
 
-#- 152 adminVerifyAccountV3
+#- 153 AdminVerifyAccountV3
 samples/cli/sample-apps Iam adminVerifyAccountV3 \
     --body '{"Code": "mIohfNIS", "ContactType": "LXMDWDdm", "LanguageTag": "5FE4lliQ", "validateOnly": false}' \
     --namespace 'utJbpEo4' \
     --userId 'mUNHFtdm' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminVerifyAccountV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 153 'AdminVerifyAccountV3' test.out
 
-#- 153 getUserVerificationCode
+#- 154 GetUserVerificationCode
 samples/cli/sample-apps Iam getUserVerificationCode \
     --namespace 'l2xNviWa' \
     --userId 'cJc3Fm7Z' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getUserVerificationCode'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 154 'GetUserVerificationCode' test.out
 
-#- 154 adminGetUserDeletionStatusV3
+#- 155 AdminGetUserDeletionStatusV3
 samples/cli/sample-apps Iam adminGetUserDeletionStatusV3 \
     --namespace '548uuKgo' \
     --userId 'CBqS5uId' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetUserDeletionStatusV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 155 'AdminGetUserDeletionStatusV3' test.out
 
-#- 155 adminUpdateUserDeletionStatusV3
+#- 156 AdminUpdateUserDeletionStatusV3
 samples/cli/sample-apps Iam adminUpdateUserDeletionStatusV3 \
     --body '{"enabled": true}' \
     --namespace 'bwCeeq9o' \
     --userId 'uEdDtjOg' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminUpdateUserDeletionStatusV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 156 'AdminUpdateUserDeletionStatusV3' test.out
 
-#- 156 adminUpgradeHeadlessAccountV3
+#- 157 AdminUpgradeHeadlessAccountV3
 samples/cli/sample-apps Iam adminUpgradeHeadlessAccountV3 \
     --body '{"code": "sypLkm2Z", "country": "Yew5H7Zm", "dateOfBirth": "0gnYyj6M", "displayName": "Xf9G1nty", "emailAddress": "ebvoeHen", "password": "AALKt7Ef", "validateOnly": true}' \
     --namespace 'IH446oUn' \
     --userId 'P2S74unX' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminUpgradeHeadlessAccountV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 157 'AdminUpgradeHeadlessAccountV3' test.out
 
-#- 157 adminDeleteUserInformationV3
+#- 158 AdminDeleteUserInformationV3
 samples/cli/sample-apps Iam adminDeleteUserInformationV3 \
     --namespace 'wg0JKqVW' \
     --userId 'W1rjK1ep' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminDeleteUserInformationV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 158 'AdminDeleteUserInformationV3' test.out
 
-#- 158 adminGetUserLoginHistoriesV3
+#- 159 AdminGetUserLoginHistoriesV3
 samples/cli/sample-apps Iam adminGetUserLoginHistoriesV3 \
     --namespace 'wkAvcsYv' \
     --userId 'bgfBVPpT' \
     --after '0.009010791422114361' \
     --before '0.7923140177423913' \
     --limit '32' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetUserLoginHistoriesV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 159 'AdminGetUserLoginHistoriesV3' test.out
 
-#- 159 adminUpdateUserPermissionV3
+#- 160 AdminUpdateUserPermissionV3
 samples/cli/sample-apps Iam adminUpdateUserPermissionV3 \
     --body '{"Permissions": [{"Action": 90, "Resource": "KiNXmz7e", "SchedAction": 77, "SchedCron": "rMD5TbaU", "SchedRange": ["xTCTng0x"]}]}' \
     --namespace 'jtdBrjs3' \
     --userId 'Kiykt2Ck' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminUpdateUserPermissionV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 160 'AdminUpdateUserPermissionV3' test.out
 
-#- 160 adminAddUserPermissionsV3
+#- 161 AdminAddUserPermissionsV3
 samples/cli/sample-apps Iam adminAddUserPermissionsV3 \
     --body '{"Permissions": [{"Action": 12, "Resource": "OlSatECZ", "SchedAction": 93, "SchedCron": "gwQLqDqY", "SchedRange": ["SxTPuVlB"]}]}' \
     --namespace 'qirdp3yx' \
     --userId 'nsETl1Sv' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminAddUserPermissionsV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 161 'AdminAddUserPermissionsV3' test.out
 
-#- 161 adminDeleteUserPermissionBulkV3
+#- 162 AdminDeleteUserPermissionBulkV3
 samples/cli/sample-apps Iam adminDeleteUserPermissionBulkV3 \
     --body '[{"Action": 14, "Resource": "QudsjIhX"}]' \
     --namespace 'dxiSoWpn' \
     --userId 'nxgX7BCP' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminDeleteUserPermissionBulkV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 162 'AdminDeleteUserPermissionBulkV3' test.out
 
-#- 162 adminDeleteUserPermissionV3
+#- 163 AdminDeleteUserPermissionV3
 samples/cli/sample-apps Iam adminDeleteUserPermissionV3 \
     --action '76' \
     --namespace 'qzQIxibh' \
     --resource 'pNYsHtdB' \
     --userId '3IkjuaZq' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminDeleteUserPermissionV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 163 'AdminDeleteUserPermissionV3' test.out
 
-#- 163 adminGetUserPlatformAccountsV3
+#- 164 AdminGetUserPlatformAccountsV3
 samples/cli/sample-apps Iam adminGetUserPlatformAccountsV3 \
     --namespace 'hJilrZkS' \
     --userId 'SKgP5rxC' \
     --after 'R77G9d5C' \
     --before 'A1GORSbL' \
     --limit '27' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetUserPlatformAccountsV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 164 'AdminGetUserPlatformAccountsV3' test.out
 
-#- 164 adminGetListJusticePlatformAccounts
+#- 165 AdminGetListJusticePlatformAccounts
 samples/cli/sample-apps Iam adminGetListJusticePlatformAccounts \
     --namespace '0dbWDEup' \
     --userId 'mdLQzPnN' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetListJusticePlatformAccounts'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 165 'AdminGetListJusticePlatformAccounts' test.out
 
-#- 165 adminCreateJusticeUser
+#- 166 AdminCreateJusticeUser
 samples/cli/sample-apps Iam adminCreateJusticeUser \
     --namespace 'fBAcWArb' \
     --targetNamespace 'kCfdHIZb' \
     --userId '03otqmBu' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminCreateJusticeUser'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 166 'AdminCreateJusticeUser' test.out
 
-#- 166 adminLinkPlatformAccount
+#- 167 AdminLinkPlatformAccount
 samples/cli/sample-apps Iam adminLinkPlatformAccount \
     --body '{"platformId": "S9V2pCZ2", "platformUserId": "3UHmk0lp"}' \
     --namespace 'J4JLl01q' \
     --userId 'i7L2oDUo' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminLinkPlatformAccount'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 167 'AdminLinkPlatformAccount' test.out
 
-#- 167 adminPlatformUnlinkV3
+#- 168 AdminPlatformUnlinkV3
 samples/cli/sample-apps Iam adminPlatformUnlinkV3 \
     --body '{"platformNamespace": "VRUb39j2"}' \
     --namespace '2P4Sp09c' \
     --platformId 'KmjRUbZV' \
     --userId 'BVS7OK2Z' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminPlatformUnlinkV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 168 'AdminPlatformUnlinkV3' test.out
 
-#- 168 adminPlatformLinkV3
+#- 169 AdminPlatformLinkV3
 samples/cli/sample-apps Iam adminPlatformLinkV3 \
     --ticket 'rdcsckMe' \
     --namespace 'kROWZ2KU' \
     --platformId 'TqkK2eFa' \
     --userId 'GLoSmEEP' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminPlatformLinkV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 169 'AdminPlatformLinkV3' test.out
 
-#- 169 adminDeleteUserRolesV3
+#- 170 AdminDeleteUserRolesV3
 samples/cli/sample-apps Iam adminDeleteUserRolesV3 \
     --body '["bLywJsyU"]' \
     --namespace 'ie6fZgLl' \
     --userId 'lUPsO8lg' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminDeleteUserRolesV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 170 'AdminDeleteUserRolesV3' test.out
 
-#- 170 adminSaveUserRoleV3
+#- 171 AdminSaveUserRoleV3
 samples/cli/sample-apps Iam adminSaveUserRoleV3 \
     --body '[{"namespace": "46Si7006", "roleId": "vL2w4aaj"}]' \
     --namespace 'DAOx0iJj' \
     --userId 'Yleaktqv' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminSaveUserRoleV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 171 'AdminSaveUserRoleV3' test.out
 
-#- 171 adminAddUserRoleV3
+#- 172 AdminAddUserRoleV3
 samples/cli/sample-apps Iam adminAddUserRoleV3 \
     --namespace '2WkljQuD' \
     --roleId '5mnJONqH' \
     --userId 'Gq8mB7mF' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminAddUserRoleV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 172 'AdminAddUserRoleV3' test.out
 
-#- 172 adminDeleteUserRoleV3
+#- 173 AdminDeleteUserRoleV3
 samples/cli/sample-apps Iam adminDeleteUserRoleV3 \
     --namespace '2lMFcagh' \
     --roleId 'FXJIJflR' \
     --userId 'HFcsIqCy' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminDeleteUserRoleV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 173 'AdminDeleteUserRoleV3' test.out
 
-#- 173 adminUpdateUserStatusV3
+#- 174 AdminUpdateUserStatusV3
 samples/cli/sample-apps Iam adminUpdateUserStatusV3 \
     --body '{"enabled": true, "reason": "DifSSQ5O"}' \
     --namespace 'n2ccEcl3' \
     --userId 'xeiO4bwF' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminUpdateUserStatusV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 174 'AdminUpdateUserStatusV3' test.out
 
-#- 174 adminVerifyUserWithoutVerificationCodeV3
+#- 175 AdminVerifyUserWithoutVerificationCodeV3
 samples/cli/sample-apps Iam adminVerifyUserWithoutVerificationCodeV3 \
     --namespace '5JOjGoGx' \
     --userId 'KM3qMce5' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminVerifyUserWithoutVerificationCodeV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 175 'AdminVerifyUserWithoutVerificationCodeV3' test.out
 
-#- 175 adminGetRolesV3
+#- 176 AdminGetRolesV3
 samples/cli/sample-apps Iam adminGetRolesV3 \
     --after 'tfLcpjFZ' \
     --before 'MKCbp0pE' \
     --isWildcard 'False' \
     --limit '74' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetRolesV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 176 'AdminGetRolesV3' test.out
 
-#- 176 adminCreateRoleV3
+#- 177 AdminCreateRoleV3
 samples/cli/sample-apps Iam adminCreateRoleV3 \
     --body '{"adminRole": true, "deletable": true, "isWildcard": false, "managers": [{"displayName": "HxMYF836", "namespace": "075xEpzd", "userId": "nYtpja5i"}], "members": [{"displayName": "g2isQZga", "namespace": "6Vy76izP", "userId": "iQRjYa8f"}], "permissions": [{"action": 43, "resource": "5fIt22tI", "schedAction": 15, "schedCron": "jhgkigW2", "schedRange": ["2zXMWXfb"]}], "roleName": "cM0GIALI"}' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminCreateRoleV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 177 'AdminCreateRoleV3' test.out
 
-#- 177 adminGetRoleV3
+#- 178 AdminGetRoleV3
 samples/cli/sample-apps Iam adminGetRoleV3 \
     --roleId 'bFCQgBcL' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetRoleV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 178 'AdminGetRoleV3' test.out
 
-#- 178 adminDeleteRoleV3
+#- 179 AdminDeleteRoleV3
 samples/cli/sample-apps Iam adminDeleteRoleV3 \
     --roleId 'NT6iOQVY' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminDeleteRoleV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 179 'AdminDeleteRoleV3' test.out
 
-#- 179 adminUpdateRoleV3
+#- 180 AdminUpdateRoleV3
 samples/cli/sample-apps Iam adminUpdateRoleV3 \
     --body '{"deletable": true, "isWildcard": true, "roleName": "W2gMsI1a"}' \
     --roleId 'YBitSn3U' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminUpdateRoleV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 180 'AdminUpdateRoleV3' test.out
 
-#- 180 adminGetRoleAdminStatusV3
+#- 181 AdminGetRoleAdminStatusV3
 samples/cli/sample-apps Iam adminGetRoleAdminStatusV3 \
     --roleId 'DeKj97I4' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetRoleAdminStatusV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 181 'AdminGetRoleAdminStatusV3' test.out
 
-#- 181 adminUpdateAdminRoleStatusV3
+#- 182 AdminUpdateAdminRoleStatusV3
 samples/cli/sample-apps Iam adminUpdateAdminRoleStatusV3 \
     --roleId 'WYXLqjN7' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminUpdateAdminRoleStatusV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 182 'AdminUpdateAdminRoleStatusV3' test.out
 
-#- 182 adminRemoveRoleAdminV3
+#- 183 AdminRemoveRoleAdminV3
 samples/cli/sample-apps Iam adminRemoveRoleAdminV3 \
     --roleId 'ktOBTraB' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminRemoveRoleAdminV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 183 'AdminRemoveRoleAdminV3' test.out
 
-#- 183 adminGetRoleManagersV3
+#- 184 AdminGetRoleManagersV3
 samples/cli/sample-apps Iam adminGetRoleManagersV3 \
     --roleId 'xWRTVuYE' \
     --after 'qGlKDwTK' \
     --before 'XBrXiQcd' \
     --limit '69' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetRoleManagersV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 184 'AdminGetRoleManagersV3' test.out
 
-#- 184 adminAddRoleManagersV3
+#- 185 AdminAddRoleManagersV3
 samples/cli/sample-apps Iam adminAddRoleManagersV3 \
     --body '{"managers": [{"displayName": "W8kiCKeQ", "namespace": "JWZBvcq1", "userId": "ETvWBxYZ"}]}' \
     --roleId 'Jh7B8gbn' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminAddRoleManagersV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 185 'AdminAddRoleManagersV3' test.out
 
-#- 185 adminRemoveRoleManagersV3
+#- 186 AdminRemoveRoleManagersV3
 samples/cli/sample-apps Iam adminRemoveRoleManagersV3 \
     --body '{"managers": [{"displayName": "Su9M2OxD", "namespace": "2udaeYpC", "userId": "XYSMiy87"}]}' \
     --roleId 'CTqEQBg3' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminRemoveRoleManagersV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 186 'AdminRemoveRoleManagersV3' test.out
 
-#- 186 adminGetRoleMembersV3
+#- 187 AdminGetRoleMembersV3
 samples/cli/sample-apps Iam adminGetRoleMembersV3 \
     --roleId '6my3sY2c' \
     --after 'lrDcain0' \
     --before 'cOVF1zHw' \
     --limit '58' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetRoleMembersV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 187 'AdminGetRoleMembersV3' test.out
 
-#- 187 adminAddRoleMembersV3
+#- 188 AdminAddRoleMembersV3
 samples/cli/sample-apps Iam adminAddRoleMembersV3 \
     --body '{"members": [{"displayName": "TI0sJ1Q0", "namespace": "kphMTggS", "userId": "P2SLcuAP"}]}' \
     --roleId '7vU971Cz' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminAddRoleMembersV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 188 'AdminAddRoleMembersV3' test.out
 
-#- 188 adminRemoveRoleMembersV3
+#- 189 AdminRemoveRoleMembersV3
 samples/cli/sample-apps Iam adminRemoveRoleMembersV3 \
     --body '{"members": [{"displayName": "w2nbg8C7", "namespace": "Mvywhu6M", "userId": "jOjuGzo1"}]}' \
     --roleId 'Fz4tU0aS' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminRemoveRoleMembersV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 189 'AdminRemoveRoleMembersV3' test.out
 
-#- 189 adminUpdateRolePermissionsV3
+#- 190 AdminUpdateRolePermissionsV3
 samples/cli/sample-apps Iam adminUpdateRolePermissionsV3 \
     --body '{"permissions": [{"action": 26, "resource": "98N8qOUA", "schedAction": 50, "schedCron": "92RaDe8n", "schedRange": ["gT8LRQkM"]}]}' \
     --roleId 'nG1LZyF2' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminUpdateRolePermissionsV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 190 'AdminUpdateRolePermissionsV3' test.out
 
-#- 190 adminAddRolePermissionsV3
+#- 191 AdminAddRolePermissionsV3
 samples/cli/sample-apps Iam adminAddRolePermissionsV3 \
     --body '{"permissions": [{"action": 24, "resource": "dYY6ZMfu", "schedAction": 90, "schedCron": "YTKsue48", "schedRange": ["qBEBNAV5"]}]}' \
     --roleId 'BTe6ec1z' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminAddRolePermissionsV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 191 'AdminAddRolePermissionsV3' test.out
 
-#- 191 adminDeleteRolePermissionsV3
+#- 192 AdminDeleteRolePermissionsV3
 samples/cli/sample-apps Iam adminDeleteRolePermissionsV3 \
     --body '["A92URCLS"]' \
     --roleId 'GPmRBZWu' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminDeleteRolePermissionsV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 192 'AdminDeleteRolePermissionsV3' test.out
 
-#- 192 adminDeleteRolePermissionV3
+#- 193 AdminDeleteRolePermissionV3
 samples/cli/sample-apps Iam adminDeleteRolePermissionV3 \
     --action '26' \
     --resource 'HW7MYvr6' \
     --roleId 'QA7Ppepc' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminDeleteRolePermissionV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 193 'AdminDeleteRolePermissionV3' test.out
 
-#- 193 adminGetMyUserV3
+#- 194 AdminGetMyUserV3
 samples/cli/sample-apps Iam adminGetMyUserV3 \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetMyUserV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 194 'AdminGetMyUserV3' test.out
 
-#- 194 userAuthenticationV3
+#- 195 UserAuthenticationV3
 samples/cli/sample-apps Iam userAuthenticationV3 \
     --clientId '92HA94eA' \
     --extendExp 'True' \
@@ -1651,40 +1464,35 @@ samples/cli/sample-apps Iam userAuthenticationV3 \
     --password 'Ppf8nxKJ' \
     --requestId '3dnmtPwa' \
     --userName '64Y4gPEK' \
-    >$TEMP_FILE 2>&1
-update_status $? 'userAuthenticationV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 195 'UserAuthenticationV3' test.out
 
-#- 195 getCountryLocationV3
+#- 196 GetCountryLocationV3
 samples/cli/sample-apps Iam getCountryLocationV3 \
-    >$TEMP_FILE 2>&1
-update_status $? 'getCountryLocationV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 196 'GetCountryLocationV3' test.out
 
-#- 196 logout
+#- 197 Logout
 samples/cli/sample-apps Iam logout \
-    >$TEMP_FILE 2>&1
-update_status $? 'logout'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 197 'Logout' test.out
 
-#- 197 adminRetrieveUserThirdPartyPlatformTokenV3
+#- 198 AdminRetrieveUserThirdPartyPlatformTokenV3
 samples/cli/sample-apps Iam adminRetrieveUserThirdPartyPlatformTokenV3 \
     --namespace 'Mhhu9a6f' \
     --platformId '3xJNtUlK' \
     --userId 'LlIIAeHb' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminRetrieveUserThirdPartyPlatformTokenV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 198 'AdminRetrieveUserThirdPartyPlatformTokenV3' test.out
 
-#- 198 revokeUserV3
+#- 199 RevokeUserV3
 samples/cli/sample-apps Iam revokeUserV3 \
     --namespace 'm5M6LsY1' \
     --userId 'VMuIEcRl' \
-    >$TEMP_FILE 2>&1
-update_status $? 'revokeUserV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 199 'RevokeUserV3' test.out
 
-#- 199 authorizeV3
+#- 200 AuthorizeV3
 samples/cli/sample-apps Iam authorizeV3 \
     --codeChallenge 's68M3MPM' \
     --codeChallengeMethod 'plain' \
@@ -1694,84 +1502,74 @@ samples/cli/sample-apps Iam authorizeV3 \
     --targetAuthPage 'uEcHCSGh' \
     --clientId 'pOZQFlwO' \
     --responseType 'code' \
-    >$TEMP_FILE 2>&1
-update_status $? 'authorizeV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 200 'AuthorizeV3' test.out
 
-#- 200 tokenIntrospectionV3
+#- 201 TokenIntrospectionV3
 samples/cli/sample-apps Iam tokenIntrospectionV3 \
     --token 'uKGDFgK4' \
-    >$TEMP_FILE 2>&1
-update_status $? 'tokenIntrospectionV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 201 'TokenIntrospectionV3' test.out
 
-#- 201 getJWKSV3
+#- 202 GetJWKSV3
 samples/cli/sample-apps Iam getJWKSV3 \
-    >$TEMP_FILE 2>&1
-update_status $? 'getJWKSV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 202 'GetJWKSV3' test.out
 
-#- 202 change2faMethod
+#- 203 Change2faMethod
 samples/cli/sample-apps Iam change2faMethod \
     --factor '9YuKnXks' \
     --mfaToken '0m8ANrcR' \
-    >$TEMP_FILE 2>&1
-update_status $? 'change2faMethod'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 203 'Change2faMethod' test.out
 
-#- 203 verify2faCode
+#- 204 Verify2faCode
 samples/cli/sample-apps Iam verify2faCode \
     --code 'al7ta3fo' \
     --factor 'jA3h4MMW' \
     --mfaToken '3AJ5zlsF' \
     --rememberDevice 'True' \
-    >$TEMP_FILE 2>&1
-update_status $? 'verify2faCode'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 204 'Verify2faCode' test.out
 
-#- 204 retrieveUserThirdPartyPlatformTokenV3
+#- 205 RetrieveUserThirdPartyPlatformTokenV3
 samples/cli/sample-apps Iam retrieveUserThirdPartyPlatformTokenV3 \
     --namespace 'wjvLYvmg' \
     --platformId '6avudQFF' \
     --userId '1CPNY9u2' \
-    >$TEMP_FILE 2>&1
-update_status $? 'retrieveUserThirdPartyPlatformTokenV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 205 'RetrieveUserThirdPartyPlatformTokenV3' test.out
 
-#- 205 authCodeRequestV3
+#- 206 AuthCodeRequestV3
 samples/cli/sample-apps Iam authCodeRequestV3 \
     --platformId 'dVYdglOO' \
     --clientId 'oCeK0kPK' \
     --redirectUri 'mBqVux3l' \
     --requestId 'XcD8aert' \
-    >$TEMP_FILE 2>&1
-update_status $? 'authCodeRequestV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 206 'AuthCodeRequestV3' test.out
 
-#- 206 platformTokenGrantV3
+#- 207 PlatformTokenGrantV3
 samples/cli/sample-apps Iam platformTokenGrantV3 \
     --clientId 'AVCqs8XT' \
     --deviceId '8xy3nJ06' \
     --platformToken 'KkseA0AR' \
     --platformId 'j9ricfay' \
-    >$TEMP_FILE 2>&1
-update_status $? 'platformTokenGrantV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 207 'PlatformTokenGrantV3' test.out
 
-#- 207 getRevocationListV3
+#- 208 GetRevocationListV3
 samples/cli/sample-apps Iam getRevocationListV3 \
-    >$TEMP_FILE 2>&1
-update_status $? 'getRevocationListV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 208 'GetRevocationListV3' test.out
 
-#- 208 tokenRevocationV3
+#- 209 TokenRevocationV3
 samples/cli/sample-apps Iam tokenRevocationV3 \
     --token 'vnhi8MDd' \
-    >$TEMP_FILE 2>&1
-update_status $? 'tokenRevocationV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 209 'TokenRevocationV3' test.out
 
-#- 209 tokenGrantV3
+#- 210 TokenGrantV3
 samples/cli/sample-apps Iam tokenGrantV3 \
     --deviceId 'Y4WLHoaU' \
     --clientId 'kYnQp5eg' \
@@ -1783,11 +1581,10 @@ samples/cli/sample-apps Iam tokenGrantV3 \
     --refreshToken 'jjz2Frgi' \
     --username 'aGrcB7dI' \
     --grantType 'client_credentials' \
-    >$TEMP_FILE 2>&1
-update_status $? 'tokenGrantV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 210 'TokenGrantV3' test.out
 
-#- 210 platformAuthenticationV3
+#- 211 PlatformAuthenticationV3
 samples/cli/sample-apps Iam platformAuthenticationV3 \
     --platformId '5W8tKH8o' \
     --code 'u9SdbxSX' \
@@ -1803,245 +1600,216 @@ samples/cli/sample-apps Iam platformAuthenticationV3 \
     --openidSig 'd5eacobT' \
     --openidSigned 'suRlhreQ' \
     --state 'VFID3o8h' \
-    >$TEMP_FILE 2>&1
-update_status $? 'platformAuthenticationV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 211 'PlatformAuthenticationV3' test.out
 
-#- 211 publicGetInputValidations
+#- 212 PublicGetInputValidations
 samples/cli/sample-apps Iam publicGetInputValidations \
     --defaultOnEmpty 'False' \
     --languageCode 'KIOAw70D' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicGetInputValidations'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 212 'PublicGetInputValidations' test.out
 
-#- 212 retrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3
+#- 213 RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3
 samples/cli/sample-apps Iam retrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3 \
     --namespace 'vAHhSGWU' \
-    >$TEMP_FILE 2>&1
-update_status $? 'retrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 213 'RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3' test.out
 
-#- 213 publicListUserIDByPlatformUserIDsV3
+#- 214 PublicListUserIDByPlatformUserIDsV3
 samples/cli/sample-apps Iam publicListUserIDByPlatformUserIDsV3 \
     --body '{"platformUserIds": ["vzq1Za3I"]}' \
     --namespace 'BC4vQFsU' \
     --platformId 'JPfiaJp1' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicListUserIDByPlatformUserIDsV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 214 'PublicListUserIDByPlatformUserIDsV3' test.out
 
-#- 214 publicGetUserByPlatformUserIDV3
+#- 215 PublicGetUserByPlatformUserIDV3
 samples/cli/sample-apps Iam publicGetUserByPlatformUserIDV3 \
     --namespace 'rt7OBgBC' \
     --platformId 'e6N0eI65' \
     --platformUserId 'Mn5tngEY' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicGetUserByPlatformUserIDV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 215 'PublicGetUserByPlatformUserIDV3' test.out
 
-#- 215 publicGetAsyncStatus
+#- 216 PublicGetAsyncStatus
 samples/cli/sample-apps Iam publicGetAsyncStatus \
     --namespace 'XgPVT5Cq' \
     --requestId 'XDZBVMJy' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicGetAsyncStatus'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 216 'PublicGetAsyncStatus' test.out
 
-#- 216 publicSearchUserV3
+#- 217 PublicSearchUserV3
 samples/cli/sample-apps Iam publicSearchUserV3 \
     --namespace 'JeKFO92Y' \
     --by 'DtaZvJoK' \
     --query 'S0OxyipZ' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicSearchUserV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 217 'PublicSearchUserV3' test.out
 
-#- 217 publicCreateUserV3
+#- 218 PublicCreateUserV3
 samples/cli/sample-apps Iam publicCreateUserV3 \
     --body '{"PasswordMD5Sum": "uO4N9S2Y", "acceptedPolicies": [{"isAccepted": true, "localizedPolicyVersionId": "gHa6XBcv", "policyId": "GRYk5rUt", "policyVersionId": "WHCnhmzz"}], "authType": "ppV7tKNK", "code": "YUQVBXym", "country": "WcNlHaFx", "dateOfBirth": "YaGHUpmB", "displayName": "FyOrFKtx", "emailAddress": "GNAi0fq4", "password": "xChPLd2l", "reachMinimumAge": false}' \
     --namespace 'pc7XoVpd' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicCreateUserV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 218 'PublicCreateUserV3' test.out
 
-#- 218 checkUserAvailability
+#- 219 CheckUserAvailability
 samples/cli/sample-apps Iam checkUserAvailability \
     --namespace 'd6rCpyMr' \
     --field 'nH9YHXh7' \
     --query 'KnCVOKY2' \
-    >$TEMP_FILE 2>&1
-update_status $? 'checkUserAvailability'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 219 'CheckUserAvailability' test.out
 
-#- 219 publicBulkGetUsers
+#- 220 PublicBulkGetUsers
 samples/cli/sample-apps Iam publicBulkGetUsers \
     --body '{"userIds": ["zsBRGtd8"]}' \
     --namespace 'QY2OLbij' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicBulkGetUsers'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 220 'PublicBulkGetUsers' test.out
 
-#- 220 publicSendRegistrationCode
+#- 221 PublicSendRegistrationCode
 samples/cli/sample-apps Iam publicSendRegistrationCode \
     --body '{"emailAddress": "rvfr8hkn", "languageTag": "jWUWdMUX"}' \
     --namespace 'Hvw4pNlG' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicSendRegistrationCode'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 221 'PublicSendRegistrationCode' test.out
 
-#- 221 publicVerifyRegistrationCode
+#- 222 PublicVerifyRegistrationCode
 samples/cli/sample-apps Iam publicVerifyRegistrationCode \
     --body '{"code": "LjdBxLM0", "emailAddress": "79pDAbTg"}' \
     --namespace 'msEYEq2G' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicVerifyRegistrationCode'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 222 'PublicVerifyRegistrationCode' test.out
 
-#- 222 publicForgotPasswordV3
+#- 223 PublicForgotPasswordV3
 samples/cli/sample-apps Iam publicForgotPasswordV3 \
     --body '{"emailAddress": "kYK1vYm9", "languageTag": "flXQ7CQo"}' \
     --namespace 'emnQG0dH' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicForgotPasswordV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 223 'PublicForgotPasswordV3' test.out
 
-#- 223 getAdminInvitationV3
+#- 224 GetAdminInvitationV3
 samples/cli/sample-apps Iam getAdminInvitationV3 \
     --invitationId '0NVM9VEH' \
     --namespace 'TPqDhkcu' \
-    >$TEMP_FILE 2>&1
-update_status $? 'getAdminInvitationV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 224 'GetAdminInvitationV3' test.out
 
-#- 224 createUserFromInvitationV3
+#- 225 CreateUserFromInvitationV3
 samples/cli/sample-apps Iam createUserFromInvitationV3 \
     --body '{"acceptedPolicies": [{"isAccepted": true, "localizedPolicyVersionId": "nz6GiNMb", "policyId": "oBJHml0L", "policyVersionId": "JmpPi4mq"}], "authType": "hruiCZLG", "country": "GP5UXkHN", "dateOfBirth": "TMapp5Sb", "displayName": "onsUJKAD", "password": "r60EkdFr", "reachMinimumAge": false}' \
     --invitationId 'LsGt9yTX' \
     --namespace 'WUSCQcMs' \
-    >$TEMP_FILE 2>&1
-update_status $? 'createUserFromInvitationV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 225 'CreateUserFromInvitationV3' test.out
 
-#- 225 updateUserV3
+#- 226 UpdateUserV3
 samples/cli/sample-apps Iam updateUserV3 \
     --body '{"country": "HN7reI22", "dateOfBirth": "ks7I12tA", "displayName": "Zc8sxxLx", "languageTag": "9XQeqNWL", "userName": "m8cNJbYH"}' \
     --namespace '5J4WiJLv' \
-    >$TEMP_FILE 2>&1
-update_status $? 'updateUserV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 226 'UpdateUserV3' test.out
 
-#- 226 publicUpdateUserV3
+#- 227 PublicUpdateUserV3
 samples/cli/sample-apps Iam publicUpdateUserV3 \
     --body '{"country": "9NvHwtw2", "dateOfBirth": "Mjcy9ZL6", "displayName": "Zs5Bu2XY", "languageTag": "opLWZeUK", "userName": "JJNftRpG"}' \
     --namespace 'gk1iseRE' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicUpdateUserV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 227 'PublicUpdateUserV3' test.out
 
-#- 227 publicSendVerificationCodeV3
+#- 228 PublicSendVerificationCodeV3
 samples/cli/sample-apps Iam publicSendVerificationCodeV3 \
     --body '{"context": "zzRG6z9w", "emailAddress": "muHddyOd", "languageTag": "ibI1LVyq"}' \
     --namespace 'bdY8DGZK' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicSendVerificationCodeV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 228 'PublicSendVerificationCodeV3' test.out
 
-#- 228 publicUserVerificationV3
+#- 229 PublicUserVerificationV3
 samples/cli/sample-apps Iam publicUserVerificationV3 \
     --body '{"code": "AuoIKz3P", "contactType": "p3zLWUxM", "languageTag": "zMtSmMmZ", "validateOnly": false}' \
     --namespace 'G0FoQP8q' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicUserVerificationV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 229 'PublicUserVerificationV3' test.out
 
-#- 229 publicUpgradeHeadlessAccountV3
+#- 230 PublicUpgradeHeadlessAccountV3
 samples/cli/sample-apps Iam publicUpgradeHeadlessAccountV3 \
     --body '{"code": "7aSsb85g", "country": "Ah9RD3Zz", "dateOfBirth": "N6N1iJ8l", "displayName": "tt9IRqCf", "emailAddress": "lgln6r5f", "password": "0s5H6lCf", "validateOnly": false}' \
     --namespace '11hLLCgw' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicUpgradeHeadlessAccountV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 230 'PublicUpgradeHeadlessAccountV3' test.out
 
-#- 230 publicVerifyHeadlessAccountV3
+#- 231 PublicVerifyHeadlessAccountV3
 samples/cli/sample-apps Iam publicVerifyHeadlessAccountV3 \
     --body '{"emailAddress": "5av4LExd", "password": "abD8g2cv"}' \
     --namespace 'HfMRupDA' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicVerifyHeadlessAccountV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 231 'PublicVerifyHeadlessAccountV3' test.out
 
-#- 231 publicUpdatePasswordV3
+#- 232 PublicUpdatePasswordV3
 samples/cli/sample-apps Iam publicUpdatePasswordV3 \
     --body '{"languageTag": "5xbjs3XR", "newPassword": "dHUJ0GCm", "oldPassword": "flIXkgJ6"}' \
     --namespace 'zkTwoakq' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicUpdatePasswordV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 232 'PublicUpdatePasswordV3' test.out
 
-#- 232 publicCreateJusticeUser
+#- 233 PublicCreateJusticeUser
 samples/cli/sample-apps Iam publicCreateJusticeUser \
     --namespace '7sEejFZ1' \
     --targetNamespace 'NtONXb9w' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicCreateJusticeUser'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 233 'PublicCreateJusticeUser' test.out
 
-#- 233 publicPlatformLinkV3
+#- 234 PublicPlatformLinkV3
 samples/cli/sample-apps Iam publicPlatformLinkV3 \
     --redirectUri '9hsQHszI' \
     --ticket 'sfrlzKpQ' \
     --namespace 'dd58dZP5' \
     --platformId 'RvrinNtv' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicPlatformLinkV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 234 'PublicPlatformLinkV3' test.out
 
-#- 234 publicPlatformUnlinkV3
+#- 235 PublicPlatformUnlinkV3
 samples/cli/sample-apps Iam publicPlatformUnlinkV3 \
     --body '{"platformNamespace": "BtqFSkA6"}' \
     --namespace '8mIVYJ5p' \
     --platformId 'SVxBsLht' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicPlatformUnlinkV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 235 'PublicPlatformUnlinkV3' test.out
 
-#- 235 publicWebLinkPlatform
+#- 236 PublicWebLinkPlatform
 samples/cli/sample-apps Iam publicWebLinkPlatform \
     --namespace 'y3pecToX' \
     --platformId 'A4M1oUFP' \
     --clientId 'hgo7Z6mw' \
     --redirectUri 'NC4FY69m' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicWebLinkPlatform'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 236 'PublicWebLinkPlatform' test.out
 
-#- 236 publicWebLinkPlatformEstablish
+#- 237 PublicWebLinkPlatformEstablish
 samples/cli/sample-apps Iam publicWebLinkPlatformEstablish \
     --namespace 'M87joJNO' \
     --platformId 'GB83Ns6H' \
     --state 'l5Poab6l' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicWebLinkPlatformEstablish'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 237 'PublicWebLinkPlatformEstablish' test.out
 
-#- 237 resetPasswordV3
+#- 238 ResetPasswordV3
 samples/cli/sample-apps Iam resetPasswordV3 \
     --body '{"code": "KoVqNBUz", "emailAddress": "IxOfglqu", "newPassword": "S2q2DoWr"}' \
     --namespace '9zvFtKa2' \
-    >$TEMP_FILE 2>&1
-update_status $? 'resetPasswordV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 238 'ResetPasswordV3' test.out
 
-#- 238 publicGetUserByUserIdV3
+#- 239 PublicGetUserByUserIdV3
 samples/cli/sample-apps Iam publicGetUserByUserIdV3 \
     --namespace 'mOAqOokV' \
     --userId '1plxQ2Yr' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicGetUserByUserIdV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 239 'PublicGetUserByUserIdV3' test.out
 
-#- 239 publicGetUserBanHistoryV3
+#- 240 PublicGetUserBanHistoryV3
 samples/cli/sample-apps Iam publicGetUserBanHistoryV3 \
     --namespace 'iTPfipD6' \
     --userId '7jI2hiZk' \
@@ -2049,468 +1817,409 @@ samples/cli/sample-apps Iam publicGetUserBanHistoryV3 \
     --after 'tLnh2U1R' \
     --before 'QlMxkfNM' \
     --limit '82' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicGetUserBanHistoryV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 240 'PublicGetUserBanHistoryV3' test.out
 
-#- 240 publicGetUserLoginHistoriesV3
+#- 241 PublicGetUserLoginHistoriesV3
 samples/cli/sample-apps Iam publicGetUserLoginHistoriesV3 \
     --namespace 'Ntqv2TMz' \
     --userId '1b7SnzkX' \
     --after '0.633865774178752' \
     --before '0.9701707300846726' \
     --limit '68' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicGetUserLoginHistoriesV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 241 'PublicGetUserLoginHistoriesV3' test.out
 
-#- 241 publicGetUserPlatformAccountsV3
+#- 242 PublicGetUserPlatformAccountsV3
 samples/cli/sample-apps Iam publicGetUserPlatformAccountsV3 \
     --namespace 'gm1wkSWs' \
     --userId 'YvAsu18o' \
     --after 'bUdc8mbv' \
     --before 'XcwcgMqO' \
     --limit '98' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicGetUserPlatformAccountsV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 242 'PublicGetUserPlatformAccountsV3' test.out
 
-#- 242 publicLinkPlatformAccount
+#- 243 PublicLinkPlatformAccount
 samples/cli/sample-apps Iam publicLinkPlatformAccount \
     --body '{"platformId": "MziXrVds", "platformUserId": "Ec3ClFP3"}' \
     --namespace 'mJwusCBT' \
     --userId 'e4kLcuqL' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicLinkPlatformAccount'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 243 'PublicLinkPlatformAccount' test.out
 
-#- 243 publicValidateUserByUserIDAndPasswordV3
+#- 244 PublicValidateUserByUserIDAndPasswordV3
 samples/cli/sample-apps Iam publicValidateUserByUserIDAndPasswordV3 \
     --password '40NYgekR' \
     --namespace 'avpaGTA9' \
     --userId 'BTyCCyN4' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicValidateUserByUserIDAndPasswordV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 244 'PublicValidateUserByUserIDAndPasswordV3' test.out
 
-#- 244 publicGetRolesV3
+#- 245 PublicGetRolesV3
 samples/cli/sample-apps Iam publicGetRolesV3 \
     --after 'Fw9i6mI2' \
     --before 'W3tjjCqP' \
     --isWildcard 'True' \
     --limit '100' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicGetRolesV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 245 'PublicGetRolesV3' test.out
 
-#- 245 publicGetRoleV3
+#- 246 PublicGetRoleV3
 samples/cli/sample-apps Iam publicGetRoleV3 \
     --roleId 's01hEYzW' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicGetRoleV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 246 'PublicGetRoleV3' test.out
 
-#- 246 publicGetMyUserV3
+#- 247 PublicGetMyUserV3
 samples/cli/sample-apps Iam publicGetMyUserV3 \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicGetMyUserV3'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 247 'PublicGetMyUserV3' test.out
 
-#- 247 platformAuthenticateSAMLV3Handler
+#- 248 PlatformAuthenticateSAMLV3Handler
 samples/cli/sample-apps Iam platformAuthenticateSAMLV3Handler \
     --platformId 'w3qrcxM0' \
     --code 'DPAXQBNM' \
     --error 'P7j3xfPa' \
     --state 'oZaWFspk' \
-    >$TEMP_FILE 2>&1
-update_status $? 'platformAuthenticateSAMLV3Handler'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 248 'PlatformAuthenticateSAMLV3Handler' test.out
 
-#- 248 loginSSOClient
+#- 249 LoginSSOClient
 samples/cli/sample-apps Iam loginSSOClient \
     --platformId 'U5kn6PlP' \
     --payload 'qD4Agfas' \
-    >$TEMP_FILE 2>&1
-update_status $? 'loginSSOClient'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 249 'LoginSSOClient' test.out
 
-#- 249 logoutSSOClient
+#- 250 LogoutSSOClient
 samples/cli/sample-apps Iam logoutSSOClient \
     --platformId 'BfclBhZj' \
-    >$TEMP_FILE 2>&1
-update_status $? 'logoutSSOClient'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 250 'LogoutSSOClient' test.out
 
-#- 250 adminBulkCheckValidUserIDV4
+#- 251 AdminBulkCheckValidUserIDV4
 samples/cli/sample-apps Iam adminBulkCheckValidUserIDV4 \
     --body '{"userIds": ["ZbLnmghK"]}' \
     --namespace 'wPyVIn3q' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminBulkCheckValidUserIDV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 251 'AdminBulkCheckValidUserIDV4' test.out
 
-#- 251 adminUpdateUserV4
+#- 252 AdminUpdateUserV4
 samples/cli/sample-apps Iam adminUpdateUserV4 \
     --body '{"country": "aHP7KNul", "dateOfBirth": "yfrENVQk", "displayName": "pcaWHf6T", "languageTag": "2xOOljn7", "userName": "c6c9efJI"}' \
     --namespace '02TZxrgL' \
     --userId 'BFJEkphF' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminUpdateUserV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 252 'AdminUpdateUserV4' test.out
 
-#- 252 adminUpdateUserEmailAddressV4
+#- 253 AdminUpdateUserEmailAddressV4
 samples/cli/sample-apps Iam adminUpdateUserEmailAddressV4 \
     --body '{"code": "z0h6WpoV", "emailAddress": "pVc2HBBm"}' \
     --namespace 'j6cEi02h' \
     --userId 'Xl42ubCR' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminUpdateUserEmailAddressV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 253 'AdminUpdateUserEmailAddressV4' test.out
 
-#- 253 adminDisableUserMFAV4
+#- 254 AdminDisableUserMFAV4
 samples/cli/sample-apps Iam adminDisableUserMFAV4 \
     --namespace 'fy4GjKn5' \
     --userId 'ItHXLDZq' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminDisableUserMFAV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 254 'AdminDisableUserMFAV4' test.out
 
-#- 254 adminListUserRolesV4
+#- 255 AdminListUserRolesV4
 samples/cli/sample-apps Iam adminListUserRolesV4 \
     --namespace 'pRhqnR74' \
     --userId '2GcbLuQO' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminListUserRolesV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 255 'AdminListUserRolesV4' test.out
 
-#- 255 adminUpdateUserRoleV4
+#- 256 AdminUpdateUserRoleV4
 samples/cli/sample-apps Iam adminUpdateUserRoleV4 \
     --body '{"assignedNamespaces": ["GMOEzmdj"], "roleId": "NhT0S46k"}' \
     --namespace 'qyfMBSaZ' \
     --userId 'c4SA16M8' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminUpdateUserRoleV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 256 'AdminUpdateUserRoleV4' test.out
 
-#- 256 adminAddUserRoleV4
+#- 257 AdminAddUserRoleV4
 samples/cli/sample-apps Iam adminAddUserRoleV4 \
     --body '{"assignedNamespaces": ["gQCD7aBH"], "roleId": "WCYevNkf"}' \
     --namespace 'cQvl4Oso' \
     --userId '7tx65zXC' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminAddUserRoleV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 257 'AdminAddUserRoleV4' test.out
 
-#- 257 adminRemoveUserRoleV4
+#- 258 AdminRemoveUserRoleV4
 samples/cli/sample-apps Iam adminRemoveUserRoleV4 \
     --body '{"assignedNamespaces": ["iTfjorLF"], "roleId": "qTmIUFUo"}' \
     --namespace 'onHBI13S' \
     --userId 'ZFHfm0F8' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminRemoveUserRoleV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 258 'AdminRemoveUserRoleV4' test.out
 
-#- 258 adminGetRolesV4
+#- 259 AdminGetRolesV4
 samples/cli/sample-apps Iam adminGetRolesV4 \
     --adminRole 'True' \
     --isWildcard 'True' \
     --limit '35' \
     --offset '27' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetRolesV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 259 'AdminGetRolesV4' test.out
 
-#- 259 adminCreateRoleV4
+#- 260 AdminCreateRoleV4
 samples/cli/sample-apps Iam adminCreateRoleV4 \
     --body '{"adminRole": true, "deletable": true, "isWildcard": true, "roleName": "V0C8FvVU"}' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminCreateRoleV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 260 'AdminCreateRoleV4' test.out
 
-#- 260 adminGetRoleV4
+#- 261 AdminGetRoleV4
 samples/cli/sample-apps Iam adminGetRoleV4 \
     --roleId '3kRXBGPX' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetRoleV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 261 'AdminGetRoleV4' test.out
 
-#- 261 adminDeleteRoleV4
+#- 262 AdminDeleteRoleV4
 samples/cli/sample-apps Iam adminDeleteRoleV4 \
     --roleId 'Idft1biZ' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminDeleteRoleV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 262 'AdminDeleteRoleV4' test.out
 
-#- 262 adminUpdateRoleV4
+#- 263 AdminUpdateRoleV4
 samples/cli/sample-apps Iam adminUpdateRoleV4 \
     --body '{"adminRole": true, "deletable": false, "isWildcard": true, "roleName": "FPHdXcyv"}' \
     --roleId 'ZEhYeUSy' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminUpdateRoleV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 263 'AdminUpdateRoleV4' test.out
 
-#- 263 adminUpdateRolePermissionsV4
+#- 264 AdminUpdateRolePermissionsV4
 samples/cli/sample-apps Iam adminUpdateRolePermissionsV4 \
     --body '{"permissions": [{"action": 92, "resource": "kc65naP1", "schedAction": 86, "schedCron": "8Xww9vq9", "schedRange": ["nMa2Btgw"]}]}' \
     --roleId 'yuf2fjV3' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminUpdateRolePermissionsV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 264 'AdminUpdateRolePermissionsV4' test.out
 
-#- 264 adminAddRolePermissionsV4
+#- 265 AdminAddRolePermissionsV4
 samples/cli/sample-apps Iam adminAddRolePermissionsV4 \
     --body '{"permissions": [{"action": 89, "resource": "Lxi7uyha", "schedAction": 9, "schedCron": "FtcO9XNy", "schedRange": ["63QO9vW0"]}]}' \
     --roleId 'ck7TEDE8' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminAddRolePermissionsV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 265 'AdminAddRolePermissionsV4' test.out
 
-#- 265 adminDeleteRolePermissionsV4
+#- 266 AdminDeleteRolePermissionsV4
 samples/cli/sample-apps Iam adminDeleteRolePermissionsV4 \
     --body '["LeEQBeGP"]' \
     --roleId 'LiE6tHCr' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminDeleteRolePermissionsV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 266 'AdminDeleteRolePermissionsV4' test.out
 
-#- 266 adminListAssignedUsersV4
+#- 267 AdminListAssignedUsersV4
 samples/cli/sample-apps Iam adminListAssignedUsersV4 \
     --roleId '0GPFvT0S' \
     --after 'AK91y5vC' \
     --before 'eBIJq0B9' \
     --limit '93' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminListAssignedUsersV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 267 'AdminListAssignedUsersV4' test.out
 
-#- 267 adminAssignUserToRoleV4
+#- 268 AdminAssignUserToRoleV4
 samples/cli/sample-apps Iam adminAssignUserToRoleV4 \
     --body '{"assignedNamespaces": ["cI6c5cre"], "namespace": "9ealHOZp", "userId": "hcLncnjn"}' \
     --roleId 'myU8FSxX' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminAssignUserToRoleV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 268 'AdminAssignUserToRoleV4' test.out
 
-#- 268 adminRevokeUserFromRoleV4
+#- 269 AdminRevokeUserFromRoleV4
 samples/cli/sample-apps Iam adminRevokeUserFromRoleV4 \
     --body '{"namespace": "dCrskoFq", "userId": "nowq9Laz"}' \
     --roleId '1GLt5Mhf' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminRevokeUserFromRoleV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 269 'AdminRevokeUserFromRoleV4' test.out
 
-#- 269 adminUpdateMyUserV4
+#- 270 AdminUpdateMyUserV4
 samples/cli/sample-apps Iam adminUpdateMyUserV4 \
     --body '{"country": "8Z7ahmbV", "dateOfBirth": "Pm2g7xAF", "displayName": "fRRLUjfW", "languageTag": "S9sftIfH", "userName": "Ge5bUTSX"}' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminUpdateMyUserV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 270 'AdminUpdateMyUserV4' test.out
 
-#- 270 adminDisableMyAuthenticatorV4
+#- 271 AdminDisableMyAuthenticatorV4
 samples/cli/sample-apps Iam adminDisableMyAuthenticatorV4 \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminDisableMyAuthenticatorV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 271 'AdminDisableMyAuthenticatorV4' test.out
 
-#- 271 adminEnableMyAuthenticatorV4
+#- 272 AdminEnableMyAuthenticatorV4
 samples/cli/sample-apps Iam adminEnableMyAuthenticatorV4 \
     --code 'Ov12PMcR' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminEnableMyAuthenticatorV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 272 'AdminEnableMyAuthenticatorV4' test.out
 
-#- 272 adminGenerateMyAuthenticatorKeyV4
+#- 273 AdminGenerateMyAuthenticatorKeyV4
 samples/cli/sample-apps Iam adminGenerateMyAuthenticatorKeyV4 \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGenerateMyAuthenticatorKeyV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 273 'AdminGenerateMyAuthenticatorKeyV4' test.out
 
-#- 273 adminGetMyBackupCodesV4
+#- 274 AdminGetMyBackupCodesV4
 samples/cli/sample-apps Iam adminGetMyBackupCodesV4 \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetMyBackupCodesV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 274 'AdminGetMyBackupCodesV4' test.out
 
-#- 274 adminGenerateMyBackupCodesV4
+#- 275 AdminGenerateMyBackupCodesV4
 samples/cli/sample-apps Iam adminGenerateMyBackupCodesV4 \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGenerateMyBackupCodesV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 275 'AdminGenerateMyBackupCodesV4' test.out
 
-#- 275 adminDisableMyBackupCodesV4
+#- 276 AdminDisableMyBackupCodesV4
 samples/cli/sample-apps Iam adminDisableMyBackupCodesV4 \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminDisableMyBackupCodesV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 276 'AdminDisableMyBackupCodesV4' test.out
 
-#- 276 adminDownloadMyBackupCodesV4
+#- 277 AdminDownloadMyBackupCodesV4
 samples/cli/sample-apps Iam adminDownloadMyBackupCodesV4 \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminDownloadMyBackupCodesV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 277 'AdminDownloadMyBackupCodesV4' test.out
 
-#- 277 adminEnableMyBackupCodesV4
+#- 278 AdminEnableMyBackupCodesV4
 samples/cli/sample-apps Iam adminEnableMyBackupCodesV4 \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminEnableMyBackupCodesV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 278 'AdminEnableMyBackupCodesV4' test.out
 
-#- 278 adminGetMyEnabledFactorsV4
+#- 279 AdminGetMyEnabledFactorsV4
 samples/cli/sample-apps Iam adminGetMyEnabledFactorsV4 \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminGetMyEnabledFactorsV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 279 'AdminGetMyEnabledFactorsV4' test.out
 
-#- 279 adminMakeFactorMyDefaultV4
+#- 280 AdminMakeFactorMyDefaultV4
 samples/cli/sample-apps Iam adminMakeFactorMyDefaultV4 \
     --factor 'O6E2Mkre' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminMakeFactorMyDefaultV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 280 'AdminMakeFactorMyDefaultV4' test.out
 
-#- 280 adminInviteUserV4
+#- 281 AdminInviteUserV4
 samples/cli/sample-apps Iam adminInviteUserV4 \
     --body '{"assignedNamespaces": ["5q7FvaAC"], "emailAddresses": ["p6he0fzj"], "isAdmin": false, "roleId": "PNNS0Bfg"}' \
-    >$TEMP_FILE 2>&1
-update_status $? 'adminInviteUserV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 281 'AdminInviteUserV4' test.out
 
-#- 281 publicCreateTestUserV4
+#- 282 PublicCreateTestUserV4
 samples/cli/sample-apps Iam publicCreateTestUserV4 \
     --body '{"acceptedPolicies": [{"isAccepted": true, "localizedPolicyVersionId": "6inIRsZ5", "policyId": "hrqNzVsz", "policyVersionId": "GVP5P1iw"}], "authType": "hcf30C1K", "country": "HRZHMGy5", "dateOfBirth": "vbfZvYIF", "displayName": "FctEKOLx", "emailAddress": "SRxe0wmW", "password": "BMcNiWoo", "passwordMD5Sum": "bB6o6alT", "username": "QcP0EpE9", "verified": true}' \
     --namespace 'GNVwkgfJ' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicCreateTestUserV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 282 'PublicCreateTestUserV4' test.out
 
-#- 282 publicCreateUserV4
+#- 283 PublicCreateUserV4
 samples/cli/sample-apps Iam publicCreateUserV4 \
     --body '{"acceptedPolicies": [{"isAccepted": false, "localizedPolicyVersionId": "lfzgRpTf", "policyId": "9lxF1JPB", "policyVersionId": "izXZtrGe"}], "authType": "8LyOH24n", "code": "neZHFeRl", "country": "d0bGA7Jx", "dateOfBirth": "WYzaEaim", "displayName": "vokcWX59", "emailAddress": "kwiYHgHT", "password": "6Ivd0fGp", "passwordMD5Sum": "U209nVRc", "reachMinimumAge": false, "username": "umQTFvr5"}' \
     --namespace 'rRyYzaNm' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicCreateUserV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 283 'PublicCreateUserV4' test.out
 
-#- 283 createUserFromInvitationV4
+#- 284 CreateUserFromInvitationV4
 samples/cli/sample-apps Iam createUserFromInvitationV4 \
     --body '{"acceptedPolicies": [{"isAccepted": true, "localizedPolicyVersionId": "3PjMx2T8", "policyId": "9NTrFRUC", "policyVersionId": "XFkruxeg"}], "authType": "pkcXCfzg", "country": "cvv0WE5E", "dateOfBirth": "QhcomPS1", "displayName": "E7cpsLgr", "password": "2zEnjyRN", "reachMinimumAge": false, "username": "EC3FMDcZ"}' \
     --invitationId 'vwwf8aU9' \
     --namespace '8In31mF4' \
-    >$TEMP_FILE 2>&1
-update_status $? 'createUserFromInvitationV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 284 'CreateUserFromInvitationV4' test.out
 
-#- 284 publicUpdateUserV4
+#- 285 PublicUpdateUserV4
 samples/cli/sample-apps Iam publicUpdateUserV4 \
     --body '{"country": "jlwKyGxT", "dateOfBirth": "F1l5q1Np", "displayName": "0sT1X8J2", "languageTag": "eAWOzjmh", "userName": "9UzIfnho"}' \
     --namespace 'o6xUmTle' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicUpdateUserV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 285 'PublicUpdateUserV4' test.out
 
-#- 285 publicUpdateUserEmailAddressV4
+#- 286 PublicUpdateUserEmailAddressV4
 samples/cli/sample-apps Iam publicUpdateUserEmailAddressV4 \
     --body '{"code": "UnJFM7Xh", "emailAddress": "oDxGik2J"}' \
     --namespace 'SfZ64wWe' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicUpdateUserEmailAddressV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 286 'PublicUpdateUserEmailAddressV4' test.out
 
-#- 286 publicUpgradeHeadlessAccountWithVerificationCodeV4
+#- 287 PublicUpgradeHeadlessAccountWithVerificationCodeV4
 samples/cli/sample-apps Iam publicUpgradeHeadlessAccountWithVerificationCodeV4 \
     --body '{"code": "Pq6103PO", "country": "NKIS7F9e", "dateOfBirth": "mW4R15tA", "displayName": "siG31CEy", "emailAddress": "UOuOZhmn", "password": "Hkvek6Aa", "reachMinimumAge": false, "username": "Nnoclxs9", "validateOnly": false}' \
     --namespace 'xcvIpV7m' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicUpgradeHeadlessAccountWithVerificationCodeV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 287 'PublicUpgradeHeadlessAccountWithVerificationCodeV4' test.out
 
-#- 287 publicUpgradeHeadlessAccountV4
+#- 288 PublicUpgradeHeadlessAccountV4
 samples/cli/sample-apps Iam publicUpgradeHeadlessAccountV4 \
     --body '{"emailAddress": "CYfWKjY9", "password": "CsQYsGyh", "username": "EOntEked"}' \
     --namespace 'M1A0bFqv' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicUpgradeHeadlessAccountV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 288 'PublicUpgradeHeadlessAccountV4' test.out
 
-#- 288 publicDisableMyAuthenticatorV4
+#- 289 PublicDisableMyAuthenticatorV4
 samples/cli/sample-apps Iam publicDisableMyAuthenticatorV4 \
     --namespace 'jxbT3YuV' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicDisableMyAuthenticatorV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 289 'PublicDisableMyAuthenticatorV4' test.out
 
-#- 289 publicEnableMyAuthenticatorV4
+#- 290 PublicEnableMyAuthenticatorV4
 samples/cli/sample-apps Iam publicEnableMyAuthenticatorV4 \
     --code 'daBN5RSj' \
     --namespace 'hcjuDvNr' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicEnableMyAuthenticatorV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 290 'PublicEnableMyAuthenticatorV4' test.out
 
-#- 290 publicGenerateMyAuthenticatorKeyV4
+#- 291 PublicGenerateMyAuthenticatorKeyV4
 samples/cli/sample-apps Iam publicGenerateMyAuthenticatorKeyV4 \
     --namespace 'XL845jfh' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicGenerateMyAuthenticatorKeyV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 291 'PublicGenerateMyAuthenticatorKeyV4' test.out
 
-#- 291 publicGetMyBackupCodesV4
+#- 292 PublicGetMyBackupCodesV4
 samples/cli/sample-apps Iam publicGetMyBackupCodesV4 \
     --namespace '5tZ0hqJL' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicGetMyBackupCodesV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 292 'PublicGetMyBackupCodesV4' test.out
 
-#- 292 publicGenerateMyBackupCodesV4
+#- 293 PublicGenerateMyBackupCodesV4
 samples/cli/sample-apps Iam publicGenerateMyBackupCodesV4 \
     --namespace 'jQUmoYUn' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicGenerateMyBackupCodesV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 293 'PublicGenerateMyBackupCodesV4' test.out
 
-#- 293 publicDisableMyBackupCodesV4
+#- 294 PublicDisableMyBackupCodesV4
 samples/cli/sample-apps Iam publicDisableMyBackupCodesV4 \
     --namespace 'C849OBNu' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicDisableMyBackupCodesV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 294 'PublicDisableMyBackupCodesV4' test.out
 
-#- 294 publicDownloadMyBackupCodesV4
+#- 295 PublicDownloadMyBackupCodesV4
 samples/cli/sample-apps Iam publicDownloadMyBackupCodesV4 \
     --namespace 'LZtofGAA' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicDownloadMyBackupCodesV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 295 'PublicDownloadMyBackupCodesV4' test.out
 
-#- 295 publicEnableMyBackupCodesV4
+#- 296 PublicEnableMyBackupCodesV4
 samples/cli/sample-apps Iam publicEnableMyBackupCodesV4 \
     --namespace 'aMpBQArU' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicEnableMyBackupCodesV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 296 'PublicEnableMyBackupCodesV4' test.out
 
-#- 296 publicRemoveTrustedDeviceV4
+#- 297 PublicRemoveTrustedDeviceV4
 samples/cli/sample-apps Iam publicRemoveTrustedDeviceV4 \
     --namespace '4RS0FQRy' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicRemoveTrustedDeviceV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 297 'PublicRemoveTrustedDeviceV4' test.out
 
-#- 297 publicGetMyEnabledFactorsV4
+#- 298 PublicGetMyEnabledFactorsV4
 samples/cli/sample-apps Iam publicGetMyEnabledFactorsV4 \
     --namespace '5Qz5Vcyf' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicGetMyEnabledFactorsV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 298 'PublicGetMyEnabledFactorsV4' test.out
 
-#- 298 publicMakeFactorMyDefaultV4
+#- 299 PublicMakeFactorMyDefaultV4
 samples/cli/sample-apps Iam publicMakeFactorMyDefaultV4 \
     --factor 'BpHjtvFw' \
     --namespace 'KSJyZeqv' \
-    >$TEMP_FILE 2>&1
-update_status $? 'publicMakeFactorMyDefaultV4'
-delete_file $TEMP_FILE
+    > test.out 2>&1
+eval_tap $? 299 'PublicMakeFactorMyDefaultV4' test.out
 
-delete_file 'tmp.dat'
 
-exit $FAILED_COUNT
+rm -f "tmp.dat"
+
+exit $EXIT_CODE

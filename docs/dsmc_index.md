@@ -102,10 +102,10 @@
 | `/dsmcontroller/public/providers` | GET | ListProvidersShort | [ListProvidersShort](../dsmc-sdk/pkg/dsmcclient/public/public_client.go) | [ListProvidersShort](../services-api/pkg/service/dsmc/public.go) |
 | `/dsmcontroller/public/providers/regions/{region}` | GET | ListProvidersByRegionShort | [ListProvidersByRegionShort](../dsmc-sdk/pkg/dsmcclient/public/public_client.go) | [ListProvidersByRegionShort](../services-api/pkg/service/dsmc/public.go) |
 
-### Operations Wrapper:  [Operations](../services-api/pkg/service/dsmc/operations.go)
+### Dsmc Operations Wrapper:  [DsmcOperations](../services-api/pkg/service/dsmc/dsmcOperations.go)
 | Endpoint | Method | ID | Class | Wrapper |
 |---|---|---|---|---|
-| `/dsmcontroller/v1/messages` | GET | PublicGetMessagesShort | [PublicGetMessagesShort](../dsmc-sdk/pkg/dsmcclient/operations/operations_client.go) | [PublicGetMessagesShort](../services-api/pkg/service/dsmc/operations.go) |
+| `/dsmcontroller/v1/messages` | GET | PublicGetMessagesShort | [PublicGetMessagesShort](../dsmc-sdk/pkg/dsmcclient/dsmc_operations/dsmc_operations_client.go) | [PublicGetMessagesShort](../services-api/pkg/service/dsmc/dsmcOperations.go) |
 
 
 &nbsp;  

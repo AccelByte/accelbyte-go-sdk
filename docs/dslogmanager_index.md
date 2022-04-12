@@ -17,10 +17,10 @@
 | `/dslogmanager/servers/logs/download` | POST | BatchDownloadServerLogsShort | [BatchDownloadServerLogsShort](../dslogmanager-sdk/pkg/dslogmanagerclient/all_terminated_servers/all_terminated_servers_client.go) | [BatchDownloadServerLogsShort](../services-api/pkg/service/dslogmanager/allTerminatedServers.go) |
 | `/dslogmanager/servers/search` | GET | ListAllTerminatedServersShort | [ListAllTerminatedServersShort](../dslogmanager-sdk/pkg/dslogmanagerclient/all_terminated_servers/all_terminated_servers_client.go) | [ListAllTerminatedServersShort](../services-api/pkg/service/dslogmanager/allTerminatedServers.go) |
 
-### Operations Wrapper:  [Operations](../services-api/pkg/service/dslogmanager/operations.go)
+### Dslogmanager Operations Wrapper:  [DslogmanagerOperations](../services-api/pkg/service/dslogmanager/dslogmanagerOperations.go)
 | Endpoint | Method | ID | Class | Wrapper |
 |---|---|---|---|---|
-| `/dslogmanager/v1/messages` | GET | PublicGetMessagesShort | [PublicGetMessagesShort](../dslogmanager-sdk/pkg/dslogmanagerclient/operations/operations_client.go) | [PublicGetMessagesShort](../services-api/pkg/service/dslogmanager/operations.go) |
+| `/dslogmanager/v1/messages` | GET | PublicGetMessagesShort | [PublicGetMessagesShort](../dslogmanager-sdk/pkg/dslogmanagerclient/dslogmanager_operations/dslogmanager_operations_client.go) | [PublicGetMessagesShort](../services-api/pkg/service/dslogmanager/dslogmanagerOperations.go) |
 
 
 &nbsp;  

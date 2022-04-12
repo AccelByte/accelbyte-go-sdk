@@ -84,12 +84,12 @@
 | `/lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}` | GET | PublicGetPartyDataV1Short | [PublicGetPartyDataV1Short](../lobby-sdk/pkg/lobbyclient/party/party_client.go) | [PublicGetPartyDataV1Short](../services-api/pkg/service/lobby/party.go) |
 | `/lobby/v1/public/party/namespaces/{namespace}/parties/{partyId}/attributes` | PUT | PublicUpdatePartyAttributesV1Short | [PublicUpdatePartyAttributesV1Short](../lobby-sdk/pkg/lobbyclient/party/party_client.go) | [PublicUpdatePartyAttributesV1Short](../services-api/pkg/service/lobby/party.go) |
 
-### Operations Wrapper:  [Operations](../services-api/pkg/service/lobby/operations.go)
+### Lobby Operations Wrapper:  [LobbyOperations](../services-api/pkg/service/lobby/lobbyOperations.go)
 | Endpoint | Method | ID | Class | Wrapper |
 |---|---|---|---|---|
-| `/lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes` | PUT | AdminUpdatePartyAttributesV1Short | [AdminUpdatePartyAttributesV1Short](../lobby-sdk/pkg/lobbyclient/operations/operations_client.go) | [AdminUpdatePartyAttributesV1Short](../services-api/pkg/service/lobby/operations.go) |
-| `/lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}` | POST | AdminJoinPartyV1Short | [AdminJoinPartyV1Short](../lobby-sdk/pkg/lobbyclient/operations/operations_client.go) | [AdminJoinPartyV1Short](../services-api/pkg/service/lobby/operations.go) |
-| `/lobby/v1/messages` | GET | PublicGetMessagesShort | [PublicGetMessagesShort](../lobby-sdk/pkg/lobbyclient/operations/operations_client.go) | [PublicGetMessagesShort](../services-api/pkg/service/lobby/operations.go) |
+| `/lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/attributes` | PUT | AdminUpdatePartyAttributesV1Short | [AdminUpdatePartyAttributesV1Short](../lobby-sdk/pkg/lobbyclient/lobby_operations/lobby_operations_client.go) | [AdminUpdatePartyAttributesV1Short](../services-api/pkg/service/lobby/lobbyOperations.go) |
+| `/lobby/v1/admin/party/namespaces/{namespace}/parties/{partyId}/join/{userId}` | POST | AdminJoinPartyV1Short | [AdminJoinPartyV1Short](../lobby-sdk/pkg/lobbyclient/lobby_operations/lobby_operations_client.go) | [AdminJoinPartyV1Short](../services-api/pkg/service/lobby/lobbyOperations.go) |
+| `/lobby/v1/messages` | GET | PublicGetMessagesShort | [PublicGetMessagesShort](../lobby-sdk/pkg/lobbyclient/lobby_operations/lobby_operations_client.go) | [PublicGetMessagesShort](../services-api/pkg/service/lobby/lobbyOperations.go) |
 
 ### player Wrapper:  [Player](../services-api/pkg/service/lobby/player.go)
 | Endpoint | Method | ID | Class | Wrapper |

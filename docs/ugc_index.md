@@ -104,6 +104,8 @@
 | `/ugc/v1/public/namespaces/{namespace}/contents/followed` | GET | GetFollowedContentShort | [GetFollowedContentShort](../ugc-sdk/pkg/ugcclient/public_follow/public_follow_client.go) | [GetFollowedContentShort](../services-api/pkg/service/ugc/publicFollow.go) |
 | `/ugc/v1/public/namespaces/{namespace}/users/followed` | GET | GetFollowedUsersShort | [GetFollowedUsersShort](../ugc-sdk/pkg/ugcclient/public_follow/public_follow_client.go) | [GetFollowedUsersShort](../services-api/pkg/service/ugc/publicFollow.go) |
 | `/ugc/v1/public/namespaces/{namespace}/users/{userId}/follow` | PUT | UpdateUserFollowStatusShort | [UpdateUserFollowStatusShort](../ugc-sdk/pkg/ugcclient/public_follow/public_follow_client.go) | [UpdateUserFollowStatusShort](../services-api/pkg/service/ugc/publicFollow.go) |
+| `/ugc/v1/public/namespaces/{namespace}/users/{userId}/followers` | GET | GetPublicFollowersShort | [GetPublicFollowersShort](../ugc-sdk/pkg/ugcclient/public_follow/public_follow_client.go) | [GetPublicFollowersShort](../services-api/pkg/service/ugc/publicFollow.go) |
+| `/ugc/v1/public/namespaces/{namespace}/users/{userId}/following` | GET | GetPublicFollowingShort | [GetPublicFollowingShort](../ugc-sdk/pkg/ugcclient/public_follow/public_follow_client.go) | [GetPublicFollowingShort](../services-api/pkg/service/ugc/publicFollow.go) |
 
 ### Public Like Wrapper:  [PublicLike](../services-api/pkg/service/ugc/publicLike.go)
 | Endpoint | Method | ID | Class | Wrapper |
@@ -125,6 +127,11 @@
 | Endpoint | Method | ID | Class | Wrapper |
 |---|---|---|---|---|
 | `/ugc/v1/public/namespaces/{namespace}/types` | GET | GetTypeShort | [GetTypeShort](../ugc-sdk/pkg/ugcclient/public_type/public_type_client.go) | [GetTypeShort](../services-api/pkg/service/ugc/publicType.go) |
+
+### Public Creator Wrapper:  [PublicCreator](../services-api/pkg/service/ugc/publicCreator.go)
+| Endpoint | Method | ID | Class | Wrapper |
+|---|---|---|---|---|
+| `/ugc/v1/public/namespaces/{namespace}/users/{userId}` | GET | GetCreatorShort | [GetCreatorShort](../ugc-sdk/pkg/ugcclient/public_creator/public_creator_client.go) | [GetCreatorShort](../services-api/pkg/service/ugc/publicCreator.go) |
 
 ### Public Channel Wrapper:  [PublicChannel](../services-api/pkg/service/ugc/publicChannel.go)
 | Endpoint | Method | ID | Class | Wrapper |

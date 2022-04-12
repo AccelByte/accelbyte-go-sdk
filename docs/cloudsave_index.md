@@ -4,6 +4,12 @@
 
 ## Operations
 
+### AdminConcurrentRecord Wrapper:  [AdminConcurrentRecord](../services-api/pkg/service/cloudsave/adminConcurrentRecord.go)
+| Endpoint | Method | ID | Class | Wrapper |
+|---|---|---|---|---|
+| `/cloudsave/v1/admin/namespaces/{namespace}/concurrent/records/{key}` | PUT | AdminPutGameRecordConcurrentHandlerV1Short | [AdminPutGameRecordConcurrentHandlerV1Short](../cloudsave-sdk/pkg/cloudsaveclient/admin_concurrent_record/admin_concurrent_record_client.go) | [AdminPutGameRecordConcurrentHandlerV1Short](../services-api/pkg/service/cloudsave/adminConcurrentRecord.go) |
+| `/cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/concurrent/records/{key}/public` | PUT | AdminPutPlayerPublicRecordConcurrentHandlerV1Short | [AdminPutPlayerPublicRecordConcurrentHandlerV1Short](../cloudsave-sdk/pkg/cloudsaveclient/admin_concurrent_record/admin_concurrent_record_client.go) | [AdminPutPlayerPublicRecordConcurrentHandlerV1Short](../services-api/pkg/service/cloudsave/adminConcurrentRecord.go) |
+
 ### AdminGameRecord Wrapper:  [AdminGameRecord](../services-api/pkg/service/cloudsave/adminGameRecord.go)
 | Endpoint | Method | ID | Class | Wrapper |
 |---|---|---|---|---|
@@ -61,6 +67,7 @@
 
 | Model Struct | Class |
 |---|---|
+| `models.AdminConcurrentRecordRequest` | [ModelsAdminConcurrentRecordRequest ](../cloudsave-sdk/pkg/cloudsaveclientmodels/models_admin_concurrent_record_request.go) |
 | `models.BulkGetPlayerRecordResponse` | [ModelsBulkGetPlayerRecordResponse ](../cloudsave-sdk/pkg/cloudsaveclientmodels/models_bulk_get_player_record_response.go) |
 | `models.BulkUserIDsRequest` | [ModelsBulkUserIDsRequest ](../cloudsave-sdk/pkg/cloudsaveclientmodels/models_bulk_user_i_ds_request.go) |
 | `models.ConcurrentRecordRequest` | [ModelsConcurrentRecordRequest ](../cloudsave-sdk/pkg/cloudsaveclientmodels/models_concurrent_record_request.go) |

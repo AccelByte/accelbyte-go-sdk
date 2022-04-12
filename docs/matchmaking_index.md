@@ -4,13 +4,13 @@
 
 ## Operations
 
-### Operations Wrapper:  [Operations](../services-api/pkg/service/matchmaking/operations.go)
+### Matchmaking Operations Wrapper:  [MatchmakingOperations](../services-api/pkg/service/matchmaking/matchmakingOperations.go)
 | Endpoint | Method | ID | Class | Wrapper |
 |---|---|---|---|---|
-| `/healthz` | GET | GetHealthcheckInfoShort | [GetHealthcheckInfoShort](../matchmaking-sdk/pkg/matchmakingclient/operations/operations_client.go) | [GetHealthcheckInfoShort](../services-api/pkg/service/matchmaking/operations.go) |
-| `/matchmaking/healthz` | GET | HandlerV3HealthzShort | [HandlerV3HealthzShort](../matchmaking-sdk/pkg/matchmakingclient/operations/operations_client.go) | [HandlerV3HealthzShort](../services-api/pkg/service/matchmaking/operations.go) |
-| `/matchmaking/v1/messages` | GET | PublicGetMessagesShort | [PublicGetMessagesShort](../matchmaking-sdk/pkg/matchmakingclient/operations/operations_client.go) | [PublicGetMessagesShort](../services-api/pkg/service/matchmaking/operations.go) |
-| `/matchmaking/version` | GET | VersionCheckHandlerShort | [VersionCheckHandlerShort](../matchmaking-sdk/pkg/matchmakingclient/operations/operations_client.go) | [VersionCheckHandlerShort](../services-api/pkg/service/matchmaking/operations.go) |
+| `/healthz` | GET | GetHealthcheckInfoShort | [GetHealthcheckInfoShort](../matchmaking-sdk/pkg/matchmakingclient/matchmaking_operations/matchmaking_operations_client.go) | [GetHealthcheckInfoShort](../services-api/pkg/service/matchmaking/matchmakingOperations.go) |
+| `/matchmaking/healthz` | GET | HandlerV3HealthzShort | [HandlerV3HealthzShort](../matchmaking-sdk/pkg/matchmakingclient/matchmaking_operations/matchmaking_operations_client.go) | [HandlerV3HealthzShort](../services-api/pkg/service/matchmaking/matchmakingOperations.go) |
+| `/matchmaking/v1/messages` | GET | PublicGetMessagesShort | [PublicGetMessagesShort](../matchmaking-sdk/pkg/matchmakingclient/matchmaking_operations/matchmaking_operations_client.go) | [PublicGetMessagesShort](../services-api/pkg/service/matchmaking/matchmakingOperations.go) |
+| `/matchmaking/version` | GET | VersionCheckHandlerShort | [VersionCheckHandlerShort](../matchmaking-sdk/pkg/matchmakingclient/matchmaking_operations/matchmaking_operations_client.go) | [VersionCheckHandlerShort](../services-api/pkg/service/matchmaking/matchmakingOperations.go) |
 
 ### Matchmaking Wrapper:  [Matchmaking](../services-api/pkg/service/matchmaking/matchmaking.go)
 | Endpoint | Method | ID | Class | Wrapper |

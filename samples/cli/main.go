@@ -11,6 +11,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/gorilla/websocket"
 	"github.com/sirupsen/logrus"
@@ -134,6 +135,8 @@ func main() {
 		}
 
 		serveStandalone()
+
+		time.Sleep(5 * time.Second)
 
 		defer connMgr.Close()
 		logrus.Info("Done")

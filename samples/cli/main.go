@@ -101,6 +101,42 @@ func main() {
 
 		defer connMgr.Close()
 		logrus.Info("Done")
+	} else if standbyModeFlag = args[1]; standbyModeFlag == "--wsModeStandalone" {
+		reader = bufio.NewReader(os.Stdin)
+		logrus.Info("Enter websocket mode")
+		connMgr = &utils.ConnectionManagerImpl{}
+		configRepo := &repository.ConfigRepositoryImpl{}
+		tokenRepo := &repository.TokenRepositoryImpl{}
+		connection, err := connectionutils.NewWebsocketConnection(configRepo, tokenRepo, messageHandler)
+		if err != nil {
+			panic(err)
+		}
+		connMgr.Save(connection)
+		partyService = &service.PartyServiceWebsocket{
+			ConfigRepository:  configRepo,
+			TokenRepository:   tokenRepo,
+			ConnectionManager: connMgr,
+		}
+		friendService = &service.FriendServiceWebsocket{
+			ConfigRepository:  configRepo,
+			TokenRepository:   tokenRepo,
+			ConnectionManager: connMgr,
+		}
+		chatService = &service.ChatServiceWebsocket{
+			ConfigRepository:  configRepo,
+			TokenRepository:   tokenRepo,
+			ConnectionManager: connMgr,
+		}
+		notificationService = &service.NotificationServiceWebsocket{
+			ConfigRepository:  configRepo,
+			TokenRepository:   tokenRepo,
+			ConnectionManager: connMgr,
+		}
+
+		serveStandalone()
+
+		defer connMgr.Close()
+		logrus.Info("Done")
 	} else {
 		cmd.Execute()
 	}
@@ -434,6 +470,29 @@ func serve() {
 			msg := getInput()
 			_ = connMgr.Get().Conn.WriteMessage(websocket.CloseMessage,
 				websocket.FormatCloseMessage(websocket.CloseNormalClosure, msg))
+
+			return
+		}
+	}
+}
+
+func serveStandalone() {
+	args := os.Args
+	command := args[3]
+	logrus.Infof("second command: %v", command)
+	switch command {
+	// as long as ws connection in connMgr not closed,
+	case model.TypeFriendsPresenceRequest:
+		err := friendService.GetFriendPresenceStatus()
+		if err != nil {
+			logrus.Error(err)
+
+			return
+		}
+	case model.TypeInfoRequest:
+		err := partyService.GetPartyInfo()
+		if err != nil {
+			logrus.Error(err)
 
 			return
 		}

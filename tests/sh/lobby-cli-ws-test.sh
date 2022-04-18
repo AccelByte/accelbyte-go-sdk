@@ -59,9 +59,17 @@ mkdir -p $(dirname $TEMP_TOKEN)
 echo {"\"access_token"\":"\"foo"\"} >> $TEMP_TOKEN
 echo "1..$OPERATIONS_COUNT"
 
-# entering web-socket mode
-sample-apps --wsMode
-1
+#- 1 friendsStatusRequest
+samples/cli/sample-apps --wsModeStandalone friendsStatusRequest \
+    >$TEMP_FILE 2>&1
+update_status $? 'friendsStatusRequest'
+delete_file $TEMP_FILE
+
+#- 2 partyInfoRequest
+samples/cli/sample-apps --wsModeStandalone partyInfoRequest \
+    >$TEMP_FILE 2>&1
+update_status $? 'partyInfoRequest'
+delete_file $TEMP_FILE
 
 delete_file $TEMP_FILE
 

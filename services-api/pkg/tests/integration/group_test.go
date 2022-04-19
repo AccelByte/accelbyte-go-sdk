@@ -33,7 +33,7 @@ var (
 	groupName         = "Go SDK Group"
 	groupRegion       = "us-west-1"
 	groupType         = "PRIVATE"
-	ruleCriteria      = "MINIMUM"
+	ruleCriteria      = groupclientmodels.ModelsRuleInformationRuleCriteriaMINIMUM
 	ruleDetails       []*groupclientmodels.ModelsRuleInformation
 	ruleDetail        = &groupclientmodels.ModelsRuleInformation{
 		RuleAttribute: &emptyString,

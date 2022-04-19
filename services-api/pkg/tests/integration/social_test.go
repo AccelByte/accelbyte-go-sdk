@@ -24,7 +24,7 @@ var (
 	statCodeSocial = "123gosdkstat"
 	tagsSocial     []string
 	emptyFloat     = float64(1)
-	setBy          = "CLIENT"
+	setBy          = socialclientmodels.StatCreateSetByCLIENT
 	bodyStatSocial = &socialclientmodels.StatCreate{
 		DefaultValue:  &emptyFloat,
 		Description:   emptyString,

@@ -61,7 +61,7 @@ func Connect(host, token string) (*websocket.Conn, error) {
 	authHeader := "Bearer " + token
 	logrus.Debug("Connecting user to lobby")
 
-	if host == "0.0.0.0:8080" {
+	if host == "0.0.0.0:8080" || host == "127.0.0.1:8080" {
 		lobbyURL = "ws://" + host + "/lobby/"
 	} else {
 		lobbyURL = "wss://" + host + "/lobby/"

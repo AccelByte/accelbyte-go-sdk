@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package iam
 
 import (
@@ -13,8 +15,9 @@ import (
 )
 
 type UsersService struct {
-	Client          *iamclient.JusticeIamService
-	TokenRepository repository.TokenRepository
+	Client           *iamclient.JusticeIamService
+	ConfigRepository repository.ConfigRepository
+	TokenRepository  repository.TokenRepository
 }
 
 // Deprecated: Use CreateUserShort instead
@@ -123,11 +126,9 @@ func (u *UsersService) GetUserByPlatformUserID(input *users.GetUserByPlatformUse
 
 // Deprecated: Use ForgotPasswordShort instead
 func (u *UsersService) ForgotPassword(input *users.ForgotPasswordParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.ForgotPassword(input, client.BearerToken(*accessToken.AccessToken))
+	clientID := u.ConfigRepository.GetClientId()
+	clientSecret := u.ConfigRepository.GetClientSecret()
+	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.ForgotPassword(input, client.BasicAuth(clientID, clientSecret))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -172,11 +173,9 @@ func (u *UsersService) GetUsersByLoginIds(input *users.GetUsersByLoginIdsParams)
 
 // Deprecated: Use ResetPasswordShort instead
 func (u *UsersService) ResetPassword(input *users.ResetPasswordParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, badRequest, forbidden, notFound, internalServerError, err := u.Client.Users.ResetPassword(input, client.BearerToken(*accessToken.AccessToken))
+	clientID := u.ConfigRepository.GetClientId()
+	clientSecret := u.ConfigRepository.GetClientSecret()
+	_, badRequest, forbidden, notFound, internalServerError, err := u.Client.Users.ResetPassword(input, client.BasicAuth(clientID, clientSecret))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3696,11 +3695,9 @@ func (u *UsersService) GetUserByPlatformUserIDShort(input *users.GetUserByPlatfo
 }
 
 func (u *UsersService) ForgotPasswordShort(input *users.ForgotPasswordParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = u.Client.Users.ForgotPasswordShort(input, client.BearerToken(*accessToken.AccessToken))
+	clientID := u.ConfigRepository.GetClientId()
+	clientSecret := u.ConfigRepository.GetClientSecret()
+	_, err := u.Client.Users.ForgotPasswordShort(input, client.BasicAuth(clientID, clientSecret))
 	if err != nil {
 		return err
 	}
@@ -3722,11 +3719,9 @@ func (u *UsersService) GetUsersByLoginIdsShort(input *users.GetUsersByLoginIdsPa
 }
 
 func (u *UsersService) ResetPasswordShort(input *users.ResetPasswordParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = u.Client.Users.ResetPasswordShort(input, client.BearerToken(*accessToken.AccessToken))
+	clientID := u.ConfigRepository.GetClientId()
+	clientSecret := u.ConfigRepository.GetClientSecret()
+	_, err := u.Client.Users.ResetPasswordShort(input, client.BasicAuth(clientID, clientSecret))
 	if err != nil {
 		return err
 	}

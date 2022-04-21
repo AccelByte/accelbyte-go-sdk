@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package iam
 
 import (
@@ -13,8 +15,9 @@ import (
 )
 
 type OAuthService struct {
-	Client          *iamclient.JusticeIamService
-	TokenRepository repository.TokenRepository
+	Client           *iamclient.JusticeIamService
+	ConfigRepository repository.ConfigRepository
+	TokenRepository  repository.TokenRepository
 }
 
 // Deprecated: Use AuthorizationShort instead
@@ -84,11 +87,9 @@ func (o *OAuthService) RevokeUser(input *o_auth.RevokeUserParams) error {
 
 // Deprecated: Use GetRevocationListShort instead
 func (o *OAuthService) GetRevocationList(input *o_auth.GetRevocationListParams) (*iamclientmodels.OauthapiRevocationList, error) {
-	accessToken, err := o.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, unauthorized, err := o.Client.OAuth.GetRevocationList(input, client.BearerToken(*accessToken.AccessToken))
+	clientID := o.ConfigRepository.GetClientId()
+	clientSecret := o.ConfigRepository.GetClientSecret()
+	ok, unauthorized, err := o.Client.OAuth.GetRevocationList(input, client.BasicAuth(clientID, clientSecret))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -161,11 +162,9 @@ func (o *OAuthService) TokenGrant(input *o_auth.TokenGrantParams) (*iamclientmod
 
 // Deprecated: Use VerifyTokenShort instead
 func (o *OAuthService) VerifyToken(input *o_auth.VerifyTokenParams) (*iamclientmodels.OauthmodelTokenResponse, error) {
-	accessToken, err := o.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, badRequest, err := o.Client.OAuth.VerifyToken(input, client.BearerToken(*accessToken.AccessToken))
+	clientID := o.ConfigRepository.GetClientId()
+	clientSecret := o.ConfigRepository.GetClientSecret()
+	ok, badRequest, err := o.Client.OAuth.VerifyToken(input, client.BasicAuth(clientID, clientSecret))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -229,11 +228,9 @@ func (o *OAuthService) RevokeUserShort(input *o_auth.RevokeUserParams) error {
 }
 
 func (o *OAuthService) GetRevocationListShort(input *o_auth.GetRevocationListParams) (*iamclientmodels.OauthapiRevocationList, error) {
-	accessToken, err := o.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := o.Client.OAuth.GetRevocationListShort(input, client.BearerToken(*accessToken.AccessToken))
+	clientID := o.ConfigRepository.GetClientId()
+	clientSecret := o.ConfigRepository.GetClientSecret()
+	ok, err := o.Client.OAuth.GetRevocationListShort(input, client.BasicAuth(clientID, clientSecret))
 	if err != nil {
 		return nil, err
 	}
@@ -281,11 +278,9 @@ func (o *OAuthService) TokenGrantShort(input *o_auth.TokenGrantParams) (*iamclie
 }
 
 func (o *OAuthService) VerifyTokenShort(input *o_auth.VerifyTokenParams) (*iamclientmodels.OauthmodelTokenResponse, error) {
-	accessToken, err := o.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := o.Client.OAuth.VerifyTokenShort(input, client.BearerToken(*accessToken.AccessToken))
+	clientID := o.ConfigRepository.GetClientId()
+	clientSecret := o.ConfigRepository.GetClientSecret()
+	ok, err := o.Client.OAuth.VerifyTokenShort(input, client.BasicAuth(clientID, clientSecret))
 	if err != nil {
 		return nil, err
 	}

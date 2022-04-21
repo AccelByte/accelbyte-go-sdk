@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package iam
 
 import (
@@ -90,11 +92,9 @@ func (o *OAuth20Service) AuthorizeV3(input *o_auth2_0.AuthorizeV3Params) (string
 
 // Deprecated: Use TokenIntrospectionV3Short instead
 func (o *OAuth20Service) TokenIntrospectionV3(input *o_auth2_0.TokenIntrospectionV3Params) (*iamclientmodels.OauthmodelTokenIntrospectResponse, error) {
-	accessToken, err := o.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, badRequest, unauthorized, err := o.Client.OAuth20.TokenIntrospectionV3(input, client.BearerToken(*accessToken.AccessToken))
+	clientID := o.ConfigRepository.GetClientId()
+	clientSecret := o.ConfigRepository.GetClientSecret()
+	ok, badRequest, unauthorized, err := o.Client.OAuth20.TokenIntrospectionV3(input, client.BasicAuth(clientID, clientSecret))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -230,11 +230,9 @@ func (o *OAuth20Service) GetRevocationListV3(input *o_auth2_0.GetRevocationListV
 
 // Deprecated: Use TokenRevocationV3Short instead
 func (o *OAuth20Service) TokenRevocationV3(input *o_auth2_0.TokenRevocationV3Params) error {
-	accessToken, err := o.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, badRequest, unauthorized, err := o.Client.OAuth20.TokenRevocationV3(input, client.BearerToken(*accessToken.AccessToken))
+	clientID := o.ConfigRepository.GetClientId()
+	clientSecret := o.ConfigRepository.GetClientSecret()
+	_, badRequest, unauthorized, err := o.Client.OAuth20.TokenRevocationV3(input, client.BasicAuth(clientID, clientSecret))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -302,7 +300,6 @@ func (o *OAuth20Service) AuthorizeV3Short(input *o_auth2_0.AuthorizeV3Params) (s
 	if err != nil {
 		return "", err
 	}
-
 	parsedURL, err := url.Parse(ok.Location)
 	if err != nil {
 		return "", err
@@ -317,11 +314,9 @@ func (o *OAuth20Service) AuthorizeV3Short(input *o_auth2_0.AuthorizeV3Params) (s
 }
 
 func (o *OAuth20Service) TokenIntrospectionV3Short(input *o_auth2_0.TokenIntrospectionV3Params) (*iamclientmodels.OauthmodelTokenIntrospectResponse, error) {
-	accessToken, err := o.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := o.Client.OAuth20.TokenIntrospectionV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	clientID := o.ConfigRepository.GetClientId()
+	clientSecret := o.ConfigRepository.GetClientSecret()
+	ok, err := o.Client.OAuth20.TokenIntrospectionV3Short(input, client.BasicAuth(clientID, clientSecret))
 	if err != nil {
 		return nil, err
 	}
@@ -419,11 +414,9 @@ func (o *OAuth20Service) GetRevocationListV3Short(input *o_auth2_0.GetRevocation
 }
 
 func (o *OAuth20Service) TokenRevocationV3Short(input *o_auth2_0.TokenRevocationV3Params) error {
-	accessToken, err := o.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = o.Client.OAuth20.TokenRevocationV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	clientID := o.ConfigRepository.GetClientId()
+	clientSecret := o.ConfigRepository.GetClientSecret()
+	_, err := o.Client.OAuth20.TokenRevocationV3Short(input, client.BasicAuth(clientID, clientSecret))
 	if err != nil {
 		return err
 	}

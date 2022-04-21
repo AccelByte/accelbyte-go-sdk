@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "5.6.0"
+    "version": "5.7.1"
   },
   "schemes": [
     "https"
@@ -1161,6 +1161,9 @@
         },
         "security": [
           {
+            "basic": []
+          },
+          {
             "HasPermission": [
               "ADMIN:NAMESPACE:{namespace}:PASSWORD:USER [UPDATE]"
             ],
@@ -1274,6 +1277,9 @@
           }
         },
         "security": [
+          {
+            "basic": []
+          },
           {
             "HasPermission": [
               "ADMIN:NAMESPACE:{namespace}:PASSWORD:USER [UPDATE]"
@@ -3584,11 +3590,6 @@
             "description": "Invalid basic auth header"
           }
         },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
         "summary": "OAuth2 revocation list API",
         "tags": [
           "OAuth"
@@ -3818,11 +3819,6 @@
             "description": "Access Token not exist or expired"
           }
         },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
         "summary": "OAuth2 token verification API",
         "tags": [
           "OAuth"
@@ -8013,7 +8009,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;This is the API to Add 3rd Platform Credential.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [CREATE] resource.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;The secret for \u0026lt;strong\u0026gt;apple\u0026lt;/strong\u0026gt; is base64 encoded private key.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;If generic oauth flow is set to true: \u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;ul\u0026gt;\n\t\t\t\t\t \u0026lt;li\u0026gt;Current supported value for TokenAuthenticationType is \u0026lt;strong\u0026gt;idToken\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\t \u0026lt;li\u0026gt;\u0026lt;code\u0026gt;TokenClaimsMapping\u0026lt;/code\u0026gt; is used to extract user info from idToken claims. \n\t\t\t\t\t Its a JSON format with key should be \u0026lt;code\u0026gt;name\u0026lt;/code\u0026gt;, \u0026lt;code\u0026gt;email\u0026lt;/code\u0026gt; and \u0026lt;code\u0026gt;avatarURL\u0026lt;/code\u0026gt; \n\t\t\t\t\t since IAM will look up for these key when extracting user info.\u0026lt;/li\u0026gt;\n\t\t\t\t\t \u0026lt;/ul\u0026gt;\n\t\t",
+        "description": "\u0026lt;p\u0026gt;This is the API to Add 3rd Platform Credential.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [CREATE] resource.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;The secret for \u0026lt;strong\u0026gt;apple\u0026lt;/strong\u0026gt; is base64 encoded private key.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;If generic oauth flow is set to true: \u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;ul\u0026gt;\n\t\t\t\t\t \u0026lt;li\u0026gt;Current supported value for TokenAuthenticationType is \u0026lt;strong\u0026gt;idToken\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\t \u0026lt;li\u0026gt;\u0026lt;code\u0026gt;TokenClaimsMapping\u0026lt;/code\u0026gt; is used to extract user info from idToken claims. \n\t\t\t\t\t Its a JSON format with key should be \u0026lt;code\u0026gt;name\u0026lt;/code\u0026gt;, \u0026lt;code\u0026gt;email\u0026lt;/code\u0026gt; and \u0026lt;code\u0026gt;avatarUrl\u0026lt;/code\u0026gt; \n\t\t\t\t\t since IAM will look up for these key when extracting user info.\u0026lt;/li\u0026gt;\n\t\t\t\t\t \u0026lt;/ul\u0026gt;\n\t\t",
         "operationId": "UpdateThirdPartyLoginPlatformCredentialV3",
         "parameters": [
           {
@@ -8091,7 +8087,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;This is the API to Add 3rd Platform Credential.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [CREATE] resource.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;The secret for \u0026lt;strong\u0026gt;apple\u0026lt;/strong\u0026gt; is base64 encoded private key.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;If generic oauth flow is set to true: \u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;ul\u0026gt;\n\t\t\t\t\t \u0026lt;li\u0026gt;Current supported value for TokenAuthenticationType is \u0026lt;strong\u0026gt;idToken\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\t \u0026lt;li\u0026gt;\u0026lt;code\u0026gt;TokenClaimsMapping\u0026lt;/code\u0026gt; is used to extract user info from idToken claims. \n\t\t\t\t\t Its a JSON format with key should be \u0026lt;code\u0026gt;name\u0026lt;/code\u0026gt;, \u0026lt;code\u0026gt;email\u0026lt;/code\u0026gt; and \u0026lt;code\u0026gt;avatarURL\u0026lt;/code\u0026gt; \n\t\t\t\t\t since IAM will look up for these key when extracting user info.\u0026lt;/li\u0026gt;\n\t\t\t\t\t \u0026lt;/ul\u0026gt;\n\t\t",
+        "description": "\u0026lt;p\u0026gt;This is the API to Add 3rd Platform Credential.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;It needs ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [CREATE] resource.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;The secret for \u0026lt;strong\u0026gt;apple\u0026lt;/strong\u0026gt; is base64 encoded private key.\u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;p\u0026gt;If generic oauth flow is set to true: \u0026lt;/p\u0026gt;\n\t\t\t\t\t \u0026lt;ul\u0026gt;\n\t\t\t\t\t \u0026lt;li\u0026gt;Current supported value for TokenAuthenticationType is \u0026lt;strong\u0026gt;idToken\u0026lt;/strong\u0026gt;\u0026lt;/li\u0026gt;\n\t\t\t\t\t \u0026lt;li\u0026gt;\u0026lt;code\u0026gt;TokenClaimsMapping\u0026lt;/code\u0026gt; is used to extract user info from idToken claims. \n\t\t\t\t\t Its a JSON format with key should be \u0026lt;code\u0026gt;name\u0026lt;/code\u0026gt;, \u0026lt;code\u0026gt;email\u0026lt;/code\u0026gt; and \u0026lt;code\u0026gt;avatarUrl\u0026lt;/code\u0026gt; \n\t\t\t\t\t since IAM will look up for these key when extracting user info.\u0026lt;/li\u0026gt;\n\t\t\t\t\t \u0026lt;/ul\u0026gt;\n\t\t",
         "operationId": "AddThirdPartyLoginPlatformCredentialV3",
         "parameters": [
           {
@@ -13099,6 +13095,9 @@
         },
         "security": [
           {
+            "basic": []
+          },
+          {
             "authorization": []
           }
         ],
@@ -13515,11 +13514,6 @@
             }
           }
         },
-        "security": [
-          {
-            "authorization": []
-          }
-        ],
         "summary": "OAuth2 token revocation API",
         "tags": [
           "OAuth2.0"

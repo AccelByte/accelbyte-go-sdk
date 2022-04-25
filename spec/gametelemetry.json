@@ -9,6 +9,14 @@
     "https"
   ],
   "securityDefinitions": {
+    "APIKeyCookie": {
+      "in": "header",
+      "name": "Cookie",
+      "type": "apiKey",
+      "x-keys": [
+        "access_token"
+      ]
+    },
     "HTTPBearer": {
       "in": "header",
       "name": "Authorization",
@@ -41,6 +49,18 @@
             "name": "namespace",
             "required": true,
             "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "Cookie",
+            "required": false,
+            "type": "string",
+            "x-keys": [
+              "access_token"
+            ],
+            "x-required": [
+              "access_token"
+            ]
           }
         ],
         "produces": [
@@ -61,6 +81,9 @@
         "security": [
           {
             "HTTPBearer": []
+          },
+          {
+            "APIKeyCookie": []
           }
         ],
         "summary": "Admin Get Events",
@@ -73,7 +96,20 @@
       "get": {
         "description": "This endpoint requires valid JWT token and permission **ADMIN:ANALYTICS:TELEMETRY:{EventNamespace}** **READ**.\n\nThis endpoint retrieve namespace from kafka topic.",
         "operationId": "admin_get_namespace_game_telemetry_v1_admin_telemetrynamespace_get",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Cookie",
+            "required": false,
+            "type": "string",
+            "x-keys": [
+              "access_token"
+            ],
+            "x-required": [
+              "access_token"
+            ]
+          }
+        ],
         "produces": [
           "application/json"
         ],
@@ -86,6 +122,9 @@
         "security": [
           {
             "HTTPBearer": []
+          },
+          {
+            "APIKeyCookie": []
           }
         ],
         "summary": "Admin Get Namespace",
@@ -112,6 +151,18 @@
               },
               "type": "array"
             }
+          },
+          {
+            "in": "header",
+            "name": "Cookie",
+            "required": false,
+            "type": "string",
+            "x-keys": [
+              "access_token"
+            ],
+            "x-required": [
+              "access_token"
+            ]
           }
         ],
         "produces": [
@@ -131,6 +182,9 @@
         "security": [
           {
             "HTTPBearer": []
+          },
+          {
+            "APIKeyCookie": []
           }
         ],
         "summary": "Protected Save Events",
@@ -149,6 +203,18 @@
             "name": "steamId",
             "required": true,
             "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "Cookie",
+            "required": false,
+            "type": "string",
+            "x-keys": [
+              "access_token"
+            ],
+            "x-required": [
+              "access_token"
+            ]
           }
         ],
         "produces": [
@@ -172,6 +238,9 @@
         "security": [
           {
             "HTTPBearer": []
+          },
+          {
+            "APIKeyCookie": []
           }
         ],
         "summary": "Protected Get Playtime",
@@ -196,6 +265,18 @@
             "name": "playtime",
             "required": true,
             "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "Cookie",
+            "required": false,
+            "type": "string",
+            "x-keys": [
+              "access_token"
+            ],
+            "x-required": [
+              "access_token"
+            ]
           }
         ],
         "produces": [
@@ -216,6 +297,9 @@
         "security": [
           {
             "HTTPBearer": []
+          },
+          {
+            "APIKeyCookie": []
           }
         ],
         "summary": "Protected Update Playtime",

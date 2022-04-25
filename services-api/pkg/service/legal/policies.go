@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package legal
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/policies"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type PoliciesService struct {
 
 // Deprecated: Use RetrievePoliciesShort instead
 func (p *PoliciesService) RetrievePolicies(input *policies.RetrievePoliciesParams) ([]*legalclientmodels.RetrievePolicyResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := p.Client.Policies.RetrievePolicies(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := p.Client.Policies.RetrievePolicies(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -33,11 +37,11 @@ func (p *PoliciesService) RetrievePolicies(input *policies.RetrievePoliciesParam
 
 // Deprecated: Use UpdatePolicyShort instead
 func (p *PoliciesService) UpdatePolicy(input *policies.UpdatePolicyParams) error {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = p.Client.Policies.UpdatePolicy(input, client.BearerToken(*accessToken.AccessToken))
+	_, err = p.Client.Policies.UpdatePolicy(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -47,11 +51,11 @@ func (p *PoliciesService) UpdatePolicy(input *policies.UpdatePolicyParams) error
 
 // Deprecated: Use SetDefaultPolicy1Short instead
 func (p *PoliciesService) SetDefaultPolicy1(input *policies.SetDefaultPolicy1Params) error {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = p.Client.Policies.SetDefaultPolicy1(input, client.BearerToken(*accessToken.AccessToken))
+	_, err = p.Client.Policies.SetDefaultPolicy1(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -71,11 +75,11 @@ func (p *PoliciesService) RetrieveLatestPolicies(input *policies.RetrieveLatestP
 
 // Deprecated: Use RetrieveLatestPoliciesPublicShort instead
 func (p *PoliciesService) RetrieveLatestPoliciesPublic(input *policies.RetrieveLatestPoliciesPublicParams) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := p.Client.Policies.RetrieveLatestPoliciesPublic(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, err := p.Client.Policies.RetrieveLatestPoliciesPublic(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -96,12 +100,15 @@ func (p *PoliciesService) RetrieveLatestPoliciesByNamespaceAndCountryPublic(inpu
 	return ok.GetPayload(), nil
 }
 
-func (p *PoliciesService) RetrievePoliciesShort(input *policies.RetrievePoliciesParams) ([]*legalclientmodels.RetrievePolicyResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [READ]'], 'authorization': []}]
+func (p *PoliciesService) RetrievePoliciesShort(input *policies.RetrievePoliciesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrievePolicyResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	ok, err := p.Client.Policies.RetrievePoliciesShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := p.Client.Policies.RetrievePoliciesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -109,25 +116,15 @@ func (p *PoliciesService) RetrievePoliciesShort(input *policies.RetrievePolicies
 	return ok.GetPayload(), nil
 }
 
-func (p *PoliciesService) UpdatePolicyShort(input *policies.UpdatePolicyParams) error {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [UPDATE]'], 'authorization': []}]
+func (p *PoliciesService) UpdatePolicyShort(input *policies.UpdatePolicyParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	_, err = p.Client.Policies.UpdatePolicyShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (p *PoliciesService) SetDefaultPolicy1Short(input *policies.SetDefaultPolicy1Params) error {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = p.Client.Policies.SetDefaultPolicy1Short(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := p.Client.Policies.UpdatePolicyShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -135,6 +132,23 @@ func (p *PoliciesService) SetDefaultPolicy1Short(input *policies.SetDefaultPolic
 	return nil
 }
 
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [UPDATE]'], 'authorization': []}]
+func (p *PoliciesService) SetDefaultPolicy1Short(input *policies.SetDefaultPolicy1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+	}
+	_, err := p.Client.Policies.SetDefaultPolicy1Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// None
 func (p *PoliciesService) RetrieveLatestPoliciesShort(input *policies.RetrieveLatestPoliciesParams) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
 	ok, err := p.Client.Policies.RetrieveLatestPoliciesShort(input)
 	if err != nil {
@@ -144,12 +158,15 @@ func (p *PoliciesService) RetrieveLatestPoliciesShort(input *policies.RetrieveLa
 	return ok.GetPayload(), nil
 }
 
-func (p *PoliciesService) RetrieveLatestPoliciesPublicShort(input *policies.RetrieveLatestPoliciesPublicParams) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (p *PoliciesService) RetrieveLatestPoliciesPublicShort(input *policies.RetrieveLatestPoliciesPublicParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	ok, err := p.Client.Policies.RetrieveLatestPoliciesPublicShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := p.Client.Policies.RetrieveLatestPoliciesPublicShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -157,6 +174,7 @@ func (p *PoliciesService) RetrieveLatestPoliciesPublicShort(input *policies.Retr
 	return ok.GetPayload(), nil
 }
 
+// None
 func (p *PoliciesService) RetrieveLatestPoliciesByNamespaceAndCountryPublicShort(input *policies.RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
 	ok, err := p.Client.Policies.RetrieveLatestPoliciesByNamespaceAndCountryPublicShort(input)
 	if err != nil {

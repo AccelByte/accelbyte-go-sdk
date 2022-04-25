@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package platform
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/key_group"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type KeyGroupService struct {
 
 // Deprecated: Use QueryKeyGroupsShort instead
 func (k *KeyGroupService) QueryKeyGroups(input *key_group.QueryKeyGroupsParams) (*platformclientmodels.KeyGroupPagingSlicedResult, error) {
-	accessToken, err := k.TokenRepository.GetToken()
+	token, err := k.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := k.Client.KeyGroup.QueryKeyGroups(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := k.Client.KeyGroup.QueryKeyGroups(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -33,11 +37,11 @@ func (k *KeyGroupService) QueryKeyGroups(input *key_group.QueryKeyGroupsParams) 
 
 // Deprecated: Use CreateKeyGroupShort instead
 func (k *KeyGroupService) CreateKeyGroup(input *key_group.CreateKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
-	accessToken, err := k.TokenRepository.GetToken()
+	token, err := k.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, conflict, unprocessableEntity, err := k.Client.KeyGroup.CreateKeyGroup(input, client.BearerToken(*accessToken.AccessToken))
+	created, conflict, unprocessableEntity, err := k.Client.KeyGroup.CreateKeyGroup(input, client.BearerToken(*token.AccessToken))
 	if conflict != nil {
 		return nil, conflict
 	}
@@ -53,11 +57,11 @@ func (k *KeyGroupService) CreateKeyGroup(input *key_group.CreateKeyGroupParams) 
 
 // Deprecated: Use GetKeyGroupShort instead
 func (k *KeyGroupService) GetKeyGroup(input *key_group.GetKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
-	accessToken, err := k.TokenRepository.GetToken()
+	token, err := k.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := k.Client.KeyGroup.GetKeyGroup(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, err := k.Client.KeyGroup.GetKeyGroup(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -70,11 +74,11 @@ func (k *KeyGroupService) GetKeyGroup(input *key_group.GetKeyGroupParams) (*plat
 
 // Deprecated: Use UpdateKeyGroupShort instead
 func (k *KeyGroupService) UpdateKeyGroup(input *key_group.UpdateKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
-	accessToken, err := k.TokenRepository.GetToken()
+	token, err := k.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, conflict, unprocessableEntity, err := k.Client.KeyGroup.UpdateKeyGroup(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, conflict, unprocessableEntity, err := k.Client.KeyGroup.UpdateKeyGroup(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -93,11 +97,11 @@ func (k *KeyGroupService) UpdateKeyGroup(input *key_group.UpdateKeyGroupParams) 
 
 // Deprecated: Use GetKeyGroupDynamicShort instead
 func (k *KeyGroupService) GetKeyGroupDynamic(input *key_group.GetKeyGroupDynamicParams) (*platformclientmodels.KeyGroupDynamicInfo, error) {
-	accessToken, err := k.TokenRepository.GetToken()
+	token, err := k.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := k.Client.KeyGroup.GetKeyGroupDynamic(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, err := k.Client.KeyGroup.GetKeyGroupDynamic(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -110,11 +114,11 @@ func (k *KeyGroupService) GetKeyGroupDynamic(input *key_group.GetKeyGroupDynamic
 
 // Deprecated: Use ListKeysShort instead
 func (k *KeyGroupService) ListKeys(input *key_group.ListKeysParams) (*platformclientmodels.KeyPagingSliceResult, error) {
-	accessToken, err := k.TokenRepository.GetToken()
+	token, err := k.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := k.Client.KeyGroup.ListKeys(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := k.Client.KeyGroup.ListKeys(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -124,11 +128,11 @@ func (k *KeyGroupService) ListKeys(input *key_group.ListKeysParams) (*platformcl
 
 // Deprecated: Use UploadKeysShort instead
 func (k *KeyGroupService) UploadKeys(input *key_group.UploadKeysParams) (*platformclientmodels.BulkOperationResult, error) {
-	accessToken, err := k.TokenRepository.GetToken()
+	token, err := k.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := k.Client.KeyGroup.UploadKeys(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, err := k.Client.KeyGroup.UploadKeys(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -142,12 +146,15 @@ func (k *KeyGroupService) UploadKeys(input *key_group.UploadKeysParams) (*platfo
 	return ok.GetPayload(), nil
 }
 
-func (k *KeyGroupService) QueryKeyGroupsShort(input *key_group.QueryKeyGroupsParams) (*platformclientmodels.KeyGroupPagingSlicedResult, error) {
-	accessToken, err := k.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:KEYGROUP [READ]'], 'authorization': []}]
+func (k *KeyGroupService) QueryKeyGroupsShort(input *key_group.QueryKeyGroupsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.KeyGroupPagingSlicedResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(k.TokenRepository, nil, security, "")
 	}
-	ok, err := k.Client.KeyGroup.QueryKeyGroupsShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := k.Client.KeyGroup.QueryKeyGroupsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -155,12 +162,15 @@ func (k *KeyGroupService) QueryKeyGroupsShort(input *key_group.QueryKeyGroupsPar
 	return ok.GetPayload(), nil
 }
 
-func (k *KeyGroupService) CreateKeyGroupShort(input *key_group.CreateKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
-	accessToken, err := k.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:KEYGROUP [CREATE]'], 'authorization': []}]
+func (k *KeyGroupService) CreateKeyGroupShort(input *key_group.CreateKeyGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.KeyGroupInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(k.TokenRepository, nil, security, "")
 	}
-	created, err := k.Client.KeyGroup.CreateKeyGroupShort(input, client.BearerToken(*accessToken.AccessToken))
+	created, err := k.Client.KeyGroup.CreateKeyGroupShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -168,25 +178,15 @@ func (k *KeyGroupService) CreateKeyGroupShort(input *key_group.CreateKeyGroupPar
 	return created.GetPayload(), nil
 }
 
-func (k *KeyGroupService) GetKeyGroupShort(input *key_group.GetKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
-	accessToken, err := k.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:KEYGROUP [READ]'], 'authorization': []}]
+func (k *KeyGroupService) GetKeyGroupShort(input *key_group.GetKeyGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.KeyGroupInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(k.TokenRepository, nil, security, "")
 	}
-	ok, err := k.Client.KeyGroup.GetKeyGroupShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (k *KeyGroupService) UpdateKeyGroupShort(input *key_group.UpdateKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
-	accessToken, err := k.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := k.Client.KeyGroup.UpdateKeyGroupShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := k.Client.KeyGroup.GetKeyGroupShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -194,25 +194,15 @@ func (k *KeyGroupService) UpdateKeyGroupShort(input *key_group.UpdateKeyGroupPar
 	return ok.GetPayload(), nil
 }
 
-func (k *KeyGroupService) GetKeyGroupDynamicShort(input *key_group.GetKeyGroupDynamicParams) (*platformclientmodels.KeyGroupDynamicInfo, error) {
-	accessToken, err := k.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:KEYGROUP [UPDATE]'], 'authorization': []}]
+func (k *KeyGroupService) UpdateKeyGroupShort(input *key_group.UpdateKeyGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.KeyGroupInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(k.TokenRepository, nil, security, "")
 	}
-	ok, err := k.Client.KeyGroup.GetKeyGroupDynamicShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (k *KeyGroupService) ListKeysShort(input *key_group.ListKeysParams) (*platformclientmodels.KeyPagingSliceResult, error) {
-	accessToken, err := k.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := k.Client.KeyGroup.ListKeysShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := k.Client.KeyGroup.UpdateKeyGroupShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -220,12 +210,47 @@ func (k *KeyGroupService) ListKeysShort(input *key_group.ListKeysParams) (*platf
 	return ok.GetPayload(), nil
 }
 
-func (k *KeyGroupService) UploadKeysShort(input *key_group.UploadKeysParams) (*platformclientmodels.BulkOperationResult, error) {
-	accessToken, err := k.TokenRepository.GetToken()
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:KEYGROUP [READ]'], 'authorization': []}]
+func (k *KeyGroupService) GetKeyGroupDynamicShort(input *key_group.GetKeyGroupDynamicParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.KeyGroupDynamicInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(k.TokenRepository, nil, security, "")
+	}
+	ok, err := k.Client.KeyGroup.GetKeyGroupDynamicShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	ok, err := k.Client.KeyGroup.UploadKeysShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:KEYGROUP [READ]'], 'authorization': []}]
+func (k *KeyGroupService) ListKeysShort(input *key_group.ListKeysParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.KeyPagingSliceResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(k.TokenRepository, nil, security, "")
+	}
+	ok, err := k.Client.KeyGroup.ListKeysShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:KEYGROUP [UPDATE]'], 'authorization': []}]
+func (k *KeyGroupService) UploadKeysShort(input *key_group.UploadKeysParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.BulkOperationResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(k.TokenRepository, nil, security, "")
+	}
+	ok, err := k.Client.KeyGroup.UploadKeysShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

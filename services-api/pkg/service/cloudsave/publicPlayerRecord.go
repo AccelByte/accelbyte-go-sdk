@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package cloudsave
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/public_player_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type PublicPlayerRecordService struct {
 
 // Deprecated: Use BulkGetPlayerPublicRecordHandlerV1Short instead
 func (p *PublicPlayerRecordService) BulkGetPlayerPublicRecordHandlerV1(input *public_player_record.BulkGetPlayerPublicRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsBulkGetPlayerRecordResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := p.Client.PublicPlayerRecord.BulkGetPlayerPublicRecordHandlerV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := p.Client.PublicPlayerRecord.BulkGetPlayerPublicRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -45,11 +49,11 @@ func (p *PublicPlayerRecordService) BulkGetPlayerPublicRecordHandlerV1(input *pu
 
 // Deprecated: Use PublicDeletePlayerPublicRecordHandlerV1Short instead
 func (p *PublicPlayerRecordService) PublicDeletePlayerPublicRecordHandlerV1(input *public_player_record.PublicDeletePlayerPublicRecordHandlerV1Params) error {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, notFound, internalServerError, err := p.Client.PublicPlayerRecord.PublicDeletePlayerPublicRecordHandlerV1(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, notFound, internalServerError, err := p.Client.PublicPlayerRecord.PublicDeletePlayerPublicRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -71,11 +75,11 @@ func (p *PublicPlayerRecordService) PublicDeletePlayerPublicRecordHandlerV1(inpu
 
 // Deprecated: Use GetPlayerRecordHandlerV1Short instead
 func (p *PublicPlayerRecordService) GetPlayerRecordHandlerV1(input *public_player_record.GetPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := p.Client.PublicPlayerRecord.GetPlayerRecordHandlerV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := p.Client.PublicPlayerRecord.GetPlayerRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -97,11 +101,11 @@ func (p *PublicPlayerRecordService) GetPlayerRecordHandlerV1(input *public_playe
 
 // Deprecated: Use PutPlayerRecordHandlerV1Short instead
 func (p *PublicPlayerRecordService) PutPlayerRecordHandlerV1(input *public_player_record.PutPlayerRecordHandlerV1Params) error {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, internalServerError, err := p.Client.PublicPlayerRecord.PutPlayerRecordHandlerV1(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, internalServerError, err := p.Client.PublicPlayerRecord.PutPlayerRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -123,11 +127,11 @@ func (p *PublicPlayerRecordService) PutPlayerRecordHandlerV1(input *public_playe
 
 // Deprecated: Use PostPlayerRecordHandlerV1Short instead
 func (p *PublicPlayerRecordService) PostPlayerRecordHandlerV1(input *public_player_record.PostPlayerRecordHandlerV1Params) error {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, internalServerError, err := p.Client.PublicPlayerRecord.PostPlayerRecordHandlerV1(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, internalServerError, err := p.Client.PublicPlayerRecord.PostPlayerRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -149,11 +153,11 @@ func (p *PublicPlayerRecordService) PostPlayerRecordHandlerV1(input *public_play
 
 // Deprecated: Use DeletePlayerRecordHandlerV1Short instead
 func (p *PublicPlayerRecordService) DeletePlayerRecordHandlerV1(input *public_player_record.DeletePlayerRecordHandlerV1Params) error {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, internalServerError, err := p.Client.PublicPlayerRecord.DeletePlayerRecordHandlerV1(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, internalServerError, err := p.Client.PublicPlayerRecord.DeletePlayerRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -175,11 +179,11 @@ func (p *PublicPlayerRecordService) DeletePlayerRecordHandlerV1(input *public_pl
 
 // Deprecated: Use GetPlayerPublicRecordHandlerV1Short instead
 func (p *PublicPlayerRecordService) GetPlayerPublicRecordHandlerV1(input *public_player_record.GetPlayerPublicRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicPlayerRecord.GetPlayerPublicRecordHandlerV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicPlayerRecord.GetPlayerPublicRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -198,11 +202,11 @@ func (p *PublicPlayerRecordService) GetPlayerPublicRecordHandlerV1(input *public
 
 // Deprecated: Use PutPlayerPublicRecordHandlerV1Short instead
 func (p *PublicPlayerRecordService) PutPlayerPublicRecordHandlerV1(input *public_player_record.PutPlayerPublicRecordHandlerV1Params) error {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, internalServerError, err := p.Client.PublicPlayerRecord.PutPlayerPublicRecordHandlerV1(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, internalServerError, err := p.Client.PublicPlayerRecord.PutPlayerPublicRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -221,11 +225,11 @@ func (p *PublicPlayerRecordService) PutPlayerPublicRecordHandlerV1(input *public
 
 // Deprecated: Use PostPlayerPublicRecordHandlerV1Short instead
 func (p *PublicPlayerRecordService) PostPlayerPublicRecordHandlerV1(input *public_player_record.PostPlayerPublicRecordHandlerV1Params) error {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, internalServerError, err := p.Client.PublicPlayerRecord.PostPlayerPublicRecordHandlerV1(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, internalServerError, err := p.Client.PublicPlayerRecord.PostPlayerPublicRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -242,38 +246,15 @@ func (p *PublicPlayerRecordService) PostPlayerPublicRecordHandlerV1(input *publi
 	return nil
 }
 
-func (p *PublicPlayerRecordService) BulkGetPlayerPublicRecordHandlerV1Short(input *public_player_record.BulkGetPlayerPublicRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsBulkGetPlayerRecordResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['NAMESPACE:{namespace}:PUBLIC:CLOUDSAVE:RECORD [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *PublicPlayerRecordService) BulkGetPlayerPublicRecordHandlerV1Short(input *public_player_record.BulkGetPlayerPublicRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsBulkGetPlayerRecordResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	ok, err := p.Client.PublicPlayerRecord.BulkGetPlayerPublicRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (p *PublicPlayerRecordService) PublicDeletePlayerPublicRecordHandlerV1Short(input *public_player_record.PublicDeletePlayerPublicRecordHandlerV1Params) error {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = p.Client.PublicPlayerRecord.PublicDeletePlayerPublicRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (p *PublicPlayerRecordService) GetPlayerRecordHandlerV1Short(input *public_player_record.GetPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := p.Client.PublicPlayerRecord.GetPlayerRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := p.Client.PublicPlayerRecord.BulkGetPlayerPublicRecordHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -281,25 +262,15 @@ func (p *PublicPlayerRecordService) GetPlayerRecordHandlerV1Short(input *public_
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicPlayerRecordService) PutPlayerRecordHandlerV1Short(input *public_player_record.PutPlayerRecordHandlerV1Params) error {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': [], 'HasScope': ['social'], 'authorization': []}]
+func (p *PublicPlayerRecordService) PublicDeletePlayerPublicRecordHandlerV1Short(input *public_player_record.PublicDeletePlayerPublicRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	_, err = p.Client.PublicPlayerRecord.PutPlayerRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (p *PublicPlayerRecordService) PostPlayerRecordHandlerV1Short(input *public_player_record.PostPlayerRecordHandlerV1Params) error {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = p.Client.PublicPlayerRecord.PostPlayerRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := p.Client.PublicPlayerRecord.PublicDeletePlayerPublicRecordHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -307,25 +278,15 @@ func (p *PublicPlayerRecordService) PostPlayerRecordHandlerV1Short(input *public
 	return nil
 }
 
-func (p *PublicPlayerRecordService) DeletePlayerRecordHandlerV1Short(input *public_player_record.DeletePlayerRecordHandlerV1Params) error {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *PublicPlayerRecordService) GetPlayerRecordHandlerV1Short(input *public_player_record.GetPlayerRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	_, err = p.Client.PublicPlayerRecord.DeletePlayerRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (p *PublicPlayerRecordService) GetPlayerPublicRecordHandlerV1Short(input *public_player_record.GetPlayerPublicRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := p.Client.PublicPlayerRecord.GetPlayerPublicRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := p.Client.PublicPlayerRecord.GetPlayerRecordHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -333,12 +294,15 @@ func (p *PublicPlayerRecordService) GetPlayerPublicRecordHandlerV1Short(input *p
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicPlayerRecordService) PutPlayerPublicRecordHandlerV1Short(input *public_player_record.PutPlayerPublicRecordHandlerV1Params) error {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *PublicPlayerRecordService) PutPlayerRecordHandlerV1Short(input *public_player_record.PutPlayerRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	_, err = p.Client.PublicPlayerRecord.PutPlayerPublicRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := p.Client.PublicPlayerRecord.PutPlayerRecordHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -346,12 +310,79 @@ func (p *PublicPlayerRecordService) PutPlayerPublicRecordHandlerV1Short(input *p
 	return nil
 }
 
-func (p *PublicPlayerRecordService) PostPlayerPublicRecordHandlerV1Short(input *public_player_record.PostPlayerPublicRecordHandlerV1Params) error {
-	accessToken, err := p.TokenRepository.GetToken()
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *PublicPlayerRecordService) PostPlayerRecordHandlerV1Short(input *public_player_record.PostPlayerRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+	}
+	_, err := p.Client.PublicPlayerRecord.PostPlayerRecordHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
-	_, err = p.Client.PublicPlayerRecord.PostPlayerPublicRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
+
+	return nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *PublicPlayerRecordService) DeletePlayerRecordHandlerV1Short(input *public_player_record.DeletePlayerRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+	}
+	_, err := p.Client.PublicPlayerRecord.DeletePlayerRecordHandlerV1Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *PublicPlayerRecordService) GetPlayerPublicRecordHandlerV1Short(input *public_player_record.GetPlayerPublicRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+	}
+	ok, err := p.Client.PublicPlayerRecord.GetPlayerPublicRecordHandlerV1Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *PublicPlayerRecordService) PutPlayerPublicRecordHandlerV1Short(input *public_player_record.PutPlayerPublicRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+	}
+	_, err := p.Client.PublicPlayerRecord.PutPlayerPublicRecordHandlerV1Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [WRITE]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *PublicPlayerRecordService) PostPlayerPublicRecordHandlerV1Short(input *public_player_record.PostPlayerPublicRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+	}
+	_, err := p.Client.PublicPlayerRecord.PostPlayerPublicRecordHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

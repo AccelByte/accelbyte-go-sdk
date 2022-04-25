@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package dslogmanager
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclient/dslogmanager_operations"
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type DslogmanagerOperationsService struct {
 
 // Deprecated: Use PublicGetMessagesShort instead
 func (d *DslogmanagerOperationsService) PublicGetMessages(input *dslogmanager_operations.PublicGetMessagesParams) ([]*dslogmanagerclientmodels.LogAppMessageDeclaration, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, internalServerError, err := d.Client.DslogmanagerOperations.PublicGetMessages(input, client.BearerToken(*accessToken.AccessToken))
+	ok, internalServerError, err := d.Client.DslogmanagerOperations.PublicGetMessages(input, client.BearerToken(*token.AccessToken))
 	if internalServerError != nil {
 		return nil, internalServerError
 	}
@@ -34,12 +38,15 @@ func (d *DslogmanagerOperationsService) PublicGetMessages(input *dslogmanager_op
 	return ok.GetPayload(), nil
 }
 
-func (d *DslogmanagerOperationsService) PublicGetMessagesShort(input *dslogmanager_operations.PublicGetMessagesParams) ([]*dslogmanagerclientmodels.LogAppMessageDeclaration, error) {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (d *DslogmanagerOperationsService) PublicGetMessagesShort(input *dslogmanager_operations.PublicGetMessagesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*dslogmanagerclientmodels.LogAppMessageDeclaration, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
-	ok, err := d.Client.DslogmanagerOperations.PublicGetMessagesShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := d.Client.DslogmanagerOperations.PublicGetMessagesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

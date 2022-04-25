@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package eventlog
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event"
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type EventService struct {
 
 // Deprecated: Use GetEventByNamespaceHandlerShort instead
 func (e *EventService) GetEventByNamespaceHandler(input *event.GetEventByNamespaceHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
-	accessToken, err := e.TokenRepository.GetToken()
+	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := e.Client.Event.GetEventByNamespaceHandler(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := e.Client.Event.GetEventByNamespaceHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -48,11 +52,11 @@ func (e *EventService) GetEventByNamespaceHandler(input *event.GetEventByNamespa
 
 // Deprecated: Use PostEventHandlerShort instead
 func (e *EventService) PostEventHandler(input *event.PostEventHandlerParams) error {
-	accessToken, err := e.TokenRepository.GetToken()
+	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, internalServerError, err := e.Client.Event.PostEventHandler(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, internalServerError, err := e.Client.Event.PostEventHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -74,11 +78,11 @@ func (e *EventService) PostEventHandler(input *event.PostEventHandlerParams) err
 
 // Deprecated: Use GetEventByEventIDHandlerShort instead
 func (e *EventService) GetEventByEventIDHandler(input *event.GetEventByEventIDHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
-	accessToken, err := e.TokenRepository.GetToken()
+	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := e.Client.Event.GetEventByEventIDHandler(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := e.Client.Event.GetEventByEventIDHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -103,11 +107,11 @@ func (e *EventService) GetEventByEventIDHandler(input *event.GetEventByEventIDHa
 
 // Deprecated: Use GetEventByEventTypeHandlerShort instead
 func (e *EventService) GetEventByEventTypeHandler(input *event.GetEventByEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
-	accessToken, err := e.TokenRepository.GetToken()
+	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := e.Client.Event.GetEventByEventTypeHandler(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := e.Client.Event.GetEventByEventTypeHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -132,11 +136,11 @@ func (e *EventService) GetEventByEventTypeHandler(input *event.GetEventByEventTy
 
 // Deprecated: Use GetEventByEventTypeAndEventIDHandlerShort instead
 func (e *EventService) GetEventByEventTypeAndEventIDHandler(input *event.GetEventByEventTypeAndEventIDHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
-	accessToken, err := e.TokenRepository.GetToken()
+	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := e.Client.Event.GetEventByEventTypeAndEventIDHandler(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := e.Client.Event.GetEventByEventTypeAndEventIDHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -161,11 +165,11 @@ func (e *EventService) GetEventByEventTypeAndEventIDHandler(input *event.GetEven
 
 // Deprecated: Use GetEventByUserIDHandlerShort instead
 func (e *EventService) GetEventByUserIDHandler(input *event.GetEventByUserIDHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
-	accessToken, err := e.TokenRepository.GetToken()
+	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := e.Client.Event.GetEventByUserIDHandler(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := e.Client.Event.GetEventByUserIDHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -190,11 +194,11 @@ func (e *EventService) GetEventByUserIDHandler(input *event.GetEventByUserIDHand
 
 // Deprecated: Use GetEventByUserIDAndEventIDHandlerShort instead
 func (e *EventService) GetEventByUserIDAndEventIDHandler(input *event.GetEventByUserIDAndEventIDHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
-	accessToken, err := e.TokenRepository.GetToken()
+	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := e.Client.Event.GetEventByUserIDAndEventIDHandler(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := e.Client.Event.GetEventByUserIDAndEventIDHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -219,11 +223,11 @@ func (e *EventService) GetEventByUserIDAndEventIDHandler(input *event.GetEventBy
 
 // Deprecated: Use GetEventByUserIDAndEventTypeHandlerShort instead
 func (e *EventService) GetEventByUserIDAndEventTypeHandler(input *event.GetEventByUserIDAndEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
-	accessToken, err := e.TokenRepository.GetToken()
+	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := e.Client.Event.GetEventByUserIDAndEventTypeHandler(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := e.Client.Event.GetEventByUserIDAndEventTypeHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -248,11 +252,11 @@ func (e *EventService) GetEventByUserIDAndEventTypeHandler(input *event.GetEvent
 
 // Deprecated: Use GetEventByUserEventIDAndEventTypeHandlerShort instead
 func (e *EventService) GetEventByUserEventIDAndEventTypeHandler(input *event.GetEventByUserEventIDAndEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
-	accessToken, err := e.TokenRepository.GetToken()
+	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := e.Client.Event.GetEventByUserEventIDAndEventTypeHandler(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := e.Client.Event.GetEventByUserEventIDAndEventTypeHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -275,12 +279,15 @@ func (e *EventService) GetEventByUserEventIDAndEventTypeHandler(input *event.Get
 	return ok.GetPayload(), nil
 }
 
-func (e *EventService) GetEventByNamespaceHandlerShort(input *event.GetEventByNamespaceHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['NAMESPACE:{namespace}:EVENT [UPDATE]'], 'HasScope': ['analytics'], 'authorization': []}]
+func (e *EventService) GetEventByNamespaceHandlerShort(input *event.GetEventByNamespaceHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
-	ok, err := e.Client.Event.GetEventByNamespaceHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := e.Client.Event.GetEventByNamespaceHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -288,12 +295,15 @@ func (e *EventService) GetEventByNamespaceHandlerShort(input *event.GetEventByNa
 	return ok.GetPayload(), nil
 }
 
-func (e *EventService) PostEventHandlerShort(input *event.PostEventHandlerParams) error {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['NAMESPACE:{namespace}:EVENT [CREATE]'], 'HasScope': ['analytics'], 'authorization': []}]
+func (e *EventService) PostEventHandlerShort(input *event.PostEventHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
-	_, err = e.Client.Event.PostEventHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := e.Client.Event.PostEventHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -301,25 +311,15 @@ func (e *EventService) PostEventHandlerShort(input *event.PostEventHandlerParams
 	return nil
 }
 
-func (e *EventService) GetEventByEventIDHandlerShort(input *event.GetEventByEventIDHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['NAMESPACE:{namespace}:EVENT [UPDATE]'], 'HasScope': ['analytics'], 'authorization': []}]
+func (e *EventService) GetEventByEventIDHandlerShort(input *event.GetEventByEventIDHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
-	ok, err := e.Client.Event.GetEventByEventIDHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (e *EventService) GetEventByEventTypeHandlerShort(input *event.GetEventByEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := e.Client.Event.GetEventByEventTypeHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := e.Client.Event.GetEventByEventIDHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -327,25 +327,15 @@ func (e *EventService) GetEventByEventTypeHandlerShort(input *event.GetEventByEv
 	return ok.GetPayload(), nil
 }
 
-func (e *EventService) GetEventByEventTypeAndEventIDHandlerShort(input *event.GetEventByEventTypeAndEventIDHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['NAMESPACE:{namespace}:EVENT [UPDATE]'], 'HasScope': ['analytics'], 'authorization': []}]
+func (e *EventService) GetEventByEventTypeHandlerShort(input *event.GetEventByEventTypeHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
-	ok, err := e.Client.Event.GetEventByEventTypeAndEventIDHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (e *EventService) GetEventByUserIDHandlerShort(input *event.GetEventByUserIDHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := e.Client.Event.GetEventByUserIDHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := e.Client.Event.GetEventByEventTypeHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -353,25 +343,15 @@ func (e *EventService) GetEventByUserIDHandlerShort(input *event.GetEventByUserI
 	return ok.GetPayload(), nil
 }
 
-func (e *EventService) GetEventByUserIDAndEventIDHandlerShort(input *event.GetEventByUserIDAndEventIDHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['NAMESPACE:{namespace}:EVENT [UPDATE]'], 'HasScope': ['analytics'], 'authorization': []}]
+func (e *EventService) GetEventByEventTypeAndEventIDHandlerShort(input *event.GetEventByEventTypeAndEventIDHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
-	ok, err := e.Client.Event.GetEventByUserIDAndEventIDHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (e *EventService) GetEventByUserIDAndEventTypeHandlerShort(input *event.GetEventByUserIDAndEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := e.Client.Event.GetEventByUserIDAndEventTypeHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := e.Client.Event.GetEventByEventTypeAndEventIDHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -379,12 +359,63 @@ func (e *EventService) GetEventByUserIDAndEventTypeHandlerShort(input *event.Get
 	return ok.GetPayload(), nil
 }
 
-func (e *EventService) GetEventByUserEventIDAndEventTypeHandlerShort(input *event.GetEventByUserEventIDAndEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
-	accessToken, err := e.TokenRepository.GetToken()
+// [{'HasPermission': ['NAMESPACE:{namespace}:EVENT [UPDATE]'], 'HasScope': ['analytics'], 'authorization': []}]
+func (e *EventService) GetEventByUserIDHandlerShort(input *event.GetEventByUserIDHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+	}
+	ok, err := e.Client.Event.GetEventByUserIDHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	ok, err := e.Client.Event.GetEventByUserEventIDAndEventTypeHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:EVENT [UPDATE]'], 'HasScope': ['analytics'], 'authorization': []}]
+func (e *EventService) GetEventByUserIDAndEventIDHandlerShort(input *event.GetEventByUserIDAndEventIDHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+	}
+	ok, err := e.Client.Event.GetEventByUserIDAndEventIDHandlerShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:EVENT [UPDATE]'], 'HasScope': ['analytics'], 'authorization': []}]
+func (e *EventService) GetEventByUserIDAndEventTypeHandlerShort(input *event.GetEventByUserIDAndEventTypeHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+	}
+	ok, err := e.Client.Event.GetEventByUserIDAndEventTypeHandlerShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:EVENT [UPDATE]'], 'HasScope': ['analytics'], 'authorization': []}]
+func (e *EventService) GetEventByUserEventIDAndEventTypeHandlerShort(input *event.GetEventByUserEventIDAndEventTypeHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+	}
+	ok, err := e.Client.Event.GetEventByUserEventIDAndEventTypeHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

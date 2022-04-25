@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package dsmc
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/session"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type SessionService struct {
 
 // Deprecated: Use CreateSessionShort instead
 func (s *SessionService) CreateSession(input *session.CreateSessionParams) (*dsmcclientmodels.ModelsSessionResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, conflict, internalServerError, serviceUnavailable, err := s.Client.Session.CreateSession(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, conflict, internalServerError, serviceUnavailable, err := s.Client.Session.CreateSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -51,11 +55,11 @@ func (s *SessionService) CreateSession(input *session.CreateSessionParams) (*dsm
 
 // Deprecated: Use ClaimServerShort instead
 func (s *SessionService) ClaimServer(input *session.ClaimServerParams) error {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, notFound, conflict, tooEarly, internalServerError, serviceUnavailable, err := s.Client.Session.ClaimServer(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, notFound, conflict, tooEarly, internalServerError, serviceUnavailable, err := s.Client.Session.ClaimServer(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -83,11 +87,11 @@ func (s *SessionService) ClaimServer(input *session.ClaimServerParams) error {
 
 // Deprecated: Use GetSessionShort instead
 func (s *SessionService) GetSession(input *session.GetSessionParams) (*dsmcclientmodels.ModelsSessionResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := s.Client.Session.GetSession(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := s.Client.Session.GetSession(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -104,12 +108,15 @@ func (s *SessionService) GetSession(input *session.GetSessionParams) (*dsmcclien
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams) (*dsmcclientmodels.ModelsSessionResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['NAMESPACE:{namespace}:DSM:SESSION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsSessionResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
-	ok, err := s.Client.Session.CreateSessionShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Session.CreateSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -117,12 +124,15 @@ func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams) 
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) ClaimServerShort(input *session.ClaimServerParams) error {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['NAMESPACE:{namespace}:DSM:SESSION [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (s *SessionService) ClaimServerShort(input *session.ClaimServerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
-	_, err = s.Client.Session.ClaimServerShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := s.Client.Session.ClaimServerShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -130,12 +140,15 @@ func (s *SessionService) ClaimServerShort(input *session.ClaimServerParams) erro
 	return nil
 }
 
-func (s *SessionService) GetSessionShort(input *session.GetSessionParams) (*dsmcclientmodels.ModelsSessionResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['NAMESPACE:{namespace}:DSM:SESSION [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (s *SessionService) GetSessionShort(input *session.GetSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsSessionResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
-	ok, err := s.Client.Session.GetSessionShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Session.GetSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

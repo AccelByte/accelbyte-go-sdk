@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package leaderboard
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/user_visibility"
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type UserVisibilityService struct {
 
 // Deprecated: Use GetHiddenUsersV2Short instead
 func (u *UserVisibilityService) GetHiddenUsersV2(input *user_visibility.GetHiddenUsersV2Params) (*leaderboardclientmodels.ModelsGetHiddenUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.UserVisibility.GetHiddenUsersV2(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.UserVisibility.GetHiddenUsersV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -48,11 +52,11 @@ func (u *UserVisibilityService) GetHiddenUsersV2(input *user_visibility.GetHidde
 
 // Deprecated: Use GetUserVisibilityStatusV2Short instead
 func (u *UserVisibilityService) GetUserVisibilityStatusV2(input *user_visibility.GetUserVisibilityStatusV2Params) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.UserVisibility.GetUserVisibilityStatusV2(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.UserVisibility.GetUserVisibilityStatusV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -77,11 +81,11 @@ func (u *UserVisibilityService) GetUserVisibilityStatusV2(input *user_visibility
 
 // Deprecated: Use SetUserLeaderboardVisibilityStatusV2Short instead
 func (u *UserVisibilityService) SetUserLeaderboardVisibilityStatusV2(input *user_visibility.SetUserLeaderboardVisibilityStatusV2Params) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.UserVisibility.SetUserLeaderboardVisibilityStatusV2(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.UserVisibility.SetUserLeaderboardVisibilityStatusV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -106,11 +110,11 @@ func (u *UserVisibilityService) SetUserLeaderboardVisibilityStatusV2(input *user
 
 // Deprecated: Use SetUserVisibilityStatusV2Short instead
 func (u *UserVisibilityService) SetUserVisibilityStatusV2(input *user_visibility.SetUserVisibilityStatusV2Params) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.UserVisibility.SetUserVisibilityStatusV2(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.UserVisibility.SetUserVisibilityStatusV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -133,25 +137,15 @@ func (u *UserVisibilityService) SetUserVisibilityStatusV2(input *user_visibility
 	return ok.GetPayload(), nil
 }
 
-func (u *UserVisibilityService) GetHiddenUsersV2Short(input *user_visibility.GetHiddenUsersV2Params) (*leaderboardclientmodels.ModelsGetHiddenUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (u *UserVisibilityService) GetHiddenUsersV2Short(input *user_visibility.GetHiddenUsersV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetHiddenUserResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	ok, err := u.Client.UserVisibility.GetHiddenUsersV2Short(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UserVisibilityService) GetUserVisibilityStatusV2Short(input *user_visibility.GetUserVisibilityStatusV2Params) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := u.Client.UserVisibility.GetUserVisibilityStatusV2Short(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := u.Client.UserVisibility.GetHiddenUsersV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -159,12 +153,15 @@ func (u *UserVisibilityService) GetUserVisibilityStatusV2Short(input *user_visib
 	return ok.GetPayload(), nil
 }
 
-func (u *UserVisibilityService) SetUserLeaderboardVisibilityStatusV2Short(input *user_visibility.SetUserLeaderboardVisibilityStatusV2Params) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (u *UserVisibilityService) GetUserVisibilityStatusV2Short(input *user_visibility.GetUserVisibilityStatusV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	ok, err := u.Client.UserVisibility.SetUserLeaderboardVisibilityStatusV2Short(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := u.Client.UserVisibility.GetUserVisibilityStatusV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -172,12 +169,31 @@ func (u *UserVisibilityService) SetUserLeaderboardVisibilityStatusV2Short(input 
 	return ok.GetPayload(), nil
 }
 
-func (u *UserVisibilityService) SetUserVisibilityStatusV2Short(input *user_visibility.SetUserVisibilityStatusV2Params) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+// [{'authorization': []}]
+func (u *UserVisibilityService) SetUserLeaderboardVisibilityStatusV2Short(input *user_visibility.SetUserLeaderboardVisibilityStatusV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.UserVisibility.SetUserLeaderboardVisibilityStatusV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.UserVisibility.SetUserVisibilityStatusV2Short(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (u *UserVisibilityService) SetUserVisibilityStatusV2Short(input *user_visibility.SetUserVisibilityStatusV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.UserVisibility.SetUserVisibilityStatusV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

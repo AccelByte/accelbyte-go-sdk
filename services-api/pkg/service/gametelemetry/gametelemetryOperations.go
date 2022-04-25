@@ -17,9 +17,8 @@ import (
 )
 
 type GametelemetryOperationsService struct {
-	Client           *gametelemetryclient.JusticeGametelemetryService
-	TokenRepository  repository.TokenRepository
-	ConfigRepository repository.ConfigRepository
+	Client          *gametelemetryclient.JusticeGametelemetryService
+	TokenRepository repository.TokenRepository
 }
 
 // Deprecated: Use AdminGetEventsGameTelemetryV1AdminEventsGetShort instead
@@ -104,49 +103,49 @@ func (g *GametelemetryOperationsService) ProtectedUpdatePlaytimeGameTelemetryV1P
 	return nil
 }
 
-func (g *GametelemetryOperationsService) AdminGetEventsGameTelemetryV1AdminEventsGetShort(input *gametelemetry_operations.AdminGetEventsGameTelemetryV1AdminEventsGetParams) error {
-	token, err := g.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-		auth.Cookie(constant.AccessToken, *token.AccessToken),
-	)
-	_, err = g.Client.GametelemetryOperations.AdminGetEventsGameTelemetryV1AdminEventsGetShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (g *GametelemetryOperationsService) AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetShort(input *gametelemetry_operations.AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams) error {
-	token, err := g.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-		auth.Cookie(constant.AccessToken, *token.AccessToken),
-	)
-	_, err = g.Client.GametelemetryOperations.AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (g *GametelemetryOperationsService) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(input *gametelemetry_operations.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+// [{'HTTPBearer': []}, {'APIKeyCookie': []}]
+func (g *GametelemetryOperationsService) AdminGetEventsGameTelemetryV1AdminEventsGetShort(input *gametelemetry_operations.AdminGetEventsGameTelemetryV1AdminEventsGetParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
-		security := [][]string{ //operation.simplified_security
+		security := [][]string{
 			{"bearer"},
 			{"cookie"},
 		}
-		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, g.ConfigRepository, security, constant.AccessToken)
+		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, constant.AccessToken)
+	}
+	_, err := g.Client.GametelemetryOperations.AdminGetEventsGameTelemetryV1AdminEventsGetShort(input, authInfoWriter)
+	if err != nil {
+		return err
 	}
 
+	return nil
+}
+
+// [{'HTTPBearer': []}, {'APIKeyCookie': []}]
+func (g *GametelemetryOperationsService) AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetShort(input *gametelemetry_operations.AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+			{"cookie"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, constant.AccessToken)
+	}
+	_, err := g.Client.GametelemetryOperations.AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HTTPBearer': []}, {'APIKeyCookie': []}]
+func (g *GametelemetryOperationsService) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(input *gametelemetry_operations.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+			{"cookie"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, constant.AccessToken)
+	}
 	_, err := g.Client.GametelemetryOperations.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(input, authInfoWriter)
 	if err != nil {
 		return err
@@ -155,16 +154,15 @@ func (g *GametelemetryOperationsService) ProtectedSaveEventsGameTelemetryV1Prote
 	return nil
 }
 
-func (g *GametelemetryOperationsService) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input *gametelemetry_operations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams) (interface{}, error) {
-	token, err := g.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HTTPBearer': []}, {'APIKeyCookie': []}]
+func (g *GametelemetryOperationsService) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input *gametelemetry_operations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams, authInfoWriter runtime.ClientAuthInfoWriter) (interface{}, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-		auth.Cookie(constant.AccessToken, *token.AccessToken),
-	)
-	ok, err := g.Client.GametelemetryOperations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input, authWriter)
+	ok, err := g.Client.GametelemetryOperations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -172,16 +170,16 @@ func (g *GametelemetryOperationsService) ProtectedGetPlaytimeGameTelemetryV1Prot
 	return ok.GetPayload(), nil
 }
 
-func (g *GametelemetryOperationsService) ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input *gametelemetry_operations.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams) error {
-	token, err := g.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HTTPBearer': []}, {'APIKeyCookie': []}]
+func (g *GametelemetryOperationsService) ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input *gametelemetry_operations.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+			{"cookie"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, constant.AccessToken)
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-		auth.Cookie(constant.AccessToken, *token.AccessToken),
-	)
-	_, err = g.Client.GametelemetryOperations.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input, authWriter)
+	_, err := g.Client.GametelemetryOperations.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

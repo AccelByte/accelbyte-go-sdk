@@ -2,13 +2,17 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package ugc
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_channel"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type PublicChannelService struct {
 
 // Deprecated: Use GetChannelsShort instead
 func (p *PublicChannelService) GetChannels(input *public_channel.GetChannelsParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicChannel.GetChannels(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicChannel.GetChannels(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -42,11 +46,11 @@ func (p *PublicChannelService) GetChannels(input *public_channel.GetChannelsPara
 
 // Deprecated: Use CreateChannelShort instead
 func (p *PublicChannelService) CreateChannel(input *public_channel.CreateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, internalServerError, err := p.Client.PublicChannel.CreateChannel(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, internalServerError, err := p.Client.PublicChannel.CreateChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -65,11 +69,11 @@ func (p *PublicChannelService) CreateChannel(input *public_channel.CreateChannel
 
 // Deprecated: Use UpdateChannelShort instead
 func (p *PublicChannelService) UpdateChannel(input *public_channel.UpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := p.Client.PublicChannel.UpdateChannel(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := p.Client.PublicChannel.UpdateChannel(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -91,11 +95,11 @@ func (p *PublicChannelService) UpdateChannel(input *public_channel.UpdateChannel
 
 // Deprecated: Use DeleteChannelShort instead
 func (p *PublicChannelService) DeleteChannel(input *public_channel.DeleteChannelParams) error {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, notFound, internalServerError, err := p.Client.PublicChannel.DeleteChannel(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := p.Client.PublicChannel.DeleteChannel(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -112,12 +116,15 @@ func (p *PublicChannelService) DeleteChannel(input *public_channel.DeleteChannel
 	return nil
 }
 
-func (p *PublicChannelService) GetChannelsShort(input *public_channel.GetChannelsParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CHANNEL [READ]'], 'authorization': []}]
+func (p *PublicChannelService) GetChannelsShort(input *public_channel.GetChannelsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	ok, err := p.Client.PublicChannel.GetChannelsShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := p.Client.PublicChannel.GetChannelsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -125,12 +132,15 @@ func (p *PublicChannelService) GetChannelsShort(input *public_channel.GetChannel
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicChannelService) CreateChannelShort(input *public_channel.CreateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CHANNEL [CREATE]'], 'authorization': []}]
+func (p *PublicChannelService) CreateChannelShort(input *public_channel.CreateChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsChannelResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	created, err := p.Client.PublicChannel.CreateChannelShort(input, client.BearerToken(*accessToken.AccessToken))
+	created, err := p.Client.PublicChannel.CreateChannelShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -138,12 +148,15 @@ func (p *PublicChannelService) CreateChannelShort(input *public_channel.CreateCh
 	return created.GetPayload(), nil
 }
 
-func (p *PublicChannelService) UpdateChannelShort(input *public_channel.UpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CHANNEL [UPDATE]'], 'authorization': []}]
+func (p *PublicChannelService) UpdateChannelShort(input *public_channel.UpdateChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsChannelResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	ok, err := p.Client.PublicChannel.UpdateChannelShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := p.Client.PublicChannel.UpdateChannelShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -151,12 +164,15 @@ func (p *PublicChannelService) UpdateChannelShort(input *public_channel.UpdateCh
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicChannelService) DeleteChannelShort(input *public_channel.DeleteChannelParams) error {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]'], 'authorization': []}]
+func (p *PublicChannelService) DeleteChannelShort(input *public_channel.DeleteChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	_, err = p.Client.PublicChannel.DeleteChannelShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := p.Client.PublicChannel.DeleteChannelShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

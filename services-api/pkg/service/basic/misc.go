@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package basic
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/misc"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type MiscService struct {
 
 // Deprecated: Use GetCountriesShort instead
 func (m *MiscService) GetCountries(input *misc.GetCountriesParams) ([]*basicclientmodels.CountryObject, error) {
-	accessToken, err := m.TokenRepository.GetToken()
+	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, err := m.Client.Misc.GetCountries(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, err := m.Client.Misc.GetCountries(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -39,11 +43,11 @@ func (m *MiscService) GetCountries(input *misc.GetCountriesParams) ([]*basicclie
 
 // Deprecated: Use GetCountryGroupsShort instead
 func (m *MiscService) GetCountryGroups(input *misc.GetCountryGroupsParams) ([]*basicclientmodels.RetrieveCountryGroupResponse, error) {
-	accessToken, err := m.TokenRepository.GetToken()
+	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := m.Client.Misc.GetCountryGroups(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := m.Client.Misc.GetCountryGroups(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -65,11 +69,11 @@ func (m *MiscService) GetCountryGroups(input *misc.GetCountryGroupsParams) ([]*b
 
 // Deprecated: Use AddCountryGroupShort instead
 func (m *MiscService) AddCountryGroup(input *misc.AddCountryGroupParams) (*basicclientmodels.AddCountryGroupResponse, error) {
-	accessToken, err := m.TokenRepository.GetToken()
+	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, conflict, err := m.Client.Misc.AddCountryGroup(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, forbidden, conflict, err := m.Client.Misc.AddCountryGroup(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -91,11 +95,11 @@ func (m *MiscService) AddCountryGroup(input *misc.AddCountryGroupParams) (*basic
 
 // Deprecated: Use UpdateCountryGroupShort instead
 func (m *MiscService) UpdateCountryGroup(input *misc.UpdateCountryGroupParams) (*basicclientmodels.CountryGroupObject, error) {
-	accessToken, err := m.TokenRepository.GetToken()
+	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := m.Client.Misc.UpdateCountryGroup(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := m.Client.Misc.UpdateCountryGroup(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -117,11 +121,11 @@ func (m *MiscService) UpdateCountryGroup(input *misc.UpdateCountryGroupParams) (
 
 // Deprecated: Use DeleteCountryGroupShort instead
 func (m *MiscService) DeleteCountryGroup(input *misc.DeleteCountryGroupParams) error {
-	accessToken, err := m.TokenRepository.GetToken()
+	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := m.Client.Misc.DeleteCountryGroup(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := m.Client.Misc.DeleteCountryGroup(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -143,11 +147,11 @@ func (m *MiscService) DeleteCountryGroup(input *misc.DeleteCountryGroupParams) e
 
 // Deprecated: Use GetLanguagesShort instead
 func (m *MiscService) GetLanguages(input *misc.GetLanguagesParams) (map[string]interface{}, error) {
-	accessToken, err := m.TokenRepository.GetToken()
+	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, err := m.Client.Misc.GetLanguages(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, err := m.Client.Misc.GetLanguages(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -163,11 +167,11 @@ func (m *MiscService) GetLanguages(input *misc.GetLanguagesParams) (map[string]i
 
 // Deprecated: Use GetTimeZonesShort instead
 func (m *MiscService) GetTimeZones(input *misc.GetTimeZonesParams) ([]string, error) {
-	accessToken, err := m.TokenRepository.GetToken()
+	token, err := m.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, err := m.Client.Misc.GetTimeZones(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, err := m.Client.Misc.GetTimeZones(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -230,25 +234,15 @@ func (m *MiscService) PublicGetTimeZones(input *misc.PublicGetTimeZonesParams) (
 	return ok.GetPayload(), nil
 }
 
-func (m *MiscService) GetCountriesShort(input *misc.GetCountriesParams) ([]*basicclientmodels.CountryObject, error) {
-	accessToken, err := m.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (m *MiscService) GetCountriesShort(input *misc.GetCountriesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*basicclientmodels.CountryObject, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
-	ok, err := m.Client.Misc.GetCountriesShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (m *MiscService) GetCountryGroupsShort(input *misc.GetCountryGroupsParams) ([]*basicclientmodels.RetrieveCountryGroupResponse, error) {
-	accessToken, err := m.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := m.Client.Misc.GetCountryGroupsShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := m.Client.Misc.GetCountriesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -256,12 +250,31 @@ func (m *MiscService) GetCountryGroupsShort(input *misc.GetCountryGroupsParams) 
 	return ok.GetPayload(), nil
 }
 
-func (m *MiscService) AddCountryGroupShort(input *misc.AddCountryGroupParams) (*basicclientmodels.AddCountryGroupResponse, error) {
-	accessToken, err := m.TokenRepository.GetToken()
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:MISC [READ]'], 'authorization': []}]
+func (m *MiscService) GetCountryGroupsShort(input *misc.GetCountryGroupsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*basicclientmodels.RetrieveCountryGroupResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+	}
+	ok, err := m.Client.Misc.GetCountryGroupsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	created, err := m.Client.Misc.AddCountryGroupShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:MISC [CREATE]'], 'authorization': []}]
+func (m *MiscService) AddCountryGroupShort(input *misc.AddCountryGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.AddCountryGroupResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+	}
+	created, err := m.Client.Misc.AddCountryGroupShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -269,12 +282,15 @@ func (m *MiscService) AddCountryGroupShort(input *misc.AddCountryGroupParams) (*
 	return created.GetPayload(), nil
 }
 
-func (m *MiscService) UpdateCountryGroupShort(input *misc.UpdateCountryGroupParams) (*basicclientmodels.CountryGroupObject, error) {
-	accessToken, err := m.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:MISC [UPDATE]'], 'authorization': []}]
+func (m *MiscService) UpdateCountryGroupShort(input *misc.UpdateCountryGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.CountryGroupObject, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
-	ok, err := m.Client.Misc.UpdateCountryGroupShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := m.Client.Misc.UpdateCountryGroupShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -282,12 +298,15 @@ func (m *MiscService) UpdateCountryGroupShort(input *misc.UpdateCountryGroupPara
 	return ok.GetPayload(), nil
 }
 
-func (m *MiscService) DeleteCountryGroupShort(input *misc.DeleteCountryGroupParams) error {
-	accessToken, err := m.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:MISC [DELETE]'], 'authorization': []}]
+func (m *MiscService) DeleteCountryGroupShort(input *misc.DeleteCountryGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
-	_, err = m.Client.Misc.DeleteCountryGroupShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := m.Client.Misc.DeleteCountryGroupShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -295,25 +314,15 @@ func (m *MiscService) DeleteCountryGroupShort(input *misc.DeleteCountryGroupPara
 	return nil
 }
 
-func (m *MiscService) GetLanguagesShort(input *misc.GetLanguagesParams) (map[string]interface{}, error) {
-	accessToken, err := m.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (m *MiscService) GetLanguagesShort(input *misc.GetLanguagesParams, authInfoWriter runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
 	}
-	ok, err := m.Client.Misc.GetLanguagesShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (m *MiscService) GetTimeZonesShort(input *misc.GetTimeZonesParams) ([]string, error) {
-	accessToken, err := m.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := m.Client.Misc.GetTimeZonesShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := m.Client.Misc.GetLanguagesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -321,6 +330,23 @@ func (m *MiscService) GetTimeZonesShort(input *misc.GetTimeZonesParams) ([]strin
 	return ok.GetPayload(), nil
 }
 
+// [{'authorization': []}]
+func (m *MiscService) GetTimeZonesShort(input *misc.GetTimeZonesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]string, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(m.TokenRepository, nil, security, "")
+	}
+	ok, err := m.Client.Misc.GetTimeZonesShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// None
 func (m *MiscService) PublicGetTimeShort(input *misc.PublicGetTimeParams) (*basicclientmodels.RetrieveTimeResponse, error) {
 	ok, err := m.Client.Misc.PublicGetTimeShort(input)
 	if err != nil {
@@ -330,6 +356,7 @@ func (m *MiscService) PublicGetTimeShort(input *misc.PublicGetTimeParams) (*basi
 	return ok.GetPayload(), nil
 }
 
+// None
 func (m *MiscService) PublicGetCountriesShort(input *misc.PublicGetCountriesParams) ([]*basicclientmodels.CountryObject, error) {
 	ok, err := m.Client.Misc.PublicGetCountriesShort(input)
 	if err != nil {
@@ -339,6 +366,7 @@ func (m *MiscService) PublicGetCountriesShort(input *misc.PublicGetCountriesPara
 	return ok.GetPayload(), nil
 }
 
+// None
 func (m *MiscService) PublicGetLanguagesShort(input *misc.PublicGetLanguagesParams) (map[string]interface{}, error) {
 	ok, err := m.Client.Misc.PublicGetLanguagesShort(input)
 	if err != nil {
@@ -348,6 +376,7 @@ func (m *MiscService) PublicGetLanguagesShort(input *misc.PublicGetLanguagesPara
 	return ok.GetPayload(), nil
 }
 
+// None
 func (m *MiscService) PublicGetTimeZonesShort(input *misc.PublicGetTimeZonesParams) ([]string, error) {
 	ok, err := m.Client.Misc.PublicGetTimeZonesShort(input)
 	if err != nil {

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package lobby
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/notification"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type NotificationService struct {
 
 // Deprecated: Use SendMultipleUsersFreeformNotificationV1AdminShort instead
 func (n *NotificationService) SendMultipleUsersFreeformNotificationV1Admin(input *notification.SendMultipleUsersFreeformNotificationV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, err := n.Client.Notification.SendMultipleUsersFreeformNotificationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, err := n.Client.Notification.SendMultipleUsersFreeformNotificationV1Admin(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -42,11 +46,11 @@ func (n *NotificationService) SendMultipleUsersFreeformNotificationV1Admin(input
 
 // Deprecated: Use SendUsersFreeformNotificationV1AdminShort instead
 func (n *NotificationService) SendUsersFreeformNotificationV1Admin(input *notification.SendUsersFreeformNotificationV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.SendUsersFreeformNotificationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.SendUsersFreeformNotificationV1Admin(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -68,11 +72,11 @@ func (n *NotificationService) SendUsersFreeformNotificationV1Admin(input *notifi
 
 // Deprecated: Use SendPartyFreeformNotificationV1AdminShort instead
 func (n *NotificationService) SendPartyFreeformNotificationV1Admin(input *notification.SendPartyFreeformNotificationV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.SendPartyFreeformNotificationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.SendPartyFreeformNotificationV1Admin(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -94,11 +98,11 @@ func (n *NotificationService) SendPartyFreeformNotificationV1Admin(input *notifi
 
 // Deprecated: Use SendPartyTemplatedNotificationV1AdminShort instead
 func (n *NotificationService) SendPartyTemplatedNotificationV1Admin(input *notification.SendPartyTemplatedNotificationV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.SendPartyTemplatedNotificationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.SendPartyTemplatedNotificationV1Admin(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -120,11 +124,11 @@ func (n *NotificationService) SendPartyTemplatedNotificationV1Admin(input *notif
 
 // Deprecated: Use GetAllNotificationTemplatesV1AdminShort instead
 func (n *NotificationService) GetAllNotificationTemplatesV1Admin(input *notification.GetAllNotificationTemplatesV1AdminParams) ([]*lobbyclientmodels.ModelNotificationTemplateResponse, error) {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetAllNotificationTemplatesV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetAllNotificationTemplatesV1Admin(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -149,11 +153,11 @@ func (n *NotificationService) GetAllNotificationTemplatesV1Admin(input *notifica
 
 // Deprecated: Use CreateNotificationTemplateV1AdminShort instead
 func (n *NotificationService) CreateNotificationTemplateV1Admin(input *notification.CreateNotificationTemplateV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, err := n.Client.Notification.CreateNotificationTemplateV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, err := n.Client.Notification.CreateNotificationTemplateV1Admin(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -178,11 +182,11 @@ func (n *NotificationService) CreateNotificationTemplateV1Admin(input *notificat
 
 // Deprecated: Use SendUsersTemplatedNotificationV1AdminShort instead
 func (n *NotificationService) SendUsersTemplatedNotificationV1Admin(input *notification.SendUsersTemplatedNotificationV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.SendUsersTemplatedNotificationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.SendUsersTemplatedNotificationV1Admin(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -204,11 +208,11 @@ func (n *NotificationService) SendUsersTemplatedNotificationV1Admin(input *notif
 
 // Deprecated: Use GetTemplateSlugLocalizationsTemplateV1AdminShort instead
 func (n *NotificationService) GetTemplateSlugLocalizationsTemplateV1Admin(input *notification.GetTemplateSlugLocalizationsTemplateV1AdminParams) (*lobbyclientmodels.ModelGetAllNotificationTemplateSlugResp, error) {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.GetTemplateSlugLocalizationsTemplateV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.GetTemplateSlugLocalizationsTemplateV1Admin(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -230,11 +234,11 @@ func (n *NotificationService) GetTemplateSlugLocalizationsTemplateV1Admin(input 
 
 // Deprecated: Use DeleteNotificationTemplateSlugV1AdminShort instead
 func (n *NotificationService) DeleteNotificationTemplateSlugV1Admin(input *notification.DeleteNotificationTemplateSlugV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.DeleteNotificationTemplateSlugV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.DeleteNotificationTemplateSlugV1Admin(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -256,11 +260,11 @@ func (n *NotificationService) DeleteNotificationTemplateSlugV1Admin(input *notif
 
 // Deprecated: Use GetSingleTemplateLocalizationV1AdminShort instead
 func (n *NotificationService) GetSingleTemplateLocalizationV1Admin(input *notification.GetSingleTemplateLocalizationV1AdminParams) (*lobbyclientmodels.ModelLocalization, error) {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetSingleTemplateLocalizationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetSingleTemplateLocalizationV1Admin(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -282,11 +286,11 @@ func (n *NotificationService) GetSingleTemplateLocalizationV1Admin(input *notifi
 
 // Deprecated: Use UpdateTemplateLocalizationV1AdminShort instead
 func (n *NotificationService) UpdateTemplateLocalizationV1Admin(input *notification.UpdateTemplateLocalizationV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.UpdateTemplateLocalizationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.UpdateTemplateLocalizationV1Admin(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -311,11 +315,11 @@ func (n *NotificationService) UpdateTemplateLocalizationV1Admin(input *notificat
 
 // Deprecated: Use DeleteTemplateLocalizationV1AdminShort instead
 func (n *NotificationService) DeleteTemplateLocalizationV1Admin(input *notification.DeleteTemplateLocalizationV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.DeleteTemplateLocalizationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.DeleteTemplateLocalizationV1Admin(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -337,11 +341,11 @@ func (n *NotificationService) DeleteTemplateLocalizationV1Admin(input *notificat
 
 // Deprecated: Use PublishTemplateLocalizationV1AdminShort instead
 func (n *NotificationService) PublishTemplateLocalizationV1Admin(input *notification.PublishTemplateLocalizationV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.PublishTemplateLocalizationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.PublishTemplateLocalizationV1Admin(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -363,11 +367,11 @@ func (n *NotificationService) PublishTemplateLocalizationV1Admin(input *notifica
 
 // Deprecated: Use GetAllNotificationTopicsV1AdminShort instead
 func (n *NotificationService) GetAllNotificationTopicsV1Admin(input *notification.GetAllNotificationTopicsV1AdminParams) (*lobbyclientmodels.ModelGetAllNotificationTopicsResponse, error) {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetAllNotificationTopicsV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetAllNotificationTopicsV1Admin(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -389,11 +393,11 @@ func (n *NotificationService) GetAllNotificationTopicsV1Admin(input *notificatio
 
 // Deprecated: Use CreateNotificationTopicV1AdminShort instead
 func (n *NotificationService) CreateNotificationTopicV1Admin(input *notification.CreateNotificationTopicV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, err := n.Client.Notification.CreateNotificationTopicV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, err := n.Client.Notification.CreateNotificationTopicV1Admin(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -412,11 +416,11 @@ func (n *NotificationService) CreateNotificationTopicV1Admin(input *notification
 
 // Deprecated: Use GetNotificationTopicV1AdminShort instead
 func (n *NotificationService) GetNotificationTopicV1Admin(input *notification.GetNotificationTopicV1AdminParams) (*lobbyclientmodels.ModelNotificationTopicResponseV1, error) {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetNotificationTopicV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetNotificationTopicV1Admin(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -438,11 +442,11 @@ func (n *NotificationService) GetNotificationTopicV1Admin(input *notification.Ge
 
 // Deprecated: Use UpdateNotificationTopicV1AdminShort instead
 func (n *NotificationService) UpdateNotificationTopicV1Admin(input *notification.UpdateNotificationTopicV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.UpdateNotificationTopicV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.UpdateNotificationTopicV1Admin(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -467,11 +471,11 @@ func (n *NotificationService) UpdateNotificationTopicV1Admin(input *notification
 
 // Deprecated: Use DeleteNotificationTopicV1AdminShort instead
 func (n *NotificationService) DeleteNotificationTopicV1Admin(input *notification.DeleteNotificationTopicV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.DeleteNotificationTopicV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.DeleteNotificationTopicV1Admin(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -493,11 +497,11 @@ func (n *NotificationService) DeleteNotificationTopicV1Admin(input *notification
 
 // Deprecated: Use SendSpecificUserFreeformNotificationV1AdminShort instead
 func (n *NotificationService) SendSpecificUserFreeformNotificationV1Admin(input *notification.SendSpecificUserFreeformNotificationV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.SendSpecificUserFreeformNotificationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.SendSpecificUserFreeformNotificationV1Admin(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -519,11 +523,11 @@ func (n *NotificationService) SendSpecificUserFreeformNotificationV1Admin(input 
 
 // Deprecated: Use SendSpecificUserTemplatedNotificationV1AdminShort instead
 func (n *NotificationService) SendSpecificUserTemplatedNotificationV1Admin(input *notification.SendSpecificUserTemplatedNotificationV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.SendSpecificUserTemplatedNotificationV1Admin(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.SendSpecificUserTemplatedNotificationV1Admin(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -545,11 +549,11 @@ func (n *NotificationService) SendSpecificUserTemplatedNotificationV1Admin(input
 
 // Deprecated: Use FreeFormNotificationShort instead
 func (n *NotificationService) FreeFormNotification(input *notification.FreeFormNotificationParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.FreeFormNotification(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.FreeFormNotification(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -571,11 +575,11 @@ func (n *NotificationService) FreeFormNotification(input *notification.FreeFormN
 
 // Deprecated: Use NotificationWithTemplateShort instead
 func (n *NotificationService) NotificationWithTemplate(input *notification.NotificationWithTemplateParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.NotificationWithTemplate(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.NotificationWithTemplate(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -597,11 +601,11 @@ func (n *NotificationService) NotificationWithTemplate(input *notification.Notif
 
 // Deprecated: Use GetGameTemplateShort instead
 func (n *NotificationService) GetGameTemplate(input *notification.GetGameTemplateParams) ([]*lobbyclientmodels.ModelTemplateResponse, error) {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.GetGameTemplate(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.GetGameTemplate(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -623,11 +627,11 @@ func (n *NotificationService) GetGameTemplate(input *notification.GetGameTemplat
 
 // Deprecated: Use CreateTemplateShort instead
 func (n *NotificationService) CreateTemplate(input *notification.CreateTemplateParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.CreateTemplate(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.CreateTemplate(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -649,11 +653,11 @@ func (n *NotificationService) CreateTemplate(input *notification.CreateTemplateP
 
 // Deprecated: Use GetSlugTemplateShort instead
 func (n *NotificationService) GetSlugTemplate(input *notification.GetSlugTemplateParams) (*lobbyclientmodels.ModelTemplateLocalizationResponse, error) {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.GetSlugTemplate(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.GetSlugTemplate(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -675,11 +679,11 @@ func (n *NotificationService) GetSlugTemplate(input *notification.GetSlugTemplat
 
 // Deprecated: Use DeleteTemplateSlugShort instead
 func (n *NotificationService) DeleteTemplateSlug(input *notification.DeleteTemplateSlugParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.DeleteTemplateSlug(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.DeleteTemplateSlug(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -701,11 +705,11 @@ func (n *NotificationService) DeleteTemplateSlug(input *notification.DeleteTempl
 
 // Deprecated: Use GetLocalizationTemplateShort instead
 func (n *NotificationService) GetLocalizationTemplate(input *notification.GetLocalizationTemplateParams) (*lobbyclientmodels.ModelTemplateLocalization, error) {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.GetLocalizationTemplate(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.GetLocalizationTemplate(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -727,11 +731,11 @@ func (n *NotificationService) GetLocalizationTemplate(input *notification.GetLoc
 
 // Deprecated: Use UpdateLocalizationTemplateShort instead
 func (n *NotificationService) UpdateLocalizationTemplate(input *notification.UpdateLocalizationTemplateParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.UpdateLocalizationTemplate(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.UpdateLocalizationTemplate(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -753,11 +757,11 @@ func (n *NotificationService) UpdateLocalizationTemplate(input *notification.Upd
 
 // Deprecated: Use DeleteTemplateLocalizationShort instead
 func (n *NotificationService) DeleteTemplateLocalization(input *notification.DeleteTemplateLocalizationParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.DeleteTemplateLocalization(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.DeleteTemplateLocalization(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -779,11 +783,11 @@ func (n *NotificationService) DeleteTemplateLocalization(input *notification.Del
 
 // Deprecated: Use PublishTemplateShort instead
 func (n *NotificationService) PublishTemplate(input *notification.PublishTemplateParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.PublishTemplate(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.PublishTemplate(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -805,11 +809,11 @@ func (n *NotificationService) PublishTemplate(input *notification.PublishTemplat
 
 // Deprecated: Use GetTopicByNamespaceShort instead
 func (n *NotificationService) GetTopicByNamespace(input *notification.GetTopicByNamespaceParams) (*lobbyclientmodels.ModelTopicByNamespacesResponse, error) {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetTopicByNamespace(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetTopicByNamespace(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -831,11 +835,11 @@ func (n *NotificationService) GetTopicByNamespace(input *notification.GetTopicBy
 
 // Deprecated: Use CreateTopicShort instead
 func (n *NotificationService) CreateTopic(input *notification.CreateTopicParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, conflict, err := n.Client.Notification.CreateTopic(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, conflict, err := n.Client.Notification.CreateTopic(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -857,11 +861,11 @@ func (n *NotificationService) CreateTopic(input *notification.CreateTopicParams)
 
 // Deprecated: Use GetTopicByTopicNameShort instead
 func (n *NotificationService) GetTopicByTopicName(input *notification.GetTopicByTopicNameParams) (*lobbyclientmodels.ModelNotificationTopicResponse, error) {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetTopicByTopicName(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.GetTopicByTopicName(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -883,11 +887,11 @@ func (n *NotificationService) GetTopicByTopicName(input *notification.GetTopicBy
 
 // Deprecated: Use UpdateTopicByTopicNameShort instead
 func (n *NotificationService) UpdateTopicByTopicName(input *notification.UpdateTopicByTopicNameParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.UpdateTopicByTopicName(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.UpdateTopicByTopicName(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -909,11 +913,11 @@ func (n *NotificationService) UpdateTopicByTopicName(input *notification.UpdateT
 
 // Deprecated: Use DeleteTopicByTopicNameShort instead
 func (n *NotificationService) DeleteTopicByTopicName(input *notification.DeleteTopicByTopicNameParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.DeleteTopicByTopicName(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := n.Client.Notification.DeleteTopicByTopicName(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -935,11 +939,11 @@ func (n *NotificationService) DeleteTopicByTopicName(input *notification.DeleteT
 
 // Deprecated: Use FreeFormNotificationByUserIDShort instead
 func (n *NotificationService) FreeFormNotificationByUserID(input *notification.FreeFormNotificationByUserIDParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.FreeFormNotificationByUserID(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.FreeFormNotificationByUserID(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -961,11 +965,11 @@ func (n *NotificationService) FreeFormNotificationByUserID(input *notification.F
 
 // Deprecated: Use NotificationWithTemplateByUserIDShort instead
 func (n *NotificationService) NotificationWithTemplateByUserID(input *notification.NotificationWithTemplateByUserIDParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+	token, err := n.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.NotificationWithTemplateByUserID(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := n.Client.Notification.NotificationWithTemplateByUserID(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -985,25 +989,15 @@ func (n *NotificationService) NotificationWithTemplateByUserID(input *notificati
 	return nil
 }
 
-func (n *NotificationService) SendMultipleUsersFreeformNotificationV1AdminShort(input *notification.SendMultipleUsersFreeformNotificationV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) SendMultipleUsersFreeformNotificationV1AdminShort(input *notification.SendMultipleUsersFreeformNotificationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
-	_, err = n.Client.Notification.SendMultipleUsersFreeformNotificationV1AdminShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (n *NotificationService) SendUsersFreeformNotificationV1AdminShort(input *notification.SendUsersFreeformNotificationV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = n.Client.Notification.SendUsersFreeformNotificationV1AdminShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := n.Client.Notification.SendMultipleUsersFreeformNotificationV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1011,25 +1005,15 @@ func (n *NotificationService) SendUsersFreeformNotificationV1AdminShort(input *n
 	return nil
 }
 
-func (n *NotificationService) SendPartyFreeformNotificationV1AdminShort(input *notification.SendPartyFreeformNotificationV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) SendUsersFreeformNotificationV1AdminShort(input *notification.SendUsersFreeformNotificationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
-	_, err = n.Client.Notification.SendPartyFreeformNotificationV1AdminShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (n *NotificationService) SendPartyTemplatedNotificationV1AdminShort(input *notification.SendPartyTemplatedNotificationV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = n.Client.Notification.SendPartyTemplatedNotificationV1AdminShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := n.Client.Notification.SendUsersFreeformNotificationV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1037,25 +1021,15 @@ func (n *NotificationService) SendPartyTemplatedNotificationV1AdminShort(input *
 	return nil
 }
 
-func (n *NotificationService) GetAllNotificationTemplatesV1AdminShort(input *notification.GetAllNotificationTemplatesV1AdminParams) ([]*lobbyclientmodels.ModelNotificationTemplateResponse, error) {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) SendPartyFreeformNotificationV1AdminShort(input *notification.SendPartyFreeformNotificationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
-	ok, err := n.Client.Notification.GetAllNotificationTemplatesV1AdminShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (n *NotificationService) CreateNotificationTemplateV1AdminShort(input *notification.CreateNotificationTemplateV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = n.Client.Notification.CreateNotificationTemplateV1AdminShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := n.Client.Notification.SendPartyFreeformNotificationV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1063,12 +1037,15 @@ func (n *NotificationService) CreateNotificationTemplateV1AdminShort(input *noti
 	return nil
 }
 
-func (n *NotificationService) SendUsersTemplatedNotificationV1AdminShort(input *notification.SendUsersTemplatedNotificationV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) SendPartyTemplatedNotificationV1AdminShort(input *notification.SendPartyTemplatedNotificationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
-	_, err = n.Client.Notification.SendUsersTemplatedNotificationV1AdminShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := n.Client.Notification.SendPartyTemplatedNotificationV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1076,12 +1053,15 @@ func (n *NotificationService) SendUsersTemplatedNotificationV1AdminShort(input *
 	return nil
 }
 
-func (n *NotificationService) GetTemplateSlugLocalizationsTemplateV1AdminShort(input *notification.GetTemplateSlugLocalizationsTemplateV1AdminParams) (*lobbyclientmodels.ModelGetAllNotificationTemplateSlugResp, error) {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) GetAllNotificationTemplatesV1AdminShort(input *notification.GetAllNotificationTemplatesV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelNotificationTemplateResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
-	ok, err := n.Client.Notification.GetTemplateSlugLocalizationsTemplateV1AdminShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := n.Client.Notification.GetAllNotificationTemplatesV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1089,38 +1069,15 @@ func (n *NotificationService) GetTemplateSlugLocalizationsTemplateV1AdminShort(i
 	return ok.GetPayload(), nil
 }
 
-func (n *NotificationService) DeleteNotificationTemplateSlugV1AdminShort(input *notification.DeleteNotificationTemplateSlugV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) CreateNotificationTemplateV1AdminShort(input *notification.CreateNotificationTemplateV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
-	_, err = n.Client.Notification.DeleteNotificationTemplateSlugV1AdminShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (n *NotificationService) GetSingleTemplateLocalizationV1AdminShort(input *notification.GetSingleTemplateLocalizationV1AdminParams) (*lobbyclientmodels.ModelLocalization, error) {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := n.Client.Notification.GetSingleTemplateLocalizationV1AdminShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (n *NotificationService) UpdateTemplateLocalizationV1AdminShort(input *notification.UpdateTemplateLocalizationV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = n.Client.Notification.UpdateTemplateLocalizationV1AdminShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := n.Client.Notification.CreateNotificationTemplateV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1128,25 +1085,15 @@ func (n *NotificationService) UpdateTemplateLocalizationV1AdminShort(input *noti
 	return nil
 }
 
-func (n *NotificationService) DeleteTemplateLocalizationV1AdminShort(input *notification.DeleteTemplateLocalizationV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) SendUsersTemplatedNotificationV1AdminShort(input *notification.SendUsersTemplatedNotificationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
-	_, err = n.Client.Notification.DeleteTemplateLocalizationV1AdminShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (n *NotificationService) PublishTemplateLocalizationV1AdminShort(input *notification.PublishTemplateLocalizationV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = n.Client.Notification.PublishTemplateLocalizationV1AdminShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := n.Client.Notification.SendUsersTemplatedNotificationV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1154,12 +1101,15 @@ func (n *NotificationService) PublishTemplateLocalizationV1AdminShort(input *not
 	return nil
 }
 
-func (n *NotificationService) GetAllNotificationTopicsV1AdminShort(input *notification.GetAllNotificationTopicsV1AdminParams) (*lobbyclientmodels.ModelGetAllNotificationTopicsResponse, error) {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) GetTemplateSlugLocalizationsTemplateV1AdminShort(input *notification.GetTemplateSlugLocalizationsTemplateV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelGetAllNotificationTemplateSlugResp, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
-	ok, err := n.Client.Notification.GetAllNotificationTopicsV1AdminShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := n.Client.Notification.GetTemplateSlugLocalizationsTemplateV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1167,38 +1117,15 @@ func (n *NotificationService) GetAllNotificationTopicsV1AdminShort(input *notifi
 	return ok.GetPayload(), nil
 }
 
-func (n *NotificationService) CreateNotificationTopicV1AdminShort(input *notification.CreateNotificationTopicV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) DeleteNotificationTemplateSlugV1AdminShort(input *notification.DeleteNotificationTemplateSlugV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
-	_, err = n.Client.Notification.CreateNotificationTopicV1AdminShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (n *NotificationService) GetNotificationTopicV1AdminShort(input *notification.GetNotificationTopicV1AdminParams) (*lobbyclientmodels.ModelNotificationTopicResponseV1, error) {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := n.Client.Notification.GetNotificationTopicV1AdminShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (n *NotificationService) UpdateNotificationTopicV1AdminShort(input *notification.UpdateNotificationTopicV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = n.Client.Notification.UpdateNotificationTopicV1AdminShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := n.Client.Notification.DeleteNotificationTemplateSlugV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1206,77 +1133,15 @@ func (n *NotificationService) UpdateNotificationTopicV1AdminShort(input *notific
 	return nil
 }
 
-func (n *NotificationService) DeleteNotificationTopicV1AdminShort(input *notification.DeleteNotificationTopicV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) GetSingleTemplateLocalizationV1AdminShort(input *notification.GetSingleTemplateLocalizationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelLocalization, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
-	_, err = n.Client.Notification.DeleteNotificationTopicV1AdminShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (n *NotificationService) SendSpecificUserFreeformNotificationV1AdminShort(input *notification.SendSpecificUserFreeformNotificationV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = n.Client.Notification.SendSpecificUserFreeformNotificationV1AdminShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (n *NotificationService) SendSpecificUserTemplatedNotificationV1AdminShort(input *notification.SendSpecificUserTemplatedNotificationV1AdminParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = n.Client.Notification.SendSpecificUserTemplatedNotificationV1AdminShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (n *NotificationService) FreeFormNotificationShort(input *notification.FreeFormNotificationParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = n.Client.Notification.FreeFormNotificationShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (n *NotificationService) NotificationWithTemplateShort(input *notification.NotificationWithTemplateParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = n.Client.Notification.NotificationWithTemplateShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (n *NotificationService) GetGameTemplateShort(input *notification.GetGameTemplateParams) ([]*lobbyclientmodels.ModelTemplateResponse, error) {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := n.Client.Notification.GetGameTemplateShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := n.Client.Notification.GetSingleTemplateLocalizationV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1284,38 +1149,15 @@ func (n *NotificationService) GetGameTemplateShort(input *notification.GetGameTe
 	return ok.GetPayload(), nil
 }
 
-func (n *NotificationService) CreateTemplateShort(input *notification.CreateTemplateParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) UpdateTemplateLocalizationV1AdminShort(input *notification.UpdateTemplateLocalizationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
-	_, err = n.Client.Notification.CreateTemplateShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (n *NotificationService) GetSlugTemplateShort(input *notification.GetSlugTemplateParams) (*lobbyclientmodels.ModelTemplateLocalizationResponse, error) {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := n.Client.Notification.GetSlugTemplateShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (n *NotificationService) DeleteTemplateSlugShort(input *notification.DeleteTemplateSlugParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = n.Client.Notification.DeleteTemplateSlugShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := n.Client.Notification.UpdateTemplateLocalizationV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1323,25 +1165,15 @@ func (n *NotificationService) DeleteTemplateSlugShort(input *notification.Delete
 	return nil
 }
 
-func (n *NotificationService) GetLocalizationTemplateShort(input *notification.GetLocalizationTemplateParams) (*lobbyclientmodels.ModelTemplateLocalization, error) {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) DeleteTemplateLocalizationV1AdminShort(input *notification.DeleteTemplateLocalizationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
-	ok, err := n.Client.Notification.GetLocalizationTemplateShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (n *NotificationService) UpdateLocalizationTemplateShort(input *notification.UpdateLocalizationTemplateParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = n.Client.Notification.UpdateLocalizationTemplateShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := n.Client.Notification.DeleteTemplateLocalizationV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1349,25 +1181,15 @@ func (n *NotificationService) UpdateLocalizationTemplateShort(input *notificatio
 	return nil
 }
 
-func (n *NotificationService) DeleteTemplateLocalizationShort(input *notification.DeleteTemplateLocalizationParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) PublishTemplateLocalizationV1AdminShort(input *notification.PublishTemplateLocalizationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
-	_, err = n.Client.Notification.DeleteTemplateLocalizationShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (n *NotificationService) PublishTemplateShort(input *notification.PublishTemplateParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = n.Client.Notification.PublishTemplateShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := n.Client.Notification.PublishTemplateLocalizationV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1375,12 +1197,15 @@ func (n *NotificationService) PublishTemplateShort(input *notification.PublishTe
 	return nil
 }
 
-func (n *NotificationService) GetTopicByNamespaceShort(input *notification.GetTopicByNamespaceParams) (*lobbyclientmodels.ModelTopicByNamespacesResponse, error) {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) GetAllNotificationTopicsV1AdminShort(input *notification.GetAllNotificationTopicsV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelGetAllNotificationTopicsResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
-	ok, err := n.Client.Notification.GetTopicByNamespaceShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := n.Client.Notification.GetAllNotificationTopicsV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1388,12 +1213,15 @@ func (n *NotificationService) GetTopicByNamespaceShort(input *notification.GetTo
 	return ok.GetPayload(), nil
 }
 
-func (n *NotificationService) CreateTopicShort(input *notification.CreateTopicParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) CreateNotificationTopicV1AdminShort(input *notification.CreateNotificationTopicV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
-	_, err = n.Client.Notification.CreateTopicShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := n.Client.Notification.CreateNotificationTopicV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1401,12 +1229,15 @@ func (n *NotificationService) CreateTopicShort(input *notification.CreateTopicPa
 	return nil
 }
 
-func (n *NotificationService) GetTopicByTopicNameShort(input *notification.GetTopicByTopicNameParams) (*lobbyclientmodels.ModelNotificationTopicResponse, error) {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) GetNotificationTopicV1AdminShort(input *notification.GetNotificationTopicV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelNotificationTopicResponseV1, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
-	ok, err := n.Client.Notification.GetTopicByTopicNameShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := n.Client.Notification.GetNotificationTopicV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1414,25 +1245,15 @@ func (n *NotificationService) GetTopicByTopicNameShort(input *notification.GetTo
 	return ok.GetPayload(), nil
 }
 
-func (n *NotificationService) UpdateTopicByTopicNameShort(input *notification.UpdateTopicByTopicNameParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) UpdateNotificationTopicV1AdminShort(input *notification.UpdateNotificationTopicV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
-	_, err = n.Client.Notification.UpdateTopicByTopicNameShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (n *NotificationService) DeleteTopicByTopicNameShort(input *notification.DeleteTopicByTopicNameParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = n.Client.Notification.DeleteTopicByTopicNameShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := n.Client.Notification.UpdateNotificationTopicV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1440,12 +1261,15 @@ func (n *NotificationService) DeleteTopicByTopicNameShort(input *notification.De
 	return nil
 }
 
-func (n *NotificationService) FreeFormNotificationByUserIDShort(input *notification.FreeFormNotificationByUserIDParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) DeleteNotificationTopicV1AdminShort(input *notification.DeleteNotificationTopicV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
 	}
-	_, err = n.Client.Notification.FreeFormNotificationByUserIDShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := n.Client.Notification.DeleteNotificationTopicV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1453,12 +1277,303 @@ func (n *NotificationService) FreeFormNotificationByUserIDShort(input *notificat
 	return nil
 }
 
-func (n *NotificationService) NotificationWithTemplateByUserIDShort(input *notification.NotificationWithTemplateByUserIDParams) error {
-	accessToken, err := n.TokenRepository.GetToken()
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) SendSpecificUserFreeformNotificationV1AdminShort(input *notification.SendSpecificUserFreeformNotificationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+	}
+	_, err := n.Client.Notification.SendSpecificUserFreeformNotificationV1AdminShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
-	_, err = n.Client.Notification.NotificationWithTemplateByUserIDShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) SendSpecificUserTemplatedNotificationV1AdminShort(input *notification.SendSpecificUserTemplatedNotificationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+	}
+	_, err := n.Client.Notification.SendSpecificUserTemplatedNotificationV1AdminShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) FreeFormNotificationShort(input *notification.FreeFormNotificationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+	}
+	_, err := n.Client.Notification.FreeFormNotificationShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) NotificationWithTemplateShort(input *notification.NotificationWithTemplateParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+	}
+	_, err := n.Client.Notification.NotificationWithTemplateShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:TEMPLATE [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) GetGameTemplateShort(input *notification.GetGameTemplateParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelTemplateResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+	}
+	ok, err := n.Client.Notification.GetGameTemplateShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:TEMPLATE [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) CreateTemplateShort(input *notification.CreateTemplateParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+	}
+	_, err := n.Client.Notification.CreateTemplateShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:TEMPLATE [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) GetSlugTemplateShort(input *notification.GetSlugTemplateParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelTemplateLocalizationResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+	}
+	ok, err := n.Client.Notification.GetSlugTemplateShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:TEMPLATE [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) DeleteTemplateSlugShort(input *notification.DeleteTemplateSlugParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+	}
+	_, err := n.Client.Notification.DeleteTemplateSlugShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:TEMPLATE [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) GetLocalizationTemplateShort(input *notification.GetLocalizationTemplateParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelTemplateLocalization, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+	}
+	ok, err := n.Client.Notification.GetLocalizationTemplateShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:TEMPLATE [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) UpdateLocalizationTemplateShort(input *notification.UpdateLocalizationTemplateParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+	}
+	_, err := n.Client.Notification.UpdateLocalizationTemplateShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:TEMPLATE [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) DeleteTemplateLocalizationShort(input *notification.DeleteTemplateLocalizationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+	}
+	_, err := n.Client.Notification.DeleteTemplateLocalizationShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:TEMPLATE [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) PublishTemplateShort(input *notification.PublishTemplateParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+	}
+	_, err := n.Client.Notification.PublishTemplateShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:TOPIC [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) GetTopicByNamespaceShort(input *notification.GetTopicByNamespaceParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelTopicByNamespacesResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+	}
+	ok, err := n.Client.Notification.GetTopicByNamespaceShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:TOPIC [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) CreateTopicShort(input *notification.CreateTopicParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+	}
+	_, err := n.Client.Notification.CreateTopicShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:TOPIC [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) GetTopicByTopicNameShort(input *notification.GetTopicByTopicNameParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelNotificationTopicResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+	}
+	ok, err := n.Client.Notification.GetTopicByTopicNameShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:TOPIC [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) UpdateTopicByTopicNameShort(input *notification.UpdateTopicByTopicNameParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+	}
+	_, err := n.Client.Notification.UpdateTopicByTopicNameShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:TOPIC [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) DeleteTopicByTopicNameShort(input *notification.DeleteTopicByTopicNameParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+	}
+	_, err := n.Client.Notification.DeleteTopicByTopicNameShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) FreeFormNotificationByUserIDShort(input *notification.FreeFormNotificationByUserIDParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+	}
+	_, err := n.Client.Notification.FreeFormNotificationByUserIDShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (n *NotificationService) NotificationWithTemplateByUserIDShort(input *notification.NotificationWithTemplateByUserIDParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(n.TokenRepository, nil, security, "")
+	}
+	_, err := n.Client.Notification.NotificationWithTemplateByUserIDShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

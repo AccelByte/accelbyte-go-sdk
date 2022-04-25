@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package dsmc
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/admin"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type AdminService struct {
 
 // Deprecated: Use ListServerShort instead
 func (a *AdminService) ListServer(input *admin.ListServerParams) (*dsmcclientmodels.ModelsListServerResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := a.Client.Admin.ListServer(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, internalServerError, err := a.Client.Admin.ListServer(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -39,11 +43,11 @@ func (a *AdminService) ListServer(input *admin.ListServerParams) (*dsmcclientmod
 
 // Deprecated: Use CountServerShort instead
 func (a *AdminService) CountServer(input *admin.CountServerParams) (*dsmcclientmodels.ModelsCountServerResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := a.Client.Admin.CountServer(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, internalServerError, err := a.Client.Admin.CountServer(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -59,11 +63,11 @@ func (a *AdminService) CountServer(input *admin.CountServerParams) (*dsmcclientm
 
 // Deprecated: Use CountServerDetailedShort instead
 func (a *AdminService) CountServerDetailed(input *admin.CountServerDetailedParams) (*dsmcclientmodels.ModelsDetailedCountServerResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := a.Client.Admin.CountServerDetailed(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, internalServerError, err := a.Client.Admin.CountServerDetailed(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -79,11 +83,11 @@ func (a *AdminService) CountServerDetailed(input *admin.CountServerDetailedParam
 
 // Deprecated: Use ListLocalServerShort instead
 func (a *AdminService) ListLocalServer(input *admin.ListLocalServerParams) (*dsmcclientmodels.ModelsListServerResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := a.Client.Admin.ListLocalServer(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, internalServerError, err := a.Client.Admin.ListLocalServer(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -99,11 +103,11 @@ func (a *AdminService) ListLocalServer(input *admin.ListLocalServerParams) (*dsm
 
 // Deprecated: Use DeleteLocalServerShort instead
 func (a *AdminService) DeleteLocalServer(input *admin.DeleteLocalServerParams) error {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, internalServerError, err := a.Client.Admin.DeleteLocalServer(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, internalServerError, err := a.Client.Admin.DeleteLocalServer(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -119,11 +123,11 @@ func (a *AdminService) DeleteLocalServer(input *admin.DeleteLocalServerParams) e
 
 // Deprecated: Use GetServerShort instead
 func (a *AdminService) GetServer(input *admin.GetServerParams) (*dsmcclientmodels.ModelsServer, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := a.Client.Admin.GetServer(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := a.Client.Admin.GetServer(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -142,11 +146,11 @@ func (a *AdminService) GetServer(input *admin.GetServerParams) (*dsmcclientmodel
 
 // Deprecated: Use DeleteServerShort instead
 func (a *AdminService) DeleteServer(input *admin.DeleteServerParams) error {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, notFound, internalServerError, err := a.Client.Admin.DeleteServer(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := a.Client.Admin.DeleteServer(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -165,11 +169,11 @@ func (a *AdminService) DeleteServer(input *admin.DeleteServerParams) error {
 
 // Deprecated: Use GetServerLogsShort instead
 func (a *AdminService) GetServerLogs(input *admin.GetServerLogsParams) (*dsmcclientmodels.ModelsServerLogs, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := a.Client.Admin.GetServerLogs(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := a.Client.Admin.GetServerLogs(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -191,11 +195,11 @@ func (a *AdminService) GetServerLogs(input *admin.GetServerLogsParams) (*dsmccli
 
 // Deprecated: Use ListSessionShort instead
 func (a *AdminService) ListSession(input *admin.ListSessionParams) (*dsmcclientmodels.ModelsListSessionResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := a.Client.Admin.ListSession(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, internalServerError, err := a.Client.Admin.ListSession(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -211,11 +215,11 @@ func (a *AdminService) ListSession(input *admin.ListSessionParams) (*dsmcclientm
 
 // Deprecated: Use CountSessionShort instead
 func (a *AdminService) CountSession(input *admin.CountSessionParams) (*dsmcclientmodels.ModelsCountSessionResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := a.Client.Admin.CountSession(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, internalServerError, err := a.Client.Admin.CountSession(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -231,11 +235,11 @@ func (a *AdminService) CountSession(input *admin.CountSessionParams) (*dsmcclien
 
 // Deprecated: Use DeleteSessionShort instead
 func (a *AdminService) DeleteSession(input *admin.DeleteSessionParams) error {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, internalServerError, err := a.Client.Admin.DeleteSession(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, internalServerError, err := a.Client.Admin.DeleteSession(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -249,25 +253,15 @@ func (a *AdminService) DeleteSession(input *admin.DeleteSessionParams) error {
 	return nil
 }
 
-func (a *AdminService) ListServerShort(input *admin.ListServerParams) (*dsmcclientmodels.ModelsListServerResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminService) ListServerShort(input *admin.ListServerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListServerResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	ok, err := a.Client.Admin.ListServerShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (a *AdminService) CountServerShort(input *admin.CountServerParams) (*dsmcclientmodels.ModelsCountServerResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := a.Client.Admin.CountServerShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := a.Client.Admin.ListServerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -275,25 +269,15 @@ func (a *AdminService) CountServerShort(input *admin.CountServerParams) (*dsmccl
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) CountServerDetailedShort(input *admin.CountServerDetailedParams) (*dsmcclientmodels.ModelsDetailedCountServerResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminService) CountServerShort(input *admin.CountServerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsCountServerResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	ok, err := a.Client.Admin.CountServerDetailedShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (a *AdminService) ListLocalServerShort(input *admin.ListLocalServerParams) (*dsmcclientmodels.ModelsListServerResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := a.Client.Admin.ListLocalServerShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := a.Client.Admin.CountServerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -301,25 +285,15 @@ func (a *AdminService) ListLocalServerShort(input *admin.ListLocalServerParams) 
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) DeleteLocalServerShort(input *admin.DeleteLocalServerParams) error {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminService) CountServerDetailedShort(input *admin.CountServerDetailedParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDetailedCountServerResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	_, err = a.Client.Admin.DeleteLocalServerShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (a *AdminService) GetServerShort(input *admin.GetServerParams) (*dsmcclientmodels.ModelsServer, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := a.Client.Admin.GetServerShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := a.Client.Admin.CountServerDetailedShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -327,12 +301,31 @@ func (a *AdminService) GetServerShort(input *admin.GetServerParams) (*dsmcclient
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams) error {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminService) ListLocalServerShort(input *admin.ListLocalServerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListServerResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	_, err = a.Client.Admin.DeleteServerShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := a.Client.Admin.ListLocalServerShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:SERVER [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminService) DeleteLocalServerShort(input *admin.DeleteLocalServerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+	}
+	_, err := a.Client.Admin.DeleteLocalServerShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -340,25 +333,15 @@ func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams) error 
 	return nil
 }
 
-func (a *AdminService) GetServerLogsShort(input *admin.GetServerLogsParams) (*dsmcclientmodels.ModelsServerLogs, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminService) GetServerShort(input *admin.GetServerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsServer, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	ok, err := a.Client.Admin.GetServerLogsShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (a *AdminService) ListSessionShort(input *admin.ListSessionParams) (*dsmcclientmodels.ModelsListSessionResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := a.Client.Admin.ListSessionShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := a.Client.Admin.GetServerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -366,25 +349,79 @@ func (a *AdminService) ListSessionShort(input *admin.ListSessionParams) (*dsmccl
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) CountSessionShort(input *admin.CountSessionParams) (*dsmcclientmodels.ModelsCountSessionResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:SERVER [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	ok, err := a.Client.Admin.CountSessionShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (a *AdminService) DeleteSessionShort(input *admin.DeleteSessionParams) error {
-	accessToken, err := a.TokenRepository.GetToken()
+	_, err := a.Client.Admin.DeleteServerShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
-	_, err = a.Client.Admin.DeleteSessionShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminService) GetServerLogsShort(input *admin.GetServerLogsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsServerLogs, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+	}
+	ok, err := a.Client.Admin.GetServerLogsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:SESSION [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminService) ListSessionShort(input *admin.ListSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListSessionResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+	}
+	ok, err := a.Client.Admin.ListSessionShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:SESSION [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminService) CountSessionShort(input *admin.CountSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsCountSessionResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+	}
+	ok, err := a.Client.Admin.CountSessionShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:SESSION [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminService) DeleteSessionShort(input *admin.DeleteSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+	}
+	_, err := a.Client.Admin.DeleteSessionShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

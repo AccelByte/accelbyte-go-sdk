@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package lobby
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/profanity"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type ProfanityService struct {
 
 // Deprecated: Use AdminDebugProfanityFiltersShort instead
 func (p *ProfanityService) AdminDebugProfanityFilters(input *profanity.AdminDebugProfanityFiltersParams) ([]*lobbyclientmodels.ModelsProfanityFilter, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminDebugProfanityFilters(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminDebugProfanityFilters(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -48,11 +52,11 @@ func (p *ProfanityService) AdminDebugProfanityFilters(input *profanity.AdminDebu
 
 // Deprecated: Use AdminGetProfanityListFiltersV1Short instead
 func (p *ProfanityService) AdminGetProfanityListFiltersV1(input *profanity.AdminGetProfanityListFiltersV1Params) (*lobbyclientmodels.ModelsAdminGetProfanityListFiltersV1Response, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminGetProfanityListFiltersV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminGetProfanityListFiltersV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -77,11 +81,11 @@ func (p *ProfanityService) AdminGetProfanityListFiltersV1(input *profanity.Admin
 
 // Deprecated: Use AdminAddProfanityFilterIntoListShort instead
 func (p *ProfanityService) AdminAddProfanityFilterIntoList(input *profanity.AdminAddProfanityFilterIntoListParams) error {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminAddProfanityFilterIntoList(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminAddProfanityFilterIntoList(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -106,11 +110,11 @@ func (p *ProfanityService) AdminAddProfanityFilterIntoList(input *profanity.Admi
 
 // Deprecated: Use AdminAddProfanityFiltersShort instead
 func (p *ProfanityService) AdminAddProfanityFilters(input *profanity.AdminAddProfanityFiltersParams) error {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminAddProfanityFilters(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminAddProfanityFilters(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -135,11 +139,11 @@ func (p *ProfanityService) AdminAddProfanityFilters(input *profanity.AdminAddPro
 
 // Deprecated: Use AdminImportProfanityFiltersFromFileShort instead
 func (p *ProfanityService) AdminImportProfanityFiltersFromFile(input *profanity.AdminImportProfanityFiltersFromFileParams) error {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminImportProfanityFiltersFromFile(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminImportProfanityFiltersFromFile(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -164,11 +168,11 @@ func (p *ProfanityService) AdminImportProfanityFiltersFromFile(input *profanity.
 
 // Deprecated: Use AdminDeleteProfanityFilterShort instead
 func (p *ProfanityService) AdminDeleteProfanityFilter(input *profanity.AdminDeleteProfanityFilterParams) ([]*lobbyclientmodels.ModelsProfanityFilter, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminDeleteProfanityFilter(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminDeleteProfanityFilter(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -193,11 +197,11 @@ func (p *ProfanityService) AdminDeleteProfanityFilter(input *profanity.AdminDele
 
 // Deprecated: Use AdminGetProfanityListsShort instead
 func (p *ProfanityService) AdminGetProfanityLists(input *profanity.AdminGetProfanityListsParams) ([]*lobbyclientmodels.ModelsAdminGetProfanityListsListResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminGetProfanityLists(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminGetProfanityLists(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -222,11 +226,11 @@ func (p *ProfanityService) AdminGetProfanityLists(input *profanity.AdminGetProfa
 
 // Deprecated: Use AdminCreateProfanityListShort instead
 func (p *ProfanityService) AdminCreateProfanityList(input *profanity.AdminCreateProfanityListParams) error {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminCreateProfanityList(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminCreateProfanityList(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -251,11 +255,11 @@ func (p *ProfanityService) AdminCreateProfanityList(input *profanity.AdminCreate
 
 // Deprecated: Use AdminUpdateProfanityListShort instead
 func (p *ProfanityService) AdminUpdateProfanityList(input *profanity.AdminUpdateProfanityListParams) error {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminUpdateProfanityList(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminUpdateProfanityList(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -280,11 +284,11 @@ func (p *ProfanityService) AdminUpdateProfanityList(input *profanity.AdminUpdate
 
 // Deprecated: Use AdminDeleteProfanityListShort instead
 func (p *ProfanityService) AdminDeleteProfanityList(input *profanity.AdminDeleteProfanityListParams) error {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminDeleteProfanityList(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminDeleteProfanityList(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -309,11 +313,11 @@ func (p *ProfanityService) AdminDeleteProfanityList(input *profanity.AdminDelete
 
 // Deprecated: Use AdminGetProfanityRuleShort instead
 func (p *ProfanityService) AdminGetProfanityRule(input *profanity.AdminGetProfanityRuleParams) (*lobbyclientmodels.ModelsProfanityRule, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminGetProfanityRule(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminGetProfanityRule(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -338,11 +342,11 @@ func (p *ProfanityService) AdminGetProfanityRule(input *profanity.AdminGetProfan
 
 // Deprecated: Use AdminSetProfanityRuleForNamespaceShort instead
 func (p *ProfanityService) AdminSetProfanityRuleForNamespace(input *profanity.AdminSetProfanityRuleForNamespaceParams) error {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminSetProfanityRuleForNamespace(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminSetProfanityRuleForNamespace(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -367,11 +371,11 @@ func (p *ProfanityService) AdminSetProfanityRuleForNamespace(input *profanity.Ad
 
 // Deprecated: Use AdminVerifyMessageProfanityResponseShort instead
 func (p *ProfanityService) AdminVerifyMessageProfanityResponse(input *profanity.AdminVerifyMessageProfanityResponseParams) (*lobbyclientmodels.ModelsAdminVerifyMessageProfanityResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminVerifyMessageProfanityResponse(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := p.Client.Profanity.AdminVerifyMessageProfanityResponse(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -394,25 +398,15 @@ func (p *ProfanityService) AdminVerifyMessageProfanityResponse(input *profanity.
 	return ok.GetPayload(), nil
 }
 
-func (p *ProfanityService) AdminDebugProfanityFiltersShort(input *profanity.AdminDebugProfanityFiltersParams) ([]*lobbyclientmodels.ModelsProfanityFilter, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *ProfanityService) AdminDebugProfanityFiltersShort(input *profanity.AdminDebugProfanityFiltersParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelsProfanityFilter, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	ok, err := p.Client.Profanity.AdminDebugProfanityFiltersShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (p *ProfanityService) AdminGetProfanityListFiltersV1Short(input *profanity.AdminGetProfanityListFiltersV1Params) (*lobbyclientmodels.ModelsAdminGetProfanityListFiltersV1Response, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := p.Client.Profanity.AdminGetProfanityListFiltersV1Short(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := p.Client.Profanity.AdminDebugProfanityFiltersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -420,51 +414,15 @@ func (p *ProfanityService) AdminGetProfanityListFiltersV1Short(input *profanity.
 	return ok.GetPayload(), nil
 }
 
-func (p *ProfanityService) AdminAddProfanityFilterIntoListShort(input *profanity.AdminAddProfanityFilterIntoListParams) error {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *ProfanityService) AdminGetProfanityListFiltersV1Short(input *profanity.AdminGetProfanityListFiltersV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsAdminGetProfanityListFiltersV1Response, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	_, err = p.Client.Profanity.AdminAddProfanityFilterIntoListShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (p *ProfanityService) AdminAddProfanityFiltersShort(input *profanity.AdminAddProfanityFiltersParams) error {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = p.Client.Profanity.AdminAddProfanityFiltersShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (p *ProfanityService) AdminImportProfanityFiltersFromFileShort(input *profanity.AdminImportProfanityFiltersFromFileParams) error {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = p.Client.Profanity.AdminImportProfanityFiltersFromFileShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (p *ProfanityService) AdminDeleteProfanityFilterShort(input *profanity.AdminDeleteProfanityFilterParams) ([]*lobbyclientmodels.ModelsProfanityFilter, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := p.Client.Profanity.AdminDeleteProfanityFilterShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := p.Client.Profanity.AdminGetProfanityListFiltersV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -472,12 +430,63 @@ func (p *ProfanityService) AdminDeleteProfanityFilterShort(input *profanity.Admi
 	return ok.GetPayload(), nil
 }
 
-func (p *ProfanityService) AdminGetProfanityListsShort(input *profanity.AdminGetProfanityListsParams) ([]*lobbyclientmodels.ModelsAdminGetProfanityListsListResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *ProfanityService) AdminAddProfanityFilterIntoListShort(input *profanity.AdminAddProfanityFilterIntoListParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	ok, err := p.Client.Profanity.AdminGetProfanityListsShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := p.Client.Profanity.AdminAddProfanityFilterIntoListShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *ProfanityService) AdminAddProfanityFiltersShort(input *profanity.AdminAddProfanityFiltersParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+	}
+	_, err := p.Client.Profanity.AdminAddProfanityFiltersShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *ProfanityService) AdminImportProfanityFiltersFromFileShort(input *profanity.AdminImportProfanityFiltersFromFileParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+	}
+	_, err := p.Client.Profanity.AdminImportProfanityFiltersFromFileShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *ProfanityService) AdminDeleteProfanityFilterShort(input *profanity.AdminDeleteProfanityFilterParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelsProfanityFilter, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+	}
+	ok, err := p.Client.Profanity.AdminDeleteProfanityFilterShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -485,51 +494,15 @@ func (p *ProfanityService) AdminGetProfanityListsShort(input *profanity.AdminGet
 	return ok.GetPayload(), nil
 }
 
-func (p *ProfanityService) AdminCreateProfanityListShort(input *profanity.AdminCreateProfanityListParams) error {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *ProfanityService) AdminGetProfanityListsShort(input *profanity.AdminGetProfanityListsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelsAdminGetProfanityListsListResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	_, err = p.Client.Profanity.AdminCreateProfanityListShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (p *ProfanityService) AdminUpdateProfanityListShort(input *profanity.AdminUpdateProfanityListParams) error {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = p.Client.Profanity.AdminUpdateProfanityListShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (p *ProfanityService) AdminDeleteProfanityListShort(input *profanity.AdminDeleteProfanityListParams) error {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = p.Client.Profanity.AdminDeleteProfanityListShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (p *ProfanityService) AdminGetProfanityRuleShort(input *profanity.AdminGetProfanityRuleParams) (*lobbyclientmodels.ModelsProfanityRule, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := p.Client.Profanity.AdminGetProfanityRuleShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := p.Client.Profanity.AdminGetProfanityListsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -537,12 +510,15 @@ func (p *ProfanityService) AdminGetProfanityRuleShort(input *profanity.AdminGetP
 	return ok.GetPayload(), nil
 }
 
-func (p *ProfanityService) AdminSetProfanityRuleForNamespaceShort(input *profanity.AdminSetProfanityRuleForNamespaceParams) error {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *ProfanityService) AdminCreateProfanityListShort(input *profanity.AdminCreateProfanityListParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	_, err = p.Client.Profanity.AdminSetProfanityRuleForNamespaceShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := p.Client.Profanity.AdminCreateProfanityListShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -550,12 +526,79 @@ func (p *ProfanityService) AdminSetProfanityRuleForNamespaceShort(input *profani
 	return nil
 }
 
-func (p *ProfanityService) AdminVerifyMessageProfanityResponseShort(input *profanity.AdminVerifyMessageProfanityResponseParams) (*lobbyclientmodels.ModelsAdminVerifyMessageProfanityResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *ProfanityService) AdminUpdateProfanityListShort(input *profanity.AdminUpdateProfanityListParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+	}
+	_, err := p.Client.Profanity.AdminUpdateProfanityListShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *ProfanityService) AdminDeleteProfanityListShort(input *profanity.AdminDeleteProfanityListParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+	}
+	_, err := p.Client.Profanity.AdminDeleteProfanityListShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *ProfanityService) AdminGetProfanityRuleShort(input *profanity.AdminGetProfanityRuleParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsProfanityRule, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+	}
+	ok, err := p.Client.Profanity.AdminGetProfanityRuleShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	ok, err := p.Client.Profanity.AdminVerifyMessageProfanityResponseShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *ProfanityService) AdminSetProfanityRuleForNamespaceShort(input *profanity.AdminSetProfanityRuleForNamespaceParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+	}
+	_, err := p.Client.Profanity.AdminSetProfanityRuleForNamespaceShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *ProfanityService) AdminVerifyMessageProfanityResponseShort(input *profanity.AdminVerifyMessageProfanityResponseParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsAdminVerifyMessageProfanityResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+	}
+	ok, err := p.Client.Profanity.AdminVerifyMessageProfanityResponseShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

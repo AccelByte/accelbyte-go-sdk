@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package seasonpass
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient/pass"
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type PassService struct {
 
 // Deprecated: Use QueryPassesShort instead
 func (p *PassService) QueryPasses(input *pass.QueryPassesParams) ([]*seasonpassclientmodels.PassInfo, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := p.Client.Pass.QueryPasses(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, err := p.Client.Pass.QueryPasses(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -39,11 +43,11 @@ func (p *PassService) QueryPasses(input *pass.QueryPassesParams) ([]*seasonpassc
 
 // Deprecated: Use CreatePassShort instead
 func (p *PassService) CreatePass(input *pass.CreatePassParams) (*seasonpassclientmodels.PassInfo, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, notFound, conflict, unprocessableEntity, err := p.Client.Pass.CreatePass(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, notFound, conflict, unprocessableEntity, err := p.Client.Pass.CreatePass(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -65,11 +69,11 @@ func (p *PassService) CreatePass(input *pass.CreatePassParams) (*seasonpassclien
 
 // Deprecated: Use GetPassShort instead
 func (p *PassService) GetPass(input *pass.GetPassParams) (*seasonpassclientmodels.PassInfo, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := p.Client.Pass.GetPass(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, err := p.Client.Pass.GetPass(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -85,11 +89,11 @@ func (p *PassService) GetPass(input *pass.GetPassParams) (*seasonpassclientmodel
 
 // Deprecated: Use DeletePassShort instead
 func (p *PassService) DeletePass(input *pass.DeletePassParams) error {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, notFound, conflict, err := p.Client.Pass.DeletePass(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, notFound, conflict, err := p.Client.Pass.DeletePass(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -108,11 +112,11 @@ func (p *PassService) DeletePass(input *pass.DeletePassParams) error {
 
 // Deprecated: Use UpdatePassShort instead
 func (p *PassService) UpdatePass(input *pass.UpdatePassParams) (*seasonpassclientmodels.PassInfo, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, unprocessableEntity, err := p.Client.Pass.UpdatePass(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, conflict, unprocessableEntity, err := p.Client.Pass.UpdatePass(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -134,11 +138,11 @@ func (p *PassService) UpdatePass(input *pass.UpdatePassParams) (*seasonpassclien
 
 // Deprecated: Use GrantUserPassShort instead
 func (p *PassService) GrantUserPass(input *pass.GrantUserPassParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := p.Client.Pass.GrantUserPass(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, err := p.Client.Pass.GrantUserPass(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -149,12 +153,15 @@ func (p *PassService) GrantUserPass(input *pass.GrantUserPassParams) (*seasonpas
 	return ok.GetPayload(), nil
 }
 
-func (p *PassService) QueryPassesShort(input *pass.QueryPassesParams) ([]*seasonpassclientmodels.PassInfo, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]'], 'authorization': []}]
+func (p *PassService) QueryPassesShort(input *pass.QueryPassesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*seasonpassclientmodels.PassInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	ok, err := p.Client.Pass.QueryPassesShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := p.Client.Pass.QueryPassesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -162,12 +169,15 @@ func (p *PassService) QueryPassesShort(input *pass.QueryPassesParams) ([]*season
 	return ok.GetPayload(), nil
 }
 
-func (p *PassService) CreatePassShort(input *pass.CreatePassParams) (*seasonpassclientmodels.PassInfo, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [CREATE]'], 'authorization': []}]
+func (p *PassService) CreatePassShort(input *pass.CreatePassParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.PassInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	created, err := p.Client.Pass.CreatePassShort(input, client.BearerToken(*accessToken.AccessToken))
+	created, err := p.Client.Pass.CreatePassShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -175,12 +185,15 @@ func (p *PassService) CreatePassShort(input *pass.CreatePassParams) (*seasonpass
 	return created.GetPayload(), nil
 }
 
-func (p *PassService) GetPassShort(input *pass.GetPassParams) (*seasonpassclientmodels.PassInfo, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]'], 'authorization': []}]
+func (p *PassService) GetPassShort(input *pass.GetPassParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.PassInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	ok, err := p.Client.Pass.GetPassShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := p.Client.Pass.GetPassShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -188,12 +201,15 @@ func (p *PassService) GetPassShort(input *pass.GetPassParams) (*seasonpassclient
 	return ok.GetPayload(), nil
 }
 
-func (p *PassService) DeletePassShort(input *pass.DeletePassParams) error {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [DELETE]'], 'authorization': []}]
+func (p *PassService) DeletePassShort(input *pass.DeletePassParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	_, err = p.Client.Pass.DeletePassShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := p.Client.Pass.DeletePassShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -201,12 +217,15 @@ func (p *PassService) DeletePassShort(input *pass.DeletePassParams) error {
 	return nil
 }
 
-func (p *PassService) UpdatePassShort(input *pass.UpdatePassParams) (*seasonpassclientmodels.PassInfo, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]'], 'authorization': []}]
+func (p *PassService) UpdatePassShort(input *pass.UpdatePassParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.PassInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	ok, err := p.Client.Pass.UpdatePassShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := p.Client.Pass.UpdatePassShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -214,12 +233,15 @@ func (p *PassService) UpdatePassShort(input *pass.UpdatePassParams) (*seasonpass
 	return ok.GetPayload(), nil
 }
 
-func (p *PassService) GrantUserPassShort(input *pass.GrantUserPassParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]'], 'authorization': []}]
+func (p *PassService) GrantUserPassShort(input *pass.GrantUserPassParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.UserSeasonSummary, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	ok, err := p.Client.Pass.GrantUserPassShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := p.Client.Pass.GrantUserPassShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

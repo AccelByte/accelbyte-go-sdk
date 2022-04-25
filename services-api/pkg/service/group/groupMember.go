@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package group
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/group_member"
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type GroupMemberService struct {
 
 // Deprecated: Use GetGroupMembersListAdminV1Short instead
 func (g *GroupMemberService) GetGroupMembersListAdminV1(input *group_member.GetGroupMembersListAdminV1Params) (*groupclientmodels.ModelsGetGroupMemberListResponseV1, error) {
-	accessToken, err := g.TokenRepository.GetToken()
+	token, err := g.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.GroupMember.GetGroupMembersListAdminV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.GroupMember.GetGroupMembersListAdminV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -48,11 +52,11 @@ func (g *GroupMemberService) GetGroupMembersListAdminV1(input *group_member.GetG
 
 // Deprecated: Use AcceptGroupInvitationPublicV1Short instead
 func (g *GroupMemberService) AcceptGroupInvitationPublicV1(input *group_member.AcceptGroupInvitationPublicV1Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
-	accessToken, err := g.TokenRepository.GetToken()
+	token, err := g.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := g.Client.GroupMember.AcceptGroupInvitationPublicV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := g.Client.GroupMember.AcceptGroupInvitationPublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -80,11 +84,11 @@ func (g *GroupMemberService) AcceptGroupInvitationPublicV1(input *group_member.A
 
 // Deprecated: Use RejectGroupInvitationPublicV1Short instead
 func (g *GroupMemberService) RejectGroupInvitationPublicV1(input *group_member.RejectGroupInvitationPublicV1Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
-	accessToken, err := g.TokenRepository.GetToken()
+	token, err := g.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := g.Client.GroupMember.RejectGroupInvitationPublicV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := g.Client.GroupMember.RejectGroupInvitationPublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -112,11 +116,11 @@ func (g *GroupMemberService) RejectGroupInvitationPublicV1(input *group_member.R
 
 // Deprecated: Use JoinGroupV1Short instead
 func (g *GroupMemberService) JoinGroupV1(input *group_member.JoinGroupV1Params) (*groupclientmodels.ModelsJoinGroupResponseV1, error) {
-	accessToken, err := g.TokenRepository.GetToken()
+	token, err := g.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, conflict, internalServerError, err := g.Client.GroupMember.JoinGroupV1(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, forbidden, conflict, internalServerError, err := g.Client.GroupMember.JoinGroupV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -141,11 +145,11 @@ func (g *GroupMemberService) JoinGroupV1(input *group_member.JoinGroupV1Params) 
 
 // Deprecated: Use CancelGroupJoinRequestV1Short instead
 func (g *GroupMemberService) CancelGroupJoinRequestV1(input *group_member.CancelGroupJoinRequestV1Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
-	accessToken, err := g.TokenRepository.GetToken()
+	token, err := g.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.GroupMember.CancelGroupJoinRequestV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.GroupMember.CancelGroupJoinRequestV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -170,11 +174,11 @@ func (g *GroupMemberService) CancelGroupJoinRequestV1(input *group_member.Cancel
 
 // Deprecated: Use GetGroupMembersListPublicV1Short instead
 func (g *GroupMemberService) GetGroupMembersListPublicV1(input *group_member.GetGroupMembersListPublicV1Params) (*groupclientmodels.ModelsGetGroupMemberListResponseV1, error) {
-	accessToken, err := g.TokenRepository.GetToken()
+	token, err := g.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.GroupMember.GetGroupMembersListPublicV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.GroupMember.GetGroupMembersListPublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -199,11 +203,11 @@ func (g *GroupMemberService) GetGroupMembersListPublicV1(input *group_member.Get
 
 // Deprecated: Use LeaveGroupPublicV1Short instead
 func (g *GroupMemberService) LeaveGroupPublicV1(input *group_member.LeaveGroupPublicV1Params) (*groupclientmodels.ModelsLeaveGroupResponseV1, error) {
-	accessToken, err := g.TokenRepository.GetToken()
+	token, err := g.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.GroupMember.LeaveGroupPublicV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.GroupMember.LeaveGroupPublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -228,11 +232,11 @@ func (g *GroupMemberService) LeaveGroupPublicV1(input *group_member.LeaveGroupPu
 
 // Deprecated: Use GetUserGroupInformationPublicV1Short instead
 func (g *GroupMemberService) GetUserGroupInformationPublicV1(input *group_member.GetUserGroupInformationPublicV1Params) (*groupclientmodels.ModelsGetUserGroupInformationResponseV1, error) {
-	accessToken, err := g.TokenRepository.GetToken()
+	token, err := g.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.GroupMember.GetUserGroupInformationPublicV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.GroupMember.GetUserGroupInformationPublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -257,11 +261,11 @@ func (g *GroupMemberService) GetUserGroupInformationPublicV1(input *group_member
 
 // Deprecated: Use InviteGroupPublicV1Short instead
 func (g *GroupMemberService) InviteGroupPublicV1(input *group_member.InviteGroupPublicV1Params) (*groupclientmodels.ModelsUserInvitationResponseV1, error) {
-	accessToken, err := g.TokenRepository.GetToken()
+	token, err := g.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := g.Client.GroupMember.InviteGroupPublicV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := g.Client.GroupMember.InviteGroupPublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -289,11 +293,11 @@ func (g *GroupMemberService) InviteGroupPublicV1(input *group_member.InviteGroup
 
 // Deprecated: Use AcceptGroupJoinRequestPublicV1Short instead
 func (g *GroupMemberService) AcceptGroupJoinRequestPublicV1(input *group_member.AcceptGroupJoinRequestPublicV1Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
-	accessToken, err := g.TokenRepository.GetToken()
+	token, err := g.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := g.Client.GroupMember.AcceptGroupJoinRequestPublicV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := g.Client.GroupMember.AcceptGroupJoinRequestPublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -321,11 +325,11 @@ func (g *GroupMemberService) AcceptGroupJoinRequestPublicV1(input *group_member.
 
 // Deprecated: Use RejectGroupJoinRequestPublicV1Short instead
 func (g *GroupMemberService) RejectGroupJoinRequestPublicV1(input *group_member.RejectGroupJoinRequestPublicV1Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
-	accessToken, err := g.TokenRepository.GetToken()
+	token, err := g.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := g.Client.GroupMember.RejectGroupJoinRequestPublicV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := g.Client.GroupMember.RejectGroupJoinRequestPublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -353,11 +357,11 @@ func (g *GroupMemberService) RejectGroupJoinRequestPublicV1(input *group_member.
 
 // Deprecated: Use KickGroupMemberPublicV1Short instead
 func (g *GroupMemberService) KickGroupMemberPublicV1(input *group_member.KickGroupMemberPublicV1Params) (*groupclientmodels.ModelsKickGroupMemberResponseV1, error) {
-	accessToken, err := g.TokenRepository.GetToken()
+	token, err := g.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.GroupMember.KickGroupMemberPublicV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := g.Client.GroupMember.KickGroupMemberPublicV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -380,25 +384,15 @@ func (g *GroupMemberService) KickGroupMemberPublicV1(input *group_member.KickGro
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) GetGroupMembersListAdminV1Short(input *group_member.GetGroupMembersListAdminV1Params) (*groupclientmodels.ModelsGetGroupMemberListResponseV1, error) {
-	accessToken, err := g.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP:MEMBER [READ]'], 'authorization': []}]
+func (g *GroupMemberService) GetGroupMembersListAdminV1Short(input *group_member.GetGroupMembersListAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetGroupMemberListResponseV1, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
-	ok, err := g.Client.GroupMember.GetGroupMembersListAdminV1Short(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (g *GroupMemberService) AcceptGroupInvitationPublicV1Short(input *group_member.AcceptGroupInvitationPublicV1Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
-	accessToken, err := g.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := g.Client.GroupMember.AcceptGroupInvitationPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := g.Client.GroupMember.GetGroupMembersListAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -406,12 +400,15 @@ func (g *GroupMemberService) AcceptGroupInvitationPublicV1Short(input *group_mem
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) RejectGroupInvitationPublicV1Short(input *group_member.RejectGroupInvitationPublicV1Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
-	accessToken, err := g.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (g *GroupMemberService) AcceptGroupInvitationPublicV1Short(input *group_member.AcceptGroupInvitationPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
-	ok, err := g.Client.GroupMember.RejectGroupInvitationPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := g.Client.GroupMember.AcceptGroupInvitationPublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -419,12 +416,31 @@ func (g *GroupMemberService) RejectGroupInvitationPublicV1Short(input *group_mem
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) JoinGroupV1Short(input *group_member.JoinGroupV1Params) (*groupclientmodels.ModelsJoinGroupResponseV1, error) {
-	accessToken, err := g.TokenRepository.GetToken()
+// [{'authorization': []}]
+func (g *GroupMemberService) RejectGroupInvitationPublicV1Short(input *group_member.RejectGroupInvitationPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+	}
+	ok, err := g.Client.GroupMember.RejectGroupInvitationPublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	created, err := g.Client.GroupMember.JoinGroupV1Short(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (g *GroupMemberService) JoinGroupV1Short(input *group_member.JoinGroupV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsJoinGroupResponseV1, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+	}
+	created, err := g.Client.GroupMember.JoinGroupV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -432,25 +448,15 @@ func (g *GroupMemberService) JoinGroupV1Short(input *group_member.JoinGroupV1Par
 	return created.GetPayload(), nil
 }
 
-func (g *GroupMemberService) CancelGroupJoinRequestV1Short(input *group_member.CancelGroupJoinRequestV1Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
-	accessToken, err := g.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (g *GroupMemberService) CancelGroupJoinRequestV1Short(input *group_member.CancelGroupJoinRequestV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
-	ok, err := g.Client.GroupMember.CancelGroupJoinRequestV1Short(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (g *GroupMemberService) GetGroupMembersListPublicV1Short(input *group_member.GetGroupMembersListPublicV1Params) (*groupclientmodels.ModelsGetGroupMemberListResponseV1, error) {
-	accessToken, err := g.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := g.Client.GroupMember.GetGroupMembersListPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := g.Client.GroupMember.CancelGroupJoinRequestV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -458,25 +464,15 @@ func (g *GroupMemberService) GetGroupMembersListPublicV1Short(input *group_membe
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) LeaveGroupPublicV1Short(input *group_member.LeaveGroupPublicV1Params) (*groupclientmodels.ModelsLeaveGroupResponseV1, error) {
-	accessToken, err := g.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (g *GroupMemberService) GetGroupMembersListPublicV1Short(input *group_member.GetGroupMembersListPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetGroupMemberListResponseV1, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
-	ok, err := g.Client.GroupMember.LeaveGroupPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (g *GroupMemberService) GetUserGroupInformationPublicV1Short(input *group_member.GetUserGroupInformationPublicV1Params) (*groupclientmodels.ModelsGetUserGroupInformationResponseV1, error) {
-	accessToken, err := g.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := g.Client.GroupMember.GetUserGroupInformationPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := g.Client.GroupMember.GetGroupMembersListPublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -484,25 +480,15 @@ func (g *GroupMemberService) GetUserGroupInformationPublicV1Short(input *group_m
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) InviteGroupPublicV1Short(input *group_member.InviteGroupPublicV1Params) (*groupclientmodels.ModelsUserInvitationResponseV1, error) {
-	accessToken, err := g.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (g *GroupMemberService) LeaveGroupPublicV1Short(input *group_member.LeaveGroupPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsLeaveGroupResponseV1, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
-	ok, err := g.Client.GroupMember.InviteGroupPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (g *GroupMemberService) AcceptGroupJoinRequestPublicV1Short(input *group_member.AcceptGroupJoinRequestPublicV1Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
-	accessToken, err := g.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := g.Client.GroupMember.AcceptGroupJoinRequestPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := g.Client.GroupMember.LeaveGroupPublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -510,12 +496,15 @@ func (g *GroupMemberService) AcceptGroupJoinRequestPublicV1Short(input *group_me
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) RejectGroupJoinRequestPublicV1Short(input *group_member.RejectGroupJoinRequestPublicV1Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
-	accessToken, err := g.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (g *GroupMemberService) GetUserGroupInformationPublicV1Short(input *group_member.GetUserGroupInformationPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetUserGroupInformationResponseV1, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
 	}
-	ok, err := g.Client.GroupMember.RejectGroupJoinRequestPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := g.Client.GroupMember.GetUserGroupInformationPublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -523,12 +512,63 @@ func (g *GroupMemberService) RejectGroupJoinRequestPublicV1Short(input *group_me
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) KickGroupMemberPublicV1Short(input *group_member.KickGroupMemberPublicV1Params) (*groupclientmodels.ModelsKickGroupMemberResponseV1, error) {
-	accessToken, err := g.TokenRepository.GetToken()
+// [{'HasPermission': ['GROUP:INVITE [CREATE]'], 'authorization': []}]
+func (g *GroupMemberService) InviteGroupPublicV1Short(input *group_member.InviteGroupPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsUserInvitationResponseV1, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+	}
+	ok, err := g.Client.GroupMember.InviteGroupPublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	ok, err := g.Client.GroupMember.KickGroupMemberPublicV1Short(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (g *GroupMemberService) AcceptGroupJoinRequestPublicV1Short(input *group_member.AcceptGroupJoinRequestPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+	}
+	ok, err := g.Client.GroupMember.AcceptGroupJoinRequestPublicV1Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (g *GroupMemberService) RejectGroupJoinRequestPublicV1Short(input *group_member.RejectGroupJoinRequestPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+	}
+	ok, err := g.Client.GroupMember.RejectGroupJoinRequestPublicV1Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (g *GroupMemberService) KickGroupMemberPublicV1Short(input *group_member.KickGroupMemberPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsKickGroupMemberResponseV1, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(g.TokenRepository, nil, security, "")
+	}
+	ok, err := g.Client.GroupMember.KickGroupMemberPublicV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

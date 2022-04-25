@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package eventlog
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event_registry"
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type EventRegistryService struct {
 
 // Deprecated: Use GetRegisteredEventsHandlerShort instead
 func (e *EventRegistryService) GetRegisteredEventsHandler(input *event_registry.GetRegisteredEventsHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
-	accessToken, err := e.TokenRepository.GetToken()
+	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, internalServerError, err := e.Client.EventRegistry.GetRegisteredEventsHandler(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := e.Client.EventRegistry.GetRegisteredEventsHandler(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -42,11 +46,11 @@ func (e *EventRegistryService) GetRegisteredEventsHandler(input *event_registry.
 
 // Deprecated: Use RegisterEventHandlerShort instead
 func (e *EventRegistryService) RegisterEventHandler(input *event_registry.RegisterEventHandlerParams) error {
-	accessToken, err := e.TokenRepository.GetToken()
+	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, conflict, internalServerError, err := e.Client.EventRegistry.RegisterEventHandler(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, conflict, internalServerError, err := e.Client.EventRegistry.RegisterEventHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -71,11 +75,11 @@ func (e *EventRegistryService) RegisterEventHandler(input *event_registry.Regist
 
 // Deprecated: Use GetRegisteredEventIDHandlerShort instead
 func (e *EventRegistryService) GetRegisteredEventIDHandler(input *event_registry.GetRegisteredEventIDHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
-	accessToken, err := e.TokenRepository.GetToken()
+	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := e.Client.EventRegistry.GetRegisteredEventIDHandler(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := e.Client.EventRegistry.GetRegisteredEventIDHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -100,11 +104,11 @@ func (e *EventRegistryService) GetRegisteredEventIDHandler(input *event_registry
 
 // Deprecated: Use UpdateEventRegistryHandlerShort instead
 func (e *EventRegistryService) UpdateEventRegistryHandler(input *event_registry.UpdateEventRegistryHandlerParams) error {
-	accessToken, err := e.TokenRepository.GetToken()
+	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := e.Client.EventRegistry.UpdateEventRegistryHandler(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := e.Client.EventRegistry.UpdateEventRegistryHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -129,11 +133,11 @@ func (e *EventRegistryService) UpdateEventRegistryHandler(input *event_registry.
 
 // Deprecated: Use UnregisterEventIDHandlerShort instead
 func (e *EventRegistryService) UnregisterEventIDHandler(input *event_registry.UnregisterEventIDHandlerParams) error {
-	accessToken, err := e.TokenRepository.GetToken()
+	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := e.Client.EventRegistry.UnregisterEventIDHandler(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := e.Client.EventRegistry.UnregisterEventIDHandler(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -155,11 +159,11 @@ func (e *EventRegistryService) UnregisterEventIDHandler(input *event_registry.Un
 
 // Deprecated: Use GetRegisteredEventsByEventTypeHandlerShort instead
 func (e *EventRegistryService) GetRegisteredEventsByEventTypeHandler(input *event_registry.GetRegisteredEventsByEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
-	accessToken, err := e.TokenRepository.GetToken()
+	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := e.Client.EventRegistry.GetRegisteredEventsByEventTypeHandler(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := e.Client.EventRegistry.GetRegisteredEventsByEventTypeHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -182,38 +186,15 @@ func (e *EventRegistryService) GetRegisteredEventsByEventTypeHandler(input *even
 	return ok.GetPayload(), nil
 }
 
-func (e *EventRegistryService) GetRegisteredEventsHandlerShort(input *event_registry.GetRegisteredEventsHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:EVENT [READ]'], 'HasScope': ['analytics'], 'authorization': []}]
+func (e *EventRegistryService) GetRegisteredEventsHandlerShort(input *event_registry.GetRegisteredEventsHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventRegistry, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
-	ok, err := e.Client.EventRegistry.GetRegisteredEventsHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (e *EventRegistryService) RegisterEventHandlerShort(input *event_registry.RegisterEventHandlerParams) error {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = e.Client.EventRegistry.RegisterEventHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (e *EventRegistryService) GetRegisteredEventIDHandlerShort(input *event_registry.GetRegisteredEventIDHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := e.Client.EventRegistry.GetRegisteredEventIDHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := e.Client.EventRegistry.GetRegisteredEventsHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -221,25 +202,15 @@ func (e *EventRegistryService) GetRegisteredEventIDHandlerShort(input *event_reg
 	return ok.GetPayload(), nil
 }
 
-func (e *EventRegistryService) UpdateEventRegistryHandlerShort(input *event_registry.UpdateEventRegistryHandlerParams) error {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:EVENT [CREATE]'], 'HasScope': ['analytics'], 'authorization': []}]
+func (e *EventRegistryService) RegisterEventHandlerShort(input *event_registry.RegisterEventHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
-	_, err = e.Client.EventRegistry.UpdateEventRegistryHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (e *EventRegistryService) UnregisterEventIDHandlerShort(input *event_registry.UnregisterEventIDHandlerParams) error {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = e.Client.EventRegistry.UnregisterEventIDHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := e.Client.EventRegistry.RegisterEventHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -247,12 +218,63 @@ func (e *EventRegistryService) UnregisterEventIDHandlerShort(input *event_regist
 	return nil
 }
 
-func (e *EventRegistryService) GetRegisteredEventsByEventTypeHandlerShort(input *event_registry.GetRegisteredEventsByEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
-	accessToken, err := e.TokenRepository.GetToken()
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:EVENT [READ]'], 'HasScope': ['analytics'], 'authorization': []}]
+func (e *EventRegistryService) GetRegisteredEventIDHandlerShort(input *event_registry.GetRegisteredEventIDHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventRegistry, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+	}
+	ok, err := e.Client.EventRegistry.GetRegisteredEventIDHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	ok, err := e.Client.EventRegistry.GetRegisteredEventsByEventTypeHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:EVENT [UPDATE]'], 'HasScope': ['analytics'], 'authorization': []}]
+func (e *EventRegistryService) UpdateEventRegistryHandlerShort(input *event_registry.UpdateEventRegistryHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+	}
+	_, err := e.Client.EventRegistry.UpdateEventRegistryHandlerShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:EVENT [DELETE]'], 'HasScope': ['analytics'], 'authorization': []}]
+func (e *EventRegistryService) UnregisterEventIDHandlerShort(input *event_registry.UnregisterEventIDHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+	}
+	_, err := e.Client.EventRegistry.UnregisterEventIDHandlerShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:EVENT [READ]'], 'HasScope': ['analytics'], 'authorization': []}]
+func (e *EventRegistryService) GetRegisteredEventsByEventTypeHandlerShort(input *event_registry.GetRegisteredEventsByEventTypeHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventRegistry, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+	}
+	ok, err := e.Client.EventRegistry.GetRegisteredEventsByEventTypeHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

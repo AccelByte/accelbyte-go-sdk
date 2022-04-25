@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package platform
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/campaign"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type CampaignService struct {
 
 // Deprecated: Use QueryCampaignsShort instead
 func (c *CampaignService) QueryCampaigns(input *campaign.QueryCampaignsParams) (*platformclientmodels.CampaignPagingSlicedResult, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := c.Client.Campaign.QueryCampaigns(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Campaign.QueryCampaigns(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -33,11 +37,11 @@ func (c *CampaignService) QueryCampaigns(input *campaign.QueryCampaignsParams) (
 
 // Deprecated: Use CreateCampaignShort instead
 func (c *CampaignService) CreateCampaign(input *campaign.CreateCampaignParams) (*platformclientmodels.CampaignInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, conflict, unprocessableEntity, err := c.Client.Campaign.CreateCampaign(input, client.BearerToken(*accessToken.AccessToken))
+	created, conflict, unprocessableEntity, err := c.Client.Campaign.CreateCampaign(input, client.BearerToken(*token.AccessToken))
 	if conflict != nil {
 		return nil, conflict
 	}
@@ -53,11 +57,11 @@ func (c *CampaignService) CreateCampaign(input *campaign.CreateCampaignParams) (
 
 // Deprecated: Use GetCampaignShort instead
 func (c *CampaignService) GetCampaign(input *campaign.GetCampaignParams) (*platformclientmodels.CampaignInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := c.Client.Campaign.GetCampaign(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, err := c.Client.Campaign.GetCampaign(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -70,11 +74,11 @@ func (c *CampaignService) GetCampaign(input *campaign.GetCampaignParams) (*platf
 
 // Deprecated: Use UpdateCampaignShort instead
 func (c *CampaignService) UpdateCampaign(input *campaign.UpdateCampaignParams) (*platformclientmodels.CampaignInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, conflict, unprocessableEntity, err := c.Client.Campaign.UpdateCampaign(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, conflict, unprocessableEntity, err := c.Client.Campaign.UpdateCampaign(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -93,11 +97,11 @@ func (c *CampaignService) UpdateCampaign(input *campaign.UpdateCampaignParams) (
 
 // Deprecated: Use GetCampaignDynamicShort instead
 func (c *CampaignService) GetCampaignDynamic(input *campaign.GetCampaignDynamicParams) (*platformclientmodels.CampaignDynamicInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := c.Client.Campaign.GetCampaignDynamic(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, err := c.Client.Campaign.GetCampaignDynamic(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -110,11 +114,11 @@ func (c *CampaignService) GetCampaignDynamic(input *campaign.GetCampaignDynamicP
 
 // Deprecated: Use QueryCodesShort instead
 func (c *CampaignService) QueryCodes(input *campaign.QueryCodesParams) (*platformclientmodels.CodeInfoPagingSlicedResult, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := c.Client.Campaign.QueryCodes(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Campaign.QueryCodes(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -124,11 +128,11 @@ func (c *CampaignService) QueryCodes(input *campaign.QueryCodesParams) (*platfor
 
 // Deprecated: Use CreateCodesShort instead
 func (c *CampaignService) CreateCodes(input *campaign.CreateCodesParams) (*platformclientmodels.CodeCreateResult, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, notFound, unprocessableEntity, err := c.Client.Campaign.CreateCodes(input, client.BearerToken(*accessToken.AccessToken))
+	created, notFound, unprocessableEntity, err := c.Client.Campaign.CreateCodes(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -144,11 +148,11 @@ func (c *CampaignService) CreateCodes(input *campaign.CreateCodesParams) (*platf
 
 // Deprecated: Use DownloadShort instead
 func (c *CampaignService) Download(input *campaign.DownloadParams) error {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = c.Client.Campaign.Download(input, client.BearerToken(*accessToken.AccessToken))
+	_, err = c.Client.Campaign.Download(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -158,11 +162,11 @@ func (c *CampaignService) Download(input *campaign.DownloadParams) error {
 
 // Deprecated: Use BulkDisableCodesShort instead
 func (c *CampaignService) BulkDisableCodes(input *campaign.BulkDisableCodesParams) (*platformclientmodels.BulkOperationResult, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := c.Client.Campaign.BulkDisableCodes(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Campaign.BulkDisableCodes(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -172,11 +176,11 @@ func (c *CampaignService) BulkDisableCodes(input *campaign.BulkDisableCodesParam
 
 // Deprecated: Use BulkEnableCodesShort instead
 func (c *CampaignService) BulkEnableCodes(input *campaign.BulkEnableCodesParams) (*platformclientmodels.BulkOperationResult, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := c.Client.Campaign.BulkEnableCodes(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Campaign.BulkEnableCodes(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -186,11 +190,11 @@ func (c *CampaignService) BulkEnableCodes(input *campaign.BulkEnableCodesParams)
 
 // Deprecated: Use QueryRedeemHistoryShort instead
 func (c *CampaignService) QueryRedeemHistory(input *campaign.QueryRedeemHistoryParams) (*platformclientmodels.RedeemHistoryPagingSlicedResult, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := c.Client.Campaign.QueryRedeemHistory(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Campaign.QueryRedeemHistory(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -200,11 +204,11 @@ func (c *CampaignService) QueryRedeemHistory(input *campaign.QueryRedeemHistoryP
 
 // Deprecated: Use GetCodeShort instead
 func (c *CampaignService) GetCode(input *campaign.GetCodeParams) (*platformclientmodels.CodeInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, conflict, err := c.Client.Campaign.GetCode(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, conflict, err := c.Client.Campaign.GetCode(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -220,11 +224,11 @@ func (c *CampaignService) GetCode(input *campaign.GetCodeParams) (*platformclien
 
 // Deprecated: Use DisableCodeShort instead
 func (c *CampaignService) DisableCode(input *campaign.DisableCodeParams) (*platformclientmodels.CodeInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := c.Client.Campaign.DisableCode(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, err := c.Client.Campaign.DisableCode(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -237,11 +241,11 @@ func (c *CampaignService) DisableCode(input *campaign.DisableCodeParams) (*platf
 
 // Deprecated: Use EnableCodeShort instead
 func (c *CampaignService) EnableCode(input *campaign.EnableCodeParams) (*platformclientmodels.CodeInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := c.Client.Campaign.EnableCode(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, err := c.Client.Campaign.EnableCode(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -254,11 +258,11 @@ func (c *CampaignService) EnableCode(input *campaign.EnableCodeParams) (*platfor
 
 // Deprecated: Use ApplyUserRedemptionShort instead
 func (c *CampaignService) ApplyUserRedemption(input *campaign.ApplyUserRedemptionParams) (*platformclientmodels.RedeemResult, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, conflict, unprocessableEntity, err := c.Client.Campaign.ApplyUserRedemption(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, conflict, unprocessableEntity, err := c.Client.Campaign.ApplyUserRedemption(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -275,12 +279,15 @@ func (c *CampaignService) ApplyUserRedemption(input *campaign.ApplyUserRedemptio
 	return ok.GetPayload(), nil
 }
 
-func (c *CampaignService) QueryCampaignsShort(input *campaign.QueryCampaignsParams) (*platformclientmodels.CampaignPagingSlicedResult, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [READ]'], 'authorization': []}]
+func (c *CampaignService) QueryCampaignsShort(input *campaign.QueryCampaignsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CampaignPagingSlicedResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	ok, err := c.Client.Campaign.QueryCampaignsShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Campaign.QueryCampaignsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -288,12 +295,15 @@ func (c *CampaignService) QueryCampaignsShort(input *campaign.QueryCampaignsPara
 	return ok.GetPayload(), nil
 }
 
-func (c *CampaignService) CreateCampaignShort(input *campaign.CreateCampaignParams) (*platformclientmodels.CampaignInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [CREATE]'], 'authorization': []}]
+func (c *CampaignService) CreateCampaignShort(input *campaign.CreateCampaignParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CampaignInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	created, err := c.Client.Campaign.CreateCampaignShort(input, client.BearerToken(*accessToken.AccessToken))
+	created, err := c.Client.Campaign.CreateCampaignShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -301,25 +311,15 @@ func (c *CampaignService) CreateCampaignShort(input *campaign.CreateCampaignPara
 	return created.GetPayload(), nil
 }
 
-func (c *CampaignService) GetCampaignShort(input *campaign.GetCampaignParams) (*platformclientmodels.CampaignInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [READ]'], 'authorization': []}]
+func (c *CampaignService) GetCampaignShort(input *campaign.GetCampaignParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CampaignInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	ok, err := c.Client.Campaign.GetCampaignShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (c *CampaignService) UpdateCampaignShort(input *campaign.UpdateCampaignParams) (*platformclientmodels.CampaignInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := c.Client.Campaign.UpdateCampaignShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Campaign.GetCampaignShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -327,25 +327,15 @@ func (c *CampaignService) UpdateCampaignShort(input *campaign.UpdateCampaignPara
 	return ok.GetPayload(), nil
 }
 
-func (c *CampaignService) GetCampaignDynamicShort(input *campaign.GetCampaignDynamicParams) (*platformclientmodels.CampaignDynamicInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [UPDATE]'], 'authorization': []}]
+func (c *CampaignService) UpdateCampaignShort(input *campaign.UpdateCampaignParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CampaignInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	ok, err := c.Client.Campaign.GetCampaignDynamicShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (c *CampaignService) QueryCodesShort(input *campaign.QueryCodesParams) (*platformclientmodels.CodeInfoPagingSlicedResult, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := c.Client.Campaign.QueryCodesShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Campaign.UpdateCampaignShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -353,12 +343,47 @@ func (c *CampaignService) QueryCodesShort(input *campaign.QueryCodesParams) (*pl
 	return ok.GetPayload(), nil
 }
 
-func (c *CampaignService) CreateCodesShort(input *campaign.CreateCodesParams) (*platformclientmodels.CodeCreateResult, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [READ]'], 'authorization': []}]
+func (c *CampaignService) GetCampaignDynamicShort(input *campaign.GetCampaignDynamicParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CampaignDynamicInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	ok, err := c.Client.Campaign.GetCampaignDynamicShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	created, err := c.Client.Campaign.CreateCodesShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [READ]'], 'authorization': []}]
+func (c *CampaignService) QueryCodesShort(input *campaign.QueryCodesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CodeInfoPagingSlicedResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	ok, err := c.Client.Campaign.QueryCodesShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [CREATE]'], 'authorization': []}]
+func (c *CampaignService) CreateCodesShort(input *campaign.CreateCodesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CodeCreateResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	created, err := c.Client.Campaign.CreateCodesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -366,12 +391,15 @@ func (c *CampaignService) CreateCodesShort(input *campaign.CreateCodesParams) (*
 	return created.GetPayload(), nil
 }
 
-func (c *CampaignService) DownloadShort(input *campaign.DownloadParams) error {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [READ]'], 'authorization': []}]
+func (c *CampaignService) DownloadShort(input *campaign.DownloadParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	_, err = c.Client.Campaign.DownloadShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := c.Client.Campaign.DownloadShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -379,25 +407,15 @@ func (c *CampaignService) DownloadShort(input *campaign.DownloadParams) error {
 	return nil
 }
 
-func (c *CampaignService) BulkDisableCodesShort(input *campaign.BulkDisableCodesParams) (*platformclientmodels.BulkOperationResult, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [UPDATE]'], 'authorization': []}]
+func (c *CampaignService) BulkDisableCodesShort(input *campaign.BulkDisableCodesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.BulkOperationResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	ok, err := c.Client.Campaign.BulkDisableCodesShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (c *CampaignService) BulkEnableCodesShort(input *campaign.BulkEnableCodesParams) (*platformclientmodels.BulkOperationResult, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := c.Client.Campaign.BulkEnableCodesShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Campaign.BulkDisableCodesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -405,25 +423,15 @@ func (c *CampaignService) BulkEnableCodesShort(input *campaign.BulkEnableCodesPa
 	return ok.GetPayload(), nil
 }
 
-func (c *CampaignService) QueryRedeemHistoryShort(input *campaign.QueryRedeemHistoryParams) (*platformclientmodels.RedeemHistoryPagingSlicedResult, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [UPDATE]'], 'authorization': []}]
+func (c *CampaignService) BulkEnableCodesShort(input *campaign.BulkEnableCodesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.BulkOperationResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	ok, err := c.Client.Campaign.QueryRedeemHistoryShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (c *CampaignService) GetCodeShort(input *campaign.GetCodeParams) (*platformclientmodels.CodeInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := c.Client.Campaign.GetCodeShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Campaign.BulkEnableCodesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -431,25 +439,15 @@ func (c *CampaignService) GetCodeShort(input *campaign.GetCodeParams) (*platform
 	return ok.GetPayload(), nil
 }
 
-func (c *CampaignService) DisableCodeShort(input *campaign.DisableCodeParams) (*platformclientmodels.CodeInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [READ]'], 'authorization': []}]
+func (c *CampaignService) QueryRedeemHistoryShort(input *campaign.QueryRedeemHistoryParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.RedeemHistoryPagingSlicedResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	ok, err := c.Client.Campaign.DisableCodeShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (c *CampaignService) EnableCodeShort(input *campaign.EnableCodeParams) (*platformclientmodels.CodeInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := c.Client.Campaign.EnableCodeShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Campaign.QueryRedeemHistoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -457,12 +455,63 @@ func (c *CampaignService) EnableCodeShort(input *campaign.EnableCodeParams) (*pl
 	return ok.GetPayload(), nil
 }
 
-func (c *CampaignService) ApplyUserRedemptionShort(input *campaign.ApplyUserRedemptionParams) (*platformclientmodels.RedeemResult, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [READ]'], 'authorization': []}]
+func (c *CampaignService) GetCodeShort(input *campaign.GetCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CodeInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	ok, err := c.Client.Campaign.GetCodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	ok, err := c.Client.Campaign.ApplyUserRedemptionShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [UPDATE]'], 'authorization': []}]
+func (c *CampaignService) DisableCodeShort(input *campaign.DisableCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CodeInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	ok, err := c.Client.Campaign.DisableCodeShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [UPDATE]'], 'authorization': []}]
+func (c *CampaignService) EnableCodeShort(input *campaign.EnableCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CodeInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	ok, err := c.Client.Campaign.EnableCodeShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:REDEMPTION [CREATE]'], 'authorization': []}]
+func (c *CampaignService) ApplyUserRedemptionShort(input *campaign.ApplyUserRedemptionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.RedeemResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	ok, err := c.Client.Campaign.ApplyUserRedemptionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

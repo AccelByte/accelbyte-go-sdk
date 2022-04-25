@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package platform
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/category"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type CategoryService struct {
 
 // Deprecated: Use GetRootCategoriesShort instead
 func (c *CategoryService) GetRootCategories(input *category.GetRootCategoriesParams) ([]*platformclientmodels.FullCategoryInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := c.Client.Category.GetRootCategories(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Category.GetRootCategories(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -33,11 +37,11 @@ func (c *CategoryService) GetRootCategories(input *category.GetRootCategoriesPar
 
 // Deprecated: Use CreateCategoryShort instead
 func (c *CategoryService) CreateCategory(input *category.CreateCategoryParams) (*platformclientmodels.FullCategoryInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, notFound, conflict, unprocessableEntity, err := c.Client.Category.CreateCategory(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, notFound, conflict, unprocessableEntity, err := c.Client.Category.CreateCategory(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -59,11 +63,11 @@ func (c *CategoryService) CreateCategory(input *category.CreateCategoryParams) (
 
 // Deprecated: Use ListCategoriesBasicShort instead
 func (c *CategoryService) ListCategoriesBasic(input *category.ListCategoriesBasicParams) ([]*platformclientmodels.BasicCategoryInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := c.Client.Category.ListCategoriesBasic(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Category.ListCategoriesBasic(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -73,11 +77,11 @@ func (c *CategoryService) ListCategoriesBasic(input *category.ListCategoriesBasi
 
 // Deprecated: Use GetCategoryShort instead
 func (c *CategoryService) GetCategory(input *category.GetCategoryParams) (*platformclientmodels.FullCategoryInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := c.Client.Category.GetCategory(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, err := c.Client.Category.GetCategory(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -90,11 +94,11 @@ func (c *CategoryService) GetCategory(input *category.GetCategoryParams) (*platf
 
 // Deprecated: Use UpdateCategoryShort instead
 func (c *CategoryService) UpdateCategory(input *category.UpdateCategoryParams) (*platformclientmodels.FullCategoryInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, unprocessableEntity, err := c.Client.Category.UpdateCategory(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, conflict, unprocessableEntity, err := c.Client.Category.UpdateCategory(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -116,11 +120,11 @@ func (c *CategoryService) UpdateCategory(input *category.UpdateCategoryParams) (
 
 // Deprecated: Use DeleteCategoryShort instead
 func (c *CategoryService) DeleteCategory(input *category.DeleteCategoryParams) (*platformclientmodels.FullCategoryInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, conflict, err := c.Client.Category.DeleteCategory(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, conflict, err := c.Client.Category.DeleteCategory(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -136,11 +140,11 @@ func (c *CategoryService) DeleteCategory(input *category.DeleteCategoryParams) (
 
 // Deprecated: Use GetChildCategoriesShort instead
 func (c *CategoryService) GetChildCategories(input *category.GetChildCategoriesParams) ([]*platformclientmodels.FullCategoryInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := c.Client.Category.GetChildCategories(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Category.GetChildCategories(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -150,11 +154,11 @@ func (c *CategoryService) GetChildCategories(input *category.GetChildCategoriesP
 
 // Deprecated: Use GetDescendantCategoriesShort instead
 func (c *CategoryService) GetDescendantCategories(input *category.GetDescendantCategoriesParams) ([]*platformclientmodels.FullCategoryInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := c.Client.Category.GetDescendantCategories(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Category.GetDescendantCategories(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -218,12 +222,15 @@ func (c *CategoryService) PublicGetDescendantCategories(input *category.PublicGe
 	return ok.GetPayload(), nil
 }
 
-func (c *CategoryService) GetRootCategoriesShort(input *category.GetRootCategoriesParams) ([]*platformclientmodels.FullCategoryInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CATEGORY [READ]'], 'authorization': []}]
+func (c *CategoryService) GetRootCategoriesShort(input *category.GetRootCategoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.FullCategoryInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	ok, err := c.Client.Category.GetRootCategoriesShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Category.GetRootCategoriesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -231,12 +238,15 @@ func (c *CategoryService) GetRootCategoriesShort(input *category.GetRootCategori
 	return ok.GetPayload(), nil
 }
 
-func (c *CategoryService) CreateCategoryShort(input *category.CreateCategoryParams) (*platformclientmodels.FullCategoryInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CATEGORY [CREATE]'], 'authorization': []}]
+func (c *CategoryService) CreateCategoryShort(input *category.CreateCategoryParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullCategoryInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	created, err := c.Client.Category.CreateCategoryShort(input, client.BearerToken(*accessToken.AccessToken))
+	created, err := c.Client.Category.CreateCategoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -244,25 +254,15 @@ func (c *CategoryService) CreateCategoryShort(input *category.CreateCategoryPara
 	return created.GetPayload(), nil
 }
 
-func (c *CategoryService) ListCategoriesBasicShort(input *category.ListCategoriesBasicParams) ([]*platformclientmodels.BasicCategoryInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CATEGORY [READ]'], 'authorization': []}]
+func (c *CategoryService) ListCategoriesBasicShort(input *category.ListCategoriesBasicParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.BasicCategoryInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	ok, err := c.Client.Category.ListCategoriesBasicShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (c *CategoryService) GetCategoryShort(input *category.GetCategoryParams) (*platformclientmodels.FullCategoryInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := c.Client.Category.GetCategoryShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Category.ListCategoriesBasicShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -270,25 +270,15 @@ func (c *CategoryService) GetCategoryShort(input *category.GetCategoryParams) (*
 	return ok.GetPayload(), nil
 }
 
-func (c *CategoryService) UpdateCategoryShort(input *category.UpdateCategoryParams) (*platformclientmodels.FullCategoryInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CATEGORY [READ]'], 'authorization': []}]
+func (c *CategoryService) GetCategoryShort(input *category.GetCategoryParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullCategoryInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	ok, err := c.Client.Category.UpdateCategoryShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (c *CategoryService) DeleteCategoryShort(input *category.DeleteCategoryParams) (*platformclientmodels.FullCategoryInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := c.Client.Category.DeleteCategoryShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Category.GetCategoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -296,25 +286,15 @@ func (c *CategoryService) DeleteCategoryShort(input *category.DeleteCategoryPara
 	return ok.GetPayload(), nil
 }
 
-func (c *CategoryService) GetChildCategoriesShort(input *category.GetChildCategoriesParams) ([]*platformclientmodels.FullCategoryInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CATEGORY [UPDATE]'], 'authorization': []}]
+func (c *CategoryService) UpdateCategoryShort(input *category.UpdateCategoryParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullCategoryInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	ok, err := c.Client.Category.GetChildCategoriesShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (c *CategoryService) GetDescendantCategoriesShort(input *category.GetDescendantCategoriesParams) ([]*platformclientmodels.FullCategoryInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := c.Client.Category.GetDescendantCategoriesShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Category.UpdateCategoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -322,6 +302,55 @@ func (c *CategoryService) GetDescendantCategoriesShort(input *category.GetDescen
 	return ok.GetPayload(), nil
 }
 
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CATEGORY [DELETE]'], 'authorization': []}]
+func (c *CategoryService) DeleteCategoryShort(input *category.DeleteCategoryParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullCategoryInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	ok, err := c.Client.Category.DeleteCategoryShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CATEGORY [READ]'], 'authorization': []}]
+func (c *CategoryService) GetChildCategoriesShort(input *category.GetChildCategoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.FullCategoryInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	ok, err := c.Client.Category.GetChildCategoriesShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CATEGORY [READ]'], 'authorization': []}]
+func (c *CategoryService) GetDescendantCategoriesShort(input *category.GetDescendantCategoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.FullCategoryInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	ok, err := c.Client.Category.GetDescendantCategoriesShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// None
 func (c *CategoryService) PublicGetRootCategoriesShort(input *category.PublicGetRootCategoriesParams) ([]*platformclientmodels.CategoryInfo, error) {
 	ok, err := c.Client.Category.PublicGetRootCategoriesShort(input)
 	if err != nil {
@@ -331,6 +360,7 @@ func (c *CategoryService) PublicGetRootCategoriesShort(input *category.PublicGet
 	return ok.GetPayload(), nil
 }
 
+// None
 func (c *CategoryService) DownloadCategoriesShort(input *category.DownloadCategoriesParams) ([]*platformclientmodels.HierarchicalCategoryInfo, error) {
 	ok, err := c.Client.Category.DownloadCategoriesShort(input)
 	if err != nil {
@@ -340,6 +370,7 @@ func (c *CategoryService) DownloadCategoriesShort(input *category.DownloadCatego
 	return ok.GetPayload(), nil
 }
 
+// None
 func (c *CategoryService) PublicGetCategoryShort(input *category.PublicGetCategoryParams) (*platformclientmodels.CategoryInfo, error) {
 	ok, err := c.Client.Category.PublicGetCategoryShort(input)
 	if err != nil {
@@ -349,6 +380,7 @@ func (c *CategoryService) PublicGetCategoryShort(input *category.PublicGetCatego
 	return ok.GetPayload(), nil
 }
 
+// None
 func (c *CategoryService) PublicGetChildCategoriesShort(input *category.PublicGetChildCategoriesParams) ([]*platformclientmodels.CategoryInfo, error) {
 	ok, err := c.Client.Category.PublicGetChildCategoriesShort(input)
 	if err != nil {
@@ -358,6 +390,7 @@ func (c *CategoryService) PublicGetChildCategoriesShort(input *category.PublicGe
 	return ok.GetPayload(), nil
 }
 
+// None
 func (c *CategoryService) PublicGetDescendantCategoriesShort(input *category.PublicGetDescendantCategoriesParams) ([]*platformclientmodels.CategoryInfo, error) {
 	ok, err := c.Client.Category.PublicGetDescendantCategoriesShort(input)
 	if err != nil {

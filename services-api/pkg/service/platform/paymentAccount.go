@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package platform
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/payment_account"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type PaymentAccountService struct {
 
 // Deprecated: Use PublicGetPaymentAccountsShort instead
 func (p *PaymentAccountService) PublicGetPaymentAccounts(input *payment_account.PublicGetPaymentAccountsParams) ([]*platformclientmodels.PaymentAccount, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := p.Client.PaymentAccount.PublicGetPaymentAccounts(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := p.Client.PaymentAccount.PublicGetPaymentAccounts(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -33,11 +37,11 @@ func (p *PaymentAccountService) PublicGetPaymentAccounts(input *payment_account.
 
 // Deprecated: Use PublicDeletePaymentAccountShort instead
 func (p *PaymentAccountService) PublicDeletePaymentAccount(input *payment_account.PublicDeletePaymentAccountParams) error {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = p.Client.PaymentAccount.PublicDeletePaymentAccount(input, client.BearerToken(*accessToken.AccessToken))
+	_, err = p.Client.PaymentAccount.PublicDeletePaymentAccount(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -45,12 +49,15 @@ func (p *PaymentAccountService) PublicDeletePaymentAccount(input *payment_accoun
 	return nil
 }
 
-func (p *PaymentAccountService) PublicGetPaymentAccountsShort(input *payment_account.PublicGetPaymentAccountsParams) ([]*platformclientmodels.PaymentAccount, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:PAYMENT:ACCOUNT [READ]'], 'authorization': []}]
+func (p *PaymentAccountService) PublicGetPaymentAccountsShort(input *payment_account.PublicGetPaymentAccountsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.PaymentAccount, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	ok, err := p.Client.PaymentAccount.PublicGetPaymentAccountsShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := p.Client.PaymentAccount.PublicGetPaymentAccountsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -58,12 +65,15 @@ func (p *PaymentAccountService) PublicGetPaymentAccountsShort(input *payment_acc
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentAccountService) PublicDeletePaymentAccountShort(input *payment_account.PublicDeletePaymentAccountParams) error {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:PAYMENT:ACCOUNT [DELETE]'], 'authorization': []}]
+func (p *PaymentAccountService) PublicDeletePaymentAccountShort(input *payment_account.PublicDeletePaymentAccountParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	_, err = p.Client.PaymentAccount.PublicDeletePaymentAccountShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := p.Client.PaymentAccount.PublicDeletePaymentAccountShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

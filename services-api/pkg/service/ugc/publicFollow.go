@@ -2,13 +2,17 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package ugc
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_follow"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type PublicFollowService struct {
 
 // Deprecated: Use GetFollowedContentShort instead
 func (p *PublicFollowService) GetFollowedContent(input *public_follow.GetFollowedContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicFollow.GetFollowedContent(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicFollow.GetFollowedContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -42,11 +46,11 @@ func (p *PublicFollowService) GetFollowedContent(input *public_follow.GetFollowe
 
 // Deprecated: Use GetFollowedUsersShort instead
 func (p *PublicFollowService) GetFollowedUsers(input *public_follow.GetFollowedUsersParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicFollow.GetFollowedUsers(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicFollow.GetFollowedUsers(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -65,11 +69,11 @@ func (p *PublicFollowService) GetFollowedUsers(input *public_follow.GetFollowedU
 
 // Deprecated: Use UpdateUserFollowStatusShort instead
 func (p *PublicFollowService) UpdateUserFollowStatus(input *public_follow.UpdateUserFollowStatusParams) (*ugcclientmodels.ModelsUserFollowResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := p.Client.PublicFollow.UpdateUserFollowStatus(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := p.Client.PublicFollow.UpdateUserFollowStatus(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -91,11 +95,11 @@ func (p *PublicFollowService) UpdateUserFollowStatus(input *public_follow.Update
 
 // Deprecated: Use GetPublicFollowersShort instead
 func (p *PublicFollowService) GetPublicFollowers(input *public_follow.GetPublicFollowersParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicFollow.GetPublicFollowers(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicFollow.GetPublicFollowers(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -114,11 +118,11 @@ func (p *PublicFollowService) GetPublicFollowers(input *public_follow.GetPublicF
 
 // Deprecated: Use GetPublicFollowingShort instead
 func (p *PublicFollowService) GetPublicFollowing(input *public_follow.GetPublicFollowingParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicFollow.GetPublicFollowing(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := p.Client.PublicFollow.GetPublicFollowing(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -135,25 +139,15 @@ func (p *PublicFollowService) GetPublicFollowing(input *public_follow.GetPublicF
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicFollowService) GetFollowedContentShort(input *public_follow.GetFollowedContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (p *PublicFollowService) GetFollowedContentShort(input *public_follow.GetFollowedContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	ok, err := p.Client.PublicFollow.GetFollowedContentShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (p *PublicFollowService) GetFollowedUsersShort(input *public_follow.GetFollowedUsersParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := p.Client.PublicFollow.GetFollowedUsersShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := p.Client.PublicFollow.GetFollowedContentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -161,25 +155,15 @@ func (p *PublicFollowService) GetFollowedUsersShort(input *public_follow.GetFoll
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicFollowService) UpdateUserFollowStatusShort(input *public_follow.UpdateUserFollowStatusParams) (*ugcclientmodels.ModelsUserFollowResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (p *PublicFollowService) GetFollowedUsersShort(input *public_follow.GetFollowedUsersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	ok, err := p.Client.PublicFollow.UpdateUserFollowStatusShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (p *PublicFollowService) GetPublicFollowersShort(input *public_follow.GetPublicFollowersParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := p.Client.PublicFollow.GetPublicFollowersShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := p.Client.PublicFollow.GetFollowedUsersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -187,12 +171,47 @@ func (p *PublicFollowService) GetPublicFollowersShort(input *public_follow.GetPu
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicFollowService) GetPublicFollowingShort(input *public_follow.GetPublicFollowingParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+// [{'authorization': []}]
+func (p *PublicFollowService) UpdateUserFollowStatusShort(input *public_follow.UpdateUserFollowStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsUserFollowResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+	}
+	ok, err := p.Client.PublicFollow.UpdateUserFollowStatusShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	ok, err := p.Client.PublicFollow.GetPublicFollowingShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (p *PublicFollowService) GetPublicFollowersShort(input *public_follow.GetPublicFollowersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+	}
+	ok, err := p.Client.PublicFollow.GetPublicFollowersShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (p *PublicFollowService) GetPublicFollowingShort(input *public_follow.GetPublicFollowingParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+	}
+	ok, err := p.Client.PublicFollow.GetPublicFollowingShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

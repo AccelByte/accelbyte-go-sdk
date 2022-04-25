@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package platform
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/d_l_c"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type DLCService struct {
 
 // Deprecated: Use GetDLCItemConfigShort instead
 func (d *DLCService) GetDLCItemConfig(input *d_l_c.GetDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := d.Client.Dlc.GetDLCItemConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, err := d.Client.Dlc.GetDLCItemConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -36,11 +40,11 @@ func (d *DLCService) GetDLCItemConfig(input *d_l_c.GetDLCItemConfigParams) (*pla
 
 // Deprecated: Use UpdateDLCItemConfigShort instead
 func (d *DLCService) UpdateDLCItemConfig(input *d_l_c.UpdateDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unprocessableEntity, err := d.Client.Dlc.UpdateDLCItemConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unprocessableEntity, err := d.Client.Dlc.UpdateDLCItemConfig(input, client.BearerToken(*token.AccessToken))
 	if unprocessableEntity != nil {
 		return nil, unprocessableEntity
 	}
@@ -53,11 +57,11 @@ func (d *DLCService) UpdateDLCItemConfig(input *d_l_c.UpdateDLCItemConfigParams)
 
 // Deprecated: Use DeleteDLCItemConfigShort instead
 func (d *DLCService) DeleteDLCItemConfig(input *d_l_c.DeleteDLCItemConfigParams) error {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = d.Client.Dlc.DeleteDLCItemConfig(input, client.BearerToken(*accessToken.AccessToken))
+	_, err = d.Client.Dlc.DeleteDLCItemConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -67,11 +71,11 @@ func (d *DLCService) DeleteDLCItemConfig(input *d_l_c.DeleteDLCItemConfigParams)
 
 // Deprecated: Use GetPlatformDLCConfigShort instead
 func (d *DLCService) GetPlatformDLCConfig(input *d_l_c.GetPlatformDLCConfigParams) (*platformclientmodels.PlatformDLCConfigInfo, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := d.Client.Dlc.GetPlatformDLCConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, err := d.Client.Dlc.GetPlatformDLCConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -84,11 +88,11 @@ func (d *DLCService) GetPlatformDLCConfig(input *d_l_c.GetPlatformDLCConfigParam
 
 // Deprecated: Use UpdatePlatformDLCConfigShort instead
 func (d *DLCService) UpdatePlatformDLCConfig(input *d_l_c.UpdatePlatformDLCConfigParams) (*platformclientmodels.PlatformDLCConfigInfo, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unprocessableEntity, err := d.Client.Dlc.UpdatePlatformDLCConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unprocessableEntity, err := d.Client.Dlc.UpdatePlatformDLCConfig(input, client.BearerToken(*token.AccessToken))
 	if unprocessableEntity != nil {
 		return nil, unprocessableEntity
 	}
@@ -101,11 +105,11 @@ func (d *DLCService) UpdatePlatformDLCConfig(input *d_l_c.UpdatePlatformDLCConfi
 
 // Deprecated: Use DeletePlatformDLCConfigShort instead
 func (d *DLCService) DeletePlatformDLCConfig(input *d_l_c.DeletePlatformDLCConfigParams) error {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = d.Client.Dlc.DeletePlatformDLCConfig(input, client.BearerToken(*accessToken.AccessToken))
+	_, err = d.Client.Dlc.DeletePlatformDLCConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -115,11 +119,11 @@ func (d *DLCService) DeletePlatformDLCConfig(input *d_l_c.DeletePlatformDLCConfi
 
 // Deprecated: Use PublicSyncPsnDlcInventoryShort instead
 func (d *DLCService) PublicSyncPsnDlcInventory(input *d_l_c.PublicSyncPsnDlcInventoryParams) error {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := d.Client.Dlc.PublicSyncPsnDlcInventory(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, err := d.Client.Dlc.PublicSyncPsnDlcInventory(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -132,11 +136,11 @@ func (d *DLCService) PublicSyncPsnDlcInventory(input *d_l_c.PublicSyncPsnDlcInve
 
 // Deprecated: Use SyncSteamDLCShort instead
 func (d *DLCService) SyncSteamDLC(input *d_l_c.SyncSteamDLCParams) error {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = d.Client.Dlc.SyncSteamDLC(input, client.BearerToken(*accessToken.AccessToken))
+	_, err = d.Client.Dlc.SyncSteamDLC(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -146,11 +150,11 @@ func (d *DLCService) SyncSteamDLC(input *d_l_c.SyncSteamDLCParams) error {
 
 // Deprecated: Use SyncXboxDLCShort instead
 func (d *DLCService) SyncXboxDLC(input *d_l_c.SyncXboxDLCParams) error {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = d.Client.Dlc.SyncXboxDLC(input, client.BearerToken(*accessToken.AccessToken))
+	_, err = d.Client.Dlc.SyncXboxDLC(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -158,12 +162,15 @@ func (d *DLCService) SyncXboxDLC(input *d_l_c.SyncXboxDLCParams) error {
 	return nil
 }
 
-func (d *DLCService) GetDLCItemConfigShort(input *d_l_c.GetDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [READ]'], 'authorization': []}]
+func (d *DLCService) GetDLCItemConfigShort(input *d_l_c.GetDLCItemConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.DLCItemConfigInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
-	ok, err := d.Client.Dlc.GetDLCItemConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := d.Client.Dlc.GetDLCItemConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -171,38 +178,15 @@ func (d *DLCService) GetDLCItemConfigShort(input *d_l_c.GetDLCItemConfigParams) 
 	return ok.GetPayload(), nil
 }
 
-func (d *DLCService) UpdateDLCItemConfigShort(input *d_l_c.UpdateDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [UPDATE]'], 'authorization': []}]
+func (d *DLCService) UpdateDLCItemConfigShort(input *d_l_c.UpdateDLCItemConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.DLCItemConfigInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
-	ok, err := d.Client.Dlc.UpdateDLCItemConfigShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (d *DLCService) DeleteDLCItemConfigShort(input *d_l_c.DeleteDLCItemConfigParams) error {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = d.Client.Dlc.DeleteDLCItemConfigShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (d *DLCService) GetPlatformDLCConfigShort(input *d_l_c.GetPlatformDLCConfigParams) (*platformclientmodels.PlatformDLCConfigInfo, error) {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := d.Client.Dlc.GetPlatformDLCConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := d.Client.Dlc.UpdateDLCItemConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -210,12 +194,31 @@ func (d *DLCService) GetPlatformDLCConfigShort(input *d_l_c.GetPlatformDLCConfig
 	return ok.GetPayload(), nil
 }
 
-func (d *DLCService) UpdatePlatformDLCConfigShort(input *d_l_c.UpdatePlatformDLCConfigParams) (*platformclientmodels.PlatformDLCConfigInfo, error) {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [DELETE]'], 'authorization': []}]
+func (d *DLCService) DeleteDLCItemConfigShort(input *d_l_c.DeleteDLCItemConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
-	ok, err := d.Client.Dlc.UpdatePlatformDLCConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := d.Client.Dlc.DeleteDLCItemConfigShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [READ]'], 'authorization': []}]
+func (d *DLCService) GetPlatformDLCConfigShort(input *d_l_c.GetPlatformDLCConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PlatformDLCConfigInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+	}
+	ok, err := d.Client.Dlc.GetPlatformDLCConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -223,12 +226,31 @@ func (d *DLCService) UpdatePlatformDLCConfigShort(input *d_l_c.UpdatePlatformDLC
 	return ok.GetPayload(), nil
 }
 
-func (d *DLCService) DeletePlatformDLCConfigShort(input *d_l_c.DeletePlatformDLCConfigParams) error {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [UPDATE]'], 'authorization': []}]
+func (d *DLCService) UpdatePlatformDLCConfigShort(input *d_l_c.UpdatePlatformDLCConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PlatformDLCConfigInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
-	_, err = d.Client.Dlc.DeletePlatformDLCConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := d.Client.Dlc.UpdatePlatformDLCConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [DELETE]'], 'authorization': []}]
+func (d *DLCService) DeletePlatformDLCConfigShort(input *d_l_c.DeletePlatformDLCConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+	}
+	_, err := d.Client.Dlc.DeletePlatformDLCConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -236,25 +258,15 @@ func (d *DLCService) DeletePlatformDLCConfigShort(input *d_l_c.DeletePlatformDLC
 	return nil
 }
 
-func (d *DLCService) PublicSyncPsnDlcInventoryShort(input *d_l_c.PublicSyncPsnDlcInventoryParams) error {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}]
+func (d *DLCService) PublicSyncPsnDlcInventoryShort(input *d_l_c.PublicSyncPsnDlcInventoryParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
-	_, err = d.Client.Dlc.PublicSyncPsnDlcInventoryShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (d *DLCService) SyncSteamDLCShort(input *d_l_c.SyncSteamDLCParams) error {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = d.Client.Dlc.SyncSteamDLCShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := d.Client.Dlc.PublicSyncPsnDlcInventoryShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -262,12 +274,31 @@ func (d *DLCService) SyncSteamDLCShort(input *d_l_c.SyncSteamDLCParams) error {
 	return nil
 }
 
-func (d *DLCService) SyncXboxDLCShort(input *d_l_c.SyncXboxDLCParams) error {
-	accessToken, err := d.TokenRepository.GetToken()
+// [{'authorization': []}]
+func (d *DLCService) SyncSteamDLCShort(input *d_l_c.SyncSteamDLCParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+	}
+	_, err := d.Client.Dlc.SyncSteamDLCShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
-	_, err = d.Client.Dlc.SyncXboxDLCShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return nil
+}
+
+// [{'authorization': []}]
+func (d *DLCService) SyncXboxDLCShort(input *d_l_c.SyncXboxDLCParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+	}
+	_, err := d.Client.Dlc.SyncXboxDLCShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

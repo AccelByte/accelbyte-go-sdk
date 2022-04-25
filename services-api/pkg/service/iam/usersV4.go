@@ -12,6 +12,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -1113,31 +1114,15 @@ func (u *UsersV4Service) PublicMakeFactorMyDefaultV4(input *users_v4.PublicMakeF
 	return nil
 }
 
-func (u *UsersV4Service) AdminBulkCheckValidUserIDV4Short(input *users_v4.AdminBulkCheckValidUserIDV4Params) (*iamclientmodels.ModelListValidUserIDResponseV4, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
+func (u *UsersV4Service) AdminBulkCheckValidUserIDV4Short(input *users_v4.AdminBulkCheckValidUserIDV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelListValidUserIDResponseV4, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.UsersV4.AdminBulkCheckValidUserIDV4Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersV4Service) AdminUpdateUserV4Short(input *users_v4.AdminUpdateUserV4Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.UsersV4.AdminUpdateUserV4Short(input, authWriter)
+	ok, err := u.Client.UsersV4.AdminBulkCheckValidUserIDV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1145,15 +1130,31 @@ func (u *UsersV4Service) AdminUpdateUserV4Short(input *users_v4.AdminUpdateUserV
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersV4Service) AdminUpdateUserEmailAddressV4Short(input *users_v4.AdminUpdateUserEmailAddressV4Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersV4Service) AdminUpdateUserV4Short(input *users_v4.AdminUpdateUserV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.UsersV4.AdminUpdateUserEmailAddressV4Short(input, authWriter)
+	ok, err := u.Client.UsersV4.AdminUpdateUserV4Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersV4Service) AdminUpdateUserEmailAddressV4Short(input *users_v4.AdminUpdateUserEmailAddressV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.UsersV4.AdminUpdateUserEmailAddressV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1161,79 +1162,15 @@ func (u *UsersV4Service) AdminUpdateUserEmailAddressV4Short(input *users_v4.Admi
 	return nil
 }
 
-func (u *UsersV4Service) AdminDisableUserMFAV4Short(input *users_v4.AdminDisableUserMFAV4Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]'], 'authorization': []}]
+func (u *UsersV4Service) AdminDisableUserMFAV4Short(input *users_v4.AdminDisableUserMFAV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.UsersV4.AdminDisableUserMFAV4Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersV4Service) AdminListUserRolesV4Short(input *users_v4.AdminListUserRolesV4Params) (*iamclientmodels.ModelListUserRolesV4Response, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.UsersV4.AdminListUserRolesV4Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersV4Service) AdminUpdateUserRoleV4Short(input *users_v4.AdminUpdateUserRoleV4Params) (*iamclientmodels.ModelListUserRolesV4Response, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.UsersV4.AdminUpdateUserRoleV4Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersV4Service) AdminAddUserRoleV4Short(input *users_v4.AdminAddUserRoleV4Params) (*iamclientmodels.ModelListUserRolesV4Response, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.UsersV4.AdminAddUserRoleV4Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersV4Service) AdminRemoveUserRoleV4Short(input *users_v4.AdminRemoveUserRoleV4Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.UsersV4.AdminRemoveUserRoleV4Short(input, authWriter)
+	_, err := u.Client.UsersV4.AdminDisableUserMFAV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1241,15 +1178,15 @@ func (u *UsersV4Service) AdminRemoveUserRoleV4Short(input *users_v4.AdminRemoveU
 	return nil
 }
 
-func (u *UsersV4Service) AdminUpdateMyUserV4Short(input *users_v4.AdminUpdateMyUserV4Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:* [READ]'], 'authorization': []}]
+func (u *UsersV4Service) AdminListUserRolesV4Short(input *users_v4.AdminListUserRolesV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelListUserRolesV4Response, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.UsersV4.AdminUpdateMyUserV4Short(input, authWriter)
+	ok, err := u.Client.UsersV4.AdminListUserRolesV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1257,15 +1194,47 @@ func (u *UsersV4Service) AdminUpdateMyUserV4Short(input *users_v4.AdminUpdateMyU
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersV4Service) AdminDisableMyAuthenticatorV4Short(input *users_v4.AdminDisableMyAuthenticatorV4Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:* [UPDATE]'], 'authorization': []}]
+func (u *UsersV4Service) AdminUpdateUserRoleV4Short(input *users_v4.AdminUpdateUserRoleV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelListUserRolesV4Response, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.UsersV4.AdminDisableMyAuthenticatorV4Short(input, authWriter)
+	ok, err := u.Client.UsersV4.AdminUpdateUserRoleV4Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:* [UPDATE]'], 'authorization': []}]
+func (u *UsersV4Service) AdminAddUserRoleV4Short(input *users_v4.AdminAddUserRoleV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelListUserRolesV4Response, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.UsersV4.AdminAddUserRoleV4Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:* [Delete]'], 'authorization': []}]
+func (u *UsersV4Service) AdminRemoveUserRoleV4Short(input *users_v4.AdminRemoveUserRoleV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.UsersV4.AdminRemoveUserRoleV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1273,15 +1242,31 @@ func (u *UsersV4Service) AdminDisableMyAuthenticatorV4Short(input *users_v4.Admi
 	return nil
 }
 
-func (u *UsersV4Service) AdminEnableMyAuthenticatorV4Short(input *users_v4.AdminEnableMyAuthenticatorV4Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}]
+func (u *UsersV4Service) AdminUpdateMyUserV4Short(input *users_v4.AdminUpdateMyUserV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.UsersV4.AdminEnableMyAuthenticatorV4Short(input, authWriter)
+	ok, err := u.Client.UsersV4.AdminUpdateMyUserV4Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (u *UsersV4Service) AdminDisableMyAuthenticatorV4Short(input *users_v4.AdminDisableMyAuthenticatorV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.UsersV4.AdminDisableMyAuthenticatorV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1289,63 +1274,15 @@ func (u *UsersV4Service) AdminEnableMyAuthenticatorV4Short(input *users_v4.Admin
 	return nil
 }
 
-func (u *UsersV4Service) AdminGenerateMyAuthenticatorKeyV4Short(input *users_v4.AdminGenerateMyAuthenticatorKeyV4Params) (*iamclientmodels.ModelAuthenticatorKeyResponseV4, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (u *UsersV4Service) AdminEnableMyAuthenticatorV4Short(input *users_v4.AdminEnableMyAuthenticatorV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.UsersV4.AdminGenerateMyAuthenticatorKeyV4Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersV4Service) AdminGetMyBackupCodesV4Short(input *users_v4.AdminGetMyBackupCodesV4Params) (*iamclientmodels.ModelBackupCodesResponseV4, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.UsersV4.AdminGetMyBackupCodesV4Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersV4Service) AdminGenerateMyBackupCodesV4Short(input *users_v4.AdminGenerateMyBackupCodesV4Params) (*iamclientmodels.ModelBackupCodesResponseV4, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.UsersV4.AdminGenerateMyBackupCodesV4Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersV4Service) AdminDisableMyBackupCodesV4Short(input *users_v4.AdminDisableMyBackupCodesV4Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.UsersV4.AdminDisableMyBackupCodesV4Short(input, authWriter)
+	_, err := u.Client.UsersV4.AdminEnableMyAuthenticatorV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1353,31 +1290,15 @@ func (u *UsersV4Service) AdminDisableMyBackupCodesV4Short(input *users_v4.AdminD
 	return nil
 }
 
-func (u *UsersV4Service) AdminDownloadMyBackupCodesV4Short(input *users_v4.AdminDownloadMyBackupCodesV4Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}]
+func (u *UsersV4Service) AdminGenerateMyAuthenticatorKeyV4Short(input *users_v4.AdminGenerateMyAuthenticatorKeyV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelAuthenticatorKeyResponseV4, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.UsersV4.AdminDownloadMyBackupCodesV4Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersV4Service) AdminEnableMyBackupCodesV4Short(input *users_v4.AdminEnableMyBackupCodesV4Params) (*iamclientmodels.ModelBackupCodesResponseV4, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.UsersV4.AdminEnableMyBackupCodesV4Short(input, authWriter)
+	ok, err := u.Client.UsersV4.AdminGenerateMyAuthenticatorKeyV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1385,15 +1306,15 @@ func (u *UsersV4Service) AdminEnableMyBackupCodesV4Short(input *users_v4.AdminEn
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersV4Service) AdminGetMyEnabledFactorsV4Short(input *users_v4.AdminGetMyEnabledFactorsV4Params) (*iamclientmodels.ModelEnabledFactorsResponseV4, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (u *UsersV4Service) AdminGetMyBackupCodesV4Short(input *users_v4.AdminGetMyBackupCodesV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelBackupCodesResponseV4, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.UsersV4.AdminGetMyEnabledFactorsV4Short(input, authWriter)
+	ok, err := u.Client.UsersV4.AdminGetMyBackupCodesV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1401,15 +1322,31 @@ func (u *UsersV4Service) AdminGetMyEnabledFactorsV4Short(input *users_v4.AdminGe
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersV4Service) AdminMakeFactorMyDefaultV4Short(input *users_v4.AdminMakeFactorMyDefaultV4Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}]
+func (u *UsersV4Service) AdminGenerateMyBackupCodesV4Short(input *users_v4.AdminGenerateMyBackupCodesV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelBackupCodesResponseV4, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.UsersV4.AdminMakeFactorMyDefaultV4Short(input, authWriter)
+	ok, err := u.Client.UsersV4.AdminGenerateMyBackupCodesV4Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (u *UsersV4Service) AdminDisableMyBackupCodesV4Short(input *users_v4.AdminDisableMyBackupCodesV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.UsersV4.AdminDisableMyBackupCodesV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1417,15 +1354,79 @@ func (u *UsersV4Service) AdminMakeFactorMyDefaultV4Short(input *users_v4.AdminMa
 	return nil
 }
 
-func (u *UsersV4Service) AdminInviteUserV4Short(input *users_v4.AdminInviteUserV4Params) (*iamclientmodels.ModelInviteUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+// [{'authorization': []}]
+func (u *UsersV4Service) AdminDownloadMyBackupCodesV4Short(input *users_v4.AdminDownloadMyBackupCodesV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.UsersV4.AdminDownloadMyBackupCodesV4Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'authorization': []}]
+func (u *UsersV4Service) AdminEnableMyBackupCodesV4Short(input *users_v4.AdminEnableMyBackupCodesV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelBackupCodesResponseV4, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.UsersV4.AdminEnableMyBackupCodesV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	created, err := u.Client.UsersV4.AdminInviteUserV4Short(input, authWriter)
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (u *UsersV4Service) AdminGetMyEnabledFactorsV4Short(input *users_v4.AdminGetMyEnabledFactorsV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelEnabledFactorsResponseV4, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.UsersV4.AdminGetMyEnabledFactorsV4Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (u *UsersV4Service) AdminMakeFactorMyDefaultV4Short(input *users_v4.AdminMakeFactorMyDefaultV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.UsersV4.AdminMakeFactorMyDefaultV4Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:USER:INVITE [CREATE]'], 'authorization': []}]
+func (u *UsersV4Service) AdminInviteUserV4Short(input *users_v4.AdminInviteUserV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelInviteUserResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	created, err := u.Client.UsersV4.AdminInviteUserV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1433,31 +1434,15 @@ func (u *UsersV4Service) AdminInviteUserV4Short(input *users_v4.AdminInviteUserV
 	return created.GetPayload(), nil
 }
 
-func (u *UsersV4Service) PublicCreateTestUserV4Short(input *users_v4.PublicCreateTestUserV4Params) (*iamclientmodels.AccountCreateUserResponseV4, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (u *UsersV4Service) PublicCreateTestUserV4Short(input *users_v4.PublicCreateTestUserV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountCreateUserResponseV4, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	created, err := u.Client.UsersV4.PublicCreateTestUserV4Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return created.GetPayload(), nil
-}
-
-func (u *UsersV4Service) PublicCreateUserV4Short(input *users_v4.PublicCreateUserV4Params) (*iamclientmodels.AccountCreateUserResponseV4, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	created, err := u.Client.UsersV4.PublicCreateUserV4Short(input, authWriter)
+	created, err := u.Client.UsersV4.PublicCreateTestUserV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1465,15 +1450,15 @@ func (u *UsersV4Service) PublicCreateUserV4Short(input *users_v4.PublicCreateUse
 	return created.GetPayload(), nil
 }
 
-func (u *UsersV4Service) CreateUserFromInvitationV4Short(input *users_v4.CreateUserFromInvitationV4Params) (*iamclientmodels.AccountCreateUserResponseV4, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (u *UsersV4Service) PublicCreateUserV4Short(input *users_v4.PublicCreateUserV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountCreateUserResponseV4, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	created, err := u.Client.UsersV4.CreateUserFromInvitationV4Short(input, authWriter)
+	created, err := u.Client.UsersV4.PublicCreateUserV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1481,15 +1466,31 @@ func (u *UsersV4Service) CreateUserFromInvitationV4Short(input *users_v4.CreateU
 	return created.GetPayload(), nil
 }
 
-func (u *UsersV4Service) PublicUpdateUserV4Short(input *users_v4.PublicUpdateUserV4Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+// [{'authorization': []}]
+func (u *UsersV4Service) CreateUserFromInvitationV4Short(input *users_v4.CreateUserFromInvitationV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountCreateUserResponseV4, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	created, err := u.Client.UsersV4.CreateUserFromInvitationV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.UsersV4.PublicUpdateUserV4Short(input, authWriter)
+
+	return created.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (u *UsersV4Service) PublicUpdateUserV4Short(input *users_v4.PublicUpdateUserV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.UsersV4.PublicUpdateUserV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1497,15 +1498,15 @@ func (u *UsersV4Service) PublicUpdateUserV4Short(input *users_v4.PublicUpdateUse
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersV4Service) PublicUpdateUserEmailAddressV4Short(input *users_v4.PublicUpdateUserEmailAddressV4Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}]
+func (u *UsersV4Service) PublicUpdateUserEmailAddressV4Short(input *users_v4.PublicUpdateUserEmailAddressV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.UsersV4.PublicUpdateUserEmailAddressV4Short(input, authWriter)
+	_, err := u.Client.UsersV4.PublicUpdateUserEmailAddressV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1513,31 +1514,15 @@ func (u *UsersV4Service) PublicUpdateUserEmailAddressV4Short(input *users_v4.Pub
 	return nil
 }
 
-func (u *UsersV4Service) PublicUpgradeHeadlessAccountWithVerificationCodeV4Short(input *users_v4.PublicUpgradeHeadlessAccountWithVerificationCodeV4Params) (*iamclientmodels.AccountUserResponseV4, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (u *UsersV4Service) PublicUpgradeHeadlessAccountWithVerificationCodeV4Short(input *users_v4.PublicUpgradeHeadlessAccountWithVerificationCodeV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountUserResponseV4, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.UsersV4.PublicUpgradeHeadlessAccountWithVerificationCodeV4Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersV4Service) PublicUpgradeHeadlessAccountV4Short(input *users_v4.PublicUpgradeHeadlessAccountV4Params) (*iamclientmodels.AccountUserResponseV4, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.UsersV4.PublicUpgradeHeadlessAccountV4Short(input, authWriter)
+	ok, err := u.Client.UsersV4.PublicUpgradeHeadlessAccountWithVerificationCodeV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1545,15 +1530,31 @@ func (u *UsersV4Service) PublicUpgradeHeadlessAccountV4Short(input *users_v4.Pub
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersV4Service) PublicDisableMyAuthenticatorV4Short(input *users_v4.PublicDisableMyAuthenticatorV4Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}]
+func (u *UsersV4Service) PublicUpgradeHeadlessAccountV4Short(input *users_v4.PublicUpgradeHeadlessAccountV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountUserResponseV4, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.UsersV4.PublicDisableMyAuthenticatorV4Short(input, authWriter)
+	ok, err := u.Client.UsersV4.PublicUpgradeHeadlessAccountV4Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (u *UsersV4Service) PublicDisableMyAuthenticatorV4Short(input *users_v4.PublicDisableMyAuthenticatorV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.UsersV4.PublicDisableMyAuthenticatorV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1561,79 +1562,15 @@ func (u *UsersV4Service) PublicDisableMyAuthenticatorV4Short(input *users_v4.Pub
 	return nil
 }
 
-func (u *UsersV4Service) PublicEnableMyAuthenticatorV4Short(input *users_v4.PublicEnableMyAuthenticatorV4Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}]
+func (u *UsersV4Service) PublicEnableMyAuthenticatorV4Short(input *users_v4.PublicEnableMyAuthenticatorV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.UsersV4.PublicEnableMyAuthenticatorV4Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersV4Service) PublicGenerateMyAuthenticatorKeyV4Short(input *users_v4.PublicGenerateMyAuthenticatorKeyV4Params) (*iamclientmodels.ModelAuthenticatorKeyResponseV4, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.UsersV4.PublicGenerateMyAuthenticatorKeyV4Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersV4Service) PublicGetMyBackupCodesV4Short(input *users_v4.PublicGetMyBackupCodesV4Params) (*iamclientmodels.ModelBackupCodesResponseV4, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.UsersV4.PublicGetMyBackupCodesV4Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersV4Service) PublicGenerateMyBackupCodesV4Short(input *users_v4.PublicGenerateMyBackupCodesV4Params) (*iamclientmodels.ModelBackupCodesResponseV4, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.UsersV4.PublicGenerateMyBackupCodesV4Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersV4Service) PublicDisableMyBackupCodesV4Short(input *users_v4.PublicDisableMyBackupCodesV4Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.UsersV4.PublicDisableMyBackupCodesV4Short(input, authWriter)
+	_, err := u.Client.UsersV4.PublicEnableMyAuthenticatorV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1641,31 +1578,15 @@ func (u *UsersV4Service) PublicDisableMyBackupCodesV4Short(input *users_v4.Publi
 	return nil
 }
 
-func (u *UsersV4Service) PublicDownloadMyBackupCodesV4Short(input *users_v4.PublicDownloadMyBackupCodesV4Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}]
+func (u *UsersV4Service) PublicGenerateMyAuthenticatorKeyV4Short(input *users_v4.PublicGenerateMyAuthenticatorKeyV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelAuthenticatorKeyResponseV4, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.UsersV4.PublicDownloadMyBackupCodesV4Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersV4Service) PublicEnableMyBackupCodesV4Short(input *users_v4.PublicEnableMyBackupCodesV4Params) (*iamclientmodels.ModelBackupCodesResponseV4, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.UsersV4.PublicEnableMyBackupCodesV4Short(input, authWriter)
+	ok, err := u.Client.UsersV4.PublicGenerateMyAuthenticatorKeyV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1673,31 +1594,15 @@ func (u *UsersV4Service) PublicEnableMyBackupCodesV4Short(input *users_v4.Public
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersV4Service) PublicRemoveTrustedDeviceV4Short(input *users_v4.PublicRemoveTrustedDeviceV4Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}]
+func (u *UsersV4Service) PublicGetMyBackupCodesV4Short(input *users_v4.PublicGetMyBackupCodesV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelBackupCodesResponseV4, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.UsersV4.PublicRemoveTrustedDeviceV4Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersV4Service) PublicGetMyEnabledFactorsV4Short(input *users_v4.PublicGetMyEnabledFactorsV4Params) (*iamclientmodels.ModelEnabledFactorsResponseV4, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.UsersV4.PublicGetMyEnabledFactorsV4Short(input, authWriter)
+	ok, err := u.Client.UsersV4.PublicGetMyBackupCodesV4Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1705,15 +1610,111 @@ func (u *UsersV4Service) PublicGetMyEnabledFactorsV4Short(input *users_v4.Public
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersV4Service) PublicMakeFactorMyDefaultV4Short(input *users_v4.PublicMakeFactorMyDefaultV4Params) error {
-	token, err := u.TokenRepository.GetToken()
+// [{'authorization': []}]
+func (u *UsersV4Service) PublicGenerateMyBackupCodesV4Short(input *users_v4.PublicGenerateMyBackupCodesV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelBackupCodesResponseV4, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.UsersV4.PublicGenerateMyBackupCodesV4Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (u *UsersV4Service) PublicDisableMyBackupCodesV4Short(input *users_v4.PublicDisableMyBackupCodesV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.UsersV4.PublicDisableMyBackupCodesV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.UsersV4.PublicMakeFactorMyDefaultV4Short(input, authWriter)
+
+	return nil
+}
+
+// [{'authorization': []}]
+func (u *UsersV4Service) PublicDownloadMyBackupCodesV4Short(input *users_v4.PublicDownloadMyBackupCodesV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.UsersV4.PublicDownloadMyBackupCodesV4Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'authorization': []}]
+func (u *UsersV4Service) PublicEnableMyBackupCodesV4Short(input *users_v4.PublicEnableMyBackupCodesV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelBackupCodesResponseV4, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.UsersV4.PublicEnableMyBackupCodesV4Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (u *UsersV4Service) PublicRemoveTrustedDeviceV4Short(input *users_v4.PublicRemoveTrustedDeviceV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.UsersV4.PublicRemoveTrustedDeviceV4Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'authorization': []}]
+func (u *UsersV4Service) PublicGetMyEnabledFactorsV4Short(input *users_v4.PublicGetMyEnabledFactorsV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelEnabledFactorsResponseV4, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.UsersV4.PublicGetMyEnabledFactorsV4Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (u *UsersV4Service) PublicMakeFactorMyDefaultV4Short(input *users_v4.PublicMakeFactorMyDefaultV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.UsersV4.PublicMakeFactorMyDefaultV4Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

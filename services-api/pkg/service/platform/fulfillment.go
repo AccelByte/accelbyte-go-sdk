@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package platform
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/fulfillment"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type FulfillmentService struct {
 
 // Deprecated: Use QueryFulfillmentHistoriesShort instead
 func (f *FulfillmentService) QueryFulfillmentHistories(input *fulfillment.QueryFulfillmentHistoriesParams) (*platformclientmodels.FulfillmentHistoryPagingSlicedResult, error) {
-	accessToken, err := f.TokenRepository.GetToken()
+	token, err := f.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := f.Client.Fulfillment.QueryFulfillmentHistories(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := f.Client.Fulfillment.QueryFulfillmentHistories(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -33,11 +37,11 @@ func (f *FulfillmentService) QueryFulfillmentHistories(input *fulfillment.QueryF
 
 // Deprecated: Use FulfillItemShort instead
 func (f *FulfillmentService) FulfillItem(input *fulfillment.FulfillItemParams) (*platformclientmodels.FulfillmentResult, error) {
-	accessToken, err := f.TokenRepository.GetToken()
+	token, err := f.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, err := f.Client.Fulfillment.FulfillItem(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, conflict, err := f.Client.Fulfillment.FulfillItem(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -56,11 +60,11 @@ func (f *FulfillmentService) FulfillItem(input *fulfillment.FulfillItemParams) (
 
 // Deprecated: Use RedeemCodeShort instead
 func (f *FulfillmentService) RedeemCode(input *fulfillment.RedeemCodeParams) (*platformclientmodels.FulfillmentResult, error) {
-	accessToken, err := f.TokenRepository.GetToken()
+	token, err := f.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, err := f.Client.Fulfillment.RedeemCode(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, conflict, err := f.Client.Fulfillment.RedeemCode(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -79,11 +83,11 @@ func (f *FulfillmentService) RedeemCode(input *fulfillment.RedeemCodeParams) (*p
 
 // Deprecated: Use FulfillRewardsShort instead
 func (f *FulfillmentService) FulfillRewards(input *fulfillment.FulfillRewardsParams) error {
-	accessToken, err := f.TokenRepository.GetToken()
+	token, err := f.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, notFound, conflict, err := f.Client.Fulfillment.FulfillRewards(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, notFound, conflict, err := f.Client.Fulfillment.FulfillRewards(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -102,11 +106,11 @@ func (f *FulfillmentService) FulfillRewards(input *fulfillment.FulfillRewardsPar
 
 // Deprecated: Use PublicRedeemCodeShort instead
 func (f *FulfillmentService) PublicRedeemCode(input *fulfillment.PublicRedeemCodeParams) (*platformclientmodels.FulfillmentResult, error) {
-	accessToken, err := f.TokenRepository.GetToken()
+	token, err := f.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, err := f.Client.Fulfillment.PublicRedeemCode(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, conflict, err := f.Client.Fulfillment.PublicRedeemCode(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -123,25 +127,15 @@ func (f *FulfillmentService) PublicRedeemCode(input *fulfillment.PublicRedeemCod
 	return ok.GetPayload(), nil
 }
 
-func (f *FulfillmentService) QueryFulfillmentHistoriesShort(input *fulfillment.QueryFulfillmentHistoriesParams) (*platformclientmodels.FulfillmentHistoryPagingSlicedResult, error) {
-	accessToken, err := f.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:FULFILLMENT [READ]'], 'authorization': []}]
+func (f *FulfillmentService) QueryFulfillmentHistoriesShort(input *fulfillment.QueryFulfillmentHistoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FulfillmentHistoryPagingSlicedResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
-	ok, err := f.Client.Fulfillment.QueryFulfillmentHistoriesShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (f *FulfillmentService) FulfillItemShort(input *fulfillment.FulfillItemParams) (*platformclientmodels.FulfillmentResult, error) {
-	accessToken, err := f.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := f.Client.Fulfillment.FulfillItemShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := f.Client.Fulfillment.QueryFulfillmentHistoriesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -149,12 +143,15 @@ func (f *FulfillmentService) FulfillItemShort(input *fulfillment.FulfillItemPara
 	return ok.GetPayload(), nil
 }
 
-func (f *FulfillmentService) RedeemCodeShort(input *fulfillment.RedeemCodeParams) (*platformclientmodels.FulfillmentResult, error) {
-	accessToken, err := f.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT []'], 'authorization': []}]
+func (f *FulfillmentService) FulfillItemShort(input *fulfillment.FulfillItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FulfillmentResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
-	ok, err := f.Client.Fulfillment.RedeemCodeShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := f.Client.Fulfillment.FulfillItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -162,12 +159,31 @@ func (f *FulfillmentService) RedeemCodeShort(input *fulfillment.RedeemCodeParams
 	return ok.GetPayload(), nil
 }
 
-func (f *FulfillmentService) FulfillRewardsShort(input *fulfillment.FulfillRewardsParams) error {
-	accessToken, err := f.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT []'], 'authorization': []}]
+func (f *FulfillmentService) RedeemCodeShort(input *fulfillment.RedeemCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FulfillmentResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
-	_, err = f.Client.Fulfillment.FulfillRewardsShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := f.Client.Fulfillment.RedeemCodeShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT []'], 'authorization': []}]
+func (f *FulfillmentService) FulfillRewardsShort(input *fulfillment.FulfillRewardsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
+	}
+	_, err := f.Client.Fulfillment.FulfillRewardsShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -175,12 +191,15 @@ func (f *FulfillmentService) FulfillRewardsShort(input *fulfillment.FulfillRewar
 	return nil
 }
 
-func (f *FulfillmentService) PublicRedeemCodeShort(input *fulfillment.PublicRedeemCodeParams) (*platformclientmodels.FulfillmentResult, error) {
-	accessToken, err := f.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT []'], 'authorization': []}]
+func (f *FulfillmentService) PublicRedeemCodeShort(input *fulfillment.PublicRedeemCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FulfillmentResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(f.TokenRepository, nil, security, "")
 	}
-	ok, err := f.Client.Fulfillment.PublicRedeemCodeShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := f.Client.Fulfillment.PublicRedeemCodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

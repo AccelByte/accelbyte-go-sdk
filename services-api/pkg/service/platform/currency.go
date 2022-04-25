@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package platform
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/currency"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type CurrencyService struct {
 
 // Deprecated: Use ListCurrenciesShort instead
 func (c *CurrencyService) ListCurrencies(input *currency.ListCurrenciesParams) ([]*platformclientmodels.CurrencyInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := c.Client.Currency.ListCurrencies(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Currency.ListCurrencies(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -33,11 +37,11 @@ func (c *CurrencyService) ListCurrencies(input *currency.ListCurrenciesParams) (
 
 // Deprecated: Use CreateCurrencyShort instead
 func (c *CurrencyService) CreateCurrency(input *currency.CreateCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, conflict, unprocessableEntity, err := c.Client.Currency.CreateCurrency(input, client.BearerToken(*accessToken.AccessToken))
+	ok, conflict, unprocessableEntity, err := c.Client.Currency.CreateCurrency(input, client.BearerToken(*token.AccessToken))
 	if conflict != nil {
 		return nil, conflict
 	}
@@ -53,11 +57,11 @@ func (c *CurrencyService) CreateCurrency(input *currency.CreateCurrencyParams) (
 
 // Deprecated: Use UpdateCurrencyShort instead
 func (c *CurrencyService) UpdateCurrency(input *currency.UpdateCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, unprocessableEntity, err := c.Client.Currency.UpdateCurrency(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, unprocessableEntity, err := c.Client.Currency.UpdateCurrency(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -73,11 +77,11 @@ func (c *CurrencyService) UpdateCurrency(input *currency.UpdateCurrencyParams) (
 
 // Deprecated: Use DeleteCurrencyShort instead
 func (c *CurrencyService) DeleteCurrency(input *currency.DeleteCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := c.Client.Currency.DeleteCurrency(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, err := c.Client.Currency.DeleteCurrency(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -90,11 +94,11 @@ func (c *CurrencyService) DeleteCurrency(input *currency.DeleteCurrencyParams) (
 
 // Deprecated: Use GetCurrencyConfigShort instead
 func (c *CurrencyService) GetCurrencyConfig(input *currency.GetCurrencyConfigParams) (*platformclientmodels.CurrencyConfig, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := c.Client.Currency.GetCurrencyConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, err := c.Client.Currency.GetCurrencyConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -107,11 +111,11 @@ func (c *CurrencyService) GetCurrencyConfig(input *currency.GetCurrencyConfigPar
 
 // Deprecated: Use GetCurrencySummaryShort instead
 func (c *CurrencyService) GetCurrencySummary(input *currency.GetCurrencySummaryParams) (*platformclientmodels.CurrencySummary, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := c.Client.Currency.GetCurrencySummary(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, err := c.Client.Currency.GetCurrencySummary(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -132,25 +136,15 @@ func (c *CurrencyService) PublicListCurrencies(input *currency.PublicListCurrenc
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) ListCurrenciesShort(input *currency.ListCurrenciesParams) ([]*platformclientmodels.CurrencyInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CURRENCY [READ]'], 'authorization': []}]
+func (c *CurrencyService) ListCurrenciesShort(input *currency.ListCurrenciesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.CurrencyInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	ok, err := c.Client.Currency.ListCurrenciesShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (c *CurrencyService) CreateCurrencyShort(input *currency.CreateCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := c.Client.Currency.CreateCurrencyShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Currency.ListCurrenciesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -158,25 +152,15 @@ func (c *CurrencyService) CreateCurrencyShort(input *currency.CreateCurrencyPara
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) UpdateCurrencyShort(input *currency.UpdateCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CURRENCY [CREATE]'], 'authorization': []}]
+func (c *CurrencyService) CreateCurrencyShort(input *currency.CreateCurrencyParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CurrencyInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	ok, err := c.Client.Currency.UpdateCurrencyShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (c *CurrencyService) DeleteCurrencyShort(input *currency.DeleteCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := c.Client.Currency.DeleteCurrencyShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Currency.CreateCurrencyShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -184,25 +168,15 @@ func (c *CurrencyService) DeleteCurrencyShort(input *currency.DeleteCurrencyPara
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) GetCurrencyConfigShort(input *currency.GetCurrencyConfigParams) (*platformclientmodels.CurrencyConfig, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CURRENCY [UPDATE]'], 'authorization': []}]
+func (c *CurrencyService) UpdateCurrencyShort(input *currency.UpdateCurrencyParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CurrencyInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	ok, err := c.Client.Currency.GetCurrencyConfigShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (c *CurrencyService) GetCurrencySummaryShort(input *currency.GetCurrencySummaryParams) (*platformclientmodels.CurrencySummary, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := c.Client.Currency.GetCurrencySummaryShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Currency.UpdateCurrencyShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -210,6 +184,55 @@ func (c *CurrencyService) GetCurrencySummaryShort(input *currency.GetCurrencySum
 	return ok.GetPayload(), nil
 }
 
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CURRENCY [DELETE]'], 'authorization': []}]
+func (c *CurrencyService) DeleteCurrencyShort(input *currency.DeleteCurrencyParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CurrencyInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	ok, err := c.Client.Currency.DeleteCurrencyShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CURRENCY [READ]'], 'authorization': []}]
+func (c *CurrencyService) GetCurrencyConfigShort(input *currency.GetCurrencyConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CurrencyConfig, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	ok, err := c.Client.Currency.GetCurrencyConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CURRENCY [READ]'], 'authorization': []}]
+func (c *CurrencyService) GetCurrencySummaryShort(input *currency.GetCurrencySummaryParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CurrencySummary, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	ok, err := c.Client.Currency.GetCurrencySummaryShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// None
 func (c *CurrencyService) PublicListCurrenciesShort(input *currency.PublicListCurrenciesParams) ([]*platformclientmodels.CurrencyInfo, error) {
 	ok, err := c.Client.Currency.PublicListCurrenciesShort(input)
 	if err != nil {

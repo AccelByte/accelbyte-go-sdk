@@ -2,13 +2,17 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package ugc
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_download_count"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type PublicDownloadCountService struct {
 
 // Deprecated: Use AddDownloadCountShort instead
 func (p *PublicDownloadCountService) AddDownloadCount(input *public_download_count.AddDownloadCountParams) (*ugcclientmodels.ModelsAddDownloadCountResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := p.Client.PublicDownloadCount.AddDownloadCount(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := p.Client.PublicDownloadCount.AddDownloadCount(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -43,12 +47,15 @@ func (p *PublicDownloadCountService) AddDownloadCount(input *public_download_cou
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicDownloadCountService) AddDownloadCountShort(input *public_download_count.AddDownloadCountParams) (*ugcclientmodels.ModelsAddDownloadCountResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (p *PublicDownloadCountService) AddDownloadCountShort(input *public_download_count.AddDownloadCountParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsAddDownloadCountResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	ok, err := p.Client.PublicDownloadCount.AddDownloadCountShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := p.Client.PublicDownloadCount.AddDownloadCountShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

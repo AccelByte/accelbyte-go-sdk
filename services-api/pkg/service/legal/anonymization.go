@@ -2,12 +2,16 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package legal
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/anonymization"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -18,11 +22,11 @@ type AnonymizationService struct {
 
 // Deprecated: Use AnonymizeUserAgreementShort instead
 func (a *AnonymizationService) AnonymizeUserAgreement(input *anonymization.AnonymizeUserAgreementParams) error {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, notFound, err := a.Client.Anonymization.AnonymizeUserAgreement(input, client.BearerToken(*accessToken.AccessToken))
+	_, notFound, err := a.Client.Anonymization.AnonymizeUserAgreement(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return notFound
 	}
@@ -33,12 +37,15 @@ func (a *AnonymizationService) AnonymizeUserAgreement(input *anonymization.Anony
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizeUserAgreementShort(input *anonymization.AnonymizeUserAgreementParams) error {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [DELETE]'], 'authorization': []}]
+func (a *AnonymizationService) AnonymizeUserAgreementShort(input *anonymization.AnonymizeUserAgreementParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	_, err = a.Client.Anonymization.AnonymizeUserAgreementShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := a.Client.Anonymization.AnonymizeUserAgreementShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

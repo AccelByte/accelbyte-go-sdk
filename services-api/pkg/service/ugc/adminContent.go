@@ -2,13 +2,17 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package ugc
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_content"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type AdminContentService struct {
 
 // Deprecated: Use AdminUploadContentDirectShort instead
 func (a *AdminContentService) AdminUploadContentDirect(input *admin_content.AdminUploadContentDirectParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, internalServerError, err := a.Client.AdminContent.AdminUploadContentDirect(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, internalServerError, err := a.Client.AdminContent.AdminUploadContentDirect(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -42,11 +46,11 @@ func (a *AdminContentService) AdminUploadContentDirect(input *admin_content.Admi
 
 // Deprecated: Use AdminUploadContentS3Short instead
 func (a *AdminContentService) AdminUploadContentS3(input *admin_content.AdminUploadContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, internalServerError, err := a.Client.AdminContent.AdminUploadContentS3(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, internalServerError, err := a.Client.AdminContent.AdminUploadContentS3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -65,11 +69,11 @@ func (a *AdminContentService) AdminUploadContentS3(input *admin_content.AdminUpl
 
 // Deprecated: Use SingleAdminUpdateContentS3Short instead
 func (a *AdminContentService) SingleAdminUpdateContentS3(input *admin_content.SingleAdminUpdateContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.SingleAdminUpdateContentS3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.SingleAdminUpdateContentS3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -91,11 +95,11 @@ func (a *AdminContentService) SingleAdminUpdateContentS3(input *admin_content.Si
 
 // Deprecated: Use AdminSearchChannelSpecificContentShort instead
 func (a *AdminContentService) AdminSearchChannelSpecificContent(input *admin_content.AdminSearchChannelSpecificContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.AdminSearchChannelSpecificContent(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.AdminSearchChannelSpecificContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -114,11 +118,11 @@ func (a *AdminContentService) AdminSearchChannelSpecificContent(input *admin_con
 
 // Deprecated: Use SingleAdminUpdateContentDirectShort instead
 func (a *AdminContentService) SingleAdminUpdateContentDirect(input *admin_content.SingleAdminUpdateContentDirectParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.SingleAdminUpdateContentDirect(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.SingleAdminUpdateContentDirect(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -140,11 +144,11 @@ func (a *AdminContentService) SingleAdminUpdateContentDirect(input *admin_conten
 
 // Deprecated: Use SingleAdminDeleteContentShort instead
 func (a *AdminContentService) SingleAdminDeleteContent(input *admin_content.SingleAdminDeleteContentParams) error {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.SingleAdminDeleteContent(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.SingleAdminDeleteContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -163,11 +167,11 @@ func (a *AdminContentService) SingleAdminDeleteContent(input *admin_content.Sing
 
 // Deprecated: Use SingleAdminGetContentShort instead
 func (a *AdminContentService) SingleAdminGetContent(input *admin_content.SingleAdminGetContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.SingleAdminGetContent(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.SingleAdminGetContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -186,11 +190,11 @@ func (a *AdminContentService) SingleAdminGetContent(input *admin_content.SingleA
 
 // Deprecated: Use AdminSearchContentShort instead
 func (a *AdminContentService) AdminSearchContent(input *admin_content.AdminSearchContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.AdminSearchContent(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.AdminSearchContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -209,11 +213,11 @@ func (a *AdminContentService) AdminSearchContent(input *admin_content.AdminSearc
 
 // Deprecated: Use AdminGetSpecificContentShort instead
 func (a *AdminContentService) AdminGetSpecificContent(input *admin_content.AdminGetSpecificContentParams) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.AdminGetSpecificContent(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.AdminGetSpecificContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -232,11 +236,11 @@ func (a *AdminContentService) AdminGetSpecificContent(input *admin_content.Admin
 
 // Deprecated: Use AdminDownloadContentPreviewShort instead
 func (a *AdminContentService) AdminDownloadContentPreview(input *admin_content.AdminDownloadContentPreviewParams) (*ugcclientmodels.ModelsGetContentPreviewResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.AdminDownloadContentPreview(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.AdminDownloadContentPreview(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -255,11 +259,11 @@ func (a *AdminContentService) AdminDownloadContentPreview(input *admin_content.A
 
 // Deprecated: Use AdminUpdateScreenshotsShort instead
 func (a *AdminContentService) AdminUpdateScreenshots(input *admin_content.AdminUpdateScreenshotsParams) (*ugcclientmodels.ModelsUpdateScreenshotResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.AdminUpdateScreenshots(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.AdminUpdateScreenshots(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -281,11 +285,11 @@ func (a *AdminContentService) AdminUpdateScreenshots(input *admin_content.AdminU
 
 // Deprecated: Use AdminUploadContentScreenshotShort instead
 func (a *AdminContentService) AdminUploadContentScreenshot(input *admin_content.AdminUploadContentScreenshotParams) (*ugcclientmodels.ModelsCreateScreenshotResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.AdminUploadContentScreenshot(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.AdminUploadContentScreenshot(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -307,11 +311,11 @@ func (a *AdminContentService) AdminUploadContentScreenshot(input *admin_content.
 
 // Deprecated: Use AdminDeleteContentScreenshotShort instead
 func (a *AdminContentService) AdminDeleteContentScreenshot(input *admin_content.AdminDeleteContentScreenshotParams) error {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.AdminDeleteContentScreenshot(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.AdminDeleteContentScreenshot(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -333,11 +337,11 @@ func (a *AdminContentService) AdminDeleteContentScreenshot(input *admin_content.
 
 // Deprecated: Use AdminUpdateContentS3Short instead
 func (a *AdminContentService) AdminUpdateContentS3(input *admin_content.AdminUpdateContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.AdminUpdateContentS3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.AdminUpdateContentS3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -359,11 +363,11 @@ func (a *AdminContentService) AdminUpdateContentS3(input *admin_content.AdminUpd
 
 // Deprecated: Use AdminUpdateContentDirectShort instead
 func (a *AdminContentService) AdminUpdateContentDirect(input *admin_content.AdminUpdateContentDirectParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.AdminUpdateContentDirect(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.AdminUpdateContentDirect(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -385,11 +389,11 @@ func (a *AdminContentService) AdminUpdateContentDirect(input *admin_content.Admi
 
 // Deprecated: Use AdminDeleteContentShort instead
 func (a *AdminContentService) AdminDeleteContent(input *admin_content.AdminDeleteContentParams) error {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.AdminDeleteContent(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.AdminDeleteContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -408,11 +412,11 @@ func (a *AdminContentService) AdminDeleteContent(input *admin_content.AdminDelet
 
 // Deprecated: Use AdminGetContentShort instead
 func (a *AdminContentService) AdminGetContent(input *admin_content.AdminGetContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.AdminGetContent(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.AdminGetContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -431,11 +435,11 @@ func (a *AdminContentService) AdminGetContent(input *admin_content.AdminGetConte
 
 // Deprecated: Use AdminHideUserContentShort instead
 func (a *AdminContentService) AdminHideUserContent(input *admin_content.AdminHideUserContentParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.AdminHideUserContent(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminContent.AdminHideUserContent(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -452,25 +456,15 @@ func (a *AdminContentService) AdminHideUserContent(input *admin_content.AdminHid
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminContentService) AdminUploadContentDirectShort(input *admin_content.AdminUploadContentDirectParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]'], 'authorization': []}]
+func (a *AdminContentService) AdminUploadContentDirectShort(input *admin_content.AdminUploadContentDirectParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	created, err := a.Client.AdminContent.AdminUploadContentDirectShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return created.GetPayload(), nil
-}
-
-func (a *AdminContentService) AdminUploadContentS3Short(input *admin_content.AdminUploadContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	created, err := a.Client.AdminContent.AdminUploadContentS3Short(input, client.BearerToken(*accessToken.AccessToken))
+	created, err := a.Client.AdminContent.AdminUploadContentDirectShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -478,129 +472,15 @@ func (a *AdminContentService) AdminUploadContentS3Short(input *admin_content.Adm
 	return created.GetPayload(), nil
 }
 
-func (a *AdminContentService) SingleAdminUpdateContentS3Short(input *admin_content.SingleAdminUpdateContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]'], 'authorization': []}]
+func (a *AdminContentService) AdminUploadContentS3Short(input *admin_content.AdminUploadContentS3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	ok, err := a.Client.AdminContent.SingleAdminUpdateContentS3Short(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (a *AdminContentService) AdminSearchChannelSpecificContentShort(input *admin_content.AdminSearchChannelSpecificContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := a.Client.AdminContent.AdminSearchChannelSpecificContentShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (a *AdminContentService) SingleAdminUpdateContentDirectShort(input *admin_content.SingleAdminUpdateContentDirectParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := a.Client.AdminContent.SingleAdminUpdateContentDirectShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (a *AdminContentService) SingleAdminDeleteContentShort(input *admin_content.SingleAdminDeleteContentParams) error {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = a.Client.AdminContent.SingleAdminDeleteContentShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (a *AdminContentService) SingleAdminGetContentShort(input *admin_content.SingleAdminGetContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := a.Client.AdminContent.SingleAdminGetContentShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (a *AdminContentService) AdminSearchContentShort(input *admin_content.AdminSearchContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := a.Client.AdminContent.AdminSearchContentShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (a *AdminContentService) AdminGetSpecificContentShort(input *admin_content.AdminGetSpecificContentParams) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := a.Client.AdminContent.AdminGetSpecificContentShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (a *AdminContentService) AdminDownloadContentPreviewShort(input *admin_content.AdminDownloadContentPreviewParams) (*ugcclientmodels.ModelsGetContentPreviewResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := a.Client.AdminContent.AdminDownloadContentPreviewShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (a *AdminContentService) AdminUpdateScreenshotsShort(input *admin_content.AdminUpdateScreenshotsParams) (*ugcclientmodels.ModelsUpdateScreenshotResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := a.Client.AdminContent.AdminUpdateScreenshotsShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (a *AdminContentService) AdminUploadContentScreenshotShort(input *admin_content.AdminUploadContentScreenshotParams) (*ugcclientmodels.ModelsCreateScreenshotResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	created, err := a.Client.AdminContent.AdminUploadContentScreenshotShort(input, client.BearerToken(*accessToken.AccessToken))
+	created, err := a.Client.AdminContent.AdminUploadContentS3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -608,12 +488,63 @@ func (a *AdminContentService) AdminUploadContentScreenshotShort(input *admin_con
 	return created.GetPayload(), nil
 }
 
-func (a *AdminContentService) AdminDeleteContentScreenshotShort(input *admin_content.AdminDeleteContentScreenshotParams) error {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]'], 'authorization': []}]
+func (a *AdminContentService) SingleAdminUpdateContentS3Short(input *admin_content.SingleAdminUpdateContentS3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	_, err = a.Client.AdminContent.AdminDeleteContentScreenshotShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := a.Client.AdminContent.SingleAdminUpdateContentS3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [CREATE]'], 'authorization': []}]
+func (a *AdminContentService) AdminSearchChannelSpecificContentShort(input *admin_content.AdminSearchChannelSpecificContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+	}
+	ok, err := a.Client.AdminContent.AdminSearchChannelSpecificContentShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]'], 'authorization': []}]
+func (a *AdminContentService) SingleAdminUpdateContentDirectShort(input *admin_content.SingleAdminUpdateContentDirectParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+	}
+	ok, err := a.Client.AdminContent.SingleAdminUpdateContentDirectShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]'], 'authorization': []}]
+func (a *AdminContentService) SingleAdminDeleteContentShort(input *admin_content.SingleAdminDeleteContentParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+	}
+	_, err := a.Client.AdminContent.SingleAdminDeleteContentShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -621,25 +552,15 @@ func (a *AdminContentService) AdminDeleteContentScreenshotShort(input *admin_con
 	return nil
 }
 
-func (a *AdminContentService) AdminUpdateContentS3Short(input *admin_content.AdminUpdateContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]'], 'authorization': []}]
+func (a *AdminContentService) SingleAdminGetContentShort(input *admin_content.SingleAdminGetContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	ok, err := a.Client.AdminContent.AdminUpdateContentS3Short(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (a *AdminContentService) AdminUpdateContentDirectShort(input *admin_content.AdminUpdateContentDirectParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := a.Client.AdminContent.AdminUpdateContentDirectShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := a.Client.AdminContent.SingleAdminGetContentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -647,12 +568,95 @@ func (a *AdminContentService) AdminUpdateContentDirectShort(input *admin_content
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminContentService) AdminDeleteContentShort(input *admin_content.AdminDeleteContentParams) error {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [CREATE]'], 'authorization': []}]
+func (a *AdminContentService) AdminSearchContentShort(input *admin_content.AdminSearchContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	_, err = a.Client.AdminContent.AdminDeleteContentShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := a.Client.AdminContent.AdminSearchContentShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]'], 'authorization': []}]
+func (a *AdminContentService) AdminGetSpecificContentShort(input *admin_content.AdminGetSpecificContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+	}
+	ok, err := a.Client.AdminContent.AdminGetSpecificContentShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]'], 'authorization': []}]
+func (a *AdminContentService) AdminDownloadContentPreviewShort(input *admin_content.AdminDownloadContentPreviewParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsGetContentPreviewResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+	}
+	ok, err := a.Client.AdminContent.AdminDownloadContentPreviewShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]'], 'authorization': []}]
+func (a *AdminContentService) AdminUpdateScreenshotsShort(input *admin_content.AdminUpdateScreenshotsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsUpdateScreenshotResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+	}
+	ok, err := a.Client.AdminContent.AdminUpdateScreenshotsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]'], 'authorization': []}]
+func (a *AdminContentService) AdminUploadContentScreenshotShort(input *admin_content.AdminUploadContentScreenshotParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateScreenshotResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+	}
+	created, err := a.Client.AdminContent.AdminUploadContentScreenshotShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return created.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]'], 'authorization': []}]
+func (a *AdminContentService) AdminDeleteContentScreenshotShort(input *admin_content.AdminDeleteContentScreenshotParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+	}
+	_, err := a.Client.AdminContent.AdminDeleteContentScreenshotShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -660,12 +664,15 @@ func (a *AdminContentService) AdminDeleteContentShort(input *admin_content.Admin
 	return nil
 }
 
-func (a *AdminContentService) AdminGetContentShort(input *admin_content.AdminGetContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]'], 'authorization': []}]
+func (a *AdminContentService) AdminUpdateContentS3Short(input *admin_content.AdminUpdateContentS3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	ok, err := a.Client.AdminContent.AdminGetContentShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := a.Client.AdminContent.AdminUpdateContentS3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -673,12 +680,63 @@ func (a *AdminContentService) AdminGetContentShort(input *admin_content.AdminGet
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminContentService) AdminHideUserContentShort(input *admin_content.AdminHideUserContentParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]'], 'authorization': []}]
+func (a *AdminContentService) AdminUpdateContentDirectShort(input *admin_content.AdminUpdateContentDirectParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+	}
+	ok, err := a.Client.AdminContent.AdminUpdateContentDirectShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	ok, err := a.Client.AdminContent.AdminHideUserContentShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]'], 'authorization': []}]
+func (a *AdminContentService) AdminDeleteContentShort(input *admin_content.AdminDeleteContentParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+	}
+	_, err := a.Client.AdminContent.AdminDeleteContentShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]'], 'authorization': []}]
+func (a *AdminContentService) AdminGetContentShort(input *admin_content.AdminGetContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+	}
+	ok, err := a.Client.AdminContent.AdminGetContentShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]'], 'authorization': []}]
+func (a *AdminContentService) AdminHideUserContentShort(input *admin_content.AdminHideUserContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+	}
+	ok, err := a.Client.AdminContent.AdminHideUserContentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

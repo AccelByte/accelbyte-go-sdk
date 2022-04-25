@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package eventlog
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/event_descriptions"
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type EventDescriptionsService struct {
 
 // Deprecated: Use AgentTypeDescriptionHandlerShort instead
 func (e *EventDescriptionsService) AgentTypeDescriptionHandler(input *event_descriptions.AgentTypeDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleAgentType, error) {
-	accessToken, err := e.TokenRepository.GetToken()
+	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := e.Client.EventDescriptions.AgentTypeDescriptionHandler(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := e.Client.EventDescriptions.AgentTypeDescriptionHandler(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -33,11 +37,11 @@ func (e *EventDescriptionsService) AgentTypeDescriptionHandler(input *event_desc
 
 // Deprecated: Use SpecificAgentTypeDescriptionHandlerShort instead
 func (e *EventDescriptionsService) SpecificAgentTypeDescriptionHandler(input *event_descriptions.SpecificAgentTypeDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleAgentType, error) {
-	accessToken, err := e.TokenRepository.GetToken()
+	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := e.Client.EventDescriptions.SpecificAgentTypeDescriptionHandler(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, err := e.Client.EventDescriptions.SpecificAgentTypeDescriptionHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -53,11 +57,11 @@ func (e *EventDescriptionsService) SpecificAgentTypeDescriptionHandler(input *ev
 
 // Deprecated: Use EventIDDescriptionHandlerShort instead
 func (e *EventDescriptionsService) EventIDDescriptionHandler(input *event_descriptions.EventIDDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleEventID, error) {
-	accessToken, err := e.TokenRepository.GetToken()
+	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := e.Client.EventDescriptions.EventIDDescriptionHandler(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := e.Client.EventDescriptions.EventIDDescriptionHandler(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -67,11 +71,11 @@ func (e *EventDescriptionsService) EventIDDescriptionHandler(input *event_descri
 
 // Deprecated: Use SpecificEventIDDescriptionHandlerShort instead
 func (e *EventDescriptionsService) SpecificEventIDDescriptionHandler(input *event_descriptions.SpecificEventIDDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleEventID, error) {
-	accessToken, err := e.TokenRepository.GetToken()
+	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := e.Client.EventDescriptions.SpecificEventIDDescriptionHandler(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, err := e.Client.EventDescriptions.SpecificEventIDDescriptionHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -87,11 +91,11 @@ func (e *EventDescriptionsService) SpecificEventIDDescriptionHandler(input *even
 
 // Deprecated: Use EventLevelDescriptionHandlerShort instead
 func (e *EventDescriptionsService) EventLevelDescriptionHandler(input *event_descriptions.EventLevelDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleEventLevel, error) {
-	accessToken, err := e.TokenRepository.GetToken()
+	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := e.Client.EventDescriptions.EventLevelDescriptionHandler(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := e.Client.EventDescriptions.EventLevelDescriptionHandler(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -101,11 +105,11 @@ func (e *EventDescriptionsService) EventLevelDescriptionHandler(input *event_des
 
 // Deprecated: Use SpecificEventLevelDescriptionHandlerShort instead
 func (e *EventDescriptionsService) SpecificEventLevelDescriptionHandler(input *event_descriptions.SpecificEventLevelDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleEventLevel, error) {
-	accessToken, err := e.TokenRepository.GetToken()
+	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := e.Client.EventDescriptions.SpecificEventLevelDescriptionHandler(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, err := e.Client.EventDescriptions.SpecificEventLevelDescriptionHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -121,11 +125,11 @@ func (e *EventDescriptionsService) SpecificEventLevelDescriptionHandler(input *e
 
 // Deprecated: Use EventTypeDescriptionHandlerShort instead
 func (e *EventDescriptionsService) EventTypeDescriptionHandler(input *event_descriptions.EventTypeDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleEventType, error) {
-	accessToken, err := e.TokenRepository.GetToken()
+	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := e.Client.EventDescriptions.EventTypeDescriptionHandler(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := e.Client.EventDescriptions.EventTypeDescriptionHandler(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -135,11 +139,11 @@ func (e *EventDescriptionsService) EventTypeDescriptionHandler(input *event_desc
 
 // Deprecated: Use SpecificEventTypeDescriptionHandlerShort instead
 func (e *EventDescriptionsService) SpecificEventTypeDescriptionHandler(input *event_descriptions.SpecificEventTypeDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleEventType, error) {
-	accessToken, err := e.TokenRepository.GetToken()
+	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := e.Client.EventDescriptions.SpecificEventTypeDescriptionHandler(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, err := e.Client.EventDescriptions.SpecificEventTypeDescriptionHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -155,11 +159,11 @@ func (e *EventDescriptionsService) SpecificEventTypeDescriptionHandler(input *ev
 
 // Deprecated: Use UXNameDescriptionHandlerShort instead
 func (e *EventDescriptionsService) UXNameDescriptionHandler(input *event_descriptions.UXNameDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleUX, error) {
-	accessToken, err := e.TokenRepository.GetToken()
+	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := e.Client.EventDescriptions.UXNameDescriptionHandler(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := e.Client.EventDescriptions.UXNameDescriptionHandler(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -169,11 +173,11 @@ func (e *EventDescriptionsService) UXNameDescriptionHandler(input *event_descrip
 
 // Deprecated: Use SpecificUXDescriptionHandlerShort instead
 func (e *EventDescriptionsService) SpecificUXDescriptionHandler(input *event_descriptions.SpecificUXDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleUX, error) {
-	accessToken, err := e.TokenRepository.GetToken()
+	token, err := e.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := e.Client.EventDescriptions.SpecificUXDescriptionHandler(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, err := e.Client.EventDescriptions.SpecificUXDescriptionHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -187,25 +191,15 @@ func (e *EventDescriptionsService) SpecificUXDescriptionHandler(input *event_des
 	return ok.GetPayload(), nil
 }
 
-func (e *EventDescriptionsService) AgentTypeDescriptionHandlerShort(input *event_descriptions.AgentTypeDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleAgentType, error) {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (e *EventDescriptionsService) AgentTypeDescriptionHandlerShort(input *event_descriptions.AgentTypeDescriptionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsMultipleAgentType, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
-	ok, err := e.Client.EventDescriptions.AgentTypeDescriptionHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (e *EventDescriptionsService) SpecificAgentTypeDescriptionHandlerShort(input *event_descriptions.SpecificAgentTypeDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleAgentType, error) {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := e.Client.EventDescriptions.SpecificAgentTypeDescriptionHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := e.Client.EventDescriptions.AgentTypeDescriptionHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -213,25 +207,15 @@ func (e *EventDescriptionsService) SpecificAgentTypeDescriptionHandlerShort(inpu
 	return ok.GetPayload(), nil
 }
 
-func (e *EventDescriptionsService) EventIDDescriptionHandlerShort(input *event_descriptions.EventIDDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleEventID, error) {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (e *EventDescriptionsService) SpecificAgentTypeDescriptionHandlerShort(input *event_descriptions.SpecificAgentTypeDescriptionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsMultipleAgentType, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
-	ok, err := e.Client.EventDescriptions.EventIDDescriptionHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (e *EventDescriptionsService) SpecificEventIDDescriptionHandlerShort(input *event_descriptions.SpecificEventIDDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleEventID, error) {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := e.Client.EventDescriptions.SpecificEventIDDescriptionHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := e.Client.EventDescriptions.SpecificAgentTypeDescriptionHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -239,25 +223,15 @@ func (e *EventDescriptionsService) SpecificEventIDDescriptionHandlerShort(input 
 	return ok.GetPayload(), nil
 }
 
-func (e *EventDescriptionsService) EventLevelDescriptionHandlerShort(input *event_descriptions.EventLevelDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleEventLevel, error) {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (e *EventDescriptionsService) EventIDDescriptionHandlerShort(input *event_descriptions.EventIDDescriptionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsMultipleEventID, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
-	ok, err := e.Client.EventDescriptions.EventLevelDescriptionHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (e *EventDescriptionsService) SpecificEventLevelDescriptionHandlerShort(input *event_descriptions.SpecificEventLevelDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleEventLevel, error) {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := e.Client.EventDescriptions.SpecificEventLevelDescriptionHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := e.Client.EventDescriptions.EventIDDescriptionHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -265,25 +239,15 @@ func (e *EventDescriptionsService) SpecificEventLevelDescriptionHandlerShort(inp
 	return ok.GetPayload(), nil
 }
 
-func (e *EventDescriptionsService) EventTypeDescriptionHandlerShort(input *event_descriptions.EventTypeDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleEventType, error) {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (e *EventDescriptionsService) SpecificEventIDDescriptionHandlerShort(input *event_descriptions.SpecificEventIDDescriptionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsMultipleEventID, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
-	ok, err := e.Client.EventDescriptions.EventTypeDescriptionHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (e *EventDescriptionsService) SpecificEventTypeDescriptionHandlerShort(input *event_descriptions.SpecificEventTypeDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleEventType, error) {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := e.Client.EventDescriptions.SpecificEventTypeDescriptionHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := e.Client.EventDescriptions.SpecificEventIDDescriptionHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -291,12 +255,15 @@ func (e *EventDescriptionsService) SpecificEventTypeDescriptionHandlerShort(inpu
 	return ok.GetPayload(), nil
 }
 
-func (e *EventDescriptionsService) UXNameDescriptionHandlerShort(input *event_descriptions.UXNameDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleUX, error) {
-	accessToken, err := e.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (e *EventDescriptionsService) EventLevelDescriptionHandlerShort(input *event_descriptions.EventLevelDescriptionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsMultipleEventLevel, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
 	}
-	ok, err := e.Client.EventDescriptions.UXNameDescriptionHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := e.Client.EventDescriptions.EventLevelDescriptionHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -304,12 +271,79 @@ func (e *EventDescriptionsService) UXNameDescriptionHandlerShort(input *event_de
 	return ok.GetPayload(), nil
 }
 
-func (e *EventDescriptionsService) SpecificUXDescriptionHandlerShort(input *event_descriptions.SpecificUXDescriptionHandlerParams) (*eventlogclientmodels.ModelsMultipleUX, error) {
-	accessToken, err := e.TokenRepository.GetToken()
+// [{'authorization': []}]
+func (e *EventDescriptionsService) SpecificEventLevelDescriptionHandlerShort(input *event_descriptions.SpecificEventLevelDescriptionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsMultipleEventLevel, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+	}
+	ok, err := e.Client.EventDescriptions.SpecificEventLevelDescriptionHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	ok, err := e.Client.EventDescriptions.SpecificUXDescriptionHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (e *EventDescriptionsService) EventTypeDescriptionHandlerShort(input *event_descriptions.EventTypeDescriptionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsMultipleEventType, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+	}
+	ok, err := e.Client.EventDescriptions.EventTypeDescriptionHandlerShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (e *EventDescriptionsService) SpecificEventTypeDescriptionHandlerShort(input *event_descriptions.SpecificEventTypeDescriptionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsMultipleEventType, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+	}
+	ok, err := e.Client.EventDescriptions.SpecificEventTypeDescriptionHandlerShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (e *EventDescriptionsService) UXNameDescriptionHandlerShort(input *event_descriptions.UXNameDescriptionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsMultipleUX, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+	}
+	ok, err := e.Client.EventDescriptions.UXNameDescriptionHandlerShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (e *EventDescriptionsService) SpecificUXDescriptionHandlerShort(input *event_descriptions.SpecificUXDescriptionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsMultipleUX, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(e.TokenRepository, nil, security, "")
+	}
+	ok, err := e.Client.EventDescriptions.SpecificUXDescriptionHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

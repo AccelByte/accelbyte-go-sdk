@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package platform
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/ticket"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type TicketService struct {
 
 // Deprecated: Use GetTicketDynamicShort instead
 func (t *TicketService) GetTicketDynamic(input *ticket.GetTicketDynamicParams) (*platformclientmodels.TicketDynamicInfo, error) {
-	accessToken, err := t.TokenRepository.GetToken()
+	token, err := t.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := t.Client.Ticket.GetTicketDynamic(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, err := t.Client.Ticket.GetTicketDynamic(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -36,11 +40,11 @@ func (t *TicketService) GetTicketDynamic(input *ticket.GetTicketDynamicParams) (
 
 // Deprecated: Use DecreaseTicketSaleShort instead
 func (t *TicketService) DecreaseTicketSale(input *ticket.DecreaseTicketSaleParams) error {
-	accessToken, err := t.TokenRepository.GetToken()
+	token, err := t.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, notFound, unprocessableEntity, err := t.Client.Ticket.DecreaseTicketSale(input, client.BearerToken(*accessToken.AccessToken))
+	_, notFound, unprocessableEntity, err := t.Client.Ticket.DecreaseTicketSale(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return notFound
 	}
@@ -56,11 +60,11 @@ func (t *TicketService) DecreaseTicketSale(input *ticket.DecreaseTicketSaleParam
 
 // Deprecated: Use GetTicketBoothIDShort instead
 func (t *TicketService) GetTicketBoothID(input *ticket.GetTicketBoothIDParams) (*platformclientmodels.TicketBoothID, error) {
-	accessToken, err := t.TokenRepository.GetToken()
+	token, err := t.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := t.Client.Ticket.GetTicketBoothID(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, err := t.Client.Ticket.GetTicketBoothID(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -73,11 +77,11 @@ func (t *TicketService) GetTicketBoothID(input *ticket.GetTicketBoothIDParams) (
 
 // Deprecated: Use IncreaseTicketSaleShort instead
 func (t *TicketService) IncreaseTicketSale(input *ticket.IncreaseTicketSaleParams) (*platformclientmodels.TicketSaleIncrementResult, error) {
-	accessToken, err := t.TokenRepository.GetToken()
+	token, err := t.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, unprocessableEntity, err := t.Client.Ticket.IncreaseTicketSale(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, unprocessableEntity, err := t.Client.Ticket.IncreaseTicketSale(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -93,11 +97,11 @@ func (t *TicketService) IncreaseTicketSale(input *ticket.IncreaseTicketSaleParam
 
 // Deprecated: Use AcquireUserTicketShort instead
 func (t *TicketService) AcquireUserTicket(input *ticket.AcquireUserTicketParams) (*platformclientmodels.TicketAcquireResult, error) {
-	accessToken, err := t.TokenRepository.GetToken()
+	token, err := t.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, conflict, unprocessableEntity, err := t.Client.Ticket.AcquireUserTicket(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, conflict, unprocessableEntity, err := t.Client.Ticket.AcquireUserTicket(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -114,12 +118,15 @@ func (t *TicketService) AcquireUserTicket(input *ticket.AcquireUserTicketParams)
 	return ok.GetPayload(), nil
 }
 
-func (t *TicketService) GetTicketDynamicShort(input *ticket.GetTicketDynamicParams) (*platformclientmodels.TicketDynamicInfo, error) {
-	accessToken, err := t.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:TICKET [READ]'], 'authorization': []}]
+func (t *TicketService) GetTicketDynamicShort(input *ticket.GetTicketDynamicParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TicketDynamicInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
-	ok, err := t.Client.Ticket.GetTicketDynamicShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := t.Client.Ticket.GetTicketDynamicShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -127,12 +134,15 @@ func (t *TicketService) GetTicketDynamicShort(input *ticket.GetTicketDynamicPara
 	return ok.GetPayload(), nil
 }
 
-func (t *TicketService) DecreaseTicketSaleShort(input *ticket.DecreaseTicketSaleParams) error {
-	accessToken, err := t.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:TICKET [UPDATE]'], 'authorization': []}]
+func (t *TicketService) DecreaseTicketSaleShort(input *ticket.DecreaseTicketSaleParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
-	_, err = t.Client.Ticket.DecreaseTicketSaleShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := t.Client.Ticket.DecreaseTicketSaleShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -140,25 +150,15 @@ func (t *TicketService) DecreaseTicketSaleShort(input *ticket.DecreaseTicketSale
 	return nil
 }
 
-func (t *TicketService) GetTicketBoothIDShort(input *ticket.GetTicketBoothIDParams) (*platformclientmodels.TicketBoothID, error) {
-	accessToken, err := t.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:TICKET [READ]'], 'authorization': []}]
+func (t *TicketService) GetTicketBoothIDShort(input *ticket.GetTicketBoothIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TicketBoothID, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
-	ok, err := t.Client.Ticket.GetTicketBoothIDShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (t *TicketService) IncreaseTicketSaleShort(input *ticket.IncreaseTicketSaleParams) (*platformclientmodels.TicketSaleIncrementResult, error) {
-	accessToken, err := t.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := t.Client.Ticket.IncreaseTicketSaleShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := t.Client.Ticket.GetTicketBoothIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -166,12 +166,31 @@ func (t *TicketService) IncreaseTicketSaleShort(input *ticket.IncreaseTicketSale
 	return ok.GetPayload(), nil
 }
 
-func (t *TicketService) AcquireUserTicketShort(input *ticket.AcquireUserTicketParams) (*platformclientmodels.TicketAcquireResult, error) {
-	accessToken, err := t.TokenRepository.GetToken()
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:TICKET [UPDATE]'], 'authorization': []}]
+func (t *TicketService) IncreaseTicketSaleShort(input *ticket.IncreaseTicketSaleParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TicketSaleIncrementResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+	}
+	ok, err := t.Client.Ticket.IncreaseTicketSaleShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	ok, err := t.Client.Ticket.AcquireUserTicketShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:TICKET [CREATE]'], 'authorization': []}]
+func (t *TicketService) AcquireUserTicketShort(input *ticket.AcquireUserTicketParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TicketAcquireResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+	}
+	ok, err := t.Client.Ticket.AcquireUserTicketShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

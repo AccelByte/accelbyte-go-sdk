@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package dsmc
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/image_config"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type ImageConfigService struct {
 
 // Deprecated: Use UpdateImageShort instead
 func (i *ImageConfigService) UpdateImage(input *image_config.UpdateImageParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, internalServerError, err := i.Client.ImageConfig.UpdateImage(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, internalServerError, err := i.Client.ImageConfig.UpdateImage(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -42,11 +46,11 @@ func (i *ImageConfigService) UpdateImage(input *image_config.UpdateImageParams) 
 
 // Deprecated: Use CreateImageShort instead
 func (i *ImageConfigService) CreateImage(input *image_config.CreateImageParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, conflict, internalServerError, err := i.Client.ImageConfig.CreateImage(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, conflict, internalServerError, err := i.Client.ImageConfig.CreateImage(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -68,11 +72,11 @@ func (i *ImageConfigService) CreateImage(input *image_config.CreateImageParams) 
 
 // Deprecated: Use ImportImagesShort instead
 func (i *ImageConfigService) ImportImages(input *image_config.ImportImagesParams) (*dsmcclientmodels.ModelsImportResponse, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := i.Client.ImageConfig.ImportImages(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := i.Client.ImageConfig.ImportImages(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -94,11 +98,11 @@ func (i *ImageConfigService) ImportImages(input *image_config.ImportImagesParams
 
 // Deprecated: Use CreateImagePatchShort instead
 func (i *ImageConfigService) CreateImagePatch(input *image_config.CreateImagePatchParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, conflict, internalServerError, err := i.Client.ImageConfig.CreateImagePatch(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, conflict, internalServerError, err := i.Client.ImageConfig.CreateImagePatch(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -120,11 +124,11 @@ func (i *ImageConfigService) CreateImagePatch(input *image_config.CreateImagePat
 
 // Deprecated: Use ListImagesShort instead
 func (i *ImageConfigService) ListImages(input *image_config.ListImagesParams) (*dsmcclientmodels.ModelsListImageResponse, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, internalServerError, err := i.Client.ImageConfig.ListImages(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := i.Client.ImageConfig.ListImages(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -143,11 +147,11 @@ func (i *ImageConfigService) ListImages(input *image_config.ListImagesParams) (*
 
 // Deprecated: Use DeleteImageShort instead
 func (i *ImageConfigService) DeleteImage(input *image_config.DeleteImageParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, notFound, unprocessableEntity, internalServerError, err := i.Client.ImageConfig.DeleteImage(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, notFound, unprocessableEntity, internalServerError, err := i.Client.ImageConfig.DeleteImage(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -172,11 +176,11 @@ func (i *ImageConfigService) DeleteImage(input *image_config.DeleteImageParams) 
 
 // Deprecated: Use ExportImagesShort instead
 func (i *ImageConfigService) ExportImages(input *image_config.ExportImagesParams) ([]*dsmcclientmodels.ModelsImageRecord, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := i.Client.ImageConfig.ExportImages(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := i.Client.ImageConfig.ExportImages(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -198,11 +202,11 @@ func (i *ImageConfigService) ExportImages(input *image_config.ExportImagesParams
 
 // Deprecated: Use GetImageLimitShort instead
 func (i *ImageConfigService) GetImageLimit(input *image_config.GetImageLimitParams) (*dsmcclientmodels.ModelsGetImageLimitResponse, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, internalServerError, err := i.Client.ImageConfig.GetImageLimit(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := i.Client.ImageConfig.GetImageLimit(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -221,11 +225,11 @@ func (i *ImageConfigService) GetImageLimit(input *image_config.GetImageLimitPara
 
 // Deprecated: Use DeleteImagePatchShort instead
 func (i *ImageConfigService) DeleteImagePatch(input *image_config.DeleteImagePatchParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, notFound, unprocessableEntity, internalServerError, err := i.Client.ImageConfig.DeleteImagePatch(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, notFound, unprocessableEntity, internalServerError, err := i.Client.ImageConfig.DeleteImagePatch(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -250,11 +254,11 @@ func (i *ImageConfigService) DeleteImagePatch(input *image_config.DeleteImagePat
 
 // Deprecated: Use GetImageDetailShort instead
 func (i *ImageConfigService) GetImageDetail(input *image_config.GetImageDetailParams) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := i.Client.ImageConfig.GetImageDetail(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := i.Client.ImageConfig.GetImageDetail(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -273,11 +277,11 @@ func (i *ImageConfigService) GetImageDetail(input *image_config.GetImageDetailPa
 
 // Deprecated: Use GetImagePatchesShort instead
 func (i *ImageConfigService) GetImagePatches(input *image_config.GetImagePatchesParams) (*dsmcclientmodels.ModelsListImagePatchesResponse, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := i.Client.ImageConfig.GetImagePatches(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, internalServerError, err := i.Client.ImageConfig.GetImagePatches(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -293,11 +297,11 @@ func (i *ImageConfigService) GetImagePatches(input *image_config.GetImagePatches
 
 // Deprecated: Use GetImagePatchDetailShort instead
 func (i *ImageConfigService) GetImagePatchDetail(input *image_config.GetImagePatchDetailParams) (*dsmcclientmodels.ModelsGetImagePatchDetailResponse, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := i.Client.ImageConfig.GetImagePatchDetail(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := i.Client.ImageConfig.GetImagePatchDetail(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -316,11 +320,11 @@ func (i *ImageConfigService) GetImagePatchDetail(input *image_config.GetImagePat
 
 // Deprecated: Use ImageDetailClientShort instead
 func (i *ImageConfigService) ImageDetailClient(input *image_config.ImageDetailClientParams) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := i.Client.ImageConfig.ImageDetailClient(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := i.Client.ImageConfig.ImageDetailClient(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -337,25 +341,15 @@ func (i *ImageConfigService) ImageDetailClient(input *image_config.ImageDetailCl
 	return ok.GetPayload(), nil
 }
 
-func (i *ImageConfigService) UpdateImageShort(input *image_config.UpdateImageParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (i *ImageConfigService) UpdateImageShort(input *image_config.UpdateImageParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	_, err = i.Client.ImageConfig.UpdateImageShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (i *ImageConfigService) CreateImageShort(input *image_config.CreateImageParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = i.Client.ImageConfig.CreateImageShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := i.Client.ImageConfig.UpdateImageShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -363,25 +357,15 @@ func (i *ImageConfigService) CreateImageShort(input *image_config.CreateImagePar
 	return nil
 }
 
-func (i *ImageConfigService) ImportImagesShort(input *image_config.ImportImagesParams) (*dsmcclientmodels.ModelsImportResponse, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (i *ImageConfigService) CreateImageShort(input *image_config.CreateImageParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	ok, err := i.Client.ImageConfig.ImportImagesShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (i *ImageConfigService) CreateImagePatchShort(input *image_config.CreateImagePatchParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = i.Client.ImageConfig.CreateImagePatchShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := i.Client.ImageConfig.CreateImageShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -389,38 +373,15 @@ func (i *ImageConfigService) CreateImagePatchShort(input *image_config.CreateIma
 	return nil
 }
 
-func (i *ImageConfigService) ListImagesShort(input *image_config.ListImagesParams) (*dsmcclientmodels.ModelsListImageResponse, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (i *ImageConfigService) ImportImagesShort(input *image_config.ImportImagesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsImportResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	ok, err := i.Client.ImageConfig.ListImagesShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (i *ImageConfigService) DeleteImageShort(input *image_config.DeleteImageParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = i.Client.ImageConfig.DeleteImageShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (i *ImageConfigService) ExportImagesShort(input *image_config.ExportImagesParams) ([]*dsmcclientmodels.ModelsImageRecord, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := i.Client.ImageConfig.ExportImagesShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.ImageConfig.ImportImagesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -428,25 +389,15 @@ func (i *ImageConfigService) ExportImagesShort(input *image_config.ExportImagesP
 	return ok.GetPayload(), nil
 }
 
-func (i *ImageConfigService) GetImageLimitShort(input *image_config.GetImageLimitParams) (*dsmcclientmodels.ModelsGetImageLimitResponse, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (i *ImageConfigService) CreateImagePatchShort(input *image_config.CreateImagePatchParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	ok, err := i.Client.ImageConfig.GetImageLimitShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (i *ImageConfigService) DeleteImagePatchShort(input *image_config.DeleteImagePatchParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = i.Client.ImageConfig.DeleteImagePatchShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := i.Client.ImageConfig.CreateImagePatchShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -454,25 +405,15 @@ func (i *ImageConfigService) DeleteImagePatchShort(input *image_config.DeleteIma
 	return nil
 }
 
-func (i *ImageConfigService) GetImageDetailShort(input *image_config.GetImageDetailParams) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (i *ImageConfigService) ListImagesShort(input *image_config.ListImagesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListImageResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	ok, err := i.Client.ImageConfig.GetImageDetailShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (i *ImageConfigService) GetImagePatchesShort(input *image_config.GetImagePatchesParams) (*dsmcclientmodels.ModelsListImagePatchesResponse, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := i.Client.ImageConfig.GetImagePatchesShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.ImageConfig.ListImagesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -480,12 +421,31 @@ func (i *ImageConfigService) GetImagePatchesShort(input *image_config.GetImagePa
 	return ok.GetPayload(), nil
 }
 
-func (i *ImageConfigService) GetImagePatchDetailShort(input *image_config.GetImagePatchDetailParams) (*dsmcclientmodels.ModelsGetImagePatchDetailResponse, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (i *ImageConfigService) DeleteImageShort(input *image_config.DeleteImageParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	ok, err := i.Client.ImageConfig.GetImagePatchDetailShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := i.Client.ImageConfig.DeleteImageShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (i *ImageConfigService) ExportImagesShort(input *image_config.ExportImagesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*dsmcclientmodels.ModelsImageRecord, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+	}
+	ok, err := i.Client.ImageConfig.ExportImagesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -493,12 +453,95 @@ func (i *ImageConfigService) GetImagePatchDetailShort(input *image_config.GetIma
 	return ok.GetPayload(), nil
 }
 
-func (i *ImageConfigService) ImageDetailClientShort(input *image_config.ImageDetailClientParams) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (i *ImageConfigService) GetImageLimitShort(input *image_config.GetImageLimitParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsGetImageLimitResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+	}
+	ok, err := i.Client.ImageConfig.GetImageLimitShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	ok, err := i.Client.ImageConfig.ImageDetailClientShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (i *ImageConfigService) DeleteImagePatchShort(input *image_config.DeleteImagePatchParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+	}
+	_, err := i.Client.ImageConfig.DeleteImagePatchShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (i *ImageConfigService) GetImageDetailShort(input *image_config.GetImageDetailParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+	}
+	ok, err := i.Client.ImageConfig.GetImageDetailShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (i *ImageConfigService) GetImagePatchesShort(input *image_config.GetImagePatchesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListImagePatchesResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+	}
+	ok, err := i.Client.ImageConfig.GetImagePatchesShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (i *ImageConfigService) GetImagePatchDetailShort(input *image_config.GetImagePatchDetailParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsGetImagePatchDetailResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+	}
+	ok, err := i.Client.ImageConfig.GetImagePatchDetailShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (i *ImageConfigService) ImageDetailClientShort(input *image_config.ImageDetailClientParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+	}
+	ok, err := i.Client.ImageConfig.ImageDetailClientShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

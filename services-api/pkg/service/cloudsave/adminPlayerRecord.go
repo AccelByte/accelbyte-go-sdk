@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package cloudsave
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_player_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type AdminPlayerRecordService struct {
 
 // Deprecated: Use ListPlayerRecordHandlerV1Short instead
 func (a *AdminPlayerRecordService) ListPlayerRecordHandlerV1(input *admin_player_record.ListPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, internalServerError, err := a.Client.AdminPlayerRecord.ListPlayerRecordHandlerV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := a.Client.AdminPlayerRecord.ListPlayerRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -42,11 +46,11 @@ func (a *AdminPlayerRecordService) ListPlayerRecordHandlerV1(input *admin_player
 
 // Deprecated: Use AdminRetrievePlayerRecordsShort instead
 func (a *AdminPlayerRecordService) AdminRetrievePlayerRecords(input *admin_player_record.AdminRetrievePlayerRecordsParams) (*cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, internalServerError, err := a.Client.AdminPlayerRecord.AdminRetrievePlayerRecords(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := a.Client.AdminPlayerRecord.AdminRetrievePlayerRecords(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -65,11 +69,11 @@ func (a *AdminPlayerRecordService) AdminRetrievePlayerRecords(input *admin_playe
 
 // Deprecated: Use AdminGetPlayerRecordHandlerV1Short instead
 func (a *AdminPlayerRecordService) AdminGetPlayerRecordHandlerV1(input *admin_player_record.AdminGetPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminPlayerRecord.AdminGetPlayerRecordHandlerV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminPlayerRecord.AdminGetPlayerRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -88,11 +92,11 @@ func (a *AdminPlayerRecordService) AdminGetPlayerRecordHandlerV1(input *admin_pl
 
 // Deprecated: Use AdminPutPlayerRecordHandlerV1Short instead
 func (a *AdminPlayerRecordService) AdminPutPlayerRecordHandlerV1(input *admin_player_record.AdminPutPlayerRecordHandlerV1Params) error {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, internalServerError, err := a.Client.AdminPlayerRecord.AdminPutPlayerRecordHandlerV1(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, internalServerError, err := a.Client.AdminPlayerRecord.AdminPutPlayerRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -108,11 +112,11 @@ func (a *AdminPlayerRecordService) AdminPutPlayerRecordHandlerV1(input *admin_pl
 
 // Deprecated: Use AdminPostPlayerRecordHandlerV1Short instead
 func (a *AdminPlayerRecordService) AdminPostPlayerRecordHandlerV1(input *admin_player_record.AdminPostPlayerRecordHandlerV1Params) error {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, internalServerError, err := a.Client.AdminPlayerRecord.AdminPostPlayerRecordHandlerV1(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, internalServerError, err := a.Client.AdminPlayerRecord.AdminPostPlayerRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -128,11 +132,11 @@ func (a *AdminPlayerRecordService) AdminPostPlayerRecordHandlerV1(input *admin_p
 
 // Deprecated: Use AdminDeletePlayerRecordHandlerV1Short instead
 func (a *AdminPlayerRecordService) AdminDeletePlayerRecordHandlerV1(input *admin_player_record.AdminDeletePlayerRecordHandlerV1Params) error {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, internalServerError, err := a.Client.AdminPlayerRecord.AdminDeletePlayerRecordHandlerV1(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, internalServerError, err := a.Client.AdminPlayerRecord.AdminDeletePlayerRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -148,11 +152,11 @@ func (a *AdminPlayerRecordService) AdminDeletePlayerRecordHandlerV1(input *admin
 
 // Deprecated: Use AdminGetPlayerPublicRecordHandlerV1Short instead
 func (a *AdminPlayerRecordService) AdminGetPlayerPublicRecordHandlerV1(input *admin_player_record.AdminGetPlayerPublicRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminPlayerRecord.AdminGetPlayerPublicRecordHandlerV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminPlayerRecord.AdminGetPlayerPublicRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -171,11 +175,11 @@ func (a *AdminPlayerRecordService) AdminGetPlayerPublicRecordHandlerV1(input *ad
 
 // Deprecated: Use AdminPutPlayerPublicRecordHandlerV1Short instead
 func (a *AdminPlayerRecordService) AdminPutPlayerPublicRecordHandlerV1(input *admin_player_record.AdminPutPlayerPublicRecordHandlerV1Params) error {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, internalServerError, err := a.Client.AdminPlayerRecord.AdminPutPlayerPublicRecordHandlerV1(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, internalServerError, err := a.Client.AdminPlayerRecord.AdminPutPlayerPublicRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -194,11 +198,11 @@ func (a *AdminPlayerRecordService) AdminPutPlayerPublicRecordHandlerV1(input *ad
 
 // Deprecated: Use AdminPostPlayerPublicRecordHandlerV1Short instead
 func (a *AdminPlayerRecordService) AdminPostPlayerPublicRecordHandlerV1(input *admin_player_record.AdminPostPlayerPublicRecordHandlerV1Params) error {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, internalServerError, err := a.Client.AdminPlayerRecord.AdminPostPlayerPublicRecordHandlerV1(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, internalServerError, err := a.Client.AdminPlayerRecord.AdminPostPlayerPublicRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -217,11 +221,11 @@ func (a *AdminPlayerRecordService) AdminPostPlayerPublicRecordHandlerV1(input *a
 
 // Deprecated: Use AdminDeletePlayerPublicRecordHandlerV1Short instead
 func (a *AdminPlayerRecordService) AdminDeletePlayerPublicRecordHandlerV1(input *admin_player_record.AdminDeletePlayerPublicRecordHandlerV1Params) error {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, notFound, internalServerError, err := a.Client.AdminPlayerRecord.AdminDeletePlayerPublicRecordHandlerV1(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := a.Client.AdminPlayerRecord.AdminDeletePlayerPublicRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -238,25 +242,15 @@ func (a *AdminPlayerRecordService) AdminDeletePlayerPublicRecordHandlerV1(input 
 	return nil
 }
 
-func (a *AdminPlayerRecordService) ListPlayerRecordHandlerV1Short(input *admin_player_record.ListPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminPlayerRecordService) ListPlayerRecordHandlerV1Short(input *admin_player_record.ListPlayerRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	ok, err := a.Client.AdminPlayerRecord.ListPlayerRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (a *AdminPlayerRecordService) AdminRetrievePlayerRecordsShort(input *admin_player_record.AdminRetrievePlayerRecordsParams) (*cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := a.Client.AdminPlayerRecord.AdminRetrievePlayerRecordsShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := a.Client.AdminPlayerRecord.ListPlayerRecordHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -264,64 +258,15 @@ func (a *AdminPlayerRecordService) AdminRetrievePlayerRecordsShort(input *admin_
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminPlayerRecordService) AdminGetPlayerRecordHandlerV1Short(input *admin_player_record.AdminGetPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:RECORD [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminPlayerRecordService) AdminRetrievePlayerRecordsShort(input *admin_player_record.AdminRetrievePlayerRecordsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	ok, err := a.Client.AdminPlayerRecord.AdminGetPlayerRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (a *AdminPlayerRecordService) AdminPutPlayerRecordHandlerV1Short(input *admin_player_record.AdminPutPlayerRecordHandlerV1Params) error {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = a.Client.AdminPlayerRecord.AdminPutPlayerRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (a *AdminPlayerRecordService) AdminPostPlayerRecordHandlerV1Short(input *admin_player_record.AdminPostPlayerRecordHandlerV1Params) error {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = a.Client.AdminPlayerRecord.AdminPostPlayerRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (a *AdminPlayerRecordService) AdminDeletePlayerRecordHandlerV1Short(input *admin_player_record.AdminDeletePlayerRecordHandlerV1Params) error {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = a.Client.AdminPlayerRecord.AdminDeletePlayerRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (a *AdminPlayerRecordService) AdminGetPlayerPublicRecordHandlerV1Short(input *admin_player_record.AdminGetPlayerPublicRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := a.Client.AdminPlayerRecord.AdminGetPlayerPublicRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := a.Client.AdminPlayerRecord.AdminRetrievePlayerRecordsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -329,12 +274,31 @@ func (a *AdminPlayerRecordService) AdminGetPlayerPublicRecordHandlerV1Short(inpu
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminPlayerRecordService) AdminPutPlayerPublicRecordHandlerV1Short(input *admin_player_record.AdminPutPlayerPublicRecordHandlerV1Params) error {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminPlayerRecordService) AdminGetPlayerRecordHandlerV1Short(input *admin_player_record.AdminGetPlayerRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	_, err = a.Client.AdminPlayerRecord.AdminPutPlayerPublicRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := a.Client.AdminPlayerRecord.AdminGetPlayerRecordHandlerV1Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]', 'CLIENT []'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminPlayerRecordService) AdminPutPlayerRecordHandlerV1Short(input *admin_player_record.AdminPutPlayerRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+	}
+	_, err := a.Client.AdminPlayerRecord.AdminPutPlayerRecordHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -342,12 +306,15 @@ func (a *AdminPlayerRecordService) AdminPutPlayerPublicRecordHandlerV1Short(inpu
 	return nil
 }
 
-func (a *AdminPlayerRecordService) AdminPostPlayerPublicRecordHandlerV1Short(input *admin_player_record.AdminPostPlayerPublicRecordHandlerV1Params) error {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]', 'CLIENT []'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminPlayerRecordService) AdminPostPlayerRecordHandlerV1Short(input *admin_player_record.AdminPostPlayerRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	_, err = a.Client.AdminPlayerRecord.AdminPostPlayerPublicRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := a.Client.AdminPlayerRecord.AdminPostPlayerRecordHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -355,12 +322,79 @@ func (a *AdminPlayerRecordService) AdminPostPlayerPublicRecordHandlerV1Short(inp
 	return nil
 }
 
-func (a *AdminPlayerRecordService) AdminDeletePlayerPublicRecordHandlerV1Short(input *admin_player_record.AdminDeletePlayerPublicRecordHandlerV1Params) error {
-	accessToken, err := a.TokenRepository.GetToken()
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminPlayerRecordService) AdminDeletePlayerRecordHandlerV1Short(input *admin_player_record.AdminDeletePlayerRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+	}
+	_, err := a.Client.AdminPlayerRecord.AdminDeletePlayerRecordHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
-	_, err = a.Client.AdminPlayerRecord.AdminDeletePlayerPublicRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminPlayerRecordService) AdminGetPlayerPublicRecordHandlerV1Short(input *admin_player_record.AdminGetPlayerPublicRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+	}
+	ok, err := a.Client.AdminPlayerRecord.AdminGetPlayerPublicRecordHandlerV1Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminPlayerRecordService) AdminPutPlayerPublicRecordHandlerV1Short(input *admin_player_record.AdminPutPlayerPublicRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+	}
+	_, err := a.Client.AdminPlayerRecord.AdminPutPlayerPublicRecordHandlerV1Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminPlayerRecordService) AdminPostPlayerPublicRecordHandlerV1Short(input *admin_player_record.AdminPostPlayerPublicRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+	}
+	_, err := a.Client.AdminPlayerRecord.AdminPostPlayerPublicRecordHandlerV1Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminPlayerRecordService) AdminDeletePlayerPublicRecordHandlerV1Short(input *admin_player_record.AdminDeletePlayerPublicRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+	}
+	_, err := a.Client.AdminPlayerRecord.AdminDeletePlayerPublicRecordHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

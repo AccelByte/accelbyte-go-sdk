@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package dslogmanager
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclient/all_terminated_servers"
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type AllTerminatedServersService struct {
 
 // Deprecated: Use BatchDownloadServerLogsShort instead
 func (a *AllTerminatedServersService) BatchDownloadServerLogs(input *all_terminated_servers.BatchDownloadServerLogsParams) error {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, internalServerError, err := a.Client.AllTerminatedServers.BatchDownloadServerLogs(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, internalServerError, err := a.Client.AllTerminatedServers.BatchDownloadServerLogs(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -39,11 +43,11 @@ func (a *AllTerminatedServersService) BatchDownloadServerLogs(input *all_termina
 
 // Deprecated: Use ListAllTerminatedServersShort instead
 func (a *AllTerminatedServersService) ListAllTerminatedServers(input *all_terminated_servers.ListAllTerminatedServersParams) (*dslogmanagerclientmodels.ModelsListTerminatedServersResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, internalServerError, err := a.Client.AllTerminatedServers.ListAllTerminatedServers(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := a.Client.AllTerminatedServers.ListAllTerminatedServers(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -60,12 +64,15 @@ func (a *AllTerminatedServersService) ListAllTerminatedServers(input *all_termin
 	return ok.GetPayload(), nil
 }
 
-func (a *AllTerminatedServersService) BatchDownloadServerLogsShort(input *all_terminated_servers.BatchDownloadServerLogsParams) error {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AllTerminatedServersService) BatchDownloadServerLogsShort(input *all_terminated_servers.BatchDownloadServerLogsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	_, err = a.Client.AllTerminatedServers.BatchDownloadServerLogsShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := a.Client.AllTerminatedServers.BatchDownloadServerLogsShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -73,12 +80,15 @@ func (a *AllTerminatedServersService) BatchDownloadServerLogsShort(input *all_te
 	return nil
 }
 
-func (a *AllTerminatedServersService) ListAllTerminatedServersShort(input *all_terminated_servers.ListAllTerminatedServersParams) (*dslogmanagerclientmodels.ModelsListTerminatedServersResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]'], 'authorization': []}]
+func (a *AllTerminatedServersService) ListAllTerminatedServersShort(input *all_terminated_servers.ListAllTerminatedServersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dslogmanagerclientmodels.ModelsListTerminatedServersResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	ok, err := a.Client.AllTerminatedServers.ListAllTerminatedServersShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := a.Client.AllTerminatedServers.ListAllTerminatedServersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package platform
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/i_a_p"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type IAPService struct {
 
 // Deprecated: Use GetAppleIAPConfigShort instead
 func (i *IAPService) GetAppleIAPConfig(input *i_a_p.GetAppleIAPConfigParams) (*platformclientmodels.AppleIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := i.Client.Iap.GetAppleIAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.GetAppleIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -33,11 +37,11 @@ func (i *IAPService) GetAppleIAPConfig(input *i_a_p.GetAppleIAPConfigParams) (*p
 
 // Deprecated: Use UpdateAppleIAPConfigShort instead
 func (i *IAPService) UpdateAppleIAPConfig(input *i_a_p.UpdateAppleIAPConfigParams) (*platformclientmodels.AppleIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := i.Client.Iap.UpdateAppleIAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.UpdateAppleIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -47,11 +51,11 @@ func (i *IAPService) UpdateAppleIAPConfig(input *i_a_p.UpdateAppleIAPConfigParam
 
 // Deprecated: Use DeleteAppleIAPConfigShort instead
 func (i *IAPService) DeleteAppleIAPConfig(input *i_a_p.DeleteAppleIAPConfigParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = i.Client.Iap.DeleteAppleIAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	_, err = i.Client.Iap.DeleteAppleIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -61,11 +65,11 @@ func (i *IAPService) DeleteAppleIAPConfig(input *i_a_p.DeleteAppleIAPConfigParam
 
 // Deprecated: Use GetEpicGamesIAPConfigShort instead
 func (i *IAPService) GetEpicGamesIAPConfig(input *i_a_p.GetEpicGamesIAPConfigParams) (*platformclientmodels.EpicGamesIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := i.Client.Iap.GetEpicGamesIAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, err := i.Client.Iap.GetEpicGamesIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -78,11 +82,11 @@ func (i *IAPService) GetEpicGamesIAPConfig(input *i_a_p.GetEpicGamesIAPConfigPar
 
 // Deprecated: Use UpdateEpicGamesIAPConfigShort instead
 func (i *IAPService) UpdateEpicGamesIAPConfig(input *i_a_p.UpdateEpicGamesIAPConfigParams) (*platformclientmodels.EpicGamesIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := i.Client.Iap.UpdateEpicGamesIAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.UpdateEpicGamesIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -92,11 +96,11 @@ func (i *IAPService) UpdateEpicGamesIAPConfig(input *i_a_p.UpdateEpicGamesIAPCon
 
 // Deprecated: Use DeleteEpicGamesIAPConfigShort instead
 func (i *IAPService) DeleteEpicGamesIAPConfig(input *i_a_p.DeleteEpicGamesIAPConfigParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = i.Client.Iap.DeleteEpicGamesIAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	_, err = i.Client.Iap.DeleteEpicGamesIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -106,11 +110,11 @@ func (i *IAPService) DeleteEpicGamesIAPConfig(input *i_a_p.DeleteEpicGamesIAPCon
 
 // Deprecated: Use GetGoogleIAPConfigShort instead
 func (i *IAPService) GetGoogleIAPConfig(input *i_a_p.GetGoogleIAPConfigParams) (*platformclientmodels.GoogleIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := i.Client.Iap.GetGoogleIAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.GetGoogleIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -120,11 +124,11 @@ func (i *IAPService) GetGoogleIAPConfig(input *i_a_p.GetGoogleIAPConfigParams) (
 
 // Deprecated: Use UpdateGoogleIAPConfigShort instead
 func (i *IAPService) UpdateGoogleIAPConfig(input *i_a_p.UpdateGoogleIAPConfigParams) (*platformclientmodels.GoogleIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := i.Client.Iap.UpdateGoogleIAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.UpdateGoogleIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -134,11 +138,11 @@ func (i *IAPService) UpdateGoogleIAPConfig(input *i_a_p.UpdateGoogleIAPConfigPar
 
 // Deprecated: Use DeleteGoogleIAPConfigShort instead
 func (i *IAPService) DeleteGoogleIAPConfig(input *i_a_p.DeleteGoogleIAPConfigParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = i.Client.Iap.DeleteGoogleIAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	_, err = i.Client.Iap.DeleteGoogleIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -148,11 +152,11 @@ func (i *IAPService) DeleteGoogleIAPConfig(input *i_a_p.DeleteGoogleIAPConfigPar
 
 // Deprecated: Use UpdateGoogleP12FileShort instead
 func (i *IAPService) UpdateGoogleP12File(input *i_a_p.UpdateGoogleP12FileParams) (*platformclientmodels.GoogleIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := i.Client.Iap.UpdateGoogleP12File(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.UpdateGoogleP12File(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -162,11 +166,11 @@ func (i *IAPService) UpdateGoogleP12File(input *i_a_p.UpdateGoogleP12FileParams)
 
 // Deprecated: Use GetIAPItemConfigShort instead
 func (i *IAPService) GetIAPItemConfig(input *i_a_p.GetIAPItemConfigParams) (*platformclientmodels.IAPItemConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := i.Client.Iap.GetIAPItemConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, err := i.Client.Iap.GetIAPItemConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -179,11 +183,11 @@ func (i *IAPService) GetIAPItemConfig(input *i_a_p.GetIAPItemConfigParams) (*pla
 
 // Deprecated: Use UpdateIAPItemConfigShort instead
 func (i *IAPService) UpdateIAPItemConfig(input *i_a_p.UpdateIAPItemConfigParams) (*platformclientmodels.IAPItemConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unprocessableEntity, err := i.Client.Iap.UpdateIAPItemConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unprocessableEntity, err := i.Client.Iap.UpdateIAPItemConfig(input, client.BearerToken(*token.AccessToken))
 	if unprocessableEntity != nil {
 		return nil, unprocessableEntity
 	}
@@ -196,11 +200,11 @@ func (i *IAPService) UpdateIAPItemConfig(input *i_a_p.UpdateIAPItemConfigParams)
 
 // Deprecated: Use DeleteIAPItemConfigShort instead
 func (i *IAPService) DeleteIAPItemConfig(input *i_a_p.DeleteIAPItemConfigParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = i.Client.Iap.DeleteIAPItemConfig(input, client.BearerToken(*accessToken.AccessToken))
+	_, err = i.Client.Iap.DeleteIAPItemConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -210,11 +214,11 @@ func (i *IAPService) DeleteIAPItemConfig(input *i_a_p.DeleteIAPItemConfigParams)
 
 // Deprecated: Use GetPlayStationIAPConfigShort instead
 func (i *IAPService) GetPlayStationIAPConfig(input *i_a_p.GetPlayStationIAPConfigParams) (*platformclientmodels.PlayStationIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := i.Client.Iap.GetPlayStationIAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.GetPlayStationIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -224,11 +228,11 @@ func (i *IAPService) GetPlayStationIAPConfig(input *i_a_p.GetPlayStationIAPConfi
 
 // Deprecated: Use UpdatePlaystationIAPConfigShort instead
 func (i *IAPService) UpdatePlaystationIAPConfig(input *i_a_p.UpdatePlaystationIAPConfigParams) (*platformclientmodels.PlayStationIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := i.Client.Iap.UpdatePlaystationIAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.UpdatePlaystationIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -238,11 +242,11 @@ func (i *IAPService) UpdatePlaystationIAPConfig(input *i_a_p.UpdatePlaystationIA
 
 // Deprecated: Use DeletePlaystationIAPConfigShort instead
 func (i *IAPService) DeletePlaystationIAPConfig(input *i_a_p.DeletePlaystationIAPConfigParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = i.Client.Iap.DeletePlaystationIAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	_, err = i.Client.Iap.DeletePlaystationIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -252,11 +256,11 @@ func (i *IAPService) DeletePlaystationIAPConfig(input *i_a_p.DeletePlaystationIA
 
 // Deprecated: Use GetStadiaIAPConfigShort instead
 func (i *IAPService) GetStadiaIAPConfig(input *i_a_p.GetStadiaIAPConfigParams) (*platformclientmodels.StadiaIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := i.Client.Iap.GetStadiaIAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.GetStadiaIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -266,11 +270,11 @@ func (i *IAPService) GetStadiaIAPConfig(input *i_a_p.GetStadiaIAPConfigParams) (
 
 // Deprecated: Use DeleteStadiaIAPConfigShort instead
 func (i *IAPService) DeleteStadiaIAPConfig(input *i_a_p.DeleteStadiaIAPConfigParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = i.Client.Iap.DeleteStadiaIAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	_, err = i.Client.Iap.DeleteStadiaIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -280,11 +284,11 @@ func (i *IAPService) DeleteStadiaIAPConfig(input *i_a_p.DeleteStadiaIAPConfigPar
 
 // Deprecated: Use UpdateStadiaJSONConfigFileShort instead
 func (i *IAPService) UpdateStadiaJSONConfigFile(input *i_a_p.UpdateStadiaJSONConfigFileParams) (*platformclientmodels.StadiaIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := i.Client.Iap.UpdateStadiaJSONConfigFile(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.UpdateStadiaJSONConfigFile(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -294,11 +298,11 @@ func (i *IAPService) UpdateStadiaJSONConfigFile(input *i_a_p.UpdateStadiaJSONCon
 
 // Deprecated: Use GetSteamIAPConfigShort instead
 func (i *IAPService) GetSteamIAPConfig(input *i_a_p.GetSteamIAPConfigParams) (*platformclientmodels.SteamIAPConfig, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := i.Client.Iap.GetSteamIAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.GetSteamIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -308,11 +312,11 @@ func (i *IAPService) GetSteamIAPConfig(input *i_a_p.GetSteamIAPConfigParams) (*p
 
 // Deprecated: Use UpdateSteamIAPConfigShort instead
 func (i *IAPService) UpdateSteamIAPConfig(input *i_a_p.UpdateSteamIAPConfigParams) (*platformclientmodels.SteamIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := i.Client.Iap.UpdateSteamIAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.UpdateSteamIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -322,11 +326,11 @@ func (i *IAPService) UpdateSteamIAPConfig(input *i_a_p.UpdateSteamIAPConfigParam
 
 // Deprecated: Use DeleteSteamIAPConfigShort instead
 func (i *IAPService) DeleteSteamIAPConfig(input *i_a_p.DeleteSteamIAPConfigParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = i.Client.Iap.DeleteSteamIAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	_, err = i.Client.Iap.DeleteSteamIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -336,11 +340,11 @@ func (i *IAPService) DeleteSteamIAPConfig(input *i_a_p.DeleteSteamIAPConfigParam
 
 // Deprecated: Use GetTwitchIAPConfigShort instead
 func (i *IAPService) GetTwitchIAPConfig(input *i_a_p.GetTwitchIAPConfigParams) (*platformclientmodels.TwitchIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := i.Client.Iap.GetTwitchIAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.GetTwitchIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -350,11 +354,11 @@ func (i *IAPService) GetTwitchIAPConfig(input *i_a_p.GetTwitchIAPConfigParams) (
 
 // Deprecated: Use UpdateTwitchIAPConfigShort instead
 func (i *IAPService) UpdateTwitchIAPConfig(input *i_a_p.UpdateTwitchIAPConfigParams) (*platformclientmodels.TwitchIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := i.Client.Iap.UpdateTwitchIAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.UpdateTwitchIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -364,11 +368,11 @@ func (i *IAPService) UpdateTwitchIAPConfig(input *i_a_p.UpdateTwitchIAPConfigPar
 
 // Deprecated: Use DeleteTwitchIAPConfigShort instead
 func (i *IAPService) DeleteTwitchIAPConfig(input *i_a_p.DeleteTwitchIAPConfigParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = i.Client.Iap.DeleteTwitchIAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	_, err = i.Client.Iap.DeleteTwitchIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -378,11 +382,11 @@ func (i *IAPService) DeleteTwitchIAPConfig(input *i_a_p.DeleteTwitchIAPConfigPar
 
 // Deprecated: Use GetXblIAPConfigShort instead
 func (i *IAPService) GetXblIAPConfig(input *i_a_p.GetXblIAPConfigParams) (*platformclientmodels.XblIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := i.Client.Iap.GetXblIAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, err := i.Client.Iap.GetXblIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -395,11 +399,11 @@ func (i *IAPService) GetXblIAPConfig(input *i_a_p.GetXblIAPConfigParams) (*platf
 
 // Deprecated: Use UpdateXblIAPConfigShort instead
 func (i *IAPService) UpdateXblIAPConfig(input *i_a_p.UpdateXblIAPConfigParams) (*platformclientmodels.XblIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := i.Client.Iap.UpdateXblIAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.UpdateXblIAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -409,11 +413,11 @@ func (i *IAPService) UpdateXblIAPConfig(input *i_a_p.UpdateXblIAPConfigParams) (
 
 // Deprecated: Use DeleteXblAPConfigShort instead
 func (i *IAPService) DeleteXblAPConfig(input *i_a_p.DeleteXblAPConfigParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = i.Client.Iap.DeleteXblAPConfig(input, client.BearerToken(*accessToken.AccessToken))
+	_, err = i.Client.Iap.DeleteXblAPConfig(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -423,11 +427,11 @@ func (i *IAPService) DeleteXblAPConfig(input *i_a_p.DeleteXblAPConfigParams) err
 
 // Deprecated: Use UpdateXblBPCertFileShort instead
 func (i *IAPService) UpdateXblBPCertFile(input *i_a_p.UpdateXblBPCertFileParams) (*platformclientmodels.XblIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := i.Client.Iap.UpdateXblBPCertFile(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.UpdateXblBPCertFile(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -437,11 +441,11 @@ func (i *IAPService) UpdateXblBPCertFile(input *i_a_p.UpdateXblBPCertFileParams)
 
 // Deprecated: Use QueryUserIAPOrdersShort instead
 func (i *IAPService) QueryUserIAPOrders(input *i_a_p.QueryUserIAPOrdersParams) (*platformclientmodels.IAPOrderPagingSlicedResult, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := i.Client.Iap.QueryUserIAPOrders(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.QueryUserIAPOrders(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -451,11 +455,11 @@ func (i *IAPService) QueryUserIAPOrders(input *i_a_p.QueryUserIAPOrdersParams) (
 
 // Deprecated: Use QueryAllUserIAPOrdersShort instead
 func (i *IAPService) QueryAllUserIAPOrders(input *i_a_p.QueryAllUserIAPOrdersParams) (*platformclientmodels.IAPOrderPagingSlicedResult, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := i.Client.Iap.QueryAllUserIAPOrders(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.QueryAllUserIAPOrders(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -465,11 +469,11 @@ func (i *IAPService) QueryAllUserIAPOrders(input *i_a_p.QueryAllUserIAPOrdersPar
 
 // Deprecated: Use MockFulfillIAPItemShort instead
 func (i *IAPService) MockFulfillIAPItem(input *i_a_p.MockFulfillIAPItemParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, notFound, conflict, err := i.Client.Iap.MockFulfillIAPItem(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, notFound, conflict, err := i.Client.Iap.MockFulfillIAPItem(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -488,11 +492,11 @@ func (i *IAPService) MockFulfillIAPItem(input *i_a_p.MockFulfillIAPItemParams) e
 
 // Deprecated: Use PublicFulfillAppleIAPItemShort instead
 func (i *IAPService) PublicFulfillAppleIAPItem(input *i_a_p.PublicFulfillAppleIAPItemParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, notFound, conflict, err := i.Client.Iap.PublicFulfillAppleIAPItem(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, notFound, conflict, err := i.Client.Iap.PublicFulfillAppleIAPItem(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -511,11 +515,11 @@ func (i *IAPService) PublicFulfillAppleIAPItem(input *i_a_p.PublicFulfillAppleIA
 
 // Deprecated: Use SyncEpicGamesInventoryShort instead
 func (i *IAPService) SyncEpicGamesInventory(input *i_a_p.SyncEpicGamesInventoryParams) ([]*platformclientmodels.EpicGamesReconcileResult, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := i.Client.Iap.SyncEpicGamesInventory(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.SyncEpicGamesInventory(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -525,11 +529,11 @@ func (i *IAPService) SyncEpicGamesInventory(input *i_a_p.SyncEpicGamesInventoryP
 
 // Deprecated: Use PublicFulfillGoogleIAPItemShort instead
 func (i *IAPService) PublicFulfillGoogleIAPItem(input *i_a_p.PublicFulfillGoogleIAPItemParams) (*platformclientmodels.GoogleReceiptResolveResult, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, err := i.Client.Iap.PublicFulfillGoogleIAPItem(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, conflict, err := i.Client.Iap.PublicFulfillGoogleIAPItem(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -548,11 +552,11 @@ func (i *IAPService) PublicFulfillGoogleIAPItem(input *i_a_p.PublicFulfillGoogle
 
 // Deprecated: Use PublicReconcilePlayStationStoreShort instead
 func (i *IAPService) PublicReconcilePlayStationStore(input *i_a_p.PublicReconcilePlayStationStoreParams) ([]*platformclientmodels.PlayStationReconcileResult, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := i.Client.Iap.PublicReconcilePlayStationStore(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, err := i.Client.Iap.PublicReconcilePlayStationStore(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -565,11 +569,11 @@ func (i *IAPService) PublicReconcilePlayStationStore(input *i_a_p.PublicReconcil
 
 // Deprecated: Use SyncStadiaEntitlementShort instead
 func (i *IAPService) SyncStadiaEntitlement(input *i_a_p.SyncStadiaEntitlementParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = i.Client.Iap.SyncStadiaEntitlement(input, client.BearerToken(*accessToken.AccessToken))
+	_, err = i.Client.Iap.SyncStadiaEntitlement(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -579,11 +583,11 @@ func (i *IAPService) SyncStadiaEntitlement(input *i_a_p.SyncStadiaEntitlementPar
 
 // Deprecated: Use SyncSteamInventoryShort instead
 func (i *IAPService) SyncSteamInventory(input *i_a_p.SyncSteamInventoryParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = i.Client.Iap.SyncSteamInventory(input, client.BearerToken(*accessToken.AccessToken))
+	_, err = i.Client.Iap.SyncSteamInventory(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -593,11 +597,11 @@ func (i *IAPService) SyncSteamInventory(input *i_a_p.SyncSteamInventoryParams) e
 
 // Deprecated: Use SyncTwitchDropsEntitlementShort instead
 func (i *IAPService) SyncTwitchDropsEntitlement(input *i_a_p.SyncTwitchDropsEntitlementParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = i.Client.Iap.SyncTwitchDropsEntitlement(input, client.BearerToken(*accessToken.AccessToken))
+	_, err = i.Client.Iap.SyncTwitchDropsEntitlement(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -607,24 +611,11 @@ func (i *IAPService) SyncTwitchDropsEntitlement(input *i_a_p.SyncTwitchDropsEnti
 
 // Deprecated: Use SyncXboxInventoryShort instead
 func (i *IAPService) SyncXboxInventory(input *i_a_p.SyncXboxInventoryParams) ([]*platformclientmodels.XblReconcileResult, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := i.Client.Iap.SyncXboxInventory(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (i *IAPService) GetAppleIAPConfigShort(input *i_a_p.GetAppleIAPConfigParams) (*platformclientmodels.AppleIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := i.Client.Iap.GetAppleIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.SyncXboxInventory(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -632,12 +623,15 @@ func (i *IAPService) GetAppleIAPConfigShort(input *i_a_p.GetAppleIAPConfigParams
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) UpdateAppleIAPConfigShort(input *i_a_p.UpdateAppleIAPConfigParams) (*platformclientmodels.AppleIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]'], 'authorization': []}]
+func (i *IAPService) GetAppleIAPConfigShort(input *i_a_p.GetAppleIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.AppleIAPConfigInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	ok, err := i.Client.Iap.UpdateAppleIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.GetAppleIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -645,12 +639,31 @@ func (i *IAPService) UpdateAppleIAPConfigShort(input *i_a_p.UpdateAppleIAPConfig
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) DeleteAppleIAPConfigShort(input *i_a_p.DeleteAppleIAPConfigParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]'], 'authorization': []}]
+func (i *IAPService) UpdateAppleIAPConfigShort(input *i_a_p.UpdateAppleIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.AppleIAPConfigInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	_, err = i.Client.Iap.DeleteAppleIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.UpdateAppleIAPConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]'], 'authorization': []}]
+func (i *IAPService) DeleteAppleIAPConfigShort(input *i_a_p.DeleteAppleIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+	}
+	_, err := i.Client.Iap.DeleteAppleIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -658,25 +671,15 @@ func (i *IAPService) DeleteAppleIAPConfigShort(input *i_a_p.DeleteAppleIAPConfig
 	return nil
 }
 
-func (i *IAPService) GetEpicGamesIAPConfigShort(input *i_a_p.GetEpicGamesIAPConfigParams) (*platformclientmodels.EpicGamesIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]'], 'authorization': []}]
+func (i *IAPService) GetEpicGamesIAPConfigShort(input *i_a_p.GetEpicGamesIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EpicGamesIAPConfigInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	ok, err := i.Client.Iap.GetEpicGamesIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (i *IAPService) UpdateEpicGamesIAPConfigShort(input *i_a_p.UpdateEpicGamesIAPConfigParams) (*platformclientmodels.EpicGamesIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := i.Client.Iap.UpdateEpicGamesIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.GetEpicGamesIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -684,12 +687,31 @@ func (i *IAPService) UpdateEpicGamesIAPConfigShort(input *i_a_p.UpdateEpicGamesI
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) DeleteEpicGamesIAPConfigShort(input *i_a_p.DeleteEpicGamesIAPConfigParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]'], 'authorization': []}]
+func (i *IAPService) UpdateEpicGamesIAPConfigShort(input *i_a_p.UpdateEpicGamesIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EpicGamesIAPConfigInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	_, err = i.Client.Iap.DeleteEpicGamesIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.UpdateEpicGamesIAPConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]'], 'authorization': []}]
+func (i *IAPService) DeleteEpicGamesIAPConfigShort(input *i_a_p.DeleteEpicGamesIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+	}
+	_, err := i.Client.Iap.DeleteEpicGamesIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -697,25 +719,15 @@ func (i *IAPService) DeleteEpicGamesIAPConfigShort(input *i_a_p.DeleteEpicGamesI
 	return nil
 }
 
-func (i *IAPService) GetGoogleIAPConfigShort(input *i_a_p.GetGoogleIAPConfigParams) (*platformclientmodels.GoogleIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]'], 'authorization': []}]
+func (i *IAPService) GetGoogleIAPConfigShort(input *i_a_p.GetGoogleIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.GoogleIAPConfigInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	ok, err := i.Client.Iap.GetGoogleIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (i *IAPService) UpdateGoogleIAPConfigShort(input *i_a_p.UpdateGoogleIAPConfigParams) (*platformclientmodels.GoogleIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := i.Client.Iap.UpdateGoogleIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.GetGoogleIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -723,12 +735,31 @@ func (i *IAPService) UpdateGoogleIAPConfigShort(input *i_a_p.UpdateGoogleIAPConf
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) DeleteGoogleIAPConfigShort(input *i_a_p.DeleteGoogleIAPConfigParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]'], 'authorization': []}]
+func (i *IAPService) UpdateGoogleIAPConfigShort(input *i_a_p.UpdateGoogleIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.GoogleIAPConfigInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	_, err = i.Client.Iap.DeleteGoogleIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.UpdateGoogleIAPConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]'], 'authorization': []}]
+func (i *IAPService) DeleteGoogleIAPConfigShort(input *i_a_p.DeleteGoogleIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+	}
+	_, err := i.Client.Iap.DeleteGoogleIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -736,25 +767,15 @@ func (i *IAPService) DeleteGoogleIAPConfigShort(input *i_a_p.DeleteGoogleIAPConf
 	return nil
 }
 
-func (i *IAPService) UpdateGoogleP12FileShort(input *i_a_p.UpdateGoogleP12FileParams) (*platformclientmodels.GoogleIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]'], 'authorization': []}]
+func (i *IAPService) UpdateGoogleP12FileShort(input *i_a_p.UpdateGoogleP12FileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.GoogleIAPConfigInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	ok, err := i.Client.Iap.UpdateGoogleP12FileShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (i *IAPService) GetIAPItemConfigShort(input *i_a_p.GetIAPItemConfigParams) (*platformclientmodels.IAPItemConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := i.Client.Iap.GetIAPItemConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.UpdateGoogleP12FileShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -762,12 +783,15 @@ func (i *IAPService) GetIAPItemConfigShort(input *i_a_p.GetIAPItemConfigParams) 
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) UpdateIAPItemConfigShort(input *i_a_p.UpdateIAPItemConfigParams) (*platformclientmodels.IAPItemConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]'], 'authorization': []}]
+func (i *IAPService) GetIAPItemConfigShort(input *i_a_p.GetIAPItemConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.IAPItemConfigInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	ok, err := i.Client.Iap.UpdateIAPItemConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.GetIAPItemConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -775,12 +799,31 @@ func (i *IAPService) UpdateIAPItemConfigShort(input *i_a_p.UpdateIAPItemConfigPa
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) DeleteIAPItemConfigShort(input *i_a_p.DeleteIAPItemConfigParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]'], 'authorization': []}]
+func (i *IAPService) UpdateIAPItemConfigShort(input *i_a_p.UpdateIAPItemConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.IAPItemConfigInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	_, err = i.Client.Iap.DeleteIAPItemConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.UpdateIAPItemConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]'], 'authorization': []}]
+func (i *IAPService) DeleteIAPItemConfigShort(input *i_a_p.DeleteIAPItemConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+	}
+	_, err := i.Client.Iap.DeleteIAPItemConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -788,25 +831,15 @@ func (i *IAPService) DeleteIAPItemConfigShort(input *i_a_p.DeleteIAPItemConfigPa
 	return nil
 }
 
-func (i *IAPService) GetPlayStationIAPConfigShort(input *i_a_p.GetPlayStationIAPConfigParams) (*platformclientmodels.PlayStationIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]'], 'authorization': []}]
+func (i *IAPService) GetPlayStationIAPConfigShort(input *i_a_p.GetPlayStationIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PlayStationIAPConfigInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	ok, err := i.Client.Iap.GetPlayStationIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (i *IAPService) UpdatePlaystationIAPConfigShort(input *i_a_p.UpdatePlaystationIAPConfigParams) (*platformclientmodels.PlayStationIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := i.Client.Iap.UpdatePlaystationIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.GetPlayStationIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -814,12 +847,31 @@ func (i *IAPService) UpdatePlaystationIAPConfigShort(input *i_a_p.UpdatePlaystat
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) DeletePlaystationIAPConfigShort(input *i_a_p.DeletePlaystationIAPConfigParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]'], 'authorization': []}]
+func (i *IAPService) UpdatePlaystationIAPConfigShort(input *i_a_p.UpdatePlaystationIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PlayStationIAPConfigInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	_, err = i.Client.Iap.DeletePlaystationIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.UpdatePlaystationIAPConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]'], 'authorization': []}]
+func (i *IAPService) DeletePlaystationIAPConfigShort(input *i_a_p.DeletePlaystationIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+	}
+	_, err := i.Client.Iap.DeletePlaystationIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -827,12 +879,15 @@ func (i *IAPService) DeletePlaystationIAPConfigShort(input *i_a_p.DeletePlaystat
 	return nil
 }
 
-func (i *IAPService) GetStadiaIAPConfigShort(input *i_a_p.GetStadiaIAPConfigParams) (*platformclientmodels.StadiaIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]'], 'authorization': []}]
+func (i *IAPService) GetStadiaIAPConfigShort(input *i_a_p.GetStadiaIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.StadiaIAPConfigInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	ok, err := i.Client.Iap.GetStadiaIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.GetStadiaIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -840,12 +895,15 @@ func (i *IAPService) GetStadiaIAPConfigShort(input *i_a_p.GetStadiaIAPConfigPara
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) DeleteStadiaIAPConfigShort(input *i_a_p.DeleteStadiaIAPConfigParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]'], 'authorization': []}]
+func (i *IAPService) DeleteStadiaIAPConfigShort(input *i_a_p.DeleteStadiaIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	_, err = i.Client.Iap.DeleteStadiaIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := i.Client.Iap.DeleteStadiaIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -853,25 +911,15 @@ func (i *IAPService) DeleteStadiaIAPConfigShort(input *i_a_p.DeleteStadiaIAPConf
 	return nil
 }
 
-func (i *IAPService) UpdateStadiaJSONConfigFileShort(input *i_a_p.UpdateStadiaJSONConfigFileParams) (*platformclientmodels.StadiaIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]'], 'authorization': []}]
+func (i *IAPService) UpdateStadiaJSONConfigFileShort(input *i_a_p.UpdateStadiaJSONConfigFileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.StadiaIAPConfigInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	ok, err := i.Client.Iap.UpdateStadiaJSONConfigFileShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (i *IAPService) GetSteamIAPConfigShort(input *i_a_p.GetSteamIAPConfigParams) (*platformclientmodels.SteamIAPConfig, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := i.Client.Iap.GetSteamIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.UpdateStadiaJSONConfigFileShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -879,12 +927,15 @@ func (i *IAPService) GetSteamIAPConfigShort(input *i_a_p.GetSteamIAPConfigParams
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) UpdateSteamIAPConfigShort(input *i_a_p.UpdateSteamIAPConfigParams) (*platformclientmodels.SteamIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]'], 'authorization': []}]
+func (i *IAPService) GetSteamIAPConfigShort(input *i_a_p.GetSteamIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SteamIAPConfig, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	ok, err := i.Client.Iap.UpdateSteamIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.GetSteamIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -892,12 +943,31 @@ func (i *IAPService) UpdateSteamIAPConfigShort(input *i_a_p.UpdateSteamIAPConfig
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) DeleteSteamIAPConfigShort(input *i_a_p.DeleteSteamIAPConfigParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]'], 'authorization': []}]
+func (i *IAPService) UpdateSteamIAPConfigShort(input *i_a_p.UpdateSteamIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SteamIAPConfigInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	_, err = i.Client.Iap.DeleteSteamIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.UpdateSteamIAPConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]'], 'authorization': []}]
+func (i *IAPService) DeleteSteamIAPConfigShort(input *i_a_p.DeleteSteamIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+	}
+	_, err := i.Client.Iap.DeleteSteamIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -905,25 +975,15 @@ func (i *IAPService) DeleteSteamIAPConfigShort(input *i_a_p.DeleteSteamIAPConfig
 	return nil
 }
 
-func (i *IAPService) GetTwitchIAPConfigShort(input *i_a_p.GetTwitchIAPConfigParams) (*platformclientmodels.TwitchIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]'], 'authorization': []}]
+func (i *IAPService) GetTwitchIAPConfigShort(input *i_a_p.GetTwitchIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TwitchIAPConfigInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	ok, err := i.Client.Iap.GetTwitchIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (i *IAPService) UpdateTwitchIAPConfigShort(input *i_a_p.UpdateTwitchIAPConfigParams) (*platformclientmodels.TwitchIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := i.Client.Iap.UpdateTwitchIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.GetTwitchIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -931,12 +991,31 @@ func (i *IAPService) UpdateTwitchIAPConfigShort(input *i_a_p.UpdateTwitchIAPConf
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) DeleteTwitchIAPConfigShort(input *i_a_p.DeleteTwitchIAPConfigParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]'], 'authorization': []}]
+func (i *IAPService) UpdateTwitchIAPConfigShort(input *i_a_p.UpdateTwitchIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TwitchIAPConfigInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	_, err = i.Client.Iap.DeleteTwitchIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.UpdateTwitchIAPConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]'], 'authorization': []}]
+func (i *IAPService) DeleteTwitchIAPConfigShort(input *i_a_p.DeleteTwitchIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+	}
+	_, err := i.Client.Iap.DeleteTwitchIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -944,25 +1023,15 @@ func (i *IAPService) DeleteTwitchIAPConfigShort(input *i_a_p.DeleteTwitchIAPConf
 	return nil
 }
 
-func (i *IAPService) GetXblIAPConfigShort(input *i_a_p.GetXblIAPConfigParams) (*platformclientmodels.XblIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]'], 'authorization': []}]
+func (i *IAPService) GetXblIAPConfigShort(input *i_a_p.GetXblIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.XblIAPConfigInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	ok, err := i.Client.Iap.GetXblIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (i *IAPService) UpdateXblIAPConfigShort(input *i_a_p.UpdateXblIAPConfigParams) (*platformclientmodels.XblIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := i.Client.Iap.UpdateXblIAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.GetXblIAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -970,12 +1039,31 @@ func (i *IAPService) UpdateXblIAPConfigShort(input *i_a_p.UpdateXblIAPConfigPara
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) DeleteXblAPConfigShort(input *i_a_p.DeleteXblAPConfigParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]'], 'authorization': []}]
+func (i *IAPService) UpdateXblIAPConfigShort(input *i_a_p.UpdateXblIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.XblIAPConfigInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	_, err = i.Client.Iap.DeleteXblAPConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.UpdateXblIAPConfigShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]'], 'authorization': []}]
+func (i *IAPService) DeleteXblAPConfigShort(input *i_a_p.DeleteXblAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+	}
+	_, err := i.Client.Iap.DeleteXblAPConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -983,25 +1071,15 @@ func (i *IAPService) DeleteXblAPConfigShort(input *i_a_p.DeleteXblAPConfigParams
 	return nil
 }
 
-func (i *IAPService) UpdateXblBPCertFileShort(input *i_a_p.UpdateXblBPCertFileParams) (*platformclientmodels.XblIAPConfigInfo, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]'], 'authorization': []}]
+func (i *IAPService) UpdateXblBPCertFileShort(input *i_a_p.UpdateXblBPCertFileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.XblIAPConfigInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	ok, err := i.Client.Iap.UpdateXblBPCertFileShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (i *IAPService) QueryUserIAPOrdersShort(input *i_a_p.QueryUserIAPOrdersParams) (*platformclientmodels.IAPOrderPagingSlicedResult, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := i.Client.Iap.QueryUserIAPOrdersShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.UpdateXblBPCertFileShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1009,12 +1087,15 @@ func (i *IAPService) QueryUserIAPOrdersShort(input *i_a_p.QueryUserIAPOrdersPara
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) QueryAllUserIAPOrdersShort(input *i_a_p.QueryAllUserIAPOrdersParams) (*platformclientmodels.IAPOrderPagingSlicedResult, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [READ]'], 'authorization': []}]
+func (i *IAPService) QueryUserIAPOrdersShort(input *i_a_p.QueryUserIAPOrdersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.IAPOrderPagingSlicedResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	ok, err := i.Client.Iap.QueryAllUserIAPOrdersShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.QueryUserIAPOrdersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1022,12 +1103,31 @@ func (i *IAPService) QueryAllUserIAPOrdersShort(input *i_a_p.QueryAllUserIAPOrde
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) MockFulfillIAPItemShort(input *i_a_p.MockFulfillIAPItemParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [READ]'], 'authorization': []}]
+func (i *IAPService) QueryAllUserIAPOrdersShort(input *i_a_p.QueryAllUserIAPOrdersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.IAPOrderPagingSlicedResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	_, err = i.Client.Iap.MockFulfillIAPItemShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.QueryAllUserIAPOrdersShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]'], 'authorization': []}]
+func (i *IAPService) MockFulfillIAPItemShort(input *i_a_p.MockFulfillIAPItemParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+	}
+	_, err := i.Client.Iap.MockFulfillIAPItemShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1035,12 +1135,15 @@ func (i *IAPService) MockFulfillIAPItemShort(input *i_a_p.MockFulfillIAPItemPara
 	return nil
 }
 
-func (i *IAPService) PublicFulfillAppleIAPItemShort(input *i_a_p.PublicFulfillAppleIAPItemParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]'], 'authorization': []}]
+func (i *IAPService) PublicFulfillAppleIAPItemShort(input *i_a_p.PublicFulfillAppleIAPItemParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	_, err = i.Client.Iap.PublicFulfillAppleIAPItemShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := i.Client.Iap.PublicFulfillAppleIAPItemShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -1048,12 +1151,15 @@ func (i *IAPService) PublicFulfillAppleIAPItemShort(input *i_a_p.PublicFulfillAp
 	return nil
 }
 
-func (i *IAPService) SyncEpicGamesInventoryShort(input *i_a_p.SyncEpicGamesInventoryParams) ([]*platformclientmodels.EpicGamesReconcileResult, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]'], 'authorization': []}]
+func (i *IAPService) SyncEpicGamesInventoryShort(input *i_a_p.SyncEpicGamesInventoryParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.EpicGamesReconcileResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	ok, err := i.Client.Iap.SyncEpicGamesInventoryShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.SyncEpicGamesInventoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1061,25 +1167,15 @@ func (i *IAPService) SyncEpicGamesInventoryShort(input *i_a_p.SyncEpicGamesInven
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) PublicFulfillGoogleIAPItemShort(input *i_a_p.PublicFulfillGoogleIAPItemParams) (*platformclientmodels.GoogleReceiptResolveResult, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]'], 'authorization': []}]
+func (i *IAPService) PublicFulfillGoogleIAPItemShort(input *i_a_p.PublicFulfillGoogleIAPItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.GoogleReceiptResolveResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	ok, err := i.Client.Iap.PublicFulfillGoogleIAPItemShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (i *IAPService) PublicReconcilePlayStationStoreShort(input *i_a_p.PublicReconcilePlayStationStoreParams) ([]*platformclientmodels.PlayStationReconcileResult, error) {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := i.Client.Iap.PublicReconcilePlayStationStoreShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := i.Client.Iap.PublicFulfillGoogleIAPItemShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -1087,51 +1183,79 @@ func (i *IAPService) PublicReconcilePlayStationStoreShort(input *i_a_p.PublicRec
 	return ok.GetPayload(), nil
 }
 
-func (i *IAPService) SyncStadiaEntitlementShort(input *i_a_p.SyncStadiaEntitlementParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]'], 'authorization': []}]
+func (i *IAPService) PublicReconcilePlayStationStoreShort(input *i_a_p.PublicReconcilePlayStationStoreParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.PlayStationReconcileResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	_, err = i.Client.Iap.SyncStadiaEntitlementShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (i *IAPService) SyncSteamInventoryShort(input *i_a_p.SyncSteamInventoryParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = i.Client.Iap.SyncSteamInventoryShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (i *IAPService) SyncTwitchDropsEntitlementShort(input *i_a_p.SyncTwitchDropsEntitlementParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = i.Client.Iap.SyncTwitchDropsEntitlementShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (i *IAPService) SyncXboxInventoryShort(input *i_a_p.SyncXboxInventoryParams) ([]*platformclientmodels.XblReconcileResult, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	ok, err := i.Client.Iap.PublicReconcilePlayStationStoreShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	ok, err := i.Client.Iap.SyncXboxInventoryShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]'], 'authorization': []}]
+func (i *IAPService) SyncStadiaEntitlementShort(input *i_a_p.SyncStadiaEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+	}
+	_, err := i.Client.Iap.SyncStadiaEntitlementShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]'], 'authorization': []}]
+func (i *IAPService) SyncSteamInventoryShort(input *i_a_p.SyncSteamInventoryParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+	}
+	_, err := i.Client.Iap.SyncSteamInventoryShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]'], 'authorization': []}]
+func (i *IAPService) SyncTwitchDropsEntitlementShort(input *i_a_p.SyncTwitchDropsEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+	}
+	_, err := i.Client.Iap.SyncTwitchDropsEntitlementShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]'], 'authorization': []}]
+func (i *IAPService) SyncXboxInventoryShort(input *i_a_p.SyncXboxInventoryParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.XblReconcileResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+	}
+	ok, err := i.Client.Iap.SyncXboxInventoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package dslogmanager
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclient/terminated_servers"
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type TerminatedServersService struct {
 
 // Deprecated: Use ListTerminatedServersShort instead
 func (t *TerminatedServersService) ListTerminatedServers(input *terminated_servers.ListTerminatedServersParams) (*dslogmanagerclientmodels.ModelsListTerminatedServersResponse, error) {
-	accessToken, err := t.TokenRepository.GetToken()
+	token, err := t.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, internalServerError, err := t.Client.TerminatedServers.ListTerminatedServers(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := t.Client.TerminatedServers.ListTerminatedServers(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -42,11 +46,11 @@ func (t *TerminatedServersService) ListTerminatedServers(input *terminated_serve
 
 // Deprecated: Use DownloadServerLogsShort instead
 func (t *TerminatedServersService) DownloadServerLogs(input *terminated_servers.DownloadServerLogsParams) error {
-	accessToken, err := t.TokenRepository.GetToken()
+	token, err := t.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, notFound, internalServerError, err := t.Client.TerminatedServers.DownloadServerLogs(input, client.BearerToken(*accessToken.AccessToken))
+	_, notFound, internalServerError, err := t.Client.TerminatedServers.DownloadServerLogs(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return notFound
 	}
@@ -62,11 +66,11 @@ func (t *TerminatedServersService) DownloadServerLogs(input *terminated_servers.
 
 // Deprecated: Use CheckServerLogsShort instead
 func (t *TerminatedServersService) CheckServerLogs(input *terminated_servers.CheckServerLogsParams) (*dslogmanagerclientmodels.ModelsLogFileStatus, error) {
-	accessToken, err := t.TokenRepository.GetToken()
+	token, err := t.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, internalServerError, err := t.Client.TerminatedServers.CheckServerLogs(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, internalServerError, err := t.Client.TerminatedServers.CheckServerLogs(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -80,12 +84,15 @@ func (t *TerminatedServersService) CheckServerLogs(input *terminated_servers.Che
 	return ok.GetPayload(), nil
 }
 
-func (t *TerminatedServersService) ListTerminatedServersShort(input *terminated_servers.ListTerminatedServersParams) (*dslogmanagerclientmodels.ModelsListTerminatedServersResponse, error) {
-	accessToken, err := t.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]'], 'authorization': []}]
+func (t *TerminatedServersService) ListTerminatedServersShort(input *terminated_servers.ListTerminatedServersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dslogmanagerclientmodels.ModelsListTerminatedServersResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
-	ok, err := t.Client.TerminatedServers.ListTerminatedServersShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := t.Client.TerminatedServers.ListTerminatedServersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -93,12 +100,15 @@ func (t *TerminatedServersService) ListTerminatedServersShort(input *terminated_
 	return ok.GetPayload(), nil
 }
 
-func (t *TerminatedServersService) DownloadServerLogsShort(input *terminated_servers.DownloadServerLogsParams) error {
-	accessToken, err := t.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (t *TerminatedServersService) DownloadServerLogsShort(input *terminated_servers.DownloadServerLogsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
-	_, err = t.Client.TerminatedServers.DownloadServerLogsShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := t.Client.TerminatedServers.DownloadServerLogsShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -106,12 +116,15 @@ func (t *TerminatedServersService) DownloadServerLogsShort(input *terminated_ser
 	return nil
 }
 
-func (t *TerminatedServersService) CheckServerLogsShort(input *terminated_servers.CheckServerLogsParams) (*dslogmanagerclientmodels.ModelsLogFileStatus, error) {
-	accessToken, err := t.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (t *TerminatedServersService) CheckServerLogsShort(input *terminated_servers.CheckServerLogsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dslogmanagerclientmodels.ModelsLogFileStatus, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
-	ok, err := t.Client.TerminatedServers.CheckServerLogsShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := t.Client.TerminatedServers.CheckServerLogsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

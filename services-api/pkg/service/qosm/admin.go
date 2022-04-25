@@ -2,12 +2,16 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package qosm
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/qosm-sdk/pkg/qosmclient"
 	"github.com/AccelByte/accelbyte-go-sdk/qosm-sdk/pkg/qosmclient/admin"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -18,11 +22,11 @@ type AdminService struct {
 
 // Deprecated: Use DeleteServerShort instead
 func (a *AdminService) DeleteServer(input *admin.DeleteServerParams) error {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, internalServerError, err := a.Client.Admin.DeleteServer(input, client.BearerToken(*accessToken.AccessToken))
+	_, internalServerError, err := a.Client.Admin.DeleteServer(input, client.BearerToken(*token.AccessToken))
 	if internalServerError != nil {
 		return internalServerError
 	}
@@ -35,11 +39,11 @@ func (a *AdminService) DeleteServer(input *admin.DeleteServerParams) error {
 
 // Deprecated: Use SetServerAliasShort instead
 func (a *AdminService) SetServerAlias(input *admin.SetServerAliasParams) error {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, notFound, internalServerError, err := a.Client.Admin.SetServerAlias(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, notFound, internalServerError, err := a.Client.Admin.SetServerAlias(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -56,12 +60,15 @@ func (a *AdminService) SetServerAlias(input *admin.SetServerAliasParams) error {
 	return nil
 }
 
-func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams) error {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:QOS:SERVER [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	_, err = a.Client.Admin.DeleteServerShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := a.Client.Admin.DeleteServerShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -69,12 +76,15 @@ func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams) error 
 	return nil
 }
 
-func (a *AdminService) SetServerAliasShort(input *admin.SetServerAliasParams) error {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:QOS:SERVER []'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminService) SetServerAliasShort(input *admin.SetServerAliasParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	_, err = a.Client.Admin.SetServerAliasShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := a.Client.Admin.SetServerAliasShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

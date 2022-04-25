@@ -12,6 +12,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -519,15 +520,15 @@ func (c *ClientsService) AdminDeleteClientPermissionV3(input *clients.AdminDelet
 	return nil
 }
 
-func (c *ClientsService) GetClientsShort(input *clients.GetClientsParams) ([]*iamclientmodels.ClientmodelClientResponse, error) {
-	token, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['CLIENT [READ]'], 'authorization': []}]
+func (c *ClientsService) GetClientsShort(input *clients.GetClientsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ClientmodelClientResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := c.Client.Clients.GetClientsShort(input, authWriter)
+	ok, err := c.Client.Clients.GetClientsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -535,15 +536,15 @@ func (c *ClientsService) GetClientsShort(input *clients.GetClientsParams) ([]*ia
 	return ok.GetPayload(), nil
 }
 
-func (c *ClientsService) CreateClientShort(input *clients.CreateClientParams) (*iamclientmodels.ClientmodelClientCreationResponse, error) {
-	token, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['CLIENT:ADMIN [CREATE]'], 'authorization': []}]
+func (c *ClientsService) CreateClientShort(input *clients.CreateClientParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientCreationResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	created, err := c.Client.Clients.CreateClientShort(input, authWriter)
+	created, err := c.Client.Clients.CreateClientShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -551,31 +552,15 @@ func (c *ClientsService) CreateClientShort(input *clients.CreateClientParams) (*
 	return created.GetPayload(), nil
 }
 
-func (c *ClientsService) GetClientShort(input *clients.GetClientParams) (*iamclientmodels.ClientmodelClientResponse, error) {
-	token, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['CLIENT [READ]'], 'authorization': []}]
+func (c *ClientsService) GetClientShort(input *clients.GetClientParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := c.Client.Clients.GetClientShort(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (c *ClientsService) UpdateClientShort(input *clients.UpdateClientParams) (*iamclientmodels.ClientmodelClientResponse, error) {
-	token, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := c.Client.Clients.UpdateClientShort(input, authWriter)
+	ok, err := c.Client.Clients.GetClientShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -583,95 +568,15 @@ func (c *ClientsService) UpdateClientShort(input *clients.UpdateClientParams) (*
 	return ok.GetPayload(), nil
 }
 
-func (c *ClientsService) DeleteClientShort(input *clients.DeleteClientParams) error {
-	token, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['CLIENT:ADMIN [UPDATE]'], 'authorization': []}]
+func (c *ClientsService) UpdateClientShort(input *clients.UpdateClientParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = c.Client.Clients.DeleteClientShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (c *ClientsService) UpdateClientPermissionShort(input *clients.UpdateClientPermissionParams) error {
-	token, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = c.Client.Clients.UpdateClientPermissionShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (c *ClientsService) AddClientPermissionShort(input *clients.AddClientPermissionParams) error {
-	token, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = c.Client.Clients.AddClientPermissionShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (c *ClientsService) DeleteClientPermissionShort(input *clients.DeleteClientPermissionParams) error {
-	token, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = c.Client.Clients.DeleteClientPermissionShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (c *ClientsService) UpdateClientSecretShort(input *clients.UpdateClientSecretParams) error {
-	token, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = c.Client.Clients.UpdateClientSecretShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (c *ClientsService) GetClientsbyNamespaceShort(input *clients.GetClientsbyNamespaceParams) ([]*iamclientmodels.ClientmodelClientResponse, error) {
-	token, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := c.Client.Clients.GetClientsbyNamespaceShort(input, authWriter)
+	ok, err := c.Client.Clients.UpdateClientShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -679,15 +584,111 @@ func (c *ClientsService) GetClientsbyNamespaceShort(input *clients.GetClientsbyN
 	return ok.GetPayload(), nil
 }
 
-func (c *ClientsService) CreateClientByNamespaceShort(input *clients.CreateClientByNamespaceParams) (*iamclientmodels.ClientmodelClientCreationResponse, error) {
-	token, err := c.TokenRepository.GetToken()
+// [{'HasPermission': ['CLIENT:ADMIN [DELETE]'], 'authorization': []}]
+func (c *ClientsService) DeleteClientShort(input *clients.DeleteClientParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	_, err := c.Client.Clients.DeleteClientShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['CLIENT:ADMIN [UPDATE]'], 'authorization': []}]
+func (c *ClientsService) UpdateClientPermissionShort(input *clients.UpdateClientPermissionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	_, err := c.Client.Clients.UpdateClientPermissionShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['CLIENT:ADMIN [UPDATE]'], 'authorization': []}]
+func (c *ClientsService) AddClientPermissionShort(input *clients.AddClientPermissionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	_, err := c.Client.Clients.AddClientPermissionShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['CLIENT:ADMIN [UPDATE]'], 'authorization': []}]
+func (c *ClientsService) DeleteClientPermissionShort(input *clients.DeleteClientPermissionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	_, err := c.Client.Clients.DeleteClientPermissionShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['CLIENT:ADMIN [UPDATE]'], 'authorization': []}]
+func (c *ClientsService) UpdateClientSecretShort(input *clients.UpdateClientSecretParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	_, err := c.Client.Clients.UpdateClientSecretShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:CLIENT [READ]'], 'authorization': []}]
+func (c *ClientsService) GetClientsbyNamespaceShort(input *clients.GetClientsbyNamespaceParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ClientmodelClientResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	ok, err := c.Client.Clients.GetClientsbyNamespaceShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	created, err := c.Client.Clients.CreateClientByNamespaceShort(input, authWriter)
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]'], 'authorization': []}]
+func (c *ClientsService) CreateClientByNamespaceShort(input *clients.CreateClientByNamespaceParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientCreationResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	created, err := c.Client.Clients.CreateClientByNamespaceShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -695,15 +696,15 @@ func (c *ClientsService) CreateClientByNamespaceShort(input *clients.CreateClien
 	return created.GetPayload(), nil
 }
 
-func (c *ClientsService) DeleteClientByNamespaceShort(input *clients.DeleteClientByNamespaceParams) error {
-	token, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLIENT:{clientId} [DELETE]'], 'authorization': []}]
+func (c *ClientsService) DeleteClientByNamespaceShort(input *clients.DeleteClientByNamespaceParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = c.Client.Clients.DeleteClientByNamespaceShort(input, authWriter)
+	_, err := c.Client.Clients.DeleteClientByNamespaceShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -711,15 +712,15 @@ func (c *ClientsService) DeleteClientByNamespaceShort(input *clients.DeleteClien
 	return nil
 }
 
-func (c *ClientsService) AdminGetClientsByNamespaceV3Short(input *clients.AdminGetClientsByNamespaceV3Params) (*iamclientmodels.ClientmodelClientsV3Response, error) {
-	token, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLIENT [READ]'], 'authorization': []}]
+func (c *ClientsService) AdminGetClientsByNamespaceV3Short(input *clients.AdminGetClientsByNamespaceV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientsV3Response, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := c.Client.Clients.AdminGetClientsByNamespaceV3Short(input, authWriter)
+	ok, err := c.Client.Clients.AdminGetClientsByNamespaceV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -727,15 +728,15 @@ func (c *ClientsService) AdminGetClientsByNamespaceV3Short(input *clients.AdminG
 	return ok.GetPayload(), nil
 }
 
-func (c *ClientsService) AdminCreateClientV3Short(input *clients.AdminCreateClientV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
-	token, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]'], 'authorization': []}]
+func (c *ClientsService) AdminCreateClientV3Short(input *clients.AdminCreateClientV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientV3Response, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	created, err := c.Client.Clients.AdminCreateClientV3Short(input, authWriter)
+	created, err := c.Client.Clients.AdminCreateClientV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -743,47 +744,15 @@ func (c *ClientsService) AdminCreateClientV3Short(input *clients.AdminCreateClie
 	return created.GetPayload(), nil
 }
 
-func (c *ClientsService) AdminGetClientsbyNamespacebyIDV3Short(input *clients.AdminGetClientsbyNamespacebyIDV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
-	token, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLIENT [READ]'], 'authorization': []}]
+func (c *ClientsService) AdminGetClientsbyNamespacebyIDV3Short(input *clients.AdminGetClientsbyNamespacebyIDV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientV3Response, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := c.Client.Clients.AdminGetClientsbyNamespacebyIDV3Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (c *ClientsService) AdminDeleteClientV3Short(input *clients.AdminDeleteClientV3Params) error {
-	token, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = c.Client.Clients.AdminDeleteClientV3Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (c *ClientsService) AdminUpdateClientV3Short(input *clients.AdminUpdateClientV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
-	token, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := c.Client.Clients.AdminUpdateClientV3Short(input, authWriter)
+	ok, err := c.Client.Clients.AdminGetClientsbyNamespacebyIDV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -791,31 +760,15 @@ func (c *ClientsService) AdminUpdateClientV3Short(input *clients.AdminUpdateClie
 	return ok.GetPayload(), nil
 }
 
-func (c *ClientsService) AdminUpdateClientPermissionV3Short(input *clients.AdminUpdateClientPermissionV3Params) error {
-	token, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLIENT [DELETE]'], 'authorization': []}]
+func (c *ClientsService) AdminDeleteClientV3Short(input *clients.AdminDeleteClientV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = c.Client.Clients.AdminUpdateClientPermissionV3Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (c *ClientsService) AdminAddClientPermissionsV3Short(input *clients.AdminAddClientPermissionsV3Params) error {
-	token, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = c.Client.Clients.AdminAddClientPermissionsV3Short(input, authWriter)
+	_, err := c.Client.Clients.AdminDeleteClientV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -823,15 +776,63 @@ func (c *ClientsService) AdminAddClientPermissionsV3Short(input *clients.AdminAd
 	return nil
 }
 
-func (c *ClientsService) AdminDeleteClientPermissionV3Short(input *clients.AdminDeleteClientPermissionV3Params) error {
-	token, err := c.TokenRepository.GetToken()
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]'], 'authorization': []}]
+func (c *ClientsService) AdminUpdateClientV3Short(input *clients.AdminUpdateClientV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientV3Response, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	ok, err := c.Client.Clients.AdminUpdateClientV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]'], 'authorization': []}]
+func (c *ClientsService) AdminUpdateClientPermissionV3Short(input *clients.AdminUpdateClientPermissionV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	_, err := c.Client.Clients.AdminUpdateClientPermissionV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = c.Client.Clients.AdminDeleteClientPermissionV3Short(input, authWriter)
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]'], 'authorization': []}]
+func (c *ClientsService) AdminAddClientPermissionsV3Short(input *clients.AdminAddClientPermissionsV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	_, err := c.Client.Clients.AdminAddClientPermissionsV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]'], 'authorization': []}]
+func (c *ClientsService) AdminDeleteClientPermissionV3Short(input *clients.AdminDeleteClientPermissionV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	_, err := c.Client.Clients.AdminDeleteClientPermissionV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

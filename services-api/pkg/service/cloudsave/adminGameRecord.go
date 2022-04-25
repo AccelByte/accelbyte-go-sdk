@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package cloudsave
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclient/admin_game_record"
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type AdminGameRecordService struct {
 
 // Deprecated: Use ListGameRecordsHandlerV1Short instead
 func (a *AdminGameRecordService) ListGameRecordsHandlerV1(input *admin_game_record.ListGameRecordsHandlerV1Params) (*cloudsaveclientmodels.ModelsListGameRecordKeysResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := a.Client.AdminGameRecord.ListGameRecordsHandlerV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, internalServerError, err := a.Client.AdminGameRecord.ListGameRecordsHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -39,11 +43,11 @@ func (a *AdminGameRecordService) ListGameRecordsHandlerV1(input *admin_game_reco
 
 // Deprecated: Use AdminGetGameRecordHandlerV1Short instead
 func (a *AdminGameRecordService) AdminGetGameRecordHandlerV1(input *admin_game_record.AdminGetGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecordResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminGameRecord.AdminGetGameRecordHandlerV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminGameRecord.AdminGetGameRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -62,11 +66,11 @@ func (a *AdminGameRecordService) AdminGetGameRecordHandlerV1(input *admin_game_r
 
 // Deprecated: Use AdminPutGameRecordHandlerV1Short instead
 func (a *AdminGameRecordService) AdminPutGameRecordHandlerV1(input *admin_game_record.AdminPutGameRecordHandlerV1Params) error {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, internalServerError, err := a.Client.AdminGameRecord.AdminPutGameRecordHandlerV1(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, internalServerError, err := a.Client.AdminGameRecord.AdminPutGameRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -82,11 +86,11 @@ func (a *AdminGameRecordService) AdminPutGameRecordHandlerV1(input *admin_game_r
 
 // Deprecated: Use AdminPostGameRecordHandlerV1Short instead
 func (a *AdminGameRecordService) AdminPostGameRecordHandlerV1(input *admin_game_record.AdminPostGameRecordHandlerV1Params) error {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, internalServerError, err := a.Client.AdminGameRecord.AdminPostGameRecordHandlerV1(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, internalServerError, err := a.Client.AdminGameRecord.AdminPostGameRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -102,11 +106,11 @@ func (a *AdminGameRecordService) AdminPostGameRecordHandlerV1(input *admin_game_
 
 // Deprecated: Use AdminDeleteGameRecordHandlerV1Short instead
 func (a *AdminGameRecordService) AdminDeleteGameRecordHandlerV1(input *admin_game_record.AdminDeleteGameRecordHandlerV1Params) error {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, internalServerError, err := a.Client.AdminGameRecord.AdminDeleteGameRecordHandlerV1(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, internalServerError, err := a.Client.AdminGameRecord.AdminDeleteGameRecordHandlerV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -120,25 +124,15 @@ func (a *AdminGameRecordService) AdminDeleteGameRecordHandlerV1(input *admin_gam
 	return nil
 }
 
-func (a *AdminGameRecordService) ListGameRecordsHandlerV1Short(input *admin_game_record.ListGameRecordsHandlerV1Params) (*cloudsaveclientmodels.ModelsListGameRecordKeysResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminGameRecordService) ListGameRecordsHandlerV1Short(input *admin_game_record.ListGameRecordsHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsListGameRecordKeysResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	ok, err := a.Client.AdminGameRecord.ListGameRecordsHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (a *AdminGameRecordService) AdminGetGameRecordHandlerV1Short(input *admin_game_record.AdminGetGameRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsGameRecordResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := a.Client.AdminGameRecord.AdminGetGameRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := a.Client.AdminGameRecord.ListGameRecordsHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -146,12 +140,31 @@ func (a *AdminGameRecordService) AdminGetGameRecordHandlerV1Short(input *admin_g
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminGameRecordService) AdminPutGameRecordHandlerV1Short(input *admin_game_record.AdminPutGameRecordHandlerV1Params) error {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminGameRecordService) AdminGetGameRecordHandlerV1Short(input *admin_game_record.AdminGetGameRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsGameRecordResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	_, err = a.Client.AdminGameRecord.AdminPutGameRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := a.Client.AdminGameRecord.AdminGetGameRecordHandlerV1Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]', 'CLIENT []'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminGameRecordService) AdminPutGameRecordHandlerV1Short(input *admin_game_record.AdminPutGameRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
+	}
+	_, err := a.Client.AdminGameRecord.AdminPutGameRecordHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -159,12 +172,15 @@ func (a *AdminGameRecordService) AdminPutGameRecordHandlerV1Short(input *admin_g
 	return nil
 }
 
-func (a *AdminGameRecordService) AdminPostGameRecordHandlerV1Short(input *admin_game_record.AdminPostGameRecordHandlerV1Params) error {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]', 'CLIENT []'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminGameRecordService) AdminPostGameRecordHandlerV1Short(input *admin_game_record.AdminPostGameRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	_, err = a.Client.AdminGameRecord.AdminPostGameRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := a.Client.AdminGameRecord.AdminPostGameRecordHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -172,12 +188,15 @@ func (a *AdminGameRecordService) AdminPostGameRecordHandlerV1Short(input *admin_
 	return nil
 }
 
-func (a *AdminGameRecordService) AdminDeleteGameRecordHandlerV1Short(input *admin_game_record.AdminDeleteGameRecordHandlerV1Params) error {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
+func (a *AdminGameRecordService) AdminDeleteGameRecordHandlerV1Short(input *admin_game_record.AdminDeleteGameRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	_, err = a.Client.AdminGameRecord.AdminDeleteGameRecordHandlerV1Short(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := a.Client.AdminGameRecord.AdminDeleteGameRecordHandlerV1Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

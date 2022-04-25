@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package platform
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/subscription"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type SubscriptionService struct {
 
 // Deprecated: Use QuerySubscriptionsShort instead
 func (s *SubscriptionService) QuerySubscriptions(input *subscription.QuerySubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := s.Client.Subscription.QuerySubscriptions(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Subscription.QuerySubscriptions(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -33,11 +37,11 @@ func (s *SubscriptionService) QuerySubscriptions(input *subscription.QuerySubscr
 
 // Deprecated: Use RecurringChargeSubscriptionShort instead
 func (s *SubscriptionService) RecurringChargeSubscription(input *subscription.RecurringChargeSubscriptionParams) (*platformclientmodels.RecurringChargeResult, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := s.Client.Subscription.RecurringChargeSubscription(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Subscription.RecurringChargeSubscription(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -47,11 +51,11 @@ func (s *SubscriptionService) RecurringChargeSubscription(input *subscription.Re
 
 // Deprecated: Use QueryUserSubscriptionsShort instead
 func (s *SubscriptionService) QueryUserSubscriptions(input *subscription.QueryUserSubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := s.Client.Subscription.QueryUserSubscriptions(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Subscription.QueryUserSubscriptions(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -61,11 +65,11 @@ func (s *SubscriptionService) QueryUserSubscriptions(input *subscription.QueryUs
 
 // Deprecated: Use GetUserSubscriptionActivitiesShort instead
 func (s *SubscriptionService) GetUserSubscriptionActivities(input *subscription.GetUserSubscriptionActivitiesParams) (*platformclientmodels.SubscriptionActivityPagingSlicedResult, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := s.Client.Subscription.GetUserSubscriptionActivities(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Subscription.GetUserSubscriptionActivities(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -75,11 +79,11 @@ func (s *SubscriptionService) GetUserSubscriptionActivities(input *subscription.
 
 // Deprecated: Use PlatformSubscribeSubscriptionShort instead
 func (s *SubscriptionService) PlatformSubscribeSubscription(input *subscription.PlatformSubscribeSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, created, badRequest, notFound, unprocessableEntity, err := s.Client.Subscription.PlatformSubscribeSubscription(input, client.BearerToken(*accessToken.AccessToken))
+	ok, created, badRequest, notFound, unprocessableEntity, err := s.Client.Subscription.PlatformSubscribeSubscription(input, client.BearerToken(*token.AccessToken))
 	if created != nil {
 		return nil, created
 	}
@@ -101,11 +105,11 @@ func (s *SubscriptionService) PlatformSubscribeSubscription(input *subscription.
 
 // Deprecated: Use CheckUserSubscriptionSubscribableByItemIDShort instead
 func (s *SubscriptionService) CheckUserSubscriptionSubscribableByItemID(input *subscription.CheckUserSubscriptionSubscribableByItemIDParams) (*platformclientmodels.Subscribable, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := s.Client.Subscription.CheckUserSubscriptionSubscribableByItemID(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Subscription.CheckUserSubscriptionSubscribableByItemID(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -115,11 +119,11 @@ func (s *SubscriptionService) CheckUserSubscriptionSubscribableByItemID(input *s
 
 // Deprecated: Use GetUserSubscriptionShort instead
 func (s *SubscriptionService) GetUserSubscription(input *subscription.GetUserSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := s.Client.Subscription.GetUserSubscription(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, err := s.Client.Subscription.GetUserSubscription(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -132,11 +136,11 @@ func (s *SubscriptionService) GetUserSubscription(input *subscription.GetUserSub
 
 // Deprecated: Use DeleteUserSubscriptionShort instead
 func (s *SubscriptionService) DeleteUserSubscription(input *subscription.DeleteUserSubscriptionParams) error {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = s.Client.Subscription.DeleteUserSubscription(input, client.BearerToken(*accessToken.AccessToken))
+	_, err = s.Client.Subscription.DeleteUserSubscription(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -146,11 +150,11 @@ func (s *SubscriptionService) DeleteUserSubscription(input *subscription.DeleteU
 
 // Deprecated: Use CancelSubscriptionShort instead
 func (s *SubscriptionService) CancelSubscription(input *subscription.CancelSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, conflict, err := s.Client.Subscription.CancelSubscription(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, conflict, err := s.Client.Subscription.CancelSubscription(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -166,11 +170,11 @@ func (s *SubscriptionService) CancelSubscription(input *subscription.CancelSubsc
 
 // Deprecated: Use GrantDaysToSubscriptionShort instead
 func (s *SubscriptionService) GrantDaysToSubscription(input *subscription.GrantDaysToSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := s.Client.Subscription.GrantDaysToSubscription(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, err := s.Client.Subscription.GrantDaysToSubscription(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -183,11 +187,11 @@ func (s *SubscriptionService) GrantDaysToSubscription(input *subscription.GrantD
 
 // Deprecated: Use GetUserSubscriptionBillingHistoriesShort instead
 func (s *SubscriptionService) GetUserSubscriptionBillingHistories(input *subscription.GetUserSubscriptionBillingHistoriesParams) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := s.Client.Subscription.GetUserSubscriptionBillingHistories(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Subscription.GetUserSubscriptionBillingHistories(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -197,11 +201,11 @@ func (s *SubscriptionService) GetUserSubscriptionBillingHistories(input *subscri
 
 // Deprecated: Use ProcessUserSubscriptionNotificationShort instead
 func (s *SubscriptionService) ProcessUserSubscriptionNotification(input *subscription.ProcessUserSubscriptionNotificationParams) error {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := s.Client.Subscription.ProcessUserSubscriptionNotification(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, err := s.Client.Subscription.ProcessUserSubscriptionNotification(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -214,11 +218,11 @@ func (s *SubscriptionService) ProcessUserSubscriptionNotification(input *subscri
 
 // Deprecated: Use PublicQueryUserSubscriptionsShort instead
 func (s *SubscriptionService) PublicQueryUserSubscriptions(input *subscription.PublicQueryUserSubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := s.Client.Subscription.PublicQueryUserSubscriptions(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Subscription.PublicQueryUserSubscriptions(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -228,11 +232,11 @@ func (s *SubscriptionService) PublicQueryUserSubscriptions(input *subscription.P
 
 // Deprecated: Use PublicSubscribeSubscriptionShort instead
 func (s *SubscriptionService) PublicSubscribeSubscription(input *subscription.PublicSubscribeSubscriptionParams) error {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, forbidden, notFound, conflict, unprocessableEntity, err := s.Client.Subscription.PublicSubscribeSubscription(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, forbidden, notFound, conflict, unprocessableEntity, err := s.Client.Subscription.PublicSubscribeSubscription(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -257,11 +261,11 @@ func (s *SubscriptionService) PublicSubscribeSubscription(input *subscription.Pu
 
 // Deprecated: Use PublicCheckUserSubscriptionSubscribableByItemIDShort instead
 func (s *SubscriptionService) PublicCheckUserSubscriptionSubscribableByItemID(input *subscription.PublicCheckUserSubscriptionSubscribableByItemIDParams) (*platformclientmodels.Subscribable, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := s.Client.Subscription.PublicCheckUserSubscriptionSubscribableByItemID(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Subscription.PublicCheckUserSubscriptionSubscribableByItemID(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -271,11 +275,11 @@ func (s *SubscriptionService) PublicCheckUserSubscriptionSubscribableByItemID(in
 
 // Deprecated: Use PublicGetUserSubscriptionShort instead
 func (s *SubscriptionService) PublicGetUserSubscription(input *subscription.PublicGetUserSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, err := s.Client.Subscription.PublicGetUserSubscription(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, err := s.Client.Subscription.PublicGetUserSubscription(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -288,11 +292,11 @@ func (s *SubscriptionService) PublicGetUserSubscription(input *subscription.Publ
 
 // Deprecated: Use PublicChangeSubscriptionBillingAccountShort instead
 func (s *SubscriptionService) PublicChangeSubscriptionBillingAccount(input *subscription.PublicChangeSubscriptionBillingAccountParams) (*platformclientmodels.SubscriptionInfo, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, err := s.Client.Subscription.PublicChangeSubscriptionBillingAccount(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, conflict, err := s.Client.Subscription.PublicChangeSubscriptionBillingAccount(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -311,11 +315,11 @@ func (s *SubscriptionService) PublicChangeSubscriptionBillingAccount(input *subs
 
 // Deprecated: Use PublicCancelSubscriptionShort instead
 func (s *SubscriptionService) PublicCancelSubscription(input *subscription.PublicCancelSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, conflict, err := s.Client.Subscription.PublicCancelSubscription(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, conflict, err := s.Client.Subscription.PublicCancelSubscription(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -331,24 +335,11 @@ func (s *SubscriptionService) PublicCancelSubscription(input *subscription.Publi
 
 // Deprecated: Use PublicGetUserSubscriptionBillingHistoriesShort instead
 func (s *SubscriptionService) PublicGetUserSubscriptionBillingHistories(input *subscription.PublicGetUserSubscriptionBillingHistoriesParams) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := s.Client.Subscription.PublicGetUserSubscriptionBillingHistories(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (s *SubscriptionService) QuerySubscriptionsShort(input *subscription.QuerySubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := s.Client.Subscription.QuerySubscriptionsShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Subscription.PublicGetUserSubscriptionBillingHistories(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -356,25 +347,15 @@ func (s *SubscriptionService) QuerySubscriptionsShort(input *subscription.QueryS
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) RecurringChargeSubscriptionShort(input *subscription.RecurringChargeSubscriptionParams) (*platformclientmodels.RecurringChargeResult, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SUBSCRIPTION [READ]'], 'authorization': []}]
+func (s *SubscriptionService) QuerySubscriptionsShort(input *subscription.QuerySubscriptionsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
-	ok, err := s.Client.Subscription.RecurringChargeSubscriptionShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (s *SubscriptionService) QueryUserSubscriptionsShort(input *subscription.QueryUserSubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := s.Client.Subscription.QueryUserSubscriptionsShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Subscription.QuerySubscriptionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -382,25 +363,15 @@ func (s *SubscriptionService) QueryUserSubscriptionsShort(input *subscription.Qu
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) GetUserSubscriptionActivitiesShort(input *subscription.GetUserSubscriptionActivitiesParams) (*platformclientmodels.SubscriptionActivityPagingSlicedResult, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SUBSCRIPTION [UPDATE]'], 'authorization': []}]
+func (s *SubscriptionService) RecurringChargeSubscriptionShort(input *subscription.RecurringChargeSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.RecurringChargeResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
-	ok, err := s.Client.Subscription.GetUserSubscriptionActivitiesShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (s *SubscriptionService) PlatformSubscribeSubscriptionShort(input *subscription.PlatformSubscribeSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := s.Client.Subscription.PlatformSubscribeSubscriptionShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Subscription.RecurringChargeSubscriptionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -408,25 +379,15 @@ func (s *SubscriptionService) PlatformSubscribeSubscriptionShort(input *subscrip
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) CheckUserSubscriptionSubscribableByItemIDShort(input *subscription.CheckUserSubscriptionSubscribableByItemIDParams) (*platformclientmodels.Subscribable, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]'], 'authorization': []}]
+func (s *SubscriptionService) QueryUserSubscriptionsShort(input *subscription.QueryUserSubscriptionsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
-	ok, err := s.Client.Subscription.CheckUserSubscriptionSubscribableByItemIDShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (s *SubscriptionService) GetUserSubscriptionShort(input *subscription.GetUserSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := s.Client.Subscription.GetUserSubscriptionShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Subscription.QueryUserSubscriptionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -434,25 +395,15 @@ func (s *SubscriptionService) GetUserSubscriptionShort(input *subscription.GetUs
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) DeleteUserSubscriptionShort(input *subscription.DeleteUserSubscriptionParams) error {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]'], 'authorization': []}]
+func (s *SubscriptionService) GetUserSubscriptionActivitiesShort(input *subscription.GetUserSubscriptionActivitiesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionActivityPagingSlicedResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
-	_, err = s.Client.Subscription.DeleteUserSubscriptionShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (s *SubscriptionService) CancelSubscriptionShort(input *subscription.CancelSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := s.Client.Subscription.CancelSubscriptionShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Subscription.GetUserSubscriptionActivitiesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -460,25 +411,15 @@ func (s *SubscriptionService) CancelSubscriptionShort(input *subscription.Cancel
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) GrantDaysToSubscriptionShort(input *subscription.GrantDaysToSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [CREATE]'], 'authorization': []}]
+func (s *SubscriptionService) PlatformSubscribeSubscriptionShort(input *subscription.PlatformSubscribeSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
-	ok, err := s.Client.Subscription.GrantDaysToSubscriptionShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (s *SubscriptionService) GetUserSubscriptionBillingHistoriesShort(input *subscription.GetUserSubscriptionBillingHistoriesParams) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := s.Client.Subscription.GetUserSubscriptionBillingHistoriesShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Subscription.PlatformSubscribeSubscriptionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -486,12 +427,47 @@ func (s *SubscriptionService) GetUserSubscriptionBillingHistoriesShort(input *su
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) ProcessUserSubscriptionNotificationShort(input *subscription.ProcessUserSubscriptionNotificationParams) error {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]'], 'authorization': []}]
+func (s *SubscriptionService) CheckUserSubscriptionSubscribableByItemIDShort(input *subscription.CheckUserSubscriptionSubscribableByItemIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.Subscribable, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
-	_, err = s.Client.Subscription.ProcessUserSubscriptionNotificationShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Subscription.CheckUserSubscriptionSubscribableByItemIDShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]'], 'authorization': []}]
+func (s *SubscriptionService) GetUserSubscriptionShort(input *subscription.GetUserSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+	}
+	ok, err := s.Client.Subscription.GetUserSubscriptionShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [DELETE]'], 'authorization': []}]
+func (s *SubscriptionService) DeleteUserSubscriptionShort(input *subscription.DeleteUserSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+	}
+	_, err := s.Client.Subscription.DeleteUserSubscriptionShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -499,12 +475,15 @@ func (s *SubscriptionService) ProcessUserSubscriptionNotificationShort(input *su
 	return nil
 }
 
-func (s *SubscriptionService) PublicQueryUserSubscriptionsShort(input *subscription.PublicQueryUserSubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [UPDATE]'], 'authorization': []}]
+func (s *SubscriptionService) CancelSubscriptionShort(input *subscription.CancelSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
-	ok, err := s.Client.Subscription.PublicQueryUserSubscriptionsShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Subscription.CancelSubscriptionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -512,12 +491,47 @@ func (s *SubscriptionService) PublicQueryUserSubscriptionsShort(input *subscript
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) PublicSubscribeSubscriptionShort(input *subscription.PublicSubscribeSubscriptionParams) error {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [UPDATE]'], 'authorization': []}]
+func (s *SubscriptionService) GrantDaysToSubscriptionShort(input *subscription.GrantDaysToSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
-	_, err = s.Client.Subscription.PublicSubscribeSubscriptionShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Subscription.GrantDaysToSubscriptionShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]'], 'authorization': []}]
+func (s *SubscriptionService) GetUserSubscriptionBillingHistoriesShort(input *subscription.GetUserSubscriptionBillingHistoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+	}
+	ok, err := s.Client.Subscription.GetUserSubscriptionBillingHistoriesShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [UPDATE]'], 'authorization': []}]
+func (s *SubscriptionService) ProcessUserSubscriptionNotificationShort(input *subscription.ProcessUserSubscriptionNotificationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+	}
+	_, err := s.Client.Subscription.ProcessUserSubscriptionNotificationShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -525,25 +539,15 @@ func (s *SubscriptionService) PublicSubscribeSubscriptionShort(input *subscripti
 	return nil
 }
 
-func (s *SubscriptionService) PublicCheckUserSubscriptionSubscribableByItemIDShort(input *subscription.PublicCheckUserSubscriptionSubscribableByItemIDParams) (*platformclientmodels.Subscribable, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]'], 'authorization': []}]
+func (s *SubscriptionService) PublicQueryUserSubscriptionsShort(input *subscription.PublicQueryUserSubscriptionsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
-	ok, err := s.Client.Subscription.PublicCheckUserSubscriptionSubscribableByItemIDShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (s *SubscriptionService) PublicGetUserSubscriptionShort(input *subscription.PublicGetUserSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := s.Client.Subscription.PublicGetUserSubscriptionShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Subscription.PublicQueryUserSubscriptionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -551,12 +555,31 @@ func (s *SubscriptionService) PublicGetUserSubscriptionShort(input *subscription
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) PublicChangeSubscriptionBillingAccountShort(input *subscription.PublicChangeSubscriptionBillingAccountParams) (*platformclientmodels.SubscriptionInfo, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [CREATE]'], 'authorization': []}]
+func (s *SubscriptionService) PublicSubscribeSubscriptionShort(input *subscription.PublicSubscribeSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
-	ok, err := s.Client.Subscription.PublicChangeSubscriptionBillingAccountShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := s.Client.Subscription.PublicSubscribeSubscriptionShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]'], 'authorization': []}]
+func (s *SubscriptionService) PublicCheckUserSubscriptionSubscribableByItemIDShort(input *subscription.PublicCheckUserSubscriptionSubscribableByItemIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.Subscribable, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+	}
+	ok, err := s.Client.Subscription.PublicCheckUserSubscriptionSubscribableByItemIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -564,12 +587,15 @@ func (s *SubscriptionService) PublicChangeSubscriptionBillingAccountShort(input 
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) PublicCancelSubscriptionShort(input *subscription.PublicCancelSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]'], 'authorization': []}]
+func (s *SubscriptionService) PublicGetUserSubscriptionShort(input *subscription.PublicGetUserSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
-	ok, err := s.Client.Subscription.PublicCancelSubscriptionShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Subscription.PublicGetUserSubscriptionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -577,12 +603,47 @@ func (s *SubscriptionService) PublicCancelSubscriptionShort(input *subscription.
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) PublicGetUserSubscriptionBillingHistoriesShort(input *subscription.PublicGetUserSubscriptionBillingHistoriesParams) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [UPDATE]'], 'authorization': []}]
+func (s *SubscriptionService) PublicChangeSubscriptionBillingAccountShort(input *subscription.PublicChangeSubscriptionBillingAccountParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+	}
+	ok, err := s.Client.Subscription.PublicChangeSubscriptionBillingAccountShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	ok, err := s.Client.Subscription.PublicGetUserSubscriptionBillingHistoriesShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [UPDATE]'], 'authorization': []}]
+func (s *SubscriptionService) PublicCancelSubscriptionShort(input *subscription.PublicCancelSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+	}
+	ok, err := s.Client.Subscription.PublicCancelSubscriptionShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]'], 'authorization': []}]
+func (s *SubscriptionService) PublicGetUserSubscriptionBillingHistoriesShort(input *subscription.PublicGetUserSubscriptionBillingHistoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+	}
+	ok, err := s.Client.Subscription.PublicGetUserSubscriptionBillingHistoriesShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

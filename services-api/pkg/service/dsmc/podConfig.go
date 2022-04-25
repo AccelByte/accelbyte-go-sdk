@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package dsmc
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/pod_config"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type PodConfigService struct {
 
 // Deprecated: Use GetAllPodConfigShort instead
 func (p *PodConfigService) GetAllPodConfig(input *pod_config.GetAllPodConfigParams) (*dsmcclientmodels.ModelsListPodConfigResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, internalServerError, err := p.Client.PodConfig.GetAllPodConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := p.Client.PodConfig.GetAllPodConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -42,11 +46,11 @@ func (p *PodConfigService) GetAllPodConfig(input *pod_config.GetAllPodConfigPara
 
 // Deprecated: Use GetPodConfigShort instead
 func (p *PodConfigService) GetPodConfig(input *pod_config.GetPodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := p.Client.PodConfig.GetPodConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := p.Client.PodConfig.GetPodConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -68,11 +72,11 @@ func (p *PodConfigService) GetPodConfig(input *pod_config.GetPodConfigParams) (*
 
 // Deprecated: Use CreatePodConfigShort instead
 func (p *PodConfigService) CreatePodConfig(input *pod_config.CreatePodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, conflict, internalServerError, err := p.Client.PodConfig.CreatePodConfig(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, conflict, internalServerError, err := p.Client.PodConfig.CreatePodConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -94,11 +98,11 @@ func (p *PodConfigService) CreatePodConfig(input *pod_config.CreatePodConfigPara
 
 // Deprecated: Use DeletePodConfigShort instead
 func (p *PodConfigService) DeletePodConfig(input *pod_config.DeletePodConfigParams) error {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, notFound, conflict, internalServerError, err := p.Client.PodConfig.DeletePodConfig(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, notFound, conflict, internalServerError, err := p.Client.PodConfig.DeletePodConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -123,11 +127,11 @@ func (p *PodConfigService) DeletePodConfig(input *pod_config.DeletePodConfigPara
 
 // Deprecated: Use UpdatePodConfigShort instead
 func (p *PodConfigService) UpdatePodConfig(input *pod_config.UpdatePodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := p.Client.PodConfig.UpdatePodConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := p.Client.PodConfig.UpdatePodConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -150,25 +154,15 @@ func (p *PodConfigService) UpdatePodConfig(input *pod_config.UpdatePodConfigPara
 	return ok.GetPayload(), nil
 }
 
-func (p *PodConfigService) GetAllPodConfigShort(input *pod_config.GetAllPodConfigParams) (*dsmcclientmodels.ModelsListPodConfigResponse, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *PodConfigService) GetAllPodConfigShort(input *pod_config.GetAllPodConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListPodConfigResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	ok, err := p.Client.PodConfig.GetAllPodConfigShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (p *PodConfigService) GetPodConfigShort(input *pod_config.GetPodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := p.Client.PodConfig.GetPodConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := p.Client.PodConfig.GetAllPodConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -176,12 +170,31 @@ func (p *PodConfigService) GetPodConfigShort(input *pod_config.GetPodConfigParam
 	return ok.GetPayload(), nil
 }
 
-func (p *PodConfigService) CreatePodConfigShort(input *pod_config.CreatePodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *PodConfigService) GetPodConfigShort(input *pod_config.GetPodConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+	}
+	ok, err := p.Client.PodConfig.GetPodConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	created, err := p.Client.PodConfig.CreatePodConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *PodConfigService) CreatePodConfigShort(input *pod_config.CreatePodConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+	}
+	created, err := p.Client.PodConfig.CreatePodConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -189,12 +202,15 @@ func (p *PodConfigService) CreatePodConfigShort(input *pod_config.CreatePodConfi
 	return created.GetPayload(), nil
 }
 
-func (p *PodConfigService) DeletePodConfigShort(input *pod_config.DeletePodConfigParams) error {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *PodConfigService) DeletePodConfigShort(input *pod_config.DeletePodConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	_, err = p.Client.PodConfig.DeletePodConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := p.Client.PodConfig.DeletePodConfigShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -202,12 +218,15 @@ func (p *PodConfigService) DeletePodConfigShort(input *pod_config.DeletePodConfi
 	return nil
 }
 
-func (p *PodConfigService) UpdatePodConfigShort(input *pod_config.UpdatePodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (p *PodConfigService) UpdatePodConfigShort(input *pod_config.UpdatePodConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	ok, err := p.Client.PodConfig.UpdatePodConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := p.Client.PodConfig.UpdatePodConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

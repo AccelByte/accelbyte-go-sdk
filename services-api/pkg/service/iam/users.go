@@ -12,6 +12,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -3643,187 +3644,15 @@ func (u *UsersService) PublicGetMyUserV3(input *users.PublicGetMyUserV3Params) (
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) CreateUserShort(input *users.CreateUserParams) (*iamclientmodels.ModelUserCreateResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER [CREATE]'], 'authorization': []}]
+func (u *UsersService) CreateUserShort(input *users.CreateUserParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserCreateResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	created, err := u.Client.Users.CreateUserShort(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return created.GetPayload(), nil
-}
-
-func (u *UsersService) GetAdminUsersByRoleIDShort(input *users.GetAdminUsersByRoleIDParams) (*iamclientmodels.ModelGetAdminUsersResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.GetAdminUsersByRoleIDShort(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) GetUserByLoginIDShort(input *users.GetUserByLoginIDParams) (*iamclientmodels.ModelPublicUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.GetUserByLoginIDShort(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) GetUserByPlatformUserIDShort(input *users.GetUserByPlatformUserIDParams) (*iamclientmodels.ModelPublicUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.GetUserByPlatformUserIDShort(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) ForgotPasswordShort(input *users.ForgotPasswordParams) error {
-	clientID := u.ConfigRepository.GetClientId()
-	clientSecret := u.ConfigRepository.GetClientSecret()
-	authWriter := auth.Compose(
-		auth.Basic(clientID, clientSecret),
-	)
-	_, err := u.Client.Users.ForgotPasswordShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) GetUsersByLoginIdsShort(input *users.GetUsersByLoginIdsParams) (*iamclientmodels.ModelPublicUsersResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.GetUsersByLoginIdsShort(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) ResetPasswordShort(input *users.ResetPasswordParams) error {
-	clientID := u.ConfigRepository.GetClientId()
-	clientSecret := u.ConfigRepository.GetClientSecret()
-	authWriter := auth.Compose(
-		auth.Basic(clientID, clientSecret),
-	)
-	_, err := u.Client.Users.ResetPasswordShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) SearchUserShort(input *users.SearchUserParams) (*iamclientmodels.ModelSearchUsersResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.SearchUserShort(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) GetUserByUserIDShort(input *users.GetUserByUserIDParams) (*iamclientmodels.ModelUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.GetUserByUserIDShort(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) UpdateUserShort(input *users.UpdateUserParams) (*iamclientmodels.ModelUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.UpdateUserShort(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) DeleteUserShort(input *users.DeleteUserParams) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.DeleteUserShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) BanUserShort(input *users.BanUserParams) (*iamclientmodels.ModelUserBanResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	created, err := u.Client.Users.BanUserShort(input, authWriter)
+	created, err := u.Client.Users.CreateUserShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3831,31 +3660,15 @@ func (u *UsersService) BanUserShort(input *users.BanUserParams) (*iamclientmodel
 	return created.GetPayload(), nil
 }
 
-func (u *UsersService) GetUserBanHistoryShort(input *users.GetUserBanHistoryParams) ([]*iamclientmodels.ModelUserBanResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
+func (u *UsersService) GetAdminUsersByRoleIDShort(input *users.GetAdminUsersByRoleIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelGetAdminUsersResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.GetUserBanHistoryShort(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) DisableUserBanShort(input *users.DisableUserBanParams) (*iamclientmodels.ModelUserBanResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.DisableUserBanShort(input, authWriter)
+	ok, err := u.Client.Users.GetAdminUsersByRoleIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3863,15 +3676,15 @@ func (u *UsersService) DisableUserBanShort(input *users.DisableUserBanParams) (*
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) EnableUserBanShort(input *users.EnableUserBanParams) (*iamclientmodels.ModelUserBanResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
+func (u *UsersService) GetUserByLoginIDShort(input *users.GetUserByLoginIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelPublicUserResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.EnableUserBanShort(input, authWriter)
+	ok, err := u.Client.Users.GetUserByLoginIDShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3879,15 +3692,31 @@ func (u *UsersService) EnableUserBanShort(input *users.EnableUserBanParams) (*ia
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) ListCrossNamespaceAccountLinkShort(input *users.ListCrossNamespaceAccountLinkParams) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
+func (u *UsersService) GetUserByPlatformUserIDShort(input *users.GetUserByPlatformUserIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelPublicUserResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.ListCrossNamespaceAccountLinkShort(input, authWriter)
+	ok, err := u.Client.Users.GetUserByPlatformUserIDShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'basic': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PASSWORD:USER [UPDATE]'], 'authorization': []}]
+func (u *UsersService) ForgotPasswordShort(input *users.ForgotPasswordParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"basic"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(nil, u.ConfigRepository, security, "")
+	}
+	_, err := u.Client.Users.ForgotPasswordShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -3895,15 +3724,31 @@ func (u *UsersService) ListCrossNamespaceAccountLinkShort(input *users.ListCross
 	return nil
 }
 
-func (u *UsersService) DisableUserShort(input *users.DisableUserParams) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
+func (u *UsersService) GetUsersByLoginIdsShort(input *users.GetUsersByLoginIdsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelPublicUsersResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.DisableUserShort(input, authWriter)
+	ok, err := u.Client.Users.GetUsersByLoginIdsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'basic': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PASSWORD:USER [UPDATE]'], 'authorization': []}]
+func (u *UsersService) ResetPasswordShort(input *users.ResetPasswordParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"basic"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(nil, u.ConfigRepository, security, "")
+	}
+	_, err := u.Client.Users.ResetPasswordShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -3911,15 +3756,63 @@ func (u *UsersService) DisableUserShort(input *users.DisableUserParams) error {
 	return nil
 }
 
-func (u *UsersService) EnableUserShort(input *users.EnableUserParams) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:* [READ]'], 'authorization': []}]
+func (u *UsersService) SearchUserShort(input *users.SearchUserParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelSearchUsersResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.EnableUserShort(input, authWriter)
+	ok, err := u.Client.Users.SearchUserShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId} [READ]'], 'authorization': []}]
+func (u *UsersService) GetUserByUserIDShort(input *users.GetUserByUserIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.GetUserByUserIDShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) UpdateUserShort(input *users.UpdateUserParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.UpdateUserShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId} [DELETE]'], 'authorization': []}]
+func (u *UsersService) DeleteUserShort(input *users.DeleteUserParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.DeleteUserShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -3927,447 +3820,15 @@ func (u *UsersService) EnableUserShort(input *users.EnableUserParams) error {
 	return nil
 }
 
-func (u *UsersService) GetUserInformationShort(input *users.GetUserInformationParams) (*iamclientmodels.ModelUserInformation, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]'], 'authorization': []}]
+func (u *UsersService) BanUserShort(input *users.BanUserParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserBanResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.GetUserInformationShort(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) DeleteUserInformationShort(input *users.DeleteUserInformationParams) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.DeleteUserInformationShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) GetUserLoginHistoriesShort(input *users.GetUserLoginHistoriesParams) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.GetUserLoginHistoriesShort(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) UpdatePasswordShort(input *users.UpdatePasswordParams) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.UpdatePasswordShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) SaveUserPermissionShort(input *users.SaveUserPermissionParams) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.SaveUserPermissionShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) AddUserPermissionShort(input *users.AddUserPermissionParams) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.AddUserPermissionShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) DeleteUserPermissionShort(input *users.DeleteUserPermissionParams) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.DeleteUserPermissionShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) GetUserPlatformAccountsShort(input *users.GetUserPlatformAccountsParams) ([]*iamclientmodels.AccountcommonUserLinkedPlatform, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.GetUserPlatformAccountsShort(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) GetUserMappingShort(input *users.GetUserMappingParams) (*iamclientmodels.ModelGetUserMapping, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.GetUserMappingShort(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) GetUserJusticePlatformAccountShort(input *users.GetUserJusticePlatformAccountParams) (*iamclientmodels.ModelGetUserJusticePlatformAccountResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.GetUserJusticePlatformAccountShort(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) PlatformLinkShort(input *users.PlatformLinkParams) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.PlatformLinkShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) PlatformUnlinkShort(input *users.PlatformUnlinkParams) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.PlatformUnlinkShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) GetPublisherUserShort(input *users.GetPublisherUserParams) (*iamclientmodels.ModelGetPublisherUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.GetPublisherUserShort(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) SaveUserRolesShort(input *users.SaveUserRolesParams) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.SaveUserRolesShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) AddUserRoleShort(input *users.AddUserRoleParams) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.AddUserRoleShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) DeleteUserRoleShort(input *users.DeleteUserRoleParams) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.DeleteUserRoleShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) UpgradeHeadlessAccountShort(input *users.UpgradeHeadlessAccountParams) (*iamclientmodels.ModelUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.UpgradeHeadlessAccountShort(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) UpgradeHeadlessAccountWithVerificationCodeShort(input *users.UpgradeHeadlessAccountWithVerificationCodeParams) (*iamclientmodels.ModelUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.UpgradeHeadlessAccountWithVerificationCodeShort(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) UserVerificationShort(input *users.UserVerificationParams) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.UserVerificationShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) SendVerificationCodeShort(input *users.SendVerificationCodeParams) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.SendVerificationCodeShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) AdminGetAgeRestrictionStatusV2Short(input *users.AdminGetAgeRestrictionStatusV2Params) (*iamclientmodels.ModelAgeRestrictionResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminGetAgeRestrictionStatusV2Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) AdminUpdateAgeRestrictionConfigV2Short(input *users.AdminUpdateAgeRestrictionConfigV2Params) (*iamclientmodels.ModelAgeRestrictionResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminUpdateAgeRestrictionConfigV2Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) GetListCountryAgeRestrictionShort(input *users.GetListCountryAgeRestrictionParams) ([]*iamclientmodels.AccountcommonCountryAgeRestriction, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.GetListCountryAgeRestrictionShort(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) UpdateCountryAgeRestrictionShort(input *users.UpdateCountryAgeRestrictionParams) (*iamclientmodels.ModelCountry, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.UpdateCountryAgeRestrictionShort(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) AdminSearchUsersV2Short(input *users.AdminSearchUsersV2Params) (*iamclientmodels.ModelSearchUsersByPlatformIDResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminSearchUsersV2Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) AdminGetUserByUserIDV2Short(input *users.AdminGetUserByUserIDV2Params) (*iamclientmodels.ModelUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminGetUserByUserIDV2Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) AdminUpdateUserV2Short(input *users.AdminUpdateUserV2Params) (*iamclientmodels.ModelUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminUpdateUserV2Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) AdminBanUserV2Short(input *users.AdminBanUserV2Params) (*iamclientmodels.ModelUserBanResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	created, err := u.Client.Users.AdminBanUserV2Short(input, authWriter)
+	created, err := u.Client.Users.BanUserShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4375,127 +3836,15 @@ func (u *UsersService) AdminBanUserV2Short(input *users.AdminBanUserV2Params) (*
 	return created.GetPayload(), nil
 }
 
-func (u *UsersService) AdminGetUserBanV2Short(input *users.AdminGetUserBanV2Params) ([]*iamclientmodels.ModelUserBanResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]'], 'authorization': []}]
+func (u *UsersService) GetUserBanHistoryShort(input *users.GetUserBanHistoryParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelUserBanResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminGetUserBanV2Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) AdminDisableUserV2Short(input *users.AdminDisableUserV2Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.AdminDisableUserV2Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) AdminEnableUserV2Short(input *users.AdminEnableUserV2Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.AdminEnableUserV2Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) AdminResetPasswordV2Short(input *users.AdminResetPasswordV2Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.AdminResetPasswordV2Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) AdminDeletePlatformLinkV2Short(input *users.AdminDeletePlatformLinkV2Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.AdminDeletePlatformLinkV2Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) AdminPutUserRolesV2Short(input *users.AdminPutUserRolesV2Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.AdminPutUserRolesV2Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) AdminCreateUserRolesV2Short(input *users.AdminCreateUserRolesV2Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.AdminCreateUserRolesV2Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) PublicGetCountryAgeRestrictionShort(input *users.PublicGetCountryAgeRestrictionParams) ([]*iamclientmodels.AccountcommonCountryAgeRestriction, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.PublicGetCountryAgeRestrictionShort(input, authWriter)
+	ok, err := u.Client.Users.GetUserBanHistoryShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4503,15 +3852,527 @@ func (u *UsersService) PublicGetCountryAgeRestrictionShort(input *users.PublicGe
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicCreateUserV2Short(input *users.PublicCreateUserV2Params) (*iamclientmodels.ModelUserCreateResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) DisableUserBanShort(input *users.DisableUserBanParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserBanResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.DisableUserBanShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	created, err := u.Client.Users.PublicCreateUserV2Short(input, authWriter)
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) EnableUserBanShort(input *users.EnableUserBanParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserBanResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.EnableUserBanShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) ListCrossNamespaceAccountLinkShort(input *users.ListCrossNamespaceAccountLinkParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.ListCrossNamespaceAccountLinkShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) DisableUserShort(input *users.DisableUserParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.DisableUserShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) EnableUserShort(input *users.EnableUserParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.EnableUserShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]'], 'authorization': []}]
+func (u *UsersService) GetUserInformationShort(input *users.GetUserInformationParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserInformation, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.GetUserInformationShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]'], 'authorization': []}]
+func (u *UsersService) DeleteUserInformationShort(input *users.DeleteUserInformationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.DeleteUserInformationShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:HISTORY:LOGIN:USER:{userId} [READ]'], 'authorization': []}]
+func (u *UsersService) GetUserLoginHistoriesShort(input *users.GetUserLoginHistoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.GetUserLoginHistoriesShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) UpdatePasswordShort(input *users.UpdatePasswordParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.UpdatePasswordShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) SaveUserPermissionShort(input *users.SaveUserPermissionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.SaveUserPermissionShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) AddUserPermissionShort(input *users.AddUserPermissionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.AddUserPermissionShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [DELETE]'], 'authorization': []}]
+func (u *UsersService) DeleteUserPermissionShort(input *users.DeleteUserPermissionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.DeleteUserPermissionShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId} [READ]', 'ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]'], 'authorization': []}]
+func (u *UsersService) GetUserPlatformAccountsShort(input *users.GetUserPlatformAccountsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.AccountcommonUserLinkedPlatform, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.GetUserPlatformAccountsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]'], 'authorization': []}]
+func (u *UsersService) GetUserMappingShort(input *users.GetUserMappingParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelGetUserMapping, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.GetUserMappingShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:JUSTICE:USER:{userId} [UPDATE]', 'ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) GetUserJusticePlatformAccountShort(input *users.GetUserJusticePlatformAccountParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelGetUserJusticePlatformAccountResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.GetUserJusticePlatformAccountShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) PlatformLinkShort(input *users.PlatformLinkParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.PlatformLinkShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) PlatformUnlinkShort(input *users.PlatformUnlinkParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.PlatformUnlinkShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:PUBLISHER:USER:{userId} [READ]'], 'authorization': []}]
+func (u *UsersService) GetPublisherUserShort(input *users.GetPublisherUserParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelGetPublisherUserResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.GetPublisherUserShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) SaveUserRolesShort(input *users.SaveUserRolesParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.SaveUserRolesShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) AddUserRoleShort(input *users.AddUserRoleParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.AddUserRoleShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [DELETE]'], 'authorization': []}]
+func (u *UsersService) DeleteUserRoleShort(input *users.DeleteUserRoleParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.DeleteUserRoleShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) UpgradeHeadlessAccountShort(input *users.UpgradeHeadlessAccountParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.UpgradeHeadlessAccountShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) UpgradeHeadlessAccountWithVerificationCodeShort(input *users.UpgradeHeadlessAccountWithVerificationCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.UpgradeHeadlessAccountWithVerificationCodeShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) UserVerificationShort(input *users.UserVerificationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.UserVerificationShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) SendVerificationCodeShort(input *users.SendVerificationCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.SendVerificationCodeShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]'], 'authorization': []}]
+func (u *UsersService) AdminGetAgeRestrictionStatusV2Short(input *users.AdminGetAgeRestrictionStatusV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelAgeRestrictionResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.AdminGetAgeRestrictionStatusV2Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]'], 'authorization': []}]
+func (u *UsersService) AdminUpdateAgeRestrictionConfigV2Short(input *users.AdminUpdateAgeRestrictionConfigV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelAgeRestrictionResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.AdminUpdateAgeRestrictionConfigV2Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]'], 'authorization': []}]
+func (u *UsersService) GetListCountryAgeRestrictionShort(input *users.GetListCountryAgeRestrictionParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.AccountcommonCountryAgeRestriction, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.GetListCountryAgeRestrictionShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]'], 'authorization': []}]
+func (u *UsersService) UpdateCountryAgeRestrictionShort(input *users.UpdateCountryAgeRestrictionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelCountry, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.UpdateCountryAgeRestrictionShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
+func (u *UsersService) AdminSearchUsersV2Short(input *users.AdminSearchUsersV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelSearchUsersByPlatformIDResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.AdminSearchUsersV2Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]'], 'authorization': []}]
+func (u *UsersService) AdminGetUserByUserIDV2Short(input *users.AdminGetUserByUserIDV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.AdminGetUserByUserIDV2Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) AdminUpdateUserV2Short(input *users.AdminUpdateUserV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.AdminUpdateUserV2Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]'], 'authorization': []}]
+func (u *UsersService) AdminBanUserV2Short(input *users.AdminBanUserV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserBanResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	created, err := u.Client.Users.AdminBanUserV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4519,47 +4380,15 @@ func (u *UsersService) PublicCreateUserV2Short(input *users.PublicCreateUserV2Pa
 	return created.GetPayload(), nil
 }
 
-func (u *UsersService) PublicForgotPasswordV2Short(input *users.PublicForgotPasswordV2Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]'], 'authorization': []}]
+func (u *UsersService) AdminGetUserBanV2Short(input *users.AdminGetUserBanV2Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelUserBanResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.PublicForgotPasswordV2Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) PublicResetPasswordV2Short(input *users.PublicResetPasswordV2Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.PublicResetPasswordV2Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) PublicGetUserByUserIDV2Short(input *users.PublicGetUserByUserIDV2Params) (*iamclientmodels.ModelUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.PublicGetUserByUserIDV2Short(input, authWriter)
+	ok, err := u.Client.Users.AdminGetUserBanV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4567,47 +4396,15 @@ func (u *UsersService) PublicGetUserByUserIDV2Short(input *users.PublicGetUserBy
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicUpdateUserV2Short(input *users.PublicUpdateUserV2Params) ([]*iamclientmodels.ModelUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) AdminDisableUserV2Short(input *users.AdminDisableUserV2Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.PublicUpdateUserV2Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) PublicGetUserBanShort(input *users.PublicGetUserBanParams) ([]*iamclientmodels.ModelUserBanResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.PublicGetUserBanShort(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) PublicUpdatePasswordV2Short(input *users.PublicUpdatePasswordV2Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.PublicUpdatePasswordV2Short(input, authWriter)
+	_, err := u.Client.Users.AdminDisableUserV2Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -4615,31 +4412,15 @@ func (u *UsersService) PublicUpdatePasswordV2Short(input *users.PublicUpdatePass
 	return nil
 }
 
-func (u *UsersService) GetListJusticePlatformAccountsShort(input *users.GetListJusticePlatformAccountsParams) ([]*iamclientmodels.ModelGetUserMapping, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) AdminEnableUserV2Short(input *users.AdminEnableUserV2Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.GetListJusticePlatformAccountsShort(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) PublicPlatformLinkV2Short(input *users.PublicPlatformLinkV2Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.PublicPlatformLinkV2Short(input, authWriter)
+	_, err := u.Client.Users.AdminEnableUserV2Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -4647,15 +4428,15 @@ func (u *UsersService) PublicPlatformLinkV2Short(input *users.PublicPlatformLink
 	return nil
 }
 
-func (u *UsersService) PublicDeletePlatformLinkV2Short(input *users.PublicDeletePlatformLinkV2Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) AdminResetPasswordV2Short(input *users.AdminResetPasswordV2Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.PublicDeletePlatformLinkV2Short(input, authWriter)
+	_, err := u.Client.Users.AdminResetPasswordV2Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -4663,15 +4444,63 @@ func (u *UsersService) PublicDeletePlatformLinkV2Short(input *users.PublicDelete
 	return nil
 }
 
-func (u *UsersService) ListAdminsV3Short(input *users.ListAdminsV3Params) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]'], 'authorization': []}]
+func (u *UsersService) AdminDeletePlatformLinkV2Short(input *users.AdminDeletePlatformLinkV2Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.ListAdminsV3Short(input, authWriter)
+	_, err := u.Client.Users.AdminDeletePlatformLinkV2Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) AdminPutUserRolesV2Short(input *users.AdminPutUserRolesV2Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.AdminPutUserRolesV2Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) AdminCreateUserRolesV2Short(input *users.AdminCreateUserRolesV2Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.AdminCreateUserRolesV2Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) PublicGetCountryAgeRestrictionShort(input *users.PublicGetCountryAgeRestrictionParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.AccountcommonCountryAgeRestriction, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.PublicGetCountryAgeRestrictionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4679,143 +4508,15 @@ func (u *UsersService) ListAdminsV3Short(input *users.ListAdminsV3Params) (*iamc
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminGetAgeRestrictionStatusV3Short(input *users.AdminGetAgeRestrictionStatusV3Params) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (u *UsersService) PublicCreateUserV2Short(input *users.PublicCreateUserV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserCreateResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminGetAgeRestrictionStatusV3Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) AdminUpdateAgeRestrictionConfigV3Short(input *users.AdminUpdateAgeRestrictionConfigV3Params) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminUpdateAgeRestrictionConfigV3Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) AdminGetListCountryAgeRestrictionV3Short(input *users.AdminGetListCountryAgeRestrictionV3Params) ([]*iamclientmodels.ModelCountryV3Response, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminGetListCountryAgeRestrictionV3Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) AdminUpdateCountryAgeRestrictionV3Short(input *users.AdminUpdateCountryAgeRestrictionV3Params) (*iamclientmodels.ModelCountryV3Response, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminUpdateCountryAgeRestrictionV3Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) AdminGetUserByPlatformUserIDV3Short(input *users.AdminGetUserByPlatformUserIDV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminGetUserByPlatformUserIDV3Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) GetAdminUsersByRoleIDV3Short(input *users.GetAdminUsersByRoleIDV3Params) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.GetAdminUsersByRoleIDV3Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) AdminGetUserByEmailAddressV3Short(input *users.AdminGetUserByEmailAddressV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminGetUserByEmailAddressV3Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) AdminListUserIDByUserIDsV3Short(input *users.AdminListUserIDByUserIDsV3Params) (*iamclientmodels.ModelListUserInformationResult, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminListUserIDByUserIDsV3Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) AdminInviteUserV3Short(input *users.AdminInviteUserV3Params) (*iamclientmodels.ModelInviteUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	created, err := u.Client.Users.AdminInviteUserV3Short(input, authWriter)
+	created, err := u.Client.Users.PublicCreateUserV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4823,15 +4524,47 @@ func (u *UsersService) AdminInviteUserV3Short(input *users.AdminInviteUserV3Para
 	return created.GetPayload(), nil
 }
 
-func (u *UsersService) AdminListUsersV3Short(input *users.AdminListUsersV3Params) (*iamclientmodels.AccountcommonListUsersWithPlatformAccountsResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (u *UsersService) PublicForgotPasswordV2Short(input *users.PublicForgotPasswordV2Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminListUsersV3Short(input, authWriter)
+	_, err := u.Client.Users.PublicForgotPasswordV2Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) PublicResetPasswordV2Short(input *users.PublicResetPasswordV2Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.PublicResetPasswordV2Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) PublicGetUserByUserIDV2Short(input *users.PublicGetUserByUserIDV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.PublicGetUserByUserIDV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4839,31 +4572,15 @@ func (u *UsersService) AdminListUsersV3Short(input *users.AdminListUsersV3Params
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminSearchUserV3Short(input *users.AdminSearchUserV3Params) (*iamclientmodels.ModelSearchUsersResponseWithPaginationV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (u *UsersService) PublicUpdateUserV2Short(input *users.PublicUpdateUserV2Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelUserResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminSearchUserV3Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) AdminGetBulkUserByEmailAddressV3Short(input *users.AdminGetBulkUserByEmailAddressV3Params) (*iamclientmodels.ModelListUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminGetBulkUserByEmailAddressV3Short(input, authWriter)
+	ok, err := u.Client.Users.PublicUpdateUserV2Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4871,31 +4588,15 @@ func (u *UsersService) AdminGetBulkUserByEmailAddressV3Short(input *users.AdminG
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminGetUserByUserIDV3Short(input *users.AdminGetUserByUserIDV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (u *UsersService) PublicGetUserBanShort(input *users.PublicGetUserBanParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelUserBanResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminGetUserByUserIDV3Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) AdminUpdateUserV3Short(input *users.AdminUpdateUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminUpdateUserV3Short(input, authWriter)
+	ok, err := u.Client.Users.PublicGetUserBanShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4903,15 +4604,31 @@ func (u *UsersService) AdminUpdateUserV3Short(input *users.AdminUpdateUserV3Para
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminGetUserBanV3Short(input *users.AdminGetUserBanV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (u *UsersService) PublicUpdatePasswordV2Short(input *users.PublicUpdatePasswordV2Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminGetUserBanV3Short(input, authWriter)
+	_, err := u.Client.Users.PublicUpdatePasswordV2Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) GetListJusticePlatformAccountsShort(input *users.GetListJusticePlatformAccountsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelGetUserMapping, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.GetListJusticePlatformAccountsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4919,15 +4636,191 @@ func (u *UsersService) AdminGetUserBanV3Short(input *users.AdminGetUserBanV3Para
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminBanUserV3Short(input *users.AdminBanUserV3Params) (*iamclientmodels.ModelUserBanResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+// [{'authorization': []}]
+func (u *UsersService) PublicPlatformLinkV2Short(input *users.PublicPlatformLinkV2Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.PublicPlatformLinkV2Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) PublicDeletePlatformLinkV2Short(input *users.PublicDeletePlatformLinkV2Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.PublicDeletePlatformLinkV2Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
+func (u *UsersService) ListAdminsV3Short(input *users.ListAdminsV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.ListAdminsV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	created, err := u.Client.Users.AdminBanUserV3Short(input, authWriter)
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]'], 'authorization': []}]
+func (u *UsersService) AdminGetAgeRestrictionStatusV3Short(input *users.AdminGetAgeRestrictionStatusV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.AdminGetAgeRestrictionStatusV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]'], 'authorization': []}]
+func (u *UsersService) AdminUpdateAgeRestrictionConfigV3Short(input *users.AdminUpdateAgeRestrictionConfigV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.AdminUpdateAgeRestrictionConfigV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]'], 'authorization': []}]
+func (u *UsersService) AdminGetListCountryAgeRestrictionV3Short(input *users.AdminGetListCountryAgeRestrictionV3Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelCountryV3Response, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.AdminGetListCountryAgeRestrictionV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]'], 'authorization': []}]
+func (u *UsersService) AdminUpdateCountryAgeRestrictionV3Short(input *users.AdminUpdateCountryAgeRestrictionV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelCountryV3Response, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.AdminUpdateCountryAgeRestrictionV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) AdminGetUserByPlatformUserIDV3Short(input *users.AdminGetUserByPlatformUserIDV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.AdminGetUserByPlatformUserIDV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
+func (u *UsersService) GetAdminUsersByRoleIDV3Short(input *users.GetAdminUsersByRoleIDV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.GetAdminUsersByRoleIDV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
+func (u *UsersService) AdminGetUserByEmailAddressV3Short(input *users.AdminGetUserByEmailAddressV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.AdminGetUserByEmailAddressV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
+func (u *UsersService) AdminListUserIDByUserIDsV3Short(input *users.AdminListUserIDByUserIDsV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelListUserInformationResult, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.AdminListUserIDByUserIDsV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:INVITE [CREATE]'], 'authorization': []}]
+func (u *UsersService) AdminInviteUserV3Short(input *users.AdminInviteUserV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelInviteUserResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	created, err := u.Client.Users.AdminInviteUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4935,63 +4828,15 @@ func (u *UsersService) AdminBanUserV3Short(input *users.AdminBanUserV3Params) (*
 	return created.GetPayload(), nil
 }
 
-func (u *UsersService) AdminUpdateUserBanV3Short(input *users.AdminUpdateUserBanV3Params) (*iamclientmodels.ModelUserBanResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
+func (u *UsersService) AdminListUsersV3Short(input *users.AdminListUsersV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonListUsersWithPlatformAccountsResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminUpdateUserBanV3Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) AdminSendVerificationCodeV3Short(input *users.AdminSendVerificationCodeV3Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.AdminSendVerificationCodeV3Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) AdminVerifyAccountV3Short(input *users.AdminVerifyAccountV3Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.AdminVerifyAccountV3Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) GetUserVerificationCodeShort(input *users.GetUserVerificationCodeParams) (*iamclientmodels.ModelVerificationCodeResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.GetUserVerificationCodeShort(input, authWriter)
+	ok, err := u.Client.Users.AdminListUsersV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4999,47 +4844,15 @@ func (u *UsersService) GetUserVerificationCodeShort(input *users.GetUserVerifica
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminGetUserDeletionStatusV3Short(input *users.AdminGetUserDeletionStatusV3Params) (*iamclientmodels.ModelUserDeletionStatusResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
+func (u *UsersService) AdminSearchUserV3Short(input *users.AdminSearchUserV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelSearchUsersResponseWithPaginationV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminGetUserDeletionStatusV3Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) AdminUpdateUserDeletionStatusV3Short(input *users.AdminUpdateUserDeletionStatusV3Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.AdminUpdateUserDeletionStatusV3Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) AdminUpgradeHeadlessAccountV3Short(input *users.AdminUpgradeHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminUpgradeHeadlessAccountV3Short(input, authWriter)
+	ok, err := u.Client.Users.AdminSearchUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5047,31 +4860,15 @@ func (u *UsersService) AdminUpgradeHeadlessAccountV3Short(input *users.AdminUpgr
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminDeleteUserInformationV3Short(input *users.AdminDeleteUserInformationV3Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
+func (u *UsersService) AdminGetBulkUserByEmailAddressV3Short(input *users.AdminGetBulkUserByEmailAddressV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelListUserResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.AdminDeleteUserInformationV3Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) AdminGetUserLoginHistoriesV3Short(input *users.AdminGetUserLoginHistoriesV3Params) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminGetUserLoginHistoriesV3Short(input, authWriter)
+	ok, err := u.Client.Users.AdminGetBulkUserByEmailAddressV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5079,79 +4876,15 @@ func (u *UsersService) AdminGetUserLoginHistoriesV3Short(input *users.AdminGetUs
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminUpdateUserPermissionV3Short(input *users.AdminUpdateUserPermissionV3Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]'], 'authorization': []}]
+func (u *UsersService) AdminGetUserByUserIDV3Short(input *users.AdminGetUserByUserIDV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.AdminUpdateUserPermissionV3Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) AdminAddUserPermissionsV3Short(input *users.AdminAddUserPermissionsV3Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.AdminAddUserPermissionsV3Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) AdminDeleteUserPermissionBulkV3Short(input *users.AdminDeleteUserPermissionBulkV3Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.AdminDeleteUserPermissionBulkV3Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) AdminDeleteUserPermissionV3Short(input *users.AdminDeleteUserPermissionV3Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.AdminDeleteUserPermissionV3Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) AdminGetUserPlatformAccountsV3Short(input *users.AdminGetUserPlatformAccountsV3Params) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminGetUserPlatformAccountsV3Short(input, authWriter)
+	ok, err := u.Client.Users.AdminGetUserByUserIDV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5159,15 +4892,15 @@ func (u *UsersService) AdminGetUserPlatformAccountsV3Short(input *users.AdminGet
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminGetListJusticePlatformAccountsShort(input *users.AdminGetListJusticePlatformAccountsParams) ([]*iamclientmodels.ModelGetUserMapping, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) AdminUpdateUserV3Short(input *users.AdminUpdateUserV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminGetListJusticePlatformAccountsShort(input, authWriter)
+	ok, err := u.Client.Users.AdminUpdateUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5175,15 +4908,31 @@ func (u *UsersService) AdminGetListJusticePlatformAccountsShort(input *users.Adm
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) AdminCreateJusticeUserShort(input *users.AdminCreateJusticeUserParams) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]'], 'authorization': []}]
+func (u *UsersService) AdminGetUserBanV3Short(input *users.AdminGetUserBanV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelGetUserBanV3Response, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.AdminGetUserBanV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	created, err := u.Client.Users.AdminCreateJusticeUserShort(input, authWriter)
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]'], 'authorization': []}]
+func (u *UsersService) AdminBanUserV3Short(input *users.AdminBanUserV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserBanResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	created, err := u.Client.Users.AdminBanUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5191,159 +4940,15 @@ func (u *UsersService) AdminCreateJusticeUserShort(input *users.AdminCreateJusti
 	return created.GetPayload(), nil
 }
 
-func (u *UsersService) AdminLinkPlatformAccountShort(input *users.AdminLinkPlatformAccountParams) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) AdminUpdateUserBanV3Short(input *users.AdminUpdateUserBanV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserBanResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.AdminLinkPlatformAccountShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) AdminPlatformUnlinkV3Short(input *users.AdminPlatformUnlinkV3Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.AdminPlatformUnlinkV3Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) AdminPlatformLinkV3Short(input *users.AdminPlatformLinkV3Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.AdminPlatformLinkV3Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) AdminDeleteUserRolesV3Short(input *users.AdminDeleteUserRolesV3Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.AdminDeleteUserRolesV3Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) AdminSaveUserRoleV3Short(input *users.AdminSaveUserRoleV3Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.AdminSaveUserRoleV3Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) AdminAddUserRoleV3Short(input *users.AdminAddUserRoleV3Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.AdminAddUserRoleV3Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) AdminDeleteUserRoleV3Short(input *users.AdminDeleteUserRoleV3Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.AdminDeleteUserRoleV3Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) AdminUpdateUserStatusV3Short(input *users.AdminUpdateUserStatusV3Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.AdminUpdateUserStatusV3Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) AdminVerifyUserWithoutVerificationCodeV3Short(input *users.AdminVerifyUserWithoutVerificationCodeV3Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.AdminVerifyUserWithoutVerificationCodeV3Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) AdminGetMyUserV3Short(input *users.AdminGetMyUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.AdminGetMyUserV3Short(input, authWriter)
+	ok, err := u.Client.Users.AdminUpdateUserBanV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5351,15 +4956,47 @@ func (u *UsersService) AdminGetMyUserV3Short(input *users.AdminGetMyUserV3Params
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicListUserIDByPlatformUserIDsV3Short(input *users.PublicListUserIDByPlatformUserIDsV3Params) (*iamclientmodels.AccountcommonUserPlatforms, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) AdminSendVerificationCodeV3Short(input *users.AdminSendVerificationCodeV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.PublicListUserIDByPlatformUserIDsV3Short(input, authWriter)
+	_, err := u.Client.Users.AdminSendVerificationCodeV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) AdminVerifyAccountV3Short(input *users.AdminVerifyAccountV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.AdminVerifyAccountV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CODE [READ]'], 'authorization': []}]
+func (u *UsersService) GetUserVerificationCodeShort(input *users.GetUserVerificationCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelVerificationCodeResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.GetUserVerificationCodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5367,31 +5004,15 @@ func (u *UsersService) PublicListUserIDByPlatformUserIDsV3Short(input *users.Pub
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicGetUserByPlatformUserIDV3Short(input *users.PublicGetUserByPlatformUserIDV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DELETIONSTATUS:USER:{userId} [READ]'], 'authorization': []}]
+func (u *UsersService) AdminGetUserDeletionStatusV3Short(input *users.AdminGetUserDeletionStatusV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserDeletionStatusResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.PublicGetUserByPlatformUserIDV3Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) PublicGetAsyncStatusShort(input *users.PublicGetAsyncStatusParams) (*iamclientmodels.ModelLinkRequest, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.PublicGetAsyncStatusShort(input, authWriter)
+	ok, err := u.Client.Users.AdminGetUserDeletionStatusV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5399,15 +5020,31 @@ func (u *UsersService) PublicGetAsyncStatusShort(input *users.PublicGetAsyncStat
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicSearchUserV3Short(input *users.PublicSearchUserV3Params) (*iamclientmodels.ModelPublicUserInformationResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DELETIONSTATUS:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) AdminUpdateUserDeletionStatusV3Short(input *users.AdminUpdateUserDeletionStatusV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.PublicSearchUserV3Short(input, authWriter)
+	_, err := u.Client.Users.AdminUpdateUserDeletionStatusV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) AdminUpgradeHeadlessAccountV3Short(input *users.AdminUpgradeHeadlessAccountV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.AdminUpgradeHeadlessAccountV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5415,15 +5052,143 @@ func (u *UsersService) PublicSearchUserV3Short(input *users.PublicSearchUserV3Pa
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicCreateUserV3Short(input *users.PublicCreateUserV3Params) (*iamclientmodels.ModelUserCreateResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]'], 'authorization': []}]
+func (u *UsersService) AdminDeleteUserInformationV3Short(input *users.AdminDeleteUserInformationV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.AdminDeleteUserInformationV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:HISTORY:LOGIN:USER:{userId} [READ]'], 'authorization': []}]
+func (u *UsersService) AdminGetUserLoginHistoriesV3Short(input *users.AdminGetUserLoginHistoriesV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.AdminGetUserLoginHistoriesV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	created, err := u.Client.Users.PublicCreateUserV3Short(input, authWriter)
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) AdminUpdateUserPermissionV3Short(input *users.AdminUpdateUserPermissionV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.AdminUpdateUserPermissionV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [CREATE]'], 'authorization': []}]
+func (u *UsersService) AdminAddUserPermissionsV3Short(input *users.AdminAddUserPermissionsV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.AdminAddUserPermissionsV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [DELETE]'], 'authorization': []}]
+func (u *UsersService) AdminDeleteUserPermissionBulkV3Short(input *users.AdminDeleteUserPermissionBulkV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.AdminDeleteUserPermissionBulkV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [DELETE]'], 'authorization': []}]
+func (u *UsersService) AdminDeleteUserPermissionV3Short(input *users.AdminDeleteUserPermissionV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.AdminDeleteUserPermissionV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]', 'ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]'], 'authorization': []}]
+func (u *UsersService) AdminGetUserPlatformAccountsV3Short(input *users.AdminGetUserPlatformAccountsV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.AdminGetUserPlatformAccountsV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) AdminGetListJusticePlatformAccountsShort(input *users.AdminGetListJusticePlatformAccountsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelGetUserMapping, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.AdminGetListJusticePlatformAccountsShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [CREATE]'], 'authorization': []}]
+func (u *UsersService) AdminCreateJusticeUserShort(input *users.AdminCreateJusticeUserParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	created, err := u.Client.Users.AdminCreateJusticeUserShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5431,15 +5196,15 @@ func (u *UsersService) PublicCreateUserV3Short(input *users.PublicCreateUserV3Pa
 	return created.GetPayload(), nil
 }
 
-func (u *UsersService) CheckUserAvailabilityShort(input *users.CheckUserAvailabilityParams) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) AdminLinkPlatformAccountShort(input *users.AdminLinkPlatformAccountParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.CheckUserAvailabilityShort(input, authWriter)
+	_, err := u.Client.Users.AdminLinkPlatformAccountShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -5447,15 +5212,143 @@ func (u *UsersService) CheckUserAvailabilityShort(input *users.CheckUserAvailabi
 	return nil
 }
 
-func (u *UsersService) PublicBulkGetUsersShort(input *users.PublicBulkGetUsersParams) (*iamclientmodels.ModelListBulkUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]'], 'authorization': []}]
+func (u *UsersService) AdminPlatformUnlinkV3Short(input *users.AdminPlatformUnlinkV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.PublicBulkGetUsersShort(input, authWriter)
+	_, err := u.Client.Users.AdminPlatformUnlinkV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) AdminPlatformLinkV3Short(input *users.AdminPlatformLinkV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.AdminPlatformLinkV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [DELETE]'], 'authorization': []}]
+func (u *UsersService) AdminDeleteUserRolesV3Short(input *users.AdminDeleteUserRolesV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.AdminDeleteUserRolesV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) AdminSaveUserRoleV3Short(input *users.AdminSaveUserRoleV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.AdminSaveUserRoleV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) AdminAddUserRoleV3Short(input *users.AdminAddUserRoleV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.AdminAddUserRoleV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [DELETE]'], 'authorization': []}]
+func (u *UsersService) AdminDeleteUserRoleV3Short(input *users.AdminDeleteUserRoleV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.AdminDeleteUserRoleV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) AdminUpdateUserStatusV3Short(input *users.AdminUpdateUserStatusV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.AdminUpdateUserStatusV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
+func (u *UsersService) AdminVerifyUserWithoutVerificationCodeV3Short(input *users.AdminVerifyUserWithoutVerificationCodeV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.AdminVerifyUserWithoutVerificationCodeV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) AdminGetMyUserV3Short(input *users.AdminGetMyUserV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.AdminGetMyUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5463,63 +5356,15 @@ func (u *UsersService) PublicBulkGetUsersShort(input *users.PublicBulkGetUsersPa
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicSendRegistrationCodeShort(input *users.PublicSendRegistrationCodeParams) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}]
+func (u *UsersService) PublicListUserIDByPlatformUserIDsV3Short(input *users.PublicListUserIDByPlatformUserIDsV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonUserPlatforms, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.PublicSendRegistrationCodeShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) PublicVerifyRegistrationCodeShort(input *users.PublicVerifyRegistrationCodeParams) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.PublicVerifyRegistrationCodeShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) PublicForgotPasswordV3Short(input *users.PublicForgotPasswordV3Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.PublicForgotPasswordV3Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) GetAdminInvitationV3Short(input *users.GetAdminInvitationV3Params) (*iamclientmodels.ModelUserInvitationV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.GetAdminInvitationV3Short(input, authWriter)
+	ok, err := u.Client.Users.PublicListUserIDByPlatformUserIDsV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5527,15 +5372,63 @@ func (u *UsersService) GetAdminInvitationV3Short(input *users.GetAdminInvitation
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) CreateUserFromInvitationV3Short(input *users.CreateUserFromInvitationV3Params) (*iamclientmodels.ModelUserCreateResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
+// [{'authorization': []}]
+func (u *UsersService) PublicGetUserByPlatformUserIDV3Short(input *users.PublicGetUserByPlatformUserIDV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.PublicGetUserByPlatformUserIDV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	created, err := u.Client.Users.CreateUserFromInvitationV3Short(input, authWriter)
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) PublicGetAsyncStatusShort(input *users.PublicGetAsyncStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelLinkRequest, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.PublicGetAsyncStatusShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) PublicSearchUserV3Short(input *users.PublicSearchUserV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelPublicUserInformationResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.PublicSearchUserV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) PublicCreateUserV3Short(input *users.PublicCreateUserV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserCreateResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	created, err := u.Client.Users.PublicCreateUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5543,47 +5436,15 @@ func (u *UsersService) CreateUserFromInvitationV3Short(input *users.CreateUserFr
 	return created.GetPayload(), nil
 }
 
-func (u *UsersService) UpdateUserV3Short(input *users.UpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (u *UsersService) CheckUserAvailabilityShort(input *users.CheckUserAvailabilityParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.UpdateUserV3Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) PublicUpdateUserV3Short(input *users.PublicUpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.PublicUpdateUserV3Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) PublicSendVerificationCodeV3Short(input *users.PublicSendVerificationCodeV3Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.PublicSendVerificationCodeV3Short(input, authWriter)
+	_, err := u.Client.Users.CheckUserAvailabilityShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -5591,31 +5452,15 @@ func (u *UsersService) PublicSendVerificationCodeV3Short(input *users.PublicSend
 	return nil
 }
 
-func (u *UsersService) PublicUserVerificationV3Short(input *users.PublicUserVerificationV3Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}]
+func (u *UsersService) PublicBulkGetUsersShort(input *users.PublicBulkGetUsersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelListBulkUserResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.PublicUserVerificationV3Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) PublicUpgradeHeadlessAccountV3Short(input *users.PublicUpgradeHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.PublicUpgradeHeadlessAccountV3Short(input, authWriter)
+	ok, err := u.Client.Users.PublicBulkGetUsersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5623,31 +5468,15 @@ func (u *UsersService) PublicUpgradeHeadlessAccountV3Short(input *users.PublicUp
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicVerifyHeadlessAccountV3Short(input *users.PublicVerifyHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (u *UsersService) PublicSendRegistrationCodeShort(input *users.PublicSendRegistrationCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.PublicVerifyHeadlessAccountV3Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) PublicUpdatePasswordV3Short(input *users.PublicUpdatePasswordV3Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.PublicUpdatePasswordV3Short(input, authWriter)
+	_, err := u.Client.Users.PublicSendRegistrationCodeShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -5655,15 +5484,63 @@ func (u *UsersService) PublicUpdatePasswordV3Short(input *users.PublicUpdatePass
 	return nil
 }
 
-func (u *UsersService) PublicCreateJusticeUserShort(input *users.PublicCreateJusticeUserParams) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
-	token, err := u.TokenRepository.GetToken()
+// [{'authorization': []}]
+func (u *UsersService) PublicVerifyRegistrationCodeShort(input *users.PublicVerifyRegistrationCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.PublicVerifyRegistrationCodeShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) PublicForgotPasswordV3Short(input *users.PublicForgotPasswordV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.PublicForgotPasswordV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) GetAdminInvitationV3Short(input *users.GetAdminInvitationV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserInvitationV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.GetAdminInvitationV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	created, err := u.Client.Users.PublicCreateJusticeUserShort(input, authWriter)
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) CreateUserFromInvitationV3Short(input *users.CreateUserFromInvitationV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserCreateResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	created, err := u.Client.Users.CreateUserFromInvitationV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5671,47 +5548,15 @@ func (u *UsersService) PublicCreateJusticeUserShort(input *users.PublicCreateJus
 	return created.GetPayload(), nil
 }
 
-func (u *UsersService) PublicPlatformLinkV3Short(input *users.PublicPlatformLinkV3Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}]
+func (u *UsersService) UpdateUserV3Short(input *users.UpdateUserV3Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelUserResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.PublicPlatformLinkV3Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) PublicPlatformUnlinkV3Short(input *users.PublicPlatformUnlinkV3Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.PublicPlatformUnlinkV3Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) PublicWebLinkPlatformShort(input *users.PublicWebLinkPlatformParams) (*iamclientmodels.ModelWebLinkingResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.PublicWebLinkPlatformShort(input, authWriter)
+	ok, err := u.Client.Users.UpdateUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5719,15 +5564,175 @@ func (u *UsersService) PublicWebLinkPlatformShort(input *users.PublicWebLinkPlat
 	return ok.GetPayload(), nil
 }
 
-func (u *UsersService) PublicWebLinkPlatformEstablishShort(input *users.PublicWebLinkPlatformEstablishParams) (string, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return "", err
+// [{'authorization': []}]
+func (u *UsersService) PublicUpdateUserV3Short(input *users.PublicUpdateUserV3Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelUserResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.PublicWebLinkPlatformEstablishShort(input, authWriter)
+	ok, err := u.Client.Users.PublicUpdateUserV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) PublicSendVerificationCodeV3Short(input *users.PublicSendVerificationCodeV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.PublicSendVerificationCodeV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) PublicUserVerificationV3Short(input *users.PublicUserVerificationV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.PublicUserVerificationV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) PublicUpgradeHeadlessAccountV3Short(input *users.PublicUpgradeHeadlessAccountV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.PublicUpgradeHeadlessAccountV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) PublicVerifyHeadlessAccountV3Short(input *users.PublicVerifyHeadlessAccountV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.PublicVerifyHeadlessAccountV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) PublicUpdatePasswordV3Short(input *users.PublicUpdatePasswordV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.PublicUpdatePasswordV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) PublicCreateJusticeUserShort(input *users.PublicCreateJusticeUserParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	created, err := u.Client.Users.PublicCreateJusticeUserShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return created.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) PublicPlatformLinkV3Short(input *users.PublicPlatformLinkV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.PublicPlatformLinkV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) PublicPlatformUnlinkV3Short(input *users.PublicPlatformUnlinkV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.PublicPlatformUnlinkV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) PublicWebLinkPlatformShort(input *users.PublicWebLinkPlatformParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelWebLinkingResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.PublicWebLinkPlatformShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) PublicWebLinkPlatformEstablishShort(input *users.PublicWebLinkPlatformEstablishParams, authInfoWriter runtime.ClientAuthInfoWriter) (string, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.PublicWebLinkPlatformEstablishShort(input, authInfoWriter)
 	if err != nil {
 		return "", err
 	}
@@ -5735,95 +5740,15 @@ func (u *UsersService) PublicWebLinkPlatformEstablishShort(input *users.PublicWe
 	return ok.Location, nil
 }
 
-func (u *UsersService) ResetPasswordV3Short(input *users.ResetPasswordV3Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}]
+func (u *UsersService) ResetPasswordV3Short(input *users.ResetPasswordV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.ResetPasswordV3Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (u *UsersService) PublicGetUserByUserIDV3Short(input *users.PublicGetUserByUserIDV3Params) (*iamclientmodels.ModelPublicUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.PublicGetUserByUserIDV3Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) PublicGetUserBanHistoryV3Short(input *users.PublicGetUserBanHistoryV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.PublicGetUserBanHistoryV3Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) PublicGetUserLoginHistoriesV3Short(input *users.PublicGetUserLoginHistoriesV3Params) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.PublicGetUserLoginHistoriesV3Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) PublicGetUserPlatformAccountsV3Short(input *users.PublicGetUserPlatformAccountsV3Params) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.PublicGetUserPlatformAccountsV3Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UsersService) PublicLinkPlatformAccountShort(input *users.PublicLinkPlatformAccountParams) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.PublicLinkPlatformAccountShort(input, authWriter)
+	_, err := u.Client.Users.ResetPasswordV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -5831,15 +5756,79 @@ func (u *UsersService) PublicLinkPlatformAccountShort(input *users.PublicLinkPla
 	return nil
 }
 
-func (u *UsersService) PublicValidateUserByUserIDAndPasswordV3Short(input *users.PublicValidateUserByUserIDAndPasswordV3Params) error {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}]
+func (u *UsersService) PublicGetUserByUserIDV3Short(input *users.PublicGetUserByUserIDV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelPublicUserResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = u.Client.Users.PublicValidateUserByUserIDAndPasswordV3Short(input, authWriter)
+	ok, err := u.Client.Users.PublicGetUserByUserIDV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) PublicGetUserBanHistoryV3Short(input *users.PublicGetUserBanHistoryV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelGetUserBanV3Response, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.PublicGetUserBanHistoryV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) PublicGetUserLoginHistoriesV3Short(input *users.PublicGetUserLoginHistoriesV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.PublicGetUserLoginHistoriesV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) PublicGetUserPlatformAccountsV3Short(input *users.PublicGetUserPlatformAccountsV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.PublicGetUserPlatformAccountsV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) PublicLinkPlatformAccountShort(input *users.PublicLinkPlatformAccountParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	_, err := u.Client.Users.PublicLinkPlatformAccountShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -5847,15 +5836,31 @@ func (u *UsersService) PublicValidateUserByUserIDAndPasswordV3Short(input *users
 	return nil
 }
 
-func (u *UsersService) PublicGetMyUserV3Short(input *users.PublicGetMyUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	token, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (u *UsersService) PublicValidateUserByUserIDAndPasswordV3Short(input *users.PublicValidateUserByUserIDAndPasswordV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := u.Client.Users.PublicGetMyUserV3Short(input, authWriter)
+	_, err := u.Client.Users.PublicValidateUserByUserIDAndPasswordV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'authorization': []}]
+func (u *UsersService) PublicGetMyUserV3Short(input *users.PublicGetMyUserV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.Users.PublicGetMyUserV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

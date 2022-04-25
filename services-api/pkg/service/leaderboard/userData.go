@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package leaderboard
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclient/user_data"
 	"github.com/AccelByte/accelbyte-go-sdk/leaderboard-sdk/pkg/leaderboardclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type UserDataService struct {
 
 // Deprecated: Use GetUserLeaderboardRankingsAdminV1Short instead
 func (u *UserDataService) GetUserLeaderboardRankingsAdminV1(input *user_data.GetUserLeaderboardRankingsAdminV1Params) (*leaderboardclientmodels.ModelsGetAllUserLeaderboardsResp, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := u.Client.UserData.GetUserLeaderboardRankingsAdminV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := u.Client.UserData.GetUserLeaderboardRankingsAdminV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -43,12 +47,15 @@ func (u *UserDataService) GetUserLeaderboardRankingsAdminV1(input *user_data.Get
 	return ok.GetPayload(), nil
 }
 
-func (u *UserDataService) GetUserLeaderboardRankingsAdminV1Short(input *user_data.GetUserLeaderboardRankingsAdminV1Params) (*leaderboardclientmodels.ModelsGetAllUserLeaderboardsResp, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'], 'authorization': []}]
+func (u *UserDataService) GetUserLeaderboardRankingsAdminV1Short(input *user_data.GetUserLeaderboardRankingsAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetAllUserLeaderboardsResp, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	ok, err := u.Client.UserData.GetUserLeaderboardRankingsAdminV1Short(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := u.Client.UserData.GetUserLeaderboardRankingsAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

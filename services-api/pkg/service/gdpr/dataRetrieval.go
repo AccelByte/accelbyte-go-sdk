@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package gdpr
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclient/data_retrieval"
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type DataRetrievalService struct {
 
 // Deprecated: Use GetAdminEmailConfigurationShort instead
 func (d *DataRetrievalService) GetAdminEmailConfiguration(input *data_retrieval.GetAdminEmailConfigurationParams) ([]string, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := d.Client.DataRetrieval.GetAdminEmailConfiguration(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, internalServerError, err := d.Client.DataRetrieval.GetAdminEmailConfiguration(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -39,11 +43,11 @@ func (d *DataRetrievalService) GetAdminEmailConfiguration(input *data_retrieval.
 
 // Deprecated: Use UpdateAdminEmailConfigurationShort instead
 func (d *DataRetrievalService) UpdateAdminEmailConfiguration(input *data_retrieval.UpdateAdminEmailConfigurationParams) error {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, internalServerError, err := d.Client.DataRetrieval.UpdateAdminEmailConfiguration(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, internalServerError, err := d.Client.DataRetrieval.UpdateAdminEmailConfiguration(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -62,11 +66,11 @@ func (d *DataRetrievalService) UpdateAdminEmailConfiguration(input *data_retriev
 
 // Deprecated: Use SaveAdminEmailConfigurationShort instead
 func (d *DataRetrievalService) SaveAdminEmailConfiguration(input *data_retrieval.SaveAdminEmailConfigurationParams) error {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, internalServerError, err := d.Client.DataRetrieval.SaveAdminEmailConfiguration(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, internalServerError, err := d.Client.DataRetrieval.SaveAdminEmailConfiguration(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -85,11 +89,11 @@ func (d *DataRetrievalService) SaveAdminEmailConfiguration(input *data_retrieval
 
 // Deprecated: Use DeleteAdminEmailConfigurationShort instead
 func (d *DataRetrievalService) DeleteAdminEmailConfiguration(input *data_retrieval.DeleteAdminEmailConfigurationParams) error {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := d.Client.DataRetrieval.DeleteAdminEmailConfiguration(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := d.Client.DataRetrieval.DeleteAdminEmailConfiguration(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -114,11 +118,11 @@ func (d *DataRetrievalService) DeleteAdminEmailConfiguration(input *data_retriev
 
 // Deprecated: Use AdminGetListPersonalDataRequestShort instead
 func (d *DataRetrievalService) AdminGetListPersonalDataRequest(input *data_retrieval.AdminGetListPersonalDataRequestParams) (*gdprclientmodels.ModelsListPersonalDataResponse, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := d.Client.DataRetrieval.AdminGetListPersonalDataRequest(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := d.Client.DataRetrieval.AdminGetListPersonalDataRequest(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -143,11 +147,11 @@ func (d *DataRetrievalService) AdminGetListPersonalDataRequest(input *data_retri
 
 // Deprecated: Use AdminGetUserPersonalDataRequestsShort instead
 func (d *DataRetrievalService) AdminGetUserPersonalDataRequests(input *data_retrieval.AdminGetUserPersonalDataRequestsParams) (*gdprclientmodels.ModelsUserPersonalDataResponse, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, internalServerError, err := d.Client.DataRetrieval.AdminGetUserPersonalDataRequests(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := d.Client.DataRetrieval.AdminGetUserPersonalDataRequests(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -166,11 +170,11 @@ func (d *DataRetrievalService) AdminGetUserPersonalDataRequests(input *data_retr
 
 // Deprecated: Use AdminRequestDataRetrievalShort instead
 func (d *DataRetrievalService) AdminRequestDataRetrieval(input *data_retrieval.AdminRequestDataRetrievalParams) (*gdprclientmodels.ModelsDataRetrievalResponse, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, internalServerError, err := d.Client.DataRetrieval.AdminRequestDataRetrieval(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, internalServerError, err := d.Client.DataRetrieval.AdminRequestDataRetrieval(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -189,11 +193,11 @@ func (d *DataRetrievalService) AdminRequestDataRetrieval(input *data_retrieval.A
 
 // Deprecated: Use AdminCancelUserPersonalDataRequestShort instead
 func (d *DataRetrievalService) AdminCancelUserPersonalDataRequest(input *data_retrieval.AdminCancelUserPersonalDataRequestParams) error {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, notFound, conflict, internalServerError, err := d.Client.DataRetrieval.AdminCancelUserPersonalDataRequest(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, notFound, conflict, internalServerError, err := d.Client.DataRetrieval.AdminCancelUserPersonalDataRequest(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -215,11 +219,11 @@ func (d *DataRetrievalService) AdminCancelUserPersonalDataRequest(input *data_re
 
 // Deprecated: Use AdminGeneratePersonalDataURLShort instead
 func (d *DataRetrievalService) AdminGeneratePersonalDataURL(input *data_retrieval.AdminGeneratePersonalDataURLParams) (*gdprclientmodels.ModelsUserDataURL, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DataRetrieval.AdminGeneratePersonalDataURL(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DataRetrieval.AdminGeneratePersonalDataURL(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -241,11 +245,11 @@ func (d *DataRetrievalService) AdminGeneratePersonalDataURL(input *data_retrieva
 
 // Deprecated: Use PublicGetUserPersonalDataRequestsShort instead
 func (d *DataRetrievalService) PublicGetUserPersonalDataRequests(input *data_retrieval.PublicGetUserPersonalDataRequestsParams) (*gdprclientmodels.ModelsUserPersonalDataResponse, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, internalServerError, err := d.Client.DataRetrieval.PublicGetUserPersonalDataRequests(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := d.Client.DataRetrieval.PublicGetUserPersonalDataRequests(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -264,11 +268,11 @@ func (d *DataRetrievalService) PublicGetUserPersonalDataRequests(input *data_ret
 
 // Deprecated: Use PublicRequestDataRetrievalShort instead
 func (d *DataRetrievalService) PublicRequestDataRetrieval(input *data_retrieval.PublicRequestDataRetrievalParams) (*gdprclientmodels.ModelsDataRetrievalResponse, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, internalServerError, err := d.Client.DataRetrieval.PublicRequestDataRetrieval(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, internalServerError, err := d.Client.DataRetrieval.PublicRequestDataRetrieval(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -287,11 +291,11 @@ func (d *DataRetrievalService) PublicRequestDataRetrieval(input *data_retrieval.
 
 // Deprecated: Use PublicCancelUserPersonalDataRequestShort instead
 func (d *DataRetrievalService) PublicCancelUserPersonalDataRequest(input *data_retrieval.PublicCancelUserPersonalDataRequestParams) (*gdprclientmodels.ModelsListPersonalDataResponse, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	noContent, unauthorized, notFound, conflict, internalServerError, err := d.Client.DataRetrieval.PublicCancelUserPersonalDataRequest(input, client.BearerToken(*accessToken.AccessToken))
+	noContent, unauthorized, notFound, conflict, internalServerError, err := d.Client.DataRetrieval.PublicCancelUserPersonalDataRequest(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -313,11 +317,11 @@ func (d *DataRetrievalService) PublicCancelUserPersonalDataRequest(input *data_r
 
 // Deprecated: Use PublicGeneratePersonalDataURLShort instead
 func (d *DataRetrievalService) PublicGeneratePersonalDataURL(input *data_retrieval.PublicGeneratePersonalDataURLParams) (*gdprclientmodels.ModelsUserDataURL, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DataRetrieval.PublicGeneratePersonalDataURL(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DataRetrieval.PublicGeneratePersonalDataURL(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -337,64 +341,15 @@ func (d *DataRetrievalService) PublicGeneratePersonalDataURL(input *data_retriev
 	return ok.GetPayload(), nil
 }
 
-func (d *DataRetrievalService) GetAdminEmailConfigurationShort(input *data_retrieval.GetAdminEmailConfigurationParams) ([]string, error) {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [READ]'], 'HasScope': ['account'], 'authorization': []}]
+func (d *DataRetrievalService) GetAdminEmailConfigurationShort(input *data_retrieval.GetAdminEmailConfigurationParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]string, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
-	ok, err := d.Client.DataRetrieval.GetAdminEmailConfigurationShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (d *DataRetrievalService) UpdateAdminEmailConfigurationShort(input *data_retrieval.UpdateAdminEmailConfigurationParams) error {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = d.Client.DataRetrieval.UpdateAdminEmailConfigurationShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (d *DataRetrievalService) SaveAdminEmailConfigurationShort(input *data_retrieval.SaveAdminEmailConfigurationParams) error {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = d.Client.DataRetrieval.SaveAdminEmailConfigurationShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (d *DataRetrievalService) DeleteAdminEmailConfigurationShort(input *data_retrieval.DeleteAdminEmailConfigurationParams) error {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	_, err = d.Client.DataRetrieval.DeleteAdminEmailConfigurationShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (d *DataRetrievalService) AdminGetListPersonalDataRequestShort(input *data_retrieval.AdminGetListPersonalDataRequestParams) (*gdprclientmodels.ModelsListPersonalDataResponse, error) {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := d.Client.DataRetrieval.AdminGetListPersonalDataRequestShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := d.Client.DataRetrieval.GetAdminEmailConfigurationShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -402,12 +357,63 @@ func (d *DataRetrievalService) AdminGetListPersonalDataRequestShort(input *data_
 	return ok.GetPayload(), nil
 }
 
-func (d *DataRetrievalService) AdminGetUserPersonalDataRequestsShort(input *data_retrieval.AdminGetUserPersonalDataRequestsParams) (*gdprclientmodels.ModelsUserPersonalDataResponse, error) {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [UPDATE]'], 'authorization': []}]
+func (d *DataRetrievalService) UpdateAdminEmailConfigurationShort(input *data_retrieval.UpdateAdminEmailConfigurationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
-	ok, err := d.Client.DataRetrieval.AdminGetUserPersonalDataRequestsShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := d.Client.DataRetrieval.UpdateAdminEmailConfigurationShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [CREATE]'], 'HasScope': ['account'], 'authorization': []}]
+func (d *DataRetrievalService) SaveAdminEmailConfigurationShort(input *data_retrieval.SaveAdminEmailConfigurationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+	}
+	_, err := d.Client.DataRetrieval.SaveAdminEmailConfigurationShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [DELETE]'], 'HasScope': ['account'], 'authorization': []}]
+func (d *DataRetrievalService) DeleteAdminEmailConfigurationShort(input *data_retrieval.DeleteAdminEmailConfigurationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+	}
+	_, err := d.Client.DataRetrieval.DeleteAdminEmailConfigurationShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:INFORMATION:USER [READ]'], 'HasScope': ['account'], 'authorization': []}]
+func (d *DataRetrievalService) AdminGetListPersonalDataRequestShort(input *data_retrieval.AdminGetListPersonalDataRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsListPersonalDataResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+	}
+	ok, err := d.Client.DataRetrieval.AdminGetListPersonalDataRequestShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -415,12 +421,31 @@ func (d *DataRetrievalService) AdminGetUserPersonalDataRequestsShort(input *data
 	return ok.GetPayload(), nil
 }
 
-func (d *DataRetrievalService) AdminRequestDataRetrievalShort(input *data_retrieval.AdminRequestDataRetrievalParams) (*gdprclientmodels.ModelsDataRetrievalResponse, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]'], 'HasScope': ['account'], 'authorization': []}]
+func (d *DataRetrievalService) AdminGetUserPersonalDataRequestsShort(input *data_retrieval.AdminGetUserPersonalDataRequestsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsUserPersonalDataResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+	}
+	ok, err := d.Client.DataRetrieval.AdminGetUserPersonalDataRequestsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	created, err := d.Client.DataRetrieval.AdminRequestDataRetrievalShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]'], 'HasScope': ['account'], 'authorization': []}]
+func (d *DataRetrievalService) AdminRequestDataRetrievalShort(input *data_retrieval.AdminRequestDataRetrievalParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsDataRetrievalResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+	}
+	created, err := d.Client.DataRetrieval.AdminRequestDataRetrievalShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -428,12 +453,15 @@ func (d *DataRetrievalService) AdminRequestDataRetrievalShort(input *data_retrie
 	return created.GetPayload(), nil
 }
 
-func (d *DataRetrievalService) AdminCancelUserPersonalDataRequestShort(input *data_retrieval.AdminCancelUserPersonalDataRequestParams) error {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]'], 'HasScope': ['account'], 'authorization': []}]
+func (d *DataRetrievalService) AdminCancelUserPersonalDataRequestShort(input *data_retrieval.AdminCancelUserPersonalDataRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
-	_, err = d.Client.DataRetrieval.AdminCancelUserPersonalDataRequestShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := d.Client.DataRetrieval.AdminCancelUserPersonalDataRequestShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -441,25 +469,15 @@ func (d *DataRetrievalService) AdminCancelUserPersonalDataRequestShort(input *da
 	return nil
 }
 
-func (d *DataRetrievalService) AdminGeneratePersonalDataURLShort(input *data_retrieval.AdminGeneratePersonalDataURLParams) (*gdprclientmodels.ModelsUserDataURL, error) {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]'], 'HasScope': ['account'], 'authorization': []}]
+func (d *DataRetrievalService) AdminGeneratePersonalDataURLShort(input *data_retrieval.AdminGeneratePersonalDataURLParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsUserDataURL, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
-	ok, err := d.Client.DataRetrieval.AdminGeneratePersonalDataURLShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (d *DataRetrievalService) PublicGetUserPersonalDataRequestsShort(input *data_retrieval.PublicGetUserPersonalDataRequestsParams) (*gdprclientmodels.ModelsUserPersonalDataResponse, error) {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := d.Client.DataRetrieval.PublicGetUserPersonalDataRequestsShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := d.Client.DataRetrieval.AdminGeneratePersonalDataURLShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -467,12 +485,31 @@ func (d *DataRetrievalService) PublicGetUserPersonalDataRequestsShort(input *dat
 	return ok.GetPayload(), nil
 }
 
-func (d *DataRetrievalService) PublicRequestDataRetrievalShort(input *data_retrieval.PublicRequestDataRetrievalParams) (*gdprclientmodels.ModelsDataRetrievalResponse, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+// [{'authorization': []}]
+func (d *DataRetrievalService) PublicGetUserPersonalDataRequestsShort(input *data_retrieval.PublicGetUserPersonalDataRequestsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsUserPersonalDataResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+	}
+	ok, err := d.Client.DataRetrieval.PublicGetUserPersonalDataRequestsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	created, err := d.Client.DataRetrieval.PublicRequestDataRetrievalShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (d *DataRetrievalService) PublicRequestDataRetrievalShort(input *data_retrieval.PublicRequestDataRetrievalParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsDataRetrievalResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+	}
+	created, err := d.Client.DataRetrieval.PublicRequestDataRetrievalShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -480,12 +517,15 @@ func (d *DataRetrievalService) PublicRequestDataRetrievalShort(input *data_retri
 	return created.GetPayload(), nil
 }
 
-func (d *DataRetrievalService) PublicCancelUserPersonalDataRequestShort(input *data_retrieval.PublicCancelUserPersonalDataRequestParams) (*gdprclientmodels.ModelsListPersonalDataResponse, error) {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (d *DataRetrievalService) PublicCancelUserPersonalDataRequestShort(input *data_retrieval.PublicCancelUserPersonalDataRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsListPersonalDataResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
-	noContent, err := d.Client.DataRetrieval.PublicCancelUserPersonalDataRequestShort(input, client.BearerToken(*accessToken.AccessToken))
+	noContent, err := d.Client.DataRetrieval.PublicCancelUserPersonalDataRequestShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -493,12 +533,15 @@ func (d *DataRetrievalService) PublicCancelUserPersonalDataRequestShort(input *d
 	return noContent.GetPayload(), nil
 }
 
-func (d *DataRetrievalService) PublicGeneratePersonalDataURLShort(input *data_retrieval.PublicGeneratePersonalDataURLParams) (*gdprclientmodels.ModelsUserDataURL, error) {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (d *DataRetrievalService) PublicGeneratePersonalDataURLShort(input *data_retrieval.PublicGeneratePersonalDataURLParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsUserDataURL, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
-	ok, err := d.Client.DataRetrieval.PublicGeneratePersonalDataURLShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := d.Client.DataRetrieval.PublicGeneratePersonalDataURLShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

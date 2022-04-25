@@ -2,13 +2,17 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package ugc
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_tag"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type AdminTagService struct {
 
 // Deprecated: Use AdminGetTagShort instead
 func (a *AdminTagService) AdminGetTag(input *admin_tag.AdminGetTagParams) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminTag.AdminGetTag(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, notFound, internalServerError, err := a.Client.AdminTag.AdminGetTag(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -42,11 +46,11 @@ func (a *AdminTagService) AdminGetTag(input *admin_tag.AdminGetTagParams) (*ugcc
 
 // Deprecated: Use AdminCreateTagShort instead
 func (a *AdminTagService) AdminCreateTag(input *admin_tag.AdminCreateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, conflict, internalServerError, err := a.Client.AdminTag.AdminCreateTag(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, conflict, internalServerError, err := a.Client.AdminTag.AdminCreateTag(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -68,11 +72,11 @@ func (a *AdminTagService) AdminCreateTag(input *admin_tag.AdminCreateTagParams) 
 
 // Deprecated: Use AdminUpdateTagShort instead
 func (a *AdminTagService) AdminUpdateTag(input *admin_tag.AdminUpdateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := a.Client.AdminTag.AdminUpdateTag(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := a.Client.AdminTag.AdminUpdateTag(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -97,11 +101,11 @@ func (a *AdminTagService) AdminUpdateTag(input *admin_tag.AdminUpdateTagParams) 
 
 // Deprecated: Use AdminDeleteTagShort instead
 func (a *AdminTagService) AdminDeleteTag(input *admin_tag.AdminDeleteTagParams) error {
-	accessToken, err := a.TokenRepository.GetToken()
+	token, err := a.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, notFound, internalServerError, err := a.Client.AdminTag.AdminDeleteTag(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, notFound, internalServerError, err := a.Client.AdminTag.AdminDeleteTag(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -118,12 +122,15 @@ func (a *AdminTagService) AdminDeleteTag(input *admin_tag.AdminDeleteTagParams) 
 	return nil
 }
 
-func (a *AdminTagService) AdminGetTagShort(input *admin_tag.AdminGetTagParams) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:UGCCONFIG [READ]'], 'authorization': []}]
+func (a *AdminTagService) AdminGetTagShort(input *admin_tag.AdminGetTagParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	ok, err := a.Client.AdminTag.AdminGetTagShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := a.Client.AdminTag.AdminGetTagShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -131,12 +138,15 @@ func (a *AdminTagService) AdminGetTagShort(input *admin_tag.AdminGetTagParams) (
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminTagService) AdminCreateTagShort(input *admin_tag.AdminCreateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:UGCCONFIG [CREATE]'], 'authorization': []}]
+func (a *AdminTagService) AdminCreateTagShort(input *admin_tag.AdminCreateTagParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateTagResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	created, err := a.Client.AdminTag.AdminCreateTagShort(input, client.BearerToken(*accessToken.AccessToken))
+	created, err := a.Client.AdminTag.AdminCreateTagShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -144,12 +154,15 @@ func (a *AdminTagService) AdminCreateTagShort(input *admin_tag.AdminCreateTagPar
 	return created.GetPayload(), nil
 }
 
-func (a *AdminTagService) AdminUpdateTagShort(input *admin_tag.AdminUpdateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:UGCCONFIG [UPDATE]'], 'authorization': []}]
+func (a *AdminTagService) AdminUpdateTagShort(input *admin_tag.AdminUpdateTagParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateTagResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	ok, err := a.Client.AdminTag.AdminUpdateTagShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := a.Client.AdminTag.AdminUpdateTagShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -157,12 +170,15 @@ func (a *AdminTagService) AdminUpdateTagShort(input *admin_tag.AdminUpdateTagPar
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminTagService) AdminDeleteTagShort(input *admin_tag.AdminDeleteTagParams) error {
-	accessToken, err := a.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:UGCCONFIG [DELETE]'], 'authorization': []}]
+func (a *AdminTagService) AdminDeleteTagShort(input *admin_tag.AdminDeleteTagParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(a.TokenRepository, nil, security, "")
 	}
-	_, err = a.Client.AdminTag.AdminDeleteTagShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := a.Client.AdminTag.AdminDeleteTagShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

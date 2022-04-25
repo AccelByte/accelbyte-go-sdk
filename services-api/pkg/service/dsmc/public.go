@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package dsmc
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/public"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type PublicService struct {
 
 // Deprecated: Use GetDefaultProviderShort instead
 func (p *PublicService) GetDefaultProvider(input *public.GetDefaultProviderParams) (*dsmcclientmodels.ModelsDefaultProvider, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := p.Client.Public.GetDefaultProvider(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := p.Client.Public.GetDefaultProvider(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -33,11 +37,11 @@ func (p *PublicService) GetDefaultProvider(input *public.GetDefaultProviderParam
 
 // Deprecated: Use ListProvidersShort instead
 func (p *PublicService) ListProviders(input *public.ListProvidersParams) ([]string, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := p.Client.Public.ListProviders(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := p.Client.Public.ListProviders(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -47,24 +51,11 @@ func (p *PublicService) ListProviders(input *public.ListProvidersParams) ([]stri
 
 // Deprecated: Use ListProvidersByRegionShort instead
 func (p *PublicService) ListProvidersByRegion(input *public.ListProvidersByRegionParams) (*dsmcclientmodels.ModelsDefaultProvider, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+	token, err := p.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := p.Client.Public.ListProvidersByRegion(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (p *PublicService) GetDefaultProviderShort(input *public.GetDefaultProviderParams) (*dsmcclientmodels.ModelsDefaultProvider, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := p.Client.Public.GetDefaultProviderShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := p.Client.Public.ListProvidersByRegion(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -72,12 +63,15 @@ func (p *PublicService) GetDefaultProviderShort(input *public.GetDefaultProvider
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicService) ListProvidersShort(input *public.ListProvidersParams) ([]string, error) {
-	accessToken, err := p.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}]
+func (p *PublicService) GetDefaultProviderShort(input *public.GetDefaultProviderParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDefaultProvider, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
-	ok, err := p.Client.Public.ListProvidersShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := p.Client.Public.GetDefaultProviderShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -85,12 +79,31 @@ func (p *PublicService) ListProvidersShort(input *public.ListProvidersParams) ([
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicService) ListProvidersByRegionShort(input *public.ListProvidersByRegionParams) (*dsmcclientmodels.ModelsDefaultProvider, error) {
-	accessToken, err := p.TokenRepository.GetToken()
+// [{'authorization': []}]
+func (p *PublicService) ListProvidersShort(input *public.ListProvidersParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]string, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+	}
+	ok, err := p.Client.Public.ListProvidersShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	ok, err := p.Client.Public.ListProvidersByRegionShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}]
+func (p *PublicService) ListProvidersByRegionShort(input *public.ListProvidersByRegionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDefaultProvider, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+	}
+	ok, err := p.Client.Public.ListProvidersByRegionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

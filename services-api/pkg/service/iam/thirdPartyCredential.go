@@ -12,6 +12,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -263,31 +264,15 @@ func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCr
 	return ok.GetPayload(), nil
 }
 
-func (t *ThirdPartyCredentialService) RetrieveAllThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.RetrieveAllThirdPartyLoginPlatformCredentialV3Params) ([]*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
-	token, err := t.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PLATFORM:*:CLIENT [READ]'], 'authorization': []}]
+func (t *ThirdPartyCredentialService) RetrieveAllThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.RetrieveAllThirdPartyLoginPlatformCredentialV3Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := t.Client.ThirdPartyCredential.RetrieveAllThirdPartyLoginPlatformCredentialV3Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Params) ([]*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
-	token, err := t.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := t.Client.ThirdPartyCredential.RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Short(input, authWriter)
+	ok, err := t.Client.ThirdPartyCredential.RetrieveAllThirdPartyLoginPlatformCredentialV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -295,15 +280,15 @@ func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCr
 	return ok.GetPayload(), nil
 }
 
-func (t *ThirdPartyCredentialService) RetrieveThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.RetrieveThirdPartyLoginPlatformCredentialV3Params) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
-	token, err := t.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PLATFORM:*:CLIENT [READ]'], 'authorization': []}]
+func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := t.Client.ThirdPartyCredential.RetrieveThirdPartyLoginPlatformCredentialV3Short(input, authWriter)
+	ok, err := t.Client.ThirdPartyCredential.RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -311,15 +296,31 @@ func (t *ThirdPartyCredentialService) RetrieveThirdPartyLoginPlatformCredentialV
 	return ok.GetPayload(), nil
 }
 
-func (t *ThirdPartyCredentialService) AddThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.AddThirdPartyLoginPlatformCredentialV3Params) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
-	token, err := t.TokenRepository.GetToken()
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [READ]'], 'authorization': []}]
+func (t *ThirdPartyCredentialService) RetrieveThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.RetrieveThirdPartyLoginPlatformCredentialV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+	}
+	ok, err := t.Client.ThirdPartyCredential.RetrieveThirdPartyLoginPlatformCredentialV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	created, err := t.Client.ThirdPartyCredential.AddThirdPartyLoginPlatformCredentialV3Short(input, authWriter)
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [CREATE]'], 'authorization': []}]
+func (t *ThirdPartyCredentialService) AddThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.AddThirdPartyLoginPlatformCredentialV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+	}
+	created, err := t.Client.ThirdPartyCredential.AddThirdPartyLoginPlatformCredentialV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -327,63 +328,15 @@ func (t *ThirdPartyCredentialService) AddThirdPartyLoginPlatformCredentialV3Shor
 	return created.GetPayload(), nil
 }
 
-func (t *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.DeleteThirdPartyLoginPlatformCredentialV3Params) error {
-	token, err := t.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [DELETE]'], 'authorization': []}]
+func (t *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.DeleteThirdPartyLoginPlatformCredentialV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = t.Client.ThirdPartyCredential.DeleteThirdPartyLoginPlatformCredentialV3Short(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (t *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.UpdateThirdPartyLoginPlatformCredentialV3Params) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
-	token, err := t.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := t.Client.ThirdPartyCredential.UpdateThirdPartyLoginPlatformCredentialV3Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (t *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformDomainV3Short(input *third_party_credential.UpdateThirdPartyLoginPlatformDomainV3Params) (*iamclientmodels.ModelPlatformDomainResponse, error) {
-	token, err := t.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := t.Client.ThirdPartyCredential.UpdateThirdPartyLoginPlatformDomainV3Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (t *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformDomainV3Short(input *third_party_credential.DeleteThirdPartyLoginPlatformDomainV3Params) error {
-	token, err := t.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = t.Client.ThirdPartyCredential.DeleteThirdPartyLoginPlatformDomainV3Short(input, authWriter)
+	_, err := t.Client.ThirdPartyCredential.DeleteThirdPartyLoginPlatformCredentialV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -391,15 +344,63 @@ func (t *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformDomainV3Short
 	return nil
 }
 
-func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short(input *third_party_credential.RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params) ([]*iamclientmodels.ModelPublicThirdPartyPlatformInfo, error) {
-	token, err := t.TokenRepository.GetToken()
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [CREATE]'], 'authorization': []}]
+func (t *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.UpdateThirdPartyLoginPlatformCredentialV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+	}
+	ok, err := t.Client.ThirdPartyCredential.UpdateThirdPartyLoginPlatformCredentialV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := t.Client.ThirdPartyCredential.RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short(input, authWriter)
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLIENTDOMAIN [UPDATE]'], 'authorization': []}]
+func (t *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformDomainV3Short(input *third_party_credential.UpdateThirdPartyLoginPlatformDomainV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelPlatformDomainResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+	}
+	ok, err := t.Client.ThirdPartyCredential.UpdateThirdPartyLoginPlatformDomainV3Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLIENTDOMAIN [DELETE]'], 'authorization': []}]
+func (t *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformDomainV3Short(input *third_party_credential.DeleteThirdPartyLoginPlatformDomainV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+	}
+	_, err := t.Client.ThirdPartyCredential.DeleteThirdPartyLoginPlatformDomainV3Short(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'authorization': []}]
+func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short(input *third_party_credential.RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelPublicThirdPartyPlatformInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+	}
+	ok, err := t.Client.ThirdPartyCredential.RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

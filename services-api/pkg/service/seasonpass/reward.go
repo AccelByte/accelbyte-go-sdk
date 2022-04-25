@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package seasonpass
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclient/reward"
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type RewardService struct {
 
 // Deprecated: Use QueryRewardsShort instead
 func (r *RewardService) QueryRewards(input *reward.QueryRewardsParams) ([]*seasonpassclientmodels.RewardInfo, error) {
-	accessToken, err := r.TokenRepository.GetToken()
+	token, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := r.Client.Reward.QueryRewards(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, err := r.Client.Reward.QueryRewards(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -39,11 +43,11 @@ func (r *RewardService) QueryRewards(input *reward.QueryRewardsParams) ([]*seaso
 
 // Deprecated: Use CreateRewardShort instead
 func (r *RewardService) CreateReward(input *reward.CreateRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
-	accessToken, err := r.TokenRepository.GetToken()
+	token, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, notFound, conflict, unprocessableEntity, err := r.Client.Reward.CreateReward(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, notFound, conflict, unprocessableEntity, err := r.Client.Reward.CreateReward(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -65,11 +69,11 @@ func (r *RewardService) CreateReward(input *reward.CreateRewardParams) (*seasonp
 
 // Deprecated: Use GetRewardShort instead
 func (r *RewardService) GetReward(input *reward.GetRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
-	accessToken, err := r.TokenRepository.GetToken()
+	token, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := r.Client.Reward.GetReward(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, err := r.Client.Reward.GetReward(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -85,11 +89,11 @@ func (r *RewardService) GetReward(input *reward.GetRewardParams) (*seasonpasscli
 
 // Deprecated: Use DeleteRewardShort instead
 func (r *RewardService) DeleteReward(input *reward.DeleteRewardParams) error {
-	accessToken, err := r.TokenRepository.GetToken()
+	token, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, notFound, conflict, err := r.Client.Reward.DeleteReward(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, notFound, conflict, err := r.Client.Reward.DeleteReward(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -108,11 +112,11 @@ func (r *RewardService) DeleteReward(input *reward.DeleteRewardParams) error {
 
 // Deprecated: Use UpdateRewardShort instead
 func (r *RewardService) UpdateReward(input *reward.UpdateRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
-	accessToken, err := r.TokenRepository.GetToken()
+	token, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, unprocessableEntity, err := r.Client.Reward.UpdateReward(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, conflict, unprocessableEntity, err := r.Client.Reward.UpdateReward(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -134,11 +138,11 @@ func (r *RewardService) UpdateReward(input *reward.UpdateRewardParams) (*seasonp
 
 // Deprecated: Use PublicClaimUserRewardShort instead
 func (r *RewardService) PublicClaimUserReward(input *reward.PublicClaimUserRewardParams) (*seasonpassclientmodels.ClaimableRewards, error) {
-	accessToken, err := r.TokenRepository.GetToken()
+	token, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, conflict, err := r.Client.Reward.PublicClaimUserReward(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, conflict, err := r.Client.Reward.PublicClaimUserReward(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -157,11 +161,11 @@ func (r *RewardService) PublicClaimUserReward(input *reward.PublicClaimUserRewar
 
 // Deprecated: Use PublicBulkClaimUserRewardsShort instead
 func (r *RewardService) PublicBulkClaimUserRewards(input *reward.PublicBulkClaimUserRewardsParams) (*seasonpassclientmodels.ClaimableRewards, error) {
-	accessToken, err := r.TokenRepository.GetToken()
+	token, err := r.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := r.Client.Reward.PublicBulkClaimUserRewards(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, err := r.Client.Reward.PublicBulkClaimUserRewards(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -175,12 +179,15 @@ func (r *RewardService) PublicBulkClaimUserRewards(input *reward.PublicBulkClaim
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams) ([]*seasonpassclientmodels.RewardInfo, error) {
-	accessToken, err := r.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]'], 'authorization': []}]
+func (r *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*seasonpassclientmodels.RewardInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
-	ok, err := r.Client.Reward.QueryRewardsShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := r.Client.Reward.QueryRewardsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -188,12 +195,15 @@ func (r *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams) ([]*
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) CreateRewardShort(input *reward.CreateRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
-	accessToken, err := r.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [CREATE]'], 'authorization': []}]
+func (r *RewardService) CreateRewardShort(input *reward.CreateRewardParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.RewardInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
-	created, err := r.Client.Reward.CreateRewardShort(input, client.BearerToken(*accessToken.AccessToken))
+	created, err := r.Client.Reward.CreateRewardShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -201,12 +211,15 @@ func (r *RewardService) CreateRewardShort(input *reward.CreateRewardParams) (*se
 	return created.GetPayload(), nil
 }
 
-func (r *RewardService) GetRewardShort(input *reward.GetRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
-	accessToken, err := r.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]'], 'authorization': []}]
+func (r *RewardService) GetRewardShort(input *reward.GetRewardParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.RewardInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
-	ok, err := r.Client.Reward.GetRewardShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := r.Client.Reward.GetRewardShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -214,12 +227,15 @@ func (r *RewardService) GetRewardShort(input *reward.GetRewardParams) (*seasonpa
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams) error {
-	accessToken, err := r.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [DELETE]'], 'authorization': []}]
+func (r *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
-	_, err = r.Client.Reward.DeleteRewardShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := r.Client.Reward.DeleteRewardShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -227,25 +243,15 @@ func (r *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams) erro
 	return nil
 }
 
-func (r *RewardService) UpdateRewardShort(input *reward.UpdateRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
-	accessToken, err := r.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]'], 'authorization': []}]
+func (r *RewardService) UpdateRewardShort(input *reward.UpdateRewardParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.RewardInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
 	}
-	ok, err := r.Client.Reward.UpdateRewardShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (r *RewardService) PublicClaimUserRewardShort(input *reward.PublicClaimUserRewardParams) (*seasonpassclientmodels.ClaimableRewards, error) {
-	accessToken, err := r.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := r.Client.Reward.PublicClaimUserRewardShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := r.Client.Reward.UpdateRewardShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -253,12 +259,31 @@ func (r *RewardService) PublicClaimUserRewardShort(input *reward.PublicClaimUser
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) PublicBulkClaimUserRewardsShort(input *reward.PublicBulkClaimUserRewardsParams) (*seasonpassclientmodels.ClaimableRewards, error) {
-	accessToken, err := r.TokenRepository.GetToken()
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]'], 'authorization': []}]
+func (r *RewardService) PublicClaimUserRewardShort(input *reward.PublicClaimUserRewardParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.ClaimableRewards, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+	}
+	ok, err := r.Client.Reward.PublicClaimUserRewardShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	ok, err := r.Client.Reward.PublicBulkClaimUserRewardsShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]'], 'authorization': []}]
+func (r *RewardService) PublicBulkClaimUserRewardsShort(input *reward.PublicBulkClaimUserRewardsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.ClaimableRewards, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(r.TokenRepository, nil, security, "")
+	}
+	ok, err := r.Client.Reward.PublicBulkClaimUserRewardsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package legal
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/utility"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type UtilityService struct {
 
 // Deprecated: Use CheckReadinessShort instead
 func (u *UtilityService) CheckReadiness(input *utility.CheckReadinessParams) (*legalclientmodels.LegalReadinessStatusResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Utility.CheckReadiness(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := u.Client.Utility.CheckReadiness(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -31,12 +35,15 @@ func (u *UtilityService) CheckReadiness(input *utility.CheckReadinessParams) (*l
 	return ok.GetPayload(), nil
 }
 
-func (u *UtilityService) CheckReadinessShort(input *utility.CheckReadinessParams) (*legalclientmodels.LegalReadinessStatusResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:LEGAL [READ]'], 'authorization': []}]
+func (u *UtilityService) CheckReadinessShort(input *utility.CheckReadinessParams, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.LegalReadinessStatusResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	ok, err := u.Client.Utility.CheckReadinessShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := u.Client.Utility.CheckReadinessShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

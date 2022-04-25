@@ -2,13 +2,17 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package sessionbrowser
 
 import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient/session"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclientmodels"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type SessionService struct {
 
 // Deprecated: Use GetTotalActiveSessionShort instead
 func (s *SessionService) GetTotalActiveSession(input *session.GetTotalActiveSessionParams) (*sessionbrowserclientmodels.ModelsCountActiveSessionResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, internalServerError, err := s.Client.Session.GetTotalActiveSession(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, internalServerError, err := s.Client.Session.GetTotalActiveSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -39,11 +43,11 @@ func (s *SessionService) GetTotalActiveSession(input *session.GetTotalActiveSess
 
 // Deprecated: Use GetActiveCustomGameSessionsShort instead
 func (s *SessionService) GetActiveCustomGameSessions(input *session.GetActiveCustomGameSessionsParams) (*sessionbrowserclientmodels.ModelsActiveCustomGameResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, internalServerError, err := s.Client.Session.GetActiveCustomGameSessions(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, internalServerError, err := s.Client.Session.GetActiveCustomGameSessions(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -59,11 +63,11 @@ func (s *SessionService) GetActiveCustomGameSessions(input *session.GetActiveCus
 
 // Deprecated: Use GetActiveMatchmakingGameSessionsShort instead
 func (s *SessionService) GetActiveMatchmakingGameSessions(input *session.GetActiveMatchmakingGameSessionsParams) (*sessionbrowserclientmodels.ModelsActiveMatchmakingGameResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, internalServerError, err := s.Client.Session.GetActiveMatchmakingGameSessions(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, internalServerError, err := s.Client.Session.GetActiveMatchmakingGameSessions(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -79,11 +83,11 @@ func (s *SessionService) GetActiveMatchmakingGameSessions(input *session.GetActi
 
 // Deprecated: Use AdminGetSessionShort instead
 func (s *SessionService) AdminGetSession(input *session.AdminGetSessionParams) (*sessionbrowserclientmodels.ModelsAdminSessionResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, internalServerError, err := s.Client.Session.AdminGetSession(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, internalServerError, err := s.Client.Session.AdminGetSession(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -99,11 +103,11 @@ func (s *SessionService) AdminGetSession(input *session.AdminGetSessionParams) (
 
 // Deprecated: Use QuerySessionShort instead
 func (s *SessionService) QuerySession(input *session.QuerySessionParams) (*sessionbrowserclientmodels.ModelsSessionQueryResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, internalServerError, err := s.Client.Session.QuerySession(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, internalServerError, err := s.Client.Session.QuerySession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -119,11 +123,11 @@ func (s *SessionService) QuerySession(input *session.QuerySessionParams) (*sessi
 
 // Deprecated: Use CreateSessionShort instead
 func (s *SessionService) CreateSession(input *session.CreateSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, forbidden, conflict, internalServerError, err := s.Client.Session.CreateSession(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, forbidden, conflict, internalServerError, err := s.Client.Session.CreateSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -145,11 +149,11 @@ func (s *SessionService) CreateSession(input *session.CreateSessionParams) (*ses
 
 // Deprecated: Use GetSessionByUserIDsShort instead
 func (s *SessionService) GetSessionByUserIDs(input *session.GetSessionByUserIDsParams) (*sessionbrowserclientmodels.ModelsSessionByUserIDsResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, internalServerError, err := s.Client.Session.GetSessionByUserIDs(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, internalServerError, err := s.Client.Session.GetSessionByUserIDs(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -165,11 +169,11 @@ func (s *SessionService) GetSessionByUserIDs(input *session.GetSessionByUserIDsP
 
 // Deprecated: Use GetSessionShort instead
 func (s *SessionService) GetSession(input *session.GetSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, internalServerError, err := s.Client.Session.GetSession(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, internalServerError, err := s.Client.Session.GetSession(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -185,11 +189,11 @@ func (s *SessionService) GetSession(input *session.GetSessionParams) (*sessionbr
 
 // Deprecated: Use UpdateSessionShort instead
 func (s *SessionService) UpdateSession(input *session.UpdateSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, internalServerError, err := s.Client.Session.UpdateSession(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, internalServerError, err := s.Client.Session.UpdateSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -208,11 +212,11 @@ func (s *SessionService) UpdateSession(input *session.UpdateSessionParams) (*ses
 
 // Deprecated: Use DeleteSessionShort instead
 func (s *SessionService) DeleteSession(input *session.DeleteSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, internalServerError, err := s.Client.Session.DeleteSession(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, internalServerError, err := s.Client.Session.DeleteSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -231,11 +235,11 @@ func (s *SessionService) DeleteSession(input *session.DeleteSessionParams) (*ses
 
 // Deprecated: Use JoinSessionShort instead
 func (s *SessionService) JoinSession(input *session.JoinSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, forbidden, notFound, internalServerError, err := s.Client.Session.JoinSession(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, forbidden, notFound, internalServerError, err := s.Client.Session.JoinSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -257,11 +261,11 @@ func (s *SessionService) JoinSession(input *session.JoinSessionParams) (*session
 
 // Deprecated: Use DeleteSessionLocalDSShort instead
 func (s *SessionService) DeleteSessionLocalDS(input *session.DeleteSessionLocalDSParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, internalServerError, err := s.Client.Session.DeleteSessionLocalDS(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, internalServerError, err := s.Client.Session.DeleteSessionLocalDS(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -280,11 +284,11 @@ func (s *SessionService) DeleteSessionLocalDS(input *session.DeleteSessionLocalD
 
 // Deprecated: Use AddPlayerToSessionShort instead
 func (s *SessionService) AddPlayerToSession(input *session.AddPlayerToSessionParams) (*sessionbrowserclientmodels.ModelsAddPlayerResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, internalServerError, err := s.Client.Session.AddPlayerToSession(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, internalServerError, err := s.Client.Session.AddPlayerToSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -303,11 +307,11 @@ func (s *SessionService) AddPlayerToSession(input *session.AddPlayerToSessionPar
 
 // Deprecated: Use RemovePlayerFromSessionShort instead
 func (s *SessionService) RemovePlayerFromSession(input *session.RemovePlayerFromSessionParams) (*sessionbrowserclientmodels.ModelsAddPlayerResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, internalServerError, err := s.Client.Session.RemovePlayerFromSession(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, internalServerError, err := s.Client.Session.RemovePlayerFromSession(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -326,11 +330,11 @@ func (s *SessionService) RemovePlayerFromSession(input *session.RemovePlayerFrom
 
 // Deprecated: Use GetRecentPlayerShort instead
 func (s *SessionService) GetRecentPlayer(input *session.GetRecentPlayerParams) (*sessionbrowserclientmodels.ModelsRecentPlayerQueryResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+	token, err := s.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, internalServerError, err := s.Client.Session.GetRecentPlayer(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, internalServerError, err := s.Client.Session.GetRecentPlayer(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -344,25 +348,15 @@ func (s *SessionService) GetRecentPlayer(input *session.GetRecentPlayerParams) (
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) GetTotalActiveSessionShort(input *session.GetTotalActiveSessionParams) (*sessionbrowserclientmodels.ModelsCountActiveSessionResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (s *SessionService) GetTotalActiveSessionShort(input *session.GetTotalActiveSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsCountActiveSessionResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
-	ok, err := s.Client.Session.GetTotalActiveSessionShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (s *SessionService) GetActiveCustomGameSessionsShort(input *session.GetActiveCustomGameSessionsParams) (*sessionbrowserclientmodels.ModelsActiveCustomGameResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := s.Client.Session.GetActiveCustomGameSessionsShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Session.GetTotalActiveSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -370,25 +364,15 @@ func (s *SessionService) GetActiveCustomGameSessionsShort(input *session.GetActi
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) GetActiveMatchmakingGameSessionsShort(input *session.GetActiveMatchmakingGameSessionsParams) (*sessionbrowserclientmodels.ModelsActiveMatchmakingGameResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (s *SessionService) GetActiveCustomGameSessionsShort(input *session.GetActiveCustomGameSessionsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsActiveCustomGameResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
-	ok, err := s.Client.Session.GetActiveMatchmakingGameSessionsShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (s *SessionService) AdminGetSessionShort(input *session.AdminGetSessionParams) (*sessionbrowserclientmodels.ModelsAdminSessionResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := s.Client.Session.AdminGetSessionShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Session.GetActiveCustomGameSessionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -396,25 +380,15 @@ func (s *SessionService) AdminGetSessionShort(input *session.AdminGetSessionPara
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) QuerySessionShort(input *session.QuerySessionParams) (*sessionbrowserclientmodels.ModelsSessionQueryResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (s *SessionService) GetActiveMatchmakingGameSessionsShort(input *session.GetActiveMatchmakingGameSessionsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsActiveMatchmakingGameResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
-	ok, err := s.Client.Session.QuerySessionShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := s.Client.Session.CreateSessionShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Session.GetActiveMatchmakingGameSessionsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -422,25 +396,15 @@ func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams) 
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) GetSessionByUserIDsShort(input *session.GetSessionByUserIDsParams) (*sessionbrowserclientmodels.ModelsSessionByUserIDsResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (s *SessionService) AdminGetSessionShort(input *session.AdminGetSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsAdminSessionResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
-	ok, err := s.Client.Session.GetSessionByUserIDsShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (s *SessionService) GetSessionShort(input *session.GetSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := s.Client.Session.GetSessionShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Session.AdminGetSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -448,25 +412,15 @@ func (s *SessionService) GetSessionShort(input *session.GetSessionParams) (*sess
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) UpdateSessionShort(input *session.UpdateSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (s *SessionService) QuerySessionShort(input *session.QuerySessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsSessionQueryResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
-	ok, err := s.Client.Session.UpdateSessionShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (s *SessionService) DeleteSessionShort(input *session.DeleteSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := s.Client.Session.DeleteSessionShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Session.QuerySessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -474,25 +428,15 @@ func (s *SessionService) DeleteSessionShort(input *session.DeleteSessionParams) 
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) JoinSessionShort(input *session.JoinSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
-	ok, err := s.Client.Session.JoinSessionShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (s *SessionService) DeleteSessionLocalDSShort(input *session.DeleteSessionLocalDSParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := s.Client.Session.DeleteSessionLocalDSShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Session.CreateSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -500,25 +444,15 @@ func (s *SessionService) DeleteSessionLocalDSShort(input *session.DeleteSessionL
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) AddPlayerToSessionShort(input *session.AddPlayerToSessionParams) (*sessionbrowserclientmodels.ModelsAddPlayerResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (s *SessionService) GetSessionByUserIDsShort(input *session.GetSessionByUserIDsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsSessionByUserIDsResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
-	ok, err := s.Client.Session.AddPlayerToSessionShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (s *SessionService) RemovePlayerFromSessionShort(input *session.RemovePlayerFromSessionParams) (*sessionbrowserclientmodels.ModelsAddPlayerResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := s.Client.Session.RemovePlayerFromSessionShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := s.Client.Session.GetSessionByUserIDsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -526,12 +460,127 @@ func (s *SessionService) RemovePlayerFromSessionShort(input *session.RemovePlaye
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) GetRecentPlayerShort(input *session.GetRecentPlayerParams) (*sessionbrowserclientmodels.ModelsRecentPlayerQueryResponse, error) {
-	accessToken, err := s.TokenRepository.GetToken()
+// [{'HasPermission': ['NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (s *SessionService) GetSessionShort(input *session.GetSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+	}
+	ok, err := s.Client.Session.GetSessionShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	ok, err := s.Client.Session.GetRecentPlayerShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (s *SessionService) UpdateSessionShort(input *session.UpdateSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+	}
+	ok, err := s.Client.Session.UpdateSessionShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
+func (s *SessionService) DeleteSessionShort(input *session.DeleteSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+	}
+	ok, err := s.Client.Session.DeleteSessionShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (s *SessionService) JoinSessionShort(input *session.JoinSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+	}
+	ok, err := s.Client.Session.JoinSessionShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
+func (s *SessionService) DeleteSessionLocalDSShort(input *session.DeleteSessionLocalDSParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+	}
+	ok, err := s.Client.Session.DeleteSessionLocalDSShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (s *SessionService) AddPlayerToSessionShort(input *session.AddPlayerToSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsAddPlayerResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+	}
+	ok, err := s.Client.Session.AddPlayerToSessionShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (s *SessionService) RemovePlayerFromSessionShort(input *session.RemovePlayerFromSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsAddPlayerResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+	}
+	ok, err := s.Client.Session.RemovePlayerFromSessionShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['NAMESPACE:{namespace}:SESSIONBROWSER:RECENTPLAYER [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (s *SessionService) GetRecentPlayerShort(input *session.GetRecentPlayerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsRecentPlayerQueryResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+	}
+	ok, err := s.Client.Session.GetRecentPlayerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

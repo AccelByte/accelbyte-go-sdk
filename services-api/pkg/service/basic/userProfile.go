@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package basic
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/user_profile"
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type UserProfileService struct {
 
 // Deprecated: Use AdminGetUserProfilePublicInfoByIdsShort instead
 func (u *UserProfileService) AdminGetUserProfilePublicInfoByIds(input *user_profile.AdminGetUserProfilePublicInfoByIdsParams) ([]*basicclientmodels.UserProfilePublicInfo, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, err := u.Client.UserProfile.AdminGetUserProfilePublicInfoByIds(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, err := u.Client.UserProfile.AdminGetUserProfilePublicInfoByIds(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -36,11 +40,11 @@ func (u *UserProfileService) AdminGetUserProfilePublicInfoByIds(input *user_prof
 
 // Deprecated: Use GetUserProfileInfoShort instead
 func (u *UserProfileService) GetUserProfileInfo(input *user_profile.GetUserProfileInfoParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.UserProfile.GetUserProfileInfo(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.UserProfile.GetUserProfileInfo(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -62,11 +66,11 @@ func (u *UserProfileService) GetUserProfileInfo(input *user_profile.GetUserProfi
 
 // Deprecated: Use UpdateUserProfileShort instead
 func (u *UserProfileService) UpdateUserProfile(input *user_profile.UpdateUserProfileParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.UserProfile.UpdateUserProfile(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.UserProfile.UpdateUserProfile(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -88,11 +92,11 @@ func (u *UserProfileService) UpdateUserProfile(input *user_profile.UpdateUserPro
 
 // Deprecated: Use DeleteUserProfileShort instead
 func (u *UserProfileService) DeleteUserProfile(input *user_profile.DeleteUserProfileParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.UserProfile.DeleteUserProfile(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.UserProfile.DeleteUserProfile(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -114,11 +118,11 @@ func (u *UserProfileService) DeleteUserProfile(input *user_profile.DeleteUserPro
 
 // Deprecated: Use GetCustomAttributesInfoShort instead
 func (u *UserProfileService) GetCustomAttributesInfo(input *user_profile.GetCustomAttributesInfoParams) (map[string]interface{}, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, err := u.Client.UserProfile.GetCustomAttributesInfo(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, err := u.Client.UserProfile.GetCustomAttributesInfo(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -137,11 +141,11 @@ func (u *UserProfileService) GetCustomAttributesInfo(input *user_profile.GetCust
 
 // Deprecated: Use UpdateCustomAttributesPartiallyShort instead
 func (u *UserProfileService) UpdateCustomAttributesPartially(input *user_profile.UpdateCustomAttributesPartiallyParams) (map[string]interface{}, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.UserProfile.UpdateCustomAttributesPartially(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.UserProfile.UpdateCustomAttributesPartially(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -163,11 +167,11 @@ func (u *UserProfileService) UpdateCustomAttributesPartially(input *user_profile
 
 // Deprecated: Use GetPrivateCustomAttributesInfoShort instead
 func (u *UserProfileService) GetPrivateCustomAttributesInfo(input *user_profile.GetPrivateCustomAttributesInfoParams) (map[string]interface{}, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, err := u.Client.UserProfile.GetPrivateCustomAttributesInfo(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, err := u.Client.UserProfile.GetPrivateCustomAttributesInfo(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -186,11 +190,11 @@ func (u *UserProfileService) GetPrivateCustomAttributesInfo(input *user_profile.
 
 // Deprecated: Use UpdatePrivateCustomAttributesPartiallyShort instead
 func (u *UserProfileService) UpdatePrivateCustomAttributesPartially(input *user_profile.UpdatePrivateCustomAttributesPartiallyParams) (map[string]interface{}, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.UserProfile.UpdatePrivateCustomAttributesPartially(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.UserProfile.UpdatePrivateCustomAttributesPartially(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -212,11 +216,11 @@ func (u *UserProfileService) UpdatePrivateCustomAttributesPartially(input *user_
 
 // Deprecated: Use UpdateUserProfileStatusShort instead
 func (u *UserProfileService) UpdateUserProfileStatus(input *user_profile.UpdateUserProfileStatusParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.UserProfile.UpdateUserProfileStatus(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.UserProfile.UpdateUserProfileStatus(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -251,11 +255,11 @@ func (u *UserProfileService) PublicGetUserProfilePublicInfoByIds(input *user_pro
 
 // Deprecated: Use GetMyProfileInfoShort instead
 func (u *UserProfileService) GetMyProfileInfo(input *user_profile.GetMyProfileInfoParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.UserProfile.GetMyProfileInfo(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.UserProfile.GetMyProfileInfo(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -277,11 +281,11 @@ func (u *UserProfileService) GetMyProfileInfo(input *user_profile.GetMyProfileIn
 
 // Deprecated: Use UpdateMyProfileShort instead
 func (u *UserProfileService) UpdateMyProfile(input *user_profile.UpdateMyProfileParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.UserProfile.UpdateMyProfile(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.UserProfile.UpdateMyProfile(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -303,11 +307,11 @@ func (u *UserProfileService) UpdateMyProfile(input *user_profile.UpdateMyProfile
 
 // Deprecated: Use CreateMyProfileShort instead
 func (u *UserProfileService) CreateMyProfile(input *user_profile.CreateMyProfileParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, notFound, conflict, err := u.Client.UserProfile.CreateMyProfile(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, forbidden, notFound, conflict, err := u.Client.UserProfile.CreateMyProfile(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -332,11 +336,11 @@ func (u *UserProfileService) CreateMyProfile(input *user_profile.CreateMyProfile
 
 // Deprecated: Use GetMyZipCodeShort instead
 func (u *UserProfileService) GetMyZipCode(input *user_profile.GetMyZipCodeParams) (*basicclientmodels.UserZipCode, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, err := u.Client.UserProfile.GetMyZipCode(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, err := u.Client.UserProfile.GetMyZipCode(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -352,11 +356,11 @@ func (u *UserProfileService) GetMyZipCode(input *user_profile.GetMyZipCodeParams
 
 // Deprecated: Use UpdateMyZipCodeShort instead
 func (u *UserProfileService) UpdateMyZipCode(input *user_profile.UpdateMyZipCodeParams) (*basicclientmodels.UserZipCode, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, err := u.Client.UserProfile.UpdateMyZipCode(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, err := u.Client.UserProfile.UpdateMyZipCode(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -375,11 +379,11 @@ func (u *UserProfileService) UpdateMyZipCode(input *user_profile.UpdateMyZipCode
 
 // Deprecated: Use PublicGetUserProfileInfoShort instead
 func (u *UserProfileService) PublicGetUserProfileInfo(input *user_profile.PublicGetUserProfileInfoParams) (*basicclientmodels.UserProfileInfo, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.UserProfile.PublicGetUserProfileInfo(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.UserProfile.PublicGetUserProfileInfo(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -401,11 +405,11 @@ func (u *UserProfileService) PublicGetUserProfileInfo(input *user_profile.Public
 
 // Deprecated: Use PublicUpdateUserProfileShort instead
 func (u *UserProfileService) PublicUpdateUserProfile(input *user_profile.PublicUpdateUserProfileParams) (*basicclientmodels.UserProfileInfo, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.UserProfile.PublicUpdateUserProfile(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.UserProfile.PublicUpdateUserProfile(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -427,11 +431,11 @@ func (u *UserProfileService) PublicUpdateUserProfile(input *user_profile.PublicU
 
 // Deprecated: Use PublicCreateUserProfileShort instead
 func (u *UserProfileService) PublicCreateUserProfile(input *user_profile.PublicCreateUserProfileParams) (*basicclientmodels.UserProfileInfo, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, conflict, err := u.Client.UserProfile.PublicCreateUserProfile(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, forbidden, conflict, err := u.Client.UserProfile.PublicCreateUserProfile(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -453,11 +457,11 @@ func (u *UserProfileService) PublicCreateUserProfile(input *user_profile.PublicC
 
 // Deprecated: Use PublicGetCustomAttributesInfoShort instead
 func (u *UserProfileService) PublicGetCustomAttributesInfo(input *user_profile.PublicGetCustomAttributesInfoParams) (map[string]interface{}, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, err := u.Client.UserProfile.PublicGetCustomAttributesInfo(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, notFound, err := u.Client.UserProfile.PublicGetCustomAttributesInfo(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -473,11 +477,11 @@ func (u *UserProfileService) PublicGetCustomAttributesInfo(input *user_profile.P
 
 // Deprecated: Use PublicUpdateCustomAttributesPartiallyShort instead
 func (u *UserProfileService) PublicUpdateCustomAttributesPartially(input *user_profile.PublicUpdateCustomAttributesPartiallyParams) (map[string]interface{}, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.UserProfile.PublicUpdateCustomAttributesPartially(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.UserProfile.PublicUpdateCustomAttributesPartially(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -515,11 +519,11 @@ func (u *UserProfileService) PublicGetUserProfilePublicInfo(input *user_profile.
 
 // Deprecated: Use PublicUpdateUserProfileStatusShort instead
 func (u *UserProfileService) PublicUpdateUserProfileStatus(input *user_profile.PublicUpdateUserProfileStatusParams) (*basicclientmodels.UserProfileInfo, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.UserProfile.PublicUpdateUserProfileStatus(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.UserProfile.PublicUpdateUserProfileStatus(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -539,25 +543,15 @@ func (u *UserProfileService) PublicUpdateUserProfileStatus(input *user_profile.P
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) AdminGetUserProfilePublicInfoByIdsShort(input *user_profile.AdminGetUserProfilePublicInfoByIdsParams) ([]*basicclientmodels.UserProfilePublicInfo, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFILE []'], 'authorization': []}]
+func (u *UserProfileService) AdminGetUserProfilePublicInfoByIdsShort(input *user_profile.AdminGetUserProfilePublicInfoByIdsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*basicclientmodels.UserProfilePublicInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	ok, err := u.Client.UserProfile.AdminGetUserProfilePublicInfoByIdsShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UserProfileService) GetUserProfileInfoShort(input *user_profile.GetUserProfileInfoParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := u.Client.UserProfile.GetUserProfileInfoShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := u.Client.UserProfile.AdminGetUserProfilePublicInfoByIdsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -565,25 +559,15 @@ func (u *UserProfileService) GetUserProfileInfoShort(input *user_profile.GetUser
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) UpdateUserProfileShort(input *user_profile.UpdateUserProfileParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]'], 'authorization': []}]
+func (u *UserProfileService) GetUserProfileInfoShort(input *user_profile.GetUserProfileInfoParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	ok, err := u.Client.UserProfile.UpdateUserProfileShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UserProfileService) DeleteUserProfileShort(input *user_profile.DeleteUserProfileParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := u.Client.UserProfile.DeleteUserProfileShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := u.Client.UserProfile.GetUserProfileInfoShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -591,25 +575,15 @@ func (u *UserProfileService) DeleteUserProfileShort(input *user_profile.DeleteUs
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) GetCustomAttributesInfoShort(input *user_profile.GetCustomAttributesInfoParams) (map[string]interface{}, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]'], 'authorization': []}]
+func (u *UserProfileService) UpdateUserProfileShort(input *user_profile.UpdateUserProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	ok, err := u.Client.UserProfile.GetCustomAttributesInfoShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UserProfileService) UpdateCustomAttributesPartiallyShort(input *user_profile.UpdateCustomAttributesPartiallyParams) (map[string]interface{}, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := u.Client.UserProfile.UpdateCustomAttributesPartiallyShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := u.Client.UserProfile.UpdateUserProfileShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -617,25 +591,15 @@ func (u *UserProfileService) UpdateCustomAttributesPartiallyShort(input *user_pr
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) GetPrivateCustomAttributesInfoShort(input *user_profile.GetPrivateCustomAttributesInfoParams) (map[string]interface{}, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [DELETE]'], 'authorization': []}]
+func (u *UserProfileService) DeleteUserProfileShort(input *user_profile.DeleteUserProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	ok, err := u.Client.UserProfile.GetPrivateCustomAttributesInfoShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UserProfileService) UpdatePrivateCustomAttributesPartiallyShort(input *user_profile.UpdatePrivateCustomAttributesPartiallyParams) (map[string]interface{}, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := u.Client.UserProfile.UpdatePrivateCustomAttributesPartiallyShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := u.Client.UserProfile.DeleteUserProfileShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -643,12 +607,15 @@ func (u *UserProfileService) UpdatePrivateCustomAttributesPartiallyShort(input *
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) UpdateUserProfileStatusShort(input *user_profile.UpdateUserProfileStatusParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]'], 'authorization': []}]
+func (u *UserProfileService) GetCustomAttributesInfoShort(input *user_profile.GetCustomAttributesInfoParams, authInfoWriter runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	ok, err := u.Client.UserProfile.UpdateUserProfileStatusShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := u.Client.UserProfile.GetCustomAttributesInfoShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -656,6 +623,71 @@ func (u *UserProfileService) UpdateUserProfileStatusShort(input *user_profile.Up
 	return ok.GetPayload(), nil
 }
 
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]'], 'authorization': []}]
+func (u *UserProfileService) UpdateCustomAttributesPartiallyShort(input *user_profile.UpdateCustomAttributesPartiallyParams, authInfoWriter runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.UserProfile.UpdateCustomAttributesPartiallyShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]'], 'authorization': []}]
+func (u *UserProfileService) GetPrivateCustomAttributesInfoShort(input *user_profile.GetPrivateCustomAttributesInfoParams, authInfoWriter runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.UserProfile.GetPrivateCustomAttributesInfoShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]'], 'authorization': []}]
+func (u *UserProfileService) UpdatePrivateCustomAttributesPartiallyShort(input *user_profile.UpdatePrivateCustomAttributesPartiallyParams, authInfoWriter runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.UserProfile.UpdatePrivateCustomAttributesPartiallyShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]'], 'authorization': []}]
+func (u *UserProfileService) UpdateUserProfileStatusShort(input *user_profile.UpdateUserProfileStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.UserProfile.UpdateUserProfileStatusShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// None
 func (u *UserProfileService) PublicGetUserProfilePublicInfoByIdsShort(input *user_profile.PublicGetUserProfilePublicInfoByIdsParams) ([]*basicclientmodels.UserProfilePublicInfo, error) {
 	ok, err := u.Client.UserProfile.PublicGetUserProfilePublicInfoByIdsShort(input)
 	if err != nil {
@@ -665,25 +697,15 @@ func (u *UserProfileService) PublicGetUserProfilePublicInfoByIdsShort(input *use
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) GetMyProfileInfoShort(input *user_profile.GetMyProfileInfoParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:PROFILE [READ]'], 'authorization': []}]
+func (u *UserProfileService) GetMyProfileInfoShort(input *user_profile.GetMyProfileInfoParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	ok, err := u.Client.UserProfile.GetMyProfileInfoShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UserProfileService) UpdateMyProfileShort(input *user_profile.UpdateMyProfileParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := u.Client.UserProfile.UpdateMyProfileShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := u.Client.UserProfile.GetMyProfileInfoShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -691,12 +713,31 @@ func (u *UserProfileService) UpdateMyProfileShort(input *user_profile.UpdateMyPr
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) CreateMyProfileShort(input *user_profile.CreateMyProfileParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:PROFILE [UPDATE]'], 'authorization': []}]
+func (u *UserProfileService) UpdateMyProfileShort(input *user_profile.UpdateMyProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.UserProfile.UpdateMyProfileShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	created, err := u.Client.UserProfile.CreateMyProfileShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:PROFILE [CREATE]'], 'authorization': []}]
+func (u *UserProfileService) CreateMyProfileShort(input *user_profile.CreateMyProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	created, err := u.Client.UserProfile.CreateMyProfileShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -704,25 +745,15 @@ func (u *UserProfileService) CreateMyProfileShort(input *user_profile.CreateMyPr
 	return created.GetPayload(), nil
 }
 
-func (u *UserProfileService) GetMyZipCodeShort(input *user_profile.GetMyZipCodeParams) (*basicclientmodels.UserZipCode, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:PROFILE [READ]'], 'authorization': []}]
+func (u *UserProfileService) GetMyZipCodeShort(input *user_profile.GetMyZipCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserZipCode, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	ok, err := u.Client.UserProfile.GetMyZipCodeShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UserProfileService) UpdateMyZipCodeShort(input *user_profile.UpdateMyZipCodeParams) (*basicclientmodels.UserZipCode, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := u.Client.UserProfile.UpdateMyZipCodeShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := u.Client.UserProfile.GetMyZipCodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -730,25 +761,15 @@ func (u *UserProfileService) UpdateMyZipCodeShort(input *user_profile.UpdateMyZi
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) PublicGetUserProfileInfoShort(input *user_profile.PublicGetUserProfileInfoParams) (*basicclientmodels.UserProfileInfo, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:PROFILE [UPDATE]'], 'authorization': []}]
+func (u *UserProfileService) UpdateMyZipCodeShort(input *user_profile.UpdateMyZipCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserZipCode, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	ok, err := u.Client.UserProfile.PublicGetUserProfileInfoShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UserProfileService) PublicUpdateUserProfileShort(input *user_profile.PublicUpdateUserProfileParams) (*basicclientmodels.UserProfileInfo, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := u.Client.UserProfile.PublicUpdateUserProfileShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := u.Client.UserProfile.UpdateMyZipCodeShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -756,12 +777,47 @@ func (u *UserProfileService) PublicUpdateUserProfileShort(input *user_profile.Pu
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) PublicCreateUserProfileShort(input *user_profile.PublicCreateUserProfileParams) (*basicclientmodels.UserProfileInfo, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]'], 'authorization': []}]
+func (u *UserProfileService) PublicGetUserProfileInfoShort(input *user_profile.PublicGetUserProfileInfoParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfileInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.UserProfile.PublicGetUserProfileInfoShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	created, err := u.Client.UserProfile.PublicCreateUserProfileShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]'], 'authorization': []}]
+func (u *UserProfileService) PublicUpdateUserProfileShort(input *user_profile.PublicUpdateUserProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfileInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.UserProfile.PublicUpdateUserProfileShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:PROFILE [CREATE]'], 'authorization': []}]
+func (u *UserProfileService) PublicCreateUserProfileShort(input *user_profile.PublicCreateUserProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfileInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	created, err := u.Client.UserProfile.PublicCreateUserProfileShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -769,25 +825,15 @@ func (u *UserProfileService) PublicCreateUserProfileShort(input *user_profile.Pu
 	return created.GetPayload(), nil
 }
 
-func (u *UserProfileService) PublicGetCustomAttributesInfoShort(input *user_profile.PublicGetCustomAttributesInfoParams) (map[string]interface{}, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]'], 'authorization': []}]
+func (u *UserProfileService) PublicGetCustomAttributesInfoShort(input *user_profile.PublicGetCustomAttributesInfoParams, authInfoWriter runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	ok, err := u.Client.UserProfile.PublicGetCustomAttributesInfoShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (u *UserProfileService) PublicUpdateCustomAttributesPartiallyShort(input *user_profile.PublicUpdateCustomAttributesPartiallyParams) (map[string]interface{}, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := u.Client.UserProfile.PublicUpdateCustomAttributesPartiallyShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := u.Client.UserProfile.PublicGetCustomAttributesInfoShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -795,6 +841,23 @@ func (u *UserProfileService) PublicUpdateCustomAttributesPartiallyShort(input *u
 	return ok.GetPayload(), nil
 }
 
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]'], 'authorization': []}]
+func (u *UserProfileService) PublicUpdateCustomAttributesPartiallyShort(input *user_profile.PublicUpdateCustomAttributesPartiallyParams, authInfoWriter runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
+	}
+	ok, err := u.Client.UserProfile.PublicUpdateCustomAttributesPartiallyShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// None
 func (u *UserProfileService) PublicGetUserProfilePublicInfoShort(input *user_profile.PublicGetUserProfilePublicInfoParams) (*basicclientmodels.UserProfilePublicInfo, error) {
 	ok, err := u.Client.UserProfile.PublicGetUserProfilePublicInfoShort(input)
 	if err != nil {
@@ -804,12 +867,15 @@ func (u *UserProfileService) PublicGetUserProfilePublicInfoShort(input *user_pro
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) PublicUpdateUserProfileStatusShort(input *user_profile.PublicUpdateUserProfileStatusParams) (*basicclientmodels.UserProfileInfo, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]'], 'authorization': []}]
+func (u *UserProfileService) PublicUpdateUserProfileStatusShort(input *user_profile.PublicUpdateUserProfileStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfileInfo, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	ok, err := u.Client.UserProfile.PublicUpdateUserProfileStatusShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := u.Client.UserProfile.PublicUpdateUserProfileStatusShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

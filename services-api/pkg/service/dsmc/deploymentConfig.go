@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package dsmc
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclient/deployment_config"
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type DeploymentConfigService struct {
 
 // Deprecated: Use GetAllDeploymentShort instead
 func (d *DeploymentConfigService) GetAllDeployment(input *deployment_config.GetAllDeploymentParams) (*dsmcclientmodels.ModelsListDeploymentResponse, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, internalServerError, err := d.Client.DeploymentConfig.GetAllDeployment(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, internalServerError, err := d.Client.DeploymentConfig.GetAllDeployment(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -42,11 +46,11 @@ func (d *DeploymentConfigService) GetAllDeployment(input *deployment_config.GetA
 
 // Deprecated: Use GetDeploymentShort instead
 func (d *DeploymentConfigService) GetDeployment(input *deployment_config.GetDeploymentParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.GetDeployment(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.GetDeployment(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -68,11 +72,11 @@ func (d *DeploymentConfigService) GetDeployment(input *deployment_config.GetDepl
 
 // Deprecated: Use CreateDeploymentShort instead
 func (d *DeploymentConfigService) CreateDeployment(input *deployment_config.CreateDeploymentParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, conflict, internalServerError, err := d.Client.DeploymentConfig.CreateDeployment(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, conflict, internalServerError, err := d.Client.DeploymentConfig.CreateDeployment(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -94,11 +98,11 @@ func (d *DeploymentConfigService) CreateDeployment(input *deployment_config.Crea
 
 // Deprecated: Use DeleteDeploymentShort instead
 func (d *DeploymentConfigService) DeleteDeployment(input *deployment_config.DeleteDeploymentParams) error {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.DeleteDeployment(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.DeleteDeployment(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -120,11 +124,11 @@ func (d *DeploymentConfigService) DeleteDeployment(input *deployment_config.Dele
 
 // Deprecated: Use UpdateDeploymentShort instead
 func (d *DeploymentConfigService) UpdateDeployment(input *deployment_config.UpdateDeploymentParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.UpdateDeployment(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.UpdateDeployment(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -146,11 +150,11 @@ func (d *DeploymentConfigService) UpdateDeployment(input *deployment_config.Upda
 
 // Deprecated: Use CreateRootRegionOverrideShort instead
 func (d *DeploymentConfigService) CreateRootRegionOverride(input *deployment_config.CreateRootRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, notFound, conflict, internalServerError, err := d.Client.DeploymentConfig.CreateRootRegionOverride(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, notFound, conflict, internalServerError, err := d.Client.DeploymentConfig.CreateRootRegionOverride(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -175,11 +179,11 @@ func (d *DeploymentConfigService) CreateRootRegionOverride(input *deployment_con
 
 // Deprecated: Use DeleteRootRegionOverrideShort instead
 func (d *DeploymentConfigService) DeleteRootRegionOverride(input *deployment_config.DeleteRootRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.DeleteRootRegionOverride(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.DeleteRootRegionOverride(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -201,11 +205,11 @@ func (d *DeploymentConfigService) DeleteRootRegionOverride(input *deployment_con
 
 // Deprecated: Use UpdateRootRegionOverrideShort instead
 func (d *DeploymentConfigService) UpdateRootRegionOverride(input *deployment_config.UpdateRootRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.UpdateRootRegionOverride(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.UpdateRootRegionOverride(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -227,11 +231,11 @@ func (d *DeploymentConfigService) UpdateRootRegionOverride(input *deployment_con
 
 // Deprecated: Use CreateDeploymentOverrideShort instead
 func (d *DeploymentConfigService) CreateDeploymentOverride(input *deployment_config.CreateDeploymentOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, notFound, conflict, internalServerError, err := d.Client.DeploymentConfig.CreateDeploymentOverride(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, notFound, conflict, internalServerError, err := d.Client.DeploymentConfig.CreateDeploymentOverride(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -256,11 +260,11 @@ func (d *DeploymentConfigService) CreateDeploymentOverride(input *deployment_con
 
 // Deprecated: Use DeleteDeploymentOverrideShort instead
 func (d *DeploymentConfigService) DeleteDeploymentOverride(input *deployment_config.DeleteDeploymentOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.DeleteDeploymentOverride(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.DeleteDeploymentOverride(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -282,11 +286,11 @@ func (d *DeploymentConfigService) DeleteDeploymentOverride(input *deployment_con
 
 // Deprecated: Use UpdateDeploymentOverrideShort instead
 func (d *DeploymentConfigService) UpdateDeploymentOverride(input *deployment_config.UpdateDeploymentOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.UpdateDeploymentOverride(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.UpdateDeploymentOverride(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -308,11 +312,11 @@ func (d *DeploymentConfigService) UpdateDeploymentOverride(input *deployment_con
 
 // Deprecated: Use CreateOverrideRegionOverrideShort instead
 func (d *DeploymentConfigService) CreateOverrideRegionOverride(input *deployment_config.CreateOverrideRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, notFound, conflict, internalServerError, err := d.Client.DeploymentConfig.CreateOverrideRegionOverride(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, notFound, conflict, internalServerError, err := d.Client.DeploymentConfig.CreateOverrideRegionOverride(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -337,11 +341,11 @@ func (d *DeploymentConfigService) CreateOverrideRegionOverride(input *deployment
 
 // Deprecated: Use DeleteOverrideRegionOverrideShort instead
 func (d *DeploymentConfigService) DeleteOverrideRegionOverride(input *deployment_config.DeleteOverrideRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.DeleteOverrideRegionOverride(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.DeleteOverrideRegionOverride(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -363,11 +367,11 @@ func (d *DeploymentConfigService) DeleteOverrideRegionOverride(input *deployment
 
 // Deprecated: Use UpdateOverrideRegionOverrideShort instead
 func (d *DeploymentConfigService) UpdateOverrideRegionOverride(input *deployment_config.UpdateOverrideRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+	token, err := d.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.UpdateOverrideRegionOverride(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := d.Client.DeploymentConfig.UpdateOverrideRegionOverride(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -387,25 +391,15 @@ func (d *DeploymentConfigService) UpdateOverrideRegionOverride(input *deployment
 	return ok.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) GetAllDeploymentShort(input *deployment_config.GetAllDeploymentParams) (*dsmcclientmodels.ModelsListDeploymentResponse, error) {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (d *DeploymentConfigService) GetAllDeploymentShort(input *deployment_config.GetAllDeploymentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListDeploymentResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
-	ok, err := d.Client.DeploymentConfig.GetAllDeploymentShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (d *DeploymentConfigService) GetDeploymentShort(input *deployment_config.GetDeploymentParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := d.Client.DeploymentConfig.GetDeploymentShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := d.Client.DeploymentConfig.GetAllDeploymentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -413,12 +407,31 @@ func (d *DeploymentConfigService) GetDeploymentShort(input *deployment_config.Ge
 	return ok.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) CreateDeploymentShort(input *deployment_config.CreateDeploymentParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (d *DeploymentConfigService) GetDeploymentShort(input *deployment_config.GetDeploymentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+	}
+	ok, err := d.Client.DeploymentConfig.GetDeploymentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	created, err := d.Client.DeploymentConfig.CreateDeploymentShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (d *DeploymentConfigService) CreateDeploymentShort(input *deployment_config.CreateDeploymentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+	}
+	created, err := d.Client.DeploymentConfig.CreateDeploymentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -426,12 +439,15 @@ func (d *DeploymentConfigService) CreateDeploymentShort(input *deployment_config
 	return created.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) DeleteDeploymentShort(input *deployment_config.DeleteDeploymentParams) error {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (d *DeploymentConfigService) DeleteDeploymentShort(input *deployment_config.DeleteDeploymentParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
-	_, err = d.Client.DeploymentConfig.DeleteDeploymentShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := d.Client.DeploymentConfig.DeleteDeploymentShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -439,12 +455,15 @@ func (d *DeploymentConfigService) DeleteDeploymentShort(input *deployment_config
 	return nil
 }
 
-func (d *DeploymentConfigService) UpdateDeploymentShort(input *deployment_config.UpdateDeploymentParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (d *DeploymentConfigService) UpdateDeploymentShort(input *deployment_config.UpdateDeploymentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
-	ok, err := d.Client.DeploymentConfig.UpdateDeploymentShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := d.Client.DeploymentConfig.UpdateDeploymentShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -452,12 +471,15 @@ func (d *DeploymentConfigService) UpdateDeploymentShort(input *deployment_config
 	return ok.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) CreateRootRegionOverrideShort(input *deployment_config.CreateRootRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (d *DeploymentConfigService) CreateRootRegionOverrideShort(input *deployment_config.CreateRootRegionOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
-	created, err := d.Client.DeploymentConfig.CreateRootRegionOverrideShort(input, client.BearerToken(*accessToken.AccessToken))
+	created, err := d.Client.DeploymentConfig.CreateRootRegionOverrideShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -465,25 +487,15 @@ func (d *DeploymentConfigService) CreateRootRegionOverrideShort(input *deploymen
 	return created.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) DeleteRootRegionOverrideShort(input *deployment_config.DeleteRootRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
+func (d *DeploymentConfigService) DeleteRootRegionOverrideShort(input *deployment_config.DeleteRootRegionOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
-	ok, err := d.Client.DeploymentConfig.DeleteRootRegionOverrideShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (d *DeploymentConfigService) UpdateRootRegionOverrideShort(input *deployment_config.UpdateRootRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := d.Client.DeploymentConfig.UpdateRootRegionOverrideShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := d.Client.DeploymentConfig.DeleteRootRegionOverrideShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -491,12 +503,31 @@ func (d *DeploymentConfigService) UpdateRootRegionOverrideShort(input *deploymen
 	return ok.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) CreateDeploymentOverrideShort(input *deployment_config.CreateDeploymentOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (d *DeploymentConfigService) UpdateRootRegionOverrideShort(input *deployment_config.UpdateRootRegionOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+	}
+	ok, err := d.Client.DeploymentConfig.UpdateRootRegionOverrideShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	created, err := d.Client.DeploymentConfig.CreateDeploymentOverrideShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (d *DeploymentConfigService) CreateDeploymentOverrideShort(input *deployment_config.CreateDeploymentOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+	}
+	created, err := d.Client.DeploymentConfig.CreateDeploymentOverrideShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -504,25 +535,15 @@ func (d *DeploymentConfigService) CreateDeploymentOverrideShort(input *deploymen
 	return created.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) DeleteDeploymentOverrideShort(input *deployment_config.DeleteDeploymentOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
+func (d *DeploymentConfigService) DeleteDeploymentOverrideShort(input *deployment_config.DeleteDeploymentOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
-	ok, err := d.Client.DeploymentConfig.DeleteDeploymentOverrideShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (d *DeploymentConfigService) UpdateDeploymentOverrideShort(input *deployment_config.UpdateDeploymentOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := d.Client.DeploymentConfig.UpdateDeploymentOverrideShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := d.Client.DeploymentConfig.DeleteDeploymentOverrideShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -530,12 +551,31 @@ func (d *DeploymentConfigService) UpdateDeploymentOverrideShort(input *deploymen
 	return ok.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) CreateOverrideRegionOverrideShort(input *deployment_config.CreateOverrideRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	accessToken, err := d.TokenRepository.GetToken()
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (d *DeploymentConfigService) UpdateDeploymentOverrideShort(input *deployment_config.UpdateDeploymentOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+	}
+	ok, err := d.Client.DeploymentConfig.UpdateDeploymentOverrideShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	created, err := d.Client.DeploymentConfig.CreateOverrideRegionOverrideShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (d *DeploymentConfigService) CreateOverrideRegionOverrideShort(input *deployment_config.CreateOverrideRegionOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
+	}
+	created, err := d.Client.DeploymentConfig.CreateOverrideRegionOverrideShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -543,12 +583,15 @@ func (d *DeploymentConfigService) CreateOverrideRegionOverrideShort(input *deplo
 	return created.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) DeleteOverrideRegionOverrideShort(input *deployment_config.DeleteOverrideRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
+func (d *DeploymentConfigService) DeleteOverrideRegionOverrideShort(input *deployment_config.DeleteOverrideRegionOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
-	ok, err := d.Client.DeploymentConfig.DeleteOverrideRegionOverrideShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := d.Client.DeploymentConfig.DeleteOverrideRegionOverrideShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -556,12 +599,15 @@ func (d *DeploymentConfigService) DeleteOverrideRegionOverrideShort(input *deplo
 	return ok.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) UpdateOverrideRegionOverrideShort(input *deployment_config.UpdateOverrideRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
-	accessToken, err := d.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (d *DeploymentConfigService) UpdateOverrideRegionOverrideShort(input *deployment_config.UpdateOverrideRegionOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(d.TokenRepository, nil, security, "")
 	}
-	ok, err := d.Client.DeploymentConfig.UpdateOverrideRegionOverrideShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := d.Client.DeploymentConfig.UpdateOverrideRegionOverrideShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

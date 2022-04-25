@@ -12,6 +12,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -106,15 +107,15 @@ func (i *InputValidationsService) PublicGetInputValidations(input *input_validat
 	return ok.GetPayload(), nil
 }
 
-func (i *InputValidationsService) AdminGetInputValidationsShort(input *input_validations.AdminGetInputValidationsParams) (*iamclientmodels.ModelInputValidationsResponse, error) {
-	token, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:CONFIGURATION [READ]'], 'authorization': []}]
+func (i *InputValidationsService) AdminGetInputValidationsShort(input *input_validations.AdminGetInputValidationsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelInputValidationsResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := i.Client.InputValidations.AdminGetInputValidationsShort(input, authWriter)
+	ok, err := i.Client.InputValidations.AdminGetInputValidationsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -122,31 +123,15 @@ func (i *InputValidationsService) AdminGetInputValidationsShort(input *input_val
 	return ok.GetPayload(), nil
 }
 
-func (i *InputValidationsService) AdminUpdateInputValidationsShort(input *input_validations.AdminUpdateInputValidationsParams) error {
-	token, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:CONFIGURATION [UPDATE]'], 'authorization': []}]
+func (i *InputValidationsService) AdminUpdateInputValidationsShort(input *input_validations.AdminUpdateInputValidationsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = i.Client.InputValidations.AdminUpdateInputValidationsShort(input, authWriter)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (i *InputValidationsService) AdminResetInputValidationsShort(input *input_validations.AdminResetInputValidationsParams) error {
-	token, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = i.Client.InputValidations.AdminResetInputValidationsShort(input, authWriter)
+	_, err := i.Client.InputValidations.AdminUpdateInputValidationsShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -154,15 +139,31 @@ func (i *InputValidationsService) AdminResetInputValidationsShort(input *input_v
 	return nil
 }
 
-func (i *InputValidationsService) PublicGetInputValidationsShort(input *input_validations.PublicGetInputValidationsParams) (*iamclientmodels.ModelInputValidationsPublicResponse, error) {
-	token, err := i.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:CONFIGURATION [DELETE]'], 'authorization': []}]
+func (i *InputValidationsService) AdminResetInputValidationsShort(input *input_validations.AdminResetInputValidationsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := i.Client.InputValidations.PublicGetInputValidationsShort(input, authWriter)
+	_, err := i.Client.InputValidations.AdminResetInputValidationsShort(input, authInfoWriter)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// [{'authorization': []}]
+func (i *InputValidationsService) PublicGetInputValidationsShort(input *input_validations.PublicGetInputValidationsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelInputValidationsPublicResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(i.TokenRepository, nil, security, "")
+	}
+	ok, err := i.Client.InputValidations.PublicGetInputValidationsShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

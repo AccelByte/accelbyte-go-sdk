@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package group
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclient/configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type ConfigurationService struct {
 
 // Deprecated: Use ListGroupConfigurationAdminV1Short instead
 func (c *ConfigurationService) ListGroupConfigurationAdminV1(input *configuration.ListGroupConfigurationAdminV1Params) (*groupclientmodels.ModelsListConfigurationResponseV1, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Configuration.ListGroupConfigurationAdminV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Configuration.ListGroupConfigurationAdminV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -48,11 +52,11 @@ func (c *ConfigurationService) ListGroupConfigurationAdminV1(input *configuratio
 
 // Deprecated: Use CreateGroupConfigurationAdminV1Short instead
 func (c *ConfigurationService) CreateGroupConfigurationAdminV1(input *configuration.CreateGroupConfigurationAdminV1Params) (*groupclientmodels.ModelsCreateGroupConfigurationResponseV1, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, conflict, internalServerError, err := c.Client.Configuration.CreateGroupConfigurationAdminV1(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, forbidden, conflict, internalServerError, err := c.Client.Configuration.CreateGroupConfigurationAdminV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -77,11 +81,11 @@ func (c *ConfigurationService) CreateGroupConfigurationAdminV1(input *configurat
 
 // Deprecated: Use InitiateGroupConfigurationAdminV1Short instead
 func (c *ConfigurationService) InitiateGroupConfigurationAdminV1(input *configuration.InitiateGroupConfigurationAdminV1Params) (*groupclientmodels.ModelsCreateGroupConfigurationResponseV1, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, unauthorized, forbidden, conflict, internalServerError, err := c.Client.Configuration.InitiateGroupConfigurationAdminV1(input, client.BearerToken(*accessToken.AccessToken))
+	created, unauthorized, forbidden, conflict, internalServerError, err := c.Client.Configuration.InitiateGroupConfigurationAdminV1(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -103,11 +107,11 @@ func (c *ConfigurationService) InitiateGroupConfigurationAdminV1(input *configur
 
 // Deprecated: Use GetGroupConfigurationAdminV1Short instead
 func (c *ConfigurationService) GetGroupConfigurationAdminV1(input *configuration.GetGroupConfigurationAdminV1Params) (*groupclientmodels.ModelsGetGroupConfigurationResponseV1, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Configuration.GetGroupConfigurationAdminV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Configuration.GetGroupConfigurationAdminV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -132,11 +136,11 @@ func (c *ConfigurationService) GetGroupConfigurationAdminV1(input *configuration
 
 // Deprecated: Use DeleteGroupConfigurationV1Short instead
 func (c *ConfigurationService) DeleteGroupConfigurationV1(input *configuration.DeleteGroupConfigurationV1Params) error {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Configuration.DeleteGroupConfigurationV1(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Configuration.DeleteGroupConfigurationV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -161,11 +165,11 @@ func (c *ConfigurationService) DeleteGroupConfigurationV1(input *configuration.D
 
 // Deprecated: Use UpdateGroupConfigurationAdminV1Short instead
 func (c *ConfigurationService) UpdateGroupConfigurationAdminV1(input *configuration.UpdateGroupConfigurationAdminV1Params) (*groupclientmodels.ModelsUpdateGroupConfigurationResponseV1, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Configuration.UpdateGroupConfigurationAdminV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Configuration.UpdateGroupConfigurationAdminV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -190,11 +194,11 @@ func (c *ConfigurationService) UpdateGroupConfigurationAdminV1(input *configurat
 
 // Deprecated: Use UpdateGroupConfigurationGlobalRuleAdminV1Short instead
 func (c *ConfigurationService) UpdateGroupConfigurationGlobalRuleAdminV1(input *configuration.UpdateGroupConfigurationGlobalRuleAdminV1Params) (*groupclientmodels.ModelsUpdateGroupConfigurationResponseV1, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Configuration.UpdateGroupConfigurationGlobalRuleAdminV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Configuration.UpdateGroupConfigurationGlobalRuleAdminV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -219,11 +223,11 @@ func (c *ConfigurationService) UpdateGroupConfigurationGlobalRuleAdminV1(input *
 
 // Deprecated: Use DeleteGroupConfigurationGlobalRuleAdminV1Short instead
 func (c *ConfigurationService) DeleteGroupConfigurationGlobalRuleAdminV1(input *configuration.DeleteGroupConfigurationGlobalRuleAdminV1Params) (*groupclientmodels.ModelsUpdateGroupConfigurationResponseV1, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+	token, err := c.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Configuration.DeleteGroupConfigurationGlobalRuleAdminV1(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := c.Client.Configuration.DeleteGroupConfigurationGlobalRuleAdminV1(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -246,51 +250,15 @@ func (c *ConfigurationService) DeleteGroupConfigurationGlobalRuleAdminV1(input *
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigurationService) ListGroupConfigurationAdminV1Short(input *configuration.ListGroupConfigurationAdminV1Params) (*groupclientmodels.ModelsListConfigurationResponseV1, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]'], 'authorization': []}]
+func (c *ConfigurationService) ListGroupConfigurationAdminV1Short(input *configuration.ListGroupConfigurationAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsListConfigurationResponseV1, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	ok, err := c.Client.Configuration.ListGroupConfigurationAdminV1Short(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (c *ConfigurationService) CreateGroupConfigurationAdminV1Short(input *configuration.CreateGroupConfigurationAdminV1Params) (*groupclientmodels.ModelsCreateGroupConfigurationResponseV1, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	created, err := c.Client.Configuration.CreateGroupConfigurationAdminV1Short(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return created.GetPayload(), nil
-}
-
-func (c *ConfigurationService) InitiateGroupConfigurationAdminV1Short(input *configuration.InitiateGroupConfigurationAdminV1Params) (*groupclientmodels.ModelsCreateGroupConfigurationResponseV1, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	created, err := c.Client.Configuration.InitiateGroupConfigurationAdminV1Short(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return created.GetPayload(), nil
-}
-
-func (c *ConfigurationService) GetGroupConfigurationAdminV1Short(input *configuration.GetGroupConfigurationAdminV1Params) (*groupclientmodels.ModelsGetGroupConfigurationResponseV1, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := c.Client.Configuration.GetGroupConfigurationAdminV1Short(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Configuration.ListGroupConfigurationAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -298,12 +266,63 @@ func (c *ConfigurationService) GetGroupConfigurationAdminV1Short(input *configur
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigurationService) DeleteGroupConfigurationV1Short(input *configuration.DeleteGroupConfigurationV1Params) error {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]'], 'authorization': []}]
+func (c *ConfigurationService) CreateGroupConfigurationAdminV1Short(input *configuration.CreateGroupConfigurationAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsCreateGroupConfigurationResponseV1, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	_, err = c.Client.Configuration.DeleteGroupConfigurationV1Short(input, client.BearerToken(*accessToken.AccessToken))
+	created, err := c.Client.Configuration.CreateGroupConfigurationAdminV1Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return created.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]'], 'authorization': []}]
+func (c *ConfigurationService) InitiateGroupConfigurationAdminV1Short(input *configuration.InitiateGroupConfigurationAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsCreateGroupConfigurationResponseV1, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	created, err := c.Client.Configuration.InitiateGroupConfigurationAdminV1Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return created.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]'], 'authorization': []}]
+func (c *ConfigurationService) GetGroupConfigurationAdminV1Short(input *configuration.GetGroupConfigurationAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetGroupConfigurationResponseV1, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	ok, err := c.Client.Configuration.GetGroupConfigurationAdminV1Short(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [DELETE]'], 'authorization': []}]
+func (c *ConfigurationService) DeleteGroupConfigurationV1Short(input *configuration.DeleteGroupConfigurationV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	_, err := c.Client.Configuration.DeleteGroupConfigurationV1Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -311,25 +330,15 @@ func (c *ConfigurationService) DeleteGroupConfigurationV1Short(input *configurat
 	return nil
 }
 
-func (c *ConfigurationService) UpdateGroupConfigurationAdminV1Short(input *configuration.UpdateGroupConfigurationAdminV1Params) (*groupclientmodels.ModelsUpdateGroupConfigurationResponseV1, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]'], 'authorization': []}]
+func (c *ConfigurationService) UpdateGroupConfigurationAdminV1Short(input *configuration.UpdateGroupConfigurationAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsUpdateGroupConfigurationResponseV1, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
 	}
-	ok, err := c.Client.Configuration.UpdateGroupConfigurationAdminV1Short(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (c *ConfigurationService) UpdateGroupConfigurationGlobalRuleAdminV1Short(input *configuration.UpdateGroupConfigurationGlobalRuleAdminV1Params) (*groupclientmodels.ModelsUpdateGroupConfigurationResponseV1, error) {
-	accessToken, err := c.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := c.Client.Configuration.UpdateGroupConfigurationGlobalRuleAdminV1Short(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := c.Client.Configuration.UpdateGroupConfigurationAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -337,12 +346,31 @@ func (c *ConfigurationService) UpdateGroupConfigurationGlobalRuleAdminV1Short(in
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigurationService) DeleteGroupConfigurationGlobalRuleAdminV1Short(input *configuration.DeleteGroupConfigurationGlobalRuleAdminV1Params) (*groupclientmodels.ModelsUpdateGroupConfigurationResponseV1, error) {
-	accessToken, err := c.TokenRepository.GetToken()
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]'], 'authorization': []}]
+func (c *ConfigurationService) UpdateGroupConfigurationGlobalRuleAdminV1Short(input *configuration.UpdateGroupConfigurationGlobalRuleAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsUpdateGroupConfigurationResponseV1, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	ok, err := c.Client.Configuration.UpdateGroupConfigurationGlobalRuleAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	ok, err := c.Client.Configuration.DeleteGroupConfigurationGlobalRuleAdminV1Short(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]'], 'authorization': []}]
+func (c *ConfigurationService) DeleteGroupConfigurationGlobalRuleAdminV1Short(input *configuration.DeleteGroupConfigurationGlobalRuleAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsUpdateGroupConfigurationResponseV1, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(c.TokenRepository, nil, security, "")
+	}
+	ok, err := c.Client.Configuration.DeleteGroupConfigurationGlobalRuleAdminV1Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

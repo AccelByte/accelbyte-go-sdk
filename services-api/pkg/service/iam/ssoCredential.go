@@ -12,6 +12,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -153,31 +154,15 @@ func (s *SSOCredentialService) UpdateSSOPlatformCredential(input *s_s_o_credenti
 	return ok.GetPayload(), nil
 }
 
-func (s *SSOCredentialService) RetrieveAllSSOLoginPlatformCredentialV3Short(input *s_s_o_credential.RetrieveAllSSOLoginPlatformCredentialV3Params) ([]*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
-	token, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PLATFORM:*:SSO [READ]'], 'authorization': []}]
+func (s *SSOCredentialService) RetrieveAllSSOLoginPlatformCredentialV3Short(input *s_s_o_credential.RetrieveAllSSOLoginPlatformCredentialV3Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := s.Client.SsoCredential.RetrieveAllSSOLoginPlatformCredentialV3Short(input, authWriter)
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (s *SSOCredentialService) RetrieveSSOLoginPlatformCredentialShort(input *s_s_o_credential.RetrieveSSOLoginPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
-	token, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := s.Client.SsoCredential.RetrieveSSOLoginPlatformCredentialShort(input, authWriter)
+	ok, err := s.Client.SsoCredential.RetrieveAllSSOLoginPlatformCredentialV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -185,15 +170,31 @@ func (s *SSOCredentialService) RetrieveSSOLoginPlatformCredentialShort(input *s_
 	return ok.GetPayload(), nil
 }
 
-func (s *SSOCredentialService) AddSSOLoginPlatformCredentialShort(input *s_s_o_credential.AddSSOLoginPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
-	token, err := s.TokenRepository.GetToken()
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:SSO [READ]'], 'authorization': []}]
+func (s *SSOCredentialService) RetrieveSSOLoginPlatformCredentialShort(input *s_s_o_credential.RetrieveSSOLoginPlatformCredentialParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+	}
+	ok, err := s.Client.SsoCredential.RetrieveSSOLoginPlatformCredentialShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	created, err := s.Client.SsoCredential.AddSSOLoginPlatformCredentialShort(input, authWriter)
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:SSO [CREATE]'], 'authorization': []}]
+func (s *SSOCredentialService) AddSSOLoginPlatformCredentialShort(input *s_s_o_credential.AddSSOLoginPlatformCredentialParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
+	}
+	created, err := s.Client.SsoCredential.AddSSOLoginPlatformCredentialShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -201,15 +202,15 @@ func (s *SSOCredentialService) AddSSOLoginPlatformCredentialShort(input *s_s_o_c
 	return created.GetPayload(), nil
 }
 
-func (s *SSOCredentialService) DeleteSSOLoginPlatformCredentialV3Short(input *s_s_o_credential.DeleteSSOLoginPlatformCredentialV3Params) error {
-	token, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:SSO [DELETE]'], 'authorization': []}]
+func (s *SSOCredentialService) DeleteSSOLoginPlatformCredentialV3Short(input *s_s_o_credential.DeleteSSOLoginPlatformCredentialV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	_, err = s.Client.SsoCredential.DeleteSSOLoginPlatformCredentialV3Short(input, authWriter)
+	_, err := s.Client.SsoCredential.DeleteSSOLoginPlatformCredentialV3Short(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -217,15 +218,15 @@ func (s *SSOCredentialService) DeleteSSOLoginPlatformCredentialV3Short(input *s_
 	return nil
 }
 
-func (s *SSOCredentialService) UpdateSSOPlatformCredentialShort(input *s_s_o_credential.UpdateSSOPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
-	token, err := s.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:SSO [UPDATE]'], 'authorization': []}]
+func (s *SSOCredentialService) UpdateSSOPlatformCredentialShort(input *s_s_o_credential.UpdateSSOPlatformCredentialParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(s.TokenRepository, nil, security, "")
 	}
-	authWriter := auth.Compose(
-		auth.Bearer(*token.AccessToken),
-	)
-	ok, err := s.Client.SsoCredential.UpdateSSOPlatformCredentialShort(input, authWriter)
+	ok, err := s.Client.SsoCredential.UpdateSSOPlatformCredentialShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

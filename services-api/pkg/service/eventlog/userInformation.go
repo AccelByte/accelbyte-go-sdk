@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package eventlog
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclient/user_information"
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type UserInformationService struct {
 
 // Deprecated: Use GetUserActivitiesHandlerShort instead
 func (u *UserInformationService) GetUserActivitiesHandler(input *user_information.GetUserActivitiesHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.UserInformation.GetUserActivitiesHandler(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.UserInformation.GetUserActivitiesHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -48,11 +52,11 @@ func (u *UserInformationService) GetUserActivitiesHandler(input *user_informatio
 
 // Deprecated: Use DeleteUserActivitiesHandlerShort instead
 func (u *UserInformationService) DeleteUserActivitiesHandler(input *user_information.DeleteUserActivitiesHandlerParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := u.Client.UserInformation.DeleteUserActivitiesHandler(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := u.Client.UserInformation.DeleteUserActivitiesHandler(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -74,11 +78,11 @@ func (u *UserInformationService) DeleteUserActivitiesHandler(input *user_informa
 
 // Deprecated: Use LastUserActivityTimeHandlerShort instead
 func (u *UserInformationService) LastUserActivityTimeHandler(input *user_information.LastUserActivityTimeHandlerParams) (*eventlogclientmodels.ModelsUserLastActivity, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := u.Client.UserInformation.LastUserActivityTimeHandler(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := u.Client.UserInformation.LastUserActivityTimeHandler(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -98,12 +102,15 @@ func (u *UserInformationService) LastUserActivityTimeHandler(input *user_informa
 	return ok.GetPayload(), nil
 }
 
-func (u *UserInformationService) GetUserActivitiesHandlerShort(input *user_information.GetUserActivitiesHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['NAMESPACE:{namespace}:EVENT [UPDATE]'], 'HasScope': ['analytics'], 'authorization': []}]
+func (u *UserInformationService) GetUserActivitiesHandlerShort(input *user_information.GetUserActivitiesHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	ok, err := u.Client.UserInformation.GetUserActivitiesHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := u.Client.UserInformation.GetUserActivitiesHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -111,12 +118,15 @@ func (u *UserInformationService) GetUserActivitiesHandlerShort(input *user_infor
 	return ok.GetPayload(), nil
 }
 
-func (u *UserInformationService) DeleteUserActivitiesHandlerShort(input *user_information.DeleteUserActivitiesHandlerParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'HasPermission': ['NAMESPACE:{namespace}:EVENT [UPDATE]'], 'HasScope': ['analytics'], 'authorization': []}]
+func (u *UserInformationService) DeleteUserActivitiesHandlerShort(input *user_information.DeleteUserActivitiesHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	_, err = u.Client.UserInformation.DeleteUserActivitiesHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := u.Client.UserInformation.DeleteUserActivitiesHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -124,12 +134,15 @@ func (u *UserInformationService) DeleteUserActivitiesHandlerShort(input *user_in
 	return nil
 }
 
-func (u *UserInformationService) LastUserActivityTimeHandlerShort(input *user_information.LastUserActivityTimeHandlerParams) (*eventlogclientmodels.ModelsUserLastActivity, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['NAMESPACE:{namespace}:EVENT [UPDATE]'], 'HasScope': ['analytics'], 'authorization': []}]
+func (u *UserInformationService) LastUserActivityTimeHandlerShort(input *user_information.LastUserActivityTimeHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsUserLastActivity, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	ok, err := u.Client.UserInformation.LastUserActivityTimeHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := u.Client.UserInformation.LastUserActivityTimeHandlerShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

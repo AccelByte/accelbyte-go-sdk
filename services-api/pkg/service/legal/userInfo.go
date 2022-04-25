@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package legal
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclient/user_info"
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type UserInfoService struct {
 
 // Deprecated: Use GetUserInfoStatusShort instead
 func (u *UserInfoService) GetUserInfoStatus(input *user_info.GetUserInfoStatusParams) ([]*legalclientmodels.RetrieveUserInfoCacheStatusResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.UserInfo.GetUserInfoStatus(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := u.Client.UserInfo.GetUserInfoStatus(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -33,11 +37,11 @@ func (u *UserInfoService) GetUserInfoStatus(input *user_info.GetUserInfoStatusPa
 
 // Deprecated: Use SyncUserInfoShort instead
 func (u *UserInfoService) SyncUserInfo(input *user_info.SyncUserInfoParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.UserInfo.SyncUserInfo(input, client.BearerToken(*accessToken.AccessToken))
+	_, err = u.Client.UserInfo.SyncUserInfo(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -47,11 +51,11 @@ func (u *UserInfoService) SyncUserInfo(input *user_info.SyncUserInfoParams) erro
 
 // Deprecated: Use InvalidateUserInfoCacheShort instead
 func (u *UserInfoService) InvalidateUserInfoCache(input *user_info.InvalidateUserInfoCacheParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.UserInfo.InvalidateUserInfoCache(input, client.BearerToken(*accessToken.AccessToken))
+	_, err = u.Client.UserInfo.InvalidateUserInfoCache(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return err
 	}
@@ -59,12 +63,15 @@ func (u *UserInfoService) InvalidateUserInfoCache(input *user_info.InvalidateUse
 	return nil
 }
 
-func (u *UserInfoService) GetUserInfoStatusShort(input *user_info.GetUserInfoStatusParams) ([]*legalclientmodels.RetrieveUserInfoCacheStatusResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [READ]'], 'authorization': []}]
+func (u *UserInfoService) GetUserInfoStatusShort(input *user_info.GetUserInfoStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrieveUserInfoCacheStatusResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	ok, err := u.Client.UserInfo.GetUserInfoStatusShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := u.Client.UserInfo.GetUserInfoStatusShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -72,12 +79,15 @@ func (u *UserInfoService) GetUserInfoStatusShort(input *user_info.GetUserInfoSta
 	return ok.GetPayload(), nil
 }
 
-func (u *UserInfoService) SyncUserInfoShort(input *user_info.SyncUserInfoParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [UPDATE]'], 'authorization': []}]
+func (u *UserInfoService) SyncUserInfoShort(input *user_info.SyncUserInfoParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	_, err = u.Client.UserInfo.SyncUserInfoShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := u.Client.UserInfo.SyncUserInfoShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}
@@ -85,12 +95,15 @@ func (u *UserInfoService) SyncUserInfoShort(input *user_info.SyncUserInfoParams)
 	return nil
 }
 
-func (u *UserInfoService) InvalidateUserInfoCacheShort(input *user_info.InvalidateUserInfoCacheParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
-	if err != nil {
-		return err
+// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [DELETE]'], 'authorization': []}]
+func (u *UserInfoService) InvalidateUserInfoCacheShort(input *user_info.InvalidateUserInfoCacheParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(u.TokenRepository, nil, security, "")
 	}
-	_, err = u.Client.UserInfo.InvalidateUserInfoCacheShort(input, client.BearerToken(*accessToken.AccessToken))
+	_, err := u.Client.UserInfo.InvalidateUserInfoCacheShort(input, authInfoWriter)
 	if err != nil {
 		return err
 	}

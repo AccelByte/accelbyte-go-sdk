@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package lobby
 
 import (
@@ -9,6 +11,8 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclient/third_party"
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -19,11 +23,11 @@ type ThirdPartyService struct {
 
 // Deprecated: Use AdminGetThirdPartyConfigShort instead
 func (t *ThirdPartyService) AdminGetThirdPartyConfig(input *third_party.AdminGetThirdPartyConfigParams) (*lobbyclientmodels.ModelsGetConfigResponse, error) {
-	accessToken, err := t.TokenRepository.GetToken()
+	token, err := t.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := t.Client.ThirdParty.AdminGetThirdPartyConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := t.Client.ThirdParty.AdminGetThirdPartyConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -45,11 +49,11 @@ func (t *ThirdPartyService) AdminGetThirdPartyConfig(input *third_party.AdminGet
 
 // Deprecated: Use AdminUpdateThirdPartyConfigShort instead
 func (t *ThirdPartyService) AdminUpdateThirdPartyConfig(input *third_party.AdminUpdateThirdPartyConfigParams) (*lobbyclientmodels.ModelsUpdateConfigResponse, error) {
-	accessToken, err := t.TokenRepository.GetToken()
+	token, err := t.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := t.Client.ThirdParty.AdminUpdateThirdPartyConfig(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := t.Client.ThirdParty.AdminUpdateThirdPartyConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -71,11 +75,11 @@ func (t *ThirdPartyService) AdminUpdateThirdPartyConfig(input *third_party.Admin
 
 // Deprecated: Use AdminCreateThirdPartyConfigShort instead
 func (t *ThirdPartyService) AdminCreateThirdPartyConfig(input *third_party.AdminCreateThirdPartyConfigParams) (*lobbyclientmodels.ModelsCreateConfigResponse, error) {
-	accessToken, err := t.TokenRepository.GetToken()
+	token, err := t.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, internalServerError, err := t.Client.ThirdParty.AdminCreateThirdPartyConfig(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, forbidden, internalServerError, err := t.Client.ThirdParty.AdminCreateThirdPartyConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -97,11 +101,11 @@ func (t *ThirdPartyService) AdminCreateThirdPartyConfig(input *third_party.Admin
 
 // Deprecated: Use AdminDeleteThirdPartyConfigShort instead
 func (t *ThirdPartyService) AdminDeleteThirdPartyConfig(input *third_party.AdminDeleteThirdPartyConfigParams) (string, error) {
-	accessToken, err := t.TokenRepository.GetToken()
+	token, err := t.TokenRepository.GetToken()
 	if err != nil {
 		return "", err
 	}
-	noContent, badRequest, unauthorized, forbidden, internalServerError, err := t.Client.ThirdParty.AdminDeleteThirdPartyConfig(input, client.BearerToken(*accessToken.AccessToken))
+	noContent, badRequest, unauthorized, forbidden, internalServerError, err := t.Client.ThirdParty.AdminDeleteThirdPartyConfig(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return "", badRequest
 	}
@@ -121,25 +125,15 @@ func (t *ThirdPartyService) AdminDeleteThirdPartyConfig(input *third_party.Admin
 	return noContent.GetPayload(), nil
 }
 
-func (t *ThirdPartyService) AdminGetThirdPartyConfigShort(input *third_party.AdminGetThirdPartyConfigParams) (*lobbyclientmodels.ModelsGetConfigResponse, error) {
-	accessToken, err := t.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
+func (t *ThirdPartyService) AdminGetThirdPartyConfigShort(input *third_party.AdminGetThirdPartyConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsGetConfigResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
-	ok, err := t.Client.ThirdParty.AdminGetThirdPartyConfigShort(input, client.BearerToken(*accessToken.AccessToken))
-	if err != nil {
-		return nil, err
-	}
-
-	return ok.GetPayload(), nil
-}
-
-func (t *ThirdPartyService) AdminUpdateThirdPartyConfigShort(input *third_party.AdminUpdateThirdPartyConfigParams) (*lobbyclientmodels.ModelsUpdateConfigResponse, error) {
-	accessToken, err := t.TokenRepository.GetToken()
-	if err != nil {
-		return nil, err
-	}
-	ok, err := t.Client.ThirdParty.AdminUpdateThirdPartyConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := t.Client.ThirdParty.AdminGetThirdPartyConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -147,12 +141,31 @@ func (t *ThirdPartyService) AdminUpdateThirdPartyConfigShort(input *third_party.
 	return ok.GetPayload(), nil
 }
 
-func (t *ThirdPartyService) AdminCreateThirdPartyConfigShort(input *third_party.AdminCreateThirdPartyConfigParams) (*lobbyclientmodels.ModelsCreateConfigResponse, error) {
-	accessToken, err := t.TokenRepository.GetToken()
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (t *ThirdPartyService) AdminUpdateThirdPartyConfigShort(input *third_party.AdminUpdateThirdPartyConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsUpdateConfigResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+	}
+	ok, err := t.Client.ThirdParty.AdminUpdateThirdPartyConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
-	created, err := t.Client.ThirdParty.AdminCreateThirdPartyConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+
+	return ok.GetPayload(), nil
+}
+
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
+func (t *ThirdPartyService) AdminCreateThirdPartyConfigShort(input *third_party.AdminCreateThirdPartyConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsCreateConfigResponse, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
+	}
+	created, err := t.Client.ThirdParty.AdminCreateThirdPartyConfigShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -160,12 +173,15 @@ func (t *ThirdPartyService) AdminCreateThirdPartyConfigShort(input *third_party.
 	return created.GetPayload(), nil
 }
 
-func (t *ThirdPartyService) AdminDeleteThirdPartyConfigShort(input *third_party.AdminDeleteThirdPartyConfigParams) (string, error) {
-	accessToken, err := t.TokenRepository.GetToken()
-	if err != nil {
-		return "", err
+// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
+func (t *ThirdPartyService) AdminDeleteThirdPartyConfigShort(input *third_party.AdminDeleteThirdPartyConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (string, error) {
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(t.TokenRepository, nil, security, "")
 	}
-	noContent, err := t.Client.ThirdParty.AdminDeleteThirdPartyConfigShort(input, client.BearerToken(*accessToken.AccessToken))
+	noContent, err := t.Client.ThirdParty.AdminDeleteThirdPartyConfigShort(input, authInfoWriter)
 	if err != nil {
 		return "", err
 	}

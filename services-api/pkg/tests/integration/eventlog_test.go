@@ -52,7 +52,7 @@ func TestIntegrationQueryEventStreamHandler(t *testing.T) {
 		PageSize:  &size,
 		StartDate: &date,
 	}
-	ok, err := eventV2Service.QueryEventStreamHandlerShort(inputEventLog)
+	ok, err := eventV2Service.QueryEventStreamHandlerShort(inputEventLog, nil)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
@@ -73,7 +73,7 @@ func TestIntegrationGetEventSpecificUserV2Handler(t *testing.T) {
 		StartDate: &date,
 		UserID:    userID,
 	}
-	_, err := eventV2Service.GetEventSpecificUserV2HandlerShort(inputEventLog)
+	_, err := eventV2Service.GetEventSpecificUserV2HandlerShort(inputEventLog, nil)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}

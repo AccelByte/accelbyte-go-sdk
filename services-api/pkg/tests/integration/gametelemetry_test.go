@@ -19,9 +19,8 @@ import (
 
 var (
 	gameTelemetryOperationsService = &gametelemetry.GametelemetryOperationsService{
-		Client:           factory.NewGametelemetryClient(&integration.ConfigRepositoryImpl{}),
-		TokenRepository:  &integration.TokenRepositoryImpl{},
-		ConfigRepository: &integration.ConfigRepositoryImpl{},
+		Client:          factory.NewGametelemetryClient(&integration.ConfigRepositoryImpl{}),
+		TokenRepository: &integration.TokenRepositoryImpl{},
 	}
 	telemetryBodyArray []*gametelemetryclientmodels.TelemetryBody
 	telemetryBody      = &gametelemetryclientmodels.TelemetryBody{
@@ -60,7 +59,7 @@ func TestIntegrationProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDP
 	input := &gametelemetry_operations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams{
 		SteamID: "76561199259217491",
 	}
-	ok, err := gameTelemetryOperationsService.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input)
+	ok, err := gameTelemetryOperationsService.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input, nil)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
@@ -77,7 +76,7 @@ func TestIntegrationProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteam
 		Playtime: "4",
 		SteamID:  "76561199259217491",
 	}
-	err := gameTelemetryOperationsService.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input)
+	err := gameTelemetryOperationsService.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input, nil)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}

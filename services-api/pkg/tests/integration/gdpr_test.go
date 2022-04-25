@@ -33,7 +33,7 @@ func TestIntegrationSaveAdminEmailConfiguration(t *testing.T) {
 		Body:      body,
 		Namespace: integration.NamespaceTest,
 	}
-	err := dataRetrievalService.SaveAdminEmailConfigurationShort(input)
+	err := dataRetrievalService.SaveAdminEmailConfigurationShort(input, nil)
 
 	assert.Nil(t, err, "err should be nil")
 }
@@ -44,7 +44,7 @@ func TestIntegrationAdminListDataRetrieval(t *testing.T) {
 	input := &data_retrieval.GetAdminEmailConfigurationParams{
 		Namespace: integration.NamespaceTest,
 	}
-	ok, err := dataRetrievalService.GetAdminEmailConfigurationShort(input)
+	ok, err := dataRetrievalService.GetAdminEmailConfigurationShort(input, nil)
 
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
@@ -58,7 +58,7 @@ func TestIntegrationUpdateAdminEmailConfiguration(t *testing.T) {
 		Body:      body,
 		Namespace: integration.NamespaceTest,
 	}
-	err := dataRetrievalService.UpdateAdminEmailConfigurationShort(input)
+	err := dataRetrievalService.UpdateAdminEmailConfigurationShort(input, nil)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
@@ -74,6 +74,6 @@ func TestIntegrationDeleteAdminEmailConfiguration(t *testing.T) {
 		Emails:    emails,
 		Namespace: integration.NamespaceTest,
 	}
-	err := dataRetrievalService.DeleteAdminEmailConfigurationShort(input)
+	err := dataRetrievalService.DeleteAdminEmailConfigurationShort(input, nil)
 	assert.Nil(t, err, "response should not be nil")
 }

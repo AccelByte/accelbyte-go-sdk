@@ -72,7 +72,7 @@ func TestIntegrationAchievement(t *testing.T) {
 		Body:      bodyAchievement,
 		Namespace: integration.NamespaceTest,
 	}
-	created, errCreate := achievementsService.AdminCreateNewAchievementShort(inputCreate)
+	created, errCreate := achievementsService.AdminCreateNewAchievementShort(inputCreate, nil)
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
 	}
@@ -83,7 +83,7 @@ func TestIntegrationAchievement(t *testing.T) {
 		AchievementCode: achievementCode,
 		Namespace:       integration.NamespaceTest,
 	}
-	get, errGet := achievementsService.AdminGetAchievementShort(inputGet)
+	get, errGet := achievementsService.AdminGetAchievementShort(inputGet, nil)
 
 	// Updating an achievement
 	inputUpdate := &achievements.AdminUpdateAchievementParams{
@@ -91,7 +91,7 @@ func TestIntegrationAchievement(t *testing.T) {
 		Body:            bodyAchievementUpdate,
 		Namespace:       integration.NamespaceTest,
 	}
-	updated, errUpdate := achievementsService.AdminUpdateAchievementShort(inputUpdate)
+	updated, errUpdate := achievementsService.AdminUpdateAchievementShort(inputUpdate, nil)
 	t.Logf("AchievementCode: %v updated", created.AchievementCode)
 
 	// Getting all achievements
@@ -101,14 +101,14 @@ func TestIntegrationAchievement(t *testing.T) {
 		Offset:    nil,
 		SortBy:    nil,
 	}
-	getAll, errGetAll := achievementsService.AdminListAchievementsShort(inputGetAll)
+	getAll, errGetAll := achievementsService.AdminListAchievementsShort(inputGetAll, nil)
 
 	// Deleting an achievement
 	inputDelete := &achievements.AdminDeleteAchievementParams{
 		AchievementCode: achievementCode,
 		Namespace:       integration.NamespaceTest,
 	}
-	errDelete := achievementsService.AdminDeleteAchievementShort(inputDelete)
+	errDelete := achievementsService.AdminDeleteAchievementShort(inputDelete, nil)
 	t.Logf("AchievementCode: %v deleted", created.AchievementCode)
 
 	assert.Nil(t, errCreate, "err should be nil")

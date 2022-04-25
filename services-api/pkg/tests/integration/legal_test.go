@@ -43,7 +43,7 @@ func TestIntegrationBulkAcceptVersionedPolicy(t *testing.T) {
 	inputLegal := &agreement.BulkAcceptVersionedPolicyParams{
 		Body: bodyLegals,
 	}
-	ok, err := agreementService.BulkAcceptVersionedPolicyShort(inputLegal)
+	ok, err := agreementService.BulkAcceptVersionedPolicyShort(inputLegal, nil)
 
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
@@ -54,7 +54,7 @@ func TestIntegrationRetrieveAgreementsPublic(t *testing.T) {
 	t.Parallel()
 	Init()
 	inputLegal := &agreement.RetrieveAgreementsPublicParams{}
-	ok, err := agreementService.RetrieveAgreementsPublicShort(inputLegal)
+	ok, err := agreementService.RetrieveAgreementsPublicShort(inputLegal, nil)
 
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
@@ -70,7 +70,7 @@ func TestIntegrationChangePreferenceConsent(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		UserID:    GetUserID(),
 	}
-	err := agreementService.ChangePreferenceConsentShort(inputLegal)
+	err := agreementService.ChangePreferenceConsentShort(inputLegal, nil)
 
 	assert.Nil(t, err, "err should be nil")
 }

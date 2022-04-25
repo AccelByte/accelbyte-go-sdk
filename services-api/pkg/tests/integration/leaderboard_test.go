@@ -81,7 +81,7 @@ func TestIntegrationCreateLeaderboardConfigurationAdminV1(t *testing.T) {
 		Body:      bodyReq,
 		Namespace: integration.NamespaceTest,
 	}
-	created, errCreate := leaderboardConfigurationService.CreateLeaderboardConfigurationAdminV1Short(inputCreate)
+	created, errCreate := leaderboardConfigurationService.CreateLeaderboardConfigurationAdminV1Short(inputCreate, nil)
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
 	}
@@ -92,7 +92,7 @@ func TestIntegrationCreateLeaderboardConfigurationAdminV1(t *testing.T) {
 		LeaderboardCode: leaderboardCode,
 		Namespace:       integration.NamespaceTest,
 	}
-	get, errGet := leaderboardConfigurationService.GetLeaderboardConfigurationAdminV1Short(inputGet)
+	get, errGet := leaderboardConfigurationService.GetLeaderboardConfigurationAdminV1Short(inputGet, nil)
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
 	}
@@ -104,7 +104,7 @@ func TestIntegrationCreateLeaderboardConfigurationAdminV1(t *testing.T) {
 		LeaderboardCode: leaderboardCode,
 		Namespace:       integration.NamespaceTest,
 	}
-	updated, errUpdate := leaderboardConfigurationService.UpdateLeaderboardConfigurationAdminV1Short(inputUpdate)
+	updated, errUpdate := leaderboardConfigurationService.UpdateLeaderboardConfigurationAdminV1Short(inputUpdate, nil)
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
 	}
@@ -115,7 +115,7 @@ func TestIntegrationCreateLeaderboardConfigurationAdminV1(t *testing.T) {
 		LeaderboardCode: leaderboardCode,
 		Namespace:       integration.NamespaceTest,
 	}
-	errDelete := leaderboardConfigurationService.DeleteLeaderboardConfigurationAdminV1Short(inputLeaderboard)
+	errDelete := leaderboardConfigurationService.DeleteLeaderboardConfigurationAdminV1Short(inputLeaderboard, nil)
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())
 	}

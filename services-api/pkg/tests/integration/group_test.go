@@ -85,7 +85,7 @@ func TestIntegrationGroup(t *testing.T) {
 		Body:      bodyGroup,
 		Namespace: integration.NamespaceTest,
 	}
-	created, errCreate := groupService.CreateNewGroupPublicV1Short(inputCreate)
+	created, errCreate := groupService.CreateNewGroupPublicV1Short(inputCreate, nil)
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
 	}
@@ -97,7 +97,7 @@ func TestIntegrationGroup(t *testing.T) {
 		GroupID:   groupID,
 		Namespace: integration.NamespaceTest,
 	}
-	get, errGet := groupService.GetSingleGroupPublicV1Short(inputGet)
+	get, errGet := groupService.GetSingleGroupPublicV1Short(inputGet, nil)
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
 	}
@@ -109,7 +109,7 @@ func TestIntegrationGroup(t *testing.T) {
 		GroupID:   groupID,
 		Namespace: integration.NamespaceTest,
 	}
-	updated, errUpdate := groupService.UpdatePatchSingleGroupPublicV1Short(inputUpdate)
+	updated, errUpdate := groupService.UpdatePatchSingleGroupPublicV1Short(inputUpdate, nil)
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
 	}
@@ -120,7 +120,7 @@ func TestIntegrationGroup(t *testing.T) {
 		GroupID:   groupID,
 		Namespace: integration.NamespaceTest,
 	}
-	errDelete := groupService.DeleteGroupPublicV1Short(inputDelete)
+	errDelete := groupService.DeleteGroupPublicV1Short(inputDelete, nil)
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())
 	}
@@ -142,7 +142,7 @@ func checkGlobalConfig() string {
 	}
 
 	// check if global config is existed
-	get, errGet := configurationService.GetGroupConfigurationAdminV1Short(inputGet)
+	get, errGet := configurationService.GetGroupConfigurationAdminV1Short(inputGet, nil)
 	if errGet != nil {
 		logrus.Error(errGet.Error())
 		logrus.Infof("Initializing a new global configuration...")
@@ -151,7 +151,7 @@ func checkGlobalConfig() string {
 		inputCreate := &configuration.InitiateGroupConfigurationAdminV1Params{
 			Namespace: integration.NamespaceTest,
 		}
-		create, errCreate := configurationService.InitiateGroupConfigurationAdminV1Short(inputCreate)
+		create, errCreate := configurationService.InitiateGroupConfigurationAdminV1Short(inputCreate, nil)
 		if errCreate != nil {
 			logrus.Error(errCreate)
 		}

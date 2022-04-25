@@ -80,7 +80,7 @@ func TestIntegrationAuthorizeV3(t *testing.T) {
 		ResponseType:        "code",
 		HTTPClient:          httpClient,
 	}
-	expected, err := oAuth20Service.AuthorizeV3Short(input)
+	expected, err := oAuth20Service.AuthorizeV3Short(input, nil)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
@@ -103,7 +103,7 @@ func TestIntegrationAuthenticate(t *testing.T) {
 		ResponseType:        "code",
 		HTTPClient:          httpClient,
 	}
-	requestID, err := oAuth20Service.AuthorizeV3Short(input)
+	requestID, err := oAuth20Service.AuthorizeV3Short(input, nil)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
@@ -115,7 +115,7 @@ func TestIntegrationAuthenticate(t *testing.T) {
 		UserName:   username,
 		HTTPClient: httpClient,
 	}
-	expected, errExpected := oAuth20ExtensionService.UserAuthenticationV3Short(inputAuth)
+	expected, errExpected := oAuth20ExtensionService.UserAuthenticationV3Short(inputAuth, nil)
 	if errExpected != nil {
 		assert.FailNow(t, errExpected.Error())
 	}
@@ -138,7 +138,7 @@ func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 		ResponseType:        "code",
 		HTTPClient:          httpClient,
 	}
-	requestID, err := oAuth20Service.AuthorizeV3Short(input)
+	requestID, err := oAuth20Service.AuthorizeV3Short(input, nil)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
@@ -150,7 +150,7 @@ func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 		UserName:   username,
 		HTTPClient: httpClient,
 	}
-	code, errCode := oAuth20ExtensionService.UserAuthenticationV3Short(inputAuth)
+	code, errCode := oAuth20ExtensionService.UserAuthenticationV3Short(inputAuth, nil)
 	if errCode != nil {
 		assert.FailNow(t, errCode.Error())
 	}

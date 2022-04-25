@@ -62,7 +62,7 @@ func TestIntegrationSession(t *testing.T) {
 		Body:      bodySession,
 		Namespace: integration.NamespaceTest,
 	}
-	created, errCreate := sessionService.CreateSessionShort(inputCreate)
+	created, errCreate := sessionService.CreateSessionShort(inputCreate, nil)
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
 	}
@@ -74,7 +74,7 @@ func TestIntegrationSession(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		SessionID: sessionBrowserID,
 	}
-	get, errGet := sessionService.GetSessionShort(inputGet)
+	get, errGet := sessionService.GetSessionShort(inputGet, nil)
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
 	}
@@ -86,7 +86,7 @@ func TestIntegrationSession(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		SessionID: sessionBrowserID,
 	}
-	updated, errUpdate := sessionService.UpdateSessionShort(inputUpdate)
+	updated, errUpdate := sessionService.UpdateSessionShort(inputUpdate, nil)
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
 	}
@@ -97,7 +97,7 @@ func TestIntegrationSession(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		SessionID: sessionBrowserID,
 	}
-	deleted, errDelete := sessionService.DeleteSessionShort(inputDelete)
+	deleted, errDelete := sessionService.DeleteSessionShort(inputDelete, nil)
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())
 	}

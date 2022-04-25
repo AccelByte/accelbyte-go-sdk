@@ -46,7 +46,7 @@ func TestIntegrationDeleteStat(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		StatCode:  statCodeSocial,
 	}
-	err := statConfigurationService.DeleteStatShort(inputStat)
+	err := statConfigurationService.DeleteStatShort(inputStat, nil)
 
 	assert.Nil(t, err, "err should be nil")
 }
@@ -59,7 +59,7 @@ func TestIntegrationCreateStat(t *testing.T) {
 		Body:      bodyStatSocial,
 		Namespace: integration.NamespaceTest,
 	}
-	ok, err := statConfigurationService.CreateStatShort(inputStat)
+	ok, err := statConfigurationService.CreateStatShort(inputStat, nil)
 
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
@@ -74,7 +74,7 @@ func TestIntegrationGetStat(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		StatCode:  statCodeSocial,
 	}
-	ok, errOk := statConfigurationService.GetStatShort(inputStat)
+	ok, errOk := statConfigurationService.GetStatShort(inputStat, nil)
 
 	assert.Nil(t, errOk, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
@@ -88,7 +88,7 @@ func TestIntegrationGetStats(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		Offset:    nil,
 	}
-	ok, err := statConfigurationService.GetStatsShort(inputStat)
+	ok, err := statConfigurationService.GetStatsShort(inputStat, nil)
 
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
@@ -103,7 +103,7 @@ func TestIntegrationQueryStats(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		Offset:    nil,
 	}
-	ok, err := statConfigurationService.QueryStatsShort(inputStat)
+	ok, err := statConfigurationService.QueryStatsShort(inputStat, nil)
 
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
@@ -122,7 +122,7 @@ func TestIntegrationUpdateStat(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		StatCode:  statCodeSocial,
 	}
-	ok, err := statConfigurationService.UpdateStatShort(inputStat)
+	ok, err := statConfigurationService.UpdateStatShort(inputStat, nil)
 
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")

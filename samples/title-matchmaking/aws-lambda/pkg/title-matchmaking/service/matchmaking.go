@@ -587,7 +587,7 @@ func sendNotificationSearching(namespace, userId string) error {
 		Client:          factory.NewLobbyClient(&configImpl),
 		TokenRepository: &tokenRepositoryImpl,
 	}
-	sendNotificationSearchingErr := gameNotificationService.FreeFormNotificationByUserIDShort(input)
+	sendNotificationSearchingErr := gameNotificationService.FreeFormNotificationByUserIDShort(input, nil)
 	if sendNotificationSearchingErr != nil {
 		log.Printf("Unable to send notification match searching to lobby. userId : %+v", userId)
 		log.Print(sendNotificationSearchingErr.Error())
@@ -641,7 +641,7 @@ func createSession(namespaceGame string) (*sessionbrowserclientmodels.ModelsSess
 		Body:      &body,
 		Namespace: namespaceGame,
 	}
-	createSessionResp, err := sessionBrowserService.CreateSessionShort(input)
+	createSessionResp, err := sessionBrowserService.CreateSessionShort(input, nil)
 	if err != nil {
 		log.Printf("Unable to create session. namespace : %s. Error: %v", namespaceGame, err)
 
@@ -713,7 +713,7 @@ func registerSessionDSMC(sessionId, gameMode, namespaceGame, partyId string,
 		Body:      &body,
 		Namespace: namespaceGame,
 	}
-	registerSession, registerSessionErr := dsmcService.CreateSessionShort(input)
+	registerSession, registerSessionErr := dsmcService.CreateSessionShort(input, nil)
 	if registerSessionErr != nil {
 		log.Print(registerSessionErr)
 	}
@@ -732,7 +732,7 @@ func claimServer(namespaceGame string, sessionID *string) error {
 		Body:      &body,
 		Namespace: namespaceGame,
 	}
-	claimServerErr := dsmcService.ClaimServerShort(input)
+	claimServerErr := dsmcService.ClaimServerShort(input, nil)
 	if claimServerErr != nil {
 		log.Print(claimServerErr)
 	}
@@ -750,7 +750,7 @@ func getServer(namespaceGame, sessionID string) (*dsmcclientmodels.ModelsSession
 		Namespace: namespaceGame,
 		SessionID: sessionID,
 	}
-	getSession, getSessionErr := dsmcService.GetSessionShort(input)
+	getSession, getSessionErr := dsmcService.GetSessionShort(input, nil)
 	if getSessionErr != nil {
 		log.Print(getSessionErr)
 	}
@@ -777,7 +777,7 @@ func addPlayer(namespaceGame, userId, sessionId string) (*sessionbrowserclientmo
 		Client:          factory.NewSessionbrowserClient(&configImpl),
 		TokenRepository: &tokenRepositoryImpl,
 	}
-	addPlayerResp, addPlayerErr := sessionBrowserService.AddPlayerToSessionShort(input)
+	addPlayerResp, addPlayerErr := sessionBrowserService.AddPlayerToSessionShort(input, nil)
 	if addPlayerErr != nil {
 		log.Printf("Unable to add player to session id %v. namespace : %s. Error: %v", sessionId, namespaceGame, addPlayerErr)
 
@@ -803,7 +803,7 @@ func getSessionUpdate(namespaceGame, sessionId string) (*sessionbrowserclientmod
 		Namespace: namespaceGame,
 		SessionID: sessionId,
 	}
-	getSession, getSessionErr := sessionBrowserService.GetSessionShort(input)
+	getSession, getSessionErr := sessionBrowserService.GetSessionShort(input, nil)
 	if getSessionErr != nil {
 		log.Print(getSessionErr)
 
@@ -850,7 +850,7 @@ func sendNotificationFound(namespace, IP string, port int32, allUsers []string) 
 			Namespace: namespace,
 			UserID:    userIdToSend,
 		}
-		sendNotificationMatchFoundErr := gameNotificationService.FreeFormNotificationByUserIDShort(input)
+		sendNotificationMatchFoundErr := gameNotificationService.FreeFormNotificationByUserIDShort(input, nil)
 		if sendNotificationMatchFoundErr != nil {
 			log.Print(sendNotificationMatchFoundErr)
 

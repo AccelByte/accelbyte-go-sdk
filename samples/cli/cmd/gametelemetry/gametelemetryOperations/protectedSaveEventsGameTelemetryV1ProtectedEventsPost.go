@@ -35,7 +35,7 @@ var ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd = &cobra.Command{
 		input := &gametelemetry_operations.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams{
 			Body: body,
 		}
-		errInput := gametelemetryOperationsService.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(input)
+		errInput := gametelemetryOperationsService.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

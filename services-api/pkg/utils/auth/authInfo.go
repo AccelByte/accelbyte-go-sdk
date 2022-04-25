@@ -87,7 +87,8 @@ func Bearer(token string) runtime.ClientAuthInfoWriter {
 
 func Cookie(key, value string) runtime.ClientAuthInfoWriter {
 	return runtime.ClientAuthInfoWriterFunc(func(r runtime.ClientRequest, _ strfmt.Registry) error {
-		return r.SetHeaderParam(constant.CookieAuth, key+"="+value)
+		encoded := base64.StdEncoding.EncodeToString([]byte(value))
+		return r.SetHeaderParam(constant.CookieAuth, key+"="+encoded)
 	})
 }
 

@@ -179,7 +179,6 @@ func (r *RewardService) PublicBulkClaimUserRewards(input *reward.PublicBulkClaim
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]'], 'authorization': []}]
 func (r *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*seasonpassclientmodels.RewardInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -195,7 +194,6 @@ func (r *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams, auth
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [CREATE]'], 'authorization': []}]
 func (r *RewardService) CreateRewardShort(input *reward.CreateRewardParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.RewardInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -211,7 +209,6 @@ func (r *RewardService) CreateRewardShort(input *reward.CreateRewardParams, auth
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]'], 'authorization': []}]
 func (r *RewardService) GetRewardShort(input *reward.GetRewardParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.RewardInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -227,7 +224,6 @@ func (r *RewardService) GetRewardShort(input *reward.GetRewardParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [DELETE]'], 'authorization': []}]
 func (r *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -243,7 +239,6 @@ func (r *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams, auth
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]'], 'authorization': []}]
 func (r *RewardService) UpdateRewardShort(input *reward.UpdateRewardParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.RewardInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -259,7 +254,6 @@ func (r *RewardService) UpdateRewardShort(input *reward.UpdateRewardParams, auth
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]'], 'authorization': []}]
 func (r *RewardService) PublicClaimUserRewardShort(input *reward.PublicClaimUserRewardParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.ClaimableRewards, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -275,7 +269,6 @@ func (r *RewardService) PublicClaimUserRewardShort(input *reward.PublicClaimUser
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]'], 'authorization': []}]
 func (r *RewardService) PublicBulkClaimUserRewardsShort(input *reward.PublicBulkClaimUserRewardsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.ClaimableRewards, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

@@ -141,7 +141,6 @@ func (b *BansService) AdminGetBansTypeWithNamespaceV3(input *bans.AdminGetBansTy
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:BAN [READ]', 'BAN:ADMIN [READ]'], 'authorization': []}]
 func (b *BansService) GetBansTypeShort(input *bans.GetBansTypeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonBans, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -157,7 +156,6 @@ func (b *BansService) GetBansTypeShort(input *bans.GetBansTypeParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:BAN [READ]', 'BAN:ADMIN [READ]'], 'authorization': []}]
 func (b *BansService) GetListBanReasonShort(input *bans.GetListBanReasonParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonBanReasons, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -173,7 +171,6 @@ func (b *BansService) GetListBanReasonShort(input *bans.GetListBanReasonParams, 
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:BAN [READ]'], 'authorization': []}]
 func (b *BansService) AdminGetBansTypeV3Short(input *bans.AdminGetBansTypeV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonBansV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -189,7 +186,6 @@ func (b *BansService) AdminGetBansTypeV3Short(input *bans.AdminGetBansTypeV3Para
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:BAN [READ]'], 'authorization': []}]
 func (b *BansService) AdminGetListBanReasonV3Short(input *bans.AdminGetListBanReasonV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonBanReasonsV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -205,7 +201,6 @@ func (b *BansService) AdminGetListBanReasonV3Short(input *bans.AdminGetListBanRe
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:BAN [READ]'], 'authorization': []}]
 func (b *BansService) AdminGetBannedUsersV3Short(input *bans.AdminGetBannedUsersV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelGetUserBanV3Response, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -221,7 +216,6 @@ func (b *BansService) AdminGetBannedUsersV3Short(input *bans.AdminGetBannedUsers
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:BAN [READ]'], 'authorization': []}]
 func (b *BansService) AdminGetBansTypeWithNamespaceV3Short(input *bans.AdminGetBansTypeWithNamespaceV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonBansV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

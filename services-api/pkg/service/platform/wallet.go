@@ -257,7 +257,6 @@ func (w *WalletService) PublicListUserWalletTransactions(input *wallet.PublicLis
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [READ]'], 'authorization': []}]
 func (w *WalletService) CheckWalletShort(input *wallet.CheckWalletParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -273,7 +272,6 @@ func (w *WalletService) CheckWalletShort(input *wallet.CheckWalletParams, authIn
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [UPDATE]'], 'authorization': []}]
 func (w *WalletService) CreditUserWalletShort(input *wallet.CreditUserWalletParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -289,7 +287,6 @@ func (w *WalletService) CreditUserWalletShort(input *wallet.CreditUserWalletPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [UPDATE]'], 'authorization': []}]
 func (w *WalletService) PayWithUserWalletShort(input *wallet.PayWithUserWalletParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -305,7 +302,6 @@ func (w *WalletService) PayWithUserWalletShort(input *wallet.PayWithUserWalletPa
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [READ]'], 'authorization': []}]
 func (w *WalletService) GetUserWalletShort(input *wallet.GetUserWalletParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -321,7 +317,6 @@ func (w *WalletService) GetUserWalletShort(input *wallet.GetUserWalletParams, au
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [UPDATE]'], 'authorization': []}]
 func (w *WalletService) DebitUserWalletShort(input *wallet.DebitUserWalletParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -337,7 +332,6 @@ func (w *WalletService) DebitUserWalletShort(input *wallet.DebitUserWalletParams
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [UPDATE]'], 'authorization': []}]
 func (w *WalletService) DisableUserWalletShort(input *wallet.DisableUserWalletParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -353,7 +347,6 @@ func (w *WalletService) DisableUserWalletShort(input *wallet.DisableUserWalletPa
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [UPDATE]'], 'authorization': []}]
 func (w *WalletService) EnableUserWalletShort(input *wallet.EnableUserWalletParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -369,7 +362,6 @@ func (w *WalletService) EnableUserWalletShort(input *wallet.EnableUserWalletPara
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:WALLET [READ]'], 'authorization': []}]
 func (w *WalletService) ListUserWalletTransactionsShort(input *wallet.ListUserWalletTransactionsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletTransactionPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -385,7 +377,6 @@ func (w *WalletService) ListUserWalletTransactionsShort(input *wallet.ListUserWa
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:WALLET [READ]'], 'authorization': []}]
 func (w *WalletService) QueryWalletsShort(input *wallet.QueryWalletsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -401,7 +392,6 @@ func (w *WalletService) QueryWalletsShort(input *wallet.QueryWalletsParams, auth
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:WALLET [READ]'], 'authorization': []}]
 func (w *WalletService) GetWalletShort(input *wallet.GetWalletParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -417,7 +407,6 @@ func (w *WalletService) GetWalletShort(input *wallet.GetWalletParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:WALLET [READ]'], 'authorization': []}]
 func (w *WalletService) PublicGetMyWalletShort(input *wallet.PublicGetMyWalletParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -433,7 +422,6 @@ func (w *WalletService) PublicGetMyWalletShort(input *wallet.PublicGetMyWalletPa
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:WALLET [READ]'], 'authorization': []}]
 func (w *WalletService) PublicGetWalletShort(input *wallet.PublicGetWalletParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -449,7 +437,6 @@ func (w *WalletService) PublicGetWalletShort(input *wallet.PublicGetWalletParams
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:WALLET [READ]'], 'authorization': []}]
 func (w *WalletService) PublicListUserWalletTransactionsShort(input *wallet.PublicListUserWalletTransactionsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletTransactionPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

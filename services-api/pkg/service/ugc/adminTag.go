@@ -122,7 +122,6 @@ func (a *AdminTagService) AdminDeleteTag(input *admin_tag.AdminDeleteTagParams) 
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:UGCCONFIG [READ]'], 'authorization': []}]
 func (a *AdminTagService) AdminGetTagShort(input *admin_tag.AdminGetTagParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -138,7 +137,6 @@ func (a *AdminTagService) AdminGetTagShort(input *admin_tag.AdminGetTagParams, a
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:UGCCONFIG [CREATE]'], 'authorization': []}]
 func (a *AdminTagService) AdminCreateTagShort(input *admin_tag.AdminCreateTagParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateTagResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -154,7 +152,6 @@ func (a *AdminTagService) AdminCreateTagShort(input *admin_tag.AdminCreateTagPar
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:UGCCONFIG [UPDATE]'], 'authorization': []}]
 func (a *AdminTagService) AdminUpdateTagShort(input *admin_tag.AdminUpdateTagParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateTagResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -170,7 +167,6 @@ func (a *AdminTagService) AdminUpdateTagShort(input *admin_tag.AdminUpdateTagPar
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:UGCCONFIG [DELETE]'], 'authorization': []}]
 func (a *AdminTagService) AdminDeleteTagShort(input *admin_tag.AdminDeleteTagParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

@@ -34,7 +34,6 @@ func (s *SSOSAML20Service) PlatformAuthenticateSAMLV3Handler(input *s_s_o_s_a_m_
 	return ok.Location, nil
 }
 
-// [{'authorization': []}]
 func (s *SSOSAML20Service) PlatformAuthenticateSAMLV3HandlerShort(input *s_s_o_s_a_m_l_2_0.PlatformAuthenticateSAMLV3HandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (string, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

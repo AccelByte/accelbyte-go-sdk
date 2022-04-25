@@ -249,7 +249,6 @@ func (n *NamespaceService) PublicGetNamespacePublisher(input *namespace.PublicGe
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE [READ]'], 'authorization': []}]
 func (n *NamespaceService) GetNamespacesShort(input *namespace.GetNamespacesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*basicclientmodels.NamespaceInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -265,7 +264,6 @@ func (n *NamespaceService) GetNamespacesShort(input *namespace.GetNamespacesPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE [CREATE]'], 'authorization': []}]
 func (n *NamespaceService) CreateNamespaceShort(input *namespace.CreateNamespaceParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.NamespaceInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -281,7 +279,6 @@ func (n *NamespaceService) CreateNamespaceShort(input *namespace.CreateNamespace
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]'], 'authorization': []}]
 func (n *NamespaceService) GetNamespaceShort(input *namespace.GetNamespaceParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.NamespaceInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -297,7 +294,6 @@ func (n *NamespaceService) GetNamespaceShort(input *namespace.GetNamespaceParams
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NAMESPACE [DELETE]'], 'authorization': []}]
 func (n *NamespaceService) DeleteNamespaceShort(input *namespace.DeleteNamespaceParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.NamespaceInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -313,7 +309,6 @@ func (n *NamespaceService) DeleteNamespaceShort(input *namespace.DeleteNamespace
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NAMESPACE [UPDATE]'], 'authorization': []}]
 func (n *NamespaceService) UpdateNamespaceShort(input *namespace.UpdateNamespaceParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.NamespaceInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -329,7 +324,6 @@ func (n *NamespaceService) UpdateNamespaceShort(input *namespace.UpdateNamespace
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NAMESPACE [READ]'], 'authorization': []}]
 func (n *NamespaceService) GetNamespacePublisherShort(input *namespace.GetNamespacePublisherParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.NamespacePublisherInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -345,7 +339,6 @@ func (n *NamespaceService) GetNamespacePublisherShort(input *namespace.GetNamesp
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NAMESPACE [UPDATE]'], 'authorization': []}]
 func (n *NamespaceService) ChangeNamespaceStatusShort(input *namespace.ChangeNamespaceStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.NamespaceInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -361,7 +354,6 @@ func (n *NamespaceService) ChangeNamespaceStatusShort(input *namespace.ChangeNam
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (n *NamespaceService) PublicGetNamespacesShort(input *namespace.PublicGetNamespacesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*basicclientmodels.NamespaceInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -377,7 +369,6 @@ func (n *NamespaceService) PublicGetNamespacesShort(input *namespace.PublicGetNa
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:NAMESPACE [READ]'], 'authorization': []}]
 func (n *NamespaceService) PublicGetNamespacePublisherShort(input *namespace.PublicGetNamespacePublisherParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.NamespacePublisherInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

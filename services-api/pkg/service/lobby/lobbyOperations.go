@@ -102,7 +102,6 @@ func (l *LobbyOperationsService) PublicGetMessages(input *lobby_operations.Publi
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (l *LobbyOperationsService) AdminUpdatePartyAttributesV1Short(input *lobby_operations.AdminUpdatePartyAttributesV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsPartyData, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -118,7 +117,6 @@ func (l *LobbyOperationsService) AdminUpdatePartyAttributesV1Short(input *lobby_
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (l *LobbyOperationsService) AdminJoinPartyV1Short(input *lobby_operations.AdminJoinPartyV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -134,7 +132,6 @@ func (l *LobbyOperationsService) AdminJoinPartyV1Short(input *lobby_operations.A
 	return nil
 }
 
-// [{'authorization': []}]
 func (l *LobbyOperationsService) PublicGetMessagesShort(input *lobby_operations.PublicGetMessagesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.LogAppMessageDeclaration, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

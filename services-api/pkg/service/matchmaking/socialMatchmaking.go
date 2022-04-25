@@ -50,7 +50,6 @@ func (s *SocialMatchmakingService) UpdatePlayTimeWeight(input *social_matchmakin
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (s *SocialMatchmakingService) UpdatePlayTimeWeightShort(input *social_matchmaking.UpdatePlayTimeWeightParams, authInfoWriter runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ModelsUpdatePlayerPlaytimeWeightResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

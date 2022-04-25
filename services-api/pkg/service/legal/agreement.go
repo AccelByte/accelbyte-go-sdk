@@ -153,7 +153,6 @@ func (a *AgreementService) IndirectBulkAcceptVersionedPolicy1(input *agreement.I
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (a *AgreementService) ChangePreferenceConsentShort(input *agreement.ChangePreferenceConsentParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -169,7 +168,6 @@ func (a *AgreementService) ChangePreferenceConsentShort(input *agreement.ChangeP
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [READ]'], 'authorization': []}]
 func (a *AgreementService) RetrieveAcceptedAgreementsShort(input *agreement.RetrieveAcceptedAgreementsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrieveAcceptedAgreementResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -185,7 +183,6 @@ func (a *AgreementService) RetrieveAcceptedAgreementsShort(input *agreement.Retr
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [READ]'], 'authorization': []}]
 func (a *AgreementService) RetrieveAllUsersByPolicyVersionShort(input *agreement.RetrieveAllUsersByPolicyVersionParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -201,7 +198,6 @@ func (a *AgreementService) RetrieveAllUsersByPolicyVersionShort(input *agreement
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (a *AgreementService) ChangePreferenceConsent1Short(input *agreement.ChangePreferenceConsent1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -217,7 +213,6 @@ func (a *AgreementService) ChangePreferenceConsent1Short(input *agreement.Change
 	return nil
 }
 
-// [{'authorization': []}]
 func (a *AgreementService) AcceptVersionedPolicyShort(input *agreement.AcceptVersionedPolicyParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -233,7 +228,6 @@ func (a *AgreementService) AcceptVersionedPolicyShort(input *agreement.AcceptVer
 	return nil
 }
 
-// [{'authorization': []}]
 func (a *AgreementService) RetrieveAgreementsPublicShort(input *agreement.RetrieveAgreementsPublicParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrieveAcceptedAgreementResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -249,7 +243,6 @@ func (a *AgreementService) RetrieveAgreementsPublicShort(input *agreement.Retrie
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (a *AgreementService) BulkAcceptVersionedPolicyShort(input *agreement.BulkAcceptVersionedPolicyParams, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.AcceptAgreementResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -265,7 +258,6 @@ func (a *AgreementService) BulkAcceptVersionedPolicyShort(input *agreement.BulkA
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:LEGAL [CREATE]'], 'authorization': []}]
 func (a *AgreementService) IndirectBulkAcceptVersionedPolicyV2Short(input *agreement.IndirectBulkAcceptVersionedPolicyV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.AcceptAgreementResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -281,7 +273,6 @@ func (a *AgreementService) IndirectBulkAcceptVersionedPolicyV2Short(input *agree
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (a *AgreementService) IndirectBulkAcceptVersionedPolicy1Short(input *agreement.IndirectBulkAcceptVersionedPolicy1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.AcceptAgreementResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

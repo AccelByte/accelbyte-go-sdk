@@ -102,7 +102,6 @@ func (u *UserInformationService) LastUserActivityTimeHandler(input *user_informa
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:EVENT [UPDATE]'], 'HasScope': ['analytics'], 'authorization': []}]
 func (u *UserInformationService) GetUserActivitiesHandlerShort(input *user_information.GetUserActivitiesHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -118,7 +117,6 @@ func (u *UserInformationService) GetUserActivitiesHandlerShort(input *user_infor
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:EVENT [UPDATE]'], 'HasScope': ['analytics'], 'authorization': []}]
 func (u *UserInformationService) DeleteUserActivitiesHandlerShort(input *user_information.DeleteUserActivitiesHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -134,7 +132,6 @@ func (u *UserInformationService) DeleteUserActivitiesHandlerShort(input *user_in
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:EVENT [UPDATE]'], 'HasScope': ['analytics'], 'authorization': []}]
 func (u *UserInformationService) LastUserActivityTimeHandlerShort(input *user_information.LastUserActivityTimeHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsUserLastActivity, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

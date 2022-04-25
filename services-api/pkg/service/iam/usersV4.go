@@ -1114,7 +1114,6 @@ func (u *UsersV4Service) PublicMakeFactorMyDefaultV4(input *users_v4.PublicMakeF
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
 func (u *UsersV4Service) AdminBulkCheckValidUserIDV4Short(input *users_v4.AdminBulkCheckValidUserIDV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelListValidUserIDResponseV4, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1130,7 +1129,6 @@ func (u *UsersV4Service) AdminBulkCheckValidUserIDV4Short(input *users_v4.AdminB
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersV4Service) AdminUpdateUserV4Short(input *users_v4.AdminUpdateUserV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1146,7 +1144,6 @@ func (u *UsersV4Service) AdminUpdateUserV4Short(input *users_v4.AdminUpdateUserV
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersV4Service) AdminUpdateUserEmailAddressV4Short(input *users_v4.AdminUpdateUserEmailAddressV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1162,7 +1159,6 @@ func (u *UsersV4Service) AdminUpdateUserEmailAddressV4Short(input *users_v4.Admi
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]'], 'authorization': []}]
 func (u *UsersV4Service) AdminDisableUserMFAV4Short(input *users_v4.AdminDisableUserMFAV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1178,7 +1174,6 @@ func (u *UsersV4Service) AdminDisableUserMFAV4Short(input *users_v4.AdminDisable
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:* [READ]'], 'authorization': []}]
 func (u *UsersV4Service) AdminListUserRolesV4Short(input *users_v4.AdminListUserRolesV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelListUserRolesV4Response, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1194,7 +1189,6 @@ func (u *UsersV4Service) AdminListUserRolesV4Short(input *users_v4.AdminListUser
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:* [UPDATE]'], 'authorization': []}]
 func (u *UsersV4Service) AdminUpdateUserRoleV4Short(input *users_v4.AdminUpdateUserRoleV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelListUserRolesV4Response, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1210,7 +1204,6 @@ func (u *UsersV4Service) AdminUpdateUserRoleV4Short(input *users_v4.AdminUpdateU
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:* [UPDATE]'], 'authorization': []}]
 func (u *UsersV4Service) AdminAddUserRoleV4Short(input *users_v4.AdminAddUserRoleV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelListUserRolesV4Response, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1226,7 +1219,6 @@ func (u *UsersV4Service) AdminAddUserRoleV4Short(input *users_v4.AdminAddUserRol
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:* [Delete]'], 'authorization': []}]
 func (u *UsersV4Service) AdminRemoveUserRoleV4Short(input *users_v4.AdminRemoveUserRoleV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1242,7 +1234,6 @@ func (u *UsersV4Service) AdminRemoveUserRoleV4Short(input *users_v4.AdminRemoveU
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) AdminUpdateMyUserV4Short(input *users_v4.AdminUpdateMyUserV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1258,7 +1249,6 @@ func (u *UsersV4Service) AdminUpdateMyUserV4Short(input *users_v4.AdminUpdateMyU
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) AdminDisableMyAuthenticatorV4Short(input *users_v4.AdminDisableMyAuthenticatorV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1274,7 +1264,6 @@ func (u *UsersV4Service) AdminDisableMyAuthenticatorV4Short(input *users_v4.Admi
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) AdminEnableMyAuthenticatorV4Short(input *users_v4.AdminEnableMyAuthenticatorV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1290,7 +1279,6 @@ func (u *UsersV4Service) AdminEnableMyAuthenticatorV4Short(input *users_v4.Admin
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) AdminGenerateMyAuthenticatorKeyV4Short(input *users_v4.AdminGenerateMyAuthenticatorKeyV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelAuthenticatorKeyResponseV4, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1306,7 +1294,6 @@ func (u *UsersV4Service) AdminGenerateMyAuthenticatorKeyV4Short(input *users_v4.
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) AdminGetMyBackupCodesV4Short(input *users_v4.AdminGetMyBackupCodesV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelBackupCodesResponseV4, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1322,7 +1309,6 @@ func (u *UsersV4Service) AdminGetMyBackupCodesV4Short(input *users_v4.AdminGetMy
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) AdminGenerateMyBackupCodesV4Short(input *users_v4.AdminGenerateMyBackupCodesV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelBackupCodesResponseV4, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1338,7 +1324,6 @@ func (u *UsersV4Service) AdminGenerateMyBackupCodesV4Short(input *users_v4.Admin
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) AdminDisableMyBackupCodesV4Short(input *users_v4.AdminDisableMyBackupCodesV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1354,7 +1339,6 @@ func (u *UsersV4Service) AdminDisableMyBackupCodesV4Short(input *users_v4.AdminD
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) AdminDownloadMyBackupCodesV4Short(input *users_v4.AdminDownloadMyBackupCodesV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1370,7 +1354,6 @@ func (u *UsersV4Service) AdminDownloadMyBackupCodesV4Short(input *users_v4.Admin
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) AdminEnableMyBackupCodesV4Short(input *users_v4.AdminEnableMyBackupCodesV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelBackupCodesResponseV4, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1386,7 +1369,6 @@ func (u *UsersV4Service) AdminEnableMyBackupCodesV4Short(input *users_v4.AdminEn
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) AdminGetMyEnabledFactorsV4Short(input *users_v4.AdminGetMyEnabledFactorsV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelEnabledFactorsResponseV4, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1402,7 +1384,6 @@ func (u *UsersV4Service) AdminGetMyEnabledFactorsV4Short(input *users_v4.AdminGe
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) AdminMakeFactorMyDefaultV4Short(input *users_v4.AdminMakeFactorMyDefaultV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1418,7 +1399,6 @@ func (u *UsersV4Service) AdminMakeFactorMyDefaultV4Short(input *users_v4.AdminMa
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:USER:INVITE [CREATE]'], 'authorization': []}]
 func (u *UsersV4Service) AdminInviteUserV4Short(input *users_v4.AdminInviteUserV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelInviteUserResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1434,7 +1414,6 @@ func (u *UsersV4Service) AdminInviteUserV4Short(input *users_v4.AdminInviteUserV
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) PublicCreateTestUserV4Short(input *users_v4.PublicCreateTestUserV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountCreateUserResponseV4, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1450,7 +1429,6 @@ func (u *UsersV4Service) PublicCreateTestUserV4Short(input *users_v4.PublicCreat
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) PublicCreateUserV4Short(input *users_v4.PublicCreateUserV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountCreateUserResponseV4, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1466,7 +1444,6 @@ func (u *UsersV4Service) PublicCreateUserV4Short(input *users_v4.PublicCreateUse
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) CreateUserFromInvitationV4Short(input *users_v4.CreateUserFromInvitationV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountCreateUserResponseV4, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1482,7 +1459,6 @@ func (u *UsersV4Service) CreateUserFromInvitationV4Short(input *users_v4.CreateU
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) PublicUpdateUserV4Short(input *users_v4.PublicUpdateUserV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1498,7 +1474,6 @@ func (u *UsersV4Service) PublicUpdateUserV4Short(input *users_v4.PublicUpdateUse
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) PublicUpdateUserEmailAddressV4Short(input *users_v4.PublicUpdateUserEmailAddressV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1514,7 +1489,6 @@ func (u *UsersV4Service) PublicUpdateUserEmailAddressV4Short(input *users_v4.Pub
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) PublicUpgradeHeadlessAccountWithVerificationCodeV4Short(input *users_v4.PublicUpgradeHeadlessAccountWithVerificationCodeV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountUserResponseV4, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1530,7 +1504,6 @@ func (u *UsersV4Service) PublicUpgradeHeadlessAccountWithVerificationCodeV4Short
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) PublicUpgradeHeadlessAccountV4Short(input *users_v4.PublicUpgradeHeadlessAccountV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountUserResponseV4, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1546,7 +1519,6 @@ func (u *UsersV4Service) PublicUpgradeHeadlessAccountV4Short(input *users_v4.Pub
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) PublicDisableMyAuthenticatorV4Short(input *users_v4.PublicDisableMyAuthenticatorV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1562,7 +1534,6 @@ func (u *UsersV4Service) PublicDisableMyAuthenticatorV4Short(input *users_v4.Pub
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) PublicEnableMyAuthenticatorV4Short(input *users_v4.PublicEnableMyAuthenticatorV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1578,7 +1549,6 @@ func (u *UsersV4Service) PublicEnableMyAuthenticatorV4Short(input *users_v4.Publ
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) PublicGenerateMyAuthenticatorKeyV4Short(input *users_v4.PublicGenerateMyAuthenticatorKeyV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelAuthenticatorKeyResponseV4, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1594,7 +1564,6 @@ func (u *UsersV4Service) PublicGenerateMyAuthenticatorKeyV4Short(input *users_v4
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) PublicGetMyBackupCodesV4Short(input *users_v4.PublicGetMyBackupCodesV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelBackupCodesResponseV4, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1610,7 +1579,6 @@ func (u *UsersV4Service) PublicGetMyBackupCodesV4Short(input *users_v4.PublicGet
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) PublicGenerateMyBackupCodesV4Short(input *users_v4.PublicGenerateMyBackupCodesV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelBackupCodesResponseV4, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1626,7 +1594,6 @@ func (u *UsersV4Service) PublicGenerateMyBackupCodesV4Short(input *users_v4.Publ
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) PublicDisableMyBackupCodesV4Short(input *users_v4.PublicDisableMyBackupCodesV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1642,7 +1609,6 @@ func (u *UsersV4Service) PublicDisableMyBackupCodesV4Short(input *users_v4.Publi
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) PublicDownloadMyBackupCodesV4Short(input *users_v4.PublicDownloadMyBackupCodesV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1658,7 +1624,6 @@ func (u *UsersV4Service) PublicDownloadMyBackupCodesV4Short(input *users_v4.Publ
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) PublicEnableMyBackupCodesV4Short(input *users_v4.PublicEnableMyBackupCodesV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelBackupCodesResponseV4, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1674,7 +1639,6 @@ func (u *UsersV4Service) PublicEnableMyBackupCodesV4Short(input *users_v4.Public
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) PublicRemoveTrustedDeviceV4Short(input *users_v4.PublicRemoveTrustedDeviceV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1690,7 +1654,6 @@ func (u *UsersV4Service) PublicRemoveTrustedDeviceV4Short(input *users_v4.Public
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) PublicGetMyEnabledFactorsV4Short(input *users_v4.PublicGetMyEnabledFactorsV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelEnabledFactorsResponseV4, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1706,7 +1669,6 @@ func (u *UsersV4Service) PublicGetMyEnabledFactorsV4Short(input *users_v4.Public
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersV4Service) PublicMakeFactorMyDefaultV4Short(input *users_v4.PublicMakeFactorMyDefaultV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

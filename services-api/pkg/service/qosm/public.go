@@ -38,7 +38,6 @@ func (p *PublicService) ListServer(input *public.ListServerParams) (*qosmclientm
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (p *PublicService) ListServerShort(input *public.ListServerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*qosmclientmodels.ModelsListServerResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

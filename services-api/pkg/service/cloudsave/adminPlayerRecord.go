@@ -242,7 +242,6 @@ func (a *AdminPlayerRecordService) AdminDeletePlayerPublicRecordHandlerV1(input 
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminPlayerRecordService) ListPlayerRecordHandlerV1Short(input *admin_player_record.ListPlayerRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -258,7 +257,6 @@ func (a *AdminPlayerRecordService) ListPlayerRecordHandlerV1Short(input *admin_p
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:RECORD [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminPlayerRecordService) AdminRetrievePlayerRecordsShort(input *admin_player_record.AdminRetrievePlayerRecordsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -274,7 +272,6 @@ func (a *AdminPlayerRecordService) AdminRetrievePlayerRecordsShort(input *admin_
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminPlayerRecordService) AdminGetPlayerRecordHandlerV1Short(input *admin_player_record.AdminGetPlayerRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -290,7 +287,6 @@ func (a *AdminPlayerRecordService) AdminGetPlayerRecordHandlerV1Short(input *adm
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]', 'CLIENT []'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminPlayerRecordService) AdminPutPlayerRecordHandlerV1Short(input *admin_player_record.AdminPutPlayerRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -306,7 +302,6 @@ func (a *AdminPlayerRecordService) AdminPutPlayerRecordHandlerV1Short(input *adm
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]', 'CLIENT []'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminPlayerRecordService) AdminPostPlayerRecordHandlerV1Short(input *admin_player_record.AdminPostPlayerRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -322,7 +317,6 @@ func (a *AdminPlayerRecordService) AdminPostPlayerRecordHandlerV1Short(input *ad
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminPlayerRecordService) AdminDeletePlayerRecordHandlerV1Short(input *admin_player_record.AdminDeletePlayerRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -338,7 +332,6 @@ func (a *AdminPlayerRecordService) AdminDeletePlayerRecordHandlerV1Short(input *
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminPlayerRecordService) AdminGetPlayerPublicRecordHandlerV1Short(input *admin_player_record.AdminGetPlayerPublicRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -354,7 +347,6 @@ func (a *AdminPlayerRecordService) AdminGetPlayerPublicRecordHandlerV1Short(inpu
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminPlayerRecordService) AdminPutPlayerPublicRecordHandlerV1Short(input *admin_player_record.AdminPutPlayerPublicRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -370,7 +362,6 @@ func (a *AdminPlayerRecordService) AdminPutPlayerPublicRecordHandlerV1Short(inpu
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminPlayerRecordService) AdminPostPlayerPublicRecordHandlerV1Short(input *admin_player_record.AdminPostPlayerPublicRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -386,7 +377,6 @@ func (a *AdminPlayerRecordService) AdminPostPlayerPublicRecordHandlerV1Short(inp
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminPlayerRecordService) AdminDeletePlayerPublicRecordHandlerV1Short(input *admin_player_record.AdminDeletePlayerPublicRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

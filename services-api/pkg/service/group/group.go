@@ -392,7 +392,6 @@ func (g *GroupService) DeleteGroupPredefinedRulePublicV1(input *group.DeleteGrou
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP [READ]'], 'authorization': []}]
 func (g *GroupService) GetGroupListAdminV1Short(input *group.GetGroupListAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetGroupsListResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -408,7 +407,6 @@ func (g *GroupService) GetGroupListAdminV1Short(input *group.GetGroupListAdminV1
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP [READ]'], 'authorization': []}]
 func (g *GroupService) GetSingleGroupAdminV1Short(input *group.GetSingleGroupAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -424,7 +422,6 @@ func (g *GroupService) GetSingleGroupAdminV1Short(input *group.GetSingleGroupAdm
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP:{groupId} [DELETE]'], 'authorization': []}]
 func (g *GroupService) DeleteGroupAdminV1Short(input *group.DeleteGroupAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -440,7 +437,6 @@ func (g *GroupService) DeleteGroupAdminV1Short(input *group.DeleteGroupAdminV1Pa
 	return nil
 }
 
-// [{'authorization': []}]
 func (g *GroupService) GetGroupListPublicV1Short(input *group.GetGroupListPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetGroupsListResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -456,7 +452,6 @@ func (g *GroupService) GetGroupListPublicV1Short(input *group.GetGroupListPublic
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (g *GroupService) CreateNewGroupPublicV1Short(input *group.CreateNewGroupPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -472,7 +467,6 @@ func (g *GroupService) CreateNewGroupPublicV1Short(input *group.CreateNewGroupPu
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (g *GroupService) GetSingleGroupPublicV1Short(input *group.GetSingleGroupPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -488,7 +482,6 @@ func (g *GroupService) GetSingleGroupPublicV1Short(input *group.GetSingleGroupPu
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['GROUP [UPDATE]'], 'authorization': []}]
 func (g *GroupService) UpdateSingleGroupV1Short(input *group.UpdateSingleGroupV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -504,7 +497,6 @@ func (g *GroupService) UpdateSingleGroupV1Short(input *group.UpdateSingleGroupV1
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['GROUP [DELETE]'], 'authorization': []}]
 func (g *GroupService) DeleteGroupPublicV1Short(input *group.DeleteGroupPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -520,7 +512,6 @@ func (g *GroupService) DeleteGroupPublicV1Short(input *group.DeleteGroupPublicV1
 	return nil
 }
 
-// [{'HasPermission': ['GROUP [UPDATE]'], 'authorization': []}]
 func (g *GroupService) UpdatePatchSingleGroupPublicV1Short(input *group.UpdatePatchSingleGroupPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -536,7 +527,6 @@ func (g *GroupService) UpdatePatchSingleGroupPublicV1Short(input *group.UpdatePa
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['GROUP [UPDATE]'], 'authorization': []}]
 func (g *GroupService) UpdateGroupCustomAttributesPublicV1Short(input *group.UpdateGroupCustomAttributesPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -552,7 +542,6 @@ func (g *GroupService) UpdateGroupCustomAttributesPublicV1Short(input *group.Upd
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (g *GroupService) UpdateGroupCustomRulePublicV1Short(input *group.UpdateGroupCustomRulePublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -568,7 +557,6 @@ func (g *GroupService) UpdateGroupCustomRulePublicV1Short(input *group.UpdateGro
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['GROUP [UPDATE]'], 'authorization': []}]
 func (g *GroupService) UpdateGroupPredefinedRulePublicV1Short(input *group.UpdateGroupPredefinedRulePublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -584,7 +572,6 @@ func (g *GroupService) UpdateGroupPredefinedRulePublicV1Short(input *group.Updat
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['GROUP [UPDATE]'], 'authorization': []}]
 func (g *GroupService) DeleteGroupPredefinedRulePublicV1Short(input *group.DeleteGroupPredefinedRulePublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

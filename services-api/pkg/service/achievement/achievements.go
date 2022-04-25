@@ -370,7 +370,6 @@ func (a *AchievementsService) PublicUnlockAchievement(input *achievements.Public
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AchievementsService) AdminListAchievementsShort(input *achievements.AdminListAchievementsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*achievementclientmodels.ModelsPaginatedAchievementResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -386,7 +385,6 @@ func (a *AchievementsService) AdminListAchievementsShort(input *achievements.Adm
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AchievementsService) AdminCreateNewAchievementShort(input *achievements.AdminCreateNewAchievementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*achievementclientmodels.ModelsAchievementResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -402,7 +400,6 @@ func (a *AchievementsService) AdminCreateNewAchievementShort(input *achievements
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AchievementsService) ExportAchievementsShort(input *achievements.ExportAchievementsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*achievementclientmodels.ModelsAchievement, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -418,7 +415,6 @@ func (a *AchievementsService) ExportAchievementsShort(input *achievements.Export
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AchievementsService) ImportAchievementsShort(input *achievements.ImportAchievementsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*achievementclientmodels.ServiceImportConfigResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -434,7 +430,6 @@ func (a *AchievementsService) ImportAchievementsShort(input *achievements.Import
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AchievementsService) AdminGetAchievementShort(input *achievements.AdminGetAchievementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*achievementclientmodels.ModelsAchievementResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -450,7 +445,6 @@ func (a *AchievementsService) AdminGetAchievementShort(input *achievements.Admin
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AchievementsService) AdminUpdateAchievementShort(input *achievements.AdminUpdateAchievementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*achievementclientmodels.ModelsAchievementResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -466,7 +460,6 @@ func (a *AchievementsService) AdminUpdateAchievementShort(input *achievements.Ad
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AchievementsService) AdminDeleteAchievementShort(input *achievements.AdminDeleteAchievementParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -482,7 +475,6 @@ func (a *AchievementsService) AdminDeleteAchievementShort(input *achievements.Ad
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ACHIEVEMENT [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AchievementsService) AdminUpdateAchievementListOrderShort(input *achievements.AdminUpdateAchievementListOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -498,7 +490,6 @@ func (a *AchievementsService) AdminUpdateAchievementListOrderShort(input *achiev
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AchievementsService) AdminListUserAchievementsShort(input *achievements.AdminListUserAchievementsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*achievementclientmodels.ModelsPaginatedUserAchievementResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -514,7 +505,6 @@ func (a *AchievementsService) AdminListUserAchievementsShort(input *achievements
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AchievementsService) AdminUnlockAchievementShort(input *achievements.AdminUnlockAchievementParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -530,7 +520,6 @@ func (a *AchievementsService) AdminUnlockAchievementShort(input *achievements.Ad
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:ACHIEVEMENT [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AchievementsService) PublicListAchievementsShort(input *achievements.PublicListAchievementsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*achievementclientmodels.ModelsPublicAchievementsResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -546,7 +535,6 @@ func (a *AchievementsService) PublicListAchievementsShort(input *achievements.Pu
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:ACHIEVEMENT [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AchievementsService) PublicGetAchievementShort(input *achievements.PublicGetAchievementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*achievementclientmodels.ModelsPublicAchievementResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -562,7 +550,6 @@ func (a *AchievementsService) PublicGetAchievementShort(input *achievements.Publ
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AchievementsService) PublicListUserAchievementsShort(input *achievements.PublicListUserAchievementsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*achievementclientmodels.ModelsPaginatedUserAchievementResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -578,7 +565,6 @@ func (a *AchievementsService) PublicListUserAchievementsShort(input *achievement
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:ACHIEVEMENT [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AchievementsService) PublicUnlockAchievementShort(input *achievements.PublicUnlockAchievementParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

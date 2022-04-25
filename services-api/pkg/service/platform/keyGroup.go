@@ -146,7 +146,6 @@ func (k *KeyGroupService) UploadKeys(input *key_group.UploadKeysParams) (*platfo
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:KEYGROUP [READ]'], 'authorization': []}]
 func (k *KeyGroupService) QueryKeyGroupsShort(input *key_group.QueryKeyGroupsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.KeyGroupPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -162,7 +161,6 @@ func (k *KeyGroupService) QueryKeyGroupsShort(input *key_group.QueryKeyGroupsPar
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:KEYGROUP [CREATE]'], 'authorization': []}]
 func (k *KeyGroupService) CreateKeyGroupShort(input *key_group.CreateKeyGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.KeyGroupInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -178,7 +176,6 @@ func (k *KeyGroupService) CreateKeyGroupShort(input *key_group.CreateKeyGroupPar
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:KEYGROUP [READ]'], 'authorization': []}]
 func (k *KeyGroupService) GetKeyGroupShort(input *key_group.GetKeyGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.KeyGroupInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -194,7 +191,6 @@ func (k *KeyGroupService) GetKeyGroupShort(input *key_group.GetKeyGroupParams, a
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:KEYGROUP [UPDATE]'], 'authorization': []}]
 func (k *KeyGroupService) UpdateKeyGroupShort(input *key_group.UpdateKeyGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.KeyGroupInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -210,7 +206,6 @@ func (k *KeyGroupService) UpdateKeyGroupShort(input *key_group.UpdateKeyGroupPar
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:KEYGROUP [READ]'], 'authorization': []}]
 func (k *KeyGroupService) GetKeyGroupDynamicShort(input *key_group.GetKeyGroupDynamicParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.KeyGroupDynamicInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -226,7 +221,6 @@ func (k *KeyGroupService) GetKeyGroupDynamicShort(input *key_group.GetKeyGroupDy
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:KEYGROUP [READ]'], 'authorization': []}]
 func (k *KeyGroupService) ListKeysShort(input *key_group.ListKeysParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.KeyPagingSliceResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -242,7 +236,6 @@ func (k *KeyGroupService) ListKeysShort(input *key_group.ListKeysParams, authInf
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:KEYGROUP [UPDATE]'], 'authorization': []}]
 func (k *KeyGroupService) UploadKeysShort(input *key_group.UploadKeysParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.BulkOperationResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

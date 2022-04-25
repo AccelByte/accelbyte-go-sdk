@@ -47,7 +47,6 @@ func (u *UserDataService) GetUserLeaderboardRankingsAdminV1(input *user_data.Get
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'], 'authorization': []}]
 func (u *UserDataService) GetUserLeaderboardRankingsAdminV1Short(input *user_data.GetUserLeaderboardRankingsAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetAllUserLeaderboardsResp, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

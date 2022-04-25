@@ -105,7 +105,6 @@ func (s *SlotConfigService) DeleteUserSlotConfig(input *slot_config.DeleteUserSl
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SLOTCONFIG [READ]'], 'authorization': []}]
 func (s *SlotConfigService) GetNamespaceSlotConfigShort(input *slot_config.GetNamespaceSlotConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.NamespaceSlotConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -121,7 +120,6 @@ func (s *SlotConfigService) GetNamespaceSlotConfigShort(input *slot_config.GetNa
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SLOTCONFIG [UPDATE]'], 'authorization': []}]
 func (s *SlotConfigService) UpdateNamespaceSlotConfigShort(input *slot_config.UpdateNamespaceSlotConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.NamespaceSlotConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -137,7 +135,6 @@ func (s *SlotConfigService) UpdateNamespaceSlotConfigShort(input *slot_config.Up
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SLOTCONFIG [DELETE]'], 'authorization': []}]
 func (s *SlotConfigService) DeleteNamespaceSlotConfigShort(input *slot_config.DeleteNamespaceSlotConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -153,7 +150,6 @@ func (s *SlotConfigService) DeleteNamespaceSlotConfigShort(input *slot_config.De
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG [READ]'], 'authorization': []}]
 func (s *SlotConfigService) GetUserSlotConfigShort(input *slot_config.GetUserSlotConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.UserSlotConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -169,7 +165,6 @@ func (s *SlotConfigService) GetUserSlotConfigShort(input *slot_config.GetUserSlo
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG [UPDATE]'], 'authorization': []}]
 func (s *SlotConfigService) UpdateUserSlotConfigShort(input *slot_config.UpdateUserSlotConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.UserSlotConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -185,7 +180,6 @@ func (s *SlotConfigService) UpdateUserSlotConfigShort(input *slot_config.UpdateU
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SLOTCONFIG [DELETE]'], 'authorization': []}]
 func (s *SlotConfigService) DeleteUserSlotConfigShort(input *slot_config.DeleteUserSlotConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

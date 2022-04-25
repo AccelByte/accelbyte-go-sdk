@@ -186,7 +186,6 @@ func (e *EventRegistryService) GetRegisteredEventsByEventTypeHandler(input *even
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:EVENT [READ]'], 'HasScope': ['analytics'], 'authorization': []}]
 func (e *EventRegistryService) GetRegisteredEventsHandlerShort(input *event_registry.GetRegisteredEventsHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventRegistry, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -202,7 +201,6 @@ func (e *EventRegistryService) GetRegisteredEventsHandlerShort(input *event_regi
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:EVENT [CREATE]'], 'HasScope': ['analytics'], 'authorization': []}]
 func (e *EventRegistryService) RegisterEventHandlerShort(input *event_registry.RegisterEventHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -218,7 +216,6 @@ func (e *EventRegistryService) RegisterEventHandlerShort(input *event_registry.R
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:EVENT [READ]'], 'HasScope': ['analytics'], 'authorization': []}]
 func (e *EventRegistryService) GetRegisteredEventIDHandlerShort(input *event_registry.GetRegisteredEventIDHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventRegistry, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -234,7 +231,6 @@ func (e *EventRegistryService) GetRegisteredEventIDHandlerShort(input *event_reg
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:EVENT [UPDATE]'], 'HasScope': ['analytics'], 'authorization': []}]
 func (e *EventRegistryService) UpdateEventRegistryHandlerShort(input *event_registry.UpdateEventRegistryHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -250,7 +246,6 @@ func (e *EventRegistryService) UpdateEventRegistryHandlerShort(input *event_regi
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:EVENT [DELETE]'], 'HasScope': ['analytics'], 'authorization': []}]
 func (e *EventRegistryService) UnregisterEventIDHandlerShort(input *event_registry.UnregisterEventIDHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -266,7 +261,6 @@ func (e *EventRegistryService) UnregisterEventIDHandlerShort(input *event_regist
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:EVENT [READ]'], 'HasScope': ['analytics'], 'authorization': []}]
 func (e *EventRegistryService) GetRegisteredEventsByEventTypeHandlerShort(input *event_registry.GetRegisteredEventsByEventTypeHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventRegistry, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

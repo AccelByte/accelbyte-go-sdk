@@ -148,7 +148,6 @@ func (s *ServerService) GetServerSession(input *server.GetServerSessionParams) (
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:DSM:SERVER [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (s *ServerService) DeregisterLocalServerShort(input *server.DeregisterLocalServerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -164,7 +163,6 @@ func (s *ServerService) DeregisterLocalServerShort(input *server.DeregisterLocal
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:DSM:SERVER [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (s *ServerService) RegisterLocalServerShort(input *server.RegisterLocalServerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsServer, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -180,7 +178,6 @@ func (s *ServerService) RegisterLocalServerShort(input *server.RegisterLocalServ
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:DSM:SERVER [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (s *ServerService) RegisterServerShort(input *server.RegisterServerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsServer, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -196,7 +193,6 @@ func (s *ServerService) RegisterServerShort(input *server.RegisterServerParams, 
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:DSM:SERVER [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (s *ServerService) ShutdownServerShort(input *server.ShutdownServerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -212,7 +208,6 @@ func (s *ServerService) ShutdownServerShort(input *server.ShutdownServerParams, 
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:DSM:SERVER [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (s *ServerService) GetServerSessionShort(input *server.GetServerSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsServerSessionResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

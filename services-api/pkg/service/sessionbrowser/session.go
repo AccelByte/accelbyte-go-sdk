@@ -348,7 +348,6 @@ func (s *SessionService) GetRecentPlayer(input *session.GetRecentPlayerParams) (
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (s *SessionService) GetTotalActiveSessionShort(input *session.GetTotalActiveSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsCountActiveSessionResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -364,7 +363,6 @@ func (s *SessionService) GetTotalActiveSessionShort(input *session.GetTotalActiv
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (s *SessionService) GetActiveCustomGameSessionsShort(input *session.GetActiveCustomGameSessionsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsActiveCustomGameResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -380,7 +378,6 @@ func (s *SessionService) GetActiveCustomGameSessionsShort(input *session.GetActi
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (s *SessionService) GetActiveMatchmakingGameSessionsShort(input *session.GetActiveMatchmakingGameSessionsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsActiveMatchmakingGameResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -396,7 +393,6 @@ func (s *SessionService) GetActiveMatchmakingGameSessionsShort(input *session.Ge
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (s *SessionService) AdminGetSessionShort(input *session.AdminGetSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsAdminSessionResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -412,7 +408,6 @@ func (s *SessionService) AdminGetSessionShort(input *session.AdminGetSessionPara
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (s *SessionService) QuerySessionShort(input *session.QuerySessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsSessionQueryResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -428,7 +423,6 @@ func (s *SessionService) QuerySessionShort(input *session.QuerySessionParams, au
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -444,7 +438,6 @@ func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams, 
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (s *SessionService) GetSessionByUserIDsShort(input *session.GetSessionByUserIDsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsSessionByUserIDsResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -460,7 +453,6 @@ func (s *SessionService) GetSessionByUserIDsShort(input *session.GetSessionByUse
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (s *SessionService) GetSessionShort(input *session.GetSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -476,7 +468,6 @@ func (s *SessionService) GetSessionShort(input *session.GetSessionParams, authIn
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (s *SessionService) UpdateSessionShort(input *session.UpdateSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -492,7 +483,6 @@ func (s *SessionService) UpdateSessionShort(input *session.UpdateSessionParams, 
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (s *SessionService) DeleteSessionShort(input *session.DeleteSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -508,7 +498,6 @@ func (s *SessionService) DeleteSessionShort(input *session.DeleteSessionParams, 
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (s *SessionService) JoinSessionShort(input *session.JoinSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -524,7 +513,6 @@ func (s *SessionService) JoinSessionShort(input *session.JoinSessionParams, auth
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (s *SessionService) DeleteSessionLocalDSShort(input *session.DeleteSessionLocalDSParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -540,7 +528,6 @@ func (s *SessionService) DeleteSessionLocalDSShort(input *session.DeleteSessionL
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (s *SessionService) AddPlayerToSessionShort(input *session.AddPlayerToSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsAddPlayerResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -556,7 +543,6 @@ func (s *SessionService) AddPlayerToSessionShort(input *session.AddPlayerToSessi
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:SESSIONBROWSER:SESSION [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (s *SessionService) RemovePlayerFromSessionShort(input *session.RemovePlayerFromSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsAddPlayerResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -572,7 +558,6 @@ func (s *SessionService) RemovePlayerFromSessionShort(input *session.RemovePlaye
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:SESSIONBROWSER:RECENTPLAYER [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (s *SessionService) GetRecentPlayerShort(input *session.GetRecentPlayerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsRecentPlayerQueryResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

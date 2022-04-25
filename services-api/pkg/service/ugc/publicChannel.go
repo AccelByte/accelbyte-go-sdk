@@ -116,7 +116,6 @@ func (p *PublicChannelService) DeleteChannel(input *public_channel.DeleteChannel
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CHANNEL [READ]'], 'authorization': []}]
 func (p *PublicChannelService) GetChannelsShort(input *public_channel.GetChannelsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -132,7 +131,6 @@ func (p *PublicChannelService) GetChannelsShort(input *public_channel.GetChannel
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CHANNEL [CREATE]'], 'authorization': []}]
 func (p *PublicChannelService) CreateChannelShort(input *public_channel.CreateChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsChannelResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -148,7 +146,6 @@ func (p *PublicChannelService) CreateChannelShort(input *public_channel.CreateCh
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CHANNEL [UPDATE]'], 'authorization': []}]
 func (p *PublicChannelService) UpdateChannelShort(input *public_channel.UpdateChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsChannelResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -164,7 +161,6 @@ func (p *PublicChannelService) UpdateChannelShort(input *public_channel.UpdateCh
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]'], 'authorization': []}]
 func (p *PublicChannelService) DeleteChannelShort(input *public_channel.DeleteChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

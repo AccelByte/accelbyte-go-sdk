@@ -80,7 +80,6 @@ func (m *MatchmakingOperationsService) VersionCheckHandler(input *matchmaking_op
 	return nil
 }
 
-// [{'authorization': []}]
 func (m *MatchmakingOperationsService) GetHealthcheckInfoShort(input *matchmaking_operations.GetHealthcheckInfoParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -96,7 +95,6 @@ func (m *MatchmakingOperationsService) GetHealthcheckInfoShort(input *matchmakin
 	return nil
 }
 
-// [{'authorization': []}]
 func (m *MatchmakingOperationsService) HandlerV3HealthzShort(input *matchmaking_operations.HandlerV3HealthzParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -112,7 +110,6 @@ func (m *MatchmakingOperationsService) HandlerV3HealthzShort(input *matchmaking_
 	return nil
 }
 
-// [{'authorization': []}]
 func (m *MatchmakingOperationsService) PublicGetMessagesShort(input *matchmaking_operations.PublicGetMessagesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*matchmakingclientmodels.LogAppMessageDeclaration, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -128,7 +125,6 @@ func (m *MatchmakingOperationsService) PublicGetMessagesShort(input *matchmaking
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (m *MatchmakingOperationsService) VersionCheckHandlerShort(input *matchmaking_operations.VersionCheckHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

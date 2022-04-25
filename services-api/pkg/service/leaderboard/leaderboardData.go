@@ -556,7 +556,6 @@ func (l *LeaderboardDataService) GetAllTimeLeaderboardRankingPublicV2(input *lea
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (l *LeaderboardDataService) AdminGetArchivedLeaderboardRankingDataV1HandlerShort(input *leaderboard_data.AdminGetArchivedLeaderboardRankingDataV1HandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*leaderboardclientmodels.ModelsArchiveLeaderboardSignedURLResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -572,7 +571,6 @@ func (l *LeaderboardDataService) AdminGetArchivedLeaderboardRankingDataV1Handler
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:LEADERBOARD [CREATE]'], 'authorization': []}]
 func (l *LeaderboardDataService) CreateArchivedLeaderboardRankingDataV1HandlerShort(input *leaderboard_data.CreateArchivedLeaderboardRankingDataV1HandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -588,7 +586,6 @@ func (l *LeaderboardDataService) CreateArchivedLeaderboardRankingDataV1HandlerSh
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'], 'authorization': []}]
 func (l *LeaderboardDataService) GetAllTimeLeaderboardRankingAdminV1Short(input *leaderboard_data.GetAllTimeLeaderboardRankingAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -604,7 +601,6 @@ func (l *LeaderboardDataService) GetAllTimeLeaderboardRankingAdminV1Short(input 
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'], 'authorization': []}]
 func (l *LeaderboardDataService) GetCurrentMonthLeaderboardRankingAdminV1Short(input *leaderboard_data.GetCurrentMonthLeaderboardRankingAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -620,7 +616,6 @@ func (l *LeaderboardDataService) GetCurrentMonthLeaderboardRankingAdminV1Short(i
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'], 'authorization': []}]
 func (l *LeaderboardDataService) GetCurrentSeasonLeaderboardRankingAdminV1Short(input *leaderboard_data.GetCurrentSeasonLeaderboardRankingAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -636,7 +631,6 @@ func (l *LeaderboardDataService) GetCurrentSeasonLeaderboardRankingAdminV1Short(
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'], 'authorization': []}]
 func (l *LeaderboardDataService) GetTodayLeaderboardRankingAdminV1Short(input *leaderboard_data.GetTodayLeaderboardRankingAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -652,7 +646,6 @@ func (l *LeaderboardDataService) GetTodayLeaderboardRankingAdminV1Short(input *l
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'], 'authorization': []}]
 func (l *LeaderboardDataService) GetUserRankingAdminV1Short(input *leaderboard_data.GetUserRankingAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsUserRankingResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -668,7 +661,6 @@ func (l *LeaderboardDataService) GetUserRankingAdminV1Short(input *leaderboard_d
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (l *LeaderboardDataService) UpdateUserPointAdminV1Short(input *leaderboard_data.UpdateUserPointAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsUpdateUserPointAdminV1Response, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -684,7 +676,6 @@ func (l *LeaderboardDataService) UpdateUserPointAdminV1Short(input *leaderboard_
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:LEADERBOARD:USER [DELETE]'], 'authorization': []}]
 func (l *LeaderboardDataService) DeleteUserRankingAdminV1Short(input *leaderboard_data.DeleteUserRankingAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -700,7 +691,6 @@ func (l *LeaderboardDataService) DeleteUserRankingAdminV1Short(input *leaderboar
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'], 'authorization': []}]
 func (l *LeaderboardDataService) GetCurrentWeekLeaderboardRankingAdminV1Short(input *leaderboard_data.GetCurrentWeekLeaderboardRankingAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -716,7 +706,6 @@ func (l *LeaderboardDataService) GetCurrentWeekLeaderboardRankingAdminV1Short(in
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:LEADERBOARD:USER [DELETE]'], 'authorization': []}]
 func (l *LeaderboardDataService) DeleteUserRankingsAdminV1Short(input *leaderboard_data.DeleteUserRankingsAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -732,7 +721,6 @@ func (l *LeaderboardDataService) DeleteUserRankingsAdminV1Short(input *leaderboa
 	return nil
 }
 
-// [{'authorization': []}]
 func (l *LeaderboardDataService) GetAllTimeLeaderboardRankingPublicV1Short(input *leaderboard_data.GetAllTimeLeaderboardRankingPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -748,7 +736,6 @@ func (l *LeaderboardDataService) GetAllTimeLeaderboardRankingPublicV1Short(input
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (l *LeaderboardDataService) GetArchivedLeaderboardRankingDataV1HandlerShort(input *leaderboard_data.GetArchivedLeaderboardRankingDataV1HandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*leaderboardclientmodels.ModelsArchiveLeaderboardSignedURLResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -764,7 +751,6 @@ func (l *LeaderboardDataService) GetArchivedLeaderboardRankingDataV1HandlerShort
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (l *LeaderboardDataService) GetCurrentMonthLeaderboardRankingPublicV1Short(input *leaderboard_data.GetCurrentMonthLeaderboardRankingPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -780,7 +766,6 @@ func (l *LeaderboardDataService) GetCurrentMonthLeaderboardRankingPublicV1Short(
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (l *LeaderboardDataService) GetCurrentSeasonLeaderboardRankingPublicV1Short(input *leaderboard_data.GetCurrentSeasonLeaderboardRankingPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -796,7 +781,6 @@ func (l *LeaderboardDataService) GetCurrentSeasonLeaderboardRankingPublicV1Short
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (l *LeaderboardDataService) GetTodayLeaderboardRankingPublicV1Short(input *leaderboard_data.GetTodayLeaderboardRankingPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -812,7 +796,6 @@ func (l *LeaderboardDataService) GetTodayLeaderboardRankingPublicV1Short(input *
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (l *LeaderboardDataService) GetUserRankingPublicV1Short(input *leaderboard_data.GetUserRankingPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsUserRankingResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -828,7 +811,6 @@ func (l *LeaderboardDataService) GetUserRankingPublicV1Short(input *leaderboard_
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:LEADERBOARD:USER:{userId} [DELETE]'], 'authorization': []}]
 func (l *LeaderboardDataService) DeleteUserRankingPublicV1Short(input *leaderboard_data.DeleteUserRankingPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -844,7 +826,6 @@ func (l *LeaderboardDataService) DeleteUserRankingPublicV1Short(input *leaderboa
 	return nil
 }
 
-// [{'authorization': []}]
 func (l *LeaderboardDataService) GetCurrentWeekLeaderboardRankingPublicV1Short(input *leaderboard_data.GetCurrentWeekLeaderboardRankingPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetLeaderboardRankingResp, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -860,7 +841,6 @@ func (l *LeaderboardDataService) GetCurrentWeekLeaderboardRankingPublicV1Short(i
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (l *LeaderboardDataService) GetAllTimeLeaderboardRankingPublicV2Short(input *leaderboard_data.GetAllTimeLeaderboardRankingPublicV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.V2GetPublicLeaderboardRankingResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

@@ -204,7 +204,6 @@ func (a *AnonymizationService) DeleteAllUserStates(input *anonymization.DeleteAl
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]'], 'authorization': []}]
 func (a *AnonymizationService) AdminDeleteAllUserChannelsShort(input *anonymization.AdminDeleteAllUserChannelsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -220,7 +219,6 @@ func (a *AnonymizationService) AdminDeleteAllUserChannelsShort(input *anonymizat
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]'], 'authorization': []}]
 func (a *AnonymizationService) AdminDeleteAllUserContentsShort(input *anonymization.AdminDeleteAllUserContentsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -236,7 +234,6 @@ func (a *AnonymizationService) AdminDeleteAllUserContentsShort(input *anonymizat
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]'], 'authorization': []}]
 func (a *AnonymizationService) AdminDeleteAllUserGroupShort(input *anonymization.AdminDeleteAllUserGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -252,7 +249,6 @@ func (a *AnonymizationService) AdminDeleteAllUserGroupShort(input *anonymization
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]'], 'authorization': []}]
 func (a *AnonymizationService) AdminDeleteAllUserStatesShort(input *anonymization.AdminDeleteAllUserStatesParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -268,7 +264,6 @@ func (a *AnonymizationService) AdminDeleteAllUserStatesShort(input *anonymizatio
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]'], 'authorization': []}]
 func (a *AnonymizationService) DeleteAllUserChannelShort(input *anonymization.DeleteAllUserChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -284,7 +279,6 @@ func (a *AnonymizationService) DeleteAllUserChannelShort(input *anonymization.De
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]'], 'authorization': []}]
 func (a *AnonymizationService) DeleteAllUserContentsShort(input *anonymization.DeleteAllUserContentsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -300,7 +294,6 @@ func (a *AnonymizationService) DeleteAllUserContentsShort(input *anonymization.D
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]'], 'authorization': []}]
 func (a *AnonymizationService) DeleteAllUserGroupShort(input *anonymization.DeleteAllUserGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -316,7 +309,6 @@ func (a *AnonymizationService) DeleteAllUserGroupShort(input *anonymization.Dele
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId} [DELETE]'], 'authorization': []}]
 func (a *AnonymizationService) DeleteAllUserStatesShort(input *anonymization.DeleteAllUserStatesParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

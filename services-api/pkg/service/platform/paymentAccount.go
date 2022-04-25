@@ -49,7 +49,6 @@ func (p *PaymentAccountService) PublicDeletePaymentAccount(input *payment_accoun
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:PAYMENT:ACCOUNT [READ]'], 'authorization': []}]
 func (p *PaymentAccountService) PublicGetPaymentAccountsShort(input *payment_account.PublicGetPaymentAccountsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.PaymentAccount, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -65,7 +64,6 @@ func (p *PaymentAccountService) PublicGetPaymentAccountsShort(input *payment_acc
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:PAYMENT:ACCOUNT [DELETE]'], 'authorization': []}]
 func (p *PaymentAccountService) PublicDeletePaymentAccountShort(input *payment_account.PublicDeletePaymentAccountParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

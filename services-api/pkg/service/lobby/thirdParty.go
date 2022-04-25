@@ -125,7 +125,6 @@ func (t *ThirdPartyService) AdminDeleteThirdPartyConfig(input *third_party.Admin
 	return noContent.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (t *ThirdPartyService) AdminGetThirdPartyConfigShort(input *third_party.AdminGetThirdPartyConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsGetConfigResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -141,7 +140,6 @@ func (t *ThirdPartyService) AdminGetThirdPartyConfigShort(input *third_party.Adm
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (t *ThirdPartyService) AdminUpdateThirdPartyConfigShort(input *third_party.AdminUpdateThirdPartyConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsUpdateConfigResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -157,7 +155,6 @@ func (t *ThirdPartyService) AdminUpdateThirdPartyConfigShort(input *third_party.
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (t *ThirdPartyService) AdminCreateThirdPartyConfigShort(input *third_party.AdminCreateThirdPartyConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsCreateConfigResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -173,7 +170,6 @@ func (t *ThirdPartyService) AdminCreateThirdPartyConfigShort(input *third_party.
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:THIRDPARTY:CONFIG [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (t *ThirdPartyService) AdminDeleteThirdPartyConfigShort(input *third_party.AdminDeleteThirdPartyConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (string, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

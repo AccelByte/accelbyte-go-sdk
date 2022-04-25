@@ -212,7 +212,6 @@ func (d *DataDeletionService) PublicGetUserAccountDeletionStatus(input *data_del
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': [], 'HasScope': ['account'], 'authorization': []}]
 func (d *DataDeletionService) AdminGetListDeletionDataRequestShort(input *data_deletion.AdminGetListDeletionDataRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsListDeletionDataResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -228,7 +227,6 @@ func (d *DataDeletionService) AdminGetListDeletionDataRequestShort(input *data_d
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': [], 'HasScope': ['account'], 'authorization': []}]
 func (d *DataDeletionService) AdminGetUserAccountDeletionRequestShort(input *data_deletion.AdminGetUserAccountDeletionRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsDeletionData, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -244,7 +242,6 @@ func (d *DataDeletionService) AdminGetUserAccountDeletionRequestShort(input *dat
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]'], 'HasScope': ['account'], 'authorization': []}]
 func (d *DataDeletionService) AdminSubmitUserAccountDeletionRequestShort(input *data_deletion.AdminSubmitUserAccountDeletionRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsRequestDeleteResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -260,7 +257,6 @@ func (d *DataDeletionService) AdminSubmitUserAccountDeletionRequestShort(input *
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]'], 'HasScope': ['account'], 'authorization': []}]
 func (d *DataDeletionService) AdminCancelUserAccountDeletionRequestShort(input *data_deletion.AdminCancelUserAccountDeletionRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -276,7 +272,6 @@ func (d *DataDeletionService) AdminCancelUserAccountDeletionRequestShort(input *
 	return nil
 }
 
-// [{'authorization': []}]
 func (d *DataDeletionService) PublicSubmitUserAccountDeletionRequestShort(input *data_deletion.PublicSubmitUserAccountDeletionRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsRequestDeleteResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -292,7 +287,6 @@ func (d *DataDeletionService) PublicSubmitUserAccountDeletionRequestShort(input 
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (d *DataDeletionService) PublicCancelUserAccountDeletionRequestShort(input *data_deletion.PublicCancelUserAccountDeletionRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -308,7 +302,6 @@ func (d *DataDeletionService) PublicCancelUserAccountDeletionRequestShort(input 
 	return nil
 }
 
-// [{'authorization': []}]
 func (d *DataDeletionService) PublicGetUserAccountDeletionStatusShort(input *data_deletion.PublicGetUserAccountDeletionStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsDeletionStatus, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

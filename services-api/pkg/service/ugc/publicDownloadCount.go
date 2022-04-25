@@ -47,7 +47,6 @@ func (p *PublicDownloadCountService) AddDownloadCount(input *public_download_cou
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (p *PublicDownloadCountService) AddDownloadCountShort(input *public_download_count.AddDownloadCountParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsAddDownloadCountResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

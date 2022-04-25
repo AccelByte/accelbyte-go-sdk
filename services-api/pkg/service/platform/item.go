@@ -584,7 +584,6 @@ func (i *ItemService) PublicGetItem(input *item.PublicGetItemParams) (*platformc
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ITEM [UPDATE]'], 'authorization': []}]
 func (i *ItemService) SyncInGameItemShort(input *item.SyncInGameItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -600,7 +599,6 @@ func (i *ItemService) SyncInGameItemShort(input *item.SyncInGameItemParams, auth
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ITEM [CREATE]'], 'authorization': []}]
 func (i *ItemService) CreateItemShort(input *item.CreateItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -616,7 +614,6 @@ func (i *ItemService) CreateItemShort(input *item.CreateItemParams, authInfoWrit
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ITEM [READ]'], 'authorization': []}]
 func (i *ItemService) GetItemByAppIDShort(input *item.GetItemByAppIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -632,7 +629,6 @@ func (i *ItemService) GetItemByAppIDShort(input *item.GetItemByAppIDParams, auth
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ITEM [READ]'], 'authorization': []}]
 func (i *ItemService) QueryItemsShort(input *item.QueryItemsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -648,7 +644,6 @@ func (i *ItemService) QueryItemsShort(input *item.QueryItemsParams, authInfoWrit
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ITEM [READ]'], 'authorization': []}]
 func (i *ItemService) ListBasicItemsByFeaturesShort(input *item.ListBasicItemsByFeaturesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.BasicItem, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -664,7 +659,6 @@ func (i *ItemService) ListBasicItemsByFeaturesShort(input *item.ListBasicItemsBy
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ITEM [READ]'], 'authorization': []}]
 func (i *ItemService) GetItemBySkuShort(input *item.GetItemBySkuParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -680,7 +674,6 @@ func (i *ItemService) GetItemBySkuShort(input *item.GetItemBySkuParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ITEM [READ]'], 'authorization': []}]
 func (i *ItemService) GetLocaleItemBySkuShort(input *item.GetLocaleItemBySkuParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PopulatedItemInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -696,7 +689,6 @@ func (i *ItemService) GetLocaleItemBySkuShort(input *item.GetLocaleItemBySkuPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ITEM [READ]'], 'authorization': []}]
 func (i *ItemService) GetItemIDBySkuShort(input *item.GetItemIDBySkuParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.ItemID, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -712,7 +704,6 @@ func (i *ItemService) GetItemIDBySkuShort(input *item.GetItemIDBySkuParams, auth
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ITEM [READ]'], 'authorization': []}]
 func (i *ItemService) BulkGetLocaleItemsShort(input *item.BulkGetLocaleItemsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.ItemInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -728,7 +719,6 @@ func (i *ItemService) BulkGetLocaleItemsShort(input *item.BulkGetLocaleItemsPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ITEM [READ]'], 'authorization': []}]
 func (i *ItemService) SearchItemsShort(input *item.SearchItemsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -744,7 +734,6 @@ func (i *ItemService) SearchItemsShort(input *item.SearchItemsParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ITEM [READ]'], 'authorization': []}]
 func (i *ItemService) QueryUncategorizedItemsShort(input *item.QueryUncategorizedItemsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -760,7 +749,6 @@ func (i *ItemService) QueryUncategorizedItemsShort(input *item.QueryUncategorize
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ITEM [READ]'], 'authorization': []}]
 func (i *ItemService) GetItemShort(input *item.GetItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -776,7 +764,6 @@ func (i *ItemService) GetItemShort(input *item.GetItemParams, authInfoWriter run
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ITEM [UPDATE]'], 'authorization': []}]
 func (i *ItemService) UpdateItemShort(input *item.UpdateItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -792,7 +779,6 @@ func (i *ItemService) UpdateItemShort(input *item.UpdateItemParams, authInfoWrit
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ITEM [DELETE]'], 'authorization': []}]
 func (i *ItemService) DeleteItemShort(input *item.DeleteItemParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -808,7 +794,6 @@ func (i *ItemService) DeleteItemShort(input *item.DeleteItemParams, authInfoWrit
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ITEM [UPDATE]'], 'authorization': []}]
 func (i *ItemService) AcquireItemShort(input *item.AcquireItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.ItemAcquireResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -824,7 +809,6 @@ func (i *ItemService) AcquireItemShort(input *item.AcquireItemParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ITEM [READ]'], 'authorization': []}]
 func (i *ItemService) GetAppShort(input *item.GetAppParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullAppInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -840,7 +824,6 @@ func (i *ItemService) GetAppShort(input *item.GetAppParams, authInfoWriter runti
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ITEM [UPDATE]'], 'authorization': []}]
 func (i *ItemService) UpdateAppShort(input *item.UpdateAppParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullAppInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -856,7 +839,6 @@ func (i *ItemService) UpdateAppShort(input *item.UpdateAppParams, authInfoWriter
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ITEM [UPDATE]'], 'authorization': []}]
 func (i *ItemService) DisableItemShort(input *item.DisableItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -872,7 +854,6 @@ func (i *ItemService) DisableItemShort(input *item.DisableItemParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ITEM [READ]'], 'authorization': []}]
 func (i *ItemService) GetItemDynamicDataShort(input *item.GetItemDynamicDataParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.ItemDynamicDataInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -888,7 +869,6 @@ func (i *ItemService) GetItemDynamicDataShort(input *item.GetItemDynamicDataPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ITEM [UPDATE]'], 'authorization': []}]
 func (i *ItemService) EnableItemShort(input *item.EnableItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -904,7 +884,6 @@ func (i *ItemService) EnableItemShort(input *item.EnableItemParams, authInfoWrit
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ITEM [UPDATE]'], 'authorization': []}]
 func (i *ItemService) FeatureItemShort(input *item.FeatureItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -920,7 +899,6 @@ func (i *ItemService) FeatureItemShort(input *item.FeatureItemParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ITEM [UPDATE]'], 'authorization': []}]
 func (i *ItemService) DefeatureItemShort(input *item.DefeatureItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -936,7 +914,6 @@ func (i *ItemService) DefeatureItemShort(input *item.DefeatureItemParams, authIn
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ITEM [READ]'], 'authorization': []}]
 func (i *ItemService) GetLocaleItemShort(input *item.GetLocaleItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PopulatedItemInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -952,7 +929,6 @@ func (i *ItemService) GetLocaleItemShort(input *item.GetLocaleItemParams, authIn
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ITEM [UPDATE]'], 'authorization': []}]
 func (i *ItemService) ReturnItemShort(input *item.ReturnItemParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -968,7 +944,6 @@ func (i *ItemService) ReturnItemShort(input *item.ReturnItemParams, authInfoWrit
 	return nil
 }
 
-// None
 func (i *ItemService) PublicGetItemByAppIDShort(input *item.PublicGetItemByAppIDParams) (*platformclientmodels.ItemInfo, error) {
 	ok, err := i.Client.Item.PublicGetItemByAppIDShort(input)
 	if err != nil {
@@ -978,7 +953,6 @@ func (i *ItemService) PublicGetItemByAppIDShort(input *item.PublicGetItemByAppID
 	return ok.GetPayload(), nil
 }
 
-// None
 func (i *ItemService) PublicQueryItemsShort(input *item.PublicQueryItemsParams) (*platformclientmodels.ItemPagingSlicedResult, error) {
 	ok, err := i.Client.Item.PublicQueryItemsShort(input)
 	if err != nil {
@@ -988,7 +962,6 @@ func (i *ItemService) PublicQueryItemsShort(input *item.PublicQueryItemsParams) 
 	return ok.GetPayload(), nil
 }
 
-// None
 func (i *ItemService) PublicGetItemBySkuShort(input *item.PublicGetItemBySkuParams) (*platformclientmodels.ItemInfo, error) {
 	ok, err := i.Client.Item.PublicGetItemBySkuShort(input)
 	if err != nil {
@@ -998,7 +971,6 @@ func (i *ItemService) PublicGetItemBySkuShort(input *item.PublicGetItemBySkuPara
 	return ok.GetPayload(), nil
 }
 
-// None
 func (i *ItemService) PublicBulkGetItemsShort(input *item.PublicBulkGetItemsParams) ([]*platformclientmodels.ItemInfo, error) {
 	ok, err := i.Client.Item.PublicBulkGetItemsShort(input)
 	if err != nil {
@@ -1008,7 +980,6 @@ func (i *ItemService) PublicBulkGetItemsShort(input *item.PublicBulkGetItemsPara
 	return ok.GetPayload(), nil
 }
 
-// None
 func (i *ItemService) PublicSearchItemsShort(input *item.PublicSearchItemsParams) (*platformclientmodels.ItemPagingSlicedResult, error) {
 	ok, err := i.Client.Item.PublicSearchItemsShort(input)
 	if err != nil {
@@ -1018,7 +989,6 @@ func (i *ItemService) PublicSearchItemsShort(input *item.PublicSearchItemsParams
 	return ok.GetPayload(), nil
 }
 
-// None
 func (i *ItemService) PublicGetAppShort(input *item.PublicGetAppParams) (*platformclientmodels.AppInfo, error) {
 	ok, err := i.Client.Item.PublicGetAppShort(input)
 	if err != nil {
@@ -1028,7 +998,6 @@ func (i *ItemService) PublicGetAppShort(input *item.PublicGetAppParams) (*platfo
 	return ok.GetPayload(), nil
 }
 
-// None
 func (i *ItemService) PublicGetItemDynamicDataShort(input *item.PublicGetItemDynamicDataParams) (*platformclientmodels.ItemDynamicDataInfo, error) {
 	ok, err := i.Client.Item.PublicGetItemDynamicDataShort(input)
 	if err != nil {
@@ -1038,7 +1007,6 @@ func (i *ItemService) PublicGetItemDynamicDataShort(input *item.PublicGetItemDyn
 	return ok.GetPayload(), nil
 }
 
-// None
 func (i *ItemService) PublicGetItemShort(input *item.PublicGetItemParams) (*platformclientmodels.PopulatedItemInfo, error) {
 	ok, err := i.Client.Item.PublicGetItemShort(input)
 	if err != nil {

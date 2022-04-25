@@ -355,7 +355,6 @@ func (p *PublicContentService) DeleteContentScreenshot(input *public_content.Del
 	return nil
 }
 
-// [{'authorization': []}]
 func (p *PublicContentService) SearchChannelSpecificContentShort(input *public_content.SearchChannelSpecificContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -371,7 +370,6 @@ func (p *PublicContentService) SearchChannelSpecificContentShort(input *public_c
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (p *PublicContentService) PublicSearchContentShort(input *public_content.PublicSearchContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -387,7 +385,6 @@ func (p *PublicContentService) PublicSearchContentShort(input *public_content.Pu
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (p *PublicContentService) DownloadContentByShareCodeShort(input *public_content.DownloadContentByShareCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -403,7 +400,6 @@ func (p *PublicContentService) DownloadContentByShareCodeShort(input *public_con
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (p *PublicContentService) PublicDownloadContentByContentIDShort(input *public_content.PublicDownloadContentByContentIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -419,7 +415,6 @@ func (p *PublicContentService) PublicDownloadContentByContentIDShort(input *publ
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (p *PublicContentService) PublicDownloadContentPreviewShort(input *public_content.PublicDownloadContentPreviewParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsGetContentPreviewResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -435,7 +430,6 @@ func (p *PublicContentService) PublicDownloadContentPreviewShort(input *public_c
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]'], 'authorization': []}]
 func (p *PublicContentService) CreateContentDirectShort(input *public_content.CreateContentDirectParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -451,7 +445,6 @@ func (p *PublicContentService) CreateContentDirectShort(input *public_content.Cr
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]'], 'authorization': []}]
 func (p *PublicContentService) CreateContentS3Short(input *public_content.CreateContentS3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -467,7 +460,6 @@ func (p *PublicContentService) CreateContentS3Short(input *public_content.Create
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]'], 'authorization': []}]
 func (p *PublicContentService) UpdateContentS3Short(input *public_content.UpdateContentS3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -483,7 +475,6 @@ func (p *PublicContentService) UpdateContentS3Short(input *public_content.Update
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]'], 'authorization': []}]
 func (p *PublicContentService) UpdateContentDirectShort(input *public_content.UpdateContentDirectParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -499,7 +490,6 @@ func (p *PublicContentService) UpdateContentDirectShort(input *public_content.Up
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]'], 'authorization': []}]
 func (p *PublicContentService) DeleteContentShort(input *public_content.DeleteContentParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -515,7 +505,6 @@ func (p *PublicContentService) DeleteContentShort(input *public_content.DeleteCo
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]'], 'authorization': []}]
 func (p *PublicContentService) PublicGetUserContentShort(input *public_content.PublicGetUserContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -531,7 +520,6 @@ func (p *PublicContentService) PublicGetUserContentShort(input *public_content.P
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]'], 'authorization': []}]
 func (p *PublicContentService) UpdateScreenshotsShort(input *public_content.UpdateScreenshotsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsUpdateScreenshotResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -547,7 +535,6 @@ func (p *PublicContentService) UpdateScreenshotsShort(input *public_content.Upda
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]'], 'authorization': []}]
 func (p *PublicContentService) UploadContentScreenshotShort(input *public_content.UploadContentScreenshotParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateScreenshotResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -563,7 +550,6 @@ func (p *PublicContentService) UploadContentScreenshotShort(input *public_conten
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]'], 'authorization': []}]
 func (p *PublicContentService) DeleteContentScreenshotShort(input *public_content.DeleteContentScreenshotParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

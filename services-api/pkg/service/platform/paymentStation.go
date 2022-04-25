@@ -159,7 +159,6 @@ func (p *PaymentStationService) GetPaymentTaxValue(input *payment_station.GetPay
 	return ok.GetPayload(), nil
 }
 
-// None
 func (p *PaymentStationService) GetPaymentCustomizationShort(input *payment_station.GetPaymentCustomizationParams) (*platformclientmodels.Customization, error) {
 	ok, err := p.Client.PaymentStation.GetPaymentCustomizationShort(input)
 	if err != nil {
@@ -169,7 +168,6 @@ func (p *PaymentStationService) GetPaymentCustomizationShort(input *payment_stat
 	return ok.GetPayload(), nil
 }
 
-// None
 func (p *PaymentStationService) PublicGetPaymentURLShort(input *payment_station.PublicGetPaymentURLParams) (*platformclientmodels.PaymentURL, error) {
 	ok, err := p.Client.PaymentStation.PublicGetPaymentURLShort(input)
 	if err != nil {
@@ -179,7 +177,6 @@ func (p *PaymentStationService) PublicGetPaymentURLShort(input *payment_station.
 	return ok.GetPayload(), nil
 }
 
-// None
 func (p *PaymentStationService) PublicGetPaymentMethodsShort(input *payment_station.PublicGetPaymentMethodsParams) ([]*platformclientmodels.PaymentMethod, error) {
 	ok, err := p.Client.PaymentStation.PublicGetPaymentMethodsShort(input)
 	if err != nil {
@@ -189,7 +186,6 @@ func (p *PaymentStationService) PublicGetPaymentMethodsShort(input *payment_stat
 	return ok.GetPayload(), nil
 }
 
-// None
 func (p *PaymentStationService) PublicGetUnpaidPaymentOrderShort(input *payment_station.PublicGetUnpaidPaymentOrderParams) (*platformclientmodels.PaymentOrderDetails, error) {
 	ok, err := p.Client.PaymentStation.PublicGetUnpaidPaymentOrderShort(input)
 	if err != nil {
@@ -199,7 +195,6 @@ func (p *PaymentStationService) PublicGetUnpaidPaymentOrderShort(input *payment_
 	return ok.GetPayload(), nil
 }
 
-// None
 func (p *PaymentStationService) PayShort(input *payment_station.PayParams) (*platformclientmodels.PaymentProcessResult, error) {
 	ok, err := p.Client.PaymentStation.PayShort(input)
 	if err != nil {
@@ -209,7 +204,6 @@ func (p *PaymentStationService) PayShort(input *payment_station.PayParams) (*pla
 	return ok.GetPayload(), nil
 }
 
-// None
 func (p *PaymentStationService) PublicCheckPaymentOrderPaidStatusShort(input *payment_station.PublicCheckPaymentOrderPaidStatusParams) (*platformclientmodels.PaymentOrderPaidResult, error) {
 	ok, err := p.Client.PaymentStation.PublicCheckPaymentOrderPaidStatusShort(input)
 	if err != nil {
@@ -219,7 +213,6 @@ func (p *PaymentStationService) PublicCheckPaymentOrderPaidStatusShort(input *pa
 	return ok.GetPayload(), nil
 }
 
-// None
 func (p *PaymentStationService) GetPaymentPublicConfigShort(input *payment_station.GetPaymentPublicConfigParams) (map[string]interface{}, error) {
 	ok, err := p.Client.PaymentStation.GetPaymentPublicConfigShort(input)
 	if err != nil {
@@ -229,7 +222,6 @@ func (p *PaymentStationService) GetPaymentPublicConfigShort(input *payment_stati
 	return ok.GetPayload(), nil
 }
 
-// None
 func (p *PaymentStationService) PublicGetQRCodeShort(input *payment_station.PublicGetQRCodeParams, writer io.Writer) (io.Writer, error) {
 	ok, err := p.Client.PaymentStation.PublicGetQRCodeShort(input, writer)
 	if err != nil {
@@ -239,7 +231,6 @@ func (p *PaymentStationService) PublicGetQRCodeShort(input *payment_station.Publ
 	return ok.GetPayload(), nil
 }
 
-// None
 func (p *PaymentStationService) PublicNormalizePaymentReturnURLShort(input *payment_station.PublicNormalizePaymentReturnURLParams) error {
 	_, err := p.Client.PaymentStation.PublicNormalizePaymentReturnURLShort(input)
 	if err != nil {
@@ -249,7 +240,6 @@ func (p *PaymentStationService) PublicNormalizePaymentReturnURLShort(input *paym
 	return nil
 }
 
-// None
 func (p *PaymentStationService) GetPaymentTaxValueShort(input *payment_station.GetPaymentTaxValueParams) (*platformclientmodels.TaxResult, error) {
 	ok, err := p.Client.PaymentStation.GetPaymentTaxValueShort(input)
 	if err != nil {

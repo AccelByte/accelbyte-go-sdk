@@ -165,7 +165,6 @@ func (s *StatConfigurationService) CreateStat1(input *stat_configuration.CreateS
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:STAT [READ]'], 'authorization': []}]
 func (s *StatConfigurationService) GetStatsShort(input *stat_configuration.GetStatsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.StatPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -181,7 +180,6 @@ func (s *StatConfigurationService) GetStatsShort(input *stat_configuration.GetSt
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:STAT [CREATE]'], 'authorization': []}]
 func (s *StatConfigurationService) CreateStatShort(input *stat_configuration.CreateStatParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.StatInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -197,7 +195,6 @@ func (s *StatConfigurationService) CreateStatShort(input *stat_configuration.Cre
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:STAT [READ]'], 'authorization': []}]
 func (s *StatConfigurationService) ExportStatsShort(input *stat_configuration.ExportStatsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -213,7 +210,6 @@ func (s *StatConfigurationService) ExportStatsShort(input *stat_configuration.Ex
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:STAT [CREATE]'], 'authorization': []}]
 func (s *StatConfigurationService) ImportStatsShort(input *stat_configuration.ImportStatsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.StatImportInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -229,7 +225,6 @@ func (s *StatConfigurationService) ImportStatsShort(input *stat_configuration.Im
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:STAT [READ]'], 'authorization': []}]
 func (s *StatConfigurationService) QueryStatsShort(input *stat_configuration.QueryStatsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.StatPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -245,7 +240,6 @@ func (s *StatConfigurationService) QueryStatsShort(input *stat_configuration.Que
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:STAT [READ]'], 'authorization': []}]
 func (s *StatConfigurationService) GetStatShort(input *stat_configuration.GetStatParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.StatInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -261,7 +255,6 @@ func (s *StatConfigurationService) GetStatShort(input *stat_configuration.GetSta
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:STAT [DELETE]'], 'authorization': []}]
 func (s *StatConfigurationService) DeleteStatShort(input *stat_configuration.DeleteStatParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -277,7 +270,6 @@ func (s *StatConfigurationService) DeleteStatShort(input *stat_configuration.Del
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:STAT [UPDATE]'], 'authorization': []}]
 func (s *StatConfigurationService) UpdateStatShort(input *stat_configuration.UpdateStatParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.StatInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -293,7 +285,6 @@ func (s *StatConfigurationService) UpdateStatShort(input *stat_configuration.Upd
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:STAT [CREATE]'], 'authorization': []}]
 func (s *StatConfigurationService) CreateStat1Short(input *stat_configuration.CreateStat1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.StatInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

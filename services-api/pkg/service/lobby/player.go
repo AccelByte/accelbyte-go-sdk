@@ -279,7 +279,6 @@ func (p *PlayerService) PublicGetPlayerBlockedByPlayersV1(input *player.PublicGe
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:LOBBY:CCU [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PlayerService) AdminGetLobbyCCUShort(input *player.AdminGetLobbyCCUParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsGetLobbyCcuResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -295,7 +294,6 @@ func (p *PlayerService) AdminGetLobbyCCUShort(input *player.AdminGetLobbyCCUPara
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PlayerService) AdminGetAllPlayerSessionAttributeShort(input *player.AdminGetAllPlayerSessionAttributeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsGetAllPlayerSessionAttributeResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -311,7 +309,6 @@ func (p *PlayerService) AdminGetAllPlayerSessionAttributeShort(input *player.Adm
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PlayerService) AdminSetPlayerSessionAttributeShort(input *player.AdminSetPlayerSessionAttributeParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -327,7 +324,6 @@ func (p *PlayerService) AdminSetPlayerSessionAttributeShort(input *player.AdminS
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PlayerService) AdminGetPlayerSessionAttributeShort(input *player.AdminGetPlayerSessionAttributeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsGetPlayerSessionAttributeResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -343,7 +339,6 @@ func (p *PlayerService) AdminGetPlayerSessionAttributeShort(input *player.AdminG
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PlayerService) AdminGetPlayerBlockedPlayersV1Short(input *player.AdminGetPlayerBlockedPlayersV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsGetAllPlayerBlockedUsersResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -359,7 +354,6 @@ func (p *PlayerService) AdminGetPlayerBlockedPlayersV1Short(input *player.AdminG
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PlayerService) AdminGetPlayerBlockedByPlayersV1Short(input *player.AdminGetPlayerBlockedByPlayersV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsGetAllPlayerBlockedByUsersResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -375,7 +369,6 @@ func (p *PlayerService) AdminGetPlayerBlockedByPlayersV1Short(input *player.Admi
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:BLOCK [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PlayerService) AdminBulkBlockPlayersV1Short(input *player.AdminBulkBlockPlayersV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -391,7 +384,6 @@ func (p *PlayerService) AdminBulkBlockPlayersV1Short(input *player.AdminBulkBloc
 	return nil
 }
 
-// [{'authorization': []}]
 func (p *PlayerService) PublicGetPlayerBlockedPlayersV1Short(input *player.PublicGetPlayerBlockedPlayersV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsGetAllPlayerBlockedUsersResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -407,7 +399,6 @@ func (p *PlayerService) PublicGetPlayerBlockedPlayersV1Short(input *player.Publi
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (p *PlayerService) PublicGetPlayerBlockedByPlayersV1Short(input *player.PublicGetPlayerBlockedByPlayersV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsGetAllPlayerBlockedByUsersResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

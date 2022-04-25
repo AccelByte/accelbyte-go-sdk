@@ -149,7 +149,6 @@ func (e *EventV2Service) GetUserEventsV2Public(input *event_v2.GetUserEventsV2Pu
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:EVENT [READ]'], 'authorization': []}]
 func (e *EventV2Service) QueryEventStreamHandlerShort(input *event_v2.QueryEventStreamHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponseV2, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -165,7 +164,6 @@ func (e *EventV2Service) QueryEventStreamHandlerShort(input *event_v2.QueryEvent
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:EVENT [READ]'], 'HasScope': ['analytics'], 'authorization': []}]
 func (e *EventV2Service) GetEventSpecificUserV2HandlerShort(input *event_v2.GetEventSpecificUserV2HandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponseV2, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -181,7 +179,6 @@ func (e *EventV2Service) GetEventSpecificUserV2HandlerShort(input *event_v2.GetE
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (e *EventV2Service) GetPublicEditHistoryShort(input *event_v2.GetPublicEditHistoryParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponseV2, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -197,7 +194,6 @@ func (e *EventV2Service) GetPublicEditHistoryShort(input *event_v2.GetPublicEdit
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (e *EventV2Service) GetUserEventsV2PublicShort(input *event_v2.GetUserEventsV2PublicParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponseV2, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

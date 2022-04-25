@@ -162,7 +162,6 @@ func (p *PublicGroupService) GetGroupContent(input *public_group.GetGroupContent
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]'], 'authorization': []}]
 func (p *PublicGroupService) GetGroupsShort(input *public_group.GetGroupsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedGroupResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -178,7 +177,6 @@ func (p *PublicGroupService) GetGroupsShort(input *public_group.GetGroupsParams,
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [CREATE]'], 'authorization': []}]
 func (p *PublicGroupService) CreateGroupShort(input *public_group.CreateGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -194,7 +192,6 @@ func (p *PublicGroupService) CreateGroupShort(input *public_group.CreateGroupPar
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [READ]'], 'authorization': []}]
 func (p *PublicGroupService) GetGroupShort(input *public_group.GetGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -210,7 +207,6 @@ func (p *PublicGroupService) GetGroupShort(input *public_group.GetGroupParams, a
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [UPDATE]'], 'authorization': []}]
 func (p *PublicGroupService) UpdateGroupShort(input *public_group.UpdateGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -226,7 +222,6 @@ func (p *PublicGroupService) UpdateGroupShort(input *public_group.UpdateGroupPar
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CONTENTGROUP [DELETE]'], 'authorization': []}]
 func (p *PublicGroupService) DeleteGroupShort(input *public_group.DeleteGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -242,7 +237,6 @@ func (p *PublicGroupService) DeleteGroupShort(input *public_group.DeleteGroupPar
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]'], 'authorization': []}]
 func (p *PublicGroupService) GetGroupContentShort(input *public_group.GetGroupContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

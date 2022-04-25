@@ -131,7 +131,6 @@ func (f *FileUploadService) PublicGeneratedUserUploadContentURL(input *file_uplo
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:FILEUPLOAD [CREATE]'], 'authorization': []}]
 func (f *FileUploadService) GeneratedUploadURLShort(input *file_upload.GeneratedUploadURLParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.FileUploadURLInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -147,7 +146,6 @@ func (f *FileUploadService) GeneratedUploadURLShort(input *file_upload.Generated
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD [CREATE]'], 'authorization': []}]
 func (f *FileUploadService) GeneratedUserUploadContentURLShort(input *file_upload.GeneratedUserUploadContentURLParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.FileUploadURLInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -163,7 +161,6 @@ func (f *FileUploadService) GeneratedUserUploadContentURLShort(input *file_uploa
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:FILEUPLOAD [CREATE]'], 'authorization': []}]
 func (f *FileUploadService) PublicGeneratedUploadURLShort(input *file_upload.PublicGeneratedUploadURLParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.FileUploadURLInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -179,7 +176,6 @@ func (f *FileUploadService) PublicGeneratedUploadURLShort(input *file_upload.Pub
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:FILEUPLOAD [CREATE]'], 'authorization': []}]
 func (f *FileUploadService) PublicGeneratedUserUploadContentURLShort(input *file_upload.PublicGeneratedUserUploadContentURLParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.FileUploadURLInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

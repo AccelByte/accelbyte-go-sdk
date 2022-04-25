@@ -157,7 +157,6 @@ func (c *ConfigService) AdminImportConfigV1(input *config.AdminImportConfigV1Par
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:*:LOBBY:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (c *ConfigService) AdminGetAllConfigV1Short(input *config.AdminGetAllConfigV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsConfigList, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -173,7 +172,6 @@ func (c *ConfigService) AdminGetAllConfigV1Short(input *config.AdminGetAllConfig
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (c *ConfigService) AdminGetConfigV1Short(input *config.AdminGetConfigV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsConfigReq, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -189,7 +187,6 @@ func (c *ConfigService) AdminGetConfigV1Short(input *config.AdminGetConfigV1Para
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (c *ConfigService) AdminUpdateConfigV1Short(input *config.AdminUpdateConfigV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsConfigReq, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -205,7 +202,6 @@ func (c *ConfigService) AdminUpdateConfigV1Short(input *config.AdminUpdateConfig
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (c *ConfigService) AdminExportConfigV1Short(input *config.AdminExportConfigV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsConfigExport, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -221,7 +217,6 @@ func (c *ConfigService) AdminExportConfigV1Short(input *config.AdminExportConfig
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:LOBBY:CONFIG [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (c *ConfigService) AdminImportConfigV1Short(input *config.AdminImportConfigV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsImportConfigResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

@@ -108,7 +108,6 @@ func (s *SessionService) GetSession(input *session.GetSessionParams) (*dsmcclien
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:DSM:SESSION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsSessionResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -124,7 +123,6 @@ func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams, 
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:DSM:SESSION [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (s *SessionService) ClaimServerShort(input *session.ClaimServerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -140,7 +138,6 @@ func (s *SessionService) ClaimServerShort(input *session.ClaimServerParams, auth
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:DSM:SESSION [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (s *SessionService) GetSessionShort(input *session.GetSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsSessionResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

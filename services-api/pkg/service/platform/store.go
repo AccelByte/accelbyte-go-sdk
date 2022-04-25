@@ -250,7 +250,6 @@ func (s *StoreService) PublicListStores(input *store.PublicListStoresParams) ([]
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:STORE [READ]'], 'authorization': []}]
 func (s *StoreService) ListStoresShort(input *store.ListStoresParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.StoreInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -266,7 +265,6 @@ func (s *StoreService) ListStoresShort(input *store.ListStoresParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:STORE [CREATE]'], 'authorization': []}]
 func (s *StoreService) CreateStoreShort(input *store.CreateStoreParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.StoreInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -282,7 +280,6 @@ func (s *StoreService) CreateStoreShort(input *store.CreateStoreParams, authInfo
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:STORE [UPDATE]'], 'authorization': []}]
 func (s *StoreService) ImportStoreShort(input *store.ImportStoreParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.StoreInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -298,7 +295,6 @@ func (s *StoreService) ImportStoreShort(input *store.ImportStoreParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:STORE [READ]'], 'authorization': []}]
 func (s *StoreService) GetPublishedStoreShort(input *store.GetPublishedStoreParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.StoreInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -314,7 +310,6 @@ func (s *StoreService) GetPublishedStoreShort(input *store.GetPublishedStorePara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:STORE [DELETE]'], 'authorization': []}]
 func (s *StoreService) DeletePublishedStoreShort(input *store.DeletePublishedStoreParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.StoreInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -330,7 +325,6 @@ func (s *StoreService) DeletePublishedStoreShort(input *store.DeletePublishedSto
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:STORE [READ]'], 'authorization': []}]
 func (s *StoreService) GetPublishedStoreBackupShort(input *store.GetPublishedStoreBackupParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.StoreBackupInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -346,7 +340,6 @@ func (s *StoreService) GetPublishedStoreBackupShort(input *store.GetPublishedSto
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:STORE [UPDATE]'], 'authorization': []}]
 func (s *StoreService) RollbackPublishedStoreShort(input *store.RollbackPublishedStoreParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.StoreInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -362,7 +355,6 @@ func (s *StoreService) RollbackPublishedStoreShort(input *store.RollbackPublishe
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:STORE [READ]'], 'authorization': []}]
 func (s *StoreService) GetStoreShort(input *store.GetStoreParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.StoreInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -378,7 +370,6 @@ func (s *StoreService) GetStoreShort(input *store.GetStoreParams, authInfoWriter
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:STORE [UPDATE]'], 'authorization': []}]
 func (s *StoreService) UpdateStoreShort(input *store.UpdateStoreParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.StoreInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -394,7 +385,6 @@ func (s *StoreService) UpdateStoreShort(input *store.UpdateStoreParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:STORE [DELETE]'], 'authorization': []}]
 func (s *StoreService) DeleteStoreShort(input *store.DeleteStoreParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.StoreInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -410,7 +400,6 @@ func (s *StoreService) DeleteStoreShort(input *store.DeleteStoreParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:STORE [CREATE]'], 'authorization': []}]
 func (s *StoreService) CloneStoreShort(input *store.CloneStoreParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.StoreInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -426,7 +415,6 @@ func (s *StoreService) CloneStoreShort(input *store.CloneStoreParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:STORE [READ]'], 'authorization': []}]
 func (s *StoreService) ExportStoreShort(input *store.ExportStoreParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -442,7 +430,6 @@ func (s *StoreService) ExportStoreShort(input *store.ExportStoreParams, authInfo
 	return nil
 }
 
-// None
 func (s *StoreService) PublicListStoresShort(input *store.PublicListStoresParams) ([]*platformclientmodels.StoreInfo, error) {
 	ok, err := s.Client.Store.PublicListStoresShort(input)
 	if err != nil {

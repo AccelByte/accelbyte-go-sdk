@@ -72,7 +72,6 @@ func (a *AdminConcurrentRecordService) AdminPutPlayerPublicRecordConcurrentHandl
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]', 'CLIENT []'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminConcurrentRecordService) AdminPutGameRecordConcurrentHandlerV1Short(input *admin_concurrent_record.AdminPutGameRecordConcurrentHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -88,7 +87,6 @@ func (a *AdminConcurrentRecordService) AdminPutGameRecordConcurrentHandlerV1Shor
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]', 'CLIENT []'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminConcurrentRecordService) AdminPutPlayerPublicRecordConcurrentHandlerV1Short(input *admin_concurrent_record.AdminPutPlayerPublicRecordConcurrentHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

@@ -670,7 +670,6 @@ func (m *MatchmakingService) SearchSessionsV2(input *matchmaking.SearchSessionsV
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (m *MatchmakingService) GetAllChannelsHandlerShort(input *matchmaking.GetAllChannelsHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ModelsGetChannelsResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -686,7 +685,6 @@ func (m *MatchmakingService) GetAllChannelsHandlerShort(input *matchmaking.GetAl
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (m *MatchmakingService) CreateChannelHandlerShort(input *matchmaking.CreateChannelHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ModelsCreateChannelResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -702,7 +700,6 @@ func (m *MatchmakingService) CreateChannelHandlerShort(input *matchmaking.Create
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Delete]'], 'HasScope': ['social'], 'authorization': []}]
 func (m *MatchmakingService) DeleteChannelHandlerShort(input *matchmaking.DeleteChannelHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -718,7 +715,6 @@ func (m *MatchmakingService) DeleteChannelHandlerShort(input *matchmaking.Delete
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:MATCHRESULT [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (m *MatchmakingService) StoreMatchResultsShort(input *matchmaking.StoreMatchResultsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ModelsMatchResultResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -734,7 +730,6 @@ func (m *MatchmakingService) StoreMatchResultsShort(input *matchmaking.StoreMatc
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:SESSION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (m *MatchmakingService) QueueSessionHandlerShort(input *matchmaking.QueueSessionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -750,7 +745,6 @@ func (m *MatchmakingService) QueueSessionHandlerShort(input *matchmaking.QueueSe
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:SESSION [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (m *MatchmakingService) DequeueSessionHandlerShort(input *matchmaking.DequeueSessionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -766,7 +760,6 @@ func (m *MatchmakingService) DequeueSessionHandlerShort(input *matchmaking.Deque
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:SESSION [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (m *MatchmakingService) QuerySessionHandlerShort(input *matchmaking.QuerySessionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ModelsMatchmakingResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -782,7 +775,6 @@ func (m *MatchmakingService) QuerySessionHandlerShort(input *matchmaking.QuerySe
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]'], 'HasScope': ['social'], 'authorization': []}]
 func (m *MatchmakingService) GetAllPartyInAllChannelShort(input *matchmaking.GetAllPartyInAllChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) (map[string][]matchmakingclientmodels.ModelsMatchingParty, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -798,7 +790,6 @@ func (m *MatchmakingService) GetAllPartyInAllChannelShort(input *matchmaking.Get
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]'], 'HasScope': ['social'], 'authorization': []}]
 func (m *MatchmakingService) BulkGetSessionsShort(input *matchmaking.BulkGetSessionsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*matchmakingclientmodels.ModelsMatchmakingResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -814,7 +805,6 @@ func (m *MatchmakingService) BulkGetSessionsShort(input *matchmaking.BulkGetSess
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]'], 'HasScope': ['social'], 'authorization': []}]
 func (m *MatchmakingService) ExportChannelsShort(input *matchmaking.ExportChannelsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*matchmakingclientmodels.ModelsChannelV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -830,7 +820,6 @@ func (m *MatchmakingService) ExportChannelsShort(input *matchmaking.ExportChanne
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Update]'], 'HasScope': ['social'], 'authorization': []}]
 func (m *MatchmakingService) ImportChannelsShort(input *matchmaking.ImportChannelsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ModelsImportConfigResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -846,7 +835,6 @@ func (m *MatchmakingService) ImportChannelsShort(input *matchmaking.ImportChanne
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (m *MatchmakingService) GetSingleMatchmakingChannelShort(input *matchmaking.GetSingleMatchmakingChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ModelsChannelV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -862,7 +850,6 @@ func (m *MatchmakingService) GetSingleMatchmakingChannelShort(input *matchmaking
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Update]'], 'HasScope': ['social'], 'authorization': []}]
 func (m *MatchmakingService) UpdateMatchmakingChannelShort(input *matchmaking.UpdateMatchmakingChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -878,7 +865,6 @@ func (m *MatchmakingService) UpdateMatchmakingChannelShort(input *matchmaking.Up
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]'], 'HasScope': ['social'], 'authorization': []}]
 func (m *MatchmakingService) GetAllPartyInChannelShort(input *matchmaking.GetAllPartyInChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*matchmakingclientmodels.ModelsMatchingParty, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -894,7 +880,6 @@ func (m *MatchmakingService) GetAllPartyInChannelShort(input *matchmaking.GetAll
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]'], 'HasScope': ['social'], 'authorization': []}]
 func (m *MatchmakingService) GetAllSessionsInChannelShort(input *matchmaking.GetAllSessionsInChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*matchmakingclientmodels.ModelsMatchmakingResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -910,7 +895,6 @@ func (m *MatchmakingService) GetAllSessionsInChannelShort(input *matchmaking.Get
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Create]'], 'HasScope': ['social'], 'authorization': []}]
 func (m *MatchmakingService) AddUserIntoSessionInChannelShort(input *matchmaking.AddUserIntoSessionInChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -926,7 +910,6 @@ func (m *MatchmakingService) AddUserIntoSessionInChannelShort(input *matchmaking
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Delete]'], 'HasScope': ['social'], 'authorization': []}]
 func (m *MatchmakingService) DeleteSessionInChannelShort(input *matchmaking.DeleteSessionInChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -942,7 +925,6 @@ func (m *MatchmakingService) DeleteSessionInChannelShort(input *matchmaking.Dele
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Delete]'], 'HasScope': ['social'], 'authorization': []}]
 func (m *MatchmakingService) DeleteUserFromSessionInChannelShort(input *matchmaking.DeleteUserFromSessionInChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -958,7 +940,6 @@ func (m *MatchmakingService) DeleteUserFromSessionInChannelShort(input *matchmak
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]'], 'HasScope': ['social'], 'authorization': []}]
 func (m *MatchmakingService) SearchSessionsShort(input *matchmaking.SearchSessionsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ServiceGetSessionHistorySearchResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -974,7 +955,6 @@ func (m *MatchmakingService) SearchSessionsShort(input *matchmaking.SearchSessio
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]'], 'HasScope': ['social'], 'authorization': []}]
 func (m *MatchmakingService) GetSessionHistoryDetailedShort(input *matchmaking.GetSessionHistoryDetailedParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*matchmakingclientmodels.ServiceGetSessionHistoryDetailedResponseItem, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -990,7 +970,6 @@ func (m *MatchmakingService) GetSessionHistoryDetailedShort(input *matchmaking.G
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (m *MatchmakingService) PublicGetAllMatchmakingChannelShort(input *matchmaking.PublicGetAllMatchmakingChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*matchmakingclientmodels.ModelsChannelV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1006,7 +985,6 @@ func (m *MatchmakingService) PublicGetAllMatchmakingChannelShort(input *matchmak
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (m *MatchmakingService) PublicGetSingleMatchmakingChannelShort(input *matchmaking.PublicGetSingleMatchmakingChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ModelsChannelV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1022,7 +1000,6 @@ func (m *MatchmakingService) PublicGetSingleMatchmakingChannelShort(input *match
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:MATCHMAKING:CHANNEL [Read]'], 'HasScope': ['social'], 'authorization': []}]
 func (m *MatchmakingService) SearchSessionsV2Short(input *matchmaking.SearchSessionsV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ServiceGetSessionHistorySearchResponseV2, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

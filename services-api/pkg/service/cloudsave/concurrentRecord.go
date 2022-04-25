@@ -72,7 +72,6 @@ func (c *ConcurrentRecordService) PutPlayerPublicRecordConcurrentHandlerV1(input
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (c *ConcurrentRecordService) PutGameRecordConcurrentHandlerV1Short(input *concurrent_record.PutGameRecordConcurrentHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -88,7 +87,6 @@ func (c *ConcurrentRecordService) PutGameRecordConcurrentHandlerV1Short(input *c
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (c *ConcurrentRecordService) PutPlayerPublicRecordConcurrentHandlerV1Short(input *concurrent_record.PutPlayerPublicRecordConcurrentHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

@@ -38,7 +38,6 @@ func (d *DslogmanagerOperationsService) PublicGetMessages(input *dslogmanager_op
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (d *DslogmanagerOperationsService) PublicGetMessagesShort(input *dslogmanager_operations.PublicGetMessagesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*dslogmanagerclientmodels.LogAppMessageDeclaration, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

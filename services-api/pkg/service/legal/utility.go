@@ -35,7 +35,6 @@ func (u *UtilityService) CheckReadiness(input *utility.CheckReadinessParams) (*l
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:LEGAL [READ]'], 'authorization': []}]
 func (u *UtilityService) CheckReadinessShort(input *utility.CheckReadinessParams, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.LegalReadinessStatusResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

@@ -67,7 +67,6 @@ func (p *PublicLikeService) UpdateContentLikeStatus(input *public_like.UpdateCon
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (p *PublicLikeService) GetLikedContentShort(input *public_like.GetLikedContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -83,7 +82,6 @@ func (p *PublicLikeService) GetLikedContentShort(input *public_like.GetLikedCont
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (p *PublicLikeService) UpdateContentLikeStatusShort(input *public_like.UpdateContentLikeStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsContentLikeResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

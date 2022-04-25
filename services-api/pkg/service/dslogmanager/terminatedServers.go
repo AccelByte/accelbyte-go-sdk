@@ -84,7 +84,6 @@ func (t *TerminatedServersService) CheckServerLogs(input *terminated_servers.Che
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]'], 'authorization': []}]
 func (t *TerminatedServersService) ListTerminatedServersShort(input *terminated_servers.ListTerminatedServersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dslogmanagerclientmodels.ModelsListTerminatedServersResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -100,7 +99,6 @@ func (t *TerminatedServersService) ListTerminatedServersShort(input *terminated_
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (t *TerminatedServersService) DownloadServerLogsShort(input *terminated_servers.DownloadServerLogsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -116,7 +114,6 @@ func (t *TerminatedServersService) DownloadServerLogsShort(input *terminated_ser
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (t *TerminatedServersService) CheckServerLogsShort(input *terminated_servers.CheckServerLogsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dslogmanagerclientmodels.ModelsLogFileStatus, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

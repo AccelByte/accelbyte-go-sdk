@@ -132,7 +132,6 @@ func (a *AnonymizationService) AnonymizeWallet(input *anonymization.AnonymizeWal
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]'], 'authorization': []}]
 func (a *AnonymizationService) AnonymizeCampaignShort(input *anonymization.AnonymizeCampaignParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -148,7 +147,6 @@ func (a *AnonymizationService) AnonymizeCampaignShort(input *anonymization.Anony
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]'], 'authorization': []}]
 func (a *AnonymizationService) AnonymizeEntitlementShort(input *anonymization.AnonymizeEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -164,7 +162,6 @@ func (a *AnonymizationService) AnonymizeEntitlementShort(input *anonymization.An
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]'], 'authorization': []}]
 func (a *AnonymizationService) AnonymizeFulfillmentShort(input *anonymization.AnonymizeFulfillmentParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -180,7 +177,6 @@ func (a *AnonymizationService) AnonymizeFulfillmentShort(input *anonymization.An
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]'], 'authorization': []}]
 func (a *AnonymizationService) AnonymizeIntegrationShort(input *anonymization.AnonymizeIntegrationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -196,7 +192,6 @@ func (a *AnonymizationService) AnonymizeIntegrationShort(input *anonymization.An
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]'], 'authorization': []}]
 func (a *AnonymizationService) AnonymizeOrderShort(input *anonymization.AnonymizeOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -212,7 +207,6 @@ func (a *AnonymizationService) AnonymizeOrderShort(input *anonymization.Anonymiz
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]'], 'authorization': []}]
 func (a *AnonymizationService) AnonymizePaymentShort(input *anonymization.AnonymizePaymentParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -228,7 +222,6 @@ func (a *AnonymizationService) AnonymizePaymentShort(input *anonymization.Anonym
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]'], 'authorization': []}]
 func (a *AnonymizationService) AnonymizeSubscriptionShort(input *anonymization.AnonymizeSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -244,7 +237,6 @@ func (a *AnonymizationService) AnonymizeSubscriptionShort(input *anonymization.A
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]'], 'authorization': []}]
 func (a *AnonymizationService) AnonymizeWalletShort(input *anonymization.AnonymizeWalletParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

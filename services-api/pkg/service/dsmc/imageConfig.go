@@ -341,7 +341,6 @@ func (i *ImageConfigService) ImageDetailClient(input *image_config.ImageDetailCl
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (i *ImageConfigService) UpdateImageShort(input *image_config.UpdateImageParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -357,7 +356,6 @@ func (i *ImageConfigService) UpdateImageShort(input *image_config.UpdateImagePar
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (i *ImageConfigService) CreateImageShort(input *image_config.CreateImageParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -373,7 +371,6 @@ func (i *ImageConfigService) CreateImageShort(input *image_config.CreateImagePar
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (i *ImageConfigService) ImportImagesShort(input *image_config.ImportImagesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsImportResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -389,7 +386,6 @@ func (i *ImageConfigService) ImportImagesShort(input *image_config.ImportImagesP
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (i *ImageConfigService) CreateImagePatchShort(input *image_config.CreateImagePatchParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -405,7 +401,6 @@ func (i *ImageConfigService) CreateImagePatchShort(input *image_config.CreateIma
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (i *ImageConfigService) ListImagesShort(input *image_config.ListImagesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListImageResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -421,7 +416,6 @@ func (i *ImageConfigService) ListImagesShort(input *image_config.ListImagesParam
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (i *ImageConfigService) DeleteImageShort(input *image_config.DeleteImageParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -437,7 +431,6 @@ func (i *ImageConfigService) DeleteImageShort(input *image_config.DeleteImagePar
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (i *ImageConfigService) ExportImagesShort(input *image_config.ExportImagesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*dsmcclientmodels.ModelsImageRecord, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -453,7 +446,6 @@ func (i *ImageConfigService) ExportImagesShort(input *image_config.ExportImagesP
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (i *ImageConfigService) GetImageLimitShort(input *image_config.GetImageLimitParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsGetImageLimitResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -469,7 +461,6 @@ func (i *ImageConfigService) GetImageLimitShort(input *image_config.GetImageLimi
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (i *ImageConfigService) DeleteImagePatchShort(input *image_config.DeleteImagePatchParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -485,7 +476,6 @@ func (i *ImageConfigService) DeleteImagePatchShort(input *image_config.DeleteIma
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (i *ImageConfigService) GetImageDetailShort(input *image_config.GetImageDetailParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -501,7 +491,6 @@ func (i *ImageConfigService) GetImageDetailShort(input *image_config.GetImageDet
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (i *ImageConfigService) GetImagePatchesShort(input *image_config.GetImagePatchesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListImagePatchesResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -517,7 +506,6 @@ func (i *ImageConfigService) GetImagePatchesShort(input *image_config.GetImagePa
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (i *ImageConfigService) GetImagePatchDetailShort(input *image_config.GetImagePatchDetailParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsGetImagePatchDetailResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -533,7 +521,6 @@ func (i *ImageConfigService) GetImagePatchDetailShort(input *image_config.GetIma
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (i *ImageConfigService) ImageDetailClientShort(input *image_config.ImageDetailClientParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsGetImageDetailResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

@@ -106,7 +106,6 @@ func (p *PolicyVersionsService) RetrievePolicyVersions(input *policy_versions.Re
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [UPDATE]'], 'authorization': []}]
 func (p *PolicyVersionsService) UpdatePolicyVersionShort(input *policy_versions.UpdatePolicyVersionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.UpdatePolicyVersionResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -122,7 +121,6 @@ func (p *PolicyVersionsService) UpdatePolicyVersionShort(input *policy_versions.
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [UPDATE]'], 'authorization': []}]
 func (p *PolicyVersionsService) PublishPolicyVersionShort(input *policy_versions.PublishPolicyVersionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -138,7 +136,6 @@ func (p *PolicyVersionsService) PublishPolicyVersionShort(input *policy_versions
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [READ]'], 'authorization': []}]
 func (p *PolicyVersionsService) RetrieveSinglePolicyVersionShort(input *policy_versions.RetrieveSinglePolicyVersionParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrievePolicyVersionResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -154,7 +151,6 @@ func (p *PolicyVersionsService) RetrieveSinglePolicyVersionShort(input *policy_v
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [CREATE]'], 'authorization': []}]
 func (p *PolicyVersionsService) CreatePolicyVersionShort(input *policy_versions.CreatePolicyVersionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.CreatePolicyVersionResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -170,7 +166,6 @@ func (p *PolicyVersionsService) CreatePolicyVersionShort(input *policy_versions.
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [READ]'], 'authorization': []}]
 func (p *PolicyVersionsService) RetrievePolicyVersionsShort(input *policy_versions.RetrievePolicyVersionsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrievePolicyVersionResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

@@ -63,7 +63,6 @@ func (u *UserInfoService) InvalidateUserInfoCache(input *user_info.InvalidateUse
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [READ]'], 'authorization': []}]
 func (u *UserInfoService) GetUserInfoStatusShort(input *user_info.GetUserInfoStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrieveUserInfoCacheStatusResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -79,7 +78,6 @@ func (u *UserInfoService) GetUserInfoStatusShort(input *user_info.GetUserInfoSta
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [UPDATE]'], 'authorization': []}]
 func (u *UserInfoService) SyncUserInfoShort(input *user_info.SyncUserInfoParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -95,7 +93,6 @@ func (u *UserInfoService) SyncUserInfoShort(input *user_info.SyncUserInfoParams,
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [DELETE]'], 'authorization': []}]
 func (u *UserInfoService) InvalidateUserInfoCacheShort(input *user_info.InvalidateUserInfoCacheParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

@@ -140,7 +140,6 @@ func (p *PartyService) PublicUpdatePartyAttributesV1(input *party.PublicUpdatePa
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PartyService) AdminGetPartyDataV1Short(input *party.AdminGetPartyDataV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsPartyData, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -156,7 +155,6 @@ func (p *PartyService) AdminGetPartyDataV1Short(input *party.AdminGetPartyDataV1
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PARTY:STORAGE [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PartyService) AdminGetUserPartyV1Short(input *party.AdminGetUserPartyV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsPartyData, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -172,7 +170,6 @@ func (p *PartyService) AdminGetUserPartyV1Short(input *party.AdminGetUserPartyV1
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (p *PartyService) PublicGetPartyDataV1Short(input *party.PublicGetPartyDataV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsPartyData, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -188,7 +185,6 @@ func (p *PartyService) PublicGetPartyDataV1Short(input *party.PublicGetPartyData
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (p *PartyService) PublicUpdatePartyAttributesV1Short(input *party.PublicUpdatePartyAttributesV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsPartyData, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

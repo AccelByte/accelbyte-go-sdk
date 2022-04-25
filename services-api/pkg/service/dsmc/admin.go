@@ -253,7 +253,6 @@ func (a *AdminService) DeleteSession(input *admin.DeleteSessionParams) error {
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminService) ListServerShort(input *admin.ListServerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListServerResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -269,7 +268,6 @@ func (a *AdminService) ListServerShort(input *admin.ListServerParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminService) CountServerShort(input *admin.CountServerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsCountServerResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -285,7 +283,6 @@ func (a *AdminService) CountServerShort(input *admin.CountServerParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminService) CountServerDetailedShort(input *admin.CountServerDetailedParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDetailedCountServerResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -301,7 +298,6 @@ func (a *AdminService) CountServerDetailedShort(input *admin.CountServerDetailed
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminService) ListLocalServerShort(input *admin.ListLocalServerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListServerResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -317,7 +313,6 @@ func (a *AdminService) ListLocalServerShort(input *admin.ListLocalServerParams, 
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:SERVER [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminService) DeleteLocalServerShort(input *admin.DeleteLocalServerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -333,7 +328,6 @@ func (a *AdminService) DeleteLocalServerShort(input *admin.DeleteLocalServerPara
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminService) GetServerShort(input *admin.GetServerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsServer, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -349,7 +343,6 @@ func (a *AdminService) GetServerShort(input *admin.GetServerParams, authInfoWrit
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:SERVER [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -365,7 +358,6 @@ func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams, authIn
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:SERVER [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminService) GetServerLogsShort(input *admin.GetServerLogsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsServerLogs, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -381,7 +373,6 @@ func (a *AdminService) GetServerLogsShort(input *admin.GetServerLogsParams, auth
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:SESSION [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminService) ListSessionShort(input *admin.ListSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListSessionResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -397,7 +388,6 @@ func (a *AdminService) ListSessionShort(input *admin.ListSessionParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:SESSION [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminService) CountSessionShort(input *admin.CountSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsCountSessionResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -413,7 +403,6 @@ func (a *AdminService) CountSessionShort(input *admin.CountSessionParams, authIn
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:SESSION [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminService) DeleteSessionShort(input *admin.DeleteSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

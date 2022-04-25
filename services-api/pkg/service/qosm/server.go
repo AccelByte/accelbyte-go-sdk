@@ -40,7 +40,6 @@ func (s *ServerService) Heartbeat(input *server.HeartbeatParams) error {
 	return nil
 }
 
-// [{'HasPermission': [], 'HasScope': ['social'], 'authorization': []}]
 func (s *ServerService) HeartbeatShort(input *server.HeartbeatParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

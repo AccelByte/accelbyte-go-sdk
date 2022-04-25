@@ -362,7 +362,6 @@ func (o *OrderService) PublicDownloadUserOrderReceipt(input *order.PublicDownloa
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ORDER [READ]'], 'authorization': []}]
 func (o *OrderService) QueryOrdersShort(input *order.QueryOrdersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderPagingResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -378,7 +377,6 @@ func (o *OrderService) QueryOrdersShort(input *order.QueryOrdersParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ORDER [READ]'], 'authorization': []}]
 func (o *OrderService) GetOrderStatisticsShort(input *order.GetOrderStatisticsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderStatistics, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -394,7 +392,6 @@ func (o *OrderService) GetOrderStatisticsShort(input *order.GetOrderStatisticsPa
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ORDER [READ]'], 'authorization': []}]
 func (o *OrderService) GetOrderShort(input *order.GetOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -410,7 +407,6 @@ func (o *OrderService) GetOrderShort(input *order.GetOrderParams, authInfoWriter
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ORDER [UPDATE]'], 'authorization': []}]
 func (o *OrderService) RefundOrderShort(input *order.RefundOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -426,7 +422,6 @@ func (o *OrderService) RefundOrderShort(input *order.RefundOrderParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [READ]'], 'authorization': []}]
 func (o *OrderService) QueryUserOrdersShort(input *order.QueryUserOrdersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -442,7 +437,6 @@ func (o *OrderService) QueryUserOrdersShort(input *order.QueryUserOrdersParams, 
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [READ]'], 'authorization': []}]
 func (o *OrderService) CountOfPurchasedItemShort(input *order.CountOfPurchasedItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PurchasedItemCount, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -458,7 +452,6 @@ func (o *OrderService) CountOfPurchasedItemShort(input *order.CountOfPurchasedIt
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [READ]'], 'authorization': []}]
 func (o *OrderService) GetUserOrderShort(input *order.GetUserOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -474,7 +467,6 @@ func (o *OrderService) GetUserOrderShort(input *order.GetUserOrderParams, authIn
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [UPDATE]'], 'authorization': []}]
 func (o *OrderService) UpdateUserOrderStatusShort(input *order.UpdateUserOrderStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -490,7 +482,6 @@ func (o *OrderService) UpdateUserOrderStatusShort(input *order.UpdateUserOrderSt
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [UPDATE]'], 'authorization': []}]
 func (o *OrderService) FulfillUserOrderShort(input *order.FulfillUserOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -506,7 +497,6 @@ func (o *OrderService) FulfillUserOrderShort(input *order.FulfillUserOrderParams
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [READ]'], 'authorization': []}]
 func (o *OrderService) GetUserOrderGrantShort(input *order.GetUserOrderGrantParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderGrantInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -522,7 +512,6 @@ func (o *OrderService) GetUserOrderGrantShort(input *order.GetUserOrderGrantPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [READ]'], 'authorization': []}]
 func (o *OrderService) GetUserOrderHistoriesShort(input *order.GetUserOrderHistoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.OrderHistoryInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -538,7 +527,6 @@ func (o *OrderService) GetUserOrderHistoriesShort(input *order.GetUserOrderHisto
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [UPDATE]'], 'authorization': []}]
 func (o *OrderService) ProcessUserOrderNotificationShort(input *order.ProcessUserOrderNotificationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -554,7 +542,6 @@ func (o *OrderService) ProcessUserOrderNotificationShort(input *order.ProcessUse
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ORDER [READ]'], 'authorization': []}]
 func (o *OrderService) DownloadUserOrderReceiptShort(input *order.DownloadUserOrderReceiptParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -570,7 +557,6 @@ func (o *OrderService) DownloadUserOrderReceiptShort(input *order.DownloadUserOr
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:ORDER [READ]'], 'authorization': []}]
 func (o *OrderService) PublicQueryUserOrdersShort(input *order.PublicQueryUserOrdersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -586,7 +572,6 @@ func (o *OrderService) PublicQueryUserOrdersShort(input *order.PublicQueryUserOr
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:ORDER [CREATE]'], 'authorization': []}]
 func (o *OrderService) PublicCreateUserOrderShort(input *order.PublicCreateUserOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -602,7 +587,6 @@ func (o *OrderService) PublicCreateUserOrderShort(input *order.PublicCreateUserO
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:ORDER [READ]'], 'authorization': []}]
 func (o *OrderService) PublicGetUserOrderShort(input *order.PublicGetUserOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -618,7 +602,6 @@ func (o *OrderService) PublicGetUserOrderShort(input *order.PublicGetUserOrderPa
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:ORDER [UPDATE]'], 'authorization': []}]
 func (o *OrderService) PublicCancelUserOrderShort(input *order.PublicCancelUserOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -634,7 +617,6 @@ func (o *OrderService) PublicCancelUserOrderShort(input *order.PublicCancelUserO
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:ORDER [READ]'], 'authorization': []}]
 func (o *OrderService) PublicGetUserOrderHistoriesShort(input *order.PublicGetUserOrderHistoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.OrderHistoryInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -650,7 +632,6 @@ func (o *OrderService) PublicGetUserOrderHistoriesShort(input *order.PublicGetUs
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:ORDER [READ]'], 'authorization': []}]
 func (o *OrderService) PublicDownloadUserOrderReceiptShort(input *order.PublicDownloadUserOrderReceiptParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

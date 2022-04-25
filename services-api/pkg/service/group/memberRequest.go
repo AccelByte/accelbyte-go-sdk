@@ -73,7 +73,6 @@ func (m *MemberRequestService) GetGroupInvitationRequestPublicV1(input *member_r
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (m *MemberRequestService) GetGroupJoinRequestPublicV1Short(input *member_request.GetGroupJoinRequestPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetMemberRequestsListResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -89,7 +88,6 @@ func (m *MemberRequestService) GetGroupJoinRequestPublicV1Short(input *member_re
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (m *MemberRequestService) GetGroupInvitationRequestPublicV1Short(input *member_request.GetGroupInvitationRequestPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetMemberRequestsListResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

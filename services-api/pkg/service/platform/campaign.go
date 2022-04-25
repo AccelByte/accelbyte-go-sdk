@@ -279,7 +279,6 @@ func (c *CampaignService) ApplyUserRedemption(input *campaign.ApplyUserRedemptio
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [READ]'], 'authorization': []}]
 func (c *CampaignService) QueryCampaignsShort(input *campaign.QueryCampaignsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CampaignPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -295,7 +294,6 @@ func (c *CampaignService) QueryCampaignsShort(input *campaign.QueryCampaignsPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [CREATE]'], 'authorization': []}]
 func (c *CampaignService) CreateCampaignShort(input *campaign.CreateCampaignParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CampaignInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -311,7 +309,6 @@ func (c *CampaignService) CreateCampaignShort(input *campaign.CreateCampaignPara
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [READ]'], 'authorization': []}]
 func (c *CampaignService) GetCampaignShort(input *campaign.GetCampaignParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CampaignInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -327,7 +324,6 @@ func (c *CampaignService) GetCampaignShort(input *campaign.GetCampaignParams, au
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [UPDATE]'], 'authorization': []}]
 func (c *CampaignService) UpdateCampaignShort(input *campaign.UpdateCampaignParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CampaignInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -343,7 +339,6 @@ func (c *CampaignService) UpdateCampaignShort(input *campaign.UpdateCampaignPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [READ]'], 'authorization': []}]
 func (c *CampaignService) GetCampaignDynamicShort(input *campaign.GetCampaignDynamicParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CampaignDynamicInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -359,7 +354,6 @@ func (c *CampaignService) GetCampaignDynamicShort(input *campaign.GetCampaignDyn
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [READ]'], 'authorization': []}]
 func (c *CampaignService) QueryCodesShort(input *campaign.QueryCodesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CodeInfoPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -375,7 +369,6 @@ func (c *CampaignService) QueryCodesShort(input *campaign.QueryCodesParams, auth
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [CREATE]'], 'authorization': []}]
 func (c *CampaignService) CreateCodesShort(input *campaign.CreateCodesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CodeCreateResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -391,7 +384,6 @@ func (c *CampaignService) CreateCodesShort(input *campaign.CreateCodesParams, au
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [READ]'], 'authorization': []}]
 func (c *CampaignService) DownloadShort(input *campaign.DownloadParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -407,7 +399,6 @@ func (c *CampaignService) DownloadShort(input *campaign.DownloadParams, authInfo
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [UPDATE]'], 'authorization': []}]
 func (c *CampaignService) BulkDisableCodesShort(input *campaign.BulkDisableCodesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.BulkOperationResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -423,7 +414,6 @@ func (c *CampaignService) BulkDisableCodesShort(input *campaign.BulkDisableCodes
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [UPDATE]'], 'authorization': []}]
 func (c *CampaignService) BulkEnableCodesShort(input *campaign.BulkEnableCodesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.BulkOperationResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -439,7 +429,6 @@ func (c *CampaignService) BulkEnableCodesShort(input *campaign.BulkEnableCodesPa
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [READ]'], 'authorization': []}]
 func (c *CampaignService) QueryRedeemHistoryShort(input *campaign.QueryRedeemHistoryParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.RedeemHistoryPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -455,7 +444,6 @@ func (c *CampaignService) QueryRedeemHistoryShort(input *campaign.QueryRedeemHis
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [READ]'], 'authorization': []}]
 func (c *CampaignService) GetCodeShort(input *campaign.GetCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CodeInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -471,7 +459,6 @@ func (c *CampaignService) GetCodeShort(input *campaign.GetCodeParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [UPDATE]'], 'authorization': []}]
 func (c *CampaignService) DisableCodeShort(input *campaign.DisableCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CodeInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -487,7 +474,6 @@ func (c *CampaignService) DisableCodeShort(input *campaign.DisableCodeParams, au
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CAMPAIGN [UPDATE]'], 'authorization': []}]
 func (c *CampaignService) EnableCodeShort(input *campaign.EnableCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CodeInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -503,7 +489,6 @@ func (c *CampaignService) EnableCodeShort(input *campaign.EnableCodeParams, auth
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:REDEMPTION [CREATE]'], 'authorization': []}]
 func (c *CampaignService) ApplyUserRedemptionShort(input *campaign.ApplyUserRedemptionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.RedeemResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

@@ -334,7 +334,6 @@ func (f *FriendsService) GetListOfFriends(input *friends.GetListOfFriendsParams)
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (f *FriendsService) GetUserFriendsUpdatedShort(input *friends.GetUserFriendsUpdatedParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelGetUserFriendsResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -350,7 +349,6 @@ func (f *FriendsService) GetUserFriendsUpdatedShort(input *friends.GetUserFriend
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (f *FriendsService) GetUserIncomingFriendsShort(input *friends.GetUserIncomingFriendsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelGetUserIncomingFriendsResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -366,7 +364,6 @@ func (f *FriendsService) GetUserIncomingFriendsShort(input *friends.GetUserIncom
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (f *FriendsService) GetUserOutgoingFriendsShort(input *friends.GetUserOutgoingFriendsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelGetUserOutgoingFriendsResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -382,7 +379,6 @@ func (f *FriendsService) GetUserOutgoingFriendsShort(input *friends.GetUserOutgo
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (f *FriendsService) UserRequestFriendShort(input *friends.UserRequestFriendParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -398,7 +394,6 @@ func (f *FriendsService) UserRequestFriendShort(input *friends.UserRequestFriend
 	return nil
 }
 
-// [{'authorization': []}]
 func (f *FriendsService) UserAcceptFriendRequestShort(input *friends.UserAcceptFriendRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -414,7 +409,6 @@ func (f *FriendsService) UserAcceptFriendRequestShort(input *friends.UserAcceptF
 	return nil
 }
 
-// [{'authorization': []}]
 func (f *FriendsService) UserCancelFriendRequestShort(input *friends.UserCancelFriendRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -430,7 +424,6 @@ func (f *FriendsService) UserCancelFriendRequestShort(input *friends.UserCancelF
 	return nil
 }
 
-// [{'authorization': []}]
 func (f *FriendsService) UserRejectFriendRequestShort(input *friends.UserRejectFriendRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -446,7 +439,6 @@ func (f *FriendsService) UserRejectFriendRequestShort(input *friends.UserRejectF
 	return nil
 }
 
-// [{'authorization': []}]
 func (f *FriendsService) UserGetFriendshipStatusShort(input *friends.UserGetFriendshipStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelUserGetFriendshipStatusResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -462,7 +454,6 @@ func (f *FriendsService) UserGetFriendshipStatusShort(input *friends.UserGetFrie
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (f *FriendsService) UserUnfriendRequestShort(input *friends.UserUnfriendRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -478,7 +469,6 @@ func (f *FriendsService) UserUnfriendRequestShort(input *friends.UserUnfriendReq
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:FRIENDS [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (f *FriendsService) AddFriendsWithoutConfirmationShort(input *friends.AddFriendsWithoutConfirmationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -494,7 +484,6 @@ func (f *FriendsService) AddFriendsWithoutConfirmationShort(input *friends.AddFr
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:FRIENDS [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (f *FriendsService) GetListOfFriendsShort(input *friends.GetListOfFriendsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelGetFriendsResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

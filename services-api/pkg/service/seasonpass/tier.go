@@ -179,7 +179,6 @@ func (t *TierService) GrantUserTier(input *tier.GrantUserTierParams) (*seasonpas
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]'], 'authorization': []}]
 func (t *TierService) QueryTiersShort(input *tier.QueryTiersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.TierPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -195,7 +194,6 @@ func (t *TierService) QueryTiersShort(input *tier.QueryTiersParams, authInfoWrit
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [CREATE]'], 'authorization': []}]
 func (t *TierService) CreateTierShort(input *tier.CreateTierParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*seasonpassclientmodels.Tier, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -211,7 +209,6 @@ func (t *TierService) CreateTierShort(input *tier.CreateTierParams, authInfoWrit
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]'], 'authorization': []}]
 func (t *TierService) UpdateTierShort(input *tier.UpdateTierParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.Tier, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -227,7 +224,6 @@ func (t *TierService) UpdateTierShort(input *tier.UpdateTierParams, authInfoWrit
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [DELETE]'], 'authorization': []}]
 func (t *TierService) DeleteTierShort(input *tier.DeleteTierParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -243,7 +239,6 @@ func (t *TierService) DeleteTierShort(input *tier.DeleteTierParams, authInfoWrit
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]'], 'authorization': []}]
 func (t *TierService) ReorderTierShort(input *tier.ReorderTierParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.Tier, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -259,7 +254,6 @@ func (t *TierService) ReorderTierShort(input *tier.ReorderTierParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]'], 'authorization': []}]
 func (t *TierService) GrantUserExpShort(input *tier.GrantUserExpParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.UserSeasonSummary, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -275,7 +269,6 @@ func (t *TierService) GrantUserExpShort(input *tier.GrantUserExpParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]'], 'authorization': []}]
 func (t *TierService) GrantUserTierShort(input *tier.GrantUserTierParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.UserSeasonSummary, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

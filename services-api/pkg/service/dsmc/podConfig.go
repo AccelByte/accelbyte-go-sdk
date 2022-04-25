@@ -154,7 +154,6 @@ func (p *PodConfigService) UpdatePodConfig(input *pod_config.UpdatePodConfigPara
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PodConfigService) GetAllPodConfigShort(input *pod_config.GetAllPodConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListPodConfigResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -170,7 +169,6 @@ func (p *PodConfigService) GetAllPodConfigShort(input *pod_config.GetAllPodConfi
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PodConfigService) GetPodConfigShort(input *pod_config.GetPodConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -186,7 +184,6 @@ func (p *PodConfigService) GetPodConfigShort(input *pod_config.GetPodConfigParam
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PodConfigService) CreatePodConfigShort(input *pod_config.CreatePodConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -202,7 +199,6 @@ func (p *PodConfigService) CreatePodConfigShort(input *pod_config.CreatePodConfi
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PodConfigService) DeletePodConfigShort(input *pod_config.DeletePodConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -218,7 +214,6 @@ func (p *PodConfigService) DeletePodConfigShort(input *pod_config.DeletePodConfi
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PodConfigService) UpdatePodConfigShort(input *pod_config.UpdatePodConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

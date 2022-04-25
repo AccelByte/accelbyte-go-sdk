@@ -246,7 +246,6 @@ func (p *PublicPlayerRecordService) PostPlayerPublicRecordHandlerV1(input *publi
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:PUBLIC:CLOUDSAVE:RECORD [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PublicPlayerRecordService) BulkGetPlayerPublicRecordHandlerV1Short(input *public_player_record.BulkGetPlayerPublicRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsBulkGetPlayerRecordResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -262,7 +261,6 @@ func (p *PublicPlayerRecordService) BulkGetPlayerPublicRecordHandlerV1Short(inpu
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': [], 'HasScope': ['social'], 'authorization': []}]
 func (p *PublicPlayerRecordService) PublicDeletePlayerPublicRecordHandlerV1Short(input *public_player_record.PublicDeletePlayerPublicRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -278,7 +276,6 @@ func (p *PublicPlayerRecordService) PublicDeletePlayerPublicRecordHandlerV1Short
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PublicPlayerRecordService) GetPlayerRecordHandlerV1Short(input *public_player_record.GetPlayerRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -294,7 +291,6 @@ func (p *PublicPlayerRecordService) GetPlayerRecordHandlerV1Short(input *public_
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PublicPlayerRecordService) PutPlayerRecordHandlerV1Short(input *public_player_record.PutPlayerRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -310,7 +306,6 @@ func (p *PublicPlayerRecordService) PutPlayerRecordHandlerV1Short(input *public_
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PublicPlayerRecordService) PostPlayerRecordHandlerV1Short(input *public_player_record.PostPlayerRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -326,7 +321,6 @@ func (p *PublicPlayerRecordService) PostPlayerRecordHandlerV1Short(input *public
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CLOUDSAVE:RECORD [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PublicPlayerRecordService) DeletePlayerRecordHandlerV1Short(input *public_player_record.DeletePlayerRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -342,7 +336,6 @@ func (p *PublicPlayerRecordService) DeletePlayerRecordHandlerV1Short(input *publ
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PublicPlayerRecordService) GetPlayerPublicRecordHandlerV1Short(input *public_player_record.GetPlayerPublicRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -358,7 +351,6 @@ func (p *PublicPlayerRecordService) GetPlayerPublicRecordHandlerV1Short(input *p
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PublicPlayerRecordService) PutPlayerPublicRecordHandlerV1Short(input *public_player_record.PutPlayerPublicRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -374,7 +366,6 @@ func (p *PublicPlayerRecordService) PutPlayerPublicRecordHandlerV1Short(input *p
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [WRITE]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PublicPlayerRecordService) PostPlayerPublicRecordHandlerV1Short(input *public_player_record.PostPlayerPublicRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

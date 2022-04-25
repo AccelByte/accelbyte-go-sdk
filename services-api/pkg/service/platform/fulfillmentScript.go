@@ -114,7 +114,6 @@ func (f *FulfillmentScriptService) UpdateFulfillmentScript(input *fulfillment_sc
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:FULFILLMENT [READ]'], 'authorization': []}]
 func (f *FulfillmentScriptService) ListFulfillmentScriptsShort(input *fulfillment_script.ListFulfillmentScriptsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.FulfillmentScriptInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -130,7 +129,6 @@ func (f *FulfillmentScriptService) ListFulfillmentScriptsShort(input *fulfillmen
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:FULFILLMENT [READ]'], 'authorization': []}]
 func (f *FulfillmentScriptService) TestFulfillmentScriptEvalShort(input *fulfillment_script.TestFulfillmentScriptEvalParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FulfillmentScriptEvalTestResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -146,7 +144,6 @@ func (f *FulfillmentScriptService) TestFulfillmentScriptEvalShort(input *fulfill
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:FULFILLMENT [READ]'], 'authorization': []}]
 func (f *FulfillmentScriptService) GetFulfillmentScriptShort(input *fulfillment_script.GetFulfillmentScriptParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FulfillmentScriptInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -162,7 +159,6 @@ func (f *FulfillmentScriptService) GetFulfillmentScriptShort(input *fulfillment_
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:FULFILLMENT [CREATE]'], 'authorization': []}]
 func (f *FulfillmentScriptService) CreateFulfillmentScriptShort(input *fulfillment_script.CreateFulfillmentScriptParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FulfillmentScriptInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -178,7 +174,6 @@ func (f *FulfillmentScriptService) CreateFulfillmentScriptShort(input *fulfillme
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:FULFILLMENT [DELETE]'], 'authorization': []}]
 func (f *FulfillmentScriptService) DeleteFulfillmentScriptShort(input *fulfillment_script.DeleteFulfillmentScriptParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -194,7 +189,6 @@ func (f *FulfillmentScriptService) DeleteFulfillmentScriptShort(input *fulfillme
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:FULFILLMENT [UPDATE]'], 'authorization': []}]
 func (f *FulfillmentScriptService) UpdateFulfillmentScriptShort(input *fulfillment_script.UpdateFulfillmentScriptParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FulfillmentScriptInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

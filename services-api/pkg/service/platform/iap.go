@@ -623,7 +623,6 @@ func (i *IAPService) SyncXboxInventory(input *i_a_p.SyncXboxInventoryParams) ([]
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]'], 'authorization': []}]
 func (i *IAPService) GetAppleIAPConfigShort(input *i_a_p.GetAppleIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.AppleIAPConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -639,7 +638,6 @@ func (i *IAPService) GetAppleIAPConfigShort(input *i_a_p.GetAppleIAPConfigParams
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]'], 'authorization': []}]
 func (i *IAPService) UpdateAppleIAPConfigShort(input *i_a_p.UpdateAppleIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.AppleIAPConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -655,7 +653,6 @@ func (i *IAPService) UpdateAppleIAPConfigShort(input *i_a_p.UpdateAppleIAPConfig
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]'], 'authorization': []}]
 func (i *IAPService) DeleteAppleIAPConfigShort(input *i_a_p.DeleteAppleIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -671,7 +668,6 @@ func (i *IAPService) DeleteAppleIAPConfigShort(input *i_a_p.DeleteAppleIAPConfig
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]'], 'authorization': []}]
 func (i *IAPService) GetEpicGamesIAPConfigShort(input *i_a_p.GetEpicGamesIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EpicGamesIAPConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -687,7 +683,6 @@ func (i *IAPService) GetEpicGamesIAPConfigShort(input *i_a_p.GetEpicGamesIAPConf
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]'], 'authorization': []}]
 func (i *IAPService) UpdateEpicGamesIAPConfigShort(input *i_a_p.UpdateEpicGamesIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EpicGamesIAPConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -703,7 +698,6 @@ func (i *IAPService) UpdateEpicGamesIAPConfigShort(input *i_a_p.UpdateEpicGamesI
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]'], 'authorization': []}]
 func (i *IAPService) DeleteEpicGamesIAPConfigShort(input *i_a_p.DeleteEpicGamesIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -719,7 +713,6 @@ func (i *IAPService) DeleteEpicGamesIAPConfigShort(input *i_a_p.DeleteEpicGamesI
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]'], 'authorization': []}]
 func (i *IAPService) GetGoogleIAPConfigShort(input *i_a_p.GetGoogleIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.GoogleIAPConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -735,7 +728,6 @@ func (i *IAPService) GetGoogleIAPConfigShort(input *i_a_p.GetGoogleIAPConfigPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]'], 'authorization': []}]
 func (i *IAPService) UpdateGoogleIAPConfigShort(input *i_a_p.UpdateGoogleIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.GoogleIAPConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -751,7 +743,6 @@ func (i *IAPService) UpdateGoogleIAPConfigShort(input *i_a_p.UpdateGoogleIAPConf
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]'], 'authorization': []}]
 func (i *IAPService) DeleteGoogleIAPConfigShort(input *i_a_p.DeleteGoogleIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -767,7 +758,6 @@ func (i *IAPService) DeleteGoogleIAPConfigShort(input *i_a_p.DeleteGoogleIAPConf
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]'], 'authorization': []}]
 func (i *IAPService) UpdateGoogleP12FileShort(input *i_a_p.UpdateGoogleP12FileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.GoogleIAPConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -783,7 +773,6 @@ func (i *IAPService) UpdateGoogleP12FileShort(input *i_a_p.UpdateGoogleP12FilePa
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]'], 'authorization': []}]
 func (i *IAPService) GetIAPItemConfigShort(input *i_a_p.GetIAPItemConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.IAPItemConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -799,7 +788,6 @@ func (i *IAPService) GetIAPItemConfigShort(input *i_a_p.GetIAPItemConfigParams, 
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]'], 'authorization': []}]
 func (i *IAPService) UpdateIAPItemConfigShort(input *i_a_p.UpdateIAPItemConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.IAPItemConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -815,7 +803,6 @@ func (i *IAPService) UpdateIAPItemConfigShort(input *i_a_p.UpdateIAPItemConfigPa
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]'], 'authorization': []}]
 func (i *IAPService) DeleteIAPItemConfigShort(input *i_a_p.DeleteIAPItemConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -831,7 +818,6 @@ func (i *IAPService) DeleteIAPItemConfigShort(input *i_a_p.DeleteIAPItemConfigPa
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]'], 'authorization': []}]
 func (i *IAPService) GetPlayStationIAPConfigShort(input *i_a_p.GetPlayStationIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PlayStationIAPConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -847,7 +833,6 @@ func (i *IAPService) GetPlayStationIAPConfigShort(input *i_a_p.GetPlayStationIAP
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]'], 'authorization': []}]
 func (i *IAPService) UpdatePlaystationIAPConfigShort(input *i_a_p.UpdatePlaystationIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PlayStationIAPConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -863,7 +848,6 @@ func (i *IAPService) UpdatePlaystationIAPConfigShort(input *i_a_p.UpdatePlaystat
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]'], 'authorization': []}]
 func (i *IAPService) DeletePlaystationIAPConfigShort(input *i_a_p.DeletePlaystationIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -879,7 +863,6 @@ func (i *IAPService) DeletePlaystationIAPConfigShort(input *i_a_p.DeletePlaystat
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]'], 'authorization': []}]
 func (i *IAPService) GetStadiaIAPConfigShort(input *i_a_p.GetStadiaIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.StadiaIAPConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -895,7 +878,6 @@ func (i *IAPService) GetStadiaIAPConfigShort(input *i_a_p.GetStadiaIAPConfigPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]'], 'authorization': []}]
 func (i *IAPService) DeleteStadiaIAPConfigShort(input *i_a_p.DeleteStadiaIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -911,7 +893,6 @@ func (i *IAPService) DeleteStadiaIAPConfigShort(input *i_a_p.DeleteStadiaIAPConf
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]'], 'authorization': []}]
 func (i *IAPService) UpdateStadiaJSONConfigFileShort(input *i_a_p.UpdateStadiaJSONConfigFileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.StadiaIAPConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -927,7 +908,6 @@ func (i *IAPService) UpdateStadiaJSONConfigFileShort(input *i_a_p.UpdateStadiaJS
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]'], 'authorization': []}]
 func (i *IAPService) GetSteamIAPConfigShort(input *i_a_p.GetSteamIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SteamIAPConfig, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -943,7 +923,6 @@ func (i *IAPService) GetSteamIAPConfigShort(input *i_a_p.GetSteamIAPConfigParams
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]'], 'authorization': []}]
 func (i *IAPService) UpdateSteamIAPConfigShort(input *i_a_p.UpdateSteamIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SteamIAPConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -959,7 +938,6 @@ func (i *IAPService) UpdateSteamIAPConfigShort(input *i_a_p.UpdateSteamIAPConfig
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]'], 'authorization': []}]
 func (i *IAPService) DeleteSteamIAPConfigShort(input *i_a_p.DeleteSteamIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -975,7 +953,6 @@ func (i *IAPService) DeleteSteamIAPConfigShort(input *i_a_p.DeleteSteamIAPConfig
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]'], 'authorization': []}]
 func (i *IAPService) GetTwitchIAPConfigShort(input *i_a_p.GetTwitchIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TwitchIAPConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -991,7 +968,6 @@ func (i *IAPService) GetTwitchIAPConfigShort(input *i_a_p.GetTwitchIAPConfigPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]'], 'authorization': []}]
 func (i *IAPService) UpdateTwitchIAPConfigShort(input *i_a_p.UpdateTwitchIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TwitchIAPConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1007,7 +983,6 @@ func (i *IAPService) UpdateTwitchIAPConfigShort(input *i_a_p.UpdateTwitchIAPConf
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]'], 'authorization': []}]
 func (i *IAPService) DeleteTwitchIAPConfigShort(input *i_a_p.DeleteTwitchIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1023,7 +998,6 @@ func (i *IAPService) DeleteTwitchIAPConfigShort(input *i_a_p.DeleteTwitchIAPConf
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [READ]'], 'authorization': []}]
 func (i *IAPService) GetXblIAPConfigShort(input *i_a_p.GetXblIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.XblIAPConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1039,7 +1013,6 @@ func (i *IAPService) GetXblIAPConfigShort(input *i_a_p.GetXblIAPConfigParams, au
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]'], 'authorization': []}]
 func (i *IAPService) UpdateXblIAPConfigShort(input *i_a_p.UpdateXblIAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.XblIAPConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1055,7 +1028,6 @@ func (i *IAPService) UpdateXblIAPConfigShort(input *i_a_p.UpdateXblIAPConfigPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [DELETE]'], 'authorization': []}]
 func (i *IAPService) DeleteXblAPConfigShort(input *i_a_p.DeleteXblAPConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1071,7 +1043,6 @@ func (i *IAPService) DeleteXblAPConfigShort(input *i_a_p.DeleteXblAPConfigParams
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:IAP:CONFIG [UPDATE]'], 'authorization': []}]
 func (i *IAPService) UpdateXblBPCertFileShort(input *i_a_p.UpdateXblBPCertFileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.XblIAPConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1087,7 +1058,6 @@ func (i *IAPService) UpdateXblBPCertFileShort(input *i_a_p.UpdateXblBPCertFilePa
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [READ]'], 'authorization': []}]
 func (i *IAPService) QueryUserIAPOrdersShort(input *i_a_p.QueryUserIAPOrdersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.IAPOrderPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1103,7 +1073,6 @@ func (i *IAPService) QueryUserIAPOrdersShort(input *i_a_p.QueryUserIAPOrdersPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [READ]'], 'authorization': []}]
 func (i *IAPService) QueryAllUserIAPOrdersShort(input *i_a_p.QueryAllUserIAPOrdersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.IAPOrderPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1119,7 +1088,6 @@ func (i *IAPService) QueryAllUserIAPOrdersShort(input *i_a_p.QueryAllUserIAPOrde
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]'], 'authorization': []}]
 func (i *IAPService) MockFulfillIAPItemShort(input *i_a_p.MockFulfillIAPItemParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1135,7 +1103,6 @@ func (i *IAPService) MockFulfillIAPItemShort(input *i_a_p.MockFulfillIAPItemPara
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]'], 'authorization': []}]
 func (i *IAPService) PublicFulfillAppleIAPItemShort(input *i_a_p.PublicFulfillAppleIAPItemParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1151,7 +1118,6 @@ func (i *IAPService) PublicFulfillAppleIAPItemShort(input *i_a_p.PublicFulfillAp
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]'], 'authorization': []}]
 func (i *IAPService) SyncEpicGamesInventoryShort(input *i_a_p.SyncEpicGamesInventoryParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.EpicGamesReconcileResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1167,7 +1133,6 @@ func (i *IAPService) SyncEpicGamesInventoryShort(input *i_a_p.SyncEpicGamesInven
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]'], 'authorization': []}]
 func (i *IAPService) PublicFulfillGoogleIAPItemShort(input *i_a_p.PublicFulfillGoogleIAPItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.GoogleReceiptResolveResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1183,7 +1148,6 @@ func (i *IAPService) PublicFulfillGoogleIAPItemShort(input *i_a_p.PublicFulfillG
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]'], 'authorization': []}]
 func (i *IAPService) PublicReconcilePlayStationStoreShort(input *i_a_p.PublicReconcilePlayStationStoreParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.PlayStationReconcileResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1199,7 +1163,6 @@ func (i *IAPService) PublicReconcilePlayStationStoreShort(input *i_a_p.PublicRec
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]'], 'authorization': []}]
 func (i *IAPService) SyncStadiaEntitlementShort(input *i_a_p.SyncStadiaEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1215,7 +1178,6 @@ func (i *IAPService) SyncStadiaEntitlementShort(input *i_a_p.SyncStadiaEntitleme
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]'], 'authorization': []}]
 func (i *IAPService) SyncSteamInventoryShort(input *i_a_p.SyncSteamInventoryParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1231,7 +1193,6 @@ func (i *IAPService) SyncSteamInventoryShort(input *i_a_p.SyncSteamInventoryPara
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]'], 'authorization': []}]
 func (i *IAPService) SyncTwitchDropsEntitlementShort(input *i_a_p.SyncTwitchDropsEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1247,7 +1208,6 @@ func (i *IAPService) SyncTwitchDropsEntitlementShort(input *i_a_p.SyncTwitchDrop
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:IAP [UPDATE]'], 'authorization': []}]
 func (i *IAPService) SyncXboxInventoryShort(input *i_a_p.SyncXboxInventoryParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.XblReconcileResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

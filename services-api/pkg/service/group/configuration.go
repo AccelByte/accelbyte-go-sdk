@@ -250,7 +250,6 @@ func (c *ConfigurationService) DeleteGroupConfigurationGlobalRuleAdminV1(input *
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]'], 'authorization': []}]
 func (c *ConfigurationService) ListGroupConfigurationAdminV1Short(input *configuration.ListGroupConfigurationAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsListConfigurationResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -266,7 +265,6 @@ func (c *ConfigurationService) ListGroupConfigurationAdminV1Short(input *configu
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]'], 'authorization': []}]
 func (c *ConfigurationService) CreateGroupConfigurationAdminV1Short(input *configuration.CreateGroupConfigurationAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsCreateGroupConfigurationResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -282,7 +280,6 @@ func (c *ConfigurationService) CreateGroupConfigurationAdminV1Short(input *confi
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [CREATE]'], 'authorization': []}]
 func (c *ConfigurationService) InitiateGroupConfigurationAdminV1Short(input *configuration.InitiateGroupConfigurationAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsCreateGroupConfigurationResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -298,7 +295,6 @@ func (c *ConfigurationService) InitiateGroupConfigurationAdminV1Short(input *con
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]'], 'authorization': []}]
 func (c *ConfigurationService) GetGroupConfigurationAdminV1Short(input *configuration.GetGroupConfigurationAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetGroupConfigurationResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -314,7 +310,6 @@ func (c *ConfigurationService) GetGroupConfigurationAdminV1Short(input *configur
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [DELETE]'], 'authorization': []}]
 func (c *ConfigurationService) DeleteGroupConfigurationV1Short(input *configuration.DeleteGroupConfigurationV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -330,7 +325,6 @@ func (c *ConfigurationService) DeleteGroupConfigurationV1Short(input *configurat
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]'], 'authorization': []}]
 func (c *ConfigurationService) UpdateGroupConfigurationAdminV1Short(input *configuration.UpdateGroupConfigurationAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsUpdateGroupConfigurationResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -346,7 +340,6 @@ func (c *ConfigurationService) UpdateGroupConfigurationAdminV1Short(input *confi
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]'], 'authorization': []}]
 func (c *ConfigurationService) UpdateGroupConfigurationGlobalRuleAdminV1Short(input *configuration.UpdateGroupConfigurationGlobalRuleAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsUpdateGroupConfigurationResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -362,7 +355,6 @@ func (c *ConfigurationService) UpdateGroupConfigurationGlobalRuleAdminV1Short(in
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [UPDATE]'], 'authorization': []}]
 func (c *ConfigurationService) DeleteGroupConfigurationGlobalRuleAdminV1Short(input *configuration.DeleteGroupConfigurationGlobalRuleAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsUpdateGroupConfigurationResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

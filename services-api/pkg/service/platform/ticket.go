@@ -118,7 +118,6 @@ func (t *TicketService) AcquireUserTicket(input *ticket.AcquireUserTicketParams)
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:TICKET [READ]'], 'authorization': []}]
 func (t *TicketService) GetTicketDynamicShort(input *ticket.GetTicketDynamicParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TicketDynamicInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -134,7 +133,6 @@ func (t *TicketService) GetTicketDynamicShort(input *ticket.GetTicketDynamicPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:TICKET [UPDATE]'], 'authorization': []}]
 func (t *TicketService) DecreaseTicketSaleShort(input *ticket.DecreaseTicketSaleParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -150,7 +148,6 @@ func (t *TicketService) DecreaseTicketSaleShort(input *ticket.DecreaseTicketSale
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:TICKET [READ]'], 'authorization': []}]
 func (t *TicketService) GetTicketBoothIDShort(input *ticket.GetTicketBoothIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TicketBoothID, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -166,7 +163,6 @@ func (t *TicketService) GetTicketBoothIDShort(input *ticket.GetTicketBoothIDPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:TICKET [UPDATE]'], 'authorization': []}]
 func (t *TicketService) IncreaseTicketSaleShort(input *ticket.IncreaseTicketSaleParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TicketSaleIncrementResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -182,7 +178,6 @@ func (t *TicketService) IncreaseTicketSaleShort(input *ticket.IncreaseTicketSale
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:TICKET [CREATE]'], 'authorization': []}]
 func (t *TicketService) AcquireUserTicketShort(input *ticket.AcquireUserTicketParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TicketAcquireResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

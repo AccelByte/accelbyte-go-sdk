@@ -222,7 +222,6 @@ func (c *CategoryService) PublicGetDescendantCategories(input *category.PublicGe
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CATEGORY [READ]'], 'authorization': []}]
 func (c *CategoryService) GetRootCategoriesShort(input *category.GetRootCategoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.FullCategoryInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -238,7 +237,6 @@ func (c *CategoryService) GetRootCategoriesShort(input *category.GetRootCategori
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CATEGORY [CREATE]'], 'authorization': []}]
 func (c *CategoryService) CreateCategoryShort(input *category.CreateCategoryParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullCategoryInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -254,7 +252,6 @@ func (c *CategoryService) CreateCategoryShort(input *category.CreateCategoryPara
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CATEGORY [READ]'], 'authorization': []}]
 func (c *CategoryService) ListCategoriesBasicShort(input *category.ListCategoriesBasicParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.BasicCategoryInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -270,7 +267,6 @@ func (c *CategoryService) ListCategoriesBasicShort(input *category.ListCategorie
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CATEGORY [READ]'], 'authorization': []}]
 func (c *CategoryService) GetCategoryShort(input *category.GetCategoryParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullCategoryInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -286,7 +282,6 @@ func (c *CategoryService) GetCategoryShort(input *category.GetCategoryParams, au
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CATEGORY [UPDATE]'], 'authorization': []}]
 func (c *CategoryService) UpdateCategoryShort(input *category.UpdateCategoryParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullCategoryInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -302,7 +297,6 @@ func (c *CategoryService) UpdateCategoryShort(input *category.UpdateCategoryPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CATEGORY [DELETE]'], 'authorization': []}]
 func (c *CategoryService) DeleteCategoryShort(input *category.DeleteCategoryParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullCategoryInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -318,7 +312,6 @@ func (c *CategoryService) DeleteCategoryShort(input *category.DeleteCategoryPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CATEGORY [READ]'], 'authorization': []}]
 func (c *CategoryService) GetChildCategoriesShort(input *category.GetChildCategoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.FullCategoryInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -334,7 +327,6 @@ func (c *CategoryService) GetChildCategoriesShort(input *category.GetChildCatego
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CATEGORY [READ]'], 'authorization': []}]
 func (c *CategoryService) GetDescendantCategoriesShort(input *category.GetDescendantCategoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.FullCategoryInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -350,7 +342,6 @@ func (c *CategoryService) GetDescendantCategoriesShort(input *category.GetDescen
 	return ok.GetPayload(), nil
 }
 
-// None
 func (c *CategoryService) PublicGetRootCategoriesShort(input *category.PublicGetRootCategoriesParams) ([]*platformclientmodels.CategoryInfo, error) {
 	ok, err := c.Client.Category.PublicGetRootCategoriesShort(input)
 	if err != nil {
@@ -360,7 +351,6 @@ func (c *CategoryService) PublicGetRootCategoriesShort(input *category.PublicGet
 	return ok.GetPayload(), nil
 }
 
-// None
 func (c *CategoryService) DownloadCategoriesShort(input *category.DownloadCategoriesParams) ([]*platformclientmodels.HierarchicalCategoryInfo, error) {
 	ok, err := c.Client.Category.DownloadCategoriesShort(input)
 	if err != nil {
@@ -370,7 +360,6 @@ func (c *CategoryService) DownloadCategoriesShort(input *category.DownloadCatego
 	return ok.GetPayload(), nil
 }
 
-// None
 func (c *CategoryService) PublicGetCategoryShort(input *category.PublicGetCategoryParams) (*platformclientmodels.CategoryInfo, error) {
 	ok, err := c.Client.Category.PublicGetCategoryShort(input)
 	if err != nil {
@@ -380,7 +369,6 @@ func (c *CategoryService) PublicGetCategoryShort(input *category.PublicGetCatego
 	return ok.GetPayload(), nil
 }
 
-// None
 func (c *CategoryService) PublicGetChildCategoriesShort(input *category.PublicGetChildCategoriesParams) ([]*platformclientmodels.CategoryInfo, error) {
 	ok, err := c.Client.Category.PublicGetChildCategoriesShort(input)
 	if err != nil {
@@ -390,7 +378,6 @@ func (c *CategoryService) PublicGetChildCategoriesShort(input *category.PublicGe
 	return ok.GetPayload(), nil
 }
 
-// None
 func (c *CategoryService) PublicGetDescendantCategoriesShort(input *category.PublicGetDescendantCategoriesParams) ([]*platformclientmodels.CategoryInfo, error) {
 	ok, err := c.Client.Category.PublicGetDescendantCategoriesShort(input)
 	if err != nil {

@@ -107,7 +107,6 @@ func (p *PublicGameRecordService) DeleteGameRecordHandlerV1(input *public_game_r
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PublicGameRecordService) GetGameRecordHandlerV1Short(input *public_game_record.GetGameRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsGameRecordResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -123,7 +122,6 @@ func (p *PublicGameRecordService) GetGameRecordHandlerV1Short(input *public_game
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PublicGameRecordService) PutGameRecordHandlerV1Short(input *public_game_record.PutGameRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -139,7 +137,6 @@ func (p *PublicGameRecordService) PutGameRecordHandlerV1Short(input *public_game
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PublicGameRecordService) PostGameRecordHandlerV1Short(input *public_game_record.PostGameRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -155,7 +152,6 @@ func (p *PublicGameRecordService) PostGameRecordHandlerV1Short(input *public_gam
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *PublicGameRecordService) DeleteGameRecordHandlerV1Short(input *public_game_record.DeleteGameRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

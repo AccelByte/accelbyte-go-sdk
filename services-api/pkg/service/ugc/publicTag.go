@@ -44,7 +44,6 @@ func (p *PublicTagService) GetTag(input *public_tag.GetTagParams) (*ugcclientmod
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (p *PublicTagService) GetTagShort(input *public_tag.GetTagParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

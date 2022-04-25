@@ -347,7 +347,6 @@ func (s *SubscriptionService) PublicGetUserSubscriptionBillingHistories(input *s
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SUBSCRIPTION [READ]'], 'authorization': []}]
 func (s *SubscriptionService) QuerySubscriptionsShort(input *subscription.QuerySubscriptionsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -363,7 +362,6 @@ func (s *SubscriptionService) QuerySubscriptionsShort(input *subscription.QueryS
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SUBSCRIPTION [UPDATE]'], 'authorization': []}]
 func (s *SubscriptionService) RecurringChargeSubscriptionShort(input *subscription.RecurringChargeSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.RecurringChargeResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -379,7 +377,6 @@ func (s *SubscriptionService) RecurringChargeSubscriptionShort(input *subscripti
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]'], 'authorization': []}]
 func (s *SubscriptionService) QueryUserSubscriptionsShort(input *subscription.QueryUserSubscriptionsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -395,7 +392,6 @@ func (s *SubscriptionService) QueryUserSubscriptionsShort(input *subscription.Qu
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]'], 'authorization': []}]
 func (s *SubscriptionService) GetUserSubscriptionActivitiesShort(input *subscription.GetUserSubscriptionActivitiesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionActivityPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -411,7 +407,6 @@ func (s *SubscriptionService) GetUserSubscriptionActivitiesShort(input *subscrip
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [CREATE]'], 'authorization': []}]
 func (s *SubscriptionService) PlatformSubscribeSubscriptionShort(input *subscription.PlatformSubscribeSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -427,7 +422,6 @@ func (s *SubscriptionService) PlatformSubscribeSubscriptionShort(input *subscrip
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]'], 'authorization': []}]
 func (s *SubscriptionService) CheckUserSubscriptionSubscribableByItemIDShort(input *subscription.CheckUserSubscriptionSubscribableByItemIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.Subscribable, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -443,7 +437,6 @@ func (s *SubscriptionService) CheckUserSubscriptionSubscribableByItemIDShort(inp
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]'], 'authorization': []}]
 func (s *SubscriptionService) GetUserSubscriptionShort(input *subscription.GetUserSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -459,7 +452,6 @@ func (s *SubscriptionService) GetUserSubscriptionShort(input *subscription.GetUs
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [DELETE]'], 'authorization': []}]
 func (s *SubscriptionService) DeleteUserSubscriptionShort(input *subscription.DeleteUserSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -475,7 +467,6 @@ func (s *SubscriptionService) DeleteUserSubscriptionShort(input *subscription.De
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [UPDATE]'], 'authorization': []}]
 func (s *SubscriptionService) CancelSubscriptionShort(input *subscription.CancelSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -491,7 +482,6 @@ func (s *SubscriptionService) CancelSubscriptionShort(input *subscription.Cancel
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [UPDATE]'], 'authorization': []}]
 func (s *SubscriptionService) GrantDaysToSubscriptionShort(input *subscription.GrantDaysToSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -507,7 +497,6 @@ func (s *SubscriptionService) GrantDaysToSubscriptionShort(input *subscription.G
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]'], 'authorization': []}]
 func (s *SubscriptionService) GetUserSubscriptionBillingHistoriesShort(input *subscription.GetUserSubscriptionBillingHistoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -523,7 +512,6 @@ func (s *SubscriptionService) GetUserSubscriptionBillingHistoriesShort(input *su
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [UPDATE]'], 'authorization': []}]
 func (s *SubscriptionService) ProcessUserSubscriptionNotificationShort(input *subscription.ProcessUserSubscriptionNotificationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -539,7 +527,6 @@ func (s *SubscriptionService) ProcessUserSubscriptionNotificationShort(input *su
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]'], 'authorization': []}]
 func (s *SubscriptionService) PublicQueryUserSubscriptionsShort(input *subscription.PublicQueryUserSubscriptionsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -555,7 +542,6 @@ func (s *SubscriptionService) PublicQueryUserSubscriptionsShort(input *subscript
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [CREATE]'], 'authorization': []}]
 func (s *SubscriptionService) PublicSubscribeSubscriptionShort(input *subscription.PublicSubscribeSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -571,7 +557,6 @@ func (s *SubscriptionService) PublicSubscribeSubscriptionShort(input *subscripti
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]'], 'authorization': []}]
 func (s *SubscriptionService) PublicCheckUserSubscriptionSubscribableByItemIDShort(input *subscription.PublicCheckUserSubscriptionSubscribableByItemIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.Subscribable, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -587,7 +572,6 @@ func (s *SubscriptionService) PublicCheckUserSubscriptionSubscribableByItemIDSho
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]'], 'authorization': []}]
 func (s *SubscriptionService) PublicGetUserSubscriptionShort(input *subscription.PublicGetUserSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -603,7 +587,6 @@ func (s *SubscriptionService) PublicGetUserSubscriptionShort(input *subscription
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [UPDATE]'], 'authorization': []}]
 func (s *SubscriptionService) PublicChangeSubscriptionBillingAccountShort(input *subscription.PublicChangeSubscriptionBillingAccountParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -619,7 +602,6 @@ func (s *SubscriptionService) PublicChangeSubscriptionBillingAccountShort(input 
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [UPDATE]'], 'authorization': []}]
 func (s *SubscriptionService) PublicCancelSubscriptionShort(input *subscription.PublicCancelSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -635,7 +617,6 @@ func (s *SubscriptionService) PublicCancelSubscriptionShort(input *subscription.
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:SUBSCRIPTION [READ]'], 'authorization': []}]
 func (s *SubscriptionService) PublicGetUserSubscriptionBillingHistoriesShort(input *subscription.PublicGetUserSubscriptionBillingHistoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

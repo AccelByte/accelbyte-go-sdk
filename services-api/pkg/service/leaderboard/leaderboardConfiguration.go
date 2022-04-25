@@ -270,7 +270,6 @@ func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV2(i
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'], 'authorization': []}]
 func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsAdminV1Short(input *leaderboard_configuration.GetLeaderboardConfigurationsAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetAllLeaderboardConfigsResp, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -286,7 +285,6 @@ func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsAdminV1Sho
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:LEADERBOARD [CREATE]'], 'authorization': []}]
 func (l *LeaderboardConfigurationService) CreateLeaderboardConfigurationAdminV1Short(input *leaderboard_configuration.CreateLeaderboardConfigurationAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsLeaderboardConfigReq, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -302,7 +300,6 @@ func (l *LeaderboardConfigurationService) CreateLeaderboardConfigurationAdminV1S
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:LEADERBOARD [DELETE]'], 'authorization': []}]
 func (l *LeaderboardConfigurationService) DeleteBulkLeaderboardConfigurationAdminV1Short(input *leaderboard_configuration.DeleteBulkLeaderboardConfigurationAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsDeleteBulkLeaderboardsResp, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -318,7 +315,6 @@ func (l *LeaderboardConfigurationService) DeleteBulkLeaderboardConfigurationAdmi
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:LEADERBOARD [READ]'], 'authorization': []}]
 func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationAdminV1Short(input *leaderboard_configuration.GetLeaderboardConfigurationAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetLeaderboardConfigResp, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -334,7 +330,6 @@ func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationAdminV1Shor
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:LEADERBOARD [UPDATE]'], 'authorization': []}]
 func (l *LeaderboardConfigurationService) UpdateLeaderboardConfigurationAdminV1Short(input *leaderboard_configuration.UpdateLeaderboardConfigurationAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetLeaderboardConfigResp, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -350,7 +345,6 @@ func (l *LeaderboardConfigurationService) UpdateLeaderboardConfigurationAdminV1S
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:LEADERBOARD [DELETE]'], 'authorization': []}]
 func (l *LeaderboardConfigurationService) DeleteLeaderboardConfigurationAdminV1Short(input *leaderboard_configuration.DeleteLeaderboardConfigurationAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -366,7 +360,6 @@ func (l *LeaderboardConfigurationService) DeleteLeaderboardConfigurationAdminV1S
 	return nil
 }
 
-// [{'authorization': []}]
 func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV1Short(input *leaderboard_configuration.GetLeaderboardConfigurationsPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetAllLeaderboardConfigsPublicResp, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -382,7 +375,6 @@ func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV1Sh
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:LEADERBOARD [CREATE]'], 'authorization': []}]
 func (l *LeaderboardConfigurationService) CreateLeaderboardConfigurationPublicV1Short(input *leaderboard_configuration.CreateLeaderboardConfigurationPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsLeaderboardConfigReq, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -398,7 +390,6 @@ func (l *LeaderboardConfigurationService) CreateLeaderboardConfigurationPublicV1
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (l *LeaderboardConfigurationService) GetLeaderboardConfigurationsPublicV2Short(input *leaderboard_configuration.GetLeaderboardConfigurationsPublicV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.V2GetAllLeaderboardConfigsPublicResp, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

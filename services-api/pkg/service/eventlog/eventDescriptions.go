@@ -191,7 +191,6 @@ func (e *EventDescriptionsService) SpecificUXDescriptionHandler(input *event_des
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (e *EventDescriptionsService) AgentTypeDescriptionHandlerShort(input *event_descriptions.AgentTypeDescriptionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsMultipleAgentType, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -207,7 +206,6 @@ func (e *EventDescriptionsService) AgentTypeDescriptionHandlerShort(input *event
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (e *EventDescriptionsService) SpecificAgentTypeDescriptionHandlerShort(input *event_descriptions.SpecificAgentTypeDescriptionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsMultipleAgentType, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -223,7 +221,6 @@ func (e *EventDescriptionsService) SpecificAgentTypeDescriptionHandlerShort(inpu
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (e *EventDescriptionsService) EventIDDescriptionHandlerShort(input *event_descriptions.EventIDDescriptionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsMultipleEventID, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -239,7 +236,6 @@ func (e *EventDescriptionsService) EventIDDescriptionHandlerShort(input *event_d
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (e *EventDescriptionsService) SpecificEventIDDescriptionHandlerShort(input *event_descriptions.SpecificEventIDDescriptionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsMultipleEventID, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -255,7 +251,6 @@ func (e *EventDescriptionsService) SpecificEventIDDescriptionHandlerShort(input 
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (e *EventDescriptionsService) EventLevelDescriptionHandlerShort(input *event_descriptions.EventLevelDescriptionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsMultipleEventLevel, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -271,7 +266,6 @@ func (e *EventDescriptionsService) EventLevelDescriptionHandlerShort(input *even
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (e *EventDescriptionsService) SpecificEventLevelDescriptionHandlerShort(input *event_descriptions.SpecificEventLevelDescriptionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsMultipleEventLevel, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -287,7 +281,6 @@ func (e *EventDescriptionsService) SpecificEventLevelDescriptionHandlerShort(inp
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (e *EventDescriptionsService) EventTypeDescriptionHandlerShort(input *event_descriptions.EventTypeDescriptionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsMultipleEventType, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -303,7 +296,6 @@ func (e *EventDescriptionsService) EventTypeDescriptionHandlerShort(input *event
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (e *EventDescriptionsService) SpecificEventTypeDescriptionHandlerShort(input *event_descriptions.SpecificEventTypeDescriptionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsMultipleEventType, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -319,7 +311,6 @@ func (e *EventDescriptionsService) SpecificEventTypeDescriptionHandlerShort(inpu
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (e *EventDescriptionsService) UXNameDescriptionHandlerShort(input *event_descriptions.UXNameDescriptionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsMultipleUX, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -335,7 +326,6 @@ func (e *EventDescriptionsService) UXNameDescriptionHandlerShort(input *event_de
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (e *EventDescriptionsService) SpecificUXDescriptionHandlerShort(input *event_descriptions.SpecificUXDescriptionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsMultipleUX, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

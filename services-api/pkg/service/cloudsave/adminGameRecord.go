@@ -124,7 +124,6 @@ func (a *AdminGameRecordService) AdminDeleteGameRecordHandlerV1(input *admin_gam
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminGameRecordService) ListGameRecordsHandlerV1Short(input *admin_game_record.ListGameRecordsHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsListGameRecordKeysResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -140,7 +139,6 @@ func (a *AdminGameRecordService) ListGameRecordsHandlerV1Short(input *admin_game
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminGameRecordService) AdminGetGameRecordHandlerV1Short(input *admin_game_record.AdminGetGameRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsGameRecordResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -156,7 +154,6 @@ func (a *AdminGameRecordService) AdminGetGameRecordHandlerV1Short(input *admin_g
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [UPDATE]', 'CLIENT []'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminGameRecordService) AdminPutGameRecordHandlerV1Short(input *admin_game_record.AdminPutGameRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -172,7 +169,6 @@ func (a *AdminGameRecordService) AdminPutGameRecordHandlerV1Short(input *admin_g
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [CREATE]', 'CLIENT []'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminGameRecordService) AdminPostGameRecordHandlerV1Short(input *admin_game_record.AdminPostGameRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -188,7 +184,6 @@ func (a *AdminGameRecordService) AdminPostGameRecordHandlerV1Short(input *admin_
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLOUDSAVE:RECORD [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminGameRecordService) AdminDeleteGameRecordHandlerV1Short(input *admin_game_record.AdminDeleteGameRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

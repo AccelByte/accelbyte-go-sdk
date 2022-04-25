@@ -391,7 +391,6 @@ func (d *DeploymentConfigService) UpdateOverrideRegionOverride(input *deployment
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (d *DeploymentConfigService) GetAllDeploymentShort(input *deployment_config.GetAllDeploymentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListDeploymentResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -407,7 +406,6 @@ func (d *DeploymentConfigService) GetAllDeploymentShort(input *deployment_config
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (d *DeploymentConfigService) GetDeploymentShort(input *deployment_config.GetDeploymentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -423,7 +421,6 @@ func (d *DeploymentConfigService) GetDeploymentShort(input *deployment_config.Ge
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (d *DeploymentConfigService) CreateDeploymentShort(input *deployment_config.CreateDeploymentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -439,7 +436,6 @@ func (d *DeploymentConfigService) CreateDeploymentShort(input *deployment_config
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (d *DeploymentConfigService) DeleteDeploymentShort(input *deployment_config.DeleteDeploymentParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -455,7 +451,6 @@ func (d *DeploymentConfigService) DeleteDeploymentShort(input *deployment_config
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (d *DeploymentConfigService) UpdateDeploymentShort(input *deployment_config.UpdateDeploymentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -471,7 +466,6 @@ func (d *DeploymentConfigService) UpdateDeploymentShort(input *deployment_config
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (d *DeploymentConfigService) CreateRootRegionOverrideShort(input *deployment_config.CreateRootRegionOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -487,7 +481,6 @@ func (d *DeploymentConfigService) CreateRootRegionOverrideShort(input *deploymen
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (d *DeploymentConfigService) DeleteRootRegionOverrideShort(input *deployment_config.DeleteRootRegionOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -503,7 +496,6 @@ func (d *DeploymentConfigService) DeleteRootRegionOverrideShort(input *deploymen
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (d *DeploymentConfigService) UpdateRootRegionOverrideShort(input *deployment_config.UpdateRootRegionOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -519,7 +511,6 @@ func (d *DeploymentConfigService) UpdateRootRegionOverrideShort(input *deploymen
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (d *DeploymentConfigService) CreateDeploymentOverrideShort(input *deployment_config.CreateDeploymentOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -535,7 +526,6 @@ func (d *DeploymentConfigService) CreateDeploymentOverrideShort(input *deploymen
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (d *DeploymentConfigService) DeleteDeploymentOverrideShort(input *deployment_config.DeleteDeploymentOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -551,7 +541,6 @@ func (d *DeploymentConfigService) DeleteDeploymentOverrideShort(input *deploymen
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (d *DeploymentConfigService) UpdateDeploymentOverrideShort(input *deployment_config.UpdateDeploymentOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -567,7 +556,6 @@ func (d *DeploymentConfigService) UpdateDeploymentOverrideShort(input *deploymen
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (d *DeploymentConfigService) CreateOverrideRegionOverrideShort(input *deployment_config.CreateOverrideRegionOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -583,7 +571,6 @@ func (d *DeploymentConfigService) CreateOverrideRegionOverrideShort(input *deplo
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (d *DeploymentConfigService) DeleteOverrideRegionOverrideShort(input *deployment_config.DeleteOverrideRegionOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -599,7 +586,6 @@ func (d *DeploymentConfigService) DeleteOverrideRegionOverrideShort(input *deplo
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (d *DeploymentConfigService) UpdateOverrideRegionOverrideShort(input *deployment_config.UpdateOverrideRegionOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

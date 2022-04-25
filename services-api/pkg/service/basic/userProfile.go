@@ -543,7 +543,6 @@ func (u *UserProfileService) PublicUpdateUserProfileStatus(input *user_profile.P
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFILE []'], 'authorization': []}]
 func (u *UserProfileService) AdminGetUserProfilePublicInfoByIdsShort(input *user_profile.AdminGetUserProfilePublicInfoByIdsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*basicclientmodels.UserProfilePublicInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -559,7 +558,6 @@ func (u *UserProfileService) AdminGetUserProfilePublicInfoByIdsShort(input *user
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]'], 'authorization': []}]
 func (u *UserProfileService) GetUserProfileInfoShort(input *user_profile.GetUserProfileInfoParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -575,7 +573,6 @@ func (u *UserProfileService) GetUserProfileInfoShort(input *user_profile.GetUser
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]'], 'authorization': []}]
 func (u *UserProfileService) UpdateUserProfileShort(input *user_profile.UpdateUserProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -591,7 +588,6 @@ func (u *UserProfileService) UpdateUserProfileShort(input *user_profile.UpdateUs
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [DELETE]'], 'authorization': []}]
 func (u *UserProfileService) DeleteUserProfileShort(input *user_profile.DeleteUserProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -607,7 +603,6 @@ func (u *UserProfileService) DeleteUserProfileShort(input *user_profile.DeleteUs
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]'], 'authorization': []}]
 func (u *UserProfileService) GetCustomAttributesInfoShort(input *user_profile.GetCustomAttributesInfoParams, authInfoWriter runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -623,7 +618,6 @@ func (u *UserProfileService) GetCustomAttributesInfoShort(input *user_profile.Ge
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]'], 'authorization': []}]
 func (u *UserProfileService) UpdateCustomAttributesPartiallyShort(input *user_profile.UpdateCustomAttributesPartiallyParams, authInfoWriter runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -639,7 +633,6 @@ func (u *UserProfileService) UpdateCustomAttributesPartiallyShort(input *user_pr
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]'], 'authorization': []}]
 func (u *UserProfileService) GetPrivateCustomAttributesInfoShort(input *user_profile.GetPrivateCustomAttributesInfoParams, authInfoWriter runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -655,7 +648,6 @@ func (u *UserProfileService) GetPrivateCustomAttributesInfoShort(input *user_pro
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]'], 'authorization': []}]
 func (u *UserProfileService) UpdatePrivateCustomAttributesPartiallyShort(input *user_profile.UpdatePrivateCustomAttributesPartiallyParams, authInfoWriter runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -671,7 +663,6 @@ func (u *UserProfileService) UpdatePrivateCustomAttributesPartiallyShort(input *
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]'], 'authorization': []}]
 func (u *UserProfileService) UpdateUserProfileStatusShort(input *user_profile.UpdateUserProfileStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -687,7 +678,6 @@ func (u *UserProfileService) UpdateUserProfileStatusShort(input *user_profile.Up
 	return ok.GetPayload(), nil
 }
 
-// None
 func (u *UserProfileService) PublicGetUserProfilePublicInfoByIdsShort(input *user_profile.PublicGetUserProfilePublicInfoByIdsParams) ([]*basicclientmodels.UserProfilePublicInfo, error) {
 	ok, err := u.Client.UserProfile.PublicGetUserProfilePublicInfoByIdsShort(input)
 	if err != nil {
@@ -697,7 +687,6 @@ func (u *UserProfileService) PublicGetUserProfilePublicInfoByIdsShort(input *use
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:PROFILE [READ]'], 'authorization': []}]
 func (u *UserProfileService) GetMyProfileInfoShort(input *user_profile.GetMyProfileInfoParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -713,7 +702,6 @@ func (u *UserProfileService) GetMyProfileInfoShort(input *user_profile.GetMyProf
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:PROFILE [UPDATE]'], 'authorization': []}]
 func (u *UserProfileService) UpdateMyProfileShort(input *user_profile.UpdateMyProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -729,7 +717,6 @@ func (u *UserProfileService) UpdateMyProfileShort(input *user_profile.UpdateMyPr
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:PROFILE [CREATE]'], 'authorization': []}]
 func (u *UserProfileService) CreateMyProfileShort(input *user_profile.CreateMyProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -745,7 +732,6 @@ func (u *UserProfileService) CreateMyProfileShort(input *user_profile.CreateMyPr
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:PROFILE [READ]'], 'authorization': []}]
 func (u *UserProfileService) GetMyZipCodeShort(input *user_profile.GetMyZipCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserZipCode, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -761,7 +747,6 @@ func (u *UserProfileService) GetMyZipCodeShort(input *user_profile.GetMyZipCodeP
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:PROFILE [UPDATE]'], 'authorization': []}]
 func (u *UserProfileService) UpdateMyZipCodeShort(input *user_profile.UpdateMyZipCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserZipCode, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -777,7 +762,6 @@ func (u *UserProfileService) UpdateMyZipCodeShort(input *user_profile.UpdateMyZi
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]'], 'authorization': []}]
 func (u *UserProfileService) PublicGetUserProfileInfoShort(input *user_profile.PublicGetUserProfileInfoParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfileInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -793,7 +777,6 @@ func (u *UserProfileService) PublicGetUserProfileInfoShort(input *user_profile.P
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]'], 'authorization': []}]
 func (u *UserProfileService) PublicUpdateUserProfileShort(input *user_profile.PublicUpdateUserProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfileInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -809,7 +792,6 @@ func (u *UserProfileService) PublicUpdateUserProfileShort(input *user_profile.Pu
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:PROFILE [CREATE]'], 'authorization': []}]
 func (u *UserProfileService) PublicCreateUserProfileShort(input *user_profile.PublicCreateUserProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfileInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -825,7 +807,6 @@ func (u *UserProfileService) PublicCreateUserProfileShort(input *user_profile.Pu
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:PROFILE [READ]'], 'authorization': []}]
 func (u *UserProfileService) PublicGetCustomAttributesInfoShort(input *user_profile.PublicGetCustomAttributesInfoParams, authInfoWriter runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -841,7 +822,6 @@ func (u *UserProfileService) PublicGetCustomAttributesInfoShort(input *user_prof
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]'], 'authorization': []}]
 func (u *UserProfileService) PublicUpdateCustomAttributesPartiallyShort(input *user_profile.PublicUpdateCustomAttributesPartiallyParams, authInfoWriter runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -857,7 +837,6 @@ func (u *UserProfileService) PublicUpdateCustomAttributesPartiallyShort(input *u
 	return ok.GetPayload(), nil
 }
 
-// None
 func (u *UserProfileService) PublicGetUserProfilePublicInfoShort(input *user_profile.PublicGetUserProfilePublicInfoParams) (*basicclientmodels.UserProfilePublicInfo, error) {
 	ok, err := u.Client.UserProfile.PublicGetUserProfilePublicInfoShort(input)
 	if err != nil {
@@ -867,7 +846,6 @@ func (u *UserProfileService) PublicGetUserProfilePublicInfoShort(input *user_pro
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:PROFILE [UPDATE]'], 'authorization': []}]
 func (u *UserProfileService) PublicUpdateUserProfileStatusShort(input *user_profile.PublicUpdateUserProfileStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfileInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

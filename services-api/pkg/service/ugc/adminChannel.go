@@ -188,7 +188,6 @@ func (a *AdminChannelService) AdminDeleteChannel(input *admin_channel.AdminDelet
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [READ]'], 'authorization': []}]
 func (a *AdminChannelService) SingleAdminGetChannelShort(input *admin_channel.SingleAdminGetChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -204,7 +203,6 @@ func (a *AdminChannelService) SingleAdminGetChannelShort(input *admin_channel.Si
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [CREATE]'], 'authorization': []}]
 func (a *AdminChannelService) AdminCreateChannelShort(input *admin_channel.AdminCreateChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsChannelResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -220,7 +218,6 @@ func (a *AdminChannelService) AdminCreateChannelShort(input *admin_channel.Admin
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [UPDATE]'], 'authorization': []}]
 func (a *AdminChannelService) SingleAdminUpdateChannelShort(input *admin_channel.SingleAdminUpdateChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsChannelResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -236,7 +233,6 @@ func (a *AdminChannelService) SingleAdminUpdateChannelShort(input *admin_channel
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]'], 'authorization': []}]
 func (a *AdminChannelService) SingleAdminDeleteChannelShort(input *admin_channel.SingleAdminDeleteChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -252,7 +248,6 @@ func (a *AdminChannelService) SingleAdminDeleteChannelShort(input *admin_channel
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [READ]'], 'authorization': []}]
 func (a *AdminChannelService) AdminGetChannelShort(input *admin_channel.AdminGetChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -268,7 +263,6 @@ func (a *AdminChannelService) AdminGetChannelShort(input *admin_channel.AdminGet
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [UPDATE]'], 'authorization': []}]
 func (a *AdminChannelService) AdminUpdateChannelShort(input *admin_channel.AdminUpdateChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsChannelResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -284,7 +278,6 @@ func (a *AdminChannelService) AdminUpdateChannelShort(input *admin_channel.Admin
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [DELETE]'], 'authorization': []}]
 func (a *AdminChannelService) AdminDeleteChannelShort(input *admin_channel.AdminDeleteChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

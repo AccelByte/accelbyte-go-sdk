@@ -384,7 +384,6 @@ func (g *GroupMemberService) KickGroupMemberPublicV1(input *group_member.KickGro
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP:MEMBER [READ]'], 'authorization': []}]
 func (g *GroupMemberService) GetGroupMembersListAdminV1Short(input *group_member.GetGroupMembersListAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetGroupMemberListResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -400,7 +399,6 @@ func (g *GroupMemberService) GetGroupMembersListAdminV1Short(input *group_member
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (g *GroupMemberService) AcceptGroupInvitationPublicV1Short(input *group_member.AcceptGroupInvitationPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -416,7 +414,6 @@ func (g *GroupMemberService) AcceptGroupInvitationPublicV1Short(input *group_mem
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (g *GroupMemberService) RejectGroupInvitationPublicV1Short(input *group_member.RejectGroupInvitationPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -432,7 +429,6 @@ func (g *GroupMemberService) RejectGroupInvitationPublicV1Short(input *group_mem
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (g *GroupMemberService) JoinGroupV1Short(input *group_member.JoinGroupV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsJoinGroupResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -448,7 +444,6 @@ func (g *GroupMemberService) JoinGroupV1Short(input *group_member.JoinGroupV1Par
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (g *GroupMemberService) CancelGroupJoinRequestV1Short(input *group_member.CancelGroupJoinRequestV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -464,7 +459,6 @@ func (g *GroupMemberService) CancelGroupJoinRequestV1Short(input *group_member.C
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (g *GroupMemberService) GetGroupMembersListPublicV1Short(input *group_member.GetGroupMembersListPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetGroupMemberListResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -480,7 +474,6 @@ func (g *GroupMemberService) GetGroupMembersListPublicV1Short(input *group_membe
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (g *GroupMemberService) LeaveGroupPublicV1Short(input *group_member.LeaveGroupPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsLeaveGroupResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -496,7 +489,6 @@ func (g *GroupMemberService) LeaveGroupPublicV1Short(input *group_member.LeaveGr
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (g *GroupMemberService) GetUserGroupInformationPublicV1Short(input *group_member.GetUserGroupInformationPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetUserGroupInformationResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -512,7 +504,6 @@ func (g *GroupMemberService) GetUserGroupInformationPublicV1Short(input *group_m
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['GROUP:INVITE [CREATE]'], 'authorization': []}]
 func (g *GroupMemberService) InviteGroupPublicV1Short(input *group_member.InviteGroupPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsUserInvitationResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -528,7 +519,6 @@ func (g *GroupMemberService) InviteGroupPublicV1Short(input *group_member.Invite
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (g *GroupMemberService) AcceptGroupJoinRequestPublicV1Short(input *group_member.AcceptGroupJoinRequestPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -544,7 +534,6 @@ func (g *GroupMemberService) AcceptGroupJoinRequestPublicV1Short(input *group_me
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (g *GroupMemberService) RejectGroupJoinRequestPublicV1Short(input *group_member.RejectGroupJoinRequestPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -560,7 +549,6 @@ func (g *GroupMemberService) RejectGroupJoinRequestPublicV1Short(input *group_me
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (g *GroupMemberService) KickGroupMemberPublicV1Short(input *group_member.KickGroupMemberPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsKickGroupMemberResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

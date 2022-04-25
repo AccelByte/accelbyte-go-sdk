@@ -44,7 +44,6 @@ func (p *PresenceService) UsersPresenceHandlerV1(input *presence.UsersPresenceHa
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (p *PresenceService) UsersPresenceHandlerV1Short(input *presence.UsersPresenceHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.HandlersGetUsersPresenceResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

@@ -177,7 +177,6 @@ func (o *OAuthService) VerifyToken(input *o_auth.VerifyTokenParams) (*iamclientm
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (o *OAuthService) AuthorizationShort(input *o_auth.AuthorizationParams, authInfoWriter runtime.ClientAuthInfoWriter) (string, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -193,7 +192,6 @@ func (o *OAuthService) AuthorizationShort(input *o_auth.AuthorizationParams, aut
 	return ok.Location, nil
 }
 
-// [{'authorization': []}]
 func (o *OAuthService) GetJWKSShort(input *o_auth.GetJWKSParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.OauthcommonJWKSet, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -209,7 +207,6 @@ func (o *OAuthService) GetJWKSShort(input *o_auth.GetJWKSParams, authInfoWriter 
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (o *OAuthService) PlatformTokenRequestHandlerShort(input *o_auth.PlatformTokenRequestHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.OauthmodelTokenResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -225,7 +222,6 @@ func (o *OAuthService) PlatformTokenRequestHandlerShort(input *o_auth.PlatformTo
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (o *OAuthService) RevokeUserShort(input *o_auth.RevokeUserParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -241,7 +237,6 @@ func (o *OAuthService) RevokeUserShort(input *o_auth.RevokeUserParams, authInfoW
 	return nil
 }
 
-// [{'basic': []}]
 func (o *OAuthService) GetRevocationListShort(input *o_auth.GetRevocationListParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.OauthapiRevocationList, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -257,7 +252,6 @@ func (o *OAuthService) GetRevocationListShort(input *o_auth.GetRevocationListPar
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (o *OAuthService) RevokeTokenShort(input *o_auth.RevokeTokenParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -273,7 +267,6 @@ func (o *OAuthService) RevokeTokenShort(input *o_auth.RevokeTokenParams, authInf
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userID}:ADMIN [UPDATE]'], 'authorization': []}]
 func (o *OAuthService) RevokeAUserShort(input *o_auth.RevokeAUserParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -289,7 +282,6 @@ func (o *OAuthService) RevokeAUserShort(input *o_auth.RevokeAUserParams, authInf
 	return nil
 }
 
-// [{'authorization': []}]
 func (o *OAuthService) TokenGrantShort(input *o_auth.TokenGrantParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.OauthmodelTokenResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -305,7 +297,6 @@ func (o *OAuthService) TokenGrantShort(input *o_auth.TokenGrantParams, authInfoW
 	return ok.GetPayload(), nil
 }
 
-// [{'basic': []}]
 func (o *OAuthService) VerifyTokenShort(input *o_auth.VerifyTokenParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.OauthmodelTokenResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

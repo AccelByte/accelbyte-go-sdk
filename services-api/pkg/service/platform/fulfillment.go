@@ -127,7 +127,6 @@ func (f *FulfillmentService) PublicRedeemCode(input *fulfillment.PublicRedeemCod
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:FULFILLMENT [READ]'], 'authorization': []}]
 func (f *FulfillmentService) QueryFulfillmentHistoriesShort(input *fulfillment.QueryFulfillmentHistoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FulfillmentHistoryPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -143,7 +142,6 @@ func (f *FulfillmentService) QueryFulfillmentHistoriesShort(input *fulfillment.Q
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT []'], 'authorization': []}]
 func (f *FulfillmentService) FulfillItemShort(input *fulfillment.FulfillItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FulfillmentResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -159,7 +157,6 @@ func (f *FulfillmentService) FulfillItemShort(input *fulfillment.FulfillItemPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT []'], 'authorization': []}]
 func (f *FulfillmentService) RedeemCodeShort(input *fulfillment.RedeemCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FulfillmentResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -175,7 +172,6 @@ func (f *FulfillmentService) RedeemCodeShort(input *fulfillment.RedeemCodeParams
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT []'], 'authorization': []}]
 func (f *FulfillmentService) FulfillRewardsShort(input *fulfillment.FulfillRewardsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -191,7 +187,6 @@ func (f *FulfillmentService) FulfillRewardsShort(input *fulfillment.FulfillRewar
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:FULFILLMENT []'], 'authorization': []}]
 func (f *FulfillmentService) PublicRedeemCodeShort(input *fulfillment.PublicRedeemCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FulfillmentResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

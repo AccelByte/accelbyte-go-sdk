@@ -412,7 +412,6 @@ func (s *SeasonService) PublicGetUserSeason(input *season.PublicGetUserSeasonPar
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]'], 'authorization': []}]
 func (s *SeasonService) QuerySeasonsShort(input *season.QuerySeasonsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.ListSeasonInfoPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -428,7 +427,6 @@ func (s *SeasonService) QuerySeasonsShort(input *season.QuerySeasonsParams, auth
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [CREATE]'], 'authorization': []}]
 func (s *SeasonService) CreateSeasonShort(input *season.CreateSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.SeasonInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -444,7 +442,6 @@ func (s *SeasonService) CreateSeasonShort(input *season.CreateSeasonParams, auth
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (s *SeasonService) GetCurrentSeasonShort(input *season.GetCurrentSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.SeasonSummary, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -460,7 +457,6 @@ func (s *SeasonService) GetCurrentSeasonShort(input *season.GetCurrentSeasonPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]'], 'authorization': []}]
 func (s *SeasonService) GetSeasonShort(input *season.GetSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.SeasonInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -476,7 +472,6 @@ func (s *SeasonService) GetSeasonShort(input *season.GetSeasonParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [DELETE]'], 'authorization': []}]
 func (s *SeasonService) DeleteSeasonShort(input *season.DeleteSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -492,7 +487,6 @@ func (s *SeasonService) DeleteSeasonShort(input *season.DeleteSeasonParams, auth
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]'], 'authorization': []}]
 func (s *SeasonService) UpdateSeasonShort(input *season.UpdateSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.SeasonInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -508,7 +502,6 @@ func (s *SeasonService) UpdateSeasonShort(input *season.UpdateSeasonParams, auth
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [CREATE]'], 'authorization': []}]
 func (s *SeasonService) CloneSeasonShort(input *season.CloneSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.SeasonInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -524,7 +517,6 @@ func (s *SeasonService) CloneSeasonShort(input *season.CloneSeasonParams, authIn
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]'], 'authorization': []}]
 func (s *SeasonService) PublishSeasonShort(input *season.PublishSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.SeasonInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -540,7 +532,6 @@ func (s *SeasonService) PublishSeasonShort(input *season.PublishSeasonParams, au
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]'], 'authorization': []}]
 func (s *SeasonService) RetireSeasonShort(input *season.RetireSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.SeasonInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -556,7 +547,6 @@ func (s *SeasonService) RetireSeasonShort(input *season.RetireSeasonParams, auth
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]'], 'authorization': []}]
 func (s *SeasonService) UnpublishSeasonShort(input *season.UnpublishSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.SeasonInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -572,7 +562,6 @@ func (s *SeasonService) UnpublishSeasonShort(input *season.UnpublishSeasonParams
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]'], 'authorization': []}]
 func (s *SeasonService) GetUserParticipatedSeasonsShort(input *season.GetUserParticipatedSeasonsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.ListUserSeasonInfoPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -588,7 +577,6 @@ func (s *SeasonService) GetUserParticipatedSeasonsShort(input *season.GetUserPar
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]'], 'authorization': []}]
 func (s *SeasonService) ExistsAnyPassByPassCodesShort(input *season.ExistsAnyPassByPassCodesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.Ownership, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -604,7 +592,6 @@ func (s *SeasonService) ExistsAnyPassByPassCodesShort(input *season.ExistsAnyPas
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]'], 'authorization': []}]
 func (s *SeasonService) GetCurrentUserSeasonProgressionShort(input *season.GetCurrentUserSeasonProgressionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.UserSeasonSummary, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -620,7 +607,6 @@ func (s *SeasonService) GetCurrentUserSeasonProgressionShort(input *season.GetCu
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]'], 'authorization': []}]
 func (s *SeasonService) CheckSeasonPurchasableShort(input *season.CheckSeasonPurchasableParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -636,7 +622,6 @@ func (s *SeasonService) CheckSeasonPurchasableShort(input *season.CheckSeasonPur
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [DELETE]'], 'authorization': []}]
 func (s *SeasonService) ResetUserSeasonShort(input *season.ResetUserSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -652,7 +637,6 @@ func (s *SeasonService) ResetUserSeasonShort(input *season.ResetUserSeasonParams
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]'], 'authorization': []}]
 func (s *SeasonService) GetUserSeasonShort(input *season.GetUserSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -668,7 +652,6 @@ func (s *SeasonService) GetUserSeasonShort(input *season.GetUserSeasonParams, au
 	return ok.GetPayload(), nil
 }
 
-// None
 func (s *SeasonService) PublicGetCurrentSeasonShort(input *season.PublicGetCurrentSeasonParams) (*seasonpassclientmodels.LocalizedSeasonInfo, error) {
 	ok, err := s.Client.Season.PublicGetCurrentSeasonShort(input)
 	if err != nil {
@@ -678,7 +661,6 @@ func (s *SeasonService) PublicGetCurrentSeasonShort(input *season.PublicGetCurre
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]'], 'authorization': []}]
 func (s *SeasonService) PublicGetCurrentUserSeasonShort(input *season.PublicGetCurrentUserSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -694,7 +676,6 @@ func (s *SeasonService) PublicGetCurrentUserSeasonShort(input *season.PublicGetC
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [READ]'], 'authorization': []}]
 func (s *SeasonService) PublicGetUserSeasonShort(input *season.PublicGetUserSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

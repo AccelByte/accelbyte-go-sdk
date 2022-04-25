@@ -35,7 +35,6 @@ func (a *AdminUserAgreementService) IndirectBulkAcceptVersionedPolicy(input *adm
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL [CREATE]'], 'authorization': []}]
 func (a *AdminUserAgreementService) IndirectBulkAcceptVersionedPolicyShort(input *admin_user_agreement.IndirectBulkAcceptVersionedPolicyParams, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.AcceptAgreementResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

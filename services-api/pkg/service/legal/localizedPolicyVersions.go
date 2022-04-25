@@ -133,7 +133,6 @@ func (l *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersion1(i
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [READ]'], 'authorization': []}]
 func (l *LocalizedPolicyVersionsService) RetrieveLocalizedPolicyVersionsShort(input *localized_policy_versions.RetrieveLocalizedPolicyVersionsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrieveLocalizedPolicyVersionResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -149,7 +148,6 @@ func (l *LocalizedPolicyVersionsService) RetrieveLocalizedPolicyVersionsShort(in
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [CREATE]'], 'authorization': []}]
 func (l *LocalizedPolicyVersionsService) CreateLocalizedPolicyVersionShort(input *localized_policy_versions.CreateLocalizedPolicyVersionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.CreateLocalizedPolicyVersionResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -165,7 +163,6 @@ func (l *LocalizedPolicyVersionsService) CreateLocalizedPolicyVersionShort(input
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [READ]'], 'authorization': []}]
 func (l *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersionShort(input *localized_policy_versions.RetrieveSingleLocalizedPolicyVersionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.UpdateLocalizedPolicyVersionResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -181,7 +178,6 @@ func (l *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersionSho
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [UPDATE]'], 'authorization': []}]
 func (l *LocalizedPolicyVersionsService) UpdateLocalizedPolicyVersionShort(input *localized_policy_versions.UpdateLocalizedPolicyVersionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.UpdateLocalizedPolicyVersionResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -197,7 +193,6 @@ func (l *LocalizedPolicyVersionsService) UpdateLocalizedPolicyVersionShort(input
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [CREATE]'], 'authorization': []}]
 func (l *LocalizedPolicyVersionsService) RequestPresignedURLShort(input *localized_policy_versions.RequestPresignedURLParams, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.UploadLocalizedPolicyVersionAttachmentResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -213,7 +208,6 @@ func (l *LocalizedPolicyVersionsService) RequestPresignedURLShort(input *localiz
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [UPDATE]'], 'authorization': []}]
 func (l *LocalizedPolicyVersionsService) SetDefaultPolicyShort(input *localized_policy_versions.SetDefaultPolicyParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -229,7 +223,6 @@ func (l *LocalizedPolicyVersionsService) SetDefaultPolicyShort(input *localized_
 	return nil
 }
 
-// None
 func (l *LocalizedPolicyVersionsService) RetrieveSingleLocalizedPolicyVersion1Short(input *localized_policy_versions.RetrieveSingleLocalizedPolicyVersion1Params) (*legalclientmodels.RetrieveLocalizedPolicyVersionPublicResponse, error) {
 	ok, err := l.Client.LocalizedPolicyVersions.RetrieveSingleLocalizedPolicyVersion1Short(input)
 	if err != nil {

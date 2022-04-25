@@ -44,7 +44,6 @@ func (p *PublicCreatorService) GetCreator(input *public_creator.GetCreatorParams
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (p *PublicCreatorService) GetCreatorShort(input *public_creator.GetCreatorParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreatorOverviewResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

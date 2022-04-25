@@ -103,7 +103,6 @@ func (g *GametelemetryOperationsService) ProtectedUpdatePlaytimeGameTelemetryV1P
 	return nil
 }
 
-// [{'HTTPBearer': []}, {'APIKeyCookie': []}]
 func (g *GametelemetryOperationsService) AdminGetEventsGameTelemetryV1AdminEventsGetShort(input *gametelemetry_operations.AdminGetEventsGameTelemetryV1AdminEventsGetParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -120,7 +119,6 @@ func (g *GametelemetryOperationsService) AdminGetEventsGameTelemetryV1AdminEvent
 	return nil
 }
 
-// [{'HTTPBearer': []}, {'APIKeyCookie': []}]
 func (g *GametelemetryOperationsService) AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetShort(input *gametelemetry_operations.AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -137,7 +135,6 @@ func (g *GametelemetryOperationsService) AdminGetNamespaceGameTelemetryV1AdminTe
 	return nil
 }
 
-// [{'HTTPBearer': []}, {'APIKeyCookie': []}]
 func (g *GametelemetryOperationsService) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(input *gametelemetry_operations.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -154,7 +151,6 @@ func (g *GametelemetryOperationsService) ProtectedSaveEventsGameTelemetryV1Prote
 	return nil
 }
 
-// [{'HTTPBearer': []}, {'APIKeyCookie': []}]
 func (g *GametelemetryOperationsService) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input *gametelemetry_operations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams, authInfoWriter runtime.ClientAuthInfoWriter) (interface{}, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -170,7 +166,6 @@ func (g *GametelemetryOperationsService) ProtectedGetPlaytimeGameTelemetryV1Prot
 	return ok.GetPayload(), nil
 }
 
-// [{'HTTPBearer': []}, {'APIKeyCookie': []}]
 func (g *GametelemetryOperationsService) ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input *gametelemetry_operations.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

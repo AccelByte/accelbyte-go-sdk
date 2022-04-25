@@ -52,7 +52,6 @@ func (p *PaymentCallbackConfigService) UpdatePaymentCallbackConfig(input *paymen
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PAYMENT:CONFIG [READ]'], 'authorization': []}]
 func (p *PaymentCallbackConfigService) GetPaymentCallbackConfigShort(input *payment_callback_config.GetPaymentCallbackConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentCallbackConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -68,7 +67,6 @@ func (p *PaymentCallbackConfigService) GetPaymentCallbackConfigShort(input *paym
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PAYMENT:CONFIG [UPDATE]'], 'authorization': []}]
 func (p *PaymentCallbackConfigService) UpdatePaymentCallbackConfigShort(input *payment_callback_config.UpdatePaymentCallbackConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentCallbackConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

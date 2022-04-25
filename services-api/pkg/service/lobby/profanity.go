@@ -398,7 +398,6 @@ func (p *ProfanityService) AdminVerifyMessageProfanityResponse(input *profanity.
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *ProfanityService) AdminDebugProfanityFiltersShort(input *profanity.AdminDebugProfanityFiltersParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelsProfanityFilter, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -414,7 +413,6 @@ func (p *ProfanityService) AdminDebugProfanityFiltersShort(input *profanity.Admi
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *ProfanityService) AdminGetProfanityListFiltersV1Short(input *profanity.AdminGetProfanityListFiltersV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsAdminGetProfanityListFiltersV1Response, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -430,7 +428,6 @@ func (p *ProfanityService) AdminGetProfanityListFiltersV1Short(input *profanity.
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *ProfanityService) AdminAddProfanityFilterIntoListShort(input *profanity.AdminAddProfanityFilterIntoListParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -446,7 +443,6 @@ func (p *ProfanityService) AdminAddProfanityFilterIntoListShort(input *profanity
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *ProfanityService) AdminAddProfanityFiltersShort(input *profanity.AdminAddProfanityFiltersParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -462,7 +458,6 @@ func (p *ProfanityService) AdminAddProfanityFiltersShort(input *profanity.AdminA
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *ProfanityService) AdminImportProfanityFiltersFromFileShort(input *profanity.AdminImportProfanityFiltersFromFileParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -478,7 +473,6 @@ func (p *ProfanityService) AdminImportProfanityFiltersFromFileShort(input *profa
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *ProfanityService) AdminDeleteProfanityFilterShort(input *profanity.AdminDeleteProfanityFilterParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelsProfanityFilter, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -494,7 +488,6 @@ func (p *ProfanityService) AdminDeleteProfanityFilterShort(input *profanity.Admi
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *ProfanityService) AdminGetProfanityListsShort(input *profanity.AdminGetProfanityListsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelsAdminGetProfanityListsListResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -510,7 +503,6 @@ func (p *ProfanityService) AdminGetProfanityListsShort(input *profanity.AdminGet
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *ProfanityService) AdminCreateProfanityListShort(input *profanity.AdminCreateProfanityListParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -526,7 +518,6 @@ func (p *ProfanityService) AdminCreateProfanityListShort(input *profanity.AdminC
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *ProfanityService) AdminUpdateProfanityListShort(input *profanity.AdminUpdateProfanityListParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -542,7 +533,6 @@ func (p *ProfanityService) AdminUpdateProfanityListShort(input *profanity.AdminU
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *ProfanityService) AdminDeleteProfanityListShort(input *profanity.AdminDeleteProfanityListParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -558,7 +548,6 @@ func (p *ProfanityService) AdminDeleteProfanityListShort(input *profanity.AdminD
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *ProfanityService) AdminGetProfanityRuleShort(input *profanity.AdminGetProfanityRuleParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsProfanityRule, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -574,7 +563,6 @@ func (p *ProfanityService) AdminGetProfanityRuleShort(input *profanity.AdminGetP
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *ProfanityService) AdminSetProfanityRuleForNamespaceShort(input *profanity.AdminSetProfanityRuleForNamespaceParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -590,7 +578,6 @@ func (p *ProfanityService) AdminSetProfanityRuleForNamespaceShort(input *profani
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PROFANITY [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (p *ProfanityService) AdminVerifyMessageProfanityResponseShort(input *profanity.AdminVerifyMessageProfanityResponseParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsAdminVerifyMessageProfanityResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

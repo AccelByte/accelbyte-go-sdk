@@ -1251,7 +1251,6 @@ func (r *RolesService) AdminRevokeUserFromRoleV4(input *roles.AdminRevokeUserFro
 	return nil
 }
 
-// [{'HasPermission': ['ROLE [READ]'], 'authorization': []}]
 func (r *RolesService) GetRolesShort(input *roles.GetRolesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelRoleResponseWithManagers, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1267,7 +1266,6 @@ func (r *RolesService) GetRolesShort(input *roles.GetRolesParams, authInfoWriter
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [CREATE]', 'ROLE:ADMIN [CREATE]'], 'authorization': []}]
 func (r *RolesService) CreateRoleShort(input *roles.CreateRoleParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonRole, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1283,7 +1281,6 @@ func (r *RolesService) CreateRoleShort(input *roles.CreateRoleParams, authInfoWr
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ROLE [READ]'], 'authorization': []}]
 func (r *RolesService) GetRoleShort(input *roles.GetRoleParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1299,7 +1296,6 @@ func (r *RolesService) GetRoleShort(input *roles.GetRoleParams, authInfoWriter r
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]', 'ROLE:ADMIN [UPDATE]'], 'authorization': []}]
 func (r *RolesService) UpdateRoleShort(input *roles.UpdateRoleParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1315,7 +1311,6 @@ func (r *RolesService) UpdateRoleShort(input *roles.UpdateRoleParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [DELETE]', 'ROLE:ADMIN [DELETE]'], 'authorization': []}]
 func (r *RolesService) DeleteRoleShort(input *roles.DeleteRoleParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1331,7 +1326,6 @@ func (r *RolesService) DeleteRoleShort(input *roles.DeleteRoleParams, authInfoWr
 	return nil
 }
 
-// [{'HasPermission': ['ROLE [READ]'], 'authorization': []}]
 func (r *RolesService) GetRoleAdminStatusShort(input *roles.GetRoleAdminStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleAdminStatusResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1347,7 +1341,6 @@ func (r *RolesService) GetRoleAdminStatusShort(input *roles.GetRoleAdminStatusPa
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]', 'ROLE:ADMIN [UPDATE]'], 'authorization': []}]
 func (r *RolesService) SetRoleAsAdminShort(input *roles.SetRoleAsAdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1363,7 +1356,6 @@ func (r *RolesService) SetRoleAsAdminShort(input *roles.SetRoleAsAdminParams, au
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]', 'ROLE:ADMIN [UPDATE]'], 'authorization': []}]
 func (r *RolesService) RemoveRoleAdminShort(input *roles.RemoveRoleAdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1379,7 +1371,6 @@ func (r *RolesService) RemoveRoleAdminShort(input *roles.RemoveRoleAdminParams, 
 	return nil
 }
 
-// [{'HasPermission': ['ROLE [READ]'], 'authorization': []}]
 func (r *RolesService) GetRoleManagersShort(input *roles.GetRoleManagersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleManagersResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1395,7 +1386,6 @@ func (r *RolesService) GetRoleManagersShort(input *roles.GetRoleManagersParams, 
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]', 'ROLE:ADMIN [UPDATE]'], 'authorization': []}]
 func (r *RolesService) AddRoleManagersShort(input *roles.AddRoleManagersParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1411,7 +1401,6 @@ func (r *RolesService) AddRoleManagersShort(input *roles.AddRoleManagersParams, 
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]', 'ROLE:ADMIN [UPDATE]'], 'authorization': []}]
 func (r *RolesService) RemoveRoleManagersShort(input *roles.RemoveRoleManagersParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1427,7 +1416,6 @@ func (r *RolesService) RemoveRoleManagersShort(input *roles.RemoveRoleManagersPa
 	return nil
 }
 
-// [{'HasPermission': ['ROLE [READ]'], 'authorization': []}]
 func (r *RolesService) GetRoleMembersShort(input *roles.GetRoleMembersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleMembersResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1443,7 +1431,6 @@ func (r *RolesService) GetRoleMembersShort(input *roles.GetRoleMembersParams, au
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]', 'ROLE:ADMIN [UPDATE]'], 'authorization': []}]
 func (r *RolesService) AddRoleMembersShort(input *roles.AddRoleMembersParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1459,7 +1446,6 @@ func (r *RolesService) AddRoleMembersShort(input *roles.AddRoleMembersParams, au
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]', 'ROLE:ADMIN [UPDATE]'], 'authorization': []}]
 func (r *RolesService) RemoveRoleMembersShort(input *roles.RemoveRoleMembersParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1475,7 +1461,6 @@ func (r *RolesService) RemoveRoleMembersShort(input *roles.RemoveRoleMembersPara
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]', 'ROLE:ADMIN [UPDATE]'], 'authorization': []}]
 func (r *RolesService) UpdateRolePermissionsShort(input *roles.UpdateRolePermissionsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1491,7 +1476,6 @@ func (r *RolesService) UpdateRolePermissionsShort(input *roles.UpdateRolePermiss
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]', 'ROLE:ADMIN [UPDATE]'], 'authorization': []}]
 func (r *RolesService) AddRolePermissionShort(input *roles.AddRolePermissionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1507,7 +1491,6 @@ func (r *RolesService) AddRolePermissionShort(input *roles.AddRolePermissionPara
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]', 'ROLE:ADMIN [UPDATE]'], 'authorization': []}]
 func (r *RolesService) DeleteRolePermissionShort(input *roles.DeleteRolePermissionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1523,7 +1506,6 @@ func (r *RolesService) DeleteRolePermissionShort(input *roles.DeleteRolePermissi
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [READ]'], 'authorization': []}]
 func (r *RolesService) AdminGetRolesV3Short(input *roles.AdminGetRolesV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleResponseWithManagersAndPaginationV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1539,7 +1521,6 @@ func (r *RolesService) AdminGetRolesV3Short(input *roles.AdminGetRolesV3Params, 
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [CREATE]'], 'authorization': []}]
 func (r *RolesService) AdminCreateRoleV3Short(input *roles.AdminCreateRoleV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonRoleV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1555,7 +1536,6 @@ func (r *RolesService) AdminCreateRoleV3Short(input *roles.AdminCreateRoleV3Para
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [READ]'], 'authorization': []}]
 func (r *RolesService) AdminGetRoleV3Short(input *roles.AdminGetRoleV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1571,7 +1551,6 @@ func (r *RolesService) AdminGetRoleV3Short(input *roles.AdminGetRoleV3Params, au
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [DELETE]'], 'authorization': []}]
 func (r *RolesService) AdminDeleteRoleV3Short(input *roles.AdminDeleteRoleV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1587,7 +1566,6 @@ func (r *RolesService) AdminDeleteRoleV3Short(input *roles.AdminDeleteRoleV3Para
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]'], 'authorization': []}]
 func (r *RolesService) AdminUpdateRoleV3Short(input *roles.AdminUpdateRoleV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1603,7 +1581,6 @@ func (r *RolesService) AdminUpdateRoleV3Short(input *roles.AdminUpdateRoleV3Para
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [READ]'], 'authorization': []}]
 func (r *RolesService) AdminGetRoleAdminStatusV3Short(input *roles.AdminGetRoleAdminStatusV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleAdminStatusResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1619,7 +1596,6 @@ func (r *RolesService) AdminGetRoleAdminStatusV3Short(input *roles.AdminGetRoleA
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]'], 'authorization': []}]
 func (r *RolesService) AdminUpdateAdminRoleStatusV3Short(input *roles.AdminUpdateAdminRoleStatusV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1635,7 +1611,6 @@ func (r *RolesService) AdminUpdateAdminRoleStatusV3Short(input *roles.AdminUpdat
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]'], 'authorization': []}]
 func (r *RolesService) AdminRemoveRoleAdminV3Short(input *roles.AdminRemoveRoleAdminV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1651,7 +1626,6 @@ func (r *RolesService) AdminRemoveRoleAdminV3Short(input *roles.AdminRemoveRoleA
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [READ]'], 'authorization': []}]
 func (r *RolesService) AdminGetRoleManagersV3Short(input *roles.AdminGetRoleManagersV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleManagersResponsesV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1667,7 +1641,6 @@ func (r *RolesService) AdminGetRoleManagersV3Short(input *roles.AdminGetRoleMana
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]'], 'authorization': []}]
 func (r *RolesService) AdminAddRoleManagersV3Short(input *roles.AdminAddRoleManagersV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1683,7 +1656,6 @@ func (r *RolesService) AdminAddRoleManagersV3Short(input *roles.AdminAddRoleMana
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]'], 'authorization': []}]
 func (r *RolesService) AdminRemoveRoleManagersV3Short(input *roles.AdminRemoveRoleManagersV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1699,7 +1671,6 @@ func (r *RolesService) AdminRemoveRoleManagersV3Short(input *roles.AdminRemoveRo
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [READ]'], 'authorization': []}]
 func (r *RolesService) AdminGetRoleMembersV3Short(input *roles.AdminGetRoleMembersV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleMembersResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1715,7 +1686,6 @@ func (r *RolesService) AdminGetRoleMembersV3Short(input *roles.AdminGetRoleMembe
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]'], 'authorization': []}]
 func (r *RolesService) AdminAddRoleMembersV3Short(input *roles.AdminAddRoleMembersV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1731,7 +1701,6 @@ func (r *RolesService) AdminAddRoleMembersV3Short(input *roles.AdminAddRoleMembe
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]'], 'authorization': []}]
 func (r *RolesService) AdminRemoveRoleMembersV3Short(input *roles.AdminRemoveRoleMembersV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1747,7 +1716,6 @@ func (r *RolesService) AdminRemoveRoleMembersV3Short(input *roles.AdminRemoveRol
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]'], 'authorization': []}]
 func (r *RolesService) AdminUpdateRolePermissionsV3Short(input *roles.AdminUpdateRolePermissionsV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1763,7 +1731,6 @@ func (r *RolesService) AdminUpdateRolePermissionsV3Short(input *roles.AdminUpdat
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]'], 'authorization': []}]
 func (r *RolesService) AdminAddRolePermissionsV3Short(input *roles.AdminAddRolePermissionsV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1779,7 +1746,6 @@ func (r *RolesService) AdminAddRolePermissionsV3Short(input *roles.AdminAddRoleP
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]'], 'authorization': []}]
 func (r *RolesService) AdminDeleteRolePermissionsV3Short(input *roles.AdminDeleteRolePermissionsV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1795,7 +1761,6 @@ func (r *RolesService) AdminDeleteRolePermissionsV3Short(input *roles.AdminDelet
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]'], 'authorization': []}]
 func (r *RolesService) AdminDeleteRolePermissionV3Short(input *roles.AdminDeleteRolePermissionV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1811,7 +1776,6 @@ func (r *RolesService) AdminDeleteRolePermissionV3Short(input *roles.AdminDelete
 	return nil
 }
 
-// [{'authorization': []}]
 func (r *RolesService) PublicGetRolesV3Short(input *roles.PublicGetRolesV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleNamesResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1827,7 +1791,6 @@ func (r *RolesService) PublicGetRolesV3Short(input *roles.PublicGetRolesV3Params
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (r *RolesService) PublicGetRoleV3Short(input *roles.PublicGetRoleV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1843,7 +1806,6 @@ func (r *RolesService) PublicGetRoleV3Short(input *roles.PublicGetRoleV3Params, 
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [READ]'], 'authorization': []}]
 func (r *RolesService) AdminGetRolesV4Short(input *roles.AdminGetRolesV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelListRoleV4Response, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1859,7 +1821,6 @@ func (r *RolesService) AdminGetRolesV4Short(input *roles.AdminGetRolesV4Params, 
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [CREATE]'], 'authorization': []}]
 func (r *RolesService) AdminCreateRoleV4Short(input *roles.AdminCreateRoleV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleV4Response, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1875,7 +1836,6 @@ func (r *RolesService) AdminCreateRoleV4Short(input *roles.AdminCreateRoleV4Para
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [READ]'], 'authorization': []}]
 func (r *RolesService) AdminGetRoleV4Short(input *roles.AdminGetRoleV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleV4Response, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1891,7 +1851,6 @@ func (r *RolesService) AdminGetRoleV4Short(input *roles.AdminGetRoleV4Params, au
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [DELETE]'], 'authorization': []}]
 func (r *RolesService) AdminDeleteRoleV4Short(input *roles.AdminDeleteRoleV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1907,7 +1866,6 @@ func (r *RolesService) AdminDeleteRoleV4Short(input *roles.AdminDeleteRoleV4Para
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]'], 'authorization': []}]
 func (r *RolesService) AdminUpdateRoleV4Short(input *roles.AdminUpdateRoleV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleV4Response, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1923,7 +1881,6 @@ func (r *RolesService) AdminUpdateRoleV4Short(input *roles.AdminUpdateRoleV4Para
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]'], 'authorization': []}]
 func (r *RolesService) AdminUpdateRolePermissionsV4Short(input *roles.AdminUpdateRolePermissionsV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleV4Response, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1939,7 +1896,6 @@ func (r *RolesService) AdminUpdateRolePermissionsV4Short(input *roles.AdminUpdat
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]'], 'authorization': []}]
 func (r *RolesService) AdminAddRolePermissionsV4Short(input *roles.AdminAddRolePermissionsV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelRoleV4Response, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1955,7 +1911,6 @@ func (r *RolesService) AdminAddRolePermissionsV4Short(input *roles.AdminAddRoleP
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]'], 'authorization': []}]
 func (r *RolesService) AdminDeleteRolePermissionsV4Short(input *roles.AdminDeleteRolePermissionsV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1971,7 +1926,6 @@ func (r *RolesService) AdminDeleteRolePermissionsV4Short(input *roles.AdminDelet
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [READ]'], 'authorization': []}]
 func (r *RolesService) AdminListAssignedUsersV4Short(input *roles.AdminListAssignedUsersV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelListAssignedUsersV4Response, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1987,7 +1941,6 @@ func (r *RolesService) AdminListAssignedUsersV4Short(input *roles.AdminListAssig
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]'], 'authorization': []}]
 func (r *RolesService) AdminAssignUserToRoleV4Short(input *roles.AdminAssignUserToRoleV4Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelAssignedUserV4Response, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -2003,7 +1956,6 @@ func (r *RolesService) AdminAssignUserToRoleV4Short(input *roles.AdminAssignUser
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:ROLE [UPDATE]'], 'authorization': []}]
 func (r *RolesService) AdminRevokeUserFromRoleV4Short(input *roles.AdminRevokeUserFromRoleV4Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

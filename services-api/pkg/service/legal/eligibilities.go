@@ -49,7 +49,6 @@ func (e *EligibilitiesService) RetrieveEligibilitiesPublicIndirect(input *eligib
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (e *EligibilitiesService) RetrieveEligibilitiesPublicShort(input *eligibilities.RetrieveEligibilitiesPublicParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrieveUserEligibilitiesResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -65,7 +64,6 @@ func (e *EligibilitiesService) RetrieveEligibilitiesPublicShort(input *eligibili
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (e *EligibilitiesService) RetrieveEligibilitiesPublicIndirectShort(input *eligibilities.RetrieveEligibilitiesPublicIndirectParams, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.RetrieveUserEligibilitiesIndirectResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

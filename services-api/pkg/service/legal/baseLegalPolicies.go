@@ -120,7 +120,6 @@ func (b *BaseLegalPoliciesService) RetrieveAllPolicyTypes(input *base_legal_poli
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [READ]'], 'authorization': []}]
 func (b *BaseLegalPoliciesService) RetrieveAllLegalPoliciesShort(input *base_legal_policies.RetrieveAllLegalPoliciesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrieveBasePolicyResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -136,7 +135,6 @@ func (b *BaseLegalPoliciesService) RetrieveAllLegalPoliciesShort(input *base_leg
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [CREATE]'], 'authorization': []}]
 func (b *BaseLegalPoliciesService) CreatePolicyShort(input *base_legal_policies.CreatePolicyParams, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.CreateBasePolicyResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -152,7 +150,6 @@ func (b *BaseLegalPoliciesService) CreatePolicyShort(input *base_legal_policies.
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [READ]'], 'authorization': []}]
 func (b *BaseLegalPoliciesService) RetrieveSinglePolicyShort(input *base_legal_policies.RetrieveSinglePolicyParams, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.RetrieveBasePolicyResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -168,7 +165,6 @@ func (b *BaseLegalPoliciesService) RetrieveSinglePolicyShort(input *base_legal_p
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [UPDATE]'], 'authorization': []}]
 func (b *BaseLegalPoliciesService) PartialUpdatePolicyShort(input *base_legal_policies.PartialUpdatePolicyParams, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.UpdateBasePolicyResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -184,7 +180,6 @@ func (b *BaseLegalPoliciesService) PartialUpdatePolicyShort(input *base_legal_po
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [READ]'], 'authorization': []}]
 func (b *BaseLegalPoliciesService) RetrievePolicyCountryShort(input *base_legal_policies.RetrievePolicyCountryParams, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.RetrievePolicyResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -200,7 +195,6 @@ func (b *BaseLegalPoliciesService) RetrievePolicyCountryShort(input *base_legal_
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [READ]'], 'authorization': []}]
 func (b *BaseLegalPoliciesService) RetrieveAllPolicyTypesShort(input *base_legal_policies.RetrieveAllPolicyTypesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrievePolicyTypeResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

@@ -63,7 +63,6 @@ func (p *PublicService) ListProvidersByRegion(input *public.ListProvidersByRegio
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (p *PublicService) GetDefaultProviderShort(input *public.GetDefaultProviderParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDefaultProvider, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -79,7 +78,6 @@ func (p *PublicService) GetDefaultProviderShort(input *public.GetDefaultProvider
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (p *PublicService) ListProvidersShort(input *public.ListProvidersParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]string, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -95,7 +93,6 @@ func (p *PublicService) ListProvidersShort(input *public.ListProvidersParams, au
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (p *PublicService) ListProvidersByRegionShort(input *public.ListProvidersByRegionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDefaultProvider, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

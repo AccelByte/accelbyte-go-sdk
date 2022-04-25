@@ -139,7 +139,6 @@ func (p *PublicFollowService) GetPublicFollowing(input *public_follow.GetPublicF
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (p *PublicFollowService) GetFollowedContentShort(input *public_follow.GetFollowedContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -155,7 +154,6 @@ func (p *PublicFollowService) GetFollowedContentShort(input *public_follow.GetFo
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (p *PublicFollowService) GetFollowedUsersShort(input *public_follow.GetFollowedUsersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -171,7 +169,6 @@ func (p *PublicFollowService) GetFollowedUsersShort(input *public_follow.GetFoll
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (p *PublicFollowService) UpdateUserFollowStatusShort(input *public_follow.UpdateUserFollowStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsUserFollowResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -187,7 +184,6 @@ func (p *PublicFollowService) UpdateUserFollowStatusShort(input *public_follow.U
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (p *PublicFollowService) GetPublicFollowersShort(input *public_follow.GetPublicFollowersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -203,7 +199,6 @@ func (p *PublicFollowService) GetPublicFollowersShort(input *public_follow.GetPu
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (p *PublicFollowService) GetPublicFollowingShort(input *public_follow.GetPublicFollowingParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

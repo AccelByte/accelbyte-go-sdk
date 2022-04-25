@@ -520,7 +520,6 @@ func (c *ClientsService) AdminDeleteClientPermissionV3(input *clients.AdminDelet
 	return nil
 }
 
-// [{'HasPermission': ['CLIENT [READ]'], 'authorization': []}]
 func (c *ClientsService) GetClientsShort(input *clients.GetClientsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ClientmodelClientResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -536,7 +535,6 @@ func (c *ClientsService) GetClientsShort(input *clients.GetClientsParams, authIn
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['CLIENT:ADMIN [CREATE]'], 'authorization': []}]
 func (c *ClientsService) CreateClientShort(input *clients.CreateClientParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientCreationResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -552,7 +550,6 @@ func (c *ClientsService) CreateClientShort(input *clients.CreateClientParams, au
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['CLIENT [READ]'], 'authorization': []}]
 func (c *ClientsService) GetClientShort(input *clients.GetClientParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -568,7 +565,6 @@ func (c *ClientsService) GetClientShort(input *clients.GetClientParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['CLIENT:ADMIN [UPDATE]'], 'authorization': []}]
 func (c *ClientsService) UpdateClientShort(input *clients.UpdateClientParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -584,7 +580,6 @@ func (c *ClientsService) UpdateClientShort(input *clients.UpdateClientParams, au
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['CLIENT:ADMIN [DELETE]'], 'authorization': []}]
 func (c *ClientsService) DeleteClientShort(input *clients.DeleteClientParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -600,7 +595,6 @@ func (c *ClientsService) DeleteClientShort(input *clients.DeleteClientParams, au
 	return nil
 }
 
-// [{'HasPermission': ['CLIENT:ADMIN [UPDATE]'], 'authorization': []}]
 func (c *ClientsService) UpdateClientPermissionShort(input *clients.UpdateClientPermissionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -616,7 +610,6 @@ func (c *ClientsService) UpdateClientPermissionShort(input *clients.UpdateClient
 	return nil
 }
 
-// [{'HasPermission': ['CLIENT:ADMIN [UPDATE]'], 'authorization': []}]
 func (c *ClientsService) AddClientPermissionShort(input *clients.AddClientPermissionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -632,7 +625,6 @@ func (c *ClientsService) AddClientPermissionShort(input *clients.AddClientPermis
 	return nil
 }
 
-// [{'HasPermission': ['CLIENT:ADMIN [UPDATE]'], 'authorization': []}]
 func (c *ClientsService) DeleteClientPermissionShort(input *clients.DeleteClientPermissionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -648,7 +640,6 @@ func (c *ClientsService) DeleteClientPermissionShort(input *clients.DeleteClient
 	return nil
 }
 
-// [{'HasPermission': ['CLIENT:ADMIN [UPDATE]'], 'authorization': []}]
 func (c *ClientsService) UpdateClientSecretShort(input *clients.UpdateClientSecretParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -664,7 +655,6 @@ func (c *ClientsService) UpdateClientSecretShort(input *clients.UpdateClientSecr
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:CLIENT [READ]'], 'authorization': []}]
 func (c *ClientsService) GetClientsbyNamespaceShort(input *clients.GetClientsbyNamespaceParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ClientmodelClientResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -680,7 +670,6 @@ func (c *ClientsService) GetClientsbyNamespaceShort(input *clients.GetClientsbyN
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]'], 'authorization': []}]
 func (c *ClientsService) CreateClientByNamespaceShort(input *clients.CreateClientByNamespaceParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientCreationResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -696,7 +685,6 @@ func (c *ClientsService) CreateClientByNamespaceShort(input *clients.CreateClien
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLIENT:{clientId} [DELETE]'], 'authorization': []}]
 func (c *ClientsService) DeleteClientByNamespaceShort(input *clients.DeleteClientByNamespaceParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -712,7 +700,6 @@ func (c *ClientsService) DeleteClientByNamespaceShort(input *clients.DeleteClien
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLIENT [READ]'], 'authorization': []}]
 func (c *ClientsService) AdminGetClientsByNamespaceV3Short(input *clients.AdminGetClientsByNamespaceV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientsV3Response, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -728,7 +715,6 @@ func (c *ClientsService) AdminGetClientsByNamespaceV3Short(input *clients.AdminG
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLIENT [CREATE]'], 'authorization': []}]
 func (c *ClientsService) AdminCreateClientV3Short(input *clients.AdminCreateClientV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientV3Response, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -744,7 +730,6 @@ func (c *ClientsService) AdminCreateClientV3Short(input *clients.AdminCreateClie
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLIENT [READ]'], 'authorization': []}]
 func (c *ClientsService) AdminGetClientsbyNamespacebyIDV3Short(input *clients.AdminGetClientsbyNamespacebyIDV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientV3Response, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -760,7 +745,6 @@ func (c *ClientsService) AdminGetClientsbyNamespacebyIDV3Short(input *clients.Ad
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLIENT [DELETE]'], 'authorization': []}]
 func (c *ClientsService) AdminDeleteClientV3Short(input *clients.AdminDeleteClientV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -776,7 +760,6 @@ func (c *ClientsService) AdminDeleteClientV3Short(input *clients.AdminDeleteClie
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]'], 'authorization': []}]
 func (c *ClientsService) AdminUpdateClientV3Short(input *clients.AdminUpdateClientV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientV3Response, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -792,7 +775,6 @@ func (c *ClientsService) AdminUpdateClientV3Short(input *clients.AdminUpdateClie
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]'], 'authorization': []}]
 func (c *ClientsService) AdminUpdateClientPermissionV3Short(input *clients.AdminUpdateClientPermissionV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -808,7 +790,6 @@ func (c *ClientsService) AdminUpdateClientPermissionV3Short(input *clients.Admin
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]'], 'authorization': []}]
 func (c *ClientsService) AdminAddClientPermissionsV3Short(input *clients.AdminAddClientPermissionsV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -824,7 +805,6 @@ func (c *ClientsService) AdminAddClientPermissionsV3Short(input *clients.AdminAd
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLIENT [UPDATE]'], 'authorization': []}]
 func (c *ClientsService) AdminDeleteClientPermissionV3Short(input *clients.AdminDeleteClientPermissionV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

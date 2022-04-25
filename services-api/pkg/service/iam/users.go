@@ -3644,7 +3644,6 @@ func (u *UsersService) PublicGetMyUserV3(input *users.PublicGetMyUserV3Params) (
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER [CREATE]'], 'authorization': []}]
 func (u *UsersService) CreateUserShort(input *users.CreateUserParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserCreateResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -3660,7 +3659,6 @@ func (u *UsersService) CreateUserShort(input *users.CreateUserParams, authInfoWr
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
 func (u *UsersService) GetAdminUsersByRoleIDShort(input *users.GetAdminUsersByRoleIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelGetAdminUsersResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -3676,7 +3674,6 @@ func (u *UsersService) GetAdminUsersByRoleIDShort(input *users.GetAdminUsersByRo
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
 func (u *UsersService) GetUserByLoginIDShort(input *users.GetUserByLoginIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelPublicUserResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -3692,7 +3689,6 @@ func (u *UsersService) GetUserByLoginIDShort(input *users.GetUserByLoginIDParams
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
 func (u *UsersService) GetUserByPlatformUserIDShort(input *users.GetUserByPlatformUserIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelPublicUserResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -3708,7 +3704,6 @@ func (u *UsersService) GetUserByPlatformUserIDShort(input *users.GetUserByPlatfo
 	return ok.GetPayload(), nil
 }
 
-// [{'basic': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PASSWORD:USER [UPDATE]'], 'authorization': []}]
 func (u *UsersService) ForgotPasswordShort(input *users.ForgotPasswordParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -3724,7 +3719,6 @@ func (u *UsersService) ForgotPasswordShort(input *users.ForgotPasswordParams, au
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
 func (u *UsersService) GetUsersByLoginIdsShort(input *users.GetUsersByLoginIdsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelPublicUsersResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -3740,7 +3734,6 @@ func (u *UsersService) GetUsersByLoginIdsShort(input *users.GetUsersByLoginIdsPa
 	return ok.GetPayload(), nil
 }
 
-// [{'basic': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PASSWORD:USER [UPDATE]'], 'authorization': []}]
 func (u *UsersService) ResetPasswordShort(input *users.ResetPasswordParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -3756,7 +3749,6 @@ func (u *UsersService) ResetPasswordShort(input *users.ResetPasswordParams, auth
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:* [READ]'], 'authorization': []}]
 func (u *UsersService) SearchUserShort(input *users.SearchUserParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelSearchUsersResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -3772,7 +3764,6 @@ func (u *UsersService) SearchUserShort(input *users.SearchUserParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId} [READ]'], 'authorization': []}]
 func (u *UsersService) GetUserByUserIDShort(input *users.GetUserByUserIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -3788,7 +3779,6 @@ func (u *UsersService) GetUserByUserIDShort(input *users.GetUserByUserIDParams, 
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) UpdateUserShort(input *users.UpdateUserParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -3804,7 +3794,6 @@ func (u *UsersService) UpdateUserShort(input *users.UpdateUserParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId} [DELETE]'], 'authorization': []}]
 func (u *UsersService) DeleteUserShort(input *users.DeleteUserParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -3820,7 +3809,6 @@ func (u *UsersService) DeleteUserShort(input *users.DeleteUserParams, authInfoWr
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]'], 'authorization': []}]
 func (u *UsersService) BanUserShort(input *users.BanUserParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserBanResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -3836,7 +3824,6 @@ func (u *UsersService) BanUserShort(input *users.BanUserParams, authInfoWriter r
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]'], 'authorization': []}]
 func (u *UsersService) GetUserBanHistoryShort(input *users.GetUserBanHistoryParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelUserBanResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -3852,7 +3839,6 @@ func (u *UsersService) GetUserBanHistoryShort(input *users.GetUserBanHistoryPara
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) DisableUserBanShort(input *users.DisableUserBanParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserBanResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -3868,7 +3854,6 @@ func (u *UsersService) DisableUserBanShort(input *users.DisableUserBanParams, au
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) EnableUserBanShort(input *users.EnableUserBanParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserBanResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -3884,7 +3869,6 @@ func (u *UsersService) EnableUserBanShort(input *users.EnableUserBanParams, auth
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) ListCrossNamespaceAccountLinkShort(input *users.ListCrossNamespaceAccountLinkParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -3900,7 +3884,6 @@ func (u *UsersService) ListCrossNamespaceAccountLinkShort(input *users.ListCross
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) DisableUserShort(input *users.DisableUserParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -3916,7 +3899,6 @@ func (u *UsersService) DisableUserShort(input *users.DisableUserParams, authInfo
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) EnableUserShort(input *users.EnableUserParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -3932,7 +3914,6 @@ func (u *UsersService) EnableUserShort(input *users.EnableUserParams, authInfoWr
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]'], 'authorization': []}]
 func (u *UsersService) GetUserInformationShort(input *users.GetUserInformationParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserInformation, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -3948,7 +3929,6 @@ func (u *UsersService) GetUserInformationShort(input *users.GetUserInformationPa
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]'], 'authorization': []}]
 func (u *UsersService) DeleteUserInformationShort(input *users.DeleteUserInformationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -3964,7 +3944,6 @@ func (u *UsersService) DeleteUserInformationShort(input *users.DeleteUserInforma
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:HISTORY:LOGIN:USER:{userId} [READ]'], 'authorization': []}]
 func (u *UsersService) GetUserLoginHistoriesShort(input *users.GetUserLoginHistoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -3980,7 +3959,6 @@ func (u *UsersService) GetUserLoginHistoriesShort(input *users.GetUserLoginHisto
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) UpdatePasswordShort(input *users.UpdatePasswordParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -3996,7 +3974,6 @@ func (u *UsersService) UpdatePasswordShort(input *users.UpdatePasswordParams, au
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) SaveUserPermissionShort(input *users.SaveUserPermissionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4012,7 +3989,6 @@ func (u *UsersService) SaveUserPermissionShort(input *users.SaveUserPermissionPa
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) AddUserPermissionShort(input *users.AddUserPermissionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4028,7 +4004,6 @@ func (u *UsersService) AddUserPermissionShort(input *users.AddUserPermissionPara
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [DELETE]'], 'authorization': []}]
 func (u *UsersService) DeleteUserPermissionShort(input *users.DeleteUserPermissionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4044,7 +4019,6 @@ func (u *UsersService) DeleteUserPermissionShort(input *users.DeleteUserPermissi
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId} [READ]', 'ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]'], 'authorization': []}]
 func (u *UsersService) GetUserPlatformAccountsShort(input *users.GetUserPlatformAccountsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.AccountcommonUserLinkedPlatform, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4060,7 +4034,6 @@ func (u *UsersService) GetUserPlatformAccountsShort(input *users.GetUserPlatform
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]'], 'authorization': []}]
 func (u *UsersService) GetUserMappingShort(input *users.GetUserMappingParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelGetUserMapping, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4076,7 +4049,6 @@ func (u *UsersService) GetUserMappingShort(input *users.GetUserMappingParams, au
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:JUSTICE:USER:{userId} [UPDATE]', 'ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) GetUserJusticePlatformAccountShort(input *users.GetUserJusticePlatformAccountParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelGetUserJusticePlatformAccountResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4092,7 +4064,6 @@ func (u *UsersService) GetUserJusticePlatformAccountShort(input *users.GetUserJu
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) PlatformLinkShort(input *users.PlatformLinkParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4108,7 +4079,6 @@ func (u *UsersService) PlatformLinkShort(input *users.PlatformLinkParams, authIn
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) PlatformUnlinkShort(input *users.PlatformUnlinkParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4124,7 +4094,6 @@ func (u *UsersService) PlatformUnlinkShort(input *users.PlatformUnlinkParams, au
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:PUBLISHER:USER:{userId} [READ]'], 'authorization': []}]
 func (u *UsersService) GetPublisherUserShort(input *users.GetPublisherUserParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelGetPublisherUserResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4140,7 +4109,6 @@ func (u *UsersService) GetPublisherUserShort(input *users.GetPublisherUserParams
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) SaveUserRolesShort(input *users.SaveUserRolesParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4156,7 +4124,6 @@ func (u *UsersService) SaveUserRolesShort(input *users.SaveUserRolesParams, auth
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) AddUserRoleShort(input *users.AddUserRoleParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4172,7 +4139,6 @@ func (u *UsersService) AddUserRoleShort(input *users.AddUserRoleParams, authInfo
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [DELETE]'], 'authorization': []}]
 func (u *UsersService) DeleteUserRoleShort(input *users.DeleteUserRoleParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4188,7 +4154,6 @@ func (u *UsersService) DeleteUserRoleShort(input *users.DeleteUserRoleParams, au
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) UpgradeHeadlessAccountShort(input *users.UpgradeHeadlessAccountParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4204,7 +4169,6 @@ func (u *UsersService) UpgradeHeadlessAccountShort(input *users.UpgradeHeadlessA
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) UpgradeHeadlessAccountWithVerificationCodeShort(input *users.UpgradeHeadlessAccountWithVerificationCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4220,7 +4184,6 @@ func (u *UsersService) UpgradeHeadlessAccountWithVerificationCodeShort(input *us
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) UserVerificationShort(input *users.UserVerificationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4236,7 +4199,6 @@ func (u *UsersService) UserVerificationShort(input *users.UserVerificationParams
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) SendVerificationCodeShort(input *users.SendVerificationCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4252,7 +4214,6 @@ func (u *UsersService) SendVerificationCodeShort(input *users.SendVerificationCo
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]'], 'authorization': []}]
 func (u *UsersService) AdminGetAgeRestrictionStatusV2Short(input *users.AdminGetAgeRestrictionStatusV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelAgeRestrictionResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4268,7 +4229,6 @@ func (u *UsersService) AdminGetAgeRestrictionStatusV2Short(input *users.AdminGet
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]'], 'authorization': []}]
 func (u *UsersService) AdminUpdateAgeRestrictionConfigV2Short(input *users.AdminUpdateAgeRestrictionConfigV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelAgeRestrictionResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4284,7 +4244,6 @@ func (u *UsersService) AdminUpdateAgeRestrictionConfigV2Short(input *users.Admin
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]'], 'authorization': []}]
 func (u *UsersService) GetListCountryAgeRestrictionShort(input *users.GetListCountryAgeRestrictionParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.AccountcommonCountryAgeRestriction, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4300,7 +4259,6 @@ func (u *UsersService) GetListCountryAgeRestrictionShort(input *users.GetListCou
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]'], 'authorization': []}]
 func (u *UsersService) UpdateCountryAgeRestrictionShort(input *users.UpdateCountryAgeRestrictionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelCountry, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4316,7 +4274,6 @@ func (u *UsersService) UpdateCountryAgeRestrictionShort(input *users.UpdateCount
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
 func (u *UsersService) AdminSearchUsersV2Short(input *users.AdminSearchUsersV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelSearchUsersByPlatformIDResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4332,7 +4289,6 @@ func (u *UsersService) AdminSearchUsersV2Short(input *users.AdminSearchUsersV2Pa
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]'], 'authorization': []}]
 func (u *UsersService) AdminGetUserByUserIDV2Short(input *users.AdminGetUserByUserIDV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4348,7 +4304,6 @@ func (u *UsersService) AdminGetUserByUserIDV2Short(input *users.AdminGetUserByUs
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) AdminUpdateUserV2Short(input *users.AdminUpdateUserV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4364,7 +4319,6 @@ func (u *UsersService) AdminUpdateUserV2Short(input *users.AdminUpdateUserV2Para
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]'], 'authorization': []}]
 func (u *UsersService) AdminBanUserV2Short(input *users.AdminBanUserV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserBanResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4380,7 +4334,6 @@ func (u *UsersService) AdminBanUserV2Short(input *users.AdminBanUserV2Params, au
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]'], 'authorization': []}]
 func (u *UsersService) AdminGetUserBanV2Short(input *users.AdminGetUserBanV2Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelUserBanResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4396,7 +4349,6 @@ func (u *UsersService) AdminGetUserBanV2Short(input *users.AdminGetUserBanV2Para
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) AdminDisableUserV2Short(input *users.AdminDisableUserV2Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4412,7 +4364,6 @@ func (u *UsersService) AdminDisableUserV2Short(input *users.AdminDisableUserV2Pa
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) AdminEnableUserV2Short(input *users.AdminEnableUserV2Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4428,7 +4379,6 @@ func (u *UsersService) AdminEnableUserV2Short(input *users.AdminEnableUserV2Para
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PASSWORD:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) AdminResetPasswordV2Short(input *users.AdminResetPasswordV2Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4444,7 +4394,6 @@ func (u *UsersService) AdminResetPasswordV2Short(input *users.AdminResetPassword
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]'], 'authorization': []}]
 func (u *UsersService) AdminDeletePlatformLinkV2Short(input *users.AdminDeletePlatformLinkV2Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4460,7 +4409,6 @@ func (u *UsersService) AdminDeletePlatformLinkV2Short(input *users.AdminDeletePl
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) AdminPutUserRolesV2Short(input *users.AdminPutUserRolesV2Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4476,7 +4424,6 @@ func (u *UsersService) AdminPutUserRolesV2Short(input *users.AdminPutUserRolesV2
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) AdminCreateUserRolesV2Short(input *users.AdminCreateUserRolesV2Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4492,7 +4439,6 @@ func (u *UsersService) AdminCreateUserRolesV2Short(input *users.AdminCreateUserR
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicGetCountryAgeRestrictionShort(input *users.PublicGetCountryAgeRestrictionParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.AccountcommonCountryAgeRestriction, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4508,7 +4454,6 @@ func (u *UsersService) PublicGetCountryAgeRestrictionShort(input *users.PublicGe
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicCreateUserV2Short(input *users.PublicCreateUserV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserCreateResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4524,7 +4469,6 @@ func (u *UsersService) PublicCreateUserV2Short(input *users.PublicCreateUserV2Pa
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicForgotPasswordV2Short(input *users.PublicForgotPasswordV2Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4540,7 +4484,6 @@ func (u *UsersService) PublicForgotPasswordV2Short(input *users.PublicForgotPass
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicResetPasswordV2Short(input *users.PublicResetPasswordV2Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4556,7 +4499,6 @@ func (u *UsersService) PublicResetPasswordV2Short(input *users.PublicResetPasswo
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicGetUserByUserIDV2Short(input *users.PublicGetUserByUserIDV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4572,7 +4514,6 @@ func (u *UsersService) PublicGetUserByUserIDV2Short(input *users.PublicGetUserBy
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicUpdateUserV2Short(input *users.PublicUpdateUserV2Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelUserResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4588,7 +4529,6 @@ func (u *UsersService) PublicUpdateUserV2Short(input *users.PublicUpdateUserV2Pa
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicGetUserBanShort(input *users.PublicGetUserBanParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelUserBanResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4604,7 +4544,6 @@ func (u *UsersService) PublicGetUserBanShort(input *users.PublicGetUserBanParams
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicUpdatePasswordV2Short(input *users.PublicUpdatePasswordV2Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4620,7 +4559,6 @@ func (u *UsersService) PublicUpdatePasswordV2Short(input *users.PublicUpdatePass
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) GetListJusticePlatformAccountsShort(input *users.GetListJusticePlatformAccountsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelGetUserMapping, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4636,7 +4574,6 @@ func (u *UsersService) GetListJusticePlatformAccountsShort(input *users.GetListJ
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicPlatformLinkV2Short(input *users.PublicPlatformLinkV2Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4652,7 +4589,6 @@ func (u *UsersService) PublicPlatformLinkV2Short(input *users.PublicPlatformLink
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicDeletePlatformLinkV2Short(input *users.PublicDeletePlatformLinkV2Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4668,7 +4604,6 @@ func (u *UsersService) PublicDeletePlatformLinkV2Short(input *users.PublicDelete
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
 func (u *UsersService) ListAdminsV3Short(input *users.ListAdminsV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4684,7 +4619,6 @@ func (u *UsersService) ListAdminsV3Short(input *users.ListAdminsV3Params, authIn
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]'], 'authorization': []}]
 func (u *UsersService) AdminGetAgeRestrictionStatusV3Short(input *users.AdminGetAgeRestrictionStatusV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4700,7 +4634,6 @@ func (u *UsersService) AdminGetAgeRestrictionStatusV3Short(input *users.AdminGet
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]'], 'authorization': []}]
 func (u *UsersService) AdminUpdateAgeRestrictionConfigV3Short(input *users.AdminUpdateAgeRestrictionConfigV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4716,7 +4649,6 @@ func (u *UsersService) AdminUpdateAgeRestrictionConfigV3Short(input *users.Admin
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [READ]'], 'authorization': []}]
 func (u *UsersService) AdminGetListCountryAgeRestrictionV3Short(input *users.AdminGetListCountryAgeRestrictionV3Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelCountryV3Response, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4732,7 +4664,6 @@ func (u *UsersService) AdminGetListCountryAgeRestrictionV3Short(input *users.Adm
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:AGERESTRICTION [UPDATE]'], 'authorization': []}]
 func (u *UsersService) AdminUpdateCountryAgeRestrictionV3Short(input *users.AdminUpdateCountryAgeRestrictionV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelCountryV3Response, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4748,7 +4679,6 @@ func (u *UsersService) AdminUpdateCountryAgeRestrictionV3Short(input *users.Admi
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) AdminGetUserByPlatformUserIDV3Short(input *users.AdminGetUserByPlatformUserIDV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4764,7 +4694,6 @@ func (u *UsersService) AdminGetUserByPlatformUserIDV3Short(input *users.AdminGet
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
 func (u *UsersService) GetAdminUsersByRoleIDV3Short(input *users.GetAdminUsersByRoleIDV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4780,7 +4709,6 @@ func (u *UsersService) GetAdminUsersByRoleIDV3Short(input *users.GetAdminUsersBy
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
 func (u *UsersService) AdminGetUserByEmailAddressV3Short(input *users.AdminGetUserByEmailAddressV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4796,7 +4724,6 @@ func (u *UsersService) AdminGetUserByEmailAddressV3Short(input *users.AdminGetUs
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
 func (u *UsersService) AdminListUserIDByUserIDsV3Short(input *users.AdminListUserIDByUserIDsV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelListUserInformationResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4812,7 +4739,6 @@ func (u *UsersService) AdminListUserIDByUserIDsV3Short(input *users.AdminListUse
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:INVITE [CREATE]'], 'authorization': []}]
 func (u *UsersService) AdminInviteUserV3Short(input *users.AdminInviteUserV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelInviteUserResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4828,7 +4754,6 @@ func (u *UsersService) AdminInviteUserV3Short(input *users.AdminInviteUserV3Para
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
 func (u *UsersService) AdminListUsersV3Short(input *users.AdminListUsersV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonListUsersWithPlatformAccountsResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4844,7 +4769,6 @@ func (u *UsersService) AdminListUsersV3Short(input *users.AdminListUsersV3Params
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
 func (u *UsersService) AdminSearchUserV3Short(input *users.AdminSearchUserV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelSearchUsersResponseWithPaginationV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4860,7 +4784,6 @@ func (u *UsersService) AdminSearchUserV3Short(input *users.AdminSearchUserV3Para
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER [READ]'], 'authorization': []}]
 func (u *UsersService) AdminGetBulkUserByEmailAddressV3Short(input *users.AdminGetBulkUserByEmailAddressV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelListUserResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4876,7 +4799,6 @@ func (u *UsersService) AdminGetBulkUserByEmailAddressV3Short(input *users.AdminG
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]'], 'authorization': []}]
 func (u *UsersService) AdminGetUserByUserIDV3Short(input *users.AdminGetUserByUserIDV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4892,7 +4814,6 @@ func (u *UsersService) AdminGetUserByUserIDV3Short(input *users.AdminGetUserByUs
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) AdminUpdateUserV3Short(input *users.AdminUpdateUserV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4908,7 +4829,6 @@ func (u *UsersService) AdminUpdateUserV3Short(input *users.AdminUpdateUserV3Para
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [READ]'], 'authorization': []}]
 func (u *UsersService) AdminGetUserBanV3Short(input *users.AdminGetUserBanV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelGetUserBanV3Response, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4924,7 +4844,6 @@ func (u *UsersService) AdminGetUserBanV3Short(input *users.AdminGetUserBanV3Para
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [CREATE]'], 'authorization': []}]
 func (u *UsersService) AdminBanUserV3Short(input *users.AdminBanUserV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserBanResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4940,7 +4859,6 @@ func (u *UsersService) AdminBanUserV3Short(input *users.AdminBanUserV3Params, au
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:BAN:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) AdminUpdateUserBanV3Short(input *users.AdminUpdateUserBanV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserBanResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4956,7 +4874,6 @@ func (u *UsersService) AdminUpdateUserBanV3Short(input *users.AdminUpdateUserBan
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) AdminSendVerificationCodeV3Short(input *users.AdminSendVerificationCodeV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4972,7 +4889,6 @@ func (u *UsersService) AdminSendVerificationCodeV3Short(input *users.AdminSendVe
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) AdminVerifyAccountV3Short(input *users.AdminVerifyAccountV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -4988,7 +4904,6 @@ func (u *UsersService) AdminVerifyAccountV3Short(input *users.AdminVerifyAccount
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CODE [READ]'], 'authorization': []}]
 func (u *UsersService) GetUserVerificationCodeShort(input *users.GetUserVerificationCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelVerificationCodeResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5004,7 +4919,6 @@ func (u *UsersService) GetUserVerificationCodeShort(input *users.GetUserVerifica
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DELETIONSTATUS:USER:{userId} [READ]'], 'authorization': []}]
 func (u *UsersService) AdminGetUserDeletionStatusV3Short(input *users.AdminGetUserDeletionStatusV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserDeletionStatusResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5020,7 +4934,6 @@ func (u *UsersService) AdminGetUserDeletionStatusV3Short(input *users.AdminGetUs
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DELETIONSTATUS:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) AdminUpdateUserDeletionStatusV3Short(input *users.AdminUpdateUserDeletionStatusV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5036,7 +4949,6 @@ func (u *UsersService) AdminUpdateUserDeletionStatusV3Short(input *users.AdminUp
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) AdminUpgradeHeadlessAccountV3Short(input *users.AdminUpgradeHeadlessAccountV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5052,7 +4964,6 @@ func (u *UsersService) AdminUpgradeHeadlessAccountV3Short(input *users.AdminUpgr
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]'], 'authorization': []}]
 func (u *UsersService) AdminDeleteUserInformationV3Short(input *users.AdminDeleteUserInformationV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5068,7 +4979,6 @@ func (u *UsersService) AdminDeleteUserInformationV3Short(input *users.AdminDelet
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:HISTORY:LOGIN:USER:{userId} [READ]'], 'authorization': []}]
 func (u *UsersService) AdminGetUserLoginHistoriesV3Short(input *users.AdminGetUserLoginHistoriesV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5084,7 +4994,6 @@ func (u *UsersService) AdminGetUserLoginHistoriesV3Short(input *users.AdminGetUs
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) AdminUpdateUserPermissionV3Short(input *users.AdminUpdateUserPermissionV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5100,7 +5009,6 @@ func (u *UsersService) AdminUpdateUserPermissionV3Short(input *users.AdminUpdate
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [CREATE]'], 'authorization': []}]
 func (u *UsersService) AdminAddUserPermissionsV3Short(input *users.AdminAddUserPermissionsV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5116,7 +5024,6 @@ func (u *UsersService) AdminAddUserPermissionsV3Short(input *users.AdminAddUserP
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [DELETE]'], 'authorization': []}]
 func (u *UsersService) AdminDeleteUserPermissionBulkV3Short(input *users.AdminDeleteUserPermissionBulkV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5132,7 +5039,6 @@ func (u *UsersService) AdminDeleteUserPermissionBulkV3Short(input *users.AdminDe
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PERMISSION:USER:{userId} [DELETE]'], 'authorization': []}]
 func (u *UsersService) AdminDeleteUserPermissionV3Short(input *users.AdminDeleteUserPermissionV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5148,7 +5054,6 @@ func (u *UsersService) AdminDeleteUserPermissionV3Short(input *users.AdminDelete
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [READ]', 'ADMIN:NAMESPACE:{namespace}:JUSTICE:USER:{userId} [READ]'], 'authorization': []}]
 func (u *UsersService) AdminGetUserPlatformAccountsV3Short(input *users.AdminGetUserPlatformAccountsV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5164,7 +5069,6 @@ func (u *UsersService) AdminGetUserPlatformAccountsV3Short(input *users.AdminGet
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) AdminGetListJusticePlatformAccountsShort(input *users.AdminGetListJusticePlatformAccountsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelGetUserMapping, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5180,7 +5084,6 @@ func (u *UsersService) AdminGetListJusticePlatformAccountsShort(input *users.Adm
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [CREATE]'], 'authorization': []}]
 func (u *UsersService) AdminCreateJusticeUserShort(input *users.AdminCreateJusticeUserParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5196,7 +5099,6 @@ func (u *UsersService) AdminCreateJusticeUserShort(input *users.AdminCreateJusti
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) AdminLinkPlatformAccountShort(input *users.AdminLinkPlatformAccountParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5212,7 +5114,6 @@ func (u *UsersService) AdminLinkPlatformAccountShort(input *users.AdminLinkPlatf
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]'], 'authorization': []}]
 func (u *UsersService) AdminPlatformUnlinkV3Short(input *users.AdminPlatformUnlinkV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5228,7 +5129,6 @@ func (u *UsersService) AdminPlatformUnlinkV3Short(input *users.AdminPlatformUnli
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) AdminPlatformLinkV3Short(input *users.AdminPlatformLinkV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5244,7 +5144,6 @@ func (u *UsersService) AdminPlatformLinkV3Short(input *users.AdminPlatformLinkV3
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [DELETE]'], 'authorization': []}]
 func (u *UsersService) AdminDeleteUserRolesV3Short(input *users.AdminDeleteUserRolesV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5260,7 +5159,6 @@ func (u *UsersService) AdminDeleteUserRolesV3Short(input *users.AdminDeleteUserR
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) AdminSaveUserRoleV3Short(input *users.AdminSaveUserRoleV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5276,7 +5174,6 @@ func (u *UsersService) AdminSaveUserRoleV3Short(input *users.AdminSaveUserRoleV3
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) AdminAddUserRoleV3Short(input *users.AdminAddUserRoleV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5292,7 +5189,6 @@ func (u *UsersService) AdminAddUserRoleV3Short(input *users.AdminAddUserRoleV3Pa
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ROLE:USER:{userId} [DELETE]'], 'authorization': []}]
 func (u *UsersService) AdminDeleteUserRoleV3Short(input *users.AdminDeleteUserRoleV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5308,7 +5204,6 @@ func (u *UsersService) AdminDeleteUserRoleV3Short(input *users.AdminDeleteUserRo
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USERSTATUS:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) AdminUpdateUserStatusV3Short(input *users.AdminUpdateUserStatusV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5324,7 +5219,6 @@ func (u *UsersService) AdminUpdateUserStatusV3Short(input *users.AdminUpdateUser
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId} [UPDATE]'], 'authorization': []}]
 func (u *UsersService) AdminVerifyUserWithoutVerificationCodeV3Short(input *users.AdminVerifyUserWithoutVerificationCodeV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5340,7 +5234,6 @@ func (u *UsersService) AdminVerifyUserWithoutVerificationCodeV3Short(input *user
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) AdminGetMyUserV3Short(input *users.AdminGetMyUserV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5356,7 +5249,6 @@ func (u *UsersService) AdminGetMyUserV3Short(input *users.AdminGetMyUserV3Params
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicListUserIDByPlatformUserIDsV3Short(input *users.PublicListUserIDByPlatformUserIDsV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonUserPlatforms, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5372,7 +5264,6 @@ func (u *UsersService) PublicListUserIDByPlatformUserIDsV3Short(input *users.Pub
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicGetUserByPlatformUserIDV3Short(input *users.PublicGetUserByPlatformUserIDV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5388,7 +5279,6 @@ func (u *UsersService) PublicGetUserByPlatformUserIDV3Short(input *users.PublicG
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicGetAsyncStatusShort(input *users.PublicGetAsyncStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelLinkRequest, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5404,7 +5294,6 @@ func (u *UsersService) PublicGetAsyncStatusShort(input *users.PublicGetAsyncStat
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicSearchUserV3Short(input *users.PublicSearchUserV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelPublicUserInformationResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5420,7 +5309,6 @@ func (u *UsersService) PublicSearchUserV3Short(input *users.PublicSearchUserV3Pa
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicCreateUserV3Short(input *users.PublicCreateUserV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserCreateResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5436,7 +5324,6 @@ func (u *UsersService) PublicCreateUserV3Short(input *users.PublicCreateUserV3Pa
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) CheckUserAvailabilityShort(input *users.CheckUserAvailabilityParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5452,7 +5339,6 @@ func (u *UsersService) CheckUserAvailabilityShort(input *users.CheckUserAvailabi
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicBulkGetUsersShort(input *users.PublicBulkGetUsersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelListBulkUserResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5468,7 +5354,6 @@ func (u *UsersService) PublicBulkGetUsersShort(input *users.PublicBulkGetUsersPa
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicSendRegistrationCodeShort(input *users.PublicSendRegistrationCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5484,7 +5369,6 @@ func (u *UsersService) PublicSendRegistrationCodeShort(input *users.PublicSendRe
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicVerifyRegistrationCodeShort(input *users.PublicVerifyRegistrationCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5500,7 +5384,6 @@ func (u *UsersService) PublicVerifyRegistrationCodeShort(input *users.PublicVeri
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicForgotPasswordV3Short(input *users.PublicForgotPasswordV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5516,7 +5399,6 @@ func (u *UsersService) PublicForgotPasswordV3Short(input *users.PublicForgotPass
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) GetAdminInvitationV3Short(input *users.GetAdminInvitationV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserInvitationV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5532,7 +5414,6 @@ func (u *UsersService) GetAdminInvitationV3Short(input *users.GetAdminInvitation
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) CreateUserFromInvitationV3Short(input *users.CreateUserFromInvitationV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserCreateResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5548,7 +5429,6 @@ func (u *UsersService) CreateUserFromInvitationV3Short(input *users.CreateUserFr
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) UpdateUserV3Short(input *users.UpdateUserV3Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelUserResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5564,7 +5444,6 @@ func (u *UsersService) UpdateUserV3Short(input *users.UpdateUserV3Params, authIn
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicUpdateUserV3Short(input *users.PublicUpdateUserV3Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelUserResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5580,7 +5459,6 @@ func (u *UsersService) PublicUpdateUserV3Short(input *users.PublicUpdateUserV3Pa
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicSendVerificationCodeV3Short(input *users.PublicSendVerificationCodeV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5596,7 +5474,6 @@ func (u *UsersService) PublicSendVerificationCodeV3Short(input *users.PublicSend
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicUserVerificationV3Short(input *users.PublicUserVerificationV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5612,7 +5489,6 @@ func (u *UsersService) PublicUserVerificationV3Short(input *users.PublicUserVeri
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicUpgradeHeadlessAccountV3Short(input *users.PublicUpgradeHeadlessAccountV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5628,7 +5504,6 @@ func (u *UsersService) PublicUpgradeHeadlessAccountV3Short(input *users.PublicUp
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicVerifyHeadlessAccountV3Short(input *users.PublicVerifyHeadlessAccountV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5644,7 +5519,6 @@ func (u *UsersService) PublicVerifyHeadlessAccountV3Short(input *users.PublicVer
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicUpdatePasswordV3Short(input *users.PublicUpdatePasswordV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5660,7 +5534,6 @@ func (u *UsersService) PublicUpdatePasswordV3Short(input *users.PublicUpdatePass
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicCreateJusticeUserShort(input *users.PublicCreateJusticeUserParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5676,7 +5549,6 @@ func (u *UsersService) PublicCreateJusticeUserShort(input *users.PublicCreateJus
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicPlatformLinkV3Short(input *users.PublicPlatformLinkV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5692,7 +5564,6 @@ func (u *UsersService) PublicPlatformLinkV3Short(input *users.PublicPlatformLink
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicPlatformUnlinkV3Short(input *users.PublicPlatformUnlinkV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5708,7 +5579,6 @@ func (u *UsersService) PublicPlatformUnlinkV3Short(input *users.PublicPlatformUn
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicWebLinkPlatformShort(input *users.PublicWebLinkPlatformParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelWebLinkingResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5724,7 +5594,6 @@ func (u *UsersService) PublicWebLinkPlatformShort(input *users.PublicWebLinkPlat
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicWebLinkPlatformEstablishShort(input *users.PublicWebLinkPlatformEstablishParams, authInfoWriter runtime.ClientAuthInfoWriter) (string, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5740,7 +5609,6 @@ func (u *UsersService) PublicWebLinkPlatformEstablishShort(input *users.PublicWe
 	return ok.Location, nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) ResetPasswordV3Short(input *users.ResetPasswordV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5756,7 +5624,6 @@ func (u *UsersService) ResetPasswordV3Short(input *users.ResetPasswordV3Params, 
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicGetUserByUserIDV3Short(input *users.PublicGetUserByUserIDV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelPublicUserResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5772,7 +5639,6 @@ func (u *UsersService) PublicGetUserByUserIDV3Short(input *users.PublicGetUserBy
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicGetUserBanHistoryV3Short(input *users.PublicGetUserBanHistoryV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelGetUserBanV3Response, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5788,7 +5654,6 @@ func (u *UsersService) PublicGetUserBanHistoryV3Short(input *users.PublicGetUser
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicGetUserLoginHistoriesV3Short(input *users.PublicGetUserLoginHistoriesV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5804,7 +5669,6 @@ func (u *UsersService) PublicGetUserLoginHistoriesV3Short(input *users.PublicGet
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicGetUserPlatformAccountsV3Short(input *users.PublicGetUserPlatformAccountsV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5820,7 +5684,6 @@ func (u *UsersService) PublicGetUserPlatformAccountsV3Short(input *users.PublicG
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicLinkPlatformAccountShort(input *users.PublicLinkPlatformAccountParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5836,7 +5699,6 @@ func (u *UsersService) PublicLinkPlatformAccountShort(input *users.PublicLinkPla
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicValidateUserByUserIDAndPasswordV3Short(input *users.PublicValidateUserByUserIDAndPasswordV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -5852,7 +5714,6 @@ func (u *UsersService) PublicValidateUserByUserIDAndPasswordV3Short(input *users
 	return nil
 }
 
-// [{'authorization': []}]
 func (u *UsersService) PublicGetMyUserV3Short(input *users.PublicGetMyUserV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelUserResponseV3, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

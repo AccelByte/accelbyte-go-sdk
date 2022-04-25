@@ -192,7 +192,6 @@ func (p *PaymentService) RefundUserPaymentOrder(input *payment.RefundUserPayment
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PAYMENT:NOTIFICATION [READ]'], 'authorization': []}]
 func (p *PaymentService) QueryPaymentNotificationsShort(input *payment.QueryPaymentNotificationsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentNotificationPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -208,7 +207,6 @@ func (p *PaymentService) QueryPaymentNotificationsShort(input *payment.QueryPaym
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PAYMENT [READ]'], 'authorization': []}]
 func (p *PaymentService) QueryPaymentOrdersShort(input *payment.QueryPaymentOrdersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentOrderPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -224,7 +222,6 @@ func (p *PaymentService) QueryPaymentOrdersShort(input *payment.QueryPaymentOrde
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PAYMENT [READ]'], 'authorization': []}]
 func (p *PaymentService) ListExtOrderNoByExtTxIDShort(input *payment.ListExtOrderNoByExtTxIDParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]string, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -240,7 +237,6 @@ func (p *PaymentService) ListExtOrderNoByExtTxIDShort(input *payment.ListExtOrde
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PAYMENT [READ]'], 'authorization': []}]
 func (p *PaymentService) GetPaymentOrderShort(input *payment.GetPaymentOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentOrderInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -256,7 +252,6 @@ func (p *PaymentService) GetPaymentOrderShort(input *payment.GetPaymentOrderPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PAYMENT [UPDATE]'], 'authorization': []}]
 func (p *PaymentService) ChargePaymentOrderShort(input *payment.ChargePaymentOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentOrderInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -272,7 +267,6 @@ func (p *PaymentService) ChargePaymentOrderShort(input *payment.ChargePaymentOrd
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PAYMENT [UPDATE]'], 'authorization': []}]
 func (p *PaymentService) SimulatePaymentOrderNotificationShort(input *payment.SimulatePaymentOrderNotificationParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.NotificationProcessResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -288,7 +282,6 @@ func (p *PaymentService) SimulatePaymentOrderNotificationShort(input *payment.Si
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PAYMENT [READ]'], 'authorization': []}]
 func (p *PaymentService) GetPaymentOrderChargeStatusShort(input *payment.GetPaymentOrderChargeStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentOrderChargeStatus, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -304,7 +297,6 @@ func (p *PaymentService) GetPaymentOrderChargeStatusShort(input *payment.GetPaym
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PAYMENT [CREATE]'], 'authorization': []}]
 func (p *PaymentService) CreateUserPaymentOrderShort(input *payment.CreateUserPaymentOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentOrderInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -320,7 +312,6 @@ func (p *PaymentService) CreateUserPaymentOrderShort(input *payment.CreateUserPa
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:PAYMENT [UPDATE]'], 'authorization': []}]
 func (p *PaymentService) RefundUserPaymentOrderShort(input *payment.RefundUserPaymentOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentOrderInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

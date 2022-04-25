@@ -60,7 +60,6 @@ func (a *AdminService) SetServerAlias(input *admin.SetServerAliasParams) error {
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:QOS:SERVER [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -76,7 +75,6 @@ func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams, authIn
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:QOS:SERVER []'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AdminService) SetServerAliasShort(input *admin.SetServerAliasParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

@@ -276,7 +276,6 @@ func (g *GroupRolesService) DeleteMemberRolePublicV1(input *group_roles.DeleteMe
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]'], 'authorization': []}]
 func (g *GroupRolesService) GetMemberRolesListAdminV1Short(input *group_roles.GetMemberRolesListAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetMemberRolesListResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -292,7 +291,6 @@ func (g *GroupRolesService) GetMemberRolesListAdminV1Short(input *group_roles.Ge
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [CREATE]'], 'authorization': []}]
 func (g *GroupRolesService) CreateMemberRoleAdminV1Short(input *group_roles.CreateMemberRoleAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsCreateMemberRoleResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -308,7 +306,6 @@ func (g *GroupRolesService) CreateMemberRoleAdminV1Short(input *group_roles.Crea
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [READ]'], 'authorization': []}]
 func (g *GroupRolesService) GetSingleMemberRoleAdminV1Short(input *group_roles.GetSingleMemberRoleAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetMemberRoleResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -324,7 +321,6 @@ func (g *GroupRolesService) GetSingleMemberRoleAdminV1Short(input *group_roles.G
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [DELETE]'], 'authorization': []}]
 func (g *GroupRolesService) DeleteMemberRoleAdminV1Short(input *group_roles.DeleteMemberRoleAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -340,7 +336,6 @@ func (g *GroupRolesService) DeleteMemberRoleAdminV1Short(input *group_roles.Dele
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]'], 'authorization': []}]
 func (g *GroupRolesService) UpdateMemberRoleAdminV1Short(input *group_roles.UpdateMemberRoleAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsUpdateMemberRoleResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -356,7 +351,6 @@ func (g *GroupRolesService) UpdateMemberRoleAdminV1Short(input *group_roles.Upda
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]'], 'authorization': []}]
 func (g *GroupRolesService) UpdateMemberRolePermissionAdminV1Short(input *group_roles.UpdateMemberRolePermissionAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsUpdateMemberRoleResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -372,7 +366,6 @@ func (g *GroupRolesService) UpdateMemberRolePermissionAdminV1Short(input *group_
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (g *GroupRolesService) GetMemberRolesListPublicV1Short(input *group_roles.GetMemberRolesListPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetMemberRolesListResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -388,7 +381,6 @@ func (g *GroupRolesService) GetMemberRolesListPublicV1Short(input *group_roles.G
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (g *GroupRolesService) UpdateMemberRolePublicV1Short(input *group_roles.UpdateMemberRolePublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetUserGroupInformationResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -404,7 +396,6 @@ func (g *GroupRolesService) UpdateMemberRolePublicV1Short(input *group_roles.Upd
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (g *GroupRolesService) DeleteMemberRolePublicV1Short(input *group_roles.DeleteMemberRolePublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsUpdateMemberRoleResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

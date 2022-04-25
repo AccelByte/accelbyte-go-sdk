@@ -191,7 +191,6 @@ func (g *GameProfileService) PublicUpdateAttribute(input *game_profile.PublicUpd
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]'], 'authorization': []}]
 func (g *GameProfileService) GetUserProfilesShort(input *game_profile.GetUserProfilesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.GameProfileHeader, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -207,7 +206,6 @@ func (g *GameProfileService) GetUserProfilesShort(input *game_profile.GetUserPro
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]'], 'authorization': []}]
 func (g *GameProfileService) GetProfileShort(input *game_profile.GetProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.GameProfileInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -223,7 +221,6 @@ func (g *GameProfileService) GetProfileShort(input *game_profile.GetProfileParam
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:GAMEPROFILE [READ]'], 'authorization': []}]
 func (g *GameProfileService) PublicGetUserGameProfilesShort(input *game_profile.PublicGetUserGameProfilesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.UserGameProfiles, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -239,7 +236,6 @@ func (g *GameProfileService) PublicGetUserGameProfilesShort(input *game_profile.
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]'], 'authorization': []}]
 func (g *GameProfileService) PublicGetUserProfilesShort(input *game_profile.PublicGetUserProfilesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.GameProfileHeader, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -255,7 +251,6 @@ func (g *GameProfileService) PublicGetUserProfilesShort(input *game_profile.Publ
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [CREATE]'], 'authorization': []}]
 func (g *GameProfileService) PublicCreateProfileShort(input *game_profile.PublicCreateProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -271,7 +266,6 @@ func (g *GameProfileService) PublicCreateProfileShort(input *game_profile.Public
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]'], 'authorization': []}]
 func (g *GameProfileService) PublicGetProfileShort(input *game_profile.PublicGetProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.GameProfileInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -287,7 +281,6 @@ func (g *GameProfileService) PublicGetProfileShort(input *game_profile.PublicGet
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [UPDATE]'], 'authorization': []}]
 func (g *GameProfileService) PublicUpdateProfileShort(input *game_profile.PublicUpdateProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.GameProfileInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -303,7 +296,6 @@ func (g *GameProfileService) PublicUpdateProfileShort(input *game_profile.Public
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [DELETE]'], 'authorization': []}]
 func (g *GameProfileService) PublicDeleteProfileShort(input *game_profile.PublicDeleteProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -319,7 +311,6 @@ func (g *GameProfileService) PublicDeleteProfileShort(input *game_profile.Public
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [READ]'], 'authorization': []}]
 func (g *GameProfileService) PublicGetProfileAttributeShort(input *game_profile.PublicGetProfileAttributeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.Attribute, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -335,7 +326,6 @@ func (g *GameProfileService) PublicGetProfileAttributeShort(input *game_profile.
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:GAMEPROFILE [UPDATE]'], 'authorization': []}]
 func (g *GameProfileService) PublicUpdateAttributeShort(input *game_profile.PublicUpdateAttributeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.GameProfileInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

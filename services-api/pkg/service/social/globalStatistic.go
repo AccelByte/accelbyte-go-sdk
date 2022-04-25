@@ -35,7 +35,6 @@ func (g *GlobalStatisticService) GetGlobalStatItems(input *global_statistic.GetG
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:STATITEM [READ]'], 'authorization': []}]
 func (g *GlobalStatisticService) GetGlobalStatItemsShort(input *global_statistic.GetGlobalStatItemsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.GlobalStatItemPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

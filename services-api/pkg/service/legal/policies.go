@@ -100,7 +100,6 @@ func (p *PoliciesService) RetrieveLatestPoliciesByNamespaceAndCountryPublic(inpu
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [READ]'], 'authorization': []}]
 func (p *PoliciesService) RetrievePoliciesShort(input *policies.RetrievePoliciesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrievePolicyResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -116,7 +115,6 @@ func (p *PoliciesService) RetrievePoliciesShort(input *policies.RetrievePolicies
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [UPDATE]'], 'authorization': []}]
 func (p *PoliciesService) UpdatePolicyShort(input *policies.UpdatePolicyParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -132,7 +130,6 @@ func (p *PoliciesService) UpdatePolicyShort(input *policies.UpdatePolicyParams, 
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:*:LEGAL [UPDATE]'], 'authorization': []}]
 func (p *PoliciesService) SetDefaultPolicy1Short(input *policies.SetDefaultPolicy1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -148,7 +145,6 @@ func (p *PoliciesService) SetDefaultPolicy1Short(input *policies.SetDefaultPolic
 	return nil
 }
 
-// None
 func (p *PoliciesService) RetrieveLatestPoliciesShort(input *policies.RetrieveLatestPoliciesParams) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
 	ok, err := p.Client.Policies.RetrieveLatestPoliciesShort(input)
 	if err != nil {
@@ -158,7 +154,6 @@ func (p *PoliciesService) RetrieveLatestPoliciesShort(input *policies.RetrieveLa
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (p *PoliciesService) RetrieveLatestPoliciesPublicShort(input *policies.RetrieveLatestPoliciesPublicParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -174,7 +169,6 @@ func (p *PoliciesService) RetrieveLatestPoliciesPublicShort(input *policies.Retr
 	return ok.GetPayload(), nil
 }
 
-// None
 func (p *PoliciesService) RetrieveLatestPoliciesByNamespaceAndCountryPublicShort(input *policies.RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
 	ok, err := p.Client.Policies.RetrieveLatestPoliciesByNamespaceAndCountryPublicShort(input)
 	if err != nil {

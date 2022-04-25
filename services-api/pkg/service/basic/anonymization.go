@@ -43,7 +43,6 @@ func (a *AnonymizationService) AnonymizeUserProfile(input *anonymization.Anonymi
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ANONYMIZATION [DELETE]'], 'authorization': []}]
 func (a *AnonymizationService) AnonymizeUserProfileShort(input *anonymization.AnonymizeUserProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

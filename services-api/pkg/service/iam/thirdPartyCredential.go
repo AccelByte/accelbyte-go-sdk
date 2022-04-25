@@ -264,7 +264,6 @@ func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCr
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PLATFORM:*:CLIENT [READ]'], 'authorization': []}]
 func (t *ThirdPartyCredentialService) RetrieveAllThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.RetrieveAllThirdPartyLoginPlatformCredentialV3Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -280,7 +279,6 @@ func (t *ThirdPartyCredentialService) RetrieveAllThirdPartyLoginPlatformCredenti
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PLATFORM:*:CLIENT [READ]'], 'authorization': []}]
 func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -296,7 +294,6 @@ func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCr
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [READ]'], 'authorization': []}]
 func (t *ThirdPartyCredentialService) RetrieveThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.RetrieveThirdPartyLoginPlatformCredentialV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -312,7 +309,6 @@ func (t *ThirdPartyCredentialService) RetrieveThirdPartyLoginPlatformCredentialV
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [CREATE]'], 'authorization': []}]
 func (t *ThirdPartyCredentialService) AddThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.AddThirdPartyLoginPlatformCredentialV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -328,7 +324,6 @@ func (t *ThirdPartyCredentialService) AddThirdPartyLoginPlatformCredentialV3Shor
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [DELETE]'], 'authorization': []}]
 func (t *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.DeleteThirdPartyLoginPlatformCredentialV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -344,7 +339,6 @@ func (t *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformCredentialV3S
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:CLIENT [CREATE]'], 'authorization': []}]
 func (t *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.UpdateThirdPartyLoginPlatformCredentialV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -360,7 +354,6 @@ func (t *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformCredentialV3S
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLIENTDOMAIN [UPDATE]'], 'authorization': []}]
 func (t *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformDomainV3Short(input *third_party_credential.UpdateThirdPartyLoginPlatformDomainV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelPlatformDomainResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -376,7 +369,6 @@ func (t *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformDomainV3Short
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CLIENTDOMAIN [DELETE]'], 'authorization': []}]
 func (t *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformDomainV3Short(input *third_party_credential.DeleteThirdPartyLoginPlatformDomainV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -392,7 +384,6 @@ func (t *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformDomainV3Short
 	return nil
 }
 
-// [{'authorization': []}]
 func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short(input *third_party_credential.RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelPublicThirdPartyPlatformInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

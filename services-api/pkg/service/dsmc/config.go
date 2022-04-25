@@ -321,7 +321,6 @@ func (c *ConfigService) ImportConfigV1(input *config.ImportConfigV1Params) (*dsm
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (c *ConfigService) ListConfigShort(input *config.ListConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListConfigResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -337,7 +336,6 @@ func (c *ConfigService) ListConfigShort(input *config.ListConfigParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (c *ConfigService) SaveConfigShort(input *config.SaveConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -353,7 +351,6 @@ func (c *ConfigService) SaveConfigShort(input *config.SaveConfigParams, authInfo
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (c *ConfigService) GetConfigShort(input *config.GetConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -369,7 +366,6 @@ func (c *ConfigService) GetConfigShort(input *config.GetConfigParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (c *ConfigService) CreateConfigShort(input *config.CreateConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -385,7 +381,6 @@ func (c *ConfigService) CreateConfigShort(input *config.CreateConfigParams, auth
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (c *ConfigService) DeleteConfigShort(input *config.DeleteConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -401,7 +396,6 @@ func (c *ConfigService) DeleteConfigShort(input *config.DeleteConfigParams, auth
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (c *ConfigService) UpdateConfigShort(input *config.UpdateConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -417,7 +411,6 @@ func (c *ConfigService) UpdateConfigShort(input *config.UpdateConfigParams, auth
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (c *ConfigService) ClearCacheShort(input *config.ClearCacheParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -433,7 +426,6 @@ func (c *ConfigService) ClearCacheShort(input *config.ClearCacheParams, authInfo
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (c *ConfigService) AddPortShort(input *config.AddPortParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -449,7 +441,6 @@ func (c *ConfigService) AddPortShort(input *config.AddPortParams, authInfoWriter
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (c *ConfigService) DeletePortShort(input *config.DeletePortParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -465,7 +456,6 @@ func (c *ConfigService) DeletePortShort(input *config.DeletePortParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (c *ConfigService) UpdatePortShort(input *config.UpdatePortParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -481,7 +471,6 @@ func (c *ConfigService) UpdatePortShort(input *config.UpdatePortParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (c *ConfigService) ExportConfigV1Short(input *config.ExportConfigV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDSMConfigExport, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -497,7 +486,6 @@ func (c *ConfigService) ExportConfigV1Short(input *config.ExportConfigV1Params, 
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSM:CONFIG [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (c *ConfigService) ImportConfigV1Short(input *config.ImportConfigV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsImportResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

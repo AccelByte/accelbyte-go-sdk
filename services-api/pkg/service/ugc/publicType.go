@@ -44,7 +44,6 @@ func (p *PublicTypeService) GetType(input *public_type.GetTypeParams) (*ugcclien
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (p *PublicTypeService) GetTypeShort(input *public_type.GetTypeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedGetTypeResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

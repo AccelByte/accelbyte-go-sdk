@@ -107,7 +107,6 @@ func (i *InputValidationsService) PublicGetInputValidations(input *input_validat
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:CONFIGURATION [READ]'], 'authorization': []}]
 func (i *InputValidationsService) AdminGetInputValidationsShort(input *input_validations.AdminGetInputValidationsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelInputValidationsResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -123,7 +122,6 @@ func (i *InputValidationsService) AdminGetInputValidationsShort(input *input_val
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:CONFIGURATION [UPDATE]'], 'authorization': []}]
 func (i *InputValidationsService) AdminUpdateInputValidationsShort(input *input_validations.AdminUpdateInputValidationsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -139,7 +137,6 @@ func (i *InputValidationsService) AdminUpdateInputValidationsShort(input *input_
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:CONFIGURATION [DELETE]'], 'authorization': []}]
 func (i *InputValidationsService) AdminResetInputValidationsShort(input *input_validations.AdminResetInputValidationsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -155,7 +152,6 @@ func (i *InputValidationsService) AdminResetInputValidationsShort(input *input_v
 	return nil
 }
 
-// [{'authorization': []}]
 func (i *InputValidationsService) PublicGetInputValidationsShort(input *input_validations.PublicGetInputValidationsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelInputValidationsPublicResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

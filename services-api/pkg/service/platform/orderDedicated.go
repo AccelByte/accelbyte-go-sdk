@@ -35,7 +35,6 @@ func (o *OrderDedicatedService) SyncOrders(input *order_dedicated.SyncOrdersPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:ORDER [READ]'], 'authorization': []}]
 func (o *OrderDedicatedService) SyncOrdersShort(input *order_dedicated.SyncOrdersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderSyncResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

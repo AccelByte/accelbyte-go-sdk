@@ -154,7 +154,6 @@ func (s *SSOCredentialService) UpdateSSOPlatformCredential(input *s_s_o_credenti
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PLATFORM:*:SSO [READ]'], 'authorization': []}]
 func (s *SSOCredentialService) RetrieveAllSSOLoginPlatformCredentialV3Short(input *s_s_o_credential.RetrieveAllSSOLoginPlatformCredentialV3Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -170,7 +169,6 @@ func (s *SSOCredentialService) RetrieveAllSSOLoginPlatformCredentialV3Short(inpu
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:SSO [READ]'], 'authorization': []}]
 func (s *SSOCredentialService) RetrieveSSOLoginPlatformCredentialShort(input *s_s_o_credential.RetrieveSSOLoginPlatformCredentialParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -186,7 +184,6 @@ func (s *SSOCredentialService) RetrieveSSOLoginPlatformCredentialShort(input *s_
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:SSO [CREATE]'], 'authorization': []}]
 func (s *SSOCredentialService) AddSSOLoginPlatformCredentialShort(input *s_s_o_credential.AddSSOLoginPlatformCredentialParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -202,7 +199,6 @@ func (s *SSOCredentialService) AddSSOLoginPlatformCredentialShort(input *s_s_o_c
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:SSO [DELETE]'], 'authorization': []}]
 func (s *SSOCredentialService) DeleteSSOLoginPlatformCredentialV3Short(input *s_s_o_credential.DeleteSSOLoginPlatformCredentialV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -218,7 +214,6 @@ func (s *SSOCredentialService) DeleteSSOLoginPlatformCredentialV3Short(input *s_
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PLATFORM:{platformId}:SSO [UPDATE]'], 'authorization': []}]
 func (s *SSOCredentialService) UpdateSSOPlatformCredentialShort(input *s_s_o_credential.UpdateSSOPlatformCredentialParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

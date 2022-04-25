@@ -75,7 +75,6 @@ func (e *EQU8ConfigService) UpdateConfig(input *e_q_u8_config.UpdateConfigParams
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (e *EQU8ConfigService) GetConfigShort(input *e_q_u8_config.GetConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.Equ8Config, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -91,7 +90,6 @@ func (e *EQU8ConfigService) GetConfigShort(input *e_q_u8_config.GetConfigParams,
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (e *EQU8ConfigService) DeleteConfigShort(input *e_q_u8_config.DeleteConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -107,7 +105,6 @@ func (e *EQU8ConfigService) DeleteConfigShort(input *e_q_u8_config.DeleteConfigP
 	return nil
 }
 
-// [{'authorization': []}]
 func (e *EQU8ConfigService) UpdateConfigShort(input *e_q_u8_config.UpdateConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.Equ8Config, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

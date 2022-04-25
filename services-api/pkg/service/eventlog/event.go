@@ -279,7 +279,6 @@ func (e *EventService) GetEventByUserEventIDAndEventTypeHandler(input *event.Get
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:EVENT [UPDATE]'], 'HasScope': ['analytics'], 'authorization': []}]
 func (e *EventService) GetEventByNamespaceHandlerShort(input *event.GetEventByNamespaceHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -295,7 +294,6 @@ func (e *EventService) GetEventByNamespaceHandlerShort(input *event.GetEventByNa
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:EVENT [CREATE]'], 'HasScope': ['analytics'], 'authorization': []}]
 func (e *EventService) PostEventHandlerShort(input *event.PostEventHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -311,7 +309,6 @@ func (e *EventService) PostEventHandlerShort(input *event.PostEventHandlerParams
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:EVENT [UPDATE]'], 'HasScope': ['analytics'], 'authorization': []}]
 func (e *EventService) GetEventByEventIDHandlerShort(input *event.GetEventByEventIDHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -327,7 +324,6 @@ func (e *EventService) GetEventByEventIDHandlerShort(input *event.GetEventByEven
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:EVENT [UPDATE]'], 'HasScope': ['analytics'], 'authorization': []}]
 func (e *EventService) GetEventByEventTypeHandlerShort(input *event.GetEventByEventTypeHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -343,7 +339,6 @@ func (e *EventService) GetEventByEventTypeHandlerShort(input *event.GetEventByEv
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:EVENT [UPDATE]'], 'HasScope': ['analytics'], 'authorization': []}]
 func (e *EventService) GetEventByEventTypeAndEventIDHandlerShort(input *event.GetEventByEventTypeAndEventIDHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -359,7 +354,6 @@ func (e *EventService) GetEventByEventTypeAndEventIDHandlerShort(input *event.Ge
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:EVENT [UPDATE]'], 'HasScope': ['analytics'], 'authorization': []}]
 func (e *EventService) GetEventByUserIDHandlerShort(input *event.GetEventByUserIDHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -375,7 +369,6 @@ func (e *EventService) GetEventByUserIDHandlerShort(input *event.GetEventByUserI
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:EVENT [UPDATE]'], 'HasScope': ['analytics'], 'authorization': []}]
 func (e *EventService) GetEventByUserIDAndEventIDHandlerShort(input *event.GetEventByUserIDAndEventIDHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -391,7 +384,6 @@ func (e *EventService) GetEventByUserIDAndEventIDHandlerShort(input *event.GetEv
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:EVENT [UPDATE]'], 'HasScope': ['analytics'], 'authorization': []}]
 func (e *EventService) GetEventByUserIDAndEventTypeHandlerShort(input *event.GetEventByUserIDAndEventTypeHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -407,7 +399,6 @@ func (e *EventService) GetEventByUserIDAndEventTypeHandlerShort(input *event.Get
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:EVENT [UPDATE]'], 'HasScope': ['analytics'], 'authorization': []}]
 func (e *EventService) GetEventByUserEventIDAndEventTypeHandlerShort(input *event.GetEventByUserEventIDAndEventTypeHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

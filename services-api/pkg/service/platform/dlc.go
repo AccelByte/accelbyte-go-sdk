@@ -162,7 +162,6 @@ func (d *DLCService) SyncXboxDLC(input *d_l_c.SyncXboxDLCParams) error {
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [READ]'], 'authorization': []}]
 func (d *DLCService) GetDLCItemConfigShort(input *d_l_c.GetDLCItemConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.DLCItemConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -178,7 +177,6 @@ func (d *DLCService) GetDLCItemConfigShort(input *d_l_c.GetDLCItemConfigParams, 
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [UPDATE]'], 'authorization': []}]
 func (d *DLCService) UpdateDLCItemConfigShort(input *d_l_c.UpdateDLCItemConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.DLCItemConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -194,7 +192,6 @@ func (d *DLCService) UpdateDLCItemConfigShort(input *d_l_c.UpdateDLCItemConfigPa
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [DELETE]'], 'authorization': []}]
 func (d *DLCService) DeleteDLCItemConfigShort(input *d_l_c.DeleteDLCItemConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -210,7 +207,6 @@ func (d *DLCService) DeleteDLCItemConfigShort(input *d_l_c.DeleteDLCItemConfigPa
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [READ]'], 'authorization': []}]
 func (d *DLCService) GetPlatformDLCConfigShort(input *d_l_c.GetPlatformDLCConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PlatformDLCConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -226,7 +222,6 @@ func (d *DLCService) GetPlatformDLCConfigShort(input *d_l_c.GetPlatformDLCConfig
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [UPDATE]'], 'authorization': []}]
 func (d *DLCService) UpdatePlatformDLCConfigShort(input *d_l_c.UpdatePlatformDLCConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PlatformDLCConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -242,7 +237,6 @@ func (d *DLCService) UpdatePlatformDLCConfigShort(input *d_l_c.UpdatePlatformDLC
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DLC:CONFIG [DELETE]'], 'authorization': []}]
 func (d *DLCService) DeletePlatformDLCConfigShort(input *d_l_c.DeletePlatformDLCConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -258,7 +252,6 @@ func (d *DLCService) DeletePlatformDLCConfigShort(input *d_l_c.DeletePlatformDLC
 	return nil
 }
 
-// [{'authorization': []}]
 func (d *DLCService) PublicSyncPsnDlcInventoryShort(input *d_l_c.PublicSyncPsnDlcInventoryParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -274,7 +267,6 @@ func (d *DLCService) PublicSyncPsnDlcInventoryShort(input *d_l_c.PublicSyncPsnDl
 	return nil
 }
 
-// [{'authorization': []}]
 func (d *DLCService) SyncSteamDLCShort(input *d_l_c.SyncSteamDLCParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -290,7 +282,6 @@ func (d *DLCService) SyncSteamDLCShort(input *d_l_c.SyncSteamDLCParams, authInfo
 	return nil
 }
 
-// [{'authorization': []}]
 func (d *DLCService) SyncXboxDLCShort(input *d_l_c.SyncXboxDLCParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

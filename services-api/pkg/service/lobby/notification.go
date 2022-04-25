@@ -989,7 +989,6 @@ func (n *NotificationService) NotificationWithTemplateByUserID(input *notificati
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) SendMultipleUsersFreeformNotificationV1AdminShort(input *notification.SendMultipleUsersFreeformNotificationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1005,7 +1004,6 @@ func (n *NotificationService) SendMultipleUsersFreeformNotificationV1AdminShort(
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) SendUsersFreeformNotificationV1AdminShort(input *notification.SendUsersFreeformNotificationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1021,7 +1019,6 @@ func (n *NotificationService) SendUsersFreeformNotificationV1AdminShort(input *n
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) SendPartyFreeformNotificationV1AdminShort(input *notification.SendPartyFreeformNotificationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1037,7 +1034,6 @@ func (n *NotificationService) SendPartyFreeformNotificationV1AdminShort(input *n
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) SendPartyTemplatedNotificationV1AdminShort(input *notification.SendPartyTemplatedNotificationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1053,7 +1049,6 @@ func (n *NotificationService) SendPartyTemplatedNotificationV1AdminShort(input *
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) GetAllNotificationTemplatesV1AdminShort(input *notification.GetAllNotificationTemplatesV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelNotificationTemplateResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1069,7 +1064,6 @@ func (n *NotificationService) GetAllNotificationTemplatesV1AdminShort(input *not
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) CreateNotificationTemplateV1AdminShort(input *notification.CreateNotificationTemplateV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1085,7 +1079,6 @@ func (n *NotificationService) CreateNotificationTemplateV1AdminShort(input *noti
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) SendUsersTemplatedNotificationV1AdminShort(input *notification.SendUsersTemplatedNotificationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1101,7 +1094,6 @@ func (n *NotificationService) SendUsersTemplatedNotificationV1AdminShort(input *
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) GetTemplateSlugLocalizationsTemplateV1AdminShort(input *notification.GetTemplateSlugLocalizationsTemplateV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelGetAllNotificationTemplateSlugResp, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1117,7 +1109,6 @@ func (n *NotificationService) GetTemplateSlugLocalizationsTemplateV1AdminShort(i
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) DeleteNotificationTemplateSlugV1AdminShort(input *notification.DeleteNotificationTemplateSlugV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1133,7 +1124,6 @@ func (n *NotificationService) DeleteNotificationTemplateSlugV1AdminShort(input *
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) GetSingleTemplateLocalizationV1AdminShort(input *notification.GetSingleTemplateLocalizationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelLocalization, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1149,7 +1139,6 @@ func (n *NotificationService) GetSingleTemplateLocalizationV1AdminShort(input *n
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) UpdateTemplateLocalizationV1AdminShort(input *notification.UpdateTemplateLocalizationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1165,7 +1154,6 @@ func (n *NotificationService) UpdateTemplateLocalizationV1AdminShort(input *noti
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) DeleteTemplateLocalizationV1AdminShort(input *notification.DeleteTemplateLocalizationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1181,7 +1169,6 @@ func (n *NotificationService) DeleteTemplateLocalizationV1AdminShort(input *noti
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) PublishTemplateLocalizationV1AdminShort(input *notification.PublishTemplateLocalizationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1197,7 +1184,6 @@ func (n *NotificationService) PublishTemplateLocalizationV1AdminShort(input *not
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) GetAllNotificationTopicsV1AdminShort(input *notification.GetAllNotificationTopicsV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelGetAllNotificationTopicsResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1213,7 +1199,6 @@ func (n *NotificationService) GetAllNotificationTopicsV1AdminShort(input *notifi
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) CreateNotificationTopicV1AdminShort(input *notification.CreateNotificationTopicV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1229,7 +1214,6 @@ func (n *NotificationService) CreateNotificationTopicV1AdminShort(input *notific
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) GetNotificationTopicV1AdminShort(input *notification.GetNotificationTopicV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelNotificationTopicResponseV1, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1245,7 +1229,6 @@ func (n *NotificationService) GetNotificationTopicV1AdminShort(input *notificati
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) UpdateNotificationTopicV1AdminShort(input *notification.UpdateNotificationTopicV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1261,7 +1244,6 @@ func (n *NotificationService) UpdateNotificationTopicV1AdminShort(input *notific
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) DeleteNotificationTopicV1AdminShort(input *notification.DeleteNotificationTopicV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1277,7 +1259,6 @@ func (n *NotificationService) DeleteNotificationTopicV1AdminShort(input *notific
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) SendSpecificUserFreeformNotificationV1AdminShort(input *notification.SendSpecificUserFreeformNotificationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1293,7 +1274,6 @@ func (n *NotificationService) SendSpecificUserFreeformNotificationV1AdminShort(i
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) SendSpecificUserTemplatedNotificationV1AdminShort(input *notification.SendSpecificUserTemplatedNotificationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1309,7 +1289,6 @@ func (n *NotificationService) SendSpecificUserTemplatedNotificationV1AdminShort(
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) FreeFormNotificationShort(input *notification.FreeFormNotificationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1325,7 +1304,6 @@ func (n *NotificationService) FreeFormNotificationShort(input *notification.Free
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) NotificationWithTemplateShort(input *notification.NotificationWithTemplateParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1341,7 +1319,6 @@ func (n *NotificationService) NotificationWithTemplateShort(input *notification.
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:TEMPLATE [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) GetGameTemplateShort(input *notification.GetGameTemplateParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelTemplateResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1357,7 +1334,6 @@ func (n *NotificationService) GetGameTemplateShort(input *notification.GetGameTe
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:TEMPLATE [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) CreateTemplateShort(input *notification.CreateTemplateParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1373,7 +1349,6 @@ func (n *NotificationService) CreateTemplateShort(input *notification.CreateTemp
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:TEMPLATE [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) GetSlugTemplateShort(input *notification.GetSlugTemplateParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelTemplateLocalizationResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1389,7 +1364,6 @@ func (n *NotificationService) GetSlugTemplateShort(input *notification.GetSlugTe
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:TEMPLATE [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) DeleteTemplateSlugShort(input *notification.DeleteTemplateSlugParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1405,7 +1379,6 @@ func (n *NotificationService) DeleteTemplateSlugShort(input *notification.Delete
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:TEMPLATE [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) GetLocalizationTemplateShort(input *notification.GetLocalizationTemplateParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelTemplateLocalization, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1421,7 +1394,6 @@ func (n *NotificationService) GetLocalizationTemplateShort(input *notification.G
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:TEMPLATE [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) UpdateLocalizationTemplateShort(input *notification.UpdateLocalizationTemplateParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1437,7 +1409,6 @@ func (n *NotificationService) UpdateLocalizationTemplateShort(input *notificatio
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:TEMPLATE [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) DeleteTemplateLocalizationShort(input *notification.DeleteTemplateLocalizationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1453,7 +1424,6 @@ func (n *NotificationService) DeleteTemplateLocalizationShort(input *notificatio
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:TEMPLATE [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) PublishTemplateShort(input *notification.PublishTemplateParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1469,7 +1439,6 @@ func (n *NotificationService) PublishTemplateShort(input *notification.PublishTe
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:TOPIC [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) GetTopicByNamespaceShort(input *notification.GetTopicByNamespaceParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelTopicByNamespacesResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1485,7 +1454,6 @@ func (n *NotificationService) GetTopicByNamespaceShort(input *notification.GetTo
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:TOPIC [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) CreateTopicShort(input *notification.CreateTopicParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1501,7 +1469,6 @@ func (n *NotificationService) CreateTopicShort(input *notification.CreateTopicPa
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:TOPIC [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) GetTopicByTopicNameShort(input *notification.GetTopicByTopicNameParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelNotificationTopicResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1517,7 +1484,6 @@ func (n *NotificationService) GetTopicByTopicNameShort(input *notification.GetTo
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:TOPIC [UPDATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) UpdateTopicByTopicNameShort(input *notification.UpdateTopicByTopicNameParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1533,7 +1499,6 @@ func (n *NotificationService) UpdateTopicByTopicNameShort(input *notification.Up
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:TOPIC [DELETE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) DeleteTopicByTopicNameShort(input *notification.DeleteTopicByTopicNameParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1549,7 +1514,6 @@ func (n *NotificationService) DeleteTopicByTopicNameShort(input *notification.De
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) FreeFormNotificationByUserIDShort(input *notification.FreeFormNotificationByUserIDParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1565,7 +1529,6 @@ func (n *NotificationService) FreeFormNotificationByUserIDShort(input *notificat
 	return nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:NOTIFICATION [CREATE]'], 'HasScope': ['social'], 'authorization': []}]
 func (n *NotificationService) NotificationWithTemplateByUserIDShort(input *notification.NotificationWithTemplateByUserIDParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

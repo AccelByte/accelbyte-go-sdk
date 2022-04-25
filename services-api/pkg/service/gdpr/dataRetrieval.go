@@ -341,7 +341,6 @@ func (d *DataRetrievalService) PublicGeneratePersonalDataURL(input *data_retriev
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [READ]'], 'HasScope': ['account'], 'authorization': []}]
 func (d *DataRetrievalService) GetAdminEmailConfigurationShort(input *data_retrieval.GetAdminEmailConfigurationParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]string, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -357,7 +356,6 @@ func (d *DataRetrievalService) GetAdminEmailConfigurationShort(input *data_retri
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [UPDATE]'], 'authorization': []}]
 func (d *DataRetrievalService) UpdateAdminEmailConfigurationShort(input *data_retrieval.UpdateAdminEmailConfigurationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -373,7 +371,6 @@ func (d *DataRetrievalService) UpdateAdminEmailConfigurationShort(input *data_re
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [CREATE]'], 'HasScope': ['account'], 'authorization': []}]
 func (d *DataRetrievalService) SaveAdminEmailConfigurationShort(input *data_retrieval.SaveAdminEmailConfigurationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -389,7 +386,6 @@ func (d *DataRetrievalService) SaveAdminEmailConfigurationShort(input *data_retr
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:EMAIL:CONFIGURATION [DELETE]'], 'HasScope': ['account'], 'authorization': []}]
 func (d *DataRetrievalService) DeleteAdminEmailConfigurationShort(input *data_retrieval.DeleteAdminEmailConfigurationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -405,7 +401,6 @@ func (d *DataRetrievalService) DeleteAdminEmailConfigurationShort(input *data_re
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:INFORMATION:USER [READ]'], 'HasScope': ['account'], 'authorization': []}]
 func (d *DataRetrievalService) AdminGetListPersonalDataRequestShort(input *data_retrieval.AdminGetListPersonalDataRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsListPersonalDataResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -421,7 +416,6 @@ func (d *DataRetrievalService) AdminGetListPersonalDataRequestShort(input *data_
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]'], 'HasScope': ['account'], 'authorization': []}]
 func (d *DataRetrievalService) AdminGetUserPersonalDataRequestsShort(input *data_retrieval.AdminGetUserPersonalDataRequestsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsUserPersonalDataResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -437,7 +431,6 @@ func (d *DataRetrievalService) AdminGetUserPersonalDataRequestsShort(input *data
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [CREATE]'], 'HasScope': ['account'], 'authorization': []}]
 func (d *DataRetrievalService) AdminRequestDataRetrievalShort(input *data_retrieval.AdminRequestDataRetrievalParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsDataRetrievalResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -453,7 +446,6 @@ func (d *DataRetrievalService) AdminRequestDataRetrievalShort(input *data_retrie
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [DELETE]'], 'HasScope': ['account'], 'authorization': []}]
 func (d *DataRetrievalService) AdminCancelUserPersonalDataRequestShort(input *data_retrieval.AdminCancelUserPersonalDataRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -469,7 +461,6 @@ func (d *DataRetrievalService) AdminCancelUserPersonalDataRequestShort(input *da
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:INFORMATION:USER:{userId} [READ]'], 'HasScope': ['account'], 'authorization': []}]
 func (d *DataRetrievalService) AdminGeneratePersonalDataURLShort(input *data_retrieval.AdminGeneratePersonalDataURLParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsUserDataURL, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -485,7 +476,6 @@ func (d *DataRetrievalService) AdminGeneratePersonalDataURLShort(input *data_ret
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (d *DataRetrievalService) PublicGetUserPersonalDataRequestsShort(input *data_retrieval.PublicGetUserPersonalDataRequestsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsUserPersonalDataResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -501,7 +491,6 @@ func (d *DataRetrievalService) PublicGetUserPersonalDataRequestsShort(input *dat
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (d *DataRetrievalService) PublicRequestDataRetrievalShort(input *data_retrieval.PublicRequestDataRetrievalParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsDataRetrievalResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -517,7 +506,6 @@ func (d *DataRetrievalService) PublicRequestDataRetrievalShort(input *data_retri
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (d *DataRetrievalService) PublicCancelUserPersonalDataRequestShort(input *data_retrieval.PublicCancelUserPersonalDataRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsListPersonalDataResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -533,7 +521,6 @@ func (d *DataRetrievalService) PublicCancelUserPersonalDataRequestShort(input *d
 	return noContent.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (d *DataRetrievalService) PublicGeneratePersonalDataURLShort(input *data_retrieval.PublicGeneratePersonalDataURLParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsUserDataURL, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

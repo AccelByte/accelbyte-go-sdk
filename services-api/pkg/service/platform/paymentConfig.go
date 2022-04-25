@@ -584,7 +584,6 @@ func (p *PaymentConfigService) UpdatePaymentTaxConfig(input *payment_config.Upda
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [UPDATE]'], 'authorization': []}]
 func (p *PaymentConfigService) TestAdyenConfigShort(input *payment_config.TestAdyenConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -600,7 +599,6 @@ func (p *PaymentConfigService) TestAdyenConfigShort(input *payment_config.TestAd
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [UPDATE]'], 'authorization': []}]
 func (p *PaymentConfigService) TestAliPayConfigShort(input *payment_config.TestAliPayConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -616,7 +614,6 @@ func (p *PaymentConfigService) TestAliPayConfigShort(input *payment_config.TestA
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [UPDATE]'], 'authorization': []}]
 func (p *PaymentConfigService) TestCheckoutConfigShort(input *payment_config.TestCheckoutConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -632,7 +629,6 @@ func (p *PaymentConfigService) TestCheckoutConfigShort(input *payment_config.Tes
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [READ]'], 'authorization': []}]
 func (p *PaymentConfigService) DebugMatchedPaymentMerchantConfigShort(input *payment_config.DebugMatchedPaymentMerchantConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -648,7 +644,6 @@ func (p *PaymentConfigService) DebugMatchedPaymentMerchantConfigShort(input *pay
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [UPDATE]'], 'authorization': []}]
 func (p *PaymentConfigService) TestPayPalConfigShort(input *payment_config.TestPayPalConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -664,7 +659,6 @@ func (p *PaymentConfigService) TestPayPalConfigShort(input *payment_config.TestP
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [UPDATE]'], 'authorization': []}]
 func (p *PaymentConfigService) TestStripeConfigShort(input *payment_config.TestStripeConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -680,7 +674,6 @@ func (p *PaymentConfigService) TestStripeConfigShort(input *payment_config.TestS
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [UPDATE]'], 'authorization': []}]
 func (p *PaymentConfigService) TestWxPayConfigShort(input *payment_config.TestWxPayConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -696,7 +689,6 @@ func (p *PaymentConfigService) TestWxPayConfigShort(input *payment_config.TestWx
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [UPDATE]'], 'authorization': []}]
 func (p *PaymentConfigService) TestXsollaConfigShort(input *payment_config.TestXsollaConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -712,7 +704,6 @@ func (p *PaymentConfigService) TestXsollaConfigShort(input *payment_config.TestX
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [READ]'], 'authorization': []}]
 func (p *PaymentConfigService) GetPaymentMerchantConfigShort(input *payment_config.GetPaymentMerchantConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -728,7 +719,6 @@ func (p *PaymentConfigService) GetPaymentMerchantConfigShort(input *payment_conf
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [UPDATE]'], 'authorization': []}]
 func (p *PaymentConfigService) UpdateAdyenConfigShort(input *payment_config.UpdateAdyenConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -744,7 +734,6 @@ func (p *PaymentConfigService) UpdateAdyenConfigShort(input *payment_config.Upda
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [READ]'], 'authorization': []}]
 func (p *PaymentConfigService) TestAdyenConfigByIDShort(input *payment_config.TestAdyenConfigByIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -760,7 +749,6 @@ func (p *PaymentConfigService) TestAdyenConfigByIDShort(input *payment_config.Te
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [UPDATE]'], 'authorization': []}]
 func (p *PaymentConfigService) UpdateAliPayConfigShort(input *payment_config.UpdateAliPayConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -776,7 +764,6 @@ func (p *PaymentConfigService) UpdateAliPayConfigShort(input *payment_config.Upd
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [READ]'], 'authorization': []}]
 func (p *PaymentConfigService) TestAliPayConfigByIDShort(input *payment_config.TestAliPayConfigByIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -792,7 +779,6 @@ func (p *PaymentConfigService) TestAliPayConfigByIDShort(input *payment_config.T
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [UPDATE]'], 'authorization': []}]
 func (p *PaymentConfigService) UpdateCheckoutConfigShort(input *payment_config.UpdateCheckoutConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -808,7 +794,6 @@ func (p *PaymentConfigService) UpdateCheckoutConfigShort(input *payment_config.U
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [READ]'], 'authorization': []}]
 func (p *PaymentConfigService) TestCheckoutConfigByIDShort(input *payment_config.TestCheckoutConfigByIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -824,7 +809,6 @@ func (p *PaymentConfigService) TestCheckoutConfigByIDShort(input *payment_config
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [UPDATE]'], 'authorization': []}]
 func (p *PaymentConfigService) UpdatePayPalConfigShort(input *payment_config.UpdatePayPalConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -840,7 +824,6 @@ func (p *PaymentConfigService) UpdatePayPalConfigShort(input *payment_config.Upd
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [READ]'], 'authorization': []}]
 func (p *PaymentConfigService) TestPayPalConfigByIDShort(input *payment_config.TestPayPalConfigByIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -856,7 +839,6 @@ func (p *PaymentConfigService) TestPayPalConfigByIDShort(input *payment_config.T
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [UPDATE]'], 'authorization': []}]
 func (p *PaymentConfigService) UpdateStripeConfigShort(input *payment_config.UpdateStripeConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -872,7 +854,6 @@ func (p *PaymentConfigService) UpdateStripeConfigShort(input *payment_config.Upd
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [READ]'], 'authorization': []}]
 func (p *PaymentConfigService) TestStripeConfigByIDShort(input *payment_config.TestStripeConfigByIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -888,7 +869,6 @@ func (p *PaymentConfigService) TestStripeConfigByIDShort(input *payment_config.T
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [UPDATE]'], 'authorization': []}]
 func (p *PaymentConfigService) UpdateWxPayConfigShort(input *payment_config.UpdateWxPayConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -904,7 +884,6 @@ func (p *PaymentConfigService) UpdateWxPayConfigShort(input *payment_config.Upda
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [UPDATE]'], 'authorization': []}]
 func (p *PaymentConfigService) UpdateWxPayConfigCertShort(input *payment_config.UpdateWxPayConfigCertParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -920,7 +899,6 @@ func (p *PaymentConfigService) UpdateWxPayConfigCertShort(input *payment_config.
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [READ]'], 'authorization': []}]
 func (p *PaymentConfigService) TestWxPayConfigByIDShort(input *payment_config.TestWxPayConfigByIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -936,7 +914,6 @@ func (p *PaymentConfigService) TestWxPayConfigByIDShort(input *payment_config.Te
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [UPDATE]'], 'authorization': []}]
 func (p *PaymentConfigService) UpdateXsollaConfigShort(input *payment_config.UpdateXsollaConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -952,7 +929,6 @@ func (p *PaymentConfigService) UpdateXsollaConfigShort(input *payment_config.Upd
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [READ]'], 'authorization': []}]
 func (p *PaymentConfigService) TestXsollaConfigByIDShort(input *payment_config.TestXsollaConfigByIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TestResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -968,7 +944,6 @@ func (p *PaymentConfigService) TestXsollaConfigByIDShort(input *payment_config.T
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [UPDATE]'], 'authorization': []}]
 func (p *PaymentConfigService) UpdateXsollaUIConfigShort(input *payment_config.UpdateXsollaUIConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentMerchantConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -984,7 +959,6 @@ func (p *PaymentConfigService) UpdateXsollaUIConfigShort(input *payment_config.U
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [READ]'], 'authorization': []}]
 func (p *PaymentConfigService) QueryPaymentProviderConfigShort(input *payment_config.QueryPaymentProviderConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentProviderConfigPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1000,7 +974,6 @@ func (p *PaymentConfigService) QueryPaymentProviderConfigShort(input *payment_co
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [CREATE]'], 'authorization': []}]
 func (p *PaymentConfigService) CreatePaymentProviderConfigShort(input *payment_config.CreatePaymentProviderConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentProviderConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1016,7 +989,6 @@ func (p *PaymentConfigService) CreatePaymentProviderConfigShort(input *payment_c
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [READ]'], 'authorization': []}]
 func (p *PaymentConfigService) GetAggregatePaymentProvidersShort(input *payment_config.GetAggregatePaymentProvidersParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]string, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1032,7 +1004,6 @@ func (p *PaymentConfigService) GetAggregatePaymentProvidersShort(input *payment_
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [READ]'], 'authorization': []}]
 func (p *PaymentConfigService) DebugMatchedPaymentProviderConfigShort(input *payment_config.DebugMatchedPaymentProviderConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentProviderConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1048,7 +1019,6 @@ func (p *PaymentConfigService) DebugMatchedPaymentProviderConfigShort(input *pay
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [READ]'], 'authorization': []}]
 func (p *PaymentConfigService) GetSpecialPaymentProvidersShort(input *payment_config.GetSpecialPaymentProvidersParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]string, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1064,7 +1034,6 @@ func (p *PaymentConfigService) GetSpecialPaymentProvidersShort(input *payment_co
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [UPDATE]'], 'authorization': []}]
 func (p *PaymentConfigService) UpdatePaymentProviderConfigShort(input *payment_config.UpdatePaymentProviderConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentProviderConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1080,7 +1049,6 @@ func (p *PaymentConfigService) UpdatePaymentProviderConfigShort(input *payment_c
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [DELETE]'], 'authorization': []}]
 func (p *PaymentConfigService) DeletePaymentProviderConfigShort(input *payment_config.DeletePaymentProviderConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1096,7 +1064,6 @@ func (p *PaymentConfigService) DeletePaymentProviderConfigShort(input *payment_c
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [READ]'], 'authorization': []}]
 func (p *PaymentConfigService) GetPaymentTaxConfigShort(input *payment_config.GetPaymentTaxConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentTaxConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1112,7 +1079,6 @@ func (p *PaymentConfigService) GetPaymentTaxConfigShort(input *payment_config.Ge
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT:CONFIG [UPDATE]'], 'authorization': []}]
 func (p *PaymentConfigService) UpdatePaymentTaxConfigShort(input *payment_config.UpdatePaymentTaxConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentTaxConfigInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

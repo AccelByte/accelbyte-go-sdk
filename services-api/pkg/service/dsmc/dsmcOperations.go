@@ -38,7 +38,6 @@ func (d *DsmcOperationsService) PublicGetMessages(input *dsmc_operations.PublicG
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (d *DsmcOperationsService) PublicGetMessagesShort(input *dsmc_operations.PublicGetMessagesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*dsmcclientmodels.LogAppMessageDeclaration, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

@@ -456,7 +456,6 @@ func (a *AdminContentService) AdminHideUserContent(input *admin_content.AdminHid
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]'], 'authorization': []}]
 func (a *AdminContentService) AdminUploadContentDirectShort(input *admin_content.AdminUploadContentDirectParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -472,7 +471,6 @@ func (a *AdminContentService) AdminUploadContentDirectShort(input *admin_content
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]'], 'authorization': []}]
 func (a *AdminContentService) AdminUploadContentS3Short(input *admin_content.AdminUploadContentS3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -488,7 +486,6 @@ func (a *AdminContentService) AdminUploadContentS3Short(input *admin_content.Adm
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]'], 'authorization': []}]
 func (a *AdminContentService) SingleAdminUpdateContentS3Short(input *admin_content.SingleAdminUpdateContentS3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -504,7 +501,6 @@ func (a *AdminContentService) SingleAdminUpdateContentS3Short(input *admin_conte
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [CREATE]'], 'authorization': []}]
 func (a *AdminContentService) AdminSearchChannelSpecificContentShort(input *admin_content.AdminSearchChannelSpecificContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -520,7 +516,6 @@ func (a *AdminContentService) AdminSearchChannelSpecificContentShort(input *admi
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]'], 'authorization': []}]
 func (a *AdminContentService) SingleAdminUpdateContentDirectShort(input *admin_content.SingleAdminUpdateContentDirectParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -536,7 +531,6 @@ func (a *AdminContentService) SingleAdminUpdateContentDirectShort(input *admin_c
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]'], 'authorization': []}]
 func (a *AdminContentService) SingleAdminDeleteContentShort(input *admin_content.SingleAdminDeleteContentParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -552,7 +546,6 @@ func (a *AdminContentService) SingleAdminDeleteContentShort(input *admin_content
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]'], 'authorization': []}]
 func (a *AdminContentService) SingleAdminGetContentShort(input *admin_content.SingleAdminGetContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -568,7 +561,6 @@ func (a *AdminContentService) SingleAdminGetContentShort(input *admin_content.Si
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [CREATE]'], 'authorization': []}]
 func (a *AdminContentService) AdminSearchContentShort(input *admin_content.AdminSearchContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -584,7 +576,6 @@ func (a *AdminContentService) AdminSearchContentShort(input *admin_content.Admin
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]'], 'authorization': []}]
 func (a *AdminContentService) AdminGetSpecificContentShort(input *admin_content.AdminGetSpecificContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -600,7 +591,6 @@ func (a *AdminContentService) AdminGetSpecificContentShort(input *admin_content.
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]'], 'authorization': []}]
 func (a *AdminContentService) AdminDownloadContentPreviewShort(input *admin_content.AdminDownloadContentPreviewParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsGetContentPreviewResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -616,7 +606,6 @@ func (a *AdminContentService) AdminDownloadContentPreviewShort(input *admin_cont
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]'], 'authorization': []}]
 func (a *AdminContentService) AdminUpdateScreenshotsShort(input *admin_content.AdminUpdateScreenshotsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsUpdateScreenshotResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -632,7 +621,6 @@ func (a *AdminContentService) AdminUpdateScreenshotsShort(input *admin_content.A
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [CREATE]'], 'authorization': []}]
 func (a *AdminContentService) AdminUploadContentScreenshotShort(input *admin_content.AdminUploadContentScreenshotParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateScreenshotResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -648,7 +636,6 @@ func (a *AdminContentService) AdminUploadContentScreenshotShort(input *admin_con
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]'], 'authorization': []}]
 func (a *AdminContentService) AdminDeleteContentScreenshotShort(input *admin_content.AdminDeleteContentScreenshotParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -664,7 +651,6 @@ func (a *AdminContentService) AdminDeleteContentScreenshotShort(input *admin_con
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]'], 'authorization': []}]
 func (a *AdminContentService) AdminUpdateContentS3Short(input *admin_content.AdminUpdateContentS3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -680,7 +666,6 @@ func (a *AdminContentService) AdminUpdateContentS3Short(input *admin_content.Adm
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]'], 'authorization': []}]
 func (a *AdminContentService) AdminUpdateContentDirectShort(input *admin_content.AdminUpdateContentDirectParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -696,7 +681,6 @@ func (a *AdminContentService) AdminUpdateContentDirectShort(input *admin_content
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [DELETE]'], 'authorization': []}]
 func (a *AdminContentService) AdminDeleteContentShort(input *admin_content.AdminDeleteContentParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -712,7 +696,6 @@ func (a *AdminContentService) AdminDeleteContentShort(input *admin_content.Admin
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [READ]'], 'authorization': []}]
 func (a *AdminContentService) AdminGetContentShort(input *admin_content.AdminGetContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -728,7 +711,6 @@ func (a *AdminContentService) AdminGetContentShort(input *admin_content.AdminGet
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:CONTENT [UPDATE]'], 'authorization': []}]
 func (a *AdminContentService) AdminHideUserContentShort(input *admin_content.AdminHideUserContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

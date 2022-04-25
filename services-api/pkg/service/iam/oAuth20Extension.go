@@ -92,7 +92,6 @@ func (o *OAuth20ExtensionService) PlatformAuthenticationV3(input *o_auth2_0_exte
 	return ok.Location, nil
 }
 
-// [{'basic': []}]
 func (o *OAuth20ExtensionService) UserAuthenticationV3Short(input *o_auth2_0_extension.UserAuthenticationV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (string, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -121,7 +120,6 @@ func (o *OAuth20ExtensionService) UserAuthenticationV3Short(input *o_auth2_0_ext
 	return code, nil
 }
 
-// [{'authorization': []}]
 func (o *OAuth20ExtensionService) GetCountryLocationV3Short(input *o_auth2_0_extension.GetCountryLocationV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.OauthmodelCountryLocationResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -137,7 +135,6 @@ func (o *OAuth20ExtensionService) GetCountryLocationV3Short(input *o_auth2_0_ext
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (o *OAuth20ExtensionService) LogoutShort(input *o_auth2_0_extension.LogoutParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -153,7 +150,6 @@ func (o *OAuth20ExtensionService) LogoutShort(input *o_auth2_0_extension.LogoutP
 	return nil
 }
 
-// [{'authorization': []}]
 func (o *OAuth20ExtensionService) PlatformAuthenticationV3Short(input *o_auth2_0_extension.PlatformAuthenticationV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (string, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

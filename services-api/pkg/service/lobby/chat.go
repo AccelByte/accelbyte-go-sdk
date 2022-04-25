@@ -108,7 +108,6 @@ func (c *ChatService) GetPersonalChatHistoryV1Public(input *chat.GetPersonalChat
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CHAT [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (c *ChatService) PersonalChatHistoryShort(input *chat.PersonalChatHistoryParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -124,7 +123,6 @@ func (c *ChatService) PersonalChatHistoryShort(input *chat.PersonalChatHistoryPa
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:CHAT [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (c *ChatService) AdminChatHistoryShort(input *chat.AdminChatHistoryParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -140,7 +138,6 @@ func (c *ChatService) AdminChatHistoryShort(input *chat.AdminChatHistoryParams, 
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (c *ChatService) GetPersonalChatHistoryV1PublicShort(input *chat.GetPersonalChatHistoryV1PublicParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

@@ -136,7 +136,6 @@ func (c *CurrencyService) PublicListCurrencies(input *currency.PublicListCurrenc
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CURRENCY [READ]'], 'authorization': []}]
 func (c *CurrencyService) ListCurrenciesShort(input *currency.ListCurrenciesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.CurrencyInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -152,7 +151,6 @@ func (c *CurrencyService) ListCurrenciesShort(input *currency.ListCurrenciesPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CURRENCY [CREATE]'], 'authorization': []}]
 func (c *CurrencyService) CreateCurrencyShort(input *currency.CreateCurrencyParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CurrencyInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -168,7 +166,6 @@ func (c *CurrencyService) CreateCurrencyShort(input *currency.CreateCurrencyPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CURRENCY [UPDATE]'], 'authorization': []}]
 func (c *CurrencyService) UpdateCurrencyShort(input *currency.UpdateCurrencyParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CurrencyInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -184,7 +181,6 @@ func (c *CurrencyService) UpdateCurrencyShort(input *currency.UpdateCurrencyPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CURRENCY [DELETE]'], 'authorization': []}]
 func (c *CurrencyService) DeleteCurrencyShort(input *currency.DeleteCurrencyParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CurrencyInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -200,7 +196,6 @@ func (c *CurrencyService) DeleteCurrencyShort(input *currency.DeleteCurrencyPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CURRENCY [READ]'], 'authorization': []}]
 func (c *CurrencyService) GetCurrencyConfigShort(input *currency.GetCurrencyConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CurrencyConfig, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -216,7 +211,6 @@ func (c *CurrencyService) GetCurrencyConfigShort(input *currency.GetCurrencyConf
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:CURRENCY [READ]'], 'authorization': []}]
 func (c *CurrencyService) GetCurrencySummaryShort(input *currency.GetCurrencySummaryParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CurrencySummary, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -232,7 +226,6 @@ func (c *CurrencyService) GetCurrencySummaryShort(input *currency.GetCurrencySum
 	return ok.GetPayload(), nil
 }
 
-// None
 func (c *CurrencyService) PublicListCurrenciesShort(input *currency.PublicListCurrenciesParams) ([]*platformclientmodels.CurrencyInfo, error) {
 	ok, err := c.Client.Currency.PublicListCurrenciesShort(input)
 	if err != nil {

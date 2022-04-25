@@ -137,7 +137,6 @@ func (u *UserVisibilityService) SetUserVisibilityStatusV2(input *user_visibility
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UserVisibilityService) GetHiddenUsersV2Short(input *user_visibility.GetHiddenUsersV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetHiddenUserResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -153,7 +152,6 @@ func (u *UserVisibilityService) GetHiddenUsersV2Short(input *user_visibility.Get
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UserVisibilityService) GetUserVisibilityStatusV2Short(input *user_visibility.GetUserVisibilityStatusV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -169,7 +167,6 @@ func (u *UserVisibilityService) GetUserVisibilityStatusV2Short(input *user_visib
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UserVisibilityService) SetUserLeaderboardVisibilityStatusV2Short(input *user_visibility.SetUserLeaderboardVisibilityStatusV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -185,7 +182,6 @@ func (u *UserVisibilityService) SetUserLeaderboardVisibilityStatusV2Short(input 
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (u *UserVisibilityService) SetUserVisibilityStatusV2Short(input *user_visibility.SetUserVisibilityStatusV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*leaderboardclientmodels.ModelsGetUserVisibilityResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

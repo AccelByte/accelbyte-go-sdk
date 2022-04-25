@@ -122,7 +122,6 @@ func (a *AdminTypeService) AdminDeleteType(input *admin_type.AdminDeleteTypePara
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:UGCCONFIG [READ]'], 'authorization': []}]
 func (a *AdminTypeService) AdminGetTypeShort(input *admin_type.AdminGetTypeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedGetTypeResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -138,7 +137,6 @@ func (a *AdminTypeService) AdminGetTypeShort(input *admin_type.AdminGetTypeParam
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:UGCCONFIG [CREATE]'], 'authorization': []}]
 func (a *AdminTypeService) AdminCreateTypeShort(input *admin_type.AdminCreateTypeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -154,7 +152,6 @@ func (a *AdminTypeService) AdminCreateTypeShort(input *admin_type.AdminCreateTyp
 	return created.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:UGCCONFIG [UPDATE]'], 'authorization': []}]
 func (a *AdminTypeService) AdminUpdateTypeShort(input *admin_type.AdminUpdateTypeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -170,7 +167,6 @@ func (a *AdminTypeService) AdminUpdateTypeShort(input *admin_type.AdminUpdateTyp
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:UGCCONFIG [DELETE]'], 'authorization': []}]
 func (a *AdminTypeService) AdminDeleteTypeShort(input *admin_type.AdminDeleteTypeParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

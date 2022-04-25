@@ -234,7 +234,6 @@ func (m *MiscService) PublicGetTimeZones(input *misc.PublicGetTimeZonesParams) (
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (m *MiscService) GetCountriesShort(input *misc.GetCountriesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*basicclientmodels.CountryObject, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -250,7 +249,6 @@ func (m *MiscService) GetCountriesShort(input *misc.GetCountriesParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:MISC [READ]'], 'authorization': []}]
 func (m *MiscService) GetCountryGroupsShort(input *misc.GetCountryGroupsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*basicclientmodels.RetrieveCountryGroupResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -266,7 +264,6 @@ func (m *MiscService) GetCountryGroupsShort(input *misc.GetCountryGroupsParams, 
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:MISC [CREATE]'], 'authorization': []}]
 func (m *MiscService) AddCountryGroupShort(input *misc.AddCountryGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.AddCountryGroupResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -282,7 +279,6 @@ func (m *MiscService) AddCountryGroupShort(input *misc.AddCountryGroupParams, au
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:MISC [UPDATE]'], 'authorization': []}]
 func (m *MiscService) UpdateCountryGroupShort(input *misc.UpdateCountryGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.CountryGroupObject, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -298,7 +294,6 @@ func (m *MiscService) UpdateCountryGroupShort(input *misc.UpdateCountryGroupPara
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:MISC [DELETE]'], 'authorization': []}]
 func (m *MiscService) DeleteCountryGroupShort(input *misc.DeleteCountryGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -314,7 +309,6 @@ func (m *MiscService) DeleteCountryGroupShort(input *misc.DeleteCountryGroupPara
 	return nil
 }
 
-// [{'authorization': []}]
 func (m *MiscService) GetLanguagesShort(input *misc.GetLanguagesParams, authInfoWriter runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -330,7 +324,6 @@ func (m *MiscService) GetLanguagesShort(input *misc.GetLanguagesParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}]
 func (m *MiscService) GetTimeZonesShort(input *misc.GetTimeZonesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]string, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -346,7 +339,6 @@ func (m *MiscService) GetTimeZonesShort(input *misc.GetTimeZonesParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-// None
 func (m *MiscService) PublicGetTimeShort(input *misc.PublicGetTimeParams) (*basicclientmodels.RetrieveTimeResponse, error) {
 	ok, err := m.Client.Misc.PublicGetTimeShort(input)
 	if err != nil {
@@ -356,7 +348,6 @@ func (m *MiscService) PublicGetTimeShort(input *misc.PublicGetTimeParams) (*basi
 	return ok.GetPayload(), nil
 }
 
-// None
 func (m *MiscService) PublicGetCountriesShort(input *misc.PublicGetCountriesParams) ([]*basicclientmodels.CountryObject, error) {
 	ok, err := m.Client.Misc.PublicGetCountriesShort(input)
 	if err != nil {
@@ -366,7 +357,6 @@ func (m *MiscService) PublicGetCountriesShort(input *misc.PublicGetCountriesPara
 	return ok.GetPayload(), nil
 }
 
-// None
 func (m *MiscService) PublicGetLanguagesShort(input *misc.PublicGetLanguagesParams) (map[string]interface{}, error) {
 	ok, err := m.Client.Misc.PublicGetLanguagesShort(input)
 	if err != nil {
@@ -376,7 +366,6 @@ func (m *MiscService) PublicGetLanguagesShort(input *misc.PublicGetLanguagesPara
 	return ok.GetPayload(), nil
 }
 
-// None
 func (m *MiscService) PublicGetTimeZonesShort(input *misc.PublicGetTimeZonesParams) ([]string, error) {
 	ok, err := m.Client.Misc.PublicGetTimeZonesShort(input)
 	if err != nil {

@@ -608,7 +608,6 @@ func (e *EntitlementService) PublicConsumeUserEntitlement(input *entitlement.Pub
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) QueryEntitlementsShort(input *entitlement.QueryEntitlementsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -624,7 +623,6 @@ func (e *EntitlementService) QueryEntitlementsShort(input *entitlement.QueryEnti
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) GetEntitlementShort(input *entitlement.GetEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -640,7 +638,6 @@ func (e *EntitlementService) GetEntitlementShort(input *entitlement.GetEntitleme
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) QueryUserEntitlementsShort(input *entitlement.QueryUserEntitlementsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -656,7 +653,6 @@ func (e *EntitlementService) QueryUserEntitlementsShort(input *entitlement.Query
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [CREATE]'], 'authorization': []}]
 func (e *EntitlementService) GrantUserEntitlementShort(input *entitlement.GrantUserEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.StackableEntitlementInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -672,7 +668,6 @@ func (e *EntitlementService) GrantUserEntitlementShort(input *entitlement.GrantU
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) GetUserAppEntitlementByAppIDShort(input *entitlement.GetUserAppEntitlementByAppIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.AppEntitlementInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -688,7 +683,6 @@ func (e *EntitlementService) GetUserAppEntitlementByAppIDShort(input *entitlemen
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT []'], 'authorization': []}]
 func (e *EntitlementService) QueryUserEntitlementsByAppTypeShort(input *entitlement.QueryUserEntitlementsByAppTypeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.AppEntitlementPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -704,7 +698,6 @@ func (e *EntitlementService) QueryUserEntitlementsByAppTypeShort(input *entitlem
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) GetUserEntitlementByItemIDShort(input *entitlement.GetUserEntitlementByItemIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -720,7 +713,6 @@ func (e *EntitlementService) GetUserEntitlementByItemIDShort(input *entitlement.
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) GetUserEntitlementBySkuShort(input *entitlement.GetUserEntitlementBySkuParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -736,7 +728,6 @@ func (e *EntitlementService) GetUserEntitlementBySkuShort(input *entitlement.Get
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) ExistsAnyUserActiveEntitlementShort(input *entitlement.ExistsAnyUserActiveEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.Ownership, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -752,7 +743,6 @@ func (e *EntitlementService) ExistsAnyUserActiveEntitlementShort(input *entitlem
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) ExistsAnyUserActiveEntitlementByItemIdsShort(input *entitlement.ExistsAnyUserActiveEntitlementByItemIdsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.Ownership, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -768,7 +758,6 @@ func (e *EntitlementService) ExistsAnyUserActiveEntitlementByItemIdsShort(input 
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) GetUserAppEntitlementOwnershipByAppIDShort(input *entitlement.GetUserAppEntitlementOwnershipByAppIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.Ownership, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -784,7 +773,6 @@ func (e *EntitlementService) GetUserAppEntitlementOwnershipByAppIDShort(input *e
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) GetUserEntitlementOwnershipByItemIDShort(input *entitlement.GetUserEntitlementOwnershipByItemIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TimedOwnership, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -800,7 +788,6 @@ func (e *EntitlementService) GetUserEntitlementOwnershipByItemIDShort(input *ent
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) GetUserEntitlementOwnershipBySkuShort(input *entitlement.GetUserEntitlementOwnershipBySkuParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TimedOwnership, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -816,7 +803,6 @@ func (e *EntitlementService) GetUserEntitlementOwnershipBySkuShort(input *entitl
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]'], 'authorization': []}]
 func (e *EntitlementService) RevokeUserEntitlementsShort(input *entitlement.RevokeUserEntitlementsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.BulkOperationResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -832,7 +818,6 @@ func (e *EntitlementService) RevokeUserEntitlementsShort(input *entitlement.Revo
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) GetUserEntitlementShort(input *entitlement.GetUserEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -848,7 +833,6 @@ func (e *EntitlementService) GetUserEntitlementShort(input *entitlement.GetUserE
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]'], 'authorization': []}]
 func (e *EntitlementService) UpdateUserEntitlementShort(input *entitlement.UpdateUserEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -864,7 +848,6 @@ func (e *EntitlementService) UpdateUserEntitlementShort(input *entitlement.Updat
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]'], 'authorization': []}]
 func (e *EntitlementService) ConsumeUserEntitlementShort(input *entitlement.ConsumeUserEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -880,7 +863,6 @@ func (e *EntitlementService) ConsumeUserEntitlementShort(input *entitlement.Cons
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]'], 'authorization': []}]
 func (e *EntitlementService) DisableUserEntitlementShort(input *entitlement.DisableUserEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -896,7 +878,6 @@ func (e *EntitlementService) DisableUserEntitlementShort(input *entitlement.Disa
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]'], 'authorization': []}]
 func (e *EntitlementService) EnableUserEntitlementShort(input *entitlement.EnableUserEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -912,7 +893,6 @@ func (e *EntitlementService) EnableUserEntitlementShort(input *entitlement.Enabl
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) GetUserEntitlementHistoriesShort(input *entitlement.GetUserEntitlementHistoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.EntitlementHistoryInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -928,7 +908,6 @@ func (e *EntitlementService) GetUserEntitlementHistoriesShort(input *entitlement
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]'], 'authorization': []}]
 func (e *EntitlementService) RevokeUserEntitlementShort(input *entitlement.RevokeUserEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -944,7 +923,6 @@ func (e *EntitlementService) RevokeUserEntitlementShort(input *entitlement.Revok
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) PublicExistsAnyMyActiveEntitlementShort(input *entitlement.PublicExistsAnyMyActiveEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.Ownership, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -960,7 +938,6 @@ func (e *EntitlementService) PublicExistsAnyMyActiveEntitlementShort(input *enti
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) PublicGetMyAppEntitlementOwnershipByAppIDShort(input *entitlement.PublicGetMyAppEntitlementOwnershipByAppIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.Ownership, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -976,7 +953,6 @@ func (e *EntitlementService) PublicGetMyAppEntitlementOwnershipByAppIDShort(inpu
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) PublicGetMyEntitlementOwnershipByItemIDShort(input *entitlement.PublicGetMyEntitlementOwnershipByItemIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TimedOwnership, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -992,7 +968,6 @@ func (e *EntitlementService) PublicGetMyEntitlementOwnershipByItemIDShort(input 
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) PublicGetMyEntitlementOwnershipBySkuShort(input *entitlement.PublicGetMyEntitlementOwnershipBySkuParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TimedOwnership, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1008,7 +983,6 @@ func (e *EntitlementService) PublicGetMyEntitlementOwnershipBySkuShort(input *en
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) PublicGetEntitlementOwnershipTokenShort(input *entitlement.PublicGetEntitlementOwnershipTokenParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OwnershipToken, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1024,7 +998,6 @@ func (e *EntitlementService) PublicGetEntitlementOwnershipTokenShort(input *enti
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) PublicQueryUserEntitlementsShort(input *entitlement.PublicQueryUserEntitlementsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1040,7 +1013,6 @@ func (e *EntitlementService) PublicQueryUserEntitlementsShort(input *entitlement
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) PublicGetUserAppEntitlementByAppIDShort(input *entitlement.PublicGetUserAppEntitlementByAppIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.AppEntitlementInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1056,7 +1028,6 @@ func (e *EntitlementService) PublicGetUserAppEntitlementByAppIDShort(input *enti
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) PublicQueryUserEntitlementsByAppTypeShort(input *entitlement.PublicQueryUserEntitlementsByAppTypeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.AppEntitlementPagingSlicedResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1072,7 +1043,6 @@ func (e *EntitlementService) PublicQueryUserEntitlementsByAppTypeShort(input *en
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) PublicGetUserEntitlementByItemIDShort(input *entitlement.PublicGetUserEntitlementByItemIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1088,7 +1058,6 @@ func (e *EntitlementService) PublicGetUserEntitlementByItemIDShort(input *entitl
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) PublicGetUserEntitlementBySkuShort(input *entitlement.PublicGetUserEntitlementBySkuParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1104,7 +1073,6 @@ func (e *EntitlementService) PublicGetUserEntitlementBySkuShort(input *entitleme
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) PublicExistsAnyUserActiveEntitlementShort(input *entitlement.PublicExistsAnyUserActiveEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.Ownership, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1120,7 +1088,6 @@ func (e *EntitlementService) PublicExistsAnyUserActiveEntitlementShort(input *en
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) PublicGetUserAppEntitlementOwnershipByAppIDShort(input *entitlement.PublicGetUserAppEntitlementOwnershipByAppIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.Ownership, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1136,7 +1103,6 @@ func (e *EntitlementService) PublicGetUserAppEntitlementOwnershipByAppIDShort(in
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) PublicGetUserEntitlementOwnershipByItemIDShort(input *entitlement.PublicGetUserEntitlementOwnershipByItemIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TimedOwnership, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1152,7 +1118,6 @@ func (e *EntitlementService) PublicGetUserEntitlementOwnershipByItemIDShort(inpu
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) PublicGetUserEntitlementOwnershipBySkuShort(input *entitlement.PublicGetUserEntitlementOwnershipBySkuParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TimedOwnership, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1168,7 +1133,6 @@ func (e *EntitlementService) PublicGetUserEntitlementOwnershipBySkuShort(input *
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [READ]'], 'authorization': []}]
 func (e *EntitlementService) PublicGetUserEntitlementShort(input *entitlement.PublicGetUserEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -1184,7 +1148,6 @@ func (e *EntitlementService) PublicGetUserEntitlementShort(input *entitlement.Pu
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:ENTITLEMENT [UPDATE]'], 'authorization': []}]
 func (e *EntitlementService) PublicConsumeUserEntitlementShort(input *entitlement.PublicConsumeUserEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

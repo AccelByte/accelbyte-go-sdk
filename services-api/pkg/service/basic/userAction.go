@@ -185,7 +185,6 @@ func (u *UserActionService) PublicReportUser(input *user_action.PublicReportUser
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ACTION [READ]'], 'authorization': []}]
 func (u *UserActionService) GetActionsShort(input *user_action.GetActionsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*basicclientmodels.Action, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -201,7 +200,6 @@ func (u *UserActionService) GetActionsShort(input *user_action.GetActionsParams,
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ACTION [UPDATE]'], 'authorization': []}]
 func (u *UserActionService) BanUsersShort(input *user_action.BanUsersParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -217,7 +215,6 @@ func (u *UserActionService) BanUsersShort(input *user_action.BanUsersParams, aut
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ACTION [READ]'], 'authorization': []}]
 func (u *UserActionService) GetBannedUsersShort(input *user_action.GetBannedUsersParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*basicclientmodels.ADTOObjectForEqu8UserBanStatus, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -233,7 +230,6 @@ func (u *UserActionService) GetBannedUsersShort(input *user_action.GetBannedUser
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ACTION [CREATE]'], 'authorization': []}]
 func (u *UserActionService) ReportUserShort(input *user_action.ReportUserParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -249,7 +245,6 @@ func (u *UserActionService) ReportUserShort(input *user_action.ReportUserParams,
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ACTION [READ]'], 'authorization': []}]
 func (u *UserActionService) GetUserStatusShort(input *user_action.GetUserStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.ADTOObjectForEqu8UserStatus, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -265,7 +260,6 @@ func (u *UserActionService) GetUserStatusShort(input *user_action.GetUserStatusP
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:ACTION [UPDATE]'], 'authorization': []}]
 func (u *UserActionService) UnBanUsersShort(input *user_action.UnBanUsersParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -281,7 +275,6 @@ func (u *UserActionService) UnBanUsersShort(input *user_action.UnBanUsersParams,
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['NAMESPACE:{namespace}:USER:{userId}:ACTION [CREATE]'], 'authorization': []}]
 func (u *UserActionService) PublicReportUserShort(input *user_action.PublicReportUserParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

@@ -64,7 +64,6 @@ func (a *AllTerminatedServersService) ListAllTerminatedServers(input *all_termin
 	return ok.GetPayload(), nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSLM:LOG [READ]'], 'HasScope': ['social'], 'authorization': []}]
 func (a *AllTerminatedServersService) BatchDownloadServerLogsShort(input *all_terminated_servers.BatchDownloadServerLogsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -80,7 +79,6 @@ func (a *AllTerminatedServersService) BatchDownloadServerLogsShort(input *all_te
 	return nil
 }
 
-// [{'HasPermission': ['ADMIN:NAMESPACE:{namespace}:DSLM:SERVER [READ]'], 'authorization': []}]
 func (a *AllTerminatedServersService) ListAllTerminatedServersShort(input *all_terminated_servers.ListAllTerminatedServersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dslogmanagerclientmodels.ModelsListTerminatedServersResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

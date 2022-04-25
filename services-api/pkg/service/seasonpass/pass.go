@@ -153,7 +153,6 @@ func (p *PassService) GrantUserPass(input *pass.GrantUserPassParams) (*seasonpas
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]'], 'authorization': []}]
 func (p *PassService) QueryPassesShort(input *pass.QueryPassesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*seasonpassclientmodels.PassInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -169,7 +168,6 @@ func (p *PassService) QueryPassesShort(input *pass.QueryPassesParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [CREATE]'], 'authorization': []}]
 func (p *PassService) CreatePassShort(input *pass.CreatePassParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.PassInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -185,7 +183,6 @@ func (p *PassService) CreatePassShort(input *pass.CreatePassParams, authInfoWrit
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [READ]'], 'authorization': []}]
 func (p *PassService) GetPassShort(input *pass.GetPassParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.PassInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -201,7 +198,6 @@ func (p *PassService) GetPassShort(input *pass.GetPassParams, authInfoWriter run
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [DELETE]'], 'authorization': []}]
 func (p *PassService) DeletePassShort(input *pass.DeletePassParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -217,7 +213,6 @@ func (p *PassService) DeletePassShort(input *pass.DeletePassParams, authInfoWrit
 	return nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:SEASONPASS [UPDATE]'], 'authorization': []}]
 func (p *PassService) UpdatePassShort(input *pass.UpdatePassParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.PassInfo, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -233,7 +228,6 @@ func (p *PassService) UpdatePassShort(input *pass.UpdatePassParams, authInfoWrit
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:SEASONPASS [UPDATE]'], 'authorization': []}]
 func (p *PassService) GrantUserPassShort(input *pass.GrantUserPassParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.UserSeasonSummary, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

@@ -35,7 +35,6 @@ func (a *AdminUserEligibilitiesService) AdminRetrieveEligibilities(input *admin_
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:USER:{userId}:LEGAL [READ]'], 'authorization': []}]
 func (a *AdminUserEligibilitiesService) AdminRetrieveEligibilitiesShort(input *admin_user_eligibilities.AdminRetrieveEligibilitiesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.RetrieveUserEligibilitiesIndirectResponse, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

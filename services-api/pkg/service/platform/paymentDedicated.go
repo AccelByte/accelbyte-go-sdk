@@ -90,7 +90,6 @@ func (p *PaymentDedicatedService) SyncPaymentOrders(input *payment_dedicated.Syn
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PAYMENT [CREATE]'], 'authorization': []}]
 func (p *PaymentDedicatedService) CreatePaymentOrderByDedicatedShort(input *payment_dedicated.CreatePaymentOrderByDedicatedParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentOrderCreateResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -106,7 +105,6 @@ func (p *PaymentDedicatedService) CreatePaymentOrderByDedicatedShort(input *paym
 	return created.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:NAMESPACE:{namespace}:PAYMENT [UPDATE]'], 'authorization': []}]
 func (p *PaymentDedicatedService) RefundPaymentOrderByDedicatedShort(input *payment_dedicated.RefundPaymentOrderByDedicatedParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentOrderRefundResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -122,7 +120,6 @@ func (p *PaymentDedicatedService) RefundPaymentOrderByDedicatedShort(input *paym
 	return ok.GetPayload(), nil
 }
 
-// [{'authorization': []}, {'HasPermission': ['ADMIN:PAYMENT [READ]'], 'authorization': []}]
 func (p *PaymentDedicatedService) SyncPaymentOrdersShort(input *payment_dedicated.SyncPaymentOrdersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentOrderSyncResult, error) {
 	if authInfoWriter == nil {
 		security := [][]string{

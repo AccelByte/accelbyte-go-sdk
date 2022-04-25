@@ -57,7 +57,6 @@ func (s *SSOService) LogoutSSOClient(input *s_s_o.LogoutSSOClientParams) error {
 	return nil
 }
 
-// [{'authorization': []}]
 func (s *SSOService) LoginSSOClientShort(input *s_s_o.LoginSSOClientParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{
@@ -73,7 +72,6 @@ func (s *SSOService) LoginSSOClientShort(input *s_s_o.LoginSSOClientParams, auth
 	return nil
 }
 
-// [{'authorization': []}]
 func (s *SSOService) LogoutSSOClientShort(input *s_s_o.LogoutSSOClientParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
 	if authInfoWriter == nil {
 		security := [][]string{

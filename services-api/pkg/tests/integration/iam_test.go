@@ -52,7 +52,7 @@ func Init() {
 		Username:  &username,
 		GrantType: "password",
 	}
-	accessToken, err := oAuth20Service.TokenGrantV3Short(input)
+	accessToken, err := oAuth20Service.TokenGrantV3Short(input, nil)
 	if err != nil {
 		logrus.Error("failed login")
 	} else if accessToken == nil { //lint:ignore SA5011 possible nil pointer dereference
@@ -161,7 +161,7 @@ func TestIntegrationGrantTokenAuthorizationCode(t *testing.T) {
 		CodeVerifier: &codeVerifier,
 		GrantType:    "authorization_code",
 	}
-	expected, errExpected := oAuth20Service.TokenGrantV3Short(inputTokenGrant)
+	expected, errExpected := oAuth20Service.TokenGrantV3Short(inputTokenGrant, nil)
 	if errExpected != nil {
 		assert.FailNow(t, errExpected.Error())
 	}
@@ -177,7 +177,7 @@ func TestIntegrationLogin(t *testing.T) {
 		Username:  &username,
 		GrantType: "password",
 	}
-	ok, err := oAuth20Service.TokenGrantV3Short(input)
+	ok, err := oAuth20Service.TokenGrantV3Short(input, nil)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}

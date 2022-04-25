@@ -87,7 +87,7 @@ func GetUserID() string {
 		Username:  &username,
 		GrantType: "password",
 	}
-	accessToken, err := oAuth20Service.TokenGrantV3Short(input)
+	accessToken, err := oAuth20Service.TokenGrantV3Short(input, nil)
 	if err != nil {
 		logrus.Error("failed login")
 	} else if accessToken == nil { //lint:ignore SA5011 possible nil pointer dereference

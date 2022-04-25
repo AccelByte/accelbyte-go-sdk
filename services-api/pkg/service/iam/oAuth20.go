@@ -13,8 +13,10 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/constant"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -461,13 +463,15 @@ func (o *OAuth20Service) TokenRevocationV3Short(input *o_auth2_0.TokenRevocation
 	return nil
 }
 
-func (o *OAuth20Service) TokenGrantV3Short(input *o_auth2_0.TokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
-	clientID := o.ConfigRepository.GetClientId()
-	clientSecret := o.ConfigRepository.GetClientSecret()
-	authWriter := auth.Compose(
-		auth.Basic(clientID, clientSecret),
-	)
-	ok, err := o.Client.OAuth20.TokenGrantV3Short(input, authWriter)
+func (o *OAuth20Service) TokenGrantV3Short(input *o_auth2_0.TokenGrantV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+	if authInfoWriter == nil {
+		security := [][]string{ //operation.simplified_security
+			{"basic"},
+			{"cookie"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(o.TokenRepository, o.ConfigRepository, security, constant.AccessToken)
+	}
+	ok, err := o.Client.OAuth20.TokenGrantV3Short(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

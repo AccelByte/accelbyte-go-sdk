@@ -13596,16 +13596,6 @@
             "in": "header",
             "name": "device_id",
             "type": "string"
-          },
-          {
-            "in": "header",
-            "name": "Cookie",
-            "required": false,
-            "type": "string",
-            "x-keys": [
-              "refresh_token"
-            ],
-            "x-required": []
           }
         ],
         "produces": [

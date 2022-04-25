@@ -14,6 +14,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth2_0"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -25,11 +26,11 @@ type OAuth20Service struct {
 
 // Deprecated: Use AdminRetrieveUserThirdPartyPlatformTokenV3Short instead
 func (o *OAuth20Service) AdminRetrieveUserThirdPartyPlatformTokenV3(input *o_auth2_0.AdminRetrieveUserThirdPartyPlatformTokenV3Params) (*iamclientmodels.OauthmodelTokenThirdPartyResponse, error) {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, err := o.Client.OAuth20.AdminRetrieveUserThirdPartyPlatformTokenV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, err := o.Client.OAuth20.AdminRetrieveUserThirdPartyPlatformTokenV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -48,11 +49,11 @@ func (o *OAuth20Service) AdminRetrieveUserThirdPartyPlatformTokenV3(input *o_aut
 
 // Deprecated: Use RevokeUserV3Short instead
 func (o *OAuth20Service) RevokeUserV3(input *o_auth2_0.RevokeUserV3Params) error {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, err := o.Client.OAuth20.RevokeUserV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, err := o.Client.OAuth20.RevokeUserV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -110,11 +111,11 @@ func (o *OAuth20Service) TokenIntrospectionV3(input *o_auth2_0.TokenIntrospectio
 
 // Deprecated: Use GetJWKSV3Short instead
 func (o *OAuth20Service) GetJWKSV3(input *o_auth2_0.GetJWKSV3Params) (*iamclientmodels.OauthcommonJWKSet, error) {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := o.Client.OAuth20.GetJWKSV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := o.Client.OAuth20.GetJWKSV3(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -124,11 +125,11 @@ func (o *OAuth20Service) GetJWKSV3(input *o_auth2_0.GetJWKSV3Params) (*iamclient
 
 // Deprecated: Use Change2FAMethodShort instead
 func (o *OAuth20Service) Change2FAMethod(input *o_auth2_0.Change2FAMethodParams) error {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := o.Client.OAuth20.Change2FAMethod(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, err := o.Client.OAuth20.Change2FAMethod(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -141,11 +142,11 @@ func (o *OAuth20Service) Change2FAMethod(input *o_auth2_0.Change2FAMethodParams)
 
 // Deprecated: Use Verify2FACodeShort instead
 func (o *OAuth20Service) Verify2FACode(input *o_auth2_0.Verify2FACodeParams) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, err := o.Client.OAuth20.Verify2FACode(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, err := o.Client.OAuth20.Verify2FACode(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -158,11 +159,11 @@ func (o *OAuth20Service) Verify2FACode(input *o_auth2_0.Verify2FACodeParams) (*i
 
 // Deprecated: Use RetrieveUserThirdPartyPlatformTokenV3Short instead
 func (o *OAuth20Service) RetrieveUserThirdPartyPlatformTokenV3(input *o_auth2_0.RetrieveUserThirdPartyPlatformTokenV3Params) (*iamclientmodels.OauthmodelTokenThirdPartyResponse, error) {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, err := o.Client.OAuth20.RetrieveUserThirdPartyPlatformTokenV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, err := o.Client.OAuth20.RetrieveUserThirdPartyPlatformTokenV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -181,11 +182,11 @@ func (o *OAuth20Service) RetrieveUserThirdPartyPlatformTokenV3(input *o_auth2_0.
 
 // Deprecated: Use AuthCodeRequestV3Short instead
 func (o *OAuth20Service) AuthCodeRequestV3(input *o_auth2_0.AuthCodeRequestV3Params) (string, error) {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return "", err
 	}
-	ok, err := o.Client.OAuth20.AuthCodeRequestV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := o.Client.OAuth20.AuthCodeRequestV3(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return "", err
 	}
@@ -213,11 +214,11 @@ func (o *OAuth20Service) PlatformTokenGrantV3(input *o_auth2_0.PlatformTokenGran
 
 // Deprecated: Use GetRevocationListV3Short instead
 func (o *OAuth20Service) GetRevocationListV3(input *o_auth2_0.GetRevocationListV3Params) (*iamclientmodels.OauthapiRevocationList, error) {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, err := o.Client.OAuth20.GetRevocationListV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, err := o.Client.OAuth20.GetRevocationListV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -268,11 +269,14 @@ func (o *OAuth20Service) TokenGrantV3(input *o_auth2_0.TokenGrantV3Params) (*iam
 }
 
 func (o *OAuth20Service) AdminRetrieveUserThirdPartyPlatformTokenV3Short(input *o_auth2_0.AdminRetrieveUserThirdPartyPlatformTokenV3Params) (*iamclientmodels.OauthmodelTokenThirdPartyResponse, error) {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := o.Client.OAuth20.AdminRetrieveUserThirdPartyPlatformTokenV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := o.Client.OAuth20.AdminRetrieveUserThirdPartyPlatformTokenV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -281,11 +285,14 @@ func (o *OAuth20Service) AdminRetrieveUserThirdPartyPlatformTokenV3Short(input *
 }
 
 func (o *OAuth20Service) RevokeUserV3Short(input *o_auth2_0.RevokeUserV3Params) error {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = o.Client.OAuth20.RevokeUserV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = o.Client.OAuth20.RevokeUserV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -296,7 +303,10 @@ func (o *OAuth20Service) RevokeUserV3Short(input *o_auth2_0.RevokeUserV3Params) 
 func (o *OAuth20Service) AuthorizeV3Short(input *o_auth2_0.AuthorizeV3Params) (string, error) {
 	clientID := o.ConfigRepository.GetClientId()
 	clientSecret := o.ConfigRepository.GetClientSecret()
-	ok, err := o.Client.OAuth20.AuthorizeV3Short(input, client.BasicAuth(clientID, clientSecret))
+	authWriter := auth.Compose(
+		auth.Basic(clientID, clientSecret),
+	)
+	ok, err := o.Client.OAuth20.AuthorizeV3Short(input, authWriter)
 	if err != nil {
 		return "", err
 	}
@@ -316,7 +326,10 @@ func (o *OAuth20Service) AuthorizeV3Short(input *o_auth2_0.AuthorizeV3Params) (s
 func (o *OAuth20Service) TokenIntrospectionV3Short(input *o_auth2_0.TokenIntrospectionV3Params) (*iamclientmodels.OauthmodelTokenIntrospectResponse, error) {
 	clientID := o.ConfigRepository.GetClientId()
 	clientSecret := o.ConfigRepository.GetClientSecret()
-	ok, err := o.Client.OAuth20.TokenIntrospectionV3Short(input, client.BasicAuth(clientID, clientSecret))
+	authWriter := auth.Compose(
+		auth.Basic(clientID, clientSecret),
+	)
+	ok, err := o.Client.OAuth20.TokenIntrospectionV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -325,11 +338,14 @@ func (o *OAuth20Service) TokenIntrospectionV3Short(input *o_auth2_0.TokenIntrosp
 }
 
 func (o *OAuth20Service) GetJWKSV3Short(input *o_auth2_0.GetJWKSV3Params) (*iamclientmodels.OauthcommonJWKSet, error) {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := o.Client.OAuth20.GetJWKSV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := o.Client.OAuth20.GetJWKSV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -338,11 +354,14 @@ func (o *OAuth20Service) GetJWKSV3Short(input *o_auth2_0.GetJWKSV3Params) (*iamc
 }
 
 func (o *OAuth20Service) Change2FAMethodShort(input *o_auth2_0.Change2FAMethodParams) error {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = o.Client.OAuth20.Change2FAMethodShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = o.Client.OAuth20.Change2FAMethodShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -351,11 +370,14 @@ func (o *OAuth20Service) Change2FAMethodShort(input *o_auth2_0.Change2FAMethodPa
 }
 
 func (o *OAuth20Service) Verify2FACodeShort(input *o_auth2_0.Verify2FACodeParams) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := o.Client.OAuth20.Verify2FACodeShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := o.Client.OAuth20.Verify2FACodeShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -364,11 +386,14 @@ func (o *OAuth20Service) Verify2FACodeShort(input *o_auth2_0.Verify2FACodeParams
 }
 
 func (o *OAuth20Service) RetrieveUserThirdPartyPlatformTokenV3Short(input *o_auth2_0.RetrieveUserThirdPartyPlatformTokenV3Params) (*iamclientmodels.OauthmodelTokenThirdPartyResponse, error) {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := o.Client.OAuth20.RetrieveUserThirdPartyPlatformTokenV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := o.Client.OAuth20.RetrieveUserThirdPartyPlatformTokenV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -377,11 +402,14 @@ func (o *OAuth20Service) RetrieveUserThirdPartyPlatformTokenV3Short(input *o_aut
 }
 
 func (o *OAuth20Service) AuthCodeRequestV3Short(input *o_auth2_0.AuthCodeRequestV3Params) (string, error) {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return "", err
 	}
-	ok, err := o.Client.OAuth20.AuthCodeRequestV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := o.Client.OAuth20.AuthCodeRequestV3Short(input, authWriter)
 	if err != nil {
 		return "", err
 	}
@@ -392,7 +420,10 @@ func (o *OAuth20Service) AuthCodeRequestV3Short(input *o_auth2_0.AuthCodeRequest
 func (o *OAuth20Service) PlatformTokenGrantV3Short(input *o_auth2_0.PlatformTokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponse, error) {
 	clientID := o.ConfigRepository.GetClientId()
 	clientSecret := o.ConfigRepository.GetClientSecret()
-	ok, err := o.Client.OAuth20.PlatformTokenGrantV3Short(input, client.BasicAuth(clientID, clientSecret))
+	authWriter := auth.Compose(
+		auth.Basic(clientID, clientSecret),
+	)
+	ok, err := o.Client.OAuth20.PlatformTokenGrantV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -401,11 +432,14 @@ func (o *OAuth20Service) PlatformTokenGrantV3Short(input *o_auth2_0.PlatformToke
 }
 
 func (o *OAuth20Service) GetRevocationListV3Short(input *o_auth2_0.GetRevocationListV3Params) (*iamclientmodels.OauthapiRevocationList, error) {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := o.Client.OAuth20.GetRevocationListV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := o.Client.OAuth20.GetRevocationListV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -416,7 +450,10 @@ func (o *OAuth20Service) GetRevocationListV3Short(input *o_auth2_0.GetRevocation
 func (o *OAuth20Service) TokenRevocationV3Short(input *o_auth2_0.TokenRevocationV3Params) error {
 	clientID := o.ConfigRepository.GetClientId()
 	clientSecret := o.ConfigRepository.GetClientSecret()
-	_, err := o.Client.OAuth20.TokenRevocationV3Short(input, client.BasicAuth(clientID, clientSecret))
+	authWriter := auth.Compose(
+		auth.Basic(clientID, clientSecret),
+	)
+	_, err := o.Client.OAuth20.TokenRevocationV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -427,7 +464,10 @@ func (o *OAuth20Service) TokenRevocationV3Short(input *o_auth2_0.TokenRevocation
 func (o *OAuth20Service) TokenGrantV3Short(input *o_auth2_0.TokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
 	clientID := o.ConfigRepository.GetClientId()
 	clientSecret := o.ConfigRepository.GetClientSecret()
-	ok, err := o.Client.OAuth20.TokenGrantV3Short(input, client.BasicAuth(clientID, clientSecret))
+	authWriter := auth.Compose(
+		auth.Basic(clientID, clientSecret),
+	)
+	ok, err := o.Client.OAuth20.TokenGrantV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}

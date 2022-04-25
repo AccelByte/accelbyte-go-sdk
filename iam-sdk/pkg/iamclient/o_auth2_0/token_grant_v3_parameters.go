@@ -77,6 +77,8 @@ for the token grant v3 operation typically these are written to a http.Request
 */
 type TokenGrantV3Params struct {
 
+	/*Cookie*/
+	Cookie *string
 	/*ClientID
 	  client_id (used with grant type 'authorization_code')
 
@@ -164,6 +166,17 @@ func (o *TokenGrantV3Params) WithHTTPClient(client *http.Client) *TokenGrantV3Pa
 // SetHTTPClient adds the HTTPClient to the token grant v3 params
 func (o *TokenGrantV3Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithCookie adds the cookie to the token grant v3 params
+func (o *TokenGrantV3Params) WithCookie(cookie *string) *TokenGrantV3Params {
+	o.SetCookie(cookie)
+	return o
+}
+
+// SetCookie adds the cookie to the token grant v3 params
+func (o *TokenGrantV3Params) SetCookie(cookie *string) {
+	o.Cookie = cookie
 }
 
 // WithClientID adds the clientID to the token grant v3 params
@@ -283,6 +296,15 @@ func (o *TokenGrantV3Params) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
+
+	if o.Cookie != nil {
+
+		// header param Cookie
+		if err := r.SetHeaderParam("Cookie", *o.Cookie); err != nil {
+			return err
+		}
+
+	}
 
 	if o.ClientID != nil {
 

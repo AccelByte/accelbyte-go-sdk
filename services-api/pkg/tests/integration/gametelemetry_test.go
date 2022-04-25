@@ -19,8 +19,9 @@ import (
 
 var (
 	gameTelemetryOperationsService = &gametelemetry.GametelemetryOperationsService{
-		Client:          factory.NewGametelemetryClient(&integration.ConfigRepositoryImpl{}),
-		TokenRepository: &integration.TokenRepositoryImpl{},
+		Client:           factory.NewGametelemetryClient(&integration.ConfigRepositoryImpl{}),
+		TokenRepository:  &integration.TokenRepositoryImpl{},
+		ConfigRepository: &integration.ConfigRepositoryImpl{},
 	}
 	telemetryBodyArray []*gametelemetryclientmodels.TelemetryBody
 	telemetryBody      = &gametelemetryclientmodels.TelemetryBody{
@@ -44,7 +45,7 @@ func TestIntegrationProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(t *tes
 	input := &gametelemetry_operations.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams{
 		Body: telemetryBodyArray,
 	}
-	err := gameTelemetryOperationsService.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(input)
+	err := gameTelemetryOperationsService.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(input, nil)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}

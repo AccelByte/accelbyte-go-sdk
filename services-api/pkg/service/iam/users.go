@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/users"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -22,11 +23,11 @@ type UsersService struct {
 
 // Deprecated: Use CreateUserShort instead
 func (u *UsersService) CreateUser(input *users.CreateUserParams) (*iamclientmodels.ModelUserCreateResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, conflict, err := u.Client.Users.CreateUser(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, forbidden, conflict, err := u.Client.Users.CreateUser(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -48,11 +49,11 @@ func (u *UsersService) CreateUser(input *users.CreateUserParams) (*iamclientmode
 
 // Deprecated: Use GetAdminUsersByRoleIDShort instead
 func (u *UsersService) GetAdminUsersByRoleID(input *users.GetAdminUsersByRoleIDParams) (*iamclientmodels.ModelGetAdminUsersResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.GetAdminUsersByRoleID(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.GetAdminUsersByRoleID(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -77,11 +78,11 @@ func (u *UsersService) GetAdminUsersByRoleID(input *users.GetAdminUsersByRoleIDP
 
 // Deprecated: Use GetUserByLoginIDShort instead
 func (u *UsersService) GetUserByLoginID(input *users.GetUserByLoginIDParams) (*iamclientmodels.ModelPublicUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, internalServerError, err := u.Client.Users.GetUserByLoginID(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, internalServerError, err := u.Client.Users.GetUserByLoginID(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -100,11 +101,11 @@ func (u *UsersService) GetUserByLoginID(input *users.GetUserByLoginIDParams) (*i
 
 // Deprecated: Use GetUserByPlatformUserIDShort instead
 func (u *UsersService) GetUserByPlatformUserID(input *users.GetUserByPlatformUserIDParams) (*iamclientmodels.ModelPublicUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.GetUserByPlatformUserID(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.GetUserByPlatformUserID(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -150,11 +151,11 @@ func (u *UsersService) ForgotPassword(input *users.ForgotPasswordParams) error {
 
 // Deprecated: Use GetUsersByLoginIdsShort instead
 func (u *UsersService) GetUsersByLoginIds(input *users.GetUsersByLoginIdsParams) (*iamclientmodels.ModelPublicUsersResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, err := u.Client.Users.GetUsersByLoginIds(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, err := u.Client.Users.GetUsersByLoginIds(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -197,11 +198,11 @@ func (u *UsersService) ResetPassword(input *users.ResetPasswordParams) error {
 
 // Deprecated: Use SearchUserShort instead
 func (u *UsersService) SearchUser(input *users.SearchUserParams) (*iamclientmodels.ModelSearchUsersResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, err := u.Client.Users.SearchUser(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, err := u.Client.Users.SearchUser(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -220,11 +221,11 @@ func (u *UsersService) SearchUser(input *users.SearchUserParams) (*iamclientmode
 
 // Deprecated: Use GetUserByUserIDShort instead
 func (u *UsersService) GetUserByUserID(input *users.GetUserByUserIDParams) (*iamclientmodels.ModelUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, internalServerError, err := u.Client.Users.GetUserByUserID(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, internalServerError, err := u.Client.Users.GetUserByUserID(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -240,11 +241,11 @@ func (u *UsersService) GetUserByUserID(input *users.GetUserByUserIDParams) (*iam
 
 // Deprecated: Use UpdateUserShort instead
 func (u *UsersService) UpdateUser(input *users.UpdateUserParams) (*iamclientmodels.ModelUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := u.Client.Users.UpdateUser(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := u.Client.Users.UpdateUser(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -269,11 +270,11 @@ func (u *UsersService) UpdateUser(input *users.UpdateUserParams) (*iamclientmode
 
 // Deprecated: Use DeleteUserShort instead
 func (u *UsersService) DeleteUser(input *users.DeleteUserParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, err := u.Client.Users.DeleteUser(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, forbidden, notFound, err := u.Client.Users.DeleteUser(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -292,11 +293,11 @@ func (u *UsersService) DeleteUser(input *users.DeleteUserParams) error {
 
 // Deprecated: Use BanUserShort instead
 func (u *UsersService) BanUser(input *users.BanUserParams) (*iamclientmodels.ModelUserBanResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.BanUser(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.BanUser(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -321,11 +322,11 @@ func (u *UsersService) BanUser(input *users.BanUserParams) (*iamclientmodels.Mod
 
 // Deprecated: Use GetUserBanHistoryShort instead
 func (u *UsersService) GetUserBanHistory(input *users.GetUserBanHistoryParams) ([]*iamclientmodels.ModelUserBanResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, err := u.Client.Users.GetUserBanHistory(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, err := u.Client.Users.GetUserBanHistory(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -344,11 +345,11 @@ func (u *UsersService) GetUserBanHistory(input *users.GetUserBanHistoryParams) (
 
 // Deprecated: Use DisableUserBanShort instead
 func (u *UsersService) DisableUserBan(input *users.DisableUserBanParams) (*iamclientmodels.ModelUserBanResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.DisableUserBan(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.DisableUserBan(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -370,11 +371,11 @@ func (u *UsersService) DisableUserBan(input *users.DisableUserBanParams) (*iamcl
 
 // Deprecated: Use EnableUserBanShort instead
 func (u *UsersService) EnableUserBan(input *users.EnableUserBanParams) (*iamclientmodels.ModelUserBanResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.EnableUserBan(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.EnableUserBan(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -396,11 +397,11 @@ func (u *UsersService) EnableUserBan(input *users.EnableUserBanParams) (*iamclie
 
 // Deprecated: Use ListCrossNamespaceAccountLinkShort instead
 func (u *UsersService) ListCrossNamespaceAccountLink(input *users.ListCrossNamespaceAccountLinkParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.ListCrossNamespaceAccountLink(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.ListCrossNamespaceAccountLink(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -422,11 +423,11 @@ func (u *UsersService) ListCrossNamespaceAccountLink(input *users.ListCrossNames
 
 // Deprecated: Use DisableUserShort instead
 func (u *UsersService) DisableUser(input *users.DisableUserParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.DisableUser(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.DisableUser(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -451,11 +452,11 @@ func (u *UsersService) DisableUser(input *users.DisableUserParams) error {
 
 // Deprecated: Use EnableUserShort instead
 func (u *UsersService) EnableUser(input *users.EnableUserParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.EnableUser(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.EnableUser(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -477,11 +478,11 @@ func (u *UsersService) EnableUser(input *users.EnableUserParams) error {
 
 // Deprecated: Use GetUserInformationShort instead
 func (u *UsersService) GetUserInformation(input *users.GetUserInformationParams) (*iamclientmodels.ModelUserInformation, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, err := u.Client.Users.GetUserInformation(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, err := u.Client.Users.GetUserInformation(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -500,11 +501,11 @@ func (u *UsersService) GetUserInformation(input *users.GetUserInformationParams)
 
 // Deprecated: Use DeleteUserInformationShort instead
 func (u *UsersService) DeleteUserInformation(input *users.DeleteUserInformationParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, err := u.Client.Users.DeleteUserInformation(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, forbidden, notFound, err := u.Client.Users.DeleteUserInformation(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -523,11 +524,11 @@ func (u *UsersService) DeleteUserInformation(input *users.DeleteUserInformationP
 
 // Deprecated: Use GetUserLoginHistoriesShort instead
 func (u *UsersService) GetUserLoginHistories(input *users.GetUserLoginHistoriesParams) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, err := u.Client.Users.GetUserLoginHistories(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, err := u.Client.Users.GetUserLoginHistories(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -546,11 +547,11 @@ func (u *UsersService) GetUserLoginHistories(input *users.GetUserLoginHistoriesP
 
 // Deprecated: Use UpdatePasswordShort instead
 func (u *UsersService) UpdatePassword(input *users.UpdatePasswordParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.UpdatePassword(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.UpdatePassword(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -575,11 +576,11 @@ func (u *UsersService) UpdatePassword(input *users.UpdatePasswordParams) error {
 
 // Deprecated: Use SaveUserPermissionShort instead
 func (u *UsersService) SaveUserPermission(input *users.SaveUserPermissionParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.SaveUserPermission(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.SaveUserPermission(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -601,11 +602,11 @@ func (u *UsersService) SaveUserPermission(input *users.SaveUserPermissionParams)
 
 // Deprecated: Use AddUserPermissionShort instead
 func (u *UsersService) AddUserPermission(input *users.AddUserPermissionParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AddUserPermission(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AddUserPermission(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -627,11 +628,11 @@ func (u *UsersService) AddUserPermission(input *users.AddUserPermissionParams) e
 
 // Deprecated: Use DeleteUserPermissionShort instead
 func (u *UsersService) DeleteUserPermission(input *users.DeleteUserPermissionParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.DeleteUserPermission(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.DeleteUserPermission(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -653,11 +654,11 @@ func (u *UsersService) DeleteUserPermission(input *users.DeleteUserPermissionPar
 
 // Deprecated: Use GetUserPlatformAccountsShort instead
 func (u *UsersService) GetUserPlatformAccounts(input *users.GetUserPlatformAccountsParams) ([]*iamclientmodels.AccountcommonUserLinkedPlatform, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, err := u.Client.Users.GetUserPlatformAccounts(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, err := u.Client.Users.GetUserPlatformAccounts(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -676,11 +677,11 @@ func (u *UsersService) GetUserPlatformAccounts(input *users.GetUserPlatformAccou
 
 // Deprecated: Use GetUserMappingShort instead
 func (u *UsersService) GetUserMapping(input *users.GetUserMappingParams) (*iamclientmodels.ModelGetUserMapping, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.GetUserMapping(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.GetUserMapping(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -702,11 +703,11 @@ func (u *UsersService) GetUserMapping(input *users.GetUserMappingParams) (*iamcl
 
 // Deprecated: Use GetUserJusticePlatformAccountShort instead
 func (u *UsersService) GetUserJusticePlatformAccount(input *users.GetUserJusticePlatformAccountParams) (*iamclientmodels.ModelGetUserJusticePlatformAccountResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, err := u.Client.Users.GetUserJusticePlatformAccount(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, err := u.Client.Users.GetUserJusticePlatformAccount(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -725,11 +726,11 @@ func (u *UsersService) GetUserJusticePlatformAccount(input *users.GetUserJustice
 
 // Deprecated: Use PlatformLinkShort instead
 func (u *UsersService) PlatformLink(input *users.PlatformLinkParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := u.Client.Users.PlatformLink(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := u.Client.Users.PlatformLink(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -757,11 +758,11 @@ func (u *UsersService) PlatformLink(input *users.PlatformLinkParams) error {
 
 // Deprecated: Use PlatformUnlinkShort instead
 func (u *UsersService) PlatformUnlink(input *users.PlatformUnlinkParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.PlatformUnlink(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.PlatformUnlink(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -786,11 +787,11 @@ func (u *UsersService) PlatformUnlink(input *users.PlatformUnlinkParams) error {
 
 // Deprecated: Use GetPublisherUserShort instead
 func (u *UsersService) GetPublisherUser(input *users.GetPublisherUserParams) (*iamclientmodels.ModelGetPublisherUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.GetPublisherUser(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.GetPublisherUser(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -812,11 +813,11 @@ func (u *UsersService) GetPublisherUser(input *users.GetPublisherUserParams) (*i
 
 // Deprecated: Use SaveUserRolesShort instead
 func (u *UsersService) SaveUserRoles(input *users.SaveUserRolesParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, err := u.Client.Users.SaveUserRoles(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, err := u.Client.Users.SaveUserRoles(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -841,11 +842,11 @@ func (u *UsersService) SaveUserRoles(input *users.SaveUserRolesParams) error {
 
 // Deprecated: Use AddUserRoleShort instead
 func (u *UsersService) AddUserRole(input *users.AddUserRoleParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, conflict, internalServerError, err := u.Client.Users.AddUserRole(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, forbidden, notFound, conflict, internalServerError, err := u.Client.Users.AddUserRole(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -870,11 +871,11 @@ func (u *UsersService) AddUserRole(input *users.AddUserRoleParams) error {
 
 // Deprecated: Use DeleteUserRoleShort instead
 func (u *UsersService) DeleteUserRole(input *users.DeleteUserRoleParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.DeleteUserRole(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.DeleteUserRole(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -896,11 +897,11 @@ func (u *UsersService) DeleteUserRole(input *users.DeleteUserRoleParams) error {
 
 // Deprecated: Use UpgradeHeadlessAccountShort instead
 func (u *UsersService) UpgradeHeadlessAccount(input *users.UpgradeHeadlessAccountParams) (*iamclientmodels.ModelUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, conflict, err := u.Client.Users.UpgradeHeadlessAccount(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, conflict, err := u.Client.Users.UpgradeHeadlessAccount(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -919,11 +920,11 @@ func (u *UsersService) UpgradeHeadlessAccount(input *users.UpgradeHeadlessAccoun
 
 // Deprecated: Use UpgradeHeadlessAccountWithVerificationCodeShort instead
 func (u *UsersService) UpgradeHeadlessAccountWithVerificationCode(input *users.UpgradeHeadlessAccountWithVerificationCodeParams) (*iamclientmodels.ModelUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, conflict, err := u.Client.Users.UpgradeHeadlessAccountWithVerificationCode(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, conflict, err := u.Client.Users.UpgradeHeadlessAccountWithVerificationCode(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -945,11 +946,11 @@ func (u *UsersService) UpgradeHeadlessAccountWithVerificationCode(input *users.U
 
 // Deprecated: Use UserVerificationShort instead
 func (u *UsersService) UserVerification(input *users.UserVerificationParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.UserVerification(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.UserVerification(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -974,11 +975,11 @@ func (u *UsersService) UserVerification(input *users.UserVerificationParams) err
 
 // Deprecated: Use SendVerificationCodeShort instead
 func (u *UsersService) SendVerificationCode(input *users.SendVerificationCodeParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, tooManyRequests, internalServerError, err := u.Client.Users.SendVerificationCode(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, tooManyRequests, internalServerError, err := u.Client.Users.SendVerificationCode(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1009,11 +1010,11 @@ func (u *UsersService) SendVerificationCode(input *users.SendVerificationCodePar
 
 // Deprecated: Use AdminGetAgeRestrictionStatusV2Short instead
 func (u *UsersService) AdminGetAgeRestrictionStatusV2(input *users.AdminGetAgeRestrictionStatusV2Params) (*iamclientmodels.ModelAgeRestrictionResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, err := u.Client.Users.AdminGetAgeRestrictionStatusV2(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, err := u.Client.Users.AdminGetAgeRestrictionStatusV2(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -1032,11 +1033,11 @@ func (u *UsersService) AdminGetAgeRestrictionStatusV2(input *users.AdminGetAgeRe
 
 // Deprecated: Use AdminUpdateAgeRestrictionConfigV2Short instead
 func (u *UsersService) AdminUpdateAgeRestrictionConfigV2(input *users.AdminUpdateAgeRestrictionConfigV2Params) (*iamclientmodels.ModelAgeRestrictionResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminUpdateAgeRestrictionConfigV2(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminUpdateAgeRestrictionConfigV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1058,11 +1059,11 @@ func (u *UsersService) AdminUpdateAgeRestrictionConfigV2(input *users.AdminUpdat
 
 // Deprecated: Use GetListCountryAgeRestrictionShort instead
 func (u *UsersService) GetListCountryAgeRestriction(input *users.GetListCountryAgeRestrictionParams) ([]*iamclientmodels.AccountcommonCountryAgeRestriction, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, err := u.Client.Users.GetListCountryAgeRestriction(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, err := u.Client.Users.GetListCountryAgeRestriction(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -1081,11 +1082,11 @@ func (u *UsersService) GetListCountryAgeRestriction(input *users.GetListCountryA
 
 // Deprecated: Use UpdateCountryAgeRestrictionShort instead
 func (u *UsersService) UpdateCountryAgeRestriction(input *users.UpdateCountryAgeRestrictionParams) (*iamclientmodels.ModelCountry, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.UpdateCountryAgeRestriction(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.UpdateCountryAgeRestriction(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1107,11 +1108,11 @@ func (u *UsersService) UpdateCountryAgeRestriction(input *users.UpdateCountryAge
 
 // Deprecated: Use AdminSearchUsersV2Short instead
 func (u *UsersService) AdminSearchUsersV2(input *users.AdminSearchUsersV2Params) (*iamclientmodels.ModelSearchUsersByPlatformIDResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, err := u.Client.Users.AdminSearchUsersV2(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, err := u.Client.Users.AdminSearchUsersV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1130,11 +1131,11 @@ func (u *UsersService) AdminSearchUsersV2(input *users.AdminSearchUsersV2Params)
 
 // Deprecated: Use AdminGetUserByUserIDV2Short instead
 func (u *UsersService) AdminGetUserByUserIDV2(input *users.AdminGetUserByUserIDV2Params) (*iamclientmodels.ModelUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, internalServerError, err := u.Client.Users.AdminGetUserByUserIDV2(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, internalServerError, err := u.Client.Users.AdminGetUserByUserIDV2(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -1150,11 +1151,11 @@ func (u *UsersService) AdminGetUserByUserIDV2(input *users.AdminGetUserByUserIDV
 
 // Deprecated: Use AdminUpdateUserV2Short instead
 func (u *UsersService) AdminUpdateUserV2(input *users.AdminUpdateUserV2Params) (*iamclientmodels.ModelUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := u.Client.Users.AdminUpdateUserV2(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := u.Client.Users.AdminUpdateUserV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1179,11 +1180,11 @@ func (u *UsersService) AdminUpdateUserV2(input *users.AdminUpdateUserV2Params) (
 
 // Deprecated: Use AdminBanUserV2Short instead
 func (u *UsersService) AdminBanUserV2(input *users.AdminBanUserV2Params) (*iamclientmodels.ModelUserBanResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminBanUserV2(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminBanUserV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1208,11 +1209,11 @@ func (u *UsersService) AdminBanUserV2(input *users.AdminBanUserV2Params) (*iamcl
 
 // Deprecated: Use AdminGetUserBanV2Short instead
 func (u *UsersService) AdminGetUserBanV2(input *users.AdminGetUserBanV2Params) ([]*iamclientmodels.ModelUserBanResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, err := u.Client.Users.AdminGetUserBanV2(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, err := u.Client.Users.AdminGetUserBanV2(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -1231,11 +1232,11 @@ func (u *UsersService) AdminGetUserBanV2(input *users.AdminGetUserBanV2Params) (
 
 // Deprecated: Use AdminDisableUserV2Short instead
 func (u *UsersService) AdminDisableUserV2(input *users.AdminDisableUserV2Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminDisableUserV2(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminDisableUserV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1260,11 +1261,11 @@ func (u *UsersService) AdminDisableUserV2(input *users.AdminDisableUserV2Params)
 
 // Deprecated: Use AdminEnableUserV2Short instead
 func (u *UsersService) AdminEnableUserV2(input *users.AdminEnableUserV2Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminEnableUserV2(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminEnableUserV2(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -1286,11 +1287,11 @@ func (u *UsersService) AdminEnableUserV2(input *users.AdminEnableUserV2Params) e
 
 // Deprecated: Use AdminResetPasswordV2Short instead
 func (u *UsersService) AdminResetPasswordV2(input *users.AdminResetPasswordV2Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminResetPasswordV2(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminResetPasswordV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1315,11 +1316,11 @@ func (u *UsersService) AdminResetPasswordV2(input *users.AdminResetPasswordV2Par
 
 // Deprecated: Use AdminDeletePlatformLinkV2Short instead
 func (u *UsersService) AdminDeletePlatformLinkV2(input *users.AdminDeletePlatformLinkV2Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminDeletePlatformLinkV2(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminDeletePlatformLinkV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1344,11 +1345,11 @@ func (u *UsersService) AdminDeletePlatformLinkV2(input *users.AdminDeletePlatfor
 
 // Deprecated: Use AdminPutUserRolesV2Short instead
 func (u *UsersService) AdminPutUserRolesV2(input *users.AdminPutUserRolesV2Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminPutUserRolesV2(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminPutUserRolesV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1370,11 +1371,11 @@ func (u *UsersService) AdminPutUserRolesV2(input *users.AdminPutUserRolesV2Param
 
 // Deprecated: Use AdminCreateUserRolesV2Short instead
 func (u *UsersService) AdminCreateUserRolesV2(input *users.AdminCreateUserRolesV2Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, err := u.Client.Users.AdminCreateUserRolesV2(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, err := u.Client.Users.AdminCreateUserRolesV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1399,11 +1400,11 @@ func (u *UsersService) AdminCreateUserRolesV2(input *users.AdminCreateUserRolesV
 
 // Deprecated: Use PublicGetCountryAgeRestrictionShort instead
 func (u *UsersService) PublicGetCountryAgeRestriction(input *users.PublicGetCountryAgeRestrictionParams) ([]*iamclientmodels.AccountcommonCountryAgeRestriction, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, notFound, err := u.Client.Users.PublicGetCountryAgeRestriction(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, notFound, err := u.Client.Users.PublicGetCountryAgeRestriction(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -1419,11 +1420,11 @@ func (u *UsersService) PublicGetCountryAgeRestriction(input *users.PublicGetCoun
 
 // Deprecated: Use PublicCreateUserV2Short instead
 func (u *UsersService) PublicCreateUserV2(input *users.PublicCreateUserV2Params) (*iamclientmodels.ModelUserCreateResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, conflict, err := u.Client.Users.PublicCreateUserV2(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, forbidden, conflict, err := u.Client.Users.PublicCreateUserV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1445,11 +1446,11 @@ func (u *UsersService) PublicCreateUserV2(input *users.PublicCreateUserV2Params)
 
 // Deprecated: Use PublicForgotPasswordV2Short instead
 func (u *UsersService) PublicForgotPasswordV2(input *users.PublicForgotPasswordV2Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, notFound, tooManyRequests, internalServerError, err := u.Client.Users.PublicForgotPasswordV2(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, notFound, tooManyRequests, internalServerError, err := u.Client.Users.PublicForgotPasswordV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1471,11 +1472,11 @@ func (u *UsersService) PublicForgotPasswordV2(input *users.PublicForgotPasswordV
 
 // Deprecated: Use PublicResetPasswordV2Short instead
 func (u *UsersService) PublicResetPasswordV2(input *users.PublicResetPasswordV2Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, forbidden, notFound, internalServerError, err := u.Client.Users.PublicResetPasswordV2(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, forbidden, notFound, internalServerError, err := u.Client.Users.PublicResetPasswordV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1497,11 +1498,11 @@ func (u *UsersService) PublicResetPasswordV2(input *users.PublicResetPasswordV2P
 
 // Deprecated: Use PublicGetUserByUserIDV2Short instead
 func (u *UsersService) PublicGetUserByUserIDV2(input *users.PublicGetUserByUserIDV2Params) (*iamclientmodels.ModelUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, internalServerError, err := u.Client.Users.PublicGetUserByUserIDV2(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, internalServerError, err := u.Client.Users.PublicGetUserByUserIDV2(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -1517,11 +1518,11 @@ func (u *UsersService) PublicGetUserByUserIDV2(input *users.PublicGetUserByUserI
 
 // Deprecated: Use PublicUpdateUserV2Short instead
 func (u *UsersService) PublicUpdateUserV2(input *users.PublicUpdateUserV2Params) ([]*iamclientmodels.ModelUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := u.Client.Users.PublicUpdateUserV2(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := u.Client.Users.PublicUpdateUserV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1546,11 +1547,11 @@ func (u *UsersService) PublicUpdateUserV2(input *users.PublicUpdateUserV2Params)
 
 // Deprecated: Use PublicGetUserBanShort instead
 func (u *UsersService) PublicGetUserBan(input *users.PublicGetUserBanParams) ([]*iamclientmodels.ModelUserBanResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, err := u.Client.Users.PublicGetUserBan(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, err := u.Client.Users.PublicGetUserBan(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -1569,11 +1570,11 @@ func (u *UsersService) PublicGetUserBan(input *users.PublicGetUserBanParams) ([]
 
 // Deprecated: Use PublicUpdatePasswordV2Short instead
 func (u *UsersService) PublicUpdatePasswordV2(input *users.PublicUpdatePasswordV2Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.PublicUpdatePasswordV2(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.PublicUpdatePasswordV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1598,11 +1599,11 @@ func (u *UsersService) PublicUpdatePasswordV2(input *users.PublicUpdatePasswordV
 
 // Deprecated: Use GetListJusticePlatformAccountsShort instead
 func (u *UsersService) GetListJusticePlatformAccounts(input *users.GetListJusticePlatformAccountsParams) ([]*iamclientmodels.ModelGetUserMapping, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, err := u.Client.Users.GetListJusticePlatformAccounts(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, err := u.Client.Users.GetListJusticePlatformAccounts(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1618,11 +1619,11 @@ func (u *UsersService) GetListJusticePlatformAccounts(input *users.GetListJustic
 
 // Deprecated: Use PublicPlatformLinkV2Short instead
 func (u *UsersService) PublicPlatformLinkV2(input *users.PublicPlatformLinkV2Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := u.Client.Users.PublicPlatformLinkV2(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := u.Client.Users.PublicPlatformLinkV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1650,11 +1651,11 @@ func (u *UsersService) PublicPlatformLinkV2(input *users.PublicPlatformLinkV2Par
 
 // Deprecated: Use PublicDeletePlatformLinkV2Short instead
 func (u *UsersService) PublicDeletePlatformLinkV2(input *users.PublicDeletePlatformLinkV2Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.PublicDeletePlatformLinkV2(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.PublicDeletePlatformLinkV2(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -1679,11 +1680,11 @@ func (u *UsersService) PublicDeletePlatformLinkV2(input *users.PublicDeletePlatf
 
 // Deprecated: Use ListAdminsV3Short instead
 func (u *UsersService) ListAdminsV3(input *users.ListAdminsV3Params) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, internalServerError, err := u.Client.Users.ListAdminsV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := u.Client.Users.ListAdminsV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -1702,11 +1703,11 @@ func (u *UsersService) ListAdminsV3(input *users.ListAdminsV3Params) (*iamclient
 
 // Deprecated: Use AdminGetAgeRestrictionStatusV3Short instead
 func (u *UsersService) AdminGetAgeRestrictionStatusV3(input *users.AdminGetAgeRestrictionStatusV3Params) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminGetAgeRestrictionStatusV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminGetAgeRestrictionStatusV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1731,11 +1732,11 @@ func (u *UsersService) AdminGetAgeRestrictionStatusV3(input *users.AdminGetAgeRe
 
 // Deprecated: Use AdminUpdateAgeRestrictionConfigV3Short instead
 func (u *UsersService) AdminUpdateAgeRestrictionConfigV3(input *users.AdminUpdateAgeRestrictionConfigV3Params) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := u.Client.Users.AdminUpdateAgeRestrictionConfigV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := u.Client.Users.AdminUpdateAgeRestrictionConfigV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1757,11 +1758,11 @@ func (u *UsersService) AdminUpdateAgeRestrictionConfigV3(input *users.AdminUpdat
 
 // Deprecated: Use AdminGetListCountryAgeRestrictionV3Short instead
 func (u *UsersService) AdminGetListCountryAgeRestrictionV3(input *users.AdminGetListCountryAgeRestrictionV3Params) ([]*iamclientmodels.ModelCountryV3Response, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := u.Client.Users.AdminGetListCountryAgeRestrictionV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := u.Client.Users.AdminGetListCountryAgeRestrictionV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1783,11 +1784,11 @@ func (u *UsersService) AdminGetListCountryAgeRestrictionV3(input *users.AdminGet
 
 // Deprecated: Use AdminUpdateCountryAgeRestrictionV3Short instead
 func (u *UsersService) AdminUpdateCountryAgeRestrictionV3(input *users.AdminUpdateCountryAgeRestrictionV3Params) (*iamclientmodels.ModelCountryV3Response, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminUpdateCountryAgeRestrictionV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminUpdateCountryAgeRestrictionV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1812,11 +1813,11 @@ func (u *UsersService) AdminUpdateCountryAgeRestrictionV3(input *users.AdminUpda
 
 // Deprecated: Use AdminGetUserByPlatformUserIDV3Short instead
 func (u *UsersService) AdminGetUserByPlatformUserIDV3(input *users.AdminGetUserByPlatformUserIDV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminGetUserByPlatformUserIDV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminGetUserByPlatformUserIDV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -1838,11 +1839,11 @@ func (u *UsersService) AdminGetUserByPlatformUserIDV3(input *users.AdminGetUserB
 
 // Deprecated: Use GetAdminUsersByRoleIDV3Short instead
 func (u *UsersService) GetAdminUsersByRoleIDV3(input *users.GetAdminUsersByRoleIDV3Params) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.GetAdminUsersByRoleIDV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.GetAdminUsersByRoleIDV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1867,11 +1868,11 @@ func (u *UsersService) GetAdminUsersByRoleIDV3(input *users.GetAdminUsersByRoleI
 
 // Deprecated: Use AdminGetUserByEmailAddressV3Short instead
 func (u *UsersService) AdminGetUserByEmailAddressV3(input *users.AdminGetUserByEmailAddressV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminGetUserByEmailAddressV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminGetUserByEmailAddressV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1896,11 +1897,11 @@ func (u *UsersService) AdminGetUserByEmailAddressV3(input *users.AdminGetUserByE
 
 // Deprecated: Use AdminListUserIDByUserIDsV3Short instead
 func (u *UsersService) AdminListUserIDByUserIDsV3(input *users.AdminListUserIDByUserIDsV3Params) (*iamclientmodels.ModelListUserInformationResult, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := u.Client.Users.AdminListUserIDByUserIDsV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := u.Client.Users.AdminListUserIDByUserIDsV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1922,11 +1923,11 @@ func (u *UsersService) AdminListUserIDByUserIDsV3(input *users.AdminListUserIDBy
 
 // Deprecated: Use AdminInviteUserV3Short instead
 func (u *UsersService) AdminInviteUserV3(input *users.AdminInviteUserV3Params) (*iamclientmodels.ModelInviteUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, notFound, conflict, unprocessableEntity, internalServerError, err := u.Client.Users.AdminInviteUserV3(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, notFound, conflict, unprocessableEntity, internalServerError, err := u.Client.Users.AdminInviteUserV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1951,11 +1952,11 @@ func (u *UsersService) AdminInviteUserV3(input *users.AdminInviteUserV3Params) (
 
 // Deprecated: Use AdminListUsersV3Short instead
 func (u *UsersService) AdminListUsersV3(input *users.AdminListUsersV3Params) (*iamclientmodels.AccountcommonListUsersWithPlatformAccountsResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := u.Client.Users.AdminListUsersV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := u.Client.Users.AdminListUsersV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -1977,11 +1978,11 @@ func (u *UsersService) AdminListUsersV3(input *users.AdminListUsersV3Params) (*i
 
 // Deprecated: Use AdminSearchUserV3Short instead
 func (u *UsersService) AdminSearchUserV3(input *users.AdminSearchUserV3Params) (*iamclientmodels.ModelSearchUsersResponseWithPaginationV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := u.Client.Users.AdminSearchUserV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := u.Client.Users.AdminSearchUserV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2003,11 +2004,11 @@ func (u *UsersService) AdminSearchUserV3(input *users.AdminSearchUserV3Params) (
 
 // Deprecated: Use AdminGetBulkUserByEmailAddressV3Short instead
 func (u *UsersService) AdminGetBulkUserByEmailAddressV3(input *users.AdminGetBulkUserByEmailAddressV3Params) (*iamclientmodels.ModelListUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminGetBulkUserByEmailAddressV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminGetBulkUserByEmailAddressV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2032,11 +2033,11 @@ func (u *UsersService) AdminGetBulkUserByEmailAddressV3(input *users.AdminGetBul
 
 // Deprecated: Use AdminGetUserByUserIDV3Short instead
 func (u *UsersService) AdminGetUserByUserIDV3(input *users.AdminGetUserByUserIDV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminGetUserByUserIDV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminGetUserByUserIDV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2061,11 +2062,11 @@ func (u *UsersService) AdminGetUserByUserIDV3(input *users.AdminGetUserByUserIDV
 
 // Deprecated: Use AdminUpdateUserV3Short instead
 func (u *UsersService) AdminUpdateUserV3(input *users.AdminUpdateUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := u.Client.Users.AdminUpdateUserV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := u.Client.Users.AdminUpdateUserV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2093,11 +2094,11 @@ func (u *UsersService) AdminUpdateUserV3(input *users.AdminUpdateUserV3Params) (
 
 // Deprecated: Use AdminGetUserBanV3Short instead
 func (u *UsersService) AdminGetUserBanV3(input *users.AdminGetUserBanV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminGetUserBanV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminGetUserBanV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2119,11 +2120,11 @@ func (u *UsersService) AdminGetUserBanV3(input *users.AdminGetUserBanV3Params) (
 
 // Deprecated: Use AdminBanUserV3Short instead
 func (u *UsersService) AdminBanUserV3(input *users.AdminBanUserV3Params) (*iamclientmodels.ModelUserBanResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminBanUserV3(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminBanUserV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2145,11 +2146,11 @@ func (u *UsersService) AdminBanUserV3(input *users.AdminBanUserV3Params) (*iamcl
 
 // Deprecated: Use AdminUpdateUserBanV3Short instead
 func (u *UsersService) AdminUpdateUserBanV3(input *users.AdminUpdateUserBanV3Params) (*iamclientmodels.ModelUserBanResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminUpdateUserBanV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminUpdateUserBanV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2174,11 +2175,11 @@ func (u *UsersService) AdminUpdateUserBanV3(input *users.AdminUpdateUserBanV3Par
 
 // Deprecated: Use AdminSendVerificationCodeV3Short instead
 func (u *UsersService) AdminSendVerificationCodeV3(input *users.AdminSendVerificationCodeV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, tooManyRequests, err := u.Client.Users.AdminSendVerificationCodeV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, tooManyRequests, err := u.Client.Users.AdminSendVerificationCodeV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2206,11 +2207,11 @@ func (u *UsersService) AdminSendVerificationCodeV3(input *users.AdminSendVerific
 
 // Deprecated: Use AdminVerifyAccountV3Short instead
 func (u *UsersService) AdminVerifyAccountV3(input *users.AdminVerifyAccountV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminVerifyAccountV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminVerifyAccountV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2235,11 +2236,11 @@ func (u *UsersService) AdminVerifyAccountV3(input *users.AdminVerifyAccountV3Par
 
 // Deprecated: Use GetUserVerificationCodeShort instead
 func (u *UsersService) GetUserVerificationCode(input *users.GetUserVerificationCodeParams) (*iamclientmodels.ModelVerificationCodeResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.GetUserVerificationCode(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.GetUserVerificationCode(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -2261,11 +2262,11 @@ func (u *UsersService) GetUserVerificationCode(input *users.GetUserVerificationC
 
 // Deprecated: Use AdminGetUserDeletionStatusV3Short instead
 func (u *UsersService) AdminGetUserDeletionStatusV3(input *users.AdminGetUserDeletionStatusV3Params) (*iamclientmodels.ModelUserDeletionStatusResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminGetUserDeletionStatusV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminGetUserDeletionStatusV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -2287,11 +2288,11 @@ func (u *UsersService) AdminGetUserDeletionStatusV3(input *users.AdminGetUserDel
 
 // Deprecated: Use AdminUpdateUserDeletionStatusV3Short instead
 func (u *UsersService) AdminUpdateUserDeletionStatusV3(input *users.AdminUpdateUserDeletionStatusV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminUpdateUserDeletionStatusV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminUpdateUserDeletionStatusV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2316,11 +2317,11 @@ func (u *UsersService) AdminUpdateUserDeletionStatusV3(input *users.AdminUpdateU
 
 // Deprecated: Use AdminUpgradeHeadlessAccountV3Short instead
 func (u *UsersService) AdminUpgradeHeadlessAccountV3(input *users.AdminUpgradeHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := u.Client.Users.AdminUpgradeHeadlessAccountV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := u.Client.Users.AdminUpgradeHeadlessAccountV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2348,11 +2349,11 @@ func (u *UsersService) AdminUpgradeHeadlessAccountV3(input *users.AdminUpgradeHe
 
 // Deprecated: Use AdminDeleteUserInformationV3Short instead
 func (u *UsersService) AdminDeleteUserInformationV3(input *users.AdminDeleteUserInformationV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, err := u.Client.Users.AdminDeleteUserInformationV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, forbidden, notFound, err := u.Client.Users.AdminDeleteUserInformationV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -2371,11 +2372,11 @@ func (u *UsersService) AdminDeleteUserInformationV3(input *users.AdminDeleteUser
 
 // Deprecated: Use AdminGetUserLoginHistoriesV3Short instead
 func (u *UsersService) AdminGetUserLoginHistoriesV3(input *users.AdminGetUserLoginHistoriesV3Params) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, err := u.Client.Users.AdminGetUserLoginHistoriesV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, err := u.Client.Users.AdminGetUserLoginHistoriesV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -2394,11 +2395,11 @@ func (u *UsersService) AdminGetUserLoginHistoriesV3(input *users.AdminGetUserLog
 
 // Deprecated: Use AdminUpdateUserPermissionV3Short instead
 func (u *UsersService) AdminUpdateUserPermissionV3(input *users.AdminUpdateUserPermissionV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminUpdateUserPermissionV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminUpdateUserPermissionV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2420,11 +2421,11 @@ func (u *UsersService) AdminUpdateUserPermissionV3(input *users.AdminUpdateUserP
 
 // Deprecated: Use AdminAddUserPermissionsV3Short instead
 func (u *UsersService) AdminAddUserPermissionsV3(input *users.AdminAddUserPermissionsV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminAddUserPermissionsV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminAddUserPermissionsV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2446,11 +2447,11 @@ func (u *UsersService) AdminAddUserPermissionsV3(input *users.AdminAddUserPermis
 
 // Deprecated: Use AdminDeleteUserPermissionBulkV3Short instead
 func (u *UsersService) AdminDeleteUserPermissionBulkV3(input *users.AdminDeleteUserPermissionBulkV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminDeleteUserPermissionBulkV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminDeleteUserPermissionBulkV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2472,11 +2473,11 @@ func (u *UsersService) AdminDeleteUserPermissionBulkV3(input *users.AdminDeleteU
 
 // Deprecated: Use AdminDeleteUserPermissionV3Short instead
 func (u *UsersService) AdminDeleteUserPermissionV3(input *users.AdminDeleteUserPermissionV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminDeleteUserPermissionV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminDeleteUserPermissionV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2498,11 +2499,11 @@ func (u *UsersService) AdminDeleteUserPermissionV3(input *users.AdminDeleteUserP
 
 // Deprecated: Use AdminGetUserPlatformAccountsV3Short instead
 func (u *UsersService) AdminGetUserPlatformAccountsV3(input *users.AdminGetUserPlatformAccountsV3Params) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminGetUserPlatformAccountsV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminGetUserPlatformAccountsV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2524,11 +2525,11 @@ func (u *UsersService) AdminGetUserPlatformAccountsV3(input *users.AdminGetUserP
 
 // Deprecated: Use AdminGetListJusticePlatformAccountsShort instead
 func (u *UsersService) AdminGetListJusticePlatformAccounts(input *users.AdminGetListJusticePlatformAccountsParams) ([]*iamclientmodels.ModelGetUserMapping, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminGetListJusticePlatformAccounts(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminGetListJusticePlatformAccounts(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2553,11 +2554,11 @@ func (u *UsersService) AdminGetListJusticePlatformAccounts(input *users.AdminGet
 
 // Deprecated: Use AdminCreateJusticeUserShort instead
 func (u *UsersService) AdminCreateJusticeUser(input *users.AdminCreateJusticeUserParams) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminCreateJusticeUser(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminCreateJusticeUser(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2582,11 +2583,11 @@ func (u *UsersService) AdminCreateJusticeUser(input *users.AdminCreateJusticeUse
 
 // Deprecated: Use AdminLinkPlatformAccountShort instead
 func (u *UsersService) AdminLinkPlatformAccount(input *users.AdminLinkPlatformAccountParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, internalServerError, err := u.Client.Users.AdminLinkPlatformAccount(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, internalServerError, err := u.Client.Users.AdminLinkPlatformAccount(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2608,11 +2609,11 @@ func (u *UsersService) AdminLinkPlatformAccount(input *users.AdminLinkPlatformAc
 
 // Deprecated: Use AdminPlatformUnlinkV3Short instead
 func (u *UsersService) AdminPlatformUnlinkV3(input *users.AdminPlatformUnlinkV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminPlatformUnlinkV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.AdminPlatformUnlinkV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2637,11 +2638,11 @@ func (u *UsersService) AdminPlatformUnlinkV3(input *users.AdminPlatformUnlinkV3P
 
 // Deprecated: Use AdminPlatformLinkV3Short instead
 func (u *UsersService) AdminPlatformLinkV3(input *users.AdminPlatformLinkV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := u.Client.Users.AdminPlatformLinkV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := u.Client.Users.AdminPlatformLinkV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2669,11 +2670,11 @@ func (u *UsersService) AdminPlatformLinkV3(input *users.AdminPlatformLinkV3Param
 
 // Deprecated: Use AdminDeleteUserRolesV3Short instead
 func (u *UsersService) AdminDeleteUserRolesV3(input *users.AdminDeleteUserRolesV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminDeleteUserRolesV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminDeleteUserRolesV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2695,11 +2696,11 @@ func (u *UsersService) AdminDeleteUserRolesV3(input *users.AdminDeleteUserRolesV
 
 // Deprecated: Use AdminSaveUserRoleV3Short instead
 func (u *UsersService) AdminSaveUserRoleV3(input *users.AdminSaveUserRoleV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, forbidden, notFound, unprocessableEntity, internalServerError, err := u.Client.Users.AdminSaveUserRoleV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, forbidden, notFound, unprocessableEntity, internalServerError, err := u.Client.Users.AdminSaveUserRoleV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2724,11 +2725,11 @@ func (u *UsersService) AdminSaveUserRoleV3(input *users.AdminSaveUserRoleV3Param
 
 // Deprecated: Use AdminAddUserRoleV3Short instead
 func (u *UsersService) AdminAddUserRoleV3(input *users.AdminAddUserRoleV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, err := u.Client.Users.AdminAddUserRoleV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, err := u.Client.Users.AdminAddUserRoleV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2753,11 +2754,11 @@ func (u *UsersService) AdminAddUserRoleV3(input *users.AdminAddUserRoleV3Params)
 
 // Deprecated: Use AdminDeleteUserRoleV3Short instead
 func (u *UsersService) AdminDeleteUserRoleV3(input *users.AdminDeleteUserRoleV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminDeleteUserRoleV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminDeleteUserRoleV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2779,11 +2780,11 @@ func (u *UsersService) AdminDeleteUserRoleV3(input *users.AdminDeleteUserRoleV3P
 
 // Deprecated: Use AdminUpdateUserStatusV3Short instead
 func (u *UsersService) AdminUpdateUserStatusV3(input *users.AdminUpdateUserStatusV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminUpdateUserStatusV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.AdminUpdateUserStatusV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2805,11 +2806,11 @@ func (u *UsersService) AdminUpdateUserStatusV3(input *users.AdminUpdateUserStatu
 
 // Deprecated: Use AdminVerifyUserWithoutVerificationCodeV3Short instead
 func (u *UsersService) AdminVerifyUserWithoutVerificationCodeV3(input *users.AdminVerifyUserWithoutVerificationCodeV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, conflict, err := u.Client.Users.AdminVerifyUserWithoutVerificationCodeV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, conflict, err := u.Client.Users.AdminVerifyUserWithoutVerificationCodeV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -2834,11 +2835,11 @@ func (u *UsersService) AdminVerifyUserWithoutVerificationCodeV3(input *users.Adm
 
 // Deprecated: Use AdminGetMyUserV3Short instead
 func (u *UsersService) AdminGetMyUserV3(input *users.AdminGetMyUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := u.Client.Users.AdminGetMyUserV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, internalServerError, err := u.Client.Users.AdminGetMyUserV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -2854,11 +2855,11 @@ func (u *UsersService) AdminGetMyUserV3(input *users.AdminGetMyUserV3Params) (*i
 
 // Deprecated: Use PublicListUserIDByPlatformUserIDsV3Short instead
 func (u *UsersService) PublicListUserIDByPlatformUserIDsV3(input *users.PublicListUserIDByPlatformUserIDsV3Params) (*iamclientmodels.AccountcommonUserPlatforms, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, internalServerError, err := u.Client.Users.PublicListUserIDByPlatformUserIDsV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, internalServerError, err := u.Client.Users.PublicListUserIDByPlatformUserIDsV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2880,11 +2881,11 @@ func (u *UsersService) PublicListUserIDByPlatformUserIDsV3(input *users.PublicLi
 
 // Deprecated: Use PublicGetUserByPlatformUserIDV3Short instead
 func (u *UsersService) PublicGetUserByPlatformUserIDV3(input *users.PublicGetUserByPlatformUserIDV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.PublicGetUserByPlatformUserIDV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.PublicGetUserByPlatformUserIDV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -2906,11 +2907,11 @@ func (u *UsersService) PublicGetUserByPlatformUserIDV3(input *users.PublicGetUse
 
 // Deprecated: Use PublicGetAsyncStatusShort instead
 func (u *UsersService) PublicGetAsyncStatus(input *users.PublicGetAsyncStatusParams) (*iamclientmodels.ModelLinkRequest, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, internalServerError, err := u.Client.Users.PublicGetAsyncStatus(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, internalServerError, err := u.Client.Users.PublicGetAsyncStatus(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -2929,11 +2930,11 @@ func (u *UsersService) PublicGetAsyncStatus(input *users.PublicGetAsyncStatusPar
 
 // Deprecated: Use PublicSearchUserV3Short instead
 func (u *UsersService) PublicSearchUserV3(input *users.PublicSearchUserV3Params) (*iamclientmodels.ModelPublicUserInformationResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, internalServerError, err := u.Client.Users.PublicSearchUserV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, internalServerError, err := u.Client.Users.PublicSearchUserV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2955,11 +2956,11 @@ func (u *UsersService) PublicSearchUserV3(input *users.PublicSearchUserV3Params)
 
 // Deprecated: Use PublicCreateUserV3Short instead
 func (u *UsersService) PublicCreateUserV3(input *users.PublicCreateUserV3Params) (*iamclientmodels.ModelUserCreateResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, notFound, conflict, internalServerError, err := u.Client.Users.PublicCreateUserV3(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, notFound, conflict, internalServerError, err := u.Client.Users.PublicCreateUserV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -2981,11 +2982,11 @@ func (u *UsersService) PublicCreateUserV3(input *users.PublicCreateUserV3Params)
 
 // Deprecated: Use CheckUserAvailabilityShort instead
 func (u *UsersService) CheckUserAvailability(input *users.CheckUserAvailabilityParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, unprocessableEntity, err := u.Client.Users.CheckUserAvailability(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, unprocessableEntity, err := u.Client.Users.CheckUserAvailability(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3010,11 +3011,11 @@ func (u *UsersService) CheckUserAvailability(input *users.CheckUserAvailabilityP
 
 // Deprecated: Use PublicBulkGetUsersShort instead
 func (u *UsersService) PublicBulkGetUsers(input *users.PublicBulkGetUsersParams) (*iamclientmodels.ModelListBulkUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, internalServerError, err := u.Client.Users.PublicBulkGetUsers(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, internalServerError, err := u.Client.Users.PublicBulkGetUsers(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3030,11 +3031,11 @@ func (u *UsersService) PublicBulkGetUsers(input *users.PublicBulkGetUsersParams)
 
 // Deprecated: Use PublicSendRegistrationCodeShort instead
 func (u *UsersService) PublicSendRegistrationCode(input *users.PublicSendRegistrationCodeParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, conflict, err := u.Client.Users.PublicSendRegistrationCode(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, conflict, err := u.Client.Users.PublicSendRegistrationCode(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3050,11 +3051,11 @@ func (u *UsersService) PublicSendRegistrationCode(input *users.PublicSendRegistr
 
 // Deprecated: Use PublicVerifyRegistrationCodeShort instead
 func (u *UsersService) PublicVerifyRegistrationCode(input *users.PublicVerifyRegistrationCodeParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, err := u.Client.Users.PublicVerifyRegistrationCode(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, err := u.Client.Users.PublicVerifyRegistrationCode(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3067,11 +3068,11 @@ func (u *UsersService) PublicVerifyRegistrationCode(input *users.PublicVerifyReg
 
 // Deprecated: Use PublicForgotPasswordV3Short instead
 func (u *UsersService) PublicForgotPasswordV3(input *users.PublicForgotPasswordV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, notFound, tooManyRequests, err := u.Client.Users.PublicForgotPasswordV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, notFound, tooManyRequests, err := u.Client.Users.PublicForgotPasswordV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3090,11 +3091,11 @@ func (u *UsersService) PublicForgotPasswordV3(input *users.PublicForgotPasswordV
 
 // Deprecated: Use GetAdminInvitationV3Short instead
 func (u *UsersService) GetAdminInvitationV3(input *users.GetAdminInvitationV3Params) (*iamclientmodels.ModelUserInvitationV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, internalServerError, err := u.Client.Users.GetAdminInvitationV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, internalServerError, err := u.Client.Users.GetAdminInvitationV3(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -3110,11 +3111,11 @@ func (u *UsersService) GetAdminInvitationV3(input *users.GetAdminInvitationV3Par
 
 // Deprecated: Use CreateUserFromInvitationV3Short instead
 func (u *UsersService) CreateUserFromInvitationV3(input *users.CreateUserFromInvitationV3Params) (*iamclientmodels.ModelUserCreateResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, notFound, internalServerError, err := u.Client.Users.CreateUserFromInvitationV3(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, notFound, internalServerError, err := u.Client.Users.CreateUserFromInvitationV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3133,11 +3134,11 @@ func (u *UsersService) CreateUserFromInvitationV3(input *users.CreateUserFromInv
 
 // Deprecated: Use UpdateUserV3Short instead
 func (u *UsersService) UpdateUserV3(input *users.UpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, conflict, internalServerError, err := u.Client.Users.UpdateUserV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, conflict, internalServerError, err := u.Client.Users.UpdateUserV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3159,11 +3160,11 @@ func (u *UsersService) UpdateUserV3(input *users.UpdateUserV3Params) ([]*iamclie
 
 // Deprecated: Use PublicUpdateUserV3Short instead
 func (u *UsersService) PublicUpdateUserV3(input *users.PublicUpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, conflict, internalServerError, err := u.Client.Users.PublicUpdateUserV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, conflict, internalServerError, err := u.Client.Users.PublicUpdateUserV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3185,11 +3186,11 @@ func (u *UsersService) PublicUpdateUserV3(input *users.PublicUpdateUserV3Params)
 
 // Deprecated: Use PublicSendVerificationCodeV3Short instead
 func (u *UsersService) PublicSendVerificationCodeV3(input *users.PublicSendVerificationCodeV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, notFound, conflict, tooManyRequests, err := u.Client.Users.PublicSendVerificationCodeV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, notFound, conflict, tooManyRequests, err := u.Client.Users.PublicSendVerificationCodeV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3214,11 +3215,11 @@ func (u *UsersService) PublicSendVerificationCodeV3(input *users.PublicSendVerif
 
 // Deprecated: Use PublicUserVerificationV3Short instead
 func (u *UsersService) PublicUserVerificationV3(input *users.PublicUserVerificationV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, conflict, err := u.Client.Users.PublicUserVerificationV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, conflict, err := u.Client.Users.PublicUserVerificationV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3240,11 +3241,11 @@ func (u *UsersService) PublicUserVerificationV3(input *users.PublicUserVerificat
 
 // Deprecated: Use PublicUpgradeHeadlessAccountV3Short instead
 func (u *UsersService) PublicUpgradeHeadlessAccountV3(input *users.PublicUpgradeHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := u.Client.Users.PublicUpgradeHeadlessAccountV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, conflict, internalServerError, err := u.Client.Users.PublicUpgradeHeadlessAccountV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3272,11 +3273,11 @@ func (u *UsersService) PublicUpgradeHeadlessAccountV3(input *users.PublicUpgrade
 
 // Deprecated: Use PublicVerifyHeadlessAccountV3Short instead
 func (u *UsersService) PublicVerifyHeadlessAccountV3(input *users.PublicVerifyHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := u.Client.Users.PublicVerifyHeadlessAccountV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, conflict, internalServerError, err := u.Client.Users.PublicVerifyHeadlessAccountV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3301,11 +3302,11 @@ func (u *UsersService) PublicVerifyHeadlessAccountV3(input *users.PublicVerifyHe
 
 // Deprecated: Use PublicUpdatePasswordV3Short instead
 func (u *UsersService) PublicUpdatePasswordV3(input *users.PublicUpdatePasswordV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, internalServerError, err := u.Client.Users.PublicUpdatePasswordV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, internalServerError, err := u.Client.Users.PublicUpdatePasswordV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3324,11 +3325,11 @@ func (u *UsersService) PublicUpdatePasswordV3(input *users.PublicUpdatePasswordV
 
 // Deprecated: Use PublicCreateJusticeUserShort instead
 func (u *UsersService) PublicCreateJusticeUser(input *users.PublicCreateJusticeUserParams) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.PublicCreateJusticeUser(input, client.BearerToken(*accessToken.AccessToken))
+	created, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.PublicCreateJusticeUser(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3353,11 +3354,11 @@ func (u *UsersService) PublicCreateJusticeUser(input *users.PublicCreateJusticeU
 
 // Deprecated: Use PublicPlatformLinkV3Short instead
 func (u *UsersService) PublicPlatformLinkV3(input *users.PublicPlatformLinkV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, notFound, conflict, internalServerError, err := u.Client.Users.PublicPlatformLinkV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, notFound, conflict, internalServerError, err := u.Client.Users.PublicPlatformLinkV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3382,11 +3383,11 @@ func (u *UsersService) PublicPlatformLinkV3(input *users.PublicPlatformLinkV3Par
 
 // Deprecated: Use PublicPlatformUnlinkV3Short instead
 func (u *UsersService) PublicPlatformUnlinkV3(input *users.PublicPlatformUnlinkV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, notFound, internalServerError, err := u.Client.Users.PublicPlatformUnlinkV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, notFound, internalServerError, err := u.Client.Users.PublicPlatformUnlinkV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3408,11 +3409,11 @@ func (u *UsersService) PublicPlatformUnlinkV3(input *users.PublicPlatformUnlinkV
 
 // Deprecated: Use PublicWebLinkPlatformShort instead
 func (u *UsersService) PublicWebLinkPlatform(input *users.PublicWebLinkPlatformParams) (*iamclientmodels.ModelWebLinkingResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, notFound, err := u.Client.Users.PublicWebLinkPlatform(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, notFound, err := u.Client.Users.PublicWebLinkPlatform(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3431,11 +3432,11 @@ func (u *UsersService) PublicWebLinkPlatform(input *users.PublicWebLinkPlatformP
 
 // Deprecated: Use PublicWebLinkPlatformEstablishShort instead
 func (u *UsersService) PublicWebLinkPlatformEstablish(input *users.PublicWebLinkPlatformEstablishParams) (string, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return "", err
 	}
-	ok, err := u.Client.Users.PublicWebLinkPlatformEstablish(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := u.Client.Users.PublicWebLinkPlatformEstablish(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return "", err
 	}
@@ -3445,11 +3446,11 @@ func (u *UsersService) PublicWebLinkPlatformEstablish(input *users.PublicWebLink
 
 // Deprecated: Use ResetPasswordV3Short instead
 func (u *UsersService) ResetPasswordV3(input *users.ResetPasswordV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, forbidden, notFound, err := u.Client.Users.ResetPasswordV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, forbidden, notFound, err := u.Client.Users.ResetPasswordV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3468,11 +3469,11 @@ func (u *UsersService) ResetPasswordV3(input *users.ResetPasswordV3Params) error
 
 // Deprecated: Use PublicGetUserByUserIDV3Short instead
 func (u *UsersService) PublicGetUserByUserIDV3(input *users.PublicGetUserByUserIDV3Params) (*iamclientmodels.ModelPublicUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, notFound, internalServerError, err := u.Client.Users.PublicGetUserByUserIDV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, notFound, internalServerError, err := u.Client.Users.PublicGetUserByUserIDV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3491,11 +3492,11 @@ func (u *UsersService) PublicGetUserByUserIDV3(input *users.PublicGetUserByUserI
 
 // Deprecated: Use PublicGetUserBanHistoryV3Short instead
 func (u *UsersService) PublicGetUserBanHistoryV3(input *users.PublicGetUserBanHistoryV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.PublicGetUserBanHistoryV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.PublicGetUserBanHistoryV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3520,11 +3521,11 @@ func (u *UsersService) PublicGetUserBanHistoryV3(input *users.PublicGetUserBanHi
 
 // Deprecated: Use PublicGetUserLoginHistoriesV3Short instead
 func (u *UsersService) PublicGetUserLoginHistoriesV3(input *users.PublicGetUserLoginHistoriesV3Params) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, notFound, err := u.Client.Users.PublicGetUserLoginHistoriesV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, notFound, err := u.Client.Users.PublicGetUserLoginHistoriesV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -3543,11 +3544,11 @@ func (u *UsersService) PublicGetUserLoginHistoriesV3(input *users.PublicGetUserL
 
 // Deprecated: Use PublicGetUserPlatformAccountsV3Short instead
 func (u *UsersService) PublicGetUserPlatformAccountsV3(input *users.PublicGetUserPlatformAccountsV3Params) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.PublicGetUserPlatformAccountsV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, forbidden, notFound, err := u.Client.Users.PublicGetUserPlatformAccountsV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -3569,11 +3570,11 @@ func (u *UsersService) PublicGetUserPlatformAccountsV3(input *users.PublicGetUse
 
 // Deprecated: Use PublicLinkPlatformAccountShort instead
 func (u *UsersService) PublicLinkPlatformAccount(input *users.PublicLinkPlatformAccountParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, internalServerError, err := u.Client.Users.PublicLinkPlatformAccount(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, internalServerError, err := u.Client.Users.PublicLinkPlatformAccount(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3595,11 +3596,11 @@ func (u *UsersService) PublicLinkPlatformAccount(input *users.PublicLinkPlatform
 
 // Deprecated: Use PublicValidateUserByUserIDAndPasswordV3Short instead
 func (u *UsersService) PublicValidateUserByUserIDAndPasswordV3(input *users.PublicValidateUserByUserIDAndPasswordV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.PublicValidateUserByUserIDAndPasswordV3(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, forbidden, notFound, internalServerError, err := u.Client.Users.PublicValidateUserByUserIDAndPasswordV3(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -3624,11 +3625,11 @@ func (u *UsersService) PublicValidateUserByUserIDAndPasswordV3(input *users.Publ
 
 // Deprecated: Use PublicGetMyUserV3Short instead
 func (u *UsersService) PublicGetMyUserV3(input *users.PublicGetMyUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, internalServerError, err := u.Client.Users.PublicGetMyUserV3(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, internalServerError, err := u.Client.Users.PublicGetMyUserV3(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -3643,11 +3644,14 @@ func (u *UsersService) PublicGetMyUserV3(input *users.PublicGetMyUserV3Params) (
 }
 
 func (u *UsersService) CreateUserShort(input *users.CreateUserParams) (*iamclientmodels.ModelUserCreateResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, err := u.Client.Users.CreateUserShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	created, err := u.Client.Users.CreateUserShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3656,11 +3660,14 @@ func (u *UsersService) CreateUserShort(input *users.CreateUserParams) (*iamclien
 }
 
 func (u *UsersService) GetAdminUsersByRoleIDShort(input *users.GetAdminUsersByRoleIDParams) (*iamclientmodels.ModelGetAdminUsersResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.GetAdminUsersByRoleIDShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.GetAdminUsersByRoleIDShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3669,11 +3676,14 @@ func (u *UsersService) GetAdminUsersByRoleIDShort(input *users.GetAdminUsersByRo
 }
 
 func (u *UsersService) GetUserByLoginIDShort(input *users.GetUserByLoginIDParams) (*iamclientmodels.ModelPublicUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.GetUserByLoginIDShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.GetUserByLoginIDShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3682,11 +3692,14 @@ func (u *UsersService) GetUserByLoginIDShort(input *users.GetUserByLoginIDParams
 }
 
 func (u *UsersService) GetUserByPlatformUserIDShort(input *users.GetUserByPlatformUserIDParams) (*iamclientmodels.ModelPublicUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.GetUserByPlatformUserIDShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.GetUserByPlatformUserIDShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3697,7 +3710,10 @@ func (u *UsersService) GetUserByPlatformUserIDShort(input *users.GetUserByPlatfo
 func (u *UsersService) ForgotPasswordShort(input *users.ForgotPasswordParams) error {
 	clientID := u.ConfigRepository.GetClientId()
 	clientSecret := u.ConfigRepository.GetClientSecret()
-	_, err := u.Client.Users.ForgotPasswordShort(input, client.BasicAuth(clientID, clientSecret))
+	authWriter := auth.Compose(
+		auth.Basic(clientID, clientSecret),
+	)
+	_, err := u.Client.Users.ForgotPasswordShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -3706,11 +3722,14 @@ func (u *UsersService) ForgotPasswordShort(input *users.ForgotPasswordParams) er
 }
 
 func (u *UsersService) GetUsersByLoginIdsShort(input *users.GetUsersByLoginIdsParams) (*iamclientmodels.ModelPublicUsersResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.GetUsersByLoginIdsShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.GetUsersByLoginIdsShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3721,7 +3740,10 @@ func (u *UsersService) GetUsersByLoginIdsShort(input *users.GetUsersByLoginIdsPa
 func (u *UsersService) ResetPasswordShort(input *users.ResetPasswordParams) error {
 	clientID := u.ConfigRepository.GetClientId()
 	clientSecret := u.ConfigRepository.GetClientSecret()
-	_, err := u.Client.Users.ResetPasswordShort(input, client.BasicAuth(clientID, clientSecret))
+	authWriter := auth.Compose(
+		auth.Basic(clientID, clientSecret),
+	)
+	_, err := u.Client.Users.ResetPasswordShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -3730,11 +3752,14 @@ func (u *UsersService) ResetPasswordShort(input *users.ResetPasswordParams) erro
 }
 
 func (u *UsersService) SearchUserShort(input *users.SearchUserParams) (*iamclientmodels.ModelSearchUsersResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.SearchUserShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.SearchUserShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3743,11 +3768,14 @@ func (u *UsersService) SearchUserShort(input *users.SearchUserParams) (*iamclien
 }
 
 func (u *UsersService) GetUserByUserIDShort(input *users.GetUserByUserIDParams) (*iamclientmodels.ModelUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.GetUserByUserIDShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.GetUserByUserIDShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3756,11 +3784,14 @@ func (u *UsersService) GetUserByUserIDShort(input *users.GetUserByUserIDParams) 
 }
 
 func (u *UsersService) UpdateUserShort(input *users.UpdateUserParams) (*iamclientmodels.ModelUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.UpdateUserShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.UpdateUserShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3769,11 +3800,14 @@ func (u *UsersService) UpdateUserShort(input *users.UpdateUserParams) (*iamclien
 }
 
 func (u *UsersService) DeleteUserShort(input *users.DeleteUserParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.DeleteUserShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.DeleteUserShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -3782,11 +3816,14 @@ func (u *UsersService) DeleteUserShort(input *users.DeleteUserParams) error {
 }
 
 func (u *UsersService) BanUserShort(input *users.BanUserParams) (*iamclientmodels.ModelUserBanResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, err := u.Client.Users.BanUserShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	created, err := u.Client.Users.BanUserShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3795,11 +3832,14 @@ func (u *UsersService) BanUserShort(input *users.BanUserParams) (*iamclientmodel
 }
 
 func (u *UsersService) GetUserBanHistoryShort(input *users.GetUserBanHistoryParams) ([]*iamclientmodels.ModelUserBanResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.GetUserBanHistoryShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.GetUserBanHistoryShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3808,11 +3848,14 @@ func (u *UsersService) GetUserBanHistoryShort(input *users.GetUserBanHistoryPara
 }
 
 func (u *UsersService) DisableUserBanShort(input *users.DisableUserBanParams) (*iamclientmodels.ModelUserBanResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.DisableUserBanShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.DisableUserBanShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3821,11 +3864,14 @@ func (u *UsersService) DisableUserBanShort(input *users.DisableUserBanParams) (*
 }
 
 func (u *UsersService) EnableUserBanShort(input *users.EnableUserBanParams) (*iamclientmodels.ModelUserBanResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.EnableUserBanShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.EnableUserBanShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3834,11 +3880,14 @@ func (u *UsersService) EnableUserBanShort(input *users.EnableUserBanParams) (*ia
 }
 
 func (u *UsersService) ListCrossNamespaceAccountLinkShort(input *users.ListCrossNamespaceAccountLinkParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.ListCrossNamespaceAccountLinkShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.ListCrossNamespaceAccountLinkShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -3847,11 +3896,14 @@ func (u *UsersService) ListCrossNamespaceAccountLinkShort(input *users.ListCross
 }
 
 func (u *UsersService) DisableUserShort(input *users.DisableUserParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.DisableUserShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.DisableUserShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -3860,11 +3912,14 @@ func (u *UsersService) DisableUserShort(input *users.DisableUserParams) error {
 }
 
 func (u *UsersService) EnableUserShort(input *users.EnableUserParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.EnableUserShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.EnableUserShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -3873,11 +3928,14 @@ func (u *UsersService) EnableUserShort(input *users.EnableUserParams) error {
 }
 
 func (u *UsersService) GetUserInformationShort(input *users.GetUserInformationParams) (*iamclientmodels.ModelUserInformation, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.GetUserInformationShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.GetUserInformationShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3886,11 +3944,14 @@ func (u *UsersService) GetUserInformationShort(input *users.GetUserInformationPa
 }
 
 func (u *UsersService) DeleteUserInformationShort(input *users.DeleteUserInformationParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.DeleteUserInformationShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.DeleteUserInformationShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -3899,11 +3960,14 @@ func (u *UsersService) DeleteUserInformationShort(input *users.DeleteUserInforma
 }
 
 func (u *UsersService) GetUserLoginHistoriesShort(input *users.GetUserLoginHistoriesParams) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.GetUserLoginHistoriesShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.GetUserLoginHistoriesShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3912,11 +3976,14 @@ func (u *UsersService) GetUserLoginHistoriesShort(input *users.GetUserLoginHisto
 }
 
 func (u *UsersService) UpdatePasswordShort(input *users.UpdatePasswordParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.UpdatePasswordShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.UpdatePasswordShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -3925,11 +3992,14 @@ func (u *UsersService) UpdatePasswordShort(input *users.UpdatePasswordParams) er
 }
 
 func (u *UsersService) SaveUserPermissionShort(input *users.SaveUserPermissionParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.SaveUserPermissionShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.SaveUserPermissionShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -3938,11 +4008,14 @@ func (u *UsersService) SaveUserPermissionShort(input *users.SaveUserPermissionPa
 }
 
 func (u *UsersService) AddUserPermissionShort(input *users.AddUserPermissionParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.AddUserPermissionShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.AddUserPermissionShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -3951,11 +4024,14 @@ func (u *UsersService) AddUserPermissionShort(input *users.AddUserPermissionPara
 }
 
 func (u *UsersService) DeleteUserPermissionShort(input *users.DeleteUserPermissionParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.DeleteUserPermissionShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.DeleteUserPermissionShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -3964,11 +4040,14 @@ func (u *UsersService) DeleteUserPermissionShort(input *users.DeleteUserPermissi
 }
 
 func (u *UsersService) GetUserPlatformAccountsShort(input *users.GetUserPlatformAccountsParams) ([]*iamclientmodels.AccountcommonUserLinkedPlatform, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.GetUserPlatformAccountsShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.GetUserPlatformAccountsShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3977,11 +4056,14 @@ func (u *UsersService) GetUserPlatformAccountsShort(input *users.GetUserPlatform
 }
 
 func (u *UsersService) GetUserMappingShort(input *users.GetUserMappingParams) (*iamclientmodels.ModelGetUserMapping, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.GetUserMappingShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.GetUserMappingShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -3990,11 +4072,14 @@ func (u *UsersService) GetUserMappingShort(input *users.GetUserMappingParams) (*
 }
 
 func (u *UsersService) GetUserJusticePlatformAccountShort(input *users.GetUserJusticePlatformAccountParams) (*iamclientmodels.ModelGetUserJusticePlatformAccountResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.GetUserJusticePlatformAccountShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.GetUserJusticePlatformAccountShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4003,11 +4088,14 @@ func (u *UsersService) GetUserJusticePlatformAccountShort(input *users.GetUserJu
 }
 
 func (u *UsersService) PlatformLinkShort(input *users.PlatformLinkParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.PlatformLinkShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.PlatformLinkShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4016,11 +4104,14 @@ func (u *UsersService) PlatformLinkShort(input *users.PlatformLinkParams) error 
 }
 
 func (u *UsersService) PlatformUnlinkShort(input *users.PlatformUnlinkParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.PlatformUnlinkShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.PlatformUnlinkShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4029,11 +4120,14 @@ func (u *UsersService) PlatformUnlinkShort(input *users.PlatformUnlinkParams) er
 }
 
 func (u *UsersService) GetPublisherUserShort(input *users.GetPublisherUserParams) (*iamclientmodels.ModelGetPublisherUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.GetPublisherUserShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.GetPublisherUserShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4042,11 +4136,14 @@ func (u *UsersService) GetPublisherUserShort(input *users.GetPublisherUserParams
 }
 
 func (u *UsersService) SaveUserRolesShort(input *users.SaveUserRolesParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.SaveUserRolesShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.SaveUserRolesShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4055,11 +4152,14 @@ func (u *UsersService) SaveUserRolesShort(input *users.SaveUserRolesParams) erro
 }
 
 func (u *UsersService) AddUserRoleShort(input *users.AddUserRoleParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.AddUserRoleShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.AddUserRoleShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4068,11 +4168,14 @@ func (u *UsersService) AddUserRoleShort(input *users.AddUserRoleParams) error {
 }
 
 func (u *UsersService) DeleteUserRoleShort(input *users.DeleteUserRoleParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.DeleteUserRoleShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.DeleteUserRoleShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4081,11 +4184,14 @@ func (u *UsersService) DeleteUserRoleShort(input *users.DeleteUserRoleParams) er
 }
 
 func (u *UsersService) UpgradeHeadlessAccountShort(input *users.UpgradeHeadlessAccountParams) (*iamclientmodels.ModelUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.UpgradeHeadlessAccountShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.UpgradeHeadlessAccountShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4094,11 +4200,14 @@ func (u *UsersService) UpgradeHeadlessAccountShort(input *users.UpgradeHeadlessA
 }
 
 func (u *UsersService) UpgradeHeadlessAccountWithVerificationCodeShort(input *users.UpgradeHeadlessAccountWithVerificationCodeParams) (*iamclientmodels.ModelUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.UpgradeHeadlessAccountWithVerificationCodeShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.UpgradeHeadlessAccountWithVerificationCodeShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4107,11 +4216,14 @@ func (u *UsersService) UpgradeHeadlessAccountWithVerificationCodeShort(input *us
 }
 
 func (u *UsersService) UserVerificationShort(input *users.UserVerificationParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.UserVerificationShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.UserVerificationShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4120,11 +4232,14 @@ func (u *UsersService) UserVerificationShort(input *users.UserVerificationParams
 }
 
 func (u *UsersService) SendVerificationCodeShort(input *users.SendVerificationCodeParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.SendVerificationCodeShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.SendVerificationCodeShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4133,11 +4248,14 @@ func (u *UsersService) SendVerificationCodeShort(input *users.SendVerificationCo
 }
 
 func (u *UsersService) AdminGetAgeRestrictionStatusV2Short(input *users.AdminGetAgeRestrictionStatusV2Params) (*iamclientmodels.ModelAgeRestrictionResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminGetAgeRestrictionStatusV2Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminGetAgeRestrictionStatusV2Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4146,11 +4264,14 @@ func (u *UsersService) AdminGetAgeRestrictionStatusV2Short(input *users.AdminGet
 }
 
 func (u *UsersService) AdminUpdateAgeRestrictionConfigV2Short(input *users.AdminUpdateAgeRestrictionConfigV2Params) (*iamclientmodels.ModelAgeRestrictionResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminUpdateAgeRestrictionConfigV2Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminUpdateAgeRestrictionConfigV2Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4159,11 +4280,14 @@ func (u *UsersService) AdminUpdateAgeRestrictionConfigV2Short(input *users.Admin
 }
 
 func (u *UsersService) GetListCountryAgeRestrictionShort(input *users.GetListCountryAgeRestrictionParams) ([]*iamclientmodels.AccountcommonCountryAgeRestriction, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.GetListCountryAgeRestrictionShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.GetListCountryAgeRestrictionShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4172,11 +4296,14 @@ func (u *UsersService) GetListCountryAgeRestrictionShort(input *users.GetListCou
 }
 
 func (u *UsersService) UpdateCountryAgeRestrictionShort(input *users.UpdateCountryAgeRestrictionParams) (*iamclientmodels.ModelCountry, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.UpdateCountryAgeRestrictionShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.UpdateCountryAgeRestrictionShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4185,11 +4312,14 @@ func (u *UsersService) UpdateCountryAgeRestrictionShort(input *users.UpdateCount
 }
 
 func (u *UsersService) AdminSearchUsersV2Short(input *users.AdminSearchUsersV2Params) (*iamclientmodels.ModelSearchUsersByPlatformIDResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminSearchUsersV2Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminSearchUsersV2Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4198,11 +4328,14 @@ func (u *UsersService) AdminSearchUsersV2Short(input *users.AdminSearchUsersV2Pa
 }
 
 func (u *UsersService) AdminGetUserByUserIDV2Short(input *users.AdminGetUserByUserIDV2Params) (*iamclientmodels.ModelUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminGetUserByUserIDV2Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminGetUserByUserIDV2Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4211,11 +4344,14 @@ func (u *UsersService) AdminGetUserByUserIDV2Short(input *users.AdminGetUserByUs
 }
 
 func (u *UsersService) AdminUpdateUserV2Short(input *users.AdminUpdateUserV2Params) (*iamclientmodels.ModelUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminUpdateUserV2Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminUpdateUserV2Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4224,11 +4360,14 @@ func (u *UsersService) AdminUpdateUserV2Short(input *users.AdminUpdateUserV2Para
 }
 
 func (u *UsersService) AdminBanUserV2Short(input *users.AdminBanUserV2Params) (*iamclientmodels.ModelUserBanResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, err := u.Client.Users.AdminBanUserV2Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	created, err := u.Client.Users.AdminBanUserV2Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4237,11 +4376,14 @@ func (u *UsersService) AdminBanUserV2Short(input *users.AdminBanUserV2Params) (*
 }
 
 func (u *UsersService) AdminGetUserBanV2Short(input *users.AdminGetUserBanV2Params) ([]*iamclientmodels.ModelUserBanResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminGetUserBanV2Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminGetUserBanV2Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4250,11 +4392,14 @@ func (u *UsersService) AdminGetUserBanV2Short(input *users.AdminGetUserBanV2Para
 }
 
 func (u *UsersService) AdminDisableUserV2Short(input *users.AdminDisableUserV2Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.AdminDisableUserV2Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.AdminDisableUserV2Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4263,11 +4408,14 @@ func (u *UsersService) AdminDisableUserV2Short(input *users.AdminDisableUserV2Pa
 }
 
 func (u *UsersService) AdminEnableUserV2Short(input *users.AdminEnableUserV2Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.AdminEnableUserV2Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.AdminEnableUserV2Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4276,11 +4424,14 @@ func (u *UsersService) AdminEnableUserV2Short(input *users.AdminEnableUserV2Para
 }
 
 func (u *UsersService) AdminResetPasswordV2Short(input *users.AdminResetPasswordV2Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.AdminResetPasswordV2Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.AdminResetPasswordV2Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4289,11 +4440,14 @@ func (u *UsersService) AdminResetPasswordV2Short(input *users.AdminResetPassword
 }
 
 func (u *UsersService) AdminDeletePlatformLinkV2Short(input *users.AdminDeletePlatformLinkV2Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.AdminDeletePlatformLinkV2Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.AdminDeletePlatformLinkV2Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4302,11 +4456,14 @@ func (u *UsersService) AdminDeletePlatformLinkV2Short(input *users.AdminDeletePl
 }
 
 func (u *UsersService) AdminPutUserRolesV2Short(input *users.AdminPutUserRolesV2Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.AdminPutUserRolesV2Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.AdminPutUserRolesV2Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4315,11 +4472,14 @@ func (u *UsersService) AdminPutUserRolesV2Short(input *users.AdminPutUserRolesV2
 }
 
 func (u *UsersService) AdminCreateUserRolesV2Short(input *users.AdminCreateUserRolesV2Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.AdminCreateUserRolesV2Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.AdminCreateUserRolesV2Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4328,11 +4488,14 @@ func (u *UsersService) AdminCreateUserRolesV2Short(input *users.AdminCreateUserR
 }
 
 func (u *UsersService) PublicGetCountryAgeRestrictionShort(input *users.PublicGetCountryAgeRestrictionParams) ([]*iamclientmodels.AccountcommonCountryAgeRestriction, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.PublicGetCountryAgeRestrictionShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.PublicGetCountryAgeRestrictionShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4341,11 +4504,14 @@ func (u *UsersService) PublicGetCountryAgeRestrictionShort(input *users.PublicGe
 }
 
 func (u *UsersService) PublicCreateUserV2Short(input *users.PublicCreateUserV2Params) (*iamclientmodels.ModelUserCreateResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, err := u.Client.Users.PublicCreateUserV2Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	created, err := u.Client.Users.PublicCreateUserV2Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4354,11 +4520,14 @@ func (u *UsersService) PublicCreateUserV2Short(input *users.PublicCreateUserV2Pa
 }
 
 func (u *UsersService) PublicForgotPasswordV2Short(input *users.PublicForgotPasswordV2Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.PublicForgotPasswordV2Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.PublicForgotPasswordV2Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4367,11 +4536,14 @@ func (u *UsersService) PublicForgotPasswordV2Short(input *users.PublicForgotPass
 }
 
 func (u *UsersService) PublicResetPasswordV2Short(input *users.PublicResetPasswordV2Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.PublicResetPasswordV2Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.PublicResetPasswordV2Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4380,11 +4552,14 @@ func (u *UsersService) PublicResetPasswordV2Short(input *users.PublicResetPasswo
 }
 
 func (u *UsersService) PublicGetUserByUserIDV2Short(input *users.PublicGetUserByUserIDV2Params) (*iamclientmodels.ModelUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.PublicGetUserByUserIDV2Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.PublicGetUserByUserIDV2Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4393,11 +4568,14 @@ func (u *UsersService) PublicGetUserByUserIDV2Short(input *users.PublicGetUserBy
 }
 
 func (u *UsersService) PublicUpdateUserV2Short(input *users.PublicUpdateUserV2Params) ([]*iamclientmodels.ModelUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.PublicUpdateUserV2Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.PublicUpdateUserV2Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4406,11 +4584,14 @@ func (u *UsersService) PublicUpdateUserV2Short(input *users.PublicUpdateUserV2Pa
 }
 
 func (u *UsersService) PublicGetUserBanShort(input *users.PublicGetUserBanParams) ([]*iamclientmodels.ModelUserBanResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.PublicGetUserBanShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.PublicGetUserBanShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4419,11 +4600,14 @@ func (u *UsersService) PublicGetUserBanShort(input *users.PublicGetUserBanParams
 }
 
 func (u *UsersService) PublicUpdatePasswordV2Short(input *users.PublicUpdatePasswordV2Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.PublicUpdatePasswordV2Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.PublicUpdatePasswordV2Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4432,11 +4616,14 @@ func (u *UsersService) PublicUpdatePasswordV2Short(input *users.PublicUpdatePass
 }
 
 func (u *UsersService) GetListJusticePlatformAccountsShort(input *users.GetListJusticePlatformAccountsParams) ([]*iamclientmodels.ModelGetUserMapping, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.GetListJusticePlatformAccountsShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.GetListJusticePlatformAccountsShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4445,11 +4632,14 @@ func (u *UsersService) GetListJusticePlatformAccountsShort(input *users.GetListJ
 }
 
 func (u *UsersService) PublicPlatformLinkV2Short(input *users.PublicPlatformLinkV2Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.PublicPlatformLinkV2Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.PublicPlatformLinkV2Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4458,11 +4648,14 @@ func (u *UsersService) PublicPlatformLinkV2Short(input *users.PublicPlatformLink
 }
 
 func (u *UsersService) PublicDeletePlatformLinkV2Short(input *users.PublicDeletePlatformLinkV2Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.PublicDeletePlatformLinkV2Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.PublicDeletePlatformLinkV2Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4471,11 +4664,14 @@ func (u *UsersService) PublicDeletePlatformLinkV2Short(input *users.PublicDelete
 }
 
 func (u *UsersService) ListAdminsV3Short(input *users.ListAdminsV3Params) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.ListAdminsV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.ListAdminsV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4484,11 +4680,14 @@ func (u *UsersService) ListAdminsV3Short(input *users.ListAdminsV3Params) (*iamc
 }
 
 func (u *UsersService) AdminGetAgeRestrictionStatusV3Short(input *users.AdminGetAgeRestrictionStatusV3Params) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminGetAgeRestrictionStatusV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminGetAgeRestrictionStatusV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4497,11 +4696,14 @@ func (u *UsersService) AdminGetAgeRestrictionStatusV3Short(input *users.AdminGet
 }
 
 func (u *UsersService) AdminUpdateAgeRestrictionConfigV3Short(input *users.AdminUpdateAgeRestrictionConfigV3Params) (*iamclientmodels.ModelAgeRestrictionResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminUpdateAgeRestrictionConfigV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminUpdateAgeRestrictionConfigV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4510,11 +4712,14 @@ func (u *UsersService) AdminUpdateAgeRestrictionConfigV3Short(input *users.Admin
 }
 
 func (u *UsersService) AdminGetListCountryAgeRestrictionV3Short(input *users.AdminGetListCountryAgeRestrictionV3Params) ([]*iamclientmodels.ModelCountryV3Response, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminGetListCountryAgeRestrictionV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminGetListCountryAgeRestrictionV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4523,11 +4728,14 @@ func (u *UsersService) AdminGetListCountryAgeRestrictionV3Short(input *users.Adm
 }
 
 func (u *UsersService) AdminUpdateCountryAgeRestrictionV3Short(input *users.AdminUpdateCountryAgeRestrictionV3Params) (*iamclientmodels.ModelCountryV3Response, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminUpdateCountryAgeRestrictionV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminUpdateCountryAgeRestrictionV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4536,11 +4744,14 @@ func (u *UsersService) AdminUpdateCountryAgeRestrictionV3Short(input *users.Admi
 }
 
 func (u *UsersService) AdminGetUserByPlatformUserIDV3Short(input *users.AdminGetUserByPlatformUserIDV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminGetUserByPlatformUserIDV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminGetUserByPlatformUserIDV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4549,11 +4760,14 @@ func (u *UsersService) AdminGetUserByPlatformUserIDV3Short(input *users.AdminGet
 }
 
 func (u *UsersService) GetAdminUsersByRoleIDV3Short(input *users.GetAdminUsersByRoleIDV3Params) (*iamclientmodels.ModelGetUsersResponseWithPaginationV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.GetAdminUsersByRoleIDV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.GetAdminUsersByRoleIDV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4562,11 +4776,14 @@ func (u *UsersService) GetAdminUsersByRoleIDV3Short(input *users.GetAdminUsersBy
 }
 
 func (u *UsersService) AdminGetUserByEmailAddressV3Short(input *users.AdminGetUserByEmailAddressV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminGetUserByEmailAddressV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminGetUserByEmailAddressV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4575,11 +4792,14 @@ func (u *UsersService) AdminGetUserByEmailAddressV3Short(input *users.AdminGetUs
 }
 
 func (u *UsersService) AdminListUserIDByUserIDsV3Short(input *users.AdminListUserIDByUserIDsV3Params) (*iamclientmodels.ModelListUserInformationResult, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminListUserIDByUserIDsV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminListUserIDByUserIDsV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4588,11 +4808,14 @@ func (u *UsersService) AdminListUserIDByUserIDsV3Short(input *users.AdminListUse
 }
 
 func (u *UsersService) AdminInviteUserV3Short(input *users.AdminInviteUserV3Params) (*iamclientmodels.ModelInviteUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, err := u.Client.Users.AdminInviteUserV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	created, err := u.Client.Users.AdminInviteUserV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4601,11 +4824,14 @@ func (u *UsersService) AdminInviteUserV3Short(input *users.AdminInviteUserV3Para
 }
 
 func (u *UsersService) AdminListUsersV3Short(input *users.AdminListUsersV3Params) (*iamclientmodels.AccountcommonListUsersWithPlatformAccountsResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminListUsersV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminListUsersV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4614,11 +4840,14 @@ func (u *UsersService) AdminListUsersV3Short(input *users.AdminListUsersV3Params
 }
 
 func (u *UsersService) AdminSearchUserV3Short(input *users.AdminSearchUserV3Params) (*iamclientmodels.ModelSearchUsersResponseWithPaginationV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminSearchUserV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminSearchUserV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4627,11 +4856,14 @@ func (u *UsersService) AdminSearchUserV3Short(input *users.AdminSearchUserV3Para
 }
 
 func (u *UsersService) AdminGetBulkUserByEmailAddressV3Short(input *users.AdminGetBulkUserByEmailAddressV3Params) (*iamclientmodels.ModelListUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminGetBulkUserByEmailAddressV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminGetBulkUserByEmailAddressV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4640,11 +4872,14 @@ func (u *UsersService) AdminGetBulkUserByEmailAddressV3Short(input *users.AdminG
 }
 
 func (u *UsersService) AdminGetUserByUserIDV3Short(input *users.AdminGetUserByUserIDV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminGetUserByUserIDV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminGetUserByUserIDV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4653,11 +4888,14 @@ func (u *UsersService) AdminGetUserByUserIDV3Short(input *users.AdminGetUserByUs
 }
 
 func (u *UsersService) AdminUpdateUserV3Short(input *users.AdminUpdateUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminUpdateUserV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminUpdateUserV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4666,11 +4904,14 @@ func (u *UsersService) AdminUpdateUserV3Short(input *users.AdminUpdateUserV3Para
 }
 
 func (u *UsersService) AdminGetUserBanV3Short(input *users.AdminGetUserBanV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminGetUserBanV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminGetUserBanV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4679,11 +4920,14 @@ func (u *UsersService) AdminGetUserBanV3Short(input *users.AdminGetUserBanV3Para
 }
 
 func (u *UsersService) AdminBanUserV3Short(input *users.AdminBanUserV3Params) (*iamclientmodels.ModelUserBanResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, err := u.Client.Users.AdminBanUserV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	created, err := u.Client.Users.AdminBanUserV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4692,11 +4936,14 @@ func (u *UsersService) AdminBanUserV3Short(input *users.AdminBanUserV3Params) (*
 }
 
 func (u *UsersService) AdminUpdateUserBanV3Short(input *users.AdminUpdateUserBanV3Params) (*iamclientmodels.ModelUserBanResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminUpdateUserBanV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminUpdateUserBanV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4705,11 +4952,14 @@ func (u *UsersService) AdminUpdateUserBanV3Short(input *users.AdminUpdateUserBan
 }
 
 func (u *UsersService) AdminSendVerificationCodeV3Short(input *users.AdminSendVerificationCodeV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.AdminSendVerificationCodeV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.AdminSendVerificationCodeV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4718,11 +4968,14 @@ func (u *UsersService) AdminSendVerificationCodeV3Short(input *users.AdminSendVe
 }
 
 func (u *UsersService) AdminVerifyAccountV3Short(input *users.AdminVerifyAccountV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.AdminVerifyAccountV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.AdminVerifyAccountV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4731,11 +4984,14 @@ func (u *UsersService) AdminVerifyAccountV3Short(input *users.AdminVerifyAccount
 }
 
 func (u *UsersService) GetUserVerificationCodeShort(input *users.GetUserVerificationCodeParams) (*iamclientmodels.ModelVerificationCodeResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.GetUserVerificationCodeShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.GetUserVerificationCodeShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4744,11 +5000,14 @@ func (u *UsersService) GetUserVerificationCodeShort(input *users.GetUserVerifica
 }
 
 func (u *UsersService) AdminGetUserDeletionStatusV3Short(input *users.AdminGetUserDeletionStatusV3Params) (*iamclientmodels.ModelUserDeletionStatusResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminGetUserDeletionStatusV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminGetUserDeletionStatusV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4757,11 +5016,14 @@ func (u *UsersService) AdminGetUserDeletionStatusV3Short(input *users.AdminGetUs
 }
 
 func (u *UsersService) AdminUpdateUserDeletionStatusV3Short(input *users.AdminUpdateUserDeletionStatusV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.AdminUpdateUserDeletionStatusV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.AdminUpdateUserDeletionStatusV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4770,11 +5032,14 @@ func (u *UsersService) AdminUpdateUserDeletionStatusV3Short(input *users.AdminUp
 }
 
 func (u *UsersService) AdminUpgradeHeadlessAccountV3Short(input *users.AdminUpgradeHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminUpgradeHeadlessAccountV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminUpgradeHeadlessAccountV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4783,11 +5048,14 @@ func (u *UsersService) AdminUpgradeHeadlessAccountV3Short(input *users.AdminUpgr
 }
 
 func (u *UsersService) AdminDeleteUserInformationV3Short(input *users.AdminDeleteUserInformationV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.AdminDeleteUserInformationV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.AdminDeleteUserInformationV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4796,11 +5064,14 @@ func (u *UsersService) AdminDeleteUserInformationV3Short(input *users.AdminDelet
 }
 
 func (u *UsersService) AdminGetUserLoginHistoriesV3Short(input *users.AdminGetUserLoginHistoriesV3Params) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminGetUserLoginHistoriesV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminGetUserLoginHistoriesV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4809,11 +5080,14 @@ func (u *UsersService) AdminGetUserLoginHistoriesV3Short(input *users.AdminGetUs
 }
 
 func (u *UsersService) AdminUpdateUserPermissionV3Short(input *users.AdminUpdateUserPermissionV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.AdminUpdateUserPermissionV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.AdminUpdateUserPermissionV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4822,11 +5096,14 @@ func (u *UsersService) AdminUpdateUserPermissionV3Short(input *users.AdminUpdate
 }
 
 func (u *UsersService) AdminAddUserPermissionsV3Short(input *users.AdminAddUserPermissionsV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.AdminAddUserPermissionsV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.AdminAddUserPermissionsV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4835,11 +5112,14 @@ func (u *UsersService) AdminAddUserPermissionsV3Short(input *users.AdminAddUserP
 }
 
 func (u *UsersService) AdminDeleteUserPermissionBulkV3Short(input *users.AdminDeleteUserPermissionBulkV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.AdminDeleteUserPermissionBulkV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.AdminDeleteUserPermissionBulkV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4848,11 +5128,14 @@ func (u *UsersService) AdminDeleteUserPermissionBulkV3Short(input *users.AdminDe
 }
 
 func (u *UsersService) AdminDeleteUserPermissionV3Short(input *users.AdminDeleteUserPermissionV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.AdminDeleteUserPermissionV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.AdminDeleteUserPermissionV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4861,11 +5144,14 @@ func (u *UsersService) AdminDeleteUserPermissionV3Short(input *users.AdminDelete
 }
 
 func (u *UsersService) AdminGetUserPlatformAccountsV3Short(input *users.AdminGetUserPlatformAccountsV3Params) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminGetUserPlatformAccountsV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminGetUserPlatformAccountsV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4874,11 +5160,14 @@ func (u *UsersService) AdminGetUserPlatformAccountsV3Short(input *users.AdminGet
 }
 
 func (u *UsersService) AdminGetListJusticePlatformAccountsShort(input *users.AdminGetListJusticePlatformAccountsParams) ([]*iamclientmodels.ModelGetUserMapping, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminGetListJusticePlatformAccountsShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminGetListJusticePlatformAccountsShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4887,11 +5176,14 @@ func (u *UsersService) AdminGetListJusticePlatformAccountsShort(input *users.Adm
 }
 
 func (u *UsersService) AdminCreateJusticeUserShort(input *users.AdminCreateJusticeUserParams) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, err := u.Client.Users.AdminCreateJusticeUserShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	created, err := u.Client.Users.AdminCreateJusticeUserShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -4900,11 +5192,14 @@ func (u *UsersService) AdminCreateJusticeUserShort(input *users.AdminCreateJusti
 }
 
 func (u *UsersService) AdminLinkPlatformAccountShort(input *users.AdminLinkPlatformAccountParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.AdminLinkPlatformAccountShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.AdminLinkPlatformAccountShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4913,11 +5208,14 @@ func (u *UsersService) AdminLinkPlatformAccountShort(input *users.AdminLinkPlatf
 }
 
 func (u *UsersService) AdminPlatformUnlinkV3Short(input *users.AdminPlatformUnlinkV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.AdminPlatformUnlinkV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.AdminPlatformUnlinkV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4926,11 +5224,14 @@ func (u *UsersService) AdminPlatformUnlinkV3Short(input *users.AdminPlatformUnli
 }
 
 func (u *UsersService) AdminPlatformLinkV3Short(input *users.AdminPlatformLinkV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.AdminPlatformLinkV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.AdminPlatformLinkV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4939,11 +5240,14 @@ func (u *UsersService) AdminPlatformLinkV3Short(input *users.AdminPlatformLinkV3
 }
 
 func (u *UsersService) AdminDeleteUserRolesV3Short(input *users.AdminDeleteUserRolesV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.AdminDeleteUserRolesV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.AdminDeleteUserRolesV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4952,11 +5256,14 @@ func (u *UsersService) AdminDeleteUserRolesV3Short(input *users.AdminDeleteUserR
 }
 
 func (u *UsersService) AdminSaveUserRoleV3Short(input *users.AdminSaveUserRoleV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.AdminSaveUserRoleV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.AdminSaveUserRoleV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4965,11 +5272,14 @@ func (u *UsersService) AdminSaveUserRoleV3Short(input *users.AdminSaveUserRoleV3
 }
 
 func (u *UsersService) AdminAddUserRoleV3Short(input *users.AdminAddUserRoleV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.AdminAddUserRoleV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.AdminAddUserRoleV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4978,11 +5288,14 @@ func (u *UsersService) AdminAddUserRoleV3Short(input *users.AdminAddUserRoleV3Pa
 }
 
 func (u *UsersService) AdminDeleteUserRoleV3Short(input *users.AdminDeleteUserRoleV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.AdminDeleteUserRoleV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.AdminDeleteUserRoleV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -4991,11 +5304,14 @@ func (u *UsersService) AdminDeleteUserRoleV3Short(input *users.AdminDeleteUserRo
 }
 
 func (u *UsersService) AdminUpdateUserStatusV3Short(input *users.AdminUpdateUserStatusV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.AdminUpdateUserStatusV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.AdminUpdateUserStatusV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -5004,11 +5320,14 @@ func (u *UsersService) AdminUpdateUserStatusV3Short(input *users.AdminUpdateUser
 }
 
 func (u *UsersService) AdminVerifyUserWithoutVerificationCodeV3Short(input *users.AdminVerifyUserWithoutVerificationCodeV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.AdminVerifyUserWithoutVerificationCodeV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.AdminVerifyUserWithoutVerificationCodeV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -5017,11 +5336,14 @@ func (u *UsersService) AdminVerifyUserWithoutVerificationCodeV3Short(input *user
 }
 
 func (u *UsersService) AdminGetMyUserV3Short(input *users.AdminGetMyUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.AdminGetMyUserV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.AdminGetMyUserV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5030,11 +5352,14 @@ func (u *UsersService) AdminGetMyUserV3Short(input *users.AdminGetMyUserV3Params
 }
 
 func (u *UsersService) PublicListUserIDByPlatformUserIDsV3Short(input *users.PublicListUserIDByPlatformUserIDsV3Params) (*iamclientmodels.AccountcommonUserPlatforms, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.PublicListUserIDByPlatformUserIDsV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.PublicListUserIDByPlatformUserIDsV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5043,11 +5368,14 @@ func (u *UsersService) PublicListUserIDByPlatformUserIDsV3Short(input *users.Pub
 }
 
 func (u *UsersService) PublicGetUserByPlatformUserIDV3Short(input *users.PublicGetUserByPlatformUserIDV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.PublicGetUserByPlatformUserIDV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.PublicGetUserByPlatformUserIDV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5056,11 +5384,14 @@ func (u *UsersService) PublicGetUserByPlatformUserIDV3Short(input *users.PublicG
 }
 
 func (u *UsersService) PublicGetAsyncStatusShort(input *users.PublicGetAsyncStatusParams) (*iamclientmodels.ModelLinkRequest, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.PublicGetAsyncStatusShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.PublicGetAsyncStatusShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5069,11 +5400,14 @@ func (u *UsersService) PublicGetAsyncStatusShort(input *users.PublicGetAsyncStat
 }
 
 func (u *UsersService) PublicSearchUserV3Short(input *users.PublicSearchUserV3Params) (*iamclientmodels.ModelPublicUserInformationResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.PublicSearchUserV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.PublicSearchUserV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5082,11 +5416,14 @@ func (u *UsersService) PublicSearchUserV3Short(input *users.PublicSearchUserV3Pa
 }
 
 func (u *UsersService) PublicCreateUserV3Short(input *users.PublicCreateUserV3Params) (*iamclientmodels.ModelUserCreateResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, err := u.Client.Users.PublicCreateUserV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	created, err := u.Client.Users.PublicCreateUserV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5095,11 +5432,14 @@ func (u *UsersService) PublicCreateUserV3Short(input *users.PublicCreateUserV3Pa
 }
 
 func (u *UsersService) CheckUserAvailabilityShort(input *users.CheckUserAvailabilityParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.CheckUserAvailabilityShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.CheckUserAvailabilityShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -5108,11 +5448,14 @@ func (u *UsersService) CheckUserAvailabilityShort(input *users.CheckUserAvailabi
 }
 
 func (u *UsersService) PublicBulkGetUsersShort(input *users.PublicBulkGetUsersParams) (*iamclientmodels.ModelListBulkUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.PublicBulkGetUsersShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.PublicBulkGetUsersShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5121,11 +5464,14 @@ func (u *UsersService) PublicBulkGetUsersShort(input *users.PublicBulkGetUsersPa
 }
 
 func (u *UsersService) PublicSendRegistrationCodeShort(input *users.PublicSendRegistrationCodeParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.PublicSendRegistrationCodeShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.PublicSendRegistrationCodeShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -5134,11 +5480,14 @@ func (u *UsersService) PublicSendRegistrationCodeShort(input *users.PublicSendRe
 }
 
 func (u *UsersService) PublicVerifyRegistrationCodeShort(input *users.PublicVerifyRegistrationCodeParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.PublicVerifyRegistrationCodeShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.PublicVerifyRegistrationCodeShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -5147,11 +5496,14 @@ func (u *UsersService) PublicVerifyRegistrationCodeShort(input *users.PublicVeri
 }
 
 func (u *UsersService) PublicForgotPasswordV3Short(input *users.PublicForgotPasswordV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.PublicForgotPasswordV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.PublicForgotPasswordV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -5160,11 +5512,14 @@ func (u *UsersService) PublicForgotPasswordV3Short(input *users.PublicForgotPass
 }
 
 func (u *UsersService) GetAdminInvitationV3Short(input *users.GetAdminInvitationV3Params) (*iamclientmodels.ModelUserInvitationV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.GetAdminInvitationV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.GetAdminInvitationV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5173,11 +5528,14 @@ func (u *UsersService) GetAdminInvitationV3Short(input *users.GetAdminInvitation
 }
 
 func (u *UsersService) CreateUserFromInvitationV3Short(input *users.CreateUserFromInvitationV3Params) (*iamclientmodels.ModelUserCreateResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, err := u.Client.Users.CreateUserFromInvitationV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	created, err := u.Client.Users.CreateUserFromInvitationV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5186,11 +5544,14 @@ func (u *UsersService) CreateUserFromInvitationV3Short(input *users.CreateUserFr
 }
 
 func (u *UsersService) UpdateUserV3Short(input *users.UpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.UpdateUserV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.UpdateUserV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5199,11 +5560,14 @@ func (u *UsersService) UpdateUserV3Short(input *users.UpdateUserV3Params) ([]*ia
 }
 
 func (u *UsersService) PublicUpdateUserV3Short(input *users.PublicUpdateUserV3Params) ([]*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.PublicUpdateUserV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.PublicUpdateUserV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5212,11 +5576,14 @@ func (u *UsersService) PublicUpdateUserV3Short(input *users.PublicUpdateUserV3Pa
 }
 
 func (u *UsersService) PublicSendVerificationCodeV3Short(input *users.PublicSendVerificationCodeV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.PublicSendVerificationCodeV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.PublicSendVerificationCodeV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -5225,11 +5592,14 @@ func (u *UsersService) PublicSendVerificationCodeV3Short(input *users.PublicSend
 }
 
 func (u *UsersService) PublicUserVerificationV3Short(input *users.PublicUserVerificationV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.PublicUserVerificationV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.PublicUserVerificationV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -5238,11 +5608,14 @@ func (u *UsersService) PublicUserVerificationV3Short(input *users.PublicUserVeri
 }
 
 func (u *UsersService) PublicUpgradeHeadlessAccountV3Short(input *users.PublicUpgradeHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.PublicUpgradeHeadlessAccountV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.PublicUpgradeHeadlessAccountV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5251,11 +5624,14 @@ func (u *UsersService) PublicUpgradeHeadlessAccountV3Short(input *users.PublicUp
 }
 
 func (u *UsersService) PublicVerifyHeadlessAccountV3Short(input *users.PublicVerifyHeadlessAccountV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.PublicVerifyHeadlessAccountV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.PublicVerifyHeadlessAccountV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5264,11 +5640,14 @@ func (u *UsersService) PublicVerifyHeadlessAccountV3Short(input *users.PublicVer
 }
 
 func (u *UsersService) PublicUpdatePasswordV3Short(input *users.PublicUpdatePasswordV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.PublicUpdatePasswordV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.PublicUpdatePasswordV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -5277,11 +5656,14 @@ func (u *UsersService) PublicUpdatePasswordV3Short(input *users.PublicUpdatePass
 }
 
 func (u *UsersService) PublicCreateJusticeUserShort(input *users.PublicCreateJusticeUserParams) (*iamclientmodels.ModelCreateJusticeUserResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	created, err := u.Client.Users.PublicCreateJusticeUserShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	created, err := u.Client.Users.PublicCreateJusticeUserShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5290,11 +5672,14 @@ func (u *UsersService) PublicCreateJusticeUserShort(input *users.PublicCreateJus
 }
 
 func (u *UsersService) PublicPlatformLinkV3Short(input *users.PublicPlatformLinkV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.PublicPlatformLinkV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.PublicPlatformLinkV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -5303,11 +5688,14 @@ func (u *UsersService) PublicPlatformLinkV3Short(input *users.PublicPlatformLink
 }
 
 func (u *UsersService) PublicPlatformUnlinkV3Short(input *users.PublicPlatformUnlinkV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.PublicPlatformUnlinkV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.PublicPlatformUnlinkV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -5316,11 +5704,14 @@ func (u *UsersService) PublicPlatformUnlinkV3Short(input *users.PublicPlatformUn
 }
 
 func (u *UsersService) PublicWebLinkPlatformShort(input *users.PublicWebLinkPlatformParams) (*iamclientmodels.ModelWebLinkingResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.PublicWebLinkPlatformShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.PublicWebLinkPlatformShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5329,11 +5720,14 @@ func (u *UsersService) PublicWebLinkPlatformShort(input *users.PublicWebLinkPlat
 }
 
 func (u *UsersService) PublicWebLinkPlatformEstablishShort(input *users.PublicWebLinkPlatformEstablishParams) (string, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return "", err
 	}
-	ok, err := u.Client.Users.PublicWebLinkPlatformEstablishShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.PublicWebLinkPlatformEstablishShort(input, authWriter)
 	if err != nil {
 		return "", err
 	}
@@ -5342,11 +5736,14 @@ func (u *UsersService) PublicWebLinkPlatformEstablishShort(input *users.PublicWe
 }
 
 func (u *UsersService) ResetPasswordV3Short(input *users.ResetPasswordV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.ResetPasswordV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.ResetPasswordV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -5355,11 +5752,14 @@ func (u *UsersService) ResetPasswordV3Short(input *users.ResetPasswordV3Params) 
 }
 
 func (u *UsersService) PublicGetUserByUserIDV3Short(input *users.PublicGetUserByUserIDV3Params) (*iamclientmodels.ModelPublicUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.PublicGetUserByUserIDV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.PublicGetUserByUserIDV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5368,11 +5768,14 @@ func (u *UsersService) PublicGetUserByUserIDV3Short(input *users.PublicGetUserBy
 }
 
 func (u *UsersService) PublicGetUserBanHistoryV3Short(input *users.PublicGetUserBanHistoryV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.PublicGetUserBanHistoryV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.PublicGetUserBanHistoryV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5381,11 +5784,14 @@ func (u *UsersService) PublicGetUserBanHistoryV3Short(input *users.PublicGetUser
 }
 
 func (u *UsersService) PublicGetUserLoginHistoriesV3Short(input *users.PublicGetUserLoginHistoriesV3Params) (*iamclientmodels.ModelLoginHistoriesResponse, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.PublicGetUserLoginHistoriesV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.PublicGetUserLoginHistoriesV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5394,11 +5800,14 @@ func (u *UsersService) PublicGetUserLoginHistoriesV3Short(input *users.PublicGet
 }
 
 func (u *UsersService) PublicGetUserPlatformAccountsV3Short(input *users.PublicGetUserPlatformAccountsV3Params) (*iamclientmodels.AccountcommonUserLinkedPlatformsResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.PublicGetUserPlatformAccountsV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.PublicGetUserPlatformAccountsV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -5407,11 +5816,14 @@ func (u *UsersService) PublicGetUserPlatformAccountsV3Short(input *users.PublicG
 }
 
 func (u *UsersService) PublicLinkPlatformAccountShort(input *users.PublicLinkPlatformAccountParams) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.PublicLinkPlatformAccountShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.PublicLinkPlatformAccountShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -5420,11 +5832,14 @@ func (u *UsersService) PublicLinkPlatformAccountShort(input *users.PublicLinkPla
 }
 
 func (u *UsersService) PublicValidateUserByUserIDAndPasswordV3Short(input *users.PublicValidateUserByUserIDAndPasswordV3Params) error {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = u.Client.Users.PublicValidateUserByUserIDAndPasswordV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = u.Client.Users.PublicValidateUserByUserIDAndPasswordV3Short(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -5433,11 +5848,14 @@ func (u *UsersService) PublicValidateUserByUserIDAndPasswordV3Short(input *users
 }
 
 func (u *UsersService) PublicGetMyUserV3Short(input *users.PublicGetMyUserV3Params) (*iamclientmodels.ModelUserResponseV3, error) {
-	accessToken, err := u.TokenRepository.GetToken()
+	token, err := u.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := u.Client.Users.PublicGetMyUserV3Short(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := u.Client.Users.PublicGetMyUserV3Short(input, authWriter)
 	if err != nil {
 		return nil, err
 	}

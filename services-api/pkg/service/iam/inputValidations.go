@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/input_validations"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -21,11 +22,11 @@ type InputValidationsService struct {
 
 // Deprecated: Use AdminGetInputValidationsShort instead
 func (i *InputValidationsService) AdminGetInputValidations(input *input_validations.AdminGetInputValidationsParams) (*iamclientmodels.ModelInputValidationsResponse, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, unauthorized, forbidden, err := i.Client.InputValidations.AdminGetInputValidations(input, client.BearerToken(*accessToken.AccessToken))
+	ok, unauthorized, forbidden, err := i.Client.InputValidations.AdminGetInputValidations(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return nil, unauthorized
 	}
@@ -41,11 +42,11 @@ func (i *InputValidationsService) AdminGetInputValidations(input *input_validati
 
 // Deprecated: Use AdminUpdateInputValidationsShort instead
 func (i *InputValidationsService) AdminUpdateInputValidations(input *input_validations.AdminUpdateInputValidationsParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, err := i.Client.InputValidations.AdminUpdateInputValidations(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, forbidden, notFound, err := i.Client.InputValidations.AdminUpdateInputValidations(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -64,11 +65,11 @@ func (i *InputValidationsService) AdminUpdateInputValidations(input *input_valid
 
 // Deprecated: Use AdminResetInputValidationsShort instead
 func (i *InputValidationsService) AdminResetInputValidations(input *input_validations.AdminResetInputValidationsParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, forbidden, notFound, err := i.Client.InputValidations.AdminResetInputValidations(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, forbidden, notFound, err := i.Client.InputValidations.AdminResetInputValidations(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -87,11 +88,11 @@ func (i *InputValidationsService) AdminResetInputValidations(input *input_valida
 
 // Deprecated: Use PublicGetInputValidationsShort instead
 func (i *InputValidationsService) PublicGetInputValidations(input *input_validations.PublicGetInputValidationsParams) (*iamclientmodels.ModelInputValidationsPublicResponse, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, notFound, internalServerError, err := i.Client.InputValidations.PublicGetInputValidations(input, client.BearerToken(*accessToken.AccessToken))
+	ok, notFound, internalServerError, err := i.Client.InputValidations.PublicGetInputValidations(input, client.BearerToken(*token.AccessToken))
 	if notFound != nil {
 		return nil, notFound
 	}
@@ -106,11 +107,14 @@ func (i *InputValidationsService) PublicGetInputValidations(input *input_validat
 }
 
 func (i *InputValidationsService) AdminGetInputValidationsShort(input *input_validations.AdminGetInputValidationsParams) (*iamclientmodels.ModelInputValidationsResponse, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := i.Client.InputValidations.AdminGetInputValidationsShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := i.Client.InputValidations.AdminGetInputValidationsShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -119,11 +123,14 @@ func (i *InputValidationsService) AdminGetInputValidationsShort(input *input_val
 }
 
 func (i *InputValidationsService) AdminUpdateInputValidationsShort(input *input_validations.AdminUpdateInputValidationsParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = i.Client.InputValidations.AdminUpdateInputValidationsShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = i.Client.InputValidations.AdminUpdateInputValidationsShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -132,11 +139,14 @@ func (i *InputValidationsService) AdminUpdateInputValidationsShort(input *input_
 }
 
 func (i *InputValidationsService) AdminResetInputValidationsShort(input *input_validations.AdminResetInputValidationsParams) error {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = i.Client.InputValidations.AdminResetInputValidationsShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = i.Client.InputValidations.AdminResetInputValidationsShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -145,11 +155,14 @@ func (i *InputValidationsService) AdminResetInputValidationsShort(input *input_v
 }
 
 func (i *InputValidationsService) PublicGetInputValidationsShort(input *input_validations.PublicGetInputValidationsParams) (*iamclientmodels.ModelInputValidationsPublicResponse, error) {
-	accessToken, err := i.TokenRepository.GetToken()
+	token, err := i.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := i.Client.InputValidations.PublicGetInputValidationsShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := i.Client.InputValidations.PublicGetInputValidationsShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}

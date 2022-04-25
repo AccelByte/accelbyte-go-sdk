@@ -64,6 +64,8 @@ for the public remove trusted device v4 operation typically these are written to
 */
 type PublicRemoveTrustedDeviceV4Params struct {
 
+	/*Cookie*/
+	Cookie *string
 	/*Namespace
 	  Namespace, only accept alphabet and numeric
 
@@ -108,6 +110,17 @@ func (o *PublicRemoveTrustedDeviceV4Params) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithCookie adds the cookie to the public remove trusted device v4 params
+func (o *PublicRemoveTrustedDeviceV4Params) WithCookie(cookie *string) *PublicRemoveTrustedDeviceV4Params {
+	o.SetCookie(cookie)
+	return o
+}
+
+// SetCookie adds the cookie to the public remove trusted device v4 params
+func (o *PublicRemoveTrustedDeviceV4Params) SetCookie(cookie *string) {
+	o.Cookie = cookie
+}
+
 // WithNamespace adds the namespace to the public remove trusted device v4 params
 func (o *PublicRemoveTrustedDeviceV4Params) WithNamespace(namespace string) *PublicRemoveTrustedDeviceV4Params {
 	o.SetNamespace(namespace)
@@ -126,6 +139,15 @@ func (o *PublicRemoveTrustedDeviceV4Params) WriteToRequest(r runtime.ClientReque
 		return err
 	}
 	var res []error
+
+	if o.Cookie != nil {
+
+		// header param Cookie
+		if err := r.SetHeaderParam("Cookie", *o.Cookie); err != nil {
+			return err
+		}
+
+	}
 
 	// path param namespace
 	if err := r.SetPathParam("namespace", o.Namespace); err != nil {

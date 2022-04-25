@@ -11,6 +11,7 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/o_auth"
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
+	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -22,11 +23,11 @@ type OAuthService struct {
 
 // Deprecated: Use AuthorizationShort instead
 func (o *OAuthService) Authorization(input *o_auth.AuthorizationParams) (string, error) {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return "", err
 	}
-	ok, err := o.Client.OAuth.Authorization(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := o.Client.OAuth.Authorization(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return "", err
 	}
@@ -36,11 +37,11 @@ func (o *OAuthService) Authorization(input *o_auth.AuthorizationParams) (string,
 
 // Deprecated: Use GetJWKSShort instead
 func (o *OAuthService) GetJWKS(input *o_auth.GetJWKSParams) (*iamclientmodels.OauthcommonJWKSet, error) {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := o.Client.OAuth.GetJWKS(input, client.BearerToken(*accessToken.AccessToken))
+	ok, err := o.Client.OAuth.GetJWKS(input, client.BearerToken(*token.AccessToken))
 	if err != nil {
 		return nil, err
 	}
@@ -50,11 +51,11 @@ func (o *OAuthService) GetJWKS(input *o_auth.GetJWKSParams) (*iamclientmodels.Oa
 
 // Deprecated: Use PlatformTokenRequestHandlerShort instead
 func (o *OAuthService) PlatformTokenRequestHandler(input *o_auth.PlatformTokenRequestHandlerParams) (*iamclientmodels.OauthmodelTokenResponse, error) {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, err := o.Client.OAuth.PlatformTokenRequestHandler(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, err := o.Client.OAuth.PlatformTokenRequestHandler(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -70,11 +71,11 @@ func (o *OAuthService) PlatformTokenRequestHandler(input *o_auth.PlatformTokenRe
 
 // Deprecated: Use RevokeUserShort instead
 func (o *OAuthService) RevokeUser(input *o_auth.RevokeUserParams) error {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, unauthorized, err := o.Client.OAuth.RevokeUser(input, client.BearerToken(*accessToken.AccessToken))
+	_, unauthorized, err := o.Client.OAuth.RevokeUser(input, client.BearerToken(*token.AccessToken))
 	if unauthorized != nil {
 		return unauthorized
 	}
@@ -102,11 +103,11 @@ func (o *OAuthService) GetRevocationList(input *o_auth.GetRevocationListParams) 
 
 // Deprecated: Use RevokeTokenShort instead
 func (o *OAuthService) RevokeToken(input *o_auth.RevokeTokenParams) error {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, err := o.Client.OAuth.RevokeToken(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, err := o.Client.OAuth.RevokeToken(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -122,11 +123,11 @@ func (o *OAuthService) RevokeToken(input *o_auth.RevokeTokenParams) error {
 
 // Deprecated: Use RevokeAUserShort instead
 func (o *OAuthService) RevokeAUser(input *o_auth.RevokeAUserParams) error {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, badRequest, unauthorized, err := o.Client.OAuth.RevokeAUser(input, client.BearerToken(*accessToken.AccessToken))
+	_, badRequest, unauthorized, err := o.Client.OAuth.RevokeAUser(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return badRequest
 	}
@@ -142,11 +143,11 @@ func (o *OAuthService) RevokeAUser(input *o_auth.RevokeAUserParams) error {
 
 // Deprecated: Use TokenGrantShort instead
 func (o *OAuthService) TokenGrant(input *o_auth.TokenGrantParams) (*iamclientmodels.OauthmodelTokenResponse, error) {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, badRequest, unauthorized, err := o.Client.OAuth.TokenGrant(input, client.BearerToken(*accessToken.AccessToken))
+	ok, badRequest, unauthorized, err := o.Client.OAuth.TokenGrant(input, client.BearerToken(*token.AccessToken))
 	if badRequest != nil {
 		return nil, badRequest
 	}
@@ -176,11 +177,14 @@ func (o *OAuthService) VerifyToken(input *o_auth.VerifyTokenParams) (*iamclientm
 }
 
 func (o *OAuthService) AuthorizationShort(input *o_auth.AuthorizationParams) (string, error) {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return "", err
 	}
-	ok, err := o.Client.OAuth.AuthorizationShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := o.Client.OAuth.AuthorizationShort(input, authWriter)
 	if err != nil {
 		return "", err
 	}
@@ -189,11 +193,14 @@ func (o *OAuthService) AuthorizationShort(input *o_auth.AuthorizationParams) (st
 }
 
 func (o *OAuthService) GetJWKSShort(input *o_auth.GetJWKSParams) (*iamclientmodels.OauthcommonJWKSet, error) {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := o.Client.OAuth.GetJWKSShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := o.Client.OAuth.GetJWKSShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -202,11 +209,14 @@ func (o *OAuthService) GetJWKSShort(input *o_auth.GetJWKSParams) (*iamclientmode
 }
 
 func (o *OAuthService) PlatformTokenRequestHandlerShort(input *o_auth.PlatformTokenRequestHandlerParams) (*iamclientmodels.OauthmodelTokenResponse, error) {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := o.Client.OAuth.PlatformTokenRequestHandlerShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := o.Client.OAuth.PlatformTokenRequestHandlerShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -215,11 +225,14 @@ func (o *OAuthService) PlatformTokenRequestHandlerShort(input *o_auth.PlatformTo
 }
 
 func (o *OAuthService) RevokeUserShort(input *o_auth.RevokeUserParams) error {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = o.Client.OAuth.RevokeUserShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = o.Client.OAuth.RevokeUserShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -230,7 +243,10 @@ func (o *OAuthService) RevokeUserShort(input *o_auth.RevokeUserParams) error {
 func (o *OAuthService) GetRevocationListShort(input *o_auth.GetRevocationListParams) (*iamclientmodels.OauthapiRevocationList, error) {
 	clientID := o.ConfigRepository.GetClientId()
 	clientSecret := o.ConfigRepository.GetClientSecret()
-	ok, err := o.Client.OAuth.GetRevocationListShort(input, client.BasicAuth(clientID, clientSecret))
+	authWriter := auth.Compose(
+		auth.Basic(clientID, clientSecret),
+	)
+	ok, err := o.Client.OAuth.GetRevocationListShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -239,11 +255,14 @@ func (o *OAuthService) GetRevocationListShort(input *o_auth.GetRevocationListPar
 }
 
 func (o *OAuthService) RevokeTokenShort(input *o_auth.RevokeTokenParams) error {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = o.Client.OAuth.RevokeTokenShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = o.Client.OAuth.RevokeTokenShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -252,11 +271,14 @@ func (o *OAuthService) RevokeTokenShort(input *o_auth.RevokeTokenParams) error {
 }
 
 func (o *OAuthService) RevokeAUserShort(input *o_auth.RevokeAUserParams) error {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return err
 	}
-	_, err = o.Client.OAuth.RevokeAUserShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	_, err = o.Client.OAuth.RevokeAUserShort(input, authWriter)
 	if err != nil {
 		return err
 	}
@@ -265,11 +287,14 @@ func (o *OAuthService) RevokeAUserShort(input *o_auth.RevokeAUserParams) error {
 }
 
 func (o *OAuthService) TokenGrantShort(input *o_auth.TokenGrantParams) (*iamclientmodels.OauthmodelTokenResponse, error) {
-	accessToken, err := o.TokenRepository.GetToken()
+	token, err := o.TokenRepository.GetToken()
 	if err != nil {
 		return nil, err
 	}
-	ok, err := o.Client.OAuth.TokenGrantShort(input, client.BearerToken(*accessToken.AccessToken))
+	authWriter := auth.Compose(
+		auth.Bearer(*token.AccessToken),
+	)
+	ok, err := o.Client.OAuth.TokenGrantShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}
@@ -280,7 +305,10 @@ func (o *OAuthService) TokenGrantShort(input *o_auth.TokenGrantParams) (*iamclie
 func (o *OAuthService) VerifyTokenShort(input *o_auth.VerifyTokenParams) (*iamclientmodels.OauthmodelTokenResponse, error) {
 	clientID := o.ConfigRepository.GetClientId()
 	clientSecret := o.ConfigRepository.GetClientSecret()
-	ok, err := o.Client.OAuth.VerifyTokenShort(input, client.BasicAuth(clientID, clientSecret))
+	authWriter := auth.Compose(
+		auth.Basic(clientID, clientSecret),
+	)
+	ok, err := o.Client.OAuth.VerifyTokenShort(input, authWriter)
 	if err != nil {
 		return nil, err
 	}

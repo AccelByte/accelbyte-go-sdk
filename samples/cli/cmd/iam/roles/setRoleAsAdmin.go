@@ -29,7 +29,7 @@ var SetRoleAsAdminCmd = &cobra.Command{
 		input := &roles.SetRoleAsAdminParams{
 			RoleID: roleId,
 		}
-		errInput := rolesService.SetRoleAsAdminShort(input)
+		errInput := rolesService.SetRoleAsAdminShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

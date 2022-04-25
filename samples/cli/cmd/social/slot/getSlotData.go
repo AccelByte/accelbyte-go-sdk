@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package slot
 
 import (
@@ -41,7 +43,7 @@ var GetSlotDataCmd = &cobra.Command{
 			SlotID:    slotId,
 			UserID:    userId,
 		}
-		ok, err := slotService.GetSlotDataShort(input, writer)
+		ok, err := slotService.GetSlotDataShort(input, nil, writer)
 		if err != nil {
 			logrus.Error(err)
 

@@ -29,7 +29,7 @@ var AdminRemoveRoleAdminV3Cmd = &cobra.Command{
 		input := &roles.AdminRemoveRoleAdminV3Params{
 			RoleID: roleId,
 		}
-		errInput := rolesService.AdminRemoveRoleAdminV3Short(input)
+		errInput := rolesService.AdminRemoveRoleAdminV3Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

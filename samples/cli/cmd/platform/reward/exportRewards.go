@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package reward
 
 import (
@@ -27,7 +29,7 @@ var ExportRewardsCmd = &cobra.Command{
 		input := &reward.ExportRewardsParams{
 			Namespace: namespace,
 		}
-		errInput := rewardService.ExportRewardsShort(input)
+		errInput := rewardService.ExportRewardsShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

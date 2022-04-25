@@ -40,7 +40,7 @@ var SaveUserRolesCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := usersService.SaveUserRolesShort(input)
+		errInput := usersService.SaveUserRolesShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

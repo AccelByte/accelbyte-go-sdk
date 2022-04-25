@@ -29,7 +29,7 @@ var LogoutSSOClientCmd = &cobra.Command{
 		input := &s_s_o.LogoutSSOClientParams{
 			PlatformID: platformId,
 		}
-		errInput := ssoService.LogoutSSOClientShort(input)
+		errInput := ssoService.LogoutSSOClientShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

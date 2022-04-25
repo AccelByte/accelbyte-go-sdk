@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package admin
 
 import (
@@ -33,7 +35,7 @@ var ListServerCmd = &cobra.Command{
 			Offset:    &offset,
 			Region:    &region,
 		}
-		ok, err := adminService.ListServerShort(input)
+		ok, err := adminService.ListServerShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package keyGroup
 
 import (
@@ -45,7 +47,7 @@ var UploadKeysCmd = &cobra.Command{
 			Namespace:  namespace,
 			HTTPClient: httpClient,
 		}
-		ok, err := keyGroupService.UploadKeysShort(input)
+		ok, err := keyGroupService.UploadKeysShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

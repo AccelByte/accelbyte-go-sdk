@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package server
 
 import (
@@ -35,7 +37,7 @@ var HeartbeatCmd = &cobra.Command{
 		input := &server.HeartbeatParams{
 			Body: body,
 		}
-		errInput := serverService.HeartbeatShort(input)
+		errInput := serverService.HeartbeatShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

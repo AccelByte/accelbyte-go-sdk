@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package ticket
 
 import (
@@ -39,7 +41,7 @@ var DecreaseTicketSaleCmd = &cobra.Command{
 			BoothName: boothName,
 			Namespace: namespace,
 		}
-		errInput := ticketService.DecreaseTicketSaleShort(input)
+		errInput := ticketService.DecreaseTicketSaleShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

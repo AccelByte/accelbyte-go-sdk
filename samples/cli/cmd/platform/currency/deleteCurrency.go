@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package currency
 
 import (
@@ -29,7 +31,7 @@ var DeleteCurrencyCmd = &cobra.Command{
 			CurrencyCode: currencyCode,
 			Namespace:    namespace,
 		}
-		ok, err := currencyService.DeleteCurrencyShort(input)
+		ok, err := currencyService.DeleteCurrencyShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

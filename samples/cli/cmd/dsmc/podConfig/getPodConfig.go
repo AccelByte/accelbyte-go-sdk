@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package podConfig
 
 import (
@@ -29,7 +31,7 @@ var GetPodConfigCmd = &cobra.Command{
 			Name:      name,
 			Namespace: namespace,
 		}
-		ok, err := podConfigService.GetPodConfigShort(input)
+		ok, err := podConfigService.GetPodConfigShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -41,7 +41,7 @@ var EnableUserBanCmd = &cobra.Command{
 			UserID:     userId,
 			HTTPClient: httpClient,
 		}
-		ok, err := usersService.EnableUserBanShort(input)
+		ok, err := usersService.EnableUserBanShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

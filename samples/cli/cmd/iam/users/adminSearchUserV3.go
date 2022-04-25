@@ -45,7 +45,7 @@ var AdminSearchUserV3Cmd = &cobra.Command{
 			Query:      &query,
 			StartDate:  &startDate,
 		}
-		ok, err := usersService.AdminSearchUserV3Short(input)
+		ok, err := usersService.AdminSearchUserV3Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

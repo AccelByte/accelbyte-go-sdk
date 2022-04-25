@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package adminContent
 
 import (
@@ -41,7 +43,7 @@ var AdminHideUserContentCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := adminContentService.AdminHideUserContentShort(input)
+		ok, err := adminContentService.AdminHideUserContentShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

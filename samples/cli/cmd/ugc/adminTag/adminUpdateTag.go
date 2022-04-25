@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package adminTag
 
 import (
@@ -39,7 +41,7 @@ var AdminUpdateTagCmd = &cobra.Command{
 			Namespace: namespace,
 			TagID:     tagId,
 		}
-		ok, err := adminTagService.AdminUpdateTagShort(input)
+		ok, err := adminTagService.AdminUpdateTagShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

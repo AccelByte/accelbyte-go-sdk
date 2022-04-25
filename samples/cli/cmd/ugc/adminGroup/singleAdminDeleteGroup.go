@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package adminGroup
 
 import (
@@ -29,7 +31,7 @@ var SingleAdminDeleteGroupCmd = &cobra.Command{
 			GroupID:   groupId,
 			Namespace: namespace,
 		}
-		errInput := adminGroupService.SingleAdminDeleteGroupShort(input)
+		errInput := adminGroupService.SingleAdminDeleteGroupShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

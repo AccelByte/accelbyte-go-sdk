@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package policies
 
 import (
@@ -27,7 +29,7 @@ var RetrievePoliciesCmd = &cobra.Command{
 		input := &policies.RetrievePoliciesParams{
 			CountryCode: countryCode,
 		}
-		ok, err := policiesService.RetrievePoliciesShort(input)
+		ok, err := policiesService.RetrievePoliciesShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

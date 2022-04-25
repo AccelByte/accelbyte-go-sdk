@@ -29,7 +29,7 @@ var GetClientsbyNamespaceCmd = &cobra.Command{
 		input := &clients.GetClientsbyNamespaceParams{
 			Namespace: namespace,
 		}
-		ok, err := clientsService.GetClientsbyNamespaceShort(input)
+		ok, err := clientsService.GetClientsbyNamespaceShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

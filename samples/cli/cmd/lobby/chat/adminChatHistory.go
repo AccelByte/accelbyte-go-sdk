@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package chat
 
 import (
@@ -31,7 +33,7 @@ var AdminChatHistoryCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := chatService.AdminChatHistoryShort(input)
+		ok, err := chatService.AdminChatHistoryShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

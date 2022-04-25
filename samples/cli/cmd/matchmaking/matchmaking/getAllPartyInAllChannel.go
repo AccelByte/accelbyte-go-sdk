@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package matchmaking
 
 import (
@@ -27,7 +29,7 @@ var GetAllPartyInAllChannelCmd = &cobra.Command{
 		input := &matchmaking_.GetAllPartyInAllChannelParams{
 			Namespace: namespace,
 		}
-		ok, err := matchmakingService.GetAllPartyInAllChannelShort(input)
+		ok, err := matchmakingService.GetAllPartyInAllChannelShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

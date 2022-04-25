@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package subscription
 
 import (
@@ -43,7 +45,7 @@ var CancelSubscriptionCmd = &cobra.Command{
 			UserID:         userId,
 			Force:          &force,
 		}
-		ok, err := subscriptionService.CancelSubscriptionShort(input)
+		ok, err := subscriptionService.CancelSubscriptionShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

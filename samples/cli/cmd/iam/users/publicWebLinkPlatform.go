@@ -35,7 +35,7 @@ var PublicWebLinkPlatformCmd = &cobra.Command{
 			ClientID:    &clientId,
 			RedirectURI: &redirectUri,
 		}
-		ok, err := usersService.PublicWebLinkPlatformShort(input)
+		ok, err := usersService.PublicWebLinkPlatformShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

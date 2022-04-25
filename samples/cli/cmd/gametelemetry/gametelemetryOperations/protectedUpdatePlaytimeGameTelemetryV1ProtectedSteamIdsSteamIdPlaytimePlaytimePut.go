@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package gametelemetryOperations
 
 import (
@@ -25,11 +27,13 @@ var ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlayti
 		}
 		playtime, _ := cmd.Flags().GetString("playtime")
 		steamId, _ := cmd.Flags().GetString("steamId")
+		cookie, _ := cmd.Flags().GetString("cookie")
 		input := &gametelemetry_operations.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams{
+			Cookie:   &cookie,
 			Playtime: playtime,
 			SteamID:  steamId,
 		}
-		errInput := gametelemetryOperationsService.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input)
+		errInput := gametelemetryOperationsService.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 
@@ -41,6 +45,7 @@ var ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlayti
 }
 
 func init() {
+	ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePutCmd.Flags().StringP("cookie", "", "", "Cookie")
 	ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePutCmd.Flags().StringP("playtime", "", "", "Playtime")
 	_ = ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePutCmd.MarkFlagRequired("playtime")
 	ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePutCmd.Flags().StringP("steamId", "", "", "Steam id")

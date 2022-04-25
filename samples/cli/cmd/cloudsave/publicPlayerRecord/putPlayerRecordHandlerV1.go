@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package publicPlayerRecord
 
 import (
@@ -41,7 +43,7 @@ var PutPlayerRecordHandlerV1Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := publicPlayerRecordService.PutPlayerRecordHandlerV1Short(input)
+		errInput := publicPlayerRecordService.PutPlayerRecordHandlerV1Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

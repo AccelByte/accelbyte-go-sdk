@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package matchmaking
 
 import (
@@ -27,7 +29,7 @@ var ExportChannelsCmd = &cobra.Command{
 		input := &matchmaking_.ExportChannelsParams{
 			Namespace: namespace,
 		}
-		ok, err := matchmakingService.ExportChannelsShort(input)
+		ok, err := matchmakingService.ExportChannelsShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

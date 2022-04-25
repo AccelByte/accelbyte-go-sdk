@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package adminType
 
 import (
@@ -29,7 +31,7 @@ var AdminDeleteTypeCmd = &cobra.Command{
 			Namespace: namespace,
 			TypeID:    typeId,
 		}
-		errInput := adminTypeService.AdminDeleteTypeShort(input)
+		errInput := adminTypeService.AdminDeleteTypeShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

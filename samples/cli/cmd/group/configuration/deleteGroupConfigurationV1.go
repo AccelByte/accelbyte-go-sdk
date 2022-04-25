@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package configuration
 
 import (
@@ -29,7 +31,7 @@ var DeleteGroupConfigurationV1Cmd = &cobra.Command{
 			ConfigurationCode: configurationCode,
 			Namespace:         namespace,
 		}
-		errInput := configurationService.DeleteGroupConfigurationV1Short(input)
+		errInput := configurationService.DeleteGroupConfigurationV1Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

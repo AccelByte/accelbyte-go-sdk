@@ -43,7 +43,7 @@ var AdminPlatformLinkV3Cmd = &cobra.Command{
 			UserID:     userId,
 			HTTPClient: httpClient,
 		}
-		errInput := usersService.AdminPlatformLinkV3Short(input)
+		errInput := usersService.AdminPlatformLinkV3Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package category
 
 import (
@@ -31,7 +33,7 @@ var DeleteCategoryCmd = &cobra.Command{
 			Namespace:    namespace,
 			StoreID:      storeId,
 		}
-		ok, err := categoryService.DeleteCategoryShort(input)
+		ok, err := categoryService.DeleteCategoryShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

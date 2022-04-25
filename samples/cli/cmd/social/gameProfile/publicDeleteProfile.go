@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package gameProfile
 
 import (
@@ -31,7 +33,7 @@ var PublicDeleteProfileCmd = &cobra.Command{
 			ProfileID: profileId,
 			UserID:    userId,
 		}
-		errInput := gameProfileService.PublicDeleteProfileShort(input)
+		errInput := gameProfileService.PublicDeleteProfileShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

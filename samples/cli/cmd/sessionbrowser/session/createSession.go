@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package session
 
 import (
@@ -37,7 +39,7 @@ var CreateSessionCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := sessionService.CreateSessionShort(input)
+		ok, err := sessionService.CreateSessionShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

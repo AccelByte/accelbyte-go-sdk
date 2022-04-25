@@ -43,7 +43,7 @@ var PublicDeletePlatformLinkV2Cmd = &cobra.Command{
 			UserID:            userId,
 			HTTPClient:        httpClient,
 		}
-		errInput := usersService.PublicDeletePlatformLinkV2Short(input)
+		errInput := usersService.PublicDeletePlatformLinkV2Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

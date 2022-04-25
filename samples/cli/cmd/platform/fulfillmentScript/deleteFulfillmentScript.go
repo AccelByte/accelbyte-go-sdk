@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package fulfillmentScript
 
 import (
@@ -27,7 +29,7 @@ var DeleteFulfillmentScriptCmd = &cobra.Command{
 		input := &fulfillment_script.DeleteFulfillmentScriptParams{
 			ID: id_,
 		}
-		errInput := fulfillmentScriptService.DeleteFulfillmentScriptShort(input)
+		errInput := fulfillmentScriptService.DeleteFulfillmentScriptShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

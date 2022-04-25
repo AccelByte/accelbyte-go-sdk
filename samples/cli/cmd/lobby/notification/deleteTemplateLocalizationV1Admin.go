@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package notification
 
 import (
@@ -31,7 +33,7 @@ var DeleteTemplateLocalizationV1AdminCmd = &cobra.Command{
 			TemplateLanguage: templateLanguage,
 			TemplateSlug:     templateSlug,
 		}
-		errInput := notificationService.DeleteTemplateLocalizationV1AdminShort(input)
+		errInput := notificationService.DeleteTemplateLocalizationV1AdminShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

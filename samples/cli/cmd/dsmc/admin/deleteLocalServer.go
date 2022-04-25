@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package admin
 
 import (
@@ -29,7 +31,7 @@ var DeleteLocalServerCmd = &cobra.Command{
 			Name:      name,
 			Namespace: namespace,
 		}
-		errInput := adminService.DeleteLocalServerShort(input)
+		errInput := adminService.DeleteLocalServerShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

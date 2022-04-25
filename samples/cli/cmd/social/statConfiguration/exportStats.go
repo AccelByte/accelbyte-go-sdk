@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package statConfiguration
 
 import (
@@ -27,7 +29,7 @@ var ExportStatsCmd = &cobra.Command{
 		input := &stat_configuration.ExportStatsParams{
 			Namespace: namespace,
 		}
-		errInput := statConfigurationService.ExportStatsShort(input)
+		errInput := statConfigurationService.ExportStatsShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

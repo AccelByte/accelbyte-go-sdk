@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package achievements
 
 import (
@@ -35,7 +37,7 @@ var PublicListAchievementsCmd = &cobra.Command{
 			SortBy:    &sortBy,
 			Language:  language,
 		}
-		ok, err := achievementsService.PublicListAchievementsShort(input)
+		ok, err := achievementsService.PublicListAchievementsShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

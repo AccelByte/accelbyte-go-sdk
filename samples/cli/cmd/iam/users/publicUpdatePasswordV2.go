@@ -41,7 +41,7 @@ var PublicUpdatePasswordV2Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := usersService.PublicUpdatePasswordV2Short(input)
+		errInput := usersService.PublicUpdatePasswordV2Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

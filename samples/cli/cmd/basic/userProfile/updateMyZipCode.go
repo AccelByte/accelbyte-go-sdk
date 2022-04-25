@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package userProfile
 
 import (
@@ -37,7 +39,7 @@ var UpdateMyZipCodeCmd = &cobra.Command{
 			UserZipCodeUpdate: userZipCodeUpdate,
 			Namespace:         namespace,
 		}
-		ok, err := userProfileService.UpdateMyZipCodeShort(input)
+		ok, err := userProfileService.UpdateMyZipCodeShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

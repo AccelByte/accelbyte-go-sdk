@@ -39,7 +39,7 @@ var CreateUserCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := usersService.CreateUserShort(input)
+		ok, err := usersService.CreateUserShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

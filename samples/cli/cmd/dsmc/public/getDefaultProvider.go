@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package public
 
 import (
@@ -24,7 +26,7 @@ var GetDefaultProviderCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &public.GetDefaultProviderParams{}
-		ok, err := publicService.GetDefaultProviderShort(input)
+		ok, err := publicService.GetDefaultProviderShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

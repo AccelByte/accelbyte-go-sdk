@@ -31,7 +31,7 @@ var AdminListUserRolesV4Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := usersV4Service.AdminListUserRolesV4Short(input)
+		ok, err := usersV4Service.AdminListUserRolesV4Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

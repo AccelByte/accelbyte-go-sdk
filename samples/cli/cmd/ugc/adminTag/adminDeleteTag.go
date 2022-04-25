@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package adminTag
 
 import (
@@ -29,7 +31,7 @@ var AdminDeleteTagCmd = &cobra.Command{
 			Namespace: namespace,
 			TagID:     tagId,
 		}
-		errInput := adminTagService.AdminDeleteTagShort(input)
+		errInput := adminTagService.AdminDeleteTagShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

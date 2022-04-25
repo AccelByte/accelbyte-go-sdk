@@ -43,7 +43,7 @@ var AdminUpdateUserBanV3Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := usersService.AdminUpdateUserBanV3Short(input)
+		ok, err := usersService.AdminUpdateUserBanV3Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

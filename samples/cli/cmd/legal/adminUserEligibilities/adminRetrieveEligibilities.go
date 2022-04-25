@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package adminUserEligibilities
 
 import (
@@ -35,7 +37,7 @@ var AdminRetrieveEligibilitiesCmd = &cobra.Command{
 			ClientID:        clientId,
 			CountryCode:     countryCode,
 		}
-		ok, err := adminUserEligibilitiesService.AdminRetrieveEligibilitiesShort(input)
+		ok, err := adminUserEligibilitiesService.AdminRetrieveEligibilitiesShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package allTerminatedServers
 
 import (
@@ -35,7 +37,7 @@ var BatchDownloadServerLogsCmd = &cobra.Command{
 		input := &all_terminated_servers.BatchDownloadServerLogsParams{
 			Body: body,
 		}
-		errInput := allTerminatedServersService.BatchDownloadServerLogsShort(input)
+		errInput := allTerminatedServersService.BatchDownloadServerLogsShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

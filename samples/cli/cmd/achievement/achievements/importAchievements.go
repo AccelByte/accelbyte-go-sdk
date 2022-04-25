@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package achievements
 
 import (
@@ -45,7 +47,7 @@ var ImportAchievementsCmd = &cobra.Command{
 			Namespace:  namespace,
 			HTTPClient: httpClient,
 		}
-		ok, err := achievementsService.ImportAchievementsShort(input)
+		ok, err := achievementsService.ImportAchievementsShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

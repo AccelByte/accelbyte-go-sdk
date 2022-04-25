@@ -38,7 +38,7 @@ var VerifyTokenCmd = &cobra.Command{
 			Token:      token,
 			HTTPClient: httpClient,
 		}
-		ok, err := oAuthService.VerifyTokenShort(input)
+		ok, err := oAuthService.VerifyTokenShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

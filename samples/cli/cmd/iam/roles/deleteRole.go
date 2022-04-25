@@ -29,7 +29,7 @@ var DeleteRoleCmd = &cobra.Command{
 		input := &roles.DeleteRoleParams{
 			RoleID: roleId,
 		}
-		errInput := rolesService.DeleteRoleShort(input)
+		errInput := rolesService.DeleteRoleShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

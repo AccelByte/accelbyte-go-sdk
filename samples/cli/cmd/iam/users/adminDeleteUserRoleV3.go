@@ -33,7 +33,7 @@ var AdminDeleteUserRoleV3Cmd = &cobra.Command{
 			RoleID:    roleId,
 			UserID:    userId,
 		}
-		errInput := usersService.AdminDeleteUserRoleV3Short(input)
+		errInput := usersService.AdminDeleteUserRoleV3Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

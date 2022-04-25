@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package player
 
 import (
@@ -29,7 +31,7 @@ var AdminGetPlayerBlockedByPlayersV1Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := playerService.AdminGetPlayerBlockedByPlayersV1Short(input)
+		ok, err := playerService.AdminGetPlayerBlockedByPlayersV1Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

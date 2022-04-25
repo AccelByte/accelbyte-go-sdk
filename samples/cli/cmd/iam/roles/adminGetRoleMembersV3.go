@@ -35,7 +35,7 @@ var AdminGetRoleMembersV3Cmd = &cobra.Command{
 			Before: &before,
 			Limit:  &limit,
 		}
-		ok, err := rolesService.AdminGetRoleMembersV3Short(input)
+		ok, err := rolesService.AdminGetRoleMembersV3Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

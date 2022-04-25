@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package store
 
 import (
@@ -29,7 +31,7 @@ var ExportStoreCmd = &cobra.Command{
 			Namespace: namespace,
 			StoreID:   storeId,
 		}
-		errInput := storeService.ExportStoreShort(input)
+		errInput := storeService.ExportStoreShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

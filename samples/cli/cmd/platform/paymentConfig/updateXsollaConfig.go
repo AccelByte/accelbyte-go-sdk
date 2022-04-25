@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package paymentConfig
 
 import (
@@ -39,7 +41,7 @@ var UpdateXsollaConfigCmd = &cobra.Command{
 			ID:       id_,
 			Validate: &validate,
 		}
-		ok, err := paymentConfigService.UpdateXsollaConfigShort(input)
+		ok, err := paymentConfigService.UpdateXsollaConfigShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

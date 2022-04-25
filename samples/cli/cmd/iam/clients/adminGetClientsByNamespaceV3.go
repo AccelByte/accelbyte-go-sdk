@@ -33,7 +33,7 @@ var AdminGetClientsByNamespaceV3Cmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := clientsService.AdminGetClientsByNamespaceV3Short(input)
+		ok, err := clientsService.AdminGetClientsByNamespaceV3Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

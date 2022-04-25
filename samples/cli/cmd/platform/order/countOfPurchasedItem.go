@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package order
 
 import (
@@ -31,7 +33,7 @@ var CountOfPurchasedItemCmd = &cobra.Command{
 			UserID:    userId,
 			ItemID:    itemId,
 		}
-		ok, err := orderService.CountOfPurchasedItemShort(input)
+		ok, err := orderService.CountOfPurchasedItemShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

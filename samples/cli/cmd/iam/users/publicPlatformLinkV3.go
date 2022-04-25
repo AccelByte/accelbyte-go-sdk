@@ -43,7 +43,7 @@ var PublicPlatformLinkV3Cmd = &cobra.Command{
 			PlatformID:  platformId,
 			HTTPClient:  httpClient,
 		}
-		errInput := usersService.PublicPlatformLinkV3Short(input)
+		errInput := usersService.PublicPlatformLinkV3Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

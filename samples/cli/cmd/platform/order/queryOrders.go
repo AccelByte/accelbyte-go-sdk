@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package order
 
 import (
@@ -50,7 +52,7 @@ var QueryOrdersCmd = &cobra.Command{
 			Status:    &status,
 			WithTotal: &withTotal,
 		}
-		ok, err := orderService.QueryOrdersShort(input)
+		ok, err := orderService.QueryOrdersShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

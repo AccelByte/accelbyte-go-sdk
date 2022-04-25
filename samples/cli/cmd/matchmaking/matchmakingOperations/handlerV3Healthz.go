@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package matchmakingOperations
 
 import (
@@ -24,7 +26,7 @@ var HandlerV3HealthzCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &matchmaking_operations.HandlerV3HealthzParams{}
-		errInput := matchmakingOperationsService.HandlerV3HealthzShort(input)
+		errInput := matchmakingOperationsService.HandlerV3HealthzShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

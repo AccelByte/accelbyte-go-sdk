@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package friends
 
 import (
@@ -27,7 +29,7 @@ var GetUserIncomingFriendsCmd = &cobra.Command{
 		input := &friends.GetUserIncomingFriendsParams{
 			Namespace: namespace,
 		}
-		ok, err := friendsService.GetUserIncomingFriendsShort(input)
+		ok, err := friendsService.GetUserIncomingFriendsShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -31,7 +31,7 @@ var GetListJusticePlatformAccountsCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := usersService.GetListJusticePlatformAccountsShort(input)
+		ok, err := usersService.GetListJusticePlatformAccountsShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

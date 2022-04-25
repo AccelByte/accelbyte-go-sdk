@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package eventDescriptions
 
 import (
@@ -27,7 +29,7 @@ var SpecificEventLevelDescriptionHandlerCmd = &cobra.Command{
 		input := &event_descriptions.SpecificEventLevelDescriptionHandlerParams{
 			EventLevels: &eventLevels,
 		}
-		ok, err := eventDescriptionsService.SpecificEventLevelDescriptionHandlerShort(input)
+		ok, err := eventDescriptionsService.SpecificEventLevelDescriptionHandlerShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

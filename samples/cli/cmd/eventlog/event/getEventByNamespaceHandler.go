@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package event
 
 import (
@@ -35,7 +37,7 @@ var GetEventByNamespaceHandlerCmd = &cobra.Command{
 			PageSize:  pageSize,
 			StartDate: startDate,
 		}
-		ok, err := eventService.GetEventByNamespaceHandlerShort(input)
+		ok, err := eventService.GetEventByNamespaceHandlerShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

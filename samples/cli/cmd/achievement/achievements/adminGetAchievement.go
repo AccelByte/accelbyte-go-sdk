@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package achievements
 
 import (
@@ -29,7 +31,7 @@ var AdminGetAchievementCmd = &cobra.Command{
 			AchievementCode: achievementCode,
 			Namespace:       namespace,
 		}
-		ok, err := achievementsService.AdminGetAchievementShort(input)
+		ok, err := achievementsService.AdminGetAchievementShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

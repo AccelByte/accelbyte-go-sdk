@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package adminChannel
 
 import (
@@ -39,7 +41,7 @@ var SingleAdminUpdateChannelCmd = &cobra.Command{
 			ChannelID: channelId,
 			Namespace: namespace,
 		}
-		ok, err := adminChannelService.SingleAdminUpdateChannelShort(input)
+		ok, err := adminChannelService.SingleAdminUpdateChannelShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

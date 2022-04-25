@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package config
 
 import (
@@ -27,7 +29,7 @@ var AdminExportConfigV1Cmd = &cobra.Command{
 		input := &config.AdminExportConfigV1Params{
 			Namespace: namespace,
 		}
-		ok, err := configService.AdminExportConfigV1Short(input)
+		ok, err := configService.AdminExportConfigV1Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

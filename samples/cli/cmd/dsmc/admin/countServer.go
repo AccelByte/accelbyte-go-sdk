@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package admin
 
 import (
@@ -27,7 +29,7 @@ var CountServerCmd = &cobra.Command{
 		input := &admin.CountServerParams{
 			Namespace: namespace,
 		}
-		ok, err := adminService.CountServerShort(input)
+		ok, err := adminService.CountServerShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

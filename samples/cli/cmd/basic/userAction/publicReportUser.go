@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package userAction
 
 import (
@@ -39,7 +41,7 @@ var PublicReportUserCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := userActionService.PublicReportUserShort(input)
+		errInput := userActionService.PublicReportUserShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

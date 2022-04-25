@@ -52,7 +52,7 @@ var AuthorizeV3Cmd = &cobra.Command{
 			ResponseType:        responseType,
 			HTTPClient:          httpClient,
 		}
-		_, errInput := oAuth20Service.AuthorizeV3Short(input)
+		_, errInput := oAuth20Service.AuthorizeV3Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package paymentConfig
 
 import (
@@ -33,7 +35,7 @@ var QueryPaymentProviderConfigCmd = &cobra.Command{
 			Offset:    &offset,
 			Region:    &region,
 		}
-		ok, err := paymentConfigService.QueryPaymentProviderConfigShort(input)
+		ok, err := paymentConfigService.QueryPaymentProviderConfigShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

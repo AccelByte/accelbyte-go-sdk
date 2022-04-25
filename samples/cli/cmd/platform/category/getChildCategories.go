@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package category
 
 import (
@@ -31,7 +33,7 @@ var GetChildCategoriesCmd = &cobra.Command{
 			Namespace:    namespace,
 			StoreID:      &storeId,
 		}
-		ok, err := categoryService.GetChildCategoriesShort(input)
+		ok, err := categoryService.GetChildCategoriesShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -41,7 +41,7 @@ var AdminVerifyAccountV3Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := usersService.AdminVerifyAccountV3Short(input)
+		errInput := usersService.AdminVerifyAccountV3Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

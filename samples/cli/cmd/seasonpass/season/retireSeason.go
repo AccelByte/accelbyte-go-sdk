@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package season
 
 import (
@@ -31,7 +33,7 @@ var RetireSeasonCmd = &cobra.Command{
 			SeasonID:  seasonId,
 			Force:     &force,
 		}
-		ok, err := seasonService.RetireSeasonShort(input)
+		ok, err := seasonService.RetireSeasonShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

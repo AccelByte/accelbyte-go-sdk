@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package session
 
 import (
@@ -29,7 +31,7 @@ var GetRecentPlayerCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userID,
 		}
-		ok, err := sessionService.GetRecentPlayerShort(input)
+		ok, err := sessionService.GetRecentPlayerShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

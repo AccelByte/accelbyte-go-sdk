@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package dlc
 
 import (
@@ -27,7 +29,7 @@ var GetPlatformDLCConfigCmd = &cobra.Command{
 		input := &d_l_c.GetPlatformDLCConfigParams{
 			Namespace: namespace,
 		}
-		ok, err := dlcService.GetPlatformDLCConfigShort(input)
+		ok, err := dlcService.GetPlatformDLCConfigShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -39,7 +39,7 @@ var UpdateRolePermissionsCmd = &cobra.Command{
 			Body:   body,
 			RoleID: roleId,
 		}
-		errInput := rolesService.UpdateRolePermissionsShort(input)
+		errInput := rolesService.UpdateRolePermissionsShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package baseLegalPolicies
 
 import (
@@ -29,7 +31,7 @@ var RetrievePolicyCountryCmd = &cobra.Command{
 			BasePolicyID: basePolicyId,
 			CountryCode:  countryCode,
 		}
-		ok, err := baseLegalPoliciesService.RetrievePolicyCountryShort(input)
+		ok, err := baseLegalPoliciesService.RetrievePolicyCountryShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

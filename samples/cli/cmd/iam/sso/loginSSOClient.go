@@ -31,7 +31,7 @@ var LoginSSOClientCmd = &cobra.Command{
 			PlatformID: platformId,
 			Payload:    &payload,
 		}
-		errInput := ssoService.LoginSSOClientShort(input)
+		errInput := ssoService.LoginSSOClientShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package dlc
 
 import (
@@ -37,7 +39,7 @@ var UpdateDLCItemConfigCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := dlcService.UpdateDLCItemConfigShort(input)
+		ok, err := dlcService.UpdateDLCItemConfigShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

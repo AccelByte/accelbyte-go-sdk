@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package iap
 
 import (
@@ -27,7 +29,7 @@ var GetIAPItemConfigCmd = &cobra.Command{
 		input := &i_a_p.GetIAPItemConfigParams{
 			Namespace: namespace,
 		}
-		ok, err := iapService.GetIAPItemConfigShort(input)
+		ok, err := iapService.GetIAPItemConfigShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

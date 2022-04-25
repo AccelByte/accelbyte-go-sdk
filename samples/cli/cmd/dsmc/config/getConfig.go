@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package config
 
 import (
@@ -27,7 +29,7 @@ var GetConfigCmd = &cobra.Command{
 		input := &config.GetConfigParams{
 			Namespace: namespace,
 		}
-		ok, err := configService.GetConfigShort(input)
+		ok, err := configService.GetConfigShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

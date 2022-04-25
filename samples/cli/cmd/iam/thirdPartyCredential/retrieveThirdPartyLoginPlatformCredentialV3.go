@@ -31,7 +31,7 @@ var RetrieveThirdPartyLoginPlatformCredentialV3Cmd = &cobra.Command{
 			Namespace:  namespace,
 			PlatformID: platformId,
 		}
-		ok, err := thirdPartyCredentialService.RetrieveThirdPartyLoginPlatformCredentialV3Short(input)
+		ok, err := thirdPartyCredentialService.RetrieveThirdPartyLoginPlatformCredentialV3Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

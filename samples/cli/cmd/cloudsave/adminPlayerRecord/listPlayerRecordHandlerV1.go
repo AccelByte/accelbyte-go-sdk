@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package adminPlayerRecord
 
 import (
@@ -33,7 +35,7 @@ var ListPlayerRecordHandlerV1Cmd = &cobra.Command{
 			Offset:    &offset,
 			Query:     &query,
 		}
-		ok, err := adminPlayerRecordService.ListPlayerRecordHandlerV1Short(input)
+		ok, err := adminPlayerRecordService.ListPlayerRecordHandlerV1Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package campaign
 
 import (
@@ -35,7 +37,7 @@ var QueryCampaignsCmd = &cobra.Command{
 			Offset:    &offset,
 			Tag:       &tag,
 		}
-		ok, err := campaignService.QueryCampaignsShort(input)
+		ok, err := campaignService.QueryCampaignsShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

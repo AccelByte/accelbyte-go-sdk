@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package dlc
 
 import (
@@ -39,7 +41,7 @@ var SyncSteamDLCCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := dlcService.SyncSteamDLCShort(input)
+		errInput := dlcService.SyncSteamDLCShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

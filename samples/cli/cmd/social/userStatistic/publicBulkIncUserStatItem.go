@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package userStatistic
 
 import (
@@ -37,7 +39,7 @@ var PublicBulkIncUserStatItemCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := userStatisticService.PublicBulkIncUserStatItemShort(input)
+		ok, err := userStatisticService.PublicBulkIncUserStatItemShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

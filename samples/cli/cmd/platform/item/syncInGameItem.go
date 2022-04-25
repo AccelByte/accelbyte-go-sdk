@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package item
 
 import (
@@ -39,7 +41,7 @@ var SyncInGameItemCmd = &cobra.Command{
 			Namespace: namespace,
 			StoreID:   storeId,
 		}
-		ok, err := itemService.SyncInGameItemShort(input)
+		ok, err := itemService.SyncInGameItemShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

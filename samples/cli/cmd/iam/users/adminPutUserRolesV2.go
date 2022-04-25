@@ -40,7 +40,7 @@ var AdminPutUserRolesV2Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := usersService.AdminPutUserRolesV2Short(input)
+		errInput := usersService.AdminPutUserRolesV2Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

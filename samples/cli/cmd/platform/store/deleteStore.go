@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package store
 
 import (
@@ -29,7 +31,7 @@ var DeleteStoreCmd = &cobra.Command{
 			Namespace: namespace,
 			StoreID:   storeId,
 		}
-		ok, err := storeService.DeleteStoreShort(input)
+		ok, err := storeService.DeleteStoreShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

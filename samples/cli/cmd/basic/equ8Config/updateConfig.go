@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package equ8Config
 
 import (
@@ -37,7 +39,7 @@ var UpdateConfigCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := equ8ConfigService.UpdateConfigShort(input)
+		ok, err := equ8ConfigService.UpdateConfigShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

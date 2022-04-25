@@ -41,7 +41,7 @@ var SaveUserPermissionCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := usersService.SaveUserPermissionShort(input)
+		errInput := usersService.SaveUserPermissionShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

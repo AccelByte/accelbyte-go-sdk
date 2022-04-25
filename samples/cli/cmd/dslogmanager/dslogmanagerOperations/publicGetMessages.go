@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package dslogmanagerOperations
 
 import (
@@ -24,7 +26,7 @@ var PublicGetMessagesCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &dslogmanager_operations.PublicGetMessagesParams{}
-		ok, err := dslogmanagerOperationsService.PublicGetMessagesShort(input)
+		ok, err := dslogmanagerOperationsService.PublicGetMessagesShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

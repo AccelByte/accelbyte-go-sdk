@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package agreement
 
 import (
@@ -35,7 +37,7 @@ var ChangePreferenceConsent1Cmd = &cobra.Command{
 		input := &agreement.ChangePreferenceConsent1Params{
 			Body: body,
 		}
-		errInput := agreementService.ChangePreferenceConsent1Short(input)
+		errInput := agreementService.ChangePreferenceConsent1Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package currency
 
 import (
@@ -27,7 +29,7 @@ var ListCurrenciesCmd = &cobra.Command{
 		input := &currency.ListCurrenciesParams{
 			Namespace: namespace,
 		}
-		ok, err := currencyService.ListCurrenciesShort(input)
+		ok, err := currencyService.ListCurrenciesShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

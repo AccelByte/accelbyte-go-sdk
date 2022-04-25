@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package baseLegalPolicies
 
 import (
@@ -35,7 +37,7 @@ var CreatePolicyCmd = &cobra.Command{
 		input := &base_legal_policies.CreatePolicyParams{
 			Body: body,
 		}
-		ok, err := baseLegalPoliciesService.CreatePolicyShort(input)
+		ok, err := baseLegalPoliciesService.CreatePolicyShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

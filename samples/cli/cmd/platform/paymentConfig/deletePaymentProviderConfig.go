@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package paymentConfig
 
 import (
@@ -27,7 +29,7 @@ var DeletePaymentProviderConfigCmd = &cobra.Command{
 		input := &payment_config.DeletePaymentProviderConfigParams{
 			ID: id_,
 		}
-		errInput := paymentConfigService.DeletePaymentProviderConfigShort(input)
+		errInput := paymentConfigService.DeletePaymentProviderConfigShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

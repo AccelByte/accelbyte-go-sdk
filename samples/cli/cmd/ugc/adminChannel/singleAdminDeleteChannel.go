@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package adminChannel
 
 import (
@@ -29,7 +31,7 @@ var SingleAdminDeleteChannelCmd = &cobra.Command{
 			ChannelID: channelId,
 			Namespace: namespace,
 		}
-		errInput := adminChannelService.SingleAdminDeleteChannelShort(input)
+		errInput := adminChannelService.SingleAdminDeleteChannelShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

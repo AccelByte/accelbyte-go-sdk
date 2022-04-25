@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package iap
 
 import (
@@ -27,7 +29,7 @@ var GetTwitchIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.GetTwitchIAPConfigParams{
 			Namespace: namespace,
 		}
-		ok, err := iapService.GetTwitchIAPConfigShort(input)
+		ok, err := iapService.GetTwitchIAPConfigShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

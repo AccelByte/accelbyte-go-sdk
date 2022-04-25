@@ -39,7 +39,7 @@ var AdminAssignUserToRoleV4Cmd = &cobra.Command{
 			Body:   body,
 			RoleID: roleId,
 		}
-		ok, err := rolesService.AdminAssignUserToRoleV4Short(input)
+		ok, err := rolesService.AdminAssignUserToRoleV4Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

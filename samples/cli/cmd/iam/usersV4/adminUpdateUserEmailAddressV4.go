@@ -41,7 +41,7 @@ var AdminUpdateUserEmailAddressV4Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := usersV4Service.AdminUpdateUserEmailAddressV4Short(input)
+		errInput := usersV4Service.AdminUpdateUserEmailAddressV4Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

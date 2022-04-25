@@ -39,7 +39,7 @@ var EnableUserCmd = &cobra.Command{
 			UserID:     userId,
 			HTTPClient: httpClient,
 		}
-		errInput := usersService.EnableUserShort(input)
+		errInput := usersService.EnableUserShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

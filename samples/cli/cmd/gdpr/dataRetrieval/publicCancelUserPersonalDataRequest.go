@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package dataRetrieval
 
 import (
@@ -31,7 +33,7 @@ var PublicCancelUserPersonalDataRequestCmd = &cobra.Command{
 			RequestDate: requestDate,
 			UserID:      userId,
 		}
-		ok, err := dataRetrievalService.PublicCancelUserPersonalDataRequestShort(input)
+		ok, err := dataRetrievalService.PublicCancelUserPersonalDataRequestShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

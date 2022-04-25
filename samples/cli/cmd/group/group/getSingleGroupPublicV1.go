@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package group
 
 import (
@@ -29,7 +31,7 @@ var GetSingleGroupPublicV1Cmd = &cobra.Command{
 			GroupID:   groupId,
 			Namespace: namespace,
 		}
-		ok, err := groupService.GetSingleGroupPublicV1Short(input)
+		ok, err := groupService.GetSingleGroupPublicV1Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

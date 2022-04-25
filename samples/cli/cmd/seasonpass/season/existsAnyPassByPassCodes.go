@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package season
 
 import (
@@ -38,7 +40,7 @@ var ExistsAnyPassByPassCodesCmd = &cobra.Command{
 			UserID:    userId,
 			PassCodes: passCodes,
 		}
-		ok, err := seasonService.ExistsAnyPassByPassCodesShort(input)
+		ok, err := seasonService.ExistsAnyPassByPassCodesShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

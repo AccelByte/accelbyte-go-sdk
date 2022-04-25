@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package payment
 
 import (
@@ -39,7 +41,7 @@ var CreateUserPaymentOrderCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := paymentService.CreateUserPaymentOrderShort(input)
+		ok, err := paymentService.CreateUserPaymentOrderShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

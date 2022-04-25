@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package matchmaking
 
 import (
@@ -39,7 +41,7 @@ var UpdateMatchmakingChannelCmd = &cobra.Command{
 			ChannelName: channelName,
 			Namespace:   namespace,
 		}
-		errInput := matchmakingService.UpdateMatchmakingChannelShort(input)
+		errInput := matchmakingService.UpdateMatchmakingChannelShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

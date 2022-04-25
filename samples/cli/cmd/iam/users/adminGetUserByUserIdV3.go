@@ -31,7 +31,7 @@ var AdminGetUserByUserIdV3Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := usersService.AdminGetUserByUserIDV3Short(input)
+		ok, err := usersService.AdminGetUserByUserIDV3Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -35,7 +35,7 @@ var ListAdminsV3Cmd = &cobra.Command{
 			Before:    &before,
 			Limit:     &limit,
 		}
-		ok, err := usersService.ListAdminsV3Short(input)
+		ok, err := usersService.ListAdminsV3Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package iap
 
 import (
@@ -39,7 +41,7 @@ var SyncXboxInventoryCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := iapService.SyncXboxInventoryShort(input)
+		ok, err := iapService.SyncXboxInventoryShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package adminContent
 
 import (
@@ -31,7 +33,7 @@ var SingleAdminGetContentCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := adminContentService.SingleAdminGetContentShort(input)
+		ok, err := adminContentService.SingleAdminGetContentShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

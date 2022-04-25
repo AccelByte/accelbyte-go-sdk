@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package anonymization
 
 import (
@@ -29,7 +31,7 @@ var AnonymizeSubscriptionCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := anonymizationService.AnonymizeSubscriptionShort(input)
+		errInput := anonymizationService.AnonymizeSubscriptionShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

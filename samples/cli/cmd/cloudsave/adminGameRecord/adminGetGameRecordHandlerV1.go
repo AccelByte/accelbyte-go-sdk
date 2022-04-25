@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package adminGameRecord
 
 import (
@@ -29,7 +31,7 @@ var AdminGetGameRecordHandlerV1Cmd = &cobra.Command{
 			Key:       key,
 			Namespace: namespace,
 		}
-		ok, err := adminGameRecordService.AdminGetGameRecordHandlerV1Short(input)
+		ok, err := adminGameRecordService.AdminGetGameRecordHandlerV1Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

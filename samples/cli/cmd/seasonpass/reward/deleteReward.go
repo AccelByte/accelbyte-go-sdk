@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package reward
 
 import (
@@ -31,7 +33,7 @@ var DeleteRewardCmd = &cobra.Command{
 			Namespace: namespace,
 			SeasonID:  seasonId,
 		}
-		errInput := rewardService.DeleteRewardShort(input)
+		errInput := rewardService.DeleteRewardShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

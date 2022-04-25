@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package adminUserAgreement
 
 import (
@@ -45,7 +47,7 @@ var IndirectBulkAcceptVersionedPolicyCmd = &cobra.Command{
 			ClientID:        clientId,
 			CountryCode:     countryCode,
 		}
-		ok, err := adminUserAgreementService.IndirectBulkAcceptVersionedPolicyShort(input)
+		ok, err := adminUserAgreementService.IndirectBulkAcceptVersionedPolicyShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

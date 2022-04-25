@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package fulfillmentScript
 
 import (
@@ -35,7 +37,7 @@ var TestFulfillmentScriptEvalCmd = &cobra.Command{
 		input := &fulfillment_script.TestFulfillmentScriptEvalParams{
 			Body: body,
 		}
-		ok, err := fulfillmentScriptService.TestFulfillmentScriptEvalShort(input)
+		ok, err := fulfillmentScriptService.TestFulfillmentScriptEvalShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package misc
 
 import (
@@ -27,7 +29,7 @@ var GetLanguagesCmd = &cobra.Command{
 		input := &misc.GetLanguagesParams{
 			Namespace: namespace,
 		}
-		ok, err := miscService.GetLanguagesShort(input)
+		ok, err := miscService.GetLanguagesShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

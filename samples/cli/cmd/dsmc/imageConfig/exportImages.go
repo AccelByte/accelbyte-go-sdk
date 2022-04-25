@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package imageConfig
 
 import (
@@ -27,7 +29,7 @@ var ExportImagesCmd = &cobra.Command{
 		input := &image_config.ExportImagesParams{
 			Namespace: namespace,
 		}
-		ok, err := imageConfigService.ExportImagesShort(input)
+		ok, err := imageConfigService.ExportImagesShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

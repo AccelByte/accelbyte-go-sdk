@@ -41,7 +41,7 @@ var CreateUserFromInvitationV4Cmd = &cobra.Command{
 			InvitationID: invitationId,
 			Namespace:    namespace,
 		}
-		ok, err := usersV4Service.CreateUserFromInvitationV4Short(input)
+		ok, err := usersV4Service.CreateUserFromInvitationV4Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

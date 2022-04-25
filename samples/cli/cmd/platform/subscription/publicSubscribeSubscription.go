@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package subscription
 
 import (
@@ -39,7 +41,7 @@ var PublicSubscribeSubscriptionCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := subscriptionService.PublicSubscribeSubscriptionShort(input)
+		errInput := subscriptionService.PublicSubscribeSubscriptionShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

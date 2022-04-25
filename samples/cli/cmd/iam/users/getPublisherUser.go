@@ -31,7 +31,7 @@ var GetPublisherUserCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := usersService.GetPublisherUserShort(input)
+		ok, err := usersService.GetPublisherUserShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -31,7 +31,7 @@ var AdminGetUserDeletionStatusV3Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := usersService.AdminGetUserDeletionStatusV3Short(input)
+		ok, err := usersService.AdminGetUserDeletionStatusV3Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

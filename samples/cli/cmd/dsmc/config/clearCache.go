@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package config
 
 import (
@@ -27,7 +29,7 @@ var ClearCacheCmd = &cobra.Command{
 		input := &config.ClearCacheParams{
 			Namespace: namespace,
 		}
-		errInput := configService.ClearCacheShort(input)
+		errInput := configService.ClearCacheShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

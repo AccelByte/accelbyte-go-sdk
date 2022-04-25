@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package campaign
 
 import (
@@ -37,7 +39,7 @@ var QueryRedeemHistoryCmd = &cobra.Command{
 			Offset:     &offset,
 			UserID:     &userId,
 		}
-		ok, err := campaignService.QueryRedeemHistoryShort(input)
+		ok, err := campaignService.QueryRedeemHistoryShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

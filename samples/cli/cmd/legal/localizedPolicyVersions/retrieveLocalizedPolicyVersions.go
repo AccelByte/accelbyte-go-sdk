@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package localizedPolicyVersions
 
 import (
@@ -27,7 +29,7 @@ var RetrieveLocalizedPolicyVersionsCmd = &cobra.Command{
 		input := &localized_policy_versions.RetrieveLocalizedPolicyVersionsParams{
 			PolicyVersionID: policyVersionId,
 		}
-		ok, err := localizedPolicyVersionsService.RetrieveLocalizedPolicyVersionsShort(input)
+		ok, err := localizedPolicyVersionsService.RetrieveLocalizedPolicyVersionsShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

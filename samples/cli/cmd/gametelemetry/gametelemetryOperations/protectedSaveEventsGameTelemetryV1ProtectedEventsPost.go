@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package gametelemetryOperations
 
 import (
@@ -32,8 +34,10 @@ var ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd = &cobra.Command{
 		if errBody != nil {
 			return errBody
 		}
+		cookie, _ := cmd.Flags().GetString("cookie")
 		input := &gametelemetry_operations.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams{
-			Body: body,
+			Body:   body,
+			Cookie: &cookie,
 		}
 		errInput := gametelemetryOperationsService.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(input, nil)
 		if errInput != nil {
@@ -49,4 +53,5 @@ var ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd = &cobra.Command{
 func init() {
 	ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd.Flags().StringP("body", "", "", "Body")
 	_ = ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd.MarkFlagRequired("body")
+	ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd.Flags().StringP("cookie", "", "", "Cookie")
 }

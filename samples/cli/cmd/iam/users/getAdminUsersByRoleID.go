@@ -37,7 +37,7 @@ var GetAdminUsersByRoleIDCmd = &cobra.Command{
 			Limit:     &limit,
 			RoleID:    &roleId,
 		}
-		ok, err := usersService.GetAdminUsersByRoleIDShort(input)
+		ok, err := usersService.GetAdminUsersByRoleIDShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

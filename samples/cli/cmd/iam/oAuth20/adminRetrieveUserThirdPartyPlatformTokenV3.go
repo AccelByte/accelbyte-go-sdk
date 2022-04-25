@@ -41,7 +41,7 @@ var AdminRetrieveUserThirdPartyPlatformTokenV3Cmd = &cobra.Command{
 			UserID:     userId,
 			HTTPClient: httpClient,
 		}
-		ok, err := oAuth20Service.AdminRetrieveUserThirdPartyPlatformTokenV3Short(input)
+		ok, err := oAuth20Service.AdminRetrieveUserThirdPartyPlatformTokenV3Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

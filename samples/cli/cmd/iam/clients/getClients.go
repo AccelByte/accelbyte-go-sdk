@@ -26,7 +26,7 @@ var GetClientsCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &clients.GetClientsParams{}
-		ok, err := clientsService.GetClientsShort(input)
+		ok, err := clientsService.GetClientsShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

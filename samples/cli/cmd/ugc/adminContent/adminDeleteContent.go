@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package adminContent
 
 import (
@@ -33,7 +35,7 @@ var AdminDeleteContentCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := adminContentService.AdminDeleteContentShort(input)
+		errInput := adminContentService.AdminDeleteContentShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

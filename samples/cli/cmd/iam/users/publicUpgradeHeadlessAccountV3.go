@@ -39,7 +39,7 @@ var PublicUpgradeHeadlessAccountV3Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := usersService.PublicUpgradeHeadlessAccountV3Short(input)
+		ok, err := usersService.PublicUpgradeHeadlessAccountV3Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

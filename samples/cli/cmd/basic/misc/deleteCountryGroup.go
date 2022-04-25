@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package misc
 
 import (
@@ -29,7 +31,7 @@ var DeleteCountryGroupCmd = &cobra.Command{
 			CountryGroupCode: countryGroupCode,
 			Namespace:        namespace,
 		}
-		errInput := miscService.DeleteCountryGroupShort(input)
+		errInput := miscService.DeleteCountryGroupShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

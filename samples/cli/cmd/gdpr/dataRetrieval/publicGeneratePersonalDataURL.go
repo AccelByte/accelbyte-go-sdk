@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package dataRetrieval
 
 import (
@@ -41,7 +43,7 @@ var PublicGeneratePersonalDataURLCmd = &cobra.Command{
 			UserID:      userId,
 			HTTPClient:  httpClient,
 		}
-		ok, err := dataRetrievalService.PublicGeneratePersonalDataURLShort(input)
+		ok, err := dataRetrievalService.PublicGeneratePersonalDataURLShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

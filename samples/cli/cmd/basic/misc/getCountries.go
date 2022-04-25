@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package misc
 
 import (
@@ -29,7 +31,7 @@ var GetCountriesCmd = &cobra.Command{
 			Namespace: namespace,
 			Lang:      &lang,
 		}
-		ok, err := miscService.GetCountriesShort(input)
+		ok, err := miscService.GetCountriesShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

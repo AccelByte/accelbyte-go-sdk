@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package keyGroup
 
 import (
@@ -35,7 +37,7 @@ var QueryKeyGroupsCmd = &cobra.Command{
 			Offset:    &offset,
 			Tag:       &tag,
 		}
-		ok, err := keyGroupService.QueryKeyGroupsShort(input)
+		ok, err := keyGroupService.QueryKeyGroupsShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

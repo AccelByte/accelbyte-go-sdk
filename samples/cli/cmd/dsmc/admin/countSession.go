@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package admin
 
 import (
@@ -29,7 +31,7 @@ var CountSessionCmd = &cobra.Command{
 			Namespace: namespace,
 			Region:    &region,
 		}
-		ok, err := adminService.CountSessionShort(input)
+		ok, err := adminService.CountSessionShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

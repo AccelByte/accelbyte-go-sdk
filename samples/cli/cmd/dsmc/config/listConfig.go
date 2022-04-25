@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package config
 
 import (
@@ -24,7 +26,7 @@ var ListConfigCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &config.ListConfigParams{}
-		ok, err := configService.ListConfigShort(input)
+		ok, err := configService.ListConfigShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

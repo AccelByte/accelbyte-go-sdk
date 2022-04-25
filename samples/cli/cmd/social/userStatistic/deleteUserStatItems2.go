@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package userStatistic
 
 import (
@@ -33,7 +35,7 @@ var DeleteUserStatItems2Cmd = &cobra.Command{
 			UserID:        userId,
 			AdditionalKey: &additionalKey,
 		}
-		errInput := userStatisticService.DeleteUserStatItems2Short(input)
+		errInput := userStatisticService.DeleteUserStatItems2Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

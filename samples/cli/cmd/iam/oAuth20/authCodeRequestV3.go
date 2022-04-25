@@ -43,7 +43,7 @@ var AuthCodeRequestV3Cmd = &cobra.Command{
 			RequestID:   requestId,
 			HTTPClient:  httpClient,
 		}
-		_, errInput := oAuth20Service.AuthCodeRequestV3Short(input)
+		_, errInput := oAuth20Service.AuthCodeRequestV3Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

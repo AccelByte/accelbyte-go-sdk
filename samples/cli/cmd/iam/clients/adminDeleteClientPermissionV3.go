@@ -35,7 +35,7 @@ var AdminDeleteClientPermissionV3Cmd = &cobra.Command{
 			Namespace: namespace,
 			Resource:  resource,
 		}
-		errInput := clientsService.AdminDeleteClientPermissionV3Short(input)
+		errInput := clientsService.AdminDeleteClientPermissionV3Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

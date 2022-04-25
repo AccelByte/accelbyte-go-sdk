@@ -33,7 +33,7 @@ var PublicSearchUserV3Cmd = &cobra.Command{
 			By:        &by,
 			Query:     &query,
 		}
-		ok, err := usersService.PublicSearchUserV3Short(input)
+		ok, err := usersService.PublicSearchUserV3Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

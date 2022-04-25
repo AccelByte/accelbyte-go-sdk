@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package memberRequest
 
 import (
@@ -31,7 +33,7 @@ var GetGroupInvitationRequestPublicV1Cmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := memberRequestService.GetGroupInvitationRequestPublicV1Short(input)
+		ok, err := memberRequestService.GetGroupInvitationRequestPublicV1Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

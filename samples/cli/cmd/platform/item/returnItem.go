@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package item
 
 import (
@@ -39,7 +41,7 @@ var ReturnItemCmd = &cobra.Command{
 			ItemID:    itemId,
 			Namespace: namespace,
 		}
-		errInput := itemService.ReturnItemShort(input)
+		errInput := itemService.ReturnItemShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

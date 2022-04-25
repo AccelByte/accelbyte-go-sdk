@@ -39,7 +39,7 @@ var AdminGetBulkUserByEmailAddressV3Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := usersService.AdminGetBulkUserByEmailAddressV3Short(input)
+		ok, err := usersService.AdminGetBulkUserByEmailAddressV3Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

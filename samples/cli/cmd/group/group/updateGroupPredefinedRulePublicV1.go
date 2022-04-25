@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package group
 
 import (
@@ -41,7 +43,7 @@ var UpdateGroupPredefinedRulePublicV1Cmd = &cobra.Command{
 			GroupID:       groupId,
 			Namespace:     namespace,
 		}
-		ok, err := groupService.UpdateGroupPredefinedRulePublicV1Short(input)
+		ok, err := groupService.UpdateGroupPredefinedRulePublicV1Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

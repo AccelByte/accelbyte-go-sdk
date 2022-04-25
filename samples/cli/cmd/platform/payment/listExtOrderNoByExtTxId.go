@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package payment
 
 import (
@@ -29,7 +31,7 @@ var ListExtOrderNoByExtTxIdCmd = &cobra.Command{
 			Namespace: namespace,
 			ExtTxID:   extTxId,
 		}
-		ok, err := paymentService.ListExtOrderNoByExtTxIDShort(input)
+		ok, err := paymentService.ListExtOrderNoByExtTxIDShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

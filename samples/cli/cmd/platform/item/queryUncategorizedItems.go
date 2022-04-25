@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package item
 
 import (
@@ -37,7 +39,7 @@ var QueryUncategorizedItemsCmd = &cobra.Command{
 			SortBy:     &sortBy,
 			StoreID:    &storeId,
 		}
-		ok, err := itemService.QueryUncategorizedItemsShort(input)
+		ok, err := itemService.QueryUncategorizedItemsShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

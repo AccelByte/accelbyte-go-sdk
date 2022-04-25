@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package deploymentConfig
 
 import (
@@ -33,7 +35,7 @@ var GetAllDeploymentCmd = &cobra.Command{
 			Name:      &name,
 			Offset:    &offset,
 		}
-		ok, err := deploymentConfigService.GetAllDeploymentShort(input)
+		ok, err := deploymentConfigService.GetAllDeploymentShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

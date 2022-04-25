@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package season
 
 import (
@@ -40,7 +42,7 @@ var QuerySeasonsCmd = &cobra.Command{
 			Offset:    &offset,
 			Status:    status,
 		}
-		ok, err := seasonService.QuerySeasonsShort(input)
+		ok, err := seasonService.QuerySeasonsShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

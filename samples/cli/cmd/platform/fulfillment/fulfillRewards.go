@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package fulfillment
 
 import (
@@ -39,7 +41,7 @@ var FulfillRewardsCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := fulfillmentService.FulfillRewardsShort(input)
+		errInput := fulfillmentService.FulfillRewardsShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

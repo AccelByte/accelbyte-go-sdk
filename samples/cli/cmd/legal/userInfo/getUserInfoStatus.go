@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package userInfo
 
 import (
@@ -27,7 +29,7 @@ var GetUserInfoStatusCmd = &cobra.Command{
 		input := &user_info.GetUserInfoStatusParams{
 			Namespaces: &namespaces,
 		}
-		ok, err := userInfoService.GetUserInfoStatusShort(input)
+		ok, err := userInfoService.GetUserInfoStatusShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

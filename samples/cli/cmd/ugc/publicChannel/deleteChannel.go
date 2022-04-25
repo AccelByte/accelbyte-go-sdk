@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package publicChannel
 
 import (
@@ -31,7 +33,7 @@ var DeleteChannelCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := publicChannelService.DeleteChannelShort(input)
+		errInput := publicChannelService.DeleteChannelShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

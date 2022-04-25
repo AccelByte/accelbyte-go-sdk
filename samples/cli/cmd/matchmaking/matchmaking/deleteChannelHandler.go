@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package matchmaking
 
 import (
@@ -29,7 +31,7 @@ var DeleteChannelHandlerCmd = &cobra.Command{
 			Channel:   channel,
 			Namespace: namespace,
 		}
-		errInput := matchmakingService.DeleteChannelHandlerShort(input)
+		errInput := matchmakingService.DeleteChannelHandlerShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

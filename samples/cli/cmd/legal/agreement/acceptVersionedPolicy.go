@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package agreement
 
 import (
@@ -27,7 +29,7 @@ var AcceptVersionedPolicyCmd = &cobra.Command{
 		input := &agreement.AcceptVersionedPolicyParams{
 			LocalizedPolicyVersionID: localizedPolicyVersionId,
 		}
-		errInput := agreementService.AcceptVersionedPolicyShort(input)
+		errInput := agreementService.AcceptVersionedPolicyShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

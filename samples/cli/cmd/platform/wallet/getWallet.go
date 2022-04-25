@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package wallet
 
 import (
@@ -29,7 +31,7 @@ var GetWalletCmd = &cobra.Command{
 			Namespace: namespace,
 			WalletID:  walletId,
 		}
-		ok, err := walletService.GetWalletShort(input)
+		ok, err := walletService.GetWalletShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

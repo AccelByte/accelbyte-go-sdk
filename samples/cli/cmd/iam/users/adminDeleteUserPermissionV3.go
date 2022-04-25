@@ -35,7 +35,7 @@ var AdminDeleteUserPermissionV3Cmd = &cobra.Command{
 			Resource:  resource,
 			UserID:    userId,
 		}
-		errInput := usersService.AdminDeleteUserPermissionV3Short(input)
+		errInput := usersService.AdminDeleteUserPermissionV3Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

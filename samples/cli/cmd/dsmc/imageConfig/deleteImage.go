@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package imageConfig
 
 import (
@@ -31,7 +33,7 @@ var DeleteImageCmd = &cobra.Command{
 			ImageURI:  imageURI,
 			Version:   version,
 		}
-		errInput := imageConfigService.DeleteImageShort(input)
+		errInput := imageConfigService.DeleteImageShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

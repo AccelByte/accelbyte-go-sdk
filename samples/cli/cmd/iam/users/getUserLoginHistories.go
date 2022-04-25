@@ -37,7 +37,7 @@ var GetUserLoginHistoriesCmd = &cobra.Command{
 			Before:    &before,
 			Limit:     &limit,
 		}
-		ok, err := usersService.GetUserLoginHistoriesShort(input)
+		ok, err := usersService.GetUserLoginHistoriesShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

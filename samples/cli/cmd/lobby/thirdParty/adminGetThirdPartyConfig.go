@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package thirdParty
 
 import (
@@ -27,7 +29,7 @@ var AdminGetThirdPartyConfigCmd = &cobra.Command{
 		input := &third_party.AdminGetThirdPartyConfigParams{
 			Namespace: namespace,
 		}
-		ok, err := thirdPartyService.AdminGetThirdPartyConfigShort(input)
+		ok, err := thirdPartyService.AdminGetThirdPartyConfigShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

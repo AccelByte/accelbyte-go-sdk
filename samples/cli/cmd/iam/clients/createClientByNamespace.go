@@ -39,7 +39,7 @@ var CreateClientByNamespaceCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := clientsService.CreateClientByNamespaceShort(input)
+		ok, err := clientsService.CreateClientByNamespaceShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

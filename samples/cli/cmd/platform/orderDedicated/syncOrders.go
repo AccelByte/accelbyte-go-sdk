@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package orderDedicated
 
 import (
@@ -31,7 +33,7 @@ var SyncOrdersCmd = &cobra.Command{
 			End:              end,
 			Start:            start,
 		}
-		ok, err := orderDedicatedService.SyncOrdersShort(input)
+		ok, err := orderDedicatedService.SyncOrdersShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

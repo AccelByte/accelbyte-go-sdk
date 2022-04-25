@@ -31,7 +31,7 @@ var SearchUserCmd = &cobra.Command{
 			Namespace: namespace,
 			Query:     &query,
 		}
-		ok, err := usersService.SearchUserShort(input)
+		ok, err := usersService.SearchUserShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

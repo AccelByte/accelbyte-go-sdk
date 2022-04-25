@@ -35,7 +35,7 @@ var PublicGetRolesV3Cmd = &cobra.Command{
 			IsWildcard: &isWildcard,
 			Limit:      &limit,
 		}
-		ok, err := rolesService.PublicGetRolesV3Short(input)
+		ok, err := rolesService.PublicGetRolesV3Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

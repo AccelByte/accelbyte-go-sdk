@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package entitlement
 
 import (
@@ -31,7 +33,7 @@ var PublicGetUserAppEntitlementOwnershipByAppIdCmd = &cobra.Command{
 			UserID:    userId,
 			AppID:     appId,
 		}
-		ok, err := entitlementService.PublicGetUserAppEntitlementOwnershipByAppIDShort(input)
+		ok, err := entitlementService.PublicGetUserAppEntitlementOwnershipByAppIDShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

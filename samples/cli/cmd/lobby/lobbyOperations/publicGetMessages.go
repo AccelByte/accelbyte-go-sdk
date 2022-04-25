@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package lobbyOperations
 
 import (
@@ -24,7 +26,7 @@ var PublicGetMessagesCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &lobby_operations.PublicGetMessagesParams{}
-		ok, err := lobbyOperationsService.PublicGetMessagesShort(input)
+		ok, err := lobbyOperationsService.PublicGetMessagesShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

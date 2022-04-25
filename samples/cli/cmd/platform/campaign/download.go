@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package campaign
 
 import (
@@ -31,7 +33,7 @@ var DownloadCmd = &cobra.Command{
 			Namespace:  namespace,
 			BatchNo:    &batchNo,
 		}
-		errInput := campaignService.DownloadShort(input)
+		errInput := campaignService.DownloadShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -35,7 +35,7 @@ var LogoutCmd = &cobra.Command{
 		input := &o_auth2_0_extension.LogoutParams{
 			HTTPClient: httpClient,
 		}
-		errInput := oAuth20ExtensionService.LogoutShort(input)
+		errInput := oAuth20ExtensionService.LogoutShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -26,7 +26,7 @@ var AdminGetListBanReasonV3Cmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &bans.AdminGetListBanReasonV3Params{}
-		ok, err := bansService.AdminGetListBanReasonV3Short(input)
+		ok, err := bansService.AdminGetListBanReasonV3Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -31,7 +31,7 @@ var AdminDisableUserMFAV4Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := usersV4Service.AdminDisableUserMFAV4Short(input)
+		errInput := usersV4Service.AdminDisableUserMFAV4Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

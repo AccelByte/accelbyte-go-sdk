@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package publicContent
 
 import (
@@ -33,7 +35,7 @@ var DeleteContentScreenshotCmd = &cobra.Command{
 			ScreenshotID: screenshotId,
 			UserID:       userId,
 		}
-		errInput := publicContentService.DeleteContentScreenshotShort(input)
+		errInput := publicContentService.DeleteContentScreenshotShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package adminPlayerRecord
 
 import (
@@ -31,7 +33,7 @@ var AdminDeletePlayerPublicRecordHandlerV1Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := adminPlayerRecordService.AdminDeletePlayerPublicRecordHandlerV1Short(input)
+		errInput := adminPlayerRecordService.AdminDeletePlayerPublicRecordHandlerV1Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

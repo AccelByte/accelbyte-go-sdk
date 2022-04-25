@@ -29,7 +29,7 @@ var GetListCountryAgeRestrictionCmd = &cobra.Command{
 		input := &users.GetListCountryAgeRestrictionParams{
 			Namespace: namespace,
 		}
-		ok, err := usersService.GetListCountryAgeRestrictionShort(input)
+		ok, err := usersService.GetListCountryAgeRestrictionShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

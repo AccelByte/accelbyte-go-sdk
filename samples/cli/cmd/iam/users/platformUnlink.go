@@ -43,7 +43,7 @@ var PlatformUnlinkCmd = &cobra.Command{
 			UserID:            userId,
 			HTTPClient:        httpClient,
 		}
-		errInput := usersService.PlatformUnlinkShort(input)
+		errInput := usersService.PlatformUnlinkShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

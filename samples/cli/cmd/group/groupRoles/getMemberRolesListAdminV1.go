@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package groupRoles
 
 import (
@@ -31,7 +33,7 @@ var GetMemberRolesListAdminV1Cmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := groupRolesService.GetMemberRolesListAdminV1Short(input)
+		ok, err := groupRolesService.GetMemberRolesListAdminV1Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

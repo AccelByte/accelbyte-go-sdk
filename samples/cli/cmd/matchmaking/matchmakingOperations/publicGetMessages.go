@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package matchmakingOperations
 
 import (
@@ -24,7 +26,7 @@ var PublicGetMessagesCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &matchmaking_operations.PublicGetMessagesParams{}
-		ok, err := matchmakingOperationsService.PublicGetMessagesShort(input)
+		ok, err := matchmakingOperationsService.PublicGetMessagesShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

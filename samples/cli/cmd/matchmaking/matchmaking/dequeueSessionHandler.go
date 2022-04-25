@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package matchmaking
 
 import (
@@ -37,7 +39,7 @@ var DequeueSessionHandlerCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := matchmakingService.DequeueSessionHandlerShort(input)
+		errInput := matchmakingService.DequeueSessionHandlerShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

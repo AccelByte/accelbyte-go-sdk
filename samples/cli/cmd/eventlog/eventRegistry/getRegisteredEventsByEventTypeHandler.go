@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package eventRegistry
 
 import (
@@ -27,7 +29,7 @@ var GetRegisteredEventsByEventTypeHandlerCmd = &cobra.Command{
 		input := &event_registry.GetRegisteredEventsByEventTypeHandlerParams{
 			EventType: eventType,
 		}
-		ok, err := eventRegistryService.GetRegisteredEventsByEventTypeHandlerShort(input)
+		ok, err := eventRegistryService.GetRegisteredEventsByEventTypeHandlerShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

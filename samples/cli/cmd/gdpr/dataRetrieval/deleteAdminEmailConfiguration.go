@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package dataRetrieval
 
 import (
@@ -36,7 +38,7 @@ var DeleteAdminEmailConfigurationCmd = &cobra.Command{
 			Namespace: namespace,
 			Emails:    emails,
 		}
-		errInput := dataRetrievalService.DeleteAdminEmailConfigurationShort(input)
+		errInput := dataRetrievalService.DeleteAdminEmailConfigurationShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

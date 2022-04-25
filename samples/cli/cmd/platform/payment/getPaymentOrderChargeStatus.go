@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package payment
 
 import (
@@ -29,7 +31,7 @@ var GetPaymentOrderChargeStatusCmd = &cobra.Command{
 			Namespace:      namespace,
 			PaymentOrderNo: paymentOrderNo,
 		}
-		ok, err := paymentService.GetPaymentOrderChargeStatusShort(input)
+		ok, err := paymentService.GetPaymentOrderChargeStatusShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

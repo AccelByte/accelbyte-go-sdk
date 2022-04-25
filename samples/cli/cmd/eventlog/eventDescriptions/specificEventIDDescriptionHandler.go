@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package eventDescriptions
 
 import (
@@ -27,7 +29,7 @@ var SpecificEventIDDescriptionHandlerCmd = &cobra.Command{
 		input := &event_descriptions.SpecificEventIDDescriptionHandlerParams{
 			EventIds: &eventIds,
 		}
-		ok, err := eventDescriptionsService.SpecificEventIDDescriptionHandlerShort(input)
+		ok, err := eventDescriptionsService.SpecificEventIDDescriptionHandlerShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package campaign
 
 import (
@@ -29,7 +31,7 @@ var GetCampaignDynamicCmd = &cobra.Command{
 			CampaignID: campaignId,
 			Namespace:  namespace,
 		}
-		ok, err := campaignService.GetCampaignDynamicShort(input)
+		ok, err := campaignService.GetCampaignDynamicShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

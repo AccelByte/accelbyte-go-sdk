@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package statConfiguration
 
 import (
@@ -33,7 +35,7 @@ var QueryStatsCmd = &cobra.Command{
 			Offset:    &offset,
 			Keyword:   keyword,
 		}
-		ok, err := statConfigurationService.QueryStatsShort(input)
+		ok, err := statConfigurationService.QueryStatsShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

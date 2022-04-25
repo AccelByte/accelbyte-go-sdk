@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package slotConfig
 
 import (
@@ -27,7 +29,7 @@ var GetNamespaceSlotConfigCmd = &cobra.Command{
 		input := &slot_config.GetNamespaceSlotConfigParams{
 			Namespace: namespace,
 		}
-		ok, err := slotConfigService.GetNamespaceSlotConfigShort(input)
+		ok, err := slotConfigService.GetNamespaceSlotConfigShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

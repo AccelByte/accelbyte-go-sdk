@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package baseLegalPolicies
 
 import (
@@ -27,7 +29,7 @@ var RetrieveSinglePolicyCmd = &cobra.Command{
 		input := &base_legal_policies.RetrieveSinglePolicyParams{
 			BasePolicyID: basePolicyId,
 		}
-		ok, err := baseLegalPoliciesService.RetrieveSinglePolicyShort(input)
+		ok, err := baseLegalPoliciesService.RetrieveSinglePolicyShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

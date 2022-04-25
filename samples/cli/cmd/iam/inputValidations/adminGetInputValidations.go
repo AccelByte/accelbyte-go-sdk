@@ -26,7 +26,7 @@ var AdminGetInputValidationsCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &input_validations.AdminGetInputValidationsParams{}
-		ok, err := inputValidationsService.AdminGetInputValidationsShort(input)
+		ok, err := inputValidationsService.AdminGetInputValidationsShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

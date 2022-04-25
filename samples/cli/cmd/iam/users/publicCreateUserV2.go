@@ -39,7 +39,7 @@ var PublicCreateUserV2Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := usersService.PublicCreateUserV2Short(input)
+		ok, err := usersService.PublicCreateUserV2Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

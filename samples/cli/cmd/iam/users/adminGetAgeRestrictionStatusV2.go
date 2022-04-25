@@ -29,7 +29,7 @@ var AdminGetAgeRestrictionStatusV2Cmd = &cobra.Command{
 		input := &users.AdminGetAgeRestrictionStatusV2Params{
 			Namespace: namespace,
 		}
-		ok, err := usersService.AdminGetAgeRestrictionStatusV2Short(input)
+		ok, err := usersService.AdminGetAgeRestrictionStatusV2Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

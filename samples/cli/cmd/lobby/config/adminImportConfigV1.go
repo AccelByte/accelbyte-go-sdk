@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package config
 
 import (
@@ -35,7 +37,7 @@ var AdminImportConfigV1Cmd = &cobra.Command{
 			Namespace:  namespace,
 			HTTPClient: httpClient,
 		}
-		ok, err := configService.AdminImportConfigV1Short(input)
+		ok, err := configService.AdminImportConfigV1Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package campaign
 
 import (
@@ -31,7 +33,7 @@ var BulkEnableCodesCmd = &cobra.Command{
 			Namespace:  namespace,
 			BatchNo:    &batchNo,
 		}
-		ok, err := campaignService.BulkEnableCodesShort(input)
+		ok, err := campaignService.BulkEnableCodesShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

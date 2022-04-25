@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package config
 
 import (
@@ -29,7 +31,7 @@ var DeletePortCmd = &cobra.Command{
 			Name:      name,
 			Namespace: namespace,
 		}
-		ok, err := configService.DeletePortShort(input)
+		ok, err := configService.DeletePortShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

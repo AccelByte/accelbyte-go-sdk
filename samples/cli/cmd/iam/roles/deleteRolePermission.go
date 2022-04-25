@@ -33,7 +33,7 @@ var DeleteRolePermissionCmd = &cobra.Command{
 			Resource: resource,
 			RoleID:   roleId,
 		}
-		errInput := rolesService.DeleteRolePermissionShort(input)
+		errInput := rolesService.DeleteRolePermissionShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

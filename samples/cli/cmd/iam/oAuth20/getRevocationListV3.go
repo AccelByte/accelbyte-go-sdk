@@ -35,7 +35,7 @@ var GetRevocationListV3Cmd = &cobra.Command{
 		input := &o_auth2_0.GetRevocationListV3Params{
 			HTTPClient: httpClient,
 		}
-		ok, err := oAuth20Service.GetRevocationListV3Short(input)
+		ok, err := oAuth20Service.GetRevocationListV3Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

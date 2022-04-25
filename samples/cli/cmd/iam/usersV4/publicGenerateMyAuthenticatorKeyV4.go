@@ -29,7 +29,7 @@ var PublicGenerateMyAuthenticatorKeyV4Cmd = &cobra.Command{
 		input := &users_v4.PublicGenerateMyAuthenticatorKeyV4Params{
 			Namespace: namespace,
 		}
-		ok, err := usersV4Service.PublicGenerateMyAuthenticatorKeyV4Short(input)
+		ok, err := usersV4Service.PublicGenerateMyAuthenticatorKeyV4Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

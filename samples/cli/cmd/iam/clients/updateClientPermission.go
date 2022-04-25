@@ -39,7 +39,7 @@ var UpdateClientPermissionCmd = &cobra.Command{
 			Body:     body,
 			ClientID: clientId,
 		}
-		errInput := clientsService.UpdateClientPermissionShort(input)
+		errInput := clientsService.UpdateClientPermissionShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

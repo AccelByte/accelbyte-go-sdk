@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package matchmaking
 
 import (
@@ -31,7 +33,7 @@ var DeleteSessionInChannelCmd = &cobra.Command{
 			MatchID:     matchID,
 			Namespace:   namespace,
 		}
-		errInput := matchmakingService.DeleteSessionInChannelShort(input)
+		errInput := matchmakingService.DeleteSessionInChannelShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

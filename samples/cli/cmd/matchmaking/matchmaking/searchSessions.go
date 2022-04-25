@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package matchmaking
 
 import (
@@ -41,7 +43,7 @@ var SearchSessionsCmd = &cobra.Command{
 			Limit:     limit,
 			Offset:    offset,
 		}
-		ok, err := matchmakingService.SearchSessionsShort(input)
+		ok, err := matchmakingService.SearchSessionsShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

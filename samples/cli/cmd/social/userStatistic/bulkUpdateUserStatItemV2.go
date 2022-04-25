@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package userStatistic
 
 import (
@@ -37,7 +39,7 @@ var BulkUpdateUserStatItemV2Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := userStatisticService.BulkUpdateUserStatItemV2Short(input)
+		ok, err := userStatisticService.BulkUpdateUserStatItemV2Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

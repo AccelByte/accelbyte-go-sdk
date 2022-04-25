@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package userAction
 
 import (
@@ -27,7 +29,7 @@ var GetActionsCmd = &cobra.Command{
 		input := &user_action.GetActionsParams{
 			Namespace: namespace,
 		}
-		ok, err := userActionService.GetActionsShort(input)
+		ok, err := userActionService.GetActionsShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

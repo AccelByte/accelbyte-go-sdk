@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package iap
 
 import (
@@ -43,7 +45,7 @@ var UpdateGoogleP12FileCmd = &cobra.Command{
 			Namespace:  namespace,
 			HTTPClient: httpClient,
 		}
-		ok, err := iapService.UpdateGoogleP12FileShort(input)
+		ok, err := iapService.UpdateGoogleP12FileShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -26,7 +26,7 @@ var AdminGetMyEnabledFactorsV4Cmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &users_v4.AdminGetMyEnabledFactorsV4Params{}
-		ok, err := usersV4Service.AdminGetMyEnabledFactorsV4Short(input)
+		ok, err := usersV4Service.AdminGetMyEnabledFactorsV4Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

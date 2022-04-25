@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package eventV2
 
 import (
@@ -39,7 +41,7 @@ var GetEventSpecificUserV2HandlerCmd = &cobra.Command{
 			PageSize:  &pageSize,
 			StartDate: &startDate,
 		}
-		ok, err := eventV2Service.GetEventSpecificUserV2HandlerShort(input)
+		ok, err := eventV2Service.GetEventSpecificUserV2HandlerShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

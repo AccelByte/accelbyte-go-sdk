@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package player
 
 import (
@@ -39,7 +41,7 @@ var AdminSetPlayerSessionAttributeCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := playerService.AdminSetPlayerSessionAttributeShort(input)
+		errInput := playerService.AdminSetPlayerSessionAttributeShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

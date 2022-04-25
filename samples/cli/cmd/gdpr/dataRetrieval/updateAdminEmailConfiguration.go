@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package dataRetrieval
 
 import (
@@ -36,7 +38,7 @@ var UpdateAdminEmailConfigurationCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := dataRetrievalService.UpdateAdminEmailConfigurationShort(input)
+		errInput := dataRetrievalService.UpdateAdminEmailConfigurationShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

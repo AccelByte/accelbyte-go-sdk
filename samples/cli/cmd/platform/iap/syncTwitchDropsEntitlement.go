@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package iap
 
 import (
@@ -39,7 +41,7 @@ var SyncTwitchDropsEntitlementCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := iapService.SyncTwitchDropsEntitlementShort(input)
+		errInput := iapService.SyncTwitchDropsEntitlementShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package notification
 
 import (
@@ -31,7 +33,7 @@ var PublishTemplateCmd = &cobra.Command{
 			TemplateLanguage: templateLanguage,
 			TemplateSlug:     templateSlug,
 		}
-		errInput := notificationService.PublishTemplateShort(input)
+		errInput := notificationService.PublishTemplateShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

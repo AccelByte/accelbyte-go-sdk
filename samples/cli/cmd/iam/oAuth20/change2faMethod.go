@@ -39,7 +39,7 @@ var Change2faMethodCmd = &cobra.Command{
 			MfaToken:   mfaToken,
 			HTTPClient: httpClient,
 		}
-		errInput := oAuth20Service.Change2FAMethodShort(input)
+		errInput := oAuth20Service.Change2FAMethodShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

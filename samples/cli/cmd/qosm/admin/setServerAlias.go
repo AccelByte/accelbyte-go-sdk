@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package admin
 
 import (
@@ -37,7 +39,7 @@ var SetServerAliasCmd = &cobra.Command{
 			Body:   body,
 			Region: region,
 		}
-		errInput := adminService.SetServerAliasShort(input)
+		errInput := adminService.SetServerAliasShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

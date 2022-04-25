@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package statConfiguration
 
 import (
@@ -29,7 +31,7 @@ var DeleteStatCmd = &cobra.Command{
 			Namespace: namespace,
 			StatCode:  statCode,
 		}
-		errInput := statConfigurationService.DeleteStatShort(input)
+		errInput := statConfigurationService.DeleteStatShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package matchmaking
 
 import (
@@ -29,7 +31,7 @@ var BulkGetSessionsCmd = &cobra.Command{
 			Namespace: namespace,
 			MatchIDs:  &matchIDs,
 		}
-		ok, err := matchmakingService.BulkGetSessionsShort(input)
+		ok, err := matchmakingService.BulkGetSessionsShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

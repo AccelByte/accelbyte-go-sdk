@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package notification
 
 import (
@@ -29,7 +31,7 @@ var GetTopicByTopicNameCmd = &cobra.Command{
 			Namespace: namespace,
 			Topic:     topic,
 		}
-		ok, err := notificationService.GetTopicByTopicNameShort(input)
+		ok, err := notificationService.GetTopicByTopicNameShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

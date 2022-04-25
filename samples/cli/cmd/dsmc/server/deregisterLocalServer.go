@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package server
 
 import (
@@ -37,7 +39,7 @@ var DeregisterLocalServerCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := serverService.DeregisterLocalServerShort(input)
+		errInput := serverService.DeregisterLocalServerShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

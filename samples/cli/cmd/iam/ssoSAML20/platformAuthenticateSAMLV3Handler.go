@@ -43,7 +43,7 @@ var PlatformAuthenticateSAMLV3HandlerCmd = &cobra.Command{
 			State:      state,
 			HTTPClient: httpClient,
 		}
-		_, errInput := ssoSAML20Service.PlatformAuthenticateSAMLV3HandlerShort(input)
+		_, errInput := ssoSAML20Service.PlatformAuthenticateSAMLV3HandlerShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

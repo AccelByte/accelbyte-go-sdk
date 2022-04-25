@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package item
 
 import (
@@ -29,7 +31,7 @@ var GetItemDynamicDataCmd = &cobra.Command{
 			ItemID:    itemId,
 			Namespace: namespace,
 		}
-		ok, err := itemService.GetItemDynamicDataShort(input)
+		ok, err := itemService.GetItemDynamicDataShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

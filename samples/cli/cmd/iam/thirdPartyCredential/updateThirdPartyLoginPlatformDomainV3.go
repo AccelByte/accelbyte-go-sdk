@@ -41,7 +41,7 @@ var UpdateThirdPartyLoginPlatformDomainV3Cmd = &cobra.Command{
 			Namespace:  namespace,
 			PlatformID: platformId,
 		}
-		ok, err := thirdPartyCredentialService.UpdateThirdPartyLoginPlatformDomainV3Short(input)
+		ok, err := thirdPartyCredentialService.UpdateThirdPartyLoginPlatformDomainV3Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

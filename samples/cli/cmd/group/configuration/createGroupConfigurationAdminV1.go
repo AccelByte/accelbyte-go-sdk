@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package configuration
 
 import (
@@ -37,7 +39,7 @@ var CreateGroupConfigurationAdminV1Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := configurationService.CreateGroupConfigurationAdminV1Short(input)
+		ok, err := configurationService.CreateGroupConfigurationAdminV1Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

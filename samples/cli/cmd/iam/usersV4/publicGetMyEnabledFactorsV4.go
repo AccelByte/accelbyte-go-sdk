@@ -29,7 +29,7 @@ var PublicGetMyEnabledFactorsV4Cmd = &cobra.Command{
 		input := &users_v4.PublicGetMyEnabledFactorsV4Params{
 			Namespace: namespace,
 		}
-		ok, err := usersV4Service.PublicGetMyEnabledFactorsV4Short(input)
+		ok, err := usersV4Service.PublicGetMyEnabledFactorsV4Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

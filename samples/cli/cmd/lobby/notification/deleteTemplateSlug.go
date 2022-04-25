@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package notification
 
 import (
@@ -29,7 +31,7 @@ var DeleteTemplateSlugCmd = &cobra.Command{
 			Namespace:    namespace,
 			TemplateSlug: templateSlug,
 		}
-		errInput := notificationService.DeleteTemplateSlugShort(input)
+		errInput := notificationService.DeleteTemplateSlugShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

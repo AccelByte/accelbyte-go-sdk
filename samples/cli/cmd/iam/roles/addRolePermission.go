@@ -43,7 +43,7 @@ var AddRolePermissionCmd = &cobra.Command{
 			Resource: resource,
 			RoleID:   roleId,
 		}
-		errInput := rolesService.AddRolePermissionShort(input)
+		errInput := rolesService.AddRolePermissionShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

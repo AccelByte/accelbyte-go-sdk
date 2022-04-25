@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package userAction
 
 import (
@@ -37,7 +39,7 @@ var UnBanUsersCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := userActionService.UnBanUsersShort(input)
+		errInput := userActionService.UnBanUsersShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

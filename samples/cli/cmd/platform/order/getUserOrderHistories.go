@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package order
 
 import (
@@ -31,7 +33,7 @@ var GetUserOrderHistoriesCmd = &cobra.Command{
 			OrderNo:   orderNo,
 			UserID:    userId,
 		}
-		ok, err := orderService.GetUserOrderHistoriesShort(input)
+		ok, err := orderService.GetUserOrderHistoriesShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

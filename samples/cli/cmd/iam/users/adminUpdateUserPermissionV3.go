@@ -41,7 +41,7 @@ var AdminUpdateUserPermissionV3Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := usersService.AdminUpdateUserPermissionV3Short(input)
+		errInput := usersService.AdminUpdateUserPermissionV3Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package campaign
 
 import (
@@ -29,7 +31,7 @@ var DisableCodeCmd = &cobra.Command{
 			Code:      code,
 			Namespace: namespace,
 		}
-		ok, err := campaignService.DisableCodeShort(input)
+		ok, err := campaignService.DisableCodeShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package slot
 
 import (
@@ -41,7 +43,7 @@ var PublicUpdateUserNamespaceSlotMetadataCmd = &cobra.Command{
 			SlotID:    slotId,
 			UserID:    userId,
 		}
-		ok, err := slotService.PublicUpdateUserNamespaceSlotMetadataShort(input)
+		ok, err := slotService.PublicUpdateUserNamespaceSlotMetadataShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

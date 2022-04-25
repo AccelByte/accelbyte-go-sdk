@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package friends
 
 import (
@@ -39,7 +41,7 @@ var AddFriendsWithoutConfirmationCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := friendsService.AddFriendsWithoutConfirmationShort(input)
+		errInput := friendsService.AddFriendsWithoutConfirmationShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package publicFollow
 
 import (
@@ -33,7 +35,7 @@ var GetPublicFollowingCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := publicFollowService.GetPublicFollowingShort(input)
+		ok, err := publicFollowService.GetPublicFollowingShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

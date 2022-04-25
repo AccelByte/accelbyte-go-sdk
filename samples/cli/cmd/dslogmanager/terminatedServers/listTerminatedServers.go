@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package terminatedServers
 
 import (
@@ -53,7 +55,7 @@ var ListTerminatedServersCmd = &cobra.Command{
 			StartDate:  &startDate,
 			UserID:     &userId,
 		}
-		ok, err := terminatedServersService.ListTerminatedServersShort(input)
+		ok, err := terminatedServersService.ListTerminatedServersShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package adminGroup
 
 import (
@@ -39,7 +41,7 @@ var SingleAdminUpdateGroupCmd = &cobra.Command{
 			GroupID:   groupId,
 			Namespace: namespace,
 		}
-		ok, err := adminGroupService.SingleAdminUpdateGroupShort(input)
+		ok, err := adminGroupService.SingleAdminUpdateGroupShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

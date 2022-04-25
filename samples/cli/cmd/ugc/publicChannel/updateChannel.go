@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package publicChannel
 
 import (
@@ -41,7 +43,7 @@ var UpdateChannelCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := publicChannelService.UpdateChannelShort(input)
+		ok, err := publicChannelService.UpdateChannelShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

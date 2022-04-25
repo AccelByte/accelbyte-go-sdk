@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package eventRegistry
 
 import (
@@ -27,7 +29,7 @@ var UnregisterEventIDHandlerCmd = &cobra.Command{
 		input := &event_registry.UnregisterEventIDHandlerParams{
 			EventID: eventId,
 		}
-		errInput := eventRegistryService.UnregisterEventIDHandlerShort(input)
+		errInput := eventRegistryService.UnregisterEventIDHandlerShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

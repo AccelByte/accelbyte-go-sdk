@@ -48,7 +48,7 @@ var UserAuthenticationV3Cmd = &cobra.Command{
 			UserName:    userName,
 			HTTPClient:  httpClient,
 		}
-		_, errInput := oAuth20ExtensionService.UserAuthenticationV3Short(input)
+		_, errInput := oAuth20ExtensionService.UserAuthenticationV3Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

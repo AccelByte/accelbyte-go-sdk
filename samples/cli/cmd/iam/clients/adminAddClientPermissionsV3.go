@@ -41,7 +41,7 @@ var AdminAddClientPermissionsV3Cmd = &cobra.Command{
 			ClientID:  clientId,
 			Namespace: namespace,
 		}
-		errInput := clientsService.AdminAddClientPermissionsV3Short(input)
+		errInput := clientsService.AdminAddClientPermissionsV3Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

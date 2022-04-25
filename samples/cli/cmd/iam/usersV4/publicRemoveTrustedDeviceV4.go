@@ -26,10 +26,12 @@ var PublicRemoveTrustedDeviceV4Cmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		cookie, _ := cmd.Flags().GetString("cookie")
 		input := &users_v4.PublicRemoveTrustedDeviceV4Params{
+			Cookie:    &cookie,
 			Namespace: namespace,
 		}
-		errInput := usersV4Service.PublicRemoveTrustedDeviceV4Short(input)
+		errInput := usersV4Service.PublicRemoveTrustedDeviceV4Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 
@@ -41,6 +43,7 @@ var PublicRemoveTrustedDeviceV4Cmd = &cobra.Command{
 }
 
 func init() {
+	PublicRemoveTrustedDeviceV4Cmd.Flags().StringP("cookie", "", "", "Cookie")
 	PublicRemoveTrustedDeviceV4Cmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = PublicRemoveTrustedDeviceV4Cmd.MarkFlagRequired("namespace")
 }

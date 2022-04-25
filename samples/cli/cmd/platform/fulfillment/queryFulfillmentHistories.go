@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package fulfillment
 
 import (
@@ -35,7 +37,7 @@ var QueryFulfillmentHistoriesCmd = &cobra.Command{
 			Status:    &status,
 			UserID:    &userId,
 		}
-		ok, err := fulfillmentService.QueryFulfillmentHistoriesShort(input)
+		ok, err := fulfillmentService.QueryFulfillmentHistoriesShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

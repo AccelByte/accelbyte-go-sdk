@@ -31,7 +31,7 @@ var PublicGetInputValidationsCmd = &cobra.Command{
 			DefaultOnEmpty: &defaultOnEmpty,
 			LanguageCode:   &languageCode,
 		}
-		ok, err := inputValidationsService.PublicGetInputValidationsShort(input)
+		ok, err := inputValidationsService.PublicGetInputValidationsShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

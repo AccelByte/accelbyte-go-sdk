@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package userInfo
 
 import (
@@ -27,7 +29,7 @@ var InvalidateUserInfoCacheCmd = &cobra.Command{
 		input := &user_info.InvalidateUserInfoCacheParams{
 			Namespace: &namespace,
 		}
-		errInput := userInfoService.InvalidateUserInfoCacheShort(input)
+		errInput := userInfoService.InvalidateUserInfoCacheShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package userProfile
 
 import (
@@ -38,7 +40,7 @@ var UpdateCustomAttributesPartiallyCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := userProfileService.UpdateCustomAttributesPartiallyShort(input)
+		ok, err := userProfileService.UpdateCustomAttributesPartiallyShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

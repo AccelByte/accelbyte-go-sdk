@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package leaderboardConfiguration
 
 import (
@@ -29,7 +31,7 @@ var DeleteLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
 			LeaderboardCode: leaderboardCode,
 			Namespace:       namespace,
 		}
-		errInput := leaderboardConfigurationService.DeleteLeaderboardConfigurationAdminV1Short(input)
+		errInput := leaderboardConfigurationService.DeleteLeaderboardConfigurationAdminV1Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

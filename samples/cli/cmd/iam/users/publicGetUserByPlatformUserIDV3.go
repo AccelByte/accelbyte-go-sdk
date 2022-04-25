@@ -33,7 +33,7 @@ var PublicGetUserByPlatformUserIDV3Cmd = &cobra.Command{
 			PlatformID:     platformId,
 			PlatformUserID: platformUserId,
 		}
-		ok, err := usersService.PublicGetUserByPlatformUserIDV3Short(input)
+		ok, err := usersService.PublicGetUserByPlatformUserIDV3Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package deploymentConfig
 
 import (
@@ -43,7 +45,7 @@ var CreateOverrideRegionOverrideCmd = &cobra.Command{
 			Region:     region,
 			Version:    version,
 		}
-		ok, err := deploymentConfigService.CreateOverrideRegionOverrideShort(input)
+		ok, err := deploymentConfigService.CreateOverrideRegionOverrideShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -29,7 +29,7 @@ var PublicDownloadMyBackupCodesV4Cmd = &cobra.Command{
 		input := &users_v4.PublicDownloadMyBackupCodesV4Params{
 			Namespace: namespace,
 		}
-		errInput := usersV4Service.PublicDownloadMyBackupCodesV4Short(input)
+		errInput := usersV4Service.PublicDownloadMyBackupCodesV4Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

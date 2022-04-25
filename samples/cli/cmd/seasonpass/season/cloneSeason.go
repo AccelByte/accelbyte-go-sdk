@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package season
 
 import (
@@ -39,7 +41,7 @@ var CloneSeasonCmd = &cobra.Command{
 			Namespace: namespace,
 			SeasonID:  seasonId,
 		}
-		ok, err := seasonService.CloneSeasonShort(input)
+		ok, err := seasonService.CloneSeasonShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package paymentCallbackConfig
 
 import (
@@ -27,7 +29,7 @@ var GetPaymentCallbackConfigCmd = &cobra.Command{
 		input := &payment_callback_config.GetPaymentCallbackConfigParams{
 			Namespace: namespace,
 		}
-		ok, err := paymentCallbackConfigService.GetPaymentCallbackConfigShort(input)
+		ok, err := paymentCallbackConfigService.GetPaymentCallbackConfigShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

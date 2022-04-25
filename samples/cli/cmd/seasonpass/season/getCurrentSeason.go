@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package season
 
 import (
@@ -27,7 +29,7 @@ var GetCurrentSeasonCmd = &cobra.Command{
 		input := &season.GetCurrentSeasonParams{
 			Namespace: namespace,
 		}
-		ok, err := seasonService.GetCurrentSeasonShort(input)
+		ok, err := seasonService.GetCurrentSeasonShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

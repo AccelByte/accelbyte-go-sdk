@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package fileUpload
 
 import (
@@ -31,7 +33,7 @@ var PublicGeneratedUserUploadContentUrlCmd = &cobra.Command{
 			UserID:    userId,
 			FileType:  fileType,
 		}
-		ok, err := fileUploadService.PublicGeneratedUserUploadContentURLShort(input)
+		ok, err := fileUploadService.PublicGeneratedUserUploadContentURLShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

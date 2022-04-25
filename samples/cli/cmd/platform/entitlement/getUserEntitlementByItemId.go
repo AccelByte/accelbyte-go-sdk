@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package entitlement
 
 import (
@@ -35,7 +37,7 @@ var GetUserEntitlementByItemIdCmd = &cobra.Command{
 			EntitlementClazz: &entitlementClazz,
 			ItemID:           itemId,
 		}
-		ok, err := entitlementService.GetUserEntitlementByItemIDShort(input)
+		ok, err := entitlementService.GetUserEntitlementByItemIDShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

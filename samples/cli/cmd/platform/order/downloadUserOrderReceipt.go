@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package order
 
 import (
@@ -31,7 +33,7 @@ var DownloadUserOrderReceiptCmd = &cobra.Command{
 			OrderNo:   orderNo,
 			UserID:    userId,
 		}
-		errInput := orderService.DownloadUserOrderReceiptShort(input)
+		errInput := orderService.DownloadUserOrderReceiptShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -41,7 +41,7 @@ var AddClientPermissionCmd = &cobra.Command{
 			Resource:   resource,
 			HTTPClient: httpClient,
 		}
-		errInput := clientsService.AddClientPermissionShort(input)
+		errInput := clientsService.AddClientPermissionShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

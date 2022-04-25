@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package publicContent
 
 import (
@@ -41,7 +43,7 @@ var CreateContentS3Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := publicContentService.CreateContentS3Short(input)
+		ok, err := publicContentService.CreateContentS3Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

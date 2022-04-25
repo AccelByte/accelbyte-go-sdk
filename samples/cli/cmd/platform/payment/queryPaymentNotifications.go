@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package payment
 
 import (
@@ -45,7 +47,7 @@ var QueryPaymentNotificationsCmd = &cobra.Command{
 			StartDate:          &startDate,
 			Status:             &status,
 		}
-		ok, err := paymentService.QueryPaymentNotificationsShort(input)
+		ok, err := paymentService.QueryPaymentNotificationsShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

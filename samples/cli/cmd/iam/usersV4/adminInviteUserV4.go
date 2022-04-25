@@ -37,7 +37,7 @@ var AdminInviteUserV4Cmd = &cobra.Command{
 		input := &users_v4.AdminInviteUserV4Params{
 			Body: body,
 		}
-		ok, err := usersV4Service.AdminInviteUserV4Short(input)
+		ok, err := usersV4Service.AdminInviteUserV4Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package paymentConfig
 
 import (
@@ -37,7 +39,7 @@ var TestAliPayConfigCmd = &cobra.Command{
 			Body:    body,
 			Sandbox: &sandbox,
 		}
-		ok, err := paymentConfigService.TestAliPayConfigShort(input)
+		ok, err := paymentConfigService.TestAliPayConfigShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

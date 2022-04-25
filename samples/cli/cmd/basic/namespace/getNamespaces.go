@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package namespace
 
 import (
@@ -27,7 +29,7 @@ var GetNamespacesCmd = &cobra.Command{
 		input := &namespace_.GetNamespacesParams{
 			ActiveOnly: &activeOnly,
 		}
-		ok, err := namespaceService.GetNamespacesShort(input)
+		ok, err := namespaceService.GetNamespacesShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

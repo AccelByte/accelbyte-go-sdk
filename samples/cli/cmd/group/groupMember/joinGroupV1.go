@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package groupMember
 
 import (
@@ -29,7 +31,7 @@ var JoinGroupV1Cmd = &cobra.Command{
 			GroupID:   groupId,
 			Namespace: namespace,
 		}
-		ok, err := groupMemberService.JoinGroupV1Short(input)
+		ok, err := groupMemberService.JoinGroupV1Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

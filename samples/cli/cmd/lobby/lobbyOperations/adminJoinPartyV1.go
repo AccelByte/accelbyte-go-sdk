@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package lobbyOperations
 
 import (
@@ -31,7 +33,7 @@ var AdminJoinPartyV1Cmd = &cobra.Command{
 			PartyID:   partyId,
 			UserID:    userId,
 		}
-		errInput := lobbyOperationsService.AdminJoinPartyV1Short(input)
+		errInput := lobbyOperationsService.AdminJoinPartyV1Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

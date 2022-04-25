@@ -41,7 +41,7 @@ var UpdateSSOPlatformCredentialCmd = &cobra.Command{
 			Namespace:  namespace,
 			PlatformID: platformId,
 		}
-		ok, err := ssoCredentialService.UpdateSSOPlatformCredentialShort(input)
+		ok, err := ssoCredentialService.UpdateSSOPlatformCredentialShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

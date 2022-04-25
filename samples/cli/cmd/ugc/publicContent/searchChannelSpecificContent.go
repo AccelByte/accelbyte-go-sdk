@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package publicContent
 
 import (
@@ -51,7 +53,7 @@ var SearchChannelSpecificContentCmd = &cobra.Command{
 			Type:       &type_,
 			UserID:     &userId,
 		}
-		ok, err := publicContentService.SearchChannelSpecificContentShort(input)
+		ok, err := publicContentService.SearchChannelSpecificContentShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

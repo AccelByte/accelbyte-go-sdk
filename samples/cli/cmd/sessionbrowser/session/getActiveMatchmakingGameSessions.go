@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package session
 
 import (
@@ -33,7 +35,7 @@ var GetActiveMatchmakingGameSessionsCmd = &cobra.Command{
 			ServerRegion: &serverRegion,
 			SessionID:    &sessionId,
 		}
-		ok, err := sessionService.GetActiveMatchmakingGameSessionsShort(input)
+		ok, err := sessionService.GetActiveMatchmakingGameSessionsShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

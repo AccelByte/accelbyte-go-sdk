@@ -39,7 +39,7 @@ var AdminBulkCheckValidUserIDV4Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := usersV4Service.AdminBulkCheckValidUserIDV4Short(input)
+		ok, err := usersV4Service.AdminBulkCheckValidUserIDV4Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

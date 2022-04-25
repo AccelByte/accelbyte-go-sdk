@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package gametelemetryOperations
 
 import (
@@ -23,8 +25,11 @@ var AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetCmd = &cobra.Comma
 			Client:          factory.NewGametelemetryClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		input := &gametelemetry_operations.AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams{}
-		errInput := gametelemetryOperationsService.AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetShort(input)
+		cookie, _ := cmd.Flags().GetString("cookie")
+		input := &gametelemetry_operations.AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams{
+			Cookie: &cookie,
+		}
+		errInput := gametelemetryOperationsService.AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 
@@ -36,4 +41,5 @@ var AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetCmd = &cobra.Comma
 }
 
 func init() {
+	AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetCmd.Flags().StringP("cookie", "", "", "Cookie")
 }

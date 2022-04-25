@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package public
 
 import (
@@ -24,7 +26,7 @@ var ListServerCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &public.ListServerParams{}
-		ok, err := publicService.ListServerShort(input)
+		ok, err := publicService.ListServerShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

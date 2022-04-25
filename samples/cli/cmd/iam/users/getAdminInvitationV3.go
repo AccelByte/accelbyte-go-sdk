@@ -31,7 +31,7 @@ var GetAdminInvitationV3Cmd = &cobra.Command{
 			InvitationID: invitationId,
 			Namespace:    namespace,
 		}
-		ok, err := usersService.GetAdminInvitationV3Short(input)
+		ok, err := usersService.GetAdminInvitationV3Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

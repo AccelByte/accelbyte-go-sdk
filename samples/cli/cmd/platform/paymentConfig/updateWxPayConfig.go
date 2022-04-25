@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package paymentConfig
 
 import (
@@ -39,7 +41,7 @@ var UpdateWxPayConfigCmd = &cobra.Command{
 			ID:       id_,
 			Validate: &validate,
 		}
-		ok, err := paymentConfigService.UpdateWxPayConfigShort(input)
+		ok, err := paymentConfigService.UpdateWxPayConfigShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package publicContent
 
 import (
@@ -29,7 +31,7 @@ var PublicDownloadContentByContentIDCmd = &cobra.Command{
 			ContentID: contentId,
 			Namespace: namespace,
 		}
-		ok, err := publicContentService.PublicDownloadContentByContentIDShort(input)
+		ok, err := publicContentService.PublicDownloadContentByContentIDShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

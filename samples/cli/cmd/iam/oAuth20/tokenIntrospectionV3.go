@@ -38,7 +38,7 @@ var TokenIntrospectionV3Cmd = &cobra.Command{
 			Token:      token,
 			HTTPClient: httpClient,
 		}
-		ok, err := oAuth20Service.TokenIntrospectionV3Short(input)
+		ok, err := oAuth20Service.TokenIntrospectionV3Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

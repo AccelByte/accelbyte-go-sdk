@@ -41,7 +41,7 @@ var PublicValidateUserByUserIDAndPasswordV3Cmd = &cobra.Command{
 			UserID:     userId,
 			HTTPClient: httpClient,
 		}
-		errInput := usersService.PublicValidateUserByUserIDAndPasswordV3Short(input)
+		errInput := usersService.PublicValidateUserByUserIDAndPasswordV3Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

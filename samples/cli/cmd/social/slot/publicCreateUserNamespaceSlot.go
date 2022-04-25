@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package slot
 
 import (
@@ -59,7 +61,7 @@ var PublicCreateUserNamespaceSlotCmd = &cobra.Command{
 			Tags:            tags,
 			HTTPClient:      httpClient,
 		}
-		errInput := slotService.PublicCreateUserNamespaceSlotShort(input)
+		errInput := slotService.PublicCreateUserNamespaceSlotShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

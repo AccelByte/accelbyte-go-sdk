@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package notification
 
 import (
@@ -29,7 +31,7 @@ var DeleteNotificationTopicV1AdminCmd = &cobra.Command{
 			Namespace: namespace,
 			TopicName: topicName,
 		}
-		errInput := notificationService.DeleteNotificationTopicV1AdminShort(input)
+		errInput := notificationService.DeleteNotificationTopicV1AdminShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

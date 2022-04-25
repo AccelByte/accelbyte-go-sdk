@@ -41,7 +41,7 @@ var PublicWebLinkPlatformEstablishCmd = &cobra.Command{
 			State:      state,
 			HTTPClient: httpClient,
 		}
-		_, errInput := usersService.PublicWebLinkPlatformEstablishShort(input)
+		_, errInput := usersService.PublicWebLinkPlatformEstablishShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

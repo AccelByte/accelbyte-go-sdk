@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package groupRoles
 
 import (
@@ -29,7 +31,7 @@ var DeleteMemberRoleAdminV1Cmd = &cobra.Command{
 			MemberRoleID: memberRoleId,
 			Namespace:    namespace,
 		}
-		errInput := groupRolesService.DeleteMemberRoleAdminV1Short(input)
+		errInput := groupRolesService.DeleteMemberRoleAdminV1Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

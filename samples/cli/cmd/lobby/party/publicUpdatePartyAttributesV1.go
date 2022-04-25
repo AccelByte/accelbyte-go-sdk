@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package party
 
 import (
@@ -39,7 +41,7 @@ var PublicUpdatePartyAttributesV1Cmd = &cobra.Command{
 			Namespace: namespace,
 			PartyID:   partyId,
 		}
-		ok, err := partyService.PublicUpdatePartyAttributesV1Short(input)
+		ok, err := partyService.PublicUpdatePartyAttributesV1Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

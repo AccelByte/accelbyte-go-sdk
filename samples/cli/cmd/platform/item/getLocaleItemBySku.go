@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package item
 
 import (
@@ -39,7 +41,7 @@ var GetLocaleItemBySkuCmd = &cobra.Command{
 			StoreID:        &storeId,
 			Sku:            sku,
 		}
-		ok, err := itemService.GetLocaleItemBySkuShort(input)
+		ok, err := itemService.GetLocaleItemBySkuShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

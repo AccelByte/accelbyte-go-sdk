@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package paymentDedicated
 
 import (
@@ -31,7 +33,7 @@ var SyncPaymentOrdersCmd = &cobra.Command{
 			End:              end,
 			Start:            start,
 		}
-		ok, err := paymentDedicatedService.SyncPaymentOrdersShort(input)
+		ok, err := paymentDedicatedService.SyncPaymentOrdersShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

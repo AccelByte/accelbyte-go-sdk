@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package imageConfig
 
 import (
@@ -31,7 +33,7 @@ var GetImagePatchDetailCmd = &cobra.Command{
 			Version:      version,
 			VersionPatch: versionPatch,
 		}
-		ok, err := imageConfigService.GetImagePatchDetailShort(input)
+		ok, err := imageConfigService.GetImagePatchDetailShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

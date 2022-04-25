@@ -33,7 +33,7 @@ var AdminCreateJusticeUserCmd = &cobra.Command{
 			TargetNamespace: targetNamespace,
 			UserID:          userId,
 		}
-		ok, err := usersService.AdminCreateJusticeUserShort(input)
+		ok, err := usersService.AdminCreateJusticeUserShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

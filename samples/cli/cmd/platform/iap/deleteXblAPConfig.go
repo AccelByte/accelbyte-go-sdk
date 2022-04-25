@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package iap
 
 import (
@@ -27,7 +29,7 @@ var DeleteXblAPConfigCmd = &cobra.Command{
 		input := &i_a_p.DeleteXblAPConfigParams{
 			Namespace: namespace,
 		}
-		errInput := iapService.DeleteXblAPConfigShort(input)
+		errInput := iapService.DeleteXblAPConfigShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

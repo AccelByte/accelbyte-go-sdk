@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package pass
 
 import (
@@ -31,7 +33,7 @@ var DeletePassCmd = &cobra.Command{
 			Namespace: namespace,
 			SeasonID:  seasonId,
 		}
-		errInput := passService.DeletePassShort(input)
+		errInput := passService.DeletePassShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

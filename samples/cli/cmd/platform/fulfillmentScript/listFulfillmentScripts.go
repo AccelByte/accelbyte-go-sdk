@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package fulfillmentScript
 
 import (
@@ -24,7 +26,7 @@ var ListFulfillmentScriptsCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &fulfillment_script.ListFulfillmentScriptsParams{}
-		ok, err := fulfillmentScriptService.ListFulfillmentScriptsShort(input)
+		ok, err := fulfillmentScriptService.ListFulfillmentScriptsShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

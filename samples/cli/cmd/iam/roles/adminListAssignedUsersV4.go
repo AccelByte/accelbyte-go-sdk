@@ -35,7 +35,7 @@ var AdminListAssignedUsersV4Cmd = &cobra.Command{
 			Before: &before,
 			Limit:  &limit,
 		}
-		ok, err := rolesService.AdminListAssignedUsersV4Short(input)
+		ok, err := rolesService.AdminListAssignedUsersV4Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

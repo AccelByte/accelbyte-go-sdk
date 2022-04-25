@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package notification
 
 import (
@@ -31,7 +33,7 @@ var GetSingleTemplateLocalizationV1AdminCmd = &cobra.Command{
 			TemplateLanguage: templateLanguage,
 			TemplateSlug:     templateSlug,
 		}
-		ok, err := notificationService.GetSingleTemplateLocalizationV1AdminShort(input)
+		ok, err := notificationService.GetSingleTemplateLocalizationV1AdminShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package policies
 
 import (
@@ -37,7 +39,7 @@ var UpdatePolicyCmd = &cobra.Command{
 			Body:     body,
 			PolicyID: policyId,
 		}
-		errInput := policiesService.UpdatePolicyShort(input)
+		errInput := policiesService.UpdatePolicyShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

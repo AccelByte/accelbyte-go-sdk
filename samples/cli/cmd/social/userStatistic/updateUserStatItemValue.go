@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package userStatistic
 
 import (
@@ -43,7 +45,7 @@ var UpdateUserStatItemValueCmd = &cobra.Command{
 			UserID:        userId,
 			AdditionalKey: &additionalKey,
 		}
-		ok, err := userStatisticService.UpdateUserStatItemValueShort(input)
+		ok, err := userStatisticService.UpdateUserStatItemValueShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

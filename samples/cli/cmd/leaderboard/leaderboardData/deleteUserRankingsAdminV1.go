@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package leaderboardData
 
 import (
@@ -38,7 +40,7 @@ var DeleteUserRankingsAdminV1Cmd = &cobra.Command{
 			UserID:          userId,
 			LeaderboardCode: leaderboardCode,
 		}
-		errInput := leaderboardDataService.DeleteUserRankingsAdminV1Short(input)
+		errInput := leaderboardDataService.DeleteUserRankingsAdminV1Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package publicContent
 
 import (
@@ -43,7 +45,7 @@ var UpdateContentDirectCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := publicContentService.UpdateContentDirectShort(input)
+		ok, err := publicContentService.UpdateContentDirectShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

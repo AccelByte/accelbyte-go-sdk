@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package groupMember
 
 import (
@@ -35,7 +37,7 @@ var GetGroupMembersListAdminV1Cmd = &cobra.Command{
 			Offset:    &offset,
 			Order:     &order,
 		}
-		ok, err := groupMemberService.GetGroupMembersListAdminV1Short(input)
+		ok, err := groupMemberService.GetGroupMembersListAdminV1Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package eventRegistry
 
 import (
@@ -37,7 +39,7 @@ var UpdateEventRegistryHandlerCmd = &cobra.Command{
 			Body:    body,
 			EventID: eventId,
 		}
-		errInput := eventRegistryService.UpdateEventRegistryHandlerShort(input)
+		errInput := eventRegistryService.UpdateEventRegistryHandlerShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package paymentConfig
 
 import (
@@ -29,7 +31,7 @@ var TestCheckoutConfigByIdCmd = &cobra.Command{
 			ID:      id_,
 			Sandbox: &sandbox,
 		}
-		ok, err := paymentConfigService.TestCheckoutConfigByIDShort(input)
+		ok, err := paymentConfigService.TestCheckoutConfigByIDShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package userVisibility
 
 import (
@@ -31,7 +33,7 @@ var GetUserVisibilityStatusV2Cmd = &cobra.Command{
 			Namespace:       namespace,
 			UserID:          userId,
 		}
-		ok, err := userVisibilityService.GetUserVisibilityStatusV2Short(input)
+		ok, err := userVisibilityService.GetUserVisibilityStatusV2Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

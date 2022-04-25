@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package event
 
 import (
@@ -39,7 +41,7 @@ var GetEventByEventTypeAndEventIDHandlerCmd = &cobra.Command{
 			PageSize:  pageSize,
 			StartDate: startDate,
 		}
-		ok, err := eventService.GetEventByEventTypeAndEventIDHandlerShort(input)
+		ok, err := eventService.GetEventByEventTypeAndEventIDHandlerShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package userProfile
 
 import (
@@ -29,7 +31,7 @@ var GetUserProfileInfoCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := userProfileService.GetUserProfileInfoShort(input)
+		ok, err := userProfileService.GetUserProfileInfoShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

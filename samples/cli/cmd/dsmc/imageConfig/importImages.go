@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package imageConfig
 
 import (
@@ -41,7 +43,7 @@ var ImportImagesCmd = &cobra.Command{
 			File:       file,
 			HTTPClient: httpClient,
 		}
-		ok, err := imageConfigService.ImportImagesShort(input)
+		ok, err := imageConfigService.ImportImagesShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

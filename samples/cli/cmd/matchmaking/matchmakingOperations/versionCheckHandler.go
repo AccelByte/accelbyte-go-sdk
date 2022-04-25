@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package matchmakingOperations
 
 import (
@@ -24,7 +26,7 @@ var VersionCheckHandlerCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &matchmaking_operations.VersionCheckHandlerParams{}
-		errInput := matchmakingOperationsService.VersionCheckHandlerShort(input)
+		errInput := matchmakingOperationsService.VersionCheckHandlerShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

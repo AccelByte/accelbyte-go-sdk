@@ -31,7 +31,7 @@ var GetUserPlatformAccountsCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := usersService.GetUserPlatformAccountsShort(input)
+		ok, err := usersService.GetUserPlatformAccountsShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

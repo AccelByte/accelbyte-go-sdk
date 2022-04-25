@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package admin
 
 import (
@@ -29,7 +31,7 @@ var GetServerLogsCmd = &cobra.Command{
 			Namespace: namespace,
 			PodName:   podName,
 		}
-		ok, err := adminService.GetServerLogsShort(input)
+		ok, err := adminService.GetServerLogsShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

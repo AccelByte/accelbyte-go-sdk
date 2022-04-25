@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package eventV2
 
 import (
@@ -45,7 +47,7 @@ var QueryEventStreamHandlerCmd = &cobra.Command{
 			PageSize:  &pageSize,
 			StartDate: &startDate,
 		}
-		ok, err := eventV2Service.QueryEventStreamHandlerShort(input)
+		ok, err := eventV2Service.QueryEventStreamHandlerShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

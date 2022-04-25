@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package namespace
 
 import (
@@ -37,7 +39,7 @@ var UpdateNamespaceCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := namespaceService.UpdateNamespaceShort(input)
+		ok, err := namespaceService.UpdateNamespaceShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

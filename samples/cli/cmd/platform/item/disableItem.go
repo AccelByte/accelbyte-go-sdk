@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package item
 
 import (
@@ -31,7 +33,7 @@ var DisableItemCmd = &cobra.Command{
 			Namespace: namespace,
 			StoreID:   storeId,
 		}
-		ok, err := itemService.DisableItemShort(input)
+		ok, err := itemService.DisableItemShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

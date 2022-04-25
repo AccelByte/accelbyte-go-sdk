@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package admin
 
 import (
@@ -29,7 +31,7 @@ var DeleteServerCmd = &cobra.Command{
 			Namespace: namespace,
 			PodName:   podName,
 		}
-		errInput := adminService.DeleteServerShort(input)
+		errInput := adminService.DeleteServerShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

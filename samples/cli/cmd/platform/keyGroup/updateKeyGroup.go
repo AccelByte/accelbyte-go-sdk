@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package keyGroup
 
 import (
@@ -39,7 +41,7 @@ var UpdateKeyGroupCmd = &cobra.Command{
 			KeyGroupID: keyGroupId,
 			Namespace:  namespace,
 		}
-		ok, err := keyGroupService.UpdateKeyGroupShort(input)
+		ok, err := keyGroupService.UpdateKeyGroupShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

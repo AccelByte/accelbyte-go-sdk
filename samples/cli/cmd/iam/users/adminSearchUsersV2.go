@@ -47,7 +47,7 @@ var AdminSearchUsersV2Cmd = &cobra.Command{
 			UserID:         &userId,
 			PlatformID:     platformId,
 		}
-		ok, err := usersService.AdminSearchUsersV2Short(input)
+		ok, err := usersService.AdminSearchUsersV2Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

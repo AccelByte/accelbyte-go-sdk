@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package equ8Config
 
 import (
@@ -27,7 +29,7 @@ var DeleteConfigCmd = &cobra.Command{
 		input := &e_q_u8_config.DeleteConfigParams{
 			Namespace: namespace,
 		}
-		errInput := equ8ConfigService.DeleteConfigShort(input)
+		errInput := equ8ConfigService.DeleteConfigShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

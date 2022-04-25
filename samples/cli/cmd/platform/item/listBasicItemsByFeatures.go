@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package item
 
 import (
@@ -38,7 +40,7 @@ var ListBasicItemsByFeaturesCmd = &cobra.Command{
 			ActiveOnly: &activeOnly,
 			Features:   features,
 		}
-		ok, err := itemService.ListBasicItemsByFeaturesShort(input)
+		ok, err := itemService.ListBasicItemsByFeaturesShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

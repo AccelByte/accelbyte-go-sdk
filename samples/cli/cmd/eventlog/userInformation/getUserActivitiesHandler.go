@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package userInformation
 
 import (
@@ -33,7 +35,7 @@ var GetUserActivitiesHandlerCmd = &cobra.Command{
 			Offset:    &offset,
 			PageSize:  pageSize,
 		}
-		ok, err := userInformationService.GetUserActivitiesHandlerShort(input)
+		ok, err := userInformationService.GetUserActivitiesHandlerShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

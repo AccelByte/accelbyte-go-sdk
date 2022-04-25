@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package paymentConfig
 
 import (
@@ -37,7 +39,7 @@ var TestAdyenConfigCmd = &cobra.Command{
 			Body:    body,
 			Sandbox: &sandbox,
 		}
-		ok, err := paymentConfigService.TestAdyenConfigShort(input)
+		ok, err := paymentConfigService.TestAdyenConfigShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

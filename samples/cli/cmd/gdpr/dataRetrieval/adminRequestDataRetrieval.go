@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package dataRetrieval
 
 import (
@@ -39,7 +41,7 @@ var AdminRequestDataRetrievalCmd = &cobra.Command{
 			UserID:     userId,
 			HTTPClient: httpClient,
 		}
-		ok, err := dataRetrievalService.AdminRequestDataRetrievalShort(input)
+		ok, err := dataRetrievalService.AdminRequestDataRetrievalShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

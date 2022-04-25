@@ -39,7 +39,7 @@ var RemoveRoleManagersCmd = &cobra.Command{
 			Body:   body,
 			RoleID: roleId,
 		}
-		errInput := rolesService.RemoveRoleManagersShort(input)
+		errInput := rolesService.RemoveRoleManagersShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

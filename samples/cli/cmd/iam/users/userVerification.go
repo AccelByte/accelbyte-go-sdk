@@ -41,7 +41,7 @@ var UserVerificationCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := usersService.UserVerificationShort(input)
+		errInput := usersService.UserVerificationShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

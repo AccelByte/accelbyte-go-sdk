@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package item
 
 import (
@@ -33,7 +35,7 @@ var GetItemByAppIdCmd = &cobra.Command{
 			StoreID:    &storeId,
 			AppID:      appId,
 		}
-		ok, err := itemService.GetItemByAppIDShort(input)
+		ok, err := itemService.GetItemByAppIDShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

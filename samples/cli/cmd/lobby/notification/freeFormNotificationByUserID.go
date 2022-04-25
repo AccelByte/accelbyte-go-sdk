@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package notification
 
 import (
@@ -39,7 +41,7 @@ var FreeFormNotificationByUserIDCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := notificationService.FreeFormNotificationByUserIDShort(input)
+		errInput := notificationService.FreeFormNotificationByUserIDShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

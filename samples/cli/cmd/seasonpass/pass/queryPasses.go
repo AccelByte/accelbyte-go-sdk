@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package pass
 
 import (
@@ -29,7 +31,7 @@ var QueryPassesCmd = &cobra.Command{
 			Namespace: namespace,
 			SeasonID:  seasonId,
 		}
-		ok, err := passService.QueryPassesShort(input)
+		ok, err := passService.QueryPassesShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package iap
 
 import (
@@ -37,7 +39,7 @@ var UpdatePlaystationIAPConfigCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := iapService.UpdatePlaystationIAPConfigShort(input)
+		ok, err := iapService.UpdatePlaystationIAPConfigShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

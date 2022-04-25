@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package baseLegalPolicies
 
 import (
@@ -24,7 +26,7 @@ var RetrieveAllLegalPoliciesCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &base_legal_policies.RetrieveAllLegalPoliciesParams{}
-		ok, err := baseLegalPoliciesService.RetrieveAllLegalPoliciesShort(input)
+		ok, err := baseLegalPoliciesService.RetrieveAllLegalPoliciesShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package group
 
 import (
@@ -39,7 +41,7 @@ var UpdateGroupCustomAttributesPublicV1Cmd = &cobra.Command{
 			GroupID:   groupId,
 			Namespace: namespace,
 		}
-		ok, err := groupService.UpdateGroupCustomAttributesPublicV1Short(input)
+		ok, err := groupService.UpdateGroupCustomAttributesPublicV1Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

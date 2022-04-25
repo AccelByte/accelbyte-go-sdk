@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package iap
 
 import (
@@ -27,7 +29,7 @@ var DeleteTwitchIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.DeleteTwitchIAPConfigParams{
 			Namespace: namespace,
 		}
-		errInput := iapService.DeleteTwitchIAPConfigShort(input)
+		errInput := iapService.DeleteTwitchIAPConfigShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package paymentConfig
 
 import (
@@ -27,7 +29,7 @@ var TestXsollaConfigByIdCmd = &cobra.Command{
 		input := &payment_config.TestXsollaConfigByIDParams{
 			ID: id_,
 		}
-		ok, err := paymentConfigService.TestXsollaConfigByIDShort(input)
+		ok, err := paymentConfigService.TestXsollaConfigByIDShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

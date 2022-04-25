@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package group
 
 import (
@@ -29,7 +31,7 @@ var DeleteGroupPublicV1Cmd = &cobra.Command{
 			GroupID:   groupId,
 			Namespace: namespace,
 		}
-		errInput := groupService.DeleteGroupPublicV1Short(input)
+		errInput := groupService.DeleteGroupPublicV1Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

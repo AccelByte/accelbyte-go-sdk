@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package matchmaking
 
 import (
@@ -45,7 +47,7 @@ var ImportChannelsCmd = &cobra.Command{
 			Namespace:  namespace,
 			HTTPClient: httpClient,
 		}
-		ok, err := matchmakingService.ImportChannelsShort(input)
+		ok, err := matchmakingService.ImportChannelsShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

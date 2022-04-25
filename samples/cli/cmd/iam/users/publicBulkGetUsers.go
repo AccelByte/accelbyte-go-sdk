@@ -39,7 +39,7 @@ var PublicBulkGetUsersCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := usersService.PublicBulkGetUsersShort(input)
+		ok, err := usersService.PublicBulkGetUsersShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

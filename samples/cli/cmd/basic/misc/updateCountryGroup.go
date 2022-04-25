@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package misc
 
 import (
@@ -39,7 +41,7 @@ var UpdateCountryGroupCmd = &cobra.Command{
 			CountryGroupCode: countryGroupCode,
 			Namespace:        namespace,
 		}
-		ok, err := miscService.UpdateCountryGroupShort(input)
+		ok, err := miscService.UpdateCountryGroupShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

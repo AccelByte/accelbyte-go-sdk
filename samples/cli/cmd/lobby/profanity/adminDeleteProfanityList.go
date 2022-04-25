@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package profanity
 
 import (
@@ -29,7 +31,7 @@ var AdminDeleteProfanityListCmd = &cobra.Command{
 			List:      list_,
 			Namespace: namespace,
 		}
-		errInput := profanityService.AdminDeleteProfanityListShort(input)
+		errInput := profanityService.AdminDeleteProfanityListShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

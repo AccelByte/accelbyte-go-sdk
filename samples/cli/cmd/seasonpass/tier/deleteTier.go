@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package tier
 
 import (
@@ -31,7 +33,7 @@ var DeleteTierCmd = &cobra.Command{
 			Namespace: namespace,
 			SeasonID:  seasonId,
 		}
-		errInput := tierService.DeleteTierShort(input)
+		errInput := tierService.DeleteTierShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

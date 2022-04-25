@@ -33,7 +33,7 @@ var DeleteClientPermissionCmd = &cobra.Command{
 			ClientID: clientId,
 			Resource: resource,
 		}
-		errInput := clientsService.DeleteClientPermissionShort(input)
+		errInput := clientsService.DeleteClientPermissionShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

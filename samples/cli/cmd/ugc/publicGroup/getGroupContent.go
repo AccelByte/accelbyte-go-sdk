@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package publicGroup
 
 import (
@@ -35,7 +37,7 @@ var GetGroupContentCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := publicGroupService.GetGroupContentShort(input)
+		ok, err := publicGroupService.GetGroupContentShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

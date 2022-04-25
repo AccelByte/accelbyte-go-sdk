@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package publicLike
 
 import (
@@ -39,7 +41,7 @@ var UpdateContentLikeStatusCmd = &cobra.Command{
 			ContentID: contentId,
 			Namespace: namespace,
 		}
-		ok, err := publicLikeService.UpdateContentLikeStatusShort(input)
+		ok, err := publicLikeService.UpdateContentLikeStatusShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

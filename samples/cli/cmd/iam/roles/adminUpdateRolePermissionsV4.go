@@ -39,7 +39,7 @@ var AdminUpdateRolePermissionsV4Cmd = &cobra.Command{
 			Body:   body,
 			RoleID: roleId,
 		}
-		ok, err := rolesService.AdminUpdateRolePermissionsV4Short(input)
+		ok, err := rolesService.AdminUpdateRolePermissionsV4Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -31,7 +31,7 @@ var PublicGetAsyncStatusCmd = &cobra.Command{
 			Namespace: namespace,
 			RequestID: requestId,
 		}
-		ok, err := usersService.PublicGetAsyncStatusShort(input)
+		ok, err := usersService.PublicGetAsyncStatusShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

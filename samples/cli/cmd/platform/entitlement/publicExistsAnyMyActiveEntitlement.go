@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package entitlement
 
 import (
@@ -50,7 +52,7 @@ var PublicExistsAnyMyActiveEntitlementCmd = &cobra.Command{
 			ItemIds:   itemIds,
 			Skus:      skus,
 		}
-		ok, err := entitlementService.PublicExistsAnyMyActiveEntitlementShort(input)
+		ok, err := entitlementService.PublicExistsAnyMyActiveEntitlementShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

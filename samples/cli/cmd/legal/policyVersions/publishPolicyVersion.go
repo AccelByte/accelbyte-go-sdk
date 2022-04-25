@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package policyVersions
 
 import (
@@ -29,7 +31,7 @@ var PublishPolicyVersionCmd = &cobra.Command{
 			PolicyVersionID: policyVersionId,
 			ShouldNotify:    &shouldNotify,
 		}
-		errInput := policyVersionsService.PublishPolicyVersionShort(input)
+		errInput := policyVersionsService.PublishPolicyVersionShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

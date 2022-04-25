@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package iap
 
 import (
@@ -39,7 +41,7 @@ var SyncSteamInventoryCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := iapService.SyncSteamInventoryShort(input)
+		errInput := iapService.SyncSteamInventoryShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

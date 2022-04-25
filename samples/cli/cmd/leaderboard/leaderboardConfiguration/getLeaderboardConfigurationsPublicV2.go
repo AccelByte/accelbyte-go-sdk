@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package leaderboardConfiguration
 
 import (
@@ -31,7 +33,7 @@ var GetLeaderboardConfigurationsPublicV2Cmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := leaderboardConfigurationService.GetLeaderboardConfigurationsPublicV2Short(input)
+		ok, err := leaderboardConfigurationService.GetLeaderboardConfigurationsPublicV2Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

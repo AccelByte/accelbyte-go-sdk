@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package slot
 
 import (
@@ -31,7 +33,7 @@ var PublicDeleteUserNamespaceSlotCmd = &cobra.Command{
 			SlotID:    slotId,
 			UserID:    userId,
 		}
-		errInput := slotService.PublicDeleteUserNamespaceSlotShort(input)
+		errInput := slotService.PublicDeleteUserNamespaceSlotShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

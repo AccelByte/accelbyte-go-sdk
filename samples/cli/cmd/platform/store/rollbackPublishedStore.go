@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package store
 
 import (
@@ -27,7 +29,7 @@ var RollbackPublishedStoreCmd = &cobra.Command{
 		input := &store.RollbackPublishedStoreParams{
 			Namespace: namespace,
 		}
-		ok, err := storeService.RollbackPublishedStoreShort(input)
+		ok, err := storeService.RollbackPublishedStoreShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -35,7 +35,7 @@ var GetJWKSCmd = &cobra.Command{
 		input := &o_auth.GetJWKSParams{
 			HTTPClient: httpClient,
 		}
-		ok, err := oAuthService.GetJWKSShort(input)
+		ok, err := oAuthService.GetJWKSShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

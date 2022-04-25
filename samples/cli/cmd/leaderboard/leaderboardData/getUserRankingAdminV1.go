@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package leaderboardData
 
 import (
@@ -31,7 +33,7 @@ var GetUserRankingAdminV1Cmd = &cobra.Command{
 			Namespace:       namespace,
 			UserID:          userId,
 		}
-		ok, err := leaderboardDataService.GetUserRankingAdminV1Short(input)
+		ok, err := leaderboardDataService.GetUserRankingAdminV1Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package imageConfig
 
 import (
@@ -35,7 +37,7 @@ var CreateImagePatchCmd = &cobra.Command{
 		input := &image_config.CreateImagePatchParams{
 			Body: body,
 		}
-		errInput := imageConfigService.CreateImagePatchShort(input)
+		errInput := imageConfigService.CreateImagePatchShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

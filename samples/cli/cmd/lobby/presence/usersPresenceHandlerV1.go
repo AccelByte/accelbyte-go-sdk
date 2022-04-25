@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package presence
 
 import (
@@ -31,7 +33,7 @@ var UsersPresenceHandlerV1Cmd = &cobra.Command{
 			CountOnly: &countOnly,
 			UserIds:   userIds,
 		}
-		ok, err := presenceService.UsersPresenceHandlerV1Short(input)
+		ok, err := presenceService.UsersPresenceHandlerV1Short(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

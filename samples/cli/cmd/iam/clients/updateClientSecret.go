@@ -39,7 +39,7 @@ var UpdateClientSecretCmd = &cobra.Command{
 			Body:     body,
 			ClientID: clientId,
 		}
-		errInput := clientsService.UpdateClientSecretShort(input)
+		errInput := clientsService.UpdateClientSecretShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

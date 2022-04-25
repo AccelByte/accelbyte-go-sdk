@@ -41,7 +41,7 @@ var UpdatePasswordCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := usersService.UpdatePasswordShort(input)
+		errInput := usersService.UpdatePasswordShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

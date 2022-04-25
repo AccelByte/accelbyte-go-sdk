@@ -39,7 +39,7 @@ var PublicSendRegistrationCodeCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := usersService.PublicSendRegistrationCodeShort(input)
+		errInput := usersService.PublicSendRegistrationCodeShort(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

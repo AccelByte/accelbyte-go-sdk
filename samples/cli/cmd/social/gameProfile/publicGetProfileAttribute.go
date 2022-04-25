@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package gameProfile
 
 import (
@@ -33,7 +35,7 @@ var PublicGetProfileAttributeCmd = &cobra.Command{
 			ProfileID:     profileId,
 			UserID:        userId,
 		}
-		ok, err := gameProfileService.PublicGetProfileAttributeShort(input)
+		ok, err := gameProfileService.PublicGetProfileAttributeShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

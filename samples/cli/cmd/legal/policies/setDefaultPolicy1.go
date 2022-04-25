@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package policies
 
 import (
@@ -27,7 +29,7 @@ var SetDefaultPolicy1Cmd = &cobra.Command{
 		input := &policies.SetDefaultPolicy1Params{
 			PolicyID: policyId,
 		}
-		errInput := policiesService.SetDefaultPolicy1Short(input)
+		errInput := policiesService.SetDefaultPolicy1Short(input, nil)
 		if errInput != nil {
 			logrus.Error(errInput)
 

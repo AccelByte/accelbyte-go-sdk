@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package dataDeletion
 
 import (
@@ -37,7 +39,7 @@ var AdminGetListDeletionDataRequestCmd = &cobra.Command{
 			Offset:      &offset,
 			RequestDate: &requestDate,
 		}
-		ok, err := dataDeletionService.AdminGetListDeletionDataRequestShort(input)
+		ok, err := dataDeletionService.AdminGetListDeletionDataRequestShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

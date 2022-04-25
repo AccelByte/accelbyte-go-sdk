@@ -2,6 +2,8 @@
 // This is licensed software from AccelByte Inc, for limitations
 // and restrictions contact your company contract manager.
 
+// Code generated. DO NOT EDIT.
+
 package imageConfig
 
 import (
@@ -27,7 +29,7 @@ var GetImageLimitCmd = &cobra.Command{
 		input := &image_config.GetImageLimitParams{
 			Namespace: namespace,
 		}
-		ok, err := imageConfigService.GetImageLimitShort(input)
+		ok, err := imageConfigService.GetImageLimitShort(input, nil)
 		if err != nil {
 			logrus.Error(err)
 

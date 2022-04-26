@@ -75,9 +75,10 @@ type ConsumeUserEntitlementParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the consume user entitlement params
@@ -100,6 +101,11 @@ func (o *ConsumeUserEntitlementParams) WithContext(ctx context.Context) *Consume
 // SetContext adds the context to the consume user entitlement params
 func (o *ConsumeUserEntitlementParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the consume user entitlement params
+func (o *ConsumeUserEntitlementParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the consume user entitlement params

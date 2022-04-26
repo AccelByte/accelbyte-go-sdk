@@ -96,9 +96,10 @@ type GetEventByEventTypeHandlerParams struct {
 	*/
 	StartDate string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get event by event type handler params
@@ -121,6 +122,11 @@ func (o *GetEventByEventTypeHandlerParams) WithContext(ctx context.Context) *Get
 // SetContext adds the context to the get event by event type handler params
 func (o *GetEventByEventTypeHandlerParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get event by event type handler params
+func (o *GetEventByEventTypeHandlerParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get event by event type handler params

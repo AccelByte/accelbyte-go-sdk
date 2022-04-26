@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_follow"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -139,7 +138,8 @@ func (p *PublicFollowService) GetPublicFollowing(input *public_follow.GetPublicF
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicFollowService) GetFollowedContentShort(input *public_follow.GetFollowedContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+func (p *PublicFollowService) GetFollowedContentShort(input *public_follow.GetFollowedContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -154,7 +154,8 @@ func (p *PublicFollowService) GetFollowedContentShort(input *public_follow.GetFo
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicFollowService) GetFollowedUsersShort(input *public_follow.GetFollowedUsersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
+func (p *PublicFollowService) GetFollowedUsersShort(input *public_follow.GetFollowedUsersParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -169,7 +170,8 @@ func (p *PublicFollowService) GetFollowedUsersShort(input *public_follow.GetFoll
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicFollowService) UpdateUserFollowStatusShort(input *public_follow.UpdateUserFollowStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsUserFollowResponse, error) {
+func (p *PublicFollowService) UpdateUserFollowStatusShort(input *public_follow.UpdateUserFollowStatusParams) (*ugcclientmodels.ModelsUserFollowResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -184,7 +186,8 @@ func (p *PublicFollowService) UpdateUserFollowStatusShort(input *public_follow.U
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicFollowService) GetPublicFollowersShort(input *public_follow.GetPublicFollowersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
+func (p *PublicFollowService) GetPublicFollowersShort(input *public_follow.GetPublicFollowersParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -199,7 +202,8 @@ func (p *PublicFollowService) GetPublicFollowersShort(input *public_follow.GetPu
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicFollowService) GetPublicFollowingShort(input *public_follow.GetPublicFollowingParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
+func (p *PublicFollowService) GetPublicFollowingShort(input *public_follow.GetPublicFollowingParams) (*ugcclientmodels.ModelsPaginatedCreatorOverviewResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

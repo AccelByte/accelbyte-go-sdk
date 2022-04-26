@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -192,7 +191,8 @@ func (p *PaymentService) RefundUserPaymentOrder(input *payment.RefundUserPayment
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentService) QueryPaymentNotificationsShort(input *payment.QueryPaymentNotificationsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentNotificationPagingSlicedResult, error) {
+func (p *PaymentService) QueryPaymentNotificationsShort(input *payment.QueryPaymentNotificationsParams) (*platformclientmodels.PaymentNotificationPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -207,7 +207,8 @@ func (p *PaymentService) QueryPaymentNotificationsShort(input *payment.QueryPaym
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentService) QueryPaymentOrdersShort(input *payment.QueryPaymentOrdersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentOrderPagingSlicedResult, error) {
+func (p *PaymentService) QueryPaymentOrdersShort(input *payment.QueryPaymentOrdersParams) (*platformclientmodels.PaymentOrderPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -222,7 +223,8 @@ func (p *PaymentService) QueryPaymentOrdersShort(input *payment.QueryPaymentOrde
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentService) ListExtOrderNoByExtTxIDShort(input *payment.ListExtOrderNoByExtTxIDParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]string, error) {
+func (p *PaymentService) ListExtOrderNoByExtTxIDShort(input *payment.ListExtOrderNoByExtTxIDParams) ([]string, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -237,7 +239,8 @@ func (p *PaymentService) ListExtOrderNoByExtTxIDShort(input *payment.ListExtOrde
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentService) GetPaymentOrderShort(input *payment.GetPaymentOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentOrderInfo, error) {
+func (p *PaymentService) GetPaymentOrderShort(input *payment.GetPaymentOrderParams) (*platformclientmodels.PaymentOrderInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -252,7 +255,8 @@ func (p *PaymentService) GetPaymentOrderShort(input *payment.GetPaymentOrderPara
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentService) ChargePaymentOrderShort(input *payment.ChargePaymentOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentOrderInfo, error) {
+func (p *PaymentService) ChargePaymentOrderShort(input *payment.ChargePaymentOrderParams) (*platformclientmodels.PaymentOrderInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -267,7 +271,8 @@ func (p *PaymentService) ChargePaymentOrderShort(input *payment.ChargePaymentOrd
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentService) SimulatePaymentOrderNotificationShort(input *payment.SimulatePaymentOrderNotificationParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.NotificationProcessResult, error) {
+func (p *PaymentService) SimulatePaymentOrderNotificationShort(input *payment.SimulatePaymentOrderNotificationParams) (*platformclientmodels.NotificationProcessResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -282,7 +287,8 @@ func (p *PaymentService) SimulatePaymentOrderNotificationShort(input *payment.Si
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentService) GetPaymentOrderChargeStatusShort(input *payment.GetPaymentOrderChargeStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentOrderChargeStatus, error) {
+func (p *PaymentService) GetPaymentOrderChargeStatusShort(input *payment.GetPaymentOrderChargeStatusParams) (*platformclientmodels.PaymentOrderChargeStatus, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -297,7 +303,8 @@ func (p *PaymentService) GetPaymentOrderChargeStatusShort(input *payment.GetPaym
 	return ok.GetPayload(), nil
 }
 
-func (p *PaymentService) CreateUserPaymentOrderShort(input *payment.CreateUserPaymentOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentOrderInfo, error) {
+func (p *PaymentService) CreateUserPaymentOrderShort(input *payment.CreateUserPaymentOrderParams) (*platformclientmodels.PaymentOrderInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -312,7 +319,8 @@ func (p *PaymentService) CreateUserPaymentOrderShort(input *payment.CreateUserPa
 	return created.GetPayload(), nil
 }
 
-func (p *PaymentService) RefundUserPaymentOrderShort(input *payment.RefundUserPaymentOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PaymentOrderInfo, error) {
+func (p *PaymentService) RefundUserPaymentOrderShort(input *payment.RefundUserPaymentOrderParams) (*platformclientmodels.PaymentOrderInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

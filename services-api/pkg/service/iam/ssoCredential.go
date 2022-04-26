@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -154,7 +153,8 @@ func (s *SSOCredentialService) UpdateSSOPlatformCredential(input *s_s_o_credenti
 	return ok.GetPayload(), nil
 }
 
-func (s *SSOCredentialService) RetrieveAllSSOLoginPlatformCredentialV3Short(input *s_s_o_credential.RetrieveAllSSOLoginPlatformCredentialV3Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+func (s *SSOCredentialService) RetrieveAllSSOLoginPlatformCredentialV3Short(input *s_s_o_credential.RetrieveAllSSOLoginPlatformCredentialV3Params) ([]*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -169,7 +169,8 @@ func (s *SSOCredentialService) RetrieveAllSSOLoginPlatformCredentialV3Short(inpu
 	return ok.GetPayload(), nil
 }
 
-func (s *SSOCredentialService) RetrieveSSOLoginPlatformCredentialShort(input *s_s_o_credential.RetrieveSSOLoginPlatformCredentialParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+func (s *SSOCredentialService) RetrieveSSOLoginPlatformCredentialShort(input *s_s_o_credential.RetrieveSSOLoginPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -184,7 +185,8 @@ func (s *SSOCredentialService) RetrieveSSOLoginPlatformCredentialShort(input *s_
 	return ok.GetPayload(), nil
 }
 
-func (s *SSOCredentialService) AddSSOLoginPlatformCredentialShort(input *s_s_o_credential.AddSSOLoginPlatformCredentialParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+func (s *SSOCredentialService) AddSSOLoginPlatformCredentialShort(input *s_s_o_credential.AddSSOLoginPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -199,7 +201,8 @@ func (s *SSOCredentialService) AddSSOLoginPlatformCredentialShort(input *s_s_o_c
 	return created.GetPayload(), nil
 }
 
-func (s *SSOCredentialService) DeleteSSOLoginPlatformCredentialV3Short(input *s_s_o_credential.DeleteSSOLoginPlatformCredentialV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (s *SSOCredentialService) DeleteSSOLoginPlatformCredentialV3Short(input *s_s_o_credential.DeleteSSOLoginPlatformCredentialV3Params) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -214,7 +217,8 @@ func (s *SSOCredentialService) DeleteSSOLoginPlatformCredentialV3Short(input *s_
 	return nil
 }
 
-func (s *SSOCredentialService) UpdateSSOPlatformCredentialShort(input *s_s_o_credential.UpdateSSOPlatformCredentialParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+func (s *SSOCredentialService) UpdateSSOPlatformCredentialShort(input *s_s_o_credential.UpdateSSOPlatformCredentialParams) (*iamclientmodels.ModelSSOPlatformCredentialResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

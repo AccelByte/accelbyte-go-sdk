@@ -74,9 +74,10 @@ type AdminUpdateAgeRestrictionConfigV2Params struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin update age restriction config v2 params
@@ -99,6 +100,11 @@ func (o *AdminUpdateAgeRestrictionConfigV2Params) WithContext(ctx context.Contex
 // SetContext adds the context to the admin update age restriction config v2 params
 func (o *AdminUpdateAgeRestrictionConfigV2Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin update age restriction config v2 params
+func (o *AdminUpdateAgeRestrictionConfigV2Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin update age restriction config v2 params

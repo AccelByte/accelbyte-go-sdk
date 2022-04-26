@@ -87,9 +87,10 @@ type ListBasicItemsByFeaturesParams struct {
 	/*Namespace*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the list basic items by features params
@@ -112,6 +113,11 @@ func (o *ListBasicItemsByFeaturesParams) WithContext(ctx context.Context) *ListB
 // SetContext adds the context to the list basic items by features params
 func (o *ListBasicItemsByFeaturesParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the list basic items by features params
+func (o *ListBasicItemsByFeaturesParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the list basic items by features params

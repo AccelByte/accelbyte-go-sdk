@@ -15,7 +15,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -269,7 +268,8 @@ func (o *OAuth20Service) TokenGrantV3(input *o_auth2_0.TokenGrantV3Params) (*iam
 	return ok.GetPayload(), nil
 }
 
-func (o *OAuth20Service) AdminRetrieveUserThirdPartyPlatformTokenV3Short(input *o_auth2_0.AdminRetrieveUserThirdPartyPlatformTokenV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.OauthmodelTokenThirdPartyResponse, error) {
+func (o *OAuth20Service) AdminRetrieveUserThirdPartyPlatformTokenV3Short(input *o_auth2_0.AdminRetrieveUserThirdPartyPlatformTokenV3Params) (*iamclientmodels.OauthmodelTokenThirdPartyResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -284,7 +284,8 @@ func (o *OAuth20Service) AdminRetrieveUserThirdPartyPlatformTokenV3Short(input *
 	return ok.GetPayload(), nil
 }
 
-func (o *OAuth20Service) RevokeUserV3Short(input *o_auth2_0.RevokeUserV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (o *OAuth20Service) RevokeUserV3Short(input *o_auth2_0.RevokeUserV3Params) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -299,7 +300,8 @@ func (o *OAuth20Service) RevokeUserV3Short(input *o_auth2_0.RevokeUserV3Params, 
 	return nil
 }
 
-func (o *OAuth20Service) AuthorizeV3Short(input *o_auth2_0.AuthorizeV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (string, error) {
+func (o *OAuth20Service) AuthorizeV3Short(input *o_auth2_0.AuthorizeV3Params) (string, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"basic"},
@@ -323,7 +325,8 @@ func (o *OAuth20Service) AuthorizeV3Short(input *o_auth2_0.AuthorizeV3Params, au
 	return requestID, nil
 }
 
-func (o *OAuth20Service) TokenIntrospectionV3Short(input *o_auth2_0.TokenIntrospectionV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.OauthmodelTokenIntrospectResponse, error) {
+func (o *OAuth20Service) TokenIntrospectionV3Short(input *o_auth2_0.TokenIntrospectionV3Params) (*iamclientmodels.OauthmodelTokenIntrospectResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"basic"},
@@ -339,7 +342,8 @@ func (o *OAuth20Service) TokenIntrospectionV3Short(input *o_auth2_0.TokenIntrosp
 	return ok.GetPayload(), nil
 }
 
-func (o *OAuth20Service) GetJWKSV3Short(input *o_auth2_0.GetJWKSV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.OauthcommonJWKSet, error) {
+func (o *OAuth20Service) GetJWKSV3Short(input *o_auth2_0.GetJWKSV3Params) (*iamclientmodels.OauthcommonJWKSet, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -354,7 +358,8 @@ func (o *OAuth20Service) GetJWKSV3Short(input *o_auth2_0.GetJWKSV3Params, authIn
 	return ok.GetPayload(), nil
 }
 
-func (o *OAuth20Service) Change2FAMethodShort(input *o_auth2_0.Change2FAMethodParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (o *OAuth20Service) Change2FAMethodShort(input *o_auth2_0.Change2FAMethodParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -369,7 +374,8 @@ func (o *OAuth20Service) Change2FAMethodShort(input *o_auth2_0.Change2FAMethodPa
 	return nil
 }
 
-func (o *OAuth20Service) Verify2FACodeShort(input *o_auth2_0.Verify2FACodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+func (o *OAuth20Service) Verify2FACodeShort(input *o_auth2_0.Verify2FACodeParams) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -384,7 +390,8 @@ func (o *OAuth20Service) Verify2FACodeShort(input *o_auth2_0.Verify2FACodeParams
 	return ok.GetPayload(), nil
 }
 
-func (o *OAuth20Service) RetrieveUserThirdPartyPlatformTokenV3Short(input *o_auth2_0.RetrieveUserThirdPartyPlatformTokenV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.OauthmodelTokenThirdPartyResponse, error) {
+func (o *OAuth20Service) RetrieveUserThirdPartyPlatformTokenV3Short(input *o_auth2_0.RetrieveUserThirdPartyPlatformTokenV3Params) (*iamclientmodels.OauthmodelTokenThirdPartyResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -399,7 +406,8 @@ func (o *OAuth20Service) RetrieveUserThirdPartyPlatformTokenV3Short(input *o_aut
 	return ok.GetPayload(), nil
 }
 
-func (o *OAuth20Service) AuthCodeRequestV3Short(input *o_auth2_0.AuthCodeRequestV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (string, error) {
+func (o *OAuth20Service) AuthCodeRequestV3Short(input *o_auth2_0.AuthCodeRequestV3Params) (string, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -414,7 +422,8 @@ func (o *OAuth20Service) AuthCodeRequestV3Short(input *o_auth2_0.AuthCodeRequest
 	return ok.Location, nil
 }
 
-func (o *OAuth20Service) PlatformTokenGrantV3Short(input *o_auth2_0.PlatformTokenGrantV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.OauthmodelTokenResponse, error) {
+func (o *OAuth20Service) PlatformTokenGrantV3Short(input *o_auth2_0.PlatformTokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"basic"},
@@ -429,7 +438,8 @@ func (o *OAuth20Service) PlatformTokenGrantV3Short(input *o_auth2_0.PlatformToke
 	return ok.GetPayload(), nil
 }
 
-func (o *OAuth20Service) GetRevocationListV3Short(input *o_auth2_0.GetRevocationListV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.OauthapiRevocationList, error) {
+func (o *OAuth20Service) GetRevocationListV3Short(input *o_auth2_0.GetRevocationListV3Params) (*iamclientmodels.OauthapiRevocationList, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -444,7 +454,8 @@ func (o *OAuth20Service) GetRevocationListV3Short(input *o_auth2_0.GetRevocation
 	return ok.GetPayload(), nil
 }
 
-func (o *OAuth20Service) TokenRevocationV3Short(input *o_auth2_0.TokenRevocationV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (o *OAuth20Service) TokenRevocationV3Short(input *o_auth2_0.TokenRevocationV3Params) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"basic"},
@@ -459,7 +470,8 @@ func (o *OAuth20Service) TokenRevocationV3Short(input *o_auth2_0.TokenRevocation
 	return nil
 }
 
-func (o *OAuth20Service) TokenGrantV3Short(input *o_auth2_0.TokenGrantV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+func (o *OAuth20Service) TokenGrantV3Short(input *o_auth2_0.TokenGrantV3Params) (*iamclientmodels.OauthmodelTokenResponseV3, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"basic"},

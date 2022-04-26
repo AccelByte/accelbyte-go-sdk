@@ -74,9 +74,10 @@ type AdminGetUserProfilePublicInfoByIdsParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin get user profile public info by ids params
@@ -99,6 +100,11 @@ func (o *AdminGetUserProfilePublicInfoByIdsParams) WithContext(ctx context.Conte
 // SetContext adds the context to the admin get user profile public info by ids params
 func (o *AdminGetUserProfilePublicInfoByIdsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin get user profile public info by ids params
+func (o *AdminGetUserProfilePublicInfoByIdsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin get user profile public info by ids params

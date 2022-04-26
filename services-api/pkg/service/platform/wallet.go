@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -257,7 +256,8 @@ func (w *WalletService) PublicListUserWalletTransactions(input *wallet.PublicLis
 	return ok.GetPayload(), nil
 }
 
-func (w *WalletService) CheckWalletShort(input *wallet.CheckWalletParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (w *WalletService) CheckWalletShort(input *wallet.CheckWalletParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -272,7 +272,8 @@ func (w *WalletService) CheckWalletShort(input *wallet.CheckWalletParams, authIn
 	return nil
 }
 
-func (w *WalletService) CreditUserWalletShort(input *wallet.CreditUserWalletParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletInfo, error) {
+func (w *WalletService) CreditUserWalletShort(input *wallet.CreditUserWalletParams) (*platformclientmodels.WalletInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -287,7 +288,8 @@ func (w *WalletService) CreditUserWalletShort(input *wallet.CreditUserWalletPara
 	return ok.GetPayload(), nil
 }
 
-func (w *WalletService) PayWithUserWalletShort(input *wallet.PayWithUserWalletParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletInfo, error) {
+func (w *WalletService) PayWithUserWalletShort(input *wallet.PayWithUserWalletParams) (*platformclientmodels.WalletInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -302,7 +304,8 @@ func (w *WalletService) PayWithUserWalletShort(input *wallet.PayWithUserWalletPa
 	return ok.GetPayload(), nil
 }
 
-func (w *WalletService) GetUserWalletShort(input *wallet.GetUserWalletParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletInfo, error) {
+func (w *WalletService) GetUserWalletShort(input *wallet.GetUserWalletParams) (*platformclientmodels.WalletInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -317,7 +320,8 @@ func (w *WalletService) GetUserWalletShort(input *wallet.GetUserWalletParams, au
 	return ok.GetPayload(), nil
 }
 
-func (w *WalletService) DebitUserWalletShort(input *wallet.DebitUserWalletParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletInfo, error) {
+func (w *WalletService) DebitUserWalletShort(input *wallet.DebitUserWalletParams) (*platformclientmodels.WalletInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -332,7 +336,8 @@ func (w *WalletService) DebitUserWalletShort(input *wallet.DebitUserWalletParams
 	return ok.GetPayload(), nil
 }
 
-func (w *WalletService) DisableUserWalletShort(input *wallet.DisableUserWalletParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (w *WalletService) DisableUserWalletShort(input *wallet.DisableUserWalletParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -347,7 +352,8 @@ func (w *WalletService) DisableUserWalletShort(input *wallet.DisableUserWalletPa
 	return nil
 }
 
-func (w *WalletService) EnableUserWalletShort(input *wallet.EnableUserWalletParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (w *WalletService) EnableUserWalletShort(input *wallet.EnableUserWalletParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -362,7 +368,8 @@ func (w *WalletService) EnableUserWalletShort(input *wallet.EnableUserWalletPara
 	return nil
 }
 
-func (w *WalletService) ListUserWalletTransactionsShort(input *wallet.ListUserWalletTransactionsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletTransactionPagingSlicedResult, error) {
+func (w *WalletService) ListUserWalletTransactionsShort(input *wallet.ListUserWalletTransactionsParams) (*platformclientmodels.WalletTransactionPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -377,7 +384,8 @@ func (w *WalletService) ListUserWalletTransactionsShort(input *wallet.ListUserWa
 	return ok.GetPayload(), nil
 }
 
-func (w *WalletService) QueryWalletsShort(input *wallet.QueryWalletsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletPagingSlicedResult, error) {
+func (w *WalletService) QueryWalletsShort(input *wallet.QueryWalletsParams) (*platformclientmodels.WalletPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -392,7 +400,8 @@ func (w *WalletService) QueryWalletsShort(input *wallet.QueryWalletsParams, auth
 	return ok.GetPayload(), nil
 }
 
-func (w *WalletService) GetWalletShort(input *wallet.GetWalletParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletInfo, error) {
+func (w *WalletService) GetWalletShort(input *wallet.GetWalletParams) (*platformclientmodels.WalletInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -407,7 +416,8 @@ func (w *WalletService) GetWalletShort(input *wallet.GetWalletParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-func (w *WalletService) PublicGetMyWalletShort(input *wallet.PublicGetMyWalletParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletInfo, error) {
+func (w *WalletService) PublicGetMyWalletShort(input *wallet.PublicGetMyWalletParams) (*platformclientmodels.WalletInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -422,7 +432,8 @@ func (w *WalletService) PublicGetMyWalletShort(input *wallet.PublicGetMyWalletPa
 	return ok.GetPayload(), nil
 }
 
-func (w *WalletService) PublicGetWalletShort(input *wallet.PublicGetWalletParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletInfo, error) {
+func (w *WalletService) PublicGetWalletShort(input *wallet.PublicGetWalletParams) (*platformclientmodels.WalletInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -437,7 +448,8 @@ func (w *WalletService) PublicGetWalletShort(input *wallet.PublicGetWalletParams
 	return ok.GetPayload(), nil
 }
 
-func (w *WalletService) PublicListUserWalletTransactionsShort(input *wallet.PublicListUserWalletTransactionsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.WalletTransactionPagingSlicedResult, error) {
+func (w *WalletService) PublicListUserWalletTransactionsShort(input *wallet.PublicListUserWalletTransactionsParams) (*platformclientmodels.WalletTransactionPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

@@ -71,9 +71,10 @@ type ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlayt
 	/*SteamID*/
 	SteamID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the protected update playtime game telemetry v1 protected steam ids steam Id playtime playtime put params
@@ -96,6 +97,11 @@ func (o *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeP
 // SetContext adds the context to the protected update playtime game telemetry v1 protected steam ids steam Id playtime playtime put params
 func (o *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the protected update playtime game telemetry v1 protected steam ids steam Id playtime playtime put params
+func (o *ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the protected update playtime game telemetry v1 protected steam ids steam Id playtime playtime put params

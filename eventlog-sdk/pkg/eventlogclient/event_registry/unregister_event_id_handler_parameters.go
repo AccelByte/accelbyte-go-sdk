@@ -70,9 +70,10 @@ type UnregisterEventIDHandlerParams struct {
 	*/
 	EventID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the unregister event ID handler params
@@ -95,6 +96,11 @@ func (o *UnregisterEventIDHandlerParams) WithContext(ctx context.Context) *Unreg
 // SetContext adds the context to the unregister event ID handler params
 func (o *UnregisterEventIDHandlerParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the unregister event ID handler params
+func (o *UnregisterEventIDHandlerParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the unregister event ID handler params

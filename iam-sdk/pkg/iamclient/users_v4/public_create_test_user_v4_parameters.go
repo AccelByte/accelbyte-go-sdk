@@ -74,9 +74,10 @@ type PublicCreateTestUserV4Params struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the public create test user v4 params
@@ -99,6 +100,11 @@ func (o *PublicCreateTestUserV4Params) WithContext(ctx context.Context) *PublicC
 // SetContext adds the context to the public create test user v4 params
 func (o *PublicCreateTestUserV4Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the public create test user v4 params
+func (o *PublicCreateTestUserV4Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the public create test user v4 params

@@ -77,9 +77,10 @@ type SyncPaymentOrdersParams struct {
 	*/
 	Start string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the sync payment orders params
@@ -102,6 +103,11 @@ func (o *SyncPaymentOrdersParams) WithContext(ctx context.Context) *SyncPaymentO
 // SetContext adds the context to the sync payment orders params
 func (o *SyncPaymentOrdersParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the sync payment orders params
+func (o *SyncPaymentOrdersParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the sync payment orders params

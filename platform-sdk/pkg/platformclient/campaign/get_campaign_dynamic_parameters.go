@@ -69,9 +69,10 @@ type GetCampaignDynamicParams struct {
 	/*Namespace*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get campaign dynamic params
@@ -94,6 +95,11 @@ func (o *GetCampaignDynamicParams) WithContext(ctx context.Context) *GetCampaign
 // SetContext adds the context to the get campaign dynamic params
 func (o *GetCampaignDynamicParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get campaign dynamic params
+func (o *GetCampaignDynamicParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get campaign dynamic params

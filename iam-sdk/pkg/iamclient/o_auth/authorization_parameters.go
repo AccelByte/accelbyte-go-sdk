@@ -112,9 +112,10 @@ type AuthorizationParams struct {
 	*/
 	State *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the authorization params
@@ -137,6 +138,11 @@ func (o *AuthorizationParams) WithContext(ctx context.Context) *AuthorizationPar
 // SetContext adds the context to the authorization params
 func (o *AuthorizationParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the authorization params
+func (o *AuthorizationParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the authorization params

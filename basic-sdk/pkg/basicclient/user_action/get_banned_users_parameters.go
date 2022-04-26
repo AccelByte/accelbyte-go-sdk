@@ -76,9 +76,10 @@ type GetBannedUsersParams struct {
 	*/
 	UserIds []string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get banned users params
@@ -101,6 +102,11 @@ func (o *GetBannedUsersParams) WithContext(ctx context.Context) *GetBannedUsersP
 // SetContext adds the context to the get banned users params
 func (o *GetBannedUsersParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get banned users params
+func (o *GetBannedUsersParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get banned users params

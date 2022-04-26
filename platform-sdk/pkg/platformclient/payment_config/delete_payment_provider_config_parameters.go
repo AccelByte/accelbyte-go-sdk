@@ -70,9 +70,10 @@ type DeletePaymentProviderConfigParams struct {
 	*/
 	ID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the delete payment provider config params
@@ -95,6 +96,11 @@ func (o *DeletePaymentProviderConfigParams) WithContext(ctx context.Context) *De
 // SetContext adds the context to the delete payment provider config params
 func (o *DeletePaymentProviderConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the delete payment provider config params
+func (o *DeletePaymentProviderConfigParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the delete payment provider config params

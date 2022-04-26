@@ -63,9 +63,10 @@ func NewGetRevocationListParamsWithHTTPClient(client *http.Client) *GetRevocatio
 for the get revocation list operation typically these are written to a http.Request
 */
 type GetRevocationListParams struct {
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get revocation list params
@@ -88,6 +89,11 @@ func (o *GetRevocationListParams) WithContext(ctx context.Context) *GetRevocatio
 // SetContext adds the context to the get revocation list params
 func (o *GetRevocationListParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get revocation list params
+func (o *GetRevocationListParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get revocation list params

@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -250,7 +249,8 @@ func (s *StoreService) PublicListStores(input *store.PublicListStoresParams) ([]
 	return ok.GetPayload(), nil
 }
 
-func (s *StoreService) ListStoresShort(input *store.ListStoresParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.StoreInfo, error) {
+func (s *StoreService) ListStoresShort(input *store.ListStoresParams) ([]*platformclientmodels.StoreInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -265,7 +265,8 @@ func (s *StoreService) ListStoresShort(input *store.ListStoresParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-func (s *StoreService) CreateStoreShort(input *store.CreateStoreParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.StoreInfo, error) {
+func (s *StoreService) CreateStoreShort(input *store.CreateStoreParams) (*platformclientmodels.StoreInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -280,7 +281,8 @@ func (s *StoreService) CreateStoreShort(input *store.CreateStoreParams, authInfo
 	return created.GetPayload(), nil
 }
 
-func (s *StoreService) ImportStoreShort(input *store.ImportStoreParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.StoreInfo, error) {
+func (s *StoreService) ImportStoreShort(input *store.ImportStoreParams) (*platformclientmodels.StoreInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -295,7 +297,8 @@ func (s *StoreService) ImportStoreShort(input *store.ImportStoreParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-func (s *StoreService) GetPublishedStoreShort(input *store.GetPublishedStoreParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.StoreInfo, error) {
+func (s *StoreService) GetPublishedStoreShort(input *store.GetPublishedStoreParams) (*platformclientmodels.StoreInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -310,7 +313,8 @@ func (s *StoreService) GetPublishedStoreShort(input *store.GetPublishedStorePara
 	return ok.GetPayload(), nil
 }
 
-func (s *StoreService) DeletePublishedStoreShort(input *store.DeletePublishedStoreParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.StoreInfo, error) {
+func (s *StoreService) DeletePublishedStoreShort(input *store.DeletePublishedStoreParams) (*platformclientmodels.StoreInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -325,7 +329,8 @@ func (s *StoreService) DeletePublishedStoreShort(input *store.DeletePublishedSto
 	return ok.GetPayload(), nil
 }
 
-func (s *StoreService) GetPublishedStoreBackupShort(input *store.GetPublishedStoreBackupParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.StoreBackupInfo, error) {
+func (s *StoreService) GetPublishedStoreBackupShort(input *store.GetPublishedStoreBackupParams) (*platformclientmodels.StoreBackupInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -340,7 +345,8 @@ func (s *StoreService) GetPublishedStoreBackupShort(input *store.GetPublishedSto
 	return ok.GetPayload(), nil
 }
 
-func (s *StoreService) RollbackPublishedStoreShort(input *store.RollbackPublishedStoreParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.StoreInfo, error) {
+func (s *StoreService) RollbackPublishedStoreShort(input *store.RollbackPublishedStoreParams) (*platformclientmodels.StoreInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -355,7 +361,8 @@ func (s *StoreService) RollbackPublishedStoreShort(input *store.RollbackPublishe
 	return ok.GetPayload(), nil
 }
 
-func (s *StoreService) GetStoreShort(input *store.GetStoreParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.StoreInfo, error) {
+func (s *StoreService) GetStoreShort(input *store.GetStoreParams) (*platformclientmodels.StoreInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -370,7 +377,8 @@ func (s *StoreService) GetStoreShort(input *store.GetStoreParams, authInfoWriter
 	return ok.GetPayload(), nil
 }
 
-func (s *StoreService) UpdateStoreShort(input *store.UpdateStoreParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.StoreInfo, error) {
+func (s *StoreService) UpdateStoreShort(input *store.UpdateStoreParams) (*platformclientmodels.StoreInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -385,7 +393,8 @@ func (s *StoreService) UpdateStoreShort(input *store.UpdateStoreParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-func (s *StoreService) DeleteStoreShort(input *store.DeleteStoreParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.StoreInfo, error) {
+func (s *StoreService) DeleteStoreShort(input *store.DeleteStoreParams) (*platformclientmodels.StoreInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -400,7 +409,8 @@ func (s *StoreService) DeleteStoreShort(input *store.DeleteStoreParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-func (s *StoreService) CloneStoreShort(input *store.CloneStoreParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.StoreInfo, error) {
+func (s *StoreService) CloneStoreShort(input *store.CloneStoreParams) (*platformclientmodels.StoreInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -415,7 +425,8 @@ func (s *StoreService) CloneStoreShort(input *store.CloneStoreParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-func (s *StoreService) ExportStoreShort(input *store.ExportStoreParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (s *StoreService) ExportStoreShort(input *store.ExportStoreParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

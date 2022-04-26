@@ -63,9 +63,10 @@ func NewVersionCheckHandlerParamsWithHTTPClient(client *http.Client) *VersionChe
 for the version check handler operation typically these are written to a http.Request
 */
 type VersionCheckHandlerParams struct {
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the version check handler params
@@ -88,6 +89,11 @@ func (o *VersionCheckHandlerParams) WithContext(ctx context.Context) *VersionChe
 // SetContext adds the context to the version check handler params
 func (o *VersionCheckHandlerParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the version check handler params
+func (o *VersionCheckHandlerParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the version check handler params

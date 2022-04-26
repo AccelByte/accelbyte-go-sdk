@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -185,7 +184,8 @@ func (u *UserActionService) PublicReportUser(input *user_action.PublicReportUser
 	return nil
 }
 
-func (u *UserActionService) GetActionsShort(input *user_action.GetActionsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*basicclientmodels.Action, error) {
+func (u *UserActionService) GetActionsShort(input *user_action.GetActionsParams) ([]*basicclientmodels.Action, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -200,7 +200,8 @@ func (u *UserActionService) GetActionsShort(input *user_action.GetActionsParams,
 	return ok.GetPayload(), nil
 }
 
-func (u *UserActionService) BanUsersShort(input *user_action.BanUsersParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (u *UserActionService) BanUsersShort(input *user_action.BanUsersParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -215,7 +216,8 @@ func (u *UserActionService) BanUsersShort(input *user_action.BanUsersParams, aut
 	return nil
 }
 
-func (u *UserActionService) GetBannedUsersShort(input *user_action.GetBannedUsersParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*basicclientmodels.ADTOObjectForEqu8UserBanStatus, error) {
+func (u *UserActionService) GetBannedUsersShort(input *user_action.GetBannedUsersParams) ([]*basicclientmodels.ADTOObjectForEqu8UserBanStatus, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -230,7 +232,8 @@ func (u *UserActionService) GetBannedUsersShort(input *user_action.GetBannedUser
 	return ok.GetPayload(), nil
 }
 
-func (u *UserActionService) ReportUserShort(input *user_action.ReportUserParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (u *UserActionService) ReportUserShort(input *user_action.ReportUserParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -245,7 +248,8 @@ func (u *UserActionService) ReportUserShort(input *user_action.ReportUserParams,
 	return nil
 }
 
-func (u *UserActionService) GetUserStatusShort(input *user_action.GetUserStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.ADTOObjectForEqu8UserStatus, error) {
+func (u *UserActionService) GetUserStatusShort(input *user_action.GetUserStatusParams) (*basicclientmodels.ADTOObjectForEqu8UserStatus, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -260,7 +264,8 @@ func (u *UserActionService) GetUserStatusShort(input *user_action.GetUserStatusP
 	return ok.GetPayload(), nil
 }
 
-func (u *UserActionService) UnBanUsersShort(input *user_action.UnBanUsersParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (u *UserActionService) UnBanUsersShort(input *user_action.UnBanUsersParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -275,7 +280,8 @@ func (u *UserActionService) UnBanUsersShort(input *user_action.UnBanUsersParams,
 	return nil
 }
 
-func (u *UserActionService) PublicReportUserShort(input *user_action.PublicReportUserParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (u *UserActionService) PublicReportUserShort(input *user_action.PublicReportUserParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

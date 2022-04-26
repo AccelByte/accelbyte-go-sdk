@@ -76,9 +76,10 @@ type GrantUserPassParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the grant user pass params
@@ -101,6 +102,11 @@ func (o *GrantUserPassParams) WithContext(ctx context.Context) *GrantUserPassPar
 // SetContext adds the context to the grant user pass params
 func (o *GrantUserPassParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the grant user pass params
+func (o *GrantUserPassParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the grant user pass params

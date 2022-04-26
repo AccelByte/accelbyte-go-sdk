@@ -75,9 +75,10 @@ type DownloadContentByShareCodeParams struct {
 	*/
 	ShareCode string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the download content by share code params
@@ -100,6 +101,11 @@ func (o *DownloadContentByShareCodeParams) WithContext(ctx context.Context) *Dow
 // SetContext adds the context to the download content by share code params
 func (o *DownloadContentByShareCodeParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the download content by share code params
+func (o *DownloadContentByShareCodeParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the download content by share code params

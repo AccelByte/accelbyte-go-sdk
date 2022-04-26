@@ -73,9 +73,10 @@ type DefeatureItemParams struct {
 	/*StoreID*/
 	StoreID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the defeature item params
@@ -98,6 +99,11 @@ func (o *DefeatureItemParams) WithContext(ctx context.Context) *DefeatureItemPar
 // SetContext adds the context to the defeature item params
 func (o *DefeatureItemParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the defeature item params
+func (o *DefeatureItemParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the defeature item params

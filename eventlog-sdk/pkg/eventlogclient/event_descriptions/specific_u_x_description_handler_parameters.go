@@ -70,9 +70,10 @@ type SpecificUXDescriptionHandlerParams struct {
 	*/
 	Ux *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the specific u x description handler params
@@ -95,6 +96,11 @@ func (o *SpecificUXDescriptionHandlerParams) WithContext(ctx context.Context) *S
 // SetContext adds the context to the specific u x description handler params
 func (o *SpecificUXDescriptionHandlerParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the specific u x description handler params
+func (o *SpecificUXDescriptionHandlerParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the specific u x description handler params

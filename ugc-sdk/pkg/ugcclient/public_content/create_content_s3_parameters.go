@@ -84,9 +84,10 @@ type CreateContentS3Params struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the create content s3 params
@@ -109,6 +110,11 @@ func (o *CreateContentS3Params) WithContext(ctx context.Context) *CreateContentS
 // SetContext adds the context to the create content s3 params
 func (o *CreateContentS3Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the create content s3 params
+func (o *CreateContentS3Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the create content s3 params

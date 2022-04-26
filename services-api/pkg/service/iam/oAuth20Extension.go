@@ -15,7 +15,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -92,7 +91,8 @@ func (o *OAuth20ExtensionService) PlatformAuthenticationV3(input *o_auth2_0_exte
 	return ok.Location, nil
 }
 
-func (o *OAuth20ExtensionService) UserAuthenticationV3Short(input *o_auth2_0_extension.UserAuthenticationV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (string, error) {
+func (o *OAuth20ExtensionService) UserAuthenticationV3Short(input *o_auth2_0_extension.UserAuthenticationV3Params) (string, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"basic"},
@@ -120,7 +120,8 @@ func (o *OAuth20ExtensionService) UserAuthenticationV3Short(input *o_auth2_0_ext
 	return code, nil
 }
 
-func (o *OAuth20ExtensionService) GetCountryLocationV3Short(input *o_auth2_0_extension.GetCountryLocationV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.OauthmodelCountryLocationResponse, error) {
+func (o *OAuth20ExtensionService) GetCountryLocationV3Short(input *o_auth2_0_extension.GetCountryLocationV3Params) (*iamclientmodels.OauthmodelCountryLocationResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -135,7 +136,8 @@ func (o *OAuth20ExtensionService) GetCountryLocationV3Short(input *o_auth2_0_ext
 	return ok.GetPayload(), nil
 }
 
-func (o *OAuth20ExtensionService) LogoutShort(input *o_auth2_0_extension.LogoutParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (o *OAuth20ExtensionService) LogoutShort(input *o_auth2_0_extension.LogoutParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -150,7 +152,8 @@ func (o *OAuth20ExtensionService) LogoutShort(input *o_auth2_0_extension.LogoutP
 	return nil
 }
 
-func (o *OAuth20ExtensionService) PlatformAuthenticationV3Short(input *o_auth2_0_extension.PlatformAuthenticationV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (string, error) {
+func (o *OAuth20ExtensionService) PlatformAuthenticationV3Short(input *o_auth2_0_extension.PlatformAuthenticationV3Params) (string, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

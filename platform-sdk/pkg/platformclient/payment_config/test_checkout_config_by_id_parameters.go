@@ -82,9 +82,10 @@ type TestCheckoutConfigByIDParams struct {
 	/*Sandbox*/
 	Sandbox *bool
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the test checkout config by Id params
@@ -107,6 +108,11 @@ func (o *TestCheckoutConfigByIDParams) WithContext(ctx context.Context) *TestChe
 // SetContext adds the context to the test checkout config by Id params
 func (o *TestCheckoutConfigByIDParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the test checkout config by Id params
+func (o *TestCheckoutConfigByIDParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the test checkout config by Id params

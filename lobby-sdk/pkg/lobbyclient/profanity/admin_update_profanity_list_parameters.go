@@ -82,9 +82,10 @@ type AdminUpdateProfanityListParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin update profanity list params
@@ -107,6 +108,11 @@ func (o *AdminUpdateProfanityListParams) WithContext(ctx context.Context) *Admin
 // SetContext adds the context to the admin update profanity list params
 func (o *AdminUpdateProfanityListParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin update profanity list params
+func (o *AdminUpdateProfanityListParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin update profanity list params

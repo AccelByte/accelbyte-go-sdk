@@ -70,9 +70,10 @@ type GetTimeZonesParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get time zones params
@@ -95,6 +96,11 @@ func (o *GetTimeZonesParams) WithContext(ctx context.Context) *GetTimeZonesParam
 // SetContext adds the context to the get time zones params
 func (o *GetTimeZonesParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get time zones params
+func (o *GetTimeZonesParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get time zones params

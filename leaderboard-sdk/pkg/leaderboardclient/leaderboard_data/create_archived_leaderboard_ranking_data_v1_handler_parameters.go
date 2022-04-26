@@ -74,9 +74,10 @@ type CreateArchivedLeaderboardRankingDataV1HandlerParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the create archived leaderboard ranking data v1 handler params
@@ -99,6 +100,11 @@ func (o *CreateArchivedLeaderboardRankingDataV1HandlerParams) WithContext(ctx co
 // SetContext adds the context to the create archived leaderboard ranking data v1 handler params
 func (o *CreateArchivedLeaderboardRankingDataV1HandlerParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the create archived leaderboard ranking data v1 handler params
+func (o *CreateArchivedLeaderboardRankingDataV1HandlerParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the create archived leaderboard ranking data v1 handler params

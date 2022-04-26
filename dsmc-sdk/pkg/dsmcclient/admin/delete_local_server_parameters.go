@@ -75,9 +75,10 @@ type DeleteLocalServerParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the delete local server params
@@ -100,6 +101,11 @@ func (o *DeleteLocalServerParams) WithContext(ctx context.Context) *DeleteLocalS
 // SetContext adds the context to the delete local server params
 func (o *DeleteLocalServerParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the delete local server params
+func (o *DeleteLocalServerParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the delete local server params

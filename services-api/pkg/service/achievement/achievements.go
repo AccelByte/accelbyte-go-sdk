@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/achievement-sdk/pkg/achievementclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -370,7 +369,8 @@ func (a *AchievementsService) PublicUnlockAchievement(input *achievements.Public
 	return nil
 }
 
-func (a *AchievementsService) AdminListAchievementsShort(input *achievements.AdminListAchievementsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*achievementclientmodels.ModelsPaginatedAchievementResponse, error) {
+func (a *AchievementsService) AdminListAchievementsShort(input *achievements.AdminListAchievementsParams) (*achievementclientmodels.ModelsPaginatedAchievementResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -385,7 +385,8 @@ func (a *AchievementsService) AdminListAchievementsShort(input *achievements.Adm
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) AdminCreateNewAchievementShort(input *achievements.AdminCreateNewAchievementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*achievementclientmodels.ModelsAchievementResponse, error) {
+func (a *AchievementsService) AdminCreateNewAchievementShort(input *achievements.AdminCreateNewAchievementParams) (*achievementclientmodels.ModelsAchievementResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -400,7 +401,8 @@ func (a *AchievementsService) AdminCreateNewAchievementShort(input *achievements
 	return created.GetPayload(), nil
 }
 
-func (a *AchievementsService) ExportAchievementsShort(input *achievements.ExportAchievementsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*achievementclientmodels.ModelsAchievement, error) {
+func (a *AchievementsService) ExportAchievementsShort(input *achievements.ExportAchievementsParams) ([]*achievementclientmodels.ModelsAchievement, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -415,7 +417,8 @@ func (a *AchievementsService) ExportAchievementsShort(input *achievements.Export
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) ImportAchievementsShort(input *achievements.ImportAchievementsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*achievementclientmodels.ServiceImportConfigResponse, error) {
+func (a *AchievementsService) ImportAchievementsShort(input *achievements.ImportAchievementsParams) (*achievementclientmodels.ServiceImportConfigResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -430,7 +433,8 @@ func (a *AchievementsService) ImportAchievementsShort(input *achievements.Import
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) AdminGetAchievementShort(input *achievements.AdminGetAchievementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*achievementclientmodels.ModelsAchievementResponse, error) {
+func (a *AchievementsService) AdminGetAchievementShort(input *achievements.AdminGetAchievementParams) (*achievementclientmodels.ModelsAchievementResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -445,7 +449,8 @@ func (a *AchievementsService) AdminGetAchievementShort(input *achievements.Admin
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) AdminUpdateAchievementShort(input *achievements.AdminUpdateAchievementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*achievementclientmodels.ModelsAchievementResponse, error) {
+func (a *AchievementsService) AdminUpdateAchievementShort(input *achievements.AdminUpdateAchievementParams) (*achievementclientmodels.ModelsAchievementResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -460,7 +465,8 @@ func (a *AchievementsService) AdminUpdateAchievementShort(input *achievements.Ad
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) AdminDeleteAchievementShort(input *achievements.AdminDeleteAchievementParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AchievementsService) AdminDeleteAchievementShort(input *achievements.AdminDeleteAchievementParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -475,7 +481,8 @@ func (a *AchievementsService) AdminDeleteAchievementShort(input *achievements.Ad
 	return nil
 }
 
-func (a *AchievementsService) AdminUpdateAchievementListOrderShort(input *achievements.AdminUpdateAchievementListOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AchievementsService) AdminUpdateAchievementListOrderShort(input *achievements.AdminUpdateAchievementListOrderParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -490,7 +497,8 @@ func (a *AchievementsService) AdminUpdateAchievementListOrderShort(input *achiev
 	return nil
 }
 
-func (a *AchievementsService) AdminListUserAchievementsShort(input *achievements.AdminListUserAchievementsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*achievementclientmodels.ModelsPaginatedUserAchievementResponse, error) {
+func (a *AchievementsService) AdminListUserAchievementsShort(input *achievements.AdminListUserAchievementsParams) (*achievementclientmodels.ModelsPaginatedUserAchievementResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -505,7 +513,8 @@ func (a *AchievementsService) AdminListUserAchievementsShort(input *achievements
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) AdminUnlockAchievementShort(input *achievements.AdminUnlockAchievementParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AchievementsService) AdminUnlockAchievementShort(input *achievements.AdminUnlockAchievementParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -520,7 +529,8 @@ func (a *AchievementsService) AdminUnlockAchievementShort(input *achievements.Ad
 	return nil
 }
 
-func (a *AchievementsService) PublicListAchievementsShort(input *achievements.PublicListAchievementsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*achievementclientmodels.ModelsPublicAchievementsResponse, error) {
+func (a *AchievementsService) PublicListAchievementsShort(input *achievements.PublicListAchievementsParams) (*achievementclientmodels.ModelsPublicAchievementsResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -535,7 +545,8 @@ func (a *AchievementsService) PublicListAchievementsShort(input *achievements.Pu
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) PublicGetAchievementShort(input *achievements.PublicGetAchievementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*achievementclientmodels.ModelsPublicAchievementResponse, error) {
+func (a *AchievementsService) PublicGetAchievementShort(input *achievements.PublicGetAchievementParams) (*achievementclientmodels.ModelsPublicAchievementResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -550,7 +561,8 @@ func (a *AchievementsService) PublicGetAchievementShort(input *achievements.Publ
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) PublicListUserAchievementsShort(input *achievements.PublicListUserAchievementsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*achievementclientmodels.ModelsPaginatedUserAchievementResponse, error) {
+func (a *AchievementsService) PublicListUserAchievementsShort(input *achievements.PublicListUserAchievementsParams) (*achievementclientmodels.ModelsPaginatedUserAchievementResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -565,7 +577,8 @@ func (a *AchievementsService) PublicListUserAchievementsShort(input *achievement
 	return ok.GetPayload(), nil
 }
 
-func (a *AchievementsService) PublicUnlockAchievementShort(input *achievements.PublicUnlockAchievementParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AchievementsService) PublicUnlockAchievementShort(input *achievements.PublicUnlockAchievementParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

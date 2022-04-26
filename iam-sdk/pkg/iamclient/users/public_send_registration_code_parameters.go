@@ -74,9 +74,10 @@ type PublicSendRegistrationCodeParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the public send registration code params
@@ -99,6 +100,11 @@ func (o *PublicSendRegistrationCodeParams) WithContext(ctx context.Context) *Pub
 // SetContext adds the context to the public send registration code params
 func (o *PublicSendRegistrationCodeParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the public send registration code params
+func (o *PublicSendRegistrationCodeParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the public send registration code params

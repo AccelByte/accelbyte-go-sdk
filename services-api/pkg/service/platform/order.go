@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -362,7 +361,8 @@ func (o *OrderService) PublicDownloadUserOrderReceipt(input *order.PublicDownloa
 	return nil
 }
 
-func (o *OrderService) QueryOrdersShort(input *order.QueryOrdersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderPagingResult, error) {
+func (o *OrderService) QueryOrdersShort(input *order.QueryOrdersParams) (*platformclientmodels.OrderPagingResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -377,7 +377,8 @@ func (o *OrderService) QueryOrdersShort(input *order.QueryOrdersParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) GetOrderStatisticsShort(input *order.GetOrderStatisticsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderStatistics, error) {
+func (o *OrderService) GetOrderStatisticsShort(input *order.GetOrderStatisticsParams) (*platformclientmodels.OrderStatistics, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -392,7 +393,8 @@ func (o *OrderService) GetOrderStatisticsShort(input *order.GetOrderStatisticsPa
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) GetOrderShort(input *order.GetOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderInfo, error) {
+func (o *OrderService) GetOrderShort(input *order.GetOrderParams) (*platformclientmodels.OrderInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -407,7 +409,8 @@ func (o *OrderService) GetOrderShort(input *order.GetOrderParams, authInfoWriter
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) RefundOrderShort(input *order.RefundOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderInfo, error) {
+func (o *OrderService) RefundOrderShort(input *order.RefundOrderParams) (*platformclientmodels.OrderInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -422,7 +425,8 @@ func (o *OrderService) RefundOrderShort(input *order.RefundOrderParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) QueryUserOrdersShort(input *order.QueryUserOrdersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderPagingSlicedResult, error) {
+func (o *OrderService) QueryUserOrdersShort(input *order.QueryUserOrdersParams) (*platformclientmodels.OrderPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -437,7 +441,8 @@ func (o *OrderService) QueryUserOrdersShort(input *order.QueryUserOrdersParams, 
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) CountOfPurchasedItemShort(input *order.CountOfPurchasedItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PurchasedItemCount, error) {
+func (o *OrderService) CountOfPurchasedItemShort(input *order.CountOfPurchasedItemParams) (*platformclientmodels.PurchasedItemCount, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -452,7 +457,8 @@ func (o *OrderService) CountOfPurchasedItemShort(input *order.CountOfPurchasedIt
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) GetUserOrderShort(input *order.GetUserOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderInfo, error) {
+func (o *OrderService) GetUserOrderShort(input *order.GetUserOrderParams) (*platformclientmodels.OrderInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -467,7 +473,8 @@ func (o *OrderService) GetUserOrderShort(input *order.GetUserOrderParams, authIn
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) UpdateUserOrderStatusShort(input *order.UpdateUserOrderStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderInfo, error) {
+func (o *OrderService) UpdateUserOrderStatusShort(input *order.UpdateUserOrderStatusParams) (*platformclientmodels.OrderInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -482,7 +489,8 @@ func (o *OrderService) UpdateUserOrderStatusShort(input *order.UpdateUserOrderSt
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) FulfillUserOrderShort(input *order.FulfillUserOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderInfo, error) {
+func (o *OrderService) FulfillUserOrderShort(input *order.FulfillUserOrderParams) (*platformclientmodels.OrderInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -497,7 +505,8 @@ func (o *OrderService) FulfillUserOrderShort(input *order.FulfillUserOrderParams
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) GetUserOrderGrantShort(input *order.GetUserOrderGrantParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderGrantInfo, error) {
+func (o *OrderService) GetUserOrderGrantShort(input *order.GetUserOrderGrantParams) (*platformclientmodels.OrderGrantInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -512,7 +521,8 @@ func (o *OrderService) GetUserOrderGrantShort(input *order.GetUserOrderGrantPara
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) GetUserOrderHistoriesShort(input *order.GetUserOrderHistoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.OrderHistoryInfo, error) {
+func (o *OrderService) GetUserOrderHistoriesShort(input *order.GetUserOrderHistoriesParams) ([]*platformclientmodels.OrderHistoryInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -527,7 +537,8 @@ func (o *OrderService) GetUserOrderHistoriesShort(input *order.GetUserOrderHisto
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) ProcessUserOrderNotificationShort(input *order.ProcessUserOrderNotificationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (o *OrderService) ProcessUserOrderNotificationShort(input *order.ProcessUserOrderNotificationParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -542,7 +553,8 @@ func (o *OrderService) ProcessUserOrderNotificationShort(input *order.ProcessUse
 	return nil
 }
 
-func (o *OrderService) DownloadUserOrderReceiptShort(input *order.DownloadUserOrderReceiptParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (o *OrderService) DownloadUserOrderReceiptShort(input *order.DownloadUserOrderReceiptParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -557,7 +569,8 @@ func (o *OrderService) DownloadUserOrderReceiptShort(input *order.DownloadUserOr
 	return nil
 }
 
-func (o *OrderService) PublicQueryUserOrdersShort(input *order.PublicQueryUserOrdersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderPagingSlicedResult, error) {
+func (o *OrderService) PublicQueryUserOrdersShort(input *order.PublicQueryUserOrdersParams) (*platformclientmodels.OrderPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -572,7 +585,8 @@ func (o *OrderService) PublicQueryUserOrdersShort(input *order.PublicQueryUserOr
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) PublicCreateUserOrderShort(input *order.PublicCreateUserOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderInfo, error) {
+func (o *OrderService) PublicCreateUserOrderShort(input *order.PublicCreateUserOrderParams) (*platformclientmodels.OrderInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -587,7 +601,8 @@ func (o *OrderService) PublicCreateUserOrderShort(input *order.PublicCreateUserO
 	return created.GetPayload(), nil
 }
 
-func (o *OrderService) PublicGetUserOrderShort(input *order.PublicGetUserOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderInfo, error) {
+func (o *OrderService) PublicGetUserOrderShort(input *order.PublicGetUserOrderParams) (*platformclientmodels.OrderInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -602,7 +617,8 @@ func (o *OrderService) PublicGetUserOrderShort(input *order.PublicGetUserOrderPa
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) PublicCancelUserOrderShort(input *order.PublicCancelUserOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderInfo, error) {
+func (o *OrderService) PublicCancelUserOrderShort(input *order.PublicCancelUserOrderParams) (*platformclientmodels.OrderInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -617,7 +633,8 @@ func (o *OrderService) PublicCancelUserOrderShort(input *order.PublicCancelUserO
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) PublicGetUserOrderHistoriesShort(input *order.PublicGetUserOrderHistoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.OrderHistoryInfo, error) {
+func (o *OrderService) PublicGetUserOrderHistoriesShort(input *order.PublicGetUserOrderHistoriesParams) ([]*platformclientmodels.OrderHistoryInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -632,7 +649,8 @@ func (o *OrderService) PublicGetUserOrderHistoriesShort(input *order.PublicGetUs
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderService) PublicDownloadUserOrderReceiptShort(input *order.PublicDownloadUserOrderReceiptParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (o *OrderService) PublicDownloadUserOrderReceiptShort(input *order.PublicDownloadUserOrderReceiptParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

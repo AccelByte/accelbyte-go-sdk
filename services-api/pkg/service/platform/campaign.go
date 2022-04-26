@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -279,7 +278,8 @@ func (c *CampaignService) ApplyUserRedemption(input *campaign.ApplyUserRedemptio
 	return ok.GetPayload(), nil
 }
 
-func (c *CampaignService) QueryCampaignsShort(input *campaign.QueryCampaignsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CampaignPagingSlicedResult, error) {
+func (c *CampaignService) QueryCampaignsShort(input *campaign.QueryCampaignsParams) (*platformclientmodels.CampaignPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -294,7 +294,8 @@ func (c *CampaignService) QueryCampaignsShort(input *campaign.QueryCampaignsPara
 	return ok.GetPayload(), nil
 }
 
-func (c *CampaignService) CreateCampaignShort(input *campaign.CreateCampaignParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CampaignInfo, error) {
+func (c *CampaignService) CreateCampaignShort(input *campaign.CreateCampaignParams) (*platformclientmodels.CampaignInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -309,7 +310,8 @@ func (c *CampaignService) CreateCampaignShort(input *campaign.CreateCampaignPara
 	return created.GetPayload(), nil
 }
 
-func (c *CampaignService) GetCampaignShort(input *campaign.GetCampaignParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CampaignInfo, error) {
+func (c *CampaignService) GetCampaignShort(input *campaign.GetCampaignParams) (*platformclientmodels.CampaignInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -324,7 +326,8 @@ func (c *CampaignService) GetCampaignShort(input *campaign.GetCampaignParams, au
 	return ok.GetPayload(), nil
 }
 
-func (c *CampaignService) UpdateCampaignShort(input *campaign.UpdateCampaignParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CampaignInfo, error) {
+func (c *CampaignService) UpdateCampaignShort(input *campaign.UpdateCampaignParams) (*platformclientmodels.CampaignInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -339,7 +342,8 @@ func (c *CampaignService) UpdateCampaignShort(input *campaign.UpdateCampaignPara
 	return ok.GetPayload(), nil
 }
 
-func (c *CampaignService) GetCampaignDynamicShort(input *campaign.GetCampaignDynamicParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CampaignDynamicInfo, error) {
+func (c *CampaignService) GetCampaignDynamicShort(input *campaign.GetCampaignDynamicParams) (*platformclientmodels.CampaignDynamicInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -354,7 +358,8 @@ func (c *CampaignService) GetCampaignDynamicShort(input *campaign.GetCampaignDyn
 	return ok.GetPayload(), nil
 }
 
-func (c *CampaignService) QueryCodesShort(input *campaign.QueryCodesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CodeInfoPagingSlicedResult, error) {
+func (c *CampaignService) QueryCodesShort(input *campaign.QueryCodesParams) (*platformclientmodels.CodeInfoPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -369,7 +374,8 @@ func (c *CampaignService) QueryCodesShort(input *campaign.QueryCodesParams, auth
 	return ok.GetPayload(), nil
 }
 
-func (c *CampaignService) CreateCodesShort(input *campaign.CreateCodesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CodeCreateResult, error) {
+func (c *CampaignService) CreateCodesShort(input *campaign.CreateCodesParams) (*platformclientmodels.CodeCreateResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -384,7 +390,8 @@ func (c *CampaignService) CreateCodesShort(input *campaign.CreateCodesParams, au
 	return created.GetPayload(), nil
 }
 
-func (c *CampaignService) DownloadShort(input *campaign.DownloadParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (c *CampaignService) DownloadShort(input *campaign.DownloadParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -399,7 +406,8 @@ func (c *CampaignService) DownloadShort(input *campaign.DownloadParams, authInfo
 	return nil
 }
 
-func (c *CampaignService) BulkDisableCodesShort(input *campaign.BulkDisableCodesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.BulkOperationResult, error) {
+func (c *CampaignService) BulkDisableCodesShort(input *campaign.BulkDisableCodesParams) (*platformclientmodels.BulkOperationResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -414,7 +422,8 @@ func (c *CampaignService) BulkDisableCodesShort(input *campaign.BulkDisableCodes
 	return ok.GetPayload(), nil
 }
 
-func (c *CampaignService) BulkEnableCodesShort(input *campaign.BulkEnableCodesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.BulkOperationResult, error) {
+func (c *CampaignService) BulkEnableCodesShort(input *campaign.BulkEnableCodesParams) (*platformclientmodels.BulkOperationResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -429,7 +438,8 @@ func (c *CampaignService) BulkEnableCodesShort(input *campaign.BulkEnableCodesPa
 	return ok.GetPayload(), nil
 }
 
-func (c *CampaignService) QueryRedeemHistoryShort(input *campaign.QueryRedeemHistoryParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.RedeemHistoryPagingSlicedResult, error) {
+func (c *CampaignService) QueryRedeemHistoryShort(input *campaign.QueryRedeemHistoryParams) (*platformclientmodels.RedeemHistoryPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -444,7 +454,8 @@ func (c *CampaignService) QueryRedeemHistoryShort(input *campaign.QueryRedeemHis
 	return ok.GetPayload(), nil
 }
 
-func (c *CampaignService) GetCodeShort(input *campaign.GetCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CodeInfo, error) {
+func (c *CampaignService) GetCodeShort(input *campaign.GetCodeParams) (*platformclientmodels.CodeInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -459,7 +470,8 @@ func (c *CampaignService) GetCodeShort(input *campaign.GetCodeParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-func (c *CampaignService) DisableCodeShort(input *campaign.DisableCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CodeInfo, error) {
+func (c *CampaignService) DisableCodeShort(input *campaign.DisableCodeParams) (*platformclientmodels.CodeInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -474,7 +486,8 @@ func (c *CampaignService) DisableCodeShort(input *campaign.DisableCodeParams, au
 	return ok.GetPayload(), nil
 }
 
-func (c *CampaignService) EnableCodeShort(input *campaign.EnableCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CodeInfo, error) {
+func (c *CampaignService) EnableCodeShort(input *campaign.EnableCodeParams) (*platformclientmodels.CodeInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -489,7 +502,8 @@ func (c *CampaignService) EnableCodeShort(input *campaign.EnableCodeParams, auth
 	return ok.GetPayload(), nil
 }
 
-func (c *CampaignService) ApplyUserRedemptionShort(input *campaign.ApplyUserRedemptionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.RedeemResult, error) {
+func (c *CampaignService) ApplyUserRedemptionShort(input *campaign.ApplyUserRedemptionParams) (*platformclientmodels.RedeemResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

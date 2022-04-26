@@ -63,9 +63,10 @@ func NewGetPaymentTaxConfigParamsWithHTTPClient(client *http.Client) *GetPayment
 for the get payment tax config operation typically these are written to a http.Request
 */
 type GetPaymentTaxConfigParams struct {
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get payment tax config params
@@ -88,6 +89,11 @@ func (o *GetPaymentTaxConfigParams) WithContext(ctx context.Context) *GetPayment
 // SetContext adds the context to the get payment tax config params
 func (o *GetPaymentTaxConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get payment tax config params
+func (o *GetPaymentTaxConfigParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get payment tax config params

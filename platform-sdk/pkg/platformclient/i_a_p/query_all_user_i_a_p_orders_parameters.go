@@ -69,9 +69,10 @@ type QueryAllUserIAPOrdersParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the query all user i a p orders params
@@ -94,6 +95,11 @@ func (o *QueryAllUserIAPOrdersParams) WithContext(ctx context.Context) *QueryAll
 // SetContext adds the context to the query all user i a p orders params
 func (o *QueryAllUserIAPOrdersParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the query all user i a p orders params
+func (o *QueryAllUserIAPOrdersParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the query all user i a p orders params

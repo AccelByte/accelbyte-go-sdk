@@ -79,9 +79,10 @@ type PublicBulkIncUserStatItem1Params struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the public bulk inc user stat item 1 params
@@ -104,6 +105,11 @@ func (o *PublicBulkIncUserStatItem1Params) WithContext(ctx context.Context) *Pub
 // SetContext adds the context to the public bulk inc user stat item 1 params
 func (o *PublicBulkIncUserStatItem1Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the public bulk inc user stat item 1 params
+func (o *PublicBulkIncUserStatItem1Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the public bulk inc user stat item 1 params

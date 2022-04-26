@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -543,7 +542,8 @@ func (u *UserProfileService) PublicUpdateUserProfileStatus(input *user_profile.P
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) AdminGetUserProfilePublicInfoByIdsShort(input *user_profile.AdminGetUserProfilePublicInfoByIdsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*basicclientmodels.UserProfilePublicInfo, error) {
+func (u *UserProfileService) AdminGetUserProfilePublicInfoByIdsShort(input *user_profile.AdminGetUserProfilePublicInfoByIdsParams) ([]*basicclientmodels.UserProfilePublicInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -558,7 +558,8 @@ func (u *UserProfileService) AdminGetUserProfilePublicInfoByIdsShort(input *user
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) GetUserProfileInfoShort(input *user_profile.GetUserProfileInfoParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
+func (u *UserProfileService) GetUserProfileInfoShort(input *user_profile.GetUserProfileInfoParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -573,7 +574,8 @@ func (u *UserProfileService) GetUserProfileInfoShort(input *user_profile.GetUser
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) UpdateUserProfileShort(input *user_profile.UpdateUserProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
+func (u *UserProfileService) UpdateUserProfileShort(input *user_profile.UpdateUserProfileParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -588,7 +590,8 @@ func (u *UserProfileService) UpdateUserProfileShort(input *user_profile.UpdateUs
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) DeleteUserProfileShort(input *user_profile.DeleteUserProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
+func (u *UserProfileService) DeleteUserProfileShort(input *user_profile.DeleteUserProfileParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -603,7 +606,8 @@ func (u *UserProfileService) DeleteUserProfileShort(input *user_profile.DeleteUs
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) GetCustomAttributesInfoShort(input *user_profile.GetCustomAttributesInfoParams, authInfoWriter runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
+func (u *UserProfileService) GetCustomAttributesInfoShort(input *user_profile.GetCustomAttributesInfoParams) (map[string]interface{}, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -618,7 +622,8 @@ func (u *UserProfileService) GetCustomAttributesInfoShort(input *user_profile.Ge
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) UpdateCustomAttributesPartiallyShort(input *user_profile.UpdateCustomAttributesPartiallyParams, authInfoWriter runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
+func (u *UserProfileService) UpdateCustomAttributesPartiallyShort(input *user_profile.UpdateCustomAttributesPartiallyParams) (map[string]interface{}, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -633,7 +638,8 @@ func (u *UserProfileService) UpdateCustomAttributesPartiallyShort(input *user_pr
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) GetPrivateCustomAttributesInfoShort(input *user_profile.GetPrivateCustomAttributesInfoParams, authInfoWriter runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
+func (u *UserProfileService) GetPrivateCustomAttributesInfoShort(input *user_profile.GetPrivateCustomAttributesInfoParams) (map[string]interface{}, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -648,7 +654,8 @@ func (u *UserProfileService) GetPrivateCustomAttributesInfoShort(input *user_pro
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) UpdatePrivateCustomAttributesPartiallyShort(input *user_profile.UpdatePrivateCustomAttributesPartiallyParams, authInfoWriter runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
+func (u *UserProfileService) UpdatePrivateCustomAttributesPartiallyShort(input *user_profile.UpdatePrivateCustomAttributesPartiallyParams) (map[string]interface{}, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -663,7 +670,8 @@ func (u *UserProfileService) UpdatePrivateCustomAttributesPartiallyShort(input *
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) UpdateUserProfileStatusShort(input *user_profile.UpdateUserProfileStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
+func (u *UserProfileService) UpdateUserProfileStatusShort(input *user_profile.UpdateUserProfileStatusParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -687,7 +695,8 @@ func (u *UserProfileService) PublicGetUserProfilePublicInfoByIdsShort(input *use
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) GetMyProfileInfoShort(input *user_profile.GetMyProfileInfoParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
+func (u *UserProfileService) GetMyProfileInfoShort(input *user_profile.GetMyProfileInfoParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -702,7 +711,8 @@ func (u *UserProfileService) GetMyProfileInfoShort(input *user_profile.GetMyProf
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) UpdateMyProfileShort(input *user_profile.UpdateMyProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
+func (u *UserProfileService) UpdateMyProfileShort(input *user_profile.UpdateMyProfileParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -717,7 +727,8 @@ func (u *UserProfileService) UpdateMyProfileShort(input *user_profile.UpdateMyPr
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) CreateMyProfileShort(input *user_profile.CreateMyProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfilePrivateInfo, error) {
+func (u *UserProfileService) CreateMyProfileShort(input *user_profile.CreateMyProfileParams) (*basicclientmodels.UserProfilePrivateInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -732,7 +743,8 @@ func (u *UserProfileService) CreateMyProfileShort(input *user_profile.CreateMyPr
 	return created.GetPayload(), nil
 }
 
-func (u *UserProfileService) GetMyZipCodeShort(input *user_profile.GetMyZipCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserZipCode, error) {
+func (u *UserProfileService) GetMyZipCodeShort(input *user_profile.GetMyZipCodeParams) (*basicclientmodels.UserZipCode, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -747,7 +759,8 @@ func (u *UserProfileService) GetMyZipCodeShort(input *user_profile.GetMyZipCodeP
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) UpdateMyZipCodeShort(input *user_profile.UpdateMyZipCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserZipCode, error) {
+func (u *UserProfileService) UpdateMyZipCodeShort(input *user_profile.UpdateMyZipCodeParams) (*basicclientmodels.UserZipCode, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -762,7 +775,8 @@ func (u *UserProfileService) UpdateMyZipCodeShort(input *user_profile.UpdateMyZi
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) PublicGetUserProfileInfoShort(input *user_profile.PublicGetUserProfileInfoParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfileInfo, error) {
+func (u *UserProfileService) PublicGetUserProfileInfoShort(input *user_profile.PublicGetUserProfileInfoParams) (*basicclientmodels.UserProfileInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -777,7 +791,8 @@ func (u *UserProfileService) PublicGetUserProfileInfoShort(input *user_profile.P
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) PublicUpdateUserProfileShort(input *user_profile.PublicUpdateUserProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfileInfo, error) {
+func (u *UserProfileService) PublicUpdateUserProfileShort(input *user_profile.PublicUpdateUserProfileParams) (*basicclientmodels.UserProfileInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -792,7 +807,8 @@ func (u *UserProfileService) PublicUpdateUserProfileShort(input *user_profile.Pu
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) PublicCreateUserProfileShort(input *user_profile.PublicCreateUserProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfileInfo, error) {
+func (u *UserProfileService) PublicCreateUserProfileShort(input *user_profile.PublicCreateUserProfileParams) (*basicclientmodels.UserProfileInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -807,7 +823,8 @@ func (u *UserProfileService) PublicCreateUserProfileShort(input *user_profile.Pu
 	return created.GetPayload(), nil
 }
 
-func (u *UserProfileService) PublicGetCustomAttributesInfoShort(input *user_profile.PublicGetCustomAttributesInfoParams, authInfoWriter runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
+func (u *UserProfileService) PublicGetCustomAttributesInfoShort(input *user_profile.PublicGetCustomAttributesInfoParams) (map[string]interface{}, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -822,7 +839,8 @@ func (u *UserProfileService) PublicGetCustomAttributesInfoShort(input *user_prof
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) PublicUpdateCustomAttributesPartiallyShort(input *user_profile.PublicUpdateCustomAttributesPartiallyParams, authInfoWriter runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
+func (u *UserProfileService) PublicUpdateCustomAttributesPartiallyShort(input *user_profile.PublicUpdateCustomAttributesPartiallyParams) (map[string]interface{}, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -846,7 +864,8 @@ func (u *UserProfileService) PublicGetUserProfilePublicInfoShort(input *user_pro
 	return ok.GetPayload(), nil
 }
 
-func (u *UserProfileService) PublicUpdateUserProfileStatusShort(input *user_profile.PublicUpdateUserProfileStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.UserProfileInfo, error) {
+func (u *UserProfileService) PublicUpdateUserProfileStatusShort(input *user_profile.PublicUpdateUserProfileStatusParams) (*basicclientmodels.UserProfileInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

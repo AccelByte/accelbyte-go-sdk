@@ -72,9 +72,10 @@ type DeleteRewardParams struct {
 	/*RewardID*/
 	RewardID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the delete reward params
@@ -97,6 +98,11 @@ func (o *DeleteRewardParams) WithContext(ctx context.Context) *DeleteRewardParam
 // SetContext adds the context to the delete reward params
 func (o *DeleteRewardParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the delete reward params
+func (o *DeleteRewardParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the delete reward params

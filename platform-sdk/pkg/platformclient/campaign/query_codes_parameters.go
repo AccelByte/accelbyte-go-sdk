@@ -108,9 +108,10 @@ type QueryCodesParams struct {
 	/*Offset*/
 	Offset *int32
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the query codes params
@@ -133,6 +134,11 @@ func (o *QueryCodesParams) WithContext(ctx context.Context) *QueryCodesParams {
 // SetContext adds the context to the query codes params
 func (o *QueryCodesParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the query codes params
+func (o *QueryCodesParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the query codes params

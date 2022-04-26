@@ -63,9 +63,10 @@ func NewListFulfillmentScriptsParamsWithHTTPClient(client *http.Client) *ListFul
 for the list fulfillment scripts operation typically these are written to a http.Request
 */
 type ListFulfillmentScriptsParams struct {
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the list fulfillment scripts params
@@ -88,6 +89,11 @@ func (o *ListFulfillmentScriptsParams) WithContext(ctx context.Context) *ListFul
 // SetContext adds the context to the list fulfillment scripts params
 func (o *ListFulfillmentScriptsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the list fulfillment scripts params
+func (o *ListFulfillmentScriptsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the list fulfillment scripts params

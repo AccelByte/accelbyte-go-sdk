@@ -69,9 +69,10 @@ type QueryPassesParams struct {
 	/*SeasonID*/
 	SeasonID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the query passes params
@@ -94,6 +95,11 @@ func (o *QueryPassesParams) WithContext(ctx context.Context) *QueryPassesParams 
 // SetContext adds the context to the query passes params
 func (o *QueryPassesParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the query passes params
+func (o *QueryPassesParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the query passes params

@@ -80,9 +80,10 @@ type PublicGeneratedUserUploadContentURLParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the public generated user upload content Url params
@@ -105,6 +106,11 @@ func (o *PublicGeneratedUserUploadContentURLParams) WithContext(ctx context.Cont
 // SetContext adds the context to the public generated user upload content Url params
 func (o *PublicGeneratedUserUploadContentURLParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the public generated user upload content Url params
+func (o *PublicGeneratedUserUploadContentURLParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the public generated user upload content Url params

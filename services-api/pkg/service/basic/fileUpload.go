@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -131,7 +130,8 @@ func (f *FileUploadService) PublicGeneratedUserUploadContentURL(input *file_uplo
 	return ok.GetPayload(), nil
 }
 
-func (f *FileUploadService) GeneratedUploadURLShort(input *file_upload.GeneratedUploadURLParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.FileUploadURLInfo, error) {
+func (f *FileUploadService) GeneratedUploadURLShort(input *file_upload.GeneratedUploadURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -146,7 +146,8 @@ func (f *FileUploadService) GeneratedUploadURLShort(input *file_upload.Generated
 	return ok.GetPayload(), nil
 }
 
-func (f *FileUploadService) GeneratedUserUploadContentURLShort(input *file_upload.GeneratedUserUploadContentURLParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.FileUploadURLInfo, error) {
+func (f *FileUploadService) GeneratedUserUploadContentURLShort(input *file_upload.GeneratedUserUploadContentURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -161,7 +162,8 @@ func (f *FileUploadService) GeneratedUserUploadContentURLShort(input *file_uploa
 	return ok.GetPayload(), nil
 }
 
-func (f *FileUploadService) PublicGeneratedUploadURLShort(input *file_upload.PublicGeneratedUploadURLParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.FileUploadURLInfo, error) {
+func (f *FileUploadService) PublicGeneratedUploadURLShort(input *file_upload.PublicGeneratedUploadURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -176,7 +178,8 @@ func (f *FileUploadService) PublicGeneratedUploadURLShort(input *file_upload.Pub
 	return ok.GetPayload(), nil
 }
 
-func (f *FileUploadService) PublicGeneratedUserUploadContentURLShort(input *file_upload.PublicGeneratedUserUploadContentURLParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.FileUploadURLInfo, error) {
+func (f *FileUploadService) PublicGeneratedUserUploadContentURLShort(input *file_upload.PublicGeneratedUserUploadContentURLParams) (*basicclientmodels.FileUploadURLInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

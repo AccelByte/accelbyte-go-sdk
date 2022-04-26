@@ -70,9 +70,10 @@ type GetClientParams struct {
 	*/
 	ClientID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get client params
@@ -95,6 +96,11 @@ func (o *GetClientParams) WithContext(ctx context.Context) *GetClientParams {
 // SetContext adds the context to the get client params
 func (o *GetClientParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get client params
+func (o *GetClientParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get client params

@@ -87,9 +87,10 @@ type GetCountriesParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get countries params
@@ -112,6 +113,11 @@ func (o *GetCountriesParams) WithContext(ctx context.Context) *GetCountriesParam
 // SetContext adds the context to the get countries params
 func (o *GetCountriesParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get countries params
+func (o *GetCountriesParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get countries params

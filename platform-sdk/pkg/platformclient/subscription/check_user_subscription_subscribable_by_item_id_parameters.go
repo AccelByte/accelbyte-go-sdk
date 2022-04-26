@@ -71,9 +71,10 @@ type CheckUserSubscriptionSubscribableByItemIDParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the check user subscription subscribable by item Id params
@@ -96,6 +97,11 @@ func (o *CheckUserSubscriptionSubscribableByItemIDParams) WithContext(ctx contex
 // SetContext adds the context to the check user subscription subscribable by item Id params
 func (o *CheckUserSubscriptionSubscribableByItemIDParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the check user subscription subscribable by item Id params
+func (o *CheckUserSubscriptionSubscribableByItemIDParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the check user subscription subscribable by item Id params

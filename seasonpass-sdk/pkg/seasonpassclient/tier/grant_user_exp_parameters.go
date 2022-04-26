@@ -76,9 +76,10 @@ type GrantUserExpParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the grant user exp params
@@ -101,6 +102,11 @@ func (o *GrantUserExpParams) WithContext(ctx context.Context) *GrantUserExpParam
 // SetContext adds the context to the grant user exp params
 func (o *GrantUserExpParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the grant user exp params
+func (o *GrantUserExpParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the grant user exp params

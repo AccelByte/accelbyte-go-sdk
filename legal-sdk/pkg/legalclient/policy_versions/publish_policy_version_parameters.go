@@ -88,9 +88,10 @@ type PublishPolicyVersionParams struct {
 	*/
 	ShouldNotify *bool
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the publish policy version params
@@ -113,6 +114,11 @@ func (o *PublishPolicyVersionParams) WithContext(ctx context.Context) *PublishPo
 // SetContext adds the context to the publish policy version params
 func (o *PublishPolicyVersionParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the publish policy version params
+func (o *PublishPolicyVersionParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the publish policy version params

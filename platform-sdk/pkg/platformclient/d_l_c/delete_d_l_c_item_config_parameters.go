@@ -70,9 +70,10 @@ type DeleteDLCItemConfigParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the delete d l c item config params
@@ -95,6 +96,11 @@ func (o *DeleteDLCItemConfigParams) WithContext(ctx context.Context) *DeleteDLCI
 // SetContext adds the context to the delete d l c item config params
 func (o *DeleteDLCItemConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the delete d l c item config params
+func (o *DeleteDLCItemConfigParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the delete d l c item config params

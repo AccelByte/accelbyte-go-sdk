@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -347,7 +346,8 @@ func (s *SubscriptionService) PublicGetUserSubscriptionBillingHistories(input *s
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) QuerySubscriptionsShort(input *subscription.QuerySubscriptionsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
+func (s *SubscriptionService) QuerySubscriptionsShort(input *subscription.QuerySubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -362,7 +362,8 @@ func (s *SubscriptionService) QuerySubscriptionsShort(input *subscription.QueryS
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) RecurringChargeSubscriptionShort(input *subscription.RecurringChargeSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.RecurringChargeResult, error) {
+func (s *SubscriptionService) RecurringChargeSubscriptionShort(input *subscription.RecurringChargeSubscriptionParams) (*platformclientmodels.RecurringChargeResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -377,7 +378,8 @@ func (s *SubscriptionService) RecurringChargeSubscriptionShort(input *subscripti
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) QueryUserSubscriptionsShort(input *subscription.QueryUserSubscriptionsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
+func (s *SubscriptionService) QueryUserSubscriptionsShort(input *subscription.QueryUserSubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -392,7 +394,8 @@ func (s *SubscriptionService) QueryUserSubscriptionsShort(input *subscription.Qu
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) GetUserSubscriptionActivitiesShort(input *subscription.GetUserSubscriptionActivitiesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionActivityPagingSlicedResult, error) {
+func (s *SubscriptionService) GetUserSubscriptionActivitiesShort(input *subscription.GetUserSubscriptionActivitiesParams) (*platformclientmodels.SubscriptionActivityPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -407,7 +410,8 @@ func (s *SubscriptionService) GetUserSubscriptionActivitiesShort(input *subscrip
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) PlatformSubscribeSubscriptionShort(input *subscription.PlatformSubscribeSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
+func (s *SubscriptionService) PlatformSubscribeSubscriptionShort(input *subscription.PlatformSubscribeSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -422,7 +426,8 @@ func (s *SubscriptionService) PlatformSubscribeSubscriptionShort(input *subscrip
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) CheckUserSubscriptionSubscribableByItemIDShort(input *subscription.CheckUserSubscriptionSubscribableByItemIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.Subscribable, error) {
+func (s *SubscriptionService) CheckUserSubscriptionSubscribableByItemIDShort(input *subscription.CheckUserSubscriptionSubscribableByItemIDParams) (*platformclientmodels.Subscribable, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -437,7 +442,8 @@ func (s *SubscriptionService) CheckUserSubscriptionSubscribableByItemIDShort(inp
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) GetUserSubscriptionShort(input *subscription.GetUserSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
+func (s *SubscriptionService) GetUserSubscriptionShort(input *subscription.GetUserSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -452,7 +458,8 @@ func (s *SubscriptionService) GetUserSubscriptionShort(input *subscription.GetUs
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) DeleteUserSubscriptionShort(input *subscription.DeleteUserSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (s *SubscriptionService) DeleteUserSubscriptionShort(input *subscription.DeleteUserSubscriptionParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -467,7 +474,8 @@ func (s *SubscriptionService) DeleteUserSubscriptionShort(input *subscription.De
 	return nil
 }
 
-func (s *SubscriptionService) CancelSubscriptionShort(input *subscription.CancelSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
+func (s *SubscriptionService) CancelSubscriptionShort(input *subscription.CancelSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -482,7 +490,8 @@ func (s *SubscriptionService) CancelSubscriptionShort(input *subscription.Cancel
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) GrantDaysToSubscriptionShort(input *subscription.GrantDaysToSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
+func (s *SubscriptionService) GrantDaysToSubscriptionShort(input *subscription.GrantDaysToSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -497,7 +506,8 @@ func (s *SubscriptionService) GrantDaysToSubscriptionShort(input *subscription.G
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) GetUserSubscriptionBillingHistoriesShort(input *subscription.GetUserSubscriptionBillingHistoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
+func (s *SubscriptionService) GetUserSubscriptionBillingHistoriesShort(input *subscription.GetUserSubscriptionBillingHistoriesParams) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -512,7 +522,8 @@ func (s *SubscriptionService) GetUserSubscriptionBillingHistoriesShort(input *su
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) ProcessUserSubscriptionNotificationShort(input *subscription.ProcessUserSubscriptionNotificationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (s *SubscriptionService) ProcessUserSubscriptionNotificationShort(input *subscription.ProcessUserSubscriptionNotificationParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -527,7 +538,8 @@ func (s *SubscriptionService) ProcessUserSubscriptionNotificationShort(input *su
 	return nil
 }
 
-func (s *SubscriptionService) PublicQueryUserSubscriptionsShort(input *subscription.PublicQueryUserSubscriptionsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
+func (s *SubscriptionService) PublicQueryUserSubscriptionsShort(input *subscription.PublicQueryUserSubscriptionsParams) (*platformclientmodels.SubscriptionPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -542,7 +554,8 @@ func (s *SubscriptionService) PublicQueryUserSubscriptionsShort(input *subscript
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) PublicSubscribeSubscriptionShort(input *subscription.PublicSubscribeSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (s *SubscriptionService) PublicSubscribeSubscriptionShort(input *subscription.PublicSubscribeSubscriptionParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -557,7 +570,8 @@ func (s *SubscriptionService) PublicSubscribeSubscriptionShort(input *subscripti
 	return nil
 }
 
-func (s *SubscriptionService) PublicCheckUserSubscriptionSubscribableByItemIDShort(input *subscription.PublicCheckUserSubscriptionSubscribableByItemIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.Subscribable, error) {
+func (s *SubscriptionService) PublicCheckUserSubscriptionSubscribableByItemIDShort(input *subscription.PublicCheckUserSubscriptionSubscribableByItemIDParams) (*platformclientmodels.Subscribable, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -572,7 +586,8 @@ func (s *SubscriptionService) PublicCheckUserSubscriptionSubscribableByItemIDSho
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) PublicGetUserSubscriptionShort(input *subscription.PublicGetUserSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
+func (s *SubscriptionService) PublicGetUserSubscriptionShort(input *subscription.PublicGetUserSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -587,7 +602,8 @@ func (s *SubscriptionService) PublicGetUserSubscriptionShort(input *subscription
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) PublicChangeSubscriptionBillingAccountShort(input *subscription.PublicChangeSubscriptionBillingAccountParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
+func (s *SubscriptionService) PublicChangeSubscriptionBillingAccountShort(input *subscription.PublicChangeSubscriptionBillingAccountParams) (*platformclientmodels.SubscriptionInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -602,7 +618,8 @@ func (s *SubscriptionService) PublicChangeSubscriptionBillingAccountShort(input 
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) PublicCancelSubscriptionShort(input *subscription.PublicCancelSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.SubscriptionInfo, error) {
+func (s *SubscriptionService) PublicCancelSubscriptionShort(input *subscription.PublicCancelSubscriptionParams) (*platformclientmodels.SubscriptionInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -617,7 +634,8 @@ func (s *SubscriptionService) PublicCancelSubscriptionShort(input *subscription.
 	return ok.GetPayload(), nil
 }
 
-func (s *SubscriptionService) PublicGetUserSubscriptionBillingHistoriesShort(input *subscription.PublicGetUserSubscriptionBillingHistoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
+func (s *SubscriptionService) PublicGetUserSubscriptionBillingHistoriesShort(input *subscription.PublicGetUserSubscriptionBillingHistoriesParams) (*platformclientmodels.BillingHistoryPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

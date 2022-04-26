@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dslogmanager-sdk/pkg/dslogmanagerclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -84,7 +83,8 @@ func (t *TerminatedServersService) CheckServerLogs(input *terminated_servers.Che
 	return ok.GetPayload(), nil
 }
 
-func (t *TerminatedServersService) ListTerminatedServersShort(input *terminated_servers.ListTerminatedServersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dslogmanagerclientmodels.ModelsListTerminatedServersResponse, error) {
+func (t *TerminatedServersService) ListTerminatedServersShort(input *terminated_servers.ListTerminatedServersParams) (*dslogmanagerclientmodels.ModelsListTerminatedServersResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -99,7 +99,8 @@ func (t *TerminatedServersService) ListTerminatedServersShort(input *terminated_
 	return ok.GetPayload(), nil
 }
 
-func (t *TerminatedServersService) DownloadServerLogsShort(input *terminated_servers.DownloadServerLogsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (t *TerminatedServersService) DownloadServerLogsShort(input *terminated_servers.DownloadServerLogsParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -114,7 +115,8 @@ func (t *TerminatedServersService) DownloadServerLogsShort(input *terminated_ser
 	return nil
 }
 
-func (t *TerminatedServersService) CheckServerLogsShort(input *terminated_servers.CheckServerLogsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dslogmanagerclientmodels.ModelsLogFileStatus, error) {
+func (t *TerminatedServersService) CheckServerLogsShort(input *terminated_servers.CheckServerLogsParams) (*dslogmanagerclientmodels.ModelsLogFileStatus, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

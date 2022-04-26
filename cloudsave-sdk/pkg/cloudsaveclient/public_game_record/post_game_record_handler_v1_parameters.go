@@ -79,9 +79,10 @@ type PostGameRecordHandlerV1Params struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the post game record handler v1 params
@@ -104,6 +105,11 @@ func (o *PostGameRecordHandlerV1Params) WithContext(ctx context.Context) *PostGa
 // SetContext adds the context to the post game record handler v1 params
 func (o *PostGameRecordHandlerV1Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the post game record handler v1 params
+func (o *PostGameRecordHandlerV1Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the post game record handler v1 params

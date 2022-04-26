@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -341,7 +340,8 @@ func (d *DataRetrievalService) PublicGeneratePersonalDataURL(input *data_retriev
 	return ok.GetPayload(), nil
 }
 
-func (d *DataRetrievalService) GetAdminEmailConfigurationShort(input *data_retrieval.GetAdminEmailConfigurationParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]string, error) {
+func (d *DataRetrievalService) GetAdminEmailConfigurationShort(input *data_retrieval.GetAdminEmailConfigurationParams) ([]string, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -356,7 +356,8 @@ func (d *DataRetrievalService) GetAdminEmailConfigurationShort(input *data_retri
 	return ok.GetPayload(), nil
 }
 
-func (d *DataRetrievalService) UpdateAdminEmailConfigurationShort(input *data_retrieval.UpdateAdminEmailConfigurationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (d *DataRetrievalService) UpdateAdminEmailConfigurationShort(input *data_retrieval.UpdateAdminEmailConfigurationParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -371,7 +372,8 @@ func (d *DataRetrievalService) UpdateAdminEmailConfigurationShort(input *data_re
 	return nil
 }
 
-func (d *DataRetrievalService) SaveAdminEmailConfigurationShort(input *data_retrieval.SaveAdminEmailConfigurationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (d *DataRetrievalService) SaveAdminEmailConfigurationShort(input *data_retrieval.SaveAdminEmailConfigurationParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -386,7 +388,8 @@ func (d *DataRetrievalService) SaveAdminEmailConfigurationShort(input *data_retr
 	return nil
 }
 
-func (d *DataRetrievalService) DeleteAdminEmailConfigurationShort(input *data_retrieval.DeleteAdminEmailConfigurationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (d *DataRetrievalService) DeleteAdminEmailConfigurationShort(input *data_retrieval.DeleteAdminEmailConfigurationParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -401,7 +404,8 @@ func (d *DataRetrievalService) DeleteAdminEmailConfigurationShort(input *data_re
 	return nil
 }
 
-func (d *DataRetrievalService) AdminGetListPersonalDataRequestShort(input *data_retrieval.AdminGetListPersonalDataRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsListPersonalDataResponse, error) {
+func (d *DataRetrievalService) AdminGetListPersonalDataRequestShort(input *data_retrieval.AdminGetListPersonalDataRequestParams) (*gdprclientmodels.ModelsListPersonalDataResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -416,7 +420,8 @@ func (d *DataRetrievalService) AdminGetListPersonalDataRequestShort(input *data_
 	return ok.GetPayload(), nil
 }
 
-func (d *DataRetrievalService) AdminGetUserPersonalDataRequestsShort(input *data_retrieval.AdminGetUserPersonalDataRequestsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsUserPersonalDataResponse, error) {
+func (d *DataRetrievalService) AdminGetUserPersonalDataRequestsShort(input *data_retrieval.AdminGetUserPersonalDataRequestsParams) (*gdprclientmodels.ModelsUserPersonalDataResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -431,7 +436,8 @@ func (d *DataRetrievalService) AdminGetUserPersonalDataRequestsShort(input *data
 	return ok.GetPayload(), nil
 }
 
-func (d *DataRetrievalService) AdminRequestDataRetrievalShort(input *data_retrieval.AdminRequestDataRetrievalParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsDataRetrievalResponse, error) {
+func (d *DataRetrievalService) AdminRequestDataRetrievalShort(input *data_retrieval.AdminRequestDataRetrievalParams) (*gdprclientmodels.ModelsDataRetrievalResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -446,7 +452,8 @@ func (d *DataRetrievalService) AdminRequestDataRetrievalShort(input *data_retrie
 	return created.GetPayload(), nil
 }
 
-func (d *DataRetrievalService) AdminCancelUserPersonalDataRequestShort(input *data_retrieval.AdminCancelUserPersonalDataRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (d *DataRetrievalService) AdminCancelUserPersonalDataRequestShort(input *data_retrieval.AdminCancelUserPersonalDataRequestParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -461,7 +468,8 @@ func (d *DataRetrievalService) AdminCancelUserPersonalDataRequestShort(input *da
 	return nil
 }
 
-func (d *DataRetrievalService) AdminGeneratePersonalDataURLShort(input *data_retrieval.AdminGeneratePersonalDataURLParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsUserDataURL, error) {
+func (d *DataRetrievalService) AdminGeneratePersonalDataURLShort(input *data_retrieval.AdminGeneratePersonalDataURLParams) (*gdprclientmodels.ModelsUserDataURL, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -476,7 +484,8 @@ func (d *DataRetrievalService) AdminGeneratePersonalDataURLShort(input *data_ret
 	return ok.GetPayload(), nil
 }
 
-func (d *DataRetrievalService) PublicGetUserPersonalDataRequestsShort(input *data_retrieval.PublicGetUserPersonalDataRequestsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsUserPersonalDataResponse, error) {
+func (d *DataRetrievalService) PublicGetUserPersonalDataRequestsShort(input *data_retrieval.PublicGetUserPersonalDataRequestsParams) (*gdprclientmodels.ModelsUserPersonalDataResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -491,7 +500,8 @@ func (d *DataRetrievalService) PublicGetUserPersonalDataRequestsShort(input *dat
 	return ok.GetPayload(), nil
 }
 
-func (d *DataRetrievalService) PublicRequestDataRetrievalShort(input *data_retrieval.PublicRequestDataRetrievalParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsDataRetrievalResponse, error) {
+func (d *DataRetrievalService) PublicRequestDataRetrievalShort(input *data_retrieval.PublicRequestDataRetrievalParams) (*gdprclientmodels.ModelsDataRetrievalResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -506,7 +516,8 @@ func (d *DataRetrievalService) PublicRequestDataRetrievalShort(input *data_retri
 	return created.GetPayload(), nil
 }
 
-func (d *DataRetrievalService) PublicCancelUserPersonalDataRequestShort(input *data_retrieval.PublicCancelUserPersonalDataRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsListPersonalDataResponse, error) {
+func (d *DataRetrievalService) PublicCancelUserPersonalDataRequestShort(input *data_retrieval.PublicCancelUserPersonalDataRequestParams) (*gdprclientmodels.ModelsListPersonalDataResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -521,7 +532,8 @@ func (d *DataRetrievalService) PublicCancelUserPersonalDataRequestShort(input *d
 	return noContent.GetPayload(), nil
 }
 
-func (d *DataRetrievalService) PublicGeneratePersonalDataURLShort(input *data_retrieval.PublicGeneratePersonalDataURLParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsUserDataURL, error) {
+func (d *DataRetrievalService) PublicGeneratePersonalDataURLShort(input *data_retrieval.PublicGeneratePersonalDataURLParams) (*gdprclientmodels.ModelsUserDataURL, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

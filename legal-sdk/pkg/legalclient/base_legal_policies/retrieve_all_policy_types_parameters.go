@@ -76,9 +76,10 @@ type RetrieveAllPolicyTypesParams struct {
 	*/
 	Offset *int32
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the retrieve all policy types params
@@ -101,6 +102,11 @@ func (o *RetrieveAllPolicyTypesParams) WithContext(ctx context.Context) *Retriev
 // SetContext adds the context to the retrieve all policy types params
 func (o *RetrieveAllPolicyTypesParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the retrieve all policy types params
+func (o *RetrieveAllPolicyTypesParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the retrieve all policy types params

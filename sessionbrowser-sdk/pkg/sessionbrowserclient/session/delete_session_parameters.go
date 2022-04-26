@@ -75,9 +75,10 @@ type DeleteSessionParams struct {
 	*/
 	SessionID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the delete session params
@@ -100,6 +101,11 @@ func (o *DeleteSessionParams) WithContext(ctx context.Context) *DeleteSessionPar
 // SetContext adds the context to the delete session params
 func (o *DeleteSessionParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the delete session params
+func (o *DeleteSessionParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the delete session params

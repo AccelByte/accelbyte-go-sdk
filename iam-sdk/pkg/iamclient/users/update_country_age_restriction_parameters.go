@@ -79,9 +79,10 @@ type UpdateCountryAgeRestrictionParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the update country age restriction params
@@ -104,6 +105,11 @@ func (o *UpdateCountryAgeRestrictionParams) WithContext(ctx context.Context) *Up
 // SetContext adds the context to the update country age restriction params
 func (o *UpdateCountryAgeRestrictionParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the update country age restriction params
+func (o *UpdateCountryAgeRestrictionParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the update country age restriction params

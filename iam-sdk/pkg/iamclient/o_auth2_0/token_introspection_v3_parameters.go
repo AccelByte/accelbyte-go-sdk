@@ -70,9 +70,10 @@ type TokenIntrospectionV3Params struct {
 	*/
 	Token string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the token introspection v3 params
@@ -95,6 +96,11 @@ func (o *TokenIntrospectionV3Params) WithContext(ctx context.Context) *TokenIntr
 // SetContext adds the context to the token introspection v3 params
 func (o *TokenIntrospectionV3Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the token introspection v3 params
+func (o *TokenIntrospectionV3Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the token introspection v3 params

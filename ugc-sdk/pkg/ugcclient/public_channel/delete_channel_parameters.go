@@ -80,9 +80,10 @@ type DeleteChannelParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the delete channel params
@@ -105,6 +106,11 @@ func (o *DeleteChannelParams) WithContext(ctx context.Context) *DeleteChannelPar
 // SetContext adds the context to the delete channel params
 func (o *DeleteChannelParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the delete channel params
+func (o *DeleteChannelParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the delete channel params

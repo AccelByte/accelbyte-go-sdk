@@ -98,9 +98,10 @@ type QueryRedeemHistoryParams struct {
 	/*UserID*/
 	UserID *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the query redeem history params
@@ -123,6 +124,11 @@ func (o *QueryRedeemHistoryParams) WithContext(ctx context.Context) *QueryRedeem
 // SetContext adds the context to the query redeem history params
 func (o *QueryRedeemHistoryParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the query redeem history params
+func (o *QueryRedeemHistoryParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the query redeem history params

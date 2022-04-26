@@ -70,9 +70,10 @@ type ExportRewardsParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the export rewards params
@@ -95,6 +96,11 @@ func (o *ExportRewardsParams) WithContext(ctx context.Context) *ExportRewardsPar
 // SetContext adds the context to the export rewards params
 func (o *ExportRewardsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the export rewards params
+func (o *ExportRewardsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the export rewards params

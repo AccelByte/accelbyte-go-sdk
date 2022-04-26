@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -106,7 +105,8 @@ func (p *PolicyVersionsService) RetrievePolicyVersions(input *policy_versions.Re
 	return ok.GetPayload(), nil
 }
 
-func (p *PolicyVersionsService) UpdatePolicyVersionShort(input *policy_versions.UpdatePolicyVersionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.UpdatePolicyVersionResponse, error) {
+func (p *PolicyVersionsService) UpdatePolicyVersionShort(input *policy_versions.UpdatePolicyVersionParams) (*legalclientmodels.UpdatePolicyVersionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -121,7 +121,8 @@ func (p *PolicyVersionsService) UpdatePolicyVersionShort(input *policy_versions.
 	return ok.GetPayload(), nil
 }
 
-func (p *PolicyVersionsService) PublishPolicyVersionShort(input *policy_versions.PublishPolicyVersionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (p *PolicyVersionsService) PublishPolicyVersionShort(input *policy_versions.PublishPolicyVersionParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -136,7 +137,8 @@ func (p *PolicyVersionsService) PublishPolicyVersionShort(input *policy_versions
 	return nil
 }
 
-func (p *PolicyVersionsService) RetrieveSinglePolicyVersionShort(input *policy_versions.RetrieveSinglePolicyVersionParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrievePolicyVersionResponse, error) {
+func (p *PolicyVersionsService) RetrieveSinglePolicyVersionShort(input *policy_versions.RetrieveSinglePolicyVersionParams) ([]*legalclientmodels.RetrievePolicyVersionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -151,7 +153,8 @@ func (p *PolicyVersionsService) RetrieveSinglePolicyVersionShort(input *policy_v
 	return ok.GetPayload(), nil
 }
 
-func (p *PolicyVersionsService) CreatePolicyVersionShort(input *policy_versions.CreatePolicyVersionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.CreatePolicyVersionResponse, error) {
+func (p *PolicyVersionsService) CreatePolicyVersionShort(input *policy_versions.CreatePolicyVersionParams) (*legalclientmodels.CreatePolicyVersionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -166,7 +169,8 @@ func (p *PolicyVersionsService) CreatePolicyVersionShort(input *policy_versions.
 	return created.GetPayload(), nil
 }
 
-func (p *PolicyVersionsService) RetrievePolicyVersionsShort(input *policy_versions.RetrievePolicyVersionsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrievePolicyVersionResponse, error) {
+func (p *PolicyVersionsService) RetrievePolicyVersionsShort(input *policy_versions.RetrievePolicyVersionsParams) ([]*legalclientmodels.RetrievePolicyVersionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

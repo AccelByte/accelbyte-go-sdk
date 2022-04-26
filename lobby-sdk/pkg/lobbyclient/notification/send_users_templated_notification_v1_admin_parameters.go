@@ -77,9 +77,10 @@ type SendUsersTemplatedNotificationV1AdminParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the send users templated notification v1 admin params
@@ -102,6 +103,11 @@ func (o *SendUsersTemplatedNotificationV1AdminParams) WithContext(ctx context.Co
 // SetContext adds the context to the send users templated notification v1 admin params
 func (o *SendUsersTemplatedNotificationV1AdminParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the send users templated notification v1 admin params
+func (o *SendUsersTemplatedNotificationV1AdminParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the send users templated notification v1 admin params

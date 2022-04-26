@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/stat_configuration"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -165,7 +164,8 @@ func (s *StatConfigurationService) CreateStat1(input *stat_configuration.CreateS
 	return created.GetPayload(), nil
 }
 
-func (s *StatConfigurationService) GetStatsShort(input *stat_configuration.GetStatsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.StatPagingSlicedResult, error) {
+func (s *StatConfigurationService) GetStatsShort(input *stat_configuration.GetStatsParams) (*socialclientmodels.StatPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -180,7 +180,8 @@ func (s *StatConfigurationService) GetStatsShort(input *stat_configuration.GetSt
 	return ok.GetPayload(), nil
 }
 
-func (s *StatConfigurationService) CreateStatShort(input *stat_configuration.CreateStatParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.StatInfo, error) {
+func (s *StatConfigurationService) CreateStatShort(input *stat_configuration.CreateStatParams) (*socialclientmodels.StatInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -195,7 +196,8 @@ func (s *StatConfigurationService) CreateStatShort(input *stat_configuration.Cre
 	return created.GetPayload(), nil
 }
 
-func (s *StatConfigurationService) ExportStatsShort(input *stat_configuration.ExportStatsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (s *StatConfigurationService) ExportStatsShort(input *stat_configuration.ExportStatsParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -210,7 +212,8 @@ func (s *StatConfigurationService) ExportStatsShort(input *stat_configuration.Ex
 	return nil
 }
 
-func (s *StatConfigurationService) ImportStatsShort(input *stat_configuration.ImportStatsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.StatImportInfo, error) {
+func (s *StatConfigurationService) ImportStatsShort(input *stat_configuration.ImportStatsParams) (*socialclientmodels.StatImportInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -225,7 +228,8 @@ func (s *StatConfigurationService) ImportStatsShort(input *stat_configuration.Im
 	return ok.GetPayload(), nil
 }
 
-func (s *StatConfigurationService) QueryStatsShort(input *stat_configuration.QueryStatsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.StatPagingSlicedResult, error) {
+func (s *StatConfigurationService) QueryStatsShort(input *stat_configuration.QueryStatsParams) (*socialclientmodels.StatPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -240,7 +244,8 @@ func (s *StatConfigurationService) QueryStatsShort(input *stat_configuration.Que
 	return ok.GetPayload(), nil
 }
 
-func (s *StatConfigurationService) GetStatShort(input *stat_configuration.GetStatParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.StatInfo, error) {
+func (s *StatConfigurationService) GetStatShort(input *stat_configuration.GetStatParams) (*socialclientmodels.StatInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -255,7 +260,8 @@ func (s *StatConfigurationService) GetStatShort(input *stat_configuration.GetSta
 	return ok.GetPayload(), nil
 }
 
-func (s *StatConfigurationService) DeleteStatShort(input *stat_configuration.DeleteStatParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (s *StatConfigurationService) DeleteStatShort(input *stat_configuration.DeleteStatParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -270,7 +276,8 @@ func (s *StatConfigurationService) DeleteStatShort(input *stat_configuration.Del
 	return nil
 }
 
-func (s *StatConfigurationService) UpdateStatShort(input *stat_configuration.UpdateStatParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.StatInfo, error) {
+func (s *StatConfigurationService) UpdateStatShort(input *stat_configuration.UpdateStatParams) (*socialclientmodels.StatInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -285,7 +292,8 @@ func (s *StatConfigurationService) UpdateStatShort(input *stat_configuration.Upd
 	return ok.GetPayload(), nil
 }
 
-func (s *StatConfigurationService) CreateStat1Short(input *stat_configuration.CreateStat1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.StatInfo, error) {
+func (s *StatConfigurationService) CreateStat1Short(input *stat_configuration.CreateStat1Params) (*socialclientmodels.StatInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

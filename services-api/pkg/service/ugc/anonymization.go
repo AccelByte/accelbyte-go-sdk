@@ -11,7 +11,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/anonymization"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -204,7 +203,8 @@ func (a *AnonymizationService) DeleteAllUserStates(input *anonymization.DeleteAl
 	return nil
 }
 
-func (a *AnonymizationService) AdminDeleteAllUserChannelsShort(input *anonymization.AdminDeleteAllUserChannelsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AnonymizationService) AdminDeleteAllUserChannelsShort(input *anonymization.AdminDeleteAllUserChannelsParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -219,7 +219,8 @@ func (a *AnonymizationService) AdminDeleteAllUserChannelsShort(input *anonymizat
 	return nil
 }
 
-func (a *AnonymizationService) AdminDeleteAllUserContentsShort(input *anonymization.AdminDeleteAllUserContentsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AnonymizationService) AdminDeleteAllUserContentsShort(input *anonymization.AdminDeleteAllUserContentsParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -234,7 +235,8 @@ func (a *AnonymizationService) AdminDeleteAllUserContentsShort(input *anonymizat
 	return nil
 }
 
-func (a *AnonymizationService) AdminDeleteAllUserGroupShort(input *anonymization.AdminDeleteAllUserGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AnonymizationService) AdminDeleteAllUserGroupShort(input *anonymization.AdminDeleteAllUserGroupParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -249,7 +251,8 @@ func (a *AnonymizationService) AdminDeleteAllUserGroupShort(input *anonymization
 	return nil
 }
 
-func (a *AnonymizationService) AdminDeleteAllUserStatesShort(input *anonymization.AdminDeleteAllUserStatesParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AnonymizationService) AdminDeleteAllUserStatesShort(input *anonymization.AdminDeleteAllUserStatesParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -264,7 +267,8 @@ func (a *AnonymizationService) AdminDeleteAllUserStatesShort(input *anonymizatio
 	return nil
 }
 
-func (a *AnonymizationService) DeleteAllUserChannelShort(input *anonymization.DeleteAllUserChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AnonymizationService) DeleteAllUserChannelShort(input *anonymization.DeleteAllUserChannelParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -279,7 +283,8 @@ func (a *AnonymizationService) DeleteAllUserChannelShort(input *anonymization.De
 	return nil
 }
 
-func (a *AnonymizationService) DeleteAllUserContentsShort(input *anonymization.DeleteAllUserContentsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AnonymizationService) DeleteAllUserContentsShort(input *anonymization.DeleteAllUserContentsParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -294,7 +299,8 @@ func (a *AnonymizationService) DeleteAllUserContentsShort(input *anonymization.D
 	return nil
 }
 
-func (a *AnonymizationService) DeleteAllUserGroupShort(input *anonymization.DeleteAllUserGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AnonymizationService) DeleteAllUserGroupShort(input *anonymization.DeleteAllUserGroupParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -309,7 +315,8 @@ func (a *AnonymizationService) DeleteAllUserGroupShort(input *anonymization.Dele
 	return nil
 }
 
-func (a *AnonymizationService) DeleteAllUserStatesShort(input *anonymization.DeleteAllUserStatesParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AnonymizationService) DeleteAllUserStatesShort(input *anonymization.DeleteAllUserStatesParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

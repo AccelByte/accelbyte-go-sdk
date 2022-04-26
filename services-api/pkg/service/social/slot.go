@@ -14,7 +14,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/slot"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -159,7 +158,8 @@ func (s *SlotService) PublicUpdateUserNamespaceSlotMetadata(input *slot.PublicUp
 	return ok.GetPayload(), nil
 }
 
-func (s *SlotService) GetUserNamespaceSlotsShort(input *slot.GetUserNamespaceSlotsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.SlotInfo, error) {
+func (s *SlotService) GetUserNamespaceSlotsShort(input *slot.GetUserNamespaceSlotsParams) ([]*socialclientmodels.SlotInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -174,7 +174,8 @@ func (s *SlotService) GetUserNamespaceSlotsShort(input *slot.GetUserNamespaceSlo
 	return ok.GetPayload(), nil
 }
 
-func (s *SlotService) GetSlotDataShort(input *slot.GetSlotDataParams, authInfoWriter runtime.ClientAuthInfoWriter, writer io.Writer) (io.Writer, error) {
+func (s *SlotService) GetSlotDataShort(input *slot.GetSlotDataParams, writer io.Writer) (io.Writer, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -189,7 +190,8 @@ func (s *SlotService) GetSlotDataShort(input *slot.GetSlotDataParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-func (s *SlotService) PublicGetUserNamespaceSlotsShort(input *slot.PublicGetUserNamespaceSlotsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.SlotInfo, error) {
+func (s *SlotService) PublicGetUserNamespaceSlotsShort(input *slot.PublicGetUserNamespaceSlotsParams) ([]*socialclientmodels.SlotInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -204,7 +206,8 @@ func (s *SlotService) PublicGetUserNamespaceSlotsShort(input *slot.PublicGetUser
 	return ok.GetPayload(), nil
 }
 
-func (s *SlotService) PublicCreateUserNamespaceSlotShort(input *slot.PublicCreateUserNamespaceSlotParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (s *SlotService) PublicCreateUserNamespaceSlotShort(input *slot.PublicCreateUserNamespaceSlotParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -219,7 +222,8 @@ func (s *SlotService) PublicCreateUserNamespaceSlotShort(input *slot.PublicCreat
 	return nil
 }
 
-func (s *SlotService) PublicGetSlotDataShort(input *slot.PublicGetSlotDataParams, authInfoWriter runtime.ClientAuthInfoWriter, writer io.Writer) (io.Writer, error) {
+func (s *SlotService) PublicGetSlotDataShort(input *slot.PublicGetSlotDataParams, writer io.Writer) (io.Writer, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -234,7 +238,8 @@ func (s *SlotService) PublicGetSlotDataShort(input *slot.PublicGetSlotDataParams
 	return ok.GetPayload(), nil
 }
 
-func (s *SlotService) PublicUpdateUserNamespaceSlotShort(input *slot.PublicUpdateUserNamespaceSlotParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.SlotInfo, error) {
+func (s *SlotService) PublicUpdateUserNamespaceSlotShort(input *slot.PublicUpdateUserNamespaceSlotParams) (*socialclientmodels.SlotInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -249,7 +254,8 @@ func (s *SlotService) PublicUpdateUserNamespaceSlotShort(input *slot.PublicUpdat
 	return ok.GetPayload(), nil
 }
 
-func (s *SlotService) PublicDeleteUserNamespaceSlotShort(input *slot.PublicDeleteUserNamespaceSlotParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (s *SlotService) PublicDeleteUserNamespaceSlotShort(input *slot.PublicDeleteUserNamespaceSlotParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -264,7 +270,8 @@ func (s *SlotService) PublicDeleteUserNamespaceSlotShort(input *slot.PublicDelet
 	return nil
 }
 
-func (s *SlotService) PublicUpdateUserNamespaceSlotMetadataShort(input *slot.PublicUpdateUserNamespaceSlotMetadataParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.SlotInfo, error) {
+func (s *SlotService) PublicUpdateUserNamespaceSlotMetadataShort(input *slot.PublicUpdateUserNamespaceSlotMetadataParams) (*socialclientmodels.SlotInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

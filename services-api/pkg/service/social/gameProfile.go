@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/game_profile"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -191,7 +190,8 @@ func (g *GameProfileService) PublicUpdateAttribute(input *game_profile.PublicUpd
 	return ok.GetPayload(), nil
 }
 
-func (g *GameProfileService) GetUserProfilesShort(input *game_profile.GetUserProfilesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.GameProfileHeader, error) {
+func (g *GameProfileService) GetUserProfilesShort(input *game_profile.GetUserProfilesParams) ([]*socialclientmodels.GameProfileHeader, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -206,7 +206,8 @@ func (g *GameProfileService) GetUserProfilesShort(input *game_profile.GetUserPro
 	return ok.GetPayload(), nil
 }
 
-func (g *GameProfileService) GetProfileShort(input *game_profile.GetProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.GameProfileInfo, error) {
+func (g *GameProfileService) GetProfileShort(input *game_profile.GetProfileParams) (*socialclientmodels.GameProfileInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -221,7 +222,8 @@ func (g *GameProfileService) GetProfileShort(input *game_profile.GetProfileParam
 	return ok.GetPayload(), nil
 }
 
-func (g *GameProfileService) PublicGetUserGameProfilesShort(input *game_profile.PublicGetUserGameProfilesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.UserGameProfiles, error) {
+func (g *GameProfileService) PublicGetUserGameProfilesShort(input *game_profile.PublicGetUserGameProfilesParams) ([]*socialclientmodels.UserGameProfiles, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -236,7 +238,8 @@ func (g *GameProfileService) PublicGetUserGameProfilesShort(input *game_profile.
 	return ok.GetPayload(), nil
 }
 
-func (g *GameProfileService) PublicGetUserProfilesShort(input *game_profile.PublicGetUserProfilesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.GameProfileHeader, error) {
+func (g *GameProfileService) PublicGetUserProfilesShort(input *game_profile.PublicGetUserProfilesParams) ([]*socialclientmodels.GameProfileHeader, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -251,7 +254,8 @@ func (g *GameProfileService) PublicGetUserProfilesShort(input *game_profile.Publ
 	return ok.GetPayload(), nil
 }
 
-func (g *GameProfileService) PublicCreateProfileShort(input *game_profile.PublicCreateProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (g *GameProfileService) PublicCreateProfileShort(input *game_profile.PublicCreateProfileParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -266,7 +270,8 @@ func (g *GameProfileService) PublicCreateProfileShort(input *game_profile.Public
 	return nil
 }
 
-func (g *GameProfileService) PublicGetProfileShort(input *game_profile.PublicGetProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.GameProfileInfo, error) {
+func (g *GameProfileService) PublicGetProfileShort(input *game_profile.PublicGetProfileParams) (*socialclientmodels.GameProfileInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -281,7 +286,8 @@ func (g *GameProfileService) PublicGetProfileShort(input *game_profile.PublicGet
 	return ok.GetPayload(), nil
 }
 
-func (g *GameProfileService) PublicUpdateProfileShort(input *game_profile.PublicUpdateProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.GameProfileInfo, error) {
+func (g *GameProfileService) PublicUpdateProfileShort(input *game_profile.PublicUpdateProfileParams) (*socialclientmodels.GameProfileInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -296,7 +302,8 @@ func (g *GameProfileService) PublicUpdateProfileShort(input *game_profile.Public
 	return ok.GetPayload(), nil
 }
 
-func (g *GameProfileService) PublicDeleteProfileShort(input *game_profile.PublicDeleteProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (g *GameProfileService) PublicDeleteProfileShort(input *game_profile.PublicDeleteProfileParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -311,7 +318,8 @@ func (g *GameProfileService) PublicDeleteProfileShort(input *game_profile.Public
 	return nil
 }
 
-func (g *GameProfileService) PublicGetProfileAttributeShort(input *game_profile.PublicGetProfileAttributeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.Attribute, error) {
+func (g *GameProfileService) PublicGetProfileAttributeShort(input *game_profile.PublicGetProfileAttributeParams) (*socialclientmodels.Attribute, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -326,7 +334,8 @@ func (g *GameProfileService) PublicGetProfileAttributeShort(input *game_profile.
 	return ok.GetPayload(), nil
 }
 
-func (g *GameProfileService) PublicUpdateAttributeShort(input *game_profile.PublicUpdateAttributeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.GameProfileInfo, error) {
+func (g *GameProfileService) PublicUpdateAttributeShort(input *game_profile.PublicUpdateAttributeParams) (*socialclientmodels.GameProfileInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

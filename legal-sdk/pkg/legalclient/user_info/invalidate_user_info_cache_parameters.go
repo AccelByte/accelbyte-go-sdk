@@ -70,9 +70,10 @@ type InvalidateUserInfoCacheParams struct {
 	*/
 	Namespace *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the invalidate user info cache params
@@ -95,6 +96,11 @@ func (o *InvalidateUserInfoCacheParams) WithContext(ctx context.Context) *Invali
 // SetContext adds the context to the invalidate user info cache params
 func (o *InvalidateUserInfoCacheParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the invalidate user info cache params
+func (o *InvalidateUserInfoCacheParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the invalidate user info cache params

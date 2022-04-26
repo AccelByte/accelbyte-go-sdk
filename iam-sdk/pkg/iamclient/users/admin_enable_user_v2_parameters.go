@@ -75,9 +75,10 @@ type AdminEnableUserV2Params struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin enable user v2 params
@@ -100,6 +101,11 @@ func (o *AdminEnableUserV2Params) WithContext(ctx context.Context) *AdminEnableU
 // SetContext adds the context to the admin enable user v2 params
 func (o *AdminEnableUserV2Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin enable user v2 params
+func (o *AdminEnableUserV2Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin enable user v2 params

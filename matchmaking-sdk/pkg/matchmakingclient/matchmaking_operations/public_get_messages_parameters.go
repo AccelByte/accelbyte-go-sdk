@@ -63,9 +63,10 @@ func NewPublicGetMessagesParamsWithHTTPClient(client *http.Client) *PublicGetMes
 for the public get messages operation typically these are written to a http.Request
 */
 type PublicGetMessagesParams struct {
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the public get messages params
@@ -88,6 +89,11 @@ func (o *PublicGetMessagesParams) WithContext(ctx context.Context) *PublicGetMes
 // SetContext adds the context to the public get messages params
 func (o *PublicGetMessagesParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the public get messages params
+func (o *PublicGetMessagesParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the public get messages params

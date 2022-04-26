@@ -79,9 +79,10 @@ type AdminUpdateUserV3Params struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin update user v3 params
@@ -104,6 +105,11 @@ func (o *AdminUpdateUserV3Params) WithContext(ctx context.Context) *AdminUpdateU
 // SetContext adds the context to the admin update user v3 params
 func (o *AdminUpdateUserV3Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin update user v3 params
+func (o *AdminUpdateUserV3Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin update user v3 params

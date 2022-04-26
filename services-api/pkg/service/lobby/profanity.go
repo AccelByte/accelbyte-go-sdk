@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -398,7 +397,8 @@ func (p *ProfanityService) AdminVerifyMessageProfanityResponse(input *profanity.
 	return ok.GetPayload(), nil
 }
 
-func (p *ProfanityService) AdminDebugProfanityFiltersShort(input *profanity.AdminDebugProfanityFiltersParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelsProfanityFilter, error) {
+func (p *ProfanityService) AdminDebugProfanityFiltersShort(input *profanity.AdminDebugProfanityFiltersParams) ([]*lobbyclientmodels.ModelsProfanityFilter, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -413,7 +413,8 @@ func (p *ProfanityService) AdminDebugProfanityFiltersShort(input *profanity.Admi
 	return ok.GetPayload(), nil
 }
 
-func (p *ProfanityService) AdminGetProfanityListFiltersV1Short(input *profanity.AdminGetProfanityListFiltersV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsAdminGetProfanityListFiltersV1Response, error) {
+func (p *ProfanityService) AdminGetProfanityListFiltersV1Short(input *profanity.AdminGetProfanityListFiltersV1Params) (*lobbyclientmodels.ModelsAdminGetProfanityListFiltersV1Response, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -428,7 +429,8 @@ func (p *ProfanityService) AdminGetProfanityListFiltersV1Short(input *profanity.
 	return ok.GetPayload(), nil
 }
 
-func (p *ProfanityService) AdminAddProfanityFilterIntoListShort(input *profanity.AdminAddProfanityFilterIntoListParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (p *ProfanityService) AdminAddProfanityFilterIntoListShort(input *profanity.AdminAddProfanityFilterIntoListParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -443,7 +445,8 @@ func (p *ProfanityService) AdminAddProfanityFilterIntoListShort(input *profanity
 	return nil
 }
 
-func (p *ProfanityService) AdminAddProfanityFiltersShort(input *profanity.AdminAddProfanityFiltersParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (p *ProfanityService) AdminAddProfanityFiltersShort(input *profanity.AdminAddProfanityFiltersParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -458,7 +461,8 @@ func (p *ProfanityService) AdminAddProfanityFiltersShort(input *profanity.AdminA
 	return nil
 }
 
-func (p *ProfanityService) AdminImportProfanityFiltersFromFileShort(input *profanity.AdminImportProfanityFiltersFromFileParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (p *ProfanityService) AdminImportProfanityFiltersFromFileShort(input *profanity.AdminImportProfanityFiltersFromFileParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -473,7 +477,8 @@ func (p *ProfanityService) AdminImportProfanityFiltersFromFileShort(input *profa
 	return nil
 }
 
-func (p *ProfanityService) AdminDeleteProfanityFilterShort(input *profanity.AdminDeleteProfanityFilterParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelsProfanityFilter, error) {
+func (p *ProfanityService) AdminDeleteProfanityFilterShort(input *profanity.AdminDeleteProfanityFilterParams) ([]*lobbyclientmodels.ModelsProfanityFilter, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -488,7 +493,8 @@ func (p *ProfanityService) AdminDeleteProfanityFilterShort(input *profanity.Admi
 	return ok.GetPayload(), nil
 }
 
-func (p *ProfanityService) AdminGetProfanityListsShort(input *profanity.AdminGetProfanityListsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelsAdminGetProfanityListsListResponse, error) {
+func (p *ProfanityService) AdminGetProfanityListsShort(input *profanity.AdminGetProfanityListsParams) ([]*lobbyclientmodels.ModelsAdminGetProfanityListsListResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -503,7 +509,8 @@ func (p *ProfanityService) AdminGetProfanityListsShort(input *profanity.AdminGet
 	return ok.GetPayload(), nil
 }
 
-func (p *ProfanityService) AdminCreateProfanityListShort(input *profanity.AdminCreateProfanityListParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (p *ProfanityService) AdminCreateProfanityListShort(input *profanity.AdminCreateProfanityListParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -518,7 +525,8 @@ func (p *ProfanityService) AdminCreateProfanityListShort(input *profanity.AdminC
 	return nil
 }
 
-func (p *ProfanityService) AdminUpdateProfanityListShort(input *profanity.AdminUpdateProfanityListParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (p *ProfanityService) AdminUpdateProfanityListShort(input *profanity.AdminUpdateProfanityListParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -533,7 +541,8 @@ func (p *ProfanityService) AdminUpdateProfanityListShort(input *profanity.AdminU
 	return nil
 }
 
-func (p *ProfanityService) AdminDeleteProfanityListShort(input *profanity.AdminDeleteProfanityListParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (p *ProfanityService) AdminDeleteProfanityListShort(input *profanity.AdminDeleteProfanityListParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -548,7 +557,8 @@ func (p *ProfanityService) AdminDeleteProfanityListShort(input *profanity.AdminD
 	return nil
 }
 
-func (p *ProfanityService) AdminGetProfanityRuleShort(input *profanity.AdminGetProfanityRuleParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsProfanityRule, error) {
+func (p *ProfanityService) AdminGetProfanityRuleShort(input *profanity.AdminGetProfanityRuleParams) (*lobbyclientmodels.ModelsProfanityRule, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -563,7 +573,8 @@ func (p *ProfanityService) AdminGetProfanityRuleShort(input *profanity.AdminGetP
 	return ok.GetPayload(), nil
 }
 
-func (p *ProfanityService) AdminSetProfanityRuleForNamespaceShort(input *profanity.AdminSetProfanityRuleForNamespaceParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (p *ProfanityService) AdminSetProfanityRuleForNamespaceShort(input *profanity.AdminSetProfanityRuleForNamespaceParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -578,7 +589,8 @@ func (p *ProfanityService) AdminSetProfanityRuleForNamespaceShort(input *profani
 	return nil
 }
 
-func (p *ProfanityService) AdminVerifyMessageProfanityResponseShort(input *profanity.AdminVerifyMessageProfanityResponseParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsAdminVerifyMessageProfanityResponse, error) {
+func (p *ProfanityService) AdminVerifyMessageProfanityResponseShort(input *profanity.AdminVerifyMessageProfanityResponseParams) (*lobbyclientmodels.ModelsAdminVerifyMessageProfanityResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

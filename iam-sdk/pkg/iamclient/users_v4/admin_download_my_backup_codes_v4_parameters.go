@@ -63,9 +63,10 @@ func NewAdminDownloadMyBackupCodesV4ParamsWithHTTPClient(client *http.Client) *A
 for the admin download my backup codes v4 operation typically these are written to a http.Request
 */
 type AdminDownloadMyBackupCodesV4Params struct {
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin download my backup codes v4 params
@@ -88,6 +89,11 @@ func (o *AdminDownloadMyBackupCodesV4Params) WithContext(ctx context.Context) *A
 // SetContext adds the context to the admin download my backup codes v4 params
 func (o *AdminDownloadMyBackupCodesV4Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin download my backup codes v4 params
+func (o *AdminDownloadMyBackupCodesV4Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin download my backup codes v4 params

@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -179,7 +178,8 @@ func (r *RewardService) PublicBulkClaimUserRewards(input *reward.PublicBulkClaim
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*seasonpassclientmodels.RewardInfo, error) {
+func (r *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams) ([]*seasonpassclientmodels.RewardInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -194,7 +194,8 @@ func (r *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams, auth
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) CreateRewardShort(input *reward.CreateRewardParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.RewardInfo, error) {
+func (r *RewardService) CreateRewardShort(input *reward.CreateRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -209,7 +210,8 @@ func (r *RewardService) CreateRewardShort(input *reward.CreateRewardParams, auth
 	return created.GetPayload(), nil
 }
 
-func (r *RewardService) GetRewardShort(input *reward.GetRewardParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.RewardInfo, error) {
+func (r *RewardService) GetRewardShort(input *reward.GetRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -224,7 +226,8 @@ func (r *RewardService) GetRewardShort(input *reward.GetRewardParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (r *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -239,7 +242,8 @@ func (r *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams, auth
 	return nil
 }
 
-func (r *RewardService) UpdateRewardShort(input *reward.UpdateRewardParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.RewardInfo, error) {
+func (r *RewardService) UpdateRewardShort(input *reward.UpdateRewardParams) (*seasonpassclientmodels.RewardInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -254,7 +258,8 @@ func (r *RewardService) UpdateRewardShort(input *reward.UpdateRewardParams, auth
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) PublicClaimUserRewardShort(input *reward.PublicClaimUserRewardParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.ClaimableRewards, error) {
+func (r *RewardService) PublicClaimUserRewardShort(input *reward.PublicClaimUserRewardParams) (*seasonpassclientmodels.ClaimableRewards, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -269,7 +274,8 @@ func (r *RewardService) PublicClaimUserRewardShort(input *reward.PublicClaimUser
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) PublicBulkClaimUserRewardsShort(input *reward.PublicBulkClaimUserRewardsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.ClaimableRewards, error) {
+func (r *RewardService) PublicBulkClaimUserRewardsShort(input *reward.PublicBulkClaimUserRewardsParams) (*seasonpassclientmodels.ClaimableRewards, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

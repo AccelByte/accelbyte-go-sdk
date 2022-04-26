@@ -76,9 +76,10 @@ type CheckSeasonPurchasableParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the check season purchasable params
@@ -101,6 +102,11 @@ func (o *CheckSeasonPurchasableParams) WithContext(ctx context.Context) *CheckSe
 // SetContext adds the context to the check season purchasable params
 func (o *CheckSeasonPurchasableParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the check season purchasable params
+func (o *CheckSeasonPurchasableParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the check season purchasable params

@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -108,7 +107,8 @@ func (c *ChatService) GetPersonalChatHistoryV1Public(input *chat.GetPersonalChat
 	return ok.GetPayload(), nil
 }
 
-func (c *ChatService) PersonalChatHistoryShort(input *chat.PersonalChatHistoryParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
+func (c *ChatService) PersonalChatHistoryShort(input *chat.PersonalChatHistoryParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -123,7 +123,8 @@ func (c *ChatService) PersonalChatHistoryShort(input *chat.PersonalChatHistoryPa
 	return ok.GetPayload(), nil
 }
 
-func (c *ChatService) AdminChatHistoryShort(input *chat.AdminChatHistoryParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
+func (c *ChatService) AdminChatHistoryShort(input *chat.AdminChatHistoryParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -138,7 +139,8 @@ func (c *ChatService) AdminChatHistoryShort(input *chat.AdminChatHistoryParams, 
 	return ok.GetPayload(), nil
 }
 
-func (c *ChatService) GetPersonalChatHistoryV1PublicShort(input *chat.GetPersonalChatHistoryV1PublicParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
+func (c *ChatService) GetPersonalChatHistoryV1PublicShort(input *chat.GetPersonalChatHistoryV1PublicParams) ([]*lobbyclientmodels.ModelChatMessageResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

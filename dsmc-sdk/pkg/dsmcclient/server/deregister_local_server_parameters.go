@@ -74,9 +74,10 @@ type DeregisterLocalServerParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the deregister local server params
@@ -99,6 +100,11 @@ func (o *DeregisterLocalServerParams) WithContext(ctx context.Context) *Deregist
 // SetContext adds the context to the deregister local server params
 func (o *DeregisterLocalServerParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the deregister local server params
+func (o *DeregisterLocalServerParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the deregister local server params

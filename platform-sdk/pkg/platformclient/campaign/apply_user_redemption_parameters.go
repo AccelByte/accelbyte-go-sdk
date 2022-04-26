@@ -73,9 +73,10 @@ type ApplyUserRedemptionParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the apply user redemption params
@@ -98,6 +99,11 @@ func (o *ApplyUserRedemptionParams) WithContext(ctx context.Context) *ApplyUserR
 // SetContext adds the context to the apply user redemption params
 func (o *ApplyUserRedemptionParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the apply user redemption params
+func (o *ApplyUserRedemptionParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the apply user redemption params

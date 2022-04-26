@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/constant"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -103,7 +102,8 @@ func (g *GametelemetryOperationsService) ProtectedUpdatePlaytimeGameTelemetryV1P
 	return nil
 }
 
-func (g *GametelemetryOperationsService) AdminGetEventsGameTelemetryV1AdminEventsGetShort(input *gametelemetry_operations.AdminGetEventsGameTelemetryV1AdminEventsGetParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (g *GametelemetryOperationsService) AdminGetEventsGameTelemetryV1AdminEventsGetShort(input *gametelemetry_operations.AdminGetEventsGameTelemetryV1AdminEventsGetParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -119,7 +119,8 @@ func (g *GametelemetryOperationsService) AdminGetEventsGameTelemetryV1AdminEvent
 	return nil
 }
 
-func (g *GametelemetryOperationsService) AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetShort(input *gametelemetry_operations.AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (g *GametelemetryOperationsService) AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetShort(input *gametelemetry_operations.AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -135,7 +136,8 @@ func (g *GametelemetryOperationsService) AdminGetNamespaceGameTelemetryV1AdminTe
 	return nil
 }
 
-func (g *GametelemetryOperationsService) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(input *gametelemetry_operations.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (g *GametelemetryOperationsService) ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(input *gametelemetry_operations.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -151,7 +153,8 @@ func (g *GametelemetryOperationsService) ProtectedSaveEventsGameTelemetryV1Prote
 	return nil
 }
 
-func (g *GametelemetryOperationsService) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input *gametelemetry_operations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams, authInfoWriter runtime.ClientAuthInfoWriter) (interface{}, error) {
+func (g *GametelemetryOperationsService) ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input *gametelemetry_operations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams) (interface{}, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -166,7 +169,8 @@ func (g *GametelemetryOperationsService) ProtectedGetPlaytimeGameTelemetryV1Prot
 	return ok.GetPayload(), nil
 }
 
-func (g *GametelemetryOperationsService) ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input *gametelemetry_operations.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (g *GametelemetryOperationsService) ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input *gametelemetry_operations.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

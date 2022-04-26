@@ -151,9 +151,10 @@ type SearchChannelSpecificContentParams struct {
 	*/
 	UserID *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the search channel specific content params
@@ -176,6 +177,11 @@ func (o *SearchChannelSpecificContentParams) WithContext(ctx context.Context) *S
 // SetContext adds the context to the search channel specific content params
 func (o *SearchChannelSpecificContentParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the search channel specific content params
+func (o *SearchChannelSpecificContentParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the search channel specific content params

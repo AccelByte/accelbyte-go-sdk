@@ -101,9 +101,10 @@ type AdminGetTypeParams struct {
 	*/
 	Offset *int64
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin get type params
@@ -126,6 +127,11 @@ func (o *AdminGetTypeParams) WithContext(ctx context.Context) *AdminGetTypeParam
 // SetContext adds the context to the admin get type params
 func (o *AdminGetTypeParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin get type params
+func (o *AdminGetTypeParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin get type params

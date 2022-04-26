@@ -74,9 +74,10 @@ type AdminListUserIDByUserIDsV3Params struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin list user ID by user i ds v3 params
@@ -99,6 +100,11 @@ func (o *AdminListUserIDByUserIDsV3Params) WithContext(ctx context.Context) *Adm
 // SetContext adds the context to the admin list user ID by user i ds v3 params
 func (o *AdminListUserIDByUserIDsV3Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin list user ID by user i ds v3 params
+func (o *AdminListUserIDByUserIDsV3Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin list user ID by user i ds v3 params

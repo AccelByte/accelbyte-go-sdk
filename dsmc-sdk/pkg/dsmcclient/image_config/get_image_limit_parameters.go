@@ -70,9 +70,10 @@ type GetImageLimitParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get image limit params
@@ -95,6 +96,11 @@ func (o *GetImageLimitParams) WithContext(ctx context.Context) *GetImageLimitPar
 // SetContext adds the context to the get image limit params
 func (o *GetImageLimitParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get image limit params
+func (o *GetImageLimitParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get image limit params

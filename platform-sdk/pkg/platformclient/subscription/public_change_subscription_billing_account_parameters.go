@@ -71,9 +71,10 @@ type PublicChangeSubscriptionBillingAccountParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the public change subscription billing account params
@@ -96,6 +97,11 @@ func (o *PublicChangeSubscriptionBillingAccountParams) WithContext(ctx context.C
 // SetContext adds the context to the public change subscription billing account params
 func (o *PublicChangeSubscriptionBillingAccountParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the public change subscription billing account params
+func (o *PublicChangeSubscriptionBillingAccountParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the public change subscription billing account params

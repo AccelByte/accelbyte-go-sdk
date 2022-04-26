@@ -81,9 +81,10 @@ type CreditUserWalletParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the credit user wallet params
@@ -106,6 +107,11 @@ func (o *CreditUserWalletParams) WithContext(ctx context.Context) *CreditUserWal
 // SetContext adds the context to the credit user wallet params
 func (o *CreditUserWalletParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the credit user wallet params
+func (o *CreditUserWalletParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the credit user wallet params

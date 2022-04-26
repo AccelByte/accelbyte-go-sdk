@@ -70,9 +70,10 @@ type AnonymizeUserAgreementParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the anonymize user agreement params
@@ -95,6 +96,11 @@ func (o *AnonymizeUserAgreementParams) WithContext(ctx context.Context) *Anonymi
 // SetContext adds the context to the anonymize user agreement params
 func (o *AnonymizeUserAgreementParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the anonymize user agreement params
+func (o *AnonymizeUserAgreementParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the anonymize user agreement params

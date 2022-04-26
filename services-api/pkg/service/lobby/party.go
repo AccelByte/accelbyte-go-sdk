@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -140,7 +139,8 @@ func (p *PartyService) PublicUpdatePartyAttributesV1(input *party.PublicUpdatePa
 	return ok.GetPayload(), nil
 }
 
-func (p *PartyService) AdminGetPartyDataV1Short(input *party.AdminGetPartyDataV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsPartyData, error) {
+func (p *PartyService) AdminGetPartyDataV1Short(input *party.AdminGetPartyDataV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -155,7 +155,8 @@ func (p *PartyService) AdminGetPartyDataV1Short(input *party.AdminGetPartyDataV1
 	return ok.GetPayload(), nil
 }
 
-func (p *PartyService) AdminGetUserPartyV1Short(input *party.AdminGetUserPartyV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsPartyData, error) {
+func (p *PartyService) AdminGetUserPartyV1Short(input *party.AdminGetUserPartyV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -170,7 +171,8 @@ func (p *PartyService) AdminGetUserPartyV1Short(input *party.AdminGetUserPartyV1
 	return ok.GetPayload(), nil
 }
 
-func (p *PartyService) PublicGetPartyDataV1Short(input *party.PublicGetPartyDataV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsPartyData, error) {
+func (p *PartyService) PublicGetPartyDataV1Short(input *party.PublicGetPartyDataV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -185,7 +187,8 @@ func (p *PartyService) PublicGetPartyDataV1Short(input *party.PublicGetPartyData
 	return ok.GetPayload(), nil
 }
 
-func (p *PartyService) PublicUpdatePartyAttributesV1Short(input *party.PublicUpdatePartyAttributesV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsPartyData, error) {
+func (p *PartyService) PublicUpdatePartyAttributesV1Short(input *party.PublicUpdatePartyAttributesV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

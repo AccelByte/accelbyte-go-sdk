@@ -70,9 +70,10 @@ type RemoveRoleAdminParams struct {
 	*/
 	RoleID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the remove role admin params
@@ -95,6 +96,11 @@ func (o *RemoveRoleAdminParams) WithContext(ctx context.Context) *RemoveRoleAdmi
 // SetContext adds the context to the remove role admin params
 func (o *RemoveRoleAdminParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the remove role admin params
+func (o *RemoveRoleAdminParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the remove role admin params

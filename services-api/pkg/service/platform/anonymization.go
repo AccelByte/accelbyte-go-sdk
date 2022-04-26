@@ -11,7 +11,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/anonymization"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -132,7 +131,8 @@ func (a *AnonymizationService) AnonymizeWallet(input *anonymization.AnonymizeWal
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizeCampaignShort(input *anonymization.AnonymizeCampaignParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AnonymizationService) AnonymizeCampaignShort(input *anonymization.AnonymizeCampaignParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -147,7 +147,8 @@ func (a *AnonymizationService) AnonymizeCampaignShort(input *anonymization.Anony
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizeEntitlementShort(input *anonymization.AnonymizeEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AnonymizationService) AnonymizeEntitlementShort(input *anonymization.AnonymizeEntitlementParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -162,7 +163,8 @@ func (a *AnonymizationService) AnonymizeEntitlementShort(input *anonymization.An
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizeFulfillmentShort(input *anonymization.AnonymizeFulfillmentParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AnonymizationService) AnonymizeFulfillmentShort(input *anonymization.AnonymizeFulfillmentParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -177,7 +179,8 @@ func (a *AnonymizationService) AnonymizeFulfillmentShort(input *anonymization.An
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizeIntegrationShort(input *anonymization.AnonymizeIntegrationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AnonymizationService) AnonymizeIntegrationShort(input *anonymization.AnonymizeIntegrationParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -192,7 +195,8 @@ func (a *AnonymizationService) AnonymizeIntegrationShort(input *anonymization.An
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizeOrderShort(input *anonymization.AnonymizeOrderParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AnonymizationService) AnonymizeOrderShort(input *anonymization.AnonymizeOrderParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -207,7 +211,8 @@ func (a *AnonymizationService) AnonymizeOrderShort(input *anonymization.Anonymiz
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizePaymentShort(input *anonymization.AnonymizePaymentParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AnonymizationService) AnonymizePaymentShort(input *anonymization.AnonymizePaymentParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -222,7 +227,8 @@ func (a *AnonymizationService) AnonymizePaymentShort(input *anonymization.Anonym
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizeSubscriptionShort(input *anonymization.AnonymizeSubscriptionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AnonymizationService) AnonymizeSubscriptionShort(input *anonymization.AnonymizeSubscriptionParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -237,7 +243,8 @@ func (a *AnonymizationService) AnonymizeSubscriptionShort(input *anonymization.A
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizeWalletShort(input *anonymization.AnonymizeWalletParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AnonymizationService) AnonymizeWalletShort(input *anonymization.AnonymizeWalletParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

@@ -89,9 +89,10 @@ type CreateOverrideRegionOverrideParams struct {
 	*/
 	Version string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the create override region override params
@@ -114,6 +115,11 @@ func (o *CreateOverrideRegionOverrideParams) WithContext(ctx context.Context) *C
 // SetContext adds the context to the create override region override params
 func (o *CreateOverrideRegionOverrideParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the create override region override params
+func (o *CreateOverrideRegionOverrideParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the create override region override params

@@ -72,9 +72,10 @@ type GetWalletParams struct {
 	/*WalletID*/
 	WalletID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get wallet params
@@ -97,6 +98,11 @@ func (o *GetWalletParams) WithContext(ctx context.Context) *GetWalletParams {
 // SetContext adds the context to the get wallet params
 func (o *GetWalletParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get wallet params
+func (o *GetWalletParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get wallet params

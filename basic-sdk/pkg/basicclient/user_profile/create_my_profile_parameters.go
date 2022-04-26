@@ -74,9 +74,10 @@ type CreateMyProfileParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the create my profile params
@@ -99,6 +100,11 @@ func (o *CreateMyProfileParams) WithContext(ctx context.Context) *CreateMyProfil
 // SetContext adds the context to the create my profile params
 func (o *CreateMyProfileParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the create my profile params
+func (o *CreateMyProfileParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the create my profile params

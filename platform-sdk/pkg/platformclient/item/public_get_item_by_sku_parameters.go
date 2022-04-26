@@ -78,9 +78,10 @@ type PublicGetItemBySkuParams struct {
 	*/
 	StoreID *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the public get item by sku params
@@ -103,6 +104,11 @@ func (o *PublicGetItemBySkuParams) WithContext(ctx context.Context) *PublicGetIt
 // SetContext adds the context to the public get item by sku params
 func (o *PublicGetItemBySkuParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the public get item by sku params
+func (o *PublicGetItemBySkuParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the public get item by sku params

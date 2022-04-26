@@ -70,9 +70,10 @@ type SpecificEventIDDescriptionHandlerParams struct {
 	*/
 	EventIds *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the specific event ID description handler params
@@ -95,6 +96,11 @@ func (o *SpecificEventIDDescriptionHandlerParams) WithContext(ctx context.Contex
 // SetContext adds the context to the specific event ID description handler params
 func (o *SpecificEventIDDescriptionHandlerParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the specific event ID description handler params
+func (o *SpecificEventIDDescriptionHandlerParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the specific event ID description handler params

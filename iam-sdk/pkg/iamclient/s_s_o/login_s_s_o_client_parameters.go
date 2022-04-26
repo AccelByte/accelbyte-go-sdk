@@ -75,9 +75,10 @@ type LoginSSOClientParams struct {
 	*/
 	PlatformID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the login s s o client params
@@ -100,6 +101,11 @@ func (o *LoginSSOClientParams) WithContext(ctx context.Context) *LoginSSOClientP
 // SetContext adds the context to the login s s o client params
 func (o *LoginSSOClientParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the login s s o client params
+func (o *LoginSSOClientParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the login s s o client params

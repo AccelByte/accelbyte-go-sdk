@@ -74,9 +74,10 @@ type CreateNewGroupPublicV1Params struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the create new group public v1 params
@@ -99,6 +100,11 @@ func (o *CreateNewGroupPublicV1Params) WithContext(ctx context.Context) *CreateN
 // SetContext adds the context to the create new group public v1 params
 func (o *CreateNewGroupPublicV1Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the create new group public v1 params
+func (o *CreateNewGroupPublicV1Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the create new group public v1 params

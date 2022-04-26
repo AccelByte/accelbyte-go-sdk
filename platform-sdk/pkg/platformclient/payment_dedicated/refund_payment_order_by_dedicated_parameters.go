@@ -73,9 +73,10 @@ type RefundPaymentOrderByDedicatedParams struct {
 	/*PaymentOrderNo*/
 	PaymentOrderNo string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the refund payment order by dedicated params
@@ -98,6 +99,11 @@ func (o *RefundPaymentOrderByDedicatedParams) WithContext(ctx context.Context) *
 // SetContext adds the context to the refund payment order by dedicated params
 func (o *RefundPaymentOrderByDedicatedParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the refund payment order by dedicated params
+func (o *RefundPaymentOrderByDedicatedParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the refund payment order by dedicated params

@@ -74,9 +74,10 @@ type UpdateConfigParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the update config params
@@ -99,6 +100,11 @@ func (o *UpdateConfigParams) WithContext(ctx context.Context) *UpdateConfigParam
 // SetContext adds the context to the update config params
 func (o *UpdateConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the update config params
+func (o *UpdateConfigParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the update config params

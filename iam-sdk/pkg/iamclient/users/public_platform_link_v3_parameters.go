@@ -85,9 +85,10 @@ type PublicPlatformLinkV3Params struct {
 	*/
 	Ticket string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the public platform link v3 params
@@ -110,6 +111,11 @@ func (o *PublicPlatformLinkV3Params) WithContext(ctx context.Context) *PublicPla
 // SetContext adds the context to the public platform link v3 params
 func (o *PublicPlatformLinkV3Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the public platform link v3 params
+func (o *PublicPlatformLinkV3Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the public platform link v3 params

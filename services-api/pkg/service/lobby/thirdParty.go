@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -125,7 +124,8 @@ func (t *ThirdPartyService) AdminDeleteThirdPartyConfig(input *third_party.Admin
 	return noContent.GetPayload(), nil
 }
 
-func (t *ThirdPartyService) AdminGetThirdPartyConfigShort(input *third_party.AdminGetThirdPartyConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsGetConfigResponse, error) {
+func (t *ThirdPartyService) AdminGetThirdPartyConfigShort(input *third_party.AdminGetThirdPartyConfigParams) (*lobbyclientmodels.ModelsGetConfigResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -140,7 +140,8 @@ func (t *ThirdPartyService) AdminGetThirdPartyConfigShort(input *third_party.Adm
 	return ok.GetPayload(), nil
 }
 
-func (t *ThirdPartyService) AdminUpdateThirdPartyConfigShort(input *third_party.AdminUpdateThirdPartyConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsUpdateConfigResponse, error) {
+func (t *ThirdPartyService) AdminUpdateThirdPartyConfigShort(input *third_party.AdminUpdateThirdPartyConfigParams) (*lobbyclientmodels.ModelsUpdateConfigResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -155,7 +156,8 @@ func (t *ThirdPartyService) AdminUpdateThirdPartyConfigShort(input *third_party.
 	return ok.GetPayload(), nil
 }
 
-func (t *ThirdPartyService) AdminCreateThirdPartyConfigShort(input *third_party.AdminCreateThirdPartyConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsCreateConfigResponse, error) {
+func (t *ThirdPartyService) AdminCreateThirdPartyConfigShort(input *third_party.AdminCreateThirdPartyConfigParams) (*lobbyclientmodels.ModelsCreateConfigResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -170,7 +172,8 @@ func (t *ThirdPartyService) AdminCreateThirdPartyConfigShort(input *third_party.
 	return created.GetPayload(), nil
 }
 
-func (t *ThirdPartyService) AdminDeleteThirdPartyConfigShort(input *third_party.AdminDeleteThirdPartyConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (string, error) {
+func (t *ThirdPartyService) AdminDeleteThirdPartyConfigShort(input *third_party.AdminDeleteThirdPartyConfigParams) (string, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

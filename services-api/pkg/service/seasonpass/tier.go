@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -179,7 +178,8 @@ func (t *TierService) GrantUserTier(input *tier.GrantUserTierParams) (*seasonpas
 	return ok.GetPayload(), nil
 }
 
-func (t *TierService) QueryTiersShort(input *tier.QueryTiersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.TierPagingSlicedResult, error) {
+func (t *TierService) QueryTiersShort(input *tier.QueryTiersParams) (*seasonpassclientmodels.TierPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -194,7 +194,8 @@ func (t *TierService) QueryTiersShort(input *tier.QueryTiersParams, authInfoWrit
 	return ok.GetPayload(), nil
 }
 
-func (t *TierService) CreateTierShort(input *tier.CreateTierParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*seasonpassclientmodels.Tier, error) {
+func (t *TierService) CreateTierShort(input *tier.CreateTierParams) ([]*seasonpassclientmodels.Tier, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -209,7 +210,8 @@ func (t *TierService) CreateTierShort(input *tier.CreateTierParams, authInfoWrit
 	return created.GetPayload(), nil
 }
 
-func (t *TierService) UpdateTierShort(input *tier.UpdateTierParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.Tier, error) {
+func (t *TierService) UpdateTierShort(input *tier.UpdateTierParams) (*seasonpassclientmodels.Tier, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -224,7 +226,8 @@ func (t *TierService) UpdateTierShort(input *tier.UpdateTierParams, authInfoWrit
 	return ok.GetPayload(), nil
 }
 
-func (t *TierService) DeleteTierShort(input *tier.DeleteTierParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (t *TierService) DeleteTierShort(input *tier.DeleteTierParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -239,7 +242,8 @@ func (t *TierService) DeleteTierShort(input *tier.DeleteTierParams, authInfoWrit
 	return nil
 }
 
-func (t *TierService) ReorderTierShort(input *tier.ReorderTierParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.Tier, error) {
+func (t *TierService) ReorderTierShort(input *tier.ReorderTierParams) (*seasonpassclientmodels.Tier, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -254,7 +258,8 @@ func (t *TierService) ReorderTierShort(input *tier.ReorderTierParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-func (t *TierService) GrantUserExpShort(input *tier.GrantUserExpParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.UserSeasonSummary, error) {
+func (t *TierService) GrantUserExpShort(input *tier.GrantUserExpParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -269,7 +274,8 @@ func (t *TierService) GrantUserExpShort(input *tier.GrantUserExpParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-func (t *TierService) GrantUserTierShort(input *tier.GrantUserTierParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.UserSeasonSummary, error) {
+func (t *TierService) GrantUserTierShort(input *tier.GrantUserTierParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

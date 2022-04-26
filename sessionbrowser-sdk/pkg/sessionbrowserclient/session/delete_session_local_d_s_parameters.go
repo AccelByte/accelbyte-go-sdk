@@ -75,9 +75,10 @@ type DeleteSessionLocalDSParams struct {
 	*/
 	SessionID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the delete session local d s params
@@ -100,6 +101,11 @@ func (o *DeleteSessionLocalDSParams) WithContext(ctx context.Context) *DeleteSes
 // SetContext adds the context to the delete session local d s params
 func (o *DeleteSessionLocalDSParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the delete session local d s params
+func (o *DeleteSessionLocalDSParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the delete session local d s params

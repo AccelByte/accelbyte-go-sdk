@@ -86,9 +86,10 @@ type GetAllTimeLeaderboardRankingPublicV2Params struct {
 	*/
 	Offset *int64
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get all time leaderboard ranking public v2 params
@@ -111,6 +112,11 @@ func (o *GetAllTimeLeaderboardRankingPublicV2Params) WithContext(ctx context.Con
 // SetContext adds the context to the get all time leaderboard ranking public v2 params
 func (o *GetAllTimeLeaderboardRankingPublicV2Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get all time leaderboard ranking public v2 params
+func (o *GetAllTimeLeaderboardRankingPublicV2Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get all time leaderboard ranking public v2 params

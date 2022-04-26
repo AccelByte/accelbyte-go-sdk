@@ -75,9 +75,10 @@ type RevokeUserV3Params struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the revoke user v3 params
@@ -100,6 +101,11 @@ func (o *RevokeUserV3Params) WithContext(ctx context.Context) *RevokeUserV3Param
 // SetContext adds the context to the revoke user v3 params
 func (o *RevokeUserV3Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the revoke user v3 params
+func (o *RevokeUserV3Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the revoke user v3 params

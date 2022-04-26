@@ -85,9 +85,10 @@ type PlatformAuthenticateSAMLV3HandlerParams struct {
 	*/
 	State string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the platform authenticate s a m l v3 handler params
@@ -110,6 +111,11 @@ func (o *PlatformAuthenticateSAMLV3HandlerParams) WithContext(ctx context.Contex
 // SetContext adds the context to the platform authenticate s a m l v3 handler params
 func (o *PlatformAuthenticateSAMLV3HandlerParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the platform authenticate s a m l v3 handler params
+func (o *PlatformAuthenticateSAMLV3HandlerParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the platform authenticate s a m l v3 handler params

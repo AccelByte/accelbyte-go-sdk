@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -214,7 +213,8 @@ func (r *RewardService) GetReward1(input *reward.GetReward1Params) (*platformcli
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) CreateRewardShort(input *reward.CreateRewardParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.RewardInfo, error) {
+func (r *RewardService) CreateRewardShort(input *reward.CreateRewardParams) (*platformclientmodels.RewardInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -229,7 +229,8 @@ func (r *RewardService) CreateRewardShort(input *reward.CreateRewardParams, auth
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.RewardPagingSlicedResult, error) {
+func (r *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams) (*platformclientmodels.RewardPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -244,7 +245,8 @@ func (r *RewardService) QueryRewardsShort(input *reward.QueryRewardsParams, auth
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) ExportRewardsShort(input *reward.ExportRewardsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (r *RewardService) ExportRewardsShort(input *reward.ExportRewardsParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -259,7 +261,8 @@ func (r *RewardService) ExportRewardsShort(input *reward.ExportRewardsParams, au
 	return nil
 }
 
-func (r *RewardService) ImportRewardsShort(input *reward.ImportRewardsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (r *RewardService) ImportRewardsShort(input *reward.ImportRewardsParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -274,7 +277,8 @@ func (r *RewardService) ImportRewardsShort(input *reward.ImportRewardsParams, au
 	return nil
 }
 
-func (r *RewardService) GetRewardShort(input *reward.GetRewardParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.RewardInfo, error) {
+func (r *RewardService) GetRewardShort(input *reward.GetRewardParams) (*platformclientmodels.RewardInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -289,7 +293,8 @@ func (r *RewardService) GetRewardShort(input *reward.GetRewardParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) UpdateRewardShort(input *reward.UpdateRewardParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.RewardInfo, error) {
+func (r *RewardService) UpdateRewardShort(input *reward.UpdateRewardParams) (*platformclientmodels.RewardInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -304,7 +309,8 @@ func (r *RewardService) UpdateRewardShort(input *reward.UpdateRewardParams, auth
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.RewardInfo, error) {
+func (r *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams) (*platformclientmodels.RewardInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -319,7 +325,8 @@ func (r *RewardService) DeleteRewardShort(input *reward.DeleteRewardParams, auth
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) CheckEventConditionShort(input *reward.CheckEventConditionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.ConditionMatchResult, error) {
+func (r *RewardService) CheckEventConditionShort(input *reward.CheckEventConditionParams) (*platformclientmodels.ConditionMatchResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -334,7 +341,8 @@ func (r *RewardService) CheckEventConditionShort(input *reward.CheckEventConditi
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) GetRewardByCodeShort(input *reward.GetRewardByCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.RewardInfo, error) {
+func (r *RewardService) GetRewardByCodeShort(input *reward.GetRewardByCodeParams) (*platformclientmodels.RewardInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -349,7 +357,8 @@ func (r *RewardService) GetRewardByCodeShort(input *reward.GetRewardByCodeParams
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) QueryRewards1Short(input *reward.QueryRewards1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.RewardPagingSlicedResult, error) {
+func (r *RewardService) QueryRewards1Short(input *reward.QueryRewards1Params) (*platformclientmodels.RewardPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -364,7 +373,8 @@ func (r *RewardService) QueryRewards1Short(input *reward.QueryRewards1Params, au
 	return ok.GetPayload(), nil
 }
 
-func (r *RewardService) GetReward1Short(input *reward.GetReward1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.RewardInfo, error) {
+func (r *RewardService) GetReward1Short(input *reward.GetReward1Params) (*platformclientmodels.RewardInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

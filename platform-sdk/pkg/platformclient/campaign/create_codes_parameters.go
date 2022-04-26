@@ -73,9 +73,10 @@ type CreateCodesParams struct {
 	/*Namespace*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the create codes params
@@ -98,6 +99,11 @@ func (o *CreateCodesParams) WithContext(ctx context.Context) *CreateCodesParams 
 // SetContext adds the context to the create codes params
 func (o *CreateCodesParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the create codes params
+func (o *CreateCodesParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the create codes params

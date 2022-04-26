@@ -101,9 +101,10 @@ type GetFollowedUsersParams struct {
 	*/
 	Offset *int64
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get followed users params
@@ -126,6 +127,11 @@ func (o *GetFollowedUsersParams) WithContext(ctx context.Context) *GetFollowedUs
 // SetContext adds the context to the get followed users params
 func (o *GetFollowedUsersParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get followed users params
+func (o *GetFollowedUsersParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get followed users params

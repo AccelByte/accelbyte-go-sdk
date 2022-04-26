@@ -100,9 +100,10 @@ type QueryPaymentProviderConfigParams struct {
 	*/
 	Region *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the query payment provider config params
@@ -125,6 +126,11 @@ func (o *QueryPaymentProviderConfigParams) WithContext(ctx context.Context) *Que
 // SetContext adds the context to the query payment provider config params
 func (o *QueryPaymentProviderConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the query payment provider config params
+func (o *QueryPaymentProviderConfigParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the query payment provider config params

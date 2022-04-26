@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_tag"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -44,7 +43,8 @@ func (p *PublicTagService) GetTag(input *public_tag.GetTagParams) (*ugcclientmod
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicTagService) GetTagShort(input *public_tag.GetTagParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
+func (p *PublicTagService) GetTagShort(input *public_tag.GetTagParams) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

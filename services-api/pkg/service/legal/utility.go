@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -35,7 +34,8 @@ func (u *UtilityService) CheckReadiness(input *utility.CheckReadinessParams) (*l
 	return ok.GetPayload(), nil
 }
 
-func (u *UtilityService) CheckReadinessShort(input *utility.CheckReadinessParams, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.LegalReadinessStatusResponse, error) {
+func (u *UtilityService) CheckReadinessShort(input *utility.CheckReadinessParams) (*legalclientmodels.LegalReadinessStatusResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

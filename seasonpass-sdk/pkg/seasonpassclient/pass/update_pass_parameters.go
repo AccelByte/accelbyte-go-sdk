@@ -75,9 +75,10 @@ type UpdatePassParams struct {
 	/*SeasonID*/
 	SeasonID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the update pass params
@@ -100,6 +101,11 @@ func (o *UpdatePassParams) WithContext(ctx context.Context) *UpdatePassParams {
 // SetContext adds the context to the update pass params
 func (o *UpdatePassParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the update pass params
+func (o *UpdatePassParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the update pass params

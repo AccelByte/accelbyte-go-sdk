@@ -67,9 +67,10 @@ type GetTwitchIAPConfigParams struct {
 	/*Namespace*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get twitch i a p config params
@@ -92,6 +93,11 @@ func (o *GetTwitchIAPConfigParams) WithContext(ctx context.Context) *GetTwitchIA
 // SetContext adds the context to the get twitch i a p config params
 func (o *GetTwitchIAPConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get twitch i a p config params
+func (o *GetTwitchIAPConfigParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get twitch i a p config params

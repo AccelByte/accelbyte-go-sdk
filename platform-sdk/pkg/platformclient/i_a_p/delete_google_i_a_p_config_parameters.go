@@ -67,9 +67,10 @@ type DeleteGoogleIAPConfigParams struct {
 	/*Namespace*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the delete google i a p config params
@@ -92,6 +93,11 @@ func (o *DeleteGoogleIAPConfigParams) WithContext(ctx context.Context) *DeleteGo
 // SetContext adds the context to the delete google i a p config params
 func (o *DeleteGoogleIAPConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the delete google i a p config params
+func (o *DeleteGoogleIAPConfigParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the delete google i a p config params

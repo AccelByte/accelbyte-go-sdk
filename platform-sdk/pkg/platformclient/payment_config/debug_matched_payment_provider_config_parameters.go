@@ -95,9 +95,10 @@ type DebugMatchedPaymentProviderConfigParams struct {
 	*/
 	Region *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the debug matched payment provider config params
@@ -120,6 +121,11 @@ func (o *DebugMatchedPaymentProviderConfigParams) WithContext(ctx context.Contex
 // SetContext adds the context to the debug matched payment provider config params
 func (o *DebugMatchedPaymentProviderConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the debug matched payment provider config params
+func (o *DebugMatchedPaymentProviderConfigParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the debug matched payment provider config params

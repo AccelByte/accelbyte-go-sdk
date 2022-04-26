@@ -69,9 +69,10 @@ type RecurringChargeSubscriptionParams struct {
 	/*SubscriptionID*/
 	SubscriptionID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the recurring charge subscription params
@@ -94,6 +95,11 @@ func (o *RecurringChargeSubscriptionParams) WithContext(ctx context.Context) *Re
 // SetContext adds the context to the recurring charge subscription params
 func (o *RecurringChargeSubscriptionParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the recurring charge subscription params
+func (o *RecurringChargeSubscriptionParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the recurring charge subscription params

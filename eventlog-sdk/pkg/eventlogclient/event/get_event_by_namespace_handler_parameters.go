@@ -91,9 +91,10 @@ type GetEventByNamespaceHandlerParams struct {
 	*/
 	StartDate string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get event by namespace handler params
@@ -116,6 +117,11 @@ func (o *GetEventByNamespaceHandlerParams) WithContext(ctx context.Context) *Get
 // SetContext adds the context to the get event by namespace handler params
 func (o *GetEventByNamespaceHandlerParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get event by namespace handler params
+func (o *GetEventByNamespaceHandlerParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get event by namespace handler params

@@ -73,9 +73,10 @@ type MockFulfillIAPItemParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the mock fulfill i a p item params
@@ -98,6 +99,11 @@ func (o *MockFulfillIAPItemParams) WithContext(ctx context.Context) *MockFulfill
 // SetContext adds the context to the mock fulfill i a p item params
 func (o *MockFulfillIAPItemParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the mock fulfill i a p item params
+func (o *MockFulfillIAPItemParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the mock fulfill i a p item params

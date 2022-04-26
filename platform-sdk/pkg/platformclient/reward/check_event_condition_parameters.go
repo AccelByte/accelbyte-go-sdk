@@ -73,9 +73,10 @@ type CheckEventConditionParams struct {
 	/*RewardID*/
 	RewardID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the check event condition params
@@ -98,6 +99,11 @@ func (o *CheckEventConditionParams) WithContext(ctx context.Context) *CheckEvent
 // SetContext adds the context to the check event condition params
 func (o *CheckEventConditionParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the check event condition params
+func (o *CheckEventConditionParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the check event condition params

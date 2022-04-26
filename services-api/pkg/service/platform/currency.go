@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -136,7 +135,8 @@ func (c *CurrencyService) PublicListCurrencies(input *currency.PublicListCurrenc
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) ListCurrenciesShort(input *currency.ListCurrenciesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.CurrencyInfo, error) {
+func (c *CurrencyService) ListCurrenciesShort(input *currency.ListCurrenciesParams) ([]*platformclientmodels.CurrencyInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -151,7 +151,8 @@ func (c *CurrencyService) ListCurrenciesShort(input *currency.ListCurrenciesPara
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) CreateCurrencyShort(input *currency.CreateCurrencyParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CurrencyInfo, error) {
+func (c *CurrencyService) CreateCurrencyShort(input *currency.CreateCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -166,7 +167,8 @@ func (c *CurrencyService) CreateCurrencyShort(input *currency.CreateCurrencyPara
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) UpdateCurrencyShort(input *currency.UpdateCurrencyParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CurrencyInfo, error) {
+func (c *CurrencyService) UpdateCurrencyShort(input *currency.UpdateCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -181,7 +183,8 @@ func (c *CurrencyService) UpdateCurrencyShort(input *currency.UpdateCurrencyPara
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) DeleteCurrencyShort(input *currency.DeleteCurrencyParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CurrencyInfo, error) {
+func (c *CurrencyService) DeleteCurrencyShort(input *currency.DeleteCurrencyParams) (*platformclientmodels.CurrencyInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -196,7 +199,8 @@ func (c *CurrencyService) DeleteCurrencyShort(input *currency.DeleteCurrencyPara
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) GetCurrencyConfigShort(input *currency.GetCurrencyConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CurrencyConfig, error) {
+func (c *CurrencyService) GetCurrencyConfigShort(input *currency.GetCurrencyConfigParams) (*platformclientmodels.CurrencyConfig, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -211,7 +215,8 @@ func (c *CurrencyService) GetCurrencyConfigShort(input *currency.GetCurrencyConf
 	return ok.GetPayload(), nil
 }
 
-func (c *CurrencyService) GetCurrencySummaryShort(input *currency.GetCurrencySummaryParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.CurrencySummary, error) {
+func (c *CurrencyService) GetCurrencySummaryShort(input *currency.GetCurrencySummaryParams) (*platformclientmodels.CurrencySummary, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

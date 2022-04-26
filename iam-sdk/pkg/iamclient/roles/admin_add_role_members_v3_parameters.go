@@ -74,9 +74,10 @@ type AdminAddRoleMembersV3Params struct {
 	*/
 	RoleID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin add role members v3 params
@@ -99,6 +100,11 @@ func (o *AdminAddRoleMembersV3Params) WithContext(ctx context.Context) *AdminAdd
 // SetContext adds the context to the admin add role members v3 params
 func (o *AdminAddRoleMembersV3Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin add role members v3 params
+func (o *AdminAddRoleMembersV3Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin add role members v3 params

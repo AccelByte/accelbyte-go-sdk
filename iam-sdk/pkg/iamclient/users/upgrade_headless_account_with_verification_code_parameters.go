@@ -79,9 +79,10 @@ type UpgradeHeadlessAccountWithVerificationCodeParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the upgrade headless account with verification code params
@@ -104,6 +105,11 @@ func (o *UpgradeHeadlessAccountWithVerificationCodeParams) WithContext(ctx conte
 // SetContext adds the context to the upgrade headless account with verification code params
 func (o *UpgradeHeadlessAccountWithVerificationCodeParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the upgrade headless account with verification code params
+func (o *UpgradeHeadlessAccountWithVerificationCodeParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the upgrade headless account with verification code params

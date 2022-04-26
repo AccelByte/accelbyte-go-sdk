@@ -73,9 +73,10 @@ type SyncStadiaEntitlementParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the sync stadia entitlement params
@@ -98,6 +99,11 @@ func (o *SyncStadiaEntitlementParams) WithContext(ctx context.Context) *SyncStad
 // SetContext adds the context to the sync stadia entitlement params
 func (o *SyncStadiaEntitlementParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the sync stadia entitlement params
+func (o *SyncStadiaEntitlementParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the sync stadia entitlement params

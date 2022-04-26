@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -279,7 +278,8 @@ func (e *EventService) GetEventByUserEventIDAndEventTypeHandler(input *event.Get
 	return ok.GetPayload(), nil
 }
 
-func (e *EventService) GetEventByNamespaceHandlerShort(input *event.GetEventByNamespaceHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
+func (e *EventService) GetEventByNamespaceHandlerShort(input *event.GetEventByNamespaceHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -294,7 +294,8 @@ func (e *EventService) GetEventByNamespaceHandlerShort(input *event.GetEventByNa
 	return ok.GetPayload(), nil
 }
 
-func (e *EventService) PostEventHandlerShort(input *event.PostEventHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (e *EventService) PostEventHandlerShort(input *event.PostEventHandlerParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -309,7 +310,8 @@ func (e *EventService) PostEventHandlerShort(input *event.PostEventHandlerParams
 	return nil
 }
 
-func (e *EventService) GetEventByEventIDHandlerShort(input *event.GetEventByEventIDHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
+func (e *EventService) GetEventByEventIDHandlerShort(input *event.GetEventByEventIDHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -324,7 +326,8 @@ func (e *EventService) GetEventByEventIDHandlerShort(input *event.GetEventByEven
 	return ok.GetPayload(), nil
 }
 
-func (e *EventService) GetEventByEventTypeHandlerShort(input *event.GetEventByEventTypeHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
+func (e *EventService) GetEventByEventTypeHandlerShort(input *event.GetEventByEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -339,7 +342,8 @@ func (e *EventService) GetEventByEventTypeHandlerShort(input *event.GetEventByEv
 	return ok.GetPayload(), nil
 }
 
-func (e *EventService) GetEventByEventTypeAndEventIDHandlerShort(input *event.GetEventByEventTypeAndEventIDHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
+func (e *EventService) GetEventByEventTypeAndEventIDHandlerShort(input *event.GetEventByEventTypeAndEventIDHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -354,7 +358,8 @@ func (e *EventService) GetEventByEventTypeAndEventIDHandlerShort(input *event.Ge
 	return ok.GetPayload(), nil
 }
 
-func (e *EventService) GetEventByUserIDHandlerShort(input *event.GetEventByUserIDHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
+func (e *EventService) GetEventByUserIDHandlerShort(input *event.GetEventByUserIDHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -369,7 +374,8 @@ func (e *EventService) GetEventByUserIDHandlerShort(input *event.GetEventByUserI
 	return ok.GetPayload(), nil
 }
 
-func (e *EventService) GetEventByUserIDAndEventIDHandlerShort(input *event.GetEventByUserIDAndEventIDHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
+func (e *EventService) GetEventByUserIDAndEventIDHandlerShort(input *event.GetEventByUserIDAndEventIDHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -384,7 +390,8 @@ func (e *EventService) GetEventByUserIDAndEventIDHandlerShort(input *event.GetEv
 	return ok.GetPayload(), nil
 }
 
-func (e *EventService) GetEventByUserIDAndEventTypeHandlerShort(input *event.GetEventByUserIDAndEventTypeHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
+func (e *EventService) GetEventByUserIDAndEventTypeHandlerShort(input *event.GetEventByUserIDAndEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -399,7 +406,8 @@ func (e *EventService) GetEventByUserIDAndEventTypeHandlerShort(input *event.Get
 	return ok.GetPayload(), nil
 }
 
-func (e *EventService) GetEventByUserEventIDAndEventTypeHandlerShort(input *event.GetEventByUserEventIDAndEventTypeHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponse, error) {
+func (e *EventService) GetEventByUserEventIDAndEventTypeHandlerShort(input *event.GetEventByUserEventIDAndEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

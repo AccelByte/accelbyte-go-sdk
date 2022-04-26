@@ -98,9 +98,10 @@ type QueryPaymentOrdersParams struct {
 	/*Status*/
 	Status *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the query payment orders params
@@ -123,6 +124,11 @@ func (o *QueryPaymentOrdersParams) WithContext(ctx context.Context) *QueryPaymen
 // SetContext adds the context to the query payment orders params
 func (o *QueryPaymentOrdersParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the query payment orders params
+func (o *QueryPaymentOrdersParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the query payment orders params

@@ -77,9 +77,10 @@ type UserAcceptFriendRequestParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the user accept friend request params
@@ -102,6 +103,11 @@ func (o *UserAcceptFriendRequestParams) WithContext(ctx context.Context) *UserAc
 // SetContext adds the context to the user accept friend request params
 func (o *UserAcceptFriendRequestParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the user accept friend request params
+func (o *UserAcceptFriendRequestParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the user accept friend request params

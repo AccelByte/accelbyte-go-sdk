@@ -71,9 +71,10 @@ type UpdateFulfillmentScriptParams struct {
 	/*ID*/
 	ID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the update fulfillment script params
@@ -96,6 +97,11 @@ func (o *UpdateFulfillmentScriptParams) WithContext(ctx context.Context) *Update
 // SetContext adds the context to the update fulfillment script params
 func (o *UpdateFulfillmentScriptParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the update fulfillment script params
+func (o *UpdateFulfillmentScriptParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the update fulfillment script params

@@ -86,9 +86,10 @@ type GetListOfFriendsParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get list of friends params
@@ -111,6 +112,11 @@ func (o *GetListOfFriendsParams) WithContext(ctx context.Context) *GetListOfFrie
 // SetContext adds the context to the get list of friends params
 func (o *GetListOfFriendsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get list of friends params
+func (o *GetListOfFriendsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get list of friends params

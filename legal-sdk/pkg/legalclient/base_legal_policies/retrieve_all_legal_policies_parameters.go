@@ -63,9 +63,10 @@ func NewRetrieveAllLegalPoliciesParamsWithHTTPClient(client *http.Client) *Retri
 for the retrieve all legal policies operation typically these are written to a http.Request
 */
 type RetrieveAllLegalPoliciesParams struct {
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the retrieve all legal policies params
@@ -88,6 +89,11 @@ func (o *RetrieveAllLegalPoliciesParams) WithContext(ctx context.Context) *Retri
 // SetContext adds the context to the retrieve all legal policies params
 func (o *RetrieveAllLegalPoliciesParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the retrieve all legal policies params
+func (o *RetrieveAllLegalPoliciesParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the retrieve all legal policies params

@@ -75,9 +75,10 @@ type GetListJusticePlatformAccountsParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get list justice platform accounts params
@@ -100,6 +101,11 @@ func (o *GetListJusticePlatformAccountsParams) WithContext(ctx context.Context) 
 // SetContext adds the context to the get list justice platform accounts params
 func (o *GetListJusticePlatformAccountsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get list justice platform accounts params
+func (o *GetListJusticePlatformAccountsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get list justice platform accounts params

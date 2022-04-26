@@ -73,9 +73,10 @@ type SyncXboxInventoryParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the sync xbox inventory params
@@ -98,6 +99,11 @@ func (o *SyncXboxInventoryParams) WithContext(ctx context.Context) *SyncXboxInve
 // SetContext adds the context to the sync xbox inventory params
 func (o *SyncXboxInventoryParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the sync xbox inventory params
+func (o *SyncXboxInventoryParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the sync xbox inventory params

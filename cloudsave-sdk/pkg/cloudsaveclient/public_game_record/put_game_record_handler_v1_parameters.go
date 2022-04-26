@@ -79,9 +79,10 @@ type PutGameRecordHandlerV1Params struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the put game record handler v1 params
@@ -104,6 +105,11 @@ func (o *PutGameRecordHandlerV1Params) WithContext(ctx context.Context) *PutGame
 // SetContext adds the context to the put game record handler v1 params
 func (o *PutGameRecordHandlerV1Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the put game record handler v1 params
+func (o *PutGameRecordHandlerV1Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the put game record handler v1 params

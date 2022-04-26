@@ -75,9 +75,10 @@ type DeleteCountryGroupParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the delete country group params
@@ -100,6 +101,11 @@ func (o *DeleteCountryGroupParams) WithContext(ctx context.Context) *DeleteCount
 // SetContext adds the context to the delete country group params
 func (o *DeleteCountryGroupParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the delete country group params
+func (o *DeleteCountryGroupParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the delete country group params

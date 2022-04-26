@@ -69,9 +69,10 @@ type CreatePolicyParams struct {
 	/*Body*/
 	Body *legalclientmodels.CreateBasePolicyRequest
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the create policy params
@@ -94,6 +95,11 @@ func (o *CreatePolicyParams) WithContext(ctx context.Context) *CreatePolicyParam
 // SetContext adds the context to the create policy params
 func (o *CreatePolicyParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the create policy params
+func (o *CreatePolicyParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the create policy params

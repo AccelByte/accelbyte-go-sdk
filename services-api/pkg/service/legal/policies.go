@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -100,7 +99,8 @@ func (p *PoliciesService) RetrieveLatestPoliciesByNamespaceAndCountryPublic(inpu
 	return ok.GetPayload(), nil
 }
 
-func (p *PoliciesService) RetrievePoliciesShort(input *policies.RetrievePoliciesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrievePolicyResponse, error) {
+func (p *PoliciesService) RetrievePoliciesShort(input *policies.RetrievePoliciesParams) ([]*legalclientmodels.RetrievePolicyResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -115,7 +115,8 @@ func (p *PoliciesService) RetrievePoliciesShort(input *policies.RetrievePolicies
 	return ok.GetPayload(), nil
 }
 
-func (p *PoliciesService) UpdatePolicyShort(input *policies.UpdatePolicyParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (p *PoliciesService) UpdatePolicyShort(input *policies.UpdatePolicyParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -130,7 +131,8 @@ func (p *PoliciesService) UpdatePolicyShort(input *policies.UpdatePolicyParams, 
 	return nil
 }
 
-func (p *PoliciesService) SetDefaultPolicy1Short(input *policies.SetDefaultPolicy1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (p *PoliciesService) SetDefaultPolicy1Short(input *policies.SetDefaultPolicy1Params) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -154,7 +156,8 @@ func (p *PoliciesService) RetrieveLatestPoliciesShort(input *policies.RetrieveLa
 	return ok.GetPayload(), nil
 }
 
-func (p *PoliciesService) RetrieveLatestPoliciesPublicShort(input *policies.RetrieveLatestPoliciesPublicParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
+func (p *PoliciesService) RetrieveLatestPoliciesPublicShort(input *policies.RetrieveLatestPoliciesPublicParams) ([]*legalclientmodels.RetrievePolicyPublicResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

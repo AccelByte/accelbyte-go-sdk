@@ -69,9 +69,10 @@ type CreateNamespaceParams struct {
 	/*Body*/
 	Body *basicclientmodels.NamespaceCreate
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the create namespace params
@@ -94,6 +95,11 @@ func (o *CreateNamespaceParams) WithContext(ctx context.Context) *CreateNamespac
 // SetContext adds the context to the create namespace params
 func (o *CreateNamespaceParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the create namespace params
+func (o *CreateNamespaceParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the create namespace params

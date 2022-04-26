@@ -76,9 +76,10 @@ type SyncInGameItemParams struct {
 	/*StoreID*/
 	StoreID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the sync in game item params
@@ -101,6 +102,11 @@ func (o *SyncInGameItemParams) WithContext(ctx context.Context) *SyncInGameItemP
 // SetContext adds the context to the sync in game item params
 func (o *SyncInGameItemParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the sync in game item params
+func (o *SyncInGameItemParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the sync in game item params

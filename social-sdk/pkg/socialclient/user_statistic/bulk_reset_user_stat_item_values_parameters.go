@@ -84,9 +84,10 @@ type BulkResetUserStatItemValuesParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the bulk reset user stat item values params
@@ -109,6 +110,11 @@ func (o *BulkResetUserStatItemValuesParams) WithContext(ctx context.Context) *Bu
 // SetContext adds the context to the bulk reset user stat item values params
 func (o *BulkResetUserStatItemValuesParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the bulk reset user stat item values params
+func (o *BulkResetUserStatItemValuesParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the bulk reset user stat item values params

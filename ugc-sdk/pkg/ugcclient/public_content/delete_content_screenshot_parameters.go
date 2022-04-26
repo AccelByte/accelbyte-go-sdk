@@ -85,9 +85,10 @@ type DeleteContentScreenshotParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the delete content screenshot params
@@ -110,6 +111,11 @@ func (o *DeleteContentScreenshotParams) WithContext(ctx context.Context) *Delete
 // SetContext adds the context to the delete content screenshot params
 func (o *DeleteContentScreenshotParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the delete content screenshot params
+func (o *DeleteContentScreenshotParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the delete content screenshot params

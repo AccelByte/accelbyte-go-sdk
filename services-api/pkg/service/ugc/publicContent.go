@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_content"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -355,7 +354,8 @@ func (p *PublicContentService) DeleteContentScreenshot(input *public_content.Del
 	return nil
 }
 
-func (p *PublicContentService) SearchChannelSpecificContentShort(input *public_content.SearchChannelSpecificContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+func (p *PublicContentService) SearchChannelSpecificContentShort(input *public_content.SearchChannelSpecificContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -370,7 +370,8 @@ func (p *PublicContentService) SearchChannelSpecificContentShort(input *public_c
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicContentService) PublicSearchContentShort(input *public_content.PublicSearchContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+func (p *PublicContentService) PublicSearchContentShort(input *public_content.PublicSearchContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -385,7 +386,8 @@ func (p *PublicContentService) PublicSearchContentShort(input *public_content.Pu
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicContentService) DownloadContentByShareCodeShort(input *public_content.DownloadContentByShareCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
+func (p *PublicContentService) DownloadContentByShareCodeShort(input *public_content.DownloadContentByShareCodeParams) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -400,7 +402,8 @@ func (p *PublicContentService) DownloadContentByShareCodeShort(input *public_con
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicContentService) PublicDownloadContentByContentIDShort(input *public_content.PublicDownloadContentByContentIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
+func (p *PublicContentService) PublicDownloadContentByContentIDShort(input *public_content.PublicDownloadContentByContentIDParams) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -415,7 +418,8 @@ func (p *PublicContentService) PublicDownloadContentByContentIDShort(input *publ
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicContentService) PublicDownloadContentPreviewShort(input *public_content.PublicDownloadContentPreviewParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsGetContentPreviewResponse, error) {
+func (p *PublicContentService) PublicDownloadContentPreviewShort(input *public_content.PublicDownloadContentPreviewParams) (*ugcclientmodels.ModelsGetContentPreviewResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -430,7 +434,8 @@ func (p *PublicContentService) PublicDownloadContentPreviewShort(input *public_c
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicContentService) CreateContentDirectShort(input *public_content.CreateContentDirectParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+func (p *PublicContentService) CreateContentDirectShort(input *public_content.CreateContentDirectParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -445,7 +450,8 @@ func (p *PublicContentService) CreateContentDirectShort(input *public_content.Cr
 	return created.GetPayload(), nil
 }
 
-func (p *PublicContentService) CreateContentS3Short(input *public_content.CreateContentS3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+func (p *PublicContentService) CreateContentS3Short(input *public_content.CreateContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -460,7 +466,8 @@ func (p *PublicContentService) CreateContentS3Short(input *public_content.Create
 	return created.GetPayload(), nil
 }
 
-func (p *PublicContentService) UpdateContentS3Short(input *public_content.UpdateContentS3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+func (p *PublicContentService) UpdateContentS3Short(input *public_content.UpdateContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -475,7 +482,8 @@ func (p *PublicContentService) UpdateContentS3Short(input *public_content.Update
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicContentService) UpdateContentDirectShort(input *public_content.UpdateContentDirectParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+func (p *PublicContentService) UpdateContentDirectShort(input *public_content.UpdateContentDirectParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -490,7 +498,8 @@ func (p *PublicContentService) UpdateContentDirectShort(input *public_content.Up
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicContentService) DeleteContentShort(input *public_content.DeleteContentParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (p *PublicContentService) DeleteContentShort(input *public_content.DeleteContentParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -505,7 +514,8 @@ func (p *PublicContentService) DeleteContentShort(input *public_content.DeleteCo
 	return nil
 }
 
-func (p *PublicContentService) PublicGetUserContentShort(input *public_content.PublicGetUserContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+func (p *PublicContentService) PublicGetUserContentShort(input *public_content.PublicGetUserContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -520,7 +530,8 @@ func (p *PublicContentService) PublicGetUserContentShort(input *public_content.P
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicContentService) UpdateScreenshotsShort(input *public_content.UpdateScreenshotsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsUpdateScreenshotResponse, error) {
+func (p *PublicContentService) UpdateScreenshotsShort(input *public_content.UpdateScreenshotsParams) (*ugcclientmodels.ModelsUpdateScreenshotResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -535,7 +546,8 @@ func (p *PublicContentService) UpdateScreenshotsShort(input *public_content.Upda
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicContentService) UploadContentScreenshotShort(input *public_content.UploadContentScreenshotParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateScreenshotResponse, error) {
+func (p *PublicContentService) UploadContentScreenshotShort(input *public_content.UploadContentScreenshotParams) (*ugcclientmodels.ModelsCreateScreenshotResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -550,7 +562,8 @@ func (p *PublicContentService) UploadContentScreenshotShort(input *public_conten
 	return created.GetPayload(), nil
 }
 
-func (p *PublicContentService) DeleteContentScreenshotShort(input *public_content.DeleteContentScreenshotParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (p *PublicContentService) DeleteContentScreenshotShort(input *public_content.DeleteContentScreenshotParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

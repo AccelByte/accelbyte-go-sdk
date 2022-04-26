@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -234,7 +233,8 @@ func (m *MiscService) PublicGetTimeZones(input *misc.PublicGetTimeZonesParams) (
 	return ok.GetPayload(), nil
 }
 
-func (m *MiscService) GetCountriesShort(input *misc.GetCountriesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*basicclientmodels.CountryObject, error) {
+func (m *MiscService) GetCountriesShort(input *misc.GetCountriesParams) ([]*basicclientmodels.CountryObject, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -249,7 +249,8 @@ func (m *MiscService) GetCountriesShort(input *misc.GetCountriesParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-func (m *MiscService) GetCountryGroupsShort(input *misc.GetCountryGroupsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*basicclientmodels.RetrieveCountryGroupResponse, error) {
+func (m *MiscService) GetCountryGroupsShort(input *misc.GetCountryGroupsParams) ([]*basicclientmodels.RetrieveCountryGroupResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -264,7 +265,8 @@ func (m *MiscService) GetCountryGroupsShort(input *misc.GetCountryGroupsParams, 
 	return ok.GetPayload(), nil
 }
 
-func (m *MiscService) AddCountryGroupShort(input *misc.AddCountryGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.AddCountryGroupResponse, error) {
+func (m *MiscService) AddCountryGroupShort(input *misc.AddCountryGroupParams) (*basicclientmodels.AddCountryGroupResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -279,7 +281,8 @@ func (m *MiscService) AddCountryGroupShort(input *misc.AddCountryGroupParams, au
 	return created.GetPayload(), nil
 }
 
-func (m *MiscService) UpdateCountryGroupShort(input *misc.UpdateCountryGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.CountryGroupObject, error) {
+func (m *MiscService) UpdateCountryGroupShort(input *misc.UpdateCountryGroupParams) (*basicclientmodels.CountryGroupObject, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -294,7 +297,8 @@ func (m *MiscService) UpdateCountryGroupShort(input *misc.UpdateCountryGroupPara
 	return ok.GetPayload(), nil
 }
 
-func (m *MiscService) DeleteCountryGroupShort(input *misc.DeleteCountryGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (m *MiscService) DeleteCountryGroupShort(input *misc.DeleteCountryGroupParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -309,7 +313,8 @@ func (m *MiscService) DeleteCountryGroupShort(input *misc.DeleteCountryGroupPara
 	return nil
 }
 
-func (m *MiscService) GetLanguagesShort(input *misc.GetLanguagesParams, authInfoWriter runtime.ClientAuthInfoWriter) (map[string]interface{}, error) {
+func (m *MiscService) GetLanguagesShort(input *misc.GetLanguagesParams) (map[string]interface{}, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -324,7 +329,8 @@ func (m *MiscService) GetLanguagesShort(input *misc.GetLanguagesParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-func (m *MiscService) GetTimeZonesShort(input *misc.GetTimeZonesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]string, error) {
+func (m *MiscService) GetTimeZonesShort(input *misc.GetTimeZonesParams) ([]string, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

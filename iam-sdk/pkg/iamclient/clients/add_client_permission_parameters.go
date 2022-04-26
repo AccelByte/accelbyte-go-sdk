@@ -81,9 +81,10 @@ type AddClientPermissionParams struct {
 	*/
 	Resource string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the add client permission params
@@ -106,6 +107,11 @@ func (o *AddClientPermissionParams) WithContext(ctx context.Context) *AddClientP
 // SetContext adds the context to the add client permission params
 func (o *AddClientPermissionParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the add client permission params
+func (o *AddClientPermissionParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the add client permission params

@@ -75,9 +75,10 @@ type GetUsersByLoginIdsParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get users by login ids params
@@ -100,6 +101,11 @@ func (o *GetUsersByLoginIdsParams) WithContext(ctx context.Context) *GetUsersByL
 // SetContext adds the context to the get users by login ids params
 func (o *GetUsersByLoginIdsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get users by login ids params
+func (o *GetUsersByLoginIdsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get users by login ids params

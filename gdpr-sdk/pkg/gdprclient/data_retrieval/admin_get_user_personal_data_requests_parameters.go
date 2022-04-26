@@ -86,9 +86,10 @@ type AdminGetUserPersonalDataRequestsParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin get user personal data requests params
@@ -111,6 +112,11 @@ func (o *AdminGetUserPersonalDataRequestsParams) WithContext(ctx context.Context
 // SetContext adds the context to the admin get user personal data requests params
 func (o *AdminGetUserPersonalDataRequestsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin get user personal data requests params
+func (o *AdminGetUserPersonalDataRequestsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin get user personal data requests params

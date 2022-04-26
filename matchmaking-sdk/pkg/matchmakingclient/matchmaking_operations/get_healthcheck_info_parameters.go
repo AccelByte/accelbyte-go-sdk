@@ -63,9 +63,10 @@ func NewGetHealthcheckInfoParamsWithHTTPClient(client *http.Client) *GetHealthch
 for the get healthcheck info operation typically these are written to a http.Request
 */
 type GetHealthcheckInfoParams struct {
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get healthcheck info params
@@ -88,6 +89,11 @@ func (o *GetHealthcheckInfoParams) WithContext(ctx context.Context) *GetHealthch
 // SetContext adds the context to the get healthcheck info params
 func (o *GetHealthcheckInfoParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get healthcheck info params
+func (o *GetHealthcheckInfoParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get healthcheck info params

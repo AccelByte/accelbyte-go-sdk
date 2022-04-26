@@ -11,7 +11,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/qosm-sdk/pkg/qosmclient/admin"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -60,7 +59,8 @@ func (a *AdminService) SetServerAlias(input *admin.SetServerAliasParams) error {
 	return nil
 }
 
-func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -75,7 +75,8 @@ func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams, authIn
 	return nil
 }
 
-func (a *AdminService) SetServerAliasShort(input *admin.SetServerAliasParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AdminService) SetServerAliasShort(input *admin.SetServerAliasParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

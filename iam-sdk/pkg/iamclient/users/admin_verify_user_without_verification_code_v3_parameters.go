@@ -75,9 +75,10 @@ type AdminVerifyUserWithoutVerificationCodeV3Params struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin verify user without verification code v3 params
@@ -100,6 +101,11 @@ func (o *AdminVerifyUserWithoutVerificationCodeV3Params) WithContext(ctx context
 // SetContext adds the context to the admin verify user without verification code v3 params
 func (o *AdminVerifyUserWithoutVerificationCodeV3Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin verify user without verification code v3 params
+func (o *AdminVerifyUserWithoutVerificationCodeV3Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin verify user without verification code v3 params

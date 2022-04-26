@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/qosm-sdk/pkg/qosmclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -38,7 +37,8 @@ func (p *PublicService) ListServer(input *public.ListServerParams) (*qosmclientm
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicService) ListServerShort(input *public.ListServerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*qosmclientmodels.ModelsListServerResponse, error) {
+func (p *PublicService) ListServerShort(input *public.ListServerParams) (*qosmclientmodels.ModelsListServerResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

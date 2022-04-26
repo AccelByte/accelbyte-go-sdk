@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -107,7 +106,8 @@ func (i *InputValidationsService) PublicGetInputValidations(input *input_validat
 	return ok.GetPayload(), nil
 }
 
-func (i *InputValidationsService) AdminGetInputValidationsShort(input *input_validations.AdminGetInputValidationsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelInputValidationsResponse, error) {
+func (i *InputValidationsService) AdminGetInputValidationsShort(input *input_validations.AdminGetInputValidationsParams) (*iamclientmodels.ModelInputValidationsResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -122,7 +122,8 @@ func (i *InputValidationsService) AdminGetInputValidationsShort(input *input_val
 	return ok.GetPayload(), nil
 }
 
-func (i *InputValidationsService) AdminUpdateInputValidationsShort(input *input_validations.AdminUpdateInputValidationsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (i *InputValidationsService) AdminUpdateInputValidationsShort(input *input_validations.AdminUpdateInputValidationsParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -137,7 +138,8 @@ func (i *InputValidationsService) AdminUpdateInputValidationsShort(input *input_
 	return nil
 }
 
-func (i *InputValidationsService) AdminResetInputValidationsShort(input *input_validations.AdminResetInputValidationsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (i *InputValidationsService) AdminResetInputValidationsShort(input *input_validations.AdminResetInputValidationsParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -152,7 +154,8 @@ func (i *InputValidationsService) AdminResetInputValidationsShort(input *input_v
 	return nil
 }
 
-func (i *InputValidationsService) PublicGetInputValidationsShort(input *input_validations.PublicGetInputValidationsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelInputValidationsPublicResponse, error) {
+func (i *InputValidationsService) PublicGetInputValidationsShort(input *input_validations.PublicGetInputValidationsParams) (*iamclientmodels.ModelInputValidationsPublicResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

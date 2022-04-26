@@ -69,9 +69,10 @@ type AdminGetEventsGameTelemetryV1AdminEventsGetParams struct {
 	/*Namespace*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin get events game telemetry v1 admin events get params
@@ -94,6 +95,11 @@ func (o *AdminGetEventsGameTelemetryV1AdminEventsGetParams) WithContext(ctx cont
 // SetContext adds the context to the admin get events game telemetry v1 admin events get params
 func (o *AdminGetEventsGameTelemetryV1AdminEventsGetParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin get events game telemetry v1 admin events get params
+func (o *AdminGetEventsGameTelemetryV1AdminEventsGetParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin get events game telemetry v1 admin events get params

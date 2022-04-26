@@ -70,9 +70,10 @@ type RetrieveSingleLocalizedPolicyVersionParams struct {
 	*/
 	LocalizedPolicyVersionID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the retrieve single localized policy version params
@@ -95,6 +96,11 @@ func (o *RetrieveSingleLocalizedPolicyVersionParams) WithContext(ctx context.Con
 // SetContext adds the context to the retrieve single localized policy version params
 func (o *RetrieveSingleLocalizedPolicyVersionParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the retrieve single localized policy version params
+func (o *RetrieveSingleLocalizedPolicyVersionParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the retrieve single localized policy version params

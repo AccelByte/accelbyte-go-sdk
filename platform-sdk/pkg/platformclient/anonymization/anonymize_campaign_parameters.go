@@ -69,9 +69,10 @@ type AnonymizeCampaignParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the anonymize campaign params
@@ -94,6 +95,11 @@ func (o *AnonymizeCampaignParams) WithContext(ctx context.Context) *AnonymizeCam
 // SetContext adds the context to the anonymize campaign params
 func (o *AnonymizeCampaignParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the anonymize campaign params
+func (o *AnonymizeCampaignParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the anonymize campaign params

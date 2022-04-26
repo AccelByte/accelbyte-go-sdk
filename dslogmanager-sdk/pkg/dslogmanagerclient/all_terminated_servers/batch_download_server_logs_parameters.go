@@ -69,9 +69,10 @@ type BatchDownloadServerLogsParams struct {
 	/*Body*/
 	Body *dslogmanagerclientmodels.ModelsBatchDownloadLogsRequest
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the batch download server logs params
@@ -94,6 +95,11 @@ func (o *BatchDownloadServerLogsParams) WithContext(ctx context.Context) *BatchD
 // SetContext adds the context to the batch download server logs params
 func (o *BatchDownloadServerLogsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the batch download server logs params
+func (o *BatchDownloadServerLogsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the batch download server logs params

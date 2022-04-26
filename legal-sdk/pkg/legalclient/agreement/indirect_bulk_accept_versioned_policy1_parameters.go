@@ -74,9 +74,10 @@ type IndirectBulkAcceptVersionedPolicy1Params struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the indirect bulk accept versioned policy 1 params
@@ -99,6 +100,11 @@ func (o *IndirectBulkAcceptVersionedPolicy1Params) WithContext(ctx context.Conte
 // SetContext adds the context to the indirect bulk accept versioned policy 1 params
 func (o *IndirectBulkAcceptVersionedPolicy1Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the indirect bulk accept versioned policy 1 params
+func (o *IndirectBulkAcceptVersionedPolicy1Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the indirect bulk accept versioned policy 1 params

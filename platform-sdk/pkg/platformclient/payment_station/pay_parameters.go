@@ -95,9 +95,10 @@ type PayParams struct {
 	*/
 	ZipCode *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the pay params
@@ -120,6 +121,11 @@ func (o *PayParams) WithContext(ctx context.Context) *PayParams {
 // SetContext adds the context to the pay params
 func (o *PayParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the pay params
+func (o *PayParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the pay params

@@ -79,9 +79,10 @@ type PublicUpdatePasswordV2Params struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the public update password v2 params
@@ -104,6 +105,11 @@ func (o *PublicUpdatePasswordV2Params) WithContext(ctx context.Context) *PublicU
 // SetContext adds the context to the public update password v2 params
 func (o *PublicUpdatePasswordV2Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the public update password v2 params
+func (o *PublicUpdatePasswordV2Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the public update password v2 params

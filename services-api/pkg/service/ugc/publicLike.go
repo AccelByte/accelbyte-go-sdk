@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_like"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -67,7 +66,8 @@ func (p *PublicLikeService) UpdateContentLikeStatus(input *public_like.UpdateCon
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicLikeService) GetLikedContentShort(input *public_like.GetLikedContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+func (p *PublicLikeService) GetLikedContentShort(input *public_like.GetLikedContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -82,7 +82,8 @@ func (p *PublicLikeService) GetLikedContentShort(input *public_like.GetLikedCont
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicLikeService) UpdateContentLikeStatusShort(input *public_like.UpdateContentLikeStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsContentLikeResponse, error) {
+func (p *PublicLikeService) UpdateContentLikeStatusShort(input *public_like.UpdateContentLikeStatusParams) (*ugcclientmodels.ModelsContentLikeResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

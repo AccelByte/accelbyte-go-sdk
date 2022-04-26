@@ -71,9 +71,10 @@ type DisableItemParams struct {
 	/*StoreID*/
 	StoreID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the disable item params
@@ -96,6 +97,11 @@ func (o *DisableItemParams) WithContext(ctx context.Context) *DisableItemParams 
 // SetContext adds the context to the disable item params
 func (o *DisableItemParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the disable item params
+func (o *DisableItemParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the disable item params

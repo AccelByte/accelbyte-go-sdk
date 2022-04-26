@@ -70,9 +70,10 @@ type PublicGetMyBackupCodesV4Params struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the public get my backup codes v4 params
@@ -95,6 +96,11 @@ func (o *PublicGetMyBackupCodesV4Params) WithContext(ctx context.Context) *Publi
 // SetContext adds the context to the public get my backup codes v4 params
 func (o *PublicGetMyBackupCodesV4Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the public get my backup codes v4 params
+func (o *PublicGetMyBackupCodesV4Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the public get my backup codes v4 params

@@ -71,9 +71,10 @@ type EnableItemParams struct {
 	/*StoreID*/
 	StoreID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the enable item params
@@ -96,6 +97,11 @@ func (o *EnableItemParams) WithContext(ctx context.Context) *EnableItemParams {
 // SetContext adds the context to the enable item params
 func (o *EnableItemParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the enable item params
+func (o *EnableItemParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the enable item params

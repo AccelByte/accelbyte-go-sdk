@@ -78,9 +78,10 @@ type ImportRewardsParams struct {
 	*/
 	ReplaceExisting bool
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the import rewards params
@@ -103,6 +104,11 @@ func (o *ImportRewardsParams) WithContext(ctx context.Context) *ImportRewardsPar
 // SetContext adds the context to the import rewards params
 func (o *ImportRewardsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the import rewards params
+func (o *ImportRewardsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the import rewards params

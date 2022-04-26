@@ -67,9 +67,10 @@ type GetOrderStatisticsParams struct {
 	/*Namespace*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get order statistics params
@@ -92,6 +93,11 @@ func (o *GetOrderStatisticsParams) WithContext(ctx context.Context) *GetOrderSta
 // SetContext adds the context to the get order statistics params
 func (o *GetOrderStatisticsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get order statistics params
+func (o *GetOrderStatisticsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get order statistics params

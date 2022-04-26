@@ -74,9 +74,10 @@ type GetPassParams struct {
 	/*SeasonID*/
 	SeasonID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get pass params
@@ -99,6 +100,11 @@ func (o *GetPassParams) WithContext(ctx context.Context) *GetPassParams {
 // SetContext adds the context to the get pass params
 func (o *GetPassParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get pass params
+func (o *GetPassParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get pass params

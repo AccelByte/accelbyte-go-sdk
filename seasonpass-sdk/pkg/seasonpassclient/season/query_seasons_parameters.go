@@ -100,9 +100,10 @@ type QuerySeasonsParams struct {
 	/*Status*/
 	Status []string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the query seasons params
@@ -125,6 +126,11 @@ func (o *QuerySeasonsParams) WithContext(ctx context.Context) *QuerySeasonsParam
 // SetContext adds the context to the query seasons params
 func (o *QuerySeasonsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the query seasons params
+func (o *QuerySeasonsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the query seasons params

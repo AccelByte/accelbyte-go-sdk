@@ -101,9 +101,10 @@ type GetUserEventsV2PublicParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get user events v2 public params
@@ -126,6 +127,11 @@ func (o *GetUserEventsV2PublicParams) WithContext(ctx context.Context) *GetUserE
 // SetContext adds the context to the get user events v2 public params
 func (o *GetUserEventsV2PublicParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get user events v2 public params
+func (o *GetUserEventsV2PublicParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get user events v2 public params

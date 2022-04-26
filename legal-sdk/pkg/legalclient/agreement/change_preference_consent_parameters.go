@@ -79,9 +79,10 @@ type ChangePreferenceConsentParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the change preference consent params
@@ -104,6 +105,11 @@ func (o *ChangePreferenceConsentParams) WithContext(ctx context.Context) *Change
 // SetContext adds the context to the change preference consent params
 func (o *ChangePreferenceConsentParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the change preference consent params
+func (o *ChangePreferenceConsentParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the change preference consent params

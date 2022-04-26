@@ -69,9 +69,10 @@ type GetRewardByCodeParams struct {
 	/*RewardCode*/
 	RewardCode string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get reward by code params
@@ -94,6 +95,11 @@ func (o *GetRewardByCodeParams) WithContext(ctx context.Context) *GetRewardByCod
 // SetContext adds the context to the get reward by code params
 func (o *GetRewardByCodeParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get reward by code params
+func (o *GetRewardByCodeParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get reward by code params

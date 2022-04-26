@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -35,7 +34,8 @@ func (o *OrderDedicatedService) SyncOrders(input *order_dedicated.SyncOrdersPara
 	return ok.GetPayload(), nil
 }
 
-func (o *OrderDedicatedService) SyncOrdersShort(input *order_dedicated.SyncOrdersParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OrderSyncResult, error) {
+func (o *OrderDedicatedService) SyncOrdersShort(input *order_dedicated.SyncOrdersParams) (*platformclientmodels.OrderSyncResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

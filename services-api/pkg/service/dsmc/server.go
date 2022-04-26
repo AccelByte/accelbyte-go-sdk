@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -148,7 +147,8 @@ func (s *ServerService) GetServerSession(input *server.GetServerSessionParams) (
 	return ok.GetPayload(), nil
 }
 
-func (s *ServerService) DeregisterLocalServerShort(input *server.DeregisterLocalServerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (s *ServerService) DeregisterLocalServerShort(input *server.DeregisterLocalServerParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -163,7 +163,8 @@ func (s *ServerService) DeregisterLocalServerShort(input *server.DeregisterLocal
 	return nil
 }
 
-func (s *ServerService) RegisterLocalServerShort(input *server.RegisterLocalServerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsServer, error) {
+func (s *ServerService) RegisterLocalServerShort(input *server.RegisterLocalServerParams) (*dsmcclientmodels.ModelsServer, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -178,7 +179,8 @@ func (s *ServerService) RegisterLocalServerShort(input *server.RegisterLocalServ
 	return ok.GetPayload(), nil
 }
 
-func (s *ServerService) RegisterServerShort(input *server.RegisterServerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsServer, error) {
+func (s *ServerService) RegisterServerShort(input *server.RegisterServerParams) (*dsmcclientmodels.ModelsServer, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -193,7 +195,8 @@ func (s *ServerService) RegisterServerShort(input *server.RegisterServerParams, 
 	return ok.GetPayload(), nil
 }
 
-func (s *ServerService) ShutdownServerShort(input *server.ShutdownServerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (s *ServerService) ShutdownServerShort(input *server.ShutdownServerParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -208,7 +211,8 @@ func (s *ServerService) ShutdownServerShort(input *server.ShutdownServerParams, 
 	return nil
 }
 
-func (s *ServerService) GetServerSessionShort(input *server.GetServerSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsServerSessionResponse, error) {
+func (s *ServerService) GetServerSessionShort(input *server.GetServerSessionParams) (*dsmcclientmodels.ModelsServerSessionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

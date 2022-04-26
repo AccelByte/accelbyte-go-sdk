@@ -73,9 +73,10 @@ type IncreaseTicketSaleParams struct {
 	/*Namespace*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the increase ticket sale params
@@ -98,6 +99,11 @@ func (o *IncreaseTicketSaleParams) WithContext(ctx context.Context) *IncreaseTic
 // SetContext adds the context to the increase ticket sale params
 func (o *IncreaseTicketSaleParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the increase ticket sale params
+func (o *IncreaseTicketSaleParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the increase ticket sale params

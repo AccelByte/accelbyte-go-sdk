@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -321,7 +320,8 @@ func (c *ConfigService) ImportConfigV1(input *config.ImportConfigV1Params) (*dsm
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) ListConfigShort(input *config.ListConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListConfigResponse, error) {
+func (c *ConfigService) ListConfigShort(input *config.ListConfigParams) (*dsmcclientmodels.ModelsListConfigResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -336,7 +336,8 @@ func (c *ConfigService) ListConfigShort(input *config.ListConfigParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) SaveConfigShort(input *config.SaveConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (c *ConfigService) SaveConfigShort(input *config.SaveConfigParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -351,7 +352,8 @@ func (c *ConfigService) SaveConfigShort(input *config.SaveConfigParams, authInfo
 	return nil
 }
 
-func (c *ConfigService) GetConfigShort(input *config.GetConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+func (c *ConfigService) GetConfigShort(input *config.GetConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -366,7 +368,8 @@ func (c *ConfigService) GetConfigShort(input *config.GetConfigParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) CreateConfigShort(input *config.CreateConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+func (c *ConfigService) CreateConfigShort(input *config.CreateConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -381,7 +384,8 @@ func (c *ConfigService) CreateConfigShort(input *config.CreateConfigParams, auth
 	return created.GetPayload(), nil
 }
 
-func (c *ConfigService) DeleteConfigShort(input *config.DeleteConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (c *ConfigService) DeleteConfigShort(input *config.DeleteConfigParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -396,7 +400,8 @@ func (c *ConfigService) DeleteConfigShort(input *config.DeleteConfigParams, auth
 	return nil
 }
 
-func (c *ConfigService) UpdateConfigShort(input *config.UpdateConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+func (c *ConfigService) UpdateConfigShort(input *config.UpdateConfigParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -411,7 +416,8 @@ func (c *ConfigService) UpdateConfigShort(input *config.UpdateConfigParams, auth
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) ClearCacheShort(input *config.ClearCacheParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (c *ConfigService) ClearCacheShort(input *config.ClearCacheParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -426,7 +432,8 @@ func (c *ConfigService) ClearCacheShort(input *config.ClearCacheParams, authInfo
 	return nil
 }
 
-func (c *ConfigService) AddPortShort(input *config.AddPortParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+func (c *ConfigService) AddPortShort(input *config.AddPortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -441,7 +448,8 @@ func (c *ConfigService) AddPortShort(input *config.AddPortParams, authInfoWriter
 	return created.GetPayload(), nil
 }
 
-func (c *ConfigService) DeletePortShort(input *config.DeletePortParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+func (c *ConfigService) DeletePortShort(input *config.DeletePortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -456,7 +464,8 @@ func (c *ConfigService) DeletePortShort(input *config.DeletePortParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) UpdatePortShort(input *config.UpdatePortParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+func (c *ConfigService) UpdatePortShort(input *config.UpdatePortParams) (*dsmcclientmodels.ModelsDSMConfigRecord, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -471,7 +480,8 @@ func (c *ConfigService) UpdatePortShort(input *config.UpdatePortParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) ExportConfigV1Short(input *config.ExportConfigV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDSMConfigExport, error) {
+func (c *ConfigService) ExportConfigV1Short(input *config.ExportConfigV1Params) (*dsmcclientmodels.ModelsDSMConfigExport, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -486,7 +496,8 @@ func (c *ConfigService) ExportConfigV1Short(input *config.ExportConfigV1Params, 
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) ImportConfigV1Short(input *config.ImportConfigV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsImportResponse, error) {
+func (c *ConfigService) ImportConfigV1Short(input *config.ImportConfigV1Params) (*dsmcclientmodels.ModelsImportResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

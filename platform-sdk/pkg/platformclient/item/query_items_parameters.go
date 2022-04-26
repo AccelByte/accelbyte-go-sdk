@@ -162,9 +162,10 @@ type QueryItemsParams struct {
 	*/
 	TargetNamespace *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the query items params
@@ -187,6 +188,11 @@ func (o *QueryItemsParams) WithContext(ctx context.Context) *QueryItemsParams {
 // SetContext adds the context to the query items params
 func (o *QueryItemsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the query items params
+func (o *QueryItemsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the query items params

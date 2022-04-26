@@ -63,9 +63,10 @@ func NewRetrieveAgreementsPublicParamsWithHTTPClient(client *http.Client) *Retri
 for the retrieve agreements public operation typically these are written to a http.Request
 */
 type RetrieveAgreementsPublicParams struct {
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the retrieve agreements public params
@@ -88,6 +89,11 @@ func (o *RetrieveAgreementsPublicParams) WithContext(ctx context.Context) *Retri
 // SetContext adds the context to the retrieve agreements public params
 func (o *RetrieveAgreementsPublicParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the retrieve agreements public params
+func (o *RetrieveAgreementsPublicParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the retrieve agreements public params

@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -520,7 +519,8 @@ func (c *ClientsService) AdminDeleteClientPermissionV3(input *clients.AdminDelet
 	return nil
 }
 
-func (c *ClientsService) GetClientsShort(input *clients.GetClientsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ClientmodelClientResponse, error) {
+func (c *ClientsService) GetClientsShort(input *clients.GetClientsParams) ([]*iamclientmodels.ClientmodelClientResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -535,7 +535,8 @@ func (c *ClientsService) GetClientsShort(input *clients.GetClientsParams, authIn
 	return ok.GetPayload(), nil
 }
 
-func (c *ClientsService) CreateClientShort(input *clients.CreateClientParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientCreationResponse, error) {
+func (c *ClientsService) CreateClientShort(input *clients.CreateClientParams) (*iamclientmodels.ClientmodelClientCreationResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -550,7 +551,8 @@ func (c *ClientsService) CreateClientShort(input *clients.CreateClientParams, au
 	return created.GetPayload(), nil
 }
 
-func (c *ClientsService) GetClientShort(input *clients.GetClientParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientResponse, error) {
+func (c *ClientsService) GetClientShort(input *clients.GetClientParams) (*iamclientmodels.ClientmodelClientResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -565,7 +567,8 @@ func (c *ClientsService) GetClientShort(input *clients.GetClientParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-func (c *ClientsService) UpdateClientShort(input *clients.UpdateClientParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientResponse, error) {
+func (c *ClientsService) UpdateClientShort(input *clients.UpdateClientParams) (*iamclientmodels.ClientmodelClientResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -580,7 +583,8 @@ func (c *ClientsService) UpdateClientShort(input *clients.UpdateClientParams, au
 	return ok.GetPayload(), nil
 }
 
-func (c *ClientsService) DeleteClientShort(input *clients.DeleteClientParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (c *ClientsService) DeleteClientShort(input *clients.DeleteClientParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -595,7 +599,8 @@ func (c *ClientsService) DeleteClientShort(input *clients.DeleteClientParams, au
 	return nil
 }
 
-func (c *ClientsService) UpdateClientPermissionShort(input *clients.UpdateClientPermissionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (c *ClientsService) UpdateClientPermissionShort(input *clients.UpdateClientPermissionParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -610,7 +615,8 @@ func (c *ClientsService) UpdateClientPermissionShort(input *clients.UpdateClient
 	return nil
 }
 
-func (c *ClientsService) AddClientPermissionShort(input *clients.AddClientPermissionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (c *ClientsService) AddClientPermissionShort(input *clients.AddClientPermissionParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -625,7 +631,8 @@ func (c *ClientsService) AddClientPermissionShort(input *clients.AddClientPermis
 	return nil
 }
 
-func (c *ClientsService) DeleteClientPermissionShort(input *clients.DeleteClientPermissionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (c *ClientsService) DeleteClientPermissionShort(input *clients.DeleteClientPermissionParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -640,7 +647,8 @@ func (c *ClientsService) DeleteClientPermissionShort(input *clients.DeleteClient
 	return nil
 }
 
-func (c *ClientsService) UpdateClientSecretShort(input *clients.UpdateClientSecretParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (c *ClientsService) UpdateClientSecretShort(input *clients.UpdateClientSecretParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -655,7 +663,8 @@ func (c *ClientsService) UpdateClientSecretShort(input *clients.UpdateClientSecr
 	return nil
 }
 
-func (c *ClientsService) GetClientsbyNamespaceShort(input *clients.GetClientsbyNamespaceParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ClientmodelClientResponse, error) {
+func (c *ClientsService) GetClientsbyNamespaceShort(input *clients.GetClientsbyNamespaceParams) ([]*iamclientmodels.ClientmodelClientResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -670,7 +679,8 @@ func (c *ClientsService) GetClientsbyNamespaceShort(input *clients.GetClientsbyN
 	return ok.GetPayload(), nil
 }
 
-func (c *ClientsService) CreateClientByNamespaceShort(input *clients.CreateClientByNamespaceParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientCreationResponse, error) {
+func (c *ClientsService) CreateClientByNamespaceShort(input *clients.CreateClientByNamespaceParams) (*iamclientmodels.ClientmodelClientCreationResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -685,7 +695,8 @@ func (c *ClientsService) CreateClientByNamespaceShort(input *clients.CreateClien
 	return created.GetPayload(), nil
 }
 
-func (c *ClientsService) DeleteClientByNamespaceShort(input *clients.DeleteClientByNamespaceParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (c *ClientsService) DeleteClientByNamespaceShort(input *clients.DeleteClientByNamespaceParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -700,7 +711,8 @@ func (c *ClientsService) DeleteClientByNamespaceShort(input *clients.DeleteClien
 	return nil
 }
 
-func (c *ClientsService) AdminGetClientsByNamespaceV3Short(input *clients.AdminGetClientsByNamespaceV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientsV3Response, error) {
+func (c *ClientsService) AdminGetClientsByNamespaceV3Short(input *clients.AdminGetClientsByNamespaceV3Params) (*iamclientmodels.ClientmodelClientsV3Response, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -715,7 +727,8 @@ func (c *ClientsService) AdminGetClientsByNamespaceV3Short(input *clients.AdminG
 	return ok.GetPayload(), nil
 }
 
-func (c *ClientsService) AdminCreateClientV3Short(input *clients.AdminCreateClientV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientV3Response, error) {
+func (c *ClientsService) AdminCreateClientV3Short(input *clients.AdminCreateClientV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -730,7 +743,8 @@ func (c *ClientsService) AdminCreateClientV3Short(input *clients.AdminCreateClie
 	return created.GetPayload(), nil
 }
 
-func (c *ClientsService) AdminGetClientsbyNamespacebyIDV3Short(input *clients.AdminGetClientsbyNamespacebyIDV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientV3Response, error) {
+func (c *ClientsService) AdminGetClientsbyNamespacebyIDV3Short(input *clients.AdminGetClientsbyNamespacebyIDV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -745,7 +759,8 @@ func (c *ClientsService) AdminGetClientsbyNamespacebyIDV3Short(input *clients.Ad
 	return ok.GetPayload(), nil
 }
 
-func (c *ClientsService) AdminDeleteClientV3Short(input *clients.AdminDeleteClientV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (c *ClientsService) AdminDeleteClientV3Short(input *clients.AdminDeleteClientV3Params) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -760,7 +775,8 @@ func (c *ClientsService) AdminDeleteClientV3Short(input *clients.AdminDeleteClie
 	return nil
 }
 
-func (c *ClientsService) AdminUpdateClientV3Short(input *clients.AdminUpdateClientV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ClientmodelClientV3Response, error) {
+func (c *ClientsService) AdminUpdateClientV3Short(input *clients.AdminUpdateClientV3Params) (*iamclientmodels.ClientmodelClientV3Response, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -775,7 +791,8 @@ func (c *ClientsService) AdminUpdateClientV3Short(input *clients.AdminUpdateClie
 	return ok.GetPayload(), nil
 }
 
-func (c *ClientsService) AdminUpdateClientPermissionV3Short(input *clients.AdminUpdateClientPermissionV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (c *ClientsService) AdminUpdateClientPermissionV3Short(input *clients.AdminUpdateClientPermissionV3Params) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -790,7 +807,8 @@ func (c *ClientsService) AdminUpdateClientPermissionV3Short(input *clients.Admin
 	return nil
 }
 
-func (c *ClientsService) AdminAddClientPermissionsV3Short(input *clients.AdminAddClientPermissionsV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (c *ClientsService) AdminAddClientPermissionsV3Short(input *clients.AdminAddClientPermissionsV3Params) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -805,7 +823,8 @@ func (c *ClientsService) AdminAddClientPermissionsV3Short(input *clients.AdminAd
 	return nil
 }
 
-func (c *ClientsService) AdminDeleteClientPermissionV3Short(input *clients.AdminDeleteClientPermissionV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (c *ClientsService) AdminDeleteClientPermissionV3Short(input *clients.AdminDeleteClientPermissionV3Params) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

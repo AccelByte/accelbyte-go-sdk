@@ -74,9 +74,10 @@ type AdminAssignUserToRoleV4Params struct {
 	*/
 	RoleID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin assign user to role v4 params
@@ -99,6 +100,11 @@ func (o *AdminAssignUserToRoleV4Params) WithContext(ctx context.Context) *AdminA
 // SetContext adds the context to the admin assign user to role v4 params
 func (o *AdminAssignUserToRoleV4Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin assign user to role v4 params
+func (o *AdminAssignUserToRoleV4Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin assign user to role v4 params

@@ -11,7 +11,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclient/s_s_o"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -57,7 +56,8 @@ func (s *SSOService) LogoutSSOClient(input *s_s_o.LogoutSSOClientParams) error {
 	return nil
 }
 
-func (s *SSOService) LoginSSOClientShort(input *s_s_o.LoginSSOClientParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (s *SSOService) LoginSSOClientShort(input *s_s_o.LoginSSOClientParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -72,7 +72,8 @@ func (s *SSOService) LoginSSOClientShort(input *s_s_o.LoginSSOClientParams, auth
 	return nil
 }
 
-func (s *SSOService) LogoutSSOClientShort(input *s_s_o.LogoutSSOClientParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (s *SSOService) LogoutSSOClientShort(input *s_s_o.LogoutSSOClientParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

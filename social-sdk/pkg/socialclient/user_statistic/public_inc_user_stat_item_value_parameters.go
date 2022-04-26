@@ -84,9 +84,10 @@ type PublicIncUserStatItemValueParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the public inc user stat item value params
@@ -109,6 +110,11 @@ func (o *PublicIncUserStatItemValueParams) WithContext(ctx context.Context) *Pub
 // SetContext adds the context to the public inc user stat item value params
 func (o *PublicIncUserStatItemValueParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the public inc user stat item value params
+func (o *PublicIncUserStatItemValueParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the public inc user stat item value params

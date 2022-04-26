@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -153,7 +152,8 @@ func (p *PassService) GrantUserPass(input *pass.GrantUserPassParams) (*seasonpas
 	return ok.GetPayload(), nil
 }
 
-func (p *PassService) QueryPassesShort(input *pass.QueryPassesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*seasonpassclientmodels.PassInfo, error) {
+func (p *PassService) QueryPassesShort(input *pass.QueryPassesParams) ([]*seasonpassclientmodels.PassInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -168,7 +168,8 @@ func (p *PassService) QueryPassesShort(input *pass.QueryPassesParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-func (p *PassService) CreatePassShort(input *pass.CreatePassParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.PassInfo, error) {
+func (p *PassService) CreatePassShort(input *pass.CreatePassParams) (*seasonpassclientmodels.PassInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -183,7 +184,8 @@ func (p *PassService) CreatePassShort(input *pass.CreatePassParams, authInfoWrit
 	return created.GetPayload(), nil
 }
 
-func (p *PassService) GetPassShort(input *pass.GetPassParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.PassInfo, error) {
+func (p *PassService) GetPassShort(input *pass.GetPassParams) (*seasonpassclientmodels.PassInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -198,7 +200,8 @@ func (p *PassService) GetPassShort(input *pass.GetPassParams, authInfoWriter run
 	return ok.GetPayload(), nil
 }
 
-func (p *PassService) DeletePassShort(input *pass.DeletePassParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (p *PassService) DeletePassShort(input *pass.DeletePassParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -213,7 +216,8 @@ func (p *PassService) DeletePassShort(input *pass.DeletePassParams, authInfoWrit
 	return nil
 }
 
-func (p *PassService) UpdatePassShort(input *pass.UpdatePassParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.PassInfo, error) {
+func (p *PassService) UpdatePassShort(input *pass.UpdatePassParams) (*seasonpassclientmodels.PassInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -228,7 +232,8 @@ func (p *PassService) UpdatePassShort(input *pass.UpdatePassParams, authInfoWrit
 	return ok.GetPayload(), nil
 }
 
-func (p *PassService) GrantUserPassShort(input *pass.GrantUserPassParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.UserSeasonSummary, error) {
+func (p *PassService) GrantUserPassShort(input *pass.GrantUserPassParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

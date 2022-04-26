@@ -84,9 +84,10 @@ type UnpublishSeasonParams struct {
 	/*SeasonID*/
 	SeasonID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the unpublish season params
@@ -109,6 +110,11 @@ func (o *UnpublishSeasonParams) WithContext(ctx context.Context) *UnpublishSeaso
 // SetContext adds the context to the unpublish season params
 func (o *UnpublishSeasonParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the unpublish season params
+func (o *UnpublishSeasonParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the unpublish season params

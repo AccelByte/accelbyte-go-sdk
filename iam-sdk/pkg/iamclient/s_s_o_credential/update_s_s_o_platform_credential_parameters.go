@@ -79,9 +79,10 @@ type UpdateSSOPlatformCredentialParams struct {
 	*/
 	PlatformID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the update s s o platform credential params
@@ -104,6 +105,11 @@ func (o *UpdateSSOPlatformCredentialParams) WithContext(ctx context.Context) *Up
 // SetContext adds the context to the update s s o platform credential params
 func (o *UpdateSSOPlatformCredentialParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the update s s o platform credential params
+func (o *UpdateSSOPlatformCredentialParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the update s s o platform credential params

@@ -106,9 +106,10 @@ type SearchSessionsParams struct {
 	*/
 	UserID *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the search sessions params
@@ -131,6 +132,11 @@ func (o *SearchSessionsParams) WithContext(ctx context.Context) *SearchSessionsP
 // SetContext adds the context to the search sessions params
 func (o *SearchSessionsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the search sessions params
+func (o *SearchSessionsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the search sessions params

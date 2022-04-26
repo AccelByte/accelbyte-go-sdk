@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/seasonpass-sdk/pkg/seasonpassclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -412,7 +411,8 @@ func (s *SeasonService) PublicGetUserSeason(input *season.PublicGetUserSeasonPar
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) QuerySeasonsShort(input *season.QuerySeasonsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.ListSeasonInfoPagingSlicedResult, error) {
+func (s *SeasonService) QuerySeasonsShort(input *season.QuerySeasonsParams) (*seasonpassclientmodels.ListSeasonInfoPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -427,7 +427,8 @@ func (s *SeasonService) QuerySeasonsShort(input *season.QuerySeasonsParams, auth
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) CreateSeasonShort(input *season.CreateSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.SeasonInfo, error) {
+func (s *SeasonService) CreateSeasonShort(input *season.CreateSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -442,7 +443,8 @@ func (s *SeasonService) CreateSeasonShort(input *season.CreateSeasonParams, auth
 	return created.GetPayload(), nil
 }
 
-func (s *SeasonService) GetCurrentSeasonShort(input *season.GetCurrentSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.SeasonSummary, error) {
+func (s *SeasonService) GetCurrentSeasonShort(input *season.GetCurrentSeasonParams) (*seasonpassclientmodels.SeasonSummary, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -457,7 +459,8 @@ func (s *SeasonService) GetCurrentSeasonShort(input *season.GetCurrentSeasonPara
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) GetSeasonShort(input *season.GetSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.SeasonInfo, error) {
+func (s *SeasonService) GetSeasonShort(input *season.GetSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -472,7 +475,8 @@ func (s *SeasonService) GetSeasonShort(input *season.GetSeasonParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) DeleteSeasonShort(input *season.DeleteSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (s *SeasonService) DeleteSeasonShort(input *season.DeleteSeasonParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -487,7 +491,8 @@ func (s *SeasonService) DeleteSeasonShort(input *season.DeleteSeasonParams, auth
 	return nil
 }
 
-func (s *SeasonService) UpdateSeasonShort(input *season.UpdateSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.SeasonInfo, error) {
+func (s *SeasonService) UpdateSeasonShort(input *season.UpdateSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -502,7 +507,8 @@ func (s *SeasonService) UpdateSeasonShort(input *season.UpdateSeasonParams, auth
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) CloneSeasonShort(input *season.CloneSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.SeasonInfo, error) {
+func (s *SeasonService) CloneSeasonShort(input *season.CloneSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -517,7 +523,8 @@ func (s *SeasonService) CloneSeasonShort(input *season.CloneSeasonParams, authIn
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) PublishSeasonShort(input *season.PublishSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.SeasonInfo, error) {
+func (s *SeasonService) PublishSeasonShort(input *season.PublishSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -532,7 +539,8 @@ func (s *SeasonService) PublishSeasonShort(input *season.PublishSeasonParams, au
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) RetireSeasonShort(input *season.RetireSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.SeasonInfo, error) {
+func (s *SeasonService) RetireSeasonShort(input *season.RetireSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -547,7 +555,8 @@ func (s *SeasonService) RetireSeasonShort(input *season.RetireSeasonParams, auth
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) UnpublishSeasonShort(input *season.UnpublishSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.SeasonInfo, error) {
+func (s *SeasonService) UnpublishSeasonShort(input *season.UnpublishSeasonParams) (*seasonpassclientmodels.SeasonInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -562,7 +571,8 @@ func (s *SeasonService) UnpublishSeasonShort(input *season.UnpublishSeasonParams
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) GetUserParticipatedSeasonsShort(input *season.GetUserParticipatedSeasonsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.ListUserSeasonInfoPagingSlicedResult, error) {
+func (s *SeasonService) GetUserParticipatedSeasonsShort(input *season.GetUserParticipatedSeasonsParams) (*seasonpassclientmodels.ListUserSeasonInfoPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -577,7 +587,8 @@ func (s *SeasonService) GetUserParticipatedSeasonsShort(input *season.GetUserPar
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) ExistsAnyPassByPassCodesShort(input *season.ExistsAnyPassByPassCodesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.Ownership, error) {
+func (s *SeasonService) ExistsAnyPassByPassCodesShort(input *season.ExistsAnyPassByPassCodesParams) (*seasonpassclientmodels.Ownership, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -592,7 +603,8 @@ func (s *SeasonService) ExistsAnyPassByPassCodesShort(input *season.ExistsAnyPas
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) GetCurrentUserSeasonProgressionShort(input *season.GetCurrentUserSeasonProgressionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.UserSeasonSummary, error) {
+func (s *SeasonService) GetCurrentUserSeasonProgressionShort(input *season.GetCurrentUserSeasonProgressionParams) (*seasonpassclientmodels.UserSeasonSummary, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -607,7 +619,8 @@ func (s *SeasonService) GetCurrentUserSeasonProgressionShort(input *season.GetCu
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) CheckSeasonPurchasableShort(input *season.CheckSeasonPurchasableParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (s *SeasonService) CheckSeasonPurchasableShort(input *season.CheckSeasonPurchasableParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -622,7 +635,8 @@ func (s *SeasonService) CheckSeasonPurchasableShort(input *season.CheckSeasonPur
 	return nil
 }
 
-func (s *SeasonService) ResetUserSeasonShort(input *season.ResetUserSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (s *SeasonService) ResetUserSeasonShort(input *season.ResetUserSeasonParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -637,7 +651,8 @@ func (s *SeasonService) ResetUserSeasonShort(input *season.ResetUserSeasonParams
 	return nil
 }
 
-func (s *SeasonService) GetUserSeasonShort(input *season.GetUserSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {
+func (s *SeasonService) GetUserSeasonShort(input *season.GetUserSeasonParams) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -661,7 +676,8 @@ func (s *SeasonService) PublicGetCurrentSeasonShort(input *season.PublicGetCurre
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) PublicGetCurrentUserSeasonShort(input *season.PublicGetCurrentUserSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {
+func (s *SeasonService) PublicGetCurrentUserSeasonShort(input *season.PublicGetCurrentUserSeasonParams) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -676,7 +692,8 @@ func (s *SeasonService) PublicGetCurrentUserSeasonShort(input *season.PublicGetC
 	return ok.GetPayload(), nil
 }
 
-func (s *SeasonService) PublicGetUserSeasonShort(input *season.PublicGetUserSeasonParams, authInfoWriter runtime.ClientAuthInfoWriter) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {
+func (s *SeasonService) PublicGetUserSeasonShort(input *season.PublicGetUserSeasonParams) (*seasonpassclientmodels.ClaimableUserSeasonInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

@@ -82,9 +82,10 @@ type AddFriendsWithoutConfirmationParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the add friends without confirmation params
@@ -107,6 +108,11 @@ func (o *AddFriendsWithoutConfirmationParams) WithContext(ctx context.Context) *
 // SetContext adds the context to the add friends without confirmation params
 func (o *AddFriendsWithoutConfirmationParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the add friends without confirmation params
+func (o *AddFriendsWithoutConfirmationParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the add friends without confirmation params

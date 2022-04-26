@@ -63,9 +63,10 @@ func NewCheckReadinessParamsWithHTTPClient(client *http.Client) *CheckReadinessP
 for the check readiness operation typically these are written to a http.Request
 */
 type CheckReadinessParams struct {
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the check readiness params
@@ -88,6 +89,11 @@ func (o *CheckReadinessParams) WithContext(ctx context.Context) *CheckReadinessP
 // SetContext adds the context to the check readiness params
 func (o *CheckReadinessParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the check readiness params
+func (o *CheckReadinessParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the check readiness params

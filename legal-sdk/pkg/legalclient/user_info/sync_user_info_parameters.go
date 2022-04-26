@@ -67,9 +67,10 @@ type SyncUserInfoParams struct {
 	/*Namespace*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the sync user info params
@@ -92,6 +93,11 @@ func (o *SyncUserInfoParams) WithContext(ctx context.Context) *SyncUserInfoParam
 // SetContext adds the context to the sync user info params
 func (o *SyncUserInfoParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the sync user info params
+func (o *SyncUserInfoParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the sync user info params

@@ -81,9 +81,10 @@ type DeleteClientPermissionParams struct {
 	*/
 	Resource string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the delete client permission params
@@ -106,6 +107,11 @@ func (o *DeleteClientPermissionParams) WithContext(ctx context.Context) *DeleteC
 // SetContext adds the context to the delete client permission params
 func (o *DeleteClientPermissionParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the delete client permission params
+func (o *DeleteClientPermissionParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the delete client permission params

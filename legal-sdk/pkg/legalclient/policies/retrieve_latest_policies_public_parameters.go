@@ -91,9 +91,10 @@ type RetrieveLatestPoliciesPublicParams struct {
 	*/
 	Tags *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the retrieve latest policies public params
@@ -116,6 +117,11 @@ func (o *RetrieveLatestPoliciesPublicParams) WithContext(ctx context.Context) *R
 // SetContext adds the context to the retrieve latest policies public params
 func (o *RetrieveLatestPoliciesPublicParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the retrieve latest policies public params
+func (o *RetrieveLatestPoliciesPublicParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the retrieve latest policies public params

@@ -69,9 +69,10 @@ type PublicCheckPaymentOrderPaidStatusParams struct {
 	/*PaymentOrderNo*/
 	PaymentOrderNo string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the public check payment order paid status params
@@ -94,6 +95,11 @@ func (o *PublicCheckPaymentOrderPaidStatusParams) WithContext(ctx context.Contex
 // SetContext adds the context to the public check payment order paid status params
 func (o *PublicCheckPaymentOrderPaidStatusParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the public check payment order paid status params
+func (o *PublicCheckPaymentOrderPaidStatusParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the public check payment order paid status params

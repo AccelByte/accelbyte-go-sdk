@@ -73,9 +73,10 @@ type SyncTwitchDropsEntitlementParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the sync twitch drops entitlement params
@@ -98,6 +99,11 @@ func (o *SyncTwitchDropsEntitlementParams) WithContext(ctx context.Context) *Syn
 // SetContext adds the context to the sync twitch drops entitlement params
 func (o *SyncTwitchDropsEntitlementParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the sync twitch drops entitlement params
+func (o *SyncTwitchDropsEntitlementParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the sync twitch drops entitlement params

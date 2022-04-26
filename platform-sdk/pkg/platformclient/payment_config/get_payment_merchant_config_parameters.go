@@ -67,9 +67,10 @@ type GetPaymentMerchantConfigParams struct {
 	/*ID*/
 	ID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get payment merchant config params
@@ -92,6 +93,11 @@ func (o *GetPaymentMerchantConfigParams) WithContext(ctx context.Context) *GetPa
 // SetContext adds the context to the get payment merchant config params
 func (o *GetPaymentMerchantConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get payment merchant config params
+func (o *GetPaymentMerchantConfigParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get payment merchant config params

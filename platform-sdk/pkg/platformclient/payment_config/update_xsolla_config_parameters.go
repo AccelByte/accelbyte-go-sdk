@@ -86,9 +86,10 @@ type UpdateXsollaConfigParams struct {
 	/*Validate*/
 	Validate *bool
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the update xsolla config params
@@ -111,6 +112,11 @@ func (o *UpdateXsollaConfigParams) WithContext(ctx context.Context) *UpdateXsoll
 // SetContext adds the context to the update xsolla config params
 func (o *UpdateXsollaConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the update xsolla config params
+func (o *UpdateXsollaConfigParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the update xsolla config params

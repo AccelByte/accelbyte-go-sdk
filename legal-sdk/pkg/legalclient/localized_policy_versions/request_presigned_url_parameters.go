@@ -74,9 +74,10 @@ type RequestPresignedURLParams struct {
 	*/
 	LocalizedPolicyVersionID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the request presigned URL params
@@ -99,6 +100,11 @@ func (o *RequestPresignedURLParams) WithContext(ctx context.Context) *RequestPre
 // SetContext adds the context to the request presigned URL params
 func (o *RequestPresignedURLParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the request presigned URL params
+func (o *RequestPresignedURLParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the request presigned URL params

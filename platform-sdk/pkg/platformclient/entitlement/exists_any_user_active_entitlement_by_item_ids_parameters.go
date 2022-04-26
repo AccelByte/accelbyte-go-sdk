@@ -72,9 +72,10 @@ type ExistsAnyUserActiveEntitlementByItemIdsParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the exists any user active entitlement by item ids params
@@ -97,6 +98,11 @@ func (o *ExistsAnyUserActiveEntitlementByItemIdsParams) WithContext(ctx context.
 // SetContext adds the context to the exists any user active entitlement by item ids params
 func (o *ExistsAnyUserActiveEntitlementByItemIdsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the exists any user active entitlement by item ids params
+func (o *ExistsAnyUserActiveEntitlementByItemIdsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the exists any user active entitlement by item ids params

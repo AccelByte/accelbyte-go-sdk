@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/cloudsave-sdk/pkg/cloudsaveclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -242,7 +241,8 @@ func (a *AdminPlayerRecordService) AdminDeletePlayerPublicRecordHandlerV1(input 
 	return nil
 }
 
-func (a *AdminPlayerRecordService) ListPlayerRecordHandlerV1Short(input *admin_player_record.ListPlayerRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse, error) {
+func (a *AdminPlayerRecordService) ListPlayerRecordHandlerV1Short(input *admin_player_record.ListPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -257,7 +257,8 @@ func (a *AdminPlayerRecordService) ListPlayerRecordHandlerV1Short(input *admin_p
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminPlayerRecordService) AdminRetrievePlayerRecordsShort(input *admin_player_record.AdminRetrievePlayerRecordsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse, error) {
+func (a *AdminPlayerRecordService) AdminRetrievePlayerRecordsShort(input *admin_player_record.AdminRetrievePlayerRecordsParams) (*cloudsaveclientmodels.ModelsListPlayerRecordKeysResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -272,7 +273,8 @@ func (a *AdminPlayerRecordService) AdminRetrievePlayerRecordsShort(input *admin_
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminPlayerRecordService) AdminGetPlayerRecordHandlerV1Short(input *admin_player_record.AdminGetPlayerRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
+func (a *AdminPlayerRecordService) AdminGetPlayerRecordHandlerV1Short(input *admin_player_record.AdminGetPlayerRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -287,7 +289,8 @@ func (a *AdminPlayerRecordService) AdminGetPlayerRecordHandlerV1Short(input *adm
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminPlayerRecordService) AdminPutPlayerRecordHandlerV1Short(input *admin_player_record.AdminPutPlayerRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AdminPlayerRecordService) AdminPutPlayerRecordHandlerV1Short(input *admin_player_record.AdminPutPlayerRecordHandlerV1Params) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -302,7 +305,8 @@ func (a *AdminPlayerRecordService) AdminPutPlayerRecordHandlerV1Short(input *adm
 	return nil
 }
 
-func (a *AdminPlayerRecordService) AdminPostPlayerRecordHandlerV1Short(input *admin_player_record.AdminPostPlayerRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AdminPlayerRecordService) AdminPostPlayerRecordHandlerV1Short(input *admin_player_record.AdminPostPlayerRecordHandlerV1Params) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -317,7 +321,8 @@ func (a *AdminPlayerRecordService) AdminPostPlayerRecordHandlerV1Short(input *ad
 	return nil
 }
 
-func (a *AdminPlayerRecordService) AdminDeletePlayerRecordHandlerV1Short(input *admin_player_record.AdminDeletePlayerRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AdminPlayerRecordService) AdminDeletePlayerRecordHandlerV1Short(input *admin_player_record.AdminDeletePlayerRecordHandlerV1Params) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -332,7 +337,8 @@ func (a *AdminPlayerRecordService) AdminDeletePlayerRecordHandlerV1Short(input *
 	return nil
 }
 
-func (a *AdminPlayerRecordService) AdminGetPlayerPublicRecordHandlerV1Short(input *admin_player_record.AdminGetPlayerPublicRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
+func (a *AdminPlayerRecordService) AdminGetPlayerPublicRecordHandlerV1Short(input *admin_player_record.AdminGetPlayerPublicRecordHandlerV1Params) (*cloudsaveclientmodels.ModelsPlayerRecordResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -347,7 +353,8 @@ func (a *AdminPlayerRecordService) AdminGetPlayerPublicRecordHandlerV1Short(inpu
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminPlayerRecordService) AdminPutPlayerPublicRecordHandlerV1Short(input *admin_player_record.AdminPutPlayerPublicRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AdminPlayerRecordService) AdminPutPlayerPublicRecordHandlerV1Short(input *admin_player_record.AdminPutPlayerPublicRecordHandlerV1Params) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -362,7 +369,8 @@ func (a *AdminPlayerRecordService) AdminPutPlayerPublicRecordHandlerV1Short(inpu
 	return nil
 }
 
-func (a *AdminPlayerRecordService) AdminPostPlayerPublicRecordHandlerV1Short(input *admin_player_record.AdminPostPlayerPublicRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AdminPlayerRecordService) AdminPostPlayerPublicRecordHandlerV1Short(input *admin_player_record.AdminPostPlayerPublicRecordHandlerV1Params) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -377,7 +385,8 @@ func (a *AdminPlayerRecordService) AdminPostPlayerPublicRecordHandlerV1Short(inp
 	return nil
 }
 
-func (a *AdminPlayerRecordService) AdminDeletePlayerPublicRecordHandlerV1Short(input *admin_player_record.AdminDeletePlayerPublicRecordHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AdminPlayerRecordService) AdminDeletePlayerPublicRecordHandlerV1Short(input *admin_player_record.AdminDeletePlayerPublicRecordHandlerV1Params) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

@@ -95,9 +95,10 @@ type QueryEventStreamHandlerParams struct {
 	*/
 	StartDate *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the query event stream handler params
@@ -120,6 +121,11 @@ func (o *QueryEventStreamHandlerParams) WithContext(ctx context.Context) *QueryE
 // SetContext adds the context to the query event stream handler params
 func (o *QueryEventStreamHandlerParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the query event stream handler params
+func (o *QueryEventStreamHandlerParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the query event stream handler params

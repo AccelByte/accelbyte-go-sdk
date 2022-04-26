@@ -77,9 +77,10 @@ type AdminUpdateThirdPartyConfigParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin update third party config params
@@ -102,6 +103,11 @@ func (o *AdminUpdateThirdPartyConfigParams) WithContext(ctx context.Context) *Ad
 // SetContext adds the context to the admin update third party config params
 func (o *AdminUpdateThirdPartyConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin update third party config params
+func (o *AdminUpdateThirdPartyConfigParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin update third party config params

@@ -63,9 +63,10 @@ func NewGetBansTypeParamsWithHTTPClient(client *http.Client) *GetBansTypeParams 
 for the get bans type operation typically these are written to a http.Request
 */
 type GetBansTypeParams struct {
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get bans type params
@@ -88,6 +89,11 @@ func (o *GetBansTypeParams) WithContext(ctx context.Context) *GetBansTypeParams 
 // SetContext adds the context to the get bans type params
 func (o *GetBansTypeParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get bans type params
+func (o *GetBansTypeParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get bans type params

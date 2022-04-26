@@ -75,9 +75,10 @@ type DeletePodConfigParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the delete pod config params
@@ -100,6 +101,11 @@ func (o *DeletePodConfigParams) WithContext(ctx context.Context) *DeletePodConfi
 // SetContext adds the context to the delete pod config params
 func (o *DeletePodConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the delete pod config params
+func (o *DeletePodConfigParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the delete pod config params

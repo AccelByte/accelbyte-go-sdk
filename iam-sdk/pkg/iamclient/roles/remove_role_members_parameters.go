@@ -74,9 +74,10 @@ type RemoveRoleMembersParams struct {
 	*/
 	RoleID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the remove role members params
@@ -99,6 +100,11 @@ func (o *RemoveRoleMembersParams) WithContext(ctx context.Context) *RemoveRoleMe
 // SetContext adds the context to the remove role members params
 func (o *RemoveRoleMembersParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the remove role members params
+func (o *RemoveRoleMembersParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the remove role members params

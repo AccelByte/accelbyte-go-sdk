@@ -63,9 +63,10 @@ func NewAdminGenerateMyAuthenticatorKeyV4ParamsWithHTTPClient(client *http.Clien
 for the admin generate my authenticator key v4 operation typically these are written to a http.Request
 */
 type AdminGenerateMyAuthenticatorKeyV4Params struct {
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin generate my authenticator key v4 params
@@ -88,6 +89,11 @@ func (o *AdminGenerateMyAuthenticatorKeyV4Params) WithContext(ctx context.Contex
 // SetContext adds the context to the admin generate my authenticator key v4 params
 func (o *AdminGenerateMyAuthenticatorKeyV4Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin generate my authenticator key v4 params
+func (o *AdminGenerateMyAuthenticatorKeyV4Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin generate my authenticator key v4 params

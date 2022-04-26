@@ -73,9 +73,10 @@ type PublicReconcilePlayStationStoreParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the public reconcile play station store params
@@ -98,6 +99,11 @@ func (o *PublicReconcilePlayStationStoreParams) WithContext(ctx context.Context)
 // SetContext adds the context to the public reconcile play station store params
 func (o *PublicReconcilePlayStationStoreParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the public reconcile play station store params
+func (o *PublicReconcilePlayStationStoreParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the public reconcile play station store params

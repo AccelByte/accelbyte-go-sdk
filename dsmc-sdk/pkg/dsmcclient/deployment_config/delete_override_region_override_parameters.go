@@ -85,9 +85,10 @@ type DeleteOverrideRegionOverrideParams struct {
 	*/
 	Version string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the delete override region override params
@@ -110,6 +111,11 @@ func (o *DeleteOverrideRegionOverrideParams) WithContext(ctx context.Context) *D
 // SetContext adds the context to the delete override region override params
 func (o *DeleteOverrideRegionOverrideParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the delete override region override params
+func (o *DeleteOverrideRegionOverrideParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the delete override region override params

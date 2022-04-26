@@ -72,9 +72,10 @@ type AdminDeleteRolePermissionsV4Params struct {
 	*/
 	RoleID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin delete role permissions v4 params
@@ -97,6 +98,11 @@ func (o *AdminDeleteRolePermissionsV4Params) WithContext(ctx context.Context) *A
 // SetContext adds the context to the admin delete role permissions v4 params
 func (o *AdminDeleteRolePermissionsV4Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin delete role permissions v4 params
+func (o *AdminDeleteRolePermissionsV4Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin delete role permissions v4 params

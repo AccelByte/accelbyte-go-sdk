@@ -75,9 +75,10 @@ type DeleteStatParams struct {
 	*/
 	StatCode string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the delete stat params
@@ -100,6 +101,11 @@ func (o *DeleteStatParams) WithContext(ctx context.Context) *DeleteStatParams {
 // SetContext adds the context to the delete stat params
 func (o *DeleteStatParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the delete stat params
+func (o *DeleteStatParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the delete stat params

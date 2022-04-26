@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_channel"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -116,7 +115,8 @@ func (p *PublicChannelService) DeleteChannel(input *public_channel.DeleteChannel
 	return nil
 }
 
-func (p *PublicChannelService) GetChannelsShort(input *public_channel.GetChannelsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
+func (p *PublicChannelService) GetChannelsShort(input *public_channel.GetChannelsParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -131,7 +131,8 @@ func (p *PublicChannelService) GetChannelsShort(input *public_channel.GetChannel
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicChannelService) CreateChannelShort(input *public_channel.CreateChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsChannelResponse, error) {
+func (p *PublicChannelService) CreateChannelShort(input *public_channel.CreateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -146,7 +147,8 @@ func (p *PublicChannelService) CreateChannelShort(input *public_channel.CreateCh
 	return created.GetPayload(), nil
 }
 
-func (p *PublicChannelService) UpdateChannelShort(input *public_channel.UpdateChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsChannelResponse, error) {
+func (p *PublicChannelService) UpdateChannelShort(input *public_channel.UpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -161,7 +163,8 @@ func (p *PublicChannelService) UpdateChannelShort(input *public_channel.UpdateCh
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicChannelService) DeleteChannelShort(input *public_channel.DeleteChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (p *PublicChannelService) DeleteChannelShort(input *public_channel.DeleteChannelParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -63,7 +62,8 @@ func (p *PublicService) ListProvidersByRegion(input *public.ListProvidersByRegio
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicService) GetDefaultProviderShort(input *public.GetDefaultProviderParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDefaultProvider, error) {
+func (p *PublicService) GetDefaultProviderShort(input *public.GetDefaultProviderParams) (*dsmcclientmodels.ModelsDefaultProvider, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -78,7 +78,8 @@ func (p *PublicService) GetDefaultProviderShort(input *public.GetDefaultProvider
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicService) ListProvidersShort(input *public.ListProvidersParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]string, error) {
+func (p *PublicService) ListProvidersShort(input *public.ListProvidersParams) ([]string, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -93,7 +94,8 @@ func (p *PublicService) ListProvidersShort(input *public.ListProvidersParams, au
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicService) ListProvidersByRegionShort(input *public.ListProvidersByRegionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDefaultProvider, error) {
+func (p *PublicService) ListProvidersByRegionShort(input *public.ListProvidersByRegionParams) (*dsmcclientmodels.ModelsDefaultProvider, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

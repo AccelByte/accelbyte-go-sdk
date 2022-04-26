@@ -84,9 +84,10 @@ type AdminUpdateChannelParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin update channel params
@@ -109,6 +110,11 @@ func (o *AdminUpdateChannelParams) WithContext(ctx context.Context) *AdminUpdate
 // SetContext adds the context to the admin update channel params
 func (o *AdminUpdateChannelParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin update channel params
+func (o *AdminUpdateChannelParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin update channel params

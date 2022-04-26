@@ -79,9 +79,10 @@ type UpdateStatParams struct {
 	*/
 	StatCode string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the update stat params
@@ -104,6 +105,11 @@ func (o *UpdateStatParams) WithContext(ctx context.Context) *UpdateStatParams {
 // SetContext adds the context to the update stat params
 func (o *UpdateStatParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the update stat params
+func (o *UpdateStatParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the update stat params

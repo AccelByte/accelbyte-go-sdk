@@ -70,9 +70,10 @@ type GetRoleManagersParams struct {
 	*/
 	RoleID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get role managers params
@@ -95,6 +96,11 @@ func (o *GetRoleManagersParams) WithContext(ctx context.Context) *GetRoleManager
 // SetContext adds the context to the get role managers params
 func (o *GetRoleManagersParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get role managers params
+func (o *GetRoleManagersParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get role managers params

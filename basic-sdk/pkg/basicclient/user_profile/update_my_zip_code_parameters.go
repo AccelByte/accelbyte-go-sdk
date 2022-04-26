@@ -74,9 +74,10 @@ type UpdateMyZipCodeParams struct {
 	/*UserZipCodeUpdate*/
 	UserZipCodeUpdate *basicclientmodels.UserZipCodeUpdate
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the update my zip code params
@@ -99,6 +100,11 @@ func (o *UpdateMyZipCodeParams) WithContext(ctx context.Context) *UpdateMyZipCod
 // SetContext adds the context to the update my zip code params
 func (o *UpdateMyZipCodeParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the update my zip code params
+func (o *UpdateMyZipCodeParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the update my zip code params

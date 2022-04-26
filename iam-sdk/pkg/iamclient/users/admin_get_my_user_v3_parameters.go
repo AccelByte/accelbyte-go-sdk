@@ -63,9 +63,10 @@ func NewAdminGetMyUserV3ParamsWithHTTPClient(client *http.Client) *AdminGetMyUse
 for the admin get my user v3 operation typically these are written to a http.Request
 */
 type AdminGetMyUserV3Params struct {
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin get my user v3 params
@@ -88,6 +89,11 @@ func (o *AdminGetMyUserV3Params) WithContext(ctx context.Context) *AdminGetMyUse
 // SetContext adds the context to the admin get my user v3 params
 func (o *AdminGetMyUserV3Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin get my user v3 params
+func (o *AdminGetMyUserV3Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin get my user v3 params

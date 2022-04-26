@@ -63,9 +63,10 @@ func NewGetJWKSParamsWithHTTPClient(client *http.Client) *GetJWKSParams {
 for the get j w k s operation typically these are written to a http.Request
 */
 type GetJWKSParams struct {
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get j w k s params
@@ -88,6 +89,11 @@ func (o *GetJWKSParams) WithContext(ctx context.Context) *GetJWKSParams {
 // SetContext adds the context to the get j w k s params
 func (o *GetJWKSParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get j w k s params
+func (o *GetJWKSParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get j w k s params

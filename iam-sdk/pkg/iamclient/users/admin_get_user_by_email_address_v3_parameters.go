@@ -75,9 +75,10 @@ type AdminGetUserByEmailAddressV3Params struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin get user by email address v3 params
@@ -100,6 +101,11 @@ func (o *AdminGetUserByEmailAddressV3Params) WithContext(ctx context.Context) *A
 // SetContext adds the context to the admin get user by email address v3 params
 func (o *AdminGetUserByEmailAddressV3Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin get user by email address v3 params
+func (o *AdminGetUserByEmailAddressV3Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin get user by email address v3 params

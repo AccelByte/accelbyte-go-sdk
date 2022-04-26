@@ -109,9 +109,10 @@ type GetLocaleItemBySkuParams struct {
 	*/
 	StoreID *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get locale item by sku params
@@ -134,6 +135,11 @@ func (o *GetLocaleItemBySkuParams) WithContext(ctx context.Context) *GetLocaleIt
 // SetContext adds the context to the get locale item by sku params
 func (o *GetLocaleItemBySkuParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get locale item by sku params
+func (o *GetLocaleItemBySkuParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get locale item by sku params

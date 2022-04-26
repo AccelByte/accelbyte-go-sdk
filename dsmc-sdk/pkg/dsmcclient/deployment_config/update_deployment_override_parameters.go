@@ -84,9 +84,10 @@ type UpdateDeploymentOverrideParams struct {
 	*/
 	Version string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the update deployment override params
@@ -109,6 +110,11 @@ func (o *UpdateDeploymentOverrideParams) WithContext(ctx context.Context) *Updat
 // SetContext adds the context to the update deployment override params
 func (o *UpdateDeploymentOverrideParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the update deployment override params
+func (o *UpdateDeploymentOverrideParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the update deployment override params

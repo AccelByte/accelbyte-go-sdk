@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -989,7 +988,8 @@ func (n *NotificationService) NotificationWithTemplateByUserID(input *notificati
 	return nil
 }
 
-func (n *NotificationService) SendMultipleUsersFreeformNotificationV1AdminShort(input *notification.SendMultipleUsersFreeformNotificationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) SendMultipleUsersFreeformNotificationV1AdminShort(input *notification.SendMultipleUsersFreeformNotificationV1AdminParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1004,7 +1004,8 @@ func (n *NotificationService) SendMultipleUsersFreeformNotificationV1AdminShort(
 	return nil
 }
 
-func (n *NotificationService) SendUsersFreeformNotificationV1AdminShort(input *notification.SendUsersFreeformNotificationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) SendUsersFreeformNotificationV1AdminShort(input *notification.SendUsersFreeformNotificationV1AdminParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1019,7 +1020,8 @@ func (n *NotificationService) SendUsersFreeformNotificationV1AdminShort(input *n
 	return nil
 }
 
-func (n *NotificationService) SendPartyFreeformNotificationV1AdminShort(input *notification.SendPartyFreeformNotificationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) SendPartyFreeformNotificationV1AdminShort(input *notification.SendPartyFreeformNotificationV1AdminParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1034,7 +1036,8 @@ func (n *NotificationService) SendPartyFreeformNotificationV1AdminShort(input *n
 	return nil
 }
 
-func (n *NotificationService) SendPartyTemplatedNotificationV1AdminShort(input *notification.SendPartyTemplatedNotificationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) SendPartyTemplatedNotificationV1AdminShort(input *notification.SendPartyTemplatedNotificationV1AdminParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1049,7 +1052,8 @@ func (n *NotificationService) SendPartyTemplatedNotificationV1AdminShort(input *
 	return nil
 }
 
-func (n *NotificationService) GetAllNotificationTemplatesV1AdminShort(input *notification.GetAllNotificationTemplatesV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelNotificationTemplateResponse, error) {
+func (n *NotificationService) GetAllNotificationTemplatesV1AdminShort(input *notification.GetAllNotificationTemplatesV1AdminParams) ([]*lobbyclientmodels.ModelNotificationTemplateResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1064,7 +1068,8 @@ func (n *NotificationService) GetAllNotificationTemplatesV1AdminShort(input *not
 	return ok.GetPayload(), nil
 }
 
-func (n *NotificationService) CreateNotificationTemplateV1AdminShort(input *notification.CreateNotificationTemplateV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) CreateNotificationTemplateV1AdminShort(input *notification.CreateNotificationTemplateV1AdminParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1079,7 +1084,8 @@ func (n *NotificationService) CreateNotificationTemplateV1AdminShort(input *noti
 	return nil
 }
 
-func (n *NotificationService) SendUsersTemplatedNotificationV1AdminShort(input *notification.SendUsersTemplatedNotificationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) SendUsersTemplatedNotificationV1AdminShort(input *notification.SendUsersTemplatedNotificationV1AdminParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1094,7 +1100,8 @@ func (n *NotificationService) SendUsersTemplatedNotificationV1AdminShort(input *
 	return nil
 }
 
-func (n *NotificationService) GetTemplateSlugLocalizationsTemplateV1AdminShort(input *notification.GetTemplateSlugLocalizationsTemplateV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelGetAllNotificationTemplateSlugResp, error) {
+func (n *NotificationService) GetTemplateSlugLocalizationsTemplateV1AdminShort(input *notification.GetTemplateSlugLocalizationsTemplateV1AdminParams) (*lobbyclientmodels.ModelGetAllNotificationTemplateSlugResp, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1109,7 +1116,8 @@ func (n *NotificationService) GetTemplateSlugLocalizationsTemplateV1AdminShort(i
 	return ok.GetPayload(), nil
 }
 
-func (n *NotificationService) DeleteNotificationTemplateSlugV1AdminShort(input *notification.DeleteNotificationTemplateSlugV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) DeleteNotificationTemplateSlugV1AdminShort(input *notification.DeleteNotificationTemplateSlugV1AdminParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1124,7 +1132,8 @@ func (n *NotificationService) DeleteNotificationTemplateSlugV1AdminShort(input *
 	return nil
 }
 
-func (n *NotificationService) GetSingleTemplateLocalizationV1AdminShort(input *notification.GetSingleTemplateLocalizationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelLocalization, error) {
+func (n *NotificationService) GetSingleTemplateLocalizationV1AdminShort(input *notification.GetSingleTemplateLocalizationV1AdminParams) (*lobbyclientmodels.ModelLocalization, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1139,7 +1148,8 @@ func (n *NotificationService) GetSingleTemplateLocalizationV1AdminShort(input *n
 	return ok.GetPayload(), nil
 }
 
-func (n *NotificationService) UpdateTemplateLocalizationV1AdminShort(input *notification.UpdateTemplateLocalizationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) UpdateTemplateLocalizationV1AdminShort(input *notification.UpdateTemplateLocalizationV1AdminParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1154,7 +1164,8 @@ func (n *NotificationService) UpdateTemplateLocalizationV1AdminShort(input *noti
 	return nil
 }
 
-func (n *NotificationService) DeleteTemplateLocalizationV1AdminShort(input *notification.DeleteTemplateLocalizationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) DeleteTemplateLocalizationV1AdminShort(input *notification.DeleteTemplateLocalizationV1AdminParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1169,7 +1180,8 @@ func (n *NotificationService) DeleteTemplateLocalizationV1AdminShort(input *noti
 	return nil
 }
 
-func (n *NotificationService) PublishTemplateLocalizationV1AdminShort(input *notification.PublishTemplateLocalizationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) PublishTemplateLocalizationV1AdminShort(input *notification.PublishTemplateLocalizationV1AdminParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1184,7 +1196,8 @@ func (n *NotificationService) PublishTemplateLocalizationV1AdminShort(input *not
 	return nil
 }
 
-func (n *NotificationService) GetAllNotificationTopicsV1AdminShort(input *notification.GetAllNotificationTopicsV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelGetAllNotificationTopicsResponse, error) {
+func (n *NotificationService) GetAllNotificationTopicsV1AdminShort(input *notification.GetAllNotificationTopicsV1AdminParams) (*lobbyclientmodels.ModelGetAllNotificationTopicsResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1199,7 +1212,8 @@ func (n *NotificationService) GetAllNotificationTopicsV1AdminShort(input *notifi
 	return ok.GetPayload(), nil
 }
 
-func (n *NotificationService) CreateNotificationTopicV1AdminShort(input *notification.CreateNotificationTopicV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) CreateNotificationTopicV1AdminShort(input *notification.CreateNotificationTopicV1AdminParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1214,7 +1228,8 @@ func (n *NotificationService) CreateNotificationTopicV1AdminShort(input *notific
 	return nil
 }
 
-func (n *NotificationService) GetNotificationTopicV1AdminShort(input *notification.GetNotificationTopicV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelNotificationTopicResponseV1, error) {
+func (n *NotificationService) GetNotificationTopicV1AdminShort(input *notification.GetNotificationTopicV1AdminParams) (*lobbyclientmodels.ModelNotificationTopicResponseV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1229,7 +1244,8 @@ func (n *NotificationService) GetNotificationTopicV1AdminShort(input *notificati
 	return ok.GetPayload(), nil
 }
 
-func (n *NotificationService) UpdateNotificationTopicV1AdminShort(input *notification.UpdateNotificationTopicV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) UpdateNotificationTopicV1AdminShort(input *notification.UpdateNotificationTopicV1AdminParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1244,7 +1260,8 @@ func (n *NotificationService) UpdateNotificationTopicV1AdminShort(input *notific
 	return nil
 }
 
-func (n *NotificationService) DeleteNotificationTopicV1AdminShort(input *notification.DeleteNotificationTopicV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) DeleteNotificationTopicV1AdminShort(input *notification.DeleteNotificationTopicV1AdminParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1259,7 +1276,8 @@ func (n *NotificationService) DeleteNotificationTopicV1AdminShort(input *notific
 	return nil
 }
 
-func (n *NotificationService) SendSpecificUserFreeformNotificationV1AdminShort(input *notification.SendSpecificUserFreeformNotificationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) SendSpecificUserFreeformNotificationV1AdminShort(input *notification.SendSpecificUserFreeformNotificationV1AdminParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1274,7 +1292,8 @@ func (n *NotificationService) SendSpecificUserFreeformNotificationV1AdminShort(i
 	return nil
 }
 
-func (n *NotificationService) SendSpecificUserTemplatedNotificationV1AdminShort(input *notification.SendSpecificUserTemplatedNotificationV1AdminParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) SendSpecificUserTemplatedNotificationV1AdminShort(input *notification.SendSpecificUserTemplatedNotificationV1AdminParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1289,7 +1308,8 @@ func (n *NotificationService) SendSpecificUserTemplatedNotificationV1AdminShort(
 	return nil
 }
 
-func (n *NotificationService) FreeFormNotificationShort(input *notification.FreeFormNotificationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) FreeFormNotificationShort(input *notification.FreeFormNotificationParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1304,7 +1324,8 @@ func (n *NotificationService) FreeFormNotificationShort(input *notification.Free
 	return nil
 }
 
-func (n *NotificationService) NotificationWithTemplateShort(input *notification.NotificationWithTemplateParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) NotificationWithTemplateShort(input *notification.NotificationWithTemplateParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1319,7 +1340,8 @@ func (n *NotificationService) NotificationWithTemplateShort(input *notification.
 	return nil
 }
 
-func (n *NotificationService) GetGameTemplateShort(input *notification.GetGameTemplateParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelTemplateResponse, error) {
+func (n *NotificationService) GetGameTemplateShort(input *notification.GetGameTemplateParams) ([]*lobbyclientmodels.ModelTemplateResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1334,7 +1356,8 @@ func (n *NotificationService) GetGameTemplateShort(input *notification.GetGameTe
 	return ok.GetPayload(), nil
 }
 
-func (n *NotificationService) CreateTemplateShort(input *notification.CreateTemplateParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) CreateTemplateShort(input *notification.CreateTemplateParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1349,7 +1372,8 @@ func (n *NotificationService) CreateTemplateShort(input *notification.CreateTemp
 	return nil
 }
 
-func (n *NotificationService) GetSlugTemplateShort(input *notification.GetSlugTemplateParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelTemplateLocalizationResponse, error) {
+func (n *NotificationService) GetSlugTemplateShort(input *notification.GetSlugTemplateParams) (*lobbyclientmodels.ModelTemplateLocalizationResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1364,7 +1388,8 @@ func (n *NotificationService) GetSlugTemplateShort(input *notification.GetSlugTe
 	return ok.GetPayload(), nil
 }
 
-func (n *NotificationService) DeleteTemplateSlugShort(input *notification.DeleteTemplateSlugParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) DeleteTemplateSlugShort(input *notification.DeleteTemplateSlugParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1379,7 +1404,8 @@ func (n *NotificationService) DeleteTemplateSlugShort(input *notification.Delete
 	return nil
 }
 
-func (n *NotificationService) GetLocalizationTemplateShort(input *notification.GetLocalizationTemplateParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelTemplateLocalization, error) {
+func (n *NotificationService) GetLocalizationTemplateShort(input *notification.GetLocalizationTemplateParams) (*lobbyclientmodels.ModelTemplateLocalization, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1394,7 +1420,8 @@ func (n *NotificationService) GetLocalizationTemplateShort(input *notification.G
 	return ok.GetPayload(), nil
 }
 
-func (n *NotificationService) UpdateLocalizationTemplateShort(input *notification.UpdateLocalizationTemplateParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) UpdateLocalizationTemplateShort(input *notification.UpdateLocalizationTemplateParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1409,7 +1436,8 @@ func (n *NotificationService) UpdateLocalizationTemplateShort(input *notificatio
 	return nil
 }
 
-func (n *NotificationService) DeleteTemplateLocalizationShort(input *notification.DeleteTemplateLocalizationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) DeleteTemplateLocalizationShort(input *notification.DeleteTemplateLocalizationParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1424,7 +1452,8 @@ func (n *NotificationService) DeleteTemplateLocalizationShort(input *notificatio
 	return nil
 }
 
-func (n *NotificationService) PublishTemplateShort(input *notification.PublishTemplateParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) PublishTemplateShort(input *notification.PublishTemplateParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1439,7 +1468,8 @@ func (n *NotificationService) PublishTemplateShort(input *notification.PublishTe
 	return nil
 }
 
-func (n *NotificationService) GetTopicByNamespaceShort(input *notification.GetTopicByNamespaceParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelTopicByNamespacesResponse, error) {
+func (n *NotificationService) GetTopicByNamespaceShort(input *notification.GetTopicByNamespaceParams) (*lobbyclientmodels.ModelTopicByNamespacesResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1454,7 +1484,8 @@ func (n *NotificationService) GetTopicByNamespaceShort(input *notification.GetTo
 	return ok.GetPayload(), nil
 }
 
-func (n *NotificationService) CreateTopicShort(input *notification.CreateTopicParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) CreateTopicShort(input *notification.CreateTopicParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1469,7 +1500,8 @@ func (n *NotificationService) CreateTopicShort(input *notification.CreateTopicPa
 	return nil
 }
 
-func (n *NotificationService) GetTopicByTopicNameShort(input *notification.GetTopicByTopicNameParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelNotificationTopicResponse, error) {
+func (n *NotificationService) GetTopicByTopicNameShort(input *notification.GetTopicByTopicNameParams) (*lobbyclientmodels.ModelNotificationTopicResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1484,7 +1516,8 @@ func (n *NotificationService) GetTopicByTopicNameShort(input *notification.GetTo
 	return ok.GetPayload(), nil
 }
 
-func (n *NotificationService) UpdateTopicByTopicNameShort(input *notification.UpdateTopicByTopicNameParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) UpdateTopicByTopicNameShort(input *notification.UpdateTopicByTopicNameParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1499,7 +1532,8 @@ func (n *NotificationService) UpdateTopicByTopicNameShort(input *notification.Up
 	return nil
 }
 
-func (n *NotificationService) DeleteTopicByTopicNameShort(input *notification.DeleteTopicByTopicNameParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) DeleteTopicByTopicNameShort(input *notification.DeleteTopicByTopicNameParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1514,7 +1548,8 @@ func (n *NotificationService) DeleteTopicByTopicNameShort(input *notification.De
 	return nil
 }
 
-func (n *NotificationService) FreeFormNotificationByUserIDShort(input *notification.FreeFormNotificationByUserIDParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) FreeFormNotificationByUserIDShort(input *notification.FreeFormNotificationByUserIDParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1529,7 +1564,8 @@ func (n *NotificationService) FreeFormNotificationByUserIDShort(input *notificat
 	return nil
 }
 
-func (n *NotificationService) NotificationWithTemplateByUserIDShort(input *notification.NotificationWithTemplateByUserIDParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (n *NotificationService) NotificationWithTemplateByUserIDShort(input *notification.NotificationWithTemplateByUserIDParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

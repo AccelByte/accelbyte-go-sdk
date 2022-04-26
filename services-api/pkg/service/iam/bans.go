@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -141,7 +140,8 @@ func (b *BansService) AdminGetBansTypeWithNamespaceV3(input *bans.AdminGetBansTy
 	return ok.GetPayload(), nil
 }
 
-func (b *BansService) GetBansTypeShort(input *bans.GetBansTypeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonBans, error) {
+func (b *BansService) GetBansTypeShort(input *bans.GetBansTypeParams) (*iamclientmodels.AccountcommonBans, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -156,7 +156,8 @@ func (b *BansService) GetBansTypeShort(input *bans.GetBansTypeParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-func (b *BansService) GetListBanReasonShort(input *bans.GetListBanReasonParams, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonBanReasons, error) {
+func (b *BansService) GetListBanReasonShort(input *bans.GetListBanReasonParams) (*iamclientmodels.AccountcommonBanReasons, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -171,7 +172,8 @@ func (b *BansService) GetListBanReasonShort(input *bans.GetListBanReasonParams, 
 	return ok.GetPayload(), nil
 }
 
-func (b *BansService) AdminGetBansTypeV3Short(input *bans.AdminGetBansTypeV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonBansV3, error) {
+func (b *BansService) AdminGetBansTypeV3Short(input *bans.AdminGetBansTypeV3Params) (*iamclientmodels.AccountcommonBansV3, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -186,7 +188,8 @@ func (b *BansService) AdminGetBansTypeV3Short(input *bans.AdminGetBansTypeV3Para
 	return ok.GetPayload(), nil
 }
 
-func (b *BansService) AdminGetListBanReasonV3Short(input *bans.AdminGetListBanReasonV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonBanReasonsV3, error) {
+func (b *BansService) AdminGetListBanReasonV3Short(input *bans.AdminGetListBanReasonV3Params) (*iamclientmodels.AccountcommonBanReasonsV3, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -201,7 +204,8 @@ func (b *BansService) AdminGetListBanReasonV3Short(input *bans.AdminGetListBanRe
 	return ok.GetPayload(), nil
 }
 
-func (b *BansService) AdminGetBannedUsersV3Short(input *bans.AdminGetBannedUsersV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelGetUserBanV3Response, error) {
+func (b *BansService) AdminGetBannedUsersV3Short(input *bans.AdminGetBannedUsersV3Params) (*iamclientmodels.ModelGetUserBanV3Response, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -216,7 +220,8 @@ func (b *BansService) AdminGetBannedUsersV3Short(input *bans.AdminGetBannedUsers
 	return ok.GetPayload(), nil
 }
 
-func (b *BansService) AdminGetBansTypeWithNamespaceV3Short(input *bans.AdminGetBansTypeWithNamespaceV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.AccountcommonBansV3, error) {
+func (b *BansService) AdminGetBansTypeWithNamespaceV3Short(input *bans.AdminGetBansTypeWithNamespaceV3Params) (*iamclientmodels.AccountcommonBansV3, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

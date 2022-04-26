@@ -67,9 +67,10 @@ type GetPaymentCallbackConfigParams struct {
 	/*Namespace*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get payment callback config params
@@ -92,6 +93,11 @@ func (o *GetPaymentCallbackConfigParams) WithContext(ctx context.Context) *GetPa
 // SetContext adds the context to the get payment callback config params
 func (o *GetPaymentCallbackConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get payment callback config params
+func (o *GetPaymentCallbackConfigParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get payment callback config params

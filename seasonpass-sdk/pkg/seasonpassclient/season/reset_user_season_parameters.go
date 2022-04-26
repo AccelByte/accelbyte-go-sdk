@@ -72,9 +72,10 @@ type ResetUserSeasonParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the reset user season params
@@ -97,6 +98,11 @@ func (o *ResetUserSeasonParams) WithContext(ctx context.Context) *ResetUserSeaso
 // SetContext adds the context to the reset user season params
 func (o *ResetUserSeasonParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the reset user season params
+func (o *ResetUserSeasonParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the reset user season params

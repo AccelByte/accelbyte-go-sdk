@@ -85,9 +85,10 @@ type AddRolePermissionParams struct {
 	*/
 	RoleID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the add role permission params
@@ -110,6 +111,11 @@ func (o *AddRolePermissionParams) WithContext(ctx context.Context) *AddRolePermi
 // SetContext adds the context to the add role permission params
 func (o *AddRolePermissionParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the add role permission params
+func (o *AddRolePermissionParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the add role permission params

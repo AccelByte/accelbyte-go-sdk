@@ -67,9 +67,10 @@ type DeleteSteamIAPConfigParams struct {
 	/*Namespace*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the delete steam i a p config params
@@ -92,6 +93,11 @@ func (o *DeleteSteamIAPConfigParams) WithContext(ctx context.Context) *DeleteSte
 // SetContext adds the context to the delete steam i a p config params
 func (o *DeleteSteamIAPConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the delete steam i a p config params
+func (o *DeleteSteamIAPConfigParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the delete steam i a p config params

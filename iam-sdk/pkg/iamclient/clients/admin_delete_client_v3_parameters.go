@@ -75,9 +75,10 @@ type AdminDeleteClientV3Params struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin delete client v3 params
@@ -100,6 +101,11 @@ func (o *AdminDeleteClientV3Params) WithContext(ctx context.Context) *AdminDelet
 // SetContext adds the context to the admin delete client v3 params
 func (o *AdminDeleteClientV3Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin delete client v3 params
+func (o *AdminDeleteClientV3Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin delete client v3 params

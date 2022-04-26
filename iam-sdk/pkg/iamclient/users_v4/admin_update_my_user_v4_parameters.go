@@ -69,9 +69,10 @@ type AdminUpdateMyUserV4Params struct {
 	/*Body*/
 	Body *iamclientmodels.ModelUserUpdateRequestV3
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin update my user v4 params
@@ -94,6 +95,11 @@ func (o *AdminUpdateMyUserV4Params) WithContext(ctx context.Context) *AdminUpdat
 // SetContext adds the context to the admin update my user v4 params
 func (o *AdminUpdateMyUserV4Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin update my user v4 params
+func (o *AdminUpdateMyUserV4Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin update my user v4 params

@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -670,7 +669,8 @@ func (m *MatchmakingService) SearchSessionsV2(input *matchmaking.SearchSessionsV
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) GetAllChannelsHandlerShort(input *matchmaking.GetAllChannelsHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ModelsGetChannelsResponse, error) {
+func (m *MatchmakingService) GetAllChannelsHandlerShort(input *matchmaking.GetAllChannelsHandlerParams) (*matchmakingclientmodels.ModelsGetChannelsResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -685,7 +685,8 @@ func (m *MatchmakingService) GetAllChannelsHandlerShort(input *matchmaking.GetAl
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) CreateChannelHandlerShort(input *matchmaking.CreateChannelHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ModelsCreateChannelResponse, error) {
+func (m *MatchmakingService) CreateChannelHandlerShort(input *matchmaking.CreateChannelHandlerParams) (*matchmakingclientmodels.ModelsCreateChannelResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -700,7 +701,8 @@ func (m *MatchmakingService) CreateChannelHandlerShort(input *matchmaking.Create
 	return created.GetPayload(), nil
 }
 
-func (m *MatchmakingService) DeleteChannelHandlerShort(input *matchmaking.DeleteChannelHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (m *MatchmakingService) DeleteChannelHandlerShort(input *matchmaking.DeleteChannelHandlerParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -715,7 +717,8 @@ func (m *MatchmakingService) DeleteChannelHandlerShort(input *matchmaking.Delete
 	return nil
 }
 
-func (m *MatchmakingService) StoreMatchResultsShort(input *matchmaking.StoreMatchResultsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ModelsMatchResultResponse, error) {
+func (m *MatchmakingService) StoreMatchResultsShort(input *matchmaking.StoreMatchResultsParams) (*matchmakingclientmodels.ModelsMatchResultResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -730,7 +733,8 @@ func (m *MatchmakingService) StoreMatchResultsShort(input *matchmaking.StoreMatc
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) QueueSessionHandlerShort(input *matchmaking.QueueSessionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (m *MatchmakingService) QueueSessionHandlerShort(input *matchmaking.QueueSessionHandlerParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -745,7 +749,8 @@ func (m *MatchmakingService) QueueSessionHandlerShort(input *matchmaking.QueueSe
 	return nil
 }
 
-func (m *MatchmakingService) DequeueSessionHandlerShort(input *matchmaking.DequeueSessionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (m *MatchmakingService) DequeueSessionHandlerShort(input *matchmaking.DequeueSessionHandlerParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -760,7 +765,8 @@ func (m *MatchmakingService) DequeueSessionHandlerShort(input *matchmaking.Deque
 	return nil
 }
 
-func (m *MatchmakingService) QuerySessionHandlerShort(input *matchmaking.QuerySessionHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ModelsMatchmakingResult, error) {
+func (m *MatchmakingService) QuerySessionHandlerShort(input *matchmaking.QuerySessionHandlerParams) (*matchmakingclientmodels.ModelsMatchmakingResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -775,7 +781,8 @@ func (m *MatchmakingService) QuerySessionHandlerShort(input *matchmaking.QuerySe
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) GetAllPartyInAllChannelShort(input *matchmaking.GetAllPartyInAllChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) (map[string][]matchmakingclientmodels.ModelsMatchingParty, error) {
+func (m *MatchmakingService) GetAllPartyInAllChannelShort(input *matchmaking.GetAllPartyInAllChannelParams) (map[string][]matchmakingclientmodels.ModelsMatchingParty, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -790,7 +797,8 @@ func (m *MatchmakingService) GetAllPartyInAllChannelShort(input *matchmaking.Get
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) BulkGetSessionsShort(input *matchmaking.BulkGetSessionsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*matchmakingclientmodels.ModelsMatchmakingResult, error) {
+func (m *MatchmakingService) BulkGetSessionsShort(input *matchmaking.BulkGetSessionsParams) ([]*matchmakingclientmodels.ModelsMatchmakingResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -805,7 +813,8 @@ func (m *MatchmakingService) BulkGetSessionsShort(input *matchmaking.BulkGetSess
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) ExportChannelsShort(input *matchmaking.ExportChannelsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*matchmakingclientmodels.ModelsChannelV1, error) {
+func (m *MatchmakingService) ExportChannelsShort(input *matchmaking.ExportChannelsParams) ([]*matchmakingclientmodels.ModelsChannelV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -820,7 +829,8 @@ func (m *MatchmakingService) ExportChannelsShort(input *matchmaking.ExportChanne
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) ImportChannelsShort(input *matchmaking.ImportChannelsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ModelsImportConfigResponse, error) {
+func (m *MatchmakingService) ImportChannelsShort(input *matchmaking.ImportChannelsParams) (*matchmakingclientmodels.ModelsImportConfigResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -835,7 +845,8 @@ func (m *MatchmakingService) ImportChannelsShort(input *matchmaking.ImportChanne
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) GetSingleMatchmakingChannelShort(input *matchmaking.GetSingleMatchmakingChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ModelsChannelV1, error) {
+func (m *MatchmakingService) GetSingleMatchmakingChannelShort(input *matchmaking.GetSingleMatchmakingChannelParams) (*matchmakingclientmodels.ModelsChannelV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -850,7 +861,8 @@ func (m *MatchmakingService) GetSingleMatchmakingChannelShort(input *matchmaking
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) UpdateMatchmakingChannelShort(input *matchmaking.UpdateMatchmakingChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (m *MatchmakingService) UpdateMatchmakingChannelShort(input *matchmaking.UpdateMatchmakingChannelParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -865,7 +877,8 @@ func (m *MatchmakingService) UpdateMatchmakingChannelShort(input *matchmaking.Up
 	return nil
 }
 
-func (m *MatchmakingService) GetAllPartyInChannelShort(input *matchmaking.GetAllPartyInChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*matchmakingclientmodels.ModelsMatchingParty, error) {
+func (m *MatchmakingService) GetAllPartyInChannelShort(input *matchmaking.GetAllPartyInChannelParams) ([]*matchmakingclientmodels.ModelsMatchingParty, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -880,7 +893,8 @@ func (m *MatchmakingService) GetAllPartyInChannelShort(input *matchmaking.GetAll
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) GetAllSessionsInChannelShort(input *matchmaking.GetAllSessionsInChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*matchmakingclientmodels.ModelsMatchmakingResult, error) {
+func (m *MatchmakingService) GetAllSessionsInChannelShort(input *matchmaking.GetAllSessionsInChannelParams) ([]*matchmakingclientmodels.ModelsMatchmakingResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -895,7 +909,8 @@ func (m *MatchmakingService) GetAllSessionsInChannelShort(input *matchmaking.Get
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) AddUserIntoSessionInChannelShort(input *matchmaking.AddUserIntoSessionInChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (m *MatchmakingService) AddUserIntoSessionInChannelShort(input *matchmaking.AddUserIntoSessionInChannelParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -910,7 +925,8 @@ func (m *MatchmakingService) AddUserIntoSessionInChannelShort(input *matchmaking
 	return nil
 }
 
-func (m *MatchmakingService) DeleteSessionInChannelShort(input *matchmaking.DeleteSessionInChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (m *MatchmakingService) DeleteSessionInChannelShort(input *matchmaking.DeleteSessionInChannelParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -925,7 +941,8 @@ func (m *MatchmakingService) DeleteSessionInChannelShort(input *matchmaking.Dele
 	return nil
 }
 
-func (m *MatchmakingService) DeleteUserFromSessionInChannelShort(input *matchmaking.DeleteUserFromSessionInChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (m *MatchmakingService) DeleteUserFromSessionInChannelShort(input *matchmaking.DeleteUserFromSessionInChannelParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -940,7 +957,8 @@ func (m *MatchmakingService) DeleteUserFromSessionInChannelShort(input *matchmak
 	return nil
 }
 
-func (m *MatchmakingService) SearchSessionsShort(input *matchmaking.SearchSessionsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ServiceGetSessionHistorySearchResponse, error) {
+func (m *MatchmakingService) SearchSessionsShort(input *matchmaking.SearchSessionsParams) (*matchmakingclientmodels.ServiceGetSessionHistorySearchResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -955,7 +973,8 @@ func (m *MatchmakingService) SearchSessionsShort(input *matchmaking.SearchSessio
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) GetSessionHistoryDetailedShort(input *matchmaking.GetSessionHistoryDetailedParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*matchmakingclientmodels.ServiceGetSessionHistoryDetailedResponseItem, error) {
+func (m *MatchmakingService) GetSessionHistoryDetailedShort(input *matchmaking.GetSessionHistoryDetailedParams) ([]*matchmakingclientmodels.ServiceGetSessionHistoryDetailedResponseItem, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -970,7 +989,8 @@ func (m *MatchmakingService) GetSessionHistoryDetailedShort(input *matchmaking.G
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) PublicGetAllMatchmakingChannelShort(input *matchmaking.PublicGetAllMatchmakingChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*matchmakingclientmodels.ModelsChannelV1, error) {
+func (m *MatchmakingService) PublicGetAllMatchmakingChannelShort(input *matchmaking.PublicGetAllMatchmakingChannelParams) ([]*matchmakingclientmodels.ModelsChannelV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -985,7 +1005,8 @@ func (m *MatchmakingService) PublicGetAllMatchmakingChannelShort(input *matchmak
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) PublicGetSingleMatchmakingChannelShort(input *matchmaking.PublicGetSingleMatchmakingChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ModelsChannelV1, error) {
+func (m *MatchmakingService) PublicGetSingleMatchmakingChannelShort(input *matchmaking.PublicGetSingleMatchmakingChannelParams) (*matchmakingclientmodels.ModelsChannelV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1000,7 +1021,8 @@ func (m *MatchmakingService) PublicGetSingleMatchmakingChannelShort(input *match
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingService) SearchSessionsV2Short(input *matchmaking.SearchSessionsV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*matchmakingclientmodels.ServiceGetSessionHistorySearchResponseV2, error) {
+func (m *MatchmakingService) SearchSessionsV2Short(input *matchmaking.SearchSessionsV2Params) (*matchmakingclientmodels.ServiceGetSessionHistorySearchResponseV2, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

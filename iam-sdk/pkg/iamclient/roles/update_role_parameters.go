@@ -74,9 +74,10 @@ type UpdateRoleParams struct {
 	*/
 	RoleID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the update role params
@@ -99,6 +100,11 @@ func (o *UpdateRoleParams) WithContext(ctx context.Context) *UpdateRoleParams {
 // SetContext adds the context to the update role params
 func (o *UpdateRoleParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the update role params
+func (o *UpdateRoleParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the update role params

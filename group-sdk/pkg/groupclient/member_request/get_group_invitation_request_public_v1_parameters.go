@@ -81,9 +81,10 @@ type GetGroupInvitationRequestPublicV1Params struct {
 	*/
 	Offset *int64
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get group invitation request public v1 params
@@ -106,6 +107,11 @@ func (o *GetGroupInvitationRequestPublicV1Params) WithContext(ctx context.Contex
 // SetContext adds the context to the get group invitation request public v1 params
 func (o *GetGroupInvitationRequestPublicV1Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get group invitation request public v1 params
+func (o *GetGroupInvitationRequestPublicV1Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get group invitation request public v1 params

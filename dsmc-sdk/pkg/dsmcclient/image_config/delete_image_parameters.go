@@ -80,9 +80,10 @@ type DeleteImageParams struct {
 	*/
 	Version string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the delete image params
@@ -105,6 +106,11 @@ func (o *DeleteImageParams) WithContext(ctx context.Context) *DeleteImageParams 
 // SetContext adds the context to the delete image params
 func (o *DeleteImageParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the delete image params
+func (o *DeleteImageParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the delete image params

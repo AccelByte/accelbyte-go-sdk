@@ -77,9 +77,10 @@ type GetDescendantCategoriesParams struct {
 	*/
 	StoreID *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get descendant categories params
@@ -102,6 +103,11 @@ func (o *GetDescendantCategoriesParams) WithContext(ctx context.Context) *GetDes
 // SetContext adds the context to the get descendant categories params
 func (o *GetDescendantCategoriesParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get descendant categories params
+func (o *GetDescendantCategoriesParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get descendant categories params

@@ -78,9 +78,10 @@ type ImportStatsParams struct {
 	*/
 	ReplaceExisting *bool
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the import stats params
@@ -103,6 +104,11 @@ func (o *ImportStatsParams) WithContext(ctx context.Context) *ImportStatsParams 
 // SetContext adds the context to the import stats params
 func (o *ImportStatsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the import stats params
+func (o *ImportStatsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the import stats params

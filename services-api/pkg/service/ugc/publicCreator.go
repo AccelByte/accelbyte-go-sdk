@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_creator"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -44,7 +43,8 @@ func (p *PublicCreatorService) GetCreator(input *public_creator.GetCreatorParams
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicCreatorService) GetCreatorShort(input *public_creator.GetCreatorParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreatorOverviewResponse, error) {
+func (p *PublicCreatorService) GetCreatorShort(input *public_creator.GetCreatorParams) (*ugcclientmodels.ModelsCreatorOverviewResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

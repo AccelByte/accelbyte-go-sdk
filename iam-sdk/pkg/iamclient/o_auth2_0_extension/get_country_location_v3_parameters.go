@@ -63,9 +63,10 @@ func NewGetCountryLocationV3ParamsWithHTTPClient(client *http.Client) *GetCountr
 for the get country location v3 operation typically these are written to a http.Request
 */
 type GetCountryLocationV3Params struct {
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get country location v3 params
@@ -88,6 +89,11 @@ func (o *GetCountryLocationV3Params) WithContext(ctx context.Context) *GetCountr
 // SetContext adds the context to the get country location v3 params
 func (o *GetCountryLocationV3Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get country location v3 params
+func (o *GetCountryLocationV3Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get country location v3 params

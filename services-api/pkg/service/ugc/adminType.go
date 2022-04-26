@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_type"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -122,7 +121,8 @@ func (a *AdminTypeService) AdminDeleteType(input *admin_type.AdminDeleteTypePara
 	return nil
 }
 
-func (a *AdminTypeService) AdminGetTypeShort(input *admin_type.AdminGetTypeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedGetTypeResponse, error) {
+func (a *AdminTypeService) AdminGetTypeShort(input *admin_type.AdminGetTypeParams) (*ugcclientmodels.ModelsPaginatedGetTypeResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -137,7 +137,8 @@ func (a *AdminTypeService) AdminGetTypeShort(input *admin_type.AdminGetTypeParam
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminTypeService) AdminCreateTypeShort(input *admin_type.AdminCreateTypeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
+func (a *AdminTypeService) AdminCreateTypeShort(input *admin_type.AdminCreateTypeParams) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -152,7 +153,8 @@ func (a *AdminTypeService) AdminCreateTypeShort(input *admin_type.AdminCreateTyp
 	return created.GetPayload(), nil
 }
 
-func (a *AdminTypeService) AdminUpdateTypeShort(input *admin_type.AdminUpdateTypeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
+func (a *AdminTypeService) AdminUpdateTypeShort(input *admin_type.AdminUpdateTypeParams) (*ugcclientmodels.ModelsCreateTypeResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -167,7 +169,8 @@ func (a *AdminTypeService) AdminUpdateTypeShort(input *admin_type.AdminUpdateTyp
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminTypeService) AdminDeleteTypeShort(input *admin_type.AdminDeleteTypeParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AdminTypeService) AdminDeleteTypeShort(input *admin_type.AdminDeleteTypeParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

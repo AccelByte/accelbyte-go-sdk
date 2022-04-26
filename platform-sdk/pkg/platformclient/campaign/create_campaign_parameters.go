@@ -71,9 +71,10 @@ type CreateCampaignParams struct {
 	/*Namespace*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the create campaign params
@@ -96,6 +97,11 @@ func (o *CreateCampaignParams) WithContext(ctx context.Context) *CreateCampaignP
 // SetContext adds the context to the create campaign params
 func (o *CreateCampaignParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the create campaign params
+func (o *CreateCampaignParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the create campaign params

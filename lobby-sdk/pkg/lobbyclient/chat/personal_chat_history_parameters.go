@@ -80,9 +80,10 @@ type PersonalChatHistoryParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the personal chat history params
@@ -105,6 +106,11 @@ func (o *PersonalChatHistoryParams) WithContext(ctx context.Context) *PersonalCh
 // SetContext adds the context to the personal chat history params
 func (o *PersonalChatHistoryParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the personal chat history params
+func (o *PersonalChatHistoryParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the personal chat history params

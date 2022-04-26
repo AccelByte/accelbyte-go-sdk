@@ -71,9 +71,10 @@ type UpdatePlaystationIAPConfigParams struct {
 	/*Namespace*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the update playstation i a p config params
@@ -96,6 +97,11 @@ func (o *UpdatePlaystationIAPConfigParams) WithContext(ctx context.Context) *Upd
 // SetContext adds the context to the update playstation i a p config params
 func (o *UpdatePlaystationIAPConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the update playstation i a p config params
+func (o *UpdatePlaystationIAPConfigParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the update playstation i a p config params

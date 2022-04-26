@@ -96,9 +96,10 @@ type QueryCampaignsParams struct {
 	/*Tag*/
 	Tag *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the query campaigns params
@@ -121,6 +122,11 @@ func (o *QueryCampaignsParams) WithContext(ctx context.Context) *QueryCampaignsP
 // SetContext adds the context to the query campaigns params
 func (o *QueryCampaignsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the query campaigns params
+func (o *QueryCampaignsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the query campaigns params

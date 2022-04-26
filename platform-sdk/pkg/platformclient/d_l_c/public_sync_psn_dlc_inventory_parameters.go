@@ -73,9 +73,10 @@ type PublicSyncPsnDlcInventoryParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the public sync psn dlc inventory params
@@ -98,6 +99,11 @@ func (o *PublicSyncPsnDlcInventoryParams) WithContext(ctx context.Context) *Publ
 // SetContext adds the context to the public sync psn dlc inventory params
 func (o *PublicSyncPsnDlcInventoryParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the public sync psn dlc inventory params
+func (o *PublicSyncPsnDlcInventoryParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the public sync psn dlc inventory params

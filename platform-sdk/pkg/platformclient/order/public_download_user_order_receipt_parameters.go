@@ -71,9 +71,10 @@ type PublicDownloadUserOrderReceiptParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the public download user order receipt params
@@ -96,6 +97,11 @@ func (o *PublicDownloadUserOrderReceiptParams) WithContext(ctx context.Context) 
 // SetContext adds the context to the public download user order receipt params
 func (o *PublicDownloadUserOrderReceiptParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the public download user order receipt params
+func (o *PublicDownloadUserOrderReceiptParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the public download user order receipt params

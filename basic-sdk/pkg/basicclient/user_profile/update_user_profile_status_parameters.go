@@ -79,9 +79,10 @@ type UpdateUserProfileStatusParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the update user profile status params
@@ -104,6 +105,11 @@ func (o *UpdateUserProfileStatusParams) WithContext(ctx context.Context) *Update
 // SetContext adds the context to the update user profile status params
 func (o *UpdateUserProfileStatusParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the update user profile status params
+func (o *UpdateUserProfileStatusParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the update user profile status params

@@ -74,9 +74,10 @@ type CreatePolicyVersionParams struct {
 	*/
 	PolicyID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the create policy version params
@@ -99,6 +100,11 @@ func (o *CreatePolicyVersionParams) WithContext(ctx context.Context) *CreatePoli
 // SetContext adds the context to the create policy version params
 func (o *CreatePolicyVersionParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the create policy version params
+func (o *CreatePolicyVersionParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the create policy version params

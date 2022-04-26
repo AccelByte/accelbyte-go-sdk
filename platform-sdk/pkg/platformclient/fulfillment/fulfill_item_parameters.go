@@ -73,9 +73,10 @@ type FulfillItemParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the fulfill item params
@@ -98,6 +99,11 @@ func (o *FulfillItemParams) WithContext(ctx context.Context) *FulfillItemParams 
 // SetContext adds the context to the fulfill item params
 func (o *FulfillItemParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the fulfill item params
+func (o *FulfillItemParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the fulfill item params

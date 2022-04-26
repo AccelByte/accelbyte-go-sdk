@@ -74,9 +74,10 @@ type PublicSendVerificationCodeV3Params struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the public send verification code v3 params
@@ -99,6 +100,11 @@ func (o *PublicSendVerificationCodeV3Params) WithContext(ctx context.Context) *P
 // SetContext adds the context to the public send verification code v3 params
 func (o *PublicSendVerificationCodeV3Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the public send verification code v3 params
+func (o *PublicSendVerificationCodeV3Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the public send verification code v3 params

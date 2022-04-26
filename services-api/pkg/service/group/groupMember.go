@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -384,7 +383,8 @@ func (g *GroupMemberService) KickGroupMemberPublicV1(input *group_member.KickGro
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) GetGroupMembersListAdminV1Short(input *group_member.GetGroupMembersListAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetGroupMemberListResponseV1, error) {
+func (g *GroupMemberService) GetGroupMembersListAdminV1Short(input *group_member.GetGroupMembersListAdminV1Params) (*groupclientmodels.ModelsGetGroupMemberListResponseV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -399,7 +399,8 @@ func (g *GroupMemberService) GetGroupMembersListAdminV1Short(input *group_member
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) AcceptGroupInvitationPublicV1Short(input *group_member.AcceptGroupInvitationPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
+func (g *GroupMemberService) AcceptGroupInvitationPublicV1Short(input *group_member.AcceptGroupInvitationPublicV1Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -414,7 +415,8 @@ func (g *GroupMemberService) AcceptGroupInvitationPublicV1Short(input *group_mem
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) RejectGroupInvitationPublicV1Short(input *group_member.RejectGroupInvitationPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
+func (g *GroupMemberService) RejectGroupInvitationPublicV1Short(input *group_member.RejectGroupInvitationPublicV1Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -429,7 +431,8 @@ func (g *GroupMemberService) RejectGroupInvitationPublicV1Short(input *group_mem
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) JoinGroupV1Short(input *group_member.JoinGroupV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsJoinGroupResponseV1, error) {
+func (g *GroupMemberService) JoinGroupV1Short(input *group_member.JoinGroupV1Params) (*groupclientmodels.ModelsJoinGroupResponseV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -444,7 +447,8 @@ func (g *GroupMemberService) JoinGroupV1Short(input *group_member.JoinGroupV1Par
 	return created.GetPayload(), nil
 }
 
-func (g *GroupMemberService) CancelGroupJoinRequestV1Short(input *group_member.CancelGroupJoinRequestV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
+func (g *GroupMemberService) CancelGroupJoinRequestV1Short(input *group_member.CancelGroupJoinRequestV1Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -459,7 +463,8 @@ func (g *GroupMemberService) CancelGroupJoinRequestV1Short(input *group_member.C
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) GetGroupMembersListPublicV1Short(input *group_member.GetGroupMembersListPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetGroupMemberListResponseV1, error) {
+func (g *GroupMemberService) GetGroupMembersListPublicV1Short(input *group_member.GetGroupMembersListPublicV1Params) (*groupclientmodels.ModelsGetGroupMemberListResponseV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -474,7 +479,8 @@ func (g *GroupMemberService) GetGroupMembersListPublicV1Short(input *group_membe
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) LeaveGroupPublicV1Short(input *group_member.LeaveGroupPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsLeaveGroupResponseV1, error) {
+func (g *GroupMemberService) LeaveGroupPublicV1Short(input *group_member.LeaveGroupPublicV1Params) (*groupclientmodels.ModelsLeaveGroupResponseV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -489,7 +495,8 @@ func (g *GroupMemberService) LeaveGroupPublicV1Short(input *group_member.LeaveGr
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) GetUserGroupInformationPublicV1Short(input *group_member.GetUserGroupInformationPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetUserGroupInformationResponseV1, error) {
+func (g *GroupMemberService) GetUserGroupInformationPublicV1Short(input *group_member.GetUserGroupInformationPublicV1Params) (*groupclientmodels.ModelsGetUserGroupInformationResponseV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -504,7 +511,8 @@ func (g *GroupMemberService) GetUserGroupInformationPublicV1Short(input *group_m
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) InviteGroupPublicV1Short(input *group_member.InviteGroupPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsUserInvitationResponseV1, error) {
+func (g *GroupMemberService) InviteGroupPublicV1Short(input *group_member.InviteGroupPublicV1Params) (*groupclientmodels.ModelsUserInvitationResponseV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -519,7 +527,8 @@ func (g *GroupMemberService) InviteGroupPublicV1Short(input *group_member.Invite
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) AcceptGroupJoinRequestPublicV1Short(input *group_member.AcceptGroupJoinRequestPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
+func (g *GroupMemberService) AcceptGroupJoinRequestPublicV1Short(input *group_member.AcceptGroupJoinRequestPublicV1Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -534,7 +543,8 @@ func (g *GroupMemberService) AcceptGroupJoinRequestPublicV1Short(input *group_me
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) RejectGroupJoinRequestPublicV1Short(input *group_member.RejectGroupJoinRequestPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
+func (g *GroupMemberService) RejectGroupJoinRequestPublicV1Short(input *group_member.RejectGroupJoinRequestPublicV1Params) (*groupclientmodels.ModelsMemberRequestGroupResponseV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -549,7 +559,8 @@ func (g *GroupMemberService) RejectGroupJoinRequestPublicV1Short(input *group_me
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupMemberService) KickGroupMemberPublicV1Short(input *group_member.KickGroupMemberPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsKickGroupMemberResponseV1, error) {
+func (g *GroupMemberService) KickGroupMemberPublicV1Short(input *group_member.KickGroupMemberPublicV1Params) (*groupclientmodels.ModelsKickGroupMemberResponseV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

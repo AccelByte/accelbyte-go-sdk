@@ -69,9 +69,10 @@ type AnonymizeFulfillmentParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the anonymize fulfillment params
@@ -94,6 +95,11 @@ func (o *AnonymizeFulfillmentParams) WithContext(ctx context.Context) *Anonymize
 // SetContext adds the context to the anonymize fulfillment params
 func (o *AnonymizeFulfillmentParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the anonymize fulfillment params
+func (o *AnonymizeFulfillmentParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the anonymize fulfillment params

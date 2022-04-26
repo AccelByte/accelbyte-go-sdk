@@ -89,9 +89,10 @@ type UpdateUserStatItemValueParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the update user stat item value params
@@ -114,6 +115,11 @@ func (o *UpdateUserStatItemValueParams) WithContext(ctx context.Context) *Update
 // SetContext adds the context to the update user stat item value params
 func (o *UpdateUserStatItemValueParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the update user stat item value params
+func (o *UpdateUserStatItemValueParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the update user stat item value params

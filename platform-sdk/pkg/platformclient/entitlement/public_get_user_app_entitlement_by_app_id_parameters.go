@@ -71,9 +71,10 @@ type PublicGetUserAppEntitlementByAppIDParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the public get user app entitlement by app Id params
@@ -96,6 +97,11 @@ func (o *PublicGetUserAppEntitlementByAppIDParams) WithContext(ctx context.Conte
 // SetContext adds the context to the public get user app entitlement by app Id params
 func (o *PublicGetUserAppEntitlementByAppIDParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the public get user app entitlement by app Id params
+func (o *PublicGetUserAppEntitlementByAppIDParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the public get user app entitlement by app Id params

@@ -75,9 +75,10 @@ type GetTopicByTopicNameParams struct {
 	*/
 	Topic string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get topic by topic name params
@@ -100,6 +101,11 @@ func (o *GetTopicByTopicNameParams) WithContext(ctx context.Context) *GetTopicBy
 // SetContext adds the context to the get topic by topic name params
 func (o *GetTopicByTopicNameParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get topic by topic name params
+func (o *GetTopicByTopicNameParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get topic by topic name params

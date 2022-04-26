@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclient/user_statistic"
 	"github.com/AccelByte/accelbyte-go-sdk/social-sdk/pkg/socialclientmodels"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -676,7 +675,8 @@ func (u *UserStatisticService) UpdateUserStatItemValue1(input *user_statistic.Up
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) BulkFetchStatItemsShort(input *user_statistic.BulkFetchStatItemsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.UserStatItemInfo, error) {
+func (u *UserStatisticService) BulkFetchStatItemsShort(input *user_statistic.BulkFetchStatItemsParams) ([]*socialclientmodels.UserStatItemInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -691,7 +691,8 @@ func (u *UserStatisticService) BulkFetchStatItemsShort(input *user_statistic.Bul
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) BulkIncUserStatItemShort(input *user_statistic.BulkIncUserStatItemParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (u *UserStatisticService) BulkIncUserStatItemShort(input *user_statistic.BulkIncUserStatItemParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -706,7 +707,8 @@ func (u *UserStatisticService) BulkIncUserStatItemShort(input *user_statistic.Bu
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) BulkIncUserStatItemValueShort(input *user_statistic.BulkIncUserStatItemValueParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (u *UserStatisticService) BulkIncUserStatItemValueShort(input *user_statistic.BulkIncUserStatItemValueParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -721,7 +723,8 @@ func (u *UserStatisticService) BulkIncUserStatItemValueShort(input *user_statist
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) BulkResetUserStatItemShort(input *user_statistic.BulkResetUserStatItemParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (u *UserStatisticService) BulkResetUserStatItemShort(input *user_statistic.BulkResetUserStatItemParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -736,7 +739,8 @@ func (u *UserStatisticService) BulkResetUserStatItemShort(input *user_statistic.
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) GetUserStatItemsShort(input *user_statistic.GetUserStatItemsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.UserStatItemPagingSlicedResult, error) {
+func (u *UserStatisticService) GetUserStatItemsShort(input *user_statistic.GetUserStatItemsParams) (*socialclientmodels.UserStatItemPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -751,7 +755,8 @@ func (u *UserStatisticService) GetUserStatItemsShort(input *user_statistic.GetUs
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) BulkCreateUserStatItemsShort(input *user_statistic.BulkCreateUserStatItemsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (u *UserStatisticService) BulkCreateUserStatItemsShort(input *user_statistic.BulkCreateUserStatItemsParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -766,7 +771,8 @@ func (u *UserStatisticService) BulkCreateUserStatItemsShort(input *user_statisti
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) BulkIncUserStatItem1Short(input *user_statistic.BulkIncUserStatItem1Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (u *UserStatisticService) BulkIncUserStatItem1Short(input *user_statistic.BulkIncUserStatItem1Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -781,7 +787,8 @@ func (u *UserStatisticService) BulkIncUserStatItem1Short(input *user_statistic.B
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) BulkIncUserStatItemValue1Short(input *user_statistic.BulkIncUserStatItemValue1Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (u *UserStatisticService) BulkIncUserStatItemValue1Short(input *user_statistic.BulkIncUserStatItemValue1Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -796,7 +803,8 @@ func (u *UserStatisticService) BulkIncUserStatItemValue1Short(input *user_statis
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) BulkResetUserStatItem1Short(input *user_statistic.BulkResetUserStatItem1Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (u *UserStatisticService) BulkResetUserStatItem1Short(input *user_statistic.BulkResetUserStatItem1Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -811,7 +819,8 @@ func (u *UserStatisticService) BulkResetUserStatItem1Short(input *user_statistic
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) CreateUserStatItemShort(input *user_statistic.CreateUserStatItemParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (u *UserStatisticService) CreateUserStatItemShort(input *user_statistic.CreateUserStatItemParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -826,7 +835,8 @@ func (u *UserStatisticService) CreateUserStatItemShort(input *user_statistic.Cre
 	return nil
 }
 
-func (u *UserStatisticService) DeleteUserStatItemsShort(input *user_statistic.DeleteUserStatItemsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (u *UserStatisticService) DeleteUserStatItemsShort(input *user_statistic.DeleteUserStatItemsParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -841,7 +851,8 @@ func (u *UserStatisticService) DeleteUserStatItemsShort(input *user_statistic.De
 	return nil
 }
 
-func (u *UserStatisticService) IncUserStatItemValueShort(input *user_statistic.IncUserStatItemValueParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.StatItemIncResult, error) {
+func (u *UserStatisticService) IncUserStatItemValueShort(input *user_statistic.IncUserStatItemValueParams) (*socialclientmodels.StatItemIncResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -856,7 +867,8 @@ func (u *UserStatisticService) IncUserStatItemValueShort(input *user_statistic.I
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) ResetUserStatItemValueShort(input *user_statistic.ResetUserStatItemValueParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.StatItemIncResult, error) {
+func (u *UserStatisticService) ResetUserStatItemValueShort(input *user_statistic.ResetUserStatItemValueParams) (*socialclientmodels.StatItemIncResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -871,7 +883,8 @@ func (u *UserStatisticService) ResetUserStatItemValueShort(input *user_statistic
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) BulkFetchStatItems1Short(input *user_statistic.BulkFetchStatItems1Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.UserStatItemInfo, error) {
+func (u *UserStatisticService) BulkFetchStatItems1Short(input *user_statistic.BulkFetchStatItems1Params) ([]*socialclientmodels.UserStatItemInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -886,7 +899,8 @@ func (u *UserStatisticService) BulkFetchStatItems1Short(input *user_statistic.Bu
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) PublicBulkIncUserStatItemShort(input *user_statistic.PublicBulkIncUserStatItemParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (u *UserStatisticService) PublicBulkIncUserStatItemShort(input *user_statistic.PublicBulkIncUserStatItemParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -901,7 +915,8 @@ func (u *UserStatisticService) PublicBulkIncUserStatItemShort(input *user_statis
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) PublicBulkIncUserStatItemValueShort(input *user_statistic.PublicBulkIncUserStatItemValueParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (u *UserStatisticService) PublicBulkIncUserStatItemValueShort(input *user_statistic.PublicBulkIncUserStatItemValueParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -916,7 +931,8 @@ func (u *UserStatisticService) PublicBulkIncUserStatItemValueShort(input *user_s
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) BulkResetUserStatItem2Short(input *user_statistic.BulkResetUserStatItem2Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (u *UserStatisticService) BulkResetUserStatItem2Short(input *user_statistic.BulkResetUserStatItem2Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -931,7 +947,8 @@ func (u *UserStatisticService) BulkResetUserStatItem2Short(input *user_statistic
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) PublicQueryUserStatItemsShort(input *user_statistic.PublicQueryUserStatItemsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.UserStatItemPagingSlicedResult, error) {
+func (u *UserStatisticService) PublicQueryUserStatItemsShort(input *user_statistic.PublicQueryUserStatItemsParams) (*socialclientmodels.UserStatItemPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -946,7 +963,8 @@ func (u *UserStatisticService) PublicQueryUserStatItemsShort(input *user_statist
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) PublicBulkCreateUserStatItemsShort(input *user_statistic.PublicBulkCreateUserStatItemsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (u *UserStatisticService) PublicBulkCreateUserStatItemsShort(input *user_statistic.PublicBulkCreateUserStatItemsParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -961,7 +979,8 @@ func (u *UserStatisticService) PublicBulkCreateUserStatItemsShort(input *user_st
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) PublicBulkIncUserStatItem1Short(input *user_statistic.PublicBulkIncUserStatItem1Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (u *UserStatisticService) PublicBulkIncUserStatItem1Short(input *user_statistic.PublicBulkIncUserStatItem1Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -976,7 +995,8 @@ func (u *UserStatisticService) PublicBulkIncUserStatItem1Short(input *user_stati
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) BulkIncUserStatItemValue2Short(input *user_statistic.BulkIncUserStatItemValue2Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (u *UserStatisticService) BulkIncUserStatItemValue2Short(input *user_statistic.BulkIncUserStatItemValue2Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -991,7 +1011,8 @@ func (u *UserStatisticService) BulkIncUserStatItemValue2Short(input *user_statis
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) BulkResetUserStatItem3Short(input *user_statistic.BulkResetUserStatItem3Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (u *UserStatisticService) BulkResetUserStatItem3Short(input *user_statistic.BulkResetUserStatItem3Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1006,7 +1027,8 @@ func (u *UserStatisticService) BulkResetUserStatItem3Short(input *user_statistic
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) PublicCreateUserStatItemShort(input *user_statistic.PublicCreateUserStatItemParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (u *UserStatisticService) PublicCreateUserStatItemShort(input *user_statistic.PublicCreateUserStatItemParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1021,7 +1043,8 @@ func (u *UserStatisticService) PublicCreateUserStatItemShort(input *user_statist
 	return nil
 }
 
-func (u *UserStatisticService) DeleteUserStatItems1Short(input *user_statistic.DeleteUserStatItems1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (u *UserStatisticService) DeleteUserStatItems1Short(input *user_statistic.DeleteUserStatItems1Params) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1036,7 +1059,8 @@ func (u *UserStatisticService) DeleteUserStatItems1Short(input *user_statistic.D
 	return nil
 }
 
-func (u *UserStatisticService) PublicIncUserStatItemShort(input *user_statistic.PublicIncUserStatItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.StatItemIncResult, error) {
+func (u *UserStatisticService) PublicIncUserStatItemShort(input *user_statistic.PublicIncUserStatItemParams) (*socialclientmodels.StatItemIncResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1051,7 +1075,8 @@ func (u *UserStatisticService) PublicIncUserStatItemShort(input *user_statistic.
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) PublicIncUserStatItemValueShort(input *user_statistic.PublicIncUserStatItemValueParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.StatItemIncResult, error) {
+func (u *UserStatisticService) PublicIncUserStatItemValueShort(input *user_statistic.PublicIncUserStatItemValueParams) (*socialclientmodels.StatItemIncResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1066,7 +1091,8 @@ func (u *UserStatisticService) PublicIncUserStatItemValueShort(input *user_stati
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) ResetUserStatItemValue1Short(input *user_statistic.ResetUserStatItemValue1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.StatItemIncResult, error) {
+func (u *UserStatisticService) ResetUserStatItemValue1Short(input *user_statistic.ResetUserStatItemValue1Params) (*socialclientmodels.StatItemIncResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1081,7 +1107,8 @@ func (u *UserStatisticService) ResetUserStatItemValue1Short(input *user_statisti
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) BulkUpdateUserStatItemV2Short(input *user_statistic.BulkUpdateUserStatItemV2Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (u *UserStatisticService) BulkUpdateUserStatItemV2Short(input *user_statistic.BulkUpdateUserStatItemV2Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1096,7 +1123,8 @@ func (u *UserStatisticService) BulkUpdateUserStatItemV2Short(input *user_statist
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) BulkUpdateUserStatItemShort(input *user_statistic.BulkUpdateUserStatItemParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (u *UserStatisticService) BulkUpdateUserStatItemShort(input *user_statistic.BulkUpdateUserStatItemParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1111,7 +1139,8 @@ func (u *UserStatisticService) BulkUpdateUserStatItemShort(input *user_statistic
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) BulkResetUserStatItemValuesShort(input *user_statistic.BulkResetUserStatItemValuesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (u *UserStatisticService) BulkResetUserStatItemValuesShort(input *user_statistic.BulkResetUserStatItemValuesParams) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1126,7 +1155,8 @@ func (u *UserStatisticService) BulkResetUserStatItemValuesShort(input *user_stat
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) DeleteUserStatItems2Short(input *user_statistic.DeleteUserStatItems2Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (u *UserStatisticService) DeleteUserStatItems2Short(input *user_statistic.DeleteUserStatItems2Params) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1141,7 +1171,8 @@ func (u *UserStatisticService) DeleteUserStatItems2Short(input *user_statistic.D
 	return nil
 }
 
-func (u *UserStatisticService) UpdateUserStatItemValueShort(input *user_statistic.UpdateUserStatItemValueParams, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.StatItemIncResult, error) {
+func (u *UserStatisticService) UpdateUserStatItemValueShort(input *user_statistic.UpdateUserStatItemValueParams) (*socialclientmodels.StatItemIncResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1156,7 +1187,8 @@ func (u *UserStatisticService) UpdateUserStatItemValueShort(input *user_statisti
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) BulkUpdateUserStatItem1Short(input *user_statistic.BulkUpdateUserStatItem1Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (u *UserStatisticService) BulkUpdateUserStatItem1Short(input *user_statistic.BulkUpdateUserStatItem1Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1171,7 +1203,8 @@ func (u *UserStatisticService) BulkUpdateUserStatItem1Short(input *user_statisti
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) BulkUpdateUserStatItem2Short(input *user_statistic.BulkUpdateUserStatItem2Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+func (u *UserStatisticService) BulkUpdateUserStatItem2Short(input *user_statistic.BulkUpdateUserStatItem2Params) ([]*socialclientmodels.BulkStatItemOperationResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1186,7 +1219,8 @@ func (u *UserStatisticService) BulkUpdateUserStatItem2Short(input *user_statisti
 	return ok.GetPayload(), nil
 }
 
-func (u *UserStatisticService) UpdateUserStatItemValue1Short(input *user_statistic.UpdateUserStatItemValue1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*socialclientmodels.StatItemIncResult, error) {
+func (u *UserStatisticService) UpdateUserStatItemValue1Short(input *user_statistic.UpdateUserStatItemValue1Params) (*socialclientmodels.StatItemIncResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

@@ -69,9 +69,10 @@ type TestXsollaConfigParams struct {
 	/*Body*/
 	Body *platformclientmodels.XsollaConfig
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the test xsolla config params
@@ -94,6 +95,11 @@ func (o *TestXsollaConfigParams) WithContext(ctx context.Context) *TestXsollaCon
 // SetContext adds the context to the test xsolla config params
 func (o *TestXsollaConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the test xsolla config params
+func (o *TestXsollaConfigParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the test xsolla config params

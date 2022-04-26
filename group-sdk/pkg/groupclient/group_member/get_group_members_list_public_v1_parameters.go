@@ -91,9 +91,10 @@ type GetGroupMembersListPublicV1Params struct {
 	*/
 	Order *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get group members list public v1 params
@@ -116,6 +117,11 @@ func (o *GetGroupMembersListPublicV1Params) WithContext(ctx context.Context) *Ge
 // SetContext adds the context to the get group members list public v1 params
 func (o *GetGroupMembersListPublicV1Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get group members list public v1 params
+func (o *GetGroupMembersListPublicV1Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get group members list public v1 params

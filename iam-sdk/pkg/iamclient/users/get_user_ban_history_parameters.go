@@ -75,9 +75,10 @@ type GetUserBanHistoryParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get user ban history params
@@ -100,6 +101,11 @@ func (o *GetUserBanHistoryParams) WithContext(ctx context.Context) *GetUserBanHi
 // SetContext adds the context to the get user ban history params
 func (o *GetUserBanHistoryParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get user ban history params
+func (o *GetUserBanHistoryParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get user ban history params

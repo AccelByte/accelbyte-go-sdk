@@ -80,9 +80,10 @@ type GetLocalizationTemplateParams struct {
 	*/
 	TemplateSlug string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get localization template params
@@ -105,6 +106,11 @@ func (o *GetLocalizationTemplateParams) WithContext(ctx context.Context) *GetLoc
 // SetContext adds the context to the get localization template params
 func (o *GetLocalizationTemplateParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get localization template params
+func (o *GetLocalizationTemplateParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get localization template params

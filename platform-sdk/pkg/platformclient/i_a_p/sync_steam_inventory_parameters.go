@@ -73,9 +73,10 @@ type SyncSteamInventoryParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the sync steam inventory params
@@ -98,6 +99,11 @@ func (o *SyncSteamInventoryParams) WithContext(ctx context.Context) *SyncSteamIn
 // SetContext adds the context to the sync steam inventory params
 func (o *SyncSteamInventoryParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the sync steam inventory params
+func (o *SyncSteamInventoryParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the sync steam inventory params

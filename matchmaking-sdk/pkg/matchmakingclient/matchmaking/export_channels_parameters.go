@@ -70,9 +70,10 @@ type ExportChannelsParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the export channels params
@@ -95,6 +96,11 @@ func (o *ExportChannelsParams) WithContext(ctx context.Context) *ExportChannelsP
 // SetContext adds the context to the export channels params
 func (o *ExportChannelsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the export channels params
+func (o *ExportChannelsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the export channels params

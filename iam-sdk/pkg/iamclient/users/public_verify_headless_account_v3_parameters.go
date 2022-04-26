@@ -74,9 +74,10 @@ type PublicVerifyHeadlessAccountV3Params struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the public verify headless account v3 params
@@ -99,6 +100,11 @@ func (o *PublicVerifyHeadlessAccountV3Params) WithContext(ctx context.Context) *
 // SetContext adds the context to the public verify headless account v3 params
 func (o *PublicVerifyHeadlessAccountV3Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the public verify headless account v3 params
+func (o *PublicVerifyHeadlessAccountV3Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the public verify headless account v3 params

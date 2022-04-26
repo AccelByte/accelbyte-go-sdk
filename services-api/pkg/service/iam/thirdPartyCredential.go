@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/iam-sdk/pkg/iamclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -264,7 +263,8 @@ func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCr
 	return ok.GetPayload(), nil
 }
 
-func (t *ThirdPartyCredentialService) RetrieveAllThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.RetrieveAllThirdPartyLoginPlatformCredentialV3Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
+func (t *ThirdPartyCredentialService) RetrieveAllThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.RetrieveAllThirdPartyLoginPlatformCredentialV3Params) ([]*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -279,7 +279,8 @@ func (t *ThirdPartyCredentialService) RetrieveAllThirdPartyLoginPlatformCredenti
 	return ok.GetPayload(), nil
 }
 
-func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
+func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.RetrieveAllActiveThirdPartyLoginPlatformCredentialV3Params) ([]*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -294,7 +295,8 @@ func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCr
 	return ok.GetPayload(), nil
 }
 
-func (t *ThirdPartyCredentialService) RetrieveThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.RetrieveThirdPartyLoginPlatformCredentialV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
+func (t *ThirdPartyCredentialService) RetrieveThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.RetrieveThirdPartyLoginPlatformCredentialV3Params) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -309,7 +311,8 @@ func (t *ThirdPartyCredentialService) RetrieveThirdPartyLoginPlatformCredentialV
 	return ok.GetPayload(), nil
 }
 
-func (t *ThirdPartyCredentialService) AddThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.AddThirdPartyLoginPlatformCredentialV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
+func (t *ThirdPartyCredentialService) AddThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.AddThirdPartyLoginPlatformCredentialV3Params) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -324,7 +327,8 @@ func (t *ThirdPartyCredentialService) AddThirdPartyLoginPlatformCredentialV3Shor
 	return created.GetPayload(), nil
 }
 
-func (t *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.DeleteThirdPartyLoginPlatformCredentialV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (t *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.DeleteThirdPartyLoginPlatformCredentialV3Params) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -339,7 +343,8 @@ func (t *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformCredentialV3S
 	return nil
 }
 
-func (t *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.UpdateThirdPartyLoginPlatformCredentialV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
+func (t *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformCredentialV3Short(input *third_party_credential.UpdateThirdPartyLoginPlatformCredentialV3Params) (*iamclientmodels.ModelThirdPartyLoginPlatformCredentialResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -354,7 +359,8 @@ func (t *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformCredentialV3S
 	return ok.GetPayload(), nil
 }
 
-func (t *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformDomainV3Short(input *third_party_credential.UpdateThirdPartyLoginPlatformDomainV3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*iamclientmodels.ModelPlatformDomainResponse, error) {
+func (t *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformDomainV3Short(input *third_party_credential.UpdateThirdPartyLoginPlatformDomainV3Params) (*iamclientmodels.ModelPlatformDomainResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -369,7 +375,8 @@ func (t *ThirdPartyCredentialService) UpdateThirdPartyLoginPlatformDomainV3Short
 	return ok.GetPayload(), nil
 }
 
-func (t *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformDomainV3Short(input *third_party_credential.DeleteThirdPartyLoginPlatformDomainV3Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (t *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformDomainV3Short(input *third_party_credential.DeleteThirdPartyLoginPlatformDomainV3Params) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -384,7 +391,8 @@ func (t *ThirdPartyCredentialService) DeleteThirdPartyLoginPlatformDomainV3Short
 	return nil
 }
 
-func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short(input *third_party_credential.RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params, authInfoWriter runtime.ClientAuthInfoWriter) ([]*iamclientmodels.ModelPublicThirdPartyPlatformInfo, error) {
+func (t *ThirdPartyCredentialService) RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short(input *third_party_credential.RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params) ([]*iamclientmodels.ModelPublicThirdPartyPlatformInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

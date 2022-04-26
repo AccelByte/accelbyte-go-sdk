@@ -74,9 +74,10 @@ type ImportStoreParams struct {
 	*/
 	StoreID *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the import store params
@@ -99,6 +100,11 @@ func (o *ImportStoreParams) WithContext(ctx context.Context) *ImportStoreParams 
 // SetContext adds the context to the import store params
 func (o *ImportStoreParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the import store params
+func (o *ImportStoreParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the import store params

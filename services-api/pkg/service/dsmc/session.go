@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -108,7 +107,8 @@ func (s *SessionService) GetSession(input *session.GetSessionParams) (*dsmcclien
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsSessionResponse, error) {
+func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams) (*dsmcclientmodels.ModelsSessionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -123,7 +123,8 @@ func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams, 
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) ClaimServerShort(input *session.ClaimServerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (s *SessionService) ClaimServerShort(input *session.ClaimServerParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -138,7 +139,8 @@ func (s *SessionService) ClaimServerShort(input *session.ClaimServerParams, auth
 	return nil
 }
 
-func (s *SessionService) GetSessionShort(input *session.GetSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsSessionResponse, error) {
+func (s *SessionService) GetSessionShort(input *session.GetSessionParams) (*dsmcclientmodels.ModelsSessionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

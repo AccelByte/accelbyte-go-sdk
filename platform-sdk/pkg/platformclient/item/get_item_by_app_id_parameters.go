@@ -89,9 +89,10 @@ type GetItemByAppIDParams struct {
 	*/
 	StoreID *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get item by app Id params
@@ -114,6 +115,11 @@ func (o *GetItemByAppIDParams) WithContext(ctx context.Context) *GetItemByAppIDP
 // SetContext adds the context to the get item by app Id params
 func (o *GetItemByAppIDParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get item by app Id params
+func (o *GetItemByAppIDParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get item by app Id params

@@ -75,9 +75,10 @@ type DownloadServerLogsParams struct {
 	*/
 	PodName string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the download server logs params
@@ -100,6 +101,11 @@ func (o *DownloadServerLogsParams) WithContext(ctx context.Context) *DownloadSer
 // SetContext adds the context to the download server logs params
 func (o *DownloadServerLogsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the download server logs params
+func (o *DownloadServerLogsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the download server logs params

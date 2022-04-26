@@ -70,9 +70,10 @@ type PublicGetPlayerBlockedPlayersV1Params struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the public get player blocked players v1 params
@@ -95,6 +96,11 @@ func (o *PublicGetPlayerBlockedPlayersV1Params) WithContext(ctx context.Context)
 // SetContext adds the context to the public get player blocked players v1 params
 func (o *PublicGetPlayerBlockedPlayersV1Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the public get player blocked players v1 params
+func (o *PublicGetPlayerBlockedPlayersV1Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the public get player blocked players v1 params

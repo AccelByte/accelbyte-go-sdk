@@ -74,9 +74,10 @@ type ResetPasswordV3Params struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the reset password v3 params
@@ -99,6 +100,11 @@ func (o *ResetPasswordV3Params) WithContext(ctx context.Context) *ResetPasswordV
 // SetContext adds the context to the reset password v3 params
 func (o *ResetPasswordV3Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the reset password v3 params
+func (o *ResetPasswordV3Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the reset password v3 params

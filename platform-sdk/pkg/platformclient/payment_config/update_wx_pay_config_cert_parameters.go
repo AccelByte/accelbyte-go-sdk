@@ -69,9 +69,10 @@ type UpdateWxPayConfigCertParams struct {
 	/*ID*/
 	ID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the update wx pay config cert params
@@ -94,6 +95,11 @@ func (o *UpdateWxPayConfigCertParams) WithContext(ctx context.Context) *UpdateWx
 // SetContext adds the context to the update wx pay config cert params
 func (o *UpdateWxPayConfigCertParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the update wx pay config cert params
+func (o *UpdateWxPayConfigCertParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the update wx pay config cert params

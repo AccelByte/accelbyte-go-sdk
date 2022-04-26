@@ -80,9 +80,10 @@ type ImportAchievementsParams struct {
 	*/
 	Strategy *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the import achievements params
@@ -105,6 +106,11 @@ func (o *ImportAchievementsParams) WithContext(ctx context.Context) *ImportAchie
 // SetContext adds the context to the import achievements params
 func (o *ImportAchievementsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the import achievements params
+func (o *ImportAchievementsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the import achievements params

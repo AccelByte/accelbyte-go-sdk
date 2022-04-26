@@ -75,9 +75,10 @@ type GetImageDetailParams struct {
 	*/
 	Version string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get image detail params
@@ -100,6 +101,11 @@ func (o *GetImageDetailParams) WithContext(ctx context.Context) *GetImageDetailP
 // SetContext adds the context to the get image detail params
 func (o *GetImageDetailParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get image detail params
+func (o *GetImageDetailParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get image detail params

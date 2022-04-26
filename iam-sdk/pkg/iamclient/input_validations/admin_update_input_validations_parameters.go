@@ -69,9 +69,10 @@ type AdminUpdateInputValidationsParams struct {
 	/*Body*/
 	Body []*iamclientmodels.ModelInputValidationUpdatePayload
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin update input validations params
@@ -94,6 +95,11 @@ func (o *AdminUpdateInputValidationsParams) WithContext(ctx context.Context) *Ad
 // SetContext adds the context to the admin update input validations params
 func (o *AdminUpdateInputValidationsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin update input validations params
+func (o *AdminUpdateInputValidationsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin update input validations params

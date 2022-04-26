@@ -70,9 +70,10 @@ type InitiateGroupConfigurationAdminV1Params struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the initiate group configuration admin v1 params
@@ -95,6 +96,11 @@ func (o *InitiateGroupConfigurationAdminV1Params) WithContext(ctx context.Contex
 // SetContext adds the context to the initiate group configuration admin v1 params
 func (o *InitiateGroupConfigurationAdminV1Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the initiate group configuration admin v1 params
+func (o *InitiateGroupConfigurationAdminV1Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the initiate group configuration admin v1 params

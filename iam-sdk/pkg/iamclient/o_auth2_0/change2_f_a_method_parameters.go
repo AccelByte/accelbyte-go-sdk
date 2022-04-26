@@ -75,9 +75,10 @@ type Change2FAMethodParams struct {
 	*/
 	MfaToken string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the change2 f a method params
@@ -100,6 +101,11 @@ func (o *Change2FAMethodParams) WithContext(ctx context.Context) *Change2FAMetho
 // SetContext adds the context to the change2 f a method params
 func (o *Change2FAMethodParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the change2 f a method params
+func (o *Change2FAMethodParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the change2 f a method params

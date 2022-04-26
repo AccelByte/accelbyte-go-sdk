@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_tag"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -122,7 +121,8 @@ func (a *AdminTagService) AdminDeleteTag(input *admin_tag.AdminDeleteTagParams) 
 	return nil
 }
 
-func (a *AdminTagService) AdminGetTagShort(input *admin_tag.AdminGetTagParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
+func (a *AdminTagService) AdminGetTagShort(input *admin_tag.AdminGetTagParams) (*ugcclientmodels.ModelsPaginatedGetTagResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -137,7 +137,8 @@ func (a *AdminTagService) AdminGetTagShort(input *admin_tag.AdminGetTagParams, a
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminTagService) AdminCreateTagShort(input *admin_tag.AdminCreateTagParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateTagResponse, error) {
+func (a *AdminTagService) AdminCreateTagShort(input *admin_tag.AdminCreateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -152,7 +153,8 @@ func (a *AdminTagService) AdminCreateTagShort(input *admin_tag.AdminCreateTagPar
 	return created.GetPayload(), nil
 }
 
-func (a *AdminTagService) AdminUpdateTagShort(input *admin_tag.AdminUpdateTagParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateTagResponse, error) {
+func (a *AdminTagService) AdminUpdateTagShort(input *admin_tag.AdminUpdateTagParams) (*ugcclientmodels.ModelsCreateTagResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -167,7 +169,8 @@ func (a *AdminTagService) AdminUpdateTagShort(input *admin_tag.AdminUpdateTagPar
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminTagService) AdminDeleteTagShort(input *admin_tag.AdminDeleteTagParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AdminTagService) AdminDeleteTagShort(input *admin_tag.AdminDeleteTagParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

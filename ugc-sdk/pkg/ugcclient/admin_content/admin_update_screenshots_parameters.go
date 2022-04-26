@@ -79,9 +79,10 @@ type AdminUpdateScreenshotsParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin update screenshots params
@@ -104,6 +105,11 @@ func (o *AdminUpdateScreenshotsParams) WithContext(ctx context.Context) *AdminUp
 // SetContext adds the context to the admin update screenshots params
 func (o *AdminUpdateScreenshotsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin update screenshots params
+func (o *AdminUpdateScreenshotsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin update screenshots params

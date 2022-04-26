@@ -69,9 +69,10 @@ type PublicGetQRCodeParams struct {
 	/*Namespace*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the public get q r code params
@@ -94,6 +95,11 @@ func (o *PublicGetQRCodeParams) WithContext(ctx context.Context) *PublicGetQRCod
 // SetContext adds the context to the public get q r code params
 func (o *PublicGetQRCodeParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the public get q r code params
+func (o *PublicGetQRCodeParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the public get q r code params

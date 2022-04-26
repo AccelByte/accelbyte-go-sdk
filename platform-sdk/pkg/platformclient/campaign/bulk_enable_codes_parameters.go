@@ -75,9 +75,10 @@ type BulkEnableCodesParams struct {
 	/*Namespace*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the bulk enable codes params
@@ -100,6 +101,11 @@ func (o *BulkEnableCodesParams) WithContext(ctx context.Context) *BulkEnableCode
 // SetContext adds the context to the bulk enable codes params
 func (o *BulkEnableCodesParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the bulk enable codes params
+func (o *BulkEnableCodesParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the bulk enable codes params

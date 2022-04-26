@@ -63,9 +63,10 @@ func NewAgentTypeDescriptionHandlerParamsWithHTTPClient(client *http.Client) *Ag
 for the agent type description handler operation typically these are written to a http.Request
 */
 type AgentTypeDescriptionHandlerParams struct {
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the agent type description handler params
@@ -88,6 +89,11 @@ func (o *AgentTypeDescriptionHandlerParams) WithContext(ctx context.Context) *Ag
 // SetContext adds the context to the agent type description handler params
 func (o *AgentTypeDescriptionHandlerParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the agent type description handler params
+func (o *AgentTypeDescriptionHandlerParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the agent type description handler params

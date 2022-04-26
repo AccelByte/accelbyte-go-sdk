@@ -73,9 +73,10 @@ type GetPaymentTaxValueParams struct {
 	/*ZipCode*/
 	ZipCode *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get payment tax value params
@@ -98,6 +99,11 @@ func (o *GetPaymentTaxValueParams) WithContext(ctx context.Context) *GetPaymentT
 // SetContext adds the context to the get payment tax value params
 func (o *GetPaymentTaxValueParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get payment tax value params
+func (o *GetPaymentTaxValueParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get payment tax value params

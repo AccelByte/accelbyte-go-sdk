@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -63,7 +62,8 @@ func (u *UserInfoService) InvalidateUserInfoCache(input *user_info.InvalidateUse
 	return nil
 }
 
-func (u *UserInfoService) GetUserInfoStatusShort(input *user_info.GetUserInfoStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrieveUserInfoCacheStatusResponse, error) {
+func (u *UserInfoService) GetUserInfoStatusShort(input *user_info.GetUserInfoStatusParams) ([]*legalclientmodels.RetrieveUserInfoCacheStatusResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -78,7 +78,8 @@ func (u *UserInfoService) GetUserInfoStatusShort(input *user_info.GetUserInfoSta
 	return ok.GetPayload(), nil
 }
 
-func (u *UserInfoService) SyncUserInfoShort(input *user_info.SyncUserInfoParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (u *UserInfoService) SyncUserInfoShort(input *user_info.SyncUserInfoParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -93,7 +94,8 @@ func (u *UserInfoService) SyncUserInfoShort(input *user_info.SyncUserInfoParams,
 	return nil
 }
 
-func (u *UserInfoService) InvalidateUserInfoCacheShort(input *user_info.InvalidateUserInfoCacheParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (u *UserInfoService) InvalidateUserInfoCacheShort(input *user_info.InvalidateUserInfoCacheParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

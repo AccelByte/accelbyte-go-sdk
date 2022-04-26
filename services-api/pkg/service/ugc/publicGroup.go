@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_group"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -162,7 +161,8 @@ func (p *PublicGroupService) GetGroupContent(input *public_group.GetGroupContent
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicGroupService) GetGroupsShort(input *public_group.GetGroupsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedGroupResponse, error) {
+func (p *PublicGroupService) GetGroupsShort(input *public_group.GetGroupsParams) (*ugcclientmodels.ModelsPaginatedGroupResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -177,7 +177,8 @@ func (p *PublicGroupService) GetGroupsShort(input *public_group.GetGroupsParams,
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicGroupService) CreateGroupShort(input *public_group.CreateGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+func (p *PublicGroupService) CreateGroupShort(input *public_group.CreateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -192,7 +193,8 @@ func (p *PublicGroupService) CreateGroupShort(input *public_group.CreateGroupPar
 	return created.GetPayload(), nil
 }
 
-func (p *PublicGroupService) GetGroupShort(input *public_group.GetGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+func (p *PublicGroupService) GetGroupShort(input *public_group.GetGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -207,7 +209,8 @@ func (p *PublicGroupService) GetGroupShort(input *public_group.GetGroupParams, a
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicGroupService) UpdateGroupShort(input *public_group.UpdateGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+func (p *PublicGroupService) UpdateGroupShort(input *public_group.UpdateGroupParams) (*ugcclientmodels.ModelsCreateGroupResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -222,7 +225,8 @@ func (p *PublicGroupService) UpdateGroupShort(input *public_group.UpdateGroupPar
 	return ok.GetPayload(), nil
 }
 
-func (p *PublicGroupService) DeleteGroupShort(input *public_group.DeleteGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (p *PublicGroupService) DeleteGroupShort(input *public_group.DeleteGroupParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -237,7 +241,8 @@ func (p *PublicGroupService) DeleteGroupShort(input *public_group.DeleteGroupPar
 	return nil
 }
 
-func (p *PublicGroupService) GetGroupContentShort(input *public_group.GetGroupContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+func (p *PublicGroupService) GetGroupContentShort(input *public_group.GetGroupContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

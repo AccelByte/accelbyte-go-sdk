@@ -75,9 +75,10 @@ type GrantDaysToSubscriptionParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the grant days to subscription params
@@ -100,6 +101,11 @@ func (o *GrantDaysToSubscriptionParams) WithContext(ctx context.Context) *GrantD
 // SetContext adds the context to the grant days to subscription params
 func (o *GrantDaysToSubscriptionParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the grant days to subscription params
+func (o *GrantDaysToSubscriptionParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the grant days to subscription params

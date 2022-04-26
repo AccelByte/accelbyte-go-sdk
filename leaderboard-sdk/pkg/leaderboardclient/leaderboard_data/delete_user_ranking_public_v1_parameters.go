@@ -80,9 +80,10 @@ type DeleteUserRankingPublicV1Params struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the delete user ranking public v1 params
@@ -105,6 +106,11 @@ func (o *DeleteUserRankingPublicV1Params) WithContext(ctx context.Context) *Dele
 // SetContext adds the context to the delete user ranking public v1 params
 func (o *DeleteUserRankingPublicV1Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the delete user ranking public v1 params
+func (o *DeleteUserRankingPublicV1Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the delete user ranking public v1 params

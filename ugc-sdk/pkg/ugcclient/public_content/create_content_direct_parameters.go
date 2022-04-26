@@ -84,9 +84,10 @@ type CreateContentDirectParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the create content direct params
@@ -109,6 +110,11 @@ func (o *CreateContentDirectParams) WithContext(ctx context.Context) *CreateCont
 // SetContext adds the context to the create content direct params
 func (o *CreateContentDirectParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the create content direct params
+func (o *CreateContentDirectParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the create content direct params

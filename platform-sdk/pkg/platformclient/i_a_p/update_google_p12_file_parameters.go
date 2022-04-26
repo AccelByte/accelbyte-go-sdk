@@ -69,9 +69,10 @@ type UpdateGoogleP12FileParams struct {
 	/*Namespace*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the update google p12 file params
@@ -94,6 +95,11 @@ func (o *UpdateGoogleP12FileParams) WithContext(ctx context.Context) *UpdateGoog
 // SetContext adds the context to the update google p12 file params
 func (o *UpdateGoogleP12FileParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the update google p12 file params
+func (o *UpdateGoogleP12FileParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the update google p12 file params

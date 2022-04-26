@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -44,7 +43,8 @@ func (p *PresenceService) UsersPresenceHandlerV1(input *presence.UsersPresenceHa
 	return ok.GetPayload(), nil
 }
 
-func (p *PresenceService) UsersPresenceHandlerV1Short(input *presence.UsersPresenceHandlerV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.HandlersGetUsersPresenceResponse, error) {
+func (p *PresenceService) UsersPresenceHandlerV1Short(input *presence.UsersPresenceHandlerV1Params) (*lobbyclientmodels.HandlersGetUsersPresenceResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

@@ -75,9 +75,10 @@ type ReorderTierParams struct {
 	/*SeasonID*/
 	SeasonID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the reorder tier params
@@ -100,6 +101,11 @@ func (o *ReorderTierParams) WithContext(ctx context.Context) *ReorderTierParams 
 // SetContext adds the context to the reorder tier params
 func (o *ReorderTierParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the reorder tier params
+func (o *ReorderTierParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the reorder tier params

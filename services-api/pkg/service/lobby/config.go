@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -157,7 +156,8 @@ func (c *ConfigService) AdminImportConfigV1(input *config.AdminImportConfigV1Par
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) AdminGetAllConfigV1Short(input *config.AdminGetAllConfigV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsConfigList, error) {
+func (c *ConfigService) AdminGetAllConfigV1Short(input *config.AdminGetAllConfigV1Params) (*lobbyclientmodels.ModelsConfigList, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -172,7 +172,8 @@ func (c *ConfigService) AdminGetAllConfigV1Short(input *config.AdminGetAllConfig
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) AdminGetConfigV1Short(input *config.AdminGetConfigV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsConfigReq, error) {
+func (c *ConfigService) AdminGetConfigV1Short(input *config.AdminGetConfigV1Params) (*lobbyclientmodels.ModelsConfigReq, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -187,7 +188,8 @@ func (c *ConfigService) AdminGetConfigV1Short(input *config.AdminGetConfigV1Para
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) AdminUpdateConfigV1Short(input *config.AdminUpdateConfigV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsConfigReq, error) {
+func (c *ConfigService) AdminUpdateConfigV1Short(input *config.AdminUpdateConfigV1Params) (*lobbyclientmodels.ModelsConfigReq, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -202,7 +204,8 @@ func (c *ConfigService) AdminUpdateConfigV1Short(input *config.AdminUpdateConfig
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) AdminExportConfigV1Short(input *config.AdminExportConfigV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsConfigExport, error) {
+func (c *ConfigService) AdminExportConfigV1Short(input *config.AdminExportConfigV1Params) (*lobbyclientmodels.ModelsConfigExport, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -217,7 +220,8 @@ func (c *ConfigService) AdminExportConfigV1Short(input *config.AdminExportConfig
 	return ok.GetPayload(), nil
 }
 
-func (c *ConfigService) AdminImportConfigV1Short(input *config.AdminImportConfigV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsImportConfigResponse, error) {
+func (c *ConfigService) AdminImportConfigV1Short(input *config.AdminImportConfigV1Params) (*lobbyclientmodels.ModelsImportConfigResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

@@ -75,9 +75,10 @@ type GetPublisherUserParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get publisher user params
@@ -100,6 +101,11 @@ func (o *GetPublisherUserParams) WithContext(ctx context.Context) *GetPublisherU
 // SetContext adds the context to the get publisher user params
 func (o *GetPublisherUserParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get publisher user params
+func (o *GetPublisherUserParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get publisher user params

@@ -69,9 +69,10 @@ type CreateImagePatchParams struct {
 	/*Body*/
 	Body *dsmcclientmodels.ModelsCreateImagePatchRequest
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the create image patch params
@@ -94,6 +95,11 @@ func (o *CreateImagePatchParams) WithContext(ctx context.Context) *CreateImagePa
 // SetContext adds the context to the create image patch params
 func (o *CreateImagePatchParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the create image patch params
+func (o *CreateImagePatchParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the create image patch params

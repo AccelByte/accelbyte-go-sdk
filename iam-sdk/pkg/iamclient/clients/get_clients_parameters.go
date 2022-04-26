@@ -63,9 +63,10 @@ func NewGetClientsParamsWithHTTPClient(client *http.Client) *GetClientsParams {
 for the get clients operation typically these are written to a http.Request
 */
 type GetClientsParams struct {
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get clients params
@@ -88,6 +89,11 @@ func (o *GetClientsParams) WithContext(ctx context.Context) *GetClientsParams {
 // SetContext adds the context to the get clients params
 func (o *GetClientsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get clients params
+func (o *GetClientsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get clients params

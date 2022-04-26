@@ -71,9 +71,10 @@ type UpdateEpicGamesIAPConfigParams struct {
 	/*Namespace*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the update epic games i a p config params
@@ -96,6 +97,11 @@ func (o *UpdateEpicGamesIAPConfigParams) WithContext(ctx context.Context) *Updat
 // SetContext adds the context to the update epic games i a p config params
 func (o *UpdateEpicGamesIAPConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the update epic games i a p config params
+func (o *UpdateEpicGamesIAPConfigParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the update epic games i a p config params

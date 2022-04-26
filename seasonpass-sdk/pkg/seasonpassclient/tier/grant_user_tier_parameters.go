@@ -76,9 +76,10 @@ type GrantUserTierParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the grant user tier params
@@ -101,6 +102,11 @@ func (o *GrantUserTierParams) WithContext(ctx context.Context) *GrantUserTierPar
 // SetContext adds the context to the grant user tier params
 func (o *GrantUserTierParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the grant user tier params
+func (o *GrantUserTierParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the grant user tier params

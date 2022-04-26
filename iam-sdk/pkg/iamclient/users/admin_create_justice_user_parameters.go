@@ -80,9 +80,10 @@ type AdminCreateJusticeUserParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin create justice user params
@@ -105,6 +106,11 @@ func (o *AdminCreateJusticeUserParams) WithContext(ctx context.Context) *AdminCr
 // SetContext adds the context to the admin create justice user params
 func (o *AdminCreateJusticeUserParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin create justice user params
+func (o *AdminCreateJusticeUserParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin create justice user params

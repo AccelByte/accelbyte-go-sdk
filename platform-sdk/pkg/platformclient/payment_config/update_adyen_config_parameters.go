@@ -96,9 +96,10 @@ type UpdateAdyenConfigParams struct {
 	/*Validate*/
 	Validate *bool
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the update adyen config params
@@ -121,6 +122,11 @@ func (o *UpdateAdyenConfigParams) WithContext(ctx context.Context) *UpdateAdyenC
 // SetContext adds the context to the update adyen config params
 func (o *UpdateAdyenConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the update adyen config params
+func (o *UpdateAdyenConfigParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the update adyen config params

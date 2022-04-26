@@ -63,9 +63,10 @@ func NewAdminGetInputValidationsParamsWithHTTPClient(client *http.Client) *Admin
 for the admin get input validations operation typically these are written to a http.Request
 */
 type AdminGetInputValidationsParams struct {
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin get input validations params
@@ -88,6 +89,11 @@ func (o *AdminGetInputValidationsParams) WithContext(ctx context.Context) *Admin
 // SetContext adds the context to the admin get input validations params
 func (o *AdminGetInputValidationsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin get input validations params
+func (o *AdminGetInputValidationsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin get input validations params

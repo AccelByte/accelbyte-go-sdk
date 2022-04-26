@@ -75,9 +75,10 @@ type PublicDownloadContentByContentIDParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the public download content by content ID params
@@ -100,6 +101,11 @@ func (o *PublicDownloadContentByContentIDParams) WithContext(ctx context.Context
 // SetContext adds the context to the public download content by content ID params
 func (o *PublicDownloadContentByContentIDParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the public download content by content ID params
+func (o *PublicDownloadContentByContentIDParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the public download content by content ID params

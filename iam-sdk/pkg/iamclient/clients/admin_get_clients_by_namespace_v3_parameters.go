@@ -81,9 +81,10 @@ type AdminGetClientsByNamespaceV3Params struct {
 	*/
 	Offset *int64
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin get clients by namespace v3 params
@@ -106,6 +107,11 @@ func (o *AdminGetClientsByNamespaceV3Params) WithContext(ctx context.Context) *A
 // SetContext adds the context to the admin get clients by namespace v3 params
 func (o *AdminGetClientsByNamespaceV3Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin get clients by namespace v3 params
+func (o *AdminGetClientsByNamespaceV3Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin get clients by namespace v3 params

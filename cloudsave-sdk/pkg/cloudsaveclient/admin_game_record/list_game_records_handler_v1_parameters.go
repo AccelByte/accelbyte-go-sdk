@@ -86,9 +86,10 @@ type ListGameRecordsHandlerV1Params struct {
 	*/
 	Query *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the list game records handler v1 params
@@ -111,6 +112,11 @@ func (o *ListGameRecordsHandlerV1Params) WithContext(ctx context.Context) *ListG
 // SetContext adds the context to the list game records handler v1 params
 func (o *ListGameRecordsHandlerV1Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the list game records handler v1 params
+func (o *ListGameRecordsHandlerV1Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the list game records handler v1 params

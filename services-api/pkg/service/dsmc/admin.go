@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -253,7 +252,8 @@ func (a *AdminService) DeleteSession(input *admin.DeleteSessionParams) error {
 	return nil
 }
 
-func (a *AdminService) ListServerShort(input *admin.ListServerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListServerResponse, error) {
+func (a *AdminService) ListServerShort(input *admin.ListServerParams) (*dsmcclientmodels.ModelsListServerResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -268,7 +268,8 @@ func (a *AdminService) ListServerShort(input *admin.ListServerParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) CountServerShort(input *admin.CountServerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsCountServerResponse, error) {
+func (a *AdminService) CountServerShort(input *admin.CountServerParams) (*dsmcclientmodels.ModelsCountServerResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -283,7 +284,8 @@ func (a *AdminService) CountServerShort(input *admin.CountServerParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) CountServerDetailedShort(input *admin.CountServerDetailedParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDetailedCountServerResponse, error) {
+func (a *AdminService) CountServerDetailedShort(input *admin.CountServerDetailedParams) (*dsmcclientmodels.ModelsDetailedCountServerResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -298,7 +300,8 @@ func (a *AdminService) CountServerDetailedShort(input *admin.CountServerDetailed
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) ListLocalServerShort(input *admin.ListLocalServerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListServerResponse, error) {
+func (a *AdminService) ListLocalServerShort(input *admin.ListLocalServerParams) (*dsmcclientmodels.ModelsListServerResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -313,7 +316,8 @@ func (a *AdminService) ListLocalServerShort(input *admin.ListLocalServerParams, 
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) DeleteLocalServerShort(input *admin.DeleteLocalServerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AdminService) DeleteLocalServerShort(input *admin.DeleteLocalServerParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -328,7 +332,8 @@ func (a *AdminService) DeleteLocalServerShort(input *admin.DeleteLocalServerPara
 	return nil
 }
 
-func (a *AdminService) GetServerShort(input *admin.GetServerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsServer, error) {
+func (a *AdminService) GetServerShort(input *admin.GetServerParams) (*dsmcclientmodels.ModelsServer, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -343,7 +348,8 @@ func (a *AdminService) GetServerShort(input *admin.GetServerParams, authInfoWrit
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -358,7 +364,8 @@ func (a *AdminService) DeleteServerShort(input *admin.DeleteServerParams, authIn
 	return nil
 }
 
-func (a *AdminService) GetServerLogsShort(input *admin.GetServerLogsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsServerLogs, error) {
+func (a *AdminService) GetServerLogsShort(input *admin.GetServerLogsParams) (*dsmcclientmodels.ModelsServerLogs, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -373,7 +380,8 @@ func (a *AdminService) GetServerLogsShort(input *admin.GetServerLogsParams, auth
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) ListSessionShort(input *admin.ListSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListSessionResponse, error) {
+func (a *AdminService) ListSessionShort(input *admin.ListSessionParams) (*dsmcclientmodels.ModelsListSessionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -388,7 +396,8 @@ func (a *AdminService) ListSessionShort(input *admin.ListSessionParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) CountSessionShort(input *admin.CountSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsCountSessionResponse, error) {
+func (a *AdminService) CountSessionShort(input *admin.CountSessionParams) (*dsmcclientmodels.ModelsCountSessionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -403,7 +412,8 @@ func (a *AdminService) CountSessionShort(input *admin.CountSessionParams, authIn
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminService) DeleteSessionShort(input *admin.DeleteSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AdminService) DeleteSessionShort(input *admin.DeleteSessionParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

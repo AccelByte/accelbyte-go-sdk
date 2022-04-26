@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -118,7 +117,8 @@ func (t *TicketService) AcquireUserTicket(input *ticket.AcquireUserTicketParams)
 	return ok.GetPayload(), nil
 }
 
-func (t *TicketService) GetTicketDynamicShort(input *ticket.GetTicketDynamicParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TicketDynamicInfo, error) {
+func (t *TicketService) GetTicketDynamicShort(input *ticket.GetTicketDynamicParams) (*platformclientmodels.TicketDynamicInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -133,7 +133,8 @@ func (t *TicketService) GetTicketDynamicShort(input *ticket.GetTicketDynamicPara
 	return ok.GetPayload(), nil
 }
 
-func (t *TicketService) DecreaseTicketSaleShort(input *ticket.DecreaseTicketSaleParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (t *TicketService) DecreaseTicketSaleShort(input *ticket.DecreaseTicketSaleParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -148,7 +149,8 @@ func (t *TicketService) DecreaseTicketSaleShort(input *ticket.DecreaseTicketSale
 	return nil
 }
 
-func (t *TicketService) GetTicketBoothIDShort(input *ticket.GetTicketBoothIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TicketBoothID, error) {
+func (t *TicketService) GetTicketBoothIDShort(input *ticket.GetTicketBoothIDParams) (*platformclientmodels.TicketBoothID, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -163,7 +165,8 @@ func (t *TicketService) GetTicketBoothIDShort(input *ticket.GetTicketBoothIDPara
 	return ok.GetPayload(), nil
 }
 
-func (t *TicketService) IncreaseTicketSaleShort(input *ticket.IncreaseTicketSaleParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TicketSaleIncrementResult, error) {
+func (t *TicketService) IncreaseTicketSaleShort(input *ticket.IncreaseTicketSaleParams) (*platformclientmodels.TicketSaleIncrementResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -178,7 +181,8 @@ func (t *TicketService) IncreaseTicketSaleShort(input *ticket.IncreaseTicketSale
 	return ok.GetPayload(), nil
 }
 
-func (t *TicketService) AcquireUserTicketShort(input *ticket.AcquireUserTicketParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TicketAcquireResult, error) {
+func (t *TicketService) AcquireUserTicketShort(input *ticket.AcquireUserTicketParams) (*platformclientmodels.TicketAcquireResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

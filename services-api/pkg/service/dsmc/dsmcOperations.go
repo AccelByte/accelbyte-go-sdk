@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -38,7 +37,8 @@ func (d *DsmcOperationsService) PublicGetMessages(input *dsmc_operations.PublicG
 	return ok.GetPayload(), nil
 }
 
-func (d *DsmcOperationsService) PublicGetMessagesShort(input *dsmc_operations.PublicGetMessagesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*dsmcclientmodels.LogAppMessageDeclaration, error) {
+func (d *DsmcOperationsService) PublicGetMessagesShort(input *dsmc_operations.PublicGetMessagesParams) ([]*dsmcclientmodels.LogAppMessageDeclaration, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

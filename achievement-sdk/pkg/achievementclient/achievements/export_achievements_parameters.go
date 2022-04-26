@@ -70,9 +70,10 @@ type ExportAchievementsParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the export achievements params
@@ -95,6 +96,11 @@ func (o *ExportAchievementsParams) WithContext(ctx context.Context) *ExportAchie
 // SetContext adds the context to the export achievements params
 func (o *ExportAchievementsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the export achievements params
+func (o *ExportAchievementsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the export achievements params

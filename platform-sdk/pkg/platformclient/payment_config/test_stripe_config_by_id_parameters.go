@@ -82,9 +82,10 @@ type TestStripeConfigByIDParams struct {
 	/*Sandbox*/
 	Sandbox *bool
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the test stripe config by Id params
@@ -107,6 +108,11 @@ func (o *TestStripeConfigByIDParams) WithContext(ctx context.Context) *TestStrip
 // SetContext adds the context to the test stripe config by Id params
 func (o *TestStripeConfigByIDParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the test stripe config by Id params
+func (o *TestStripeConfigByIDParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the test stripe config by Id params

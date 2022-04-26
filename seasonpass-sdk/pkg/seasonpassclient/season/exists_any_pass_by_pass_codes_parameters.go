@@ -75,9 +75,10 @@ type ExistsAnyPassByPassCodesParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the exists any pass by pass codes params
@@ -100,6 +101,11 @@ func (o *ExistsAnyPassByPassCodesParams) WithContext(ctx context.Context) *Exist
 // SetContext adds the context to the exists any pass by pass codes params
 func (o *ExistsAnyPassByPassCodesParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the exists any pass by pass codes params
+func (o *ExistsAnyPassByPassCodesParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the exists any pass by pass codes params

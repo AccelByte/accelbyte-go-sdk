@@ -74,9 +74,10 @@ type RevokeUserEntitlementsParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the revoke user entitlements params
@@ -99,6 +100,11 @@ func (o *RevokeUserEntitlementsParams) WithContext(ctx context.Context) *RevokeU
 // SetContext adds the context to the revoke user entitlements params
 func (o *RevokeUserEntitlementsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the revoke user entitlements params
+func (o *RevokeUserEntitlementsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the revoke user entitlements params

@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -120,7 +119,8 @@ func (b *BaseLegalPoliciesService) RetrieveAllPolicyTypes(input *base_legal_poli
 	return ok.GetPayload(), nil
 }
 
-func (b *BaseLegalPoliciesService) RetrieveAllLegalPoliciesShort(input *base_legal_policies.RetrieveAllLegalPoliciesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrieveBasePolicyResponse, error) {
+func (b *BaseLegalPoliciesService) RetrieveAllLegalPoliciesShort(input *base_legal_policies.RetrieveAllLegalPoliciesParams) ([]*legalclientmodels.RetrieveBasePolicyResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -135,7 +135,8 @@ func (b *BaseLegalPoliciesService) RetrieveAllLegalPoliciesShort(input *base_leg
 	return ok.GetPayload(), nil
 }
 
-func (b *BaseLegalPoliciesService) CreatePolicyShort(input *base_legal_policies.CreatePolicyParams, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.CreateBasePolicyResponse, error) {
+func (b *BaseLegalPoliciesService) CreatePolicyShort(input *base_legal_policies.CreatePolicyParams) (*legalclientmodels.CreateBasePolicyResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -150,7 +151,8 @@ func (b *BaseLegalPoliciesService) CreatePolicyShort(input *base_legal_policies.
 	return created.GetPayload(), nil
 }
 
-func (b *BaseLegalPoliciesService) RetrieveSinglePolicyShort(input *base_legal_policies.RetrieveSinglePolicyParams, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.RetrieveBasePolicyResponse, error) {
+func (b *BaseLegalPoliciesService) RetrieveSinglePolicyShort(input *base_legal_policies.RetrieveSinglePolicyParams) (*legalclientmodels.RetrieveBasePolicyResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -165,7 +167,8 @@ func (b *BaseLegalPoliciesService) RetrieveSinglePolicyShort(input *base_legal_p
 	return ok.GetPayload(), nil
 }
 
-func (b *BaseLegalPoliciesService) PartialUpdatePolicyShort(input *base_legal_policies.PartialUpdatePolicyParams, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.UpdateBasePolicyResponse, error) {
+func (b *BaseLegalPoliciesService) PartialUpdatePolicyShort(input *base_legal_policies.PartialUpdatePolicyParams) (*legalclientmodels.UpdateBasePolicyResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -180,7 +183,8 @@ func (b *BaseLegalPoliciesService) PartialUpdatePolicyShort(input *base_legal_po
 	return ok.GetPayload(), nil
 }
 
-func (b *BaseLegalPoliciesService) RetrievePolicyCountryShort(input *base_legal_policies.RetrievePolicyCountryParams, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.RetrievePolicyResponse, error) {
+func (b *BaseLegalPoliciesService) RetrievePolicyCountryShort(input *base_legal_policies.RetrievePolicyCountryParams) (*legalclientmodels.RetrievePolicyResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -195,7 +199,8 @@ func (b *BaseLegalPoliciesService) RetrievePolicyCountryShort(input *base_legal_
 	return ok.GetPayload(), nil
 }
 
-func (b *BaseLegalPoliciesService) RetrieveAllPolicyTypesShort(input *base_legal_policies.RetrieveAllPolicyTypesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrievePolicyTypeResponse, error) {
+func (b *BaseLegalPoliciesService) RetrieveAllPolicyTypesShort(input *base_legal_policies.RetrieveAllPolicyTypesParams) ([]*legalclientmodels.RetrievePolicyTypeResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

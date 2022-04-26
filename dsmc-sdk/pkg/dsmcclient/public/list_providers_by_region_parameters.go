@@ -70,9 +70,10 @@ type ListProvidersByRegionParams struct {
 	*/
 	Region string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the list providers by region params
@@ -95,6 +96,11 @@ func (o *ListProvidersByRegionParams) WithContext(ctx context.Context) *ListProv
 // SetContext adds the context to the list providers by region params
 func (o *ListProvidersByRegionParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the list providers by region params
+func (o *ListProvidersByRegionParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the list providers by region params

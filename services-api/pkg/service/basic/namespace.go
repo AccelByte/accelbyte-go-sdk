@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -249,7 +248,8 @@ func (n *NamespaceService) PublicGetNamespacePublisher(input *namespace.PublicGe
 	return ok.GetPayload(), nil
 }
 
-func (n *NamespaceService) GetNamespacesShort(input *namespace.GetNamespacesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*basicclientmodels.NamespaceInfo, error) {
+func (n *NamespaceService) GetNamespacesShort(input *namespace.GetNamespacesParams) ([]*basicclientmodels.NamespaceInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -264,7 +264,8 @@ func (n *NamespaceService) GetNamespacesShort(input *namespace.GetNamespacesPara
 	return ok.GetPayload(), nil
 }
 
-func (n *NamespaceService) CreateNamespaceShort(input *namespace.CreateNamespaceParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.NamespaceInfo, error) {
+func (n *NamespaceService) CreateNamespaceShort(input *namespace.CreateNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -279,7 +280,8 @@ func (n *NamespaceService) CreateNamespaceShort(input *namespace.CreateNamespace
 	return created.GetPayload(), nil
 }
 
-func (n *NamespaceService) GetNamespaceShort(input *namespace.GetNamespaceParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.NamespaceInfo, error) {
+func (n *NamespaceService) GetNamespaceShort(input *namespace.GetNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -294,7 +296,8 @@ func (n *NamespaceService) GetNamespaceShort(input *namespace.GetNamespaceParams
 	return ok.GetPayload(), nil
 }
 
-func (n *NamespaceService) DeleteNamespaceShort(input *namespace.DeleteNamespaceParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.NamespaceInfo, error) {
+func (n *NamespaceService) DeleteNamespaceShort(input *namespace.DeleteNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -309,7 +312,8 @@ func (n *NamespaceService) DeleteNamespaceShort(input *namespace.DeleteNamespace
 	return ok.GetPayload(), nil
 }
 
-func (n *NamespaceService) UpdateNamespaceShort(input *namespace.UpdateNamespaceParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.NamespaceInfo, error) {
+func (n *NamespaceService) UpdateNamespaceShort(input *namespace.UpdateNamespaceParams) (*basicclientmodels.NamespaceInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -324,7 +328,8 @@ func (n *NamespaceService) UpdateNamespaceShort(input *namespace.UpdateNamespace
 	return ok.GetPayload(), nil
 }
 
-func (n *NamespaceService) GetNamespacePublisherShort(input *namespace.GetNamespacePublisherParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.NamespacePublisherInfo, error) {
+func (n *NamespaceService) GetNamespacePublisherShort(input *namespace.GetNamespacePublisherParams) (*basicclientmodels.NamespacePublisherInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -339,7 +344,8 @@ func (n *NamespaceService) GetNamespacePublisherShort(input *namespace.GetNamesp
 	return ok.GetPayload(), nil
 }
 
-func (n *NamespaceService) ChangeNamespaceStatusShort(input *namespace.ChangeNamespaceStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.NamespaceInfo, error) {
+func (n *NamespaceService) ChangeNamespaceStatusShort(input *namespace.ChangeNamespaceStatusParams) (*basicclientmodels.NamespaceInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -354,7 +360,8 @@ func (n *NamespaceService) ChangeNamespaceStatusShort(input *namespace.ChangeNam
 	return ok.GetPayload(), nil
 }
 
-func (n *NamespaceService) PublicGetNamespacesShort(input *namespace.PublicGetNamespacesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*basicclientmodels.NamespaceInfo, error) {
+func (n *NamespaceService) PublicGetNamespacesShort(input *namespace.PublicGetNamespacesParams) ([]*basicclientmodels.NamespaceInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -369,7 +376,8 @@ func (n *NamespaceService) PublicGetNamespacesShort(input *namespace.PublicGetNa
 	return ok.GetPayload(), nil
 }
 
-func (n *NamespaceService) PublicGetNamespacePublisherShort(input *namespace.PublicGetNamespacePublisherParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.NamespacePublisherInfo, error) {
+func (n *NamespaceService) PublicGetNamespacePublisherShort(input *namespace.PublicGetNamespacePublisherParams) (*basicclientmodels.NamespacePublisherInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

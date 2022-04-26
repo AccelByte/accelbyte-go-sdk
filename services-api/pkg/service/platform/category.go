@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -222,7 +221,8 @@ func (c *CategoryService) PublicGetDescendantCategories(input *category.PublicGe
 	return ok.GetPayload(), nil
 }
 
-func (c *CategoryService) GetRootCategoriesShort(input *category.GetRootCategoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.FullCategoryInfo, error) {
+func (c *CategoryService) GetRootCategoriesShort(input *category.GetRootCategoriesParams) ([]*platformclientmodels.FullCategoryInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -237,7 +237,8 @@ func (c *CategoryService) GetRootCategoriesShort(input *category.GetRootCategori
 	return ok.GetPayload(), nil
 }
 
-func (c *CategoryService) CreateCategoryShort(input *category.CreateCategoryParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullCategoryInfo, error) {
+func (c *CategoryService) CreateCategoryShort(input *category.CreateCategoryParams) (*platformclientmodels.FullCategoryInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -252,7 +253,8 @@ func (c *CategoryService) CreateCategoryShort(input *category.CreateCategoryPara
 	return created.GetPayload(), nil
 }
 
-func (c *CategoryService) ListCategoriesBasicShort(input *category.ListCategoriesBasicParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.BasicCategoryInfo, error) {
+func (c *CategoryService) ListCategoriesBasicShort(input *category.ListCategoriesBasicParams) ([]*platformclientmodels.BasicCategoryInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -267,7 +269,8 @@ func (c *CategoryService) ListCategoriesBasicShort(input *category.ListCategorie
 	return ok.GetPayload(), nil
 }
 
-func (c *CategoryService) GetCategoryShort(input *category.GetCategoryParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullCategoryInfo, error) {
+func (c *CategoryService) GetCategoryShort(input *category.GetCategoryParams) (*platformclientmodels.FullCategoryInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -282,7 +285,8 @@ func (c *CategoryService) GetCategoryShort(input *category.GetCategoryParams, au
 	return ok.GetPayload(), nil
 }
 
-func (c *CategoryService) UpdateCategoryShort(input *category.UpdateCategoryParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullCategoryInfo, error) {
+func (c *CategoryService) UpdateCategoryShort(input *category.UpdateCategoryParams) (*platformclientmodels.FullCategoryInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -297,7 +301,8 @@ func (c *CategoryService) UpdateCategoryShort(input *category.UpdateCategoryPara
 	return ok.GetPayload(), nil
 }
 
-func (c *CategoryService) DeleteCategoryShort(input *category.DeleteCategoryParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullCategoryInfo, error) {
+func (c *CategoryService) DeleteCategoryShort(input *category.DeleteCategoryParams) (*platformclientmodels.FullCategoryInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -312,7 +317,8 @@ func (c *CategoryService) DeleteCategoryShort(input *category.DeleteCategoryPara
 	return ok.GetPayload(), nil
 }
 
-func (c *CategoryService) GetChildCategoriesShort(input *category.GetChildCategoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.FullCategoryInfo, error) {
+func (c *CategoryService) GetChildCategoriesShort(input *category.GetChildCategoriesParams) ([]*platformclientmodels.FullCategoryInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -327,7 +333,8 @@ func (c *CategoryService) GetChildCategoriesShort(input *category.GetChildCatego
 	return ok.GetPayload(), nil
 }
 
-func (c *CategoryService) GetDescendantCategoriesShort(input *category.GetDescendantCategoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.FullCategoryInfo, error) {
+func (c *CategoryService) GetDescendantCategoriesShort(input *category.GetDescendantCategoriesParams) ([]*platformclientmodels.FullCategoryInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

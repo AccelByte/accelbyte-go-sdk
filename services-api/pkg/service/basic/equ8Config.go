@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -75,7 +74,8 @@ func (e *EQU8ConfigService) UpdateConfig(input *e_q_u8_config.UpdateConfigParams
 	return ok.GetPayload(), nil
 }
 
-func (e *EQU8ConfigService) GetConfigShort(input *e_q_u8_config.GetConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.Equ8Config, error) {
+func (e *EQU8ConfigService) GetConfigShort(input *e_q_u8_config.GetConfigParams) (*basicclientmodels.Equ8Config, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -90,7 +90,8 @@ func (e *EQU8ConfigService) GetConfigShort(input *e_q_u8_config.GetConfigParams,
 	return ok.GetPayload(), nil
 }
 
-func (e *EQU8ConfigService) DeleteConfigShort(input *e_q_u8_config.DeleteConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (e *EQU8ConfigService) DeleteConfigShort(input *e_q_u8_config.DeleteConfigParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -105,7 +106,8 @@ func (e *EQU8ConfigService) DeleteConfigShort(input *e_q_u8_config.DeleteConfigP
 	return nil
 }
 
-func (e *EQU8ConfigService) UpdateConfigShort(input *e_q_u8_config.UpdateConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*basicclientmodels.Equ8Config, error) {
+func (e *EQU8ConfigService) UpdateConfigShort(input *e_q_u8_config.UpdateConfigParams) (*basicclientmodels.Equ8Config, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

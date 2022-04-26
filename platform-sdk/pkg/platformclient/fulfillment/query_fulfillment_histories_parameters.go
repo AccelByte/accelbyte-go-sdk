@@ -96,9 +96,10 @@ type QueryFulfillmentHistoriesParams struct {
 	/*UserID*/
 	UserID *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the query fulfillment histories params
@@ -121,6 +122,11 @@ func (o *QueryFulfillmentHistoriesParams) WithContext(ctx context.Context) *Quer
 // SetContext adds the context to the query fulfillment histories params
 func (o *QueryFulfillmentHistoriesParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the query fulfillment histories params
+func (o *QueryFulfillmentHistoriesParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the query fulfillment histories params

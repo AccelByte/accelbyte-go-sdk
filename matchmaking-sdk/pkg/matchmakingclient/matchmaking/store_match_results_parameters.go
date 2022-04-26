@@ -74,9 +74,10 @@ type StoreMatchResultsParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the store match results params
@@ -99,6 +100,11 @@ func (o *StoreMatchResultsParams) WithContext(ctx context.Context) *StoreMatchRe
 // SetContext adds the context to the store match results params
 func (o *StoreMatchResultsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the store match results params
+func (o *StoreMatchResultsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the store match results params

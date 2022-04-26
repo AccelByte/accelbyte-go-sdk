@@ -74,9 +74,10 @@ type PostEventHandlerParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the post event handler params
@@ -99,6 +100,11 @@ func (o *PostEventHandlerParams) WithContext(ctx context.Context) *PostEventHand
 // SetContext adds the context to the post event handler params
 func (o *PostEventHandlerParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the post event handler params
+func (o *PostEventHandlerParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the post event handler params

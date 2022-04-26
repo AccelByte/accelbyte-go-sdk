@@ -79,9 +79,10 @@ type PublicPlatformUnlinkV3Params struct {
 	*/
 	PlatformID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the public platform unlink v3 params
@@ -104,6 +105,11 @@ func (o *PublicPlatformUnlinkV3Params) WithContext(ctx context.Context) *PublicP
 // SetContext adds the context to the public platform unlink v3 params
 func (o *PublicPlatformUnlinkV3Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the public platform unlink v3 params
+func (o *PublicPlatformUnlinkV3Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the public platform unlink v3 params

@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/legal-sdk/pkg/legalclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -153,7 +152,8 @@ func (a *AgreementService) IndirectBulkAcceptVersionedPolicy1(input *agreement.I
 	return created.GetPayload(), nil
 }
 
-func (a *AgreementService) ChangePreferenceConsentShort(input *agreement.ChangePreferenceConsentParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AgreementService) ChangePreferenceConsentShort(input *agreement.ChangePreferenceConsentParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -168,7 +168,8 @@ func (a *AgreementService) ChangePreferenceConsentShort(input *agreement.ChangeP
 	return nil
 }
 
-func (a *AgreementService) RetrieveAcceptedAgreementsShort(input *agreement.RetrieveAcceptedAgreementsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrieveAcceptedAgreementResponse, error) {
+func (a *AgreementService) RetrieveAcceptedAgreementsShort(input *agreement.RetrieveAcceptedAgreementsParams) ([]*legalclientmodels.RetrieveAcceptedAgreementResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -183,7 +184,8 @@ func (a *AgreementService) RetrieveAcceptedAgreementsShort(input *agreement.Retr
 	return ok.GetPayload(), nil
 }
 
-func (a *AgreementService) RetrieveAllUsersByPolicyVersionShort(input *agreement.RetrieveAllUsersByPolicyVersionParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse, error) {
+func (a *AgreementService) RetrieveAllUsersByPolicyVersionShort(input *agreement.RetrieveAllUsersByPolicyVersionParams) ([]*legalclientmodels.PagedRetrieveUserAcceptedAgreementResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -198,7 +200,8 @@ func (a *AgreementService) RetrieveAllUsersByPolicyVersionShort(input *agreement
 	return ok.GetPayload(), nil
 }
 
-func (a *AgreementService) ChangePreferenceConsent1Short(input *agreement.ChangePreferenceConsent1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AgreementService) ChangePreferenceConsent1Short(input *agreement.ChangePreferenceConsent1Params) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -213,7 +216,8 @@ func (a *AgreementService) ChangePreferenceConsent1Short(input *agreement.Change
 	return nil
 }
 
-func (a *AgreementService) AcceptVersionedPolicyShort(input *agreement.AcceptVersionedPolicyParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AgreementService) AcceptVersionedPolicyShort(input *agreement.AcceptVersionedPolicyParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -228,7 +232,8 @@ func (a *AgreementService) AcceptVersionedPolicyShort(input *agreement.AcceptVer
 	return nil
 }
 
-func (a *AgreementService) RetrieveAgreementsPublicShort(input *agreement.RetrieveAgreementsPublicParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*legalclientmodels.RetrieveAcceptedAgreementResponse, error) {
+func (a *AgreementService) RetrieveAgreementsPublicShort(input *agreement.RetrieveAgreementsPublicParams) ([]*legalclientmodels.RetrieveAcceptedAgreementResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -243,7 +248,8 @@ func (a *AgreementService) RetrieveAgreementsPublicShort(input *agreement.Retrie
 	return ok.GetPayload(), nil
 }
 
-func (a *AgreementService) BulkAcceptVersionedPolicyShort(input *agreement.BulkAcceptVersionedPolicyParams, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.AcceptAgreementResponse, error) {
+func (a *AgreementService) BulkAcceptVersionedPolicyShort(input *agreement.BulkAcceptVersionedPolicyParams) (*legalclientmodels.AcceptAgreementResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -258,7 +264,8 @@ func (a *AgreementService) BulkAcceptVersionedPolicyShort(input *agreement.BulkA
 	return created.GetPayload(), nil
 }
 
-func (a *AgreementService) IndirectBulkAcceptVersionedPolicyV2Short(input *agreement.IndirectBulkAcceptVersionedPolicyV2Params, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.AcceptAgreementResponse, error) {
+func (a *AgreementService) IndirectBulkAcceptVersionedPolicyV2Short(input *agreement.IndirectBulkAcceptVersionedPolicyV2Params) (*legalclientmodels.AcceptAgreementResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -273,7 +280,8 @@ func (a *AgreementService) IndirectBulkAcceptVersionedPolicyV2Short(input *agree
 	return created.GetPayload(), nil
 }
 
-func (a *AgreementService) IndirectBulkAcceptVersionedPolicy1Short(input *agreement.IndirectBulkAcceptVersionedPolicy1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*legalclientmodels.AcceptAgreementResponse, error) {
+func (a *AgreementService) IndirectBulkAcceptVersionedPolicy1Short(input *agreement.IndirectBulkAcceptVersionedPolicy1Params) (*legalclientmodels.AcceptAgreementResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

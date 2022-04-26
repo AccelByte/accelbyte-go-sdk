@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -584,7 +583,8 @@ func (i *ItemService) PublicGetItem(input *item.PublicGetItemParams) (*platformc
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) SyncInGameItemShort(input *item.SyncInGameItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
+func (i *ItemService) SyncInGameItemShort(input *item.SyncInGameItemParams) (*platformclientmodels.FullItemInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -599,7 +599,8 @@ func (i *ItemService) SyncInGameItemShort(input *item.SyncInGameItemParams, auth
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) CreateItemShort(input *item.CreateItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
+func (i *ItemService) CreateItemShort(input *item.CreateItemParams) (*platformclientmodels.FullItemInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -614,7 +615,8 @@ func (i *ItemService) CreateItemShort(input *item.CreateItemParams, authInfoWrit
 	return created.GetPayload(), nil
 }
 
-func (i *ItemService) GetItemByAppIDShort(input *item.GetItemByAppIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
+func (i *ItemService) GetItemByAppIDShort(input *item.GetItemByAppIDParams) (*platformclientmodels.FullItemInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -629,7 +631,8 @@ func (i *ItemService) GetItemByAppIDShort(input *item.GetItemByAppIDParams, auth
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) QueryItemsShort(input *item.QueryItemsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemPagingSlicedResult, error) {
+func (i *ItemService) QueryItemsShort(input *item.QueryItemsParams) (*platformclientmodels.FullItemPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -644,7 +647,8 @@ func (i *ItemService) QueryItemsShort(input *item.QueryItemsParams, authInfoWrit
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) ListBasicItemsByFeaturesShort(input *item.ListBasicItemsByFeaturesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.BasicItem, error) {
+func (i *ItemService) ListBasicItemsByFeaturesShort(input *item.ListBasicItemsByFeaturesParams) ([]*platformclientmodels.BasicItem, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -659,7 +663,8 @@ func (i *ItemService) ListBasicItemsByFeaturesShort(input *item.ListBasicItemsBy
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) GetItemBySkuShort(input *item.GetItemBySkuParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
+func (i *ItemService) GetItemBySkuShort(input *item.GetItemBySkuParams) (*platformclientmodels.FullItemInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -674,7 +679,8 @@ func (i *ItemService) GetItemBySkuShort(input *item.GetItemBySkuParams, authInfo
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) GetLocaleItemBySkuShort(input *item.GetLocaleItemBySkuParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PopulatedItemInfo, error) {
+func (i *ItemService) GetLocaleItemBySkuShort(input *item.GetLocaleItemBySkuParams) (*platformclientmodels.PopulatedItemInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -689,7 +695,8 @@ func (i *ItemService) GetLocaleItemBySkuShort(input *item.GetLocaleItemBySkuPara
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) GetItemIDBySkuShort(input *item.GetItemIDBySkuParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.ItemID, error) {
+func (i *ItemService) GetItemIDBySkuShort(input *item.GetItemIDBySkuParams) (*platformclientmodels.ItemID, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -704,7 +711,8 @@ func (i *ItemService) GetItemIDBySkuShort(input *item.GetItemIDBySkuParams, auth
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) BulkGetLocaleItemsShort(input *item.BulkGetLocaleItemsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.ItemInfo, error) {
+func (i *ItemService) BulkGetLocaleItemsShort(input *item.BulkGetLocaleItemsParams) ([]*platformclientmodels.ItemInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -719,7 +727,8 @@ func (i *ItemService) BulkGetLocaleItemsShort(input *item.BulkGetLocaleItemsPara
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) SearchItemsShort(input *item.SearchItemsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemPagingSlicedResult, error) {
+func (i *ItemService) SearchItemsShort(input *item.SearchItemsParams) (*platformclientmodels.FullItemPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -734,7 +743,8 @@ func (i *ItemService) SearchItemsShort(input *item.SearchItemsParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) QueryUncategorizedItemsShort(input *item.QueryUncategorizedItemsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemPagingSlicedResult, error) {
+func (i *ItemService) QueryUncategorizedItemsShort(input *item.QueryUncategorizedItemsParams) (*platformclientmodels.FullItemPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -749,7 +759,8 @@ func (i *ItemService) QueryUncategorizedItemsShort(input *item.QueryUncategorize
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) GetItemShort(input *item.GetItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
+func (i *ItemService) GetItemShort(input *item.GetItemParams) (*platformclientmodels.FullItemInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -764,7 +775,8 @@ func (i *ItemService) GetItemShort(input *item.GetItemParams, authInfoWriter run
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) UpdateItemShort(input *item.UpdateItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
+func (i *ItemService) UpdateItemShort(input *item.UpdateItemParams) (*platformclientmodels.FullItemInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -779,7 +791,8 @@ func (i *ItemService) UpdateItemShort(input *item.UpdateItemParams, authInfoWrit
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) DeleteItemShort(input *item.DeleteItemParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (i *ItemService) DeleteItemShort(input *item.DeleteItemParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -794,7 +807,8 @@ func (i *ItemService) DeleteItemShort(input *item.DeleteItemParams, authInfoWrit
 	return nil
 }
 
-func (i *ItemService) AcquireItemShort(input *item.AcquireItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.ItemAcquireResult, error) {
+func (i *ItemService) AcquireItemShort(input *item.AcquireItemParams) (*platformclientmodels.ItemAcquireResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -809,7 +823,8 @@ func (i *ItemService) AcquireItemShort(input *item.AcquireItemParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) GetAppShort(input *item.GetAppParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullAppInfo, error) {
+func (i *ItemService) GetAppShort(input *item.GetAppParams) (*platformclientmodels.FullAppInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -824,7 +839,8 @@ func (i *ItemService) GetAppShort(input *item.GetAppParams, authInfoWriter runti
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) UpdateAppShort(input *item.UpdateAppParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullAppInfo, error) {
+func (i *ItemService) UpdateAppShort(input *item.UpdateAppParams) (*platformclientmodels.FullAppInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -839,7 +855,8 @@ func (i *ItemService) UpdateAppShort(input *item.UpdateAppParams, authInfoWriter
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) DisableItemShort(input *item.DisableItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
+func (i *ItemService) DisableItemShort(input *item.DisableItemParams) (*platformclientmodels.FullItemInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -854,7 +871,8 @@ func (i *ItemService) DisableItemShort(input *item.DisableItemParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) GetItemDynamicDataShort(input *item.GetItemDynamicDataParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.ItemDynamicDataInfo, error) {
+func (i *ItemService) GetItemDynamicDataShort(input *item.GetItemDynamicDataParams) (*platformclientmodels.ItemDynamicDataInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -869,7 +887,8 @@ func (i *ItemService) GetItemDynamicDataShort(input *item.GetItemDynamicDataPara
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) EnableItemShort(input *item.EnableItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
+func (i *ItemService) EnableItemShort(input *item.EnableItemParams) (*platformclientmodels.FullItemInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -884,7 +903,8 @@ func (i *ItemService) EnableItemShort(input *item.EnableItemParams, authInfoWrit
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) FeatureItemShort(input *item.FeatureItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
+func (i *ItemService) FeatureItemShort(input *item.FeatureItemParams) (*platformclientmodels.FullItemInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -899,7 +919,8 @@ func (i *ItemService) FeatureItemShort(input *item.FeatureItemParams, authInfoWr
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) DefeatureItemShort(input *item.DefeatureItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FullItemInfo, error) {
+func (i *ItemService) DefeatureItemShort(input *item.DefeatureItemParams) (*platformclientmodels.FullItemInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -914,7 +935,8 @@ func (i *ItemService) DefeatureItemShort(input *item.DefeatureItemParams, authIn
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) GetLocaleItemShort(input *item.GetLocaleItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PopulatedItemInfo, error) {
+func (i *ItemService) GetLocaleItemShort(input *item.GetLocaleItemParams) (*platformclientmodels.PopulatedItemInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -929,7 +951,8 @@ func (i *ItemService) GetLocaleItemShort(input *item.GetLocaleItemParams, authIn
 	return ok.GetPayload(), nil
 }
 
-func (i *ItemService) ReturnItemShort(input *item.ReturnItemParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (i *ItemService) ReturnItemShort(input *item.ReturnItemParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

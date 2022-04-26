@@ -75,9 +75,10 @@ type AdminSubmitUserAccountDeletionRequestParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin submit user account deletion request params
@@ -100,6 +101,11 @@ func (o *AdminSubmitUserAccountDeletionRequestParams) WithContext(ctx context.Co
 // SetContext adds the context to the admin submit user account deletion request params
 func (o *AdminSubmitUserAccountDeletionRequestParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin submit user account deletion request params
+func (o *AdminSubmitUserAccountDeletionRequestParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin submit user account deletion request params

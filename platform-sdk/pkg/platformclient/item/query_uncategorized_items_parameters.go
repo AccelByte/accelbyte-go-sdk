@@ -126,9 +126,10 @@ type QueryUncategorizedItemsParams struct {
 	*/
 	StoreID *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the query uncategorized items params
@@ -151,6 +152,11 @@ func (o *QueryUncategorizedItemsParams) WithContext(ctx context.Context) *QueryU
 // SetContext adds the context to the query uncategorized items params
 func (o *QueryUncategorizedItemsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the query uncategorized items params
+func (o *QueryUncategorizedItemsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the query uncategorized items params

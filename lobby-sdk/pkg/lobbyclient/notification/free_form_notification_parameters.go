@@ -77,9 +77,10 @@ type FreeFormNotificationParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the free form notification params
@@ -102,6 +103,11 @@ func (o *FreeFormNotificationParams) WithContext(ctx context.Context) *FreeFormN
 // SetContext adds the context to the free form notification params
 func (o *FreeFormNotificationParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the free form notification params
+func (o *FreeFormNotificationParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the free form notification params

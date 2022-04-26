@@ -73,9 +73,10 @@ type SyncXboxDLCParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the sync xbox d l c params
@@ -98,6 +99,11 @@ func (o *SyncXboxDLCParams) WithContext(ctx context.Context) *SyncXboxDLCParams 
 // SetContext adds the context to the sync xbox d l c params
 func (o *SyncXboxDLCParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the sync xbox d l c params
+func (o *SyncXboxDLCParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the sync xbox d l c params

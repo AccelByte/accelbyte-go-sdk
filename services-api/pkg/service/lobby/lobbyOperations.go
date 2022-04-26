@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -102,7 +101,8 @@ func (l *LobbyOperationsService) PublicGetMessages(input *lobby_operations.Publi
 	return ok.GetPayload(), nil
 }
 
-func (l *LobbyOperationsService) AdminUpdatePartyAttributesV1Short(input *lobby_operations.AdminUpdatePartyAttributesV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelsPartyData, error) {
+func (l *LobbyOperationsService) AdminUpdatePartyAttributesV1Short(input *lobby_operations.AdminUpdatePartyAttributesV1Params) (*lobbyclientmodels.ModelsPartyData, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -117,7 +117,8 @@ func (l *LobbyOperationsService) AdminUpdatePartyAttributesV1Short(input *lobby_
 	return ok.GetPayload(), nil
 }
 
-func (l *LobbyOperationsService) AdminJoinPartyV1Short(input *lobby_operations.AdminJoinPartyV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (l *LobbyOperationsService) AdminJoinPartyV1Short(input *lobby_operations.AdminJoinPartyV1Params) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -132,7 +133,8 @@ func (l *LobbyOperationsService) AdminJoinPartyV1Short(input *lobby_operations.A
 	return nil
 }
 
-func (l *LobbyOperationsService) PublicGetMessagesShort(input *lobby_operations.PublicGetMessagesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.LogAppMessageDeclaration, error) {
+func (l *LobbyOperationsService) PublicGetMessagesShort(input *lobby_operations.PublicGetMessagesParams) ([]*lobbyclientmodels.LogAppMessageDeclaration, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

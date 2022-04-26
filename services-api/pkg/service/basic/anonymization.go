@@ -11,7 +11,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/basic-sdk/pkg/basicclient/anonymization"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -43,7 +42,8 @@ func (a *AnonymizationService) AnonymizeUserProfile(input *anonymization.Anonymi
 	return nil
 }
 
-func (a *AnonymizationService) AnonymizeUserProfileShort(input *anonymization.AnonymizeUserProfileParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AnonymizationService) AnonymizeUserProfileShort(input *anonymization.AnonymizeUserProfileParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

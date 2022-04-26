@@ -63,9 +63,10 @@ func NewUXNameDescriptionHandlerParamsWithHTTPClient(client *http.Client) *UXNam
 for the u x name description handler operation typically these are written to a http.Request
 */
 type UXNameDescriptionHandlerParams struct {
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the u x name description handler params
@@ -88,6 +89,11 @@ func (o *UXNameDescriptionHandlerParams) WithContext(ctx context.Context) *UXNam
 // SetContext adds the context to the u x name description handler params
 func (o *UXNameDescriptionHandlerParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the u x name description handler params
+func (o *UXNameDescriptionHandlerParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the u x name description handler params

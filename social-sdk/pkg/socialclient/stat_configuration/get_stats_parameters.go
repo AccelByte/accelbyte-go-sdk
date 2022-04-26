@@ -95,9 +95,10 @@ type GetStatsParams struct {
 	/*Offset*/
 	Offset *int32
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get stats params
@@ -120,6 +121,11 @@ func (o *GetStatsParams) WithContext(ctx context.Context) *GetStatsParams {
 // SetContext adds the context to the get stats params
 func (o *GetStatsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get stats params
+func (o *GetStatsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get stats params

@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/lobby-sdk/pkg/lobbyclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -334,7 +333,8 @@ func (f *FriendsService) GetListOfFriends(input *friends.GetListOfFriendsParams)
 	return ok.GetPayload(), nil
 }
 
-func (f *FriendsService) GetUserFriendsUpdatedShort(input *friends.GetUserFriendsUpdatedParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelGetUserFriendsResponse, error) {
+func (f *FriendsService) GetUserFriendsUpdatedShort(input *friends.GetUserFriendsUpdatedParams) ([]*lobbyclientmodels.ModelGetUserFriendsResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -349,7 +349,8 @@ func (f *FriendsService) GetUserFriendsUpdatedShort(input *friends.GetUserFriend
 	return ok.GetPayload(), nil
 }
 
-func (f *FriendsService) GetUserIncomingFriendsShort(input *friends.GetUserIncomingFriendsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelGetUserIncomingFriendsResponse, error) {
+func (f *FriendsService) GetUserIncomingFriendsShort(input *friends.GetUserIncomingFriendsParams) ([]*lobbyclientmodels.ModelGetUserIncomingFriendsResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -364,7 +365,8 @@ func (f *FriendsService) GetUserIncomingFriendsShort(input *friends.GetUserIncom
 	return ok.GetPayload(), nil
 }
 
-func (f *FriendsService) GetUserOutgoingFriendsShort(input *friends.GetUserOutgoingFriendsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*lobbyclientmodels.ModelGetUserOutgoingFriendsResponse, error) {
+func (f *FriendsService) GetUserOutgoingFriendsShort(input *friends.GetUserOutgoingFriendsParams) ([]*lobbyclientmodels.ModelGetUserOutgoingFriendsResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -379,7 +381,8 @@ func (f *FriendsService) GetUserOutgoingFriendsShort(input *friends.GetUserOutgo
 	return ok.GetPayload(), nil
 }
 
-func (f *FriendsService) UserRequestFriendShort(input *friends.UserRequestFriendParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (f *FriendsService) UserRequestFriendShort(input *friends.UserRequestFriendParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -394,7 +397,8 @@ func (f *FriendsService) UserRequestFriendShort(input *friends.UserRequestFriend
 	return nil
 }
 
-func (f *FriendsService) UserAcceptFriendRequestShort(input *friends.UserAcceptFriendRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (f *FriendsService) UserAcceptFriendRequestShort(input *friends.UserAcceptFriendRequestParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -409,7 +413,8 @@ func (f *FriendsService) UserAcceptFriendRequestShort(input *friends.UserAcceptF
 	return nil
 }
 
-func (f *FriendsService) UserCancelFriendRequestShort(input *friends.UserCancelFriendRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (f *FriendsService) UserCancelFriendRequestShort(input *friends.UserCancelFriendRequestParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -424,7 +429,8 @@ func (f *FriendsService) UserCancelFriendRequestShort(input *friends.UserCancelF
 	return nil
 }
 
-func (f *FriendsService) UserRejectFriendRequestShort(input *friends.UserRejectFriendRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (f *FriendsService) UserRejectFriendRequestShort(input *friends.UserRejectFriendRequestParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -439,7 +445,8 @@ func (f *FriendsService) UserRejectFriendRequestShort(input *friends.UserRejectF
 	return nil
 }
 
-func (f *FriendsService) UserGetFriendshipStatusShort(input *friends.UserGetFriendshipStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelUserGetFriendshipStatusResponse, error) {
+func (f *FriendsService) UserGetFriendshipStatusShort(input *friends.UserGetFriendshipStatusParams) (*lobbyclientmodels.ModelUserGetFriendshipStatusResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -454,7 +461,8 @@ func (f *FriendsService) UserGetFriendshipStatusShort(input *friends.UserGetFrie
 	return ok.GetPayload(), nil
 }
 
-func (f *FriendsService) UserUnfriendRequestShort(input *friends.UserUnfriendRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (f *FriendsService) UserUnfriendRequestShort(input *friends.UserUnfriendRequestParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -469,7 +477,8 @@ func (f *FriendsService) UserUnfriendRequestShort(input *friends.UserUnfriendReq
 	return nil
 }
 
-func (f *FriendsService) AddFriendsWithoutConfirmationShort(input *friends.AddFriendsWithoutConfirmationParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (f *FriendsService) AddFriendsWithoutConfirmationShort(input *friends.AddFriendsWithoutConfirmationParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -484,7 +493,8 @@ func (f *FriendsService) AddFriendsWithoutConfirmationShort(input *friends.AddFr
 	return nil
 }
 
-func (f *FriendsService) GetListOfFriendsShort(input *friends.GetListOfFriendsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*lobbyclientmodels.ModelGetFriendsResponse, error) {
+func (f *FriendsService) GetListOfFriendsShort(input *friends.GetListOfFriendsParams) (*lobbyclientmodels.ModelGetFriendsResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

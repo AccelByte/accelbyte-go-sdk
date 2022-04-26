@@ -79,9 +79,10 @@ type AdminLinkPlatformAccountParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin link platform account params
@@ -104,6 +105,11 @@ func (o *AdminLinkPlatformAccountParams) WithContext(ctx context.Context) *Admin
 // SetContext adds the context to the admin link platform account params
 func (o *AdminLinkPlatformAccountParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin link platform account params
+func (o *AdminLinkPlatformAccountParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin link platform account params

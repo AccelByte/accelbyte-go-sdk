@@ -71,9 +71,10 @@ type ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams struct {
 	/*Body*/
 	Body []*gametelemetryclientmodels.TelemetryBody
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the protected save events game telemetry v1 protected events post params
@@ -96,6 +97,11 @@ func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams) WithContex
 // SetContext adds the context to the protected save events game telemetry v1 protected events post params
 func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the protected save events game telemetry v1 protected events post params
+func (o *ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the protected save events game telemetry v1 protected events post params

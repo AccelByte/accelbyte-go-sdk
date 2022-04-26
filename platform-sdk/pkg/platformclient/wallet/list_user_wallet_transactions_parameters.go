@@ -105,9 +105,10 @@ type ListUserWalletTransactionsParams struct {
 	*/
 	WalletID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the list user wallet transactions params
@@ -130,6 +131,11 @@ func (o *ListUserWalletTransactionsParams) WithContext(ctx context.Context) *Lis
 // SetContext adds the context to the list user wallet transactions params
 func (o *ListUserWalletTransactionsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the list user wallet transactions params
+func (o *ListUserWalletTransactionsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the list user wallet transactions params

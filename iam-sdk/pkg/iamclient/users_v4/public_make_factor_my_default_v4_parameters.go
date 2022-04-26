@@ -75,9 +75,10 @@ type PublicMakeFactorMyDefaultV4Params struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the public make factor my default v4 params
@@ -100,6 +101,11 @@ func (o *PublicMakeFactorMyDefaultV4Params) WithContext(ctx context.Context) *Pu
 // SetContext adds the context to the public make factor my default v4 params
 func (o *PublicMakeFactorMyDefaultV4Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the public make factor my default v4 params
+func (o *PublicMakeFactorMyDefaultV4Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the public make factor my default v4 params

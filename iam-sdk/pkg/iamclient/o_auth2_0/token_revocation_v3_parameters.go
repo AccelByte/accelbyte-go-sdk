@@ -70,9 +70,10 @@ type TokenRevocationV3Params struct {
 	*/
 	Token string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the token revocation v3 params
@@ -95,6 +96,11 @@ func (o *TokenRevocationV3Params) WithContext(ctx context.Context) *TokenRevocat
 // SetContext adds the context to the token revocation v3 params
 func (o *TokenRevocationV3Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the token revocation v3 params
+func (o *TokenRevocationV3Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the token revocation v3 params

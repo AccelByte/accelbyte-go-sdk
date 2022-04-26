@@ -89,9 +89,10 @@ type PublicUpdateAttributeParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the public update attribute params
@@ -114,6 +115,11 @@ func (o *PublicUpdateAttributeParams) WithContext(ctx context.Context) *PublicUp
 // SetContext adds the context to the public update attribute params
 func (o *PublicUpdateAttributeParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the public update attribute params
+func (o *PublicUpdateAttributeParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the public update attribute params

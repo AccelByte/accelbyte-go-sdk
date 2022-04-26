@@ -74,9 +74,10 @@ type RegisterLocalServerParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the register local server params
@@ -99,6 +100,11 @@ func (o *RegisterLocalServerParams) WithContext(ctx context.Context) *RegisterLo
 // SetContext adds the context to the register local server params
 func (o *RegisterLocalServerParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the register local server params
+func (o *RegisterLocalServerParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the register local server params

@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -154,7 +153,8 @@ func (p *PodConfigService) UpdatePodConfig(input *pod_config.UpdatePodConfigPara
 	return ok.GetPayload(), nil
 }
 
-func (p *PodConfigService) GetAllPodConfigShort(input *pod_config.GetAllPodConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListPodConfigResponse, error) {
+func (p *PodConfigService) GetAllPodConfigShort(input *pod_config.GetAllPodConfigParams) (*dsmcclientmodels.ModelsListPodConfigResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -169,7 +169,8 @@ func (p *PodConfigService) GetAllPodConfigShort(input *pod_config.GetAllPodConfi
 	return ok.GetPayload(), nil
 }
 
-func (p *PodConfigService) GetPodConfigShort(input *pod_config.GetPodConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
+func (p *PodConfigService) GetPodConfigShort(input *pod_config.GetPodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -184,7 +185,8 @@ func (p *PodConfigService) GetPodConfigShort(input *pod_config.GetPodConfigParam
 	return ok.GetPayload(), nil
 }
 
-func (p *PodConfigService) CreatePodConfigShort(input *pod_config.CreatePodConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
+func (p *PodConfigService) CreatePodConfigShort(input *pod_config.CreatePodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -199,7 +201,8 @@ func (p *PodConfigService) CreatePodConfigShort(input *pod_config.CreatePodConfi
 	return created.GetPayload(), nil
 }
 
-func (p *PodConfigService) DeletePodConfigShort(input *pod_config.DeletePodConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (p *PodConfigService) DeletePodConfigShort(input *pod_config.DeletePodConfigParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -214,7 +217,8 @@ func (p *PodConfigService) DeletePodConfigShort(input *pod_config.DeletePodConfi
 	return nil
 }
 
-func (p *PodConfigService) UpdatePodConfigShort(input *pod_config.UpdatePodConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
+func (p *PodConfigService) UpdatePodConfigShort(input *pod_config.UpdatePodConfigParams) (*dsmcclientmodels.ModelsPodConfigRecord, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

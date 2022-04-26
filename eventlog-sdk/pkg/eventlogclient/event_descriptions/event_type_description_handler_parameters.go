@@ -63,9 +63,10 @@ func NewEventTypeDescriptionHandlerParamsWithHTTPClient(client *http.Client) *Ev
 for the event type description handler operation typically these are written to a http.Request
 */
 type EventTypeDescriptionHandlerParams struct {
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the event type description handler params
@@ -88,6 +89,11 @@ func (o *EventTypeDescriptionHandlerParams) WithContext(ctx context.Context) *Ev
 // SetContext adds the context to the event type description handler params
 func (o *EventTypeDescriptionHandlerParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the event type description handler params
+func (o *EventTypeDescriptionHandlerParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the event type description handler params

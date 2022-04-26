@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/group-sdk/pkg/groupclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -392,7 +391,8 @@ func (g *GroupService) DeleteGroupPredefinedRulePublicV1(input *group.DeleteGrou
 	return nil
 }
 
-func (g *GroupService) GetGroupListAdminV1Short(input *group.GetGroupListAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetGroupsListResponseV1, error) {
+func (g *GroupService) GetGroupListAdminV1Short(input *group.GetGroupListAdminV1Params) (*groupclientmodels.ModelsGetGroupsListResponseV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -407,7 +407,8 @@ func (g *GroupService) GetGroupListAdminV1Short(input *group.GetGroupListAdminV1
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) GetSingleGroupAdminV1Short(input *group.GetSingleGroupAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
+func (g *GroupService) GetSingleGroupAdminV1Short(input *group.GetSingleGroupAdminV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -422,7 +423,8 @@ func (g *GroupService) GetSingleGroupAdminV1Short(input *group.GetSingleGroupAdm
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) DeleteGroupAdminV1Short(input *group.DeleteGroupAdminV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (g *GroupService) DeleteGroupAdminV1Short(input *group.DeleteGroupAdminV1Params) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -437,7 +439,8 @@ func (g *GroupService) DeleteGroupAdminV1Short(input *group.DeleteGroupAdminV1Pa
 	return nil
 }
 
-func (g *GroupService) GetGroupListPublicV1Short(input *group.GetGroupListPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGetGroupsListResponseV1, error) {
+func (g *GroupService) GetGroupListPublicV1Short(input *group.GetGroupListPublicV1Params) (*groupclientmodels.ModelsGetGroupsListResponseV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -452,7 +455,8 @@ func (g *GroupService) GetGroupListPublicV1Short(input *group.GetGroupListPublic
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) CreateNewGroupPublicV1Short(input *group.CreateNewGroupPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
+func (g *GroupService) CreateNewGroupPublicV1Short(input *group.CreateNewGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -467,7 +471,8 @@ func (g *GroupService) CreateNewGroupPublicV1Short(input *group.CreateNewGroupPu
 	return created.GetPayload(), nil
 }
 
-func (g *GroupService) GetSingleGroupPublicV1Short(input *group.GetSingleGroupPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
+func (g *GroupService) GetSingleGroupPublicV1Short(input *group.GetSingleGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -482,7 +487,8 @@ func (g *GroupService) GetSingleGroupPublicV1Short(input *group.GetSingleGroupPu
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) UpdateSingleGroupV1Short(input *group.UpdateSingleGroupV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
+func (g *GroupService) UpdateSingleGroupV1Short(input *group.UpdateSingleGroupV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -497,7 +503,8 @@ func (g *GroupService) UpdateSingleGroupV1Short(input *group.UpdateSingleGroupV1
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) DeleteGroupPublicV1Short(input *group.DeleteGroupPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (g *GroupService) DeleteGroupPublicV1Short(input *group.DeleteGroupPublicV1Params) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -512,7 +519,8 @@ func (g *GroupService) DeleteGroupPublicV1Short(input *group.DeleteGroupPublicV1
 	return nil
 }
 
-func (g *GroupService) UpdatePatchSingleGroupPublicV1Short(input *group.UpdatePatchSingleGroupPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
+func (g *GroupService) UpdatePatchSingleGroupPublicV1Short(input *group.UpdatePatchSingleGroupPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -527,7 +535,8 @@ func (g *GroupService) UpdatePatchSingleGroupPublicV1Short(input *group.UpdatePa
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) UpdateGroupCustomAttributesPublicV1Short(input *group.UpdateGroupCustomAttributesPublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
+func (g *GroupService) UpdateGroupCustomAttributesPublicV1Short(input *group.UpdateGroupCustomAttributesPublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -542,7 +551,8 @@ func (g *GroupService) UpdateGroupCustomAttributesPublicV1Short(input *group.Upd
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) UpdateGroupCustomRulePublicV1Short(input *group.UpdateGroupCustomRulePublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
+func (g *GroupService) UpdateGroupCustomRulePublicV1Short(input *group.UpdateGroupCustomRulePublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -557,7 +567,8 @@ func (g *GroupService) UpdateGroupCustomRulePublicV1Short(input *group.UpdateGro
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) UpdateGroupPredefinedRulePublicV1Short(input *group.UpdateGroupPredefinedRulePublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) (*groupclientmodels.ModelsGroupResponseV1, error) {
+func (g *GroupService) UpdateGroupPredefinedRulePublicV1Short(input *group.UpdateGroupPredefinedRulePublicV1Params) (*groupclientmodels.ModelsGroupResponseV1, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -572,7 +583,8 @@ func (g *GroupService) UpdateGroupPredefinedRulePublicV1Short(input *group.Updat
 	return ok.GetPayload(), nil
 }
 
-func (g *GroupService) DeleteGroupPredefinedRulePublicV1Short(input *group.DeleteGroupPredefinedRulePublicV1Params, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (g *GroupService) DeleteGroupPredefinedRulePublicV1Short(input *group.DeleteGroupPredefinedRulePublicV1Params) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

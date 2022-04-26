@@ -78,9 +78,10 @@ type UpdateCategoryParams struct {
 	/*StoreID*/
 	StoreID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the update category params
@@ -103,6 +104,11 @@ func (o *UpdateCategoryParams) WithContext(ctx context.Context) *UpdateCategoryP
 // SetContext adds the context to the update category params
 func (o *UpdateCategoryParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the update category params
+func (o *UpdateCategoryParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the update category params

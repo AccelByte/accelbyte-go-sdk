@@ -72,9 +72,10 @@ type UpdateAdminEmailConfigurationParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the update admin email configuration params
@@ -97,6 +98,11 @@ func (o *UpdateAdminEmailConfigurationParams) WithContext(ctx context.Context) *
 // SetContext adds the context to the update admin email configuration params
 func (o *UpdateAdminEmailConfigurationParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the update admin email configuration params
+func (o *UpdateAdminEmailConfigurationParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the update admin email configuration params

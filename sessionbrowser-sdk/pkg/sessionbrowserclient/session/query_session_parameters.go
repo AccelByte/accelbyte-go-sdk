@@ -121,9 +121,10 @@ type QuerySessionParams struct {
 	*/
 	UserID *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the query session params
@@ -146,6 +147,11 @@ func (o *QuerySessionParams) WithContext(ctx context.Context) *QuerySessionParam
 // SetContext adds the context to the query session params
 func (o *QuerySessionParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the query session params
+func (o *QuerySessionParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the query session params

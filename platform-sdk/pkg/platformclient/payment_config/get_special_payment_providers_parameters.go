@@ -63,9 +63,10 @@ func NewGetSpecialPaymentProvidersParamsWithHTTPClient(client *http.Client) *Get
 for the get special payment providers operation typically these are written to a http.Request
 */
 type GetSpecialPaymentProvidersParams struct {
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get special payment providers params
@@ -88,6 +89,11 @@ func (o *GetSpecialPaymentProvidersParams) WithContext(ctx context.Context) *Get
 // SetContext adds the context to the get special payment providers params
 func (o *GetSpecialPaymentProvidersParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get special payment providers params
+func (o *GetSpecialPaymentProvidersParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get special payment providers params

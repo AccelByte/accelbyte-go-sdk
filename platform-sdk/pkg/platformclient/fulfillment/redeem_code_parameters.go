@@ -73,9 +73,10 @@ type RedeemCodeParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the redeem code params
@@ -98,6 +99,11 @@ func (o *RedeemCodeParams) WithContext(ctx context.Context) *RedeemCodeParams {
 // SetContext adds the context to the redeem code params
 func (o *RedeemCodeParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the redeem code params
+func (o *RedeemCodeParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the redeem code params

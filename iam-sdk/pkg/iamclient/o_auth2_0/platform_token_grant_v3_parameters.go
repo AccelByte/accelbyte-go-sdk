@@ -85,9 +85,10 @@ type PlatformTokenGrantV3Params struct {
 	*/
 	PlatformToken *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the platform token grant v3 params
@@ -110,6 +111,11 @@ func (o *PlatformTokenGrantV3Params) WithContext(ctx context.Context) *PlatformT
 // SetContext adds the context to the platform token grant v3 params
 func (o *PlatformTokenGrantV3Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the platform token grant v3 params
+func (o *PlatformTokenGrantV3Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the platform token grant v3 params

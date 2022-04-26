@@ -75,9 +75,10 @@ type ProcessUserSubscriptionNotificationParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the process user subscription notification params
@@ -100,6 +101,11 @@ func (o *ProcessUserSubscriptionNotificationParams) WithContext(ctx context.Cont
 // SetContext adds the context to the process user subscription notification params
 func (o *ProcessUserSubscriptionNotificationParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the process user subscription notification params
+func (o *ProcessUserSubscriptionNotificationParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the process user subscription notification params

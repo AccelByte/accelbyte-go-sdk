@@ -96,9 +96,10 @@ type RetrieveLatestPoliciesByNamespaceAndCountryPublicParams struct {
 	*/
 	Tags *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the retrieve latest policies by namespace and country public params
@@ -121,6 +122,11 @@ func (o *RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) WithContext(ct
 // SetContext adds the context to the retrieve latest policies by namespace and country public params
 func (o *RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the retrieve latest policies by namespace and country public params
+func (o *RetrieveLatestPoliciesByNamespaceAndCountryPublicParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the retrieve latest policies by namespace and country public params

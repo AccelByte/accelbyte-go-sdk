@@ -74,9 +74,10 @@ type PartialUpdatePolicyParams struct {
 	/*Body*/
 	Body *legalclientmodels.UpdateBasePolicyRequest
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the partial update policy params
@@ -99,6 +100,11 @@ func (o *PartialUpdatePolicyParams) WithContext(ctx context.Context) *PartialUpd
 // SetContext adds the context to the partial update policy params
 func (o *PartialUpdatePolicyParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the partial update policy params
+func (o *PartialUpdatePolicyParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the partial update policy params

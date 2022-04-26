@@ -91,9 +91,10 @@ type GetSlugTemplateParams struct {
 	*/
 	TemplateSlug string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get slug template params
@@ -116,6 +117,11 @@ func (o *GetSlugTemplateParams) WithContext(ctx context.Context) *GetSlugTemplat
 // SetContext adds the context to the get slug template params
 func (o *GetSlugTemplateParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get slug template params
+func (o *GetSlugTemplateParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get slug template params

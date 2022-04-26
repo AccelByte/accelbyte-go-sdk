@@ -79,9 +79,10 @@ type DisableUserParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the disable user params
@@ -104,6 +105,11 @@ func (o *DisableUserParams) WithContext(ctx context.Context) *DisableUserParams 
 // SetContext adds the context to the disable user params
 func (o *DisableUserParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the disable user params
+func (o *DisableUserParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the disable user params

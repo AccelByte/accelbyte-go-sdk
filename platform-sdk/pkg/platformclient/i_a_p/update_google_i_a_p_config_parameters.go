@@ -71,9 +71,10 @@ type UpdateGoogleIAPConfigParams struct {
 	/*Namespace*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the update google i a p config params
@@ -96,6 +97,11 @@ func (o *UpdateGoogleIAPConfigParams) WithContext(ctx context.Context) *UpdateGo
 // SetContext adds the context to the update google i a p config params
 func (o *UpdateGoogleIAPConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the update google i a p config params
+func (o *UpdateGoogleIAPConfigParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the update google i a p config params

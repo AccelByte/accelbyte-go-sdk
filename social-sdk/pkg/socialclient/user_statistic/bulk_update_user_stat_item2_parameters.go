@@ -84,9 +84,10 @@ type BulkUpdateUserStatItem2Params struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the bulk update user stat item 2 params
@@ -109,6 +110,11 @@ func (o *BulkUpdateUserStatItem2Params) WithContext(ctx context.Context) *BulkUp
 // SetContext adds the context to the bulk update user stat item 2 params
 func (o *BulkUpdateUserStatItem2Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the bulk update user stat item 2 params
+func (o *BulkUpdateUserStatItem2Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the bulk update user stat item 2 params

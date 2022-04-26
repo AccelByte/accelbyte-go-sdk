@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -608,7 +607,8 @@ func (e *EntitlementService) PublicConsumeUserEntitlement(input *entitlement.Pub
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) QueryEntitlementsShort(input *entitlement.QueryEntitlementsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementPagingSlicedResult, error) {
+func (e *EntitlementService) QueryEntitlementsShort(input *entitlement.QueryEntitlementsParams) (*platformclientmodels.EntitlementPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -623,7 +623,8 @@ func (e *EntitlementService) QueryEntitlementsShort(input *entitlement.QueryEnti
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) GetEntitlementShort(input *entitlement.GetEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
+func (e *EntitlementService) GetEntitlementShort(input *entitlement.GetEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -638,7 +639,8 @@ func (e *EntitlementService) GetEntitlementShort(input *entitlement.GetEntitleme
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) QueryUserEntitlementsShort(input *entitlement.QueryUserEntitlementsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementPagingSlicedResult, error) {
+func (e *EntitlementService) QueryUserEntitlementsShort(input *entitlement.QueryUserEntitlementsParams) (*platformclientmodels.EntitlementPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -653,7 +655,8 @@ func (e *EntitlementService) QueryUserEntitlementsShort(input *entitlement.Query
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) GrantUserEntitlementShort(input *entitlement.GrantUserEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.StackableEntitlementInfo, error) {
+func (e *EntitlementService) GrantUserEntitlementShort(input *entitlement.GrantUserEntitlementParams) ([]*platformclientmodels.StackableEntitlementInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -668,7 +671,8 @@ func (e *EntitlementService) GrantUserEntitlementShort(input *entitlement.GrantU
 	return created.GetPayload(), nil
 }
 
-func (e *EntitlementService) GetUserAppEntitlementByAppIDShort(input *entitlement.GetUserAppEntitlementByAppIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.AppEntitlementInfo, error) {
+func (e *EntitlementService) GetUserAppEntitlementByAppIDShort(input *entitlement.GetUserAppEntitlementByAppIDParams) (*platformclientmodels.AppEntitlementInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -683,7 +687,8 @@ func (e *EntitlementService) GetUserAppEntitlementByAppIDShort(input *entitlemen
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) QueryUserEntitlementsByAppTypeShort(input *entitlement.QueryUserEntitlementsByAppTypeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.AppEntitlementPagingSlicedResult, error) {
+func (e *EntitlementService) QueryUserEntitlementsByAppTypeShort(input *entitlement.QueryUserEntitlementsByAppTypeParams) (*platformclientmodels.AppEntitlementPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -698,7 +703,8 @@ func (e *EntitlementService) QueryUserEntitlementsByAppTypeShort(input *entitlem
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) GetUserEntitlementByItemIDShort(input *entitlement.GetUserEntitlementByItemIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
+func (e *EntitlementService) GetUserEntitlementByItemIDShort(input *entitlement.GetUserEntitlementByItemIDParams) (*platformclientmodels.EntitlementInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -713,7 +719,8 @@ func (e *EntitlementService) GetUserEntitlementByItemIDShort(input *entitlement.
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) GetUserEntitlementBySkuShort(input *entitlement.GetUserEntitlementBySkuParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
+func (e *EntitlementService) GetUserEntitlementBySkuShort(input *entitlement.GetUserEntitlementBySkuParams) (*platformclientmodels.EntitlementInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -728,7 +735,8 @@ func (e *EntitlementService) GetUserEntitlementBySkuShort(input *entitlement.Get
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) ExistsAnyUserActiveEntitlementShort(input *entitlement.ExistsAnyUserActiveEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.Ownership, error) {
+func (e *EntitlementService) ExistsAnyUserActiveEntitlementShort(input *entitlement.ExistsAnyUserActiveEntitlementParams) (*platformclientmodels.Ownership, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -743,7 +751,8 @@ func (e *EntitlementService) ExistsAnyUserActiveEntitlementShort(input *entitlem
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) ExistsAnyUserActiveEntitlementByItemIdsShort(input *entitlement.ExistsAnyUserActiveEntitlementByItemIdsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.Ownership, error) {
+func (e *EntitlementService) ExistsAnyUserActiveEntitlementByItemIdsShort(input *entitlement.ExistsAnyUserActiveEntitlementByItemIdsParams) (*platformclientmodels.Ownership, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -758,7 +767,8 @@ func (e *EntitlementService) ExistsAnyUserActiveEntitlementByItemIdsShort(input 
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) GetUserAppEntitlementOwnershipByAppIDShort(input *entitlement.GetUserAppEntitlementOwnershipByAppIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.Ownership, error) {
+func (e *EntitlementService) GetUserAppEntitlementOwnershipByAppIDShort(input *entitlement.GetUserAppEntitlementOwnershipByAppIDParams) (*platformclientmodels.Ownership, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -773,7 +783,8 @@ func (e *EntitlementService) GetUserAppEntitlementOwnershipByAppIDShort(input *e
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) GetUserEntitlementOwnershipByItemIDShort(input *entitlement.GetUserEntitlementOwnershipByItemIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TimedOwnership, error) {
+func (e *EntitlementService) GetUserEntitlementOwnershipByItemIDShort(input *entitlement.GetUserEntitlementOwnershipByItemIDParams) (*platformclientmodels.TimedOwnership, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -788,7 +799,8 @@ func (e *EntitlementService) GetUserEntitlementOwnershipByItemIDShort(input *ent
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) GetUserEntitlementOwnershipBySkuShort(input *entitlement.GetUserEntitlementOwnershipBySkuParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TimedOwnership, error) {
+func (e *EntitlementService) GetUserEntitlementOwnershipBySkuShort(input *entitlement.GetUserEntitlementOwnershipBySkuParams) (*platformclientmodels.TimedOwnership, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -803,7 +815,8 @@ func (e *EntitlementService) GetUserEntitlementOwnershipBySkuShort(input *entitl
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) RevokeUserEntitlementsShort(input *entitlement.RevokeUserEntitlementsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.BulkOperationResult, error) {
+func (e *EntitlementService) RevokeUserEntitlementsShort(input *entitlement.RevokeUserEntitlementsParams) (*platformclientmodels.BulkOperationResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -818,7 +831,8 @@ func (e *EntitlementService) RevokeUserEntitlementsShort(input *entitlement.Revo
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) GetUserEntitlementShort(input *entitlement.GetUserEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
+func (e *EntitlementService) GetUserEntitlementShort(input *entitlement.GetUserEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -833,7 +847,8 @@ func (e *EntitlementService) GetUserEntitlementShort(input *entitlement.GetUserE
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) UpdateUserEntitlementShort(input *entitlement.UpdateUserEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
+func (e *EntitlementService) UpdateUserEntitlementShort(input *entitlement.UpdateUserEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -848,7 +863,8 @@ func (e *EntitlementService) UpdateUserEntitlementShort(input *entitlement.Updat
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) ConsumeUserEntitlementShort(input *entitlement.ConsumeUserEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
+func (e *EntitlementService) ConsumeUserEntitlementShort(input *entitlement.ConsumeUserEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -863,7 +879,8 @@ func (e *EntitlementService) ConsumeUserEntitlementShort(input *entitlement.Cons
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) DisableUserEntitlementShort(input *entitlement.DisableUserEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
+func (e *EntitlementService) DisableUserEntitlementShort(input *entitlement.DisableUserEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -878,7 +895,8 @@ func (e *EntitlementService) DisableUserEntitlementShort(input *entitlement.Disa
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) EnableUserEntitlementShort(input *entitlement.EnableUserEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
+func (e *EntitlementService) EnableUserEntitlementShort(input *entitlement.EnableUserEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -893,7 +911,8 @@ func (e *EntitlementService) EnableUserEntitlementShort(input *entitlement.Enabl
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) GetUserEntitlementHistoriesShort(input *entitlement.GetUserEntitlementHistoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.EntitlementHistoryInfo, error) {
+func (e *EntitlementService) GetUserEntitlementHistoriesShort(input *entitlement.GetUserEntitlementHistoriesParams) ([]*platformclientmodels.EntitlementHistoryInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -908,7 +927,8 @@ func (e *EntitlementService) GetUserEntitlementHistoriesShort(input *entitlement
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) RevokeUserEntitlementShort(input *entitlement.RevokeUserEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
+func (e *EntitlementService) RevokeUserEntitlementShort(input *entitlement.RevokeUserEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -923,7 +943,8 @@ func (e *EntitlementService) RevokeUserEntitlementShort(input *entitlement.Revok
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicExistsAnyMyActiveEntitlementShort(input *entitlement.PublicExistsAnyMyActiveEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.Ownership, error) {
+func (e *EntitlementService) PublicExistsAnyMyActiveEntitlementShort(input *entitlement.PublicExistsAnyMyActiveEntitlementParams) (*platformclientmodels.Ownership, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -938,7 +959,8 @@ func (e *EntitlementService) PublicExistsAnyMyActiveEntitlementShort(input *enti
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicGetMyAppEntitlementOwnershipByAppIDShort(input *entitlement.PublicGetMyAppEntitlementOwnershipByAppIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.Ownership, error) {
+func (e *EntitlementService) PublicGetMyAppEntitlementOwnershipByAppIDShort(input *entitlement.PublicGetMyAppEntitlementOwnershipByAppIDParams) (*platformclientmodels.Ownership, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -953,7 +975,8 @@ func (e *EntitlementService) PublicGetMyAppEntitlementOwnershipByAppIDShort(inpu
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicGetMyEntitlementOwnershipByItemIDShort(input *entitlement.PublicGetMyEntitlementOwnershipByItemIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TimedOwnership, error) {
+func (e *EntitlementService) PublicGetMyEntitlementOwnershipByItemIDShort(input *entitlement.PublicGetMyEntitlementOwnershipByItemIDParams) (*platformclientmodels.TimedOwnership, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -968,7 +991,8 @@ func (e *EntitlementService) PublicGetMyEntitlementOwnershipByItemIDShort(input 
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicGetMyEntitlementOwnershipBySkuShort(input *entitlement.PublicGetMyEntitlementOwnershipBySkuParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TimedOwnership, error) {
+func (e *EntitlementService) PublicGetMyEntitlementOwnershipBySkuShort(input *entitlement.PublicGetMyEntitlementOwnershipBySkuParams) (*platformclientmodels.TimedOwnership, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -983,7 +1007,8 @@ func (e *EntitlementService) PublicGetMyEntitlementOwnershipBySkuShort(input *en
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicGetEntitlementOwnershipTokenShort(input *entitlement.PublicGetEntitlementOwnershipTokenParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.OwnershipToken, error) {
+func (e *EntitlementService) PublicGetEntitlementOwnershipTokenShort(input *entitlement.PublicGetEntitlementOwnershipTokenParams) (*platformclientmodels.OwnershipToken, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -998,7 +1023,8 @@ func (e *EntitlementService) PublicGetEntitlementOwnershipTokenShort(input *enti
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicQueryUserEntitlementsShort(input *entitlement.PublicQueryUserEntitlementsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementPagingSlicedResult, error) {
+func (e *EntitlementService) PublicQueryUserEntitlementsShort(input *entitlement.PublicQueryUserEntitlementsParams) (*platformclientmodels.EntitlementPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1013,7 +1039,8 @@ func (e *EntitlementService) PublicQueryUserEntitlementsShort(input *entitlement
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicGetUserAppEntitlementByAppIDShort(input *entitlement.PublicGetUserAppEntitlementByAppIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.AppEntitlementInfo, error) {
+func (e *EntitlementService) PublicGetUserAppEntitlementByAppIDShort(input *entitlement.PublicGetUserAppEntitlementByAppIDParams) (*platformclientmodels.AppEntitlementInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1028,7 +1055,8 @@ func (e *EntitlementService) PublicGetUserAppEntitlementByAppIDShort(input *enti
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicQueryUserEntitlementsByAppTypeShort(input *entitlement.PublicQueryUserEntitlementsByAppTypeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.AppEntitlementPagingSlicedResult, error) {
+func (e *EntitlementService) PublicQueryUserEntitlementsByAppTypeShort(input *entitlement.PublicQueryUserEntitlementsByAppTypeParams) (*platformclientmodels.AppEntitlementPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1043,7 +1071,8 @@ func (e *EntitlementService) PublicQueryUserEntitlementsByAppTypeShort(input *en
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicGetUserEntitlementByItemIDShort(input *entitlement.PublicGetUserEntitlementByItemIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
+func (e *EntitlementService) PublicGetUserEntitlementByItemIDShort(input *entitlement.PublicGetUserEntitlementByItemIDParams) (*platformclientmodels.EntitlementInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1058,7 +1087,8 @@ func (e *EntitlementService) PublicGetUserEntitlementByItemIDShort(input *entitl
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicGetUserEntitlementBySkuShort(input *entitlement.PublicGetUserEntitlementBySkuParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
+func (e *EntitlementService) PublicGetUserEntitlementBySkuShort(input *entitlement.PublicGetUserEntitlementBySkuParams) (*platformclientmodels.EntitlementInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1073,7 +1103,8 @@ func (e *EntitlementService) PublicGetUserEntitlementBySkuShort(input *entitleme
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicExistsAnyUserActiveEntitlementShort(input *entitlement.PublicExistsAnyUserActiveEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.Ownership, error) {
+func (e *EntitlementService) PublicExistsAnyUserActiveEntitlementShort(input *entitlement.PublicExistsAnyUserActiveEntitlementParams) (*platformclientmodels.Ownership, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1088,7 +1119,8 @@ func (e *EntitlementService) PublicExistsAnyUserActiveEntitlementShort(input *en
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicGetUserAppEntitlementOwnershipByAppIDShort(input *entitlement.PublicGetUserAppEntitlementOwnershipByAppIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.Ownership, error) {
+func (e *EntitlementService) PublicGetUserAppEntitlementOwnershipByAppIDShort(input *entitlement.PublicGetUserAppEntitlementOwnershipByAppIDParams) (*platformclientmodels.Ownership, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1103,7 +1135,8 @@ func (e *EntitlementService) PublicGetUserAppEntitlementOwnershipByAppIDShort(in
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicGetUserEntitlementOwnershipByItemIDShort(input *entitlement.PublicGetUserEntitlementOwnershipByItemIDParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TimedOwnership, error) {
+func (e *EntitlementService) PublicGetUserEntitlementOwnershipByItemIDShort(input *entitlement.PublicGetUserEntitlementOwnershipByItemIDParams) (*platformclientmodels.TimedOwnership, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1118,7 +1151,8 @@ func (e *EntitlementService) PublicGetUserEntitlementOwnershipByItemIDShort(inpu
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicGetUserEntitlementOwnershipBySkuShort(input *entitlement.PublicGetUserEntitlementOwnershipBySkuParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.TimedOwnership, error) {
+func (e *EntitlementService) PublicGetUserEntitlementOwnershipBySkuShort(input *entitlement.PublicGetUserEntitlementOwnershipBySkuParams) (*platformclientmodels.TimedOwnership, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1133,7 +1167,8 @@ func (e *EntitlementService) PublicGetUserEntitlementOwnershipBySkuShort(input *
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicGetUserEntitlementShort(input *entitlement.PublicGetUserEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
+func (e *EntitlementService) PublicGetUserEntitlementShort(input *entitlement.PublicGetUserEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -1148,7 +1183,8 @@ func (e *EntitlementService) PublicGetUserEntitlementShort(input *entitlement.Pu
 	return ok.GetPayload(), nil
 }
 
-func (e *EntitlementService) PublicConsumeUserEntitlementShort(input *entitlement.PublicConsumeUserEntitlementParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.EntitlementInfo, error) {
+func (e *EntitlementService) PublicConsumeUserEntitlementShort(input *entitlement.PublicConsumeUserEntitlementParams) (*platformclientmodels.EntitlementInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

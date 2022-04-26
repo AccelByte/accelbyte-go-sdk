@@ -70,9 +70,10 @@ type DeletePlatformDLCConfigParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the delete platform d l c config params
@@ -95,6 +96,11 @@ func (o *DeletePlatformDLCConfigParams) WithContext(ctx context.Context) *Delete
 // SetContext adds the context to the delete platform d l c config params
 func (o *DeletePlatformDLCConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the delete platform d l c config params
+func (o *DeletePlatformDLCConfigParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the delete platform d l c config params

@@ -63,9 +63,10 @@ func NewGetListBanReasonParamsWithHTTPClient(client *http.Client) *GetListBanRea
 for the get list ban reason operation typically these are written to a http.Request
 */
 type GetListBanReasonParams struct {
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get list ban reason params
@@ -88,6 +89,11 @@ func (o *GetListBanReasonParams) WithContext(ctx context.Context) *GetListBanRea
 // SetContext adds the context to the get list ban reason params
 func (o *GetListBanReasonParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get list ban reason params
+func (o *GetListBanReasonParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get list ban reason params

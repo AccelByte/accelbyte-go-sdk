@@ -63,9 +63,10 @@ func NewListConfigParamsWithHTTPClient(client *http.Client) *ListConfigParams {
 for the list config operation typically these are written to a http.Request
 */
 type ListConfigParams struct {
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the list config params
@@ -88,6 +89,11 @@ func (o *ListConfigParams) WithContext(ctx context.Context) *ListConfigParams {
 // SetContext adds the context to the list config params
 func (o *ListConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the list config params
+func (o *ListConfigParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the list config params

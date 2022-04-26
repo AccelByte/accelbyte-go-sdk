@@ -148,9 +148,10 @@ type ListTerminatedServersParams struct {
 	*/
 	UserID *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the list terminated servers params
@@ -173,6 +174,11 @@ func (o *ListTerminatedServersParams) WithContext(ctx context.Context) *ListTerm
 // SetContext adds the context to the list terminated servers params
 func (o *ListTerminatedServersParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the list terminated servers params
+func (o *ListTerminatedServersParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the list terminated servers params

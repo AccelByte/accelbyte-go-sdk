@@ -75,9 +75,10 @@ type BulkGetSessionsParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the bulk get sessions params
@@ -100,6 +101,11 @@ func (o *BulkGetSessionsParams) WithContext(ctx context.Context) *BulkGetSession
 // SetContext adds the context to the bulk get sessions params
 func (o *BulkGetSessionsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the bulk get sessions params
+func (o *BulkGetSessionsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the bulk get sessions params

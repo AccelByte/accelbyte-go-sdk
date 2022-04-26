@@ -73,9 +73,10 @@ type AcquireItemParams struct {
 	/*Namespace*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the acquire item params
@@ -98,6 +99,11 @@ func (o *AcquireItemParams) WithContext(ctx context.Context) *AcquireItemParams 
 // SetContext adds the context to the acquire item params
 func (o *AcquireItemParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the acquire item params
+func (o *AcquireItemParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the acquire item params

@@ -82,9 +82,10 @@ type AdminBulkBlockPlayersV1Params struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin bulk block players v1 params
@@ -107,6 +108,11 @@ func (o *AdminBulkBlockPlayersV1Params) WithContext(ctx context.Context) *AdminB
 // SetContext adds the context to the admin bulk block players v1 params
 func (o *AdminBulkBlockPlayersV1Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin bulk block players v1 params
+func (o *AdminBulkBlockPlayersV1Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin bulk block players v1 params

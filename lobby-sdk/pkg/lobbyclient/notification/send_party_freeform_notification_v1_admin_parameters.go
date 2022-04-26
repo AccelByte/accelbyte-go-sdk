@@ -82,9 +82,10 @@ type SendPartyFreeformNotificationV1AdminParams struct {
 	*/
 	PartyID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the send party freeform notification v1 admin params
@@ -107,6 +108,11 @@ func (o *SendPartyFreeformNotificationV1AdminParams) WithContext(ctx context.Con
 // SetContext adds the context to the send party freeform notification v1 admin params
 func (o *SendPartyFreeformNotificationV1AdminParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the send party freeform notification v1 admin params
+func (o *SendPartyFreeformNotificationV1AdminParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the send party freeform notification v1 admin params

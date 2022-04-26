@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -162,7 +161,8 @@ func (d *DLCService) SyncXboxDLC(input *d_l_c.SyncXboxDLCParams) error {
 	return nil
 }
 
-func (d *DLCService) GetDLCItemConfigShort(input *d_l_c.GetDLCItemConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.DLCItemConfigInfo, error) {
+func (d *DLCService) GetDLCItemConfigShort(input *d_l_c.GetDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -177,7 +177,8 @@ func (d *DLCService) GetDLCItemConfigShort(input *d_l_c.GetDLCItemConfigParams, 
 	return ok.GetPayload(), nil
 }
 
-func (d *DLCService) UpdateDLCItemConfigShort(input *d_l_c.UpdateDLCItemConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.DLCItemConfigInfo, error) {
+func (d *DLCService) UpdateDLCItemConfigShort(input *d_l_c.UpdateDLCItemConfigParams) (*platformclientmodels.DLCItemConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -192,7 +193,8 @@ func (d *DLCService) UpdateDLCItemConfigShort(input *d_l_c.UpdateDLCItemConfigPa
 	return ok.GetPayload(), nil
 }
 
-func (d *DLCService) DeleteDLCItemConfigShort(input *d_l_c.DeleteDLCItemConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (d *DLCService) DeleteDLCItemConfigShort(input *d_l_c.DeleteDLCItemConfigParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -207,7 +209,8 @@ func (d *DLCService) DeleteDLCItemConfigShort(input *d_l_c.DeleteDLCItemConfigPa
 	return nil
 }
 
-func (d *DLCService) GetPlatformDLCConfigShort(input *d_l_c.GetPlatformDLCConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PlatformDLCConfigInfo, error) {
+func (d *DLCService) GetPlatformDLCConfigShort(input *d_l_c.GetPlatformDLCConfigParams) (*platformclientmodels.PlatformDLCConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -222,7 +225,8 @@ func (d *DLCService) GetPlatformDLCConfigShort(input *d_l_c.GetPlatformDLCConfig
 	return ok.GetPayload(), nil
 }
 
-func (d *DLCService) UpdatePlatformDLCConfigShort(input *d_l_c.UpdatePlatformDLCConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.PlatformDLCConfigInfo, error) {
+func (d *DLCService) UpdatePlatformDLCConfigShort(input *d_l_c.UpdatePlatformDLCConfigParams) (*platformclientmodels.PlatformDLCConfigInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -237,7 +241,8 @@ func (d *DLCService) UpdatePlatformDLCConfigShort(input *d_l_c.UpdatePlatformDLC
 	return ok.GetPayload(), nil
 }
 
-func (d *DLCService) DeletePlatformDLCConfigShort(input *d_l_c.DeletePlatformDLCConfigParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (d *DLCService) DeletePlatformDLCConfigShort(input *d_l_c.DeletePlatformDLCConfigParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -252,7 +257,8 @@ func (d *DLCService) DeletePlatformDLCConfigShort(input *d_l_c.DeletePlatformDLC
 	return nil
 }
 
-func (d *DLCService) PublicSyncPsnDlcInventoryShort(input *d_l_c.PublicSyncPsnDlcInventoryParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (d *DLCService) PublicSyncPsnDlcInventoryShort(input *d_l_c.PublicSyncPsnDlcInventoryParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -267,7 +273,8 @@ func (d *DLCService) PublicSyncPsnDlcInventoryShort(input *d_l_c.PublicSyncPsnDl
 	return nil
 }
 
-func (d *DLCService) SyncSteamDLCShort(input *d_l_c.SyncSteamDLCParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (d *DLCService) SyncSteamDLCShort(input *d_l_c.SyncSteamDLCParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -282,7 +289,8 @@ func (d *DLCService) SyncSteamDLCShort(input *d_l_c.SyncSteamDLCParams, authInfo
 	return nil
 }
 
-func (d *DLCService) SyncXboxDLCShort(input *d_l_c.SyncXboxDLCParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (d *DLCService) SyncXboxDLCShort(input *d_l_c.SyncXboxDLCParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_channel"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -188,7 +187,8 @@ func (a *AdminChannelService) AdminDeleteChannel(input *admin_channel.AdminDelet
 	return nil
 }
 
-func (a *AdminChannelService) SingleAdminGetChannelShort(input *admin_channel.SingleAdminGetChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
+func (a *AdminChannelService) SingleAdminGetChannelShort(input *admin_channel.SingleAdminGetChannelParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -203,7 +203,8 @@ func (a *AdminChannelService) SingleAdminGetChannelShort(input *admin_channel.Si
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminChannelService) AdminCreateChannelShort(input *admin_channel.AdminCreateChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsChannelResponse, error) {
+func (a *AdminChannelService) AdminCreateChannelShort(input *admin_channel.AdminCreateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -218,7 +219,8 @@ func (a *AdminChannelService) AdminCreateChannelShort(input *admin_channel.Admin
 	return created.GetPayload(), nil
 }
 
-func (a *AdminChannelService) SingleAdminUpdateChannelShort(input *admin_channel.SingleAdminUpdateChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsChannelResponse, error) {
+func (a *AdminChannelService) SingleAdminUpdateChannelShort(input *admin_channel.SingleAdminUpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -233,7 +235,8 @@ func (a *AdminChannelService) SingleAdminUpdateChannelShort(input *admin_channel
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminChannelService) SingleAdminDeleteChannelShort(input *admin_channel.SingleAdminDeleteChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AdminChannelService) SingleAdminDeleteChannelShort(input *admin_channel.SingleAdminDeleteChannelParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -248,7 +251,8 @@ func (a *AdminChannelService) SingleAdminDeleteChannelShort(input *admin_channel
 	return nil
 }
 
-func (a *AdminChannelService) AdminGetChannelShort(input *admin_channel.AdminGetChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
+func (a *AdminChannelService) AdminGetChannelShort(input *admin_channel.AdminGetChannelParams) (*ugcclientmodels.ModelsPaginatedGetChannelResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -263,7 +267,8 @@ func (a *AdminChannelService) AdminGetChannelShort(input *admin_channel.AdminGet
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminChannelService) AdminUpdateChannelShort(input *admin_channel.AdminUpdateChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsChannelResponse, error) {
+func (a *AdminChannelService) AdminUpdateChannelShort(input *admin_channel.AdminUpdateChannelParams) (*ugcclientmodels.ModelsChannelResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -278,7 +283,8 @@ func (a *AdminChannelService) AdminUpdateChannelShort(input *admin_channel.Admin
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminChannelService) AdminDeleteChannelShort(input *admin_channel.AdminDeleteChannelParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AdminChannelService) AdminDeleteChannelShort(input *admin_channel.AdminDeleteChannelParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

@@ -63,9 +63,10 @@ func NewListProvidersParamsWithHTTPClient(client *http.Client) *ListProvidersPar
 for the list providers operation typically these are written to a http.Request
 */
 type ListProvidersParams struct {
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the list providers params
@@ -88,6 +89,11 @@ func (o *ListProvidersParams) WithContext(ctx context.Context) *ListProvidersPar
 // SetContext adds the context to the list providers params
 func (o *ListProvidersParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the list providers params
+func (o *ListProvidersParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the list providers params

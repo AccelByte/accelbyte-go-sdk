@@ -69,9 +69,10 @@ type AdminCreateRoleV3Params struct {
 	/*Body*/
 	Body *iamclientmodels.ModelRoleCreateV3Request
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin create role v3 params
@@ -94,6 +95,11 @@ func (o *AdminCreateRoleV3Params) WithContext(ctx context.Context) *AdminCreateR
 // SetContext adds the context to the admin create role v3 params
 func (o *AdminCreateRoleV3Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin create role v3 params
+func (o *AdminCreateRoleV3Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin create role v3 params

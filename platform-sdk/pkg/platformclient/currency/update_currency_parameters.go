@@ -79,9 +79,10 @@ type UpdateCurrencyParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the update currency params
@@ -104,6 +105,11 @@ func (o *UpdateCurrencyParams) WithContext(ctx context.Context) *UpdateCurrencyP
 // SetContext adds the context to the update currency params
 func (o *UpdateCurrencyParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the update currency params
+func (o *UpdateCurrencyParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the update currency params

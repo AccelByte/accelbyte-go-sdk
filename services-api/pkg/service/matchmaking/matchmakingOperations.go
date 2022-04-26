@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/matchmaking-sdk/pkg/matchmakingclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -80,7 +79,8 @@ func (m *MatchmakingOperationsService) VersionCheckHandler(input *matchmaking_op
 	return nil
 }
 
-func (m *MatchmakingOperationsService) GetHealthcheckInfoShort(input *matchmaking_operations.GetHealthcheckInfoParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (m *MatchmakingOperationsService) GetHealthcheckInfoShort(input *matchmaking_operations.GetHealthcheckInfoParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -95,7 +95,8 @@ func (m *MatchmakingOperationsService) GetHealthcheckInfoShort(input *matchmakin
 	return nil
 }
 
-func (m *MatchmakingOperationsService) HandlerV3HealthzShort(input *matchmaking_operations.HandlerV3HealthzParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (m *MatchmakingOperationsService) HandlerV3HealthzShort(input *matchmaking_operations.HandlerV3HealthzParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -110,7 +111,8 @@ func (m *MatchmakingOperationsService) HandlerV3HealthzShort(input *matchmaking_
 	return nil
 }
 
-func (m *MatchmakingOperationsService) PublicGetMessagesShort(input *matchmaking_operations.PublicGetMessagesParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*matchmakingclientmodels.LogAppMessageDeclaration, error) {
+func (m *MatchmakingOperationsService) PublicGetMessagesShort(input *matchmaking_operations.PublicGetMessagesParams) ([]*matchmakingclientmodels.LogAppMessageDeclaration, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -125,7 +127,8 @@ func (m *MatchmakingOperationsService) PublicGetMessagesShort(input *matchmaking
 	return ok.GetPayload(), nil
 }
 
-func (m *MatchmakingOperationsService) VersionCheckHandlerShort(input *matchmaking_operations.VersionCheckHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (m *MatchmakingOperationsService) VersionCheckHandlerShort(input *matchmaking_operations.VersionCheckHandlerParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

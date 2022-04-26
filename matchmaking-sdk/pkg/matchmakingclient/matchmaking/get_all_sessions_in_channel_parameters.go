@@ -75,9 +75,10 @@ type GetAllSessionsInChannelParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get all sessions in channel params
@@ -100,6 +101,11 @@ func (o *GetAllSessionsInChannelParams) WithContext(ctx context.Context) *GetAll
 // SetContext adds the context to the get all sessions in channel params
 func (o *GetAllSessionsInChannelParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get all sessions in channel params
+func (o *GetAllSessionsInChannelParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get all sessions in channel params

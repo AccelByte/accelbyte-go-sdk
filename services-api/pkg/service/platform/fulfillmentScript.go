@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -114,7 +113,8 @@ func (f *FulfillmentScriptService) UpdateFulfillmentScript(input *fulfillment_sc
 	return ok.GetPayload(), nil
 }
 
-func (f *FulfillmentScriptService) ListFulfillmentScriptsShort(input *fulfillment_script.ListFulfillmentScriptsParams, authInfoWriter runtime.ClientAuthInfoWriter) ([]*platformclientmodels.FulfillmentScriptInfo, error) {
+func (f *FulfillmentScriptService) ListFulfillmentScriptsShort(input *fulfillment_script.ListFulfillmentScriptsParams) ([]*platformclientmodels.FulfillmentScriptInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -129,7 +129,8 @@ func (f *FulfillmentScriptService) ListFulfillmentScriptsShort(input *fulfillmen
 	return ok.GetPayload(), nil
 }
 
-func (f *FulfillmentScriptService) TestFulfillmentScriptEvalShort(input *fulfillment_script.TestFulfillmentScriptEvalParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FulfillmentScriptEvalTestResult, error) {
+func (f *FulfillmentScriptService) TestFulfillmentScriptEvalShort(input *fulfillment_script.TestFulfillmentScriptEvalParams) (*platformclientmodels.FulfillmentScriptEvalTestResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -144,7 +145,8 @@ func (f *FulfillmentScriptService) TestFulfillmentScriptEvalShort(input *fulfill
 	return ok.GetPayload(), nil
 }
 
-func (f *FulfillmentScriptService) GetFulfillmentScriptShort(input *fulfillment_script.GetFulfillmentScriptParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FulfillmentScriptInfo, error) {
+func (f *FulfillmentScriptService) GetFulfillmentScriptShort(input *fulfillment_script.GetFulfillmentScriptParams) (*platformclientmodels.FulfillmentScriptInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -159,7 +161,8 @@ func (f *FulfillmentScriptService) GetFulfillmentScriptShort(input *fulfillment_
 	return ok.GetPayload(), nil
 }
 
-func (f *FulfillmentScriptService) CreateFulfillmentScriptShort(input *fulfillment_script.CreateFulfillmentScriptParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FulfillmentScriptInfo, error) {
+func (f *FulfillmentScriptService) CreateFulfillmentScriptShort(input *fulfillment_script.CreateFulfillmentScriptParams) (*platformclientmodels.FulfillmentScriptInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -174,7 +177,8 @@ func (f *FulfillmentScriptService) CreateFulfillmentScriptShort(input *fulfillme
 	return created.GetPayload(), nil
 }
 
-func (f *FulfillmentScriptService) DeleteFulfillmentScriptShort(input *fulfillment_script.DeleteFulfillmentScriptParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (f *FulfillmentScriptService) DeleteFulfillmentScriptShort(input *fulfillment_script.DeleteFulfillmentScriptParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -189,7 +193,8 @@ func (f *FulfillmentScriptService) DeleteFulfillmentScriptShort(input *fulfillme
 	return nil
 }
 
-func (f *FulfillmentScriptService) UpdateFulfillmentScriptShort(input *fulfillment_script.UpdateFulfillmentScriptParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FulfillmentScriptInfo, error) {
+func (f *FulfillmentScriptService) UpdateFulfillmentScriptShort(input *fulfillment_script.UpdateFulfillmentScriptParams) (*platformclientmodels.FulfillmentScriptInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

@@ -70,9 +70,10 @@ type GetClientsbyNamespaceParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get clientsby namespace params
@@ -95,6 +96,11 @@ func (o *GetClientsbyNamespaceParams) WithContext(ctx context.Context) *GetClien
 // SetContext adds the context to the get clientsby namespace params
 func (o *GetClientsbyNamespaceParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get clientsby namespace params
+func (o *GetClientsbyNamespaceParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get clientsby namespace params

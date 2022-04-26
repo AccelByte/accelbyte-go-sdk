@@ -84,9 +84,10 @@ type UpdateGroupParams struct {
 	*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the update group params
@@ -109,6 +110,11 @@ func (o *UpdateGroupParams) WithContext(ctx context.Context) *UpdateGroupParams 
 // SetContext adds the context to the update group params
 func (o *UpdateGroupParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the update group params
+func (o *UpdateGroupParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the update group params

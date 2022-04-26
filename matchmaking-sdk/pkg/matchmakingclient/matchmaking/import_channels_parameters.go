@@ -80,9 +80,10 @@ type ImportChannelsParams struct {
 	*/
 	Strategy *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the import channels params
@@ -105,6 +106,11 @@ func (o *ImportChannelsParams) WithContext(ctx context.Context) *ImportChannelsP
 // SetContext adds the context to the import channels params
 func (o *ImportChannelsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the import channels params
+func (o *ImportChannelsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the import channels params

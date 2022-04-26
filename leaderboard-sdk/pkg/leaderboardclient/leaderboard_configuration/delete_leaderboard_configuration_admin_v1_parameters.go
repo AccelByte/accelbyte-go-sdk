@@ -75,9 +75,10 @@ type DeleteLeaderboardConfigurationAdminV1Params struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the delete leaderboard configuration admin v1 params
@@ -100,6 +101,11 @@ func (o *DeleteLeaderboardConfigurationAdminV1Params) WithContext(ctx context.Co
 // SetContext adds the context to the delete leaderboard configuration admin v1 params
 func (o *DeleteLeaderboardConfigurationAdminV1Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the delete leaderboard configuration admin v1 params
+func (o *DeleteLeaderboardConfigurationAdminV1Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the delete leaderboard configuration admin v1 params

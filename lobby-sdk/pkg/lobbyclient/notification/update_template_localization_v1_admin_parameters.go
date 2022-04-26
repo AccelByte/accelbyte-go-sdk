@@ -84,9 +84,10 @@ type UpdateTemplateLocalizationV1AdminParams struct {
 	*/
 	TemplateSlug string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the update template localization v1 admin params
@@ -109,6 +110,11 @@ func (o *UpdateTemplateLocalizationV1AdminParams) WithContext(ctx context.Contex
 // SetContext adds the context to the update template localization v1 admin params
 func (o *UpdateTemplateLocalizationV1AdminParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the update template localization v1 admin params
+func (o *UpdateTemplateLocalizationV1AdminParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the update template localization v1 admin params

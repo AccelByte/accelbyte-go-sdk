@@ -67,9 +67,10 @@ type DeleteEpicGamesIAPConfigParams struct {
 	/*Namespace*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the delete epic games i a p config params
@@ -92,6 +93,11 @@ func (o *DeleteEpicGamesIAPConfigParams) WithContext(ctx context.Context) *Delet
 // SetContext adds the context to the delete epic games i a p config params
 func (o *DeleteEpicGamesIAPConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the delete epic games i a p config params
+func (o *DeleteEpicGamesIAPConfigParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the delete epic games i a p config params

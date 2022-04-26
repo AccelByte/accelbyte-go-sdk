@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -149,7 +148,8 @@ func (e *EventV2Service) GetUserEventsV2Public(input *event_v2.GetUserEventsV2Pu
 	return ok.GetPayload(), nil
 }
 
-func (e *EventV2Service) QueryEventStreamHandlerShort(input *event_v2.QueryEventStreamHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponseV2, error) {
+func (e *EventV2Service) QueryEventStreamHandlerShort(input *event_v2.QueryEventStreamHandlerParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -164,7 +164,8 @@ func (e *EventV2Service) QueryEventStreamHandlerShort(input *event_v2.QueryEvent
 	return ok.GetPayload(), nil
 }
 
-func (e *EventV2Service) GetEventSpecificUserV2HandlerShort(input *event_v2.GetEventSpecificUserV2HandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponseV2, error) {
+func (e *EventV2Service) GetEventSpecificUserV2HandlerShort(input *event_v2.GetEventSpecificUserV2HandlerParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -179,7 +180,8 @@ func (e *EventV2Service) GetEventSpecificUserV2HandlerShort(input *event_v2.GetE
 	return ok.GetPayload(), nil
 }
 
-func (e *EventV2Service) GetPublicEditHistoryShort(input *event_v2.GetPublicEditHistoryParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponseV2, error) {
+func (e *EventV2Service) GetPublicEditHistoryShort(input *event_v2.GetPublicEditHistoryParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -194,7 +196,8 @@ func (e *EventV2Service) GetPublicEditHistoryShort(input *event_v2.GetPublicEdit
 	return ok.GetPayload(), nil
 }
 
-func (e *EventV2Service) GetUserEventsV2PublicShort(input *event_v2.GetUserEventsV2PublicParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventResponseV2, error) {
+func (e *EventV2Service) GetUserEventsV2PublicShort(input *event_v2.GetUserEventsV2PublicParams) (*eventlogclientmodels.ModelsEventResponseV2, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

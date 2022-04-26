@@ -113,9 +113,10 @@ type QueryRewardsParams struct {
 	*/
 	SortBy *string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the query rewards params
@@ -138,6 +139,11 @@ func (o *QueryRewardsParams) WithContext(ctx context.Context) *QueryRewardsParam
 // SetContext adds the context to the query rewards params
 func (o *QueryRewardsParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the query rewards params
+func (o *QueryRewardsParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the query rewards params

@@ -67,9 +67,10 @@ type GetPlatformDLCConfigParams struct {
 	/*Namespace*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get platform d l c config params
@@ -92,6 +93,11 @@ func (o *GetPlatformDLCConfigParams) WithContext(ctx context.Context) *GetPlatfo
 // SetContext adds the context to the get platform d l c config params
 func (o *GetPlatformDLCConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get platform d l c config params
+func (o *GetPlatformDLCConfigParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get platform d l c config params

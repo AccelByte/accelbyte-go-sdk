@@ -86,9 +86,10 @@ type GetPaymentPublicConfigParams struct {
 	/*Sandbox*/
 	Sandbox *bool
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get payment public config params
@@ -111,6 +112,11 @@ func (o *GetPaymentPublicConfigParams) WithContext(ctx context.Context) *GetPaym
 // SetContext adds the context to the get payment public config params
 func (o *GetPaymentPublicConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get payment public config params
+func (o *GetPaymentPublicConfigParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get payment public config params

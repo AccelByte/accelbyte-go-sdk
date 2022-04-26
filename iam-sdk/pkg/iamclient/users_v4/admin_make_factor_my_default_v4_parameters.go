@@ -70,9 +70,10 @@ type AdminMakeFactorMyDefaultV4Params struct {
 	*/
 	Factor string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the admin make factor my default v4 params
@@ -95,6 +96,11 @@ func (o *AdminMakeFactorMyDefaultV4Params) WithContext(ctx context.Context) *Adm
 // SetContext adds the context to the admin make factor my default v4 params
 func (o *AdminMakeFactorMyDefaultV4Params) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the admin make factor my default v4 params
+func (o *AdminMakeFactorMyDefaultV4Params) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the admin make factor my default v4 params

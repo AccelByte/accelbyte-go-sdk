@@ -72,9 +72,10 @@ type PublicGetCurrentSeasonParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the public get current season params
@@ -97,6 +98,11 @@ func (o *PublicGetCurrentSeasonParams) WithContext(ctx context.Context) *PublicG
 // SetContext adds the context to the public get current season params
 func (o *PublicGetCurrentSeasonParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the public get current season params
+func (o *PublicGetCurrentSeasonParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the public get current season params

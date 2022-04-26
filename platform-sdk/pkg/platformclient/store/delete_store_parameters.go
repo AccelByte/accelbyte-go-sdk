@@ -69,9 +69,10 @@ type DeleteStoreParams struct {
 	/*StoreID*/
 	StoreID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the delete store params
@@ -94,6 +95,11 @@ func (o *DeleteStoreParams) WithContext(ctx context.Context) *DeleteStoreParams 
 // SetContext adds the context to the delete store params
 func (o *DeleteStoreParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the delete store params
+func (o *DeleteStoreParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the delete store params

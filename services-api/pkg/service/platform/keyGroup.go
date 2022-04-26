@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -146,7 +145,8 @@ func (k *KeyGroupService) UploadKeys(input *key_group.UploadKeysParams) (*platfo
 	return ok.GetPayload(), nil
 }
 
-func (k *KeyGroupService) QueryKeyGroupsShort(input *key_group.QueryKeyGroupsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.KeyGroupPagingSlicedResult, error) {
+func (k *KeyGroupService) QueryKeyGroupsShort(input *key_group.QueryKeyGroupsParams) (*platformclientmodels.KeyGroupPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -161,7 +161,8 @@ func (k *KeyGroupService) QueryKeyGroupsShort(input *key_group.QueryKeyGroupsPar
 	return ok.GetPayload(), nil
 }
 
-func (k *KeyGroupService) CreateKeyGroupShort(input *key_group.CreateKeyGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.KeyGroupInfo, error) {
+func (k *KeyGroupService) CreateKeyGroupShort(input *key_group.CreateKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -176,7 +177,8 @@ func (k *KeyGroupService) CreateKeyGroupShort(input *key_group.CreateKeyGroupPar
 	return created.GetPayload(), nil
 }
 
-func (k *KeyGroupService) GetKeyGroupShort(input *key_group.GetKeyGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.KeyGroupInfo, error) {
+func (k *KeyGroupService) GetKeyGroupShort(input *key_group.GetKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -191,7 +193,8 @@ func (k *KeyGroupService) GetKeyGroupShort(input *key_group.GetKeyGroupParams, a
 	return ok.GetPayload(), nil
 }
 
-func (k *KeyGroupService) UpdateKeyGroupShort(input *key_group.UpdateKeyGroupParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.KeyGroupInfo, error) {
+func (k *KeyGroupService) UpdateKeyGroupShort(input *key_group.UpdateKeyGroupParams) (*platformclientmodels.KeyGroupInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -206,7 +209,8 @@ func (k *KeyGroupService) UpdateKeyGroupShort(input *key_group.UpdateKeyGroupPar
 	return ok.GetPayload(), nil
 }
 
-func (k *KeyGroupService) GetKeyGroupDynamicShort(input *key_group.GetKeyGroupDynamicParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.KeyGroupDynamicInfo, error) {
+func (k *KeyGroupService) GetKeyGroupDynamicShort(input *key_group.GetKeyGroupDynamicParams) (*platformclientmodels.KeyGroupDynamicInfo, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -221,7 +225,8 @@ func (k *KeyGroupService) GetKeyGroupDynamicShort(input *key_group.GetKeyGroupDy
 	return ok.GetPayload(), nil
 }
 
-func (k *KeyGroupService) ListKeysShort(input *key_group.ListKeysParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.KeyPagingSliceResult, error) {
+func (k *KeyGroupService) ListKeysShort(input *key_group.ListKeysParams) (*platformclientmodels.KeyPagingSliceResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -236,7 +241,8 @@ func (k *KeyGroupService) ListKeysShort(input *key_group.ListKeysParams, authInf
 	return ok.GetPayload(), nil
 }
 
-func (k *KeyGroupService) UploadKeysShort(input *key_group.UploadKeysParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.BulkOperationResult, error) {
+func (k *KeyGroupService) UploadKeysShort(input *key_group.UploadKeysParams) (*platformclientmodels.BulkOperationResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

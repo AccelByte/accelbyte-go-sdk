@@ -63,9 +63,10 @@ func NewHandlerV3HealthzParamsWithHTTPClient(client *http.Client) *HandlerV3Heal
 for the handler v3 healthz operation typically these are written to a http.Request
 */
 type HandlerV3HealthzParams struct {
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the handler v3 healthz params
@@ -88,6 +89,11 @@ func (o *HandlerV3HealthzParams) WithContext(ctx context.Context) *HandlerV3Heal
 // SetContext adds the context to the handler v3 healthz params
 func (o *HandlerV3HealthzParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the handler v3 healthz params
+func (o *HandlerV3HealthzParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the handler v3 healthz params

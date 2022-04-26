@@ -74,9 +74,10 @@ type UpdateEventRegistryHandlerParams struct {
 	*/
 	EventID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the update event registry handler params
@@ -99,6 +100,11 @@ func (o *UpdateEventRegistryHandlerParams) WithContext(ctx context.Context) *Upd
 // SetContext adds the context to the update event registry handler params
 func (o *UpdateEventRegistryHandlerParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the update event registry handler params
+func (o *UpdateEventRegistryHandlerParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the update event registry handler params

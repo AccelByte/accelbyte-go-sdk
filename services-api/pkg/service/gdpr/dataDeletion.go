@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/gdpr-sdk/pkg/gdprclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -212,7 +211,8 @@ func (d *DataDeletionService) PublicGetUserAccountDeletionStatus(input *data_del
 	return ok.GetPayload(), nil
 }
 
-func (d *DataDeletionService) AdminGetListDeletionDataRequestShort(input *data_deletion.AdminGetListDeletionDataRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsListDeletionDataResponse, error) {
+func (d *DataDeletionService) AdminGetListDeletionDataRequestShort(input *data_deletion.AdminGetListDeletionDataRequestParams) (*gdprclientmodels.ModelsListDeletionDataResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -227,7 +227,8 @@ func (d *DataDeletionService) AdminGetListDeletionDataRequestShort(input *data_d
 	return ok.GetPayload(), nil
 }
 
-func (d *DataDeletionService) AdminGetUserAccountDeletionRequestShort(input *data_deletion.AdminGetUserAccountDeletionRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsDeletionData, error) {
+func (d *DataDeletionService) AdminGetUserAccountDeletionRequestShort(input *data_deletion.AdminGetUserAccountDeletionRequestParams) (*gdprclientmodels.ModelsDeletionData, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -242,7 +243,8 @@ func (d *DataDeletionService) AdminGetUserAccountDeletionRequestShort(input *dat
 	return ok.GetPayload(), nil
 }
 
-func (d *DataDeletionService) AdminSubmitUserAccountDeletionRequestShort(input *data_deletion.AdminSubmitUserAccountDeletionRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsRequestDeleteResponse, error) {
+func (d *DataDeletionService) AdminSubmitUserAccountDeletionRequestShort(input *data_deletion.AdminSubmitUserAccountDeletionRequestParams) (*gdprclientmodels.ModelsRequestDeleteResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -257,7 +259,8 @@ func (d *DataDeletionService) AdminSubmitUserAccountDeletionRequestShort(input *
 	return created.GetPayload(), nil
 }
 
-func (d *DataDeletionService) AdminCancelUserAccountDeletionRequestShort(input *data_deletion.AdminCancelUserAccountDeletionRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (d *DataDeletionService) AdminCancelUserAccountDeletionRequestShort(input *data_deletion.AdminCancelUserAccountDeletionRequestParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -272,7 +275,8 @@ func (d *DataDeletionService) AdminCancelUserAccountDeletionRequestShort(input *
 	return nil
 }
 
-func (d *DataDeletionService) PublicSubmitUserAccountDeletionRequestShort(input *data_deletion.PublicSubmitUserAccountDeletionRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsRequestDeleteResponse, error) {
+func (d *DataDeletionService) PublicSubmitUserAccountDeletionRequestShort(input *data_deletion.PublicSubmitUserAccountDeletionRequestParams) (*gdprclientmodels.ModelsRequestDeleteResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -287,7 +291,8 @@ func (d *DataDeletionService) PublicSubmitUserAccountDeletionRequestShort(input 
 	return created.GetPayload(), nil
 }
 
-func (d *DataDeletionService) PublicCancelUserAccountDeletionRequestShort(input *data_deletion.PublicCancelUserAccountDeletionRequestParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (d *DataDeletionService) PublicCancelUserAccountDeletionRequestShort(input *data_deletion.PublicCancelUserAccountDeletionRequestParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -302,7 +307,8 @@ func (d *DataDeletionService) PublicCancelUserAccountDeletionRequestShort(input 
 	return nil
 }
 
-func (d *DataDeletionService) PublicGetUserAccountDeletionStatusShort(input *data_deletion.PublicGetUserAccountDeletionStatusParams, authInfoWriter runtime.ClientAuthInfoWriter) (*gdprclientmodels.ModelsDeletionStatus, error) {
+func (d *DataDeletionService) PublicGetUserAccountDeletionStatusShort(input *data_deletion.PublicGetUserAccountDeletionStatusParams) (*gdprclientmodels.ModelsDeletionStatus, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

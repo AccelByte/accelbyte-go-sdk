@@ -74,9 +74,10 @@ type ForgotPasswordParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the forgot password params
@@ -99,6 +100,11 @@ func (o *ForgotPasswordParams) WithContext(ctx context.Context) *ForgotPasswordP
 // SetContext adds the context to the forgot password params
 func (o *ForgotPasswordParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the forgot password params
+func (o *ForgotPasswordParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the forgot password params

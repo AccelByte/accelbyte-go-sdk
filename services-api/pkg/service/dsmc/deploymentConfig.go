@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/dsmc-sdk/pkg/dsmcclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -391,7 +390,8 @@ func (d *DeploymentConfigService) UpdateOverrideRegionOverride(input *deployment
 	return ok.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) GetAllDeploymentShort(input *deployment_config.GetAllDeploymentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsListDeploymentResponse, error) {
+func (d *DeploymentConfigService) GetAllDeploymentShort(input *deployment_config.GetAllDeploymentParams) (*dsmcclientmodels.ModelsListDeploymentResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -406,7 +406,8 @@ func (d *DeploymentConfigService) GetAllDeploymentShort(input *deployment_config
 	return ok.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) GetDeploymentShort(input *deployment_config.GetDeploymentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+func (d *DeploymentConfigService) GetDeploymentShort(input *deployment_config.GetDeploymentParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -421,7 +422,8 @@ func (d *DeploymentConfigService) GetDeploymentShort(input *deployment_config.Ge
 	return ok.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) CreateDeploymentShort(input *deployment_config.CreateDeploymentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+func (d *DeploymentConfigService) CreateDeploymentShort(input *deployment_config.CreateDeploymentParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -436,7 +438,8 @@ func (d *DeploymentConfigService) CreateDeploymentShort(input *deployment_config
 	return created.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) DeleteDeploymentShort(input *deployment_config.DeleteDeploymentParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (d *DeploymentConfigService) DeleteDeploymentShort(input *deployment_config.DeleteDeploymentParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -451,7 +454,8 @@ func (d *DeploymentConfigService) DeleteDeploymentShort(input *deployment_config
 	return nil
 }
 
-func (d *DeploymentConfigService) UpdateDeploymentShort(input *deployment_config.UpdateDeploymentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+func (d *DeploymentConfigService) UpdateDeploymentShort(input *deployment_config.UpdateDeploymentParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -466,7 +470,8 @@ func (d *DeploymentConfigService) UpdateDeploymentShort(input *deployment_config
 	return ok.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) CreateRootRegionOverrideShort(input *deployment_config.CreateRootRegionOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+func (d *DeploymentConfigService) CreateRootRegionOverrideShort(input *deployment_config.CreateRootRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -481,7 +486,8 @@ func (d *DeploymentConfigService) CreateRootRegionOverrideShort(input *deploymen
 	return created.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) DeleteRootRegionOverrideShort(input *deployment_config.DeleteRootRegionOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+func (d *DeploymentConfigService) DeleteRootRegionOverrideShort(input *deployment_config.DeleteRootRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -496,7 +502,8 @@ func (d *DeploymentConfigService) DeleteRootRegionOverrideShort(input *deploymen
 	return ok.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) UpdateRootRegionOverrideShort(input *deployment_config.UpdateRootRegionOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+func (d *DeploymentConfigService) UpdateRootRegionOverrideShort(input *deployment_config.UpdateRootRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -511,7 +518,8 @@ func (d *DeploymentConfigService) UpdateRootRegionOverrideShort(input *deploymen
 	return ok.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) CreateDeploymentOverrideShort(input *deployment_config.CreateDeploymentOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+func (d *DeploymentConfigService) CreateDeploymentOverrideShort(input *deployment_config.CreateDeploymentOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -526,7 +534,8 @@ func (d *DeploymentConfigService) CreateDeploymentOverrideShort(input *deploymen
 	return created.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) DeleteDeploymentOverrideShort(input *deployment_config.DeleteDeploymentOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+func (d *DeploymentConfigService) DeleteDeploymentOverrideShort(input *deployment_config.DeleteDeploymentOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -541,7 +550,8 @@ func (d *DeploymentConfigService) DeleteDeploymentOverrideShort(input *deploymen
 	return ok.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) UpdateDeploymentOverrideShort(input *deployment_config.UpdateDeploymentOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+func (d *DeploymentConfigService) UpdateDeploymentOverrideShort(input *deployment_config.UpdateDeploymentOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -556,7 +566,8 @@ func (d *DeploymentConfigService) UpdateDeploymentOverrideShort(input *deploymen
 	return ok.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) CreateOverrideRegionOverrideShort(input *deployment_config.CreateOverrideRegionOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+func (d *DeploymentConfigService) CreateOverrideRegionOverrideShort(input *deployment_config.CreateOverrideRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -571,7 +582,8 @@ func (d *DeploymentConfigService) CreateOverrideRegionOverrideShort(input *deplo
 	return created.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) DeleteOverrideRegionOverrideShort(input *deployment_config.DeleteOverrideRegionOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+func (d *DeploymentConfigService) DeleteOverrideRegionOverrideShort(input *deployment_config.DeleteOverrideRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -586,7 +598,8 @@ func (d *DeploymentConfigService) DeleteOverrideRegionOverrideShort(input *deplo
 	return ok.GetPayload(), nil
 }
 
-func (d *DeploymentConfigService) UpdateOverrideRegionOverrideShort(input *deployment_config.UpdateOverrideRegionOverrideParams, authInfoWriter runtime.ClientAuthInfoWriter) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+func (d *DeploymentConfigService) UpdateOverrideRegionOverrideShort(input *deployment_config.UpdateOverrideRegionOverrideParams) (*dsmcclientmodels.ModelsDeploymentWithOverride, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

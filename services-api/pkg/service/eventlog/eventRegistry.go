@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/eventlog-sdk/pkg/eventlogclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -186,7 +185,8 @@ func (e *EventRegistryService) GetRegisteredEventsByEventTypeHandler(input *even
 	return ok.GetPayload(), nil
 }
 
-func (e *EventRegistryService) GetRegisteredEventsHandlerShort(input *event_registry.GetRegisteredEventsHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventRegistry, error) {
+func (e *EventRegistryService) GetRegisteredEventsHandlerShort(input *event_registry.GetRegisteredEventsHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -201,7 +201,8 @@ func (e *EventRegistryService) GetRegisteredEventsHandlerShort(input *event_regi
 	return ok.GetPayload(), nil
 }
 
-func (e *EventRegistryService) RegisterEventHandlerShort(input *event_registry.RegisterEventHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (e *EventRegistryService) RegisterEventHandlerShort(input *event_registry.RegisterEventHandlerParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -216,7 +217,8 @@ func (e *EventRegistryService) RegisterEventHandlerShort(input *event_registry.R
 	return nil
 }
 
-func (e *EventRegistryService) GetRegisteredEventIDHandlerShort(input *event_registry.GetRegisteredEventIDHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventRegistry, error) {
+func (e *EventRegistryService) GetRegisteredEventIDHandlerShort(input *event_registry.GetRegisteredEventIDHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -231,7 +233,8 @@ func (e *EventRegistryService) GetRegisteredEventIDHandlerShort(input *event_reg
 	return ok.GetPayload(), nil
 }
 
-func (e *EventRegistryService) UpdateEventRegistryHandlerShort(input *event_registry.UpdateEventRegistryHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (e *EventRegistryService) UpdateEventRegistryHandlerShort(input *event_registry.UpdateEventRegistryHandlerParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -246,7 +249,8 @@ func (e *EventRegistryService) UpdateEventRegistryHandlerShort(input *event_regi
 	return nil
 }
 
-func (e *EventRegistryService) UnregisterEventIDHandlerShort(input *event_registry.UnregisterEventIDHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (e *EventRegistryService) UnregisterEventIDHandlerShort(input *event_registry.UnregisterEventIDHandlerParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -261,7 +265,8 @@ func (e *EventRegistryService) UnregisterEventIDHandlerShort(input *event_regist
 	return nil
 }
 
-func (e *EventRegistryService) GetRegisteredEventsByEventTypeHandlerShort(input *event_registry.GetRegisteredEventsByEventTypeHandlerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*eventlogclientmodels.ModelsEventRegistry, error) {
+func (e *EventRegistryService) GetRegisteredEventsByEventTypeHandlerShort(input *event_registry.GetRegisteredEventsByEventTypeHandlerParams) (*eventlogclientmodels.ModelsEventRegistry, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

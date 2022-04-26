@@ -75,9 +75,10 @@ type AcquireUserTicketParams struct {
 	/*UserID*/
 	UserID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the acquire user ticket params
@@ -100,6 +101,11 @@ func (o *AcquireUserTicketParams) WithContext(ctx context.Context) *AcquireUserT
 // SetContext adds the context to the acquire user ticket params
 func (o *AcquireUserTicketParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the acquire user ticket params
+func (o *AcquireUserTicketParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the acquire user ticket params

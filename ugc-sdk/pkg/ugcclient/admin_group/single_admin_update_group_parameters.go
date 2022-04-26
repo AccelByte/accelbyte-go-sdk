@@ -79,9 +79,10 @@ type SingleAdminUpdateGroupParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the single admin update group params
@@ -104,6 +105,11 @@ func (o *SingleAdminUpdateGroupParams) WithContext(ctx context.Context) *SingleA
 // SetContext adds the context to the single admin update group params
 func (o *SingleAdminUpdateGroupParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the single admin update group params
+func (o *SingleAdminUpdateGroupParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the single admin update group params

@@ -69,9 +69,10 @@ type SaveConfigParams struct {
 	/*Body*/
 	Body *dsmcclientmodels.ModelsDSMConfigRecord
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the save config params
@@ -94,6 +95,11 @@ func (o *SaveConfigParams) WithContext(ctx context.Context) *SaveConfigParams {
 // SetContext adds the context to the save config params
 func (o *SaveConfigParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the save config params
+func (o *SaveConfigParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the save config params

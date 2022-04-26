@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclientmodels"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/repository"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/utils/auth"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -127,7 +126,8 @@ func (f *FulfillmentService) PublicRedeemCode(input *fulfillment.PublicRedeemCod
 	return ok.GetPayload(), nil
 }
 
-func (f *FulfillmentService) QueryFulfillmentHistoriesShort(input *fulfillment.QueryFulfillmentHistoriesParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FulfillmentHistoryPagingSlicedResult, error) {
+func (f *FulfillmentService) QueryFulfillmentHistoriesShort(input *fulfillment.QueryFulfillmentHistoriesParams) (*platformclientmodels.FulfillmentHistoryPagingSlicedResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -142,7 +142,8 @@ func (f *FulfillmentService) QueryFulfillmentHistoriesShort(input *fulfillment.Q
 	return ok.GetPayload(), nil
 }
 
-func (f *FulfillmentService) FulfillItemShort(input *fulfillment.FulfillItemParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FulfillmentResult, error) {
+func (f *FulfillmentService) FulfillItemShort(input *fulfillment.FulfillItemParams) (*platformclientmodels.FulfillmentResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -157,7 +158,8 @@ func (f *FulfillmentService) FulfillItemShort(input *fulfillment.FulfillItemPara
 	return ok.GetPayload(), nil
 }
 
-func (f *FulfillmentService) RedeemCodeShort(input *fulfillment.RedeemCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FulfillmentResult, error) {
+func (f *FulfillmentService) RedeemCodeShort(input *fulfillment.RedeemCodeParams) (*platformclientmodels.FulfillmentResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -172,7 +174,8 @@ func (f *FulfillmentService) RedeemCodeShort(input *fulfillment.RedeemCodeParams
 	return ok.GetPayload(), nil
 }
 
-func (f *FulfillmentService) FulfillRewardsShort(input *fulfillment.FulfillRewardsParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (f *FulfillmentService) FulfillRewardsShort(input *fulfillment.FulfillRewardsParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -187,7 +190,8 @@ func (f *FulfillmentService) FulfillRewardsShort(input *fulfillment.FulfillRewar
 	return nil
 }
 
-func (f *FulfillmentService) PublicRedeemCodeShort(input *fulfillment.PublicRedeemCodeParams, authInfoWriter runtime.ClientAuthInfoWriter) (*platformclientmodels.FulfillmentResult, error) {
+func (f *FulfillmentService) PublicRedeemCodeShort(input *fulfillment.PublicRedeemCodeParams) (*platformclientmodels.FulfillmentResult, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

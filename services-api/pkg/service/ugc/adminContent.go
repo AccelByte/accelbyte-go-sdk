@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/admin_content"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclientmodels"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -456,7 +455,8 @@ func (a *AdminContentService) AdminHideUserContent(input *admin_content.AdminHid
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminContentService) AdminUploadContentDirectShort(input *admin_content.AdminUploadContentDirectParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+func (a *AdminContentService) AdminUploadContentDirectShort(input *admin_content.AdminUploadContentDirectParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -471,7 +471,8 @@ func (a *AdminContentService) AdminUploadContentDirectShort(input *admin_content
 	return created.GetPayload(), nil
 }
 
-func (a *AdminContentService) AdminUploadContentS3Short(input *admin_content.AdminUploadContentS3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+func (a *AdminContentService) AdminUploadContentS3Short(input *admin_content.AdminUploadContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -486,7 +487,8 @@ func (a *AdminContentService) AdminUploadContentS3Short(input *admin_content.Adm
 	return created.GetPayload(), nil
 }
 
-func (a *AdminContentService) SingleAdminUpdateContentS3Short(input *admin_content.SingleAdminUpdateContentS3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+func (a *AdminContentService) SingleAdminUpdateContentS3Short(input *admin_content.SingleAdminUpdateContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -501,7 +503,8 @@ func (a *AdminContentService) SingleAdminUpdateContentS3Short(input *admin_conte
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminContentService) AdminSearchChannelSpecificContentShort(input *admin_content.AdminSearchChannelSpecificContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+func (a *AdminContentService) AdminSearchChannelSpecificContentShort(input *admin_content.AdminSearchChannelSpecificContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -516,7 +519,8 @@ func (a *AdminContentService) AdminSearchChannelSpecificContentShort(input *admi
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminContentService) SingleAdminUpdateContentDirectShort(input *admin_content.SingleAdminUpdateContentDirectParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+func (a *AdminContentService) SingleAdminUpdateContentDirectShort(input *admin_content.SingleAdminUpdateContentDirectParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -531,7 +535,8 @@ func (a *AdminContentService) SingleAdminUpdateContentDirectShort(input *admin_c
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminContentService) SingleAdminDeleteContentShort(input *admin_content.SingleAdminDeleteContentParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AdminContentService) SingleAdminDeleteContentShort(input *admin_content.SingleAdminDeleteContentParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -546,7 +551,8 @@ func (a *AdminContentService) SingleAdminDeleteContentShort(input *admin_content
 	return nil
 }
 
-func (a *AdminContentService) SingleAdminGetContentShort(input *admin_content.SingleAdminGetContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+func (a *AdminContentService) SingleAdminGetContentShort(input *admin_content.SingleAdminGetContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -561,7 +567,8 @@ func (a *AdminContentService) SingleAdminGetContentShort(input *admin_content.Si
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminContentService) AdminSearchContentShort(input *admin_content.AdminSearchContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+func (a *AdminContentService) AdminSearchContentShort(input *admin_content.AdminSearchContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -576,7 +583,8 @@ func (a *AdminContentService) AdminSearchContentShort(input *admin_content.Admin
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminContentService) AdminGetSpecificContentShort(input *admin_content.AdminGetSpecificContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
+func (a *AdminContentService) AdminGetSpecificContentShort(input *admin_content.AdminGetSpecificContentParams) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -591,7 +599,8 @@ func (a *AdminContentService) AdminGetSpecificContentShort(input *admin_content.
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminContentService) AdminDownloadContentPreviewShort(input *admin_content.AdminDownloadContentPreviewParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsGetContentPreviewResponse, error) {
+func (a *AdminContentService) AdminDownloadContentPreviewShort(input *admin_content.AdminDownloadContentPreviewParams) (*ugcclientmodels.ModelsGetContentPreviewResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -606,7 +615,8 @@ func (a *AdminContentService) AdminDownloadContentPreviewShort(input *admin_cont
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminContentService) AdminUpdateScreenshotsShort(input *admin_content.AdminUpdateScreenshotsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsUpdateScreenshotResponse, error) {
+func (a *AdminContentService) AdminUpdateScreenshotsShort(input *admin_content.AdminUpdateScreenshotsParams) (*ugcclientmodels.ModelsUpdateScreenshotResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -621,7 +631,8 @@ func (a *AdminContentService) AdminUpdateScreenshotsShort(input *admin_content.A
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminContentService) AdminUploadContentScreenshotShort(input *admin_content.AdminUploadContentScreenshotParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateScreenshotResponse, error) {
+func (a *AdminContentService) AdminUploadContentScreenshotShort(input *admin_content.AdminUploadContentScreenshotParams) (*ugcclientmodels.ModelsCreateScreenshotResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -636,7 +647,8 @@ func (a *AdminContentService) AdminUploadContentScreenshotShort(input *admin_con
 	return created.GetPayload(), nil
 }
 
-func (a *AdminContentService) AdminDeleteContentScreenshotShort(input *admin_content.AdminDeleteContentScreenshotParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AdminContentService) AdminDeleteContentScreenshotShort(input *admin_content.AdminDeleteContentScreenshotParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -651,7 +663,8 @@ func (a *AdminContentService) AdminDeleteContentScreenshotShort(input *admin_con
 	return nil
 }
 
-func (a *AdminContentService) AdminUpdateContentS3Short(input *admin_content.AdminUpdateContentS3Params, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+func (a *AdminContentService) AdminUpdateContentS3Short(input *admin_content.AdminUpdateContentS3Params) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -666,7 +679,8 @@ func (a *AdminContentService) AdminUpdateContentS3Short(input *admin_content.Adm
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminContentService) AdminUpdateContentDirectShort(input *admin_content.AdminUpdateContentDirectParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+func (a *AdminContentService) AdminUpdateContentDirectShort(input *admin_content.AdminUpdateContentDirectParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -681,7 +695,8 @@ func (a *AdminContentService) AdminUpdateContentDirectShort(input *admin_content
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminContentService) AdminDeleteContentShort(input *admin_content.AdminDeleteContentParams, authInfoWriter runtime.ClientAuthInfoWriter) error {
+func (a *AdminContentService) AdminDeleteContentShort(input *admin_content.AdminDeleteContentParams) error {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -696,7 +711,8 @@ func (a *AdminContentService) AdminDeleteContentShort(input *admin_content.Admin
 	return nil
 }
 
-func (a *AdminContentService) AdminGetContentShort(input *admin_content.AdminGetContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+func (a *AdminContentService) AdminGetContentShort(input *admin_content.AdminGetContentParams) (*ugcclientmodels.ModelsPaginatedContentDownloadResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -711,7 +727,8 @@ func (a *AdminContentService) AdminGetContentShort(input *admin_content.AdminGet
 	return ok.GetPayload(), nil
 }
 
-func (a *AdminContentService) AdminHideUserContentShort(input *admin_content.AdminHideUserContentParams, authInfoWriter runtime.ClientAuthInfoWriter) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+func (a *AdminContentService) AdminHideUserContentShort(input *admin_content.AdminHideUserContentParams) (*ugcclientmodels.ModelsCreateContentResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

@@ -75,9 +75,10 @@ type GetImagePatchesParams struct {
 	*/
 	Version string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get image patches params
@@ -100,6 +101,11 @@ func (o *GetImagePatchesParams) WithContext(ctx context.Context) *GetImagePatche
 // SetContext adds the context to the get image patches params
 func (o *GetImagePatchesParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get image patches params
+func (o *GetImagePatchesParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get image patches params

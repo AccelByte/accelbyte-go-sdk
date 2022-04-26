@@ -74,9 +74,10 @@ type QueueSessionHandlerParams struct {
 	*/
 	Namespace string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the queue session handler params
@@ -99,6 +100,11 @@ func (o *QueueSessionHandlerParams) WithContext(ctx context.Context) *QueueSessi
 // SetContext adds the context to the queue session handler params
 func (o *QueueSessionHandlerParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the queue session handler params
+func (o *QueueSessionHandlerParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the queue session handler params

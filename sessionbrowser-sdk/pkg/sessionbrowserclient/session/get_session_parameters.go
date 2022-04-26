@@ -75,9 +75,10 @@ type GetSessionParams struct {
 	*/
 	SessionID string
 
-	timeout    time.Duration
-	Context    context.Context
-	HTTPClient *http.Client
+	timeout        time.Duration
+	AuthInfoWriter runtime.ClientAuthInfoWriter
+	Context        context.Context
+	HTTPClient     *http.Client
 }
 
 // WithTimeout adds the timeout to the get session params
@@ -100,6 +101,11 @@ func (o *GetSessionParams) WithContext(ctx context.Context) *GetSessionParams {
 // SetContext adds the context to the get session params
 func (o *GetSessionParams) SetContext(ctx context.Context) {
 	o.Context = ctx
+}
+
+// SetAuthInfoWriter adds the authInfoWriter to the get session params
+func (o *GetSessionParams) SetAuthInfoWriter(authInfoWriter runtime.ClientAuthInfoWriter) {
+	o.AuthInfoWriter = authInfoWriter
 }
 
 // WithHTTPClient adds the HTTPClient to the get session params

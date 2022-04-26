@@ -12,7 +12,6 @@ import (
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclient/session"
 	"github.com/AccelByte/accelbyte-go-sdk/sessionbrowser-sdk/pkg/sessionbrowserclientmodels"
-	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/client"
 )
 
@@ -348,7 +347,8 @@ func (s *SessionService) GetRecentPlayer(input *session.GetRecentPlayerParams) (
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) GetTotalActiveSessionShort(input *session.GetTotalActiveSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsCountActiveSessionResponse, error) {
+func (s *SessionService) GetTotalActiveSessionShort(input *session.GetTotalActiveSessionParams) (*sessionbrowserclientmodels.ModelsCountActiveSessionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -363,7 +363,8 @@ func (s *SessionService) GetTotalActiveSessionShort(input *session.GetTotalActiv
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) GetActiveCustomGameSessionsShort(input *session.GetActiveCustomGameSessionsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsActiveCustomGameResponse, error) {
+func (s *SessionService) GetActiveCustomGameSessionsShort(input *session.GetActiveCustomGameSessionsParams) (*sessionbrowserclientmodels.ModelsActiveCustomGameResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -378,7 +379,8 @@ func (s *SessionService) GetActiveCustomGameSessionsShort(input *session.GetActi
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) GetActiveMatchmakingGameSessionsShort(input *session.GetActiveMatchmakingGameSessionsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsActiveMatchmakingGameResponse, error) {
+func (s *SessionService) GetActiveMatchmakingGameSessionsShort(input *session.GetActiveMatchmakingGameSessionsParams) (*sessionbrowserclientmodels.ModelsActiveMatchmakingGameResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -393,7 +395,8 @@ func (s *SessionService) GetActiveMatchmakingGameSessionsShort(input *session.Ge
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) AdminGetSessionShort(input *session.AdminGetSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsAdminSessionResponse, error) {
+func (s *SessionService) AdminGetSessionShort(input *session.AdminGetSessionParams) (*sessionbrowserclientmodels.ModelsAdminSessionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -408,7 +411,8 @@ func (s *SessionService) AdminGetSessionShort(input *session.AdminGetSessionPara
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) QuerySessionShort(input *session.QuerySessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsSessionQueryResponse, error) {
+func (s *SessionService) QuerySessionShort(input *session.QuerySessionParams) (*sessionbrowserclientmodels.ModelsSessionQueryResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -423,7 +427,8 @@ func (s *SessionService) QuerySessionShort(input *session.QuerySessionParams, au
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -438,7 +443,8 @@ func (s *SessionService) CreateSessionShort(input *session.CreateSessionParams, 
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) GetSessionByUserIDsShort(input *session.GetSessionByUserIDsParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsSessionByUserIDsResponse, error) {
+func (s *SessionService) GetSessionByUserIDsShort(input *session.GetSessionByUserIDsParams) (*sessionbrowserclientmodels.ModelsSessionByUserIDsResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -453,7 +459,8 @@ func (s *SessionService) GetSessionByUserIDsShort(input *session.GetSessionByUse
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) GetSessionShort(input *session.GetSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+func (s *SessionService) GetSessionShort(input *session.GetSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -468,7 +475,8 @@ func (s *SessionService) GetSessionShort(input *session.GetSessionParams, authIn
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) UpdateSessionShort(input *session.UpdateSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+func (s *SessionService) UpdateSessionShort(input *session.UpdateSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -483,7 +491,8 @@ func (s *SessionService) UpdateSessionShort(input *session.UpdateSessionParams, 
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) DeleteSessionShort(input *session.DeleteSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+func (s *SessionService) DeleteSessionShort(input *session.DeleteSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -498,7 +507,8 @@ func (s *SessionService) DeleteSessionShort(input *session.DeleteSessionParams, 
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) JoinSessionShort(input *session.JoinSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+func (s *SessionService) JoinSessionShort(input *session.JoinSessionParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -513,7 +523,8 @@ func (s *SessionService) JoinSessionShort(input *session.JoinSessionParams, auth
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) DeleteSessionLocalDSShort(input *session.DeleteSessionLocalDSParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+func (s *SessionService) DeleteSessionLocalDSShort(input *session.DeleteSessionLocalDSParams) (*sessionbrowserclientmodels.ModelsSessionResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -528,7 +539,8 @@ func (s *SessionService) DeleteSessionLocalDSShort(input *session.DeleteSessionL
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) AddPlayerToSessionShort(input *session.AddPlayerToSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsAddPlayerResponse, error) {
+func (s *SessionService) AddPlayerToSessionShort(input *session.AddPlayerToSessionParams) (*sessionbrowserclientmodels.ModelsAddPlayerResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -543,7 +555,8 @@ func (s *SessionService) AddPlayerToSessionShort(input *session.AddPlayerToSessi
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) RemovePlayerFromSessionShort(input *session.RemovePlayerFromSessionParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsAddPlayerResponse, error) {
+func (s *SessionService) RemovePlayerFromSessionShort(input *session.RemovePlayerFromSessionParams) (*sessionbrowserclientmodels.ModelsAddPlayerResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},
@@ -558,7 +571,8 @@ func (s *SessionService) RemovePlayerFromSessionShort(input *session.RemovePlaye
 	return ok.GetPayload(), nil
 }
 
-func (s *SessionService) GetRecentPlayerShort(input *session.GetRecentPlayerParams, authInfoWriter runtime.ClientAuthInfoWriter) (*sessionbrowserclientmodels.ModelsRecentPlayerQueryResponse, error) {
+func (s *SessionService) GetRecentPlayerShort(input *session.GetRecentPlayerParams) (*sessionbrowserclientmodels.ModelsRecentPlayerQueryResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
 	if authInfoWriter == nil {
 		security := [][]string{
 			{"bearer"},

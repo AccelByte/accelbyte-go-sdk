@@ -31,7 +31,7 @@ var TestAdyenConfigByIdCmd = &cobra.Command{
 			ID:      id_,
 			Sandbox: &sandbox,
 		}
-		ok, err := paymentConfigService.TestAdyenConfigByIDShort(input, nil)
+		ok, err := paymentConfigService.TestAdyenConfigByIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -41,7 +41,7 @@ var UpdateDeploymentCmd = &cobra.Command{
 			Deployment: deployment,
 			Namespace:  namespace,
 		}
-		ok, err := deploymentConfigService.UpdateDeploymentShort(input, nil)
+		ok, err := deploymentConfigService.UpdateDeploymentShort(input)
 		if err != nil {
 			logrus.Error(err)
 

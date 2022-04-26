@@ -39,7 +39,7 @@ var UpdateTwitchIAPConfigCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := iapService.UpdateTwitchIAPConfigShort(input, nil)
+		ok, err := iapService.UpdateTwitchIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

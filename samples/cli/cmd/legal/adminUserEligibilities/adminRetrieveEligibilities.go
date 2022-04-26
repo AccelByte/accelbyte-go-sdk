@@ -37,7 +37,7 @@ var AdminRetrieveEligibilitiesCmd = &cobra.Command{
 			ClientID:        clientId,
 			CountryCode:     countryCode,
 		}
-		ok, err := adminUserEligibilitiesService.AdminRetrieveEligibilitiesShort(input, nil)
+		ok, err := adminUserEligibilitiesService.AdminRetrieveEligibilitiesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

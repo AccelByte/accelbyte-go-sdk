@@ -29,7 +29,7 @@ var TestWxPayConfigByIdCmd = &cobra.Command{
 		input := &payment_config.TestWxPayConfigByIDParams{
 			ID: id_,
 		}
-		ok, err := paymentConfigService.TestWxPayConfigByIDShort(input, nil)
+		ok, err := paymentConfigService.TestWxPayConfigByIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -31,7 +31,7 @@ var AdminGetSpecificContentCmd = &cobra.Command{
 			ContentID: contentId,
 			Namespace: namespace,
 		}
-		ok, err := adminContentService.AdminGetSpecificContentShort(input, nil)
+		ok, err := adminContentService.AdminGetSpecificContentShort(input)
 		if err != nil {
 			logrus.Error(err)
 

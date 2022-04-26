@@ -29,7 +29,7 @@ var GetSteamIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.GetSteamIAPConfigParams{
 			Namespace: namespace,
 		}
-		ok, err := iapService.GetSteamIAPConfigShort(input, nil)
+		ok, err := iapService.GetSteamIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -41,7 +41,7 @@ var FulfillItemCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := fulfillmentService.FulfillItemShort(input, nil)
+		ok, err := fulfillmentService.FulfillItemShort(input)
 		if err != nil {
 			logrus.Error(err)
 

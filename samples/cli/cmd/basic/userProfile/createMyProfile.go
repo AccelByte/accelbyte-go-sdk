@@ -39,7 +39,7 @@ var CreateMyProfileCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := userProfileService.CreateMyProfileShort(input, nil)
+		ok, err := userProfileService.CreateMyProfileShort(input)
 		if err != nil {
 			logrus.Error(err)
 

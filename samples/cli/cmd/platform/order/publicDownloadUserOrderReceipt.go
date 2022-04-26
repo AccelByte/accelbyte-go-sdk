@@ -33,7 +33,7 @@ var PublicDownloadUserOrderReceiptCmd = &cobra.Command{
 			OrderNo:   orderNo,
 			UserID:    userId,
 		}
-		errInput := orderService.PublicDownloadUserOrderReceiptShort(input, nil)
+		errInput := orderService.PublicDownloadUserOrderReceiptShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

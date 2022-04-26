@@ -39,7 +39,7 @@ var UpdateIAPItemConfigCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := iapService.UpdateIAPItemConfigShort(input, nil)
+		ok, err := iapService.UpdateIAPItemConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

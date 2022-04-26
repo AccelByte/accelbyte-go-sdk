@@ -33,7 +33,7 @@ var RemovePlayerFromSessionCmd = &cobra.Command{
 			SessionID: sessionID,
 			UserID:    userID,
 		}
-		ok, err := sessionService.RemovePlayerFromSessionShort(input, nil)
+		ok, err := sessionService.RemovePlayerFromSessionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

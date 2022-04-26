@@ -39,7 +39,7 @@ var UpdateXblIAPConfigCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := iapService.UpdateXblIAPConfigShort(input, nil)
+		ok, err := iapService.UpdateXblIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

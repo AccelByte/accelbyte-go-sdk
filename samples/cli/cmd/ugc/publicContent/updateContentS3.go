@@ -45,7 +45,7 @@ var UpdateContentS3Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := publicContentService.UpdateContentS3Short(input, nil)
+		ok, err := publicContentService.UpdateContentS3Short(input)
 		if err != nil {
 			logrus.Error(err)
 

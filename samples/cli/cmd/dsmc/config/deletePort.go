@@ -31,7 +31,7 @@ var DeletePortCmd = &cobra.Command{
 			Name:      name,
 			Namespace: namespace,
 		}
-		ok, err := configService.DeletePortShort(input, nil)
+		ok, err := configService.DeletePortShort(input)
 		if err != nil {
 			logrus.Error(err)
 

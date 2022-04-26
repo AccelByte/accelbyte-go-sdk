@@ -39,7 +39,7 @@ var RegisterLocalServerCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := serverService.RegisterLocalServerShort(input, nil)
+		ok, err := serverService.RegisterLocalServerShort(input)
 		if err != nil {
 			logrus.Error(err)
 

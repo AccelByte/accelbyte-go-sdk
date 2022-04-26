@@ -35,7 +35,7 @@ var GetCountryLocationV3Cmd = &cobra.Command{
 		input := &o_auth2_0_extension.GetCountryLocationV3Params{
 			HTTPClient: httpClient,
 		}
-		ok, err := oAuth20ExtensionService.GetCountryLocationV3Short(input, nil)
+		ok, err := oAuth20ExtensionService.GetCountryLocationV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -37,7 +37,7 @@ var ListSessionCmd = &cobra.Command{
 			Region:     &region,
 			WithServer: &withServer,
 		}
-		ok, err := adminService.ListSessionShort(input, nil)
+		ok, err := adminService.ListSessionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

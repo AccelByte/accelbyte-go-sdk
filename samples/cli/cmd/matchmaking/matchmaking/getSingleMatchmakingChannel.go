@@ -31,7 +31,7 @@ var GetSingleMatchmakingChannelCmd = &cobra.Command{
 			ChannelName: channelName,
 			Namespace:   namespace,
 		}
-		ok, err := matchmakingService.GetSingleMatchmakingChannelShort(input, nil)
+		ok, err := matchmakingService.GetSingleMatchmakingChannelShort(input)
 		if err != nil {
 			logrus.Error(err)
 

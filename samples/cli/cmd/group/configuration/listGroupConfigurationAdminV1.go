@@ -33,7 +33,7 @@ var ListGroupConfigurationAdminV1Cmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := configurationService.ListGroupConfigurationAdminV1Short(input, nil)
+		ok, err := configurationService.ListGroupConfigurationAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

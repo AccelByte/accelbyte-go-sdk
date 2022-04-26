@@ -39,7 +39,7 @@ var UpdateSteamIAPConfigCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := iapService.UpdateSteamIAPConfigShort(input, nil)
+		ok, err := iapService.UpdateSteamIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

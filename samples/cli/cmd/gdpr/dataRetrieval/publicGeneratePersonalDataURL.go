@@ -43,7 +43,7 @@ var PublicGeneratePersonalDataURLCmd = &cobra.Command{
 			UserID:      userId,
 			HTTPClient:  httpClient,
 		}
-		ok, err := dataRetrievalService.PublicGeneratePersonalDataURLShort(input, nil)
+		ok, err := dataRetrievalService.PublicGeneratePersonalDataURLShort(input)
 		if err != nil {
 			logrus.Error(err)
 

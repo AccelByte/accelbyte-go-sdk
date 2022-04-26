@@ -41,7 +41,7 @@ var CloneSeasonCmd = &cobra.Command{
 			Namespace: namespace,
 			SeasonID:  seasonId,
 		}
-		ok, err := seasonService.CloneSeasonShort(input, nil)
+		ok, err := seasonService.CloneSeasonShort(input)
 		if err != nil {
 			logrus.Error(err)
 

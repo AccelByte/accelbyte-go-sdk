@@ -31,7 +31,7 @@ var GetOrderCmd = &cobra.Command{
 			Namespace: namespace,
 			OrderNo:   orderNo,
 		}
-		ok, err := orderService.GetOrderShort(input, nil)
+		ok, err := orderService.GetOrderShort(input)
 		if err != nil {
 			logrus.Error(err)
 

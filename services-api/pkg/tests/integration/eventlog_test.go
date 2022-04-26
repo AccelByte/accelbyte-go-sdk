@@ -52,7 +52,7 @@ func TestIntegrationQueryEventStreamHandler(t *testing.T) {
 		PageSize:  &size,
 		StartDate: &date,
 	}
-	ok, err := eventV2Service.QueryEventStreamHandlerShort(inputEventLog, nil)
+	ok, err := eventV2Service.QueryEventStreamHandlerShort(inputEventLog)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
@@ -73,7 +73,7 @@ func TestIntegrationGetEventSpecificUserV2Handler(t *testing.T) {
 		StartDate: &date,
 		UserID:    userID,
 	}
-	_, err := eventV2Service.GetEventSpecificUserV2HandlerShort(inputEventLog, nil)
+	_, err := eventV2Service.GetEventSpecificUserV2HandlerShort(inputEventLog)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
@@ -87,7 +87,7 @@ func GetUserID() string {
 		Username:  &username,
 		GrantType: "password",
 	}
-	accessToken, err := oAuth20Service.TokenGrantV3Short(input, nil)
+	accessToken, err := oAuth20Service.TokenGrantV3Short(input)
 	if err != nil {
 		logrus.Error("failed login")
 	} else if accessToken == nil { //lint:ignore SA5011 possible nil pointer dereference

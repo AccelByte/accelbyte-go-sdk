@@ -37,7 +37,7 @@ var TestFulfillmentScriptEvalCmd = &cobra.Command{
 		input := &fulfillment_script.TestFulfillmentScriptEvalParams{
 			Body: body,
 		}
-		ok, err := fulfillmentScriptService.TestFulfillmentScriptEvalShort(input, nil)
+		ok, err := fulfillmentScriptService.TestFulfillmentScriptEvalShort(input)
 		if err != nil {
 			logrus.Error(err)
 

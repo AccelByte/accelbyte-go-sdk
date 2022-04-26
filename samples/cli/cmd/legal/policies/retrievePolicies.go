@@ -29,7 +29,7 @@ var RetrievePoliciesCmd = &cobra.Command{
 		input := &policies.RetrievePoliciesParams{
 			CountryCode: countryCode,
 		}
-		ok, err := policiesService.RetrievePoliciesShort(input, nil)
+		ok, err := policiesService.RetrievePoliciesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

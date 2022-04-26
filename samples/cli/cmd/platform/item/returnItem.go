@@ -41,7 +41,7 @@ var ReturnItemCmd = &cobra.Command{
 			ItemID:    itemId,
 			Namespace: namespace,
 		}
-		errInput := itemService.ReturnItemShort(input, nil)
+		errInput := itemService.ReturnItemShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

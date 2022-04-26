@@ -43,7 +43,7 @@ var UpdateAliPayConfigCmd = &cobra.Command{
 			Sandbox:  &sandbox,
 			Validate: &validate,
 		}
-		ok, err := paymentConfigService.UpdateAliPayConfigShort(input, nil)
+		ok, err := paymentConfigService.UpdateAliPayConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

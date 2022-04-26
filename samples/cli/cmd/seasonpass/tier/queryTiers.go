@@ -35,7 +35,7 @@ var QueryTiersCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := tierService.QueryTiersShort(input, nil)
+		ok, err := tierService.QueryTiersShort(input)
 		if err != nil {
 			logrus.Error(err)
 

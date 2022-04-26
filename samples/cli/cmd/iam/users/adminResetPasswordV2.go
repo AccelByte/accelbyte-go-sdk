@@ -41,7 +41,7 @@ var AdminResetPasswordV2Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := usersService.AdminResetPasswordV2Short(input, nil)
+		errInput := usersService.AdminResetPasswordV2Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

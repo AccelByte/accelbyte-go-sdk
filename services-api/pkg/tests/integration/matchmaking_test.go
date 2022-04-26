@@ -110,7 +110,7 @@ func TestIntegrationDeleteChannelHandler(t *testing.T) {
 		Channel:   defaultGameMode,
 		Namespace: integration.NamespaceTest,
 	}
-	err := matchmakingService.DeleteChannelHandlerShort(inputMatchmaking, nil)
+	err := matchmakingService.DeleteChannelHandlerShort(inputMatchmaking)
 
 	assert.Nil(t, err, "err should be nil")
 }
@@ -125,7 +125,7 @@ func TestIntegrationCreateChannelHandler(t *testing.T) {
 		Body:      bodyMatchmaking,
 		Namespace: integration.NamespaceTest,
 	}
-	ok, err := matchmakingService.CreateChannelHandlerShort(inputMatchmaking, nil)
+	ok, err := matchmakingService.CreateChannelHandlerShort(inputMatchmaking)
 
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
@@ -138,7 +138,7 @@ func TestIntegrationGetSingleMatchmakingChannel(t *testing.T) {
 		ChannelName: defaultGameMode,
 		Namespace:   integration.NamespaceTest,
 	}
-	ok, err := matchmakingService.GetSingleMatchmakingChannelShort(inputMatchmaking, nil)
+	ok, err := matchmakingService.GetSingleMatchmakingChannelShort(inputMatchmaking)
 
 	assert.Nil(t, err, "err should be nil")
 	assert.NotNil(t, ok, "response should not be nil")
@@ -152,7 +152,7 @@ func TestIntegrationUpdatePatchSinglematchmakingPublicV1(t *testing.T) {
 		ChannelName: defaultGameMode,
 		Namespace:   integration.NamespaceTest,
 	}
-	err := matchmakingService.UpdateMatchmakingChannelShort(inputMatchmaking, nil)
+	err := matchmakingService.UpdateMatchmakingChannelShort(inputMatchmaking)
 
 	assert.Nil(t, err, "err should be nil")
 }

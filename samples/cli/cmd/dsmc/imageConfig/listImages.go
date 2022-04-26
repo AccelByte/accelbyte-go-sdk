@@ -39,7 +39,7 @@ var ListImagesCmd = &cobra.Command{
 			SortBy:        &sortBy,
 			SortDirection: &sortDirection,
 		}
-		ok, err := imageConfigService.ListImagesShort(input, nil)
+		ok, err := imageConfigService.ListImagesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

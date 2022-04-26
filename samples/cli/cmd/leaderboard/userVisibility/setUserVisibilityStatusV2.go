@@ -41,7 +41,7 @@ var SetUserVisibilityStatusV2Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := userVisibilityService.SetUserVisibilityStatusV2Short(input, nil)
+		ok, err := userVisibilityService.SetUserVisibilityStatusV2Short(input)
 		if err != nil {
 			logrus.Error(err)
 

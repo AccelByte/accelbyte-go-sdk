@@ -31,7 +31,7 @@ var ListExtOrderNoByExtTxIdCmd = &cobra.Command{
 			Namespace: namespace,
 			ExtTxID:   extTxId,
 		}
-		ok, err := paymentService.ListExtOrderNoByExtTxIDShort(input, nil)
+		ok, err := paymentService.ListExtOrderNoByExtTxIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 

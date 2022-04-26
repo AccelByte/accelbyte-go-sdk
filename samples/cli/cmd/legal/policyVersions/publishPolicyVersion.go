@@ -31,7 +31,7 @@ var PublishPolicyVersionCmd = &cobra.Command{
 			PolicyVersionID: policyVersionId,
 			ShouldNotify:    &shouldNotify,
 		}
-		errInput := policyVersionsService.PublishPolicyVersionShort(input, nil)
+		errInput := policyVersionsService.PublishPolicyVersionShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

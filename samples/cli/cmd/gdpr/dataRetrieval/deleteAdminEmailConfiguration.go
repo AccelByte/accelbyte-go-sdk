@@ -38,7 +38,7 @@ var DeleteAdminEmailConfigurationCmd = &cobra.Command{
 			Namespace: namespace,
 			Emails:    emails,
 		}
-		errInput := dataRetrievalService.DeleteAdminEmailConfigurationShort(input, nil)
+		errInput := dataRetrievalService.DeleteAdminEmailConfigurationShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

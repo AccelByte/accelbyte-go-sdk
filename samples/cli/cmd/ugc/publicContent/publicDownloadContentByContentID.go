@@ -31,7 +31,7 @@ var PublicDownloadContentByContentIDCmd = &cobra.Command{
 			ContentID: contentId,
 			Namespace: namespace,
 		}
-		ok, err := publicContentService.PublicDownloadContentByContentIDShort(input, nil)
+		ok, err := publicContentService.PublicDownloadContentByContentIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 

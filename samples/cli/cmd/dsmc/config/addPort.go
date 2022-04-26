@@ -41,7 +41,7 @@ var AddPortCmd = &cobra.Command{
 			Name:      name,
 			Namespace: namespace,
 		}
-		ok, err := configService.AddPortShort(input, nil)
+		ok, err := configService.AddPortShort(input)
 		if err != nil {
 			logrus.Error(err)
 

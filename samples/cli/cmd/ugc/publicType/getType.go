@@ -33,7 +33,7 @@ var GetTypeCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := publicTypeService.GetTypeShort(input, nil)
+		ok, err := publicTypeService.GetTypeShort(input)
 		if err != nil {
 			logrus.Error(err)
 

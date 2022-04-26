@@ -39,7 +39,7 @@ var CreateCurrencyCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := currencyService.CreateCurrencyShort(input, nil)
+		ok, err := currencyService.CreateCurrencyShort(input)
 		if err != nil {
 			logrus.Error(err)
 

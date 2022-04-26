@@ -26,7 +26,7 @@ var CheckReadinessCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &utility.CheckReadinessParams{}
-		ok, err := utilityService.CheckReadinessShort(input, nil)
+		ok, err := utilityService.CheckReadinessShort(input)
 		if err != nil {
 			logrus.Error(err)
 

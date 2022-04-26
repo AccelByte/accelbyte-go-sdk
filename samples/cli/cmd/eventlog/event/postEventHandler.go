@@ -39,7 +39,7 @@ var PostEventHandlerCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := eventService.PostEventHandlerShort(input, nil)
+		errInput := eventService.PostEventHandlerShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

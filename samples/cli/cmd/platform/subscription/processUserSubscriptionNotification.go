@@ -43,7 +43,7 @@ var ProcessUserSubscriptionNotificationCmd = &cobra.Command{
 			SubscriptionID: subscriptionId,
 			UserID:         userId,
 		}
-		errInput := subscriptionService.ProcessUserSubscriptionNotificationShort(input, nil)
+		errInput := subscriptionService.ProcessUserSubscriptionNotificationShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

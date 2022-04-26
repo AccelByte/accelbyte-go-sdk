@@ -39,7 +39,7 @@ var AdminCreateChannelCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := adminChannelService.AdminCreateChannelShort(input, nil)
+		ok, err := adminChannelService.AdminCreateChannelShort(input)
 		if err != nil {
 			logrus.Error(err)
 

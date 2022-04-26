@@ -43,7 +43,7 @@ var GrantDaysToSubscriptionCmd = &cobra.Command{
 			SubscriptionID: subscriptionId,
 			UserID:         userId,
 		}
-		ok, err := subscriptionService.GrantDaysToSubscriptionShort(input, nil)
+		ok, err := subscriptionService.GrantDaysToSubscriptionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

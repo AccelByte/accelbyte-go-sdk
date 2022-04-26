@@ -39,7 +39,7 @@ var FreeFormNotificationCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := notificationService.FreeFormNotificationShort(input, nil)
+		errInput := notificationService.FreeFormNotificationShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

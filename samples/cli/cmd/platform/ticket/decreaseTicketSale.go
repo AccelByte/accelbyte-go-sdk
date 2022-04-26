@@ -41,7 +41,7 @@ var DecreaseTicketSaleCmd = &cobra.Command{
 			BoothName: boothName,
 			Namespace: namespace,
 		}
-		errInput := ticketService.DecreaseTicketSaleShort(input, nil)
+		errInput := ticketService.DecreaseTicketSaleShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

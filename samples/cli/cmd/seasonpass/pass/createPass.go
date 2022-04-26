@@ -41,7 +41,7 @@ var CreatePassCmd = &cobra.Command{
 			Namespace: namespace,
 			SeasonID:  seasonId,
 		}
-		ok, err := passService.CreatePassShort(input, nil)
+		ok, err := passService.CreatePassShort(input)
 		if err != nil {
 			logrus.Error(err)
 

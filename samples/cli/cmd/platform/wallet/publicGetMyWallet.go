@@ -31,7 +31,7 @@ var PublicGetMyWalletCmd = &cobra.Command{
 			CurrencyCode: currencyCode,
 			Namespace:    namespace,
 		}
-		ok, err := walletService.PublicGetMyWalletShort(input, nil)
+		ok, err := walletService.PublicGetMyWalletShort(input)
 		if err != nil {
 			logrus.Error(err)
 

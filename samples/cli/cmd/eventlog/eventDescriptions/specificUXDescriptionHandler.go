@@ -29,7 +29,7 @@ var SpecificUXDescriptionHandlerCmd = &cobra.Command{
 		input := &event_descriptions.SpecificUXDescriptionHandlerParams{
 			Ux: &ux,
 		}
-		ok, err := eventDescriptionsService.SpecificUXDescriptionHandlerShort(input, nil)
+		ok, err := eventDescriptionsService.SpecificUXDescriptionHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 

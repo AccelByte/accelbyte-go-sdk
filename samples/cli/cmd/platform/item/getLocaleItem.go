@@ -41,7 +41,7 @@ var GetLocaleItemCmd = &cobra.Command{
 			Region:         &region,
 			StoreID:        &storeId,
 		}
-		ok, err := itemService.GetLocaleItemShort(input, nil)
+		ok, err := itemService.GetLocaleItemShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -45,7 +45,7 @@ var ImportConfigV1Cmd = &cobra.Command{
 			Namespace:  namespace,
 			HTTPClient: httpClient,
 		}
-		ok, err := configService.ImportConfigV1Short(input, nil)
+		ok, err := configService.ImportConfigV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -35,7 +35,7 @@ var GetActiveMatchmakingGameSessionsCmd = &cobra.Command{
 			ServerRegion: &serverRegion,
 			SessionID:    &sessionId,
 		}
-		ok, err := sessionService.GetActiveMatchmakingGameSessionsShort(input, nil)
+		ok, err := sessionService.GetActiveMatchmakingGameSessionsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

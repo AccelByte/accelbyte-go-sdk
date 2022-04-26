@@ -29,7 +29,7 @@ var AdminGetLobbyCCUCmd = &cobra.Command{
 		input := &player.AdminGetLobbyCCUParams{
 			Namespace: namespace,
 		}
-		ok, err := playerService.AdminGetLobbyCCUShort(input, nil)
+		ok, err := playerService.AdminGetLobbyCCUShort(input)
 		if err != nil {
 			logrus.Error(err)
 

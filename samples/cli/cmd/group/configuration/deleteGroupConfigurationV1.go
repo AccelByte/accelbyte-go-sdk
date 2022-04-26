@@ -31,7 +31,7 @@ var DeleteGroupConfigurationV1Cmd = &cobra.Command{
 			ConfigurationCode: configurationCode,
 			Namespace:         namespace,
 		}
-		errInput := configurationService.DeleteGroupConfigurationV1Short(input, nil)
+		errInput := configurationService.DeleteGroupConfigurationV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

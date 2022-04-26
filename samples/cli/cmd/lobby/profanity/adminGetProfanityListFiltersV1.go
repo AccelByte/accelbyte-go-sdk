@@ -31,7 +31,7 @@ var AdminGetProfanityListFiltersV1Cmd = &cobra.Command{
 			List:      list_,
 			Namespace: namespace,
 		}
-		ok, err := profanityService.AdminGetProfanityListFiltersV1Short(input, nil)
+		ok, err := profanityService.AdminGetProfanityListFiltersV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

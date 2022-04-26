@@ -35,7 +35,7 @@ var AdminGetListPersonalDataRequestCmd = &cobra.Command{
 			Offset:      &offset,
 			RequestDate: &requestDate,
 		}
-		ok, err := dataRetrievalService.AdminGetListPersonalDataRequestShort(input, nil)
+		ok, err := dataRetrievalService.AdminGetListPersonalDataRequestShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -47,7 +47,7 @@ var ImportChannelsCmd = &cobra.Command{
 			Namespace:  namespace,
 			HTTPClient: httpClient,
 		}
-		ok, err := matchmakingService.ImportChannelsShort(input, nil)
+		ok, err := matchmakingService.ImportChannelsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

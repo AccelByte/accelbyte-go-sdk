@@ -43,7 +43,7 @@ var PublicCancelSubscriptionCmd = &cobra.Command{
 			SubscriptionID: subscriptionId,
 			UserID:         userId,
 		}
-		ok, err := subscriptionService.PublicCancelSubscriptionShort(input, nil)
+		ok, err := subscriptionService.PublicCancelSubscriptionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

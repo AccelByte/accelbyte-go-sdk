@@ -41,7 +41,7 @@ var AdminSaveUserRoleV3Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := usersService.AdminSaveUserRoleV3Short(input, nil)
+		errInput := usersService.AdminSaveUserRoleV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

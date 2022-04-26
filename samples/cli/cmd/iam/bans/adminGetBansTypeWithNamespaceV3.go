@@ -29,7 +29,7 @@ var AdminGetBansTypeWithNamespaceV3Cmd = &cobra.Command{
 		input := &bans.AdminGetBansTypeWithNamespaceV3Params{
 			Namespace: namespace,
 		}
-		ok, err := bansService.AdminGetBansTypeWithNamespaceV3Short(input, nil)
+		ok, err := bansService.AdminGetBansTypeWithNamespaceV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 

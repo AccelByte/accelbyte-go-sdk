@@ -33,7 +33,7 @@ var GetUserMappingCmd = &cobra.Command{
 			TargetNamespace: targetNamespace,
 			UserID:          userId,
 		}
-		ok, err := usersService.GetUserMappingShort(input, nil)
+		ok, err := usersService.GetUserMappingShort(input)
 		if err != nil {
 			logrus.Error(err)
 

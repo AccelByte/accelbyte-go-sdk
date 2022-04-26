@@ -29,7 +29,7 @@ var PublicGetNamespacesCmd = &cobra.Command{
 		input := &namespace_.PublicGetNamespacesParams{
 			ActiveOnly: &activeOnly,
 		}
-		ok, err := namespaceService.PublicGetNamespacesShort(input, nil)
+		ok, err := namespaceService.PublicGetNamespacesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

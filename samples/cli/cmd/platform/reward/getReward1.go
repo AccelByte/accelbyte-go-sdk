@@ -31,7 +31,7 @@ var GetReward1Cmd = &cobra.Command{
 			Namespace: namespace,
 			RewardID:  rewardId,
 		}
-		ok, err := rewardService.GetReward1Short(input, nil)
+		ok, err := rewardService.GetReward1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

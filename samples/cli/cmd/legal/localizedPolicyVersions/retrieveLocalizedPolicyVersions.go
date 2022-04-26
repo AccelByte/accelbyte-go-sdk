@@ -29,7 +29,7 @@ var RetrieveLocalizedPolicyVersionsCmd = &cobra.Command{
 		input := &localized_policy_versions.RetrieveLocalizedPolicyVersionsParams{
 			PolicyVersionID: policyVersionId,
 		}
-		ok, err := localizedPolicyVersionsService.RetrieveLocalizedPolicyVersionsShort(input, nil)
+		ok, err := localizedPolicyVersionsService.RetrieveLocalizedPolicyVersionsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

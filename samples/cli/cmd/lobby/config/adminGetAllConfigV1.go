@@ -26,7 +26,7 @@ var AdminGetAllConfigV1Cmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &config.AdminGetAllConfigV1Params{}
-		ok, err := configService.AdminGetAllConfigV1Short(input, nil)
+		ok, err := configService.AdminGetAllConfigV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -33,7 +33,7 @@ var DeleteTierCmd = &cobra.Command{
 			Namespace: namespace,
 			SeasonID:  seasonId,
 		}
-		errInput := tierService.DeleteTierShort(input, nil)
+		errInput := tierService.DeleteTierShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

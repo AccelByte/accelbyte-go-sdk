@@ -43,7 +43,7 @@ var UpdateUserPointAdminV1Cmd = &cobra.Command{
 			Namespace:       namespace,
 			UserID:          userId,
 		}
-		ok, err := leaderboardDataService.UpdateUserPointAdminV1Short(input, nil)
+		ok, err := leaderboardDataService.UpdateUserPointAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

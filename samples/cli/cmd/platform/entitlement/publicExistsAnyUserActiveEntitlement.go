@@ -54,7 +54,7 @@ var PublicExistsAnyUserActiveEntitlementCmd = &cobra.Command{
 			ItemIds:   itemIds,
 			Skus:      skus,
 		}
-		ok, err := entitlementService.PublicExistsAnyUserActiveEntitlementShort(input, nil)
+		ok, err := entitlementService.PublicExistsAnyUserActiveEntitlementShort(input)
 		if err != nil {
 			logrus.Error(err)
 

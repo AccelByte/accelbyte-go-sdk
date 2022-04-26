@@ -47,7 +47,7 @@ var QueryEventStreamHandlerCmd = &cobra.Command{
 			PageSize:  &pageSize,
 			StartDate: &startDate,
 		}
-		ok, err := eventV2Service.QueryEventStreamHandlerShort(input, nil)
+		ok, err := eventV2Service.QueryEventStreamHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 

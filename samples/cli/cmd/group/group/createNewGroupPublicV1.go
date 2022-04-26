@@ -39,7 +39,7 @@ var CreateNewGroupPublicV1Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := groupService.CreateNewGroupPublicV1Short(input, nil)
+		ok, err := groupService.CreateNewGroupPublicV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

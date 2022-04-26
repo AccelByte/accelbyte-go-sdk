@@ -33,7 +33,7 @@ var RetrieveAllSSOLoginPlatformCredentialV3Cmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := ssoCredentialService.RetrieveAllSSOLoginPlatformCredentialV3Short(input, nil)
+		ok, err := ssoCredentialService.RetrieveAllSSOLoginPlatformCredentialV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 

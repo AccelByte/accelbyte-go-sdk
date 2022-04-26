@@ -29,7 +29,7 @@ var AcceptVersionedPolicyCmd = &cobra.Command{
 		input := &agreement.AcceptVersionedPolicyParams{
 			LocalizedPolicyVersionID: localizedPolicyVersionId,
 		}
-		errInput := agreementService.AcceptVersionedPolicyShort(input, nil)
+		errInput := agreementService.AcceptVersionedPolicyShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

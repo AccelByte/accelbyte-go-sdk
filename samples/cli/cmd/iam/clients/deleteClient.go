@@ -29,7 +29,7 @@ var DeleteClientCmd = &cobra.Command{
 		input := &clients.DeleteClientParams{
 			ClientID: clientId,
 		}
-		errInput := clientsService.DeleteClientShort(input, nil)
+		errInput := clientsService.DeleteClientShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

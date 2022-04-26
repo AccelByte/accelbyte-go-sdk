@@ -37,7 +37,7 @@ var QueryFulfillmentHistoriesCmd = &cobra.Command{
 			Status:    &status,
 			UserID:    &userId,
 		}
-		ok, err := fulfillmentService.QueryFulfillmentHistoriesShort(input, nil)
+		ok, err := fulfillmentService.QueryFulfillmentHistoriesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

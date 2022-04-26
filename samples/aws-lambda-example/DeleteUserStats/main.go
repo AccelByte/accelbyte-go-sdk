@@ -79,7 +79,7 @@ func deleteUserStatItems(params RequestParams, tokenRepositoryImpl *TokenReposit
 		StatCode:  params.StatCode,
 		UserID:    params.UserID,
 	}
-	err := statisticService.DeleteUserStatItemsShort(input, nil)
+	err := statisticService.DeleteUserStatItemsShort(input)
 	if err != nil {
 		return nil, err
 	}

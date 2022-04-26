@@ -33,7 +33,7 @@ var GetGroupCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := publicGroupService.GetGroupShort(input, nil)
+		ok, err := publicGroupService.GetGroupShort(input)
 		if err != nil {
 			logrus.Error(err)
 

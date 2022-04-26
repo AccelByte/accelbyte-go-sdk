@@ -39,7 +39,7 @@ var UpdatePaymentCallbackConfigCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := paymentCallbackConfigService.UpdatePaymentCallbackConfigShort(input, nil)
+		ok, err := paymentCallbackConfigService.UpdatePaymentCallbackConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

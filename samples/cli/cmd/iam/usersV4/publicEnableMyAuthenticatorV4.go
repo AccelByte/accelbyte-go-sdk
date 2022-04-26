@@ -39,7 +39,7 @@ var PublicEnableMyAuthenticatorV4Cmd = &cobra.Command{
 			Namespace:  namespace,
 			HTTPClient: httpClient,
 		}
-		errInput := usersV4Service.PublicEnableMyAuthenticatorV4Short(input, nil)
+		errInput := usersV4Service.PublicEnableMyAuthenticatorV4Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

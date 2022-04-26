@@ -35,7 +35,7 @@ var RetrieveAllUsersByPolicyVersionCmd = &cobra.Command{
 			Offset:          &offset,
 			PolicyVersionID: policyVersionId,
 		}
-		ok, err := agreementService.RetrieveAllUsersByPolicyVersionShort(input, nil)
+		ok, err := agreementService.RetrieveAllUsersByPolicyVersionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

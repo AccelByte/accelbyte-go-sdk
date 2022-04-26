@@ -39,7 +39,7 @@ var CreatePolicyVersionCmd = &cobra.Command{
 			Body:     body,
 			PolicyID: policyId,
 		}
-		ok, err := policyVersionsService.CreatePolicyVersionShort(input, nil)
+		ok, err := policyVersionsService.CreatePolicyVersionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

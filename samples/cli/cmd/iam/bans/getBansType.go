@@ -26,7 +26,7 @@ var GetBansTypeCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &bans.GetBansTypeParams{}
-		ok, err := bansService.GetBansTypeShort(input, nil)
+		ok, err := bansService.GetBansTypeShort(input)
 		if err != nil {
 			logrus.Error(err)
 

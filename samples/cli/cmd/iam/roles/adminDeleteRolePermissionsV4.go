@@ -38,7 +38,7 @@ var AdminDeleteRolePermissionsV4Cmd = &cobra.Command{
 			Body:   body,
 			RoleID: roleId,
 		}
-		errInput := rolesService.AdminDeleteRolePermissionsV4Short(input, nil)
+		errInput := rolesService.AdminDeleteRolePermissionsV4Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

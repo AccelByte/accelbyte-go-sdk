@@ -29,7 +29,7 @@ var DeleteConfigCmd = &cobra.Command{
 		input := &config.DeleteConfigParams{
 			Namespace: namespace,
 		}
-		errInput := configService.DeleteConfigShort(input, nil)
+		errInput := configService.DeleteConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

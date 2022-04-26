@@ -39,7 +39,7 @@ var UnBanUsersCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := userActionService.UnBanUsersShort(input, nil)
+		errInput := userActionService.UnBanUsersShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -61,7 +61,7 @@ var PublicCreateUserNamespaceSlotCmd = &cobra.Command{
 			Tags:            tags,
 			HTTPClient:      httpClient,
 		}
-		errInput := slotService.PublicCreateUserNamespaceSlotShort(input, nil)
+		errInput := slotService.PublicCreateUserNamespaceSlotShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

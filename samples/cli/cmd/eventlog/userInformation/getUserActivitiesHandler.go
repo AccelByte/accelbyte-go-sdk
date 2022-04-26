@@ -35,7 +35,7 @@ var GetUserActivitiesHandlerCmd = &cobra.Command{
 			Offset:    &offset,
 			PageSize:  pageSize,
 		}
-		ok, err := userInformationService.GetUserActivitiesHandlerShort(input, nil)
+		ok, err := userInformationService.GetUserActivitiesHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 

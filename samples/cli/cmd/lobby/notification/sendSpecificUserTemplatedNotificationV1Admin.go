@@ -41,7 +41,7 @@ var SendSpecificUserTemplatedNotificationV1AdminCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := notificationService.SendSpecificUserTemplatedNotificationV1AdminShort(input, nil)
+		errInput := notificationService.SendSpecificUserTemplatedNotificationV1AdminShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

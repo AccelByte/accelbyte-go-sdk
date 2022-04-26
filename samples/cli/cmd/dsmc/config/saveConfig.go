@@ -37,7 +37,7 @@ var SaveConfigCmd = &cobra.Command{
 		input := &config.SaveConfigParams{
 			Body: body,
 		}
-		errInput := configService.SaveConfigShort(input, nil)
+		errInput := configService.SaveConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

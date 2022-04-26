@@ -41,7 +41,7 @@ var GrantUserTierCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := tierService.GrantUserTierShort(input, nil)
+		ok, err := tierService.GrantUserTierShort(input)
 		if err != nil {
 			logrus.Error(err)
 

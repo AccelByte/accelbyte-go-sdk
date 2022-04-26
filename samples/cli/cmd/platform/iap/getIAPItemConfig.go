@@ -29,7 +29,7 @@ var GetIAPItemConfigCmd = &cobra.Command{
 		input := &i_a_p.GetIAPItemConfigParams{
 			Namespace: namespace,
 		}
-		ok, err := iapService.GetIAPItemConfigShort(input, nil)
+		ok, err := iapService.GetIAPItemConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

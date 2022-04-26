@@ -41,7 +41,7 @@ var PublicFulfillGoogleIAPItemCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := iapService.PublicFulfillGoogleIAPItemShort(input, nil)
+		ok, err := iapService.PublicFulfillGoogleIAPItemShort(input)
 		if err != nil {
 			logrus.Error(err)
 

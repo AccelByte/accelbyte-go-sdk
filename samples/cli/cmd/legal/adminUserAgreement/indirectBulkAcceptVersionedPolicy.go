@@ -47,7 +47,7 @@ var IndirectBulkAcceptVersionedPolicyCmd = &cobra.Command{
 			ClientID:        clientId,
 			CountryCode:     countryCode,
 		}
-		ok, err := adminUserAgreementService.IndirectBulkAcceptVersionedPolicyShort(input, nil)
+		ok, err := adminUserAgreementService.IndirectBulkAcceptVersionedPolicyShort(input)
 		if err != nil {
 			logrus.Error(err)
 

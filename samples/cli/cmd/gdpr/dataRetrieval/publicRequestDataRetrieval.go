@@ -41,7 +41,7 @@ var PublicRequestDataRetrievalCmd = &cobra.Command{
 			UserID:     userId,
 			HTTPClient: httpClient,
 		}
-		ok, err := dataRetrievalService.PublicRequestDataRetrievalShort(input, nil)
+		ok, err := dataRetrievalService.PublicRequestDataRetrievalShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -35,7 +35,7 @@ var GetItemByAppIdCmd = &cobra.Command{
 			StoreID:    &storeId,
 			AppID:      appId,
 		}
-		ok, err := itemService.GetItemByAppIDShort(input, nil)
+		ok, err := itemService.GetItemByAppIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 

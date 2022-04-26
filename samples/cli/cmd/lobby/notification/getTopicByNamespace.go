@@ -35,7 +35,7 @@ var GetTopicByNamespaceCmd = &cobra.Command{
 			Before:    &before,
 			Limit:     &limit,
 		}
-		ok, err := notificationService.GetTopicByNamespaceShort(input, nil)
+		ok, err := notificationService.GetTopicByNamespaceShort(input)
 		if err != nil {
 			logrus.Error(err)
 

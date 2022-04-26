@@ -33,7 +33,7 @@ var SyncOrdersCmd = &cobra.Command{
 			End:              end,
 			Start:            start,
 		}
-		ok, err := orderDedicatedService.SyncOrdersShort(input, nil)
+		ok, err := orderDedicatedService.SyncOrdersShort(input)
 		if err != nil {
 			logrus.Error(err)
 

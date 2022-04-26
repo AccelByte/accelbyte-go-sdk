@@ -47,7 +47,7 @@ var UploadKeysCmd = &cobra.Command{
 			Namespace:  namespace,
 			HTTPClient: httpClient,
 		}
-		ok, err := keyGroupService.UploadKeysShort(input, nil)
+		ok, err := keyGroupService.UploadKeysShort(input)
 		if err != nil {
 			logrus.Error(err)
 

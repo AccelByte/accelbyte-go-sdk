@@ -31,7 +31,7 @@ var GetServerLogsCmd = &cobra.Command{
 			Namespace: namespace,
 			PodName:   podName,
 		}
-		ok, err := adminService.GetServerLogsShort(input, nil)
+		ok, err := adminService.GetServerLogsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -33,7 +33,7 @@ var DeleteGroupPredefinedRulePublicV1Cmd = &cobra.Command{
 			GroupID:       groupId,
 			Namespace:     namespace,
 		}
-		errInput := groupService.DeleteGroupPredefinedRulePublicV1Short(input, nil)
+		errInput := groupService.DeleteGroupPredefinedRulePublicV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

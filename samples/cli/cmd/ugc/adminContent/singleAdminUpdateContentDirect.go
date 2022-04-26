@@ -43,7 +43,7 @@ var SingleAdminUpdateContentDirectCmd = &cobra.Command{
 			ContentID: contentId,
 			Namespace: namespace,
 		}
-		ok, err := adminContentService.SingleAdminUpdateContentDirectShort(input, nil)
+		ok, err := adminContentService.SingleAdminUpdateContentDirectShort(input)
 		if err != nil {
 			logrus.Error(err)
 

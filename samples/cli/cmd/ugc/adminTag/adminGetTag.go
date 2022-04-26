@@ -33,7 +33,7 @@ var AdminGetTagCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := adminTagService.AdminGetTagShort(input, nil)
+		ok, err := adminTagService.AdminGetTagShort(input)
 		if err != nil {
 			logrus.Error(err)
 

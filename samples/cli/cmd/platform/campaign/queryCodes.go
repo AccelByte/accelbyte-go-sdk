@@ -41,7 +41,7 @@ var QueryCodesCmd = &cobra.Command{
 			Limit:      &limit,
 			Offset:     &offset,
 		}
-		ok, err := campaignService.QueryCodesShort(input, nil)
+		ok, err := campaignService.QueryCodesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

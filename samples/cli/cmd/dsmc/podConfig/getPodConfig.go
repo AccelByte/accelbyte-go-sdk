@@ -31,7 +31,7 @@ var GetPodConfigCmd = &cobra.Command{
 			Name:      name,
 			Namespace: namespace,
 		}
-		ok, err := podConfigService.GetPodConfigShort(input, nil)
+		ok, err := podConfigService.GetPodConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

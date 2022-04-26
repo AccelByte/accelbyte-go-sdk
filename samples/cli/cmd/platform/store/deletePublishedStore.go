@@ -29,7 +29,7 @@ var DeletePublishedStoreCmd = &cobra.Command{
 		input := &store.DeletePublishedStoreParams{
 			Namespace: namespace,
 		}
-		ok, err := storeService.DeletePublishedStoreShort(input, nil)
+		ok, err := storeService.DeletePublishedStoreShort(input)
 		if err != nil {
 			logrus.Error(err)
 

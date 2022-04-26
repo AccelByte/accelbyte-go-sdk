@@ -41,7 +41,7 @@ var AddPlayerToSessionCmd = &cobra.Command{
 			Namespace: namespace,
 			SessionID: sessionID,
 		}
-		ok, err := sessionService.AddPlayerToSessionShort(input, nil)
+		ok, err := sessionService.AddPlayerToSessionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

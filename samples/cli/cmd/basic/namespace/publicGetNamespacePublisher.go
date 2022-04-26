@@ -29,7 +29,7 @@ var PublicGetNamespacePublisherCmd = &cobra.Command{
 		input := &namespace_.PublicGetNamespacePublisherParams{
 			Namespace: namespace,
 		}
-		ok, err := namespaceService.PublicGetNamespacePublisherShort(input, nil)
+		ok, err := namespaceService.PublicGetNamespacePublisherShort(input)
 		if err != nil {
 			logrus.Error(err)
 

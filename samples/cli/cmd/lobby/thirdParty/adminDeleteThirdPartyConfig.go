@@ -29,7 +29,7 @@ var AdminDeleteThirdPartyConfigCmd = &cobra.Command{
 		input := &third_party.AdminDeleteThirdPartyConfigParams{
 			Namespace: namespace,
 		}
-		ok, err := thirdPartyService.AdminDeleteThirdPartyConfigShort(input, nil)
+		ok, err := thirdPartyService.AdminDeleteThirdPartyConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

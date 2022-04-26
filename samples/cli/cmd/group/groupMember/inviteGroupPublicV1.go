@@ -31,7 +31,7 @@ var InviteGroupPublicV1Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := groupMemberService.InviteGroupPublicV1Short(input, nil)
+		ok, err := groupMemberService.InviteGroupPublicV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

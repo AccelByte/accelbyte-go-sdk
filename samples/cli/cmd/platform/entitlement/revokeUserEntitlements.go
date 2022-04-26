@@ -33,7 +33,7 @@ var RevokeUserEntitlementsCmd = &cobra.Command{
 			UserID:         userId,
 			EntitlementIds: entitlementIds,
 		}
-		ok, err := entitlementService.RevokeUserEntitlementsShort(input, nil)
+		ok, err := entitlementService.RevokeUserEntitlementsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

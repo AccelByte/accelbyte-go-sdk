@@ -37,7 +37,7 @@ var BulkAcceptVersionedPolicyCmd = &cobra.Command{
 		input := &agreement.BulkAcceptVersionedPolicyParams{
 			Body: body,
 		}
-		ok, err := agreementService.BulkAcceptVersionedPolicyShort(input, nil)
+		ok, err := agreementService.BulkAcceptVersionedPolicyShort(input)
 		if err != nil {
 			logrus.Error(err)
 

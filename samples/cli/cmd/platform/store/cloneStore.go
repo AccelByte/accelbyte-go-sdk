@@ -33,7 +33,7 @@ var CloneStoreCmd = &cobra.Command{
 			StoreID:       storeId,
 			TargetStoreID: &targetStoreId,
 		}
-		ok, err := storeService.CloneStoreShort(input, nil)
+		ok, err := storeService.CloneStoreShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -41,7 +41,7 @@ var UpdatePodConfigCmd = &cobra.Command{
 			Name:      name,
 			Namespace: namespace,
 		}
-		ok, err := podConfigService.UpdatePodConfigShort(input, nil)
+		ok, err := podConfigService.UpdatePodConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -35,7 +35,7 @@ var PublicGetUserEntitlementBySkuCmd = &cobra.Command{
 			EntitlementClazz: &entitlementClazz,
 			Sku:              sku,
 		}
-		ok, err := entitlementService.PublicGetUserEntitlementBySkuShort(input, nil)
+		ok, err := entitlementService.PublicGetUserEntitlementBySkuShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -31,7 +31,7 @@ var RetrieveSinglePolicyVersionCmd = &cobra.Command{
 			PolicyID:  policyId,
 			VersionID: &versionId,
 		}
-		ok, err := policyVersionsService.RetrieveSinglePolicyVersionShort(input, nil)
+		ok, err := policyVersionsService.RetrieveSinglePolicyVersionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

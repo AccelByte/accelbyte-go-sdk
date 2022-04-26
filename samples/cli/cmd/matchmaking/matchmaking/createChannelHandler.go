@@ -39,7 +39,7 @@ var CreateChannelHandlerCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := matchmakingService.CreateChannelHandlerShort(input, nil)
+		ok, err := matchmakingService.CreateChannelHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 

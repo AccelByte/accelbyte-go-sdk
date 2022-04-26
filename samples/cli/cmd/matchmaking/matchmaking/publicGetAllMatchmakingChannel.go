@@ -29,7 +29,7 @@ var PublicGetAllMatchmakingChannelCmd = &cobra.Command{
 		input := &matchmaking_.PublicGetAllMatchmakingChannelParams{
 			Namespace: namespace,
 		}
-		ok, err := matchmakingService.PublicGetAllMatchmakingChannelShort(input, nil)
+		ok, err := matchmakingService.PublicGetAllMatchmakingChannelShort(input)
 		if err != nil {
 			logrus.Error(err)
 

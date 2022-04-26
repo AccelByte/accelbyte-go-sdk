@@ -29,7 +29,7 @@ var GetGoogleIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.GetGoogleIAPConfigParams{
 			Namespace: namespace,
 		}
-		ok, err := iapService.GetGoogleIAPConfigShort(input, nil)
+		ok, err := iapService.GetGoogleIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

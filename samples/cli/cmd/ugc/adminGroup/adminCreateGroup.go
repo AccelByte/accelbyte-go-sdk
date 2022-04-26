@@ -39,7 +39,7 @@ var AdminCreateGroupCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := adminGroupService.AdminCreateGroupShort(input, nil)
+		ok, err := adminGroupService.AdminCreateGroupShort(input)
 		if err != nil {
 			logrus.Error(err)
 

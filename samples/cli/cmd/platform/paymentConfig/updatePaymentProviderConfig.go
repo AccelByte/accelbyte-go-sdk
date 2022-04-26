@@ -39,7 +39,7 @@ var UpdatePaymentProviderConfigCmd = &cobra.Command{
 			Body: body,
 			ID:   id_,
 		}
-		ok, err := paymentConfigService.UpdatePaymentProviderConfigShort(input, nil)
+		ok, err := paymentConfigService.UpdatePaymentProviderConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

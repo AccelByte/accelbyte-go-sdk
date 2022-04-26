@@ -29,7 +29,7 @@ var TestXsollaConfigByIdCmd = &cobra.Command{
 		input := &payment_config.TestXsollaConfigByIDParams{
 			ID: id_,
 		}
-		ok, err := paymentConfigService.TestXsollaConfigByIDShort(input, nil)
+		ok, err := paymentConfigService.TestXsollaConfigByIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 

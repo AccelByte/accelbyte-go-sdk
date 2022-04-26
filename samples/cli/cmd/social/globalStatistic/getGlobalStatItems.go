@@ -33,7 +33,7 @@ var GetGlobalStatItemsCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := globalStatisticService.GetGlobalStatItemsShort(input, nil)
+		ok, err := globalStatisticService.GetGlobalStatItemsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

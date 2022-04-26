@@ -41,7 +41,7 @@ var RefundPaymentOrderByDedicatedCmd = &cobra.Command{
 			Namespace:      namespace,
 			PaymentOrderNo: paymentOrderNo,
 		}
-		ok, err := paymentDedicatedService.RefundPaymentOrderByDedicatedShort(input, nil)
+		ok, err := paymentDedicatedService.RefundPaymentOrderByDedicatedShort(input)
 		if err != nil {
 			logrus.Error(err)
 

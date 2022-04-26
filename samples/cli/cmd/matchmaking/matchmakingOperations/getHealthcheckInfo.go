@@ -26,7 +26,7 @@ var GetHealthcheckInfoCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &matchmaking_operations.GetHealthcheckInfoParams{}
-		errInput := matchmakingOperationsService.GetHealthcheckInfoShort(input, nil)
+		errInput := matchmakingOperationsService.GetHealthcheckInfoShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

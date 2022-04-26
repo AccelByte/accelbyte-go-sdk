@@ -26,7 +26,7 @@ var EventTypeDescriptionHandlerCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &event_descriptions.EventTypeDescriptionHandlerParams{}
-		ok, err := eventDescriptionsService.EventTypeDescriptionHandlerShort(input, nil)
+		ok, err := eventDescriptionsService.EventTypeDescriptionHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 

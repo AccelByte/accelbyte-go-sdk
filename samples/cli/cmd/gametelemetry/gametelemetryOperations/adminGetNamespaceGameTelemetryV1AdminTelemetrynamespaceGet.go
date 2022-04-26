@@ -29,7 +29,7 @@ var AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetCmd = &cobra.Comma
 		input := &gametelemetry_operations.AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetParams{
 			Cookie: &cookie,
 		}
-		errInput := gametelemetryOperationsService.AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetShort(input, nil)
+		errInput := gametelemetryOperationsService.AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGetShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

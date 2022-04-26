@@ -33,7 +33,7 @@ var CountOfPurchasedItemCmd = &cobra.Command{
 			UserID:    userId,
 			ItemID:    itemId,
 		}
-		ok, err := orderService.CountOfPurchasedItemShort(input, nil)
+		ok, err := orderService.CountOfPurchasedItemShort(input)
 		if err != nil {
 			logrus.Error(err)
 

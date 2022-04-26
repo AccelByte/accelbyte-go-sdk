@@ -43,7 +43,7 @@ var UpdateChannelCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := publicChannelService.UpdateChannelShort(input, nil)
+		ok, err := publicChannelService.UpdateChannelShort(input)
 		if err != nil {
 			logrus.Error(err)
 

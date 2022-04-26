@@ -29,7 +29,7 @@ var LeaveGroupPublicV1Cmd = &cobra.Command{
 		input := &group_member.LeaveGroupPublicV1Params{
 			Namespace: namespace,
 		}
-		ok, err := groupMemberService.LeaveGroupPublicV1Short(input, nil)
+		ok, err := groupMemberService.LeaveGroupPublicV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

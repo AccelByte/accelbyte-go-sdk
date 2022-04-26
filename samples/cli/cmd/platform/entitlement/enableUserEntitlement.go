@@ -33,7 +33,7 @@ var EnableUserEntitlementCmd = &cobra.Command{
 			Namespace:     namespace,
 			UserID:        userId,
 		}
-		ok, err := entitlementService.EnableUserEntitlementShort(input, nil)
+		ok, err := entitlementService.EnableUserEntitlementShort(input)
 		if err != nil {
 			logrus.Error(err)
 

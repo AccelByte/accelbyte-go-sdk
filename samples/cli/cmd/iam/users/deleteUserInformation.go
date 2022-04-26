@@ -31,7 +31,7 @@ var DeleteUserInformationCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := usersService.DeleteUserInformationShort(input, nil)
+		errInput := usersService.DeleteUserInformationShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

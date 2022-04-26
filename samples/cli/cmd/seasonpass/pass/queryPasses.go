@@ -31,7 +31,7 @@ var QueryPassesCmd = &cobra.Command{
 			Namespace: namespace,
 			SeasonID:  seasonId,
 		}
-		ok, err := passService.QueryPassesShort(input, nil)
+		ok, err := passService.QueryPassesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

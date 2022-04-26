@@ -29,7 +29,7 @@ var InitiateGroupConfigurationAdminV1Cmd = &cobra.Command{
 		input := &configuration.InitiateGroupConfigurationAdminV1Params{
 			Namespace: namespace,
 		}
-		ok, err := configurationService.InitiateGroupConfigurationAdminV1Short(input, nil)
+		ok, err := configurationService.InitiateGroupConfigurationAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

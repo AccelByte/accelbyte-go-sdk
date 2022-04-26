@@ -31,7 +31,7 @@ var JoinGroupV1Cmd = &cobra.Command{
 			GroupID:   groupId,
 			Namespace: namespace,
 		}
-		ok, err := groupMemberService.JoinGroupV1Short(input, nil)
+		ok, err := groupMemberService.JoinGroupV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

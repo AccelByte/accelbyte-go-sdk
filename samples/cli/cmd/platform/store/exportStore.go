@@ -31,7 +31,7 @@ var ExportStoreCmd = &cobra.Command{
 			Namespace: namespace,
 			StoreID:   storeId,
 		}
-		errInput := storeService.ExportStoreShort(input, nil)
+		errInput := storeService.ExportStoreShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

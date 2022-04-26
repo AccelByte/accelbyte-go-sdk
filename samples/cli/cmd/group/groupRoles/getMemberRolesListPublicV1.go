@@ -33,7 +33,7 @@ var GetMemberRolesListPublicV1Cmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := groupRolesService.GetMemberRolesListPublicV1Short(input, nil)
+		ok, err := groupRolesService.GetMemberRolesListPublicV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

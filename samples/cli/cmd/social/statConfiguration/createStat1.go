@@ -39,7 +39,7 @@ var CreateStat1Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := statConfigurationService.CreateStat1Short(input, nil)
+		ok, err := statConfigurationService.CreateStat1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

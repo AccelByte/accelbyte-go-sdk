@@ -31,7 +31,7 @@ var GetSessionHistoryDetailedCmd = &cobra.Command{
 			MatchID:   matchID,
 			Namespace: namespace,
 		}
-		ok, err := matchmakingService.GetSessionHistoryDetailedShort(input, nil)
+		ok, err := matchmakingService.GetSessionHistoryDetailedShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -39,7 +39,7 @@ var StoreMatchResultsCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := matchmakingService.StoreMatchResultsShort(input, nil)
+		ok, err := matchmakingService.StoreMatchResultsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

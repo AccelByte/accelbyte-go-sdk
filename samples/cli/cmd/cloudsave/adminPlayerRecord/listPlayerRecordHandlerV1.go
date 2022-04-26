@@ -35,7 +35,7 @@ var ListPlayerRecordHandlerV1Cmd = &cobra.Command{
 			Offset:    &offset,
 			Query:     &query,
 		}
-		ok, err := adminPlayerRecordService.ListPlayerRecordHandlerV1Short(input, nil)
+		ok, err := adminPlayerRecordService.ListPlayerRecordHandlerV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

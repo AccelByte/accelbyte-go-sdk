@@ -41,7 +41,7 @@ var UpdateCountryGroupCmd = &cobra.Command{
 			CountryGroupCode: countryGroupCode,
 			Namespace:        namespace,
 		}
-		ok, err := miscService.UpdateCountryGroupShort(input, nil)
+		ok, err := miscService.UpdateCountryGroupShort(input)
 		if err != nil {
 			logrus.Error(err)
 

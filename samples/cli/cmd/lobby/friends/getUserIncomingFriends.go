@@ -29,7 +29,7 @@ var GetUserIncomingFriendsCmd = &cobra.Command{
 		input := &friends.GetUserIncomingFriendsParams{
 			Namespace: namespace,
 		}
-		ok, err := friendsService.GetUserIncomingFriendsShort(input, nil)
+		ok, err := friendsService.GetUserIncomingFriendsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

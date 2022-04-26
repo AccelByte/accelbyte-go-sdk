@@ -43,7 +43,7 @@ var UpdatePayPalConfigCmd = &cobra.Command{
 			Sandbox:  &sandbox,
 			Validate: &validate,
 		}
-		ok, err := paymentConfigService.UpdatePayPalConfigShort(input, nil)
+		ok, err := paymentConfigService.UpdatePayPalConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

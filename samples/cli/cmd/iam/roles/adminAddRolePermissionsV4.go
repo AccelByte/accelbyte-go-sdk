@@ -39,7 +39,7 @@ var AdminAddRolePermissionsV4Cmd = &cobra.Command{
 			Body:   body,
 			RoleID: roleId,
 		}
-		ok, err := rolesService.AdminAddRolePermissionsV4Short(input, nil)
+		ok, err := rolesService.AdminAddRolePermissionsV4Short(input)
 		if err != nil {
 			logrus.Error(err)
 

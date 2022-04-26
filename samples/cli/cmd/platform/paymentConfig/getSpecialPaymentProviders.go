@@ -26,7 +26,7 @@ var GetSpecialPaymentProvidersCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &payment_config.GetSpecialPaymentProvidersParams{}
-		ok, err := paymentConfigService.GetSpecialPaymentProvidersShort(input, nil)
+		ok, err := paymentConfigService.GetSpecialPaymentProvidersShort(input)
 		if err != nil {
 			logrus.Error(err)
 

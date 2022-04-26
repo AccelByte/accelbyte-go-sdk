@@ -41,7 +41,7 @@ var UpdateTopicByTopicNameCmd = &cobra.Command{
 			Namespace: namespace,
 			Topic:     topic,
 		}
-		errInput := notificationService.UpdateTopicByTopicNameShort(input, nil)
+		errInput := notificationService.UpdateTopicByTopicNameShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

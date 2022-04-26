@@ -29,7 +29,7 @@ var GetConfigCmd = &cobra.Command{
 		input := &e_q_u8_config.GetConfigParams{
 			Namespace: namespace,
 		}
-		ok, err := equ8ConfigService.GetConfigShort(input, nil)
+		ok, err := equ8ConfigService.GetConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

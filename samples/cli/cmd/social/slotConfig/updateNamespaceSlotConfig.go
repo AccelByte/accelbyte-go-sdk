@@ -39,7 +39,7 @@ var UpdateNamespaceSlotConfigCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := slotConfigService.UpdateNamespaceSlotConfigShort(input, nil)
+		ok, err := slotConfigService.UpdateNamespaceSlotConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

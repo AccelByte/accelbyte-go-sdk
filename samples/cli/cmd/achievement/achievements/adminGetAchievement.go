@@ -31,7 +31,7 @@ var AdminGetAchievementCmd = &cobra.Command{
 			AchievementCode: achievementCode,
 			Namespace:       namespace,
 		}
-		ok, err := achievementsService.AdminGetAchievementShort(input, nil)
+		ok, err := achievementsService.AdminGetAchievementShort(input)
 		if err != nil {
 			logrus.Error(err)
 

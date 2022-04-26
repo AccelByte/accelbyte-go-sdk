@@ -31,7 +31,7 @@ var AdminDeleteAchievementCmd = &cobra.Command{
 			AchievementCode: achievementCode,
 			Namespace:       namespace,
 		}
-		errInput := achievementsService.AdminDeleteAchievementShort(input, nil)
+		errInput := achievementsService.AdminDeleteAchievementShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

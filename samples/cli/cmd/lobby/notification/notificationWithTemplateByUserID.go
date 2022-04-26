@@ -41,7 +41,7 @@ var NotificationWithTemplateByUserIDCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := notificationService.NotificationWithTemplateByUserIDShort(input, nil)
+		errInput := notificationService.NotificationWithTemplateByUserIDShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

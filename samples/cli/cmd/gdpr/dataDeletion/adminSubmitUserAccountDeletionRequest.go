@@ -39,7 +39,7 @@ var AdminSubmitUserAccountDeletionRequestCmd = &cobra.Command{
 			UserID:     userId,
 			HTTPClient: httpClient,
 		}
-		ok, err := dataDeletionService.AdminSubmitUserAccountDeletionRequestShort(input, nil)
+		ok, err := dataDeletionService.AdminSubmitUserAccountDeletionRequestShort(input)
 		if err != nil {
 			logrus.Error(err)
 

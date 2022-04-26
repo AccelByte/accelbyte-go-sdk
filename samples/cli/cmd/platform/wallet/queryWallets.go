@@ -37,7 +37,7 @@ var QueryWalletsCmd = &cobra.Command{
 			Offset:       &offset,
 			UserID:       &userId,
 		}
-		ok, err := walletService.QueryWalletsShort(input, nil)
+		ok, err := walletService.QueryWalletsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

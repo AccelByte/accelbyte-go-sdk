@@ -29,7 +29,7 @@ var ListLocalServerCmd = &cobra.Command{
 		input := &admin.ListLocalServerParams{
 			Namespace: namespace,
 		}
-		ok, err := adminService.ListLocalServerShort(input, nil)
+		ok, err := adminService.ListLocalServerShort(input)
 		if err != nil {
 			logrus.Error(err)
 

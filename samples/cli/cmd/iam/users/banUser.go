@@ -41,7 +41,7 @@ var BanUserCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := usersService.BanUserShort(input, nil)
+		ok, err := usersService.BanUserShort(input)
 		if err != nil {
 			logrus.Error(err)
 

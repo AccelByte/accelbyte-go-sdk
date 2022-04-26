@@ -26,7 +26,7 @@ var PublicGetMyUserV3Cmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &users.PublicGetMyUserV3Params{}
-		ok, err := usersService.PublicGetMyUserV3Short(input, nil)
+		ok, err := usersService.PublicGetMyUserV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 

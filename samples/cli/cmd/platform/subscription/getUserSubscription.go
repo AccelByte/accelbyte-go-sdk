@@ -33,7 +33,7 @@ var GetUserSubscriptionCmd = &cobra.Command{
 			SubscriptionID: subscriptionId,
 			UserID:         userId,
 		}
-		ok, err := subscriptionService.GetUserSubscriptionShort(input, nil)
+		ok, err := subscriptionService.GetUserSubscriptionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

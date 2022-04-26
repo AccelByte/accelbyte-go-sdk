@@ -26,7 +26,7 @@ var UXNameDescriptionHandlerCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &event_descriptions.UXNameDescriptionHandlerParams{}
-		ok, err := eventDescriptionsService.UXNameDescriptionHandlerShort(input, nil)
+		ok, err := eventDescriptionsService.UXNameDescriptionHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -29,7 +29,7 @@ var DeleteTwitchIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.DeleteTwitchIAPConfigParams{
 			Namespace: namespace,
 		}
-		errInput := iapService.DeleteTwitchIAPConfigShort(input, nil)
+		errInput := iapService.DeleteTwitchIAPConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -29,7 +29,7 @@ var GetAllPartyInAllChannelCmd = &cobra.Command{
 		input := &matchmaking_.GetAllPartyInAllChannelParams{
 			Namespace: namespace,
 		}
-		ok, err := matchmakingService.GetAllPartyInAllChannelShort(input, nil)
+		ok, err := matchmakingService.GetAllPartyInAllChannelShort(input)
 		if err != nil {
 			logrus.Error(err)
 

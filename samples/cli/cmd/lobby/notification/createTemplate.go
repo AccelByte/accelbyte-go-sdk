@@ -39,7 +39,7 @@ var CreateTemplateCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := notificationService.CreateTemplateShort(input, nil)
+		errInput := notificationService.CreateTemplateShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -26,7 +26,7 @@ var RetrieveAgreementsPublicCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &agreement.RetrieveAgreementsPublicParams{}
-		ok, err := agreementService.RetrieveAgreementsPublicShort(input, nil)
+		ok, err := agreementService.RetrieveAgreementsPublicShort(input)
 		if err != nil {
 			logrus.Error(err)
 

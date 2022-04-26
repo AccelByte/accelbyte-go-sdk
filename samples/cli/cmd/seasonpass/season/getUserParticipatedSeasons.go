@@ -35,7 +35,7 @@ var GetUserParticipatedSeasonsCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := seasonService.GetUserParticipatedSeasonsShort(input, nil)
+		ok, err := seasonService.GetUserParticipatedSeasonsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -33,7 +33,7 @@ var GetAllPodConfigCmd = &cobra.Command{
 			Count:     &count,
 			Offset:    &offset,
 		}
-		ok, err := podConfigService.GetAllPodConfigShort(input, nil)
+		ok, err := podConfigService.GetAllPodConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

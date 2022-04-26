@@ -41,7 +41,7 @@ var GrantUserPassCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := passService.GrantUserPassShort(input, nil)
+		ok, err := passService.GrantUserPassShort(input)
 		if err != nil {
 			logrus.Error(err)
 

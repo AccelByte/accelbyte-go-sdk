@@ -39,7 +39,7 @@ var DeregisterLocalServerCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := serverService.DeregisterLocalServerShort(input, nil)
+		errInput := serverService.DeregisterLocalServerShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

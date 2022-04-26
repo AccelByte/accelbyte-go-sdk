@@ -31,7 +31,7 @@ var GetImagePatchesCmd = &cobra.Command{
 			Namespace: namespace,
 			Version:   version,
 		}
-		ok, err := imageConfigService.GetImagePatchesShort(input, nil)
+		ok, err := imageConfigService.GetImagePatchesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

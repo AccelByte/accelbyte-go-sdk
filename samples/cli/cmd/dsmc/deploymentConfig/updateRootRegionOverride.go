@@ -43,7 +43,7 @@ var UpdateRootRegionOverrideCmd = &cobra.Command{
 			Namespace:  namespace,
 			Region:     region,
 		}
-		ok, err := deploymentConfigService.UpdateRootRegionOverrideShort(input, nil)
+		ok, err := deploymentConfigService.UpdateRootRegionOverrideShort(input)
 		if err != nil {
 			logrus.Error(err)
 

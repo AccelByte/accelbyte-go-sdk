@@ -41,7 +41,7 @@ var PublicReconcilePlayStationStoreCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := iapService.PublicReconcilePlayStationStoreShort(input, nil)
+		ok, err := iapService.PublicReconcilePlayStationStoreShort(input)
 		if err != nil {
 			logrus.Error(err)
 

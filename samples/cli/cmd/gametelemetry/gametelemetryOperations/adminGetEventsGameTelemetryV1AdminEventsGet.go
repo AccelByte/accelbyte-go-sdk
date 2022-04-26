@@ -31,7 +31,7 @@ var AdminGetEventsGameTelemetryV1AdminEventsGetCmd = &cobra.Command{
 			Cookie:    &cookie,
 			Namespace: namespace,
 		}
-		errInput := gametelemetryOperationsService.AdminGetEventsGameTelemetryV1AdminEventsGetShort(input, nil)
+		errInput := gametelemetryOperationsService.AdminGetEventsGameTelemetryV1AdminEventsGetShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

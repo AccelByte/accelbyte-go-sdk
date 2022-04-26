@@ -41,7 +41,7 @@ var AdminUpdateUserV4Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := usersV4Service.AdminUpdateUserV4Short(input, nil)
+		ok, err := usersV4Service.AdminUpdateUserV4Short(input)
 		if err != nil {
 			logrus.Error(err)
 

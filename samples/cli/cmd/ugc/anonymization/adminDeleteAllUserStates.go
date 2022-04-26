@@ -31,7 +31,7 @@ var AdminDeleteAllUserStatesCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := anonymizationService.AdminDeleteAllUserStatesShort(input, nil)
+		errInput := anonymizationService.AdminDeleteAllUserStatesShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

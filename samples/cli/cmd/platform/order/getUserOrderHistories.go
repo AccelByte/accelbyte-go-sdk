@@ -33,7 +33,7 @@ var GetUserOrderHistoriesCmd = &cobra.Command{
 			OrderNo:   orderNo,
 			UserID:    userId,
 		}
-		ok, err := orderService.GetUserOrderHistoriesShort(input, nil)
+		ok, err := orderService.GetUserOrderHistoriesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

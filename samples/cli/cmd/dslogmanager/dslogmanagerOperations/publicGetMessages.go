@@ -26,7 +26,7 @@ var PublicGetMessagesCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &dslogmanager_operations.PublicGetMessagesParams{}
-		ok, err := dslogmanagerOperationsService.PublicGetMessagesShort(input, nil)
+		ok, err := dslogmanagerOperationsService.PublicGetMessagesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

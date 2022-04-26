@@ -43,7 +43,7 @@ var UpdateCheckoutConfigCmd = &cobra.Command{
 			Sandbox:  &sandbox,
 			Validate: &validate,
 		}
-		ok, err := paymentConfigService.UpdateCheckoutConfigShort(input, nil)
+		ok, err := paymentConfigService.UpdateCheckoutConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

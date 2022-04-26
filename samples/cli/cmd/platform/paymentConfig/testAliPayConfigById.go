@@ -31,7 +31,7 @@ var TestAliPayConfigByIdCmd = &cobra.Command{
 			ID:      id_,
 			Sandbox: &sandbox,
 		}
-		ok, err := paymentConfigService.TestAliPayConfigByIDShort(input, nil)
+		ok, err := paymentConfigService.TestAliPayConfigByIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 

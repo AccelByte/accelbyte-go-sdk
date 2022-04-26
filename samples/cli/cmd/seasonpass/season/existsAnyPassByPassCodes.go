@@ -40,7 +40,7 @@ var ExistsAnyPassByPassCodesCmd = &cobra.Command{
 			UserID:    userId,
 			PassCodes: passCodes,
 		}
-		ok, err := seasonService.ExistsAnyPassByPassCodesShort(input, nil)
+		ok, err := seasonService.ExistsAnyPassByPassCodesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

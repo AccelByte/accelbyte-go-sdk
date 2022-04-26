@@ -39,7 +39,7 @@ var UpdateMyZipCodeCmd = &cobra.Command{
 			UserZipCodeUpdate: userZipCodeUpdate,
 			Namespace:         namespace,
 		}
-		ok, err := userProfileService.UpdateMyZipCodeShort(input, nil)
+		ok, err := userProfileService.UpdateMyZipCodeShort(input)
 		if err != nil {
 			logrus.Error(err)
 

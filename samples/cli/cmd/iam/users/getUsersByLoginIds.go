@@ -31,7 +31,7 @@ var GetUsersByLoginIdsCmd = &cobra.Command{
 			Namespace: namespace,
 			LoginIds:  &loginIds,
 		}
-		ok, err := usersService.GetUsersByLoginIdsShort(input, nil)
+		ok, err := usersService.GetUsersByLoginIdsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

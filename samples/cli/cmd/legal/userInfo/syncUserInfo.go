@@ -29,7 +29,7 @@ var SyncUserInfoCmd = &cobra.Command{
 		input := &user_info.SyncUserInfoParams{
 			Namespace: namespace,
 		}
-		errInput := userInfoService.SyncUserInfoShort(input, nil)
+		errInput := userInfoService.SyncUserInfoShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

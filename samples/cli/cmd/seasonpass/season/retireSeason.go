@@ -33,7 +33,7 @@ var RetireSeasonCmd = &cobra.Command{
 			SeasonID:  seasonId,
 			Force:     &force,
 		}
-		ok, err := seasonService.RetireSeasonShort(input, nil)
+		ok, err := seasonService.RetireSeasonShort(input)
 		if err != nil {
 			logrus.Error(err)
 

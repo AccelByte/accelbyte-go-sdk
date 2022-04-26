@@ -33,7 +33,7 @@ var GetSingleTemplateLocalizationV1AdminCmd = &cobra.Command{
 			TemplateLanguage: templateLanguage,
 			TemplateSlug:     templateSlug,
 		}
-		ok, err := notificationService.GetSingleTemplateLocalizationV1AdminShort(input, nil)
+		ok, err := notificationService.GetSingleTemplateLocalizationV1AdminShort(input)
 		if err != nil {
 			logrus.Error(err)
 

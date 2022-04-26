@@ -39,7 +39,7 @@ var CreateConfigCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := configService.CreateConfigShort(input, nil)
+		ok, err := configService.CreateConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

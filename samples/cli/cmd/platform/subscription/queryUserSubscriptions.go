@@ -45,7 +45,7 @@ var QueryUserSubscriptionsCmd = &cobra.Command{
 			Status:       &status,
 			SubscribedBy: &subscribedBy,
 		}
-		ok, err := subscriptionService.QueryUserSubscriptionsShort(input, nil)
+		ok, err := subscriptionService.QueryUserSubscriptionsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -33,7 +33,7 @@ var DeleteTemplateLocalizationV1AdminCmd = &cobra.Command{
 			TemplateLanguage: templateLanguage,
 			TemplateSlug:     templateSlug,
 		}
-		errInput := notificationService.DeleteTemplateLocalizationV1AdminShort(input, nil)
+		errInput := notificationService.DeleteTemplateLocalizationV1AdminShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

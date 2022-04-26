@@ -31,7 +31,7 @@ var GetNotificationTopicV1AdminCmd = &cobra.Command{
 			Namespace: namespace,
 			TopicName: topicName,
 		}
-		ok, err := notificationService.GetNotificationTopicV1AdminShort(input, nil)
+		ok, err := notificationService.GetNotificationTopicV1AdminShort(input)
 		if err != nil {
 			logrus.Error(err)
 

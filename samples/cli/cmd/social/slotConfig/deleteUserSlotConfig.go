@@ -31,7 +31,7 @@ var DeleteUserSlotConfigCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := slotConfigService.DeleteUserSlotConfigShort(input, nil)
+		errInput := slotConfigService.DeleteUserSlotConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

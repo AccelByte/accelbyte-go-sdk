@@ -29,7 +29,7 @@ var DeletePlaystationIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.DeletePlaystationIAPConfigParams{
 			Namespace: namespace,
 		}
-		errInput := iapService.DeletePlaystationIAPConfigShort(input, nil)
+		errInput := iapService.DeletePlaystationIAPConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

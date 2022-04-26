@@ -33,7 +33,7 @@ var BulkEnableCodesCmd = &cobra.Command{
 			Namespace:  namespace,
 			BatchNo:    &batchNo,
 		}
-		ok, err := campaignService.BulkEnableCodesShort(input, nil)
+		ok, err := campaignService.BulkEnableCodesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

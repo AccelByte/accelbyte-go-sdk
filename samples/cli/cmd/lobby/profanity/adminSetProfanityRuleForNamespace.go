@@ -39,7 +39,7 @@ var AdminSetProfanityRuleForNamespaceCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := profanityService.AdminSetProfanityRuleForNamespaceShort(input, nil)
+		errInput := profanityService.AdminSetProfanityRuleForNamespaceShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

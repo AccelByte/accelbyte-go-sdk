@@ -29,7 +29,7 @@ var ListProvidersByRegionCmd = &cobra.Command{
 		input := &public.ListProvidersByRegionParams{
 			Region: region,
 		}
-		ok, err := publicService.ListProvidersByRegionShort(input, nil)
+		ok, err := publicService.ListProvidersByRegionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

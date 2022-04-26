@@ -41,7 +41,7 @@ var SimulatePaymentOrderNotificationCmd = &cobra.Command{
 			Namespace:      namespace,
 			PaymentOrderNo: paymentOrderNo,
 		}
-		ok, err := paymentService.SimulatePaymentOrderNotificationShort(input, nil)
+		ok, err := paymentService.SimulatePaymentOrderNotificationShort(input)
 		if err != nil {
 			logrus.Error(err)
 

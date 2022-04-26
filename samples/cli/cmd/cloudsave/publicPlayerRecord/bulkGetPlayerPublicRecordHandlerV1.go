@@ -41,7 +41,7 @@ var BulkGetPlayerPublicRecordHandlerV1Cmd = &cobra.Command{
 			Key:       key,
 			Namespace: namespace,
 		}
-		ok, err := publicPlayerRecordService.BulkGetPlayerPublicRecordHandlerV1Short(input, nil)
+		ok, err := publicPlayerRecordService.BulkGetPlayerPublicRecordHandlerV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

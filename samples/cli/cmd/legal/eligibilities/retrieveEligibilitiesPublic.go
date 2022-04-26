@@ -29,7 +29,7 @@ var RetrieveEligibilitiesPublicCmd = &cobra.Command{
 		input := &eligibilities.RetrieveEligibilitiesPublicParams{
 			Namespace: namespace,
 		}
-		ok, err := eligibilitiesService.RetrieveEligibilitiesPublicShort(input, nil)
+		ok, err := eligibilitiesService.RetrieveEligibilitiesPublicShort(input)
 		if err != nil {
 			logrus.Error(err)
 

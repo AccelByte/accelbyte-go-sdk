@@ -41,7 +41,7 @@ var MockFulfillIAPItemCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := iapService.MockFulfillIAPItemShort(input, nil)
+		errInput := iapService.MockFulfillIAPItemShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

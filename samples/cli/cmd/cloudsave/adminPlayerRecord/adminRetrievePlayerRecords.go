@@ -35,7 +35,7 @@ var AdminRetrievePlayerRecordsCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := adminPlayerRecordService.AdminRetrievePlayerRecordsShort(input, nil)
+		ok, err := adminPlayerRecordService.AdminRetrievePlayerRecordsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

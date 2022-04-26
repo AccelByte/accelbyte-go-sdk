@@ -26,7 +26,7 @@ var GetAggregatePaymentProvidersCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &payment_config.GetAggregatePaymentProvidersParams{}
-		ok, err := paymentConfigService.GetAggregatePaymentProvidersShort(input, nil)
+		ok, err := paymentConfigService.GetAggregatePaymentProvidersShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -31,7 +31,7 @@ var GetItemDynamicDataCmd = &cobra.Command{
 			ItemID:    itemId,
 			Namespace: namespace,
 		}
-		ok, err := itemService.GetItemDynamicDataShort(input, nil)
+		ok, err := itemService.GetItemDynamicDataShort(input)
 		if err != nil {
 			logrus.Error(err)
 

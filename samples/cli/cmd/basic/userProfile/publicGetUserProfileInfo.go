@@ -31,7 +31,7 @@ var PublicGetUserProfileInfoCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := userProfileService.PublicGetUserProfileInfoShort(input, nil)
+		ok, err := userProfileService.PublicGetUserProfileInfoShort(input)
 		if err != nil {
 			logrus.Error(err)
 

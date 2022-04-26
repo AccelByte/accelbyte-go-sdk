@@ -31,7 +31,7 @@ var RejectGroupJoinRequestPublicV1Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := groupMemberService.RejectGroupJoinRequestPublicV1Short(input, nil)
+		ok, err := groupMemberService.RejectGroupJoinRequestPublicV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

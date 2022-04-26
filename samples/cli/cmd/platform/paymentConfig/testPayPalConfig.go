@@ -39,7 +39,7 @@ var TestPayPalConfigCmd = &cobra.Command{
 			Body:    body,
 			Sandbox: &sandbox,
 		}
-		ok, err := paymentConfigService.TestPayPalConfigShort(input, nil)
+		ok, err := paymentConfigService.TestPayPalConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

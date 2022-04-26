@@ -35,7 +35,7 @@ var GetAppCmd = &cobra.Command{
 			ActiveOnly: &activeOnly,
 			StoreID:    &storeId,
 		}
-		ok, err := itemService.GetAppShort(input, nil)
+		ok, err := itemService.GetAppShort(input)
 		if err != nil {
 			logrus.Error(err)
 

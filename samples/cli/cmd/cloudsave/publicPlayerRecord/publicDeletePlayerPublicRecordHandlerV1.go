@@ -31,7 +31,7 @@ var PublicDeletePlayerPublicRecordHandlerV1Cmd = &cobra.Command{
 			Key:       key,
 			Namespace: namespace,
 		}
-		errInput := publicPlayerRecordService.PublicDeletePlayerPublicRecordHandlerV1Short(input, nil)
+		errInput := publicPlayerRecordService.PublicDeletePlayerPublicRecordHandlerV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -50,7 +50,7 @@ var PublicQueryUserEntitlementsCmd = &cobra.Command{
 			Limit:            &limit,
 			Offset:           &offset,
 		}
-		ok, err := entitlementService.PublicQueryUserEntitlementsShort(input, nil)
+		ok, err := entitlementService.PublicQueryUserEntitlementsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

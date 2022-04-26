@@ -43,7 +43,7 @@ var UpdateGroupCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := publicGroupService.UpdateGroupShort(input, nil)
+		ok, err := publicGroupService.UpdateGroupShort(input)
 		if err != nil {
 			logrus.Error(err)
 

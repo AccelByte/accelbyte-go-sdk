@@ -26,7 +26,7 @@ var GetDefaultProviderCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &public.GetDefaultProviderParams{}
-		ok, err := publicService.GetDefaultProviderShort(input, nil)
+		ok, err := publicService.GetDefaultProviderShort(input)
 		if err != nil {
 			logrus.Error(err)
 

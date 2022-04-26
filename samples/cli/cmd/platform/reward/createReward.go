@@ -39,7 +39,7 @@ var CreateRewardCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := rewardService.CreateRewardShort(input, nil)
+		ok, err := rewardService.CreateRewardShort(input)
 		if err != nil {
 			logrus.Error(err)
 

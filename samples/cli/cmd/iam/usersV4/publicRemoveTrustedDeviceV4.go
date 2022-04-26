@@ -31,7 +31,7 @@ var PublicRemoveTrustedDeviceV4Cmd = &cobra.Command{
 			Cookie:    &cookie,
 			Namespace: namespace,
 		}
-		errInput := usersV4Service.PublicRemoveTrustedDeviceV4Short(input, nil)
+		errInput := usersV4Service.PublicRemoveTrustedDeviceV4Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

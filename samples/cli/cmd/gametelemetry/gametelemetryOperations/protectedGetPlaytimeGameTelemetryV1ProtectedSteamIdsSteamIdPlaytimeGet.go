@@ -31,7 +31,7 @@ var ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGetCmd = 
 			Cookie:  &cookie,
 			SteamID: steamId,
 		}
-		ok, err := gametelemetryOperationsService.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input, nil)
+		ok, err := gametelemetryOperationsService.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input)
 		if err != nil {
 			logrus.Error(err)
 

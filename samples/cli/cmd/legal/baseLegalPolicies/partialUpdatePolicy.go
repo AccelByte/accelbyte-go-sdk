@@ -39,7 +39,7 @@ var PartialUpdatePolicyCmd = &cobra.Command{
 			Body:         body,
 			BasePolicyID: basePolicyId,
 		}
-		ok, err := baseLegalPoliciesService.PartialUpdatePolicyShort(input, nil)
+		ok, err := baseLegalPoliciesService.PartialUpdatePolicyShort(input)
 		if err != nil {
 			logrus.Error(err)
 

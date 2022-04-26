@@ -39,7 +39,7 @@ var QueryPaymentOrdersCmd = &cobra.Command{
 			Offset:    &offset,
 			Status:    &status,
 		}
-		ok, err := paymentService.QueryPaymentOrdersShort(input, nil)
+		ok, err := paymentService.QueryPaymentOrdersShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -31,7 +31,7 @@ var AdminGetAllPlayerSessionAttributeCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := playerService.AdminGetAllPlayerSessionAttributeShort(input, nil)
+		ok, err := playerService.AdminGetAllPlayerSessionAttributeShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -41,7 +41,7 @@ var ApplyUserRedemptionCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := campaignService.ApplyUserRedemptionShort(input, nil)
+		ok, err := campaignService.ApplyUserRedemptionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

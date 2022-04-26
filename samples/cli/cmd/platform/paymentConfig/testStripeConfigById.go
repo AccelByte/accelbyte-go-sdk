@@ -31,7 +31,7 @@ var TestStripeConfigByIdCmd = &cobra.Command{
 			ID:      id_,
 			Sandbox: &sandbox,
 		}
-		ok, err := paymentConfigService.TestStripeConfigByIDShort(input, nil)
+		ok, err := paymentConfigService.TestStripeConfigByIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 

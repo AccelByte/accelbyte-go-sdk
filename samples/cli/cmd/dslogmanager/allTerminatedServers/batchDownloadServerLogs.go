@@ -37,7 +37,7 @@ var BatchDownloadServerLogsCmd = &cobra.Command{
 		input := &all_terminated_servers.BatchDownloadServerLogsParams{
 			Body: body,
 		}
-		errInput := allTerminatedServersService.BatchDownloadServerLogsShort(input, nil)
+		errInput := allTerminatedServersService.BatchDownloadServerLogsShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

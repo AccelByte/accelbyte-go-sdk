@@ -33,7 +33,7 @@ var SyncPaymentOrdersCmd = &cobra.Command{
 			End:              end,
 			Start:            start,
 		}
-		ok, err := paymentDedicatedService.SyncPaymentOrdersShort(input, nil)
+		ok, err := paymentDedicatedService.SyncPaymentOrdersShort(input)
 		if err != nil {
 			logrus.Error(err)
 

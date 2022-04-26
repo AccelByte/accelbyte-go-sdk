@@ -31,7 +31,7 @@ var DeleteCurrencyCmd = &cobra.Command{
 			CurrencyCode: currencyCode,
 			Namespace:    namespace,
 		}
-		ok, err := currencyService.DeleteCurrencyShort(input, nil)
+		ok, err := currencyService.DeleteCurrencyShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -33,7 +33,7 @@ var DeleteItemCmd = &cobra.Command{
 			Namespace: namespace,
 			StoreID:   &storeId,
 		}
-		errInput := itemService.DeleteItemShort(input, nil)
+		errInput := itemService.DeleteItemShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

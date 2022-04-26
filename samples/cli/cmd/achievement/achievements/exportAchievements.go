@@ -29,7 +29,7 @@ var ExportAchievementsCmd = &cobra.Command{
 		input := &achievements.ExportAchievementsParams{
 			Namespace: namespace,
 		}
-		ok, err := achievementsService.ExportAchievementsShort(input, nil)
+		ok, err := achievementsService.ExportAchievementsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

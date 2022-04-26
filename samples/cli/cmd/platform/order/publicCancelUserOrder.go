@@ -33,7 +33,7 @@ var PublicCancelUserOrderCmd = &cobra.Command{
 			OrderNo:   orderNo,
 			UserID:    userId,
 		}
-		ok, err := orderService.PublicCancelUserOrderShort(input, nil)
+		ok, err := orderService.PublicCancelUserOrderShort(input)
 		if err != nil {
 			logrus.Error(err)
 

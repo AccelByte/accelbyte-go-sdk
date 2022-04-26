@@ -29,7 +29,7 @@ var DeleteSteamIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.DeleteSteamIAPConfigParams{
 			Namespace: namespace,
 		}
-		errInput := iapService.DeleteSteamIAPConfigShort(input, nil)
+		errInput := iapService.DeleteSteamIAPConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

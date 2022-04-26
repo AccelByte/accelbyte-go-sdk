@@ -56,7 +56,7 @@ var TokenGrantV3Cmd = &cobra.Command{
 			GrantType:    grantType,
 			HTTPClient:   httpClient,
 		}
-		ok, err := oAuth20Service.TokenGrantV3Short(input, nil)
+		ok, err := oAuth20Service.TokenGrantV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 

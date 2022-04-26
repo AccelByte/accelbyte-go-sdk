@@ -33,7 +33,7 @@ var UsersPresenceHandlerV1Cmd = &cobra.Command{
 			CountOnly: &countOnly,
 			UserIds:   userIds,
 		}
-		ok, err := presenceService.UsersPresenceHandlerV1Short(input, nil)
+		ok, err := presenceService.UsersPresenceHandlerV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

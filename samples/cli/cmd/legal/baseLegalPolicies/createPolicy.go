@@ -37,7 +37,7 @@ var CreatePolicyCmd = &cobra.Command{
 		input := &base_legal_policies.CreatePolicyParams{
 			Body: body,
 		}
-		ok, err := baseLegalPoliciesService.CreatePolicyShort(input, nil)
+		ok, err := baseLegalPoliciesService.CreatePolicyShort(input)
 		if err != nil {
 			logrus.Error(err)
 

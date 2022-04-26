@@ -29,7 +29,7 @@ var SpecificEventIDDescriptionHandlerCmd = &cobra.Command{
 		input := &event_descriptions.SpecificEventIDDescriptionHandlerParams{
 			EventIds: &eventIds,
 		}
-		ok, err := eventDescriptionsService.SpecificEventIDDescriptionHandlerShort(input, nil)
+		ok, err := eventDescriptionsService.SpecificEventIDDescriptionHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 

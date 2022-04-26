@@ -31,7 +31,7 @@ var DeleteRewardCmd = &cobra.Command{
 			Namespace: namespace,
 			RewardID:  rewardId,
 		}
-		ok, err := rewardService.DeleteRewardShort(input, nil)
+		ok, err := rewardService.DeleteRewardShort(input)
 		if err != nil {
 			logrus.Error(err)
 

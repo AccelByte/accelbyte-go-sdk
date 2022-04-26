@@ -39,7 +39,7 @@ var SetServerAliasCmd = &cobra.Command{
 			Body:   body,
 			Region: region,
 		}
-		errInput := adminService.SetServerAliasShort(input, nil)
+		errInput := adminService.SetServerAliasShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

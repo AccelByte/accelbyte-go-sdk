@@ -39,7 +39,7 @@ var RequestPresignedURLCmd = &cobra.Command{
 			Body:                     body,
 			LocalizedPolicyVersionID: localizedPolicyVersionId,
 		}
-		ok, err := localizedPolicyVersionsService.RequestPresignedURLShort(input, nil)
+		ok, err := localizedPolicyVersionsService.RequestPresignedURLShort(input)
 		if err != nil {
 			logrus.Error(err)
 

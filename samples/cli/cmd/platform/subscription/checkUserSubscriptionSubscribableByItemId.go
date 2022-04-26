@@ -33,7 +33,7 @@ var CheckUserSubscriptionSubscribableByItemIdCmd = &cobra.Command{
 			UserID:    userId,
 			ItemID:    itemId,
 		}
-		ok, err := subscriptionService.CheckUserSubscriptionSubscribableByItemIDShort(input, nil)
+		ok, err := subscriptionService.CheckUserSubscriptionSubscribableByItemIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 

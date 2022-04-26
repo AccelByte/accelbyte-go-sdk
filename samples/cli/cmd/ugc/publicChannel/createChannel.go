@@ -41,7 +41,7 @@ var CreateChannelCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := publicChannelService.CreateChannelShort(input, nil)
+		ok, err := publicChannelService.CreateChannelShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -29,7 +29,7 @@ var GetAllNotificationTemplatesV1AdminCmd = &cobra.Command{
 		input := &notification.GetAllNotificationTemplatesV1AdminParams{
 			Namespace: namespace,
 		}
-		ok, err := notificationService.GetAllNotificationTemplatesV1AdminShort(input, nil)
+		ok, err := notificationService.GetAllNotificationTemplatesV1AdminShort(input)
 		if err != nil {
 			logrus.Error(err)
 

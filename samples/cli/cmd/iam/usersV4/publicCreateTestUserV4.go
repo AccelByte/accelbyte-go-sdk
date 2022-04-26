@@ -39,7 +39,7 @@ var PublicCreateTestUserV4Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := usersV4Service.PublicCreateTestUserV4Short(input, nil)
+		ok, err := usersV4Service.PublicCreateTestUserV4Short(input)
 		if err != nil {
 			logrus.Error(err)
 

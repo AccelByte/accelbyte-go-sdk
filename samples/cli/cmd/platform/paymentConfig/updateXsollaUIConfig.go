@@ -39,7 +39,7 @@ var UpdateXsollaUIConfigCmd = &cobra.Command{
 			Body: body,
 			ID:   id_,
 		}
-		ok, err := paymentConfigService.UpdateXsollaUIConfigShort(input, nil)
+		ok, err := paymentConfigService.UpdateXsollaUIConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

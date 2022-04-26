@@ -33,7 +33,7 @@ var SingleAdminGetContentCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := adminContentService.SingleAdminGetContentShort(input, nil)
+		ok, err := adminContentService.SingleAdminGetContentShort(input)
 		if err != nil {
 			logrus.Error(err)
 

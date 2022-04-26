@@ -41,7 +41,7 @@ var UpdateMatchmakingChannelCmd = &cobra.Command{
 			ChannelName: channelName,
 			Namespace:   namespace,
 		}
-		errInput := matchmakingService.UpdateMatchmakingChannelShort(input, nil)
+		errInput := matchmakingService.UpdateMatchmakingChannelShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

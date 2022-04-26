@@ -35,7 +35,7 @@ var GetAllNotificationTopicsV1AdminCmd = &cobra.Command{
 			Before:    &before,
 			Limit:     &limit,
 		}
-		ok, err := notificationService.GetAllNotificationTopicsV1AdminShort(input, nil)
+		ok, err := notificationService.GetAllNotificationTopicsV1AdminShort(input)
 		if err != nil {
 			logrus.Error(err)
 

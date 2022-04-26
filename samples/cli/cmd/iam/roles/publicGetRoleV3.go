@@ -29,7 +29,7 @@ var PublicGetRoleV3Cmd = &cobra.Command{
 		input := &roles.PublicGetRoleV3Params{
 			RoleID: roleId,
 		}
-		ok, err := rolesService.PublicGetRoleV3Short(input, nil)
+		ok, err := rolesService.PublicGetRoleV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 

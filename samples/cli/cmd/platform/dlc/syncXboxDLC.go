@@ -41,7 +41,7 @@ var SyncXboxDLCCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := dlcService.SyncXboxDLCShort(input, nil)
+		errInput := dlcService.SyncXboxDLCShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

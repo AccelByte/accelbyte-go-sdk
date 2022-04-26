@@ -31,7 +31,7 @@ var AdminGetUserPartyV1Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := partyService.AdminGetUserPartyV1Short(input, nil)
+		ok, err := partyService.AdminGetUserPartyV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

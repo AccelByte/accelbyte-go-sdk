@@ -39,7 +39,7 @@ var BulkResetUserStatItemCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := userStatisticService.BulkResetUserStatItemShort(input, nil)
+		ok, err := userStatisticService.BulkResetUserStatItemShort(input)
 		if err != nil {
 			logrus.Error(err)
 

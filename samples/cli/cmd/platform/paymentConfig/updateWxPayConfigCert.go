@@ -45,7 +45,7 @@ var UpdateWxPayConfigCertCmd = &cobra.Command{
 			ID:         id_,
 			HTTPClient: httpClient,
 		}
-		ok, err := paymentConfigService.UpdateWxPayConfigCertShort(input, nil)
+		ok, err := paymentConfigService.UpdateWxPayConfigCertShort(input)
 		if err != nil {
 			logrus.Error(err)
 

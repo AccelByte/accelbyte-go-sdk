@@ -31,7 +31,7 @@ var DeleteSessionCmd = &cobra.Command{
 			Namespace: namespace,
 			SessionID: sessionID,
 		}
-		ok, err := sessionService.DeleteSessionShort(input, nil)
+		ok, err := sessionService.DeleteSessionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -40,7 +40,7 @@ var ListBasicItemsByFeaturesCmd = &cobra.Command{
 			ActiveOnly: &activeOnly,
 			Features:   features,
 		}
-		ok, err := itemService.ListBasicItemsByFeaturesShort(input, nil)
+		ok, err := itemService.ListBasicItemsByFeaturesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

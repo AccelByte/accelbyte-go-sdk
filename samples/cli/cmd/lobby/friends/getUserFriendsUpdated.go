@@ -33,7 +33,7 @@ var GetUserFriendsUpdatedCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := friendsService.GetUserFriendsUpdatedShort(input, nil)
+		ok, err := friendsService.GetUserFriendsUpdatedShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -29,7 +29,7 @@ var GetPublishedStoreCmd = &cobra.Command{
 		input := &store.GetPublishedStoreParams{
 			Namespace: namespace,
 		}
-		ok, err := storeService.GetPublishedStoreShort(input, nil)
+		ok, err := storeService.GetPublishedStoreShort(input)
 		if err != nil {
 			logrus.Error(err)
 

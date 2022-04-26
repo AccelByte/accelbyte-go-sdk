@@ -29,7 +29,7 @@ var GetPaymentCallbackConfigCmd = &cobra.Command{
 		input := &payment_callback_config.GetPaymentCallbackConfigParams{
 			Namespace: namespace,
 		}
-		ok, err := paymentCallbackConfigService.GetPaymentCallbackConfigShort(input, nil)
+		ok, err := paymentCallbackConfigService.GetPaymentCallbackConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

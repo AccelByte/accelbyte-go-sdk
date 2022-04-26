@@ -26,7 +26,7 @@ var AdminGetMyBackupCodesV4Cmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &users_v4.AdminGetMyBackupCodesV4Params{}
-		ok, err := usersV4Service.AdminGetMyBackupCodesV4Short(input, nil)
+		ok, err := usersV4Service.AdminGetMyBackupCodesV4Short(input)
 		if err != nil {
 			logrus.Error(err)
 

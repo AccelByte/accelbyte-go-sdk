@@ -35,7 +35,7 @@ var GetGroupJoinRequestPublicV1Cmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := memberRequestService.GetGroupJoinRequestPublicV1Short(input, nil)
+		ok, err := memberRequestService.GetGroupJoinRequestPublicV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

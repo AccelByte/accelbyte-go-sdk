@@ -35,7 +35,7 @@ var PublicGetUserPersonalDataRequestsCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := dataRetrievalService.PublicGetUserPersonalDataRequestsShort(input, nil)
+		ok, err := dataRetrievalService.PublicGetUserPersonalDataRequestsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

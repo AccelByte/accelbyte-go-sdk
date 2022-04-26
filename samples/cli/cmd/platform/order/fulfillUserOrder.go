@@ -33,7 +33,7 @@ var FulfillUserOrderCmd = &cobra.Command{
 			OrderNo:   orderNo,
 			UserID:    userId,
 		}
-		ok, err := orderService.FulfillUserOrderShort(input, nil)
+		ok, err := orderService.FulfillUserOrderShort(input)
 		if err != nil {
 			logrus.Error(err)
 

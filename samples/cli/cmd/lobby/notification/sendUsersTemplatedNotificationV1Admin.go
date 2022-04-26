@@ -39,7 +39,7 @@ var SendUsersTemplatedNotificationV1AdminCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := notificationService.SendUsersTemplatedNotificationV1AdminShort(input, nil)
+		errInput := notificationService.SendUsersTemplatedNotificationV1AdminShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

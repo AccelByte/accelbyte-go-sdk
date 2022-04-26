@@ -39,7 +39,7 @@ var DeleteBulkLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := leaderboardConfigurationService.DeleteBulkLeaderboardConfigurationAdminV1Short(input, nil)
+		ok, err := leaderboardConfigurationService.DeleteBulkLeaderboardConfigurationAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

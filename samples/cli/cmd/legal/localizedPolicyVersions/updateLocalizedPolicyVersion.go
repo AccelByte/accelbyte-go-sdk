@@ -39,7 +39,7 @@ var UpdateLocalizedPolicyVersionCmd = &cobra.Command{
 			Body:                     body,
 			LocalizedPolicyVersionID: localizedPolicyVersionId,
 		}
-		ok, err := localizedPolicyVersionsService.UpdateLocalizedPolicyVersionShort(input, nil)
+		ok, err := localizedPolicyVersionsService.UpdateLocalizedPolicyVersionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

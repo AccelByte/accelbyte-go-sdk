@@ -43,7 +43,7 @@ var UpdateLocalizationTemplateCmd = &cobra.Command{
 			TemplateLanguage: templateLanguage,
 			TemplateSlug:     templateSlug,
 		}
-		errInput := notificationService.UpdateLocalizationTemplateShort(input, nil)
+		errInput := notificationService.UpdateLocalizationTemplateShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

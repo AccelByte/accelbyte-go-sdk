@@ -43,7 +43,7 @@ var UpdateTierCmd = &cobra.Command{
 			Namespace: namespace,
 			SeasonID:  seasonId,
 		}
-		ok, err := tierService.UpdateTierShort(input, nil)
+		ok, err := tierService.UpdateTierShort(input)
 		if err != nil {
 			logrus.Error(err)
 

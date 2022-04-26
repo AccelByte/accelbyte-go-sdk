@@ -31,7 +31,7 @@ var TestCheckoutConfigByIdCmd = &cobra.Command{
 			ID:      id_,
 			Sandbox: &sandbox,
 		}
-		ok, err := paymentConfigService.TestCheckoutConfigByIDShort(input, nil)
+		ok, err := paymentConfigService.TestCheckoutConfigByIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -33,7 +33,7 @@ var GeneratedUserUploadContentUrlCmd = &cobra.Command{
 			UserID:    userId,
 			FileType:  fileType,
 		}
-		ok, err := fileUploadService.GeneratedUserUploadContentURLShort(input, nil)
+		ok, err := fileUploadService.GeneratedUserUploadContentURLShort(input)
 		if err != nil {
 			logrus.Error(err)
 

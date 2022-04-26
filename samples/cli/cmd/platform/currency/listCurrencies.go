@@ -29,7 +29,7 @@ var ListCurrenciesCmd = &cobra.Command{
 		input := &currency.ListCurrenciesParams{
 			Namespace: namespace,
 		}
-		ok, err := currencyService.ListCurrenciesShort(input, nil)
+		ok, err := currencyService.ListCurrenciesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

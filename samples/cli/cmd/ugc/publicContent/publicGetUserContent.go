@@ -35,7 +35,7 @@ var PublicGetUserContentCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := publicContentService.PublicGetUserContentShort(input, nil)
+		ok, err := publicContentService.PublicGetUserContentShort(input)
 		if err != nil {
 			logrus.Error(err)
 

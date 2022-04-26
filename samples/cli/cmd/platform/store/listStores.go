@@ -29,7 +29,7 @@ var ListStoresCmd = &cobra.Command{
 		input := &store.ListStoresParams{
 			Namespace: namespace,
 		}
-		ok, err := storeService.ListStoresShort(input, nil)
+		ok, err := storeService.ListStoresShort(input)
 		if err != nil {
 			logrus.Error(err)
 

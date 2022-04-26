@@ -29,7 +29,7 @@ var GetNamespaceSlotConfigCmd = &cobra.Command{
 		input := &slot_config.GetNamespaceSlotConfigParams{
 			Namespace: namespace,
 		}
-		ok, err := slotConfigService.GetNamespaceSlotConfigShort(input, nil)
+		ok, err := slotConfigService.GetNamespaceSlotConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

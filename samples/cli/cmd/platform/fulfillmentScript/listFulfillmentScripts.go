@@ -26,7 +26,7 @@ var ListFulfillmentScriptsCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &fulfillment_script.ListFulfillmentScriptsParams{}
-		ok, err := fulfillmentScriptService.ListFulfillmentScriptsShort(input, nil)
+		ok, err := fulfillmentScriptService.ListFulfillmentScriptsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

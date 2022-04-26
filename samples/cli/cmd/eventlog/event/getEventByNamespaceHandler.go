@@ -37,7 +37,7 @@ var GetEventByNamespaceHandlerCmd = &cobra.Command{
 			PageSize:  pageSize,
 			StartDate: startDate,
 		}
-		ok, err := eventService.GetEventByNamespaceHandlerShort(input, nil)
+		ok, err := eventService.GetEventByNamespaceHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 

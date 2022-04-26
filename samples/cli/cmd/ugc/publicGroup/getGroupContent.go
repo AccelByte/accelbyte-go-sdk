@@ -37,7 +37,7 @@ var GetGroupContentCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := publicGroupService.GetGroupContentShort(input, nil)
+		ok, err := publicGroupService.GetGroupContentShort(input)
 		if err != nil {
 			logrus.Error(err)
 

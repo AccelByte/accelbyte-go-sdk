@@ -35,7 +35,7 @@ var GetTodayLeaderboardRankingPublicV1Cmd = &cobra.Command{
 			Limit:           &limit,
 			Offset:          &offset,
 		}
-		ok, err := leaderboardDataService.GetTodayLeaderboardRankingPublicV1Short(input, nil)
+		ok, err := leaderboardDataService.GetTodayLeaderboardRankingPublicV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

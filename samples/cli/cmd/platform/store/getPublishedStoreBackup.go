@@ -29,7 +29,7 @@ var GetPublishedStoreBackupCmd = &cobra.Command{
 		input := &store.GetPublishedStoreBackupParams{
 			Namespace: namespace,
 		}
-		ok, err := storeService.GetPublishedStoreBackupShort(input, nil)
+		ok, err := storeService.GetPublishedStoreBackupShort(input)
 		if err != nil {
 			logrus.Error(err)
 

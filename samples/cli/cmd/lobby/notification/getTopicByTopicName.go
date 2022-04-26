@@ -31,7 +31,7 @@ var GetTopicByTopicNameCmd = &cobra.Command{
 			Namespace: namespace,
 			Topic:     topic,
 		}
-		ok, err := notificationService.GetTopicByTopicNameShort(input, nil)
+		ok, err := notificationService.GetTopicByTopicNameShort(input)
 		if err != nil {
 			logrus.Error(err)
 

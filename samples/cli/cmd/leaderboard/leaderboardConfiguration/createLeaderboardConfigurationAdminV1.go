@@ -39,7 +39,7 @@ var CreateLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := leaderboardConfigurationService.CreateLeaderboardConfigurationAdminV1Short(input, nil)
+		ok, err := leaderboardConfigurationService.CreateLeaderboardConfigurationAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -26,7 +26,7 @@ var VersionCheckHandlerCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &matchmaking_operations.VersionCheckHandlerParams{}
-		errInput := matchmakingOperationsService.VersionCheckHandlerShort(input, nil)
+		errInput := matchmakingOperationsService.VersionCheckHandlerShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -41,7 +41,7 @@ var AdminUpdateUserDeletionStatusV3Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := usersService.AdminUpdateUserDeletionStatusV3Short(input, nil)
+		errInput := usersService.AdminUpdateUserDeletionStatusV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -41,7 +41,7 @@ var UpdateGroupCustomAttributesPublicV1Cmd = &cobra.Command{
 			GroupID:   groupId,
 			Namespace: namespace,
 		}
-		ok, err := groupService.UpdateGroupCustomAttributesPublicV1Short(input, nil)
+		ok, err := groupService.UpdateGroupCustomAttributesPublicV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

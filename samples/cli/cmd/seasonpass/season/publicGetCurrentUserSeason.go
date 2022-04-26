@@ -31,7 +31,7 @@ var PublicGetCurrentUserSeasonCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := seasonService.PublicGetCurrentUserSeasonShort(input, nil)
+		ok, err := seasonService.PublicGetCurrentUserSeasonShort(input)
 		if err != nil {
 			logrus.Error(err)
 

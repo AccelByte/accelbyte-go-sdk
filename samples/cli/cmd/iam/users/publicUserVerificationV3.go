@@ -39,7 +39,7 @@ var PublicUserVerificationV3Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := usersService.PublicUserVerificationV3Short(input, nil)
+		errInput := usersService.PublicUserVerificationV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

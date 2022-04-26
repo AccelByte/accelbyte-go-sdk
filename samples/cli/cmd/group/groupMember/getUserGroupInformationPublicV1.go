@@ -31,7 +31,7 @@ var GetUserGroupInformationPublicV1Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := groupMemberService.GetUserGroupInformationPublicV1Short(input, nil)
+		ok, err := groupMemberService.GetUserGroupInformationPublicV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -37,7 +37,7 @@ var QueryCampaignsCmd = &cobra.Command{
 			Offset:    &offset,
 			Tag:       &tag,
 		}
-		ok, err := campaignService.QueryCampaignsShort(input, nil)
+		ok, err := campaignService.QueryCampaignsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

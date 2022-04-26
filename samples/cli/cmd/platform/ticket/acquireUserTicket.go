@@ -43,7 +43,7 @@ var AcquireUserTicketCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := ticketService.AcquireUserTicketShort(input, nil)
+		ok, err := ticketService.AcquireUserTicketShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -31,7 +31,7 @@ var DebugMatchedPaymentProviderConfigCmd = &cobra.Command{
 			Namespace: &namespace,
 			Region:    &region,
 		}
-		ok, err := paymentConfigService.DebugMatchedPaymentProviderConfigShort(input, nil)
+		ok, err := paymentConfigService.DebugMatchedPaymentProviderConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

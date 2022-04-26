@@ -37,7 +37,7 @@ var CreateImageCmd = &cobra.Command{
 		input := &image_config.CreateImageParams{
 			Body: body,
 		}
-		errInput := imageConfigService.CreateImageShort(input, nil)
+		errInput := imageConfigService.CreateImageShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

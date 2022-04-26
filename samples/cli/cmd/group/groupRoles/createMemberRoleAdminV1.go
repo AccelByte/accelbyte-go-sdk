@@ -39,7 +39,7 @@ var CreateMemberRoleAdminV1Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := groupRolesService.CreateMemberRoleAdminV1Short(input, nil)
+		ok, err := groupRolesService.CreateMemberRoleAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

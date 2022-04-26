@@ -37,7 +37,7 @@ var CreateRoleCmd = &cobra.Command{
 		input := &roles.CreateRoleParams{
 			Body: body,
 		}
-		ok, err := rolesService.CreateRoleShort(input, nil)
+		ok, err := rolesService.CreateRoleShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -37,7 +37,7 @@ var PublicListUserAchievementsCmd = &cobra.Command{
 			Offset:         &offset,
 			PreferUnlocked: &preferUnlocked,
 		}
-		ok, err := achievementsService.PublicListUserAchievementsShort(input, nil)
+		ok, err := achievementsService.PublicListUserAchievementsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

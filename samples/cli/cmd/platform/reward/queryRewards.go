@@ -37,7 +37,7 @@ var QueryRewardsCmd = &cobra.Command{
 			Offset:     &offset,
 			SortBy:     &sortBy,
 		}
-		ok, err := rewardService.QueryRewardsShort(input, nil)
+		ok, err := rewardService.QueryRewardsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

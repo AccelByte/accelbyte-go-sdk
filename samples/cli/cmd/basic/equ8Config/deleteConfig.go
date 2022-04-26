@@ -29,7 +29,7 @@ var DeleteConfigCmd = &cobra.Command{
 		input := &e_q_u8_config.DeleteConfigParams{
 			Namespace: namespace,
 		}
-		errInput := equ8ConfigService.DeleteConfigShort(input, nil)
+		errInput := equ8ConfigService.DeleteConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

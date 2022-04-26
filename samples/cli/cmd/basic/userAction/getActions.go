@@ -29,7 +29,7 @@ var GetActionsCmd = &cobra.Command{
 		input := &user_action.GetActionsParams{
 			Namespace: namespace,
 		}
-		ok, err := userActionService.GetActionsShort(input, nil)
+		ok, err := userActionService.GetActionsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

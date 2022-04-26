@@ -39,7 +39,7 @@ var AdminCreateClientV3Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := clientsService.AdminCreateClientV3Short(input, nil)
+		ok, err := clientsService.AdminCreateClientV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 

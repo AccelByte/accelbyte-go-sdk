@@ -29,7 +29,7 @@ var GetStadiaIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.GetStadiaIAPConfigParams{
 			Namespace: namespace,
 		}
-		ok, err := iapService.GetStadiaIAPConfigShort(input, nil)
+		ok, err := iapService.GetStadiaIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

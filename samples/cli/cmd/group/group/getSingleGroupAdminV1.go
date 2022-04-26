@@ -31,7 +31,7 @@ var GetSingleGroupAdminV1Cmd = &cobra.Command{
 			GroupID:   groupId,
 			Namespace: namespace,
 		}
-		ok, err := groupService.GetSingleGroupAdminV1Short(input, nil)
+		ok, err := groupService.GetSingleGroupAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

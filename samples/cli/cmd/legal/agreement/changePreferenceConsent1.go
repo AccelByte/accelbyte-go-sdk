@@ -37,7 +37,7 @@ var ChangePreferenceConsent1Cmd = &cobra.Command{
 		input := &agreement.ChangePreferenceConsent1Params{
 			Body: body,
 		}
-		errInput := agreementService.ChangePreferenceConsent1Short(input, nil)
+		errInput := agreementService.ChangePreferenceConsent1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

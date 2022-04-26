@@ -26,7 +26,7 @@ var HandlerV3HealthzCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &matchmaking_operations.HandlerV3HealthzParams{}
-		errInput := matchmakingOperationsService.HandlerV3HealthzShort(input, nil)
+		errInput := matchmakingOperationsService.HandlerV3HealthzShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

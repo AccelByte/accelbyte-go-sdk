@@ -35,7 +35,7 @@ var GetListOfFriendsCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := friendsService.GetListOfFriendsShort(input, nil)
+		ok, err := friendsService.GetListOfFriendsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

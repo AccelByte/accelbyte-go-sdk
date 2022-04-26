@@ -35,7 +35,7 @@ var GetArchivedLeaderboardRankingDataV1HandlerCmd = &cobra.Command{
 			Slug:             &slug,
 			LeaderboardCodes: leaderboardCodes,
 		}
-		ok, err := leaderboardDataService.GetArchivedLeaderboardRankingDataV1HandlerShort(input, nil)
+		ok, err := leaderboardDataService.GetArchivedLeaderboardRankingDataV1HandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 

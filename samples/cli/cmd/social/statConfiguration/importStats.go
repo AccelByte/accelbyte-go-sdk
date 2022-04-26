@@ -47,7 +47,7 @@ var ImportStatsCmd = &cobra.Command{
 			ReplaceExisting: &replaceExisting,
 			HTTPClient:      httpClient,
 		}
-		ok, err := statConfigurationService.ImportStatsShort(input, nil)
+		ok, err := statConfigurationService.ImportStatsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

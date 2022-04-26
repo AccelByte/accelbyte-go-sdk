@@ -33,7 +33,7 @@ var DeleteUserSubscriptionCmd = &cobra.Command{
 			SubscriptionID: subscriptionId,
 			UserID:         userId,
 		}
-		errInput := subscriptionService.DeleteUserSubscriptionShort(input, nil)
+		errInput := subscriptionService.DeleteUserSubscriptionShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -29,7 +29,7 @@ var GetRoleCmd = &cobra.Command{
 		input := &roles.GetRoleParams{
 			RoleID: roleId,
 		}
-		ok, err := rolesService.GetRoleShort(input, nil)
+		ok, err := rolesService.GetRoleShort(input)
 		if err != nil {
 			logrus.Error(err)
 

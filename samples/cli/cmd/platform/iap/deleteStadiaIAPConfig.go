@@ -29,7 +29,7 @@ var DeleteStadiaIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.DeleteStadiaIAPConfigParams{
 			Namespace: namespace,
 		}
-		errInput := iapService.DeleteStadiaIAPConfigShort(input, nil)
+		errInput := iapService.DeleteStadiaIAPConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

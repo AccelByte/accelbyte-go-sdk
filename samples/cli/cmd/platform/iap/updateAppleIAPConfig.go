@@ -39,7 +39,7 @@ var UpdateAppleIAPConfigCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := iapService.UpdateAppleIAPConfigShort(input, nil)
+		ok, err := iapService.UpdateAppleIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

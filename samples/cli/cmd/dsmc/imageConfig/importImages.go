@@ -43,7 +43,7 @@ var ImportImagesCmd = &cobra.Command{
 			File:       file,
 			HTTPClient: httpClient,
 		}
-		ok, err := imageConfigService.ImportImagesShort(input, nil)
+		ok, err := imageConfigService.ImportImagesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

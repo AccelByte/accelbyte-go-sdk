@@ -29,7 +29,7 @@ var RetrieveAcceptedAgreementsCmd = &cobra.Command{
 		input := &agreement.RetrieveAcceptedAgreementsParams{
 			UserID: userId,
 		}
-		ok, err := agreementService.RetrieveAcceptedAgreementsShort(input, nil)
+		ok, err := agreementService.RetrieveAcceptedAgreementsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

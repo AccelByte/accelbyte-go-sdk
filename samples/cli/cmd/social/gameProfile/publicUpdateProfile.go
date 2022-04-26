@@ -43,7 +43,7 @@ var PublicUpdateProfileCmd = &cobra.Command{
 			ProfileID: profileId,
 			UserID:    userId,
 		}
-		ok, err := gameProfileService.PublicUpdateProfileShort(input, nil)
+		ok, err := gameProfileService.PublicUpdateProfileShort(input)
 		if err != nil {
 			logrus.Error(err)
 

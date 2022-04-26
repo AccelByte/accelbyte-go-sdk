@@ -43,7 +43,7 @@ var UpdateUserOrderStatusCmd = &cobra.Command{
 			OrderNo:   orderNo,
 			UserID:    userId,
 		}
-		ok, err := orderService.UpdateUserOrderStatusShort(input, nil)
+		ok, err := orderService.UpdateUserOrderStatusShort(input)
 		if err != nil {
 			logrus.Error(err)
 

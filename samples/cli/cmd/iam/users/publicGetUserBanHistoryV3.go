@@ -39,7 +39,7 @@ var PublicGetUserBanHistoryV3Cmd = &cobra.Command{
 			Before:     &before,
 			Limit:      &limit,
 		}
-		ok, err := usersService.PublicGetUserBanHistoryV3Short(input, nil)
+		ok, err := usersService.PublicGetUserBanHistoryV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 

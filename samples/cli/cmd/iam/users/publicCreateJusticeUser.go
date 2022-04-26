@@ -31,7 +31,7 @@ var PublicCreateJusticeUserCmd = &cobra.Command{
 			Namespace:       namespace,
 			TargetNamespace: targetNamespace,
 		}
-		ok, err := usersService.PublicCreateJusticeUserShort(input, nil)
+		ok, err := usersService.PublicCreateJusticeUserShort(input)
 		if err != nil {
 			logrus.Error(err)
 

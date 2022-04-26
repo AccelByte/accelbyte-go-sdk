@@ -39,7 +39,7 @@ var UpdateMyProfileCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := userProfileService.UpdateMyProfileShort(input, nil)
+		ok, err := userProfileService.UpdateMyProfileShort(input)
 		if err != nil {
 			logrus.Error(err)
 

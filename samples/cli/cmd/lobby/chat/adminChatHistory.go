@@ -33,7 +33,7 @@ var AdminChatHistoryCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := chatService.AdminChatHistoryShort(input, nil)
+		ok, err := chatService.AdminChatHistoryShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -33,7 +33,7 @@ var DisableItemCmd = &cobra.Command{
 			Namespace: namespace,
 			StoreID:   storeId,
 		}
-		ok, err := itemService.DisableItemShort(input, nil)
+		ok, err := itemService.DisableItemShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -31,7 +31,7 @@ var GetCurrencyConfigCmd = &cobra.Command{
 			CurrencyCode: currencyCode,
 			Namespace:    namespace,
 		}
-		ok, err := currencyService.GetCurrencyConfigShort(input, nil)
+		ok, err := currencyService.GetCurrencyConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

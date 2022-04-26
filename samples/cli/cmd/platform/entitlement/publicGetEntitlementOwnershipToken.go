@@ -52,7 +52,7 @@ var PublicGetEntitlementOwnershipTokenCmd = &cobra.Command{
 			ItemIds:   itemIds,
 			Skus:      skus,
 		}
-		ok, err := entitlementService.PublicGetEntitlementOwnershipTokenShort(input, nil)
+		ok, err := entitlementService.PublicGetEntitlementOwnershipTokenShort(input)
 		if err != nil {
 			logrus.Error(err)
 

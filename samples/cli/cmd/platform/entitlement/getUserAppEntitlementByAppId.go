@@ -35,7 +35,7 @@ var GetUserAppEntitlementByAppIdCmd = &cobra.Command{
 			ActiveOnly: &activeOnly,
 			AppID:      appId,
 		}
-		ok, err := entitlementService.GetUserAppEntitlementByAppIDShort(input, nil)
+		ok, err := entitlementService.GetUserAppEntitlementByAppIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 

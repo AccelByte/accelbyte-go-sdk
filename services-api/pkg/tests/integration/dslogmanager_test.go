@@ -31,7 +31,7 @@ var (
 func TestIntegrationListTerminatedServers(t *testing.T) {
 	t.Parallel()
 	Init()
-	ok, err := terminatedServersService.ListTerminatedServersShort(inputTerminatedServer, nil)
+	ok, err := terminatedServersService.ListTerminatedServersShort(inputTerminatedServer)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}

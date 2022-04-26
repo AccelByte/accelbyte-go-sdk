@@ -29,7 +29,7 @@ var GetRegisteredEventsByEventTypeHandlerCmd = &cobra.Command{
 		input := &event_registry.GetRegisteredEventsByEventTypeHandlerParams{
 			EventType: eventType,
 		}
-		ok, err := eventRegistryService.GetRegisteredEventsByEventTypeHandlerShort(input, nil)
+		ok, err := eventRegistryService.GetRegisteredEventsByEventTypeHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -31,7 +31,7 @@ var AnonymizeWalletCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := anonymizationService.AnonymizeWalletShort(input, nil)
+		errInput := anonymizationService.AnonymizeWalletShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

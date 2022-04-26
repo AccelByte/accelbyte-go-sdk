@@ -31,7 +31,7 @@ var AdminGetSessionCmd = &cobra.Command{
 			Namespace: namespace,
 			SessionID: sessionID,
 		}
-		ok, err := sessionService.AdminGetSessionShort(input, nil)
+		ok, err := sessionService.AdminGetSessionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

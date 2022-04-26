@@ -39,7 +39,7 @@ var UpdateGoogleIAPConfigCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := iapService.UpdateGoogleIAPConfigShort(input, nil)
+		ok, err := iapService.UpdateGoogleIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

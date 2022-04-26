@@ -39,7 +39,7 @@ var UpdatePolicyCmd = &cobra.Command{
 			Body:     body,
 			PolicyID: policyId,
 		}
-		errInput := policiesService.UpdatePolicyShort(input, nil)
+		errInput := policiesService.UpdatePolicyShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

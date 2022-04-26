@@ -33,7 +33,7 @@ var AdminGetTypeCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := adminTypeService.AdminGetTypeShort(input, nil)
+		ok, err := adminTypeService.AdminGetTypeShort(input)
 		if err != nil {
 			logrus.Error(err)
 

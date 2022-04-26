@@ -31,7 +31,7 @@ var GetSeasonCmd = &cobra.Command{
 			Namespace: namespace,
 			SeasonID:  seasonId,
 		}
-		ok, err := seasonService.GetSeasonShort(input, nil)
+		ok, err := seasonService.GetSeasonShort(input)
 		if err != nil {
 			logrus.Error(err)
 

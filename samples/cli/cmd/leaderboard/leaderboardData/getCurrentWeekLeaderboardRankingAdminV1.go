@@ -35,7 +35,7 @@ var GetCurrentWeekLeaderboardRankingAdminV1Cmd = &cobra.Command{
 			Limit:           &limit,
 			Offset:          &offset,
 		}
-		ok, err := leaderboardDataService.GetCurrentWeekLeaderboardRankingAdminV1Short(input, nil)
+		ok, err := leaderboardDataService.GetCurrentWeekLeaderboardRankingAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

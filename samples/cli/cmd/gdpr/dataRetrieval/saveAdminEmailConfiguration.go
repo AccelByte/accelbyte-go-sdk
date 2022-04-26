@@ -38,7 +38,7 @@ var SaveAdminEmailConfigurationCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := dataRetrievalService.SaveAdminEmailConfigurationShort(input, nil)
+		errInput := dataRetrievalService.SaveAdminEmailConfigurationShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

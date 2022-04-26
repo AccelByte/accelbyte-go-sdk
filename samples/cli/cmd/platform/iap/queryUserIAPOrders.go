@@ -45,7 +45,7 @@ var QueryUserIAPOrdersCmd = &cobra.Command{
 			Status:    &status,
 			Type:      &type_,
 		}
-		ok, err := iapService.QueryUserIAPOrdersShort(input, nil)
+		ok, err := iapService.QueryUserIAPOrdersShort(input)
 		if err != nil {
 			logrus.Error(err)
 

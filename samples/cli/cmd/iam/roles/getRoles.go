@@ -29,7 +29,7 @@ var GetRolesCmd = &cobra.Command{
 		input := &roles.GetRolesParams{
 			IsWildcard: &isWildcard,
 		}
-		ok, err := rolesService.GetRolesShort(input, nil)
+		ok, err := rolesService.GetRolesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

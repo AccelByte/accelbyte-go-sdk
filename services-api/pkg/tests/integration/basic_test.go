@@ -56,7 +56,7 @@ func TestIntegrationUserProfile(t *testing.T) {
 		Body:      bodyBasic,
 		Namespace: integration.NamespaceTest,
 	}
-	created, errCreate := userProfileService.CreateMyProfileShort(inputCreate, nil)
+	created, errCreate := userProfileService.CreateMyProfileShort(inputCreate)
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
 	}
@@ -67,7 +67,7 @@ func TestIntegrationUserProfile(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		UserID:    created.UserID,
 	}
-	get, errGet := userProfileService.PublicGetUserProfileInfoShort(inputGet, nil)
+	get, errGet := userProfileService.PublicGetUserProfileInfoShort(inputGet)
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
 	}
@@ -79,7 +79,7 @@ func TestIntegrationUserProfile(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		UserID:    created.UserID,
 	}
-	updated, errUpdate := userProfileService.PublicUpdateUserProfileShort(inputUpdate, nil)
+	updated, errUpdate := userProfileService.PublicUpdateUserProfileShort(inputUpdate)
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
 	}
@@ -90,7 +90,7 @@ func TestIntegrationUserProfile(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		UserID:    created.UserID,
 	}
-	deleted, errDelete := userProfileService.DeleteUserProfileShort(inputDelete, nil)
+	deleted, errDelete := userProfileService.DeleteUserProfileShort(inputDelete)
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())
 	}

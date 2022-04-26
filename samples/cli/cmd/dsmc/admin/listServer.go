@@ -35,7 +35,7 @@ var ListServerCmd = &cobra.Command{
 			Offset:    &offset,
 			Region:    &region,
 		}
-		ok, err := adminService.ListServerShort(input, nil)
+		ok, err := adminService.ListServerShort(input)
 		if err != nil {
 			logrus.Error(err)
 

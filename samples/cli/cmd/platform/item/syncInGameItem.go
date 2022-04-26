@@ -41,7 +41,7 @@ var SyncInGameItemCmd = &cobra.Command{
 			Namespace: namespace,
 			StoreID:   storeId,
 		}
-		ok, err := itemService.SyncInGameItemShort(input, nil)
+		ok, err := itemService.SyncInGameItemShort(input)
 		if err != nil {
 			logrus.Error(err)
 

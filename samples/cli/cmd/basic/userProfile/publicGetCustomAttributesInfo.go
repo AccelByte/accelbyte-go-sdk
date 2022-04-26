@@ -31,7 +31,7 @@ var PublicGetCustomAttributesInfoCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := userProfileService.PublicGetCustomAttributesInfoShort(input, nil)
+		ok, err := userProfileService.PublicGetCustomAttributesInfoShort(input)
 		if err != nil {
 			logrus.Error(err)
 

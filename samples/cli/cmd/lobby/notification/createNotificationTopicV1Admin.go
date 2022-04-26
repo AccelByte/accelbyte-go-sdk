@@ -39,7 +39,7 @@ var CreateNotificationTopicV1AdminCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := notificationService.CreateNotificationTopicV1AdminShort(input, nil)
+		errInput := notificationService.CreateNotificationTopicV1AdminShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

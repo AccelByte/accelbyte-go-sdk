@@ -31,7 +31,7 @@ var GetRootCategoriesCmd = &cobra.Command{
 			Namespace: namespace,
 			StoreID:   &storeId,
 		}
-		ok, err := categoryService.GetRootCategoriesShort(input, nil)
+		ok, err := categoryService.GetRootCategoriesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

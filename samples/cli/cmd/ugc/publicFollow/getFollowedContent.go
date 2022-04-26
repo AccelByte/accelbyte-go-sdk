@@ -33,7 +33,7 @@ var GetFollowedContentCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := publicFollowService.GetFollowedContentShort(input, nil)
+		ok, err := publicFollowService.GetFollowedContentShort(input)
 		if err != nil {
 			logrus.Error(err)
 

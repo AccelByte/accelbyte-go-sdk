@@ -41,7 +41,7 @@ var UpdateRewardCmd = &cobra.Command{
 			Namespace: namespace,
 			RewardID:  rewardId,
 		}
-		ok, err := rewardService.UpdateRewardShort(input, nil)
+		ok, err := rewardService.UpdateRewardShort(input)
 		if err != nil {
 			logrus.Error(err)
 

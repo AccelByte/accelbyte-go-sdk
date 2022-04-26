@@ -39,7 +39,7 @@ var AdminCreateProfanityListCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := profanityService.AdminCreateProfanityListShort(input, nil)
+		errInput := profanityService.AdminCreateProfanityListShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

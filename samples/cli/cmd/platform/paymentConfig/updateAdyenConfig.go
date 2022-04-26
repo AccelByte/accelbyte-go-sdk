@@ -43,7 +43,7 @@ var UpdateAdyenConfigCmd = &cobra.Command{
 			Sandbox:  &sandbox,
 			Validate: &validate,
 		}
-		ok, err := paymentConfigService.UpdateAdyenConfigShort(input, nil)
+		ok, err := paymentConfigService.UpdateAdyenConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

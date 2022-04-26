@@ -39,7 +39,7 @@ var PublicVerifyHeadlessAccountV3Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := usersService.PublicVerifyHeadlessAccountV3Short(input, nil)
+		ok, err := usersService.PublicVerifyHeadlessAccountV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 

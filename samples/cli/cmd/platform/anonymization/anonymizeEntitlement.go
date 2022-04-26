@@ -31,7 +31,7 @@ var AnonymizeEntitlementCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := anonymizationService.AnonymizeEntitlementShort(input, nil)
+		errInput := anonymizationService.AnonymizeEntitlementShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

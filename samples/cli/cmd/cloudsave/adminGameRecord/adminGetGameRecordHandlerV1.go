@@ -31,7 +31,7 @@ var AdminGetGameRecordHandlerV1Cmd = &cobra.Command{
 			Key:       key,
 			Namespace: namespace,
 		}
-		ok, err := adminGameRecordService.AdminGetGameRecordHandlerV1Short(input, nil)
+		ok, err := adminGameRecordService.AdminGetGameRecordHandlerV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

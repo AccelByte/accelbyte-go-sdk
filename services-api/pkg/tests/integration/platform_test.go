@@ -46,7 +46,7 @@ func TestIntegrationStore(t *testing.T) {
 		Body:      bodyStore,
 		Namespace: integration.NamespaceTest,
 	}
-	created, errCreate := storeService.CreateStoreShort(inputCreate, nil)
+	created, errCreate := storeService.CreateStoreShort(inputCreate)
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
 	}
@@ -58,7 +58,7 @@ func TestIntegrationStore(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		StoreID:   storeID,
 	}
-	get, errGet := storeService.GetStoreShort(inputGet, nil)
+	get, errGet := storeService.GetStoreShort(inputGet)
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
 	}
@@ -70,7 +70,7 @@ func TestIntegrationStore(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		StoreID:   storeID,
 	}
-	updated, errUpdate := storeService.UpdateStoreShort(inputUpdate, nil)
+	updated, errUpdate := storeService.UpdateStoreShort(inputUpdate)
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
 	}
@@ -81,7 +81,7 @@ func TestIntegrationStore(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		StoreID:   storeID,
 	}
-	deleted, errDelete := storeService.DeleteStoreShort(inputDelete, nil)
+	deleted, errDelete := storeService.DeleteStoreShort(inputDelete)
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())
 	}

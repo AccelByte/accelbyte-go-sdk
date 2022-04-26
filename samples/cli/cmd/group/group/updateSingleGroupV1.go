@@ -41,7 +41,7 @@ var UpdateSingleGroupV1Cmd = &cobra.Command{
 			GroupID:   groupId,
 			Namespace: namespace,
 		}
-		ok, err := groupService.UpdateSingleGroupV1Short(input, nil)
+		ok, err := groupService.UpdateSingleGroupV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

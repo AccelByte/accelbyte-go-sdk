@@ -53,7 +53,7 @@ var AdminSearchChannelSpecificContentCmd = &cobra.Command{
 			Type:       &type_,
 			UserID:     &userId,
 		}
-		ok, err := adminContentService.AdminSearchChannelSpecificContentShort(input, nil)
+		ok, err := adminContentService.AdminSearchChannelSpecificContentShort(input)
 		if err != nil {
 			logrus.Error(err)
 

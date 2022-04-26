@@ -55,7 +55,7 @@ var ListAllTerminatedServersCmd = &cobra.Command{
 			StartDate:  &startDate,
 			UserID:     &userId,
 		}
-		ok, err := allTerminatedServersService.ListAllTerminatedServersShort(input, nil)
+		ok, err := allTerminatedServersService.ListAllTerminatedServersShort(input)
 		if err != nil {
 			logrus.Error(err)
 

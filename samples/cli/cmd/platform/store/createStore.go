@@ -39,7 +39,7 @@ var CreateStoreCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := storeService.CreateStoreShort(input, nil)
+		ok, err := storeService.CreateStoreShort(input)
 		if err != nil {
 			logrus.Error(err)
 

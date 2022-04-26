@@ -35,7 +35,7 @@ var GetChannelsCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := publicChannelService.GetChannelsShort(input, nil)
+		ok, err := publicChannelService.GetChannelsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

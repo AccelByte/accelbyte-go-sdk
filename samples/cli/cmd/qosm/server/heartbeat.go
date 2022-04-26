@@ -37,7 +37,7 @@ var HeartbeatCmd = &cobra.Command{
 		input := &server.HeartbeatParams{
 			Body: body,
 		}
-		errInput := serverService.HeartbeatShort(input, nil)
+		errInput := serverService.HeartbeatShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -33,7 +33,7 @@ var GetActiveCustomGameSessionsCmd = &cobra.Command{
 			ServerRegion: &serverRegion,
 			SessionID:    &sessionId,
 		}
-		ok, err := sessionService.GetActiveCustomGameSessionsShort(input, nil)
+		ok, err := sessionService.GetActiveCustomGameSessionsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

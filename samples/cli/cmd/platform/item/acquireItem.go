@@ -41,7 +41,7 @@ var AcquireItemCmd = &cobra.Command{
 			ItemID:    itemId,
 			Namespace: namespace,
 		}
-		ok, err := itemService.AcquireItemShort(input, nil)
+		ok, err := itemService.AcquireItemShort(input)
 		if err != nil {
 			logrus.Error(err)
 

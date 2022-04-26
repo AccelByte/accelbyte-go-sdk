@@ -43,7 +43,7 @@ var UpdateGroupConfigurationGlobalRuleAdminV1Cmd = &cobra.Command{
 			ConfigurationCode: configurationCode,
 			Namespace:         namespace,
 		}
-		ok, err := configurationService.UpdateGroupConfigurationGlobalRuleAdminV1Short(input, nil)
+		ok, err := configurationService.UpdateGroupConfigurationGlobalRuleAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

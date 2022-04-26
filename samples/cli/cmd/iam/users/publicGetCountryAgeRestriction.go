@@ -31,7 +31,7 @@ var PublicGetCountryAgeRestrictionCmd = &cobra.Command{
 			CountryCode: countryCode,
 			Namespace:   namespace,
 		}
-		ok, err := usersService.PublicGetCountryAgeRestrictionShort(input, nil)
+		ok, err := usersService.PublicGetCountryAgeRestrictionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

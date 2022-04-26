@@ -26,7 +26,7 @@ var GetRegisteredEventsHandlerCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &event_registry.GetRegisteredEventsHandlerParams{}
-		ok, err := eventRegistryService.GetRegisteredEventsHandlerShort(input, nil)
+		ok, err := eventRegistryService.GetRegisteredEventsHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 

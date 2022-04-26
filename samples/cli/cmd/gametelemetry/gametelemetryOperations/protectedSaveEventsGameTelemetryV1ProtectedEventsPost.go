@@ -39,7 +39,7 @@ var ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostCmd = &cobra.Command{
 			Body:   body,
 			Cookie: &cookie,
 		}
-		errInput := gametelemetryOperationsService.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(input, nil)
+		errInput := gametelemetryOperationsService.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

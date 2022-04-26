@@ -31,7 +31,7 @@ var LastUserActivityTimeHandlerCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := userInformationService.LastUserActivityTimeHandlerShort(input, nil)
+		ok, err := userInformationService.LastUserActivityTimeHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -31,7 +31,7 @@ var ListCategoriesBasicCmd = &cobra.Command{
 			Namespace: namespace,
 			StoreID:   &storeId,
 		}
-		ok, err := categoryService.ListCategoriesBasicShort(input, nil)
+		ok, err := categoryService.ListCategoriesBasicShort(input)
 		if err != nil {
 			logrus.Error(err)
 

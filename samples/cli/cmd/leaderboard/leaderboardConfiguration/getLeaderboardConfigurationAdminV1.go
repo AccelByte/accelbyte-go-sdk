@@ -31,7 +31,7 @@ var GetLeaderboardConfigurationAdminV1Cmd = &cobra.Command{
 			LeaderboardCode: leaderboardCode,
 			Namespace:       namespace,
 		}
-		ok, err := leaderboardConfigurationService.GetLeaderboardConfigurationAdminV1Short(input, nil)
+		ok, err := leaderboardConfigurationService.GetLeaderboardConfigurationAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

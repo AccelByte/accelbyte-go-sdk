@@ -43,7 +43,7 @@ var CreateContentDirectCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := publicContentService.CreateContentDirectShort(input, nil)
+		ok, err := publicContentService.CreateContentDirectShort(input)
 		if err != nil {
 			logrus.Error(err)
 

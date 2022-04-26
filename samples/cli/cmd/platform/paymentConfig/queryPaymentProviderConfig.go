@@ -35,7 +35,7 @@ var QueryPaymentProviderConfigCmd = &cobra.Command{
 			Offset:    &offset,
 			Region:    &region,
 		}
-		ok, err := paymentConfigService.QueryPaymentProviderConfigShort(input, nil)
+		ok, err := paymentConfigService.QueryPaymentProviderConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

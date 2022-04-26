@@ -39,7 +39,7 @@ var GetUserStatItemsCmd = &cobra.Command{
 			StatCodes: &statCodes,
 			Tags:      &tags,
 		}
-		ok, err := userStatisticService.GetUserStatItemsShort(input, nil)
+		ok, err := userStatisticService.GetUserStatItemsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

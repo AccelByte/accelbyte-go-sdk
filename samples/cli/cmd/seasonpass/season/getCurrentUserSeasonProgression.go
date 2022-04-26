@@ -31,7 +31,7 @@ var GetCurrentUserSeasonProgressionCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := seasonService.GetCurrentUserSeasonProgressionShort(input, nil)
+		ok, err := seasonService.GetCurrentUserSeasonProgressionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

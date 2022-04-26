@@ -35,7 +35,7 @@ func TestIntegrationTag(t *testing.T) {
 		Body:      bodyTag,
 		Namespace: integration.NamespaceTest,
 	}
-	created, errCreate := adminTagService.AdminCreateTagShort(inputCreate, nil)
+	created, errCreate := adminTagService.AdminCreateTagShort(inputCreate)
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
 	}
@@ -48,7 +48,7 @@ func TestIntegrationTag(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		Offset:    nil,
 	}
-	get, errGet := adminTagService.AdminGetTagShort(inputGet, nil)
+	get, errGet := adminTagService.AdminGetTagShort(inputGet)
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
 	}
@@ -60,7 +60,7 @@ func TestIntegrationTag(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		TagID:     tagID,
 	}
-	updated, errUpdate := adminTagService.AdminUpdateTagShort(inputUpdate, nil)
+	updated, errUpdate := adminTagService.AdminUpdateTagShort(inputUpdate)
 	if errUpdate != nil {
 		assert.FailNow(t, errUpdate.Error())
 	}
@@ -71,7 +71,7 @@ func TestIntegrationTag(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		TagID:     tagID,
 	}
-	errDelete := adminTagService.AdminDeleteTagShort(inputDelete, nil)
+	errDelete := adminTagService.AdminDeleteTagShort(inputDelete)
 	if errDelete != nil {
 		assert.FailNow(t, errDelete.Error())
 	}

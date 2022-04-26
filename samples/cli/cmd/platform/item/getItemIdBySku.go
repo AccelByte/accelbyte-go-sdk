@@ -35,7 +35,7 @@ var GetItemIdBySkuCmd = &cobra.Command{
 			StoreID:    &storeId,
 			Sku:        sku,
 		}
-		ok, err := itemService.GetItemIDBySkuShort(input, nil)
+		ok, err := itemService.GetItemIDBySkuShort(input)
 		if err != nil {
 			logrus.Error(err)
 

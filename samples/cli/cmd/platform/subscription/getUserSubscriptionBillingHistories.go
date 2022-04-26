@@ -39,7 +39,7 @@ var GetUserSubscriptionBillingHistoriesCmd = &cobra.Command{
 			Limit:          &limit,
 			Offset:         &offset,
 		}
-		ok, err := subscriptionService.GetUserSubscriptionBillingHistoriesShort(input, nil)
+		ok, err := subscriptionService.GetUserSubscriptionBillingHistoriesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

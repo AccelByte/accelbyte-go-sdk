@@ -43,7 +43,7 @@ var PlatformTokenRequestHandlerCmd = &cobra.Command{
 			PlatformID:    platformId,
 			HTTPClient:    httpClient,
 		}
-		ok, err := oAuthService.PlatformTokenRequestHandlerShort(input, nil)
+		ok, err := oAuthService.PlatformTokenRequestHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 

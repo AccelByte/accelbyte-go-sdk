@@ -41,7 +41,7 @@ var AdminUpdateTagCmd = &cobra.Command{
 			Namespace: namespace,
 			TagID:     tagId,
 		}
-		ok, err := adminTagService.AdminUpdateTagShort(input, nil)
+		ok, err := adminTagService.AdminUpdateTagShort(input)
 		if err != nil {
 			logrus.Error(err)
 

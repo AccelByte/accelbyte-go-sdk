@@ -35,7 +35,7 @@ var GetUserEntitlementOwnershipBySkuCmd = &cobra.Command{
 			EntitlementClazz: &entitlementClazz,
 			Sku:              sku,
 		}
-		ok, err := entitlementService.GetUserEntitlementOwnershipBySkuShort(input, nil)
+		ok, err := entitlementService.GetUserEntitlementOwnershipBySkuShort(input)
 		if err != nil {
 			logrus.Error(err)
 

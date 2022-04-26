@@ -31,7 +31,7 @@ var GetSingleMemberRoleAdminV1Cmd = &cobra.Command{
 			MemberRoleID: memberRoleId,
 			Namespace:    namespace,
 		}
-		ok, err := groupRolesService.GetSingleMemberRoleAdminV1Short(input, nil)
+		ok, err := groupRolesService.GetSingleMemberRoleAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

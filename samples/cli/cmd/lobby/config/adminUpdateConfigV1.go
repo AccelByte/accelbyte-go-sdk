@@ -39,7 +39,7 @@ var AdminUpdateConfigV1Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := configService.AdminUpdateConfigV1Short(input, nil)
+		ok, err := configService.AdminUpdateConfigV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

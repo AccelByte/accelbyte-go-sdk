@@ -29,7 +29,7 @@ var GetImageLimitCmd = &cobra.Command{
 		input := &image_config.GetImageLimitParams{
 			Namespace: namespace,
 		}
-		ok, err := imageConfigService.GetImageLimitShort(input, nil)
+		ok, err := imageConfigService.GetImageLimitShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -39,7 +39,7 @@ var UserUnfriendRequestCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := friendsService.UserUnfriendRequestShort(input, nil)
+		errInput := friendsService.UserUnfriendRequestShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

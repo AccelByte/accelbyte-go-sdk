@@ -41,7 +41,7 @@ var PublicReportUserCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := userActionService.PublicReportUserShort(input, nil)
+		errInput := userActionService.PublicReportUserShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -31,7 +31,7 @@ var CheckServerLogsCmd = &cobra.Command{
 			Namespace: namespace,
 			PodName:   podName,
 		}
-		ok, err := terminatedServersService.CheckServerLogsShort(input, nil)
+		ok, err := terminatedServersService.CheckServerLogsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

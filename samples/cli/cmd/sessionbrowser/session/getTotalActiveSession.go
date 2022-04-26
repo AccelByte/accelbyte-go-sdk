@@ -31,7 +31,7 @@ var GetTotalActiveSessionCmd = &cobra.Command{
 			Namespace:   namespace,
 			SessionType: &sessionType,
 		}
-		ok, err := sessionService.GetTotalActiveSessionShort(input, nil)
+		ok, err := sessionService.GetTotalActiveSessionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -39,7 +39,7 @@ var TestAdyenConfigCmd = &cobra.Command{
 			Body:    body,
 			Sandbox: &sandbox,
 		}
-		ok, err := paymentConfigService.TestAdyenConfigShort(input, nil)
+		ok, err := paymentConfigService.TestAdyenConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

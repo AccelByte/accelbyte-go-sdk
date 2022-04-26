@@ -29,7 +29,7 @@ var GetMyZipCodeCmd = &cobra.Command{
 		input := &user_profile.GetMyZipCodeParams{
 			Namespace: namespace,
 		}
-		ok, err := userProfileService.GetMyZipCodeShort(input, nil)
+		ok, err := userProfileService.GetMyZipCodeShort(input)
 		if err != nil {
 			logrus.Error(err)
 

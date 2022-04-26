@@ -51,7 +51,7 @@ var PublicSearchContentCmd = &cobra.Command{
 			Type:       &type_,
 			UserID:     &userId,
 		}
-		ok, err := publicContentService.PublicSearchContentShort(input, nil)
+		ok, err := publicContentService.PublicSearchContentShort(input)
 		if err != nil {
 			logrus.Error(err)
 

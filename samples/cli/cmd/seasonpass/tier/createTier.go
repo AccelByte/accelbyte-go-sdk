@@ -41,7 +41,7 @@ var CreateTierCmd = &cobra.Command{
 			Namespace: namespace,
 			SeasonID:  seasonId,
 		}
-		ok, err := tierService.CreateTierShort(input, nil)
+		ok, err := tierService.CreateTierShort(input)
 		if err != nil {
 			logrus.Error(err)
 

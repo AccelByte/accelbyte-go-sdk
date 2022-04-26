@@ -41,7 +41,7 @@ var GetUserEventsV2PublicCmd = &cobra.Command{
 			PageSize:  &pageSize,
 			StartDate: &startDate,
 		}
-		ok, err := eventV2Service.GetUserEventsV2PublicShort(input, nil)
+		ok, err := eventV2Service.GetUserEventsV2PublicShort(input)
 		if err != nil {
 			logrus.Error(err)
 

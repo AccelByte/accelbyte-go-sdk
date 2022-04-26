@@ -29,7 +29,7 @@ var GetOrderStatisticsCmd = &cobra.Command{
 		input := &order.GetOrderStatisticsParams{
 			Namespace: namespace,
 		}
-		ok, err := orderService.GetOrderStatisticsShort(input, nil)
+		ok, err := orderService.GetOrderStatisticsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

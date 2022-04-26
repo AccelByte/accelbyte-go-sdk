@@ -39,7 +39,7 @@ var ReportUserCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := userActionService.ReportUserShort(input, nil)
+		errInput := userActionService.ReportUserShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

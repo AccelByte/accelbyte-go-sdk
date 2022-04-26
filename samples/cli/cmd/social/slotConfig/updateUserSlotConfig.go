@@ -41,7 +41,7 @@ var UpdateUserSlotConfigCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := slotConfigService.UpdateUserSlotConfigShort(input, nil)
+		ok, err := slotConfigService.UpdateUserSlotConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

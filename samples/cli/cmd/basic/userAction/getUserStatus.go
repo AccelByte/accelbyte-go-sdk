@@ -31,7 +31,7 @@ var GetUserStatusCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := userActionService.GetUserStatusShort(input, nil)
+		ok, err := userActionService.GetUserStatusShort(input)
 		if err != nil {
 			logrus.Error(err)
 

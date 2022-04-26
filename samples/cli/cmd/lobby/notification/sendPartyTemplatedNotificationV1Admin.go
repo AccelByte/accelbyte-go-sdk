@@ -41,7 +41,7 @@ var SendPartyTemplatedNotificationV1AdminCmd = &cobra.Command{
 			Namespace: namespace,
 			PartyID:   partyId,
 		}
-		errInput := notificationService.SendPartyTemplatedNotificationV1AdminShort(input, nil)
+		errInput := notificationService.SendPartyTemplatedNotificationV1AdminShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

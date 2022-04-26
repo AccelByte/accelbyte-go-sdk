@@ -33,7 +33,7 @@ var GetLikedContentCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := publicLikeService.GetLikedContentShort(input, nil)
+		ok, err := publicLikeService.GetLikedContentShort(input)
 		if err != nil {
 			logrus.Error(err)
 

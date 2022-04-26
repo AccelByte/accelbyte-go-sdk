@@ -33,7 +33,7 @@ var BulkFetchStatItems1Cmd = &cobra.Command{
 			StatCode:  statCode,
 			UserIds:   userIds,
 		}
-		ok, err := userStatisticService.BulkFetchStatItems1Short(input, nil)
+		ok, err := userStatisticService.BulkFetchStatItems1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

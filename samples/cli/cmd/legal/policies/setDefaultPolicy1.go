@@ -29,7 +29,7 @@ var SetDefaultPolicy1Cmd = &cobra.Command{
 		input := &policies.SetDefaultPolicy1Params{
 			PolicyID: policyId,
 		}
-		errInput := policiesService.SetDefaultPolicy1Short(input, nil)
+		errInput := policiesService.SetDefaultPolicy1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

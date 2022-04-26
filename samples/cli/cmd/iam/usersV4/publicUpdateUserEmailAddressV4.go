@@ -39,7 +39,7 @@ var PublicUpdateUserEmailAddressV4Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := usersV4Service.PublicUpdateUserEmailAddressV4Short(input, nil)
+		errInput := usersV4Service.PublicUpdateUserEmailAddressV4Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

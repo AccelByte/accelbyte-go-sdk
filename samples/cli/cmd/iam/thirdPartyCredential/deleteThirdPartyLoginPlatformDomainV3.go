@@ -41,7 +41,7 @@ var DeleteThirdPartyLoginPlatformDomainV3Cmd = &cobra.Command{
 			Namespace:  namespace,
 			PlatformID: platformId,
 		}
-		errInput := thirdPartyCredentialService.DeleteThirdPartyLoginPlatformDomainV3Short(input, nil)
+		errInput := thirdPartyCredentialService.DeleteThirdPartyLoginPlatformDomainV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

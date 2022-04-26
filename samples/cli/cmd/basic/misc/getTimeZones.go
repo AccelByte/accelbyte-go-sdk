@@ -29,7 +29,7 @@ var GetTimeZonesCmd = &cobra.Command{
 		input := &misc.GetTimeZonesParams{
 			Namespace: namespace,
 		}
-		ok, err := miscService.GetTimeZonesShort(input, nil)
+		ok, err := miscService.GetTimeZonesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

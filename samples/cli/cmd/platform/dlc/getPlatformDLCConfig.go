@@ -29,7 +29,7 @@ var GetPlatformDLCConfigCmd = &cobra.Command{
 		input := &d_l_c.GetPlatformDLCConfigParams{
 			Namespace: namespace,
 		}
-		ok, err := dlcService.GetPlatformDLCConfigShort(input, nil)
+		ok, err := dlcService.GetPlatformDLCConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -31,7 +31,7 @@ var ImageDetailClientCmd = &cobra.Command{
 			Namespace: namespace,
 			Version:   version,
 		}
-		ok, err := imageConfigService.ImageDetailClientShort(input, nil)
+		ok, err := imageConfigService.ImageDetailClientShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -41,7 +41,7 @@ var PublicCreateUserOrderCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := orderService.PublicCreateUserOrderShort(input, nil)
+		ok, err := orderService.PublicCreateUserOrderShort(input)
 		if err != nil {
 			logrus.Error(err)
 

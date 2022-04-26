@@ -29,7 +29,7 @@ var GetClientCmd = &cobra.Command{
 		input := &clients.GetClientParams{
 			ClientID: clientId,
 		}
-		ok, err := clientsService.GetClientShort(input, nil)
+		ok, err := clientsService.GetClientShort(input)
 		if err != nil {
 			logrus.Error(err)
 

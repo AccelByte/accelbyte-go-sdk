@@ -43,7 +43,7 @@ var ListCrossNamespaceAccountLinkCmd = &cobra.Command{
 			UserID:       userId,
 			HTTPClient:   httpClient,
 		}
-		errInput := usersService.ListCrossNamespaceAccountLinkShort(input, nil)
+		errInput := usersService.ListCrossNamespaceAccountLinkShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -26,7 +26,7 @@ var ListConfigCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &config.ListConfigParams{}
-		ok, err := configService.ListConfigShort(input, nil)
+		ok, err := configService.ListConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

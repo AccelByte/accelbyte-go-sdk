@@ -43,7 +43,7 @@ var AdminPutPlayerPublicRecordConcurrentHandlerV1Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := adminConcurrentRecordService.AdminPutPlayerPublicRecordConcurrentHandlerV1Short(input, nil)
+		errInput := adminConcurrentRecordService.AdminPutPlayerPublicRecordConcurrentHandlerV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

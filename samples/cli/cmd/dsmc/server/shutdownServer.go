@@ -39,7 +39,7 @@ var ShutdownServerCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := serverService.ShutdownServerShort(input, nil)
+		errInput := serverService.ShutdownServerShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

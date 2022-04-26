@@ -43,7 +43,7 @@ var UpdateDeploymentOverrideCmd = &cobra.Command{
 			Namespace:  namespace,
 			Version:    version,
 		}
-		ok, err := deploymentConfigService.UpdateDeploymentOverrideShort(input, nil)
+		ok, err := deploymentConfigService.UpdateDeploymentOverrideShort(input)
 		if err != nil {
 			logrus.Error(err)
 

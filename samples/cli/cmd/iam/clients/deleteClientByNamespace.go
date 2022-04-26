@@ -31,7 +31,7 @@ var DeleteClientByNamespaceCmd = &cobra.Command{
 			ClientID:  clientId,
 			Namespace: namespace,
 		}
-		errInput := clientsService.DeleteClientByNamespaceShort(input, nil)
+		errInput := clientsService.DeleteClientByNamespaceShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

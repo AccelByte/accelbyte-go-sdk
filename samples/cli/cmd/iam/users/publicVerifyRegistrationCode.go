@@ -39,7 +39,7 @@ var PublicVerifyRegistrationCodeCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := usersService.PublicVerifyRegistrationCodeShort(input, nil)
+		errInput := usersService.PublicVerifyRegistrationCodeShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

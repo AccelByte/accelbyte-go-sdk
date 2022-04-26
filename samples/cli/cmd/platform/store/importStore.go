@@ -47,7 +47,7 @@ var ImportStoreCmd = &cobra.Command{
 			StoreID:    &storeId,
 			HTTPClient: httpClient,
 		}
-		ok, err := storeService.ImportStoreShort(input, nil)
+		ok, err := storeService.ImportStoreShort(input)
 		if err != nil {
 			logrus.Error(err)
 

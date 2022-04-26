@@ -33,7 +33,7 @@ var QueryRewardsCmd = &cobra.Command{
 			SeasonID:  seasonId,
 			Q:         &q,
 		}
-		ok, err := rewardService.QueryRewardsShort(input, nil)
+		ok, err := rewardService.QueryRewardsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

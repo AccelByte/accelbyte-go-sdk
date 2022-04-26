@@ -39,7 +39,7 @@ var AddRoleManagersCmd = &cobra.Command{
 			Body:   body,
 			RoleID: roleId,
 		}
-		errInput := rolesService.AddRoleManagersShort(input, nil)
+		errInput := rolesService.AddRoleManagersShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

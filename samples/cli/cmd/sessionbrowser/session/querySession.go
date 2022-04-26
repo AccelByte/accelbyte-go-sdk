@@ -49,7 +49,7 @@ var QuerySessionCmd = &cobra.Command{
 			UserID:       &userId,
 			SessionType:  sessionType,
 		}
-		ok, err := sessionService.QuerySessionShort(input, nil)
+		ok, err := sessionService.QuerySessionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

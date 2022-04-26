@@ -31,7 +31,7 @@ var CancelGroupJoinRequestV1Cmd = &cobra.Command{
 			GroupID:   groupId,
 			Namespace: namespace,
 		}
-		ok, err := groupMemberService.CancelGroupJoinRequestV1Short(input, nil)
+		ok, err := groupMemberService.CancelGroupJoinRequestV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

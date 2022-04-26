@@ -37,7 +37,7 @@ var AdminCreateRoleV3Cmd = &cobra.Command{
 		input := &roles.AdminCreateRoleV3Params{
 			Body: body,
 		}
-		ok, err := rolesService.AdminCreateRoleV3Short(input, nil)
+		ok, err := rolesService.AdminCreateRoleV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 

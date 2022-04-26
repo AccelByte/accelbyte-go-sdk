@@ -31,7 +31,7 @@ var DeleteMemberRoleAdminV1Cmd = &cobra.Command{
 			MemberRoleID: memberRoleId,
 			Namespace:    namespace,
 		}
-		errInput := groupRolesService.DeleteMemberRoleAdminV1Short(input, nil)
+		errInput := groupRolesService.DeleteMemberRoleAdminV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

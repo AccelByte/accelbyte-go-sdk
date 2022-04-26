@@ -41,7 +41,7 @@ var UpdateMemberRoleAdminV1Cmd = &cobra.Command{
 			MemberRoleID: memberRoleId,
 			Namespace:    namespace,
 		}
-		ok, err := groupRolesService.UpdateMemberRoleAdminV1Short(input, nil)
+		ok, err := groupRolesService.UpdateMemberRoleAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

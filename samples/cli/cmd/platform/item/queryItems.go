@@ -57,7 +57,7 @@ var QueryItemsCmd = &cobra.Command{
 			Tags:            &tags,
 			TargetNamespace: &targetNamespace,
 		}
-		ok, err := itemService.QueryItemsShort(input, nil)
+		ok, err := itemService.QueryItemsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

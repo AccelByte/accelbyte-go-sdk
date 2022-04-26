@@ -33,7 +33,7 @@ var DeleteUserStatItems1Cmd = &cobra.Command{
 			StatCode:  statCode,
 			UserID:    userId,
 		}
-		errInput := userStatisticService.DeleteUserStatItems1Short(input, nil)
+		errInput := userStatisticService.DeleteUserStatItems1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

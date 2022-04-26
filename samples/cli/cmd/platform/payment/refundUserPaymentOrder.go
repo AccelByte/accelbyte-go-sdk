@@ -43,7 +43,7 @@ var RefundUserPaymentOrderCmd = &cobra.Command{
 			PaymentOrderNo: paymentOrderNo,
 			UserID:         userId,
 		}
-		ok, err := paymentService.RefundUserPaymentOrderShort(input, nil)
+		ok, err := paymentService.RefundUserPaymentOrderShort(input)
 		if err != nil {
 			logrus.Error(err)
 

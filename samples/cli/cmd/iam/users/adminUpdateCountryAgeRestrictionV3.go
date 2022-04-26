@@ -41,7 +41,7 @@ var AdminUpdateCountryAgeRestrictionV3Cmd = &cobra.Command{
 			CountryCode: countryCode,
 			Namespace:   namespace,
 		}
-		ok, err := usersService.AdminUpdateCountryAgeRestrictionV3Short(input, nil)
+		ok, err := usersService.AdminUpdateCountryAgeRestrictionV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 

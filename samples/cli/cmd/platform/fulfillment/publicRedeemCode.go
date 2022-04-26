@@ -41,7 +41,7 @@ var PublicRedeemCodeCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := fulfillmentService.PublicRedeemCodeShort(input, nil)
+		ok, err := fulfillmentService.PublicRedeemCodeShort(input)
 		if err != nil {
 			logrus.Error(err)
 

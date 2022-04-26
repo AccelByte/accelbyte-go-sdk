@@ -37,7 +37,7 @@ var GetSlugTemplateCmd = &cobra.Command{
 			Before:       &before,
 			Limit:        &limit,
 		}
-		ok, err := notificationService.GetSlugTemplateShort(input, nil)
+		ok, err := notificationService.GetSlugTemplateShort(input)
 		if err != nil {
 			logrus.Error(err)
 

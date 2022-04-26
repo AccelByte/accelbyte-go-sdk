@@ -31,7 +31,7 @@ var GetAllSessionsInChannelCmd = &cobra.Command{
 			ChannelName: channelName,
 			Namespace:   namespace,
 		}
-		ok, err := matchmakingService.GetAllSessionsInChannelShort(input, nil)
+		ok, err := matchmakingService.GetAllSessionsInChannelShort(input)
 		if err != nil {
 			logrus.Error(err)
 

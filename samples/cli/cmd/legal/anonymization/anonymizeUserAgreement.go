@@ -29,7 +29,7 @@ var AnonymizeUserAgreementCmd = &cobra.Command{
 		input := &anonymization.AnonymizeUserAgreementParams{
 			UserID: userId,
 		}
-		errInput := anonymizationService.AnonymizeUserAgreementShort(input, nil)
+		errInput := anonymizationService.AnonymizeUserAgreementShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

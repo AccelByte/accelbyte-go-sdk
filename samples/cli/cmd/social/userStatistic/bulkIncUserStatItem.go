@@ -39,7 +39,7 @@ var BulkIncUserStatItemCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := userStatisticService.BulkIncUserStatItemShort(input, nil)
+		ok, err := userStatisticService.BulkIncUserStatItemShort(input)
 		if err != nil {
 			logrus.Error(err)
 

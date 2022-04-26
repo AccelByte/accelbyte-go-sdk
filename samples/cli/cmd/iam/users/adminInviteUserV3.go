@@ -39,7 +39,7 @@ var AdminInviteUserV3Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := usersService.AdminInviteUserV3Short(input, nil)
+		ok, err := usersService.AdminInviteUserV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 

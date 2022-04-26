@@ -41,7 +41,7 @@ var RedeemCodeCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := fulfillmentService.RedeemCodeShort(input, nil)
+		ok, err := fulfillmentService.RedeemCodeShort(input)
 		if err != nil {
 			logrus.Error(err)
 

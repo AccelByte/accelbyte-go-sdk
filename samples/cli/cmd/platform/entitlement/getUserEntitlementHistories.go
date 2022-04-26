@@ -33,7 +33,7 @@ var GetUserEntitlementHistoriesCmd = &cobra.Command{
 			Namespace:     namespace,
 			UserID:        userId,
 		}
-		ok, err := entitlementService.GetUserEntitlementHistoriesShort(input, nil)
+		ok, err := entitlementService.GetUserEntitlementHistoriesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

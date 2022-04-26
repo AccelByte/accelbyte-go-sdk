@@ -41,7 +41,7 @@ var AdminUploadContentDirectCmd = &cobra.Command{
 			ChannelID: channelId,
 			Namespace: namespace,
 		}
-		ok, err := adminContentService.AdminUploadContentDirectShort(input, nil)
+		ok, err := adminContentService.AdminUploadContentDirectShort(input)
 		if err != nil {
 			logrus.Error(err)
 

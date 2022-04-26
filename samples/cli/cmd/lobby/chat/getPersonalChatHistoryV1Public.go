@@ -31,7 +31,7 @@ var GetPersonalChatHistoryV1PublicCmd = &cobra.Command{
 			FriendID:  friendId,
 			Namespace: namespace,
 		}
-		ok, err := chatService.GetPersonalChatHistoryV1PublicShort(input, nil)
+		ok, err := chatService.GetPersonalChatHistoryV1PublicShort(input)
 		if err != nil {
 			logrus.Error(err)
 

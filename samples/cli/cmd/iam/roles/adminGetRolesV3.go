@@ -35,7 +35,7 @@ var AdminGetRolesV3Cmd = &cobra.Command{
 			IsWildcard: &isWildcard,
 			Limit:      &limit,
 		}
-		ok, err := rolesService.AdminGetRolesV3Short(input, nil)
+		ok, err := rolesService.AdminGetRolesV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 

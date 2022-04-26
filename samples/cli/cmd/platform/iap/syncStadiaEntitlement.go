@@ -41,7 +41,7 @@ var SyncStadiaEntitlementCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := iapService.SyncStadiaEntitlementShort(input, nil)
+		errInput := iapService.SyncStadiaEntitlementShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

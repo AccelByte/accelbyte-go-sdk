@@ -33,7 +33,7 @@ var PersonalChatHistoryCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := chatService.PersonalChatHistoryShort(input, nil)
+		ok, err := chatService.PersonalChatHistoryShort(input)
 		if err != nil {
 			logrus.Error(err)
 

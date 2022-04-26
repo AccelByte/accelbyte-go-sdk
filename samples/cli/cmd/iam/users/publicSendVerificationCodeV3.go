@@ -39,7 +39,7 @@ var PublicSendVerificationCodeV3Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := usersService.PublicSendVerificationCodeV3Short(input, nil)
+		errInput := usersService.PublicSendVerificationCodeV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

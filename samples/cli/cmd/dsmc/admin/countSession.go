@@ -31,7 +31,7 @@ var CountSessionCmd = &cobra.Command{
 			Namespace: namespace,
 			Region:    &region,
 		}
-		ok, err := adminService.CountSessionShort(input, nil)
+		ok, err := adminService.CountSessionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

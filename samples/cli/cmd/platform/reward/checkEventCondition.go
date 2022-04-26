@@ -41,7 +41,7 @@ var CheckEventConditionCmd = &cobra.Command{
 			Namespace: namespace,
 			RewardID:  rewardId,
 		}
-		ok, err := rewardService.CheckEventConditionShort(input, nil)
+		ok, err := rewardService.CheckEventConditionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

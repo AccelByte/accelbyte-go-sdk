@@ -42,7 +42,7 @@ var QuerySeasonsCmd = &cobra.Command{
 			Offset:    &offset,
 			Status:    status,
 		}
-		ok, err := seasonService.QuerySeasonsShort(input, nil)
+		ok, err := seasonService.QuerySeasonsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

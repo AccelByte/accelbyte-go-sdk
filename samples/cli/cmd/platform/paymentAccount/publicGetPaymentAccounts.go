@@ -31,7 +31,7 @@ var PublicGetPaymentAccountsCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := paymentAccountService.PublicGetPaymentAccountsShort(input, nil)
+		ok, err := paymentAccountService.PublicGetPaymentAccountsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

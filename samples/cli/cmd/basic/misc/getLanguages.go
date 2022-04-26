@@ -29,7 +29,7 @@ var GetLanguagesCmd = &cobra.Command{
 		input := &misc.GetLanguagesParams{
 			Namespace: namespace,
 		}
-		ok, err := miscService.GetLanguagesShort(input, nil)
+		ok, err := miscService.GetLanguagesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -43,7 +43,7 @@ var AdminPlatformUnlinkV3Cmd = &cobra.Command{
 			PlatformID: platformId,
 			UserID:     userId,
 		}
-		errInput := usersService.AdminPlatformUnlinkV3Short(input, nil)
+		errInput := usersService.AdminPlatformUnlinkV3Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

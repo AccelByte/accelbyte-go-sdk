@@ -39,7 +39,7 @@ var CreateSessionCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := sessionService.CreateSessionShort(input, nil)
+		ok, err := sessionService.CreateSessionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

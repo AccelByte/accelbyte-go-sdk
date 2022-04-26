@@ -39,7 +39,7 @@ var CreateKeyGroupCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := keyGroupService.CreateKeyGroupShort(input, nil)
+		ok, err := keyGroupService.CreateKeyGroupShort(input)
 		if err != nil {
 			logrus.Error(err)
 

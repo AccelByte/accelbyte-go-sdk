@@ -29,7 +29,7 @@ var UnregisterEventIDHandlerCmd = &cobra.Command{
 		input := &event_registry.UnregisterEventIDHandlerParams{
 			EventID: eventId,
 		}
-		errInput := eventRegistryService.UnregisterEventIDHandlerShort(input, nil)
+		errInput := eventRegistryService.UnregisterEventIDHandlerShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

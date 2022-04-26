@@ -41,7 +41,7 @@ var AdminRequestDataRetrievalCmd = &cobra.Command{
 			UserID:     userId,
 			HTTPClient: httpClient,
 		}
-		ok, err := dataRetrievalService.AdminRequestDataRetrievalShort(input, nil)
+		ok, err := dataRetrievalService.AdminRequestDataRetrievalShort(input)
 		if err != nil {
 			logrus.Error(err)
 

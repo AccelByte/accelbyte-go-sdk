@@ -41,7 +41,7 @@ var SyncSteamInventoryCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := iapService.SyncSteamInventoryShort(input, nil)
+		errInput := iapService.SyncSteamInventoryShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -41,7 +41,7 @@ var AdminRemoveUserRoleV4Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := usersV4Service.AdminRemoveUserRoleV4Short(input, nil)
+		errInput := usersV4Service.AdminRemoveUserRoleV4Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

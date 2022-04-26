@@ -35,7 +35,7 @@ func createSessionBrowser() string {
 		Body:      bodySession,
 		Namespace: integration.NamespaceTest,
 	}
-	ok, err := sessionService.CreateSessionShort(inputSession, nil)
+	ok, err := sessionService.CreateSessionShort(inputSession)
 	if err != nil {
 		return ""
 	}
@@ -83,7 +83,7 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 		Body:      bodySessionDsmc,
 		Namespace: integration.NamespaceTest,
 	}
-	created, errCreate := sessionDSMCService.CreateSessionShort(inputCreate, nil)
+	created, errCreate := sessionDSMCService.CreateSessionShort(inputCreate)
 	if errCreate != nil {
 		assert.FailNow(t, errCreate.Error())
 	}
@@ -95,7 +95,7 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 		Namespace: integration.NamespaceTest,
 		SessionID: createdSessionID,
 	}
-	get, errGet := sessionDSMCService.GetSessionShort(inputGet, nil)
+	get, errGet := sessionDSMCService.GetSessionShort(inputGet)
 	if errGet != nil {
 		assert.FailNow(t, errGet.Error())
 	}
@@ -109,7 +109,7 @@ func TestIntegrationSessionDSMC(t *testing.T) {
 		Body:      bodyClaim,
 		Namespace: integration.NamespaceTest,
 	}
-	errClaim := sessionDSMCService.ClaimServerShort(inputClaim, nil)
+	errClaim := sessionDSMCService.ClaimServerShort(inputClaim)
 	if errClaim != nil {
 		assert.FailNow(t, errClaim.Error())
 	}

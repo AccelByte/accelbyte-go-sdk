@@ -41,7 +41,7 @@ var CreateUserPaymentOrderCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := paymentService.CreateUserPaymentOrderShort(input, nil)
+		ok, err := paymentService.CreateUserPaymentOrderShort(input)
 		if err != nil {
 			logrus.Error(err)
 

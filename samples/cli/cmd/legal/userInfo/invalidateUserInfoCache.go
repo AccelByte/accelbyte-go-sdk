@@ -29,7 +29,7 @@ var InvalidateUserInfoCacheCmd = &cobra.Command{
 		input := &user_info.InvalidateUserInfoCacheParams{
 			Namespace: &namespace,
 		}
-		errInput := userInfoService.InvalidateUserInfoCacheShort(input, nil)
+		errInput := userInfoService.InvalidateUserInfoCacheShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -43,7 +43,7 @@ var GetSlotDataCmd = &cobra.Command{
 			SlotID:    slotId,
 			UserID:    userId,
 		}
-		ok, err := slotService.GetSlotDataShort(input, nil, writer)
+		ok, err := slotService.GetSlotDataShort(input, writer)
 		if err != nil {
 			logrus.Error(err)
 

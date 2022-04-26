@@ -39,7 +39,7 @@ var QueueSessionHandlerCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := matchmakingService.QueueSessionHandlerShort(input, nil)
+		errInput := matchmakingService.QueueSessionHandlerShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

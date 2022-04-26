@@ -39,7 +39,7 @@ var QueryUserEntitlementsByAppTypeCmd = &cobra.Command{
 			Offset:     &offset,
 			AppType:    appType,
 		}
-		ok, err := entitlementService.QueryUserEntitlementsByAppTypeShort(input, nil)
+		ok, err := entitlementService.QueryUserEntitlementsByAppTypeShort(input)
 		if err != nil {
 			logrus.Error(err)
 

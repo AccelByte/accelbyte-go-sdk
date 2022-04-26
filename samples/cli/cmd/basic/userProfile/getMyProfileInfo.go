@@ -29,7 +29,7 @@ var GetMyProfileInfoCmd = &cobra.Command{
 		input := &user_profile.GetMyProfileInfoParams{
 			Namespace: namespace,
 		}
-		ok, err := userProfileService.GetMyProfileInfoShort(input, nil)
+		ok, err := userProfileService.GetMyProfileInfoShort(input)
 		if err != nil {
 			logrus.Error(err)
 

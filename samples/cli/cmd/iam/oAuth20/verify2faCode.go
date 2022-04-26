@@ -43,7 +43,7 @@ var Verify2faCodeCmd = &cobra.Command{
 			RememberDevice: rememberDevice,
 			HTTPClient:     httpClient,
 		}
-		ok, err := oAuth20Service.Verify2FACodeShort(input, nil)
+		ok, err := oAuth20Service.Verify2FACodeShort(input)
 		if err != nil {
 			logrus.Error(err)
 

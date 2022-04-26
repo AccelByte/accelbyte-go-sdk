@@ -31,7 +31,7 @@ var QuerySessionHandlerCmd = &cobra.Command{
 			MatchID:   matchID,
 			Namespace: namespace,
 		}
-		ok, err := matchmakingService.QuerySessionHandlerShort(input, nil)
+		ok, err := matchmakingService.QuerySessionHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 

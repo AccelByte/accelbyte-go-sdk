@@ -35,7 +35,7 @@ var DefeatureItemCmd = &cobra.Command{
 			Namespace: namespace,
 			StoreID:   storeId,
 		}
-		ok, err := itemService.DefeatureItemShort(input, nil)
+		ok, err := itemService.DefeatureItemShort(input)
 		if err != nil {
 			logrus.Error(err)
 

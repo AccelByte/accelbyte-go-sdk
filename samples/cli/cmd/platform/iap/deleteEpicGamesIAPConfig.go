@@ -29,7 +29,7 @@ var DeleteEpicGamesIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.DeleteEpicGamesIAPConfigParams{
 			Namespace: namespace,
 		}
-		errInput := iapService.DeleteEpicGamesIAPConfigShort(input, nil)
+		errInput := iapService.DeleteEpicGamesIAPConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

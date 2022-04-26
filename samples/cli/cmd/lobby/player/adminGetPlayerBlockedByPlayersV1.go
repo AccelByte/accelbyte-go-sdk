@@ -31,7 +31,7 @@ var AdminGetPlayerBlockedByPlayersV1Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := playerService.AdminGetPlayerBlockedByPlayersV1Short(input, nil)
+		ok, err := playerService.AdminGetPlayerBlockedByPlayersV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

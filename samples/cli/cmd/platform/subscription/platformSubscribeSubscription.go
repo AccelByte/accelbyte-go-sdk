@@ -41,7 +41,7 @@ var PlatformSubscribeSubscriptionCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := subscriptionService.PlatformSubscribeSubscriptionShort(input, nil)
+		ok, err := subscriptionService.PlatformSubscribeSubscriptionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

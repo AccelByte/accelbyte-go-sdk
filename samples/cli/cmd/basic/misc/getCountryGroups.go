@@ -31,7 +31,7 @@ var GetCountryGroupsCmd = &cobra.Command{
 			Namespace: namespace,
 			GroupCode: &groupCode,
 		}
-		ok, err := miscService.GetCountryGroupsShort(input, nil)
+		ok, err := miscService.GetCountryGroupsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

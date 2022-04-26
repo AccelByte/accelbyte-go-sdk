@@ -41,7 +41,7 @@ var SyncSteamDLCCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := dlcService.SyncSteamDLCShort(input, nil)
+		errInput := dlcService.SyncSteamDLCShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

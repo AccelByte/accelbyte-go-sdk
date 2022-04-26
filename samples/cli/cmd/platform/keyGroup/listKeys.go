@@ -37,7 +37,7 @@ var ListKeysCmd = &cobra.Command{
 			Offset:     &offset,
 			Status:     &status,
 		}
-		ok, err := keyGroupService.ListKeysShort(input, nil)
+		ok, err := keyGroupService.ListKeysShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -26,7 +26,7 @@ var RetrieveAllLegalPoliciesCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &base_legal_policies.RetrieveAllLegalPoliciesParams{}
-		ok, err := baseLegalPoliciesService.RetrieveAllLegalPoliciesShort(input, nil)
+		ok, err := baseLegalPoliciesService.RetrieveAllLegalPoliciesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

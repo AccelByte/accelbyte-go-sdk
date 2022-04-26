@@ -39,7 +39,7 @@ var UpdatePlayTimeWeightCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := socialMatchmakingService.UpdatePlayTimeWeightShort(input, nil)
+		ok, err := socialMatchmakingService.UpdatePlayTimeWeightShort(input)
 		if err != nil {
 			logrus.Error(err)
 

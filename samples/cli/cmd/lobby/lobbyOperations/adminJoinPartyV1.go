@@ -33,7 +33,7 @@ var AdminJoinPartyV1Cmd = &cobra.Command{
 			PartyID:   partyId,
 			UserID:    userId,
 		}
-		errInput := lobbyOperationsService.AdminJoinPartyV1Short(input, nil)
+		errInput := lobbyOperationsService.AdminJoinPartyV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

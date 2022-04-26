@@ -35,7 +35,7 @@ var GetPublicFollowersCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := publicFollowService.GetPublicFollowersShort(input, nil)
+		ok, err := publicFollowService.GetPublicFollowersShort(input)
 		if err != nil {
 			logrus.Error(err)
 

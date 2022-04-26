@@ -41,7 +41,7 @@ var UpdatePortCmd = &cobra.Command{
 			Name:      name,
 			Namespace: namespace,
 		}
-		ok, err := configService.UpdatePortShort(input, nil)
+		ok, err := configService.UpdatePortShort(input)
 		if err != nil {
 			logrus.Error(err)
 

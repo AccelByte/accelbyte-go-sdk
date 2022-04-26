@@ -39,7 +39,7 @@ var UpdateDLCItemConfigCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := dlcService.UpdateDLCItemConfigShort(input, nil)
+		ok, err := dlcService.UpdateDLCItemConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

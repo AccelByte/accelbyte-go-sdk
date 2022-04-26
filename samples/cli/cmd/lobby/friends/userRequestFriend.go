@@ -39,7 +39,7 @@ var UserRequestFriendCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := friendsService.UserRequestFriendShort(input, nil)
+		errInput := friendsService.UserRequestFriendShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

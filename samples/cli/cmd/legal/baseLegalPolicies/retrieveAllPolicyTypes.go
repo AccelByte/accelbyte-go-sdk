@@ -31,7 +31,7 @@ var RetrieveAllPolicyTypesCmd = &cobra.Command{
 			Offset: &offset,
 			Limit:  limit,
 		}
-		ok, err := baseLegalPoliciesService.RetrieveAllPolicyTypesShort(input, nil)
+		ok, err := baseLegalPoliciesService.RetrieveAllPolicyTypesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

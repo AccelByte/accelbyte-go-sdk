@@ -29,7 +29,7 @@ var GetFulfillmentScriptCmd = &cobra.Command{
 		input := &fulfillment_script.GetFulfillmentScriptParams{
 			ID: id_,
 		}
-		ok, err := fulfillmentScriptService.GetFulfillmentScriptShort(input, nil)
+		ok, err := fulfillmentScriptService.GetFulfillmentScriptShort(input)
 		if err != nil {
 			logrus.Error(err)
 

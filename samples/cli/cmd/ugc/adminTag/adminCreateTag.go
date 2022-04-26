@@ -39,7 +39,7 @@ var AdminCreateTagCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := adminTagService.AdminCreateTagShort(input, nil)
+		ok, err := adminTagService.AdminCreateTagShort(input)
 		if err != nil {
 			logrus.Error(err)
 

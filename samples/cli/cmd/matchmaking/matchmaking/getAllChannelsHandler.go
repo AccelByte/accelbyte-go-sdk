@@ -33,7 +33,7 @@ var GetAllChannelsHandlerCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := matchmakingService.GetAllChannelsHandlerShort(input, nil)
+		ok, err := matchmakingService.GetAllChannelsHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 

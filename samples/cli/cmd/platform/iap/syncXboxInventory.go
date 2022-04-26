@@ -41,7 +41,7 @@ var SyncXboxInventoryCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := iapService.SyncXboxInventoryShort(input, nil)
+		ok, err := iapService.SyncXboxInventoryShort(input)
 		if err != nil {
 			logrus.Error(err)
 

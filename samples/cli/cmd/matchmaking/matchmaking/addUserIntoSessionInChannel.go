@@ -43,7 +43,7 @@ var AddUserIntoSessionInChannelCmd = &cobra.Command{
 			MatchID:     matchID,
 			Namespace:   namespace,
 		}
-		errInput := matchmakingService.AddUserIntoSessionInChannelShort(input, nil)
+		errInput := matchmakingService.AddUserIntoSessionInChannelShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

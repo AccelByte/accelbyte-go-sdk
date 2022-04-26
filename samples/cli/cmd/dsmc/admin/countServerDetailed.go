@@ -31,7 +31,7 @@ var CountServerDetailedCmd = &cobra.Command{
 			Namespace: namespace,
 			Region:    &region,
 		}
-		ok, err := adminService.CountServerDetailedShort(input, nil)
+		ok, err := adminService.CountServerDetailedShort(input)
 		if err != nil {
 			logrus.Error(err)
 

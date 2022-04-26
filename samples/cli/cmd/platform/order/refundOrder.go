@@ -41,7 +41,7 @@ var RefundOrderCmd = &cobra.Command{
 			Namespace: namespace,
 			OrderNo:   orderNo,
 		}
-		ok, err := orderService.RefundOrderShort(input, nil)
+		ok, err := orderService.RefundOrderShort(input)
 		if err != nil {
 			logrus.Error(err)
 

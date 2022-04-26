@@ -26,7 +26,7 @@ var GetPaymentTaxConfigCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &payment_config.GetPaymentTaxConfigParams{}
-		ok, err := paymentConfigService.GetPaymentTaxConfigShort(input, nil)
+		ok, err := paymentConfigService.GetPaymentTaxConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

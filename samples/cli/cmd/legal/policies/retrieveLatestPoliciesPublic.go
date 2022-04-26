@@ -37,7 +37,7 @@ var RetrieveLatestPoliciesPublicCmd = &cobra.Command{
 			PolicyType:           &policyType,
 			Tags:                 &tags,
 		}
-		ok, err := policiesService.RetrieveLatestPoliciesPublicShort(input, nil)
+		ok, err := policiesService.RetrieveLatestPoliciesPublicShort(input)
 		if err != nil {
 			logrus.Error(err)
 

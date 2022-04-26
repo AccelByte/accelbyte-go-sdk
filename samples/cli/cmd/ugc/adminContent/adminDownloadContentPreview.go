@@ -31,7 +31,7 @@ var AdminDownloadContentPreviewCmd = &cobra.Command{
 			ContentID: contentId,
 			Namespace: namespace,
 		}
-		ok, err := adminContentService.AdminDownloadContentPreviewShort(input, nil)
+		ok, err := adminContentService.AdminDownloadContentPreviewShort(input)
 		if err != nil {
 			logrus.Error(err)
 

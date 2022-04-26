@@ -35,7 +35,7 @@ var ListGameRecordsHandlerV1Cmd = &cobra.Command{
 			Limit:     limit,
 			Offset:    offset,
 		}
-		ok, err := adminGameRecordService.ListGameRecordsHandlerV1Short(input, nil)
+		ok, err := adminGameRecordService.ListGameRecordsHandlerV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

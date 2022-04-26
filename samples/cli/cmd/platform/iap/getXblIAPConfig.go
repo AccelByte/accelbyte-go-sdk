@@ -29,7 +29,7 @@ var GetXblIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.GetXblIAPConfigParams{
 			Namespace: namespace,
 		}
-		ok, err := iapService.GetXblIAPConfigShort(input, nil)
+		ok, err := iapService.GetXblIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

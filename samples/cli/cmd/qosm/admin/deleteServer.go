@@ -29,7 +29,7 @@ var DeleteServerCmd = &cobra.Command{
 		input := &admin.DeleteServerParams{
 			Region: region,
 		}
-		errInput := adminService.DeleteServerShort(input, nil)
+		errInput := adminService.DeleteServerShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

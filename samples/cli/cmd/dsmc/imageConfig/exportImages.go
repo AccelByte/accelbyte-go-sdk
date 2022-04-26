@@ -29,7 +29,7 @@ var ExportImagesCmd = &cobra.Command{
 		input := &image_config.ExportImagesParams{
 			Namespace: namespace,
 		}
-		ok, err := imageConfigService.ExportImagesShort(input, nil)
+		ok, err := imageConfigService.ExportImagesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

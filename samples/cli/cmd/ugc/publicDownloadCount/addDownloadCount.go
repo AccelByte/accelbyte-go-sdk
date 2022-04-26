@@ -31,7 +31,7 @@ var AddDownloadCountCmd = &cobra.Command{
 			ContentID: contentId,
 			Namespace: namespace,
 		}
-		ok, err := publicDownloadCountService.AddDownloadCountShort(input, nil)
+		ok, err := publicDownloadCountService.AddDownloadCountShort(input)
 		if err != nil {
 			logrus.Error(err)
 

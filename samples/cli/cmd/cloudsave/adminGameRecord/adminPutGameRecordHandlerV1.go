@@ -41,7 +41,7 @@ var AdminPutGameRecordHandlerV1Cmd = &cobra.Command{
 			Key:       key,
 			Namespace: namespace,
 		}
-		errInput := adminGameRecordService.AdminPutGameRecordHandlerV1Short(input, nil)
+		errInput := adminGameRecordService.AdminPutGameRecordHandlerV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -41,7 +41,7 @@ var PublicSyncPsnDlcInventoryCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := dlcService.PublicSyncPsnDlcInventoryShort(input, nil)
+		errInput := dlcService.PublicSyncPsnDlcInventoryShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

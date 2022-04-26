@@ -51,7 +51,7 @@ var AdminSearchContentCmd = &cobra.Command{
 			Type:       &type_,
 			UserID:     &userId,
 		}
-		ok, err := adminContentService.AdminSearchContentShort(input, nil)
+		ok, err := adminContentService.AdminSearchContentShort(input)
 		if err != nil {
 			logrus.Error(err)
 

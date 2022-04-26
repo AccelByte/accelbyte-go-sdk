@@ -43,7 +43,7 @@ var AdminHideUserContentCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := adminContentService.AdminHideUserContentShort(input, nil)
+		ok, err := adminContentService.AdminHideUserContentShort(input)
 		if err != nil {
 			logrus.Error(err)
 

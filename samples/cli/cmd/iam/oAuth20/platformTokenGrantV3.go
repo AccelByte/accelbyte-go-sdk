@@ -44,7 +44,7 @@ var PlatformTokenGrantV3Cmd = &cobra.Command{
 			PlatformID:    platformId,
 			HTTPClient:    httpClient,
 		}
-		ok, err := oAuth20Service.PlatformTokenGrantV3Short(input, nil)
+		ok, err := oAuth20Service.PlatformTokenGrantV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 

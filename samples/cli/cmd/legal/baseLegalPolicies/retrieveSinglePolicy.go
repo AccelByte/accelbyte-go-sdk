@@ -29,7 +29,7 @@ var RetrieveSinglePolicyCmd = &cobra.Command{
 		input := &base_legal_policies.RetrieveSinglePolicyParams{
 			BasePolicyID: basePolicyId,
 		}
-		ok, err := baseLegalPoliciesService.RetrieveSinglePolicyShort(input, nil)
+		ok, err := baseLegalPoliciesService.RetrieveSinglePolicyShort(input)
 		if err != nil {
 			logrus.Error(err)
 

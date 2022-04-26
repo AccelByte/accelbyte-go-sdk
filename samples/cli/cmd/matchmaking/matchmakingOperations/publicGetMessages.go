@@ -26,7 +26,7 @@ var PublicGetMessagesCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &matchmaking_operations.PublicGetMessagesParams{}
-		ok, err := matchmakingOperationsService.PublicGetMessagesShort(input, nil)
+		ok, err := matchmakingOperationsService.PublicGetMessagesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

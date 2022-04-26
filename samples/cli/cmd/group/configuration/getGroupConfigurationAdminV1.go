@@ -31,7 +31,7 @@ var GetGroupConfigurationAdminV1Cmd = &cobra.Command{
 			ConfigurationCode: configurationCode,
 			Namespace:         namespace,
 		}
-		ok, err := configurationService.GetGroupConfigurationAdminV1Short(input, nil)
+		ok, err := configurationService.GetGroupConfigurationAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

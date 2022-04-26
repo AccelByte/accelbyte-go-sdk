@@ -37,7 +37,7 @@ var GetTemplateSlugLocalizationsTemplateV1AdminCmd = &cobra.Command{
 			Before:       &before,
 			Limit:        &limit,
 		}
-		ok, err := notificationService.GetTemplateSlugLocalizationsTemplateV1AdminShort(input, nil)
+		ok, err := notificationService.GetTemplateSlugLocalizationsTemplateV1AdminShort(input)
 		if err != nil {
 			logrus.Error(err)
 

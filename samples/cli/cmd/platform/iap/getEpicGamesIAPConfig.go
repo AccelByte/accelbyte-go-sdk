@@ -29,7 +29,7 @@ var GetEpicGamesIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.GetEpicGamesIAPConfigParams{
 			Namespace: namespace,
 		}
-		ok, err := iapService.GetEpicGamesIAPConfigShort(input, nil)
+		ok, err := iapService.GetEpicGamesIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

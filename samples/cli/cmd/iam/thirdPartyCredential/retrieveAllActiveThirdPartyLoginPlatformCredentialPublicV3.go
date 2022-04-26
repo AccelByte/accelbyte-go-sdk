@@ -29,7 +29,7 @@ var RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Cmd = &cobra.Comma
 		input := &third_party_credential.RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Params{
 			Namespace: namespace,
 		}
-		ok, err := thirdPartyCredentialService.RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short(input, nil)
+		ok, err := thirdPartyCredentialService.RetrieveAllActiveThirdPartyLoginPlatformCredentialPublicV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 

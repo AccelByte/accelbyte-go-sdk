@@ -33,7 +33,7 @@ var PublicChangeSubscriptionBillingAccountCmd = &cobra.Command{
 			SubscriptionID: subscriptionId,
 			UserID:         userId,
 		}
-		ok, err := subscriptionService.PublicChangeSubscriptionBillingAccountShort(input, nil)
+		ok, err := subscriptionService.PublicChangeSubscriptionBillingAccountShort(input)
 		if err != nil {
 			logrus.Error(err)
 

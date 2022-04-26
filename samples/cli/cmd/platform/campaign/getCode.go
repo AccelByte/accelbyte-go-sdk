@@ -33,7 +33,7 @@ var GetCodeCmd = &cobra.Command{
 			Namespace:  namespace,
 			Redeemable: &redeemable,
 		}
-		ok, err := campaignService.GetCodeShort(input, nil)
+		ok, err := campaignService.GetCodeShort(input)
 		if err != nil {
 			logrus.Error(err)
 

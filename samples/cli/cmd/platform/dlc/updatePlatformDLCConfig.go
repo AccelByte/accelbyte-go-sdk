@@ -39,7 +39,7 @@ var UpdatePlatformDLCConfigCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := dlcService.UpdatePlatformDLCConfigShort(input, nil)
+		ok, err := dlcService.UpdatePlatformDLCConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

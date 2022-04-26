@@ -39,7 +39,7 @@ var AdminEnableUserV2Cmd = &cobra.Command{
 			UserID:     userId,
 			HTTPClient: httpClient,
 		}
-		errInput := usersService.AdminEnableUserV2Short(input, nil)
+		errInput := usersService.AdminEnableUserV2Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

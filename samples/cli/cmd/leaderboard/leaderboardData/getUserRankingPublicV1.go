@@ -33,7 +33,7 @@ var GetUserRankingPublicV1Cmd = &cobra.Command{
 			Namespace:       namespace,
 			UserID:          userId,
 		}
-		ok, err := leaderboardDataService.GetUserRankingPublicV1Short(input, nil)
+		ok, err := leaderboardDataService.GetUserRankingPublicV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

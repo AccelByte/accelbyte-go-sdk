@@ -31,7 +31,7 @@ var RecurringChargeSubscriptionCmd = &cobra.Command{
 			Namespace:      namespace,
 			SubscriptionID: subscriptionId,
 		}
-		ok, err := subscriptionService.RecurringChargeSubscriptionShort(input, nil)
+		ok, err := subscriptionService.RecurringChargeSubscriptionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

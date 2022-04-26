@@ -29,7 +29,7 @@ var GetAdminEmailConfigurationCmd = &cobra.Command{
 		input := &data_retrieval.GetAdminEmailConfigurationParams{
 			Namespace: namespace,
 		}
-		ok, err := dataRetrievalService.GetAdminEmailConfigurationShort(input, nil)
+		ok, err := dataRetrievalService.GetAdminEmailConfigurationShort(input)
 		if err != nil {
 			logrus.Error(err)
 

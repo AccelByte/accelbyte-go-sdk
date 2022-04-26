@@ -41,7 +41,7 @@ var AdminUpdateTypeCmd = &cobra.Command{
 			Namespace: namespace,
 			TypeID:    typeId,
 		}
-		ok, err := adminTypeService.AdminUpdateTypeShort(input, nil)
+		ok, err := adminTypeService.AdminUpdateTypeShort(input)
 		if err != nil {
 			logrus.Error(err)
 

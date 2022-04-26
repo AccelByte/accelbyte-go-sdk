@@ -39,7 +39,7 @@ var QueryUserOrdersCmd = &cobra.Command{
 			Offset:    &offset,
 			Status:    &status,
 		}
-		ok, err := orderService.QueryUserOrdersShort(input, nil)
+		ok, err := orderService.QueryUserOrdersShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -31,7 +31,7 @@ var GetEntitlementCmd = &cobra.Command{
 			EntitlementID: entitlementId,
 			Namespace:     namespace,
 		}
-		ok, err := entitlementService.GetEntitlementShort(input, nil)
+		ok, err := entitlementService.GetEntitlementShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -33,7 +33,7 @@ var PublicDeleteUserNamespaceSlotCmd = &cobra.Command{
 			SlotID:    slotId,
 			UserID:    userId,
 		}
-		errInput := slotService.PublicDeleteUserNamespaceSlotShort(input, nil)
+		errInput := slotService.PublicDeleteUserNamespaceSlotShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -33,7 +33,7 @@ var PublishTemplateCmd = &cobra.Command{
 			TemplateLanguage: templateLanguage,
 			TemplateSlug:     templateSlug,
 		}
-		errInput := notificationService.PublishTemplateShort(input, nil)
+		errInput := notificationService.PublishTemplateShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

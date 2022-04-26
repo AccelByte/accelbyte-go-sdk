@@ -37,7 +37,7 @@ var GetGroupMembersListAdminV1Cmd = &cobra.Command{
 			Offset:    &offset,
 			Order:     &order,
 		}
-		ok, err := groupMemberService.GetGroupMembersListAdminV1Short(input, nil)
+		ok, err := groupMemberService.GetGroupMembersListAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

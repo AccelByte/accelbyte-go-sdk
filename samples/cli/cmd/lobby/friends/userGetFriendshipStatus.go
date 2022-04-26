@@ -31,7 +31,7 @@ var UserGetFriendshipStatusCmd = &cobra.Command{
 			FriendID:  friendId,
 			Namespace: namespace,
 		}
-		ok, err := friendsService.UserGetFriendshipStatusShort(input, nil)
+		ok, err := friendsService.UserGetFriendshipStatusShort(input)
 		if err != nil {
 			logrus.Error(err)
 

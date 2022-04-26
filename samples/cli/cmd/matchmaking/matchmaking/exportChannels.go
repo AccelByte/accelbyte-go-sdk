@@ -29,7 +29,7 @@ var ExportChannelsCmd = &cobra.Command{
 		input := &matchmaking_.ExportChannelsParams{
 			Namespace: namespace,
 		}
-		ok, err := matchmakingService.ExportChannelsShort(input, nil)
+		ok, err := matchmakingService.ExportChannelsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

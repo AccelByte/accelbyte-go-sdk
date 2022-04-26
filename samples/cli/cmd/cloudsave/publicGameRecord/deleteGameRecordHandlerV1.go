@@ -31,7 +31,7 @@ var DeleteGameRecordHandlerV1Cmd = &cobra.Command{
 			Key:       key,
 			Namespace: namespace,
 		}
-		errInput := publicGameRecordService.DeleteGameRecordHandlerV1Short(input, nil)
+		errInput := publicGameRecordService.DeleteGameRecordHandlerV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

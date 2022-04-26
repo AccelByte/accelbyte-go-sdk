@@ -29,7 +29,7 @@ var DeleteNamespaceSlotConfigCmd = &cobra.Command{
 		input := &slot_config.DeleteNamespaceSlotConfigParams{
 			Namespace: namespace,
 		}
-		errInput := slotConfigService.DeleteNamespaceSlotConfigShort(input, nil)
+		errInput := slotConfigService.DeleteNamespaceSlotConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

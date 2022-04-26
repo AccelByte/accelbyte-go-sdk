@@ -32,7 +32,7 @@ var loginCmd = &cobra.Command{
 				Username:  &username,
 				GrantType: "password",
 			}
-			_, err := oAuth20Service.TokenGrantV3Short(input, nil)
+			_, err := oAuth20Service.TokenGrantV3Short(input)
 			if err != nil {
 				return err
 			}

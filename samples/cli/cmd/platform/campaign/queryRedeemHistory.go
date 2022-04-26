@@ -39,7 +39,7 @@ var QueryRedeemHistoryCmd = &cobra.Command{
 			Offset:     &offset,
 			UserID:     &userId,
 		}
-		ok, err := campaignService.QueryRedeemHistoryShort(input, nil)
+		ok, err := campaignService.QueryRedeemHistoryShort(input)
 		if err != nil {
 			logrus.Error(err)
 

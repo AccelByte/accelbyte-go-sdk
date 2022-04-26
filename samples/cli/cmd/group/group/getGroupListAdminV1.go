@@ -39,7 +39,7 @@ var GetGroupListAdminV1Cmd = &cobra.Command{
 			Limit:             &limit,
 			Offset:            &offset,
 		}
-		ok, err := groupService.GetGroupListAdminV1Short(input, nil)
+		ok, err := groupService.GetGroupListAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

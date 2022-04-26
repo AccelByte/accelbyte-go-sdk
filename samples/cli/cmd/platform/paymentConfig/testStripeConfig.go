@@ -39,7 +39,7 @@ var TestStripeConfigCmd = &cobra.Command{
 			Body:    body,
 			Sandbox: &sandbox,
 		}
-		ok, err := paymentConfigService.TestStripeConfigShort(input, nil)
+		ok, err := paymentConfigService.TestStripeConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

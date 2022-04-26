@@ -41,7 +41,7 @@ var UpdateUserFollowStatusCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := publicFollowService.UpdateUserFollowStatusShort(input, nil)
+		ok, err := publicFollowService.UpdateUserFollowStatusShort(input)
 		if err != nil {
 			logrus.Error(err)
 

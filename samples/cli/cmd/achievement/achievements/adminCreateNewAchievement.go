@@ -39,7 +39,7 @@ var AdminCreateNewAchievementCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := achievementsService.AdminCreateNewAchievementShort(input, nil)
+		ok, err := achievementsService.AdminCreateNewAchievementShort(input)
 		if err != nil {
 			logrus.Error(err)
 

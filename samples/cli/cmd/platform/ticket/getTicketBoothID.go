@@ -31,7 +31,7 @@ var GetTicketBoothIDCmd = &cobra.Command{
 			BoothName: boothName,
 			Namespace: namespace,
 		}
-		ok, err := ticketService.GetTicketBoothIDShort(input, nil)
+		ok, err := ticketService.GetTicketBoothIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 

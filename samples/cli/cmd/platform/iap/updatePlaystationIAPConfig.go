@@ -39,7 +39,7 @@ var UpdatePlaystationIAPConfigCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := iapService.UpdatePlaystationIAPConfigShort(input, nil)
+		ok, err := iapService.UpdatePlaystationIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

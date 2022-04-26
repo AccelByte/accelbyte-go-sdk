@@ -39,7 +39,7 @@ var AdminVerifyMessageProfanityResponseCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := profanityService.AdminVerifyMessageProfanityResponseShort(input, nil)
+		ok, err := profanityService.AdminVerifyMessageProfanityResponseShort(input)
 		if err != nil {
 			logrus.Error(err)
 

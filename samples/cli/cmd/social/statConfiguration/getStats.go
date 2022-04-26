@@ -33,7 +33,7 @@ var GetStatsCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := statConfigurationService.GetStatsShort(input, nil)
+		ok, err := statConfigurationService.GetStatsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

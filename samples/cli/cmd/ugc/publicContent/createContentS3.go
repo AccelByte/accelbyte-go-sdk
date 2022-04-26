@@ -43,7 +43,7 @@ var CreateContentS3Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := publicContentService.CreateContentS3Short(input, nil)
+		ok, err := publicContentService.CreateContentS3Short(input)
 		if err != nil {
 			logrus.Error(err)
 

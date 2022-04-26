@@ -40,7 +40,7 @@ var UpdatePrivateCustomAttributesPartiallyCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := userProfileService.UpdatePrivateCustomAttributesPartiallyShort(input, nil)
+		ok, err := userProfileService.UpdatePrivateCustomAttributesPartiallyShort(input)
 		if err != nil {
 			logrus.Error(err)
 

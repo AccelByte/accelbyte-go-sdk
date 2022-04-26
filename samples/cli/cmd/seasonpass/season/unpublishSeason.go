@@ -33,7 +33,7 @@ var UnpublishSeasonCmd = &cobra.Command{
 			SeasonID:  seasonId,
 			Force:     &force,
 		}
-		ok, err := seasonService.UnpublishSeasonShort(input, nil)
+		ok, err := seasonService.UnpublishSeasonShort(input)
 		if err != nil {
 			logrus.Error(err)
 

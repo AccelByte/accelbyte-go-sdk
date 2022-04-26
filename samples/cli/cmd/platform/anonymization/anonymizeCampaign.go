@@ -31,7 +31,7 @@ var AnonymizeCampaignCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := anonymizationService.AnonymizeCampaignShort(input, nil)
+		errInput := anonymizationService.AnonymizeCampaignShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

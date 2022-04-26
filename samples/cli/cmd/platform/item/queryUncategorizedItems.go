@@ -39,7 +39,7 @@ var QueryUncategorizedItemsCmd = &cobra.Command{
 			SortBy:     &sortBy,
 			StoreID:    &storeId,
 		}
-		ok, err := itemService.QueryUncategorizedItemsShort(input, nil)
+		ok, err := itemService.QueryUncategorizedItemsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

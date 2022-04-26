@@ -43,7 +43,7 @@ var DebitUserWalletCmd = &cobra.Command{
 			UserID:    userId,
 			WalletID:  walletId,
 		}
-		ok, err := walletService.DebitUserWalletShort(input, nil)
+		ok, err := walletService.DebitUserWalletShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -33,7 +33,7 @@ var AdminDeleteChannelCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := adminChannelService.AdminDeleteChannelShort(input, nil)
+		errInput := adminChannelService.AdminDeleteChannelShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

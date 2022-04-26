@@ -33,7 +33,7 @@ var AdminGetPlayerPublicRecordHandlerV1Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := adminPlayerRecordService.AdminGetPlayerPublicRecordHandlerV1Short(input, nil)
+		ok, err := adminPlayerRecordService.AdminGetPlayerPublicRecordHandlerV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

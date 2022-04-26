@@ -29,7 +29,7 @@ var DeleteXblAPConfigCmd = &cobra.Command{
 		input := &i_a_p.DeleteXblAPConfigParams{
 			Namespace: namespace,
 		}
-		errInput := iapService.DeleteXblAPConfigShort(input, nil)
+		errInput := iapService.DeleteXblAPConfigShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

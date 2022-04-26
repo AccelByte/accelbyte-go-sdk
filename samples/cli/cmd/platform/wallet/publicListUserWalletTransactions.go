@@ -37,7 +37,7 @@ var PublicListUserWalletTransactionsCmd = &cobra.Command{
 			Limit:        &limit,
 			Offset:       &offset,
 		}
-		ok, err := walletService.PublicListUserWalletTransactionsShort(input, nil)
+		ok, err := walletService.PublicListUserWalletTransactionsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

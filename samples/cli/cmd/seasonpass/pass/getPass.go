@@ -33,7 +33,7 @@ var GetPassCmd = &cobra.Command{
 			Namespace: namespace,
 			SeasonID:  seasonId,
 		}
-		ok, err := passService.GetPassShort(input, nil)
+		ok, err := passService.GetPassShort(input)
 		if err != nil {
 			logrus.Error(err)
 

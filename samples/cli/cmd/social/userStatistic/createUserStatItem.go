@@ -33,7 +33,7 @@ var CreateUserStatItemCmd = &cobra.Command{
 			StatCode:  statCode,
 			UserID:    userId,
 		}
-		errInput := userStatisticService.CreateUserStatItemShort(input, nil)
+		errInput := userStatisticService.CreateUserStatItemShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

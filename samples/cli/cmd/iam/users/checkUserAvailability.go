@@ -33,7 +33,7 @@ var CheckUserAvailabilityCmd = &cobra.Command{
 			Field:     field,
 			Query:     query,
 		}
-		errInput := usersService.CheckUserAvailabilityShort(input, nil)
+		errInput := usersService.CheckUserAvailabilityShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

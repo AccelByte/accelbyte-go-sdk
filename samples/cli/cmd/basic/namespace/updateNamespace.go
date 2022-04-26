@@ -39,7 +39,7 @@ var UpdateNamespaceCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := namespaceService.UpdateNamespaceShort(input, nil)
+		ok, err := namespaceService.UpdateNamespaceShort(input)
 		if err != nil {
 			logrus.Error(err)
 

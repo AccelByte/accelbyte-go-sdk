@@ -43,7 +43,7 @@ var CreateDeploymentOverrideCmd = &cobra.Command{
 			Namespace:  namespace,
 			Version:    version,
 		}
-		ok, err := deploymentConfigService.CreateDeploymentOverrideShort(input, nil)
+		ok, err := deploymentConfigService.CreateDeploymentOverrideShort(input)
 		if err != nil {
 			logrus.Error(err)
 

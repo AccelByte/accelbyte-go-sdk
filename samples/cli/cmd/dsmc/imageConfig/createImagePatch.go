@@ -37,7 +37,7 @@ var CreateImagePatchCmd = &cobra.Command{
 		input := &image_config.CreateImagePatchParams{
 			Body: body,
 		}
-		errInput := imageConfigService.CreateImagePatchShort(input, nil)
+		errInput := imageConfigService.CreateImagePatchShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

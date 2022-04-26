@@ -37,7 +37,7 @@ var RevokeTokenCmd = &cobra.Command{
 			Token:      token,
 			HTTPClient: httpClient,
 		}
-		errInput := oAuthService.RevokeTokenShort(input, nil)
+		errInput := oAuthService.RevokeTokenShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -47,7 +47,7 @@ var ImportRewardsCmd = &cobra.Command{
 			ReplaceExisting: replaceExisting,
 			HTTPClient:      httpClient,
 		}
-		errInput := rewardService.ImportRewardsShort(input, nil)
+		errInput := rewardService.ImportRewardsShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

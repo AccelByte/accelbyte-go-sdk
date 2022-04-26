@@ -37,7 +37,7 @@ var CreateNamespaceCmd = &cobra.Command{
 		input := &namespace_.CreateNamespaceParams{
 			Body: body,
 		}
-		ok, err := namespaceService.CreateNamespaceShort(input, nil)
+		ok, err := namespaceService.CreateNamespaceShort(input)
 		if err != nil {
 			logrus.Error(err)
 

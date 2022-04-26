@@ -43,7 +43,7 @@ var UpdateScreenshotsCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := publicContentService.UpdateScreenshotsShort(input, nil)
+		ok, err := publicContentService.UpdateScreenshotsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

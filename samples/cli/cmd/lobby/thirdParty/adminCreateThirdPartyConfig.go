@@ -39,7 +39,7 @@ var AdminCreateThirdPartyConfigCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := thirdPartyService.AdminCreateThirdPartyConfigShort(input, nil)
+		ok, err := thirdPartyService.AdminCreateThirdPartyConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

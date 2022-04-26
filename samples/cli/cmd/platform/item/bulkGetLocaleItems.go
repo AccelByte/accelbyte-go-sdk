@@ -39,7 +39,7 @@ var BulkGetLocaleItemsCmd = &cobra.Command{
 			StoreID:    &storeId,
 			ItemIds:    itemIds,
 		}
-		ok, err := itemService.BulkGetLocaleItemsShort(input, nil)
+		ok, err := itemService.BulkGetLocaleItemsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

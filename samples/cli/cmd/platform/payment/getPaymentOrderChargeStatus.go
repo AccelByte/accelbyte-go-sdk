@@ -31,7 +31,7 @@ var GetPaymentOrderChargeStatusCmd = &cobra.Command{
 			Namespace:      namespace,
 			PaymentOrderNo: paymentOrderNo,
 		}
-		ok, err := paymentService.GetPaymentOrderChargeStatusShort(input, nil)
+		ok, err := paymentService.GetPaymentOrderChargeStatusShort(input)
 		if err != nil {
 			logrus.Error(err)
 

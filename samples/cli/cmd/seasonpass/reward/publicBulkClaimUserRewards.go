@@ -31,7 +31,7 @@ var PublicBulkClaimUserRewardsCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := rewardService.PublicBulkClaimUserRewardsShort(input, nil)
+		ok, err := rewardService.PublicBulkClaimUserRewardsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

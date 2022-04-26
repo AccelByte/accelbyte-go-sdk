@@ -31,7 +31,7 @@ var DeleteServerCmd = &cobra.Command{
 			Namespace: namespace,
 			PodName:   podName,
 		}
-		errInput := adminService.DeleteServerShort(input, nil)
+		errInput := adminService.DeleteServerShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

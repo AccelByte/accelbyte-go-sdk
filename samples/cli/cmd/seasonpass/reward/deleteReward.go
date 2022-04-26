@@ -33,7 +33,7 @@ var DeleteRewardCmd = &cobra.Command{
 			Namespace: namespace,
 			SeasonID:  seasonId,
 		}
-		errInput := rewardService.DeleteRewardShort(input, nil)
+		errInput := rewardService.DeleteRewardShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

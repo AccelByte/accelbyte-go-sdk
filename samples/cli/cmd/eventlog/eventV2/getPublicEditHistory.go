@@ -41,7 +41,7 @@ var GetPublicEditHistoryCmd = &cobra.Command{
 			StartDate: &startDate,
 			Type:      &type_,
 		}
-		ok, err := eventV2Service.GetPublicEditHistoryShort(input, nil)
+		ok, err := eventV2Service.GetPublicEditHistoryShort(input)
 		if err != nil {
 			logrus.Error(err)
 

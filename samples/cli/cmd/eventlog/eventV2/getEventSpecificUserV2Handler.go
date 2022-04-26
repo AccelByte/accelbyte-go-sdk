@@ -41,7 +41,7 @@ var GetEventSpecificUserV2HandlerCmd = &cobra.Command{
 			PageSize:  &pageSize,
 			StartDate: &startDate,
 		}
-		ok, err := eventV2Service.GetEventSpecificUserV2HandlerShort(input, nil)
+		ok, err := eventV2Service.GetEventSpecificUserV2HandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 

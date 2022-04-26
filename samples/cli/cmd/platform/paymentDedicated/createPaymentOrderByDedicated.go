@@ -39,7 +39,7 @@ var CreatePaymentOrderByDedicatedCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := paymentDedicatedService.CreatePaymentOrderByDedicatedShort(input, nil)
+		ok, err := paymentDedicatedService.CreatePaymentOrderByDedicatedShort(input)
 		if err != nil {
 			logrus.Error(err)
 

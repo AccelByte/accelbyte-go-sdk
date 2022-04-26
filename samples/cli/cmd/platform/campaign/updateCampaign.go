@@ -41,7 +41,7 @@ var UpdateCampaignCmd = &cobra.Command{
 			CampaignID: campaignId,
 			Namespace:  namespace,
 		}
-		ok, err := campaignService.UpdateCampaignShort(input, nil)
+		ok, err := campaignService.UpdateCampaignShort(input)
 		if err != nil {
 			logrus.Error(err)
 

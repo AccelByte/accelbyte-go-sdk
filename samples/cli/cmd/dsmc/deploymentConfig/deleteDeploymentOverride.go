@@ -33,7 +33,7 @@ var DeleteDeploymentOverrideCmd = &cobra.Command{
 			Namespace:  namespace,
 			Version:    version,
 		}
-		ok, err := deploymentConfigService.DeleteDeploymentOverrideShort(input, nil)
+		ok, err := deploymentConfigService.DeleteDeploymentOverrideShort(input)
 		if err != nil {
 			logrus.Error(err)
 

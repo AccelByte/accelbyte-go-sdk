@@ -37,7 +37,7 @@ var CreateClientCmd = &cobra.Command{
 		input := &clients.CreateClientParams{
 			Body: body,
 		}
-		ok, err := clientsService.CreateClientShort(input, nil)
+		ok, err := clientsService.CreateClientShort(input)
 		if err != nil {
 			logrus.Error(err)
 

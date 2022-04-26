@@ -31,7 +31,7 @@ var AdminDeleteProfanityListCmd = &cobra.Command{
 			List:      list_,
 			Namespace: namespace,
 		}
-		errInput := profanityService.AdminDeleteProfanityListShort(input, nil)
+		errInput := profanityService.AdminDeleteProfanityListShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

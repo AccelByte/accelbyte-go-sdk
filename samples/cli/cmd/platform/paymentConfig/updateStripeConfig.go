@@ -43,7 +43,7 @@ var UpdateStripeConfigCmd = &cobra.Command{
 			Sandbox:  &sandbox,
 			Validate: &validate,
 		}
-		ok, err := paymentConfigService.UpdateStripeConfigShort(input, nil)
+		ok, err := paymentConfigService.UpdateStripeConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

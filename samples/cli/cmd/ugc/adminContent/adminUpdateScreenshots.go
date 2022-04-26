@@ -41,7 +41,7 @@ var AdminUpdateScreenshotsCmd = &cobra.Command{
 			ContentID: contentId,
 			Namespace: namespace,
 		}
-		ok, err := adminContentService.AdminUpdateScreenshotsShort(input, nil)
+		ok, err := adminContentService.AdminUpdateScreenshotsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

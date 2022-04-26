@@ -31,7 +31,7 @@ var GetKeyGroupDynamicCmd = &cobra.Command{
 			KeyGroupID: keyGroupId,
 			Namespace:  namespace,
 		}
-		ok, err := keyGroupService.GetKeyGroupDynamicShort(input, nil)
+		ok, err := keyGroupService.GetKeyGroupDynamicShort(input)
 		if err != nil {
 			logrus.Error(err)
 

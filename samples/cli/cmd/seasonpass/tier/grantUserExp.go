@@ -41,7 +41,7 @@ var GrantUserExpCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := tierService.GrantUserExpShort(input, nil)
+		ok, err := tierService.GrantUserExpShort(input)
 		if err != nil {
 			logrus.Error(err)
 

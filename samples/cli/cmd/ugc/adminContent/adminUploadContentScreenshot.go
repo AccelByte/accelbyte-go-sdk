@@ -41,7 +41,7 @@ var AdminUploadContentScreenshotCmd = &cobra.Command{
 			ContentID: contentId,
 			Namespace: namespace,
 		}
-		ok, err := adminContentService.AdminUploadContentScreenshotShort(input, nil)
+		ok, err := adminContentService.AdminUploadContentScreenshotShort(input)
 		if err != nil {
 			logrus.Error(err)
 

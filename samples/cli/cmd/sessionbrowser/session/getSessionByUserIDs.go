@@ -31,7 +31,7 @@ var GetSessionByUserIDsCmd = &cobra.Command{
 			Namespace: namespace,
 			UserIds:   userIds,
 		}
-		ok, err := sessionService.GetSessionByUserIDsShort(input, nil)
+		ok, err := sessionService.GetSessionByUserIDsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

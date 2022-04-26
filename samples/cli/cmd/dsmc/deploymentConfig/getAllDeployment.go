@@ -35,7 +35,7 @@ var GetAllDeploymentCmd = &cobra.Command{
 			Name:      &name,
 			Offset:    &offset,
 		}
-		ok, err := deploymentConfigService.GetAllDeploymentShort(input, nil)
+		ok, err := deploymentConfigService.GetAllDeploymentShort(input)
 		if err != nil {
 			logrus.Error(err)
 

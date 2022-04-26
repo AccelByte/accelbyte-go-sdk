@@ -41,7 +41,7 @@ var UpdateKeyGroupCmd = &cobra.Command{
 			KeyGroupID: keyGroupId,
 			Namespace:  namespace,
 		}
-		ok, err := keyGroupService.UpdateKeyGroupShort(input, nil)
+		ok, err := keyGroupService.UpdateKeyGroupShort(input)
 		if err != nil {
 			logrus.Error(err)
 

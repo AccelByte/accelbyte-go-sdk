@@ -31,7 +31,7 @@ var DeleteChannelHandlerCmd = &cobra.Command{
 			Channel:   channel,
 			Namespace: namespace,
 		}
-		errInput := matchmakingService.DeleteChannelHandlerShort(input, nil)
+		errInput := matchmakingService.DeleteChannelHandlerShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

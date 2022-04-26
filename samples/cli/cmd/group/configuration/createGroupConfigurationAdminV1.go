@@ -39,7 +39,7 @@ var CreateGroupConfigurationAdminV1Cmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := configurationService.CreateGroupConfigurationAdminV1Short(input, nil)
+		ok, err := configurationService.CreateGroupConfigurationAdminV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

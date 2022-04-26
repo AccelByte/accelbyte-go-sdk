@@ -43,7 +43,7 @@ var SearchSessionsCmd = &cobra.Command{
 			Limit:     limit,
 			Offset:    offset,
 		}
-		ok, err := matchmakingService.SearchSessionsShort(input, nil)
+		ok, err := matchmakingService.SearchSessionsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

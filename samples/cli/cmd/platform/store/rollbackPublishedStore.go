@@ -29,7 +29,7 @@ var RollbackPublishedStoreCmd = &cobra.Command{
 		input := &store.RollbackPublishedStoreParams{
 			Namespace: namespace,
 		}
-		ok, err := storeService.RollbackPublishedStoreShort(input, nil)
+		ok, err := storeService.RollbackPublishedStoreShort(input)
 		if err != nil {
 			logrus.Error(err)
 

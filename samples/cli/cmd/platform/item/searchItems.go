@@ -41,7 +41,7 @@ var SearchItemsCmd = &cobra.Command{
 			Keyword:    keyword,
 			Language:   language,
 		}
-		ok, err := itemService.SearchItemsShort(input, nil)
+		ok, err := itemService.SearchItemsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

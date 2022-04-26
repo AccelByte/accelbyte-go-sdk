@@ -47,7 +47,7 @@ var QueryPaymentNotificationsCmd = &cobra.Command{
 			StartDate:          &startDate,
 			Status:             &status,
 		}
-		ok, err := paymentService.QueryPaymentNotificationsShort(input, nil)
+		ok, err := paymentService.QueryPaymentNotificationsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

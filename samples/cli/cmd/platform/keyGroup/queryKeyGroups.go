@@ -37,7 +37,7 @@ var QueryKeyGroupsCmd = &cobra.Command{
 			Offset:    &offset,
 			Tag:       &tag,
 		}
-		ok, err := keyGroupService.QueryKeyGroupsShort(input, nil)
+		ok, err := keyGroupService.QueryKeyGroupsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -41,7 +41,7 @@ var SingleAdminUpdateChannelCmd = &cobra.Command{
 			ChannelID: channelId,
 			Namespace: namespace,
 		}
-		ok, err := adminChannelService.SingleAdminUpdateChannelShort(input, nil)
+		ok, err := adminChannelService.SingleAdminUpdateChannelShort(input)
 		if err != nil {
 			logrus.Error(err)
 

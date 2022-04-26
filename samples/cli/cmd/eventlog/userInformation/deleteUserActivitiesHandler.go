@@ -31,7 +31,7 @@ var DeleteUserActivitiesHandlerCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := userInformationService.DeleteUserActivitiesHandlerShort(input, nil)
+		errInput := userInformationService.DeleteUserActivitiesHandlerShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

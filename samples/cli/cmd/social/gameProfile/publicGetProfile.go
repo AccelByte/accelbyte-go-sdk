@@ -33,7 +33,7 @@ var PublicGetProfileCmd = &cobra.Command{
 			ProfileID: profileId,
 			UserID:    userId,
 		}
-		ok, err := gameProfileService.PublicGetProfileShort(input, nil)
+		ok, err := gameProfileService.PublicGetProfileShort(input)
 		if err != nil {
 			logrus.Error(err)
 

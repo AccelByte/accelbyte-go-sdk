@@ -39,7 +39,7 @@ var ClaimServerCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := sessionService.ClaimServerShort(input, nil)
+		errInput := sessionService.ClaimServerShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

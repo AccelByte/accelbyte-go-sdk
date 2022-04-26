@@ -43,7 +43,7 @@ var ReorderTierCmd = &cobra.Command{
 			Namespace: namespace,
 			SeasonID:  seasonId,
 		}
-		ok, err := tierService.ReorderTierShort(input, nil)
+		ok, err := tierService.ReorderTierShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -29,7 +29,7 @@ var DeleteFulfillmentScriptCmd = &cobra.Command{
 		input := &fulfillment_script.DeleteFulfillmentScriptParams{
 			ID: id_,
 		}
-		errInput := fulfillmentScriptService.DeleteFulfillmentScriptShort(input, nil)
+		errInput := fulfillmentScriptService.DeleteFulfillmentScriptShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

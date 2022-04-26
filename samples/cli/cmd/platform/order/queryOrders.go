@@ -52,7 +52,7 @@ var QueryOrdersCmd = &cobra.Command{
 			Status:    &status,
 			WithTotal: &withTotal,
 		}
-		ok, err := orderService.QueryOrdersShort(input, nil)
+		ok, err := orderService.QueryOrdersShort(input)
 		if err != nil {
 			logrus.Error(err)
 

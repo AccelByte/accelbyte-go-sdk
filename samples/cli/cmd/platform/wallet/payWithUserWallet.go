@@ -43,7 +43,7 @@ var PayWithUserWalletCmd = &cobra.Command{
 			Namespace:    namespace,
 			UserID:       userId,
 		}
-		ok, err := walletService.PayWithUserWalletShort(input, nil)
+		ok, err := walletService.PayWithUserWalletShort(input)
 		if err != nil {
 			logrus.Error(err)
 

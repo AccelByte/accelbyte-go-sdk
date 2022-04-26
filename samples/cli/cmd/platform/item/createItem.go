@@ -41,7 +41,7 @@ var CreateItemCmd = &cobra.Command{
 			Namespace: namespace,
 			StoreID:   storeId,
 		}
-		ok, err := itemService.CreateItemShort(input, nil)
+		ok, err := itemService.CreateItemShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -45,7 +45,7 @@ var AddUserPermissionCmd = &cobra.Command{
 			Resource:  resource,
 			UserID:    userId,
 		}
-		errInput := usersService.AddUserPermissionShort(input, nil)
+		errInput := usersService.AddUserPermissionShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

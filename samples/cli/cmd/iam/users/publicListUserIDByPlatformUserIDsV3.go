@@ -41,7 +41,7 @@ var PublicListUserIDByPlatformUserIDsV3Cmd = &cobra.Command{
 			Namespace:  namespace,
 			PlatformID: platformId,
 		}
-		ok, err := usersService.PublicListUserIDByPlatformUserIDsV3Short(input, nil)
+		ok, err := usersService.PublicListUserIDByPlatformUserIDsV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 

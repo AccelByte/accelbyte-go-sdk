@@ -37,7 +37,7 @@ var UpdateImageCmd = &cobra.Command{
 		input := &image_config.UpdateImageParams{
 			Body: body,
 		}
-		errInput := imageConfigService.UpdateImageShort(input, nil)
+		errInput := imageConfigService.UpdateImageShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

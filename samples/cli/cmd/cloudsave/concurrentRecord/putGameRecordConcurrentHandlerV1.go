@@ -41,7 +41,7 @@ var PutGameRecordConcurrentHandlerV1Cmd = &cobra.Command{
 			Key:       key,
 			Namespace: namespace,
 		}
-		errInput := concurrentRecordService.PutGameRecordConcurrentHandlerV1Short(input, nil)
+		errInput := concurrentRecordService.PutGameRecordConcurrentHandlerV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

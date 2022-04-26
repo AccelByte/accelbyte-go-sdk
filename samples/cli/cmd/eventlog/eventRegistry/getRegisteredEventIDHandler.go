@@ -29,7 +29,7 @@ var GetRegisteredEventIDHandlerCmd = &cobra.Command{
 		input := &event_registry.GetRegisteredEventIDHandlerParams{
 			EventID: eventId,
 		}
-		ok, err := eventRegistryService.GetRegisteredEventIDHandlerShort(input, nil)
+		ok, err := eventRegistryService.GetRegisteredEventIDHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 

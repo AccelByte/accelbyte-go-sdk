@@ -45,7 +45,7 @@ var AdminUpdateContentDirectCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := adminContentService.AdminUpdateContentDirectShort(input, nil)
+		ok, err := adminContentService.AdminUpdateContentDirectShort(input)
 		if err != nil {
 			logrus.Error(err)
 

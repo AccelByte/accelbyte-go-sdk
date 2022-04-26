@@ -37,7 +37,7 @@ var GetLeaderboardConfigurationsPublicV1Cmd = &cobra.Command{
 			Limit:      &limit,
 			Offset:     &offset,
 		}
-		ok, err := leaderboardConfigurationService.GetLeaderboardConfigurationsPublicV1Short(input, nil)
+		ok, err := leaderboardConfigurationService.GetLeaderboardConfigurationsPublicV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

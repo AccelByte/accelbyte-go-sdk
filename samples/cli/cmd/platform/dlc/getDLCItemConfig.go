@@ -29,7 +29,7 @@ var GetDLCItemConfigCmd = &cobra.Command{
 		input := &d_l_c.GetDLCItemConfigParams{
 			Namespace: namespace,
 		}
-		ok, err := dlcService.GetDLCItemConfigShort(input, nil)
+		ok, err := dlcService.GetDLCItemConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

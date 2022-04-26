@@ -33,7 +33,7 @@ var DownloadCmd = &cobra.Command{
 			Namespace:  namespace,
 			BatchNo:    &batchNo,
 		}
-		errInput := campaignService.DownloadShort(input, nil)
+		errInput := campaignService.DownloadShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

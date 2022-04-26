@@ -37,7 +37,7 @@ var AdminGetGroupContentsCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := adminGroupService.AdminGetGroupContentsShort(input, nil)
+		ok, err := adminGroupService.AdminGetGroupContentsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

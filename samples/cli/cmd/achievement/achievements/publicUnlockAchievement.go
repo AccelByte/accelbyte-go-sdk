@@ -33,7 +33,7 @@ var PublicUnlockAchievementCmd = &cobra.Command{
 			Namespace:       namespace,
 			UserID:          userId,
 		}
-		errInput := achievementsService.PublicUnlockAchievementShort(input, nil)
+		errInput := achievementsService.PublicUnlockAchievementShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

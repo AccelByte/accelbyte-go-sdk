@@ -31,7 +31,7 @@ var GetCreatorCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := publicCreatorService.GetCreatorShort(input, nil)
+		ok, err := publicCreatorService.GetCreatorShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -41,7 +41,7 @@ var AdminUpdateAchievementCmd = &cobra.Command{
 			AchievementCode: achievementCode,
 			Namespace:       namespace,
 		}
-		ok, err := achievementsService.AdminUpdateAchievementShort(input, nil)
+		ok, err := achievementsService.AdminUpdateAchievementShort(input)
 		if err != nil {
 			logrus.Error(err)
 

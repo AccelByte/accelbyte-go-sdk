@@ -31,7 +31,7 @@ var DownloadContentByShareCodeCmd = &cobra.Command{
 			Namespace: namespace,
 			ShareCode: shareCode,
 		}
-		ok, err := publicContentService.DownloadContentByShareCodeShort(input, nil)
+		ok, err := publicContentService.DownloadContentByShareCodeShort(input)
 		if err != nil {
 			logrus.Error(err)
 

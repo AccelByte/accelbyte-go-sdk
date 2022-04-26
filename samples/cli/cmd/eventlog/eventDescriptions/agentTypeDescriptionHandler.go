@@ -26,7 +26,7 @@ var AgentTypeDescriptionHandlerCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &event_descriptions.AgentTypeDescriptionHandlerParams{}
-		ok, err := eventDescriptionsService.AgentTypeDescriptionHandlerShort(input, nil)
+		ok, err := eventDescriptionsService.AgentTypeDescriptionHandlerShort(input)
 		if err != nil {
 			logrus.Error(err)
 

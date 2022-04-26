@@ -31,7 +31,7 @@ var EnableCodeCmd = &cobra.Command{
 			Code:      code,
 			Namespace: namespace,
 		}
-		ok, err := campaignService.EnableCodeShort(input, nil)
+		ok, err := campaignService.EnableCodeShort(input)
 		if err != nil {
 			logrus.Error(err)
 

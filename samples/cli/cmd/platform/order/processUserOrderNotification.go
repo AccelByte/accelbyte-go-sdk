@@ -43,7 +43,7 @@ var ProcessUserOrderNotificationCmd = &cobra.Command{
 			OrderNo:   orderNo,
 			UserID:    userId,
 		}
-		errInput := orderService.ProcessUserOrderNotificationShort(input, nil)
+		errInput := orderService.ProcessUserOrderNotificationShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

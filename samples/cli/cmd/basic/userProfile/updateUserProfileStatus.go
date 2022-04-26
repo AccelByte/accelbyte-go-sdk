@@ -41,7 +41,7 @@ var UpdateUserProfileStatusCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := userProfileService.UpdateUserProfileStatusShort(input, nil)
+		ok, err := userProfileService.UpdateUserProfileStatusShort(input)
 		if err != nil {
 			logrus.Error(err)
 

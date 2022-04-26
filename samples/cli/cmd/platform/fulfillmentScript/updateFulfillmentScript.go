@@ -39,7 +39,7 @@ var UpdateFulfillmentScriptCmd = &cobra.Command{
 			Body: body,
 			ID:   id_,
 		}
-		ok, err := fulfillmentScriptService.UpdateFulfillmentScriptShort(input, nil)
+		ok, err := fulfillmentScriptService.UpdateFulfillmentScriptShort(input)
 		if err != nil {
 			logrus.Error(err)
 

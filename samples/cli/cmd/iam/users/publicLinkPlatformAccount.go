@@ -41,7 +41,7 @@ var PublicLinkPlatformAccountCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := usersService.PublicLinkPlatformAccountShort(input, nil)
+		errInput := usersService.PublicLinkPlatformAccountShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

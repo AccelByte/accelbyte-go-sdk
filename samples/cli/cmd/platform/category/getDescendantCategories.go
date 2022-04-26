@@ -33,7 +33,7 @@ var GetDescendantCategoriesCmd = &cobra.Command{
 			Namespace:    namespace,
 			StoreID:      &storeId,
 		}
-		ok, err := categoryService.GetDescendantCategoriesShort(input, nil)
+		ok, err := categoryService.GetDescendantCategoriesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

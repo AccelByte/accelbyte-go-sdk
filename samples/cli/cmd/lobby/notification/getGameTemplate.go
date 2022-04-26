@@ -29,7 +29,7 @@ var GetGameTemplateCmd = &cobra.Command{
 		input := &notification.GetGameTemplateParams{
 			Namespace: namespace,
 		}
-		ok, err := notificationService.GetGameTemplateShort(input, nil)
+		ok, err := notificationService.GetGameTemplateShort(input)
 		if err != nil {
 			logrus.Error(err)
 

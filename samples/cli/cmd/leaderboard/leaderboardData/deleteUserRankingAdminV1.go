@@ -33,7 +33,7 @@ var DeleteUserRankingAdminV1Cmd = &cobra.Command{
 			Namespace:       namespace,
 			UserID:          userId,
 		}
-		errInput := leaderboardDataService.DeleteUserRankingAdminV1Short(input, nil)
+		errInput := leaderboardDataService.DeleteUserRankingAdminV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

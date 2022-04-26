@@ -29,7 +29,7 @@ var AdminGetProfanityRuleCmd = &cobra.Command{
 		input := &profanity.AdminGetProfanityRuleParams{
 			Namespace: namespace,
 		}
-		ok, err := profanityService.AdminGetProfanityRuleShort(input, nil)
+		ok, err := profanityService.AdminGetProfanityRuleShort(input)
 		if err != nil {
 			logrus.Error(err)
 

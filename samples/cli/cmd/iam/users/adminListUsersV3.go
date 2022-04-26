@@ -33,7 +33,7 @@ var AdminListUsersV3Cmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := usersService.AdminListUsersV3Short(input, nil)
+		ok, err := usersService.AdminListUsersV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 

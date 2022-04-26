@@ -31,7 +31,7 @@ var GetServerCmd = &cobra.Command{
 			Namespace: namespace,
 			PodName:   podName,
 		}
-		ok, err := adminService.GetServerShort(input, nil)
+		ok, err := adminService.GetServerShort(input)
 		if err != nil {
 			logrus.Error(err)
 

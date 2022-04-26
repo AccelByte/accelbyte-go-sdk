@@ -31,7 +31,7 @@ var QueryAllUserIAPOrdersCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := iapService.QueryAllUserIAPOrdersShort(input, nil)
+		ok, err := iapService.QueryAllUserIAPOrdersShort(input)
 		if err != nil {
 			logrus.Error(err)
 

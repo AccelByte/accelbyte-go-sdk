@@ -47,7 +47,7 @@ var UpdateXblBPCertFileCmd = &cobra.Command{
 			Namespace:  namespace,
 			HTTPClient: httpClient,
 		}
-		ok, err := iapService.UpdateXblBPCertFileShort(input, nil)
+		ok, err := iapService.UpdateXblBPCertFileShort(input)
 		if err != nil {
 			logrus.Error(err)
 

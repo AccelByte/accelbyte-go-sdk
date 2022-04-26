@@ -31,7 +31,7 @@ var DownloadServerLogsCmd = &cobra.Command{
 			Namespace: namespace,
 			PodName:   podName,
 		}
-		errInput := terminatedServersService.DownloadServerLogsShort(input, nil)
+		errInput := terminatedServersService.DownloadServerLogsShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

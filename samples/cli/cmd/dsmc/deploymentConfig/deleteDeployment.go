@@ -31,7 +31,7 @@ var DeleteDeploymentCmd = &cobra.Command{
 			Deployment: deployment,
 			Namespace:  namespace,
 		}
-		errInput := deploymentConfigService.DeleteDeploymentShort(input, nil)
+		errInput := deploymentConfigService.DeleteDeploymentShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -39,7 +39,7 @@ var AddCountryGroupCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := miscService.AddCountryGroupShort(input, nil)
+		ok, err := miscService.AddCountryGroupShort(input)
 		if err != nil {
 			logrus.Error(err)
 

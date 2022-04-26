@@ -41,7 +41,7 @@ var CheckSeasonPurchasableCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := seasonService.CheckSeasonPurchasableShort(input, nil)
+		errInput := seasonService.CheckSeasonPurchasableShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

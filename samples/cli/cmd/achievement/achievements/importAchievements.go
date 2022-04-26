@@ -47,7 +47,7 @@ var ImportAchievementsCmd = &cobra.Command{
 			Namespace:  namespace,
 			HTTPClient: httpClient,
 		}
-		ok, err := achievementsService.ImportAchievementsShort(input, nil)
+		ok, err := achievementsService.ImportAchievementsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

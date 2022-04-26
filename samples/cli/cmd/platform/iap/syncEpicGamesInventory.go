@@ -41,7 +41,7 @@ var SyncEpicGamesInventoryCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := iapService.SyncEpicGamesInventoryShort(input, nil)
+		ok, err := iapService.SyncEpicGamesInventoryShort(input)
 		if err != nil {
 			logrus.Error(err)
 

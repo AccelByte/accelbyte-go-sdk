@@ -41,7 +41,7 @@ var SyncTwitchDropsEntitlementCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := iapService.SyncTwitchDropsEntitlementShort(input, nil)
+		errInput := iapService.SyncTwitchDropsEntitlementShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

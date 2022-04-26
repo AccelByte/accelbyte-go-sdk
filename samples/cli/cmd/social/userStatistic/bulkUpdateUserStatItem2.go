@@ -43,7 +43,7 @@ var BulkUpdateUserStatItem2Cmd = &cobra.Command{
 			UserID:        userId,
 			AdditionalKey: &additionalKey,
 		}
-		ok, err := userStatisticService.BulkUpdateUserStatItem2Short(input, nil)
+		ok, err := userStatisticService.BulkUpdateUserStatItem2Short(input)
 		if err != nil {
 			logrus.Error(err)
 

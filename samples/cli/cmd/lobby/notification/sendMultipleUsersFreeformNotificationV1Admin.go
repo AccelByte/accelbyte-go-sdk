@@ -39,7 +39,7 @@ var SendMultipleUsersFreeformNotificationV1AdminCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := notificationService.SendMultipleUsersFreeformNotificationV1AdminShort(input, nil)
+		errInput := notificationService.SendMultipleUsersFreeformNotificationV1AdminShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

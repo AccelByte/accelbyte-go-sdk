@@ -39,7 +39,7 @@ var AdminGetListDeletionDataRequestCmd = &cobra.Command{
 			Offset:      &offset,
 			RequestDate: &requestDate,
 		}
-		ok, err := dataDeletionService.AdminGetListDeletionDataRequestShort(input, nil)
+		ok, err := dataDeletionService.AdminGetListDeletionDataRequestShort(input)
 		if err != nil {
 			logrus.Error(err)
 

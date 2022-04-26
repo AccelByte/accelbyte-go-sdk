@@ -33,7 +33,7 @@ var PublicGetAchievementCmd = &cobra.Command{
 			Namespace:       namespace,
 			Language:        language,
 		}
-		ok, err := achievementsService.PublicGetAchievementShort(input, nil)
+		ok, err := achievementsService.PublicGetAchievementShort(input)
 		if err != nil {
 			logrus.Error(err)
 

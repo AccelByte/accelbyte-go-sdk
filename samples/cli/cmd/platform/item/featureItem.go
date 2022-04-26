@@ -35,7 +35,7 @@ var FeatureItemCmd = &cobra.Command{
 			Namespace: namespace,
 			StoreID:   storeId,
 		}
-		ok, err := itemService.FeatureItemShort(input, nil)
+		ok, err := itemService.FeatureItemShort(input)
 		if err != nil {
 			logrus.Error(err)
 

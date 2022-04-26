@@ -37,7 +37,7 @@ var TestWxPayConfigCmd = &cobra.Command{
 		input := &payment_config.TestWxPayConfigParams{
 			Body: body,
 		}
-		ok, err := paymentConfigService.TestWxPayConfigShort(input, nil)
+		ok, err := paymentConfigService.TestWxPayConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

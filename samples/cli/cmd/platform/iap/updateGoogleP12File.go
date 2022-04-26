@@ -45,7 +45,7 @@ var UpdateGoogleP12FileCmd = &cobra.Command{
 			Namespace:  namespace,
 			HTTPClient: httpClient,
 		}
-		ok, err := iapService.UpdateGoogleP12FileShort(input, nil)
+		ok, err := iapService.UpdateGoogleP12FileShort(input)
 		if err != nil {
 			logrus.Error(err)
 

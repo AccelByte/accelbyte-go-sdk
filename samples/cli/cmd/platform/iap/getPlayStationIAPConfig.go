@@ -29,7 +29,7 @@ var GetPlayStationIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.GetPlayStationIAPConfigParams{
 			Namespace: namespace,
 		}
-		ok, err := iapService.GetPlayStationIAPConfigShort(input, nil)
+		ok, err := iapService.GetPlayStationIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

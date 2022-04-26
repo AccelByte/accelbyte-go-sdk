@@ -41,7 +41,7 @@ var UpdateStatCmd = &cobra.Command{
 			Namespace: namespace,
 			StatCode:  statCode,
 		}
-		ok, err := statConfigurationService.UpdateStatShort(input, nil)
+		ok, err := statConfigurationService.UpdateStatShort(input)
 		if err != nil {
 			logrus.Error(err)
 

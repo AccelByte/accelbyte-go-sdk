@@ -43,7 +43,7 @@ var UpdatePassCmd = &cobra.Command{
 			Namespace: namespace,
 			SeasonID:  seasonId,
 		}
-		ok, err := passService.UpdatePassShort(input, nil)
+		ok, err := passService.UpdatePassShort(input)
 		if err != nil {
 			logrus.Error(err)
 

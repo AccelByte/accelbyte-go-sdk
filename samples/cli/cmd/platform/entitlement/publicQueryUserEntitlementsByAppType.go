@@ -37,7 +37,7 @@ var PublicQueryUserEntitlementsByAppTypeCmd = &cobra.Command{
 			Offset:    &offset,
 			AppType:   appType,
 		}
-		ok, err := entitlementService.PublicQueryUserEntitlementsByAppTypeShort(input, nil)
+		ok, err := entitlementService.PublicQueryUserEntitlementsByAppTypeShort(input)
 		if err != nil {
 			logrus.Error(err)
 

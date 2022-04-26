@@ -45,7 +45,7 @@ var UpdateStadiaJsonConfigFileCmd = &cobra.Command{
 			Namespace:  namespace,
 			HTTPClient: httpClient,
 		}
-		ok, err := iapService.UpdateStadiaJSONConfigFileShort(input, nil)
+		ok, err := iapService.UpdateStadiaJSONConfigFileShort(input)
 		if err != nil {
 			logrus.Error(err)
 

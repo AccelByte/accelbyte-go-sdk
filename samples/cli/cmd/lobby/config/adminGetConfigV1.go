@@ -29,7 +29,7 @@ var AdminGetConfigV1Cmd = &cobra.Command{
 		input := &config.AdminGetConfigV1Params{
 			Namespace: namespace,
 		}
-		ok, err := configService.AdminGetConfigV1Short(input, nil)
+		ok, err := configService.AdminGetConfigV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

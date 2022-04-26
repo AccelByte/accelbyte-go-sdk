@@ -29,7 +29,7 @@ var AdminExportConfigV1Cmd = &cobra.Command{
 		input := &config.AdminExportConfigV1Params{
 			Namespace: namespace,
 		}
-		ok, err := configService.AdminExportConfigV1Short(input, nil)
+		ok, err := configService.AdminExportConfigV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

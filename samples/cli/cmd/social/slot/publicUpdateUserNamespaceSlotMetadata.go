@@ -43,7 +43,7 @@ var PublicUpdateUserNamespaceSlotMetadataCmd = &cobra.Command{
 			SlotID:    slotId,
 			UserID:    userId,
 		}
-		ok, err := slotService.PublicUpdateUserNamespaceSlotMetadataShort(input, nil)
+		ok, err := slotService.PublicUpdateUserNamespaceSlotMetadataShort(input)
 		if err != nil {
 			logrus.Error(err)
 

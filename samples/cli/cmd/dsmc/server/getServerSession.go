@@ -31,7 +31,7 @@ var GetServerSessionCmd = &cobra.Command{
 			Namespace: namespace,
 			PodName:   podName,
 		}
-		ok, err := serverService.GetServerSessionShort(input, nil)
+		ok, err := serverService.GetServerSessionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

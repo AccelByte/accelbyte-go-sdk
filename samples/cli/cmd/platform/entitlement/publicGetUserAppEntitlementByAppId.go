@@ -33,7 +33,7 @@ var PublicGetUserAppEntitlementByAppIdCmd = &cobra.Command{
 			UserID:    userId,
 			AppID:     appId,
 		}
-		ok, err := entitlementService.PublicGetUserAppEntitlementByAppIDShort(input, nil)
+		ok, err := entitlementService.PublicGetUserAppEntitlementByAppIDShort(input)
 		if err != nil {
 			logrus.Error(err)
 

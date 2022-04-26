@@ -41,7 +41,7 @@ var UpdateContentLikeStatusCmd = &cobra.Command{
 			ContentID: contentId,
 			Namespace: namespace,
 		}
-		ok, err := publicLikeService.UpdateContentLikeStatusShort(input, nil)
+		ok, err := publicLikeService.UpdateContentLikeStatusShort(input)
 		if err != nil {
 			logrus.Error(err)
 

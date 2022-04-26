@@ -31,7 +31,7 @@ func TestIntegrationPostGameRecordHandlerV1(t *testing.T) {
 		Key:       key,
 		Namespace: integration.NamespaceTest,
 	}
-	err := publicGameRecordService.PostGameRecordHandlerV1Short(input, nil)
+	err := publicGameRecordService.PostGameRecordHandlerV1Short(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
@@ -46,7 +46,7 @@ func TestIntegrationDeleteGameRecordHandlerV1(t *testing.T) {
 		Key:       key,
 		Namespace: integration.NamespaceTest,
 	}
-	err := publicGameRecordService.DeleteGameRecordHandlerV1Short(input, nil)
+	err := publicGameRecordService.DeleteGameRecordHandlerV1Short(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
@@ -62,7 +62,7 @@ func TestIntegrationGetGameRecordHandlerV1(t *testing.T) {
 		Key:       key,
 		Namespace: integration.NamespaceTest,
 	}
-	err := publicGameRecordService.PostGameRecordHandlerV1Short(input, nil)
+	err := publicGameRecordService.PostGameRecordHandlerV1Short(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
@@ -71,7 +71,7 @@ func TestIntegrationGetGameRecordHandlerV1(t *testing.T) {
 		Key:       key,
 		Namespace: integration.NamespaceTest,
 	}
-	ok, errOk := publicGameRecordService.GetGameRecordHandlerV1Short(inputRecord, nil)
+	ok, errOk := publicGameRecordService.GetGameRecordHandlerV1Short(inputRecord)
 	if errOk != nil {
 		assert.FailNow(t, errOk.Error())
 	}
@@ -88,7 +88,7 @@ func TestIntegrationPutGameRecordHandlerV1(t *testing.T) {
 		Key:       key,
 		Namespace: integration.NamespaceTest,
 	}
-	err := publicGameRecordService.PutGameRecordHandlerV1Short(input, nil)
+	err := publicGameRecordService.PutGameRecordHandlerV1Short(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
@@ -97,7 +97,7 @@ func TestIntegrationPutGameRecordHandlerV1(t *testing.T) {
 		Key:       key,
 		Namespace: integration.NamespaceTest,
 	}
-	errDelete := publicGameRecordService.DeleteGameRecordHandlerV1Short(inputDelete, nil)
+	errDelete := publicGameRecordService.DeleteGameRecordHandlerV1Short(inputDelete)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}

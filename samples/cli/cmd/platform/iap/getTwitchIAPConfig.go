@@ -29,7 +29,7 @@ var GetTwitchIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.GetTwitchIAPConfigParams{
 			Namespace: namespace,
 		}
-		ok, err := iapService.GetTwitchIAPConfigShort(input, nil)
+		ok, err := iapService.GetTwitchIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

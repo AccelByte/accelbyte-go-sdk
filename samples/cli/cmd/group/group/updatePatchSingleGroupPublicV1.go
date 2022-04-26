@@ -41,7 +41,7 @@ var UpdatePatchSingleGroupPublicV1Cmd = &cobra.Command{
 			GroupID:   groupId,
 			Namespace: namespace,
 		}
-		ok, err := groupService.UpdatePatchSingleGroupPublicV1Short(input, nil)
+		ok, err := groupService.UpdatePatchSingleGroupPublicV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

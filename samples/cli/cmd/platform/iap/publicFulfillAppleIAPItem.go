@@ -41,7 +41,7 @@ var PublicFulfillAppleIAPItemCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := iapService.PublicFulfillAppleIAPItemShort(input, nil)
+		errInput := iapService.PublicFulfillAppleIAPItemShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

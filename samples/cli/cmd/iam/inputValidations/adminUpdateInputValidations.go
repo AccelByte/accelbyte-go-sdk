@@ -37,7 +37,7 @@ var AdminUpdateInputValidationsCmd = &cobra.Command{
 		input := &input_validations.AdminUpdateInputValidationsParams{
 			Body: body,
 		}
-		errInput := inputValidationsService.AdminUpdateInputValidationsShort(input, nil)
+		errInput := inputValidationsService.AdminUpdateInputValidationsShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

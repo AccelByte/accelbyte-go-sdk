@@ -31,7 +31,7 @@ var GetUserNamespaceSlotsCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := slotService.GetUserNamespaceSlotsShort(input, nil)
+		ok, err := slotService.GetUserNamespaceSlotsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -41,7 +41,7 @@ var AdminDisableUserV2Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := usersService.AdminDisableUserV2Short(input, nil)
+		errInput := usersService.AdminDisableUserV2Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -39,7 +39,7 @@ var AdminDebugProfanityFiltersCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := profanityService.AdminDebugProfanityFiltersShort(input, nil)
+		ok, err := profanityService.AdminDebugProfanityFiltersShort(input)
 		if err != nil {
 			logrus.Error(err)
 

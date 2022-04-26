@@ -45,7 +45,7 @@ var CreateOverrideRegionOverrideCmd = &cobra.Command{
 			Region:     region,
 			Version:    version,
 		}
-		ok, err := deploymentConfigService.CreateOverrideRegionOverrideShort(input, nil)
+		ok, err := deploymentConfigService.CreateOverrideRegionOverrideShort(input)
 		if err != nil {
 			logrus.Error(err)
 

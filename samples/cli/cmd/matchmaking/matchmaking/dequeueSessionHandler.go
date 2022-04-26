@@ -39,7 +39,7 @@ var DequeueSessionHandlerCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := matchmakingService.DequeueSessionHandlerShort(input, nil)
+		errInput := matchmakingService.DequeueSessionHandlerShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

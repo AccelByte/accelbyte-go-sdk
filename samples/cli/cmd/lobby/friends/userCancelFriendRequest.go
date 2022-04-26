@@ -39,7 +39,7 @@ var UserCancelFriendRequestCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		errInput := friendsService.UserCancelFriendRequestShort(input, nil)
+		errInput := friendsService.UserCancelFriendRequestShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

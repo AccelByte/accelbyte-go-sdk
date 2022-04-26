@@ -37,7 +37,7 @@ var CreatePaymentProviderConfigCmd = &cobra.Command{
 		input := &payment_config.CreatePaymentProviderConfigParams{
 			Body: body,
 		}
-		ok, err := paymentConfigService.CreatePaymentProviderConfigShort(input, nil)
+		ok, err := paymentConfigService.CreatePaymentProviderConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

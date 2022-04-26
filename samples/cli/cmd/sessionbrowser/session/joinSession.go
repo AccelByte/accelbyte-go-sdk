@@ -41,7 +41,7 @@ var JoinSessionCmd = &cobra.Command{
 			Namespace: namespace,
 			SessionID: sessionID,
 		}
-		ok, err := sessionService.JoinSessionShort(input, nil)
+		ok, err := sessionService.JoinSessionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

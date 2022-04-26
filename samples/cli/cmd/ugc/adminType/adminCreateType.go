@@ -39,7 +39,7 @@ var AdminCreateTypeCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := adminTypeService.AdminCreateTypeShort(input, nil)
+		ok, err := adminTypeService.AdminCreateTypeShort(input)
 		if err != nil {
 			logrus.Error(err)
 

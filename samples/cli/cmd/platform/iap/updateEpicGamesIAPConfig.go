@@ -39,7 +39,7 @@ var UpdateEpicGamesIAPConfigCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := iapService.UpdateEpicGamesIAPConfigShort(input, nil)
+		ok, err := iapService.UpdateEpicGamesIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -37,7 +37,7 @@ var PublicListAchievementsCmd = &cobra.Command{
 			SortBy:    &sortBy,
 			Language:  language,
 		}
-		ok, err := achievementsService.PublicListAchievementsShort(input, nil)
+		ok, err := achievementsService.PublicListAchievementsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -29,7 +29,7 @@ var PublicGetPlayerBlockedByPlayersV1Cmd = &cobra.Command{
 		input := &player.PublicGetPlayerBlockedByPlayersV1Params{
 			Namespace: namespace,
 		}
-		ok, err := playerService.PublicGetPlayerBlockedByPlayersV1Short(input, nil)
+		ok, err := playerService.PublicGetPlayerBlockedByPlayersV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -39,7 +39,7 @@ var GetUserSubscriptionActivitiesCmd = &cobra.Command{
 			Offset:         &offset,
 			SubscriptionID: &subscriptionId,
 		}
-		ok, err := subscriptionService.GetUserSubscriptionActivitiesShort(input, nil)
+		ok, err := subscriptionService.GetUserSubscriptionActivitiesShort(input)
 		if err != nil {
 			logrus.Error(err)
 

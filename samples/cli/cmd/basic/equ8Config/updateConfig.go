@@ -39,7 +39,7 @@ var UpdateConfigCmd = &cobra.Command{
 			Body:      body,
 			Namespace: namespace,
 		}
-		ok, err := equ8ConfigService.UpdateConfigShort(input, nil)
+		ok, err := equ8ConfigService.UpdateConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

@@ -31,7 +31,7 @@ var BulkGetSessionsCmd = &cobra.Command{
 			Namespace: namespace,
 			MatchIDs:  &matchIDs,
 		}
-		ok, err := matchmakingService.BulkGetSessionsShort(input, nil)
+		ok, err := matchmakingService.BulkGetSessionsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

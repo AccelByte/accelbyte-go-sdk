@@ -41,7 +41,7 @@ var AdminBulkBlockPlayersV1Cmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		errInput := playerService.AdminBulkBlockPlayersV1Short(input, nil)
+		errInput := playerService.AdminBulkBlockPlayersV1Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

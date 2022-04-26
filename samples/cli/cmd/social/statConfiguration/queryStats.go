@@ -35,7 +35,7 @@ var QueryStatsCmd = &cobra.Command{
 			Offset:    &offset,
 			Keyword:   keyword,
 		}
-		ok, err := statConfigurationService.QueryStatsShort(input, nil)
+		ok, err := statConfigurationService.QueryStatsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

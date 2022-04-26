@@ -33,7 +33,7 @@ var GetGroupInvitationRequestPublicV1Cmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := memberRequestService.GetGroupInvitationRequestPublicV1Short(input, nil)
+		ok, err := memberRequestService.GetGroupInvitationRequestPublicV1Short(input)
 		if err != nil {
 			logrus.Error(err)
 

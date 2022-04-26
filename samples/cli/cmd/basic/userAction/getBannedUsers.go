@@ -38,7 +38,7 @@ var GetBannedUsersCmd = &cobra.Command{
 			Namespace: namespace,
 			UserIds:   userIds,
 		}
-		ok, err := userActionService.GetBannedUsersShort(input, nil)
+		ok, err := userActionService.GetBannedUsersShort(input)
 		if err != nil {
 			logrus.Error(err)
 

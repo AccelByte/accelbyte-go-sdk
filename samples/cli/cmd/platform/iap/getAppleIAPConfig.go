@@ -29,7 +29,7 @@ var GetAppleIAPConfigCmd = &cobra.Command{
 		input := &i_a_p.GetAppleIAPConfigParams{
 			Namespace: namespace,
 		}
-		ok, err := iapService.GetAppleIAPConfigShort(input, nil)
+		ok, err := iapService.GetAppleIAPConfigShort(input)
 		if err != nil {
 			logrus.Error(err)
 

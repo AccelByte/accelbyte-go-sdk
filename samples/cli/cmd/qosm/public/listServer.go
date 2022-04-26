@@ -26,7 +26,7 @@ var ListServerCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		input := &public.ListServerParams{}
-		ok, err := publicService.ListServerShort(input, nil)
+		ok, err := publicService.ListServerShort(input)
 		if err != nil {
 			logrus.Error(err)
 

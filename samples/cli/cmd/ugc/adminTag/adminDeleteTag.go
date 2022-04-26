@@ -31,7 +31,7 @@ var AdminDeleteTagCmd = &cobra.Command{
 			Namespace: namespace,
 			TagID:     tagId,
 		}
-		errInput := adminTagService.AdminDeleteTagShort(input, nil)
+		errInput := adminTagService.AdminDeleteTagShort(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

@@ -31,7 +31,7 @@ var GetTicketDynamicCmd = &cobra.Command{
 			BoothName: boothName,
 			Namespace: namespace,
 		}
-		ok, err := ticketService.GetTicketDynamicShort(input, nil)
+		ok, err := ticketService.GetTicketDynamicShort(input)
 		if err != nil {
 			logrus.Error(err)
 

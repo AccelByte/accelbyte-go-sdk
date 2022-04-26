@@ -35,7 +35,7 @@ var AdminListAchievementsCmd = &cobra.Command{
 			Offset:    &offset,
 			SortBy:    &sortBy,
 		}
-		ok, err := achievementsService.AdminListAchievementsShort(input, nil)
+		ok, err := achievementsService.AdminListAchievementsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

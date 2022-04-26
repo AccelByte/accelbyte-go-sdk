@@ -41,7 +41,7 @@ var UpdateSessionCmd = &cobra.Command{
 			Namespace: namespace,
 			SessionID: sessionID,
 		}
-		ok, err := sessionService.UpdateSessionShort(input, nil)
+		ok, err := sessionService.UpdateSessionShort(input)
 		if err != nil {
 			logrus.Error(err)
 

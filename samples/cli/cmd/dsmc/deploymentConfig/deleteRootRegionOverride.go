@@ -33,7 +33,7 @@ var DeleteRootRegionOverrideCmd = &cobra.Command{
 			Namespace:  namespace,
 			Region:     region,
 		}
-		ok, err := deploymentConfigService.DeleteRootRegionOverrideShort(input, nil)
+		ok, err := deploymentConfigService.DeleteRootRegionOverrideShort(input)
 		if err != nil {
 			logrus.Error(err)
 

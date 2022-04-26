@@ -41,7 +41,7 @@ var PublicCreateUserProfileCmd = &cobra.Command{
 			Namespace: namespace,
 			UserID:    userId,
 		}
-		ok, err := userProfileService.PublicCreateUserProfileShort(input, nil)
+		ok, err := userProfileService.PublicCreateUserProfileShort(input)
 		if err != nil {
 			logrus.Error(err)
 

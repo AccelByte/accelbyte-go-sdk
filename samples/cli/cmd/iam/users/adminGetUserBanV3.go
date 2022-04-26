@@ -39,7 +39,7 @@ var AdminGetUserBanV3Cmd = &cobra.Command{
 			Before:     &before,
 			Limit:      &limit,
 		}
-		ok, err := usersService.AdminGetUserBanV3Short(input, nil)
+		ok, err := usersService.AdminGetUserBanV3Short(input)
 		if err != nil {
 			logrus.Error(err)
 

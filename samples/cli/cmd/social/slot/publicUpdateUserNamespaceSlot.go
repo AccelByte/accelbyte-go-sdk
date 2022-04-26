@@ -63,7 +63,7 @@ var PublicUpdateUserNamespaceSlotCmd = &cobra.Command{
 			Tags:            tags,
 			HTTPClient:      httpClient,
 		}
-		ok, err := slotService.PublicUpdateUserNamespaceSlotShort(input, nil)
+		ok, err := slotService.PublicUpdateUserNamespaceSlotShort(input)
 		if err != nil {
 			logrus.Error(err)
 

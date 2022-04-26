@@ -44,7 +44,7 @@ func TestIntegrationProtectedSaveEventsGameTelemetryV1ProtectedEventsPost(t *tes
 	input := &gametelemetry_operations.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostParams{
 		Body: telemetryBodyArray,
 	}
-	err := gameTelemetryOperationsService.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(input, nil)
+	err := gameTelemetryOperationsService.ProtectedSaveEventsGameTelemetryV1ProtectedEventsPostShort(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
@@ -59,7 +59,7 @@ func TestIntegrationProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDP
 	input := &gametelemetry_operations.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetParams{
 		SteamID: "76561199259217491",
 	}
-	ok, err := gameTelemetryOperationsService.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input, nil)
+	ok, err := gameTelemetryOperationsService.ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimeGetShort(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}
@@ -76,7 +76,7 @@ func TestIntegrationProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteam
 		Playtime: "4",
 		SteamID:  "76561199259217491",
 	}
-	err := gameTelemetryOperationsService.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input, nil)
+	err := gameTelemetryOperationsService.ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIDPlaytimePlaytimePutShort(input)
 	if err != nil {
 		assert.FailNow(t, err.Error())
 	}

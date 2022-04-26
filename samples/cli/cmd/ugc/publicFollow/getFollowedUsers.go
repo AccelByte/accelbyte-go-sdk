@@ -33,7 +33,7 @@ var GetFollowedUsersCmd = &cobra.Command{
 			Limit:     &limit,
 			Offset:    &offset,
 		}
-		ok, err := publicFollowService.GetFollowedUsersShort(input, nil)
+		ok, err := publicFollowService.GetFollowedUsersShort(input)
 		if err != nil {
 			logrus.Error(err)
 

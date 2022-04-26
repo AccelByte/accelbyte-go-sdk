@@ -37,7 +37,7 @@ var AdminMakeFactorMyDefaultV4Cmd = &cobra.Command{
 			Factor:     factor,
 			HTTPClient: httpClient,
 		}
-		errInput := usersV4Service.AdminMakeFactorMyDefaultV4Short(input, nil)
+		errInput := usersV4Service.AdminMakeFactorMyDefaultV4Short(input)
 		if errInput != nil {
 			logrus.Error(errInput)
 

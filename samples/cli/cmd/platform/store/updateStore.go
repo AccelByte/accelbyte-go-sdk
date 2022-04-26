@@ -41,7 +41,7 @@ var UpdateStoreCmd = &cobra.Command{
 			Namespace: namespace,
 			StoreID:   storeId,
 		}
-		ok, err := storeService.UpdateStoreShort(input, nil)
+		ok, err := storeService.UpdateStoreShort(input)
 		if err != nil {
 			logrus.Error(err)
 

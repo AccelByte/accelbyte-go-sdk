@@ -33,7 +33,7 @@ var RetrievePolicyVersionsCmd = &cobra.Command{
 			LocaleID:     &localeId,
 			Namespace:    &namespace,
 		}
-		ok, err := policyVersionsService.RetrievePolicyVersionsShort(input, nil)
+		ok, err := policyVersionsService.RetrievePolicyVersionsShort(input)
 		if err != nil {
 			logrus.Error(err)
 

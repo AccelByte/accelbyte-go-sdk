@@ -4,6 +4,8 @@
 # This is licensed software from AccelByte Inc, for limitations
 # and restrictions contact your company contract manager.
 
+# Code generated. DO NOT EDIT.
+
 # Meta:
 # - random seed: 256
 # - template file: go-cli-unit-test.j2
@@ -55,31 +57,36 @@ touch "tmp.dat"
 
 #- 2 AdminGetEventsGameTelemetryV1AdminEventsGet
 samples/cli/sample-apps Gametelemetry adminGetEventsGameTelemetryV1AdminEventsGet \
-    --namespace 'FtBxyZcD' \
+    --cookie 'FtBxyZcD' \
+    --namespace 'XBpGlsQu' \
     > test.out 2>&1
 eval_tap $? 2 'AdminGetEventsGameTelemetryV1AdminEventsGet' test.out
 
 #- 3 AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGet
 samples/cli/sample-apps Gametelemetry adminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGet \
+    --cookie 'Ju8vMf0I' \
     > test.out 2>&1
 eval_tap $? 3 'AdminGetNamespaceGameTelemetryV1AdminTelemetrynamespaceGet' test.out
 
 #- 4 ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost
 samples/cli/sample-apps Gametelemetry protectedSaveEventsGameTelemetryV1ProtectedEventsPost \
-    --body '[{"EventId": "XBpGlsQu", "EventName": "Ju8vMf0I", "EventNamespace": "sJkTrd8I", "EventTimestamp": "1985-01-15T00:00:00Z", "Payload": {"V2zXnTKj": {}}}]' \
+    --body '[{"EventId": "sJkTrd8I", "EventName": "DcV2zXnT", "EventNamespace": "KjXY1bPq", "EventTimestamp": "1971-04-09T00:00:00Z", "Payload": {"iBxx9Cs1": {}}}]' \
+    --cookie '8EY84ekI' \
     > test.out 2>&1
 eval_tap $? 4 'ProtectedSaveEventsGameTelemetryV1ProtectedEventsPost' test.out
 
 #- 5 ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGet
 samples/cli/sample-apps Gametelemetry protectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGet \
-    --steamId 'XY1bPqam' \
+    --cookie 'tqRzHU1o' \
+    --steamId 'h570KQBV' \
     > test.out 2>&1
 eval_tap $? 5 'ProtectedGetPlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimeGet' test.out
 
 #- 6 ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePut
 samples/cli/sample-apps Gametelemetry protectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePut \
-    --playtime 'iBxx9Cs1' \
-    --steamId '8EY84ekI' \
+    --cookie 'aewc72kr' \
+    --playtime 'Sha68n3Y' \
+    --steamId 'nozp1C2K' \
     > test.out 2>&1
 eval_tap $? 6 'ProtectedUpdatePlaytimeGameTelemetryV1ProtectedSteamIdsSteamIdPlaytimePlaytimePut' test.out
 

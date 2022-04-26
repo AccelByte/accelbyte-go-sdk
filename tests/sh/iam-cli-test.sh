@@ -2204,20 +2204,21 @@ eval_tap $? 296 'PublicEnableMyBackupCodesV4' test.out
 
 #- 297 PublicRemoveTrustedDeviceV4
 samples/cli/sample-apps Iam publicRemoveTrustedDeviceV4 \
-    --namespace '4RS0FQRy' \
+    --cookie '4RS0FQRy' \
+    --namespace '5Qz5Vcyf' \
     > test.out 2>&1
 eval_tap $? 297 'PublicRemoveTrustedDeviceV4' test.out
 
 #- 298 PublicGetMyEnabledFactorsV4
 samples/cli/sample-apps Iam publicGetMyEnabledFactorsV4 \
-    --namespace '5Qz5Vcyf' \
+    --namespace 'BpHjtvFw' \
     > test.out 2>&1
 eval_tap $? 298 'PublicGetMyEnabledFactorsV4' test.out
 
 #- 299 PublicMakeFactorMyDefaultV4
 samples/cli/sample-apps Iam publicMakeFactorMyDefaultV4 \
-    --factor 'BpHjtvFw' \
-    --namespace 'KSJyZeqv' \
+    --factor 'KSJyZeqv' \
+    --namespace 'pevcVXTx' \
     > test.out 2>&1
 eval_tap $? 299 'PublicMakeFactorMyDefaultV4' test.out
 

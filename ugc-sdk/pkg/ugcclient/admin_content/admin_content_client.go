@@ -646,7 +646,7 @@ func (a *Client) AdminHideUserContentShort(params *AdminHideUserContentParams, a
 /*
   AdminSearchChannelSpecificContent searches contents specific to a channel
 
-  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [CREATE]&lt;/b&gt;
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]&lt;/b&gt;
 */
 func (a *Client) AdminSearchChannelSpecificContent(params *AdminSearchChannelSpecificContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchChannelSpecificContentOK, *AdminSearchChannelSpecificContentUnauthorized, *AdminSearchChannelSpecificContentNotFound, *AdminSearchChannelSpecificContentInternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -740,7 +740,7 @@ func (a *Client) AdminSearchChannelSpecificContentShort(params *AdminSearchChann
 /*
   AdminSearchContent searches contents
 
-  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [CREATE]&lt;/b&gt;
+  Required permission &lt;b&gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]&lt;/b&gt;
 */
 func (a *Client) AdminSearchContent(params *AdminSearchContentParams, authInfo runtime.ClientAuthInfoWriter) (*AdminSearchContentOK, *AdminSearchContentUnauthorized, *AdminSearchContentNotFound, *AdminSearchContentInternalServerError, error) {
 	// TODO: Validate the params before sending

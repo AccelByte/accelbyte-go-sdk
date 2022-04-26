@@ -76,7 +76,7 @@ Example
 
 &lt;h2&gt;Reserved Word&lt;/h2&gt;
 
-Reserved Word List: &lt;b&gt;META&lt;/b&gt;
+Reserved Word List: &lt;b&gt;__META&lt;/b&gt;
 
 The reserved word cannot be used as a field in record value,
 If still defining the field when creating or updating the record, it will be ignored.
@@ -237,10 +237,11 @@ Example
 
 &lt;h2&gt;Reserved Word&lt;/h2&gt;
 
-Reserved Word List: &lt;b&gt;META&lt;/b&gt;
+Reserved Word List: &lt;b&gt;__META&lt;/b&gt;
 
 The reserved word cannot be used as a field in record value,
 If still defining the field when creating or updating the record, it will be ignored.
+
 
 
 &lt;h2&gt;Parameters Notes &lt;/h2&gt;
@@ -261,11 +262,6 @@ If still defining the field when creating or updating the record, it will be ign
 	}
 &lt;/pre&gt;
 
-
-&lt;h2&gt;Warning: Current Behaviour when Updating Private Record&lt;/h2&gt;
-
-When updating existing &#34;Private Record&#34;, this endpoint will always &lt;b&gt;convert the &#34;Private Record&#34; into &#34;Public Record&#34;&lt;/b&gt;.
-This behaviour might be deprecated sooner, &lt;b&gt;please don&#39;t rely with that behaviour&lt;/b&gt;.
 
 &lt;h2&gt;Optimistic Concurrency Control&lt;/h2&gt;
 

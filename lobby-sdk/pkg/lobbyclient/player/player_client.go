@@ -35,7 +35,7 @@ type Client struct {
 type ClientService interface {
 	AdminBulkBlockPlayersV1(params *AdminBulkBlockPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkBlockPlayersV1NoContent, *AdminBulkBlockPlayersV1BadRequest, *AdminBulkBlockPlayersV1Unauthorized, *AdminBulkBlockPlayersV1Forbidden, *AdminBulkBlockPlayersV1InternalServerError, error)
 	AdminBulkBlockPlayersV1Short(params *AdminBulkBlockPlayersV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminBulkBlockPlayersV1NoContent, error)
-	AdminGetAllPlayerSessionAttribute(params *AdminGetAllPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllPlayerSessionAttributeOK, *AdminGetAllPlayerSessionAttributeBadRequest, *AdminGetAllPlayerSessionAttributeUnauthorized, *AdminGetAllPlayerSessionAttributeForbidden, *AdminGetAllPlayerSessionAttributeNotFound, *AdminGetAllPlayerSessionAttributeInternalServerError, error)
+	AdminGetAllPlayerSessionAttribute(params *AdminGetAllPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllPlayerSessionAttributeOK, *AdminGetAllPlayerSessionAttributeUnauthorized, *AdminGetAllPlayerSessionAttributeForbidden, *AdminGetAllPlayerSessionAttributeInternalServerError, error)
 	AdminGetAllPlayerSessionAttributeShort(params *AdminGetAllPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllPlayerSessionAttributeOK, error)
 	AdminGetLobbyCCU(params *AdminGetLobbyCCUParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetLobbyCCUOK, *AdminGetLobbyCCUBadRequest, *AdminGetLobbyCCUUnauthorized, *AdminGetLobbyCCUForbidden, *AdminGetLobbyCCUNotFound, *AdminGetLobbyCCUInternalServerError, error)
 	AdminGetLobbyCCUShort(params *AdminGetLobbyCCUParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetLobbyCCUOK, error)
@@ -161,7 +161,7 @@ func (a *Client) AdminBulkBlockPlayersV1Short(params *AdminBulkBlockPlayersV1Par
   Required permission : &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PLAYER:ATTRIBUTES [READ]&lt;/code&gt; with scope &lt;code&gt;social&lt;/code&gt;
 			&lt;br&gt;get all player&#39;s session attribute by user id in a namespace.
 */
-func (a *Client) AdminGetAllPlayerSessionAttribute(params *AdminGetAllPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllPlayerSessionAttributeOK, *AdminGetAllPlayerSessionAttributeBadRequest, *AdminGetAllPlayerSessionAttributeUnauthorized, *AdminGetAllPlayerSessionAttributeForbidden, *AdminGetAllPlayerSessionAttributeNotFound, *AdminGetAllPlayerSessionAttributeInternalServerError, error) {
+func (a *Client) AdminGetAllPlayerSessionAttribute(params *AdminGetAllPlayerSessionAttributeParams, authInfo runtime.ClientAuthInfoWriter) (*AdminGetAllPlayerSessionAttributeOK, *AdminGetAllPlayerSessionAttributeUnauthorized, *AdminGetAllPlayerSessionAttributeForbidden, *AdminGetAllPlayerSessionAttributeInternalServerError, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAdminGetAllPlayerSessionAttributeParams()
@@ -185,31 +185,25 @@ func (a *Client) AdminGetAllPlayerSessionAttribute(params *AdminGetAllPlayerSess
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, nil, nil, nil, nil, err
+		return nil, nil, nil, nil, err
 	}
 
 	switch v := result.(type) {
 
 	case *AdminGetAllPlayerSessionAttributeOK:
-		return v, nil, nil, nil, nil, nil, nil
-
-	case *AdminGetAllPlayerSessionAttributeBadRequest:
-		return nil, v, nil, nil, nil, nil, nil
+		return v, nil, nil, nil, nil
 
 	case *AdminGetAllPlayerSessionAttributeUnauthorized:
-		return nil, nil, v, nil, nil, nil, nil
+		return nil, v, nil, nil, nil
 
 	case *AdminGetAllPlayerSessionAttributeForbidden:
-		return nil, nil, nil, v, nil, nil, nil
-
-	case *AdminGetAllPlayerSessionAttributeNotFound:
-		return nil, nil, nil, nil, v, nil, nil
+		return nil, nil, v, nil, nil
 
 	case *AdminGetAllPlayerSessionAttributeInternalServerError:
-		return nil, nil, nil, nil, nil, v, nil
+		return nil, nil, nil, v, nil
 
 	default:
-		return nil, nil, nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
 	}
 }
 
@@ -244,13 +238,9 @@ func (a *Client) AdminGetAllPlayerSessionAttributeShort(params *AdminGetAllPlaye
 
 	case *AdminGetAllPlayerSessionAttributeOK:
 		return v, nil
-	case *AdminGetAllPlayerSessionAttributeBadRequest:
-		return nil, v
 	case *AdminGetAllPlayerSessionAttributeUnauthorized:
 		return nil, v
 	case *AdminGetAllPlayerSessionAttributeForbidden:
-		return nil, v
-	case *AdminGetAllPlayerSessionAttributeNotFound:
 		return nil, v
 	case *AdminGetAllPlayerSessionAttributeInternalServerError:
 		return nil, v

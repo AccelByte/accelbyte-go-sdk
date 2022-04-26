@@ -270,9 +270,9 @@ Example 2
 &lt;h2&gt;Record Metadata&lt;/h2&gt;
 
 Metadata allows user to define the behaviour of the record.
-Metadata can be defined in request body with field name &lt;b&gt;META&lt;/b&gt;.
-When creating record, if &lt;b&gt;META&lt;/b&gt; field is not defined, the metadata value will use the default value.
-When updating record, if &lt;b&gt;META&lt;/b&gt; field is not defined, the existing metadata value will stay as is.
+Metadata can be defined in request body with field name &lt;b&gt;__META&lt;/b&gt;.
+When creating record, if &lt;b&gt;__META&lt;/b&gt; field is not defined, the metadata value will use the default value.
+When updating record, if &lt;b&gt;__META&lt;/b&gt; field is not defined, the existing metadata value will stay as is.
 
 &lt;b&gt;Metadata List:&lt;/b&gt;
 1.	set_by (default: CLIENT, type: string)
@@ -283,7 +283,7 @@ When updating record, if &lt;b&gt;META&lt;/b&gt; field is not defined, the exist
 &lt;b&gt;Request Body Example:&lt;/b&gt;
 &lt;pre&gt;
 	{
-		&#34;META&#34;: {
+		&#34;__META&#34;: {
 			&#34;set_by&#34;: &#34;SERVER&#34;
 		}
 		...
@@ -400,9 +400,9 @@ Example
 &lt;h2&gt;Record Metadata&lt;/h2&gt;
 
 Metadata allows user to define the behaviour of the record.
-Metadata can be defined in request body with field name &lt;b&gt;META&lt;/b&gt;.
-When creating record, if &lt;b&gt;META&lt;/b&gt; field is not defined, the metadata value will use the default value.
-When updating record, if &lt;b&gt;META&lt;/b&gt; field is not defined, the existing metadata value will stay as is.
+Metadata can be defined in request body with field name &lt;b&gt;__META&lt;/b&gt;.
+When creating record, if &lt;b&gt;__META&lt;/b&gt; field is not defined, the metadata value will use the default value.
+When updating record, if &lt;b&gt;__META&lt;/b&gt; field is not defined, the existing metadata value will stay as is.
 
 &lt;b&gt;Metadata List:&lt;/b&gt;
 1.	set_by (default: CLIENT, type: string)
@@ -413,7 +413,7 @@ When updating record, if &lt;b&gt;META&lt;/b&gt; field is not defined, the exist
 &lt;b&gt;Request Body Example:&lt;/b&gt;
 &lt;pre&gt;
 	{
-		&#34;META&#34;: {
+		&#34;__META&#34;: {
 			&#34;set_by&#34;: &#34;SERVER&#34;
 		}
 		...

@@ -278,7 +278,7 @@ func (a *Client) DeleteGroupConfigurationGlobalRuleAdminV1Short(params *DeleteGr
   DeleteGroupConfigurationV1 deletes group configuration
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [DELETE]&#39;&lt;/p&gt;
-			&lt;p&gt;This endpoint is used to delete group configuration. This Configuration is used to be the main rule of the service. Each namespace will have its own configuration&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to delete group configuration. This Configuration is used as the main rule of the service. Each namespace will have its own configuration&lt;/p&gt;
 			&lt;p&gt;Action Code: 73101&lt;/p&gt;
 
 */
@@ -385,7 +385,7 @@ func (a *Client) DeleteGroupConfigurationV1Short(params *DeleteGroupConfiguratio
   GetGroupConfigurationAdminV1 gets existing configuration
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]&#39;&lt;/p&gt;
-			&lt;p&gt;This endpoint is used to get existing configuration. This Configuration is used to be the main rule of the service. Each namespace will have its own configuration&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to get existing configuration. This Configuration is used as the main rule of the service. Each namespace will have its own configuration&lt;/p&gt;
 			&lt;p&gt;Action Code: 73101&lt;/p&gt;
 
 */
@@ -601,7 +601,7 @@ func (a *Client) InitiateGroupConfigurationAdminV1Short(params *InitiateGroupCon
   ListGroupConfigurationAdminV1 lists group configuration
 
   &lt;p&gt;Required permission &#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]&#39;&lt;/p&gt;
-			&lt;p&gt;This endpoint is used to get existing configuration. This Configuration is used to be the main rule of the service. Each namespace will have its own configuration&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to get existing configuration. This Configuration is used as the main rule of the service. Each namespace will have its own configuration&lt;/p&gt;
 			&lt;p&gt;Action Code: 73101&lt;/p&gt;
 
 */

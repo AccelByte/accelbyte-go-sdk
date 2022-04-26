@@ -158,11 +158,29 @@ func (a *Client) AdminRetrievePlayerRecordsShort(params *AdminRetrievePlayerReco
 /*
   AdminDeletePlayerPublicRecordHandlerV1 deletes player public record
 
-  Required permission: &lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [DELETE]&lt;/code&gt;
+  &lt;table&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Permission&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;ADMIN:NAMESPACE:{namespace}:USER:{userId}:PUBLIC:CLOUDSAVE:RECORD [DELETE]&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;Required Scope&lt;/td&gt;
+		&lt;td&gt;&lt;code&gt;social&lt;/code&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
 
-Required scope: &lt;code&gt;social&lt;/code&gt;
+Delete player public record.
 
-Delete a public record (arbitrary JSON data) in user-level with given key.
+
+&lt;h2&gt;Warning: This endpoint is going to deprecate&lt;/h2&gt;
+
+This endpoint is going to deprecate in the future please don&#39;t use it.
+
+For alternative, please use these endpoints:
+- &lt;b&gt;POST /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}&lt;/b&gt; and utilizing &lt;b&gt;__META&lt;/b&gt; functionality
+- &lt;b&gt;PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}&lt;/b&gt; and utilizing &lt;b&gt;__META&lt;/b&gt; functionality
+- &lt;b&gt;DELETE /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}&lt;/b&gt;
+
 */
 func (a *Client) AdminDeletePlayerPublicRecordHandlerV1(params *AdminDeletePlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminDeletePlayerPublicRecordHandlerV1NoContent, *AdminDeletePlayerPublicRecordHandlerV1Unauthorized, *AdminDeletePlayerPublicRecordHandlerV1NotFound, *AdminDeletePlayerPublicRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -570,6 +588,17 @@ Example 2
 -	Result:
 	&lt;pre&gt;{ &#34;data1&#34;: { &#34;data2&#34;: &#34;value&#34;, &#34;data3&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
+
+
+&lt;h2&gt;Warning: This endpoint is going to deprecate&lt;/h2&gt;
+
+This endpoint is going to deprecate in the future please don&#39;t use it.
+
+For alternative, please use these endpoints:
+- &lt;b&gt;POST /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}&lt;/b&gt; and utilizing &lt;b&gt;__META&lt;/b&gt; functionality
+- &lt;b&gt;PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}&lt;/b&gt; and utilizing &lt;b&gt;__META&lt;/b&gt; functionality
+- &lt;b&gt;DELETE /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}&lt;/b&gt;
+
 */
 func (a *Client) AdminPostPlayerPublicRecordHandlerV1(params *AdminPostPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPostPlayerPublicRecordHandlerV1Created, *AdminPostPlayerPublicRecordHandlerV1BadRequest, *AdminPostPlayerPublicRecordHandlerV1Unauthorized, *AdminPostPlayerPublicRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending
@@ -692,9 +721,9 @@ Example 2
 &lt;h2&gt;Record Metadata&lt;/h2&gt;
 
 Metadata allows user to define the behaviour of the record.
-Metadata can be defined in request body with field name &lt;b&gt;META&lt;/b&gt;.
-When creating record, if &lt;b&gt;META&lt;/b&gt; field is not defined, the metadata value will use the default value.
-When updating record, if &lt;b&gt;META&lt;/b&gt; field is not defined, the existing metadata value will stay as is.
+Metadata can be defined in request body with field name &lt;b&gt;__META&lt;/b&gt;.
+When creating record, if &lt;b&gt;__META&lt;/b&gt; field is not defined, the metadata value will use the default value.
+When updating record, if &lt;b&gt;__META&lt;/b&gt; field is not defined, the existing metadata value will stay as is.
 
 &lt;b&gt;Metadata List:&lt;/b&gt;
 1.	set_by (default: CLIENT, type: string)
@@ -707,7 +736,7 @@ When updating record, if &lt;b&gt;META&lt;/b&gt; field is not defined, the exist
 &lt;b&gt;Request Body Example:&lt;/b&gt;
 &lt;pre&gt;
 	{
-		&#34;META&#34;: {
+		&#34;__META&#34;: {
 			&#34;set_by&#34;: &#34;SERVER&#34;,
 			&#34;is_public&#34;: true
 		}
@@ -831,10 +860,15 @@ Example
 	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
 
-&lt;h2&gt;Warning: Current Behaviour when Updating Private Record&lt;/h2&gt;
 
-When updating existing &#34;Private Record&#34;, this endpoint will always &lt;b&gt;convert the &#34;Private Record&#34; into &#34;Public Record&#34;&lt;/b&gt;.
-This behaviour might be deprecated sooner, &lt;b&gt;please don&#39;t rely with that behaviour&lt;/b&gt;.
+&lt;h2&gt;Warning: This endpoint is going to deprecate&lt;/h2&gt;
+
+This endpoint is going to deprecate in the future please don&#39;t use it.
+
+For alternative, please use these endpoints:
+- &lt;b&gt;POST /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}&lt;/b&gt; and utilizing &lt;b&gt;__META&lt;/b&gt; functionality
+- &lt;b&gt;PUT /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}&lt;/b&gt; and utilizing &lt;b&gt;__META&lt;/b&gt; functionality
+- &lt;b&gt;DELETE /cloudsave/v1/admin/namespaces/{namespace}/users/{userId}/records/{key}&lt;/b&gt;
 
 */
 func (a *Client) AdminPutPlayerPublicRecordHandlerV1(params *AdminPutPlayerPublicRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerPublicRecordHandlerV1OK, *AdminPutPlayerPublicRecordHandlerV1BadRequest, *AdminPutPlayerPublicRecordHandlerV1Unauthorized, *AdminPutPlayerPublicRecordHandlerV1InternalServerError, error) {
@@ -948,12 +982,13 @@ Example
 	&lt;pre&gt;{ &#34;data2&#34;: &#34;new value&#34; }&lt;/pre&gt;
 
 
+
 &lt;h2&gt;Record Metadata&lt;/h2&gt;
 
 Metadata allows user to define the behaviour of the record.
-Metadata can be defined in request body with field name &lt;b&gt;META&lt;/b&gt;.
-When creating record, if &lt;b&gt;META&lt;/b&gt; field is not defined, the metadata value will use the default value.
-When updating record, if &lt;b&gt;META&lt;/b&gt; field is not defined, the existing metadata value will stay as is.
+Metadata can be defined in request body with field name &lt;b&gt;__META&lt;/b&gt;.
+When creating record, if &lt;b&gt;__META&lt;/b&gt; field is not defined, the metadata value will use the default value.
+When updating record, if &lt;b&gt;__META&lt;/b&gt; field is not defined, the existing metadata value will stay as is.
 
 &lt;b&gt;Metadata List:&lt;/b&gt;
 1.	set_by (default: CLIENT, type: string)
@@ -966,7 +1001,7 @@ When updating record, if &lt;b&gt;META&lt;/b&gt; field is not defined, the exist
 &lt;b&gt;Request Body Example:&lt;/b&gt;
 &lt;pre&gt;
 	{
-		&#34;META&#34;: {
+		&#34;__META&#34;: {
 			&#34;set_by&#34;: &#34;SERVER&#34;,
 			&#34;is_public&#34;: true
 		}
@@ -974,11 +1009,6 @@ When updating record, if &lt;b&gt;META&lt;/b&gt; field is not defined, the exist
 	}
 &lt;/pre&gt;
 
-&lt;h2&gt;Warning: Current Behaviour when Updating Public Record&lt;/h2&gt;
-
-When updating existing &#34;Public Record&#34; and metadata &lt;b&gt;is_public&lt;/b&gt; is not defined in the request body,
-this endpoint will always &lt;b&gt;convert the &#34;Public Record&#34; into &#34;Private Record&#34;&lt;/b&gt;.
-This behaviour might be deprecated sooner, &lt;b&gt;please don&#39;t rely with that behaviour&lt;/b&gt;.
 */
 func (a *Client) AdminPutPlayerRecordHandlerV1(params *AdminPutPlayerRecordHandlerV1Params, authInfo runtime.ClientAuthInfoWriter) (*AdminPutPlayerRecordHandlerV1OK, *AdminPutPlayerRecordHandlerV1Unauthorized, *AdminPutPlayerRecordHandlerV1InternalServerError, error) {
 	// TODO: Validate the params before sending

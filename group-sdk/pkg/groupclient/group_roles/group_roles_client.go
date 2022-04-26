@@ -61,6 +61,11 @@ type ClientService interface {
   &lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [CREATE]&lt;/p&gt;
 			&lt;p&gt;This endpoint is used to create new member role&lt;/p&gt;
 			&lt;p&gt;Action Code: 73202&lt;/p&gt;
+			&lt;br&gt;
+			&lt;p&gt;memberRolePermissions example value :&lt;/p&gt;
+			&lt;p&gt;&#34;action&#34;: 1&lt;/p&gt;
+			&lt;p&gt;&#34;resourceName&#34;: &#34;GROUP:ROLE&#34;&lt;/p&gt;
+			&lt;p&gt;The changes will give user with that role have a permission to create a role for new group member&lt;p/&gt;
 
 */
 func (a *Client) CreateMemberRoleAdminV1(params *CreateMemberRoleAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*CreateMemberRoleAdminV1Created, *CreateMemberRoleAdminV1BadRequest, *CreateMemberRoleAdminV1Unauthorized, *CreateMemberRoleAdminV1Forbidden, *CreateMemberRoleAdminV1InternalServerError, error) {
@@ -690,7 +695,7 @@ func (a *Client) GetSingleMemberRoleAdminV1Short(params *GetSingleMemberRoleAdmi
   UpdateMemberRoleAdminV1 updates member role
 
   &lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]&lt;/p&gt;
-			&lt;p&gt;This endpoint is used to get member role&lt;/p&gt;
+			&lt;p&gt;This endpoint is used to update member role&lt;/p&gt;
 			&lt;p&gt;Action Code: 73204&lt;/p&gt;
 
 */
@@ -799,6 +804,11 @@ func (a *Client) UpdateMemberRoleAdminV1Short(params *UpdateMemberRoleAdminV1Par
   &lt;p&gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]&lt;/p&gt;
 			&lt;p&gt;This endpoint is used to update member role permission. It will replace the existing permission based on the request from this endpoint&lt;/p&gt;
 			&lt;p&gt;Action Code: 73205&lt;/p&gt;
+			&lt;br&gt;
+			&lt;p&gt;memberRolePermissions example value :&lt;/p&gt;
+			&lt;p&gt;&#34;action&#34;: 2&lt;/p&gt;
+			&lt;p&gt;&#34;resourceName&#34;: &#34;GROUP:ROLE&#34;&lt;/p&gt;
+			&lt;p&gt;The changes will update user role to be able to read a role of other member &lt;p/&gt;
 
 */
 func (a *Client) UpdateMemberRolePermissionAdminV1(params *UpdateMemberRolePermissionAdminV1Params, authInfo runtime.ClientAuthInfoWriter) (*UpdateMemberRolePermissionAdminV1OK, *UpdateMemberRolePermissionAdminV1BadRequest, *UpdateMemberRolePermissionAdminV1Unauthorized, *UpdateMemberRolePermissionAdminV1Forbidden, *UpdateMemberRolePermissionAdminV1NotFound, *UpdateMemberRolePermissionAdminV1InternalServerError, error) {

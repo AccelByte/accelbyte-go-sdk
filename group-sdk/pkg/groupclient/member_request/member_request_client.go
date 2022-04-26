@@ -46,7 +46,7 @@ type ClientService interface {
 
   &lt;p&gt;Required valid user authentication &lt;/p&gt;
 			&lt;p&gt;This endpoint is used to Get Group Invitation Request List&lt;/p&gt;
-			&lt;p&gt;Get Group Invitation Request List for specific group. It will check any group invitation for this user&lt;/p&gt;
+			&lt;p&gt;Get Group Invitation Request List for the user calling this endpoint. It will check any group invitation for this user&lt;/p&gt;
 			&lt;p&gt;Action Code: 73502&lt;/p&gt;
 
 */

@@ -59,6 +59,9 @@ type OauthmodelTokenResponse struct {
 	// platform user id
 	PlatformUserID string `json:"platform_user_id,omitempty"`
 
+	// refresh expires in
+	RefreshExpiresIn int32 `json:"refresh_expires_in,omitempty"`
+
 	// refresh token
 	// Required: true
 	RefreshToken *string `json:"refresh_token"`

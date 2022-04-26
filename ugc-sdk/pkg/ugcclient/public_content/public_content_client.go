@@ -47,6 +47,8 @@ type ClientService interface {
 	PublicDownloadContentByContentIDShort(params *PublicDownloadContentByContentIDParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadContentByContentIDOK, error)
 	PublicDownloadContentPreview(params *PublicDownloadContentPreviewParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadContentPreviewOK, *PublicDownloadContentPreviewUnauthorized, *PublicDownloadContentPreviewNotFound, *PublicDownloadContentPreviewInternalServerError, error)
 	PublicDownloadContentPreviewShort(params *PublicDownloadContentPreviewParams, authInfo runtime.ClientAuthInfoWriter) (*PublicDownloadContentPreviewOK, error)
+	PublicGetContentBulk(params *PublicGetContentBulkParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentBulkOK, *PublicGetContentBulkBadRequest, *PublicGetContentBulkUnauthorized, *PublicGetContentBulkInternalServerError, error)
+	PublicGetContentBulkShort(params *PublicGetContentBulkParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentBulkOK, error)
 	PublicGetUserContent(params *PublicGetUserContentParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserContentOK, *PublicGetUserContentUnauthorized, *PublicGetUserContentNotFound, *PublicGetUserContentInternalServerError, error)
 	PublicGetUserContentShort(params *PublicGetUserContentParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetUserContentOK, error)
 	PublicSearchContent(params *PublicSearchContentParams, authInfo runtime.ClientAuthInfoWriter) (*PublicSearchContentOK, *PublicSearchContentUnauthorized, *PublicSearchContentNotFound, *PublicSearchContentInternalServerError, error)
@@ -727,6 +729,101 @@ func (a *Client) PublicDownloadContentPreviewShort(params *PublicDownloadContent
 	case *PublicDownloadContentPreviewNotFound:
 		return nil, v
 	case *PublicDownloadContentPreviewInternalServerError:
+		return nil, v
+
+	default:
+		return nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+/*
+  PublicGetContentBulk gets contents by content ids
+
+  Maximum requested Ids: 100.
+			Public user can access without token or if token specified, requires valid user token
+*/
+func (a *Client) PublicGetContentBulk(params *PublicGetContentBulkParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentBulkOK, *PublicGetContentBulkBadRequest, *PublicGetContentBulkUnauthorized, *PublicGetContentBulkInternalServerError, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetContentBulkParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetContentBulk",
+		Method:             "POST",
+		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/contents/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetContentBulkReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetContentBulkOK:
+		return v, nil, nil, nil, nil
+
+	case *PublicGetContentBulkBadRequest:
+		return nil, v, nil, nil, nil
+
+	case *PublicGetContentBulkUnauthorized:
+		return nil, nil, v, nil, nil
+
+	case *PublicGetContentBulkInternalServerError:
+		return nil, nil, nil, v, nil
+
+	default:
+		return nil, nil, nil, nil, fmt.Errorf("Unexpected Type %v", reflect.TypeOf(v))
+	}
+}
+
+func (a *Client) PublicGetContentBulkShort(params *PublicGetContentBulkParams, authInfo runtime.ClientAuthInfoWriter) (*PublicGetContentBulkOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicGetContentBulkParams()
+	}
+
+	if params.Context == nil {
+		params.Context = context.Background()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicGetContentBulk",
+		Method:             "POST",
+		PathPattern:        "/ugc/v1/public/namespaces/{namespace}/contents/bulk",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json", "application/octet-stream"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PublicGetContentBulkReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	switch v := result.(type) {
+
+	case *PublicGetContentBulkOK:
+		return v, nil
+	case *PublicGetContentBulkBadRequest:
+		return nil, v
+	case *PublicGetContentBulkUnauthorized:
+		return nil, v
+	case *PublicGetContentBulkInternalServerError:
 		return nil, v
 
 	default:

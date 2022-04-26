@@ -19,6 +19,7 @@ import (
 
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/anonymization"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/campaign"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/catalog_changes"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/category"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/currency"
 	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/d_l_c"
@@ -102,6 +103,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *JusticePla
 	cli.Transport = transport
 	cli.Anonymization = anonymization.New(transport, formats)
 	cli.Campaign = campaign.New(transport, formats)
+	cli.CatalogChanges = catalog_changes.New(transport, formats)
 	cli.Category = category.New(transport, formats)
 	cli.Currency = currency.New(transport, formats)
 	cli.Dlc = d_l_c.New(transport, formats)
@@ -186,6 +188,8 @@ type JusticePlatformService struct {
 
 	Campaign campaign.ClientService
 
+	CatalogChanges catalog_changes.ClientService
+
 	Category category.ClientService
 
 	Currency currency.ClientService
@@ -238,6 +242,7 @@ func (c *JusticePlatformService) SetTransport(transport runtime.ClientTransport)
 	c.Transport = transport
 	c.Anonymization.SetTransport(transport)
 	c.Campaign.SetTransport(transport)
+	c.CatalogChanges.SetTransport(transport)
 	c.Category.SetTransport(transport)
 	c.Currency.SetTransport(transport)
 	c.Dlc.SetTransport(transport)

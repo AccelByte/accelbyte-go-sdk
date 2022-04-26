@@ -66,6 +66,29 @@ func (p *PublicContentService) PublicSearchContent(input *public_content.PublicS
 	return ok.GetPayload(), nil
 }
 
+// Deprecated: Use PublicGetContentBulkShort instead
+func (p *PublicContentService) PublicGetContentBulk(input *public_content.PublicGetContentBulkParams) ([]*ugcclientmodels.ModelsContentDownloadResponse, error) {
+	token, err := p.TokenRepository.GetToken()
+	if err != nil {
+		return nil, err
+	}
+	ok, badRequest, unauthorized, internalServerError, err := p.Client.PublicContent.PublicGetContentBulk(input, client.BearerToken(*token.AccessToken))
+	if badRequest != nil {
+		return nil, badRequest
+	}
+	if unauthorized != nil {
+		return nil, unauthorized
+	}
+	if internalServerError != nil {
+		return nil, internalServerError
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
 // Deprecated: Use DownloadContentByShareCodeShort instead
 func (p *PublicContentService) DownloadContentByShareCode(input *public_content.DownloadContentByShareCodeParams) (*ugcclientmodels.ModelsContentDownloadResponse, error) {
 	token, err := p.TokenRepository.GetToken()
@@ -379,6 +402,22 @@ func (p *PublicContentService) PublicSearchContentShort(input *public_content.Pu
 		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
 	}
 	ok, err := p.Client.PublicContent.PublicSearchContentShort(input, authInfoWriter)
+	if err != nil {
+		return nil, err
+	}
+
+	return ok.GetPayload(), nil
+}
+
+func (p *PublicContentService) PublicGetContentBulkShort(input *public_content.PublicGetContentBulkParams) ([]*ugcclientmodels.ModelsContentDownloadResponse, error) {
+	authInfoWriter := input.AuthInfoWriter
+	if authInfoWriter == nil {
+		security := [][]string{
+			{"bearer"},
+		}
+		authInfoWriter = auth.AuthInfoWriter(p.TokenRepository, nil, security, "")
+	}
+	ok, err := p.Client.PublicContent.PublicGetContentBulkShort(input, authInfoWriter)
 	if err != nil {
 		return nil, err
 	}

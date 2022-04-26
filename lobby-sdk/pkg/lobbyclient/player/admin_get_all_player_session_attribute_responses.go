@@ -34,12 +34,6 @@ func (o *AdminGetAllPlayerSessionAttributeReader) ReadResponse(response runtime.
 			return nil, err
 		}
 		return result, nil
-	case 400:
-		result := NewAdminGetAllPlayerSessionAttributeBadRequest()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
 	case 401:
 		result := NewAdminGetAllPlayerSessionAttributeUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -48,12 +42,6 @@ func (o *AdminGetAllPlayerSessionAttributeReader) ReadResponse(response runtime.
 		return result, nil
 	case 403:
 		result := NewAdminGetAllPlayerSessionAttributeForbidden()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return result, nil
-	case 404:
-		result := NewAdminGetAllPlayerSessionAttributeNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -99,39 +87,6 @@ func (o *AdminGetAllPlayerSessionAttributeOK) GetPayload() *lobbyclientmodels.Mo
 func (o *AdminGetAllPlayerSessionAttributeOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(lobbyclientmodels.ModelsGetAllPlayerSessionAttributeResponse)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
-// NewAdminGetAllPlayerSessionAttributeBadRequest creates a AdminGetAllPlayerSessionAttributeBadRequest with default headers values
-func NewAdminGetAllPlayerSessionAttributeBadRequest() *AdminGetAllPlayerSessionAttributeBadRequest {
-	return &AdminGetAllPlayerSessionAttributeBadRequest{}
-}
-
-/*AdminGetAllPlayerSessionAttributeBadRequest handles this case with default header values.
-
-  Bad Request
-*/
-type AdminGetAllPlayerSessionAttributeBadRequest struct {
-	Payload *lobbyclientmodels.RestapiErrorResponseBody
-}
-
-func (o *AdminGetAllPlayerSessionAttributeBadRequest) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes][%d] adminGetAllPlayerSessionAttributeBadRequest  %+v", 400, o.Payload)
-}
-
-func (o *AdminGetAllPlayerSessionAttributeBadRequest) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
-	return o.Payload
-}
-
-func (o *AdminGetAllPlayerSessionAttributeBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(lobbyclientmodels.RestapiErrorResponseBody)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -196,39 +151,6 @@ func (o *AdminGetAllPlayerSessionAttributeForbidden) GetPayload() *lobbyclientmo
 }
 
 func (o *AdminGetAllPlayerSessionAttributeForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(lobbyclientmodels.RestapiErrorResponseBody)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
-// NewAdminGetAllPlayerSessionAttributeNotFound creates a AdminGetAllPlayerSessionAttributeNotFound with default headers values
-func NewAdminGetAllPlayerSessionAttributeNotFound() *AdminGetAllPlayerSessionAttributeNotFound {
-	return &AdminGetAllPlayerSessionAttributeNotFound{}
-}
-
-/*AdminGetAllPlayerSessionAttributeNotFound handles this case with default header values.
-
-  Not Found
-*/
-type AdminGetAllPlayerSessionAttributeNotFound struct {
-	Payload *lobbyclientmodels.RestapiErrorResponseBody
-}
-
-func (o *AdminGetAllPlayerSessionAttributeNotFound) Error() string {
-	return fmt.Sprintf("[GET /lobby/v1/admin/player/namespaces/{namespace}/users/{userId}/attributes][%d] adminGetAllPlayerSessionAttributeNotFound  %+v", 404, o.Payload)
-}
-
-func (o *AdminGetAllPlayerSessionAttributeNotFound) GetPayload() *lobbyclientmodels.RestapiErrorResponseBody {
-	return o.Payload
-}
-
-func (o *AdminGetAllPlayerSessionAttributeNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(lobbyclientmodels.RestapiErrorResponseBody)
 

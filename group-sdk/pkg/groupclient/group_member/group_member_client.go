@@ -733,7 +733,7 @@ func (a *Client) GetGroupMembersListPublicV1Short(params *GetGroupMembersListPub
 
   &lt;p&gt;Required valid user authentication &lt;/p&gt;
 			&lt;p&gt;This endpoint is used to get user group information.&lt;/p&gt;
-			&lt;p&gt;Get user group information. If user is not belong to any group, it will return warning to give information about it&lt;/p&gt;
+			&lt;p&gt;Get user group information. If user does not belong to any group, it will return warning to give information about it&lt;/p&gt;
 			&lt;p&gt;Group Member Status:&lt;/p&gt;
 			&lt;ul&gt;
 				&lt;li&gt;JOIN : status of user requested to join group &lt;/li&gt;
@@ -851,6 +851,11 @@ func (a *Client) GetUserGroupInformationPublicV1Short(params *GetUserGroupInform
 			&lt;p&gt;invite specific user to the group. If specific user is already have the join request to the group, this endpoint will notify if this user already have join request that needs to be accepted / rejected&lt;/p&gt;
 			&lt;p&gt;Invited user will receive notification through lobby.&lt;/p&gt;
 			&lt;p&gt;Action Code: 73406&lt;/p&gt;
+			&lt;br&gt;
+			&lt;p&gt;memberRolePermissions example value :&lt;/p&gt;
+			&lt;p&gt;&#34;action&#34;: 1&lt;/p&gt;
+			&lt;p&gt;&#34;resourceName&#34;: &#34;GROUP:INVITE&#34;&lt;/p&gt;
+			&lt;p&gt;The invited user will have a permission to invite another user to the group&lt;p/&gt;
 
 */
 func (a *Client) InviteGroupPublicV1(params *InviteGroupPublicV1Params, authInfo runtime.ClientAuthInfoWriter) (*InviteGroupPublicV1OK, *InviteGroupPublicV1BadRequest, *InviteGroupPublicV1Unauthorized, *InviteGroupPublicV1Forbidden, *InviteGroupPublicV1NotFound, *InviteGroupPublicV1Conflict, *InviteGroupPublicV1InternalServerError, error) {
@@ -1071,7 +1076,7 @@ func (a *Client) KickGroupMemberPublicV1Short(params *KickGroupMemberPublicV1Par
 
   &lt;p&gt;Required valid user authentication &lt;/p&gt;
 			&lt;p&gt;This endpoint is used to leave from group.&lt;/p&gt;
-			&lt;p&gt;leave from group. Admin is not allowed to leave the group. This endpoint will also give response if the user is not belong to any group.&lt;/p&gt;
+			&lt;p&gt;leave from group. Admin is not allowed to leave the group. This endpoint will also give response if the user does not belong to any group.&lt;/p&gt;
 			&lt;p&gt;Action Code: 73404&lt;/p&gt;
 
 */

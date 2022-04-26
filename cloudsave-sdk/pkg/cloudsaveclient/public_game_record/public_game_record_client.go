@@ -290,7 +290,7 @@ Example 2
 
 &lt;h2&gt;Reserved Word&lt;/h2&gt;
 
-Reserved Word List: &lt;b&gt;META&lt;/b&gt;
+Reserved Word List: &lt;b&gt;__META&lt;/b&gt;
 
 The reserved word cannot be used as a field in record value,
 If still defining the field when creating or updating the record, it will be ignored.
@@ -405,7 +405,7 @@ Example
 
 &lt;h2&gt;Reserved Word&lt;/h2&gt;
 
-Reserved Word List: &lt;b&gt;META&lt;/b&gt;
+Reserved Word List: &lt;b&gt;__META&lt;/b&gt;
 
 The reserved word cannot be used as a field in record value,
 If still defining the field when creating or updating the record, it will be ignored.

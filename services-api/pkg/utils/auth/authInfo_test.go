@@ -41,11 +41,13 @@ type TokenRepositoryImpl struct {
 type ConfigRepositoryImpl struct {
 }
 
+const dummyAccessToken = "foo"
+
 func TestAuthInfoWriterBearer(t *testing.T) {
 	r, _ := newRequest("GET", "/", nil)
 
 	// mockup client input value
-	accessToken := "foo"
+	accessToken := dummyAccessToken
 	token = iamclientmodels.OauthmodelTokenResponseV3{AccessToken: &accessToken}
 	err := dummyService.TokenRepository.Store(token)
 	if err != nil {
@@ -99,7 +101,7 @@ func TestAuthInfoWriterCookie(t *testing.T) {
 	r, _ := newRequest("GET", "/", nil)
 
 	// mockup client input value
-	accessToken := "foo"
+	accessToken := dummyAccessToken
 	token = iamclientmodels.OauthmodelTokenResponseV3{AccessToken: &accessToken}
 	err := dummyService.TokenRepository.Store(token)
 	if err != nil {
@@ -126,7 +128,7 @@ func TestAuthInfoWriterOptional(t *testing.T) {
 	r, _ := newRequest("GET", "/", nil)
 
 	// mockup client input value
-	accessToken := "foo"
+	accessToken := dummyAccessToken
 	token = iamclientmodels.OauthmodelTokenResponseV3{AccessToken: &accessToken}
 	err := dummyService.TokenRepository.Store(token)
 	if err != nil {
@@ -153,7 +155,7 @@ func TestAuthInfoWriterOptional(t *testing.T) {
 func TestBearer(t *testing.T) {
 	r, _ := newRequest("GET", "/", nil)
 
-	writer := auth.Bearer("foo")
+	writer := auth.Bearer(dummyAccessToken)
 	err := writer.AuthenticateRequest(r, nil)
 	assert.NoError(t, err)
 	assert.Equal(t, "Bearer foo", r.header.Get("Authorization"))
@@ -171,7 +173,7 @@ func TestBasic(t *testing.T) {
 func TestCookieValue(t *testing.T) {
 	r, _ := newRequest("GET", "/", nil)
 
-	writer := auth.CookieValue("access_token", "foo")
+	writer := auth.CookieValue("access_token", dummyAccessToken)
 	err := writer.AuthenticateRequest(r, nil)
 	assert.NoError(t, err)
 	assert.Equal(t, "access_token=foo", r.header.Get("cookie"))

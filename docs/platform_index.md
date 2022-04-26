@@ -296,6 +296,12 @@
 | `/platform/admin/namespaces/{namespace}/stores/{storeId}/export` | GET | ExportStoreShort | [ExportStoreShort](../platform-sdk/pkg/platformclient/store/store_client.go) | [ExportStoreShort](../services-api/pkg/service/platform/store.go) |
 | `/platform/public/namespaces/{namespace}/stores` | GET | PublicListStoresShort | [PublicListStoresShort](../platform-sdk/pkg/platformclient/store/store_client.go) | [PublicListStoresShort](../services-api/pkg/service/platform/store.go) |
 
+### CatalogChanges Wrapper:  [CatalogChanges](../services-api/pkg/service/platform/catalogChanges.go)
+| Endpoint | Method | ID | Class | Wrapper |
+|---|---|---|---|---|
+| `/platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/byCriteria` | GET | QueryChangesShort | [QueryChangesShort](../platform-sdk/pkg/platformclient/catalog_changes/catalog_changes_client.go) | [QueryChangesShort](../services-api/pkg/service/platform/catalogChanges.go) |
+| `/platform/admin/namespaces/{namespace}/stores/{storeId}/catalogChanges/publishAll` | PUT | PublishAllShort | [PublishAllShort](../platform-sdk/pkg/platformclient/catalog_changes/catalog_changes_client.go) | [PublishAllShort](../services-api/pkg/service/platform/catalogChanges.go) |
+
 ### Subscription Wrapper:  [Subscription](../services-api/pkg/service/platform/subscription.go)
 | Endpoint | Method | ID | Class | Wrapper |
 |---|---|---|---|---|
@@ -451,6 +457,8 @@
 | `CampaignPagingSlicedResult` | [CampaignPagingSlicedResult ](../platform-sdk/pkg/platformclientmodels/campaign_paging_sliced_result.go) |
 | `CampaignUpdate` | [CampaignUpdate ](../platform-sdk/pkg/platformclientmodels/campaign_update.go) |
 | `CancelRequest` | [CancelRequest ](../platform-sdk/pkg/platformclientmodels/cancel_request.go) |
+| `CatalogChangeInfo` | [CatalogChangeInfo ](../platform-sdk/pkg/platformclientmodels/catalog_change_info.go) |
+| `CatalogChangePagingSlicedResult` | [CatalogChangePagingSlicedResult ](../platform-sdk/pkg/platformclientmodels/catalog_change_paging_sliced_result.go) |
 | `CategoryCreate` | [CategoryCreate ](../platform-sdk/pkg/platformclientmodels/category_create.go) |
 | `CategoryInfo` | [CategoryInfo ](../platform-sdk/pkg/platformclientmodels/category_info.go) |
 | `CategoryUpdate` | [CategoryUpdate ](../platform-sdk/pkg/platformclientmodels/category_update.go) |

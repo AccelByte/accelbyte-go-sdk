@@ -85,6 +85,7 @@
 |---|---|---|---|---|
 | `/ugc/v1/public/namespaces/{namespace}/channels/{channelId}/contents` | GET | SearchChannelSpecificContentShort | [SearchChannelSpecificContentShort](../ugc-sdk/pkg/ugcclient/public_content/public_content_client.go) | [SearchChannelSpecificContentShort](../services-api/pkg/service/ugc/publicContent.go) |
 | `/ugc/v1/public/namespaces/{namespace}/contents` | GET | PublicSearchContentShort | [PublicSearchContentShort](../ugc-sdk/pkg/ugcclient/public_content/public_content_client.go) | [PublicSearchContentShort](../services-api/pkg/service/ugc/publicContent.go) |
+| `/ugc/v1/public/namespaces/{namespace}/contents/bulk` | POST | PublicGetContentBulkShort | [PublicGetContentBulkShort](../ugc-sdk/pkg/ugcclient/public_content/public_content_client.go) | [PublicGetContentBulkShort](../services-api/pkg/service/ugc/publicContent.go) |
 | `/ugc/v1/public/namespaces/{namespace}/contents/sharecodes/{shareCode}` | GET | DownloadContentByShareCodeShort | [DownloadContentByShareCodeShort](../ugc-sdk/pkg/ugcclient/public_content/public_content_client.go) | [DownloadContentByShareCodeShort](../services-api/pkg/service/ugc/publicContent.go) |
 | `/ugc/v1/public/namespaces/{namespace}/contents/{contentId}` | GET | PublicDownloadContentByContentIDShort | [PublicDownloadContentByContentIDShort](../ugc-sdk/pkg/ugcclient/public_content/public_content_client.go) | [PublicDownloadContentByContentIDShort](../services-api/pkg/service/ugc/publicContent.go) |
 | `/ugc/v1/public/namespaces/{namespace}/contents/{contentId}/preview` | GET | PublicDownloadContentPreviewShort | [PublicDownloadContentPreviewShort](../ugc-sdk/pkg/ugcclient/public_content/public_content_client.go) | [PublicDownloadContentPreviewShort](../services-api/pkg/service/ugc/publicContent.go) |
@@ -188,6 +189,7 @@
 | `models.PaginatedGroupResponse` | [ModelsPaginatedGroupResponse ](../ugc-sdk/pkg/ugcclientmodels/models_paginated_group_response.go) |
 | `models.PagingCursor` | [ModelsPagingCursor ](../ugc-sdk/pkg/ugcclientmodels/models_paging_cursor.go) |
 | `models.PayloadURL` | [ModelsPayloadURL ](../ugc-sdk/pkg/ugcclientmodels/models_payload_url.go) |
+| `models.PublicGetContentBulkRequest` | [ModelsPublicGetContentBulkRequest ](../ugc-sdk/pkg/ugcclientmodels/models_public_get_content_bulk_request.go) |
 | `models.ScreenshotResponse` | [ModelsScreenshotResponse ](../ugc-sdk/pkg/ugcclientmodels/models_screenshot_response.go) |
 | `models.UpdateScreenshotRequest` | [ModelsUpdateScreenshotRequest ](../ugc-sdk/pkg/ugcclientmodels/models_update_screenshot_request.go) |
 | `models.UpdateScreenshotResponse` | [ModelsUpdateScreenshotResponse ](../ugc-sdk/pkg/ugcclientmodels/models_update_screenshot_response.go) |

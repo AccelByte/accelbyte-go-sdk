@@ -9,6 +9,7 @@ package platform
 import (
 	"github.com/AccelByte/sample-apps/cmd/platform/anonymization"
 	"github.com/AccelByte/sample-apps/cmd/platform/campaign"
+	"github.com/AccelByte/sample-apps/cmd/platform/catalogChanges"
 	"github.com/AccelByte/sample-apps/cmd/platform/category"
 	"github.com/AccelByte/sample-apps/cmd/platform/currency"
 	"github.com/AccelByte/sample-apps/cmd/platform/dlc"
@@ -177,6 +178,8 @@ func init() {
 	PlatformCmd.AddCommand(store.GetStoreCmd)
 	PlatformCmd.AddCommand(store.UpdateStoreCmd)
 	PlatformCmd.AddCommand(store.DeleteStoreCmd)
+	PlatformCmd.AddCommand(catalogChanges.QueryChangesCmd)
+	PlatformCmd.AddCommand(catalogChanges.PublishAllCmd)
 	PlatformCmd.AddCommand(store.CloneStoreCmd)
 	PlatformCmd.AddCommand(store.ExportStoreCmd)
 	PlatformCmd.AddCommand(subscription.QuerySubscriptionsCmd)

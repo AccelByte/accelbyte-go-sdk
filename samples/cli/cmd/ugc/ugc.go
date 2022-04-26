@@ -82,6 +82,7 @@ func init() {
 	UgcCmd.AddCommand(anonymization.AdminDeleteAllUserStatesCmd)
 	UgcCmd.AddCommand(publicContent.SearchChannelSpecificContentCmd)
 	UgcCmd.AddCommand(publicContent.PublicSearchContentCmd)
+	UgcCmd.AddCommand(publicContent.PublicGetContentBulkCmd)
 	UgcCmd.AddCommand(publicFollow.GetFollowedContentCmd)
 	UgcCmd.AddCommand(publicLike.GetLikedContentCmd)
 	UgcCmd.AddCommand(publicContent.DownloadContentByShareCodeCmd)

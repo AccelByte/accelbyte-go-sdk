@@ -40,7 +40,7 @@ MODULE_PATH='../samples/cli'
 TEMP_TOKEN="/tmp/justice-sample-apps/userData"
 
 echo "TAP version 13"
-echo "1..88"
+echo "1..89"
 
 #- 1 Login
 rm -f $TEMP_TOKEN \
@@ -476,298 +476,305 @@ samples/cli/sample-apps Ugc publicSearchContent \
     > test.out 2>&1
 eval_tap $? 51 'PublicSearchContent' test.out
 
-#- 52 GetFollowedContent
+#- 52 PublicGetContentBulk
+samples/cli/sample-apps Ugc publicGetContentBulk \
+    --body '{"contentIds": ["VS3rYp8Q"]}' \
+    --namespace 'tcEmCEVc' \
+    > test.out 2>&1
+eval_tap $? 52 'PublicGetContentBulk' test.out
+
+#- 53 GetFollowedContent
 samples/cli/sample-apps Ugc getFollowedContent \
-    --namespace 'VS3rYp8Q' \
-    --limit '38' \
-    --offset '5' \
+    --namespace '75UfeypW' \
+    --limit '19' \
+    --offset '59' \
     > test.out 2>&1
-eval_tap $? 52 'GetFollowedContent' test.out
+eval_tap $? 53 'GetFollowedContent' test.out
 
-#- 53 GetLikedContent
+#- 54 GetLikedContent
 samples/cli/sample-apps Ugc getLikedContent \
-    --namespace 'EmCEVc75' \
-    --limit '92' \
-    --offset '11' \
+    --namespace 'NhzCL5sW' \
+    --limit '88' \
+    --offset '32' \
     > test.out 2>&1
-eval_tap $? 53 'GetLikedContent' test.out
+eval_tap $? 54 'GetLikedContent' test.out
 
-#- 54 DownloadContentByShareCode
+#- 55 DownloadContentByShareCode
 samples/cli/sample-apps Ugc downloadContentByShareCode \
-    --namespace 'eypWjDNh' \
-    --shareCode 'zCL5sWS2' \
+    --namespace 'wO763iEk' \
+    --shareCode 'lkzLm88L' \
     > test.out 2>&1
-eval_tap $? 54 'DownloadContentByShareCode' test.out
+eval_tap $? 55 'DownloadContentByShareCode' test.out
 
-#- 55 PublicDownloadContentByContentID
+#- 56 PublicDownloadContentByContentID
 samples/cli/sample-apps Ugc publicDownloadContentByContentID \
-    --contentId 'qwO763iE' \
-    --namespace 'klkzLm88' \
+    --contentId 'pLuYRO3C' \
+    --namespace '55yHpwK2' \
     > test.out 2>&1
-eval_tap $? 55 'PublicDownloadContentByContentID' test.out
+eval_tap $? 56 'PublicDownloadContentByContentID' test.out
 
-#- 56 AddDownloadCount
+#- 57 AddDownloadCount
 samples/cli/sample-apps Ugc addDownloadCount \
-    --contentId 'LpLuYRO3' \
-    --namespace 'C55yHpwK' \
+    --contentId 'JaqenDGn' \
+    --namespace '7a2NUplW' \
     > test.out 2>&1
-eval_tap $? 56 'AddDownloadCount' test.out
+eval_tap $? 57 'AddDownloadCount' test.out
 
-#- 57 UpdateContentLikeStatus
+#- 58 UpdateContentLikeStatus
 samples/cli/sample-apps Ugc updateContentLikeStatus \
     --body '{"likeStatus": false}' \
-    --contentId 'qenDGn7a' \
-    --namespace '2NUplWiL' \
+    --contentId 'Ljq06n6a' \
+    --namespace '0rW8Efkp' \
     > test.out 2>&1
-eval_tap $? 57 'UpdateContentLikeStatus' test.out
+eval_tap $? 58 'UpdateContentLikeStatus' test.out
 
-#- 58 PublicDownloadContentPreview
+#- 59 PublicDownloadContentPreview
 samples/cli/sample-apps Ugc publicDownloadContentPreview \
-    --contentId 'jq06n6a0' \
-    --namespace 'rW8Efkpa' \
+    --contentId 'aXtwYZJa' \
+    --namespace 'Q4WbwNms' \
     > test.out 2>&1
-eval_tap $? 58 'PublicDownloadContentPreview' test.out
+eval_tap $? 59 'PublicDownloadContentPreview' test.out
 
-#- 59 GetTag
+#- 60 GetTag
 samples/cli/sample-apps Ugc getTag \
-    --namespace 'XtwYZJaQ' \
-    --limit '96' \
-    --offset '3' \
+    --namespace 'FYetjEur' \
+    --limit '66' \
+    --offset '8' \
     > test.out 2>&1
-eval_tap $? 59 'GetTag' test.out
+eval_tap $? 60 'GetTag' test.out
 
-#- 60 GetType
+#- 61 GetType
 samples/cli/sample-apps Ugc getType \
-    --namespace 'wNmsFYet' \
-    --limit '18' \
-    --offset '61' \
+    --namespace 'loJzNKtR' \
+    --limit '92' \
+    --offset '1' \
     > test.out 2>&1
-eval_tap $? 60 'GetType' test.out
+eval_tap $? 61 'GetType' test.out
 
-#- 61 GetFollowedUsers
+#- 62 GetFollowedUsers
 samples/cli/sample-apps Ugc getFollowedUsers \
-    --namespace 'urH8eloJ' \
-    --limit '51' \
-    --offset '78' \
+    --namespace 'Tz1ETdsm' \
+    --limit '44' \
+    --offset '51' \
     > test.out 2>&1
-eval_tap $? 61 'GetFollowedUsers' test.out
+eval_tap $? 62 'GetFollowedUsers' test.out
 
-#- 62 GetCreator
+#- 63 GetCreator
 samples/cli/sample-apps Ugc getCreator \
-    --namespace 'KtRUaTz1' \
-    --userId 'ETdsmwzj' \
+    --namespace 'jkkn9oiQ' \
+    --userId 'l05g7cO3' \
     > test.out 2>&1
-eval_tap $? 62 'GetCreator' test.out
+eval_tap $? 63 'GetCreator' test.out
 
-#- 63 GetChannels
+#- 64 GetChannels
 samples/cli/sample-apps Ugc getChannels \
-    --namespace 'kkn9oiQl' \
-    --userId '05g7cO3Z' \
+    --namespace 'ZMb6Ojlo' \
+    --userId '6DMNpP2q' \
     --limit '76' \
-    --offset '2' \
+    --offset '34' \
     > test.out 2>&1
-eval_tap $? 63 'GetChannels' test.out
+eval_tap $? 64 'GetChannels' test.out
 
-#- 64 CreateChannel
+#- 65 CreateChannel
 samples/cli/sample-apps Ugc createChannel \
-    --body '{"name": "6Ojlo6DM"}' \
-    --namespace 'NpP2qMrT' \
-    --userId 'Q1UpjfU6' \
+    --body '{"name": "TQ1UpjfU"}' \
+    --namespace '6wJhy1jO' \
+    --userId 'VkkUlS79' \
     > test.out 2>&1
-eval_tap $? 64 'CreateChannel' test.out
+eval_tap $? 65 'CreateChannel' test.out
 
-#- 65 DeleteAllUserChannel
+#- 66 DeleteAllUserChannel
 samples/cli/sample-apps Ugc deleteAllUserChannel \
-    --namespace 'wJhy1jOV' \
-    --userId 'kkUlS795' \
+    --namespace '527EZ25I' \
+    --userId 'a8uCeZFl' \
     > test.out 2>&1
-eval_tap $? 65 'DeleteAllUserChannel' test.out
+eval_tap $? 66 'DeleteAllUserChannel' test.out
 
-#- 66 UpdateChannel
+#- 67 UpdateChannel
 samples/cli/sample-apps Ugc updateChannel \
-    --body '{"name": "27EZ25Ia"}' \
-    --channelId '8uCeZFlL' \
-    --namespace 'tEVpDAEb' \
-    --userId 'A82jy74l' \
+    --body '{"name": "LtEVpDAE"}' \
+    --channelId 'bA82jy74' \
+    --namespace 'lq0pDE5x' \
+    --userId 'Rwh5b45e' \
     > test.out 2>&1
-eval_tap $? 66 'UpdateChannel' test.out
+eval_tap $? 67 'UpdateChannel' test.out
 
-#- 67 DeleteChannel
+#- 68 DeleteChannel
 samples/cli/sample-apps Ugc deleteChannel \
-    --channelId 'q0pDE5xR' \
-    --namespace 'wh5b45eb' \
-    --userId 'pcM7ScSs' \
+    --channelId 'bpcM7ScS' \
+    --namespace 's3UOpAwI' \
+    --userId 'p9rRtn1P' \
     > test.out 2>&1
-eval_tap $? 67 'DeleteChannel' test.out
+eval_tap $? 68 'DeleteChannel' test.out
 
-#- 68 CreateContentDirect
-eval_tap 0 68 'CreateContentDirect # SKIP deprecated' test.out
+#- 69 CreateContentDirect
+eval_tap 0 69 'CreateContentDirect # SKIP deprecated' test.out
 
-#- 69 CreateContentS3
+#- 70 CreateContentS3
 samples/cli/sample-apps Ugc createContentS3 \
-    --body '{"contentType": "3UOpAwIp", "fileExtension": "9rRtn1Pc", "name": "CxdbumeY", "preview": "gOdEBWRQ", "subType": "iW3KFfU8", "tags": ["icH4081g"], "type": "RB1GyLfL"}' \
-    --channelId 'g4RYuEbg' \
-    --namespace 'UDEcJyIv' \
-    --userId 'sPwOr0Bm' \
+    --body '{"contentType": "cCxdbume", "fileExtension": "YgOdEBWR", "name": "QiW3KFfU", "preview": "8icH4081", "subType": "gRB1GyLf", "tags": ["Lg4RYuEb"], "type": "gUDEcJyI"}' \
+    --channelId 'vsPwOr0B' \
+    --namespace 'mV5iFvfw' \
+    --userId 'FjTSmIEq' \
     > test.out 2>&1
-eval_tap $? 69 'CreateContentS3' test.out
+eval_tap $? 70 'CreateContentS3' test.out
 
-#- 70 UpdateContentS3
+#- 71 UpdateContentS3
 samples/cli/sample-apps Ugc updateContentS3 \
-    --body '{"contentType": "V5iFvfwF", "fileExtension": "jTSmIEqo", "name": "LyLeUGmo", "preview": "mGX9sXTZ", "subType": "0v8pqLfc", "tags": ["5SwGnReU"], "type": "ULDX4QUI"}' \
-    --channelId 'bb5nh68Z' \
-    --contentId 'nyUtRvW9' \
-    --namespace 'hNBSFTtF' \
-    --userId 'rOmjkFrF' \
+    --body '{"contentType": "oLyLeUGm", "fileExtension": "omGX9sXT", "name": "Z0v8pqLf", "preview": "c5SwGnRe", "subType": "UULDX4QU", "tags": ["Ibb5nh68"], "type": "ZnyUtRvW"}' \
+    --channelId '9hNBSFTt' \
+    --contentId 'FrOmjkFr' \
+    --namespace 'FVA8t0xF' \
+    --userId '34Xpt6Zl' \
     > test.out 2>&1
-eval_tap $? 70 'UpdateContentS3' test.out
+eval_tap $? 71 'UpdateContentS3' test.out
 
-#- 71 UpdateContentDirect
-eval_tap 0 71 'UpdateContentDirect # SKIP deprecated' test.out
+#- 72 UpdateContentDirect
+eval_tap 0 72 'UpdateContentDirect # SKIP deprecated' test.out
 
-#- 72 DeleteContent
+#- 73 DeleteContent
 samples/cli/sample-apps Ugc deleteContent \
-    --channelId 'VA8t0xF3' \
-    --contentId '4Xpt6ZlT' \
-    --namespace 'Tic0kr2a' \
-    --userId '0nI2oo7U' \
+    --channelId 'TTic0kr2' \
+    --contentId 'a0nI2oo7' \
+    --namespace 'UHCJK5sp' \
+    --userId '0aCvIq3a' \
     > test.out 2>&1
-eval_tap $? 72 'DeleteContent' test.out
+eval_tap $? 73 'DeleteContent' test.out
 
-#- 73 PublicGetUserContent
+#- 74 PublicGetUserContent
 samples/cli/sample-apps Ugc publicGetUserContent \
-    --namespace 'HCJK5sp0' \
-    --userId 'aCvIq3aH' \
-    --limit '94' \
-    --offset '68' \
+    --namespace 'HVYIlewL' \
+    --userId 'RuHY83bG' \
+    --limit '18' \
+    --offset '66' \
     > test.out 2>&1
-eval_tap $? 73 'PublicGetUserContent' test.out
+eval_tap $? 74 'PublicGetUserContent' test.out
 
-#- 74 DeleteAllUserContents
+#- 75 DeleteAllUserContents
 samples/cli/sample-apps Ugc deleteAllUserContents \
-    --namespace 'lewLRuHY' \
-    --userId '83bGj0HT' \
+    --namespace 'TeeWXlIc' \
+    --userId 'RidqctDp' \
     > test.out 2>&1
-eval_tap $? 74 'DeleteAllUserContents' test.out
+eval_tap $? 75 'DeleteAllUserContents' test.out
 
-#- 75 UpdateScreenshots
+#- 76 UpdateScreenshots
 samples/cli/sample-apps Ugc updateScreenshots \
-    --body '{"screenshots": [{"description": "eeWXlIcR", "screenshotId": "idqctDpy"}]}' \
-    --contentId 'gY0ax476' \
-    --namespace 'ED4MMO9T' \
-    --userId 'w2JH0qhW' \
+    --body '{"screenshots": [{"description": "ygY0ax47", "screenshotId": "6ED4MMO9"}]}' \
+    --contentId 'Tw2JH0qh' \
+    --namespace 'WIwHWTgz' \
+    --userId 'JFRYw6t1' \
     > test.out 2>&1
-eval_tap $? 75 'UpdateScreenshots' test.out
+eval_tap $? 76 'UpdateScreenshots' test.out
 
-#- 76 UploadContentScreenshot
+#- 77 UploadContentScreenshot
 samples/cli/sample-apps Ugc uploadContentScreenshot \
-    --body '{"screenshots": [{"contentType": "IwHWTgzJ", "description": "FRYw6t1I", "fileExtension": "bmp"}]}' \
-    --contentId 'ZLO6V4Od' \
-    --namespace 'e46QmCid' \
-    --userId 'gdpP7RTC' \
+    --body '{"screenshots": [{"contentType": "IKZLO6V4", "description": "Ode46QmC", "fileExtension": "jpg"}]}' \
+    --contentId 'dgdpP7RT' \
+    --namespace 'C587lmUm' \
+    --userId 'BziPZBnp' \
     > test.out 2>&1
-eval_tap $? 76 'UploadContentScreenshot' test.out
+eval_tap $? 77 'UploadContentScreenshot' test.out
 
-#- 77 DeleteContentScreenshot
+#- 78 DeleteContentScreenshot
 samples/cli/sample-apps Ugc deleteContentScreenshot \
-    --contentId '587lmUmB' \
-    --namespace 'ziPZBnpO' \
-    --screenshotId 'fkllxfq0' \
-    --userId 'NsrSjw5H' \
+    --contentId 'Ofkllxfq' \
+    --namespace '0NsrSjw5' \
+    --screenshotId 'Hog0blM1' \
+    --userId 'd5MStYGc' \
     > test.out 2>&1
-eval_tap $? 77 'DeleteContentScreenshot' test.out
+eval_tap $? 78 'DeleteContentScreenshot' test.out
 
-#- 78 UpdateUserFollowStatus
+#- 79 UpdateUserFollowStatus
 samples/cli/sample-apps Ugc updateUserFollowStatus \
-    --body '{"followStatus": false}' \
-    --namespace 'g0blM1d5' \
-    --userId 'MStYGczL' \
+    --body '{"followStatus": true}' \
+    --namespace 'LINlEC0O' \
+    --userId 'EsE3yzIs' \
     > test.out 2>&1
-eval_tap $? 78 'UpdateUserFollowStatus' test.out
+eval_tap $? 79 'UpdateUserFollowStatus' test.out
 
-#- 79 GetPublicFollowers
+#- 80 GetPublicFollowers
 samples/cli/sample-apps Ugc getPublicFollowers \
-    --namespace 'INlEC0OE' \
-    --userId 'sE3yzIsU' \
-    --limit 'P0NjluOr' \
-    --offset 'GZTzsLW7' \
+    --namespace 'UP0NjluO' \
+    --userId 'rGZTzsLW' \
+    --limit '7Fjfs9nI' \
+    --offset 'kcZ38fUE' \
     > test.out 2>&1
-eval_tap $? 79 'GetPublicFollowers' test.out
+eval_tap $? 80 'GetPublicFollowers' test.out
 
-#- 80 GetPublicFollowing
+#- 81 GetPublicFollowing
 samples/cli/sample-apps Ugc getPublicFollowing \
-    --namespace 'Fjfs9nIk' \
-    --userId 'cZ38fUEa' \
-    --limit 'njKHbXfk' \
-    --offset '1zxdzxg0' \
+    --namespace 'anjKHbXf' \
+    --userId 'k1zxdzxg' \
+    --limit '0UXcRyHi' \
+    --offset '3u8BzVWu' \
     > test.out 2>&1
-eval_tap $? 80 'GetPublicFollowing' test.out
+eval_tap $? 81 'GetPublicFollowing' test.out
 
-#- 81 GetGroups
+#- 82 GetGroups
 samples/cli/sample-apps Ugc getGroups \
-    --namespace 'UXcRyHi3' \
-    --userId 'u8BzVWu1' \
-    --limit '39' \
-    --offset '81' \
+    --namespace '1tOmhUtC' \
+    --userId 'gcpvGrEb' \
+    --limit '4' \
+    --offset '92' \
     > test.out 2>&1
-eval_tap $? 81 'GetGroups' test.out
+eval_tap $? 82 'GetGroups' test.out
 
-#- 82 CreateGroup
+#- 83 CreateGroup
 samples/cli/sample-apps Ugc createGroup \
-    --body '{"contents": ["mhUtCgcp"], "name": "vGrEbcZU"}' \
-    --namespace 'DExH1tay' \
-    --userId 'OGXIHzMR' \
-    > test.out 2>&1
-eval_tap $? 82 'CreateGroup' test.out
-
-#- 83 DeleteAllUserGroup
-samples/cli/sample-apps Ugc deleteAllUserGroup \
+    --body '{"contents": ["DExH1tay"], "name": "OGXIHzMR"}' \
     --namespace 'jMCtOJsE' \
     --userId 'ijlrbpyy' \
     > test.out 2>&1
-eval_tap $? 83 'DeleteAllUserGroup' test.out
+eval_tap $? 83 'CreateGroup' test.out
 
-#- 84 GetGroup
+#- 84 DeleteAllUserGroup
+samples/cli/sample-apps Ugc deleteAllUserGroup \
+    --namespace 'EcQxVgJI' \
+    --userId 'jMZqcWfM' \
+    > test.out 2>&1
+eval_tap $? 84 'DeleteAllUserGroup' test.out
+
+#- 85 GetGroup
 samples/cli/sample-apps Ugc getGroup \
-    --groupId 'EcQxVgJI' \
-    --namespace 'jMZqcWfM' \
-    --userId 'l6dqrpD4' \
+    --groupId 'l6dqrpD4' \
+    --namespace 'tnc3ZRB3' \
+    --userId 'IkdtPfAJ' \
     > test.out 2>&1
-eval_tap $? 84 'GetGroup' test.out
+eval_tap $? 85 'GetGroup' test.out
 
-#- 85 UpdateGroup
+#- 86 UpdateGroup
 samples/cli/sample-apps Ugc updateGroup \
-    --body '{"contents": ["tnc3ZRB3"], "name": "IkdtPfAJ"}' \
-    --groupId 'EomwenJv' \
-    --namespace 'Q8grtQSv' \
-    --userId '6EcALcMI' \
+    --body '{"contents": ["EomwenJv"], "name": "Q8grtQSv"}' \
+    --groupId '6EcALcMI' \
+    --namespace 'Pms5bT51' \
+    --userId 'M4yko8S0' \
     > test.out 2>&1
-eval_tap $? 85 'UpdateGroup' test.out
+eval_tap $? 86 'UpdateGroup' test.out
 
-#- 86 DeleteGroup
+#- 87 DeleteGroup
 samples/cli/sample-apps Ugc deleteGroup \
-    --groupId 'Pms5bT51' \
-    --namespace 'M4yko8S0' \
-    --userId 'EnGLvGvf' \
+    --groupId 'EnGLvGvf' \
+    --namespace 'uSyCTyjj' \
+    --userId '4mCaiuMG' \
     > test.out 2>&1
-eval_tap $? 86 'DeleteGroup' test.out
+eval_tap $? 87 'DeleteGroup' test.out
 
-#- 87 GetGroupContent
+#- 88 GetGroupContent
 samples/cli/sample-apps Ugc getGroupContent \
-    --groupId 'uSyCTyjj' \
-    --namespace '4mCaiuMG' \
-    --userId 'KOF5GJJo' \
-    --limit '29' \
-    --offset '89' \
+    --groupId 'KOF5GJJo' \
+    --namespace 'oSXUl3YU' \
+    --userId '35QHGpBA' \
+    --limit '54' \
+    --offset '27' \
     > test.out 2>&1
-eval_tap $? 87 'GetGroupContent' test.out
+eval_tap $? 88 'GetGroupContent' test.out
 
-#- 88 DeleteAllUserStates
+#- 89 DeleteAllUserStates
 samples/cli/sample-apps Ugc deleteAllUserStates \
-    --namespace 'XUl3YU35' \
-    --userId 'QHGpBABn' \
+    --namespace 'OlxDznIC' \
+    --userId 'QVyqBg34' \
     > test.out 2>&1
-eval_tap $? 88 'DeleteAllUserStates' test.out
+eval_tap $? 89 'DeleteAllUserStates' test.out
 
 
 rm -f "tmp.dat"

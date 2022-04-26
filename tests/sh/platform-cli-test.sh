@@ -40,7 +40,7 @@ MODULE_PATH='../samples/cli'
 TEMP_TOKEN="/tmp/justice-sample-apps/userData"
 
 echo "TAP version 13"
-echo "1..321"
+echo "1..323"
 
 #- 1 Login
 rm -f $TEMP_TOKEN \
@@ -1109,1550 +1109,1573 @@ samples/cli/sample-apps Platform deleteStore \
     > test.out 2>&1
 eval_tap $? 137 'DeleteStore' test.out
 
-#- 138 CloneStore
-samples/cli/sample-apps Platform cloneStore \
+#- 138 QueryChanges
+samples/cli/sample-apps Platform queryChanges \
     --namespace '23UHmk0l' \
     --storeId 'pJ4JLl01' \
-    --targetStoreId 'qi7L2oDU' \
+    --action 'DELETE' \
+    --itemType 'CODE' \
+    --limit '74' \
+    --offset '29' \
+    --sortBy 'DUoVRUb3' \
+    --status 'PUBLISHED' \
+    --type 'STORE' \
+    --updatedAtEnd '4Sp09cKm' \
+    --updatedAtStart 'jRUbZVBV' \
     > test.out 2>&1
-eval_tap $? 138 'CloneStore' test.out
+eval_tap $? 138 'QueryChanges' test.out
 
-#- 139 ExportStore
+#- 139 PublishAll
+samples/cli/sample-apps Platform publishAll \
+    --namespace 'S7OK2Zrd' \
+    --storeId 'csckMekR' \
+    > test.out 2>&1
+eval_tap $? 139 'PublishAll' test.out
+
+#- 140 CloneStore
+samples/cli/sample-apps Platform cloneStore \
+    --namespace 'OWZ2KUTq' \
+    --storeId 'kK2eFaGL' \
+    --targetStoreId 'oSmEEPbL' \
+    > test.out 2>&1
+eval_tap $? 140 'CloneStore' test.out
+
+#- 141 ExportStore
 samples/cli/sample-apps Platform exportStore \
-    --namespace 'oVRUb39j' \
-    --storeId '22P4Sp09' \
+    --namespace 'ywJsyUie' \
+    --storeId '6fZgLllU' \
     > test.out 2>&1
-eval_tap $? 139 'ExportStore' test.out
+eval_tap $? 141 'ExportStore' test.out
 
-#- 140 QuerySubscriptions
+#- 142 QuerySubscriptions
 samples/cli/sample-apps Platform querySubscriptions \
-    --namespace 'cKmjRUbZ' \
-    --chargeStatus 'RECURRING_CHARGING' \
-    --itemId 'VS7OK2Zr' \
-    --limit '6' \
-    --offset '4' \
-    --sku 'sckMekRO' \
-    --status 'EXPIRED' \
+    --namespace 'PsO8lg46' \
+    --chargeStatus 'CHARGE_FAILED' \
+    --itemId '7006vL2w' \
+    --limit '0' \
+    --offset '0' \
+    --sku 'jDAOx0iJ' \
+    --status 'CANCELLED' \
     --subscribedBy 'PLATFORM' \
-    --userId 'K2eFaGLo' \
+    --userId 'eaktqv2W' \
     > test.out 2>&1
-eval_tap $? 140 'QuerySubscriptions' test.out
+eval_tap $? 142 'QuerySubscriptions' test.out
 
-#- 141 RecurringChargeSubscription
+#- 143 RecurringChargeSubscription
 samples/cli/sample-apps Platform recurringChargeSubscription \
-    --namespace 'SmEEPbLy' \
-    --subscriptionId 'wJsyUie6' \
+    --namespace 'kljQuD5m' \
+    --subscriptionId 'nJONqHGq' \
     > test.out 2>&1
-eval_tap $? 141 'RecurringChargeSubscription' test.out
+eval_tap $? 143 'RecurringChargeSubscription' test.out
 
-#- 142 GetTicketDynamic
+#- 144 GetTicketDynamic
 samples/cli/sample-apps Platform getTicketDynamic \
-    --boothName 'fZgLllUP' \
-    --namespace 'sO8lg46S' \
+    --boothName '8mB7mF2l' \
+    --namespace 'MFcaghFX' \
     > test.out 2>&1
-eval_tap $? 142 'GetTicketDynamic' test.out
+eval_tap $? 144 'GetTicketDynamic' test.out
 
-#- 143 DecreaseTicketSale
+#- 145 DecreaseTicketSale
 samples/cli/sample-apps Platform decreaseTicketSale \
-    --body '{"orderNo": "i7006vL2"}' \
-    --boothName 'w4aajDAO' \
-    --namespace 'x0iJjYle' \
+    --body '{"orderNo": "JIJflRHF"}' \
+    --boothName 'csIqCy4x' \
+    --namespace 'DifSSQ5O' \
     > test.out 2>&1
-eval_tap $? 143 'DecreaseTicketSale' test.out
+eval_tap $? 145 'DecreaseTicketSale' test.out
 
-#- 144 GetTicketBoothID
+#- 146 GetTicketBoothID
 samples/cli/sample-apps Platform getTicketBoothID \
-    --boothName 'aktqv2Wk' \
-    --namespace 'ljQuD5mn' \
+    --boothName 'n2ccEcl3' \
+    --namespace 'xeiO4bwF' \
     > test.out 2>&1
-eval_tap $? 144 'GetTicketBoothID' test.out
+eval_tap $? 146 'GetTicketBoothID' test.out
 
-#- 145 IncreaseTicketSale
+#- 147 IncreaseTicketSale
 samples/cli/sample-apps Platform increaseTicketSale \
-    --body '{"count": 70, "orderNo": "ONqHGq8m"}' \
-    --boothName 'B7mF2lMF' \
-    --namespace 'caghFXJI' \
+    --body '{"count": 70, "orderNo": "OjGoGxKM"}' \
+    --boothName '3qMce5tf' \
+    --namespace 'LcpjFZMK' \
     > test.out 2>&1
-eval_tap $? 145 'IncreaseTicketSale' test.out
+eval_tap $? 147 'IncreaseTicketSale' test.out
 
-#- 146 AnonymizeCampaign
+#- 148 AnonymizeCampaign
 samples/cli/sample-apps Platform anonymizeCampaign \
-    --namespace 'JflRHFcs' \
-    --userId 'IqCy4xDi' \
-    > test.out 2>&1
-eval_tap $? 146 'AnonymizeCampaign' test.out
-
-#- 147 AnonymizeEntitlement
-samples/cli/sample-apps Platform anonymizeEntitlement \
-    --namespace 'fSSQ5On2' \
-    --userId 'ccEcl3xe' \
-    > test.out 2>&1
-eval_tap $? 147 'AnonymizeEntitlement' test.out
-
-#- 148 AnonymizeFulfillment
-samples/cli/sample-apps Platform anonymizeFulfillment \
-    --namespace 'iO4bwF5J' \
-    --userId 'OjGoGxKM' \
-    > test.out 2>&1
-eval_tap $? 148 'AnonymizeFulfillment' test.out
-
-#- 149 AnonymizeIntegration
-samples/cli/sample-apps Platform anonymizeIntegration \
-    --namespace '3qMce5tf' \
-    --userId 'LcpjFZMK' \
-    > test.out 2>&1
-eval_tap $? 149 'AnonymizeIntegration' test.out
-
-#- 150 AnonymizeOrder
-samples/cli/sample-apps Platform anonymizeOrder \
     --namespace 'Cbp0pEbL' \
     --userId 'CLFpHxMY' \
     > test.out 2>&1
-eval_tap $? 150 'AnonymizeOrder' test.out
+eval_tap $? 148 'AnonymizeCampaign' test.out
 
-#- 151 AnonymizePayment
-samples/cli/sample-apps Platform anonymizePayment \
+#- 149 AnonymizeEntitlement
+samples/cli/sample-apps Platform anonymizeEntitlement \
     --namespace 'F836075x' \
     --userId 'EpzdnYtp' \
     > test.out 2>&1
-eval_tap $? 151 'AnonymizePayment' test.out
+eval_tap $? 149 'AnonymizeEntitlement' test.out
 
-#- 152 AnonymizeSubscription
-samples/cli/sample-apps Platform anonymizeSubscription \
+#- 150 AnonymizeFulfillment
+samples/cli/sample-apps Platform anonymizeFulfillment \
     --namespace 'ja5ig2is' \
     --userId 'QZga6Vy7' \
     > test.out 2>&1
-eval_tap $? 152 'AnonymizeSubscription' test.out
+eval_tap $? 150 'AnonymizeFulfillment' test.out
 
-#- 153 AnonymizeWallet
-samples/cli/sample-apps Platform anonymizeWallet \
+#- 151 AnonymizeIntegration
+samples/cli/sample-apps Platform anonymizeIntegration \
     --namespace '6izPiQRj' \
     --userId 'Ya8fv5fI' \
     > test.out 2>&1
-eval_tap $? 153 'AnonymizeWallet' test.out
+eval_tap $? 151 'AnonymizeIntegration' test.out
 
-#- 154 QueryUserEntitlements
-samples/cli/sample-apps Platform queryUserEntitlements \
+#- 152 AnonymizeOrder
+samples/cli/sample-apps Platform anonymizeOrder \
     --namespace 't22tIZhj' \
     --userId 'hgkigW22' \
-    --activeOnly 'True' \
-    --appType 'DEMO' \
-    --entitlementClazz 'APP' \
-    --entitlementName 'cM0GIALI' \
-    --itemId '["bFCQgBcL"]' \
-    --limit '78' \
-    --offset '90' \
     > test.out 2>&1
-eval_tap $? 154 'QueryUserEntitlements' test.out
+eval_tap $? 152 'AnonymizeOrder' test.out
 
-#- 155 GrantUserEntitlement
-samples/cli/sample-apps Platform grantUserEntitlement \
-    --body '[{"endDate": "1975-11-20T00:00:00Z", "grantedCode": "QVYx5rW2", "itemId": "gMsI1aYB", "itemNamespace": "itSn3UDe", "language": "Jiwy_Tobt_574", "quantity": 64, "region": "lKDwTKXB", "source": "REFERRAL_BONUS", "startDate": "1995-03-07T00:00:00Z", "storeId": "Qcd9IW8k"}]' \
-    --namespace 'iCKeQJWZ' \
-    --userId 'Bvcq1ETv' \
+#- 153 AnonymizePayment
+samples/cli/sample-apps Platform anonymizePayment \
+    --namespace 'zXMWXfbc' \
+    --userId 'M0GIALIb' \
     > test.out 2>&1
-eval_tap $? 155 'GrantUserEntitlement' test.out
+eval_tap $? 153 'AnonymizePayment' test.out
 
-#- 156 GetUserAppEntitlementByAppId
-samples/cli/sample-apps Platform getUserAppEntitlementByAppId \
-    --namespace 'WBxYZJh7' \
-    --userId 'B8gbnSu9' \
-    --activeOnly 'True' \
-    --appId 'D2udaeYp' \
+#- 154 AnonymizeSubscription
+samples/cli/sample-apps Platform anonymizeSubscription \
+    --namespace 'FCQgBcLN' \
+    --userId 'T6iOQVYx' \
     > test.out 2>&1
-eval_tap $? 156 'GetUserAppEntitlementByAppId' test.out
+eval_tap $? 154 'AnonymizeSubscription' test.out
 
-#- 157 QueryUserEntitlementsByAppType
-samples/cli/sample-apps Platform queryUserEntitlementsByAppType \
-    --namespace 'CXYSMiy8' \
-    --userId '7CTqEQBg' \
+#- 155 AnonymizeWallet
+samples/cli/sample-apps Platform anonymizeWallet \
+    --namespace '5rW2gMsI' \
+    --userId '1aYBitSn' \
+    > test.out 2>&1
+eval_tap $? 155 'AnonymizeWallet' test.out
+
+#- 156 QueryUserEntitlements
+samples/cli/sample-apps Platform queryUserEntitlements \
+    --namespace '3UDeKj97' \
+    --userId 'I4WYXLqj' \
     --activeOnly 'False' \
-    --limit '48' \
-    --offset '36' \
-    --appType 'DEMO' \
+    --appType 'GAME' \
+    --entitlementClazz 'MEDIA' \
+    --entitlementName 'TraBxWRT' \
+    --itemId '["VuYEqGlK"]' \
+    --limit '58' \
+    --offset '44' \
     > test.out 2>&1
-eval_tap $? 157 'QueryUserEntitlementsByAppType' test.out
+eval_tap $? 156 'QueryUserEntitlements' test.out
 
-#- 158 GetUserEntitlementByItemId
+#- 157 GrantUserEntitlement
+samples/cli/sample-apps Platform grantUserEntitlement \
+    --body '[{"endDate": "1993-10-12T00:00:00Z", "grantedCode": "XBrXiQcd", "itemId": "9IW8kiCK", "itemNamespace": "eQJWZBvc", "language": "etV-bGBN-001", "quantity": 30, "region": "CXYSMiy8", "source": "GIFT", "startDate": "1993-05-08T00:00:00Z", "storeId": "EQBg36my"}]' \
+    --namespace '3sY2clrD' \
+    --userId 'cain0cOV' \
+    > test.out 2>&1
+eval_tap $? 157 'GrantUserEntitlement' test.out
+
+#- 158 GetUserAppEntitlementByAppId
+samples/cli/sample-apps Platform getUserAppEntitlementByAppId \
+    --namespace 'F1zHwDTI' \
+    --userId '0sJ1Q0kp' \
+    --activeOnly 'False' \
+    --appId 'MTggSP2S' \
+    > test.out 2>&1
+eval_tap $? 158 'GetUserAppEntitlementByAppId' test.out
+
+#- 159 QueryUserEntitlementsByAppType
+samples/cli/sample-apps Platform queryUserEntitlementsByAppType \
+    --namespace 'LcuAP7vU' \
+    --userId '971Czw2n' \
+    --activeOnly 'False' \
+    --limit '13' \
+    --offset '56' \
+    --appType 'GAME' \
+    > test.out 2>&1
+eval_tap $? 159 'QueryUserEntitlementsByAppType' test.out
+
+#- 160 GetUserEntitlementByItemId
 samples/cli/sample-apps Platform getUserEntitlementByItemId \
-    --namespace 'lrDcain0' \
-    --userId 'cOVF1zHw' \
+    --namespace 'ywhu6MjO' \
+    --userId 'juGzo1Fz' \
     --activeOnly 'True' \
-    --entitlementClazz 'SUBSCRIPTION' \
-    --itemId '0sJ1Q0kp' \
-    > test.out 2>&1
-eval_tap $? 158 'GetUserEntitlementByItemId' test.out
-
-#- 159 GetUserEntitlementBySku
-samples/cli/sample-apps Platform getUserEntitlementBySku \
-    --namespace 'hMTggSP2' \
-    --userId 'SLcuAP7v' \
-    --activeOnly 'True' \
-    --entitlementClazz 'MEDIA' \
-    --sku 'w2nbg8C7' \
-    > test.out 2>&1
-eval_tap $? 159 'GetUserEntitlementBySku' test.out
-
-#- 160 ExistsAnyUserActiveEntitlement
-samples/cli/sample-apps Platform existsAnyUserActiveEntitlement \
-    --namespace 'Mvywhu6M' \
-    --userId 'jOjuGzo1' \
-    --appIds '["Fz4tU0aS"]' \
-    --itemIds '["n98N8qOU"]' \
-    --skus '["A0z92RaD"]' \
-    > test.out 2>&1
-eval_tap $? 160 'ExistsAnyUserActiveEntitlement' test.out
-
-#- 161 ExistsAnyUserActiveEntitlementByItemIds
-samples/cli/sample-apps Platform existsAnyUserActiveEntitlementByItemIds \
-    --namespace 'e8ngT8LR' \
-    --userId 'QkMnG1LZ' \
-    --itemIds '["yF2mdYY6"]' \
-    > test.out 2>&1
-eval_tap $? 161 'ExistsAnyUserActiveEntitlementByItemIds' test.out
-
-#- 162 GetUserAppEntitlementOwnershipByAppId
-samples/cli/sample-apps Platform getUserAppEntitlementOwnershipByAppId \
-    --namespace 'ZMfuTYTK' \
-    --userId 'sue48qBE' \
-    --appId 'BNAV5BTe' \
-    > test.out 2>&1
-eval_tap $? 162 'GetUserAppEntitlementOwnershipByAppId' test.out
-
-#- 163 GetUserEntitlementOwnershipByItemId
-samples/cli/sample-apps Platform getUserEntitlementOwnershipByItemId \
-    --namespace '6ec1zA92' \
-    --userId 'URCLSGPm' \
-    --entitlementClazz 'MEDIA' \
-    --itemId 'ZWunHW7M' \
-    > test.out 2>&1
-eval_tap $? 163 'GetUserEntitlementOwnershipByItemId' test.out
-
-#- 164 GetUserEntitlementOwnershipBySku
-samples/cli/sample-apps Platform getUserEntitlementOwnershipBySku \
-    --namespace 'Yvr6QA7P' \
-    --userId 'pepc92HA' \
     --entitlementClazz 'APP' \
-    --sku 'ACdeyfUp' \
+    --itemId 'Sn98N8qO' \
     > test.out 2>&1
-eval_tap $? 164 'GetUserEntitlementOwnershipBySku' test.out
+eval_tap $? 160 'GetUserEntitlementByItemId' test.out
 
-#- 165 RevokeUserEntitlements
+#- 161 GetUserEntitlementBySku
+samples/cli/sample-apps Platform getUserEntitlementBySku \
+    --namespace 'UA0z92Ra' \
+    --userId 'De8ngT8L' \
+    --activeOnly 'False' \
+    --entitlementClazz 'SUBSCRIPTION' \
+    --sku 'nG1LZyF2' \
+    > test.out 2>&1
+eval_tap $? 161 'GetUserEntitlementBySku' test.out
+
+#- 162 ExistsAnyUserActiveEntitlement
+samples/cli/sample-apps Platform existsAnyUserActiveEntitlement \
+    --namespace 'mdYY6ZMf' \
+    --userId 'uTYTKsue' \
+    --appIds '["48qBEBNA"]' \
+    --itemIds '["V5BTe6ec"]' \
+    --skus '["1zA92URC"]' \
+    > test.out 2>&1
+eval_tap $? 162 'ExistsAnyUserActiveEntitlement' test.out
+
+#- 163 ExistsAnyUserActiveEntitlementByItemIds
+samples/cli/sample-apps Platform existsAnyUserActiveEntitlementByItemIds \
+    --namespace 'LSGPmRBZ' \
+    --userId 'WunHW7MY' \
+    --itemIds '["vr6QA7Pp"]' \
+    > test.out 2>&1
+eval_tap $? 163 'ExistsAnyUserActiveEntitlementByItemIds' test.out
+
+#- 164 GetUserAppEntitlementOwnershipByAppId
+samples/cli/sample-apps Platform getUserAppEntitlementOwnershipByAppId \
+    --namespace 'epc92HA9' \
+    --userId '4eACdeyf' \
+    --appId 'UpgiPpf8' \
+    > test.out 2>&1
+eval_tap $? 164 'GetUserAppEntitlementOwnershipByAppId' test.out
+
+#- 165 GetUserEntitlementOwnershipByItemId
+samples/cli/sample-apps Platform getUserEntitlementOwnershipByItemId \
+    --namespace 'nxKJ3dnm' \
+    --userId 'tPwa64Y4' \
+    --entitlementClazz 'APP' \
+    --itemId 'PEKMhhu9' \
+    > test.out 2>&1
+eval_tap $? 165 'GetUserEntitlementOwnershipByItemId' test.out
+
+#- 166 GetUserEntitlementOwnershipBySku
+samples/cli/sample-apps Platform getUserEntitlementOwnershipBySku \
+    --namespace 'a6f3xJNt' \
+    --userId 'UlKLlIIA' \
+    --entitlementClazz 'APP' \
+    --sku 'Hbm5M6Ls' \
+    > test.out 2>&1
+eval_tap $? 166 'GetUserEntitlementOwnershipBySku' test.out
+
+#- 167 RevokeUserEntitlements
 samples/cli/sample-apps Platform revokeUserEntitlements \
-    --namespace 'giPpf8nx' \
-    --userId 'KJ3dnmtP' \
-    --entitlementIds 'wa64Y4gP' \
+    --namespace 'Y1VMuIEc' \
+    --userId 'Rls68M3M' \
+    --entitlementIds 'PMRPBepy' \
     > test.out 2>&1
-eval_tap $? 165 'RevokeUserEntitlements' test.out
+eval_tap $? 167 'RevokeUserEntitlements' test.out
 
-#- 166 GetUserEntitlement
+#- 168 GetUserEntitlement
 samples/cli/sample-apps Platform getUserEntitlement \
-    --entitlementId 'EKMhhu9a' \
-    --namespace '6f3xJNtU' \
-    --userId 'lKLlIIAe' \
+    --entitlementId 'yMz6zfR1' \
+    --namespace 'pvTYYtDO' \
+    --userId 'iEi4RuEc' \
     > test.out 2>&1
-eval_tap $? 166 'GetUserEntitlement' test.out
+eval_tap $? 168 'GetUserEntitlement' test.out
 
-#- 167 UpdateUserEntitlement
+#- 169 UpdateUserEntitlement
 samples/cli/sample-apps Platform updateUserEntitlement \
-    --body '{"endDate": "1987-01-11T00:00:00Z", "nullFieldList": ["m5M6LsY1"], "startDate": "1994-10-27T00:00:00Z", "status": "CONSUMED", "useCount": 68}' \
-    --entitlementId 'EcRls68M' \
-    --namespace '3MPMRPBe' \
-    --userId 'pyyMz6zf' \
+    --body '{"endDate": "1987-08-15T00:00:00Z", "nullFieldList": ["SGhpOZQF"], "startDate": "1976-07-01T00:00:00Z", "status": "INACTIVE", "useCount": 40}' \
+    --entitlementId 'KGDFgK49' \
+    --namespace 'YuKnXks0' \
+    --userId 'm8ANrcRa' \
     > test.out 2>&1
-eval_tap $? 167 'UpdateUserEntitlement' test.out
+eval_tap $? 169 'UpdateUserEntitlement' test.out
 
-#- 168 ConsumeUserEntitlement
+#- 170 ConsumeUserEntitlement
 samples/cli/sample-apps Platform consumeUserEntitlement \
-    --body '{"useCount": 87}' \
-    --entitlementId '1pvTYYtD' \
-    --namespace 'OiEi4RuE' \
-    --userId 'cHCSGhpO' \
+    --body '{"useCount": 22}' \
+    --entitlementId '7ta3fojA' \
+    --namespace '3h4MMW3A' \
+    --userId 'J5zlsFBw' \
     > test.out 2>&1
-eval_tap $? 168 'ConsumeUserEntitlement' test.out
+eval_tap $? 170 'ConsumeUserEntitlement' test.out
 
-#- 169 DisableUserEntitlement
+#- 171 DisableUserEntitlement
 samples/cli/sample-apps Platform disableUserEntitlement \
-    --entitlementId 'ZQFlwOiu' \
-    --namespace 'KGDFgK49' \
-    --userId 'YuKnXks0' \
+    --entitlementId 'jvLYvmg6' \
+    --namespace 'avudQFF1' \
+    --userId 'CPNY9u2d' \
     > test.out 2>&1
-eval_tap $? 169 'DisableUserEntitlement' test.out
+eval_tap $? 171 'DisableUserEntitlement' test.out
 
-#- 170 EnableUserEntitlement
+#- 172 EnableUserEntitlement
 samples/cli/sample-apps Platform enableUserEntitlement \
-    --entitlementId 'm8ANrcRa' \
-    --namespace 'l7ta3foj' \
-    --userId 'A3h4MMW3' \
+    --entitlementId 'VYdglOOo' \
+    --namespace 'CeK0kPKm' \
+    --userId 'BqVux3lX' \
     > test.out 2>&1
-eval_tap $? 170 'EnableUserEntitlement' test.out
+eval_tap $? 172 'EnableUserEntitlement' test.out
 
-#- 171 GetUserEntitlementHistories
+#- 173 GetUserEntitlementHistories
 samples/cli/sample-apps Platform getUserEntitlementHistories \
-    --entitlementId 'AJ5zlsFB' \
-    --namespace 'wjvLYvmg' \
-    --userId '6avudQFF' \
+    --entitlementId 'cD8aertA' \
+    --namespace 'VCqs8XT8' \
+    --userId 'xy3nJ06K' \
     > test.out 2>&1
-eval_tap $? 171 'GetUserEntitlementHistories' test.out
+eval_tap $? 173 'GetUserEntitlementHistories' test.out
 
-#- 172 RevokeUserEntitlement
+#- 174 RevokeUserEntitlement
 samples/cli/sample-apps Platform revokeUserEntitlement \
-    --entitlementId '1CPNY9u2' \
-    --namespace 'dVYdglOO' \
-    --userId 'oCeK0kPK' \
+    --entitlementId 'kseA0ARj' \
+    --namespace '9ricfayv' \
+    --userId 'nhi8MDdY' \
     > test.out 2>&1
-eval_tap $? 172 'RevokeUserEntitlement' test.out
+eval_tap $? 174 'RevokeUserEntitlement' test.out
 
-#- 173 FulfillItem
+#- 175 FulfillItem
 samples/cli/sample-apps Platform fulfillItem \
-    --body '{"duration": 25, "endDate": "1984-05-09T00:00:00Z", "itemId": "Vux3lXcD", "itemSku": "8aertAVC", "language": "qs8XT8xy", "order": {"currency": {"currencyCode": "3nJ06Kks", "currencySymbol": "eA0ARj9r", "currencyType": "REAL", "decimals": 5, "namespace": "fayvnhi8"}, "ext": {"MDdY4WLH": {}}, "free": false}, "orderNo": "aUkYnQp5", "quantity": 9, "region": "gdmVE8Im", "source": "PROMOTION", "startDate": "1981-11-07T00:00:00Z", "storeId": "tQxqWRKH"}' \
-    --namespace 'ohODoWOr' \
-    --userId '98kjBUas' \
+    --body '{"duration": 97, "endDate": "1989-09-25T00:00:00Z", "itemId": "oaUkYnQp", "itemSku": "5egdmVE8", "language": "ImivNtQx", "order": {"currency": {"currencyCode": "qWRKHohO", "currencySymbol": "DoWOr98k", "currencyType": "REAL", "decimals": 55, "namespace": "Uas9jjz2"}, "ext": {"FrgiaGrc": {}}, "free": true}, "orderNo": "7dIOVKIP", "quantity": 88, "region": "JJHo5W8t", "source": "OTHER", "startDate": "1987-04-26T00:00:00Z", "storeId": "u9SdbxSX"}' \
+    --namespace 'crEFCwqe' \
+    --userId 'GNLdIBRd' \
     > test.out 2>&1
-eval_tap $? 173 'FulfillItem' test.out
+eval_tap $? 175 'FulfillItem' test.out
 
-#- 174 RedeemCode
+#- 176 RedeemCode
 samples/cli/sample-apps Platform redeemCode \
-    --body '{"code": "9jjz2Frg", "language": "Ag_Diov", "region": "5W8tKH8o"}' \
-    --namespace 'u9SdbxSX' \
-    --userId 'crEFCwqe' \
-    > test.out 2>&1
-eval_tap $? 174 'RedeemCode' test.out
-
-#- 175 FulfillRewards
-samples/cli/sample-apps Platform fulfillRewards \
-    --body '{"rewards": [{"currency": {"currencyCode": "GNLdIBRd", "namespace": "liFQVMKE"}, "item": {"itemId": "zVUWlUWD", "itemSku": "s2x1EQU0", "itemType": "oepEvcja"}, "quantity": 88, "type": "ITEM"}], "source": "GIFT"}' \
+    --body '{"code": "liFQVMKE", "language": "vuw-313", "region": "EvcjaSgE"}' \
     --namespace 'h6jJnFxi' \
     --userId 'nIHJ1o7a' \
     > test.out 2>&1
-eval_tap $? 175 'FulfillRewards' test.out
+eval_tap $? 176 'RedeemCode' test.out
 
-#- 176 QueryUserIAPOrders
+#- 177 FulfillRewards
+samples/cli/sample-apps Platform fulfillRewards \
+    --body '{"rewards": [{"currency": {"currencyCode": "q5Zznd5e", "namespace": "acobTsuR"}, "item": {"itemId": "lhreQVFI", "itemSku": "D3o8hJWV", "itemType": "jKIOAw70"}, "quantity": 59, "type": "CURRENCY"}], "source": "REWARD"}' \
+    --namespace 'HhSGWUvz' \
+    --userId 'q1Za3IBC' \
+    > test.out 2>&1
+eval_tap $? 177 'FulfillRewards' test.out
+
+#- 178 QueryUserIAPOrders
 samples/cli/sample-apps Platform queryUserIAPOrders \
-    --namespace 'q5Zznd5e' \
-    --userId 'acobTsuR' \
-    --endTime 'lhreQVFI' \
-    --limit '59' \
-    --offset '29' \
-    --productId '8hJWVjKI' \
-    --startTime 'OAw70DvA' \
-    --status 'VERIFIED' \
-    --type 'EPICGAMES' \
+    --namespace '4vQFsUJP' \
+    --userId 'fiaJp1rt' \
+    --endTime '7OBgBCe6' \
+    --limit '78' \
+    --offset '9' \
+    --productId 'I65Mn5tn' \
+    --startTime 'gEYXgPVT' \
+    --status 'FULFILLED' \
+    --type 'STADIA' \
     > test.out 2>&1
-eval_tap $? 176 'QueryUserIAPOrders' test.out
+eval_tap $? 178 'QueryUserIAPOrders' test.out
 
-#- 177 QueryAllUserIAPOrders
+#- 179 QueryAllUserIAPOrders
 samples/cli/sample-apps Platform queryAllUserIAPOrders \
-    --namespace 'SGWUvzq1' \
-    --userId 'Za3IBC4v' \
+    --namespace 'XDZBVMJy' \
+    --userId 'JeKFO92Y' \
     > test.out 2>&1
-eval_tap $? 177 'QueryAllUserIAPOrders' test.out
+eval_tap $? 179 'QueryAllUserIAPOrders' test.out
 
-#- 178 MockFulfillIAPItem
+#- 180 MockFulfillIAPItem
 samples/cli/sample-apps Platform mockFulfillIAPItem \
-    --body '{"itemIdentityType": "ITEM_SKU", "language": "ujp", "productId": "aJp1rt7O", "region": "BgBCe6N0", "type": "GOOGLE"}' \
-    --namespace 'I65Mn5tn' \
-    --userId 'gEYXgPVT' \
+    --body '{"itemIdentityType": "ITEM_SKU", "language": "AzV-zU", "productId": "O4N9S2YC", "region": "gHa6XBcv", "type": "PLAYSTATION"}' \
+    --namespace '5rUtWHCn' \
+    --userId 'hmzzppV7' \
     > test.out 2>&1
-eval_tap $? 178 'MockFulfillIAPItem' test.out
+eval_tap $? 180 'MockFulfillIAPItem' test.out
 
-#- 179 QueryUserOrders
+#- 181 QueryUserOrders
 samples/cli/sample-apps Platform queryUserOrders \
-    --namespace '5CqXDZBV' \
-    --userId 'MJyJeKFO' \
-    --itemId '92YDtaZv' \
-    --limit '71' \
-    --offset '28' \
-    --status 'REFUNDING' \
-    > test.out 2>&1
-eval_tap $? 179 'QueryUserOrders' test.out
-
-#- 180 CountOfPurchasedItem
-samples/cli/sample-apps Platform countOfPurchasedItem \
-    --namespace 'S0OxyipZ' \
-    --userId 'uO4N9S2Y' \
-    --itemId 'CgHa6XBc' \
-    > test.out 2>&1
-eval_tap $? 180 'CountOfPurchasedItem' test.out
-
-#- 181 GetUserOrder
-samples/cli/sample-apps Platform getUserOrder \
-    --namespace 'vGRYk5rU' \
-    --orderNo 'tWHCnhmz' \
-    --userId 'zppV7tKN' \
-    > test.out 2>&1
-eval_tap $? 181 'GetUserOrder' test.out
-
-#- 182 UpdateUserOrderStatus
-samples/cli/sample-apps Platform updateUserOrderStatus \
-    --body '{"status": "CLOSED", "statusReason": "YUQVBXym"}' \
-    --namespace 'WcNlHaFx' \
-    --orderNo 'YaGHUpmB' \
-    --userId 'FyOrFKtx' \
-    > test.out 2>&1
-eval_tap $? 182 'UpdateUserOrderStatus' test.out
-
-#- 183 FulfillUserOrder
-samples/cli/sample-apps Platform fulfillUserOrder \
-    --namespace 'GNAi0fq4' \
-    --orderNo 'xChPLd2l' \
-    --userId 'Oopc7XoV' \
-    > test.out 2>&1
-eval_tap $? 183 'FulfillUserOrder' test.out
-
-#- 184 GetUserOrderGrant
-samples/cli/sample-apps Platform getUserOrderGrant \
-    --namespace 'pdd6rCpy' \
-    --orderNo 'MrnH9YHX' \
-    --userId 'h7KnCVOK' \
-    > test.out 2>&1
-eval_tap $? 184 'GetUserOrderGrant' test.out
-
-#- 185 GetUserOrderHistories
-samples/cli/sample-apps Platform getUserOrderHistories \
-    --namespace 'Y2zsBRGt' \
-    --orderNo 'd8QY2OLb' \
-    --userId 'ijrvfr8h' \
-    > test.out 2>&1
-eval_tap $? 185 'GetUserOrderHistories' test.out
-
-#- 186 ProcessUserOrderNotification
-samples/cli/sample-apps Platform processUserOrderNotification \
-    --body '{"additionalData": {"cardSummary": "knjWUWdM"}, "authorisedTime": "1994-09-24T00:00:00Z", "chargebackReversedTime": "1981-06-26T00:00:00Z", "chargebackTime": "1999-04-28T00:00:00Z", "chargedTime": "1990-04-01T00:00:00Z", "createdTime": "1987-10-27T00:00:00Z", "currency": {"currencyCode": "jdBxLM07", "currencySymbol": "9pDAbTgm", "currencyType": "VIRTUAL", "decimals": 61, "namespace": "YEq2GkYK"}, "customParameters": {"1vYm9flX": {}}, "extOrderNo": "Q7CQoemn", "extTxId": "QG0dH0NV", "extUserId": "M9VEHTPq", "issuedAt": "1985-02-26T00:00:00Z", "metadata": {"kcu5vnz6": "GiNMboBJ"}, "namespace": "Hml0LJmp", "nonceStr": "Pi4mqhru", "paymentMethod": "iCZLGGP5", "paymentMethodFee": 93, "paymentOrderNo": "XkHNTMap", "paymentProvider": "STRIPE", "paymentProviderFee": 88, "paymentStationUrl": "bonsUJKA", "price": 58, "refundedTime": "1979-09-02T00:00:00Z", "salesTax": 21, "sandbox": false, "sku": "FrpLsGt9", "status": "REQUEST_FOR_INFORMATION", "statusReason": "TXWUSCQc", "subscriptionId": "MsHN7reI", "subtotalPrice": 21, "targetNamespace": "s7I12tAZ", "targetUserId": "c8sxxLx9", "tax": 98, "totalPrice": 85, "totalTax": 8, "txEndTime": "1979-11-12T00:00:00Z", "type": "WLm8cNJb", "userId": "YH5J4WiJ", "vat": 74}' \
-    --namespace 'v9NvHwtw' \
-    --orderNo '2Mjcy9ZL' \
-    --userId '6Zs5Bu2X' \
-    > test.out 2>&1
-eval_tap $? 186 'ProcessUserOrderNotification' test.out
-
-#- 187 DownloadUserOrderReceipt
-samples/cli/sample-apps Platform downloadUserOrderReceipt \
-    --namespace 'YopLWZeU' \
-    --orderNo 'KJJNftRp' \
-    --userId 'Ggk1iseR' \
-    > test.out 2>&1
-eval_tap $? 187 'DownloadUserOrderReceipt' test.out
-
-#- 188 CreateUserPaymentOrder
-samples/cli/sample-apps Platform createUserPaymentOrder \
-    --body '{"currencyCode": "EzzRG6z9", "currencyNamespace": "wmuHddyO", "customParameters": {"dibI1LVy": {}}, "description": "qbdY8DGZ", "extOrderNo": "KAuoIKz3", "extUserId": "Pp3zLWUx", "itemType": "SEASON", "language": "TsMm", "metadata": {"G0FoQP8q": "7aSsb85g"}, "notifyUrl": "Ah9RD3Zz", "omitNotification": false, "price": 70, "recurringPaymentOrderNo": "8ltt9IRq", "region": "Cflgln6r", "returnUrl": "5f0s5H6l", "sandbox": true, "sku": "f3QHa11h", "subscriptionId": "LLCgw5av", "title": "4LExdabD"}' \
-    --namespace '8g2cvHfM' \
-    --userId 'RupDA5xb' \
-    > test.out 2>&1
-eval_tap $? 188 'CreateUserPaymentOrder' test.out
-
-#- 189 RefundUserPaymentOrder
-samples/cli/sample-apps Platform refundUserPaymentOrder \
-    --body '{"description": "js3XRdHU"}' \
-    --namespace 'J0GCmflI' \
-    --paymentOrderNo 'XkgJ6zkT' \
-    --userId 'woakq7sE' \
-    > test.out 2>&1
-eval_tap $? 189 'RefundUserPaymentOrder' test.out
-
-#- 190 ApplyUserRedemption
-samples/cli/sample-apps Platform applyUserRedemption \
-    --body '{"code": "ejFZ1NtO", "orderNo": "NXb9w9hs"}' \
-    --namespace 'QHszIsfr' \
-    --userId 'lzKpQdd5' \
-    > test.out 2>&1
-eval_tap $? 190 'ApplyUserRedemption' test.out
-
-#- 191 QueryUserSubscriptions
-samples/cli/sample-apps Platform queryUserSubscriptions \
-    --namespace '8dZP5Rvr' \
-    --userId 'inNtvBtq' \
-    --chargeStatus 'RECURRING_CHARGING' \
-    --itemId 'SkA68mIV' \
-    --limit '70' \
+    --namespace 'tKNKYUQV' \
+    --userId 'BXymWcNl' \
+    --itemId 'HaFxYaGH' \
+    --limit '93' \
     --offset '31' \
-    --sku 'SVxBsLht' \
-    --status 'INIT' \
-    --subscribedBy 'PLATFORM' \
+    --status 'CLOSED' \
     > test.out 2>&1
-eval_tap $? 191 'QueryUserSubscriptions' test.out
+eval_tap $? 181 'QueryUserOrders' test.out
 
-#- 192 GetUserSubscriptionActivities
+#- 182 CountOfPurchasedItem
+samples/cli/sample-apps Platform countOfPurchasedItem \
+    --namespace 'BFyOrFKt' \
+    --userId 'xGNAi0fq' \
+    --itemId '4xChPLd2' \
+    > test.out 2>&1
+eval_tap $? 182 'CountOfPurchasedItem' test.out
+
+#- 183 GetUserOrder
+samples/cli/sample-apps Platform getUserOrder \
+    --namespace 'lOopc7Xo' \
+    --orderNo 'Vpdd6rCp' \
+    --userId 'yMrnH9YH' \
+    > test.out 2>&1
+eval_tap $? 183 'GetUserOrder' test.out
+
+#- 184 UpdateUserOrderStatus
+samples/cli/sample-apps Platform updateUserOrderStatus \
+    --body '{"status": "CHARGED", "statusReason": "7KnCVOKY"}' \
+    --namespace '2zsBRGtd' \
+    --orderNo '8QY2OLbi' \
+    --userId 'jrvfr8hk' \
+    > test.out 2>&1
+eval_tap $? 184 'UpdateUserOrderStatus' test.out
+
+#- 185 FulfillUserOrder
+samples/cli/sample-apps Platform fulfillUserOrder \
+    --namespace 'njWUWdMU' \
+    --orderNo 'XHvw4pNl' \
+    --userId 'GLjdBxLM' \
+    > test.out 2>&1
+eval_tap $? 185 'FulfillUserOrder' test.out
+
+#- 186 GetUserOrderGrant
+samples/cli/sample-apps Platform getUserOrderGrant \
+    --namespace '079pDAbT' \
+    --orderNo 'gmsEYEq2' \
+    --userId 'GkYK1vYm' \
+    > test.out 2>&1
+eval_tap $? 186 'GetUserOrderGrant' test.out
+
+#- 187 GetUserOrderHistories
+samples/cli/sample-apps Platform getUserOrderHistories \
+    --namespace '9flXQ7CQ' \
+    --orderNo 'oemnQG0d' \
+    --userId 'H0NVM9VE' \
+    > test.out 2>&1
+eval_tap $? 187 'GetUserOrderHistories' test.out
+
+#- 188 ProcessUserOrderNotification
+samples/cli/sample-apps Platform processUserOrderNotification \
+    --body '{"additionalData": {"cardSummary": "HTPqDhkc"}, "authorisedTime": "1981-06-21T00:00:00Z", "chargebackReversedTime": "1977-07-26T00:00:00Z", "chargebackTime": "1987-03-05T00:00:00Z", "chargedTime": "1990-11-01T00:00:00Z", "createdTime": "1971-04-30T00:00:00Z", "currency": {"currencyCode": "BJHml0LJ", "currencySymbol": "mpPi4mqh", "currencyType": "VIRTUAL", "decimals": 41, "namespace": "iCZLGGP5"}, "customParameters": {"UXkHNTMa": {}}, "extOrderNo": "pp5Sbons", "extTxId": "UJKADr60", "extUserId": "EkdFrpLs", "issuedAt": "1987-06-05T00:00:00Z", "metadata": {"9yTXWUSC": "QcMsHN7r"}, "namespace": "eI22ks7I", "nonceStr": "12tAZc8s", "paymentMethod": "xxLx9XQe", "paymentMethodFee": 32, "paymentOrderNo": "NWLm8cNJ", "paymentProvider": "WALLET", "paymentProviderFee": 100, "paymentStationUrl": "H5J4WiJL", "price": 42, "refundedTime": "1990-06-21T00:00:00Z", "salesTax": 67, "sandbox": true, "sku": "tw2Mjcy9", "status": "DELETED", "statusReason": "L6Zs5Bu2", "subscriptionId": "XYopLWZe", "subtotalPrice": 93, "targetNamespace": "KJJNftRp", "targetUserId": "Ggk1iseR", "tax": 61, "totalPrice": 51, "totalTax": 50, "txEndTime": "1992-09-12T00:00:00Z", "type": "6z9wmuHd", "userId": "dyOdibI1", "vat": 74}' \
+    --namespace 'VyqbdY8D' \
+    --orderNo 'GZKAuoIK' \
+    --userId 'z3Pp3zLW' \
+    > test.out 2>&1
+eval_tap $? 188 'ProcessUserOrderNotification' test.out
+
+#- 189 DownloadUserOrderReceipt
+samples/cli/sample-apps Platform downloadUserOrderReceipt \
+    --namespace 'UxMzMtSm' \
+    --orderNo 'MmZP8nG0' \
+    --userId 'FoQP8q7a' \
+    > test.out 2>&1
+eval_tap $? 189 'DownloadUserOrderReceipt' test.out
+
+#- 190 CreateUserPaymentOrder
+samples/cli/sample-apps Platform createUserPaymentOrder \
+    --body '{"currencyCode": "Ssb85gAh", "currencyNamespace": "9RD3ZzN6", "customParameters": {"N1iJ8ltt": {}}, "description": "9IRqCflg", "extOrderNo": "ln6r5f0s", "extUserId": "5H6lCf3Q", "itemType": "APP", "language": "ll_AVle_dG", "metadata": {"2cvHfMRu": "pDA5xbjs"}, "notifyUrl": "3XRdHUJ0", "omitNotification": true, "price": 25, "recurringPaymentOrderNo": "flIXkgJ6", "region": "zkTwoakq", "returnUrl": "7sEejFZ1", "sandbox": true, "sku": "ONXb9w9h", "subscriptionId": "sQHszIsf", "title": "rlzKpQdd"}' \
+    --namespace '58dZP5Rv' \
+    --userId 'rinNtvBt' \
+    > test.out 2>&1
+eval_tap $? 190 'CreateUserPaymentOrder' test.out
+
+#- 191 RefundUserPaymentOrder
+samples/cli/sample-apps Platform refundUserPaymentOrder \
+    --body '{"description": "qFSkA68m"}' \
+    --namespace 'IVYJ5pSV' \
+    --paymentOrderNo 'xBsLhty3' \
+    --userId 'pecToXA4' \
+    > test.out 2>&1
+eval_tap $? 191 'RefundUserPaymentOrder' test.out
+
+#- 192 ApplyUserRedemption
+samples/cli/sample-apps Platform applyUserRedemption \
+    --body '{"code": "M1oUFPhg", "orderNo": "o7Z6mwNC"}' \
+    --namespace '4FY69mM8' \
+    --userId '7joJNOGB' \
+    > test.out 2>&1
+eval_tap $? 192 'ApplyUserRedemption' test.out
+
+#- 193 QueryUserSubscriptions
+samples/cli/sample-apps Platform queryUserSubscriptions \
+    --namespace '83Ns6Hl5' \
+    --userId 'Poab6lKo' \
+    --chargeStatus 'NEVER' \
+    --itemId 'NBUzIxOf' \
+    --limit '13' \
+    --offset '23' \
+    --sku 'quS2q2Do' \
+    --status 'EXPIRED' \
+    --subscribedBy 'USER' \
+    > test.out 2>&1
+eval_tap $? 193 'QueryUserSubscriptions' test.out
+
+#- 194 GetUserSubscriptionActivities
 samples/cli/sample-apps Platform getUserSubscriptionActivities \
-    --namespace 'ecToXA4M' \
-    --userId '1oUFPhgo' \
+    --namespace 'vFtKa2mO' \
+    --userId 'AqOokV1p' \
     --excludeSystem 'False' \
-    --limit '44' \
-    --offset '78' \
-    --subscriptionId 'C4FY69mM' \
+    --limit '46' \
+    --offset '84' \
+    --subscriptionId '2YriTPfi' \
     > test.out 2>&1
-eval_tap $? 192 'GetUserSubscriptionActivities' test.out
+eval_tap $? 194 'GetUserSubscriptionActivities' test.out
 
-#- 193 PlatformSubscribeSubscription
+#- 195 PlatformSubscribeSubscription
 samples/cli/sample-apps Platform platformSubscribeSubscription \
-    --body '{"grantDays": 19, "itemId": "oJNOGB83", "language": "Ns6Hl5Po", "reason": "ab6lKoVq", "region": "NBUzIxOf", "source": "glquS2q2"}' \
-    --namespace 'DoWr9zvF' \
-    --userId 'tKa2mOAq' \
+    --body '{"grantDays": 30, "itemId": "D67jI2hi", "language": "ZkrtLnh2", "reason": "U1RQlMxk", "region": "fNMPNtqv", "source": "2TMz1b7S"}' \
+    --namespace 'nzkXOek8' \
+    --userId '3Igm1wkS' \
     > test.out 2>&1
-eval_tap $? 193 'PlatformSubscribeSubscription' test.out
+eval_tap $? 195 'PlatformSubscribeSubscription' test.out
 
-#- 194 CheckUserSubscriptionSubscribableByItemId
+#- 196 CheckUserSubscriptionSubscribableByItemId
 samples/cli/sample-apps Platform checkUserSubscriptionSubscribableByItemId \
-    --namespace 'OokV1plx' \
-    --userId 'Q2YriTPf' \
-    --itemId 'ipD67jI2' \
+    --namespace 'WsYvAsu1' \
+    --userId '8obUdc8m' \
+    --itemId 'bvXcwcgM' \
     > test.out 2>&1
-eval_tap $? 194 'CheckUserSubscriptionSubscribableByItemId' test.out
+eval_tap $? 196 'CheckUserSubscriptionSubscribableByItemId' test.out
 
-#- 195 GetUserSubscription
+#- 197 GetUserSubscription
 samples/cli/sample-apps Platform getUserSubscription \
-    --namespace 'hiZkrtLn' \
-    --subscriptionId 'h2U1RQlM' \
-    --userId 'xkfNMPNt' \
+    --namespace 'qOXMziXr' \
+    --subscriptionId 'VdsEc3Cl' \
+    --userId 'FP3mJwus' \
     > test.out 2>&1
-eval_tap $? 195 'GetUserSubscription' test.out
+eval_tap $? 197 'GetUserSubscription' test.out
 
-#- 196 DeleteUserSubscription
+#- 198 DeleteUserSubscription
 samples/cli/sample-apps Platform deleteUserSubscription \
-    --namespace 'qv2TMz1b' \
-    --subscriptionId '7SnzkXOe' \
-    --userId 'k83Igm1w' \
+    --namespace 'CBTe4kLc' \
+    --subscriptionId 'uqL40NYg' \
+    --userId 'ekRavpaG' \
     > test.out 2>&1
-eval_tap $? 196 'DeleteUserSubscription' test.out
+eval_tap $? 198 'DeleteUserSubscription' test.out
 
-#- 197 CancelSubscription
+#- 199 CancelSubscription
 samples/cli/sample-apps Platform cancelSubscription \
-    --body '{"immediate": false, "reason": "SWsYvAsu"}' \
-    --namespace '18obUdc8' \
-    --subscriptionId 'mbvXcwcg' \
-    --userId 'MqOXMziX' \
+    --body '{"immediate": true, "reason": "9BTyCCyN"}' \
+    --namespace '4Fw9i6mI' \
+    --subscriptionId '2W3tjjCq' \
+    --userId 'PVyYs01h' \
     --force 'True' \
     > test.out 2>&1
-eval_tap $? 197 'CancelSubscription' test.out
+eval_tap $? 199 'CancelSubscription' test.out
 
-#- 198 GrantDaysToSubscription
+#- 200 GrantDaysToSubscription
 samples/cli/sample-apps Platform grantDaysToSubscription \
-    --body '{"grantDays": 94, "reason": "dsEc3ClF"}' \
-    --namespace 'P3mJwusC' \
-    --subscriptionId 'BTe4kLcu' \
-    --userId 'qL40NYge' \
+    --body '{"grantDays": 100, "reason": "zWw3qrcx"}' \
+    --namespace 'M0DPAXQB' \
+    --subscriptionId 'NMP7j3xf' \
+    --userId 'PaoZaWFs' \
     > test.out 2>&1
-eval_tap $? 198 'GrantDaysToSubscription' test.out
+eval_tap $? 200 'GrantDaysToSubscription' test.out
 
-#- 199 GetUserSubscriptionBillingHistories
+#- 201 GetUserSubscriptionBillingHistories
 samples/cli/sample-apps Platform getUserSubscriptionBillingHistories \
-    --namespace 'kRavpaGT' \
-    --subscriptionId 'A9BTyCCy' \
-    --userId 'N4Fw9i6m' \
-    --excludeFree 'True' \
-    --limit '19' \
-    --offset '18' \
+    --namespace 'pkU5kn6P' \
+    --subscriptionId 'lPqD4Agf' \
+    --userId 'asBfclBh' \
+    --excludeFree 'False' \
+    --limit '3' \
+    --offset '75' \
     > test.out 2>&1
-eval_tap $? 199 'GetUserSubscriptionBillingHistories' test.out
+eval_tap $? 201 'GetUserSubscriptionBillingHistories' test.out
 
-#- 200 ProcessUserSubscriptionNotification
+#- 202 ProcessUserSubscriptionNotification
 samples/cli/sample-apps Platform processUserSubscriptionNotification \
-    --body '{"additionalData": {"cardSummary": "CqPVyYs0"}, "authorisedTime": "1997-02-23T00:00:00Z", "chargebackReversedTime": "1986-07-21T00:00:00Z", "chargebackTime": "1995-06-25T00:00:00Z", "chargedTime": "1998-05-06T00:00:00Z", "createdTime": "1979-01-16T00:00:00Z", "currency": {"currencyCode": "xM0DPAXQ", "currencySymbol": "BNMP7j3x", "currencyType": "REAL", "decimals": 83, "namespace": "aoZaWFsp"}, "customParameters": {"kU5kn6Pl": {}}, "extOrderNo": "PqD4Agfa", "extTxId": "sBfclBhZ", "extUserId": "jZbLnmgh", "issuedAt": "1989-06-27T00:00:00Z", "metadata": {"PyVIn3qa": "HP7KNuly"}, "namespace": "frENVQkp", "nonceStr": "caWHf6T2", "paymentMethod": "xOOljn7c", "paymentMethodFee": 4, "paymentOrderNo": "9efJI02T", "paymentProvider": "ALIPAY", "paymentProviderFee": 35, "paymentStationUrl": "gLBFJEkp", "price": 14, "refundedTime": "1986-07-23T00:00:00Z", "salesTax": 15, "sandbox": false, "sku": "oVpVc2HB", "status": "REQUEST_FOR_INFORMATION", "statusReason": "mj6cEi02", "subscriptionId": "hXl42ubC", "subtotalPrice": 87, "targetNamespace": "fy4GjKn5", "targetUserId": "ItHXLDZq", "tax": 31, "totalPrice": 87, "totalTax": 15, "txEndTime": "1979-04-20T00:00:00Z", "type": "R742GcbL", "userId": "uQOGMOEz", "vat": 24}' \
-    --namespace 'djNhT0S4' \
-    --subscriptionId '6kqyfMBS' \
-    --userId 'aZc4SA16' \
+    --body '{"additionalData": {"cardSummary": "nmghKwPy"}, "authorisedTime": "1994-09-29T00:00:00Z", "chargebackReversedTime": "1977-05-10T00:00:00Z", "chargebackTime": "1971-09-29T00:00:00Z", "chargedTime": "1991-10-16T00:00:00Z", "createdTime": "1990-06-07T00:00:00Z", "currency": {"currencyCode": "lyfrENVQ", "currencySymbol": "kpcaWHf6", "currencyType": "VIRTUAL", "decimals": 81, "namespace": "Oljn7c6c"}, "customParameters": {"9efJI02T": {}}, "extOrderNo": "ZxrgLBFJ", "extTxId": "EkphFz0h", "extUserId": "6WpoVpVc", "issuedAt": "1998-09-20T00:00:00Z", "metadata": {"BBmj6cEi": "02hXl42u"}, "namespace": "bCRfy4Gj", "nonceStr": "Kn5ItHXL", "paymentMethod": "DZqpRhqn", "paymentMethodFee": 87, "paymentOrderNo": "742GcbLu", "paymentProvider": "PAYPAL", "paymentProviderFee": 50, "paymentStationUrl": "mdjNhT0S", "price": 20, "refundedTime": "1979-07-11T00:00:00Z", "salesTax": 11, "sandbox": true, "sku": "SaZc4SA1", "status": "REFUNDING", "statusReason": "8gQCD7aB", "subscriptionId": "HWCYevNk", "subtotalPrice": 11, "targetNamespace": "cQvl4Oso", "targetUserId": "7tx65zXC", "tax": 17, "totalPrice": 90, "totalTax": 10, "txEndTime": "1975-04-23T00:00:00Z", "type": "rLFqTmIU", "userId": "FUoonHBI", "vat": 89}' \
+    --namespace 'ZFHfm0F8' \
+    --subscriptionId 'vS2BrZ3n' \
+    --userId 'q88YSSD7' \
     > test.out 2>&1
-eval_tap $? 200 'ProcessUserSubscriptionNotification' test.out
+eval_tap $? 202 'ProcessUserSubscriptionNotification' test.out
 
-#- 201 AcquireUserTicket
+#- 203 AcquireUserTicket
 samples/cli/sample-apps Platform acquireUserTicket \
-    --body '{"count": 77, "orderNo": "8gQCD7aB"}' \
-    --boothName 'HWCYevNk' \
-    --namespace 'fcQvl4Os' \
-    --userId 'o7tx65zX' \
+    --body '{"count": 51, "orderNo": "V0C8FvVU"}' \
+    --boothName '3kRXBGPX' \
+    --namespace 'Idft1biZ' \
+    --userId 'HuhWyFPH' \
     > test.out 2>&1
-eval_tap $? 201 'AcquireUserTicket' test.out
+eval_tap $? 203 'AcquireUserTicket' test.out
 
-#- 202 CheckWallet
+#- 204 CheckWallet
 samples/cli/sample-apps Platform checkWallet \
-    --currencyCode 'CiTfjorL' \
-    --namespace 'FqTmIUFU' \
-    --userId 'oonHBI13' \
+    --currencyCode 'dXcyvZEh' \
+    --namespace 'YeUSy5Uk' \
+    --userId 'c65naP11' \
     > test.out 2>&1
-eval_tap $? 202 'CheckWallet' test.out
+eval_tap $? 204 'CheckWallet' test.out
 
-#- 203 CreditUserWallet
+#- 205 CreditUserWallet
 samples/cli/sample-apps Platform creditUserWallet \
-    --body '{"amount": 89, "reason": "ZFHfm0F8", "source": "REDEEM_CODE"}' \
-    --currencyCode 'S2BrZ3nq' \
-    --namespace '88YSSD7z' \
-    --userId 'V0C8FvVU' \
+    --body '{"amount": 86, "reason": "8Xww9vq9", "source": "ACHIEVEMENT"}' \
+    --currencyCode 'Ma2Btgwy' \
+    --namespace 'uf2fjV30' \
+    --userId 'SLxi7uyh' \
     > test.out 2>&1
-eval_tap $? 203 'CreditUserWallet' test.out
+eval_tap $? 205 'CreditUserWallet' test.out
 
-#- 204 PayWithUserWallet
+#- 206 PayWithUserWallet
 samples/cli/sample-apps Platform payWithUserWallet \
-    --body '{"amount": 21}' \
-    --currencyCode 'RXBGPXId' \
-    --namespace 'ft1biZHu' \
-    --userId 'hWyFPHdX' \
+    --body '{"amount": 0}' \
+    --currencyCode 'eFtcO9XN' \
+    --namespace 'y63QO9vW' \
+    --userId '0ck7TEDE' \
     > test.out 2>&1
-eval_tap $? 204 'PayWithUserWallet' test.out
+eval_tap $? 206 'PayWithUserWallet' test.out
 
-#- 205 GetUserWallet
+#- 207 GetUserWallet
 samples/cli/sample-apps Platform getUserWallet \
-    --namespace 'cyvZEhYe' \
-    --userId 'USy5Ukc6' \
-    --walletId '5naP11R8' \
-    > test.out 2>&1
-eval_tap $? 205 'GetUserWallet' test.out
-
-#- 206 DebitUserWallet
-samples/cli/sample-apps Platform debitUserWallet \
-    --body '{"amount": 98, "reason": "ww9vq9nM"}' \
-    --namespace 'a2Btgwyu' \
-    --userId 'f2fjV30S' \
-    --walletId 'Lxi7uyha' \
-    > test.out 2>&1
-eval_tap $? 206 'DebitUserWallet' test.out
-
-#- 207 DisableUserWallet
-samples/cli/sample-apps Platform disableUserWallet \
-    --namespace 'eFtcO9XN' \
-    --userId 'y63QO9vW' \
-    --walletId '0ck7TEDE' \
-    > test.out 2>&1
-eval_tap $? 207 'DisableUserWallet' test.out
-
-#- 208 EnableUserWallet
-samples/cli/sample-apps Platform enableUserWallet \
     --namespace '8LeEQBeG' \
     --userId 'PLiE6tHC' \
     --walletId 'r0GPFvT0' \
     > test.out 2>&1
-eval_tap $? 208 'EnableUserWallet' test.out
+eval_tap $? 207 'GetUserWallet' test.out
 
-#- 209 ListUserWalletTransactions
+#- 208 DebitUserWallet
+samples/cli/sample-apps Platform debitUserWallet \
+    --body '{"amount": 88, "reason": "AK91y5vC"}' \
+    --namespace 'eBIJq0B9' \
+    --userId 'UcI6c5cr' \
+    --walletId 'e9ealHOZ' \
+    > test.out 2>&1
+eval_tap $? 208 'DebitUserWallet' test.out
+
+#- 209 DisableUserWallet
+samples/cli/sample-apps Platform disableUserWallet \
+    --namespace 'phcLncnj' \
+    --userId 'nmyU8FSx' \
+    --walletId 'XdCrskoF' \
+    > test.out 2>&1
+eval_tap $? 209 'DisableUserWallet' test.out
+
+#- 210 EnableUserWallet
+samples/cli/sample-apps Platform enableUserWallet \
+    --namespace 'qnowq9La' \
+    --userId 'z1GLt5Mh' \
+    --walletId 'f8Z7ahmb' \
+    > test.out 2>&1
+eval_tap $? 210 'EnableUserWallet' test.out
+
+#- 211 ListUserWalletTransactions
 samples/cli/sample-apps Platform listUserWalletTransactions \
-    --namespace 'SAK91y5v' \
-    --userId 'CeBIJq0B' \
-    --walletId '9UcI6c5c' \
-    --limit '34' \
-    --offset '9' \
+    --namespace 'VPm2g7xA' \
+    --userId 'FfRRLUjf' \
+    --walletId 'WS9sftIf' \
+    --limit '66' \
+    --offset '64' \
     > test.out 2>&1
-eval_tap $? 209 'ListUserWalletTransactions' test.out
+eval_tap $? 211 'ListUserWalletTransactions' test.out
 
-#- 210 QueryWallets
+#- 212 QueryWallets
 samples/cli/sample-apps Platform queryWallets \
-    --namespace '9ealHOZp' \
-    --currencyCode 'hcLncnjn' \
-    --limit '25' \
-    --offset '49' \
-    --userId 'U8FSxXdC' \
+    --namespace 'e5bUTSXO' \
+    --currencyCode 'v12PMcRO' \
+    --limit '60' \
+    --offset '77' \
+    --userId 'kre5q7Fv' \
     > test.out 2>&1
-eval_tap $? 210 'QueryWallets' test.out
+eval_tap $? 212 'QueryWallets' test.out
 
-#- 211 GetWallet
+#- 213 GetWallet
 samples/cli/sample-apps Platform getWallet \
-    --namespace 'rskoFqno' \
-    --walletId 'wq9Laz1G' \
+    --namespace 'aACp6he0' \
+    --walletId 'fzjkPNNS' \
     > test.out 2>&1
-eval_tap $? 211 'GetWallet' test.out
+eval_tap $? 213 'GetWallet' test.out
 
-#- 212 SyncOrders
+#- 214 SyncOrders
 samples/cli/sample-apps Platform syncOrders \
-    --nextEvaluatedKey 'Lt5Mhf8Z' \
-    --end '7ahmbVPm' \
-    --start '2g7xAFfR' \
+    --nextEvaluatedKey '0BfgF6in' \
+    --end 'IRsZ5hrq' \
+    --start 'NzVszGVP' \
     > test.out 2>&1
-eval_tap $? 212 'SyncOrders' test.out
+eval_tap $? 214 'SyncOrders' test.out
 
-#- 213 TestAdyenConfig
+#- 215 TestAdyenConfig
 samples/cli/sample-apps Platform testAdyenConfig \
-    --body '{"allowedPaymentMethods": ["RLUjfWS9"], "apiKey": "sftIfHGe", "authoriseAsCapture": false, "blockedPaymentMethods": ["UTSXOv12"], "clientKey": "PMcRO6E2", "dropInSettings": "Mkre5q7F", "liveEndpointUrlPrefix": "vaACp6he", "merchantAccount": "0fzjkPNN", "notificationHmacKey": "S0BfgF6i", "notificationPassword": "nIRsZ5hr", "notificationUsername": "qNzVszGV", "returnUrl": "P5P1iwhc", "settings": "f30C1KHR"}' \
+    --body '{"allowedPaymentMethods": ["5P1iwhcf"], "apiKey": "30C1KHRZ", "authoriseAsCapture": true, "blockedPaymentMethods": ["5vbfZvYI"], "clientKey": "FFctEKOL", "dropInSettings": "xSRxe0wm", "liveEndpointUrlPrefix": "WBMcNiWo", "merchantAccount": "obB6o6al", "notificationHmacKey": "TQcP0EpE", "notificationPassword": "9wGNVwkg", "notificationUsername": "fJJ2HIal", "returnUrl": "fzgRpTf9", "settings": "lxF1JPBi"}' \
     --sandbox 'True' \
     > test.out 2>&1
-eval_tap $? 213 'TestAdyenConfig' test.out
+eval_tap $? 215 'TestAdyenConfig' test.out
 
-#- 214 TestAliPayConfig
+#- 216 TestAliPayConfig
 samples/cli/sample-apps Platform testAliPayConfig \
-    --body '{"appId": "5vbfZvYI", "privateKey": "FFctEKOL", "publicKey": "xSRxe0wm", "returnUrl": "WBMcNiWo"}' \
-    --sandbox 'False' \
+    --body '{"appId": "XZtrGe8L", "privateKey": "yOH24nne", "publicKey": "ZHFeRld0", "returnUrl": "bGA7JxWY"}' \
+    --sandbox 'True' \
     > test.out 2>&1
-eval_tap $? 214 'TestAliPayConfig' test.out
+eval_tap $? 216 'TestAliPayConfig' test.out
 
-#- 215 TestCheckoutConfig
+#- 217 TestCheckoutConfig
 samples/cli/sample-apps Platform testCheckoutConfig \
-    --body '{"publicKey": "bB6o6alT", "secretKey": "QcP0EpE9"}' \
-    --sandbox 'True' \
+    --body '{"publicKey": "aEaimvok", "secretKey": "cWX59kwi"}' \
+    --sandbox 'False' \
     > test.out 2>&1
-eval_tap $? 215 'TestCheckoutConfig' test.out
+eval_tap $? 217 'TestCheckoutConfig' test.out
 
-#- 216 DebugMatchedPaymentMerchantConfig
+#- 218 DebugMatchedPaymentMerchantConfig
 samples/cli/sample-apps Platform debugMatchedPaymentMerchantConfig \
-    --namespace 'GNVwkgfJ' \
-    --region 'J2HIalfz' \
+    --namespace 'HT6Ivd0f' \
+    --region 'GpU209nV' \
     > test.out 2>&1
-eval_tap $? 216 'DebugMatchedPaymentMerchantConfig' test.out
+eval_tap $? 218 'DebugMatchedPaymentMerchantConfig' test.out
 
-#- 217 TestPayPalConfig
+#- 219 TestPayPalConfig
 samples/cli/sample-apps Platform testPayPalConfig \
-    --body '{"clientID": "gRpTf9lx", "clientSecret": "F1JPBizX", "returnUrl": "ZtrGe8Ly", "webHookId": "OH24nneZ"}' \
+    --body '{"clientID": "RclumQTF", "clientSecret": "vr5rRyYz", "returnUrl": "aNmz3PjM", "webHookId": "x2T89NTr"}' \
     --sandbox 'True' \
     > test.out 2>&1
-eval_tap $? 217 'TestPayPalConfig' test.out
+eval_tap $? 219 'TestPayPalConfig' test.out
 
-#- 218 TestStripeConfig
+#- 220 TestStripeConfig
 samples/cli/sample-apps Platform testStripeConfig \
-    --body '{"allowedPaymentMethodTypes": ["eRld0bGA"], "publishableKey": "7JxWYzaE", "secretKey": "aimvokcW", "webhookSecret": "X59kwiYH"}' \
-    --sandbox 'False' \
+    --body '{"allowedPaymentMethodTypes": ["RUCXFkru"], "publishableKey": "xegpkcXC", "secretKey": "fzgcvv0W", "webhookSecret": "E5EQhcom"}' \
+    --sandbox 'True' \
     > test.out 2>&1
-eval_tap $? 218 'TestStripeConfig' test.out
+eval_tap $? 220 'TestStripeConfig' test.out
 
-#- 219 TestWxPayConfig
+#- 221 TestWxPayConfig
 samples/cli/sample-apps Platform testWxPayConfig \
-    --body '{"appId": "HT6Ivd0f", "key": "GpU209nV", "mchid": "RclumQTF", "returnUrl": "vr5rRyYz"}' \
+    --body '{"appId": "7cpsLgr2", "key": "zEnjyRNj", "mchid": "EC3FMDcZ", "returnUrl": "vwwf8aU9"}' \
     > test.out 2>&1
-eval_tap $? 219 'TestWxPayConfig' test.out
+eval_tap $? 221 'TestWxPayConfig' test.out
 
-#- 220 TestXsollaConfig
+#- 222 TestXsollaConfig
 samples/cli/sample-apps Platform testXsollaConfig \
-    --body '{"apiKey": "aNmz3PjM", "flowCompletionUrl": "x2T89NTr", "merchantId": 62, "projectId": 87, "projectSecretKey": "UCXFkrux"}' \
+    --body '{"apiKey": "8In31mF4", "flowCompletionUrl": "jlwKyGxT", "merchantId": 63, "projectId": 23, "projectSecretKey": "5q1Np0sT"}' \
     > test.out 2>&1
-eval_tap $? 220 'TestXsollaConfig' test.out
+eval_tap $? 222 'TestXsollaConfig' test.out
 
-#- 221 GetPaymentMerchantConfig
+#- 223 GetPaymentMerchantConfig
 samples/cli/sample-apps Platform getPaymentMerchantConfig \
-    --id 'egpkcXCf' \
+    --id '1X8J2eAW' \
     > test.out 2>&1
-eval_tap $? 221 'GetPaymentMerchantConfig' test.out
+eval_tap $? 223 'GetPaymentMerchantConfig' test.out
 
-#- 222 UpdateAdyenConfig
+#- 224 UpdateAdyenConfig
 samples/cli/sample-apps Platform updateAdyenConfig \
-    --body '{"allowedPaymentMethods": ["zgcvv0WE"], "apiKey": "5EQhcomP", "authoriseAsCapture": true, "blockedPaymentMethods": ["7cpsLgr2"], "clientKey": "zEnjyRNj", "dropInSettings": "EC3FMDcZ", "liveEndpointUrlPrefix": "vwwf8aU9", "merchantAccount": "8In31mF4", "notificationHmacKey": "jlwKyGxT", "notificationPassword": "F1l5q1Np", "notificationUsername": "0sT1X8J2", "returnUrl": "eAWOzjmh", "settings": "9UzIfnho"}' \
-    --id 'o6xUmTle' \
-    --sandbox 'False' \
-    --validate 'True' \
-    > test.out 2>&1
-eval_tap $? 222 'UpdateAdyenConfig' test.out
-
-#- 223 TestAdyenConfigById
-samples/cli/sample-apps Platform testAdyenConfigById \
-    --id 'M7XhoDxG' \
-    --sandbox 'False' \
-    > test.out 2>&1
-eval_tap $? 223 'TestAdyenConfigById' test.out
-
-#- 224 UpdateAliPayConfig
-samples/cli/sample-apps Platform updateAliPayConfig \
-    --body '{"appId": "k2JSfZ64", "privateKey": "wWePq610", "publicKey": "3PONKIS7", "returnUrl": "F9emW4R1"}' \
-    --id '5tAsiG31' \
+    --body '{"allowedPaymentMethods": ["Ozjmh9Uz"], "apiKey": "Ifnhoo6x", "authoriseAsCapture": false, "blockedPaymentMethods": ["TleUnJFM"], "clientKey": "7XhoDxGi", "dropInSettings": "k2JSfZ64", "liveEndpointUrlPrefix": "wWePq610", "merchantAccount": "3PONKIS7", "notificationHmacKey": "F9emW4R1", "notificationPassword": "5tAsiG31", "notificationUsername": "CEyUOuOZ", "returnUrl": "hmnHkvek", "settings": "6Aa5kNno"}' \
+    --id 'clxs9kxc' \
     --sandbox 'True' \
-    --validate 'True' \
-    > test.out 2>&1
-eval_tap $? 224 'UpdateAliPayConfig' test.out
-
-#- 225 TestAliPayConfigById
-samples/cli/sample-apps Platform testAliPayConfigById \
-    --id 'yUOuOZhm' \
-    --sandbox 'False' \
-    > test.out 2>&1
-eval_tap $? 225 'TestAliPayConfigById' test.out
-
-#- 226 UpdateCheckoutConfig
-samples/cli/sample-apps Platform updateCheckoutConfig \
-    --body '{"publicKey": "Hkvek6Aa", "secretKey": "5kNnoclx"}' \
-    --id 's9kxcvIp' \
-    --sandbox 'False' \
-    --validate 'True' \
-    > test.out 2>&1
-eval_tap $? 226 'UpdateCheckoutConfig' test.out
-
-#- 227 TestCheckoutConfigById
-samples/cli/sample-apps Platform testCheckoutConfigById \
-    --id 'YfWKjY9C' \
-    --sandbox 'True' \
-    > test.out 2>&1
-eval_tap $? 227 'TestCheckoutConfigById' test.out
-
-#- 228 UpdatePayPalConfig
-samples/cli/sample-apps Platform updatePayPalConfig \
-    --body '{"clientID": "QYsGyhEO", "clientSecret": "ntEkedM1", "returnUrl": "A0bFqvjx", "webHookId": "bT3YuVda"}' \
-    --id 'BN5RSjhc' \
-    --sandbox 'False' \
-    --validate 'True' \
-    > test.out 2>&1
-eval_tap $? 228 'UpdatePayPalConfig' test.out
-
-#- 229 TestPayPalConfigById
-samples/cli/sample-apps Platform testPayPalConfigById \
-    --id 'DvNrXL84' \
-    --sandbox 'False' \
-    > test.out 2>&1
-eval_tap $? 229 'TestPayPalConfigById' test.out
-
-#- 230 UpdateStripeConfig
-samples/cli/sample-apps Platform updateStripeConfig \
-    --body '{"allowedPaymentMethodTypes": ["fh5tZ0hq"], "publishableKey": "JLjQUmoY", "secretKey": "UnC849OB", "webhookSecret": "NuLZtofG"}' \
-    --id 'AAaMpBQA' \
-    --sandbox 'True' \
-    --validate 'True' \
-    > test.out 2>&1
-eval_tap $? 230 'UpdateStripeConfig' test.out
-
-#- 231 TestStripeConfigById
-samples/cli/sample-apps Platform testStripeConfigById \
-    --id 'QRy5Qz5V' \
-    --sandbox 'False' \
-    > test.out 2>&1
-eval_tap $? 231 'TestStripeConfigById' test.out
-
-#- 232 UpdateWxPayConfig
-samples/cli/sample-apps Platform updateWxPayConfig \
-    --body '{"appId": "yfBpHjtv", "key": "FwKSJyZe", "mchid": "qvpevcVX", "returnUrl": "Txs9LTor"}' \
-    --id 'Iyx23LhL' \
-    --validate 'True' \
-    > test.out 2>&1
-eval_tap $? 232 'UpdateWxPayConfig' test.out
-
-#- 233 UpdateWxPayConfigCert
-samples/cli/sample-apps Platform updateWxPayConfigCert \
-    --file 'tmp.dat' \
-    --id '7ds3g3Bu' \
-    > test.out 2>&1
-eval_tap $? 233 'UpdateWxPayConfigCert' test.out
-
-#- 234 TestWxPayConfigById
-samples/cli/sample-apps Platform testWxPayConfigById \
-    --id 'HTPF19dB' \
-    > test.out 2>&1
-eval_tap $? 234 'TestWxPayConfigById' test.out
-
-#- 235 UpdateXsollaConfig
-samples/cli/sample-apps Platform updateXsollaConfig \
-    --body '{"apiKey": "YFws5Ya4", "flowCompletionUrl": "eOwWqW8H", "merchantId": 16, "projectId": 75, "projectSecretKey": "pTi1W63H"}' \
-    --id 'ccgM5kYu' \
     --validate 'False' \
     > test.out 2>&1
-eval_tap $? 235 'UpdateXsollaConfig' test.out
+eval_tap $? 224 'UpdateAdyenConfig' test.out
 
-#- 236 TestXsollaConfigById
+#- 225 TestAdyenConfigById
+samples/cli/sample-apps Platform testAdyenConfigById \
+    --id 'V7mCYfWK' \
+    --sandbox 'False' \
+    > test.out 2>&1
+eval_tap $? 225 'TestAdyenConfigById' test.out
+
+#- 226 UpdateAliPayConfig
+samples/cli/sample-apps Platform updateAliPayConfig \
+    --body '{"appId": "Y9CsQYsG", "privateKey": "yhEOntEk", "publicKey": "edM1A0bF", "returnUrl": "qvjxbT3Y"}' \
+    --id 'uVdaBN5R' \
+    --sandbox 'False' \
+    --validate 'False' \
+    > test.out 2>&1
+eval_tap $? 226 'UpdateAliPayConfig' test.out
+
+#- 227 TestAliPayConfigById
+samples/cli/sample-apps Platform testAliPayConfigById \
+    --id 'cjuDvNrX' \
+    --sandbox 'False' \
+    > test.out 2>&1
+eval_tap $? 227 'TestAliPayConfigById' test.out
+
+#- 228 UpdateCheckoutConfig
+samples/cli/sample-apps Platform updateCheckoutConfig \
+    --body '{"publicKey": "fh5tZ0hq", "secretKey": "JLjQUmoY"}' \
+    --id 'UnC849OB' \
+    --sandbox 'True' \
+    --validate 'True' \
+    > test.out 2>&1
+eval_tap $? 228 'UpdateCheckoutConfig' test.out
+
+#- 229 TestCheckoutConfigById
+samples/cli/sample-apps Platform testCheckoutConfigById \
+    --id 'ofGAAaMp' \
+    --sandbox 'True' \
+    > test.out 2>&1
+eval_tap $? 229 'TestCheckoutConfigById' test.out
+
+#- 230 UpdatePayPalConfig
+samples/cli/sample-apps Platform updatePayPalConfig \
+    --body '{"clientID": "QArU4RS0", "clientSecret": "FQRy5Qz5", "returnUrl": "VcyfBpHj", "webHookId": "tvFwKSJy"}' \
+    --id 'Zeqvpevc' \
+    --sandbox 'True' \
+    --validate 'True' \
+    > test.out 2>&1
+eval_tap $? 230 'UpdatePayPalConfig' test.out
+
+#- 231 TestPayPalConfigById
+samples/cli/sample-apps Platform testPayPalConfigById \
+    --id '9LTorIyx' \
+    --sandbox 'False' \
+    > test.out 2>&1
+eval_tap $? 231 'TestPayPalConfigById' test.out
+
+#- 232 UpdateStripeConfig
+samples/cli/sample-apps Platform updateStripeConfig \
+    --body '{"allowedPaymentMethodTypes": ["Ly7ds3g3"], "publishableKey": "BuHTPF19", "secretKey": "dBYFws5Y", "webhookSecret": "a4eOwWqW"}' \
+    --id '8HiLpTi1' \
+    --sandbox 'False' \
+    --validate 'False' \
+    > test.out 2>&1
+eval_tap $? 232 'UpdateStripeConfig' test.out
+
+#- 233 TestStripeConfigById
+samples/cli/sample-apps Platform testStripeConfigById \
+    --id 'gM5kYu36' \
+    --sandbox 'False' \
+    > test.out 2>&1
+eval_tap $? 233 'TestStripeConfigById' test.out
+
+#- 234 UpdateWxPayConfig
+samples/cli/sample-apps Platform updateWxPayConfig \
+    --body '{"appId": "TL55W4ws", "key": "3KCyplY1", "mchid": "ocKDCVaq", "returnUrl": "rVeegT3u"}' \
+    --id 'GDIIcvuu' \
+    --validate 'False' \
+    > test.out 2>&1
+eval_tap $? 234 'UpdateWxPayConfig' test.out
+
+#- 235 UpdateWxPayConfigCert
+samples/cli/sample-apps Platform updateWxPayConfigCert \
+    --file 'tmp.dat' \
+    --id 'kt8TC38m' \
+    > test.out 2>&1
+eval_tap $? 235 'UpdateWxPayConfigCert' test.out
+
+#- 236 TestWxPayConfigById
+samples/cli/sample-apps Platform testWxPayConfigById \
+    --id 'YoUanQT4' \
+    > test.out 2>&1
+eval_tap $? 236 'TestWxPayConfigById' test.out
+
+#- 237 UpdateXsollaConfig
+samples/cli/sample-apps Platform updateXsollaConfig \
+    --body '{"apiKey": "Mmznv7r2", "flowCompletionUrl": "jthibgeC", "merchantId": 75, "projectId": 99, "projectSecretKey": "41qyOiLg"}' \
+    --id 'd8Wy739Q' \
+    --validate 'True' \
+    > test.out 2>&1
+eval_tap $? 237 'UpdateXsollaConfig' test.out
+
+#- 238 TestXsollaConfigById
 samples/cli/sample-apps Platform testXsollaConfigById \
-    --id 'TL55W4ws' \
+    --id 'w0TEzpd7' \
     > test.out 2>&1
-eval_tap $? 236 'TestXsollaConfigById' test.out
+eval_tap $? 238 'TestXsollaConfigById' test.out
 
-#- 237 UpdateXsollaUIConfig
+#- 239 UpdateXsollaUIConfig
 samples/cli/sample-apps Platform updateXsollaUIConfig \
-    --body '{"device": "MOBILE", "showCloseButton": true, "size": "SMALL", "theme": "DEFAULT"}' \
-    --id 'Y1ocKDCV' \
+    --body '{"device": "MOBILE", "showCloseButton": false, "size": "LARGE", "theme": "DEFAULT_DARK"}' \
+    --id '2i3DM6et' \
     > test.out 2>&1
-eval_tap $? 237 'UpdateXsollaUIConfig' test.out
+eval_tap $? 239 'UpdateXsollaUIConfig' test.out
 
-#- 238 QueryPaymentProviderConfig
+#- 240 QueryPaymentProviderConfig
 samples/cli/sample-apps Platform queryPaymentProviderConfig \
-    --limit '0' \
-    --namespace 'qrVeegT3' \
-    --offset '40' \
-    --region 'GDIIcvuu' \
+    --limit '10' \
+    --namespace 'I7TzC3sK' \
+    --offset '24' \
+    --region 'tsyEKdO6' \
     > test.out 2>&1
-eval_tap $? 238 'QueryPaymentProviderConfig' test.out
+eval_tap $? 240 'QueryPaymentProviderConfig' test.out
 
-#- 239 CreatePaymentProviderConfig
+#- 241 CreatePaymentProviderConfig
 samples/cli/sample-apps Platform createPaymentProviderConfig \
-    --body '{"aggregate": "XSOLLA", "namespace": "kt8TC38m", "region": "YoUanQT4", "sandboxTaxJarApiToken": "Mmznv7r2", "specials": ["ADYEN"], "taxJarApiToken": "thibgeCL", "taxJarEnabled": true, "useGlobalTaxJarApiToken": true}' \
+    --body '{"aggregate": "XSOLLA", "namespace": "3zGu71qT", "region": "SSJEbWlE", "sandboxTaxJarApiToken": "Tp9XOCA1", "specials": ["ADYEN"], "taxJarApiToken": "akAWQfBu", "taxJarEnabled": true, "useGlobalTaxJarApiToken": true}' \
     > test.out 2>&1
-eval_tap $? 239 'CreatePaymentProviderConfig' test.out
+eval_tap $? 241 'CreatePaymentProviderConfig' test.out
 
-#- 240 GetAggregatePaymentProviders
+#- 242 GetAggregatePaymentProviders
 samples/cli/sample-apps Platform getAggregatePaymentProviders \
     > test.out 2>&1
-eval_tap $? 240 'GetAggregatePaymentProviders' test.out
+eval_tap $? 242 'GetAggregatePaymentProviders' test.out
 
-#- 241 DebugMatchedPaymentProviderConfig
+#- 243 DebugMatchedPaymentProviderConfig
 samples/cli/sample-apps Platform debugMatchedPaymentProviderConfig \
-    --namespace 'OiLgd8Wy' \
-    --region '739QHzw0' \
+    --namespace 'OCjBfYCc' \
+    --region 'plye2GaP' \
     > test.out 2>&1
-eval_tap $? 241 'DebugMatchedPaymentProviderConfig' test.out
+eval_tap $? 243 'DebugMatchedPaymentProviderConfig' test.out
 
-#- 242 GetSpecialPaymentProviders
+#- 244 GetSpecialPaymentProviders
 samples/cli/sample-apps Platform getSpecialPaymentProviders \
     > test.out 2>&1
-eval_tap $? 242 'GetSpecialPaymentProviders' test.out
+eval_tap $? 244 'GetSpecialPaymentProviders' test.out
 
-#- 243 UpdatePaymentProviderConfig
+#- 245 UpdatePaymentProviderConfig
 samples/cli/sample-apps Platform updatePaymentProviderConfig \
-    --body '{"aggregate": "ADYEN", "namespace": "zpd7TV5v", "region": "hMM2i3DM", "sandboxTaxJarApiToken": "6etfI7Tz", "specials": ["PAYPAL"], "taxJarApiToken": "3sKmtsyE", "taxJarEnabled": false, "useGlobalTaxJarApiToken": false}' \
-    --id '3zGu71qT' \
+    --body '{"aggregate": "ADYEN", "namespace": "krgBH4ic", "region": "ml6L36Vg", "sandboxTaxJarApiToken": "2F2Q9aZD", "specials": ["XSOLLA"], "taxJarApiToken": "1OT8109o", "taxJarEnabled": true, "useGlobalTaxJarApiToken": false}' \
+    --id 'vJgsb2Py' \
     > test.out 2>&1
-eval_tap $? 243 'UpdatePaymentProviderConfig' test.out
+eval_tap $? 245 'UpdatePaymentProviderConfig' test.out
 
-#- 244 DeletePaymentProviderConfig
+#- 246 DeletePaymentProviderConfig
 samples/cli/sample-apps Platform deletePaymentProviderConfig \
-    --id 'SSJEbWlE' \
+    --id 'FfJ6qcHA' \
     > test.out 2>&1
-eval_tap $? 244 'DeletePaymentProviderConfig' test.out
+eval_tap $? 246 'DeletePaymentProviderConfig' test.out
 
-#- 245 GetPaymentTaxConfig
+#- 247 GetPaymentTaxConfig
 samples/cli/sample-apps Platform getPaymentTaxConfig \
     > test.out 2>&1
-eval_tap $? 245 'GetPaymentTaxConfig' test.out
+eval_tap $? 247 'GetPaymentTaxConfig' test.out
 
-#- 246 UpdatePaymentTaxConfig
+#- 248 UpdatePaymentTaxConfig
 samples/cli/sample-apps Platform updatePaymentTaxConfig \
-    --body '{"sandboxTaxJarApiToken": "Tp9XOCA1", "taxJarApiToken": "X3HHMTla", "taxJarEnabled": false, "taxJarProductCodesMapping": {"AWQfBuBA": "OCjBfYCc"}}' \
+    --body '{"sandboxTaxJarApiToken": "BdGtV9jA", "taxJarApiToken": "Pqon7UmL", "taxJarEnabled": true, "taxJarProductCodesMapping": {"9PkF9Snl": "bWNcAxv8"}}' \
     > test.out 2>&1
-eval_tap $? 246 'UpdatePaymentTaxConfig' test.out
+eval_tap $? 248 'UpdatePaymentTaxConfig' test.out
 
-#- 247 SyncPaymentOrders
+#- 249 SyncPaymentOrders
 samples/cli/sample-apps Platform syncPaymentOrders \
-    --nextEvaluatedKey 'plye2GaP' \
-    --end 'NzkrgBH4' \
-    --start 'icml6L36' \
+    --nextEvaluatedKey 'uHDqJtYC' \
+    --end '7rznwNdL' \
+    --start 'hqXvXVnj' \
     > test.out 2>&1
-eval_tap $? 247 'SyncPaymentOrders' test.out
+eval_tap $? 249 'SyncPaymentOrders' test.out
 
-#- 248 PublicGetRootCategories
+#- 250 PublicGetRootCategories
 samples/cli/sample-apps Platform publicGetRootCategories \
-    --namespace 'Vg2F2Q9a' \
-    --language 'ZDJg1OT8' \
-    --storeId '109ot70T' \
+    --namespace 'vc0BMegJ' \
+    --language 'pW1Zeuhp' \
+    --storeId 'LX1BHZ4h' \
     > test.out 2>&1
-eval_tap $? 248 'PublicGetRootCategories' test.out
+eval_tap $? 250 'PublicGetRootCategories' test.out
 
-#- 249 DownloadCategories
+#- 251 DownloadCategories
 samples/cli/sample-apps Platform downloadCategories \
-    --namespace 'evJgsb2P' \
-    --language 'yFfJ6qcH' \
-    --storeId 'ABdGtV9j' \
+    --namespace 'nOmmyXu6' \
+    --language 'XtjNCqYk' \
+    --storeId '9TPUKcDT' \
     > test.out 2>&1
-eval_tap $? 249 'DownloadCategories' test.out
+eval_tap $? 251 'DownloadCategories' test.out
 
-#- 250 PublicGetCategory
+#- 252 PublicGetCategory
 samples/cli/sample-apps Platform publicGetCategory \
-    --categoryPath 'APqon7Um' \
-    --namespace 'LNy9PkF9' \
-    --language 'SnlbWNcA' \
-    --storeId 'xv8uHDqJ' \
+    --categoryPath 'fR7dpUEo' \
+    --namespace '2Oe08Hpe' \
+    --language 'JBfG0nGZ' \
+    --storeId 'He5lw2Tl' \
     > test.out 2>&1
-eval_tap $? 250 'PublicGetCategory' test.out
+eval_tap $? 252 'PublicGetCategory' test.out
 
-#- 251 PublicGetChildCategories
+#- 253 PublicGetChildCategories
 samples/cli/sample-apps Platform publicGetChildCategories \
-    --categoryPath 'tYC7rznw' \
-    --namespace 'NdLhqXvX' \
-    --language 'Vnjvc0BM' \
-    --storeId 'egJpW1Ze' \
+    --categoryPath 'kPIxL9v4' \
+    --namespace 'fpCd0Uk5' \
+    --language 'h1kP1pkk' \
+    --storeId 'T08Cs6Dd' \
     > test.out 2>&1
-eval_tap $? 251 'PublicGetChildCategories' test.out
+eval_tap $? 253 'PublicGetChildCategories' test.out
 
-#- 252 PublicGetDescendantCategories
+#- 254 PublicGetDescendantCategories
 samples/cli/sample-apps Platform publicGetDescendantCategories \
-    --categoryPath 'uhpLX1BH' \
-    --namespace 'Z4hnOmmy' \
-    --language 'Xu6XtjNC' \
-    --storeId 'qYk9TPUK' \
+    --categoryPath 'XZWowBgZ' \
+    --namespace 'izMvwHsz' \
+    --language 'f84MAmay' \
+    --storeId 'JJ6vzDTX' \
     > test.out 2>&1
-eval_tap $? 252 'PublicGetDescendantCategories' test.out
+eval_tap $? 254 'PublicGetDescendantCategories' test.out
 
-#- 253 PublicListCurrencies
+#- 255 PublicListCurrencies
 samples/cli/sample-apps Platform publicListCurrencies \
-    --namespace 'cDTfR7dp' \
+    --namespace 'xsyIaTgp' \
     > test.out 2>&1
-eval_tap $? 253 'PublicListCurrencies' test.out
+eval_tap $? 255 'PublicListCurrencies' test.out
 
-#- 254 PublicGetItemByAppId
+#- 256 PublicGetItemByAppId
 samples/cli/sample-apps Platform publicGetItemByAppId \
-    --namespace 'UEo2Oe08' \
-    --language 'HpeJBfG0' \
-    --region 'nGZHe5lw' \
-    --storeId '2TlkPIxL' \
-    --appId '9v4fpCd0' \
+    --namespace '0pwnEJL1' \
+    --language '5kxO4oVU' \
+    --region 'Png5JsHA' \
+    --storeId 'kI47jO1w' \
+    --appId 'uAFuZcUw' \
     > test.out 2>&1
-eval_tap $? 254 'PublicGetItemByAppId' test.out
+eval_tap $? 256 'PublicGetItemByAppId' test.out
 
-#- 255 PublicQueryItems
+#- 257 PublicQueryItems
 samples/cli/sample-apps Platform publicQueryItems \
-    --namespace 'Uk5h1kP1' \
-    --appType 'DLC' \
-    --baseAppId 'kkT08Cs6' \
-    --categoryPath 'DdXZWowB' \
-    --features 'gZizMvwH' \
-    --itemType 'INGAMEITEM' \
-    --language 'zf84MAma' \
-    --limit '48' \
-    --offset '70' \
-    --region 'J6vzDTXx' \
-    --sortBy 'syIaTgp0' \
-    --storeId 'pwnEJL15' \
-    --tags 'kxO4oVUP' \
+    --namespace 'PteKdQgU' \
+    --appType 'SOFTWARE' \
+    --baseAppId '33fYWZfQ' \
+    --categoryPath 'MAnziTha' \
+    --features 'E2btn0up' \
+    --itemType 'BUNDLE' \
+    --language 'TQ7XymDS' \
+    --limit '84' \
+    --offset '79' \
+    --region 'YXNEpZyF' \
+    --sortBy 'hIeqiNHt' \
+    --storeId 'VSnhxby8' \
+    --tags 'F6xF8Mhb' \
     > test.out 2>&1
-eval_tap $? 255 'PublicQueryItems' test.out
+eval_tap $? 257 'PublicQueryItems' test.out
 
-#- 256 PublicGetItemBySku
+#- 258 PublicGetItemBySku
 samples/cli/sample-apps Platform publicGetItemBySku \
-    --namespace 'ng5JsHAk' \
-    --language 'I47jO1wu' \
-    --region 'AFuZcUwP' \
-    --storeId 'teKdQgUT' \
-    --sku 'F33fYWZf' \
+    --namespace 'JAYEDN1x' \
+    --language 'szppR69n' \
+    --region 'sKAS5zKs' \
+    --storeId 'TRXd7b3v' \
+    --sku '2fkZIkr0' \
     > test.out 2>&1
-eval_tap $? 256 'PublicGetItemBySku' test.out
+eval_tap $? 258 'PublicGetItemBySku' test.out
 
-#- 257 PublicBulkGetItems
+#- 259 PublicBulkGetItems
 samples/cli/sample-apps Platform publicBulkGetItems \
-    --namespace 'QMAnziTh' \
-    --language 'aE2btn0u' \
-    --region 'p9GeTQ7X' \
-    --storeId 'ymDSQNYX' \
-    --itemIds 'NEpZyFhI' \
+    --namespace '6ojUtoVJ' \
+    --language 'LGXekomv' \
+    --region 'wD849mo5' \
+    --storeId 'vIkDZYrY' \
+    --itemIds 'Ef1xYnlx' \
     > test.out 2>&1
-eval_tap $? 257 'PublicBulkGetItems' test.out
+eval_tap $? 259 'PublicBulkGetItems' test.out
 
-#- 258 PublicSearchItems
+#- 260 PublicSearchItems
 samples/cli/sample-apps Platform publicSearchItems \
-    --namespace 'eqiNHtVS' \
-    --limit '27' \
-    --offset '14' \
-    --region 'xby8F6xF' \
-    --storeId '8MhbJAYE' \
-    --keyword 'DN1xszpp' \
-    --language 'R69nsKAS' \
+    --namespace 'HHXjFoXt' \
+    --limit '45' \
+    --offset '73' \
+    --region 'W6AOnqnW' \
+    --storeId 'CuXMWqG8' \
+    --keyword 'fNprJx82' \
+    --language 'nAFexNou' \
     > test.out 2>&1
-eval_tap $? 258 'PublicSearchItems' test.out
+eval_tap $? 260 'PublicSearchItems' test.out
 
-#- 259 PublicGetApp
+#- 261 PublicGetApp
 samples/cli/sample-apps Platform publicGetApp \
-    --itemId '5zKsTRXd' \
-    --namespace '7b3v2fkZ' \
-    --language 'Ikr06ojU' \
-    --region 'toVJLGXe' \
-    --storeId 'komvwD84' \
+    --itemId '1AicsQjK' \
+    --namespace 'x5LjetHE' \
+    --language 'w0aCQpU6' \
+    --region 'EGOW0VAI' \
+    --storeId '87DPH0fL' \
     > test.out 2>&1
-eval_tap $? 259 'PublicGetApp' test.out
+eval_tap $? 261 'PublicGetApp' test.out
 
-#- 260 PublicGetItemDynamicData
+#- 262 PublicGetItemDynamicData
 samples/cli/sample-apps Platform publicGetItemDynamicData \
-    --itemId '9mo5vIkD' \
-    --namespace 'ZYrYEf1x' \
+    --itemId 'LiUqzay0' \
+    --namespace 'gET8T53y' \
     > test.out 2>&1
-eval_tap $? 260 'PublicGetItemDynamicData' test.out
+eval_tap $? 262 'PublicGetItemDynamicData' test.out
 
-#- 261 PublicGetItem
+#- 263 PublicGetItem
 samples/cli/sample-apps Platform publicGetItem \
-    --itemId 'YnlxHHXj' \
-    --namespace 'FoXtwKW6' \
-    --language 'AOnqnWCu' \
-    --populateBundle 'True' \
-    --region 'G8fNprJx' \
-    --storeId '82nAFexN' \
+    --itemId 'Eej7Dsqs' \
+    --namespace 'TvNKAXqf' \
+    --language 'qMJHGeHa' \
+    --populateBundle 'False' \
+    --region '1Eutm9AA' \
+    --storeId 'WDcDv3IS' \
     > test.out 2>&1
-eval_tap $? 261 'PublicGetItem' test.out
+eval_tap $? 263 'PublicGetItem' test.out
 
-#- 262 GetPaymentCustomization
-eval_tap 0 262 'GetPaymentCustomization # SKIP deprecated' test.out
+#- 264 GetPaymentCustomization
+eval_tap 0 264 'GetPaymentCustomization # SKIP deprecated' test.out
 
-#- 263 PublicGetPaymentUrl
+#- 265 PublicGetPaymentUrl
 samples/cli/sample-apps Platform publicGetPaymentUrl \
-    --body '{"paymentOrderNo": "ou1AicsQ", "paymentProvider": "ADYEN", "returnUrl": "Kx5LjetH", "ui": "Ew0aCQpU", "zipCode": "6EGOW0VA"}' \
-    --namespace 'I87DPH0f' \
+    --body '{"paymentOrderNo": "BgZCAf2p", "paymentProvider": "CHECKOUT", "returnUrl": "4I2lOHfi", "ui": "u4HraKYM", "zipCode": "tgBmvCHM"}' \
+    --namespace 'tF15a7T0' \
     > test.out 2>&1
-eval_tap $? 263 'PublicGetPaymentUrl' test.out
+eval_tap $? 265 'PublicGetPaymentUrl' test.out
 
-#- 264 PublicGetPaymentMethods
+#- 266 PublicGetPaymentMethods
 samples/cli/sample-apps Platform publicGetPaymentMethods \
-    --namespace 'LLiUqzay' \
-    --paymentOrderNo '0gET8T53' \
+    --namespace 'IheywiPE' \
+    --paymentOrderNo '1WUR1PTF' \
     > test.out 2>&1
-eval_tap $? 264 'PublicGetPaymentMethods' test.out
+eval_tap $? 266 'PublicGetPaymentMethods' test.out
 
-#- 265 PublicGetUnpaidPaymentOrder
+#- 267 PublicGetUnpaidPaymentOrder
 samples/cli/sample-apps Platform publicGetUnpaidPaymentOrder \
-    --namespace 'yEej7Dsq' \
-    --paymentOrderNo 'sTvNKAXq' \
+    --namespace 'fJJ46kzf' \
+    --paymentOrderNo 'qapbByIK' \
     > test.out 2>&1
-eval_tap $? 265 'PublicGetUnpaidPaymentOrder' test.out
+eval_tap $? 267 'PublicGetUnpaidPaymentOrder' test.out
 
-#- 266 Pay
+#- 268 Pay
 samples/cli/sample-apps Platform pay \
-    --body '{"token": "fqMJHGeH"}' \
-    --namespace 'aN2k1Eut' \
-    --paymentOrderNo 'm9AAWDcD' \
-    --paymentProvider 'WALLET' \
-    --zipCode '3ISBgZCA' \
+    --body '{"token": "oYzYtTWJ"}' \
+    --namespace 'A3nFCDgW' \
+    --paymentOrderNo 'Opz3yPQf' \
+    --paymentProvider 'STRIPE' \
+    --zipCode 'beVG7i4V' \
     > test.out 2>&1
-eval_tap $? 266 'Pay' test.out
+eval_tap $? 268 'Pay' test.out
 
-#- 267 PublicCheckPaymentOrderPaidStatus
+#- 269 PublicCheckPaymentOrderPaidStatus
 samples/cli/sample-apps Platform publicCheckPaymentOrderPaidStatus \
-    --namespace 'f2pWOWs4' \
-    --paymentOrderNo 'I2lOHfiu' \
+    --namespace 'TAhuFYhE' \
+    --paymentOrderNo 'gQBb9Hni' \
     > test.out 2>&1
-eval_tap $? 267 'PublicCheckPaymentOrderPaidStatus' test.out
+eval_tap $? 269 'PublicCheckPaymentOrderPaidStatus' test.out
 
-#- 268 GetPaymentPublicConfig
+#- 270 GetPaymentPublicConfig
 samples/cli/sample-apps Platform getPaymentPublicConfig \
-    --namespace '4HraKYMt' \
+    --namespace '6lDMj9gv' \
     --sandbox 'False' \
     --paymentProvider 'WXPAY' \
-    --region 'mvCHMtF1' \
+    --region 'cQjQ56Ru' \
     > test.out 2>&1
-eval_tap $? 268 'GetPaymentPublicConfig' test.out
+eval_tap $? 270 'GetPaymentPublicConfig' test.out
 
-#- 269 PublicGetQRCode
+#- 271 PublicGetQRCode
 samples/cli/sample-apps Platform publicGetQRCode \
-    --namespace '5a7T0Ihe' \
-    --code 'ywiPE1WU' \
+    --namespace 'AvUlMWp8' \
+    --code 'WGpZxCe0' \
     > test.out 2>&1
-eval_tap $? 269 'PublicGetQRCode' test.out
+eval_tap $? 271 'PublicGetQRCode' test.out
 
-#- 270 PublicNormalizePaymentReturnUrl
+#- 272 PublicNormalizePaymentReturnUrl
 samples/cli/sample-apps Platform publicNormalizePaymentReturnUrl \
-    --namespace 'R1PTFfJJ' \
-    --payerID '46kzfqap' \
-    --foreinginvoice 'bByIKoYz' \
-    --invoiceId 'YtTWJA3n' \
-    --payload 'FCDgWOpz' \
-    --redirectResult '3yPQfqbe' \
-    --resultCode 'VG7i4VTA' \
-    --sessionId 'huFYhEgQ' \
-    --status 'Bb9Hni6l' \
-    --token 'DMj9gvkB' \
-    --type 'cQjQ56Ru' \
-    --userId 'AvUlMWp8' \
-    --orderNo 'WGpZxCe0' \
-    --paymentOrderNo 'KsmXtGBb' \
-    --paymentProvider 'STRIPE' \
-    --returnUrl 'V58TIThQ' \
+    --namespace 'KsmXtGBb' \
+    --payerID 'KrV58TIT' \
+    --foreinginvoice 'hQ52PYNk' \
+    --invoiceId 'nBCjirw4' \
+    --payload 'hmfMSl2b' \
+    --redirectResult 'ETuFLFOf' \
+    --resultCode 'dl0yRndb' \
+    --sessionId 'O78R8ybY' \
+    --status 'sHx3BIgG' \
+    --token 'uo817lZA' \
+    --type '58OI2LMY' \
+    --userId 'RX16nfCJ' \
+    --orderNo '833JKRNc' \
+    --paymentOrderNo 'dpuCxSDF' \
+    --paymentProvider 'ADYEN' \
+    --returnUrl 'sOZlS0ul' \
     > test.out 2>&1
-eval_tap $? 270 'PublicNormalizePaymentReturnUrl' test.out
+eval_tap $? 272 'PublicNormalizePaymentReturnUrl' test.out
 
-#- 271 GetPaymentTaxValue
+#- 273 GetPaymentTaxValue
 samples/cli/sample-apps Platform getPaymentTaxValue \
-    --namespace '52PYNknB' \
-    --zipCode 'Cjirw4hm' \
-    --paymentOrderNo 'fMSl2bET' \
-    --paymentProvider 'WALLET' \
+    --namespace 'erU61drw' \
+    --zipCode 'LngbZxOG' \
+    --paymentOrderNo 'xFwnmB60' \
+    --paymentProvider 'ALIPAY' \
     > test.out 2>&1
-eval_tap $? 271 'GetPaymentTaxValue' test.out
+eval_tap $? 273 'GetPaymentTaxValue' test.out
 
-#- 272 GetRewardByCode
+#- 274 GetRewardByCode
 samples/cli/sample-apps Platform getRewardByCode \
-    --namespace 'FLFOfdl0' \
-    --rewardCode 'yRndbO78' \
+    --namespace 'a7XItZS8' \
+    --rewardCode 'KIu9T604' \
     > test.out 2>&1
-eval_tap $? 272 'GetRewardByCode' test.out
+eval_tap $? 274 'GetRewardByCode' test.out
 
-#- 273 QueryRewards1
+#- 275 QueryRewards1
 samples/cli/sample-apps Platform queryRewards1 \
-    --namespace 'R8ybYsHx' \
-    --eventTopic '3BIgGuo8' \
-    --limit '23' \
-    --offset '53' \
-    --sortBy '58OI2LMY' \
+    --namespace 'oPajgySh' \
+    --eventTopic 'KuLB7pQL' \
+    --limit '17' \
+    --offset '97' \
+    --sortBy 'Vmc8PVwS' \
     > test.out 2>&1
-eval_tap $? 273 'QueryRewards1' test.out
+eval_tap $? 275 'QueryRewards1' test.out
 
-#- 274 GetReward1
+#- 276 GetReward1
 samples/cli/sample-apps Platform getReward1 \
-    --namespace 'RX16nfCJ' \
-    --rewardId '833JKRNc' \
+    --namespace 'hVQz7FY3' \
+    --rewardId 'h2oVVScV' \
     > test.out 2>&1
-eval_tap $? 274 'GetReward1' test.out
+eval_tap $? 276 'GetReward1' test.out
 
-#- 275 PublicListStores
+#- 277 PublicListStores
 samples/cli/sample-apps Platform publicListStores \
-    --namespace 'dpuCxSDF' \
+    --namespace 'v3YTBM4t' \
     > test.out 2>&1
-eval_tap $? 275 'PublicListStores' test.out
+eval_tap $? 277 'PublicListStores' test.out
 
-#- 276 PublicExistsAnyMyActiveEntitlement
+#- 278 PublicExistsAnyMyActiveEntitlement
 samples/cli/sample-apps Platform publicExistsAnyMyActiveEntitlement \
-    --namespace 'WMVcsOZl' \
-    --appIds '["S0ulerU6"]' \
-    --itemIds '["1drwLngb"]' \
-    --skus '["ZxOGxFwn"]' \
+    --namespace 'eOpqevsW' \
+    --appIds '["vMhiheE2"]' \
+    --itemIds '["KM7Ctal5"]' \
+    --skus '["z7hLiOYz"]' \
     > test.out 2>&1
-eval_tap $? 276 'PublicExistsAnyMyActiveEntitlement' test.out
+eval_tap $? 278 'PublicExistsAnyMyActiveEntitlement' test.out
 
-#- 277 PublicGetMyAppEntitlementOwnershipByAppId
+#- 279 PublicGetMyAppEntitlementOwnershipByAppId
 samples/cli/sample-apps Platform publicGetMyAppEntitlementOwnershipByAppId \
-    --namespace 'mB60ea7X' \
-    --appId 'ItZS8KIu' \
+    --namespace '1jFfu1y1' \
+    --appId 'd77D8ZNO' \
     > test.out 2>&1
-eval_tap $? 277 'PublicGetMyAppEntitlementOwnershipByAppId' test.out
+eval_tap $? 279 'PublicGetMyAppEntitlementOwnershipByAppId' test.out
 
-#- 278 PublicGetMyEntitlementOwnershipByItemId
+#- 280 PublicGetMyEntitlementOwnershipByItemId
 samples/cli/sample-apps Platform publicGetMyEntitlementOwnershipByItemId \
-    --namespace '9T604oPa' \
-    --entitlementClazz 'CODE' \
-    --itemId 'gyShKuLB' \
+    --namespace 'fHyenhbR' \
+    --entitlementClazz 'APP' \
+    --itemId '9UjjjU0E' \
     > test.out 2>&1
-eval_tap $? 278 'PublicGetMyEntitlementOwnershipByItemId' test.out
+eval_tap $? 280 'PublicGetMyEntitlementOwnershipByItemId' test.out
 
-#- 279 PublicGetMyEntitlementOwnershipBySku
+#- 281 PublicGetMyEntitlementOwnershipBySku
 samples/cli/sample-apps Platform publicGetMyEntitlementOwnershipBySku \
-    --namespace '7pQLZiWV' \
-    --entitlementClazz 'CODE' \
-    --sku 'c8PVwShV' \
-    > test.out 2>&1
-eval_tap $? 279 'PublicGetMyEntitlementOwnershipBySku' test.out
-
-#- 280 PublicGetEntitlementOwnershipToken
-samples/cli/sample-apps Platform publicGetEntitlementOwnershipToken \
-    --namespace 'Qz7FY3h2' \
-    --appIds '["oVVScVv3"]' \
-    --itemIds '["YTBM4teO"]' \
-    --skus '["pqevsWvM"]' \
-    > test.out 2>&1
-eval_tap $? 280 'PublicGetEntitlementOwnershipToken' test.out
-
-#- 281 PublicGetMyWallet
-samples/cli/sample-apps Platform publicGetMyWallet \
-    --currencyCode 'hiheE2KM' \
-    --namespace '7Ctal5z7' \
-    > test.out 2>&1
-eval_tap $? 281 'PublicGetMyWallet' test.out
-
-#- 282 PublicSyncPsnDlcInventory
-samples/cli/sample-apps Platform publicSyncPsnDlcInventory \
-    --body '{"serviceLabel": 14}' \
-    --namespace 'LiOYz1jF' \
-    --userId 'fu1y1d77' \
-    > test.out 2>&1
-eval_tap $? 282 'PublicSyncPsnDlcInventory' test.out
-
-#- 283 SyncSteamDLC
-samples/cli/sample-apps Platform syncSteamDLC \
-    --body '{"appId": "D8ZNOfHy", "steamId": "enhbRZ4a"}' \
-    --namespace '9UjjjU0E' \
-    --userId 'ggYLcGiE' \
-    > test.out 2>&1
-eval_tap $? 283 'SyncSteamDLC' test.out
-
-#- 284 SyncXboxDLC
-samples/cli/sample-apps Platform syncXboxDLC \
-    --body '{"xstsToken": "DZbDl9Ze"}' \
-    --namespace 'ZH3M87v0' \
-    --userId 'FhdKDEfX' \
-    > test.out 2>&1
-eval_tap $? 284 'SyncXboxDLC' test.out
-
-#- 285 PublicQueryUserEntitlements
-samples/cli/sample-apps Platform publicQueryUserEntitlements \
-    --namespace 'RhaO0AYS' \
-    --userId 'qvcV2Lqf' \
-    --appType 'DEMO' \
+    --namespace 'ggYLcGiE' \
     --entitlementClazz 'MEDIA' \
-    --entitlementName 'X28Je4ky' \
-    --itemId '["PQjgDJNO"]' \
-    --limit '61' \
-    --offset '76' \
+    --sku 'ZbDl9ZeZ' \
     > test.out 2>&1
-eval_tap $? 285 'PublicQueryUserEntitlements' test.out
+eval_tap $? 281 'PublicGetMyEntitlementOwnershipBySku' test.out
 
-#- 286 PublicGetUserAppEntitlementByAppId
-samples/cli/sample-apps Platform publicGetUserAppEntitlementByAppId \
-    --namespace 'tdEtN4sE' \
-    --userId 'ebnQucga' \
-    --appId 'op5NEdhu' \
+#- 282 PublicGetEntitlementOwnershipToken
+samples/cli/sample-apps Platform publicGetEntitlementOwnershipToken \
+    --namespace 'H3M87v0F' \
+    --appIds '["hdKDEfXR"]' \
+    --itemIds '["haO0AYSq"]' \
+    --skus '["vcV2Lqfg"]' \
     > test.out 2>&1
-eval_tap $? 286 'PublicGetUserAppEntitlementByAppId' test.out
+eval_tap $? 282 'PublicGetEntitlementOwnershipToken' test.out
 
-#- 287 PublicQueryUserEntitlementsByAppType
-samples/cli/sample-apps Platform publicQueryUserEntitlementsByAppType \
-    --namespace 'rScNiUxn' \
-    --userId 'JUewUVhk' \
-    --limit '64' \
-    --offset '87' \
-    --appType 'DEMO' \
+#- 283 PublicGetMyWallet
+samples/cli/sample-apps Platform publicGetMyWallet \
+    --currencyCode 'CX28Je4k' \
+    --namespace 'yPQjgDJN' \
     > test.out 2>&1
-eval_tap $? 287 'PublicQueryUserEntitlementsByAppType' test.out
+eval_tap $? 283 'PublicGetMyWallet' test.out
 
-#- 288 PublicGetUserEntitlementByItemId
-samples/cli/sample-apps Platform publicGetUserEntitlementByItemId \
-    --namespace 'LCb9evyw' \
-    --userId 'ZywunLIm' \
-    --entitlementClazz 'SUBSCRIPTION' \
-    --itemId 'hyZsb7Yh' \
+#- 284 PublicSyncPsnDlcInventory
+samples/cli/sample-apps Platform publicSyncPsnDlcInventory \
+    --body '{"serviceLabel": 80}' \
+    --namespace 'EMtdEtN4' \
+    --userId 'sEebnQuc' \
     > test.out 2>&1
-eval_tap $? 288 'PublicGetUserEntitlementByItemId' test.out
+eval_tap $? 284 'PublicSyncPsnDlcInventory' test.out
 
-#- 289 PublicGetUserEntitlementBySku
-samples/cli/sample-apps Platform publicGetUserEntitlementBySku \
+#- 285 SyncSteamDLC
+samples/cli/sample-apps Platform syncSteamDLC \
+    --body '{"appId": "gaop5NEd", "steamId": "hurScNiU"}' \
+    --namespace 'xnJUewUV' \
+    --userId 'hkGRRTgL' \
+    > test.out 2>&1
+eval_tap $? 285 'SyncSteamDLC' test.out
+
+#- 286 SyncXboxDLC
+samples/cli/sample-apps Platform syncXboxDLC \
+    --body '{"xstsToken": "Cb9evywZ"}' \
+    --namespace 'ywunLImN' \
+    --userId 'hyZsb7Yh' \
+    > test.out 2>&1
+eval_tap $? 286 'SyncXboxDLC' test.out
+
+#- 287 PublicQueryUserEntitlements
+samples/cli/sample-apps Platform publicQueryUserEntitlements \
     --namespace 'hQbDxLRK' \
     --userId 'xzUtpKDC' \
+    --appType 'DEMO' \
+    --entitlementClazz 'CODE' \
+    --entitlementName '2otjUWKx' \
+    --itemId '["gW6n8AJa"]' \
+    --limit '9' \
+    --offset '33' \
+    > test.out 2>&1
+eval_tap $? 287 'PublicQueryUserEntitlements' test.out
+
+#- 288 PublicGetUserAppEntitlementByAppId
+samples/cli/sample-apps Platform publicGetUserAppEntitlementByAppId \
+    --namespace 'xTPgZKFi' \
+    --userId '3SBGlCD4' \
+    --appId 'ig5ZRoJd' \
+    > test.out 2>&1
+eval_tap $? 288 'PublicGetUserAppEntitlementByAppId' test.out
+
+#- 289 PublicQueryUserEntitlementsByAppType
+samples/cli/sample-apps Platform publicQueryUserEntitlementsByAppType \
+    --namespace '1as1Wkfh' \
+    --userId '3l8HyGWZ' \
+    --limit '91' \
+    --offset '6' \
+    --appType 'DLC' \
+    > test.out 2>&1
+eval_tap $? 289 'PublicQueryUserEntitlementsByAppType' test.out
+
+#- 290 PublicGetUserEntitlementByItemId
+samples/cli/sample-apps Platform publicGetUserEntitlementByItemId \
+    --namespace 'mTxPUBFj' \
+    --userId 'TIIKcXlx' \
     --entitlementClazz 'APP' \
-    --sku 'l2otjUWK' \
+    --itemId 'dDyjJ0ww' \
     > test.out 2>&1
-eval_tap $? 289 'PublicGetUserEntitlementBySku' test.out
+eval_tap $? 290 'PublicGetUserEntitlementByItemId' test.out
 
-#- 290 PublicExistsAnyUserActiveEntitlement
+#- 291 PublicGetUserEntitlementBySku
+samples/cli/sample-apps Platform publicGetUserEntitlementBySku \
+    --namespace 'rYeljMyo' \
+    --userId 'eb3gsMOM' \
+    --entitlementClazz 'APP' \
+    --sku 'qbt4PnuF' \
+    > test.out 2>&1
+eval_tap $? 291 'PublicGetUserEntitlementBySku' test.out
+
+#- 292 PublicExistsAnyUserActiveEntitlement
 samples/cli/sample-apps Platform publicExistsAnyUserActiveEntitlement \
-    --namespace 'xgW6n8AJ' \
-    --userId 'aeqxTPgZ' \
-    --appIds '["KFi3SBGl"]' \
-    --itemIds '["CD4ig5ZR"]' \
-    --skus '["oJd1as1W"]' \
+    --namespace 'r18ijp3C' \
+    --userId 'mzrfVIa1' \
+    --appIds '["vi9oky2P"]' \
+    --itemIds '["7fIgBRSB"]' \
+    --skus '["lxukoOTC"]' \
     > test.out 2>&1
-eval_tap $? 290 'PublicExistsAnyUserActiveEntitlement' test.out
+eval_tap $? 292 'PublicExistsAnyUserActiveEntitlement' test.out
 
-#- 291 PublicGetUserAppEntitlementOwnershipByAppId
+#- 293 PublicGetUserAppEntitlementOwnershipByAppId
 samples/cli/sample-apps Platform publicGetUserAppEntitlementOwnershipByAppId \
-    --namespace 'kfh3l8Hy' \
-    --userId 'GWZTdpmT' \
-    --appId 'xPUBFjTI' \
+    --namespace 'osjAXo6l' \
+    --userId 'jBVW8r7n' \
+    --appId 'yNcVl6ZB' \
     > test.out 2>&1
-eval_tap $? 291 'PublicGetUserAppEntitlementOwnershipByAppId' test.out
+eval_tap $? 293 'PublicGetUserAppEntitlementOwnershipByAppId' test.out
 
-#- 292 PublicGetUserEntitlementOwnershipByItemId
+#- 294 PublicGetUserEntitlementOwnershipByItemId
 samples/cli/sample-apps Platform publicGetUserEntitlementOwnershipByItemId \
-    --namespace 'IKcXlxPf' \
-    --userId 'dDyjJ0ww' \
-    --entitlementClazz 'ENTITLEMENT' \
-    --itemId 'YeljMyoe' \
+    --namespace '3bGHupBu' \
+    --userId 'AL2avXKO' \
+    --entitlementClazz 'CODE' \
+    --itemId 'wGRJbZqX' \
     > test.out 2>&1
-eval_tap $? 292 'PublicGetUserEntitlementOwnershipByItemId' test.out
+eval_tap $? 294 'PublicGetUserEntitlementOwnershipByItemId' test.out
 
-#- 293 PublicGetUserEntitlementOwnershipBySku
+#- 295 PublicGetUserEntitlementOwnershipBySku
 samples/cli/sample-apps Platform publicGetUserEntitlementOwnershipBySku \
-    --namespace 'b3gsMOMd' \
-    --userId 'qbt4PnuF' \
-    --entitlementClazz 'ENTITLEMENT' \
-    --sku '18ijp3Cm' \
-    > test.out 2>&1
-eval_tap $? 293 'PublicGetUserEntitlementOwnershipBySku' test.out
-
-#- 294 PublicGetUserEntitlement
-samples/cli/sample-apps Platform publicGetUserEntitlement \
-    --entitlementId 'zrfVIa1v' \
-    --namespace 'i9oky2P7' \
-    --userId 'fIgBRSBl' \
-    > test.out 2>&1
-eval_tap $? 294 'PublicGetUserEntitlement' test.out
-
-#- 295 PublicConsumeUserEntitlement
-samples/cli/sample-apps Platform publicConsumeUserEntitlement \
-    --body '{"useCount": 46}' \
-    --entitlementId 'ukoOTCos' \
-    --namespace 'jAXo6ljB' \
-    --userId 'VW8r7nyN' \
-    > test.out 2>&1
-eval_tap $? 295 'PublicConsumeUserEntitlement' test.out
-
-#- 296 PublicRedeemCode
-samples/cli/sample-apps Platform publicRedeemCode \
-    --body '{"code": "cVl6ZB3b", "language": "hUPb-Vxko", "region": "wGRJbZqX"}' \
     --namespace 'gQ9azOre' \
     --userId 'TsviZmgm' \
+    --entitlementClazz 'CODE' \
+    --sku '8Yr4wmgi' \
     > test.out 2>&1
-eval_tap $? 296 'PublicRedeemCode' test.out
+eval_tap $? 295 'PublicGetUserEntitlementOwnershipBySku' test.out
 
-#- 297 PublicFulfillAppleIAPItem
+#- 296 PublicGetUserEntitlement
+samples/cli/sample-apps Platform publicGetUserEntitlement \
+    --entitlementId 'wIF5Zx5T' \
+    --namespace 'IIhBtL3z' \
+    --userId 'T6xRqyV0' \
+    > test.out 2>&1
+eval_tap $? 296 'PublicGetUserEntitlement' test.out
+
+#- 297 PublicConsumeUserEntitlement
+samples/cli/sample-apps Platform publicConsumeUserEntitlement \
+    --body '{"useCount": 38}' \
+    --entitlementId 'lLaMYL1p' \
+    --namespace '95v9mOiI' \
+    --userId 'FEdQ2RKe' \
+    > test.out 2>&1
+eval_tap $? 297 'PublicConsumeUserEntitlement' test.out
+
+#- 298 PublicRedeemCode
+samples/cli/sample-apps Platform publicRedeemCode \
+    --body '{"code": "Qy2WRztR", "language": "ZTU", "region": "JDWx2Odr"}' \
+    --namespace 'UV7bhcKG' \
+    --userId 'IOZcB6NW' \
+    > test.out 2>&1
+eval_tap $? 298 'PublicRedeemCode' test.out
+
+#- 299 PublicFulfillAppleIAPItem
 samples/cli/sample-apps Platform publicFulfillAppleIAPItem \
-    --body '{"excludeOldTransactions": false, "language": "WMG-649", "productId": "3zT6xRqy", "receiptData": "V0tlLaMY", "region": "L1p95v9m", "transactionId": "OiIFEdQ2"}' \
-    --namespace 'RKeQy2WR' \
-    --userId 'ztR5qztu' \
+    --body '{"excludeOldTransactions": false, "language": "xK_XhPU", "productId": "ZNxhbsaS", "receiptData": "FtTmbIf2", "region": "hFQRmsi0", "transactionId": "2melJQkL"}' \
+    --namespace 'tV2QnPsm' \
+    --userId 'hFVPtJTG' \
     > test.out 2>&1
-eval_tap $? 297 'PublicFulfillAppleIAPItem' test.out
+eval_tap $? 299 'PublicFulfillAppleIAPItem' test.out
 
-#- 298 SyncEpicGamesInventory
+#- 300 SyncEpicGamesInventory
 samples/cli/sample-apps Platform syncEpicGamesInventory \
-    --body '{"epicGamesJwtToken": "hVaJDWx2"}' \
-    --namespace 'OdrUV7bh' \
-    --userId 'cKGIOZcB' \
+    --body '{"epicGamesJwtToken": "ig12OdDn"}' \
+    --namespace 'xXuJoZgO' \
+    --userId 'G4tOeWVM' \
     > test.out 2>&1
-eval_tap $? 298 'SyncEpicGamesInventory' test.out
+eval_tap $? 300 'SyncEpicGamesInventory' test.out
 
-#- 299 PublicFulfillGoogleIAPItem
+#- 301 PublicFulfillGoogleIAPItem
 samples/cli/sample-apps Platform publicFulfillGoogleIAPItem \
-    --body '{"autoAck": false, "language": "xK_XhPU", "orderId": "ZNxhbsaS", "packageName": "FtTmbIf2", "productId": "hFQRmsi0", "purchaseTime": 25, "purchaseToken": "elJQkLtV", "region": "2QnPsmhF"}' \
-    --namespace 'VPtJTGig' \
-    --userId '12OdDnxX' \
+    --body '{"autoAck": false, "language": "XcHu", "orderId": "2RkEr8Xb", "packageName": "mQNuv80E", "productId": "m9nuffLG", "purchaseTime": 93, "purchaseToken": "WnVBQPhw", "region": "wHR0qyfF"}' \
+    --namespace 'cSCdkfe5' \
+    --userId 'eawFpdHe' \
     > test.out 2>&1
-eval_tap $? 299 'PublicFulfillGoogleIAPItem' test.out
+eval_tap $? 301 'PublicFulfillGoogleIAPItem' test.out
 
-#- 300 PublicReconcilePlayStationStore
+#- 302 PublicReconcilePlayStationStore
 samples/cli/sample-apps Platform publicReconcilePlayStationStore \
-    --body '{"currencyCode": "uJoZgOG4", "price": 0.3073435175433483, "productId": "eWVMI9K1", "serviceLabel": 8}' \
-    --namespace 'J6xC2h6U' \
-    --userId '8TgR2k2R' \
+    --body '{"currencyCode": "H5p8Zx8j", "price": 0.3817789922397513, "productId": "nxGzOTBp", "serviceLabel": 25}' \
+    --namespace 'mjuEEEyD' \
+    --userId 'twbtA8xs' \
     > test.out 2>&1
-eval_tap $? 300 'PublicReconcilePlayStationStore' test.out
+eval_tap $? 302 'PublicReconcilePlayStationStore' test.out
 
-#- 301 SyncStadiaEntitlement
+#- 303 SyncStadiaEntitlement
 samples/cli/sample-apps Platform syncStadiaEntitlement \
-    --body '{"appId": "kEr8XbmQ", "language": "UVeM_vb", "region": "QPhwwHR0", "stadiaPlayerId": "qyfFcSCd"}' \
-    --namespace 'kfe5eawF' \
-    --userId 'pdHeH5p8' \
+    --body '{"appId": "mmcaOLdF", "language": "Fu", "region": "700jB0p4", "stadiaPlayerId": "HpK8pvuf"}' \
+    --namespace 'SxYM0Vku' \
+    --userId 'qOKrhvMw' \
     > test.out 2>&1
-eval_tap $? 301 'SyncStadiaEntitlement' test.out
+eval_tap $? 303 'SyncStadiaEntitlement' test.out
 
-#- 302 SyncSteamInventory
+#- 304 SyncSteamInventory
 samples/cli/sample-apps Platform syncSteamInventory \
-    --body '{"appId": "Zx8jy7nx", "currencyCode": "GzOTBpmm", "language": "Ue-dTWB-330", "price": 0.013041918173782974, "productId": "LdFifUk9", "region": "p700jB0p", "steamId": "4HpK8pvu"}' \
-    --namespace 'fSxYM0Vk' \
-    --userId 'uqOKrhvM' \
+    --body '{"appId": "vD04UY8g", "currencyCode": "hvsmSrrJ", "language": "aIf_aBUP", "price": 0.24411783927128183, "productId": "sO6fW468", "region": "fWxqRkJD", "steamId": "jfNhYDgV"}' \
+    --namespace 'm0TCaos4' \
+    --userId 'wyjaPP6C' \
     > test.out 2>&1
-eval_tap $? 302 'SyncSteamInventory' test.out
+eval_tap $? 304 'SyncSteamInventory' test.out
 
-#- 303 SyncTwitchDropsEntitlement
+#- 305 SyncTwitchDropsEntitlement
 samples/cli/sample-apps Platform syncTwitchDropsEntitlement \
-    --body '{"gameId": "wvD04UY8", "language": "HV_RjZa", "region": "6FOuhQIB"}' \
-    --namespace 'Abup1fpW' \
-    --userId 'sO6fW468' \
+    --body '{"gameId": "lekQGm25", "language": "yMfz-BvGC", "region": "U4vyIPJe"}' \
+    --namespace 'RjCj7UK5' \
+    --userId 'nEmwsQtS' \
     > test.out 2>&1
-eval_tap $? 303 'SyncTwitchDropsEntitlement' test.out
+eval_tap $? 305 'SyncTwitchDropsEntitlement' test.out
 
-#- 304 SyncXboxInventory
+#- 306 SyncXboxInventory
 samples/cli/sample-apps Platform syncXboxInventory \
-    --body '{"currencyCode": "fWxqRkJD", "price": 0.14145640345472266, "productId": "NhYDgVm0", "xstsToken": "TCaos4wy"}' \
-    --namespace 'jaPP6Cle' \
-    --userId 'kQGm25KY' \
+    --body '{"currencyCode": "fDqA4Cys", "price": 0.475914014658104, "productId": "4VOy0n2E", "xstsToken": "kPBjC4ec"}' \
+    --namespace 'HwtSGzay' \
+    --userId 'UaDh3m2e' \
     > test.out 2>&1
-eval_tap $? 304 'SyncXboxInventory' test.out
+eval_tap $? 306 'SyncXboxInventory' test.out
 
-#- 305 PublicQueryUserOrders
+#- 307 PublicQueryUserOrders
 samples/cli/sample-apps Platform publicQueryUserOrders \
-    --namespace 'mFZxQr4x' \
-    --userId 'bV63gcdU' \
-    --itemId '4vyIPJeR' \
-    --limit '18' \
-    --offset '56' \
-    --status 'CHARGED' \
+    --namespace 'X31qVPH2' \
+    --userId 'VHDznf57' \
+    --itemId 'fQ1PY5uD' \
+    --limit '20' \
+    --offset '84' \
+    --status 'FULFILL_FAILED' \
     > test.out 2>&1
-eval_tap $? 305 'PublicQueryUserOrders' test.out
+eval_tap $? 307 'PublicQueryUserOrders' test.out
 
-#- 306 PublicCreateUserOrder
+#- 308 PublicCreateUserOrder
 samples/cli/sample-apps Platform publicCreateUserOrder \
-    --body '{"currencyCode": "7UK5nEmw", "discountedPrice": 37, "ext": {"QtSfDqA4": {}}, "itemId": "CysEX4VO", "language": "NeK_EChW-uA", "price": 59, "quantity": 15, "region": "3m2eX31q", "returnUrl": "VPH2VHDz"}' \
-    --namespace 'nf57fQ1P' \
-    --userId 'Y5uDkQ8z' \
+    --body '{"currencyCode": "pNRwycEA", "discountedPrice": 88, "ext": {"hpFLpqAx": {}}, "itemId": "1N5IGebN", "language": "VYR", "price": 94, "quantity": 6, "region": "sSwDc9NJ", "returnUrl": "RX9ZdaC8"}' \
+    --namespace 'sja1J7eu' \
+    --userId 'cGSSxZJP' \
     > test.out 2>&1
-eval_tap $? 306 'PublicCreateUserOrder' test.out
+eval_tap $? 308 'PublicCreateUserOrder' test.out
 
-#- 307 PublicGetUserOrder
+#- 309 PublicGetUserOrder
 samples/cli/sample-apps Platform publicGetUserOrder \
-    --namespace 'pNRwycEA' \
-    --orderNo 'ShpFLpqA' \
-    --userId 'x1N5IGeb' \
+    --namespace 'to04wTEI' \
+    --orderNo '8isXmyAG' \
+    --userId 'W2rZ7bYv' \
     > test.out 2>&1
-eval_tap $? 307 'PublicGetUserOrder' test.out
+eval_tap $? 309 'PublicGetUserOrder' test.out
 
-#- 308 PublicCancelUserOrder
+#- 310 PublicCancelUserOrder
 samples/cli/sample-apps Platform publicCancelUserOrder \
-    --namespace 'NuvyrghV' \
-    --orderNo 'dsSwDc9N' \
-    --userId 'JRX9ZdaC' \
+    --namespace 'VW26Oays' \
+    --orderNo 'x72rwV3M' \
+    --userId 'dXNVRDzT' \
     > test.out 2>&1
-eval_tap $? 308 'PublicCancelUserOrder' test.out
+eval_tap $? 310 'PublicCancelUserOrder' test.out
 
-#- 309 PublicGetUserOrderHistories
+#- 311 PublicGetUserOrderHistories
 samples/cli/sample-apps Platform publicGetUserOrderHistories \
-    --namespace '8sja1J7e' \
-    --orderNo 'ucGSSxZJ' \
-    --userId 'Pto04wTE' \
+    --namespace '2sBbflg7' \
+    --orderNo 'cD247c1X' \
+    --userId 'YYJf18St' \
     > test.out 2>&1
-eval_tap $? 309 'PublicGetUserOrderHistories' test.out
+eval_tap $? 311 'PublicGetUserOrderHistories' test.out
 
-#- 310 PublicDownloadUserOrderReceipt
+#- 312 PublicDownloadUserOrderReceipt
 samples/cli/sample-apps Platform publicDownloadUserOrderReceipt \
-    --namespace 'I8isXmyA' \
-    --orderNo 'GW2rZ7bY' \
-    --userId 'vVW26Oay' \
+    --namespace 'Yu6wb2We' \
+    --orderNo '3Q6Pm7RB' \
+    --userId 'kqWDPEP4' \
     > test.out 2>&1
-eval_tap $? 310 'PublicDownloadUserOrderReceipt' test.out
+eval_tap $? 312 'PublicDownloadUserOrderReceipt' test.out
 
-#- 311 PublicGetPaymentAccounts
+#- 313 PublicGetPaymentAccounts
 samples/cli/sample-apps Platform publicGetPaymentAccounts \
-    --namespace 'sx72rwV3' \
-    --userId 'MdXNVRDz' \
+    --namespace 'CWnZJjXd' \
+    --userId 'iUv9owF1' \
     > test.out 2>&1
-eval_tap $? 311 'PublicGetPaymentAccounts' test.out
+eval_tap $? 313 'PublicGetPaymentAccounts' test.out
 
-#- 312 PublicDeletePaymentAccount
+#- 314 PublicDeletePaymentAccount
 samples/cli/sample-apps Platform publicDeletePaymentAccount \
-    --id 'T2sBbflg' \
-    --namespace '7cD247c1' \
-    --type 'card' \
-    --userId '18StYu6w' \
+    --id 'mQrc03W7' \
+    --namespace 'oOdpY5ZJ' \
+    --type 'paypal' \
+    --userId 'hQtpD2U9' \
     > test.out 2>&1
-eval_tap $? 312 'PublicDeletePaymentAccount' test.out
+eval_tap $? 314 'PublicDeletePaymentAccount' test.out
 
-#- 313 PublicQueryUserSubscriptions
+#- 315 PublicQueryUserSubscriptions
 samples/cli/sample-apps Platform publicQueryUserSubscriptions \
-    --namespace 'b2We3Q6P' \
-    --userId 'm7RBkqWD' \
-    --chargeStatus 'RECURRING_CHARGING' \
-    --itemId 'P4CWnZJj' \
-    --limit '99' \
-    --offset '7' \
-    --sku 'iUv9owF1' \
-    --status 'CANCELLED' \
+    --namespace 'IQzA2eex' \
+    --userId 'jq3TfnJ6' \
+    --chargeStatus 'NEVER' \
+    --itemId 'yQ4wCg5I' \
+    --limit '39' \
+    --offset '27' \
+    --sku '9TYOR2n8' \
+    --status 'EXPIRED' \
     --subscribedBy 'USER' \
     > test.out 2>&1
-eval_tap $? 313 'PublicQueryUserSubscriptions' test.out
+eval_tap $? 315 'PublicQueryUserSubscriptions' test.out
 
-#- 314 PublicSubscribeSubscription
+#- 316 PublicSubscribeSubscription
 samples/cli/sample-apps Platform publicSubscribeSubscription \
-    --body '{"currencyCode": "c03W7oOd", "itemId": "pY5ZJChQ", "language": "Pdu-EXJQ", "region": "nJ6ryQ4w", "returnUrl": "Cg5Itn9T", "source": "YOR2n8qF"}' \
-    --namespace 'jjSZx0Fe' \
-    --userId 'RdmgOta6' \
+    --body '{"currencyCode": "jjSZx0Fe", "itemId": "RdmgOta6", "language": "Ck_KFim_447", "region": "aIxBgzRO", "returnUrl": "8GKycdcX", "source": "uULpvuBN"}' \
+    --namespace 'RzUbH0hI' \
+    --userId '7yCEyjKX' \
     > test.out 2>&1
-eval_tap $? 314 'PublicSubscribeSubscription' test.out
+eval_tap $? 316 'PublicSubscribeSubscription' test.out
 
-#- 315 PublicCheckUserSubscriptionSubscribableByItemId
+#- 317 PublicCheckUserSubscriptionSubscribableByItemId
 samples/cli/sample-apps Platform publicCheckUserSubscriptionSubscribableByItemId \
-    --namespace 'pcKzSPfe' \
-    --userId 'k369fIM1' \
-    --itemId 'tcxwt2Xq' \
+    --namespace 'QPnomAsH' \
+    --userId 'MpmDvt4t' \
+    --itemId 'kWavQ0jo' \
     > test.out 2>&1
-eval_tap $? 315 'PublicCheckUserSubscriptionSubscribableByItemId' test.out
+eval_tap $? 317 'PublicCheckUserSubscriptionSubscribableByItemId' test.out
 
-#- 316 PublicGetUserSubscription
+#- 318 PublicGetUserSubscription
 samples/cli/sample-apps Platform publicGetUserSubscription \
-    --namespace 'PFaIxBgz' \
-    --subscriptionId 'RO8GKycd' \
-    --userId 'cXuULpvu' \
+    --namespace '17Qq6AFd' \
+    --subscriptionId 'E7URb19B' \
+    --userId 'cvWfPxHP' \
     > test.out 2>&1
-eval_tap $? 316 'PublicGetUserSubscription' test.out
+eval_tap $? 318 'PublicGetUserSubscription' test.out
 
-#- 317 PublicChangeSubscriptionBillingAccount
+#- 319 PublicChangeSubscriptionBillingAccount
 samples/cli/sample-apps Platform publicChangeSubscriptionBillingAccount \
-    --namespace 'BNRzUbH0' \
-    --subscriptionId 'hI7yCEyj' \
-    --userId 'KXQPnomA' \
+    --namespace 'QaUClyAj' \
+    --subscriptionId 'fGkGwDso' \
+    --userId 'o09NdZjN' \
     > test.out 2>&1
-eval_tap $? 317 'PublicChangeSubscriptionBillingAccount' test.out
+eval_tap $? 319 'PublicChangeSubscriptionBillingAccount' test.out
 
-#- 318 PublicCancelSubscription
+#- 320 PublicCancelSubscription
 samples/cli/sample-apps Platform publicCancelSubscription \
-    --body '{"immediate": true, "reason": "HMpmDvt4"}' \
-    --namespace 'tkWavQ0j' \
-    --subscriptionId 'o17Qq6AF' \
-    --userId 'dE7URb19' \
+    --body '{"immediate": false, "reason": "jtl8XIGZ"}' \
+    --namespace 'V3GBXIHx' \
+    --subscriptionId 'WGX4iwwH' \
+    --userId 'LohaKvD9' \
     > test.out 2>&1
-eval_tap $? 318 'PublicCancelSubscription' test.out
+eval_tap $? 320 'PublicCancelSubscription' test.out
 
-#- 319 PublicGetUserSubscriptionBillingHistories
+#- 321 PublicGetUserSubscriptionBillingHistories
 samples/cli/sample-apps Platform publicGetUserSubscriptionBillingHistories \
-    --namespace 'BcvWfPxH' \
-    --subscriptionId 'PQaUClyA' \
-    --userId 'jfGkGwDs' \
+    --namespace 'nNeLi2tR' \
+    --subscriptionId 'rclM3o5F' \
+    --userId 'mkWcIpWl' \
     --excludeFree 'False' \
-    --limit '28' \
+    --limit '74' \
     --offset '79' \
     > test.out 2>&1
-eval_tap $? 319 'PublicGetUserSubscriptionBillingHistories' test.out
+eval_tap $? 321 'PublicGetUserSubscriptionBillingHistories' test.out
 
-#- 320 PublicGetWallet
+#- 322 PublicGetWallet
 samples/cli/sample-apps Platform publicGetWallet \
-    --currencyCode 'dZjNjjtl' \
-    --namespace '8XIGZV3G' \
-    --userId 'BXIHxWGX' \
+    --currencyCode 'xQciSm2O' \
+    --namespace 'biacE1Vt' \
+    --userId 'VP5yWKB3' \
     > test.out 2>&1
-eval_tap $? 320 'PublicGetWallet' test.out
+eval_tap $? 322 'PublicGetWallet' test.out
 
-#- 321 PublicListUserWalletTransactions
+#- 323 PublicListUserWalletTransactions
 samples/cli/sample-apps Platform publicListUserWalletTransactions \
-    --currencyCode '4iwwHLoh' \
-    --namespace 'aKvD9nNe' \
-    --userId 'Li2tRrcl' \
-    --limit '77' \
-    --offset '28' \
+    --currencyCode 'dhO4E5cH' \
+    --namespace 'bV6Tq3ma' \
+    --userId 'kniWG9At' \
+    --limit '1' \
+    --offset '51' \
     > test.out 2>&1
-eval_tap $? 321 'PublicListUserWalletTransactions' test.out
+eval_tap $? 323 'PublicListUserWalletTransactions' test.out
 
 
 rm -f "tmp.dat"

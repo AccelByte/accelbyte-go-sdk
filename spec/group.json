@@ -8,7 +8,7 @@
     },
     "description": "Justice Group Service",
     "title": "justice-group-service",
-    "version": "2.11.1"
+    "version": "2.11.2"
   },
   "schemes": [
     "https"
@@ -53,7 +53,7 @@
   "paths": {
     "/group/v1/admin/namespaces/{namespace}/configuration": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to get existing configuration. This Configuration is used to be the main rule of the service. Each namespace will have its own configuration\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73101\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to get existing configuration. This Configuration is used as the main rule of the service. Each namespace will have its own configuration\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73101\u0026lt;/p\u0026gt;\n\t\t",
         "operationId": "listGroupConfigurationAdminV1",
         "parameters": [
           {
@@ -272,7 +272,7 @@
     },
     "/group/v1/admin/namespaces/{namespace}/configuration/{configurationCode}": {
       "delete": {
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [DELETE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to delete group configuration. This Configuration is used to be the main rule of the service. Each namespace will have its own configuration\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73101\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [DELETE]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to delete group configuration. This Configuration is used as the main rule of the service. Each namespace will have its own configuration\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73101\u0026lt;/p\u0026gt;\n\t\t",
         "operationId": "deleteGroupConfigurationV1",
         "parameters": [
           {
@@ -342,7 +342,7 @@
         ]
       },
       "get": {
-        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to get existing configuration. This Configuration is used to be the main rule of the service. Each namespace will have its own configuration\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73101\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "\u0026lt;p\u0026gt;Required permission \u0026#39;ADMIN:NAMESPACE:{namespace}:GROUP:CONFIGURATION [READ]\u0026#39;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to get existing configuration. This Configuration is used as the main rule of the service. Each namespace will have its own configuration\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73101\u0026lt;/p\u0026gt;\n\t\t",
         "operationId": "getGroupConfigurationAdminV1",
         "parameters": [
           {
@@ -1079,7 +1079,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [CREATE]\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to create new member role\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73202\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "\u0026lt;p\u0026gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [CREATE]\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to create new member role\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73202\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;memberRolePermissions example value :\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\u0026#34;action\u0026#34;: 1\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\u0026#34;resourceName\u0026#34;: \u0026#34;GROUP:ROLE\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The changes will give user with that role have a permission to create a role for new group member\u0026lt;p/\u0026gt;\n\t\t",
         "operationId": "createMemberRoleAdminV1",
         "parameters": [
           {
@@ -1295,7 +1295,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to get member role\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73204\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "\u0026lt;p\u0026gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to update member role\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73204\u0026lt;/p\u0026gt;\n\t\t",
         "operationId": "updateMemberRoleAdminV1",
         "parameters": [
           {
@@ -1381,7 +1381,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "\u0026lt;p\u0026gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to update member role permission. It will replace the existing permission based on the request from this endpoint\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73205\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "\u0026lt;p\u0026gt;Required permission ADMIN:NAMESPACE:{namespace}:GROUP:ROLE [UPDATE]\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to update member role permission. It will replace the existing permission based on the request from this endpoint\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73205\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;memberRolePermissions example value :\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\u0026#34;action\u0026#34;: 2\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\u0026#34;resourceName\u0026#34;: \u0026#34;GROUP:ROLE\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The changes will update user role to be able to read a role of other member \u0026lt;p/\u0026gt;\n\t\t",
         "operationId": "updateMemberRolePermissionAdminV1",
         "parameters": [
           {
@@ -2738,7 +2738,7 @@
     },
     "/group/v1/public/namespaces/{namespace}/leave": {
       "post": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to leave from group.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;leave from group. Admin is not allowed to leave the group. This endpoint will also give response if the user is not belong to any group.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73404\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to leave from group.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;leave from group. Admin is not allowed to leave the group. This endpoint will also give response if the user does not belong to any group.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73404\u0026lt;/p\u0026gt;\n\t\t",
         "operationId": "leaveGroupPublicV1",
         "parameters": [
           {
@@ -3044,7 +3044,7 @@
     },
     "/group/v1/public/namespaces/{namespace}/users/me/invite/request": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to Get Group Invitation Request List\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get Group Invitation Request List for specific group. It will check any group invitation for this user\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73502\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to Get Group Invitation Request List\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get Group Invitation Request List for the user calling this endpoint. It will check any group invitation for this user\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73502\u0026lt;/p\u0026gt;\n\t\t",
         "operationId": "getGroupInvitationRequestPublicV1",
         "parameters": [
           {
@@ -3115,7 +3115,7 @@
     },
     "/group/v1/public/namespaces/{namespace}/users/{userId}": {
       "get": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to get user group information.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get user group information. If user is not belong to any group, it will return warning to give information about it\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Group Member Status:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;JOIN : status of user requested to join group \u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;INVITE: status of user invited to a group \u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;JOINED: status of user already joined to a group\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73405\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to get user group information.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Get user group information. If user does not belong to any group, it will return warning to give information about it\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Group Member Status:\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;ul\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;JOIN : status of user requested to join group \u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;INVITE: status of user invited to a group \u0026lt;/li\u0026gt;\n\t\t\t\t\u0026lt;li\u0026gt;JOINED: status of user already joined to a group\u0026lt;/li\u0026gt;\n\t\t\t\u0026lt;/ul\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73405\u0026lt;/p\u0026gt;\n\t\t",
         "operationId": "getUserGroupInformationPublicV1",
         "parameters": [
           {
@@ -3187,7 +3187,7 @@
     },
     "/group/v1/public/namespaces/{namespace}/users/{userId}/invite": {
       "post": {
-        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP:INVITE [CREATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to invite specific user to the group.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;invite specific user to the group. If specific user is already have the join request to the group, this endpoint will notify if this user already have join request that needs to be accepted / rejected\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Invited user will receive notification through lobby.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73406\u0026lt;/p\u0026gt;\n\t\t",
+        "description": "\u0026lt;p\u0026gt;Required valid user authentication \u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Required Member Role Permission: \u0026#34;GROUP:INVITE [CREATE]\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;This endpoint is used to invite specific user to the group.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;invite specific user to the group. If specific user is already have the join request to the group, this endpoint will notify if this user already have join request that needs to be accepted / rejected\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Invited user will receive notification through lobby.\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;Action Code: 73406\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;br\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;memberRolePermissions example value :\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\u0026#34;action\u0026#34;: 1\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;\u0026#34;resourceName\u0026#34;: \u0026#34;GROUP:INVITE\u0026#34;\u0026lt;/p\u0026gt;\n\t\t\t\u0026lt;p\u0026gt;The invited user will have a permission to invite another user to the group\u0026lt;p/\u0026gt;\n\t\t",
         "operationId": "inviteGroupPublicV1",
         "parameters": [
           {

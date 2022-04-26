@@ -8,7 +8,7 @@
     },
     "description": "Justice Social Service",
     "title": "justice-social-service",
-    "version": "1.27.1"
+    "version": "1.28.0"
   },
   "schemes": [
     "https"
@@ -2032,7 +2032,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create stat.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created stat template\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Create stat.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;ADMIN:NAMESPACE:{namespace}:STAT\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created stat template\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;default minimum value is 0\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;default maximum value is 1.7976931348623157e+308\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "createStat",
         "parameters": [
           {
@@ -3417,7 +3417,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Create stat.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:STAT\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created stat template\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
+        "description": "Create stat.\u0026lt;br\u0026gt;Other detail info:\u0026lt;ul\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Required permission\u0026lt;/i\u0026gt;: resource=\u0026#34;NAMESPACE:{namespace}:STAT\u0026#34;, action=1 (CREATE)\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;\u0026lt;i\u0026gt;Returns\u0026lt;/i\u0026gt;: created stat template\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;default minimum value is 0\u0026lt;/li\u0026gt;\u0026lt;li\u0026gt;default maximum value is 1.7976931348623157e+308\u0026lt;/li\u0026gt;\u0026lt;/ul\u0026gt;",
         "operationId": "createStat_1",
         "parameters": [
           {

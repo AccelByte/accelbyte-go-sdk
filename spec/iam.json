@@ -8,7 +8,7 @@
     },
     "description": "Justice IAM Service",
     "title": "justice-iam-service",
-    "version": "5.7.1"
+    "version": "5.8.0"
   },
   "schemes": [
     "https"
@@ -24912,6 +24912,10 @@
         },
         "platform_user_id": {
           "type": "string"
+        },
+        "refresh_expires_in": {
+          "format": "int32",
+          "type": "integer"
         },
         "refresh_token": {
           "type": "string"

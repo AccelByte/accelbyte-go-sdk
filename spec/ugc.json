@@ -8,7 +8,7 @@
     },
     "description": "Justice UGC Service",
     "title": "justice-ugc-service",
-    "version": "1.15.1"
+    "version": "1.17.0"
   },
   "schemes": [
     "https"
@@ -22,7 +22,6 @@
         "ADMIN:NAMESPACE:{namespace}:UGCCONFIG [DELETE]": "ADMIN:NAMESPACE:{namespace}:UGCCONFIG [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:UGCCONFIG [READ]": "ADMIN:NAMESPACE:{namespace}:UGCCONFIG [READ]",
         "ADMIN:NAMESPACE:{namespace}:UGCCONFIG [UPDATE]": "ADMIN:NAMESPACE:{namespace}:UGCCONFIG [UPDATE]",
-        "ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [CREATE]": "ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [CREATE]",
         "ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]": "ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId} [DELETE]",
         "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [CREATE]": "ADMIN:NAMESPACE:{namespace}:USER:{userId}:CHANNEL [CREATE]",
@@ -589,7 +588,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [CREATE]\u0026lt;/b\u0026gt;",
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]\u0026lt;/b\u0026gt;",
         "operationId": "AdminSearchChannelSpecificContent",
         "parameters": [
           {
@@ -707,7 +706,7 @@
         "security": [
           {
             "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [CREATE]"
+              "ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]"
             ],
             "authorization": []
           }
@@ -952,7 +951,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [CREATE]\u0026lt;/b\u0026gt;",
+        "description": "Required permission \u0026lt;b\u0026gt;ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]\u0026lt;/b\u0026gt;",
         "operationId": "AdminSearchContent",
         "parameters": [
           {
@@ -1063,7 +1062,7 @@
         "security": [
           {
             "HasPermission": [
-              "ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [CREATE]"
+              "ADMIN:NAMESPACE:{namespace}:USER:*:CONTENT [READ]"
             ],
             "authorization": []
           }
@@ -3996,6 +3995,74 @@
           }
         ],
         "summary": "Search contents",
+        "tags": [
+          "Public Content"
+        ]
+      }
+    },
+    "/ugc/v1/public/namespaces/{namespace}/contents/bulk": {
+      "post": {
+        "consumes": [
+          "application/json",
+          "application/octet-stream"
+        ],
+        "description": "Maximum requested Ids: 100.\n\t\t\tPublic user can access without token or if token specified, requires valid user token",
+        "operationId": "PublicGetContentBulk",
+        "parameters": [
+          {
+            "description": "namespace of the game",
+            "in": "path",
+            "name": "namespace",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/models.PublicGetContentBulkRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/models.ContentDownloadResponse"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/response.Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get contents by content Ids ",
         "tags": [
           "Public Content"
         ]
@@ -7472,6 +7539,19 @@
       "required": [
         "source",
         "url"
+      ]
+    },
+    "models.PublicGetContentBulkRequest": {
+      "properties": {
+        "contentIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "contentIds"
       ]
     },
     "models.ScreenshotResponse": {

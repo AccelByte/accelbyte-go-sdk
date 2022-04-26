@@ -3440,12 +3440,6 @@
               "$ref": "#/definitions/models.GetAllPlayerSessionAttributeResponse"
             }
           },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          },
           "401": {
             "description": "Unauthorized",
             "schema": {
@@ -3454,12 +3448,6 @@
           },
           "403": {
             "description": "Forbidden",
-            "schema": {
-              "$ref": "#/definitions/restapi.ErrorResponseBody"
-            }
-          },
-          "404": {
-            "description": "Not Found",
             "schema": {
               "$ref": "#/definitions/restapi.ErrorResponseBody"
             }

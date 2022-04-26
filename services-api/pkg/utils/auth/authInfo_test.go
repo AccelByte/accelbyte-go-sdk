@@ -44,16 +44,23 @@ type ConfigRepositoryImpl struct {
 const dummyAccessToken = "foo"
 
 func TestAuthInfoWriterBearer(t *testing.T) {
-	r, _ := newRequest("GET", "/", nil)
+	t.Parallel()
+	r, err := newRequest("GET", "/", nil)
+	if err != nil {
+		assert.FailNow(t, "err should be nil")
+	}
 
 	// mockup client input value
 	accessToken := dummyAccessToken
 	token = iamclientmodels.OauthmodelTokenResponseV3{AccessToken: &accessToken}
-	err := dummyService.TokenRepository.Store(token)
+	err = dummyService.TokenRepository.Store(token)
 	if err != nil {
-		_ = fmt.Errorf("err")
+		assert.FailNow(t, "fail to store the token")
 	}
-	tokenStored, _ := dummyService.TokenRepository.GetToken()
+	tokenStored, errGetToken := dummyService.TokenRepository.GetToken()
+	if errGetToken != nil {
+		assert.FailNow(t, "fail to store the token")
+	}
 
 	// call the AuthInfoWriter
 	if authInfoWriter == nil {
@@ -71,16 +78,20 @@ func TestAuthInfoWriterBearer(t *testing.T) {
 }
 
 func TestAuthInfoWriterBasic(t *testing.T) {
-	r, _ := newRequest("GET", "/", nil)
+	t.Parallel()
+	r, err := newRequest("GET", "/", nil)
+	if err != nil {
+		assert.FailNow(t, "err should be nil")
+	}
 
 	// mockup client input value
 	clientID := dummyService.ConfigRepository.GetClientId()
-	if clientID != "" {
-		_ = fmt.Errorf("empty ClientID")
+	if clientID == "" {
+		assert.FailNow(t, "empty ClientID")
 	}
 	clientSecret := dummyService.ConfigRepository.GetClientId()
-	if clientSecret != "" {
-		_ = fmt.Errorf("empty ClientSecret")
+	if clientSecret == "" {
+		assert.FailNow(t, "empty ClientSecret")
 	}
 
 	// call the AuthInfoWriter
@@ -92,20 +103,24 @@ func TestAuthInfoWriterBasic(t *testing.T) {
 	}
 
 	writer := auth.AuthInfoWriter(nil, dummyService.ConfigRepository, security, "")
-	err := writer.AuthenticateRequest(r, nil)
+	err = writer.AuthenticateRequest(r, nil)
 	assert.Nil(t, err, "err should be nil")
 	assert.Equal(t, "Basic YWRtaW46YWRtaW4=", r.header.Get("Authorization"))
 }
 
 func TestAuthInfoWriterCookie(t *testing.T) {
-	r, _ := newRequest("GET", "/", nil)
+	t.Parallel()
+	r, err := newRequest("GET", "/", nil)
+	if err != nil {
+		assert.FailNow(t, "err should be nil")
+	}
 
 	// mockup client input value
 	accessToken := dummyAccessToken
 	token = iamclientmodels.OauthmodelTokenResponseV3{AccessToken: &accessToken}
-	err := dummyService.TokenRepository.Store(token)
+	err = dummyService.TokenRepository.Store(token)
 	if err != nil {
-		_ = fmt.Errorf("err")
+		assert.FailNow(t, "fail to store the token")
 	}
 	tokenStored, _ := dummyService.TokenRepository.GetToken()
 
@@ -125,14 +140,18 @@ func TestAuthInfoWriterCookie(t *testing.T) {
 }
 
 func TestAuthInfoWriterOptional(t *testing.T) {
-	r, _ := newRequest("GET", "/", nil)
+	t.Parallel()
+	r, err := newRequest("GET", "/", nil)
+	if err != nil {
+		assert.FailNow(t, "err should be nil")
+	}
 
 	// mockup client input value
 	accessToken := dummyAccessToken
 	token = iamclientmodels.OauthmodelTokenResponseV3{AccessToken: &accessToken}
-	err := dummyService.TokenRepository.Store(token)
+	err = dummyService.TokenRepository.Store(token)
 	if err != nil {
-		_ = fmt.Errorf("err")
+		assert.FailNow(t, "fail to store the token")
 	}
 	tokenStored, _ := dummyService.TokenRepository.GetToken()
 
@@ -153,28 +172,40 @@ func TestAuthInfoWriterOptional(t *testing.T) {
 }
 
 func TestBearer(t *testing.T) {
-	r, _ := newRequest("GET", "/", nil)
+	t.Parallel()
+	r, err := newRequest("GET", "/", nil)
+	if err != nil {
+		assert.FailNow(t, "err should be nil")
+	}
 
 	writer := auth.Bearer(dummyAccessToken)
-	err := writer.AuthenticateRequest(r, nil)
+	err = writer.AuthenticateRequest(r, nil)
 	assert.NoError(t, err)
 	assert.Equal(t, "Bearer foo", r.header.Get("Authorization"))
 }
 
 func TestBasic(t *testing.T) {
-	r, _ := newRequest("GET", "/", nil)
+	t.Parallel()
+	r, err := newRequest("GET", "/", nil)
+	if err != nil {
+		assert.FailNow(t, "err should be nil")
+	}
 
 	writer := auth.Basic("admin", "admin")
-	err := writer.AuthenticateRequest(r, nil)
+	err = writer.AuthenticateRequest(r, nil)
 	assert.NoError(t, err)
 	assert.Equal(t, "Basic YWRtaW46YWRtaW4=", r.header.Get("Authorization"))
 }
 
 func TestCookieValue(t *testing.T) {
-	r, _ := newRequest("GET", "/", nil)
+	t.Parallel()
+	r, err := newRequest("GET", "/", nil)
+	if err != nil {
+		assert.FailNow(t, "err should be nil")
+	}
 
 	writer := auth.CookieValue("access_token", dummyAccessToken)
-	err := writer.AuthenticateRequest(r, nil)
+	err = writer.AuthenticateRequest(r, nil)
 	assert.NoError(t, err)
 	assert.Equal(t, "access_token=foo", r.header.Get("cookie"))
 }
@@ -338,5 +369,5 @@ func (configRepository *ConfigRepositoryImpl) GetClientSecret() string {
 }
 
 func (configRepository *ConfigRepositoryImpl) GetJusticeBaseUrl() string {
-	return "www.dummy.com"
+	return ""
 }

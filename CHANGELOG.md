@@ -1,3 +1,52 @@
+<a name="v0.17.0"></a>
+## [v0.17.0] - 2022-04-26
+
+### Chore
+- **api:** encode the cookie value
+- **api:** delete the security definition
+- **api:** regenerate all services for justice 3.21
+- **api:** regenerate all services for new auth info writer
+- **api:** update iam service
+- **cli:** regenerate all cli for justice 3.21
+- **cli:** regenerate all services for new auth info writer
+- **cli:** update iam service
+- **lint:** adjustment for new auth info writer
+- **makefile:** consolidate golang docker image
+- **samples:** adjust wrapper usage for new auth info writer
+- **sh-unit-tests:** regenerate sh unit tests for justice 3.21
+- **spec:** update iam spec
+- **spec:** update service iam and game telemetry for cookies
+- **spec:** update spec files for justice 3.21
+- **test:** add do not edit header
+- **test:** adjust all services for new auth info writer
+- **test:** apply enum used in group and social service
+- **test:** change the constant value
+- **test:** refactor unnecessary variables
+- **test:** update iam service
+
+### CI
+- **nightly:** publish tap report
+
+### Docs
+- update CHANGELOG.md for v0.17.0 release
+- update doc index
+- **readme:**  mention reference docs + fix wording
+
+### Feat
+- **api:** add multiple auth info
+- **test:** add test for auth info
+
+### Fix
+- **api:** adjust the iam token grant for new auth info
+- **api:** put the info writer inside the input
+- **cli:** add nil info writer for iam token grant and game telemetry
+- **cli:** add time sleep to get the response
+- **cli:** the docker's url
+- **makefile:** test_integration
+- **samples:** delete nil parameter
+- **test:** add nil info writer for the iam token grant
+
+
 <a name="v0.16.0"></a>
 ## [v0.16.0] - 2022-04-12
 
@@ -531,6 +580,7 @@ The wrapper have been refactored and has breaking change, these are the list:
 ### Fix
 - delete go.mod ([#1](https://github.com/AccelByte/accelbyte-go-sdk/issues/1))
 
+[v0.17.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.16.0...v0.17.0
 [v0.16.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.15.1...v0.16.0
 [v0.15.1]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.15.0...v0.15.1
 [v0.15.0]: https://github.com/AccelByte/accelbyte-go-sdk/compare/v0.14.0...v0.15.0

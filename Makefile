@@ -6,7 +6,7 @@ SHELL := /bin/bash
 
 .PHONY: samples
 
-#INTEGRATION_TEST_ENV_FILE_PATH ?= $(PWD)/services-api/pkg/tests/integration/integration.env
+#ENV_FILE_PATH ?= $(PWD)/services-api/pkg/tests/integration/integration.env
 
 lint:
 	rm -f lint.err
@@ -34,8 +34,8 @@ samples:
 					sh -c "cd {} && CGO_ENABLED=0 GOOS=linux go build || exit 255"'
 
 test_integration:
-	@test -n "$(INTEGRATION_TEST_ENV_FILE_PATH)" || (echo "INTEGRATION_TEST_ENV_FILE_PATH is not set" ; exit 1)
-	docker run -t --rm --env-file $(INTEGRATION_TEST_ENV_FILE_PATH) -v $$(pwd):/data/ -w /data/ -e GOCACHE=/tmp/.cache golang:1.16-alpine3.15 \
+	@test -n "$(ENV_FILE_PATH)" || (echo "ENV_FILE_PATH is not set" ; exit 1)
+	docker run -t --rm --env-file $(ENV_FILE_PATH) -v $$(pwd):/data/ -w /data/ -e GOCACHE=/tmp/.cache golang:1.16-alpine3.15 \
 			sh -c "CGO_ENABLED=0 GOOS=linux go test github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/tests/integration"
 
 test_cli:

@@ -56,14 +56,16 @@ pipeline {
             sh "commitlint --color false --verbose --from ${env.BITBUCKET_PULL_REQUEST_LATEST_COMMIT_FROM_TARGET_BRANCH}"
           }
         }
-        stage('Lint Source Code') {
+        stage('Lint Spec') {
           steps {
-            sh "make lint"
+            sh "[ -s spec/TIMESTAMP ]"  // Make sure TIMESTAMP file is present in spec directory
           }
         }
-        stage('Lint Mod Outdated') {
+        stage('Lint Code') {
           steps {
+            sh "[ -s codegen.txt ]"  // Make sure codegen.txt file is present in spec directory
             sh "make lint-mod-outdated"
+            sh "make lint"
           }
         }
       }

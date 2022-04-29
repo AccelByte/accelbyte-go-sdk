@@ -41,8 +41,8 @@ pipeline {
           post {
             always {
               script {
-                archiveArtifacts artifacts: 'tests/sh/*.tap'
-                step([$class: "TapPublisher", testResults: "tests/sh/*.tap"])
+                archiveArtifacts artifacts: 'samples/cli/tests/*.tap'
+                step([$class: "TapPublisher", testResults: "samples/cli/tests/*.tap"])
               }
             }
           }

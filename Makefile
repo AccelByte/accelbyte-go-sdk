@@ -47,9 +47,10 @@ test_cli:
 			trap "docker stop justice-codegen-sdk-mock-server" EXIT && \
 			(DOCKER_RUN_ARGS="-t --rm -u $$(id -u):$$(id -g) -v $$(pwd):/data -w /data --network host --name justice-codegen-sdk-mock-server" bash "$(SDK_MOCK_SERVER_PATH)/mock-server.sh" -s /data/spec &) && \
 			(for i in $$(seq 1 10); do bash -c "timeout 1 echo > /dev/tcp/127.0.0.1/8080" 2>/dev/null && exit 0 || sleep 10; done; exit 1) && \
-			sed -i "s/\r//" tests/sh/* && \
-			rm -f tests/sh/*.tap && \
-			(for FILE in $$(ls tests/sh/*.sh); do \
+			sed -i "s/\r//" samples/cli/tests/* && \
+			rm -f samples/cli/tests/*.tap && \
+			for FILE in $$(ls samples/cli/tests/*.sh); do \
+					echo "# $$(basename "$$FILE")"; \
 					(set -o pipefail; PATH=samples/cli:$$PATH bash $${FILE} | tee "$${FILE}.tap") || touch test.err; \
-			done)
+			done
 	[ ! -f test.err ]

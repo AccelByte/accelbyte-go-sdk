@@ -8,7 +8,7 @@
 
 # Meta:
 # - random seed: 256
-# - template file: go-cli-unit-test.j2
+# - template file: cli_test.j2
 
 # Instructions:
 # - Run the Justice SDK Mock Server first before running this script.

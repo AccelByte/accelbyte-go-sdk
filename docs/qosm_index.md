@@ -5,20 +5,20 @@
 ## Operations
 
 ### Admin Wrapper:  [Admin](../services-api/pkg/service/qosm/admin.go)
-| Endpoint | Method | ID | Class | Wrapper |
-|---|---|---|---|---|
-| `/qosm/admin/servers/{region}` | DELETE | DeleteServerShort | [DeleteServerShort](../qosm-sdk/pkg/qosmclient/admin/admin_client.go) | [DeleteServerShort](../services-api/pkg/service/qosm/admin.go) |
-| `/qosm/admin/servers/{region}/alias` | POST | SetServerAliasShort | [SetServerAliasShort](../qosm-sdk/pkg/qosmclient/admin/admin_client.go) | [SetServerAliasShort](../services-api/pkg/service/qosm/admin.go) |
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/qosm/admin/servers/{region}` | DELETE | DeleteServerShort | [DeleteServerShort](../qosm-sdk/pkg/qosmclient/admin/admin_client.go) | [DeleteServerShort](../services-api/pkg/service/qosm/admin.go) | [DeleteServerShort](../samples/cli/cmd/qosm/admin/deleteServer.go) |
+| `/qosm/admin/servers/{region}/alias` | POST | SetServerAliasShort | [SetServerAliasShort](../qosm-sdk/pkg/qosmclient/admin/admin_client.go) | [SetServerAliasShort](../services-api/pkg/service/qosm/admin.go) | [SetServerAliasShort](../samples/cli/cmd/qosm/admin/setServerAlias.go) |
 
 ### Public Wrapper:  [Public](../services-api/pkg/service/qosm/public.go)
-| Endpoint | Method | ID | Class | Wrapper |
-|---|---|---|---|---|
-| `/qosm/public/qos` | GET | ListServerShort | [ListServerShort](../qosm-sdk/pkg/qosmclient/public/public_client.go) | [ListServerShort](../services-api/pkg/service/qosm/public.go) |
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/qosm/public/qos` | GET | ListServerShort | [ListServerShort](../qosm-sdk/pkg/qosmclient/public/public_client.go) | [ListServerShort](../services-api/pkg/service/qosm/public.go) | [ListServerShort](../samples/cli/cmd/qosm/public/listServer.go) |
 
 ### Server Wrapper:  [Server](../services-api/pkg/service/qosm/server.go)
-| Endpoint | Method | ID | Class | Wrapper |
-|---|---|---|---|---|
-| `/qosm/servers/heartbeat` | POST | HeartbeatShort | [HeartbeatShort](../qosm-sdk/pkg/qosmclient/server/server_client.go) | [HeartbeatShort](../services-api/pkg/service/qosm/server.go) |
+| Endpoint | Method | ID | Class | Wrapper | Example |
+|---|---|---|---|---|---|
+| `/qosm/servers/heartbeat` | POST | HeartbeatShort | [HeartbeatShort](../qosm-sdk/pkg/qosmclient/server/server_client.go) | [HeartbeatShort](../services-api/pkg/service/qosm/server.go) | [HeartbeatShort](../samples/cli/cmd/qosm/server/heartbeat.go) |
 
 
 &nbsp;  

@@ -5,14 +5,22 @@
 package sdk_test
 
 import (
+	"bytes"
+	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
+	"io/ioutil"
 	"net/http"
 	"reflect"
 	"testing"
 
 	"github.com/go-openapi/runtime"
 )
+
+type Model struct {
+	Payload interface{}
+}
 
 func TestResp_Success200(t *testing.T) {
 	bodyBuffer200 := NewStringBody("200")
@@ -49,7 +57,7 @@ func TestResp_Success200(t *testing.T) {
 			},
 			want: Response{Response: http.Response{
 				StatusCode: 200,
-				Body:       bodyBuffer200, // todo: binary
+				Body:       bodyBuffer200, // todo: change to binary
 			}},
 		},
 	}
@@ -122,7 +130,8 @@ func TestResp_Success204(t *testing.T) {
 	}
 }
 
-func TestResp_Error(t *testing.T) {
+// todo: body text html
+func TestResp_StatusCodes(t *testing.T) {
 	type args struct {
 		err  error
 		code int
@@ -133,17 +142,17 @@ func TestResp_Error(t *testing.T) {
 		want bool
 	}{
 		{
-			name: "400 error",
+			name: "403 error",
 			args: args{
-				err:  &runtime.APIError{Code: 400},
-				code: 400,
+				err:  &runtime.APIError{Code: 403, Response: `{"error"}`},
+				code: 403,
 			},
 			want: true,
 		},
 		{
-			name: "403 error",
+			name: "403 error json body",
 			args: args{
-				err:  &runtime.APIError{Code: 403},
+				err:  &runtime.APIError{Code: 403, Response: NewStructBody(Model{Payload: `{"error"}`})},
 				code: 403,
 			},
 			want: true,
@@ -151,7 +160,15 @@ func TestResp_Error(t *testing.T) {
 		{
 			name: "404 error",
 			args: args{
-				err:  &runtime.APIError{Code: 404},
+				err:  &runtime.APIError{Code: 404, Response: `{"error"}`},
+				code: 404,
+			},
+			want: true,
+		},
+		{
+			name: "404 error json body",
+			args: args{
+				err:  &runtime.APIError{Code: 404, Response: NewStructBody(Model{Payload: `{"error"}`})},
 				code: 404,
 			},
 			want: true,
@@ -160,6 +177,14 @@ func TestResp_Error(t *testing.T) {
 			name: "503 error",
 			args: args{
 				err:  &runtime.APIError{Code: 503},
+				code: 503,
+			},
+			want: true,
+		},
+		{
+			name: "503 error json body",
+			args: args{
+				err:  &runtime.APIError{Code: 503, Response: NewStructBody(Model{Payload: `{"error"}`})},
 				code: 503,
 			},
 			want: true,
@@ -183,4 +208,12 @@ func StatusCode(err error, code int) bool {
 	}
 
 	return rtCode == code
+}
+
+func NewStructBody(i interface{}) io.ReadCloser {
+	var b = new(bytes.Buffer)
+	if err := json.NewEncoder(b).Encode(i); err != nil {
+		panic(fmt.Sprintf("Failed to json.Encode structure %+v", i))
+	}
+	return ioutil.NopCloser(b)
 }

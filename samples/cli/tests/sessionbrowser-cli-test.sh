@@ -40,7 +40,7 @@ MODULE_PATH='../samples/cli'
 TEMP_TOKEN="/tmp/justice-sample-apps/userData"
 
 echo "TAP version 13"
-echo "1..16"
+echo "1..17"
 
 #- 1 Login
 rm -f $TEMP_TOKEN \
@@ -169,12 +169,20 @@ samples/cli/sample-apps Sessionbrowser removePlayerFromSession \
     > test.out 2>&1
 eval_tap $? 15 'RemovePlayerFromSession' test.out
 
-#- 16 GetRecentPlayer
-samples/cli/sample-apps Sessionbrowser getRecentPlayer \
+#- 16 UpdateSettings
+samples/cli/sample-apps Sessionbrowser updateSettings \
+    --body '{}' \
     --namespace 'Btu23REZ' \
-    --userID '8hRVX7LG' \
+    --sessionID '8hRVX7LG' \
     > test.out 2>&1
-eval_tap $? 16 'GetRecentPlayer' test.out
+eval_tap $? 16 'UpdateSettings' test.out
+
+#- 17 GetRecentPlayer
+samples/cli/sample-apps Sessionbrowser getRecentPlayer \
+    --namespace 'OvDdYiQS' \
+    --userID '9i7mV1C9' \
+    > test.out 2>&1
+eval_tap $? 17 'GetRecentPlayer' test.out
 
 
 rm -f "tmp.dat"

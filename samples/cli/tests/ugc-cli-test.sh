@@ -117,7 +117,7 @@ samples/cli/sample-apps Ugc adminSearchChannelSpecificContent \
     --orderby 'POj0c6i0' \
     --sortby 'JkvIas73' \
     --subtype 'ucYnFAJ3' \
-    --tags 'DK5T4Eog' \
+    --tags '["DK5T4Eog"]' \
     --type 'g0Y39UoY' \
     --userId 'lpv5bVAg' \
     > test.out 2>&1
@@ -153,7 +153,7 @@ samples/cli/sample-apps Ugc adminSearchContent \
     --orderby 'YgBU1sqj' \
     --sortby 'yK0XH45P' \
     --subtype 'aRSOFQBt' \
-    --tags 'u23REZ8h' \
+    --tags '["u23REZ8h"]' \
     --type 'RVX7LGOv' \
     --userId 'DdYiQS9i' \
     > test.out 2>&1
@@ -453,7 +453,7 @@ samples/cli/sample-apps Ugc searchChannelSpecificContent \
     --orderby '6NdcBIgz' \
     --sortby 'rDyWpFBY' \
     --subtype 'GmmBawMy' \
-    --tags 'oKyNpdAa' \
+    --tags '["oKyNpdAa"]' \
     --type 'sm8xwUfz' \
     --userId 'OlQiZY4N' \
     > test.out 2>&1
@@ -470,7 +470,7 @@ samples/cli/sample-apps Ugc publicSearchContent \
     --orderby 'K3l9Eb0R' \
     --sortby '1XRb0RH8' \
     --subtype 'vS1smeOl' \
-    --tags 'ngrdTXCz' \
+    --tags '["ngrdTXCz"]' \
     --type 'aPBtkZMi' \
     --userId 'o4wcyhlo' \
     > test.out 2>&1

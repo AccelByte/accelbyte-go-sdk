@@ -32,5 +32,6 @@ func init() {
 	SessionbrowserCmd.AddCommand(session.DeleteSessionLocalDSCmd)
 	SessionbrowserCmd.AddCommand(session.AddPlayerToSessionCmd)
 	SessionbrowserCmd.AddCommand(session.RemovePlayerFromSessionCmd)
+	SessionbrowserCmd.AddCommand(session.UpdateSettingsCmd)
 	SessionbrowserCmd.AddCommand(session.GetRecentPlayerCmd)
 }

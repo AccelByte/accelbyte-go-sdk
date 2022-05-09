@@ -4,10 +4,10 @@
 
 // Code generated. DO NOT EDIT.
 
-package currency
+package wallet
 
 import (
-	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/currency"
+	"github.com/AccelByte/accelbyte-go-sdk/platform-sdk/pkg/platformclient/wallet"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/platform"
 	"github.com/AccelByte/sample-apps/pkg/repository"
@@ -15,23 +15,23 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// PublicListCurrenciesCmd represents the PublicListCurrencies command
-var PublicListCurrenciesCmd = &cobra.Command{
-	Use:   "publicListCurrencies",
-	Short: "Public list currencies",
-	Long:  `Public list currencies`,
+// QueryUserCurrencyWalletsCmd represents the QueryUserCurrencyWallets command
+var QueryUserCurrencyWalletsCmd = &cobra.Command{
+	Use:   "queryUserCurrencyWallets",
+	Short: "Query user currency wallets",
+	Long:  `Query user currency wallets`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		currencyService := &platform.CurrencyService{
+		walletService := &platform.WalletService{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
-		currencyType, _ := cmd.Flags().GetString("currencyType")
-		input := &currency.PublicListCurrenciesParams{
-			Namespace:    namespace,
-			CurrencyType: &currencyType,
+		userId, _ := cmd.Flags().GetString("userId")
+		input := &wallet.QueryUserCurrencyWalletsParams{
+			Namespace: namespace,
+			UserID:    userId,
 		}
-		ok, err := currencyService.PublicListCurrenciesShort(input)
+		ok, err := walletService.QueryUserCurrencyWalletsShort(input)
 		if err != nil {
 			logrus.Error(err)
 
@@ -45,7 +45,8 @@ var PublicListCurrenciesCmd = &cobra.Command{
 }
 
 func init() {
-	PublicListCurrenciesCmd.Flags().StringP("namespace", "", "", "Namespace")
-	_ = PublicListCurrenciesCmd.MarkFlagRequired("namespace")
-	PublicListCurrenciesCmd.Flags().StringP("currencyType", "", "", "Currency type")
+	QueryUserCurrencyWalletsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	_ = QueryUserCurrencyWalletsCmd.MarkFlagRequired("namespace")
+	QueryUserCurrencyWalletsCmd.Flags().StringP("userId", "", "", "User id")
+	_ = QueryUserCurrencyWalletsCmd.MarkFlagRequired("userId")
 }

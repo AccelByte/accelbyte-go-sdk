@@ -15,31 +15,29 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// QueryWalletsCmd represents the QueryWallets command
-var QueryWalletsCmd = &cobra.Command{
-	Use:   "queryWallets",
-	Short: "Query wallets",
-	Long:  `Query wallets`,
+// ListUserCurrencyTransactionsCmd represents the ListUserCurrencyTransactions command
+var ListUserCurrencyTransactionsCmd = &cobra.Command{
+	Use:   "listUserCurrencyTransactions",
+	Short: "List user currency transactions",
+	Long:  `List user currency transactions`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		walletService := &platform.WalletService{
 			Client:          factory.NewPlatformClient(&repository.ConfigRepositoryImpl{}),
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
-		namespace, _ := cmd.Flags().GetString("namespace")
 		currencyCode, _ := cmd.Flags().GetString("currencyCode")
+		namespace, _ := cmd.Flags().GetString("namespace")
+		userId, _ := cmd.Flags().GetString("userId")
 		limit, _ := cmd.Flags().GetInt32("limit")
 		offset, _ := cmd.Flags().GetInt32("offset")
-		origin, _ := cmd.Flags().GetString("origin")
-		userId, _ := cmd.Flags().GetString("userId")
-		input := &wallet.QueryWalletsParams{
+		input := &wallet.ListUserCurrencyTransactionsParams{
+			CurrencyCode: currencyCode,
 			Namespace:    namespace,
-			CurrencyCode: &currencyCode,
+			UserID:       userId,
 			Limit:        &limit,
 			Offset:       &offset,
-			Origin:       &origin,
-			UserID:       &userId,
 		}
-		ok, err := walletService.QueryWalletsShort(input)
+		ok, err := walletService.ListUserCurrencyTransactionsShort(input)
 		if err != nil {
 			logrus.Error(err)
 
@@ -53,11 +51,12 @@ var QueryWalletsCmd = &cobra.Command{
 }
 
 func init() {
-	QueryWalletsCmd.Flags().StringP("namespace", "", "", "Namespace")
-	_ = QueryWalletsCmd.MarkFlagRequired("namespace")
-	QueryWalletsCmd.Flags().StringP("currencyCode", "", "", "Currency code")
-	QueryWalletsCmd.Flags().Int32P("limit", "", 20, "Limit")
-	QueryWalletsCmd.Flags().Int32P("offset", "", 0, "Offset")
-	QueryWalletsCmd.Flags().StringP("origin", "", "", "Origin")
-	QueryWalletsCmd.Flags().StringP("userId", "", "", "User id")
+	ListUserCurrencyTransactionsCmd.Flags().StringP("currencyCode", "", "", "Currency code")
+	_ = ListUserCurrencyTransactionsCmd.MarkFlagRequired("currencyCode")
+	ListUserCurrencyTransactionsCmd.Flags().StringP("namespace", "", "", "Namespace")
+	_ = ListUserCurrencyTransactionsCmd.MarkFlagRequired("namespace")
+	ListUserCurrencyTransactionsCmd.Flags().StringP("userId", "", "", "User id")
+	_ = ListUserCurrencyTransactionsCmd.MarkFlagRequired("userId")
+	ListUserCurrencyTransactionsCmd.Flags().Int32P("limit", "", 20, "Limit")
+	ListUserCurrencyTransactionsCmd.Flags().Int32P("offset", "", 0, "Offset")
 }

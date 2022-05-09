@@ -28,10 +28,12 @@ var CheckWalletCmd = &cobra.Command{
 		currencyCode, _ := cmd.Flags().GetString("currencyCode")
 		namespace, _ := cmd.Flags().GetString("namespace")
 		userId, _ := cmd.Flags().GetString("userId")
+		origin, _ := cmd.Flags().GetString("origin")
 		input := &wallet.CheckWalletParams{
 			CurrencyCode: currencyCode,
 			Namespace:    namespace,
 			UserID:       userId,
+			Origin:       origin,
 		}
 		errInput := walletService.CheckWalletShort(input)
 		if errInput != nil {
@@ -51,4 +53,6 @@ func init() {
 	_ = CheckWalletCmd.MarkFlagRequired("namespace")
 	CheckWalletCmd.Flags().StringP("userId", "", "", "User id")
 	_ = CheckWalletCmd.MarkFlagRequired("userId")
+	CheckWalletCmd.Flags().StringP("origin", "", "", "Origin")
+	_ = CheckWalletCmd.MarkFlagRequired("origin")
 }

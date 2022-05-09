@@ -26,8 +26,10 @@ var ListCurrenciesCmd = &cobra.Command{
 			TokenRepository: &repository.TokenRepositoryImpl{},
 		}
 		namespace, _ := cmd.Flags().GetString("namespace")
+		currencyType, _ := cmd.Flags().GetString("currencyType")
 		input := &currency.ListCurrenciesParams{
-			Namespace: namespace,
+			Namespace:    namespace,
+			CurrencyType: &currencyType,
 		}
 		ok, err := currencyService.ListCurrenciesShort(input)
 		if err != nil {
@@ -45,4 +47,5 @@ var ListCurrenciesCmd = &cobra.Command{
 func init() {
 	ListCurrenciesCmd.Flags().StringP("namespace", "", "", "Namespace")
 	_ = ListCurrenciesCmd.MarkFlagRequired("namespace")
+	ListCurrenciesCmd.Flags().StringP("currencyType", "", "", "Currency type")
 }

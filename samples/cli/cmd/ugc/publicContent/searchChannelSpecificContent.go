@@ -7,6 +7,8 @@
 package publicContent
 
 import (
+	"encoding/json"
+
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/factory"
 	"github.com/AccelByte/accelbyte-go-sdk/services-api/pkg/service/ugc"
 	"github.com/AccelByte/accelbyte-go-sdk/ugc-sdk/pkg/ugcclient/public_content"
@@ -35,7 +37,12 @@ var SearchChannelSpecificContentCmd = &cobra.Command{
 		orderby, _ := cmd.Flags().GetString("orderby")
 		sortby, _ := cmd.Flags().GetString("sortby")
 		subtype, _ := cmd.Flags().GetString("subtype")
-		tags, _ := cmd.Flags().GetString("tags")
+		tagsString := cmd.Flag("tags").Value.String()
+		var tags []string
+		errTags := json.Unmarshal([]byte(tagsString), &tags)
+		if errTags != nil {
+			return errTags
+		}
 		type_, _ := cmd.Flags().GetString("type")
 		userId, _ := cmd.Flags().GetString("userId")
 		input := &public_content.SearchChannelSpecificContentParams{
@@ -49,7 +56,7 @@ var SearchChannelSpecificContentCmd = &cobra.Command{
 			Orderby:    &orderby,
 			Sortby:     &sortby,
 			Subtype:    &subtype,
-			Tags:       &tags,
+			Tags:       tags,
 			Type:       &type_,
 			UserID:     &userId,
 		}

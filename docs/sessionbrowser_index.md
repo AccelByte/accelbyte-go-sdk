@@ -21,6 +21,7 @@
 | `/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/localds` | DELETE | DeleteSessionLocalDSShort | [DeleteSessionLocalDSShort](../sessionbrowser-sdk/pkg/sessionbrowserclient/session/session_client.go) | [DeleteSessionLocalDSShort](../services-api/pkg/service/sessionbrowser/session.go) | [DeleteSessionLocalDSShort](../samples/cli/cmd/sessionbrowser/session/deleteSessionLocalDS.go) |
 | `/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player` | POST | AddPlayerToSessionShort | [AddPlayerToSessionShort](../sessionbrowser-sdk/pkg/sessionbrowserclient/session/session_client.go) | [AddPlayerToSessionShort](../services-api/pkg/service/sessionbrowser/session.go) | [AddPlayerToSessionShort](../samples/cli/cmd/sessionbrowser/session/addPlayerToSession.go) |
 | `/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/player/{userID}` | DELETE | RemovePlayerFromSessionShort | [RemovePlayerFromSessionShort](../sessionbrowser-sdk/pkg/sessionbrowserclient/session/session_client.go) | [RemovePlayerFromSessionShort](../services-api/pkg/service/sessionbrowser/session.go) | [RemovePlayerFromSessionShort](../samples/cli/cmd/sessionbrowser/session/removePlayerFromSession.go) |
+| `/sessionbrowser/namespaces/{namespace}/gamesession/{sessionID}/settings` | PUT | UpdateSettingsShort | [UpdateSettingsShort](../sessionbrowser-sdk/pkg/sessionbrowserclient/session/session_client.go) | [UpdateSettingsShort](../services-api/pkg/service/sessionbrowser/session.go) | [UpdateSettingsShort](../samples/cli/cmd/sessionbrowser/session/updateSettings.go) |
 | `/sessionbrowser/namespaces/{namespace}/recentplayer/{userID}` | GET | GetRecentPlayerShort | [GetRecentPlayerShort](../sessionbrowser-sdk/pkg/sessionbrowserclient/session/session_client.go) | [GetRecentPlayerShort](../services-api/pkg/service/sessionbrowser/session.go) | [GetRecentPlayerShort](../samples/cli/cmd/sessionbrowser/session/getRecentPlayer.go) |
 
 
@@ -54,5 +55,6 @@
 | `models.SessionResponse` | [ModelsSessionResponse ](../sessionbrowser-sdk/pkg/sessionbrowserclientmodels/models_session_response.go) |
 | `models.StatusHistory` | [ModelsStatusHistory ](../sessionbrowser-sdk/pkg/sessionbrowserclientmodels/models_status_history.go) |
 | `models.UpdateSessionRequest` | [ModelsUpdateSessionRequest ](../sessionbrowser-sdk/pkg/sessionbrowserclientmodels/models_update_session_request.go) |
+| `models.UpdateSettingsRequest` | [ModelsUpdateSettingsRequest ](../sessionbrowser-sdk/pkg/sessionbrowserclientmodels/models_update_settings_request.go) |
 | `response.Error` | [ResponseError ](../sessionbrowser-sdk/pkg/sessionbrowserclientmodels/response_error.go) |
 | `restapi.ErrorResponseV2` | [RestapiErrorResponseV2 ](../sessionbrowser-sdk/pkg/sessionbrowserclientmodels/restapi_error_response_v2.go) |
